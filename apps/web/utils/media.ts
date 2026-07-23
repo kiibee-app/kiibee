@@ -325,6 +325,7 @@ export function resolveCloudflareStreamPlaybackUrl(
 }
 
 const YOUTUBE_HOST_PATTERN = /(?:youtube\.com|youtu\.be)/i;
+const YOUTUBE_PATH_ID_MARKERS = new Set(["shorts", "embed", "live", "v", "e"]);
 const URL_PATTERN = /^https?:\/\/.+/i;
 
 function safeParseUrl(url: string): URL | null {
@@ -341,13 +342,37 @@ export function isYouTubeUrl(url?: string | null): boolean {
   return parsed ? YOUTUBE_HOST_PATTERN.test(parsed.hostname) : false;
 }
 
+/** Extract a YouTube video id from watch, shorts, embed, live, or youtu.be URLs. */
+export function extractYouTubeVideoId(url?: string | null): string | null {
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  if (!parsed || !YOUTUBE_HOST_PATTERN.test(parsed.hostname)) {
+    return null;
+  }
+
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+  if (host === "youtu.be") {
+    const id = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+    return id || null;
+  }
+
+  const fromQuery = parsed.searchParams.get("v")?.trim();
+  if (fromQuery) {
+    return fromQuery;
+  }
+
+  const segments = parsed.pathname.split("/").filter(Boolean);
+  if (
+    segments.length >= 2 &&
+    YOUTUBE_PATH_ID_MARKERS.has(segments[0].toLowerCase())
+  ) {
+    return segments[1].split("?")[0] || null;
+  }
+
+  return null;
+}
+
 export function getYouTubeEmbedUrl(url: string): string {
-  const parsed = safeParseUrl(url);
-  if (!parsed) return url;
-  const videoId =
-    parsed.hostname === "youtu.be"
-      ? parsed.pathname.replace(/^\/+/, "").split("/")[0]
-      : parsed.searchParams.get("v") || "";
+  const videoId = extractYouTubeVideoId(url);
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 }
 
@@ -361,7 +386,12 @@ export function isVimeoUrl(url?: string | null): boolean {
 export function getVimeoEmbedUrl(url: string): string {
   const parsed = safeParseUrl(url);
   if (!parsed) return url;
-  const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+  const segments = parsed.pathname
+    .replace(/^\/+/, "")
+    .split("/")
+    .filter(Boolean);
+  // /123456 or /video/123456
+  const videoId = segments[0] === "video" ? segments[1] : segments[0];
   return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
 }
 
@@ -369,9 +399,14 @@ export function isThirdPartyVideoUrl(src: string): boolean {
   return isYouTubeUrl(src) || isVimeoUrl(src);
 }
 
+function withAutoplay(embedUrl: string): string {
+  const separator = embedUrl.includes("?") ? "&" : "?";
+  return `${embedUrl}${separator}autoplay=1`;
+}
+
 export function getThirdPartyEmbedUrl(src: string): string {
-  if (isYouTubeUrl(src)) return `${getYouTubeEmbedUrl(src)}?autoplay=1`;
-  if (isVimeoUrl(src)) return `${getVimeoEmbedUrl(src)}?autoplay=1`;
+  if (isYouTubeUrl(src)) return withAutoplay(getYouTubeEmbedUrl(src));
+  if (isVimeoUrl(src)) return withAutoplay(getVimeoEmbedUrl(src));
   return src;
 }
 
