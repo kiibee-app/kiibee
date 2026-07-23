@@ -9,6 +9,15 @@ export const pulse = keyframes`
   }
 `;
 
+export const shimmer = keyframes`
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+`;
+
 export const spin = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

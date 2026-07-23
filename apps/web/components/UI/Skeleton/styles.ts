@@ -1,20 +1,13 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import {
   ImageWrapper as BaseImageWrapper,
   Footer as BaseCardFooter,
 } from "@/components/UI/GenericCard/styles";
 import { VideoBox as BaseVideoBox } from "@/components/Feature/TutorialVideos/TutorialCard/styles";
 import { Card as BaseCreatorCardWrapper } from "@/components/Feature/ExploreCreators/TopCreators/styles";
+import { shimmer } from "@/utils/animations";
 
-export const shimmer = keyframes`
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-`;
-
+export { shimmer };
 export const SkeletonBase = styled.div`
   display: inline-block;
   width: 100%;

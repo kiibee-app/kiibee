@@ -10,6 +10,7 @@ import {
   SectionLink,
 } from "@/components/Feature/TutorialVideos/TutorialContent/styles";
 import { MonoText } from "@/components/UI/Monotext";
+import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
@@ -126,7 +127,19 @@ function PublicCollectionPreview({
       .filter((section) => section.cards.length > 0);
   }, [cardsWithSeeContent, searchQuery]);
 
-  if (isLoading || !visibleCards.length) return null;
+  if (isLoading) {
+    return (
+      <CollectionSection $variant={variant}>
+        <FourColumnGrid>
+          {Array.from({ length: COLLECTION_PREVIEW_LIMIT }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </FourColumnGrid>
+      </CollectionSection>
+    );
+  }
+
+  if (!visibleCards.length) return null;
 
   return (
     <>

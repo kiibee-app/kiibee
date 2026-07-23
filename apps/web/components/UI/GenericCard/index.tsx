@@ -17,6 +17,7 @@ import {
   Footer,
   Badge,
   ImageInitials,
+  ImageSkeleton,
   CardHeader,
   CardChildren,
 } from "./styles";
@@ -108,6 +109,14 @@ export default function GenericCard({
   const showOptimizedImage = Boolean(image) && !imageFailed && !showRemoteImage;
   const showInitials = Boolean(imageInitials) && (!image || imageFailed);
 
+  const markImageLoaded = () => setImageLoading(false);
+
+  const handleImageRef = (element: HTMLImageElement | null) => {
+    if (element?.complete && element.naturalWidth > 0) {
+      markImageLoaded();
+    }
+  };
+
   const handleImageError = () => {
     if (imageFallback && activeFallback !== imageFallback) {
       setFallbackState({ forKey: imageKey, url: imageFallback });
@@ -139,15 +148,19 @@ export default function GenericCard({
           $coverImage={coverImage}
           $isLoading={isCurrentlyLoading}
         >
+          {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
-            <img
-              src={imageSrc ?? undefined}
+            <Image
+              ref={handleImageRef}
+              src={imageSrc!}
               alt={alt || "card image"}
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
-              loading={imagePriority ? "eager" : "lazy"}
-              decoding="async"
-              onLoad={() => setImageLoading(false)}
+              priority={imagePriority}
+              unoptimized
+              onLoad={markImageLoaded}
               onError={handleImageError}
             />
           ) : showOptimizedImage ? (
@@ -158,7 +171,7 @@ export default function GenericCard({
               sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
               priority={imagePriority}
-              onLoad={() => setImageLoading(false)}
+              onLoad={markImageLoaded}
               onError={handleImageError}
             />
           ) : showInitials ? (

@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
+import Skeleton from "@/components/UI/Skeleton";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
@@ -74,7 +75,29 @@ export default function ExploreCategories() {
     return tutorials.filter((item) => item.category === resolvedActiveCategory);
   }, [tutorials, resolvedActiveCategory]);
 
-  if (isLoading || tutorials.length === 0) {
+  if (isLoading) {
+    return (
+      <Section id="landing-top-categories">
+        <HeaderSection>
+          <Title>
+            <MonoText $use="Heading2">{t("exploreCategories.title")}</MonoText>
+          </Title>
+          <Subtitle>
+            <MonoText $use="H4_Medium">
+              {t("exploreCategories.subtitle")}
+            </MonoText>
+          </Subtitle>
+        </HeaderSection>
+        <GridContainer>
+          {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </GridContainer>
+      </Section>
+    );
+  }
+
+  if (tutorials.length === 0) {
     return null;
   }
 
