@@ -23,6 +23,7 @@ type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
   thumbnailLandscapeUrl?: ImageSource | null;
+  trailerUrl?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
@@ -67,6 +68,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
               latest.thumbnailLandscapeUrl,
               { preferLandscape: true },
             ) ?? null,
+          trailerUrl: latest.trailerUrl ?? null,
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
           rentPrice: latest.rentPrice ?? null,
@@ -133,6 +135,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
               content?.thumbnailLandscapeUrl,
               { preferLandscape: true },
             ) ?? null,
+          trailerUrl: content?.trailerUrl ?? null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
           rentPrice: parentCollection?.rentPrice ?? null,
@@ -150,6 +153,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           title: latest.name || "",
           category: null,
           thumbnailLandscapeUrl: null,
+          trailerUrl: null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
           rentPrice: parentCollection?.rentPrice ?? null,

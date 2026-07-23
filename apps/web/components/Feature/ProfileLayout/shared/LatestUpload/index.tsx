@@ -67,6 +67,7 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  trailerUrl?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
@@ -203,6 +204,7 @@ export default function LatestUpload({
   const isMediaPlayable =
     normalizedContentType === FORMAT_TYPE.VIDEO ||
     normalizedContentType === FORMAT_TYPE.AUDIO;
+  const hasTrailer = Boolean(data.trailerUrl?.trim());
   const TypeIcon = contentIconMap[normalizedContentType];
   const uploadImageUrl = resolveImageUrl(data.image);
 
@@ -229,10 +231,12 @@ export default function LatestUpload({
                     {t("createProfileHome.latestUpload.video")}
                   </LeftControlButton>
 
-                  <RightControlButton>
-                    <PlayIcon width={24} height={24} />
-                    {t("createProfileHome.latestUpload.playTrailer")}
-                  </RightControlButton>
+                  {hasTrailer ? (
+                    <RightControlButton>
+                      <PlayIcon width={24} height={24} />
+                      {t("createProfileHome.latestUpload.playTrailer")}
+                    </RightControlButton>
+                  ) : null}
                 </>
               ) : (
                 <>

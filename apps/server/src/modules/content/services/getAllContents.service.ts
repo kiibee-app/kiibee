@@ -25,6 +25,7 @@ const baseSelect = {
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
+  trailerUrl: mediaFiles.trailerUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
   contentType: contentTypes.name,

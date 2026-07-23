@@ -227,9 +227,7 @@ export const BottomControls = styled.div`
   width: 100%;
 `;
 
-export const LeftControlButton = styled(GenericButton).attrs({
-  size: SIZE.SM,
-})`
+export const LeftControlButton = styled.span`
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
@@ -238,6 +236,9 @@ export const LeftControlButton = styled(GenericButton).attrs({
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   border: none;
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
 `;
 
 export const RightControlButton = styled(GenericButton).attrs({
