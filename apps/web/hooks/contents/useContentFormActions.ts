@@ -29,6 +29,7 @@ import {
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
+  validatePasswordInput,
 } from "@/utils/admissionRequirements";
 import { AccessDurationValue } from "@/utils/common";
 import {
@@ -440,12 +441,43 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
+    if (formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD) {
+      if (!formState.password.trim()) {
+        setFormErrors((prev) => ({
+          ...prev,
+          password: t("authForm.errors.required"),
+        }));
+        toast.error(t("authForm.errors.required"));
+        return false;
+      }
+      if (validatePasswordInput(formState.password)) {
+        const errorMsg = t(
+          "contents.admissionRequirements.password.error.minLength",
+        );
+        setFormErrors((prev) => ({
+          ...prev,
+          password: errorMsg,
+        }));
+        toast.error(errorMsg);
+        return false;
+      }
+      setFormErrors((prev) => {
+        if (!prev.password) return prev;
+        const copy = { ...prev };
+        delete copy.password;
+        return copy;
+      });
+      return true;
+    }
+
     if (formState.admissionRequirement !== ADMISSION_TYPE.PAYMENT) {
       setFormErrors((prev) => {
-        if (!prev.rentalAmount && !prev.purchaseAmount) return prev;
+        if (!prev.rentalAmount && !prev.purchaseAmount && !prev.password)
+          return prev;
         const mergedErrors = { ...prev };
         delete mergedErrors.rentalAmount;
         delete mergedErrors.purchaseAmount;
+        delete mergedErrors.password;
         return mergedErrors;
       });
       return true;
@@ -580,6 +612,18 @@ export function useContentFormActions({
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+      if (!collectionPasswords.trim()) {
+        toast.error(t("authForm.errors.required"));
+        return;
+      }
+      if (validatePasswordInput(collectionPasswords)) {
+        toast.error(
+          t("contents.admissionRequirements.password.error.minLength"),
+        );
+        return;
+      }
+    }
     if (!validateCollectionPaymentAmounts()) return;
     try {
       const apiAccessType =

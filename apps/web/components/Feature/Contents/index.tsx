@@ -38,7 +38,12 @@ import {
   ContentTab,
   SETTINGS,
 } from "@/utils/common";
-import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
+import {
+  ADMISSION_REQUIREMENTS,
+  ADMISSION_REQUIREMENT_VALUES,
+  validatePasswordInput,
+} from "@/utils/admissionRequirements";
+import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
   CONTENT_UPLOAD_MODE,
@@ -63,6 +68,7 @@ function ContentsUploadTitle({ fallback }: { fallback: string }) {
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
+  const { formState } = useContentForm();
   const [postCreateContentId, setPostCreateContentId] = useState<string | null>(
     null,
   );
@@ -495,12 +501,20 @@ function CreatorsContentsInner() {
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
             (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
             (activeTab === SETTINGS && hasPasswordError) ||
+            (activeTab === SETTINGS &&
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+              (!collectionPasswords.trim() ||
+                validatePasswordInput(collectionPasswords))) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.PAYMENT &&
-              !hasPaymentUnsavedChanges)
+              !hasPaymentUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+              (!formState.password.trim() ||
+                validatePasswordInput(formState.password)))
           }
           isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}

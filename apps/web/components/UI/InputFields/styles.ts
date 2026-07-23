@@ -184,10 +184,11 @@ export const StyledTextArea = styled.textarea<{
   }
 `;
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.span<{ $marginTop?: string }>`
   display: block;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.RED};
+  margin-top: ${({ $marginTop }) => $marginTop || "4px"};
 `;
 
 export const HelperText = styled.span`

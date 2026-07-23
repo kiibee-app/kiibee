@@ -24,6 +24,7 @@ import { INPUT_TYPE } from "@/utils/ui";
 export type TagsInputProps = {
   value: string;
   onChange: (value: string) => void;
+  onInputChange?: (typed: string) => void;
   placeholder?: string;
   maxLength?: number;
   variant?: InputVariant;
@@ -35,6 +36,7 @@ export type TagsInputProps = {
 export default function TagsInput({
   value,
   onChange,
+  onInputChange,
   placeholder,
   maxLength = maxLogoNameCharacters,
   variant = INPUT_VARIANTS.PRIMARY_GRAY,
@@ -57,13 +59,15 @@ export default function TagsInput({
 
       if (shouldSkip) {
         setInputValue("");
+        onInputChange?.("");
         return;
       }
 
       onChange([...tags, trimmedTag].join(", "));
       setInputValue("");
+      onInputChange?.("");
     },
-    [tags, onChange, maxLength, currentTotalLength],
+    [tags, onChange, maxLength, currentTotalLength, onInputChange],
   );
 
   const removeTag = useCallback(
@@ -91,11 +95,14 @@ export default function TagsInput({
     const delimiter = separateOnSpace ? /[\n, ]+/ : TAG_DELIMITER;
     if (!delimiter.test(newValue)) {
       setInputValue(newValue);
+      onInputChange?.(newValue);
       return;
     }
     const parts = newValue.split(delimiter);
     parts.slice(0, -1).forEach(addTag);
-    setInputValue(parts.at(-1) ?? "");
+    const lastPart = parts.at(-1) ?? "";
+    setInputValue(lastPart);
+    onInputChange?.(lastPart);
   };
 
   return (

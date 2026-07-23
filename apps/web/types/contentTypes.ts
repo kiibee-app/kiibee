@@ -142,7 +142,8 @@ export type ContentFormErrorKey =
   | "rentalAmount"
   | "purchaseAmount"
   | "trailerLink"
-  | "physicalProductLink";
+  | "physicalProductLink"
+  | "password";
 
 export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
 
