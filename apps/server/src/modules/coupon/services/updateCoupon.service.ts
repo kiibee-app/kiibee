@@ -17,6 +17,7 @@ import {
   normalizeCouponStatus,
 } from 'src/utils/coupon';
 import { fail, success } from 'src/utils/sendResponse';
+import { resolveEffectiveDate, toMidnight } from 'src/utils/date';
 import { CouponPayload, normalizeIdList } from './createCoupon.service';
 
 const pickDefined = (obj: Record<string, unknown>) =>
@@ -86,6 +87,40 @@ export const updateCouponService = async (
     ) {
       return fail(
         `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const effectiveValidFrom = resolveEffectiveDate(
+      payload.validFrom,
+      existing.validFrom,
+    );
+    const effectiveValidUntil = resolveEffectiveDate(
+      payload.validUntil,
+      existing.validUntil,
+    );
+
+    if (payload.validUntil && !effectiveValidUntil) {
+      return fail('End date must be a valid date', HttpStatus.BAD_REQUEST);
+    }
+
+    if (effectiveValidUntil) {
+      const today = toMidnight(new Date());
+      if (toMidnight(effectiveValidUntil) < today) {
+        return fail(
+          'End date must be today or a future date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
+    if (
+      effectiveValidFrom &&
+      effectiveValidUntil &&
+      toMidnight(effectiveValidFrom) >= toMidnight(effectiveValidUntil)
+    ) {
+      return fail(
+        'End date must be later than start date',
         HttpStatus.BAD_REQUEST,
       );
     }
