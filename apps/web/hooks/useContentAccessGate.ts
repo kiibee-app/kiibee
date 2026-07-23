@@ -18,6 +18,11 @@ import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 import type { ContentDetailItem } from "@/utils/contentApi";
+import {
+  getContentUnlockStorageKey,
+  getCollectionUnlockStorageKey,
+  getCreatorUnlockStorageKey,
+} from "@/utils/accessGate";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -106,19 +111,22 @@ export function useContentAccessGate(
     if (!isOwner) {
       if (isContentLocked && content?.id) {
         window.localStorage.setItem(
-          `kiibee:gate:unlocked:content:${content.id}`,
+          getContentUnlockStorageKey(content.id),
           "true",
         );
       } else if (!hasContentGate && collectionGateType && collectionId) {
         window.localStorage.setItem(
-          `kiibee:gate:unlocked:collection:${collectionId}`,
+          getCollectionUnlockStorageKey(collectionId),
           "true",
         );
       } else if (!hasContentGate && creatorGateType && content?.creatorId) {
-        const targetCreatorId = content.creatorId;
-        const currentUserId = storedUser?.id;
-        const storageKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
-        window.localStorage.setItem(storageKey, "true");
+        const storageKey = getCreatorUnlockStorageKey(
+          content.creatorId,
+          storedUser?.id,
+        );
+        if (storageKey) {
+          window.localStorage.setItem(storageKey, "true");
+        }
       }
     }
     window.location.reload();

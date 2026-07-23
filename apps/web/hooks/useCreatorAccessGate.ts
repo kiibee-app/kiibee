@@ -19,6 +19,10 @@ import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
+import {
+  getCreatorUnlockStorageKey,
+  unlockCreatorAccessGate,
+} from "@/utils/accessGate";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
@@ -46,9 +50,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const targetCreatorId = publicCreatorId || publicCreator?.id;
   const currentUserId = storedUser?.id;
 
-  const storageKey = targetCreatorId
-    ? `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`
-    : "";
+  const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   const isUnlocked =
     typeof window !== "undefined" && storageKey
       ? window.localStorage.getItem(storageKey) === "true"
@@ -100,9 +102,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
           });
         } catch {}
       }
-      const unlockKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
-      window.localStorage.setItem(unlockKey, "true");
-      window.location.reload();
+      unlockCreatorAccessGate(targetCreatorId, currentUserId);
     }
     return true;
   };
