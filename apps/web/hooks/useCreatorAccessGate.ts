@@ -11,16 +11,19 @@ import {
   REQUEST_EMAIL_ACCESS,
   ACCESS_TYPE_PASSWORD,
   ACCESS_TYPE_EMAIL_GATED,
+  REGISTER_SOURCE,
 } from "@/utils/Constants";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
-
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { API } from "@/lib/http/api/endpoints";
+import { axiosClient } from "@/lib/http/axiosClient";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
   isLoading: boolean;
+  handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
@@ -57,29 +60,13 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       storedUser &&
       storedUser.id === targetCreatorId);
 
-  if (isUnlocked) {
-    return { gateType: null, isLoading: false };
-  }
-
-  if (isOwner) {
-    return { gateType: null, isLoading: false };
-  }
-
-  if (gateParam === TYPE_CODE || gateParam === TYPE_EMAIL) {
-    return { gateType: gateParam, isLoading: false };
-  }
-
   const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
-
-  if (isLoading) {
-    return { gateType: null, isLoading: true };
-  }
 
   const accessType = isPublicView
     ? publicCreator?.accessType
     : privateSettings?.data?.accessType;
 
-  const gateType: AccessGateType | null =
+  const resolvedGateType: AccessGateType | null =
     accessType === SET_PASSWORD_ACCESS || accessType === ACCESS_TYPE_PASSWORD
       ? TYPE_CODE
       : accessType === REQUEST_EMAIL_ACCESS ||
@@ -87,5 +74,38 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
         ? TYPE_EMAIL
         : null;
 
-  return { gateType, isLoading: false };
+  const finalGateType: AccessGateType | null =
+    isUnlocked || isOwner
+      ? null
+      : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
+        ? gateParam
+        : isLoading
+          ? null
+          : resolvedGateType;
+
+  const handleSuccess = async (value: string, name?: string) => {
+    if (targetCreatorId) {
+      if (finalGateType === TYPE_CODE) {
+        await axiosClient.post(API.content.verifyCode(targetCreatorId), {
+          code: value,
+        });
+      } else if (value) {
+        try {
+          await axiosClient.post(API.creatorUsers.register, {
+            creatorId: targetCreatorId,
+            email: value,
+            name,
+            source: REGISTER_SOURCE.CREATOR_PAGE,
+            sourceId: targetCreatorId,
+          });
+        } catch {}
+      }
+      const unlockKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
+      window.localStorage.setItem(unlockKey, "true");
+      window.location.reload();
+    }
+    return true;
+  };
+
+  return { gateType: finalGateType, isLoading, handleSuccess };
 }

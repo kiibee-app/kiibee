@@ -5,12 +5,7 @@ import CollectionPreview from "@/components/Feature/ProfileLayout/shared/Collect
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
-import {
-  PROFILE_HOME_SECTION,
-  VARIANT_PAGE,
-  REGISTER_SOURCE,
-  TYPE_CODE,
-} from "@/utils/Constants";
+import { PROFILE_HOME_SECTION, VARIANT_PAGE } from "@/utils/Constants";
 import {
   ContentAdjust,
   SectionWrapper,
@@ -24,8 +19,6 @@ import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { API } from "@/lib/http/api/endpoints";
-import { axiosClient } from "@/lib/http/axiosClient";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
@@ -47,7 +40,7 @@ export default function ProfileHomeSections({
   const isOwner =
     !isPublicView ||
     (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
-  const { gateType } = useCreatorAccessGate();
+  const { gateType, handleSuccess } = useCreatorAccessGate();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -133,30 +126,7 @@ export default function ProfileHomeSections({
         type={gateType}
         variant={VARIANT_PAGE}
         creatorName={displayName ?? undefined}
-        onSuccess={async (value, name) => {
-          const targetCreatorId = publicCreatorId;
-          const currentUserId = storedUser?.id;
-          if (targetCreatorId) {
-            if (gateType === TYPE_CODE) {
-              await axiosClient.post(API.content.verifyCode(targetCreatorId), {
-                code: value,
-              });
-            } else if (value) {
-              try {
-                await axiosClient.post(API.creatorUsers.register, {
-                  creatorId: targetCreatorId,
-                  email: value,
-                  name,
-                  source: REGISTER_SOURCE.CREATOR_PAGE,
-                  sourceId: targetCreatorId,
-                });
-              } catch {}
-            }
-            const storageKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
-            window.localStorage.setItem(storageKey, "true");
-            window.location.reload();
-          }
-        }}
+        onSuccess={handleSuccess}
       />
     );
   }
