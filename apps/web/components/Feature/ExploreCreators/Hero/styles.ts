@@ -52,7 +52,8 @@ export const HeroTitleText = styled(MonoText).attrs({
 export const FilterControlWrap = styled.div`
   position: relative;
   flex: 0 0 auto;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   z-index: 200;
 `;
 
