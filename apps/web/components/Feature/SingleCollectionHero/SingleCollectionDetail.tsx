@@ -58,6 +58,7 @@ import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { NAV } from "@/utils/translationKeys";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -136,11 +137,13 @@ export default function SingleCollectionDetail({
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
 
+  const viewerId = user?.id ?? readStoredLoginUser()?.id ?? null;
+
   const {
     data: dynamicSection,
     isLoading: isDynamicLoading,
     isError,
-  } = usePublicCollectionContent(!staticSection ? id : null);
+  } = usePublicCollectionContent(!staticSection ? id : null, viewerId);
 
   const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
 

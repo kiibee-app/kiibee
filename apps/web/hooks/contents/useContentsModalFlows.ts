@@ -154,31 +154,30 @@ export const useContentsModalFlows = (
           return;
         }
 
-        const created = (await createCollectionMutation.mutateAsync({
+        const createdRes = (await createCollectionMutation.mutateAsync({
           name: trimmedName,
-        })) as { id?: string; name?: string };
+        })) as {
+          id?: string;
+          name?: string;
+          data?: { id?: string; name?: string };
+        };
 
-        const createdId = created?.id;
-        const createdName = created?.name;
+        const createdData = createdRes?.data || createdRes;
+        const createdId = createdData?.id;
+        const createdName = createdData?.name || trimmedName;
 
-        if (!createdId || !createdName) {
-          await queryClient.invalidateQueries({
-            queryKey: [API.collection.getAll],
-          });
-          resetCreateFlow();
-          return;
+        if (createdId) {
+          setCollections((prev) => [
+            ...prev,
+            {
+              id: createdId,
+              name: createdName,
+              contentsCount: 0,
+              createdAt: new Date().toISOString(),
+              actions: "",
+            },
+          ]);
         }
-
-        setCollections((prev) => [
-          ...prev,
-          {
-            id: createdId,
-            name: createdName,
-            contentsCount: 0,
-            createdAt: new Date().toISOString(),
-            actions: "",
-          },
-        ]);
 
         await queryClient.invalidateQueries({
           queryKey: [API.collection.getAll],

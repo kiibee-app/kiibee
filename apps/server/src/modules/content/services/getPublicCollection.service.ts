@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, gt, isNull, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
@@ -8,6 +8,7 @@ import {
   contentTypes,
   mediaFileCategories,
   mediaFiles,
+  userContentAccess,
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
@@ -37,7 +38,35 @@ const publishedPublicWhere = and(
   eq(mediaFiles.isDeleted, false),
 );
 
-export const getPublicCollectionService = async (collectionId: string) => {
+const hasActiveCollectionAccess = async (
+  collectionId: string,
+  userId: string,
+) => {
+  const now = new Date();
+
+  const [access] = await db
+    .select({ id: userContentAccess.id })
+    .from(userContentAccess)
+    .where(
+      and(
+        eq(userContentAccess.userId, userId),
+        eq(userContentAccess.collectionId, collectionId),
+        isNull(userContentAccess.mediaFileId),
+        or(
+          isNull(userContentAccess.rentExpiresAt),
+          gt(userContentAccess.rentExpiresAt, now),
+        ),
+      ),
+    )
+    .limit(1);
+
+  return Boolean(access);
+};
+
+export const getPublicCollectionService = async (
+  collectionId: string,
+  viewerId?: string,
+) => {
   try {
     if (!collectionId) {
       return fail('Collection ID is required', HttpStatus.BAD_REQUEST);
@@ -48,15 +77,28 @@ export const getPublicCollectionService = async (collectionId: string) => {
         id: collections.id,
         name: collections.name,
         description: collections.description,
+        isDeleted: collections.isDeleted,
       })
       .from(collections)
-      .where(
-        and(eq(collections.id, collectionId), eq(collections.isDeleted, false)),
-      )
+      .where(eq(collections.id, collectionId))
       .limit(1);
 
     if (!collection) {
       return fail('Collection not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (collection.isDeleted) {
+      if (
+        !viewerId ||
+        !(await hasActiveCollectionAccess(collectionId, viewerId))
+      ) {
+        return fail('Collection not found', HttpStatus.NOT_FOUND);
+      }
+    }
+
+    const itemConditions = [eq(collectionItems.collectionId, collectionId)];
+    if (!collection.isDeleted) {
+      itemConditions.push(publishedPublicWhere!);
     }
 
     const rows = await db
@@ -76,12 +118,7 @@ export const getPublicCollectionService = async (collectionId: string) => {
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
       )
-      .where(
-        and(
-          eq(collectionItems.collectionId, collectionId),
-          publishedPublicWhere,
-        ),
-      );
+      .where(and(...itemConditions));
 
     const items = rows.map((item) => ({
       ...item,

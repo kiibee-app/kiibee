@@ -80,6 +80,15 @@ export const getSingleContentService = async (
 
     const access = directAccess ?? collectionAccess;
 
+    const hasActiveAccess =
+      access &&
+      (!access.rentExpiresAt ||
+        new Date(access.rentExpiresAt).getTime() > now.getTime());
+
+    if (content.isDeleted && content.creatorId !== userId && !hasActiveAccess) {
+      return fail('Content not found', HttpStatus.NOT_FOUND);
+    }
+
     const categories = await db
       .select({
         id: contentCategories.id,

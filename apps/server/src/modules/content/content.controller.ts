@@ -167,9 +167,15 @@ export class ContentController {
   }
 
   @Get('public/collection/:id')
-  async getPublicCollection(@Req() req: any) {
+  async getPublicCollection(
+    @Req() req: any,
+    @Query('viewerId') viewerId?: string,
+  ) {
     const collectionId = req.params.id;
-    return this.contentService.getPublicCollectionService(collectionId);
+    return this.contentService.getPublicCollectionService(
+      collectionId,
+      viewerId,
+    );
   }
 
   @Get(':id/:userId')
