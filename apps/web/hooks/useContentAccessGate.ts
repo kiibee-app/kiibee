@@ -88,19 +88,22 @@ export function useContentAccessGate(
       ? axiosClient.post(API.content.verifyCode(targetId), { code: value })
       : Promise.resolve());
 
-    if (!isOwner) {
-      if (finalGateType === TYPE_EMAIL && value && content?.creatorId) {
-        await axiosClient
-          .post(API.creatorUsers.register, {
-            creatorId: content.creatorId,
-            email: value,
-            name,
-            source: REGISTER_SOURCE.CONTENT,
-            sourceId: content.id,
-          })
-          .catch(() => undefined);
-      }
+    if (
+      !isOwner &&
+      finalGateType === TYPE_EMAIL &&
+      value &&
+      content?.creatorId
+    ) {
+      await axiosClient.post(API.creatorUsers.register, {
+        creatorId: content.creatorId,
+        email: value,
+        name,
+        source: REGISTER_SOURCE.CONTENT,
+        sourceId: content.id,
+      });
+    }
 
+    if (!isOwner) {
       if (isContentLocked && content?.id) {
         window.localStorage.setItem(
           `kiibee:gate:unlocked:content:${content.id}`,
