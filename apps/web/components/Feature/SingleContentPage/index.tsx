@@ -88,6 +88,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [loginModalMessage, setLoginModalMessage] = useState<
+    string | undefined
+  >(undefined);
 
   const [showCreatorModal1, setShowCreatorModal1] = useState(false);
   const [showCreatorModal2, setShowCreatorModal2] = useState(false);
@@ -118,8 +121,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     setShowCreatorModal2(true);
   };
 
-  const handleShowLoginModal = () => setLoginModalVisible(true);
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleShowLoginModal = (msg?: string) => {
+    setLoginModalMessage(msg);
+    setLoginModalVisible(true);
+  };
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setLoginModalMessage(undefined);
+  };
 
   type CreateOrderPayload = {
     contentId: string;
@@ -161,13 +170,30 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       );
 
       if (!isPurchase && !isRental) {
-        return action;
+        return {
+          ...action,
+          onClick: async () => {
+            if (!user?.id) {
+              handleShowLoginModal();
+              return;
+            }
+            if (action.onClick) {
+              action.onClick();
+            }
+          },
+        };
       }
 
       return {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
+          if (!user?.id) {
+            handleShowLoginModal(
+              t("createProfileHome.latestUpload.loginModal.message"),
+            );
+            return;
+          }
           if (user?.role === ROLE_CREATOR) {
             setShowCreatorModal1(true);
             return;
@@ -187,6 +213,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     t,
+    user?.id,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -252,6 +279,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = async () => {
+    if (!user?.id) {
+      handleShowLoginModal();
+      return;
+    }
+
     if (isWebType && previewMediaUrl) {
       openInNewTab(previewMediaUrl);
       return;
@@ -474,7 +506,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showPurchaseModal}
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
-        onRequireLogin={handleShowLoginModal}
+        onRequireLogin={() =>
+          handleShowLoginModal(
+            t("createProfileHome.latestUpload.loginModal.message"),
+          )
+        }
         isLoggedIn={Boolean(user?.id)}
         title={title}
         image={hero.image ? resolveImageUrl(hero.image) : undefined}
@@ -491,6 +527,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
+        message={loginModalMessage}
         onSuccess={() => {
           handleCloseLoginModal();
         }}
