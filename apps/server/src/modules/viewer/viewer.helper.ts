@@ -163,7 +163,13 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
       count: sql<number>`count(*)::int`,
     })
     .from(collectionItems)
-    .where(inArray(collectionItems.collectionId, collectionIds))
+    .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
+    .where(
+      and(
+        inArray(collectionItems.collectionId, collectionIds),
+        eq(mediaFiles.isDeleted, false),
+      ),
+    )
     .groupBy(collectionItems.collectionId);
 
   const countMap = new Map<string, number>();
