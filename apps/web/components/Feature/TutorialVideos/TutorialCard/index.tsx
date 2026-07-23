@@ -27,6 +27,7 @@ type TutorialCardProps = {
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
   collectionId?: string | null;
+  imagePriority?: boolean;
 };
 
 type IconComponent = ComponentType<{
@@ -49,6 +50,7 @@ function TutorialCard({
   onPlayClick,
   isSelected = false,
   collectionId = null,
+  imagePriority = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
@@ -190,6 +192,7 @@ function TutorialCard({
       coverImage
       image={image}
       imageFallback={imageFallback}
+      imagePriority={imagePriority}
       onImageError={handleThumbnailError}
       alt={tutorial.title}
       badge={

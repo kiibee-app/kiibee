@@ -159,6 +159,7 @@ export default function GenericCard({
               sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
               priority={imagePriority}
+              loading={imagePriority ? "eager" : "lazy"}
               unoptimized
               onLoad={markImageLoaded}
               onError={handleImageError}
@@ -171,6 +172,7 @@ export default function GenericCard({
               sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
               priority={imagePriority}
+              loading={imagePriority ? "eager" : "lazy"}
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
