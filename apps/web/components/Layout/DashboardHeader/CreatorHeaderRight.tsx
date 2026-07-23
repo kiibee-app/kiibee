@@ -40,7 +40,6 @@ const CreatorHeaderRight = ({
         href={PATHS.DASHBOARD_CREATOR_PROFILE}
         aria-label={t("common.creatorProfile")}
       >
-        <ProfileCircle>
         <ProfileCircle $hasImage={Boolean(avatarUrl)}>
           <CreatorChannelAvatar
             avatarUrl={avatarUrl}
