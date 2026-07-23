@@ -13,6 +13,10 @@ const COUPON_ERROR_MESSAGE_KEYS: Record<string, string> = {
   "Failed to verify coupon": "singleContent.pricing.couponVerifyFailed",
   "Percentage discount cannot be greater than 50":
     "singleContent.pricing.couponMaxPercentage",
+  "validUntil must be today or a future date":
+    "singleContent.pricing.couponEndDatePast",
+  "validUntil must be later than validFrom":
+    "singleContent.pricing.couponEndDateBeforeStart",
 };
 
 export function getCouponErrorMessage(
