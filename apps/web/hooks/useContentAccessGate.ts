@@ -108,26 +108,20 @@ export function useContentAccessGate(
       });
     }
 
-    if (!isOwner) {
-      if (isContentLocked && content?.id) {
-        window.localStorage.setItem(
-          getContentUnlockStorageKey(content.id),
-          "true",
-        );
-      } else if (!hasContentGate && collectionGateType && collectionId) {
-        window.localStorage.setItem(
-          getCollectionUnlockStorageKey(collectionId),
-          "true",
-        );
-      } else if (!hasContentGate && creatorGateType && content?.creatorId) {
-        const storageKey = getCreatorUnlockStorageKey(
-          content.creatorId,
-          storedUser?.id,
-        );
-        if (storageKey) {
-          window.localStorage.setItem(storageKey, "true");
-        }
-      }
+    const unlockStorageKey = [
+      isContentLocked && content?.id
+        ? getContentUnlockStorageKey(content.id)
+        : "",
+      !hasContentGate && collectionGateType && collectionId
+        ? getCollectionUnlockStorageKey(collectionId)
+        : "",
+      !hasContentGate && creatorGateType
+        ? getCreatorUnlockStorageKey(content?.creatorId, storedUser?.id)
+        : "",
+    ].find(Boolean);
+
+    if (!isOwner && unlockStorageKey) {
+      window.localStorage.setItem(unlockStorageKey, "true");
     }
     window.location.reload();
     return true;

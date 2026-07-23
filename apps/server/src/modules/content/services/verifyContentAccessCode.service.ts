@@ -27,35 +27,27 @@ const matchesStoredCode = async (
 };
 
 const resolveStoredCode = async (targetId: string): Promise<string | null> => {
-  const [content] = await db
-    .select({
-      passwordHash: mediaFiles.passwordHash,
-    })
-    .from(mediaFiles)
-    .where(and(eq(mediaFiles.id, targetId), eq(mediaFiles.isDeleted, false)))
-    .limit(1);
+  const [[content], [collection], [creatorSetting]] = await Promise.all([
+    db
+      .select({ passwordHash: mediaFiles.passwordHash })
+      .from(mediaFiles)
+      .where(and(eq(mediaFiles.id, targetId), eq(mediaFiles.isDeleted, false)))
+      .limit(1),
+    db
+      .select({ passwordHash: collections.passwordHash })
+      .from(collections)
+      .where(
+        and(eq(collections.id, targetId), eq(collections.isDeleted, false)),
+      )
+      .limit(1),
+    db
+      .select({ passwordHash: contentSettings.passwordHash })
+      .from(contentSettings)
+      .where(eq(contentSettings.userId, targetId))
+      .limit(1),
+  ]);
 
-  if (content) {
-    return content.passwordHash ?? null;
-  }
-
-  const [collection] = await db
-    .select({ passwordHash: collections.passwordHash })
-    .from(collections)
-    .where(and(eq(collections.id, targetId), eq(collections.isDeleted, false)))
-    .limit(1);
-
-  if (collection) {
-    return collection.passwordHash ?? null;
-  }
-
-  const [creatorSetting] = await db
-    .select({ passwordHash: contentSettings.passwordHash })
-    .from(contentSettings)
-    .where(eq(contentSettings.userId, targetId))
-    .limit(1);
-
-  return creatorSetting?.passwordHash ?? null;
+  return (content ?? collection ?? creatorSetting)?.passwordHash ?? null;
 };
 
 export const verifyContentAccessCode = async (
@@ -65,6 +57,7 @@ export const verifyContentAccessCode = async (
   const storedCode = await resolveStoredCode(targetId);
   const isValid = await matchesStoredCode(code, storedCode);
 
-  if (!isValid) return fail('Wrong code', HttpStatus.UNAUTHORIZED);
-  return success({ valid: true }, 'Code verified');
+  return isValid
+    ? success({ valid: true }, 'Code verified')
+    : fail('Wrong code', HttpStatus.UNAUTHORIZED);
 };

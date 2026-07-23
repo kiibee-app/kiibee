@@ -86,30 +86,24 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
           : resolvedGateType;
 
   const handleSuccess = async (value: string, name?: string) => {
-    if (!targetCreatorId) return true;
+    if (!targetCreatorId || !finalGateType) return false;
 
-    try {
-      await (finalGateType === TYPE_CODE
+    const request =
+      finalGateType === TYPE_CODE
         ? axiosClient.post(API.content.verifyCode(targetCreatorId), {
             code: value,
           })
-        : finalGateType === TYPE_EMAIL && value
-          ? axiosClient
-              .post(API.creatorUsers.register, {
-                creatorId: targetCreatorId,
-                email: value,
-                name,
-                source: REGISTER_SOURCE.CREATOR_PAGE,
-                sourceId: targetCreatorId,
-              })
-              .catch(() => {})
-          : Promise.resolve());
+        : axiosClient.post(API.creatorUsers.register, {
+            creatorId: targetCreatorId,
+            email: value,
+            name,
+            source: REGISTER_SOURCE.CREATOR_PAGE,
+            sourceId: targetCreatorId,
+          });
 
-      unlockCreatorAccessGate(targetCreatorId, currentUserId);
-      return true;
-    } catch {
-      return false;
-    }
+    await request;
+    unlockCreatorAccessGate(targetCreatorId, currentUserId);
+    return true;
   };
 
   return { gateType: finalGateType, isLoading, handleSuccess };
