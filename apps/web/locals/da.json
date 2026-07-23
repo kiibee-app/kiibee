@@ -1099,6 +1099,7 @@
       "couponNotApplicable": "Denne kupon kan kun bruges på udvalgte produkter",
       "couponVerifyFailed": "Kuponen kunne ikke verificeres. Prøv igen",
       "couponMaxPercentage": "Denne kupon overstiger den maksimale rabat på 50%",
+      "couponStartDatePast": "Startdato skal være i dag eller en fremtidig dato",
       "couponEndDatePast": "Slutdato skal være i dag eller en fremtidig dato",
       "couponEndDateBeforeStart": "Slutdato skal være senere end startdato",
       "couponValidUntil": "Din rabat er aktiv indtil {{date}}"

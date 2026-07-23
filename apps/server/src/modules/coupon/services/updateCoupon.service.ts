@@ -100,6 +100,20 @@ export const updateCouponService = async (
       existing.validUntil,
     );
 
+    if (payload.validFrom && !effectiveValidFrom) {
+      return fail('Start date must be a valid date', HttpStatus.BAD_REQUEST);
+    }
+
+    if (effectiveValidFrom) {
+      const today = toMidnight(new Date());
+      if (toMidnight(effectiveValidFrom) < today) {
+        return fail(
+          'Start date must be today or a future date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
     if (payload.validUntil && !effectiveValidUntil) {
       return fail('End date must be a valid date', HttpStatus.BAD_REQUEST);
     }

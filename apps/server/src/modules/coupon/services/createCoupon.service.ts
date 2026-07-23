@@ -92,6 +92,16 @@ export const createCouponService = async (
     const validFrom = payload.validFrom ? new Date(payload.validFrom) : null;
     const validUntil = payload.validUntil ? new Date(payload.validUntil) : null;
 
+    if (validFrom) {
+      const today = toMidnight(new Date());
+      if (toMidnight(validFrom) < today) {
+        throw new HttpException(
+          'Start date must be today or a future date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
     if (validUntil) {
       const today = toMidnight(new Date());
       if (toMidnight(validUntil) < today) {
