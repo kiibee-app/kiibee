@@ -20,6 +20,7 @@ export type FeedContentItem = {
   description?: string | null;
   thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: string | null;
+  trailerUrl?: string | null;
   creatorId?: string;
   creatorName?: string | null;
   contentType?: string | null;

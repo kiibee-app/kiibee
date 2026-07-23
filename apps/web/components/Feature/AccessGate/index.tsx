@@ -33,6 +33,8 @@ import {
   HTML_ID_NAME,
   HTML_ID_EMAIL,
 } from "@/utils/Constants";
+import { GenericModal } from "@/components/UI/Modals";
+import { MODAL_ALIGN } from "@/utils/ui";
 
 export type { AccessGateType, AccessGateVariant };
 
@@ -43,7 +45,10 @@ type AccessGateProps = {
   type: AccessGateType;
   variant?: AccessGateVariant;
   creatorName?: string;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (
+    value: string,
+    name?: string,
+  ) => boolean | void | Promise<boolean | void>;
 };
 
 function CodeGate({
@@ -51,21 +56,36 @@ function CodeGate({
   onSuccess,
 }: {
   variant: AccessGateVariant;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (
+    value: string,
+    name?: string,
+  ) => boolean | void | Promise<boolean | void>;
 }) {
   const { t } = useTranslation();
   const [code, setCode] = useState(EMPTY_STRING);
+  const [showWrongCodeModal, setShowWrongCodeModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const titleKey =
     variant === VARIANT_CONTENT
       ? ACCESS_GATE.contentCodeTitle
       : ACCESS_GATE.pageCodeTitle;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (code.trim()) {
-      onSuccess?.(code.trim());
-    }
+    if (!code.trim() || !onSuccess) return;
+
+    setIsSubmitting(true);
+    const result = await Promise.resolve(onSuccess(code.trim())).catch(
+      () => false,
+    );
+    setShowWrongCodeModal(result === false);
+    setIsSubmitting(false);
+  };
+
+  const handleTryAgain = () => {
+    setCode(EMPTY_STRING);
+    setShowWrongCodeModal(false);
   };
 
   return (
@@ -91,10 +111,27 @@ function CodeGate({
           />
         </GateFieldGroup>
 
-        <GateSubmitButton type={BUTTON_TYPE_SUBMIT} disabled={!code.trim()}>
+        <GateSubmitButton
+          type={BUTTON_TYPE_SUBMIT}
+          disabled={!code.trim() || isSubmitting}
+        >
           {t(ACCESS_GATE.submitCode)}
         </GateSubmitButton>
       </GateForm>
+
+      <GenericModal
+        visible={showWrongCodeModal}
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t(ACCESS_GATE.invalidCodeTitle)}
+        message={t(ACCESS_GATE.invalidCodeMessage)}
+        cancelLabel={t(ACCESS_GATE.cancel)}
+        confirmLabel={t(ACCESS_GATE.tryAgain)}
+        onCancel={() => setShowWrongCodeModal(false)}
+        onConfirm={handleTryAgain}
+        onClose={() => setShowWrongCodeModal(false)}
+        buttonRow
+        showCloseButton={false}
+      />
     </GateCard>
   );
 }
@@ -106,21 +143,31 @@ function EmailGate({
 }: {
   variant: AccessGateVariant;
   creatorName?: string;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (
+    value: string,
+    name?: string,
+  ) => boolean | void | Promise<boolean | void>;
 }) {
   const { t } = useTranslation();
   const [name, setName] = useState(EMPTY_STRING);
   const [email, setEmail] = useState(EMPTY_STRING);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const titleKey =
     variant === VARIANT_CONTENT
       ? ACCESS_GATE.contentEmailTitle
       : ACCESS_GATE.pageEmailTitle;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      onSuccess?.(email.trim());
+    if (email.trim() && !isSubmitting) {
+      setIsSubmitting(true);
+      try {
+        await onSuccess?.(email.trim(), name.trim());
+      } catch {
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -172,7 +219,7 @@ function EmailGate({
 
         <GateSubmitButton
           type={BUTTON_TYPE_SUBMIT}
-          disabled={!name.trim() || !email.trim()}
+          disabled={!name.trim() || !email.trim() || isSubmitting}
         >
           {t(ACCESS_GATE.submitEmail)}
         </GateSubmitButton>

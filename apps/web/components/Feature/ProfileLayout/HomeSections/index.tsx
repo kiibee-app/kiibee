@@ -40,7 +40,7 @@ export default function ProfileHomeSections({
   const isOwner =
     !isPublicView ||
     (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
-  const { gateType } = useCreatorAccessGate();
+  const { gateType, handleSuccess } = useCreatorAccessGate();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -78,6 +78,8 @@ export default function ProfileHomeSections({
         description: latest.description ?? "",
         actions: latestConfig.actions,
         contentId: latest.id,
+        trailerUrl:
+          (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
         accessType:
           (latest as { accessType?: string | null }).accessType ?? null,
         buyPrice:
@@ -126,15 +128,7 @@ export default function ProfileHomeSections({
         type={gateType}
         variant={VARIANT_PAGE}
         creatorName={displayName ?? undefined}
-        onSuccess={() => {
-          if (publicCreatorId) {
-            window.localStorage.setItem(
-              `kiibee:gate:unlocked:creator:${publicCreatorId}`,
-              "true",
-            );
-            window.location.reload();
-          }
-        }}
+        onSuccess={handleSuccess}
       />
     );
   }

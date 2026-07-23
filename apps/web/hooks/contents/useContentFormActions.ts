@@ -58,7 +58,7 @@ import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import {
   ADMISSION_TYPE,
   getPaymentContentTexts,
-  isValidPaymentAmount,
+  getPaymentAmountErrorMessage,
   PAYMENT_AMOUNT_FIELDS,
   PAYMENTS_FORM_FIELDS,
   parsePaymentAmount,
@@ -451,7 +451,6 @@ export function useContentFormActions({
       return true;
     }
 
-    const invalidNumberMessage = t("contents.payment.common.invalidNumber");
     const requiredMessage = t("contents.payment.common.requiredAmount");
     const paymentTexts = getPaymentContentTexts(t, formState.contentTypeId);
     const requiredFields = [
@@ -461,10 +460,14 @@ export function useContentFormActions({
     const nextErrors: Partial<ContentFormErrors> = {};
 
     requiredFields.forEach((field) => {
-      if (!formState[field].trim()) {
+      const val = formState[field].trim();
+      if (!val) {
         nextErrors[field] = requiredMessage;
-      } else if (!isValidPaymentAmount(formState[field])) {
-        nextErrors[field] = invalidNumberMessage;
+      } else {
+        const errorMsg = getPaymentAmountErrorMessage(val, t);
+        if (errorMsg) {
+          nextErrors[field] = errorMsg;
+        }
       }
     });
 
@@ -489,8 +492,11 @@ export function useContentFormActions({
     }
 
     const requiredMessage = t("contents.payment.common.requiredAmount");
-    const hasInvalidRental = !isValidPaymentAmount(collectionRentalAmount);
-    const hasInvalidPurchase = !isValidPaymentAmount(collectionPurchaseAmount);
+    const rentalErr = getPaymentAmountErrorMessage(collectionRentalAmount, t);
+    const purchaseErr = getPaymentAmountErrorMessage(
+      collectionPurchaseAmount,
+      t,
+    );
     const hasMissingAmount =
       !collectionRentalAmount.trim() || !collectionPurchaseAmount.trim();
 
@@ -499,8 +505,8 @@ export function useContentFormActions({
       return false;
     }
 
-    if (hasInvalidRental || hasInvalidPurchase) {
-      toast.error(t("contents.payment.common.invalidNumber"));
+    if (rentalErr || purchaseErr) {
+      toast.error(rentalErr || purchaseErr);
       return false;
     }
 
@@ -908,6 +914,7 @@ export function useContentFormActions({
                   : fullContent.accessType === "email_gated"
                     ? "request_email"
                     : "free",
+          password: "",
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",

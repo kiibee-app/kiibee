@@ -6,6 +6,7 @@ import {
   existingCreatorLabels,
   existingCreatorTableColumns,
   formatExistingCreatorStatus,
+  getExistingCreatorChannelName,
   getExistingCreatorDisplayName,
   getExistingCreatorInitials,
 } from "../../../utils/existingCreatorsConfig";
@@ -49,6 +50,9 @@ export function ExistingCreatorsTable({
         <tbody>
           {creators.map((creator) => {
             const displayName = getExistingCreatorDisplayName(creator);
+            const channelDisplayName =
+              getExistingCreatorChannelName(creator) ||
+              existingCreatorLabels.noChannel;
 
             return (
               <RequestTableRow
@@ -85,16 +89,14 @@ export function ExistingCreatorsTable({
                     <ChannelLink
                       creatorId={creator.id}
                       channelName={creator.channelName}
-                      companyName={creator.companyName}
+                      companyName={
+                        creator.companyName || creator.fullName || displayName
+                      }
                       layout={creator.layout}
                       fallbackLabel={existingCreatorLabels.noChannel}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <CreatorName>
-                        {creator.channelName ||
-                          creator.companyName ||
-                          existingCreatorLabels.noChannel}
-                      </CreatorName>
+                      <CreatorName>{channelDisplayName}</CreatorName>
                     </ChannelLink>
                     <MiniText>
                       {creator.channelSlug

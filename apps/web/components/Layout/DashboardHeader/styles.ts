@@ -97,9 +97,10 @@ export const EmailWrapper = styled.div`
   }
 `;
 
-export const ProfileCircle = styled.div`
+export const ProfileCircle = styled.div<{ $hasImage: boolean }>`
   ${avatarFrameCss};
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ $hasImage, theme }) =>
+    $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,7 +109,10 @@ export const ProfileCircle = styled.div`
 export const ProfileAvatarImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 14% 8%;
+  box-sizing: border-box;
 `;
 
 export const InitialAvatar = styled(MonoText).attrs({

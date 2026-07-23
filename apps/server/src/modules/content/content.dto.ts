@@ -112,6 +112,10 @@ export class UpdateContentDto {
   accessType?: string;
 
   @IsOptional()
+  @IsString()
+  password?: string;
+
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
   buyPrice?: number;

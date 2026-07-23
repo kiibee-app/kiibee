@@ -1061,6 +1061,10 @@
       "rental": "48 hrs rental",
       "purchaseTitle": "Your purchase",
       "rentalTitle": "Your rental",
+      "contentFallback": "CONTENT",
+      "contentPurchaseTitle": "BUY {{contentType}}",
+      "contentRentalTitle": "{{contentType}} Rental",
+      "contentRentalStreaming": "{{duration}} streaming.",
       "collectionPurchaseTitle": "Purchase of collection",
       "collectionPurchaseAccess": "Access your content anytime in your profile.",
       "collectionPurchaseFees": "The price includes VAT and card fee.",
@@ -1095,6 +1099,9 @@
       "couponNotApplicable": "This coupon can only be used on selected products",
       "couponVerifyFailed": "Unable to verify this coupon. Please try again",
       "couponMaxPercentage": "This coupon exceeds the maximum discount of 50%",
+      "couponStartDatePast": "Start date must be today or a future date",
+      "couponEndDatePast": "End date must be today or a future date",
+      "couponEndDateBeforeStart": "End date must be later than start date",
       "couponValidUntil": "Your discount is active until {{date}}"
     },
     "meta": {
@@ -2152,6 +2159,7 @@
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees",
         "invalidNumber": "Please enter a valid number.",
+        "minAmount": "Minimum amount is DKK 8.",
         "requiredAmount": "Amount is required."
       },
       "physicalLink": {
@@ -2225,6 +2233,10 @@
     "emailPlaceholder": "Email",
     "submitCode": "Access content",
     "submitEmail": "Access content",
+    "invalidCodeTitle": "Invalid Access Code",
+    "invalidCodeMessage": "The code you entered is incorrect. Please check it and try again.",
+    "cancel": "Cancel",
+    "tryAgain": "Try Again",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {

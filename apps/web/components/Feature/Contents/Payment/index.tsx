@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import SortDropdown from "@/components/UI/SortDropdown";
@@ -35,8 +35,8 @@ import {
   getAdmissionOptions,
   getDownloadLimitOptions,
   getPaymentContentTexts,
+  getPaymentAmountErrorMessage,
   hasNegativeAmountInput,
-  isValidPaymentAmount,
   getPhysicalProductConfig,
   PAYMENTS_FORM_FIELDS,
   toText,
@@ -47,7 +47,6 @@ export default function Payment() {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
-  const [password, setPassword] = useState("");
   const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
   const downloadLimitOptions = useMemo(
     () => getDownloadLimitOptions(t, PAYMENT_DOWNLOAD_LIMIT_VALUES),
@@ -83,8 +82,9 @@ export default function Payment() {
     const text = toText(value);
     if (hasNegativeAmountInput(text)) return;
     updateField(field, text);
-    if (!isValidPaymentAmount(text)) {
-      setFieldError(field, t("contents.payment.common.invalidNumber"));
+    const errorMessage = getPaymentAmountErrorMessage(text, t);
+    if (errorMessage) {
+      setFieldError(field, errorMessage);
     } else {
       clearFieldError(field);
     }
@@ -196,10 +196,10 @@ export default function Payment() {
           {isSetPassword && (
             <ControlWrap>
               <InputField
-                value={password}
+                value={formState.password}
                 onChange={(v) => {
                   const text = toText(v).slice(0, maxDescriptionCharacters);
-                  setPassword(text);
+                  updateField("password", text);
                 }}
                 placeholder={t("contents.payment.password.placeholder")}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
@@ -209,7 +209,7 @@ export default function Payment() {
               <HelperFormRow>
                 <HelperText>{t("contents.payment.password.helper")}</HelperText>
                 <HelperText>
-                  {password.length}/{maxDescriptionCharacters}
+                  {formState.password.length}/{maxDescriptionCharacters}
                 </HelperText>
               </HelperFormRow>
             </ControlWrap>

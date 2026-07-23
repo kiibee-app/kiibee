@@ -79,6 +79,7 @@ function CategoryExplorePageContent() {
     categoryDisplayName,
     tutorials,
     isLoading,
+    isSettledEmpty,
     isFetching,
     searchValue,
     setSearchValue,
@@ -314,23 +315,27 @@ function CategoryExplorePageContent() {
 
         <div ref={trendingRef}>
           <MainContent>
-            <CardsGrid $isFetching={isFetching}>
-              {isLoading ? (
-                Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
-                  <Skeleton.Card key={i} />
+            <CardsGrid $isFetching={isFetching && tutorials.length > 0}>
+              {tutorials.length > 0 ? (
+                tutorials.map((tutorial, index) => (
+                  <TutorialCard
+                    key={tutorial.id}
+                    tutorial={tutorial}
+                    imagePriority={index < 4}
+                  />
                 ))
-              ) : tutorials.length > 0 ? (
-                tutorials.map((tutorial) => (
-                  <TutorialCard key={tutorial.id} tutorial={tutorial} />
-                ))
-              ) : (
+              ) : isSettledEmpty ? (
                 <ResultsState>
                   <GenericEmptyState title={t("nav.explore.noResults")} />
                 </ResultsState>
+              ) : (
+                Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                  <Skeleton.Card key={i} />
+                ))
               )}
             </CardsGrid>
 
-            {showLoadMoreButton && !isLoading && (
+            {showLoadMoreButton && !isLoading && tutorials.length > 0 && (
               <LoadMoreContainer>
                 <LoadMoreButton
                   variant="primary"
@@ -351,7 +356,22 @@ function CategoryExplorePageContent() {
 
 export default function CategoryExplorePage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <LocalPageContainer $navTextTone="light">
+          <NavBar navTextTone="light" />
+          <Main>
+            <MainContent>
+              <CardsGrid>
+                {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                  <Skeleton.Card key={i} />
+                ))}
+              </CardsGrid>
+            </MainContent>
+          </Main>
+        </LocalPageContainer>
+      }
+    >
       <CategoryExplorePageContent />
     </Suspense>
   );

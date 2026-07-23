@@ -18,10 +18,16 @@ import {
   ImageOverlay,
   BottomControls,
   UploadImage,
+  UploadBackgroundImage,
   RightControlButton,
   LeftControlButton,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
+import {
+  DECORATIVE_IMAGE_PROPS,
+  resolveImageUrl,
+  MOBILE_BREAKPOINT,
+  VARIANT,
+} from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   EpubIcon,
@@ -61,6 +67,7 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  trailerUrl?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
@@ -197,7 +204,9 @@ export default function LatestUpload({
   const isMediaPlayable =
     normalizedContentType === FORMAT_TYPE.VIDEO ||
     normalizedContentType === FORMAT_TYPE.AUDIO;
+  const hasTrailer = Boolean(data.trailerUrl?.trim());
   const TypeIcon = contentIconMap[normalizedContentType];
+  const uploadImageUrl = resolveImageUrl(data.image);
 
   return (
     <Section $variant={variant}>
@@ -207,7 +216,11 @@ export default function LatestUpload({
         <ImageSection $isPdf={!isMediaPlayable}>
           <Badge>{data.badge}</Badge>
 
-          <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
+          <UploadBackgroundImage
+            src={uploadImageUrl}
+            {...DECORATIVE_IMAGE_PROPS}
+          />
+          <UploadImage src={uploadImageUrl} alt={data.imageAlt} />
 
           <ImageOverlay>
             <BottomControls>
@@ -218,10 +231,12 @@ export default function LatestUpload({
                     {t("createProfileHome.latestUpload.video")}
                   </LeftControlButton>
 
-                  <RightControlButton>
-                    <PlayIcon width={24} height={24} />
-                    {t("createProfileHome.latestUpload.playTrailer")}
-                  </RightControlButton>
+                  {hasTrailer ? (
+                    <RightControlButton>
+                      <PlayIcon width={24} height={24} />
+                      {t("createProfileHome.latestUpload.playTrailer")}
+                    </RightControlButton>
+                  ) : null}
                 </>
               ) : (
                 <>

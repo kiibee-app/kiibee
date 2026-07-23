@@ -15,6 +15,7 @@ const REMOTE_IMAGE_PATTERN = /^https?:\/\//;
 const KIIBEE_MEDIA_BASE_URL = "https://kiibee.dk";
 const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
 const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
+const SPACES_HOST_PATTERN = /\.digitaloceanspaces\.com$/i;
 
 function getMediaCdnBase(): string | null {
   const explicit = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
@@ -47,13 +48,40 @@ function toCdnMediaPath(pathname: string): string {
   return path;
 }
 
+/**
+ * DO Spaces object keys for legacy Umbraco media use Unicode NFD
+ * (e.g. `e` + combining grave), not NFC (`è`). Percent-encode each segment
+ * so browsers/Next Image hit the same key.
+ */
+export function encodeSpacesMediaPath(pathname: string): string {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+
+  return path
+    .split("/")
+    .map((segment) => {
+      if (!segment) {
+        return "";
+      }
+
+      let decoded = segment;
+      try {
+        decoded = decodeURIComponent(segment);
+      } catch {
+        // keep raw segment when it is not valid percent-encoding
+      }
+
+      return encodeURIComponent(decoded.normalize("NFD"));
+    })
+    .join("/");
+}
+
 function buildCdnMediaUrl(pathname: string): string | null {
   const cdnBase = getMediaCdnBase();
   if (!cdnBase) {
     return null;
   }
 
-  return `${cdnBase}${toCdnMediaPath(pathname)}`;
+  return `${cdnBase}${encodeSpacesMediaPath(toCdnMediaPath(pathname))}`;
 }
 
 function isLegacyKiibeeMediaPath(pathname: string): boolean {
@@ -65,14 +93,28 @@ function resolveLegacyKiibeeMediaPath(pathname: string): string {
   return `${KIIBEE_MEDIA_BASE_URL}${path}`;
 }
 
-function rewriteKiibeeMediaUrl(url: string): string {
+function rewriteAbsoluteMediaUrl(url: string): string {
   try {
     const parsed = new URL(url);
+    const pathname = (() => {
+      try {
+        return decodeURIComponent(parsed.pathname);
+      } catch {
+        return parsed.pathname;
+      }
+    })();
+
     if (
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
-      isLegacyKiibeeMediaPath(parsed.pathname)
+      isLegacyKiibeeMediaPath(pathname)
     ) {
-      return buildCdnMediaUrl(parsed.pathname) ?? url;
+      return `${KIIBEE_MEDIA_BASE_URL}${pathname}`;
+    }
+
+    if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
+      const cdnBase = getMediaCdnBase();
+      const origin = cdnBase ?? `${parsed.protocol}//${parsed.host}`;
+      return `${origin}${encodeSpacesMediaPath(pathname)}`;
     }
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
@@ -141,11 +183,11 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (REMOTE_IMAGE_PATTERN.test(trimmed)) {
-    return rewriteKiibeeMediaUrl(trimmed);
+    return rewriteAbsoluteMediaUrl(trimmed);
   }
 
   if (trimmed.startsWith("//")) {
-    return rewriteKiibeeMediaUrl(`https:${trimmed}`);
+    return rewriteAbsoluteMediaUrl(`https:${trimmed}`);
   }
 
   if (trimmed.startsWith("/")) {
@@ -325,6 +367,7 @@ export function resolveCloudflareStreamPlaybackUrl(
 }
 
 const YOUTUBE_HOST_PATTERN = /(?:youtube\.com|youtu\.be)/i;
+const YOUTUBE_PATH_ID_MARKERS = new Set(["shorts", "embed", "live", "v", "e"]);
 const URL_PATTERN = /^https?:\/\/.+/i;
 
 function safeParseUrl(url: string): URL | null {
@@ -341,13 +384,37 @@ export function isYouTubeUrl(url?: string | null): boolean {
   return parsed ? YOUTUBE_HOST_PATTERN.test(parsed.hostname) : false;
 }
 
+/** Extract a YouTube video id from watch, shorts, embed, live, or youtu.be URLs. */
+export function extractYouTubeVideoId(url?: string | null): string | null {
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  if (!parsed || !YOUTUBE_HOST_PATTERN.test(parsed.hostname)) {
+    return null;
+  }
+
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+  if (host === "youtu.be") {
+    const id = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+    return id || null;
+  }
+
+  const fromQuery = parsed.searchParams.get("v")?.trim();
+  if (fromQuery) {
+    return fromQuery;
+  }
+
+  const segments = parsed.pathname.split("/").filter(Boolean);
+  if (
+    segments.length >= 2 &&
+    YOUTUBE_PATH_ID_MARKERS.has(segments[0].toLowerCase())
+  ) {
+    return segments[1].split("?")[0] || null;
+  }
+
+  return null;
+}
+
 export function getYouTubeEmbedUrl(url: string): string {
-  const parsed = safeParseUrl(url);
-  if (!parsed) return url;
-  const videoId =
-    parsed.hostname === "youtu.be"
-      ? parsed.pathname.replace(/^\/+/, "").split("/")[0]
-      : parsed.searchParams.get("v") || "";
+  const videoId = extractYouTubeVideoId(url);
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 }
 
@@ -361,7 +428,12 @@ export function isVimeoUrl(url?: string | null): boolean {
 export function getVimeoEmbedUrl(url: string): string {
   const parsed = safeParseUrl(url);
   if (!parsed) return url;
-  const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+  const segments = parsed.pathname
+    .replace(/^\/+/, "")
+    .split("/")
+    .filter(Boolean);
+  // /123456 or /video/123456
+  const videoId = segments[0] === "video" ? segments[1] : segments[0];
   return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
 }
 
@@ -369,9 +441,14 @@ export function isThirdPartyVideoUrl(src: string): boolean {
   return isYouTubeUrl(src) || isVimeoUrl(src);
 }
 
+function withAutoplay(embedUrl: string): string {
+  const separator = embedUrl.includes("?") ? "&" : "?";
+  return `${embedUrl}${separator}autoplay=1`;
+}
+
 export function getThirdPartyEmbedUrl(src: string): string {
-  if (isYouTubeUrl(src)) return `${getYouTubeEmbedUrl(src)}?autoplay=1`;
-  if (isVimeoUrl(src)) return `${getVimeoEmbedUrl(src)}?autoplay=1`;
+  if (isYouTubeUrl(src)) return withAutoplay(getYouTubeEmbedUrl(src));
+  if (isVimeoUrl(src)) return withAutoplay(getVimeoEmbedUrl(src));
   return src;
 }
 

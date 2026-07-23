@@ -131,7 +131,7 @@ function AllContentExplorePageContent() {
   };
 
   const renderContent = () => {
-    if (isLoading) {
+    if (isLoading || (isFetching && tutorials.length === 0)) {
       return Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
         <Skeleton.Card key={i} />
       ));

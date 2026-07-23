@@ -8,6 +8,17 @@ import { fail, success } from 'src/utils/sendResponse';
 
 import { UpdateViewerProfileDto } from '../dto/updateViewerProfile.dto';
 
+function splitFullName(fullName: string): {
+  firstName: string;
+  lastName: string;
+} {
+  const parts = fullName.split(/\s+/).filter(Boolean);
+  return {
+    firstName: parts[0] ?? fullName,
+    lastName: parts.slice(1).join(' '),
+  };
+}
+
 export const updateViewerProfileService = async (
   userId: string,
   role: string,
@@ -19,6 +30,8 @@ export const updateViewerProfileService = async (
 
   const patch: Partial<{
     fullName: string;
+    firstName: string;
+    lastName: string;
     email: string;
     avatarUrl: string | null;
     updatedAt: Date;
@@ -30,7 +43,10 @@ export const updateViewerProfileService = async (
       return fail('Full name cannot be empty', HttpStatus.BAD_REQUEST);
     }
 
+    const { firstName, lastName } = splitFullName(trimmed);
     patch.fullName = trimmed;
+    patch.firstName = firstName;
+    patch.lastName = lastName;
   }
 
   if (dto.email !== undefined) {
@@ -77,6 +93,8 @@ export const updateViewerProfileService = async (
       id: users.id,
       email: users.email,
       fullName: users.fullName,
+      firstName: users.firstName,
+      lastName: users.lastName,
       role: users.role,
       avatarUrl: users.avatarUrl,
       isEmailVerified: users.isEmailVerified,

@@ -35,7 +35,7 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const whereClause = mediaId
       ? eq(mediaFiles.id, mediaId)
-      : eq(mediaFiles.fileKey, mediaKey);
+      : eq(mediaFiles.fileKey, mediaKey!);
 
     const mediaFile = await db.query.mediaFiles.findFirst({
       where: whereClause,
@@ -43,6 +43,7 @@ export class CheckMediaAccessGuard implements CanActivate {
         id: true,
         creatorId: true,
         accessType: true,
+        isDeleted: true,
       },
     });
 
@@ -65,8 +66,8 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const now = new Date();
-    const hasDirectAccess = await db
-      .select()
+    const directAccessRows = await db
+      .select({ id: userContentAccess.id })
       .from(userContentAccess)
       .where(
         and(
@@ -80,12 +81,9 @@ export class CheckMediaAccessGuard implements CanActivate {
       )
       .limit(1);
 
-    if (hasDirectAccess.length) {
-      request.mediaFile = mediaFile;
-      return true;
-    }
+    const hasDirectAccess = directAccessRows.length > 0;
 
-    const hasCollectionAccess = await db
+    const collectionAccessRows = await db
       .select({ id: userContentAccess.id })
       .from(userContentAccess)
       .innerJoin(
@@ -105,7 +103,22 @@ export class CheckMediaAccessGuard implements CanActivate {
       )
       .limit(1);
 
-    if (!hasCollectionAccess.length) {
+    const hasCollectionAccess = collectionAccessRows.length > 0;
+
+    const hasImmediateAccess =
+      mediaFile.accessType === ACCESS_TYPE.FREE ||
+      (mediaFile.isDeleted && (hasDirectAccess || hasCollectionAccess));
+
+    if (hasImmediateAccess) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    if (mediaFile.isDeleted) {
+      throw new NotFoundException('Media not found');
+    }
+
+    if (!hasDirectAccess && !hasCollectionAccess) {
       throw new ForbiddenException(
         'Access denied. You do not have permission to access this media.',
       );

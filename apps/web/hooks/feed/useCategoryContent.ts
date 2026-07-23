@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -33,9 +33,32 @@ type TaxonomyItem = {
   name: string;
 };
 
+const CLIENT_ONLY_SUBSCRIBE = () => () => {};
+const getClientMountedSnapshot = () => true;
+const getServerMountedSnapshot = () => false;
+
+function resolveCategoryMatch(
+  categories: TaxonomyItem[],
+  categoryName: string,
+) {
+  const needle = categoryName.trim().toLowerCase();
+  if (!needle) return undefined;
+
+  return categories.find((category) => {
+    const id = category.id.trim().toLowerCase();
+    const name = category.name.trim().toLowerCase();
+    return id === needle || name === needle || name.startsWith(`${needle} `);
+  });
+}
+
 export function useCategoryContent(categoryName: string) {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
+  const hasMounted = useSyncExternalStore(
+    CLIENT_ONLY_SUBSCRIBE,
+    getClientMountedSnapshot,
+    getServerMountedSnapshot,
+  );
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [sortOption, setSortOption] = useState<string>(SORT_OPTION_NEW);
@@ -50,7 +73,11 @@ export function useCategoryContent(categoryName: string) {
     };
   }, [searchValue]);
 
-  const { data: categoriesData } = useQuery<ApiResponse<TaxonomyItem[]>>({
+  const {
+    data: categoriesData,
+    isPending: isCategoriesPending,
+    isSuccess: isCategoriesSuccess,
+  } = useQuery<ApiResponse<TaxonomyItem[]>>({
     queryKey: [API.content.categories],
     queryFn: async () => {
       const response = await axiosClient.get<ApiResponse<TaxonomyItem[]>>(
@@ -62,14 +89,10 @@ export function useCategoryContent(categoryName: string) {
 
   const resolvedCategory = useMemo(() => {
     const categoriesList = categoriesData?.data || [];
-    return categoriesList.find(
-      (c) =>
-        c.id.toLowerCase() === categoryName.toLowerCase() ||
-        c.name.toLowerCase() === categoryName.toLowerCase(),
-    );
+    return resolveCategoryMatch(categoriesList, categoryName);
   }, [categoriesData, categoryName]);
 
-  const categoryId = resolvedCategory ? resolvedCategory.id : categoryName;
+  const categoryId = resolvedCategory?.id;
 
   const categoryDisplayName = useMemo(() => {
     if (resolvedCategory) return resolvedCategory.name;
@@ -89,9 +112,9 @@ export function useCategoryContent(categoryName: string) {
   const initialSelectedOptions = useMemo(
     () => ({
       formats: urlFormat ? [urlFormat] : [],
-      categories: [categoryName],
+      categories: categoryId ? [categoryId] : [],
     }),
-    [urlFormat, categoryName],
+    [urlFormat, categoryId],
   );
 
   const filterStates = useCreatorFilters({
@@ -102,8 +125,9 @@ export function useCategoryContent(categoryName: string) {
 
   const {
     data: contentData,
-    isLoading,
-    isFetching,
+    isPending: isContentPending,
+    isFetching: isContentFetching,
+    isSuccess: isContentSuccess,
   } = useQuery<ApiResponse<FeedContentItem[]>>({
     queryKey: [
       "categoryContent",
@@ -118,7 +142,7 @@ export function useCategoryContent(categoryName: string) {
     ],
     queryFn: async () => {
       const body = {
-        categoryId: [categoryId],
+        categoryId: [categoryId!],
         creatorId:
           filterStates.selectedOptions.creators.length > 0
             ? filterStates.selectedOptions.creators
@@ -145,8 +169,7 @@ export function useCategoryContent(categoryName: string) {
       );
       return response.data;
     },
-    placeholderData: keepPreviousData,
-    enabled: !!categoryName && !!categoriesData,
+    enabled: Boolean(categoryName) && Boolean(categoryId),
     staleTime: 0,
   });
 
@@ -171,11 +194,31 @@ export function useCategoryContent(categoryName: string) {
 
   const showLoadMoreButton = tutorials.length >= limit;
 
+  const isWaitingForCategory =
+    Boolean(categoryName) && (isCategoriesPending || !isCategoriesSuccess);
+
+  const isWaitingForContent =
+    Boolean(categoryId) &&
+    (isContentPending || (isContentFetching && tutorials.length === 0));
+
+  const isPageLoading =
+    !hasMounted || isWaitingForCategory || isWaitingForContent;
+
+  const isSettledEmpty =
+    hasMounted &&
+    !isPageLoading &&
+    tutorials.length === 0 &&
+    (isCategoriesSuccess && !categoryId
+      ? true
+      : Boolean(categoryId) && isContentSuccess);
+
   return {
+    ...filterStates,
     categoryDisplayName,
     tutorials,
-    isLoading,
-    isFetching,
+    isLoading: isPageLoading,
+    isSettledEmpty,
+    isFetching: isContentFetching,
     searchValue,
     setSearchValue,
     sortOption,
@@ -184,6 +227,5 @@ export function useCategoryContent(categoryName: string) {
     handleLoadMore,
     allCreatorLabels,
     formatLabels,
-    ...filterStates,
   };
 }

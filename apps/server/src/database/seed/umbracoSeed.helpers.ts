@@ -520,6 +520,7 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'Letsmove_-_Motion_i_Centrum',
   'LindaAndrews',
   'Maria_Birch_Rasmussen',
+  'mariebrixtofte',
   'Maximilian_Nielsen',
   'NuVenue',
   'Publika',
@@ -918,15 +919,17 @@ export function resolveUmbracoShowThumbnails(
       ? resolveUmbracoMediaUrl(rawFile)
       : null;
 
+  // Prefer Umbraco thumbnail / creator cover before Cloudflare stream thumbs —
+  // many legacy videoIDs no longer resolve on videodelivery.net (404).
   const thumbnailUrl =
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
     resolveUmbracoThumbnailMediaUrl(
       getUmbracoShowValue(show, 'videoThumbnailURL'),
     ) ??
-    cloudflareThumbnail ??
     rawFileImageUrl ??
     fallbacks.creatorCoverImageUrl ??
     fallbacks.creatorLogoUrl ??
+    cloudflareThumbnail ??
     buildContentPlaceholderThumbnailUrl(title);
 
   const thumbnailLandscapeUrl =
@@ -936,6 +939,9 @@ export function resolveUmbracoShowThumbnails(
     cloudflareThumbnail ??
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
     rawFileImageUrl ??
+    fallbacks.creatorCoverImageUrl ??
+    fallbacks.creatorLogoUrl ??
+    cloudflareThumbnail ??
     thumbnailUrl;
 
   return { thumbnailUrl, thumbnailLandscapeUrl };

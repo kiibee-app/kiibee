@@ -4,7 +4,10 @@ import { useState } from "react";
 
 import { Drawer } from "../../common/Drawer";
 import type { Viewer } from "../../../types/viewer";
-import { formatViewerStatus } from "../../../utils/viewersConfig";
+import {
+  formatViewerStatus,
+  getViewerDisplayName,
+} from "../../../utils/viewersConfig";
 import { useViewerSales } from "../../../hooks/api";
 import {
   User,
@@ -53,6 +56,7 @@ export function ViewerDetailsModal({
 
   if (!viewer) return null;
 
+  const displayName = getViewerDisplayName(viewer);
   const initials =
     (
       (viewer.firstName?.[0] || "") + (viewer.lastName?.[0] || "")
@@ -76,7 +80,7 @@ export function ViewerDetailsModal({
         {viewer.avatarUrl ? (
           <CreatorAvatarImage
             src={viewer.avatarUrl}
-            alt={viewer.fullName || "Viewer"}
+            alt={displayName}
             style={{
               width: 64,
               height: 64,
@@ -87,7 +91,7 @@ export function ViewerDetailsModal({
         ) : (
           <AvatarCircle>{initials}</AvatarCircle>
         )}
-        <DrawerHeaderName>{viewer.fullName}</DrawerHeaderName>
+        <DrawerHeaderName>{displayName}</DrawerHeaderName>
         <DrawerHeaderEmail>{viewer.email}</DrawerHeaderEmail>
         <AccountStatusBadge $status={viewer.status}>
           {formatViewerStatus(viewer.status)}

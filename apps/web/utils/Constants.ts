@@ -34,6 +34,10 @@ export * from "@/lib/subscription/constants";
 export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
+export const DECORATIVE_IMAGE_PROPS = {
+  alt: "",
+  "aria-hidden": true,
+} as const;
 export const DEFAULT_WINDOW_WIDTH = 1200;
 export const MOBILE_BREAKPOINT = 860;
 export const SIDEBAR_COLLAPSE_BREAKPOINT = 1024;
@@ -88,6 +92,8 @@ export type PasswordVisibilityKey =
 
 export const STRING = "string";
 export const STRING_EMPTY = "";
+export const STRING_TRUE = "true";
+export const STRING_UNDEFINED = "undefined";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";
@@ -354,6 +360,11 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
         ACCESS_TYPE_FREE)
       : undefined,
+    password:
+      formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+      formState.password.trim()
+        ? formState.password.trim()
+        : undefined,
     buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
     rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
     rentDurationHours:
@@ -578,3 +589,13 @@ export const SCROLL_ANIMATION_CONFIG = {
   TOGGLE_ACTIONS: "play none none reverse",
   EVENT_SCROLL: "scroll",
 } as const;
+
+export const REGISTER_SOURCE = {
+  CONTENT: "content",
+  COLLECTION: "collection",
+  CREATOR_PAGE: "creator_page",
+  EMAIL_GATE: "email_gate",
+} as const;
+
+export type RegisterSource =
+  (typeof REGISTER_SOURCE)[keyof typeof REGISTER_SOURCE];

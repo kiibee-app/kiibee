@@ -1,7 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
-import { pulse } from "@/utils/animations";
+import { shimmer } from "@/utils/animations";
 
 export const Card = styled.div<{
   $width?: string;
@@ -67,19 +67,16 @@ export const ImageWrapper = styled.div<{
   border-radius: ${({ theme }) => `${theme.radius.lg} ${theme.radius.lg} 0 0`};
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
-  ${({ $isLoading }) =>
-    $isLoading &&
-    css`
-      animation: ${pulse} 1.5s ease-in-out infinite;
-    `}
-
   img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    opacity: ${({ $isLoading }) => ($isLoading ? 0 : 1)};
+    transition:
+      opacity 0.3s ease,
+      transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
       $coverImage ? "center top" : "center"};
@@ -123,6 +120,21 @@ export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
         ? theme.colors.primary.GREEN
         : theme.colors.primary.GREEN_50};
   }
+`;
+
+export const ImageSkeleton = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
 `;
 
 export const ImageInitials = styled(MonoText)`

@@ -109,7 +109,13 @@ export const getAdminCreatorsService = async ({
       .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
       .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
-      .leftJoin(mediaFiles, eq(mediaFiles.creatorId, users.id))
+      .leftJoin(
+        mediaFiles,
+        and(
+          eq(mediaFiles.creatorId, users.id),
+          eq(mediaFiles.isDeleted, false),
+        ),
+      )
       .leftJoin(
         emailSubscribers,
         and(
