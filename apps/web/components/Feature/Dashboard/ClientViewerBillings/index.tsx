@@ -139,9 +139,14 @@ export default function ClientViewerBillings({
 
     const deleteId =
       selectedPaymentMethod.subscriptionId || selectedPaymentMethod.id;
-    await deleteCard(deleteId);
-    setShowDeleteModal(false);
-    setShowDeleteSuccessModal(true);
+    try {
+      await deleteCard(deleteId);
+      setShowDeleteModal(false);
+      setShowDeleteSuccessModal(true);
+    } catch (error) {
+      toast.error(getErrorMessage(error, "errors.saveChangesFailed"));
+      setShowDeleteModal(false);
+    }
   };
 
   const handleInvoiceOpen = (invoice: ViewerBillingHistoryItem) => {
@@ -150,7 +155,11 @@ export default function ClientViewerBillings({
   };
 
   const handleMarkAsDefault = async (method: ViewerPaymentMethod) => {
-    await markAsDefault(method.id);
+    try {
+      await markAsDefault(method.id);
+    } catch (error) {
+      toast.error(getErrorMessage(error, "errors.saveChangesFailed"));
+    }
   };
 
   const handleAddCardClick = async () => {
