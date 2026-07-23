@@ -151,13 +151,15 @@ export default function GenericCard({
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
-            <img
+            <Image
               ref={handleImageRef}
-              src={imageSrc ?? undefined}
+              src={imageSrc!}
               alt={alt || "card image"}
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
-              loading={imagePriority ? "eager" : "lazy"}
-              decoding="async"
+              priority={imagePriority}
+              unoptimized
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
