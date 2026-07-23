@@ -1,10 +1,11 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import {
   GATE_QUERY_PARAM,
   TYPE_CODE,
@@ -23,6 +24,7 @@ import {
   getCollectionUnlockStorageKey,
   getCreatorUnlockStorageKey,
 } from "@/utils/accessGate";
+import { pathLoginWithNext } from "@/utils/path";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -35,13 +37,9 @@ export function useContentAccessGate(
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
   const approvedAccessToken = searchParams.get("approvedAccess");
-  const [failedApprovalToken, setFailedApprovalToken] = useState<string | null>(
-    null,
-  );
-  const isApprovingAccess = Boolean(
-    approvedAccessToken && failedApprovalToken !== approvedAccessToken,
-  );
   const storedUser = useStoredLoginUser();
+  const loginUser = storedUser ?? readStoredLoginUser();
+  const isApprovingAccess = Boolean(approvedAccessToken);
 
   const { gateType: creatorGateType, isLoading: creatorLoading } =
     useCreatorAccessGate(content?.creatorId);
@@ -58,31 +56,32 @@ export function useContentAccessGate(
   const contentStorageKey = content?.id
     ? `kiibee:gate:unlocked:content:${content.id}`
     : "";
-  const isContentUnlocked =
+  const isLocallyUnlocked =
     typeof window !== "undefined" && contentStorageKey
       ? window.localStorage.getItem(contentStorageKey) === "true"
       : false;
 
-  const isOwner = Boolean(
-    storedUser?.id && content?.creatorId === storedUser.id,
-  );
+  const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
   useEffect(() => {
     if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
-    axiosClient
-      .get(API.creatorUsers.approveContentAccess, {
-        params: { token: approvedAccessToken },
-      })
-      .then(() => {
-        window.localStorage.setItem(contentStorageKey, "true");
-        const url = new URL(window.location.href);
-        url.searchParams.delete("approvedAccess");
-        window.location.replace(url.toString());
-      })
-      .catch(() => setFailedApprovalToken(approvedAccessToken));
-  }, [approvedAccessToken, content?.id, contentStorageKey]);
+    if (!loginUser?.id) {
+      const returnTo = `${window.location.pathname}${window.location.search}`;
+      window.location.replace(pathLoginWithNext(returnTo));
+      return;
+    }
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("approvedAccess");
+    window.location.replace(url.toString());
+  }, [approvedAccessToken, content?.id, contentStorageKey, loginUser?.id]);
 
   const hasContentGate = isContentCode || isContentEmail;
+  const hasServerAccess = Boolean(content?.accessInfo);
+  const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
+  const isContentUnlocked = isContentEmail
+    ? hasApprovedEmailAccess
+    : isLocallyUnlocked || hasServerAccess;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
@@ -138,7 +137,7 @@ export function useContentAccessGate(
         ? getCollectionUnlockStorageKey(collectionId)
         : "",
       !hasContentGate && creatorGateType
-        ? getCreatorUnlockStorageKey(content?.creatorId, storedUser?.id)
+        ? getCreatorUnlockStorageKey(content?.creatorId, loginUser?.id)
         : "",
     ].find(Boolean);
 
