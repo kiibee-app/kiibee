@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -153,6 +153,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     CreateOrderPayload
   >(API.order.create);
 
+  const handleActionClick = useCallback(
+    (action: SingleContentAction) => {
+      if (!user?.id) {
+        handleShowLoginModal();
+        return;
+      }
+
+      action.onClick?.();
+    },
+    [user?.id],
+  );
+
   const actionsWithPayment = useMemo(() => {
     const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
 
@@ -172,15 +184,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       if (!isPurchase && !isRental) {
         return {
           ...action,
-          onClick: async () => {
-            if (!user?.id) {
-              handleShowLoginModal();
-              return;
-            }
-            if (action.onClick) {
-              action.onClick();
-            }
-          },
+          onClick: () => handleActionClick(action),
         };
       }
 
@@ -210,6 +214,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [
     contentId,
     createOrderMutation,
+    handleActionClick,
     primaryAction,
     primaryActions,
     t,

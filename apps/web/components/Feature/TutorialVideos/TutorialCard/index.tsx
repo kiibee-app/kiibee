@@ -21,6 +21,10 @@ import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -56,17 +60,24 @@ function TutorialCard({
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const [loginModalMessage, setLoginModalMessage] = useState<
+    string | undefined
+  >(undefined);
   const { user, hasAccess, rentedItem } = useViewerContentAccess(
     tutorial.id,
     tutorial.creatorId,
     collectionId,
   );
 
-  const handleShowLoginModal = (url: string) => {
+  const handleShowLoginModal = (url: string, message?: string) => {
     setPendingRedirectUrl(url);
+    setLoginModalMessage(message);
     setLoginModalVisible(true);
   };
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setLoginModalMessage(undefined);
+  };
 
   const thumbnailCandidates = useMemo(() => {
     if (tutorial.videoUrl) {
@@ -155,7 +166,13 @@ function TutorialCard({
     const targetHref = resolveButtonHref(button.href);
 
     if (button.requiresAuth && !isLoggedIn) {
-      handleShowLoginModal(targetHref);
+      const isPurchaseOrRent =
+        isBuyActionLabel(button.label) || isRentActionLabel(button.label);
+      const msg = isPurchaseOrRent
+        ? t("createProfileHome.latestUpload.loginModal.message")
+        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+
+      handleShowLoginModal(targetHref, msg);
       return;
     }
 
@@ -269,6 +286,7 @@ function TutorialCard({
     <LoginRequiredModal
       visible={isLoginModalVisible}
       onClose={handleCloseLoginModal}
+      message={loginModalMessage}
       onSuccess={() => {
         if (pendingRedirectUrl) {
           navigateToContent(pendingRedirectUrl, true);
