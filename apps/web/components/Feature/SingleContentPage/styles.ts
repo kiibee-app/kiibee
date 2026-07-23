@@ -797,7 +797,7 @@ export const AudioProgressInput = styled.input`
 export const PurchaseModalCard = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   border-radius: 12px;
-  margin: 3.5rem 1.5rem 0;
+  margin: 0 1.5rem;
   overflow: hidden;
 `;
 
@@ -821,7 +821,11 @@ export const PurchaseModalCardHeaderExpiry = styled.span`
 export const PurchaseModalCardBody = styled.div`
   display: flex;
   gap: 1rem;
-  padding: 0 1rem 1rem;
+  padding: 0.75rem 1rem 1rem;
+`;
+
+export const PurchaseModalRentalCardBody = styled(PurchaseModalCardBody)`
+  padding-top: 0;
 `;
 
 export const PurchaseModalCardImage = styled.div`
@@ -940,7 +944,7 @@ export const PurchaseModalCollectionMeta = styled.div`
 `;
 
 export const PurchaseModalCollectionBenefits = styled.section`
-  padding: 1rem 1.875rem 1.5rem;
+  padding: 1rem 1.5rem 0.5rem;
 `;
 
 export const PurchaseModalCollectionBenefitsTitle = styled.div`
@@ -984,11 +988,11 @@ export const PurchaseModalRentalItem = styled.li`
 `;
 
 export const PurchaseModalPaymentMethod = styled.div`
-  padding: 1.25rem 1.5rem;
+  padding: 0.5rem 1.5rem 0.75rem;
 `;
 
 export const PurchaseModalPaymentMethodTitle = styled.div`
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
@@ -1004,8 +1008,8 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  min-height: 64px;
-  padding: 0.875rem 1rem;
+  min-height: 56px;
+  padding: 0.625rem 1rem;
   border: 1px solid
     ${({ theme, $selected }) =>
       $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_300};
@@ -1014,7 +1018,7 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-align: left;
   cursor: pointer;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
