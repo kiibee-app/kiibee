@@ -484,6 +484,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
         contentId={contentId}
+        isPurchase={selectedAction?.isPurchase}
         loading={createOrderMutation.isPending}
       />
 
