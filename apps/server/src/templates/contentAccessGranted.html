@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <body
+    style="
+      padding: 24px;
+      background: #f4f5f7;
+      color: #111827;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <div
+      style="
+        max-width: 620px;
+        margin: auto;
+        padding: 32px;
+        border-radius: 12px;
+        background: white;
+      "
+    >
+      <h2>Your request was approved</h2>
+      <p>Hi {{viewerName}},</p>
+      <p>
+        The creator approved your request for
+        <strong>{{contentTitle}}</strong>.
+      </p>
+      <p>
+        <a
+          href="{{contentLink}}"
+          style="
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+          "
+        >
+          Open content
+        </a>
+      </p>
+    </div>
+  </body>
+</html>

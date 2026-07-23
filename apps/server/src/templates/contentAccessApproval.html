@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <body
+    style="
+      padding: 24px;
+      background: #f4f5f7;
+      color: #111827;
+      font-family: Arial, sans-serif;
+    "
+  >
+    <div
+      style="
+        max-width: 620px;
+        margin: auto;
+        padding: 32px;
+        border-radius: 12px;
+        background: white;
+      "
+    >
+      <h2>Content access request</h2>
+      <p>Hi {{creatorName}},</p>
+      <p>
+        {{viewerName}} ({{viewerEmail}}) requested access to
+        <strong>{{contentTitle}}</strong>.
+      </p>
+      <p>
+        <a
+          href="{{approvalLink}}"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+          "
+        >
+          Approve access
+        </a>
+      </p>
+      <p style="color: #6b7280; font-size: 14px">
+        This secure approval link expires in 7 days.
+      </p>
+    </div>
+  </body>
+</html>

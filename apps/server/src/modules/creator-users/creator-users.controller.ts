@@ -14,6 +14,10 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { CreatorUsersService } from './creator-users.service';
 import type { RegisterEmailDto } from './services/registerEmail.service';
+import {
+  ApproveContentAccessDto,
+  RequestContentAccessDto,
+} from './dto/contentAccess.dto';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -29,6 +33,16 @@ export class CreatorUsersController {
   @Post('register')
   registerEmail(@Body() body: RegisterEmailDto) {
     return this.creatorUsersService.registerEmail(body);
+  }
+
+  @Post('content-access/request')
+  requestContentAccess(@Body() body: RequestContentAccessDto) {
+    return this.creatorUsersService.requestContentAccess(body);
+  }
+
+  @Get('content-access/approve')
+  approveContentAccess(@Query() query: ApproveContentAccessDto) {
+    return this.creatorUsersService.approveContentAccess(query.token);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
