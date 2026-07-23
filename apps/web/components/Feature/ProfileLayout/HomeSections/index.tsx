@@ -84,6 +84,8 @@ export default function ProfileHomeSections({
         description: latest.description ?? "",
         actions: latestConfig.actions,
         contentId: latest.id,
+        trailerUrl:
+          (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
         accessType:
           (latest as { accessType?: string | null }).accessType ?? null,
         buyPrice:
