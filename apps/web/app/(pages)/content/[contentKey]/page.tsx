@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
+import ProfileFooter from "@/components/Feature/ProfileLayout/shared/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
@@ -65,6 +66,7 @@ export default function PublishedContentPage() {
           </Suspense>
         </ErrorBoundary>
       </Main>
+      <ProfileFooter />
       <Footer />
     </PageContainer>
   );

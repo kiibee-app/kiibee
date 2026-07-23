@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import GenericButton from "@/components/UI/GenericButton";
 
 export const Container = styled.footer`
   width: 100%;
@@ -79,4 +80,15 @@ export const Content = styled.div`
 export const CTA = styled.div`
   display: inline-flex;
   align-items: center;
+`;
+
+export const JoinButton = styled(GenericButton)`
+  display: flex;
+  height: 45px;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
