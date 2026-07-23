@@ -92,6 +92,8 @@ export type PasswordVisibilityKey =
 
 export const STRING = "string";
 export const STRING_EMPTY = "";
+export const STRING_TRUE = "true";
+export const STRING_UNDEFINED = "undefined";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";
@@ -358,6 +360,11 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
         ACCESS_TYPE_FREE)
       : undefined,
+    password:
+      formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+      formState.password.trim()
+        ? formState.password.trim()
+        : undefined,
     buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
     rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
     rentDurationHours:

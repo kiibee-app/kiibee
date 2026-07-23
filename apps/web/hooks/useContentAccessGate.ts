@@ -18,6 +18,11 @@ import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 import type { ContentDetailItem } from "@/utils/contentApi";
+import {
+  getContentUnlockStorageKey,
+  getCollectionUnlockStorageKey,
+  getCreatorUnlockStorageKey,
+} from "@/utils/accessGate";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -25,7 +30,7 @@ export function useContentAccessGate(
 ): {
   gateType: AccessGateType | null;
   isLoading: boolean;
-  handleSuccess: (email?: string, name?: string) => Promise<void>;
+  handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
@@ -76,38 +81,50 @@ export function useContentAccessGate(
       ? gateParam
       : resolvedGateType;
 
-  const handleSuccess = async (email?: string, name?: string) => {
-    if (!isOwner) {
-      if (email && content?.creatorId) {
-        try {
-          await axiosClient.post(API.creatorUsers.register, {
-            creatorId: content.creatorId,
-            email,
-            name,
-            source: REGISTER_SOURCE.CONTENT,
-            sourceId: content.id,
-          });
-        } catch {}
-      }
+  const handleSuccess = async (value: string, name?: string) => {
+    const targetId = isContentLocked
+      ? content?.id
+      : collectionGateType
+        ? collectionId
+        : creatorGateType
+          ? content?.creatorId
+          : undefined;
+    await (finalGateType === TYPE_CODE && targetId
+      ? axiosClient.post(API.content.verifyCode(targetId), { code: value })
+      : Promise.resolve());
 
-      if (isContentLocked && content?.id) {
-        window.localStorage.setItem(
-          `kiibee:gate:unlocked:content:${content.id}`,
-          "true",
-        );
-      } else if (!hasContentGate && collectionGateType && collectionId) {
-        window.localStorage.setItem(
-          `kiibee:gate:unlocked:collection:${collectionId}`,
-          "true",
-        );
-      } else if (!hasContentGate && creatorGateType && content?.creatorId) {
-        window.localStorage.setItem(
-          `kiibee:gate:unlocked:creator:${content.creatorId}`,
-          "true",
-        );
-      }
+    if (
+      !isOwner &&
+      finalGateType === TYPE_EMAIL &&
+      value &&
+      content?.creatorId
+    ) {
+      await axiosClient.post(API.creatorUsers.register, {
+        creatorId: content.creatorId,
+        email: value,
+        name,
+        source: REGISTER_SOURCE.CONTENT,
+        sourceId: content.id,
+      });
+    }
+
+    const unlockStorageKey = [
+      isContentLocked && content?.id
+        ? getContentUnlockStorageKey(content.id)
+        : "",
+      !hasContentGate && collectionGateType && collectionId
+        ? getCollectionUnlockStorageKey(collectionId)
+        : "",
+      !hasContentGate && creatorGateType
+        ? getCreatorUnlockStorageKey(content?.creatorId, storedUser?.id)
+        : "",
+    ].find(Boolean);
+
+    if (!isOwner && unlockStorageKey) {
+      window.localStorage.setItem(unlockStorageKey, "true");
     }
     window.location.reload();
+    return true;
   };
 
   return {

@@ -14,10 +14,12 @@ import {
   tags,
 } from 'src/database/schema';
 import {
+  ACCESS_TYPE,
   CONTENT_VISIBILITY,
   SLUG_EDGE_DASH_RE,
   SLUG_NON_ALPHANUMERIC_RE,
 } from 'src/utils/constant';
+import { hashAccessPasswords } from 'src/utils/accessPassword';
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
@@ -156,6 +158,19 @@ export const updateContentService = async (
             ? new Date()
             : existing.publishedAt,
       });
+
+      const password = dto.password?.trim();
+      const passwordHash =
+        dto.accessType !== undefined && dto.accessType !== ACCESS_TYPE.PASSWORD
+          ? null
+          : password
+            ? await hashAccessPasswords(password)
+            : undefined;
+
+      Object.assign(
+        updatePayload,
+        passwordHash !== undefined ? { passwordHash } : {},
+      );
 
       if (Object.keys(updatePayload).length) {
         await trx

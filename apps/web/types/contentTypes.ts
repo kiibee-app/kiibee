@@ -117,6 +117,7 @@ export type ContentFormState = {
   mediaCardThumbnail: string | null;
   portraitThumbnail: string | null;
   admissionRequirement: string;
+  password: string;
   rentalAmount: string;
   purchaseAmount: string;
   maxDownloadLimit: string;
@@ -159,6 +160,7 @@ export const defaultState: ContentFormState = {
   mediaCardThumbnail: null,
   portraitThumbnail: null,
   admissionRequirement: ADMISSION_TYPE.FREE,
+  password: "",
   rentalAmount: "",
   purchaseAmount: "",
   maxDownloadLimit: "5",
