@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
-
+import { isBrowser } from "@/utils/ui";
 import {
   GATE_QUERY_PARAM,
   TYPE_CODE,
@@ -12,6 +12,7 @@ import {
   ACCESS_TYPE_PASSWORD,
   ACCESS_TYPE_EMAIL_GATED,
   REGISTER_SOURCE,
+  STRING_TRUE,
 } from "@/utils/Constants";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -52,8 +53,8 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   const isUnlocked =
-    typeof window !== "undefined" && storageKey
-      ? window.localStorage.getItem(storageKey) === "true"
+    isBrowser && storageKey
+      ? window.localStorage.getItem(storageKey) === STRING_TRUE
       : false;
 
   const isOwner =

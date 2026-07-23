@@ -88,6 +88,8 @@ export type PasswordVisibilityKey =
 
 export const STRING = "string";
 export const STRING_EMPTY = "";
+export const STRING_TRUE = "true";
+export const STRING_UNDEFINED = "undefined";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";

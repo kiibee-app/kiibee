@@ -1,8 +1,11 @@
+import { isBrowser } from "@/utils/ui";
+import { STRING_TRUE } from "@/utils/Constants";
+
 export const getCreatorUnlockStorageKey = (
-  targetCreatorId?: string | null,
-  currentUserId?: string | null,
-): string => {
-  if (!targetCreatorId) return "";
+  targetCreatorId: string | null = null,
+  currentUserId: string | null = null,
+): string | null => {
+  if (!targetCreatorId) return null;
   return `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
 };
 
@@ -15,16 +18,15 @@ export const getCollectionUnlockStorageKey = (collectionId: string): string => {
 };
 
 export const unlockCreatorAccessGate = (
-  targetCreatorId?: string | null,
-  currentUserId?: string | null,
+  targetCreatorId: string | null = null,
+  currentUserId: string | null = null,
   shouldReload = true,
 ): void => {
-  if (!targetCreatorId) return;
+  if (!targetCreatorId || !isBrowser) return;
+
   const unlockKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
-  if (unlockKey && typeof window !== "undefined") {
-    window.localStorage.setItem(unlockKey, "true");
-    if (shouldReload) {
-      window.location.reload();
-    }
-  }
+  if (!unlockKey) return;
+
+  window.localStorage.setItem(unlockKey, STRING_TRUE);
+  shouldReload && window.location.reload();
 };
