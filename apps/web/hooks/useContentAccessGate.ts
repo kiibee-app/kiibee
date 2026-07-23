@@ -77,8 +77,9 @@ export function useContentAccessGate(
       : resolvedGateType;
 
   const handleSuccess = async (value: string, name?: string) => {
-    await (finalGateType === TYPE_CODE && content?.id
-      ? axiosClient.post(API.content.verifyCode(content.id), { code: value })
+    const targetId = content?.id || collectionId || content?.creatorId;
+    await (finalGateType === TYPE_CODE && targetId
+      ? axiosClient.post(API.content.verifyCode(targetId), { code: value })
       : Promise.resolve());
 
     if (!isOwner) {

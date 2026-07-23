@@ -29,6 +29,7 @@ import {
   ACTION_LOGIN,
   ACTION_SIGNUP,
   REGISTER_SOURCE,
+  TYPE_CODE,
 } from "@/utils/Constants";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -498,13 +499,17 @@ export default function SingleCollectionDetail({
         <AccessGate
           type={gateType}
           variant={VARIANT_CONTENT}
-          onSuccess={async (email, name) => {
+          onSuccess={async (value, name) => {
             if (id) {
-              if (email && resolvedCreatorId) {
+              if (gateType === TYPE_CODE) {
+                await axiosClient.post(API.content.verifyCode(id), {
+                  code: value,
+                });
+              } else if (value && resolvedCreatorId) {
                 try {
                   await axiosClient.post(API.creatorUsers.register, {
                     creatorId: resolvedCreatorId,
-                    email,
+                    email: value,
                     name,
                     source: REGISTER_SOURCE.COLLECTION,
                     sourceId: id,

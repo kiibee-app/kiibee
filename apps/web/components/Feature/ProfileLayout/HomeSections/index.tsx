@@ -9,6 +9,7 @@ import {
   PROFILE_HOME_SECTION,
   VARIANT_PAGE,
   REGISTER_SOURCE,
+  TYPE_CODE,
 } from "@/utils/Constants";
 import {
   ContentAdjust,
@@ -132,15 +133,19 @@ export default function ProfileHomeSections({
         type={gateType}
         variant={VARIANT_PAGE}
         creatorName={displayName ?? undefined}
-        onSuccess={async (email, name) => {
+        onSuccess={async (value, name) => {
           const targetCreatorId = publicCreatorId;
           const currentUserId = storedUser?.id;
           if (targetCreatorId) {
-            if (email) {
+            if (gateType === TYPE_CODE) {
+              await axiosClient.post(API.content.verifyCode(targetCreatorId), {
+                code: value,
+              });
+            } else if (value) {
               try {
                 await axiosClient.post(API.creatorUsers.register, {
                   creatorId: targetCreatorId,
-                  email,
+                  email: value,
                   name,
                   source: REGISTER_SOURCE.CREATOR_PAGE,
                   sourceId: targetCreatorId,
