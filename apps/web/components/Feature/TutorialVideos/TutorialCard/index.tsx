@@ -4,7 +4,7 @@ import { memo, useMemo, useState, type MouseEvent } from "react";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { ActionRow, CardLink, VideoBox } from "./styles";
+import { ActionRow, CardLink, CardTitle, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -202,7 +202,7 @@ function TutorialCard({
           </MonoText>
         ) : undefined
       }
-      title={<MonoText $use="Body_Medium">{tutorial.title}</MonoText>}
+      title={<CardTitle $use="H5_Medium">{tutorial.title}</CardTitle>}
       subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
