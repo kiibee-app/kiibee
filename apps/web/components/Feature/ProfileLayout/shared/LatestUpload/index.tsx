@@ -303,6 +303,11 @@ export default function LatestUpload({
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={() => setLoginModalVisible(false)}
+        message={
+          isBuyActionLabel(primaryAction?.title ?? "")
+            ? t("createProfileHome.latestUpload.loginModal.message")
+            : t("createProfileHome.latestUpload.loginModal.viewMessage")
+        }
         onSuccess={() => {
           if (pendingHref) {
             navigateToContent(pendingHref, true);
