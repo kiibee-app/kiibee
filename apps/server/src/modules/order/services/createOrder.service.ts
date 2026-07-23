@@ -6,7 +6,7 @@ import { logger } from 'src/logger/logger';
 import { BadRequestException } from '@nestjs/common';
 import { fail, success } from 'src/utils/sendResponse';
 import { mediaFiles } from 'src/database/schema';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
 import { ORDER_TYPES } from 'src/utils/constant';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
@@ -35,7 +35,9 @@ export async function createOrderService(
     const [contentInfo] = await db
       .select()
       .from(mediaFiles)
-      .where(eq(mediaFiles.id, contentId));
+      .where(
+        and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)),
+      );
 
     if (!contentInfo) {
       return fail('Content not found', HttpStatus.NOT_FOUND);

@@ -102,8 +102,8 @@ export class ContentService {
     return getRelatedCollectionContentService(contentId);
   }
 
-  async getPublicCollectionService(collectionId: string) {
-    return getPublicCollectionService(collectionId);
+  async getPublicCollectionService(collectionId: string, viewerId?: string) {
+    return getPublicCollectionService(collectionId, viewerId);
   }
 
   async getAdminCreatorContents(creatorId: string) {

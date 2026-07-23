@@ -761,17 +761,32 @@ export function resolveUmbracoShowThumbnails(
   title: string,
   fallbacks: UmbracoShowThumbnailFallbacks = {},
 ): { thumbnailUrl: string; thumbnailLandscapeUrl: string } {
+  const videoId =
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoID')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoDownloadURL')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'contentUrl'));
+
+  const cloudflareThumbnail = videoId
+    ? buildCloudflareVideoThumbnailUrl(videoId)
+    : null;
+
   const rawFile = textOrNull(getUmbracoShowValue(show, 'rawFile'));
   const rawFileImageUrl =
     rawFile && isImageMediaPath(rawFile)
       ? resolveUmbracoMediaUrl(rawFile)
       : null;
 
+  // Prefer Umbraco thumbnail / creator cover before Cloudflare stream thumbs —
+  // many legacy videoIDs no longer resolve on videodelivery.net (404).
   const thumbnailUrl =
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
+    resolveUmbracoThumbnailMediaUrl(
+      getUmbracoShowValue(show, 'videoThumbnailURL'),
+    ) ??
     rawFileImageUrl ??
     fallbacks.creatorCoverImageUrl ??
     fallbacks.creatorLogoUrl ??
+    cloudflareThumbnail ??
     buildContentPlaceholderThumbnailUrl(title);
 
   const thumbnailLandscapeUrl =
@@ -780,6 +795,9 @@ export function resolveUmbracoShowThumbnails(
     ) ??
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
     rawFileImageUrl ??
+    fallbacks.creatorCoverImageUrl ??
+    fallbacks.creatorLogoUrl ??
+    cloudflareThumbnail ??
     thumbnailUrl;
 
   return { thumbnailUrl, thumbnailLandscapeUrl };

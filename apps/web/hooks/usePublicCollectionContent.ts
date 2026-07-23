@@ -43,20 +43,21 @@ type Options = {
 
 export function usePublicCollectionContent(
   collectionId?: string | null,
+  viewerId?: string | null,
   options?: Options,
 ) {
   const { t } = useTranslation();
   const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
   const query = useQuery<PublicCollectionResult | null>({
-    queryKey: ["public-collection-content", collectionId],
+    queryKey: ["public-collection-content", collectionId, viewerId],
     enabled: Boolean(collectionId) && (options?.enabled ?? true),
     queryFn: async () => {
       if (!collectionId) return null;
 
       const response = await axiosClient.get<
         ApiResponse<PublicCollectionPayload | null>
-      >(API.content.publicCollection(collectionId));
+      >(API.content.publicCollection(collectionId, viewerId ?? undefined));
 
       const payload = response.data?.data;
       if (!response.data?.success || !payload) {

@@ -13,18 +13,18 @@ import {
   PageWrapper,
 } from "@/components/Feature/ExploreCreators/Creators/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
-import { MonoText } from "@/components/UI/Monotext";
 import {
-  ResultsState,
   LoadMoreContainer,
   LoadMoreButton,
 } from "@/components/Feature/ExploreCreators/LatestRelease/styles";
 
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
+import Skeleton from "@/components/UI/Skeleton";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
+import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import {
   Hero,
   HeroTitleText,
@@ -92,11 +92,11 @@ function FormatPageContent() {
           <div ref={trendingRef}>
             <PageWrapper>
               {isLoading ? (
-                <ResultsState>
-                  <MonoText $use="Body_Medium">
-                    {t("nav.explore.loading")}
-                  </MonoText>
-                </ResultsState>
+                <Grid>
+                  {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                    <Skeleton.Card key={i} />
+                  ))}
+                </Grid>
               ) : filteredTutorials.length > 0 ? (
                 <Grid>
                   {filteredTutorials.map((tutorial) => (

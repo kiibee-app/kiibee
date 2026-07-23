@@ -575,7 +575,13 @@ export const seedUmbracoShows = async () => {
           creatorCoverImageUrl: channel.coverImageUrl,
           creatorLogoUrl: channel.logoUrl,
         });
-      const trailerUrl = resolveMediaUrl(show.trailer);
+      const trailerRaw =
+        textOrNull(showValue(show, 'trailer')) ?? textOrNull(show.trailer);
+      const trailerUrl = trailerRaw
+        ? /^https?:\/\//i.test(trailerRaw)
+          ? trailerRaw.trim()
+          : resolveMediaUrl(trailerRaw)
+        : null;
       const accessCode = textOrNull(show.code);
       const passwordHash = accessCode ? await hashPassword(accessCode) : null;
       const mediaFileId = showSeedUuid('media', profile.profileKey, showKey);

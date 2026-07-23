@@ -1061,6 +1061,10 @@
       "rental": "48 timers leje",
       "purchaseTitle": "Dit køb",
       "rentalTitle": "Din leje",
+      "contentFallback": "INDHOLD",
+      "contentPurchaseTitle": "KØB {{contentType}}",
+      "contentRentalTitle": "{{contentType}}-leje",
+      "contentRentalStreaming": "{{duration}} streaming.",
       "collectionPurchaseTitle": "Køb af samling",
       "collectionPurchaseAccess": "Få adgang til dit indhold når som helst i din profil.",
       "collectionPurchaseFees": "Prisen inkluderer moms og kortgebyr.",
@@ -2160,6 +2164,7 @@
         "enterAmount": "Indtast beløb",
         "feeNote": "Minimum DKK 8, da Kiibee opkræver DKK 5 i transaktionsgebyr",
         "invalidNumber": "Indtast et gyldigt tal.",
+        "minAmount": "Minimumsbeløb er DKK 8.",
         "requiredAmount": "Beløb er påkrævet."
       },
       "physicalLink": {

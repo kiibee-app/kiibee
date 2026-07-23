@@ -28,8 +28,11 @@ import {
   REDIRECT_NEXT_QUERY_PARAM,
   ACTION_LOGIN,
   ACTION_SIGNUP,
+  REGISTER_SOURCE,
 } from "@/utils/Constants";
+import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import { useLogout } from "@/hooks/auth/useLogout";
+import { axiosClient } from "@/lib/http/axiosClient";
 import {
   HeroWrapper,
   TopBar,
@@ -55,6 +58,7 @@ import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { NAV } from "@/utils/translationKeys";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -133,11 +137,13 @@ export default function SingleCollectionDetail({
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
 
+  const viewerId = user?.id ?? readStoredLoginUser()?.id ?? null;
+
   const {
     data: dynamicSection,
     isLoading: isDynamicLoading,
     isError,
-  } = usePublicCollectionContent(!staticSection ? id : null);
+  } = usePublicCollectionContent(!staticSection ? id : null, viewerId);
 
   const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
 
@@ -206,7 +212,17 @@ export default function SingleCollectionDetail({
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
   );
-  const { hasAccess: hasCollectionAccess } = useViewerCollectionAccess(id);
+  const {
+    hasAccess: hasCollectionAccess,
+    isPurchased,
+    isRented,
+  } = useViewerCollectionAccess(id);
+
+  const userAccessStatus = isPurchased
+    ? COLLECTION_ACCESS_STATUS.PURCHASED
+    : isRented
+      ? COLLECTION_ACCESS_STATUS.RENTED
+      : null;
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
@@ -344,21 +360,7 @@ export default function SingleCollectionDetail({
     router.push(`/content/${encodeURIComponent(contentId)}`);
   };
 
-  const handleSeeContent = () => {
-    const primaryId =
-      dynamicSection?.videos?.[0]?.id ?? staticSection?.tutorials?.[0]?.id;
-    if (!primaryId) return;
-
-    if (onSelectContent) {
-      onSelectContent(primaryId);
-      return;
-    }
-
-    router.push(`/content/${encodeURIComponent(primaryId)}`);
-  };
-
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
-  const showSeeContent = hasCollectionAccess || embedded;
 
   const purchaseModals = (
     <>
@@ -454,10 +456,8 @@ export default function SingleCollectionDetail({
       <Section $embedded={embedded}>
         <SingleCollectionHero
           title={staticSection.title}
-          primaryContentId={staticSection.tutorials[0]?.id}
           onBack={onBack}
           showBack={showBack}
-          onSeeContent={showSeeContent ? handleSeeContent : undefined}
           embedded={embedded}
         />
         <CollectionContent
@@ -485,7 +485,6 @@ export default function SingleCollectionDetail({
           creatorAvatar={resolvedCreatorAvatar}
           image={resolvedImage}
           pricing={resolvedPricing}
-          primaryContentId={dynamicSection?.videos?.[0]?.id}
           onActionClick={handlePricingActionClick}
           isOwner={isOwner}
           onOpenDashboard={handleOpenDashboard}
@@ -496,8 +495,19 @@ export default function SingleCollectionDetail({
         <AccessGate
           type={gateType}
           variant={VARIANT_CONTENT}
-          onSuccess={() => {
+          onSuccess={async (email, name) => {
             if (id) {
+              if (email && resolvedCreatorId) {
+                try {
+                  await axiosClient.post(API.creatorUsers.register, {
+                    creatorId: resolvedCreatorId,
+                    email,
+                    name,
+                    source: REGISTER_SOURCE.COLLECTION,
+                    sourceId: id,
+                  });
+                } catch {}
+              }
               window.localStorage.setItem(
                 `kiibee:gate:unlocked:collection:${id}`,
                 "true",
@@ -546,16 +556,15 @@ export default function SingleCollectionDetail({
         creatorAvatar={resolvedCreatorAvatar}
         image={resolvedImage}
         imageFallback={dynamicSection.heroImageFallback}
-        primaryContentId={dynamicSection.videos[0]?.id}
         pricing={heroPricing}
         onActionClick={
           hasCollectionAccess ? undefined : handlePricingActionClick
         }
         isOwner={isOwner}
+        userAccessStatus={userAccessStatus}
         onOpenDashboard={handleOpenDashboard}
         onBack={onBack}
         showBack={showBack}
-        onSeeContent={showSeeContent ? handleSeeContent : undefined}
         embedded={embedded}
       />
       <CollectionContent

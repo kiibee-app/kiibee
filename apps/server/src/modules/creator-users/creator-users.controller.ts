@@ -1,8 +1,10 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
   Param,
+  Post,
   Query,
   Req,
   UseGuards,
@@ -11,6 +13,7 @@ import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { CreatorUsersService } from './creator-users.service';
+import type { RegisterEmailDto } from './services/registerEmail.service';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -22,6 +25,11 @@ type AuthenticatedRequest = Request & {
 @Controller('creator-users')
 export class CreatorUsersController {
   constructor(private readonly creatorUsersService: CreatorUsersService) {}
+
+  @Post('register')
+  registerEmail(@Body() body: RegisterEmailDto) {
+    return this.creatorUsersService.registerEmail(body);
+  }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('registrations')

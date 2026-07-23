@@ -43,7 +43,7 @@ type AccessGateProps = {
   type: AccessGateType;
   variant?: AccessGateVariant;
   creatorName?: string;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (value: string, name?: string) => void | Promise<void>;
 };
 
 function CodeGate({
@@ -51,7 +51,7 @@ function CodeGate({
   onSuccess,
 }: {
   variant: AccessGateVariant;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (value: string, name?: string) => void | Promise<void>;
 }) {
   const { t } = useTranslation();
   const [code, setCode] = useState(EMPTY_STRING);
@@ -106,21 +106,28 @@ function EmailGate({
 }: {
   variant: AccessGateVariant;
   creatorName?: string;
-  onSuccess?: (value: string) => void;
+  onSuccess?: (value: string, name?: string) => void | Promise<void>;
 }) {
   const { t } = useTranslation();
   const [name, setName] = useState(EMPTY_STRING);
   const [email, setEmail] = useState(EMPTY_STRING);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const titleKey =
     variant === VARIANT_CONTENT
       ? ACCESS_GATE.contentEmailTitle
       : ACCESS_GATE.pageEmailTitle;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      onSuccess?.(email.trim());
+    if (email.trim() && !isSubmitting) {
+      setIsSubmitting(true);
+      try {
+        await onSuccess?.(email.trim(), name.trim());
+      } catch {
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -172,7 +179,7 @@ function EmailGate({
 
         <GateSubmitButton
           type={BUTTON_TYPE_SUBMIT}
-          disabled={!name.trim() || !email.trim()}
+          disabled={!name.trim() || !email.trim() || isSubmitting}
         >
           {t(ACCESS_GATE.submitEmail)}
         </GateSubmitButton>

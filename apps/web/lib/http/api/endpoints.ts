@@ -41,7 +41,10 @@ export const API = {
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
     relatedCollection: (id: string) => `/content/${id}/related-collection`,
-    publicCollection: (id: string) => `/content/public/collection/${id}`,
+    publicCollection: (id: string, viewerId?: string) =>
+      viewerId
+        ? `/content/public/collection/${id}?viewerId=${viewerId}`
+        : `/content/public/collection/${id}`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
@@ -71,6 +74,7 @@ export const API = {
   },
   creatorUsers: {
     registrations: "/creator-users/registrations",
+    register: "/creator-users/register",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },

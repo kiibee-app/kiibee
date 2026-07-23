@@ -1061,6 +1061,10 @@
       "rental": "48 hrs rental",
       "purchaseTitle": "Your purchase",
       "rentalTitle": "Your rental",
+      "contentFallback": "CONTENT",
+      "contentPurchaseTitle": "BUY {{contentType}}",
+      "contentRentalTitle": "{{contentType}} Rental",
+      "contentRentalStreaming": "{{duration}} streaming.",
       "collectionPurchaseTitle": "Purchase of collection",
       "collectionPurchaseAccess": "Access your content anytime in your profile.",
       "collectionPurchaseFees": "The price includes VAT and card fee.",
@@ -2152,6 +2156,7 @@
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees",
         "invalidNumber": "Please enter a valid number.",
+        "minAmount": "Minimum amount is DKK 8.",
         "requiredAmount": "Amount is required."
       },
       "physicalLink": {

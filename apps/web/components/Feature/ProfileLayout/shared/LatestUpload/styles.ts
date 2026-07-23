@@ -57,6 +57,7 @@ export const ImageSection = styled.div<{
   border-radius: 0.5rem;
   overflow: hidden;
   flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
     width: 100%;
@@ -81,10 +82,22 @@ export const UploadImage = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
   z-index: 1;
+`;
+
+export const UploadBackgroundImage = styled.img`
+  position: absolute;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  object-fit: cover;
+  object-position: center;
+  filter: blur(6px);
+  transform: scale(1.04);
+  display: block;
+  z-index: 0;
 `;
 
 export const TextSection = styled.div`
@@ -214,9 +227,7 @@ export const BottomControls = styled.div`
   width: 100%;
 `;
 
-export const LeftControlButton = styled(GenericButton).attrs({
-  size: SIZE.SM,
-})`
+export const LeftControlButton = styled.span`
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
@@ -225,6 +236,9 @@ export const LeftControlButton = styled(GenericButton).attrs({
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   border: none;
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
 `;
 
 export const RightControlButton = styled(GenericButton).attrs({

@@ -147,7 +147,9 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
             </InfoItem>
             <InfoItem>
               <InfoLabel>Company</InfoLabel>
-              <InfoValue>{formatValue(creator.companyName)}</InfoValue>
+              <InfoValue>
+                {formatValue(creator.companyName || displayName)}
+              </InfoValue>
             </InfoItem>
             <InfoItem>
               <InfoLabel>CVR</InfoLabel>
@@ -158,8 +160,8 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
               <InfoValue>
                 <ChannelLink
                   creatorId={creator.id}
-                  channelName={creator.channelName}
-                  companyName={creator.companyName}
+                  channelName={creator.channelName || displayName}
+                  companyName={creator.companyName || displayName}
                   layout={creator.layout}
                   fallbackLabel={existingCreatorLabels.noChannel}
                 />
