@@ -166,7 +166,7 @@ export default function LatestRelease({ search }: { search?: string }) {
     sidebarSelector: SCROLL_ANIMATION_SELECTORS.SIDEBAR,
     innerSelector: SCROLL_ANIMATION_SELECTORS.INNER,
     cardsSelector: SCROLL_ANIMATION_SELECTORS.CARDS,
-    trigger: tutorials,
+    trigger: tutorials.length > 0,
   });
 
   const hasMore = tutorials.length >= limit;

@@ -80,20 +80,8 @@ function TutorialCard({
     return staticImage ? [staticImage] : [];
   }, [tutorial.image, tutorial.trailerUrl, tutorial.videoUrl]);
 
-  const [thumbnailIndex, setThumbnailIndex] = useState(0);
-
   const image =
-    thumbnailCandidates[thumbnailIndex] ??
-    resolveImageUrl(tutorial.image) ??
-    undefined;
-  const imageFallback = thumbnailCandidates[thumbnailIndex + 1];
-
-  const handleThumbnailError = () => {
-    setThumbnailIndex((current) => {
-      const nextIndex = current + 1;
-      return nextIndex < thumbnailCandidates.length ? nextIndex : current;
-    });
-  };
+    thumbnailCandidates[0] ?? resolveImageUrl(tutorial.image) ?? undefined;
 
   const FormatIcon = useMemo(() => {
     const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
@@ -190,10 +178,11 @@ function TutorialCard({
   const card = (
     <GenericCard
       coverImage
+      optimizeRemoteImage
+      deferImage
       image={image}
-      imageFallback={imageFallback}
       imagePriority={imagePriority}
-      onImageError={handleThumbnailError}
+      imageInitials="Video"
       alt={tutorial.title}
       badge={
         tutorial.category ? (

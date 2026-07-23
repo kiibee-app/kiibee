@@ -13,6 +13,7 @@ import {
   getRecentQuery,
   getTopCreatorsQuery,
 } from '../feed.query';
+import { ExploreType } from '../dto/exploreQuery.dto';
 
 const cleanArray = (value?: string[] | string | null) => {
   if (!value) return [];
@@ -41,6 +42,7 @@ export const exploreService = async (
   limit?: number,
   search?: string,
   filter?: any,
+  type?: ExploreType,
 ) => {
   try {
     const resolvedLimit = limit ?? FIXED_LIMIT;
@@ -95,9 +97,14 @@ export const exploreService = async (
       ? sql`${baseWhere} AND ${sql.join(extra, sql` AND `)}`
       : baseWhere;
 
+    const isCreatedForYou = type === ExploreType.CREATED_FOR_YOU;
     const [trending, recent, latest, topCreators] = await Promise.all([
-      getTrendingQuery(baseWhere, resolvedLimit),
-      getRecentQuery(baseWhere, resolvedLimit),
+      isCreatedForYou
+        ? Promise.resolve([])
+        : getTrendingQuery(baseWhere, resolvedLimit),
+      isCreatedForYou
+        ? Promise.resolve([])
+        : getRecentQuery(baseWhere, resolvedLimit),
       getLatestQuery(latestWhere, desc(mediaFiles.publishedAt), resolvedLimit),
       getTopCreatorsQuery(),
     ]);

@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import {
   CONTENT_POSTER_IMAGE_STYLE,
   isRemoteImageSource,
@@ -37,6 +37,8 @@ type GenericCardProps = {
   children?: ReactNode;
   width?: string;
   imagePriority?: boolean;
+  optimizeRemoteImage?: boolean;
+  deferImage?: boolean;
   onClick?: () => void;
   onImageError?: () => void;
 };
@@ -78,16 +80,23 @@ export default function GenericCard({
   children,
   width,
   imagePriority = false,
+  optimizeRemoteImage = false,
+  deferImage = false,
   onClick,
   onImageError,
 }: GenericCardProps) {
-  const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
+  const selectedImage = image ?? imageFallback;
+  const imageKey = selectedImage
+    ? typeof selectedImage === "string"
+      ? selectedImage
+      : selectedImage.src
+    : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
-  const [fallbackState, setFallbackState] = useState<{
-    forKey: string;
-    url: string;
-  } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
+  const [shouldLoadImage, setShouldLoadImage] = useState(
+    !deferImage || imagePriority,
+  );
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
 
   const [prevImageKey, setPrevImageKey] = useState(imageKey);
 
@@ -96,18 +105,19 @@ export default function GenericCard({
     setImageLoading(true);
   }
 
-  const activeFallback =
-    fallbackState?.forKey === imageKey ? fallbackState.url : null;
-  const imageFailed = failedImageKey === imageKey && !activeFallback;
+  const imageFailed = failedImageKey === imageKey;
 
-  const imageSrc = activeFallback ?? (image ? resolveImageUrl(image) : null);
+  const imageSrc = selectedImage ? resolveImageUrl(selectedImage) : null;
   const showRemoteImage =
     Boolean(imageSrc) &&
     !imageFailed &&
     typeof imageSrc === "string" &&
-    isRemoteImageSource(imageSrc);
-  const showOptimizedImage = Boolean(image) && !imageFailed && !showRemoteImage;
-  const showInitials = Boolean(imageInitials) && (!image || imageFailed);
+    isRemoteImageSource(imageSrc) &&
+    !optimizeRemoteImage;
+  const showOptimizedImage =
+    Boolean(imageSrc) && !imageFailed && !showRemoteImage;
+  const showInitials =
+    Boolean(imageInitials) && !image && !imageFallback && !imageFailed;
 
   const markImageLoaded = () => setImageLoading(false);
 
@@ -118,10 +128,6 @@ export default function GenericCard({
   };
 
   const handleImageError = () => {
-    if (imageFallback && activeFallback !== imageFallback) {
-      setFallbackState({ forKey: imageKey, url: imageFallback });
-      return;
-    }
     setFailedImageKey(imageKey);
     setImageLoading(false);
     onImageError?.();
@@ -134,6 +140,32 @@ export default function GenericCard({
   const isCurrentlyLoading =
     imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
 
+  useEffect(() => {
+    if (shouldLoadImage || !deferImage) return;
+
+    const wrapper = imageWrapperRef.current;
+    if (!wrapper) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      const frame = window.requestAnimationFrame(() =>
+        setShouldLoadImage(true),
+      );
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setShouldLoadImage(true);
+        observer.disconnect();
+      },
+      { rootMargin: "800px 0px" },
+    );
+
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, [deferImage, shouldLoadImage]);
+
   return (
     <Card
       $width={width}
@@ -142,15 +174,16 @@ export default function GenericCard({
       onClick={onClick}
       style={onClick ? { cursor: "pointer" } : undefined}
     >
-      {(image || imageInitials) && (
+      {(image || imageFallback || imageInitials) && (
         <ImageWrapper
+          ref={imageWrapperRef}
           $compact={compact}
           $coverImage={coverImage}
           $isLoading={isCurrentlyLoading}
         >
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
-          {showRemoteImage ? (
+          {shouldLoadImage && showRemoteImage ? (
             <Image
               ref={handleImageRef}
               src={imageSrc!}
@@ -164,12 +197,12 @@ export default function GenericCard({
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
-          ) : showOptimizedImage ? (
+          ) : shouldLoadImage && showOptimizedImage ? (
             <Image
-              src={image!}
+              src={imageSrc!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, 50vw"
+              sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 50vw, 360px"
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
