@@ -1,6 +1,10 @@
 import design from "@/assets/images/design.webp";
 import { VARIANT } from "@/utils/Constants";
-import { extractCloudflareStreamVideoId, isYouTubeUrl } from "@/utils/media";
+import {
+  extractCloudflareStreamVideoId,
+  extractYouTubeVideoId,
+  isYouTubeUrl,
+} from "@/utils/media";
 import {
   FORMAT_TYPE,
   type TutorialVideo,
@@ -73,18 +77,8 @@ function getQuickguideItems(section: TutorialVideoSectionApiItem) {
 }
 
 function getYouTubeThumbnailUrl(url: string): string | null {
-  try {
-    const parsed = new URL(url);
-    const videoId =
-      parsed.hostname === "youtu.be"
-        ? parsed.pathname.replace(/^\/+/, "").split("/")[0]
-        : parsed.searchParams.get("v");
-    return videoId
-      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-      : null;
-  } catch {
-    return null;
-  }
+  const videoId = extractYouTubeVideoId(url);
+  return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null;
 }
 
 export function resolveTutorialThumbnailCandidates(

@@ -42,6 +42,7 @@ import type { UploadItem } from "../../../hooks/api";
 import {
   existingCreatorLabels,
   formatCreatorUploadsTitle,
+  getExistingCreatorDisplayName,
 } from "../../../utils/existingCreatorsConfig";
 
 export type ExistingCreatorDetailsModalProps = {
@@ -87,6 +88,7 @@ export function ExistingCreatorDetailsModal({
 
   if (!creator) return null;
 
+  const displayName = getExistingCreatorDisplayName(creator);
   const initials =
     (
       (creator.firstName?.[0] || "") + (creator.lastName?.[0] || "")
@@ -94,7 +96,7 @@ export function ExistingCreatorDetailsModal({
 
   const drawerTitle =
     view === "uploads"
-      ? formatCreatorUploadsTitle(creator.fullName)
+      ? formatCreatorUploadsTitle(displayName)
       : view === "upload-detail" && selectedUpload
         ? selectedUpload.title
         : existingCreatorLabels.creatorDetailsTitle;
@@ -119,14 +121,11 @@ export function ExistingCreatorDetailsModal({
         <>
           <DrawerHeaderCard>
             {creator.avatarUrl ? (
-              <DrawerAvatarImage
-                src={creator.avatarUrl}
-                alt={creator.fullName ?? undefined}
-              />
+              <DrawerAvatarImage src={creator.avatarUrl} alt={displayName} />
             ) : (
               <AvatarCircle>{initials}</AvatarCircle>
             )}
-            <DrawerHeaderName>{creator.fullName}</DrawerHeaderName>
+            <DrawerHeaderName>{displayName}</DrawerHeaderName>
             <DrawerHeaderEmail>{creator.email}</DrawerHeaderEmail>
             <AccountStatusBadge $status={creator.status}>
               {creator.status}
@@ -169,7 +168,7 @@ export function ExistingCreatorDetailsModal({
               <InfoRow
                 icon={<Building2 size={16} />}
                 label="Company Name"
-                value={creator.companyName}
+                value={creator.companyName || displayName}
               />
             </DrawerCardList>
           </DrawerSection>
@@ -183,7 +182,7 @@ export function ExistingCreatorDetailsModal({
               <InfoRow
                 icon={<Globe size={16} />}
                 label="Channel Name"
-                value={creator.channelName || "N/A"}
+                value={creator.channelName || displayName || "N/A"}
               />
               <InfoRow
                 icon={

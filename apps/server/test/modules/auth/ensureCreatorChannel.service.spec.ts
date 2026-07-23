@@ -12,7 +12,12 @@ describe('ensureCreatorChannel', () => {
   const creatorId = 'creator-1';
 
   function createClient(overrides?: {
-    existing?: { id: string; name: string; isPublished?: boolean } | null;
+    existing?: {
+      id: string;
+      name: string;
+      slug?: string;
+      isPublished?: boolean;
+    } | null;
   }) {
     const existing = overrides?.existing ?? null;
     let selectCall = 0;
@@ -80,6 +85,30 @@ describe('ensureCreatorChannel', () => {
     expect(client.insert).not.toHaveBeenCalled();
     expect(client._updateSet).toHaveBeenCalledWith(
       expect.objectContaining({ isPublished: true }),
+    );
+  });
+
+  it('updates name and slug when the channel name changes', async () => {
+    const client = createClient({
+      existing: {
+        id: 'ch-1',
+        name: 'Uffe Holm',
+        slug: 'uffe-holm',
+        isPublished: true,
+      },
+    });
+
+    await ensureCreatorChannel(client as any, {
+      creatorId,
+      channelName: 'Uffe Hol',
+    });
+
+    expect(client.insert).not.toHaveBeenCalled();
+    expect(client._updateSet).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: 'Uffe Hol',
+        slug: 'uffe-hol',
+      }),
     );
   });
 });

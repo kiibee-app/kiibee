@@ -3,13 +3,26 @@ import { eq } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 
 import { db } from 'src/database/db';
-import { creatorInfo, creatorBankAccounts, users } from 'src/database/schema';
+import {
+  creatorChannels,
+  creatorInfo,
+  creatorBankAccounts,
+  users,
+} from 'src/database/schema';
 
 import { UpdateCreatorProfileDto } from '../dto/updateCreatorProfile.dto';
+import { ensureCreatorChannel } from './ensureCreatorChannel.service';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import { isValidAvatarUrl } from 'src/utils/constant';
+
+function buildFullName(
+  firstName: string | null | undefined,
+  lastName: string | null | undefined,
+): string {
+  return [firstName, lastName].filter(Boolean).join(' ').trim();
+}
 
 export const updateCreatorProfileService = async (
   userId: string,
@@ -40,8 +53,45 @@ export const updateCreatorProfileService = async (
     }
 
     const now = new Date();
+    const nameChanged = firstName !== undefined || lastName !== undefined;
+
+    let resolvedFirstName: string | null | undefined = firstName;
+    let resolvedLastName: string | null | undefined = lastName;
+    let resolvedFullName: string | undefined;
+    let resolvedCompanyName = companyName;
 
     await db.transaction(async (trx) => {
+      const [currentUser] = await trx
+        .select({
+          firstName: users.firstName,
+          lastName: users.lastName,
+        })
+        .from(users)
+        .where(eq(users.id, userId))
+        .limit(1);
+
+      if (!currentUser) {
+        throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+      }
+
+      resolvedFirstName =
+        firstName !== undefined ? firstName : currentUser.firstName;
+      resolvedLastName =
+        lastName !== undefined ? lastName : currentUser.lastName;
+      resolvedFullName = buildFullName(resolvedFirstName, resolvedLastName);
+
+      const [existingChannel] = await trx
+        .select({ name: creatorChannels.name })
+        .from(creatorChannels)
+        .where(eq(creatorChannels.creatorId, userId))
+        .limit(1);
+
+      const [existingInfo] = await trx
+        .select({ companyName: creatorInfo.companyName })
+        .from(creatorInfo)
+        .where(eq(creatorInfo.userId, userId))
+        .limit(1);
+
       await trx
         .insert(creatorInfo)
         .values({
@@ -89,24 +139,69 @@ export const updateCreatorProfileService = async (
           },
         });
 
-      await trx
-        .update(users)
-        .set({
-          firstName,
-          lastName,
-          fullName: [firstName, lastName].filter(Boolean).join(' '),
-          avatarUrl,
-          updatedAt: now,
-        })
-        .where(eq(users.id, userId));
+      const userUpdates: {
+        firstName?: string;
+        lastName?: string;
+        fullName?: string;
+        avatarUrl?: string | null;
+        updatedAt: Date;
+      } = {
+        updatedAt: now,
+      };
+
+      if (firstName !== undefined) {
+        userUpdates.firstName = firstName;
+      }
+      if (lastName !== undefined) {
+        userUpdates.lastName = lastName;
+      }
+      if (nameChanged) {
+        userUpdates.fullName = resolvedFullName;
+      }
+      if (avatarUrl !== undefined) {
+        userUpdates.avatarUrl = avatarUrl;
+      }
+
+      await trx.update(users).set(userUpdates).where(eq(users.id, userId));
+
+      // Keep channel name + slug aligned with the account full name.
+      if (resolvedFullName) {
+        await ensureCreatorChannel(trx, {
+          creatorId: userId,
+          channelName: resolvedFullName,
+        });
+      }
+
+      // Keep company aligned when name changes, or when company was still
+      // mirroring the previous channel name (Umbraco / setup default).
+      if (resolvedFullName && companyName === undefined) {
+        const previousCompany = existingInfo?.companyName?.trim() || '';
+        const previousChannel = existingChannel?.name?.trim() || '';
+        const shouldSyncCompany =
+          nameChanged ||
+          !previousCompany ||
+          previousCompany === previousChannel;
+
+        if (shouldSyncCompany) {
+          resolvedCompanyName = resolvedFullName;
+          await trx
+            .update(creatorInfo)
+            .set({
+              companyName: resolvedFullName,
+              updatedAt: now,
+            })
+            .where(eq(creatorInfo.userId, userId));
+        }
+      }
     });
 
     return success(
       {
-        firstName,
-        lastName,
+        firstName: resolvedFirstName,
+        lastName: resolvedLastName,
+        fullName: resolvedFullName,
         avatarUrl,
-        companyName,
+        companyName: resolvedCompanyName,
         phone,
         cvr,
         address,

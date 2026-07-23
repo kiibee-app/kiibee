@@ -33,11 +33,34 @@ export function formatCreatorUploadsTitle(name?: string | null) {
 }
 
 export function getExistingCreatorDisplayName(creator: ExistingCreator) {
+  const fromParts = [creator.firstName, creator.lastName]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+
   return (
+    fromParts ||
     creator.fullName?.trim() ||
-    creator.companyName?.trim() ||
     creator.channelName?.trim() ||
+    creator.companyName?.trim() ||
     creator.email
+  );
+}
+
+export function getExistingCreatorChannelName(creator: ExistingCreator) {
+  const fromParts = [creator.firstName, creator.lastName]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+
+  // Prefer the account name so Creator + Channel stay aligned after web edits.
+  // Fall back to stored channel/company when name fields are empty.
+  return (
+    fromParts ||
+    creator.fullName?.trim() ||
+    creator.channelName?.trim() ||
+    creator.companyName?.trim() ||
+    null
   );
 }
 
