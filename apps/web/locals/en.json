@@ -1099,6 +1099,9 @@
       "couponNotApplicable": "This coupon can only be used on selected products",
       "couponVerifyFailed": "Unable to verify this coupon. Please try again",
       "couponMaxPercentage": "This coupon exceeds the maximum discount of 50%",
+      "couponStartDatePast": "Start date must be today or a future date",
+      "couponEndDatePast": "End date must be today or a future date",
+      "couponEndDateBeforeStart": "End date must be later than start date",
       "couponValidUntil": "Your discount is active until {{date}}"
     },
     "meta": {
