@@ -363,6 +363,29 @@ export default function SingleCollectionDetail({
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
   const showSeeContent = hasCollectionAccess || embedded;
 
+  const handleCollectionGateSuccess = async (value: string, name?: string) => {
+    if (!id || (gateType !== TYPE_CODE && !resolvedCreatorId)) return false;
+
+    const request =
+      gateType === TYPE_CODE
+        ? axiosClient.post(API.content.verifyCode(id), { code: value })
+        : axiosClient.post(API.creatorUsers.register, {
+            creatorId: resolvedCreatorId,
+            email: value,
+            name,
+            source: REGISTER_SOURCE.COLLECTION,
+            sourceId: id,
+          });
+
+    await request;
+    window.localStorage.setItem(
+      `kiibee:gate:unlocked:collection:${id}`,
+      "true",
+    );
+    window.location.reload();
+    return true;
+  };
+
   const purchaseModals = (
     <>
       <PurchaseModal
@@ -499,30 +522,7 @@ export default function SingleCollectionDetail({
         <AccessGate
           type={gateType}
           variant={VARIANT_CONTENT}
-          onSuccess={async (value, name) => {
-            if (id) {
-              if (gateType === TYPE_CODE) {
-                await axiosClient.post(API.content.verifyCode(id), {
-                  code: value,
-                });
-              } else if (value && resolvedCreatorId) {
-                try {
-                  await axiosClient.post(API.creatorUsers.register, {
-                    creatorId: resolvedCreatorId,
-                    email: value,
-                    name,
-                    source: REGISTER_SOURCE.COLLECTION,
-                    sourceId: id,
-                  });
-                } catch {}
-              }
-              window.localStorage.setItem(
-                `kiibee:gate:unlocked:collection:${id}`,
-                "true",
-              );
-              window.location.reload();
-            }
-          }}
+          onSuccess={handleCollectionGateSuccess}
         />
         {purchaseModals}
       </Section>
