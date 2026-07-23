@@ -94,9 +94,8 @@ export const UploadBackgroundImage = styled.img`
   height: calc(100% + 24px);
   object-fit: cover;
   object-position: center;
-  filter: blur(10px);
+  filter: blur(6px);
   transform: scale(1.04);
-  opacity: 0.65;
   display: block;
   z-index: 0;
 `;
