@@ -51,6 +51,7 @@ type Props = {
   recommendedText?: boolean;
   maxSize?: number;
   onImageSelected?: (imageDataUrl: string) => void;
+  uploadAsIs?: boolean;
 };
 
 const loadImageDimensions = (imageDataUrl: string) =>
@@ -79,6 +80,7 @@ export default function ImageUploadCropModal({
   recommendedText = false,
   maxSize = MAX_IMAGE_SIZE,
   onImageSelected,
+  uploadAsIs = false,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
@@ -110,10 +112,15 @@ export default function ImageUploadCropModal({
   const effectiveFrameH = Math.max(1, frameH);
   const rawCoverScale =
     naturalSize.width > 0 && naturalSize.height > 0
-      ? Math.max(
-          effectiveFrameW / naturalSize.width,
-          effectiveFrameH / naturalSize.height,
-        )
+      ? uploadAsIs
+        ? Math.min(
+            effectiveFrameW / naturalSize.width,
+            effectiveFrameH / naturalSize.height,
+          )
+        : Math.max(
+            effectiveFrameW / naturalSize.width,
+            effectiveFrameH / naturalSize.height,
+          )
       : 1;
 
   const coverScale = rawCoverScale;
@@ -257,9 +264,10 @@ export default function ImageUploadCropModal({
       readFileAsDataUrl(file).then(async (imageDataUrl) => {
         if (!imageDataUrl) return;
 
-        const dimensions = recommendedText
-          ? await loadImageDimensions(imageDataUrl)
-          : null;
+        const dimensions =
+          recommendedText && !uploadAsIs
+            ? await loadImageDimensions(imageDataUrl)
+            : null;
         const isLowResolution = dimensions
           ? dimensions.width < cropWidth || dimensions.height < cropHeight
           : false;
@@ -278,6 +286,7 @@ export default function ImageUploadCropModal({
       recommendedText,
       setSelectedImage,
       t,
+      uploadAsIs,
     ],
   );
 
@@ -361,11 +370,20 @@ export default function ImageUploadCropModal({
   const isNaturalSizeSmaller =
     naturalSize.width < cropWidth || naturalSize.height < cropHeight;
   const isBelowRecommendedSize =
-    Boolean(recommendedText) && isImageSizeReady && isNaturalSizeSmaller;
+    Boolean(recommendedText) &&
+    !uploadAsIs &&
+    isImageSizeReady &&
+    isNaturalSizeSmaller;
   const isApplyDisabled = !isImageSizeReady || isBelowRecommendedSize;
 
   const applyCrop = useCallback(async () => {
     if (!pendingImage || !previewFrameRef.current || isApplyDisabled) return;
+
+    if (uploadAsIs) {
+      onApply(pendingImage);
+      onClose();
+      return;
+    }
 
     const { width, height } = previewFrameRef.current.getBoundingClientRect();
 
@@ -389,6 +407,7 @@ export default function ImageUploadCropModal({
     onApply,
     onClose,
     isApplyDisabled,
+    uploadAsIs,
   ]);
 
   return (
