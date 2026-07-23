@@ -77,7 +77,13 @@ export function useContentAccessGate(
       : resolvedGateType;
 
   const handleSuccess = async (value: string, name?: string) => {
-    const targetId = content?.id || collectionId || content?.creatorId;
+    const targetId = isContentLocked
+      ? content?.id
+      : collectionGateType
+        ? collectionId
+        : creatorGateType
+          ? content?.creatorId
+          : undefined;
     await (finalGateType === TYPE_CODE && targetId
       ? axiosClient.post(API.content.verifyCode(targetId), { code: value })
       : Promise.resolve());

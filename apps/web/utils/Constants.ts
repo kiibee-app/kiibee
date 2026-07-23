@@ -354,6 +354,11 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
         ACCESS_TYPE_FREE)
       : undefined,
+    password:
+      formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+      formState.password.trim()
+        ? formState.password.trim()
+        : undefined,
     buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
     rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
     rentDurationHours:

@@ -914,6 +914,7 @@ export function useContentFormActions({
                   : fullContent.accessType === "email_gated"
                     ? "request_email"
                     : "free",
+          password: "",
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",
