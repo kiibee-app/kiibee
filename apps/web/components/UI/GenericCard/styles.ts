@@ -92,7 +92,7 @@ export const ImageWrapper = styled.div<{
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   flex-grow: 1;
 `;
 
@@ -163,7 +163,7 @@ export const Footer = styled.div`
 export const CardHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 `;
 
 export const CardChildren = styled.div`

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const CardLink = styled(Link)<{ $clickable?: boolean }>`
   display: flex;
@@ -9,6 +10,14 @@ export const CardLink = styled(Link)<{ $clickable?: boolean }>`
   text-decoration: none;
   color: inherit;
   cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+`;
+
+export const CardTitle = styled(MonoText)`
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 `;
 
 export const CardShell = styled.div`
