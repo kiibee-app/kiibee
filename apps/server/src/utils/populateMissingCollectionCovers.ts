@@ -1,4 +1,4 @@
-import { inArray, eq } from 'drizzle-orm';
+import { inArray, eq, and } from 'drizzle-orm';
 
 import { db as defaultDb } from 'src/database/db';
 import { collectionItems, mediaFiles } from 'src/database/schema';
@@ -28,7 +28,12 @@ export async function populateMissingCollectionCovers(
     })
     .from(collectionItems)
     .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
-    .where(inArray(collectionItems.collectionId, missingCoverIds))
+    .where(
+      and(
+        inArray(collectionItems.collectionId, missingCoverIds),
+        eq(mediaFiles.isDeleted, false),
+      ),
+    )
     .orderBy(collectionItems.sortOrder);
 
   const firstItemMap = new Map<string, string | null>();

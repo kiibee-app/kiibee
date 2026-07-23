@@ -41,11 +41,13 @@ const CreatorHeaderRight = ({
         aria-label={t("common.creatorProfile")}
       >
         <ProfileCircle>
+        <ProfileCircle $hasImage={Boolean(avatarUrl)}>
           <CreatorChannelAvatar
             avatarUrl={avatarUrl}
             initial={initial}
             alt={t("common.creatorProfile")}
             sizes="44px"
+            fit="contain"
           />
         </ProfileCircle>
         <EmailWrapper>
