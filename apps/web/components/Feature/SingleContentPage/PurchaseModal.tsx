@@ -221,7 +221,7 @@ export default function PurchaseModal({
   const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
   const isCollectionPricing = isCollectionPurchase || isCollectionRental;
   const isRental = !isCollectionPurchase && !isPurchase;
-  const contentKind =
+  const contentTypeLabel =
     contentType?.toUpperCase() || t("singleContent.pricing.contentFallback");
   const displayPrice = isCollectionPricing ? `${priceNumber} kr` : priceLabel;
   const rentalMonths = convertRentDurationHoursToMonths(rentalDurationHours);
@@ -447,7 +447,7 @@ export default function PurchaseModal({
               {isCollectionPricing
                 ? t("singleContent.pricing.collectionPurchaseTitle")
                 : t("singleContent.pricing.contentPurchaseTitle", {
-                    contentType: contentKind,
+                    contentType: contentTypeLabel,
                   })}
             </MonoText>
           </PurchaseModalCollectionBenefitsTitle>
@@ -473,7 +473,7 @@ export default function PurchaseModal({
               {isCollectionRental
                 ? t("singleContent.pricing.collectionRentalTitle")
                 : t("singleContent.pricing.contentRentalTitle", {
-                    contentType: contentKind,
+                    contentType: contentTypeLabel,
                   })}
             </MonoText>
           </PurchaseModalCollectionBenefitsTitle>
