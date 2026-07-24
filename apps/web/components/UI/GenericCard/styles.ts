@@ -24,8 +24,6 @@ export const Card = styled.div<{
   }};
   width: ${({ $width }) => $width || "100%"};
   box-shadow: ${({ theme }) => theme.shadows.xl};
-  content-visibility: auto;
-  contain-intrinsic-size: auto 420px;
   transition:
     transform ${({ theme }) => theme.animations.normal}
       ${({ theme }) => theme.animations.easing},
