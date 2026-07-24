@@ -123,6 +123,17 @@ export default function Payment() {
     }
   };
 
+  const handlePasswordChange = (v: string | string[]) => {
+    const text = toText(v).slice(0, maxDescriptionCharacters);
+    updateField(PAYMENTS_FORM_FIELDS.PASSWORD, text);
+    updatePasswordValidationError(text, typedPassword);
+  };
+
+  const handleTypedPasswordChange = (typed: string) => {
+    setTypedPassword(typed);
+    updatePasswordValidationError(formState.password, typed);
+  };
+
   return (
     <>
       <PaymentCard>
@@ -230,15 +241,8 @@ export default function Payment() {
             <ControlWrap>
               <TagsInput
                 value={formState.password}
-                onChange={(v) => {
-                  const text = toText(v).slice(0, maxDescriptionCharacters);
-                  updateField(PAYMENTS_FORM_FIELDS.PASSWORD, text);
-                  updatePasswordValidationError(text, typedPassword);
-                }}
-                onInputChange={(typed) => {
-                  setTypedPassword(typed);
-                  updatePasswordValidationError(formState.password, typed);
-                }}
+                onChange={handlePasswordChange}
+                onInputChange={handleTypedPasswordChange}
                 placeholder={t("contents.payment.password.placeholder")}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 hasError={passwordHasError}
