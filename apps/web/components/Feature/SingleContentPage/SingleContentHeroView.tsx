@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type RefObject, type MouseEvent } from "react";
+import {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  type RefObject,
+  type MouseEvent,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { toast } from "react-toastify";
@@ -26,7 +33,6 @@ import {
   HeroMediaText,
   HeroTag,
   HeroTagText,
-  NoTrailerTooltip,
   Preview,
   PreviewDocument,
   PreviewVideo,
@@ -99,6 +105,8 @@ function getMediaContent(
           src={src}
           controls={videoProps.showVideoControls}
           playsInline
+          autoPlay
+          muted
           preload="metadata"
           onPlay={videoProps.onVideoPlay}
           onPause={videoProps.onVideoPause}
@@ -214,8 +222,16 @@ export default function SingleContentHeroView({
   const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
-  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
-  const [isCloudflarePlaying, setIsCloudflarePlaying] = useState(false);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(
+    Boolean(hero.media?.src) &&
+      hero.media?.type === FORMAT_TYPE.VIDEO &&
+      isThirdPartyVideoUrl(hero.media?.src ?? ""),
+  );
+  const [isCloudflarePlaying, setIsCloudflarePlaying] = useState(
+    Boolean(hero.media?.src) &&
+      hero.media?.type === FORMAT_TYPE.VIDEO &&
+      isCloudflareStreamEmbedUrl(hero.media?.src),
+  );
   const [imageLoading, setImageLoading] = useState(true);
   const isVideoMedia = hero.media?.type === FORMAT_TYPE.VIDEO;
   const isCloudflareVideo =
@@ -288,7 +304,7 @@ export default function SingleContentHeroView({
     setHasStartedPlayback(false);
   };
 
-  const handleTrailerClick = async () => {
+  const handleTrailerClick = useCallback(async () => {
     if (isCloudflareVideo) {
       setIsCloudflarePlaying(true);
       setHasStartedPlayback(true);
@@ -308,7 +324,7 @@ export default function SingleContentHeroView({
       setHasStartedPlayback(false);
       toast.error(t("singleContent.videoPlaybackError"));
     }
-  };
+  }, [isCloudflareVideo, isThirdPartyVideo, t]);
 
   const handleTrailerButtonClick = () => {
     if (!hasTrailerLink) return;
@@ -323,11 +339,10 @@ export default function SingleContentHeroView({
 
   const showTrailerButton =
     hero.trailerLabel &&
+    hasTrailerLink &&
     !hasStartedPlayback &&
     !isTrailerPlaying &&
     !isCloudflarePlaying;
-
-  const noTrailerTooltip = showTrailerButton && !hasTrailerLink;
 
   const isImageDisplayed =
     !hero.media?.src ||
@@ -336,6 +351,17 @@ export default function SingleContentHeroView({
     (isThirdPartyVideo && !isTrailerPlaying);
 
   const isHeroLoading = isImageDisplayed && imageLoading;
+
+  useEffect(() => {
+    if (
+      hasTrailerLink &&
+      !isCloudflareVideo &&
+      !isThirdPartyVideo &&
+      videoRef.current
+    ) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [hasTrailerLink, isCloudflareVideo, isThirdPartyVideo]);
 
   return (
     <Hero $isPdf={isPdfLayout} $isLoading={isHeroLoading}>
@@ -404,11 +430,6 @@ export default function SingleContentHeroView({
 
       {showTrailerButton ? (
         <TrailerWrapper>
-          {noTrailerTooltip ? (
-            <NoTrailerTooltip>
-              {t("singleContent.noTrailerAvailable")}
-            </NoTrailerTooltip>
-          ) : null}
           <TrailerButton
             onClick={handleTrailerButtonClick}
             $noTrailer={!hasTrailerLink}
