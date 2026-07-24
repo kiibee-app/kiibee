@@ -123,7 +123,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           API.content.get(String(latest.id)),
         );
         const content = getContentDetail(res.data);
-        const category = content?.categories?.[0]?.id;
+        const category =
+          content?.categories?.[0]?.name ?? content?.categories?.[0]?.id;
 
         return {
           ...latest,
