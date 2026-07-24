@@ -1,16 +1,20 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq, and, gt, isNull, or } from 'drizzle-orm';
+import { eq, and, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
   mediaFiles,
   mediaFileCategories,
   contentCategories,
+  mediaFileTags,
+  tags,
   userContentAccess,
+  contentAccessRequests,
+  users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { insertPageVisitService } from 'src/modules/creator-overview/services/insertPageVisit.service';
-import { ACCRESS_TYPES, Time } from 'src/utils/constant';
+import { ACCESS_TYPE, ACCRESS_TYPES, STATUS, Time } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getSingleContentService = async (
@@ -24,55 +28,73 @@ export const getSingleContentService = async (
 
     const now = new Date();
 
-    const [directAccess, collectionAccess, content] = await Promise.all([
-      db
-        .select()
-        .from(userContentAccess)
-        .where(
-          and(
-            eq(userContentAccess.userId, userId),
-            eq(userContentAccess.mediaFileId, contentId),
-            or(
-              isNull(userContentAccess.rentExpiresAt),
-              gt(userContentAccess.rentExpiresAt, now),
+    const [emailAccess, directAccess, collectionAccess, content] =
+      await Promise.all([
+        db
+          .select({ grantedAt: contentAccessRequests.approvedAt })
+          .from(contentAccessRequests)
+          .innerJoin(
+            users,
+            sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
+          )
+          .where(
+            and(
+              eq(users.id, userId),
+              eq(contentAccessRequests.contentId, contentId),
+              eq(contentAccessRequests.status, STATUS.APPROVED),
             ),
-          ),
-        )
-        .limit(1)
-        .then((r) => r[0]),
+          )
+          .limit(1)
+          .then((r) => r[0]),
 
-      db
-        .select({
-          accessType: userContentAccess.accessType,
-          rentExpiresAt: userContentAccess.rentExpiresAt,
-          grantedAt: userContentAccess.grantedAt,
-        })
-        .from(userContentAccess)
-        .innerJoin(
-          collectionItems,
-          eq(collectionItems.collectionId, userContentAccess.collectionId),
-        )
-        .where(
-          and(
-            eq(userContentAccess.userId, userId),
-            isNull(userContentAccess.mediaFileId),
-            eq(collectionItems.mediaFileId, contentId),
-            or(
-              isNull(userContentAccess.rentExpiresAt),
-              gt(userContentAccess.rentExpiresAt, now),
+        db
+          .select()
+          .from(userContentAccess)
+          .where(
+            and(
+              eq(userContentAccess.userId, userId),
+              eq(userContentAccess.mediaFileId, contentId),
+              or(
+                isNull(userContentAccess.rentExpiresAt),
+                gt(userContentAccess.rentExpiresAt, now),
+              ),
             ),
-          ),
-        )
-        .limit(1)
-        .then((r) => r[0]),
+          )
+          .limit(1)
+          .then((r) => r[0]),
 
-      db
-        .select()
-        .from(mediaFiles)
-        .where(eq(mediaFiles.id, contentId))
-        .limit(1)
-        .then((r) => r[0]),
-    ]);
+        db
+          .select({
+            accessType: userContentAccess.accessType,
+            rentExpiresAt: userContentAccess.rentExpiresAt,
+            grantedAt: userContentAccess.grantedAt,
+          })
+          .from(userContentAccess)
+          .innerJoin(
+            collectionItems,
+            eq(collectionItems.collectionId, userContentAccess.collectionId),
+          )
+          .where(
+            and(
+              eq(userContentAccess.userId, userId),
+              isNull(userContentAccess.mediaFileId),
+              eq(collectionItems.mediaFileId, contentId),
+              or(
+                isNull(userContentAccess.rentExpiresAt),
+                gt(userContentAccess.rentExpiresAt, now),
+              ),
+            ),
+          )
+          .limit(1)
+          .then((r) => r[0]),
+
+        db
+          .select()
+          .from(mediaFiles)
+          .where(eq(mediaFiles.id, contentId))
+          .limit(1)
+          .then((r) => r[0]),
+      ]);
 
     if (!content) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
@@ -80,10 +102,12 @@ export const getSingleContentService = async (
 
     const access = directAccess ?? collectionAccess;
 
-    const hasActiveAccess =
-      access &&
-      (!access.rentExpiresAt ||
-        new Date(access.rentExpiresAt).getTime() > now.getTime());
+    const hasActiveAccess = Boolean(
+      emailAccess ||
+      (access &&
+        (!access.rentExpiresAt ||
+          new Date(access.rentExpiresAt).getTime() > now.getTime())),
+    );
 
     if (content.isDeleted && content.creatorId !== userId && !hasActiveAccess) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
@@ -101,6 +125,12 @@ export const getSingleContentService = async (
       )
       .where(eq(mediaFileCategories.mediaFileId, contentId));
 
+    const contentTags = await db
+      .select({ name: tags.name })
+      .from(mediaFileTags)
+      .innerJoin(tags, eq(tags.id, mediaFileTags.tagId))
+      .where(eq(mediaFileTags.mediaFileId, contentId));
+
     const isRented = access?.accessType === ACCRESS_TYPES.RENTED;
     const isExpired =
       isRented &&
@@ -117,7 +147,7 @@ export const getSingleContentService = async (
             )}h left`
         : undefined;
 
-    const accessInfo =
+    const paidAccessInfo =
       access && !isExpired
         ? {
             accessType: access.accessType,
@@ -126,6 +156,15 @@ export const getSingleContentService = async (
             ...(isRented && { timeLeftText }),
           }
         : null;
+    const accessInfo =
+      paidAccessInfo ??
+      (emailAccess
+        ? {
+            accessType: ACCESS_TYPE.EMAIL_GATED,
+            rentExpiresAt: null,
+            grantedAt: emailAccess.grantedAt,
+          }
+        : null);
 
     await insertPageVisitService(content.creatorId, content.id, null);
 
@@ -133,6 +172,7 @@ export const getSingleContentService = async (
       {
         ...content,
         categories,
+        tags: contentTags.map((tag) => tag.name),
         ...(accessInfo && { accessInfo }),
       },
       'Content fetched successfully',

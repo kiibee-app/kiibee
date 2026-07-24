@@ -445,6 +445,7 @@ export const TYPE_CODE: AccessGateType = "code";
 export const TYPE_EMAIL: AccessGateType = "email";
 export const GATE_QUERY_PARAM = "gate";
 export const ID_QUERY_PARAM = "id";
+export const APPROVED_ACCESS_QUERY_PARAM = "approvedAccess";
 export const SET_PASSWORD_ACCESS = "set_password";
 export const REQUEST_EMAIL_ACCESS = "request_email";
 
@@ -579,14 +580,14 @@ export const SCROLL_ANIMATION_CONFIG = {
   MAX_INIT_ATTEMPTS: 60,
   INIT_RETRY_INTERVAL_MS: 50,
   REFRESH_DELAY_MS: 600,
-  ANIMATION_Y_OFFSET: 40,
+  ANIMATION_Y_OFFSET: 24,
   ANIMATION_Y_END: 0,
-  ANIMATION_DURATION: 0.6,
+  ANIMATION_DURATION: 0.45,
   ANIMATION_OPACITY_START: 0,
   ANIMATION_OPACITY_END: 1,
   ANIMATION_EASE: "power2.out",
-  TRIGGER_START: "top 90%",
-  TOGGLE_ACTIONS: "play none none reverse",
+  TRIGGER_START: "top 92%",
+  TOGGLE_ACTIONS: "play none none none",
   EVENT_SCROLL: "scroll",
 } as const;
 

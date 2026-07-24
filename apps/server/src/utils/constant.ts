@@ -22,6 +22,11 @@ export const ACCESS_TYPE = {
   EMAIL_GATED: 'email_gated',
 } as const;
 
+export const EMAIL_SUBSCRIBER_SOURCE = {
+  CONTENT: 'content',
+  EMAIL_GATE: 'email_gate',
+} as const;
+
 export const Time = {
   FIFTEEN_MINUTES: 15 * 60 * 1000,
   ONE_HOUR: 60 * 60 * 1000,

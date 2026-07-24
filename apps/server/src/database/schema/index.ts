@@ -62,6 +62,7 @@ export * from './analytics/analyticsDailySummary.schema';
 
 // Marketing
 export * from './marketing/emailSubscribers.schema';
+export * from './marketing/contentAccessRequests.schema';
 
 // Events
 export * from './events/liveEvents.schema';

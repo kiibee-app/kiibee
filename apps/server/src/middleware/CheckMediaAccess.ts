@@ -11,8 +11,10 @@ import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import { collectionItems } from 'src/database/schema/content/collectionItems.schema';
 import { userContentAccess } from 'src/database/schema/access/userContentAccess.schema';
-import { and, eq, or, isNull, gt } from 'drizzle-orm';
-import { ACCESS_TYPE } from 'src/utils/constant';
+import { contentAccessRequests } from 'src/database/schema/marketing/contentAccessRequests.schema';
+import { users } from 'src/database/schema/users/users.schema';
+import { and, eq, or, isNull, gt, sql } from 'drizzle-orm';
+import { ACCESS_TYPE, STATUS } from 'src/utils/constant';
 
 @Injectable()
 export class CheckMediaAccessGuard implements CanActivate {
@@ -100,9 +102,31 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const hasCollectionAccess = collectionAccessRows.length > 0;
 
+    const emailAccessRows =
+      mediaFile.accessType === ACCESS_TYPE.EMAIL_GATED
+        ? await db
+            .select({ id: contentAccessRequests.id })
+            .from(contentAccessRequests)
+            .innerJoin(
+              users,
+              sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
+            )
+            .where(
+              and(
+                eq(users.id, userId),
+                eq(contentAccessRequests.contentId, mediaFile.id),
+                eq(contentAccessRequests.status, STATUS.APPROVED),
+              ),
+            )
+            .limit(1)
+        : [];
+
+    const hasEmailAccess = emailAccessRows.length > 0;
+
     const hasImmediateAccess =
       mediaFile.accessType === ACCESS_TYPE.FREE ||
-      (mediaFile.isDeleted && (hasDirectAccess || hasCollectionAccess));
+      (mediaFile.isDeleted &&
+        (hasDirectAccess || hasCollectionAccess || hasEmailAccess));
 
     if (hasImmediateAccess) {
       request.mediaFile = mediaFile;
@@ -113,7 +137,7 @@ export class CheckMediaAccessGuard implements CanActivate {
       throw new NotFoundException('Media not found');
     }
 
-    if (!hasDirectAccess && !hasCollectionAccess) {
+    if (!hasDirectAccess && !hasCollectionAccess && !hasEmailAccess) {
       throw new ForbiddenException(
         'Access denied. You do not have permission to access this media.',
       );

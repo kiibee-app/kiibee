@@ -82,7 +82,8 @@ export function useRelatedCollectionContent(
             id: row.id,
             title: row.name,
             creator: displayName?.trim(),
-            category: detail?.categories?.[0]?.id,
+            category:
+              detail?.categories?.[0]?.name ?? detail?.categories?.[0]?.id,
             published: row.createdAt,
             focus: row.description ?? fallback.focus,
             level: fallback.level,

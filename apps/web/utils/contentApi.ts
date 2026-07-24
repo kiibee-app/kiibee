@@ -56,6 +56,7 @@ export const CONTENT_RESPONSE_KEYS = {
   DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
+  TAGS: "tags",
   NAME: "name",
   CREATOR_ID: "creatorId",
   PUBLISHED_YEAR: "publishedYear",
@@ -113,6 +114,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  [CONTENT_RESPONSE_KEYS.TAGS]?: string[] | null;
   accessInfo?: {
     accessType?: string;
     rentExpiresAt?: string | null;
@@ -230,6 +232,11 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .map((category) => toTrimmedString(category.name))
     .filter(Boolean);
 
+const getTagNames = (content: ContentDetailItem) =>
+  (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
+    .map(toTrimmedString)
+    .filter(Boolean);
+
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
@@ -243,6 +250,7 @@ export const getSingleContentProps = (
   );
   const contentType = getContentType(content);
   const categories = getCategoryNames(content);
+  const tags = getTagNames(content);
   const mainCategory = categories[0];
   const createdAt = formatDateUSShort(
     content[CONTENT_RESPONSE_KEYS.CREATED_AT] ?? undefined,
@@ -302,7 +310,7 @@ export const getSingleContentProps = (
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
     descriptions: description ? [description] : [],
-    tags: categories,
+    tags,
     statusLabel: statusLabel,
     ...(expiryLabel
       ? {

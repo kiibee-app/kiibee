@@ -4,10 +4,24 @@ import { useMemo } from "react";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import { useViewerRentedData } from "@/hooks/useViewerRented";
+import { API, useGetAPI } from "@/lib/http/api";
 import { RENTED_MODES, type RentedContentSources } from "@/utils/viewerRented";
+import {
+  getContentUnlockStorageKey,
+  getCollectionUnlockStorageKey,
+} from "@/utils/accessGate";
+import { STRING_TRUE } from "@/utils/Constants";
+import { isBrowser } from "@/utils/ui";
 
 type OwnershipItem = {
   id: string;
+};
+
+type AccessibleContentIdsResponse = {
+  success?: boolean;
+  data?: {
+    contentIds?: string[];
+  };
 };
 
 const hasItem = (data: RentedContentSources | undefined, id: string) => {
@@ -30,6 +44,22 @@ const hasCollection = (
   return data.collections?.some((item) => item.id === collectionId) ?? false;
 };
 
+const hasLocalContentUnlock = (contentId: string) => {
+  if (!isBrowser || !contentId) return false;
+  return (
+    window.localStorage.getItem(getContentUnlockStorageKey(contentId)) ===
+    STRING_TRUE
+  );
+};
+
+const hasLocalCollectionUnlock = (collectionId?: string | null) => {
+  if (!isBrowser || !collectionId) return false;
+  return (
+    window.localStorage.getItem(getCollectionUnlockStorageKey(collectionId)) ===
+    STRING_TRUE
+  );
+};
+
 export function useViewerContentAccess(
   contentId: string,
   creatorId?: string | null,
@@ -43,6 +73,16 @@ export function useViewerContentAccess(
     RENTED_MODES.CURRENTLY,
     isLoggedIn,
   );
+  const { data: accessibleResponse } = useGetAPI<AccessibleContentIdsResponse>(
+    API.viewer.accessibleContentIds,
+    undefined,
+    { enabled: isLoggedIn },
+  );
+
+  const accessibleContentIds = useMemo(() => {
+    const ids = accessibleResponse?.data?.contentIds;
+    return new Set(Array.isArray(ids) ? ids : []);
+  }, [accessibleResponse]);
 
   const rentedItem = useMemo(() => {
     if (!isLoggedIn) return undefined;
@@ -56,23 +96,29 @@ export function useViewerContentAccess(
   }, [contentId, isLoggedIn, rentedData]);
 
   const hasCollectionAccess = useMemo(() => {
-    if (!isLoggedIn || !collectionId) return false;
     return (
-      hasCollection(purchasedData, collectionId) ||
-      hasCollection(rentedData, collectionId)
+      hasLocalCollectionUnlock(collectionId) ||
+      (isLoggedIn &&
+        (hasCollection(purchasedData, collectionId) ||
+          hasCollection(rentedData, collectionId)))
     );
   }, [collectionId, isLoggedIn, purchasedData, rentedData]);
 
   const hasAccess = useMemo(() => {
+    if (hasLocalContentUnlock(contentId) || hasCollectionAccess) {
+      return true;
+    }
+
     if (!isLoggedIn) return false;
 
     return (
       isOwner ||
       hasItem(purchasedData, contentId) ||
       Boolean(rentedItem) ||
-      hasCollectionAccess
+      accessibleContentIds.has(contentId)
     );
   }, [
+    accessibleContentIds,
     contentId,
     hasCollectionAccess,
     isLoggedIn,
@@ -110,7 +156,8 @@ export function useViewerCollectionAccess(collectionId?: string | null) {
     return hasCollection(rentedData, collectionId);
   }, [collectionId, isLoggedIn, rentedData]);
 
-  const hasAccess = isPurchased || isRented;
+  const hasAccess =
+    isPurchased || isRented || hasLocalCollectionUnlock(collectionId);
 
   return {
     isLoggedIn,

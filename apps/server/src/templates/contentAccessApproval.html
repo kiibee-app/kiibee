@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Kiibee - Content access request</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    "
+  >
+    <div
+      style="
+        display: none;
+        width: 0;
+        height: 0;
+        max-height: 0;
+        overflow: hidden;
+        color: transparent;
+        opacity: 0;
+        visibility: hidden;
+      "
+    >
+      {{viewerName}} requested access to {{contentTitle}}.
+    </div>
+    <table
+      role="presentation"
+      width="100%"
+      cellpadding="0"
+      cellspacing="0"
+      style="background-color: #f0f2f5"
+    >
+      <tr>
+        <td align="center" style="padding: 32px 16px">
+          <table
+            role="presentation"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            style="max-width: 600px"
+          >
+            <tr>
+              <td
+                style="
+                  overflow: hidden;
+                  border-radius: 16px;
+                  background-color: #ffffff;
+                  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+                "
+              >
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 28px 32px;
+                        background-color: #53baa9;
+                        text-align: center;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0;
+                          color: #ffffff;
+                          font-family: Georgia, 'Times New Roman', serif;
+                          font-size: 22px;
+                          font-weight: 600;
+                          letter-spacing: -0.02em;
+                        "
+                      >
+                        New content access request
+                      </p>
+                      <p
+                        style="
+                          margin: 10px 0 0;
+                          color: rgba(255, 255, 255, 0.92);
+                          font-family:
+                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                            Roboto, Arial, sans-serif;
+                          font-size: 14px;
+                          line-height: 1.5;
+                        "
+                      >
+                        A viewer is waiting for your approval
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 32px 32px 16px;
+                        color: #1a1a1a;
+                        font-family:
+                          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                          Arial, sans-serif;
+                        font-size: 16px;
+                        line-height: 1.65;
+                      "
+                    >
+                      <p style="margin: 0 0 16px">Hi {{creatorName}},</p>
+                      <p style="margin: 0">
+                        A viewer requested access to one of your Kiibee
+                        contents. Review the details below and approve the
+                        request when you are ready.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td style="padding: 0 32px 28px">
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="
+                          border: 1px solid #e6e8eb;
+                          border-radius: 10px;
+                          background-color: #fafafa;
+                        "
+                      >
+                        <tr>
+                          <td
+                            style="
+                              padding: 14px 20px;
+                              border-bottom: 1px solid #e6e8eb;
+                              color: #666666;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 13px;
+                            "
+                          >
+                            Viewer
+                          </td>
+                          <td
+                            align="right"
+                            style="
+                              padding: 14px 20px;
+                              border-bottom: 1px solid #e6e8eb;
+                              color: #1a1a1a;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 14px;
+                              font-weight: 600;
+                            "
+                          >
+                            {{viewerName}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 14px 20px;
+                              border-bottom: 1px solid #e6e8eb;
+                              color: #666666;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 13px;
+                            "
+                          >
+                            Email
+                          </td>
+                          <td
+                            align="right"
+                            style="
+                              padding: 14px 20px;
+                              border-bottom: 1px solid #e6e8eb;
+                              color: #1a1a1a;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 14px;
+                              word-break: break-all;
+                            "
+                          >
+                            {{viewerEmail}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 14px 20px;
+                              color: #666666;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 13px;
+                            "
+                          >
+                            Content
+                          </td>
+                          <td
+                            align="right"
+                            style="
+                              padding: 14px 20px;
+                              color: #1a1a1a;
+                              font-family:
+                                -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                Roboto, Arial, sans-serif;
+                              font-size: 14px;
+                              font-weight: 600;
+                            "
+                          >
+                            {{contentTitle}}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td style="padding: 0 32px 28px">
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                      >
+                        <tr>
+                          <td
+                            align="center"
+                            style="
+                              border-radius: 10px;
+                              background-color: #53baa9;
+                            "
+                          >
+                            <a
+                              href="{{approvalLink}}"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style="
+                                display: block;
+                                padding: 16px 24px;
+                                color: #ffffff;
+                                font-family:
+                                  -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                                  Roboto, Arial, sans-serif;
+                                font-size: 16px;
+                                font-weight: 600;
+                                text-align: center;
+                                text-decoration: none;
+                              "
+                            >
+                              Approve access
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 0 32px 28px;
+                        color: #666666;
+                        font-family:
+                          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                          Arial, sans-serif;
+                        font-size: 13px;
+                        line-height: 1.6;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0 0 8px;
+                          color: #333333;
+                          font-weight: 600;
+                        "
+                      >
+                        If the button does not work, copy this link:
+                      </p>
+                      <p style="margin: 0; word-break: break-all">
+                        <a href="{{approvalLink}}" style="color: #2a8f82"
+                          >{{approvalLink}}</a
+                        >
+                      </p>
+                      <p style="margin: 16px 0 0">
+                        This secure approval link expires in
+                        <strong>7 days</strong>.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 0 32px 32px;
+                        color: #555555;
+                        font-family:
+                          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                          Arial, sans-serif;
+                        font-size: 14px;
+                        line-height: 1.6;
+                      "
+                    >
+                      <p style="margin: 0">
+                        Best regards,<br /><strong style="color: #1a1a1a"
+                          >The Kiibee Team</strong
+                        >
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 16px 32px;
+                        border-top: 1px solid #eceef1;
+                        background-color: #f7f8fa;
+                        color: #888888;
+                        font-family:
+                          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                          Arial, sans-serif;
+                        font-size: 12px;
+                        line-height: 1.5;
+                        text-align: center;
+                      "
+                    >
+                      You received this email because a viewer requested access
+                      to your content on Kiibee.
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

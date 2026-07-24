@@ -416,6 +416,7 @@ export default function SingleCollectionDetail({
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
+        message={t("createProfileHome.latestUpload.loginModal.message")}
         onSuccess={() => {
           handleCloseLoginModal();
         }}

@@ -87,7 +87,8 @@
         "title": "Login påkrævet",
         "cancelLabel": "Log ind",
         "confirmLabel": "Opret konto",
-        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
+        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik.",
+        "viewMessage": "For at se dette indhold, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
       },
       "purchaseConfirmationModal": {
         "title": "Klar til at gennemføre dit køb?",
@@ -908,6 +909,22 @@
       "message": "Din betaling blev ikke gennemført, og der blev ikke trukket nogen beløb. Du kan prøve igen fra din prisplan-side.",
       "viewPlans": "Se planer"
     }
+  },
+  "contentAccessApproval": {
+    "loading": {
+      "title": "Godkender adgang",
+      "message": "Vent venligst, mens vi godkender denne indholdsanmodning."
+    },
+    "success": {
+      "title": "Adgang godkendt",
+      "message": "Seeren har modtaget et sikkert link til indholdet via e-mail.",
+      "hint": "Dette vindue lukker automatisk."
+    },
+    "error": {
+      "title": "Godkendelse mislykkedes"
+    },
+    "invalidLink": "Dette godkendelseslink er ugyldigt.",
+    "invalidOrExpired": "Dette godkendelseslink er ugyldigt eller udløbet."
   },
   "cardFailurePage": {
     "title": "Kortet blev ikke tilføjet",
@@ -2241,10 +2258,14 @@
     "emailPlaceholder": "E-mail",
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
+    "sendingRequest": "Sender anmodning...",
+    "redeemFailed": "Vi kunne ikke aktivere dette adgangslink. Anmod om et nyt link, og pr\u00f8v igen.",
     "invalidCodeTitle": "Ugyldig adgangskode",
     "invalidCodeMessage": "Den kode, du indtastede, er forkert. Kontrollér den, og prøv igen.",
     "cancel": "Annuller",
     "tryAgain": "Prøv igen",
+    "requestSentTitle": "Anmodning sendt",
+    "requestSentMessage": "Skaberen har modtaget din anmodning. Hvis den godkendes, sender vi dig et link til indholdet via e-mail.",
     "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   },
   "pricingLabels": {

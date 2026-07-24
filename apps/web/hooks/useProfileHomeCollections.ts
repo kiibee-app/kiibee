@@ -127,6 +127,10 @@ export function useProfileHomeCollections(
                 ...fallbackTemplate,
                 id: content.id,
                 title: content.name,
+                category:
+                  contentDetail?.categories?.[0]?.name ??
+                  contentDetail?.categories?.[0]?.id ??
+                  "",
                 creator: displayName || fallbackTemplate.creator,
                 published: content.createdAt,
                 formatType: content.contentType,

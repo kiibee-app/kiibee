@@ -17,6 +17,10 @@ import { VARIANT } from "@/utils/Constants";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 import { KEY_ENTER, KEY_SPACE } from "@/utils/keyboard";
 import {
   FORMAT_TYPE,
@@ -81,17 +85,24 @@ export default function CollectionItemCard({
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const [loginModalMessage, setLoginModalMessage] = useState<
+    string | undefined
+  >(undefined);
   const { user, hasAccess } = useViewerContentAccess(
     video.id,
     video.creatorId ?? ownerCreatorId,
     collectionId,
   );
 
-  const handleShowLoginModal = (url: string) => {
+  const handleShowLoginModal = (url: string, message?: string) => {
     setPendingRedirectUrl(url);
+    setLoginModalMessage(message);
     setLoginModalVisible(true);
   };
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setLoginModalMessage(undefined);
+  };
 
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
@@ -102,6 +113,7 @@ export default function CollectionItemCard({
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
           href: contentHref,
+          fullWidth: true,
         },
       ]
     : video.buttons?.length
@@ -125,7 +137,13 @@ export default function CollectionItemCard({
     const targetHref = button.href ?? contentHref;
 
     if (button.requiresAuth && !isLoggedIn) {
-      handleShowLoginModal(targetHref);
+      const isPurchaseOrRent =
+        isBuyActionLabel(button.label) || isRentActionLabel(button.label);
+      const msg = isPurchaseOrRent
+        ? t("createProfileHome.latestUpload.loginModal.message")
+        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+
+      handleShowLoginModal(targetHref, msg);
       return;
     }
 
@@ -208,6 +226,7 @@ export default function CollectionItemCard({
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
+        message={loginModalMessage}
         onSuccess={() => {
           if (pendingRedirectUrl) {
             navigateToContent(pendingRedirectUrl, true);

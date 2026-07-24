@@ -87,7 +87,8 @@
         "title": "Login required",
         "cancelLabel": "Log in",
         "confirmLabel": "Create account",
-        "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
+        "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment.",
+        "viewMessage": "To view this content, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
       },
       "purchaseConfirmationModal": {
         "title": "Ready to complete your purchase?",
@@ -908,6 +909,22 @@
       "message": "Your payment was not successful and no charges were made. You can try again from your pricing page.",
       "viewPlans": "View Plans"
     }
+  },
+  "contentAccessApproval": {
+    "loading": {
+      "title": "Approving access",
+      "message": "Please wait while we approve this content request."
+    },
+    "success": {
+      "title": "Access approved",
+      "message": "The viewer has been emailed a secure link to the content.",
+      "hint": "This window will close automatically."
+    },
+    "error": {
+      "title": "Approval failed"
+    },
+    "invalidLink": "This approval link is invalid.",
+    "invalidOrExpired": "This approval link is invalid or has expired."
   },
   "cardFailurePage": {
     "title": "Card was not added",
@@ -2233,10 +2250,14 @@
     "emailPlaceholder": "Email",
     "submitCode": "Access content",
     "submitEmail": "Access content",
+    "sendingRequest": "Sending request...",
+    "redeemFailed": "We couldn't activate this content access link. Please request a new link and try again.",
     "invalidCodeTitle": "Invalid Access Code",
     "invalidCodeMessage": "The code you entered is incorrect. Please check it and try again.",
     "cancel": "Cancel",
     "tryAgain": "Try Again",
+    "requestSentTitle": "Request sent",
+    "requestSentMessage": "The creator has received your request. If it is approved, we will email you a link to this content.",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {

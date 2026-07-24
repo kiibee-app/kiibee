@@ -247,6 +247,8 @@ type LoginRequiredModalProps = {
   onSuccess?: () => void;
   width?: string;
   initialHeight?: string;
+  title?: string;
+  message?: string;
 };
 
 export function LoginRequiredModal({
@@ -255,6 +257,8 @@ export function LoginRequiredModal({
   onSuccess,
   width = LOGIN_REQUIRED_MODAL_WIDTH,
   initialHeight = LOGIN_REQUIRED_MODAL_INITIAL_HEIGHT,
+  title,
+  message,
 }: LoginRequiredModalProps) {
   const { t } = useTranslation();
   const [view, setView] = useState<LoginViewState>(LOGIN_VIEW_STATES.INITIAL);
@@ -297,11 +301,12 @@ export function LoginRequiredModal({
       {isInitialView && (
         <LoginRequiredBody style={{ minHeight: initialHeight }}>
           <MonoText $use="H5_Medium">
-            {t("createProfileHome.latestUpload.loginModal.title")}
+            {title ?? t("createProfileHome.latestUpload.loginModal.title")}
           </MonoText>
           <LoginRequiredDescription>
             <MonoText $use="Body_Medium">
-              {t("createProfileHome.latestUpload.loginModal.message")}
+              {message ??
+                t("createProfileHome.latestUpload.loginModal.viewMessage")}
             </MonoText>
           </LoginRequiredDescription>
           <ButtonGroup $row $align={MODAL_ALIGN.CENTER}>

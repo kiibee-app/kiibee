@@ -1,10 +1,10 @@
 export const SMOOTH_SCROLL = {
-  lerp: 0.2,
-  wheelMultiplier: 1.0,
-  touchMultiplier: 1.0,
-  easingPower: 5,
+  lerp: 0.14,
+  wheelMultiplier: 1.35,
+  touchMultiplier: 1.1,
+  easingPower: 4,
   gsapTimeMultiplier: 1000,
-  refreshDelay: 0.15,
+  refreshDelay: 0.2,
 } as const;
 
 export const SMOOTH_SCROLL_EVENTS = {

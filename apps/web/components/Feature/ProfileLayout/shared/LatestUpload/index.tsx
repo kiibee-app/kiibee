@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 import type { ImageSource } from "@/utils/Constants";
 import {
@@ -21,6 +21,8 @@ import {
   UploadBackgroundImage,
   RightControlButton,
   LeftControlButton,
+  TrailerVideo,
+  TrailerEmbed,
 } from "./styles";
 import {
   DECORATIVE_IMAGE_PROPS,
@@ -44,12 +46,19 @@ import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
   getContentDetailPricingActions,
+  getContentPricingActions,
   getPricingLabels,
   isBuyActionLabel,
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
+import {
+  getThirdPartyEmbedUrl,
+  isCloudflareStreamEmbedUrl,
+  isThirdPartyVideoUrl,
+} from "@/utils/media";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 
 type LatestUploadAction = {
   title: string;
@@ -102,11 +111,18 @@ export default function LatestUpload({
   const { t } = useTranslation();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
+  const trailerVideoRef = useRef<HTMLVideoElement | null>(null);
   const { navigateToContent } = useProtectedContentNavigation();
+  const { hasAccess } = useViewerContentAccess(
+    data.contentId ?? "",
+    null,
+    null,
+  );
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
-      if (isOwner) {
+      if (isOwner || hasAccess) {
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
@@ -121,6 +137,7 @@ export default function LatestUpload({
         rentPrice: data.rentPrice,
         rentDurationHours: data.rentDurationHours,
       };
+      const labels = getPricingLabels(t);
 
       if (isFreeContentItem(pricingItem)) {
         return [
@@ -136,8 +153,22 @@ export default function LatestUpload({
         ];
       }
 
+      const gatedActions = getContentPricingActions(pricingItem, labels.free, {
+        labels,
+      });
+      const isGatedLabel =
+        gatedActions[0]?.label === labels.accessCodeRequired ||
+        gatedActions[0]?.label === labels.emailRequired;
+
+      if (isGatedLabel) {
+        return gatedActions.map((action) => ({
+          title: action.label,
+          href: pathPublishedContent(data.contentId!),
+        }));
+      }
+
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-        labels: getPricingLabels(t),
+        labels,
       });
 
       if (pricingActions.length === 0) {
@@ -157,7 +188,7 @@ export default function LatestUpload({
           action.label,
           pricingItem,
           pricingActions.length,
-          { labels: getPricingLabels(t) },
+          { labels },
         ),
       }));
     }
@@ -172,7 +203,7 @@ export default function LatestUpload({
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t, isOwner]);
+  }, [data, t, isOwner, hasAccess]);
 
   const visibleActions = computedActions;
 
@@ -204,9 +235,44 @@ export default function LatestUpload({
   const isMediaPlayable =
     normalizedContentType === FORMAT_TYPE.VIDEO ||
     normalizedContentType === FORMAT_TYPE.AUDIO;
-  const hasTrailer = Boolean(data.trailerUrl?.trim());
+  const trailerUrl = data.trailerUrl?.trim() || "";
+  const hasTrailer = Boolean(trailerUrl);
+  const isEmbedTrailer =
+    hasTrailer &&
+    (isCloudflareStreamEmbedUrl(trailerUrl) ||
+      isThirdPartyVideoUrl(trailerUrl));
   const TypeIcon = contentIconMap[normalizedContentType];
   const uploadImageUrl = resolveImageUrl(data.image);
+
+  const handlePlayTrailer = async (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!trailerUrl) return;
+
+    if (isEmbedTrailer) {
+      setIsTrailerPlaying(true);
+      return;
+    }
+
+    setIsTrailerPlaying(true);
+    const videoElement = trailerVideoRef.current;
+    if (!videoElement) return;
+
+    try {
+      await videoElement.play();
+    } catch {
+      setIsTrailerPlaying(false);
+    }
+  };
+
+  const handleTrailerEnded = () => {
+    const videoElement = trailerVideoRef.current;
+    if (videoElement) {
+      videoElement.pause();
+      videoElement.currentTime = 0;
+    }
+    setIsTrailerPlaying(false);
+  };
 
   return (
     <Section $variant={variant}>
@@ -216,40 +282,78 @@ export default function LatestUpload({
         <ImageSection $isPdf={!isMediaPlayable}>
           <Badge>{data.badge}</Badge>
 
-          <UploadBackgroundImage
-            src={uploadImageUrl}
-            {...DECORATIVE_IMAGE_PROPS}
-          />
-          <UploadImage src={uploadImageUrl} alt={data.imageAlt} />
+          {isTrailerPlaying && isEmbedTrailer ? (
+            <TrailerEmbed
+              src={
+                isCloudflareStreamEmbedUrl(trailerUrl)
+                  ? trailerUrl
+                  : getThirdPartyEmbedUrl(trailerUrl)
+              }
+              title={data.title}
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <>
+              <UploadBackgroundImage
+                src={uploadImageUrl}
+                {...DECORATIVE_IMAGE_PROPS}
+              />
+              <UploadImage src={uploadImageUrl} alt={data.imageAlt} />
+              {hasTrailer && !isEmbedTrailer ? (
+                <TrailerVideo
+                  ref={trailerVideoRef}
+                  src={trailerUrl}
+                  controls={isTrailerPlaying}
+                  playsInline
+                  preload="metadata"
+                  onPlay={() => setIsTrailerPlaying(true)}
+                  onEnded={handleTrailerEnded}
+                  style={{
+                    opacity: isTrailerPlaying ? 1 : 0,
+                    pointerEvents: isTrailerPlaying ? "auto" : "none",
+                  }}
+                />
+              ) : null}
+            </>
+          )}
 
-          <ImageOverlay>
-            <BottomControls>
-              {isMediaPlayable ? (
-                <>
-                  <LeftControlButton>
-                    <PlayCircleIcon />
-                    {t("createProfileHome.latestUpload.video")}
-                  </LeftControlButton>
+          {!isTrailerPlaying ? (
+            <ImageOverlay>
+              <BottomControls>
+                {isMediaPlayable ? (
+                  <>
+                    <LeftControlButton>
+                      <PlayCircleIcon />
+                      {t("createProfileHome.latestUpload.video")}
+                    </LeftControlButton>
 
-                  {hasTrailer ? (
-                    <RightControlButton>
-                      <PlayIcon width={24} height={24} />
-                      {t("createProfileHome.latestUpload.playTrailer")}
-                    </RightControlButton>
-                  ) : null}
-                </>
-              ) : (
-                <>
-                  <LeftControlButton>
-                    <TypeIcon />
-                    {t(
-                      `contents.contentTypeModal.options.${normalizedContentType}`,
-                    )}
-                  </LeftControlButton>
-                </>
-              )}
-            </BottomControls>
-          </ImageOverlay>
+                    {hasTrailer ? (
+                      <RightControlButton
+                        type="button"
+                        onClick={handlePlayTrailer}
+                        aria-label={t(
+                          "createProfileHome.latestUpload.playTrailer",
+                        )}
+                      >
+                        <PlayIcon width={24} height={24} />
+                        {t("createProfileHome.latestUpload.playTrailer")}
+                      </RightControlButton>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <LeftControlButton>
+                      <TypeIcon />
+                      {t(
+                        `contents.contentTypeModal.options.${normalizedContentType}`,
+                      )}
+                    </LeftControlButton>
+                  </>
+                )}
+              </BottomControls>
+            </ImageOverlay>
+          ) : null}
         </ImageSection>
 
         <TextSection>
@@ -303,6 +407,11 @@ export default function LatestUpload({
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={() => setLoginModalVisible(false)}
+        message={
+          isBuyActionLabel(primaryAction?.title ?? "")
+            ? t("createProfileHome.latestUpload.loginModal.message")
+            : t("createProfileHome.latestUpload.loginModal.viewMessage")
+        }
         onSuccess={() => {
           if (pendingHref) {
             navigateToContent(pendingHref, true);
