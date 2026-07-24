@@ -102,6 +102,7 @@ export default function CollectionItemCard({
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
           href: contentHref,
+          fullWidth: true,
         },
       ]
     : video.buttons?.length

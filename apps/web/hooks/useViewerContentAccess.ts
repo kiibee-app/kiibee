@@ -96,12 +96,11 @@ export function useViewerContentAccess(
   }, [contentId, isLoggedIn, rentedData]);
 
   const hasCollectionAccess = useMemo(() => {
-    if (!collectionId) return false;
-    if (hasLocalCollectionUnlock(collectionId)) return true;
-    if (!isLoggedIn) return false;
     return (
-      hasCollection(purchasedData, collectionId) ||
-      hasCollection(rentedData, collectionId)
+      hasLocalCollectionUnlock(collectionId) ||
+      (isLoggedIn &&
+        (hasCollection(purchasedData, collectionId) ||
+          hasCollection(rentedData, collectionId)))
     );
   }, [collectionId, isLoggedIn, purchasedData, rentedData]);
 

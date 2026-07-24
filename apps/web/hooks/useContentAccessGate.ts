@@ -1,13 +1,14 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import {
   GATE_QUERY_PARAM,
+  APPROVED_ACCESS_QUERY_PARAM,
   TYPE_CODE,
   TYPE_EMAIL,
   ACCESS_TYPE_PASSWORD,
@@ -25,6 +26,8 @@ import {
   getCreatorUnlockStorageKey,
 } from "@/utils/accessGate";
 import { pathLoginWithNext } from "@/utils/path";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { toast } from "react-toastify";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -35,8 +38,10 @@ export function useContentAccessGate(
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
+  const { getErrorMessage } = useApiErrorMessage();
+  const getErrorMessageRef = useRef(getErrorMessage);
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
-  const approvedAccessToken = searchParams.get("approvedAccess");
+  const approvedAccessToken = searchParams.get(APPROVED_ACCESS_QUERY_PARAM);
   const storedUser = useStoredLoginUser();
   const loginUser = storedUser ?? readStoredLoginUser();
   const isApprovingAccess = Boolean(approvedAccessToken);
@@ -64,6 +69,10 @@ export function useContentAccessGate(
   const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
   useEffect(() => {
+    getErrorMessageRef.current = getErrorMessage;
+  }, [getErrorMessage]);
+
+  useEffect(() => {
     if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
     if (!loginUser?.id) {
       const returnTo = `${window.location.pathname}${window.location.search}`;
@@ -78,14 +87,23 @@ export function useContentAccessGate(
         await axiosClient.post(API.creatorUsers.redeemContentAccess, {
           token: approvedAccessToken,
         });
-      } catch {}
 
-      if (cancelled) return;
+        if (cancelled) return;
 
-      window.localStorage.setItem(contentStorageKey, "true");
-      const url = new URL(window.location.href);
-      url.searchParams.delete("approvedAccess");
-      window.location.replace(url.toString());
+        window.localStorage.setItem(contentStorageKey, "true");
+        const url = new URL(window.location.href);
+        url.searchParams.delete(APPROVED_ACCESS_QUERY_PARAM);
+        window.location.replace(url.toString());
+      } catch (error) {
+        if (cancelled) return;
+
+        toast.error(
+          getErrorMessageRef.current(error, "accessGate.redeemFailed"),
+        );
+        const url = new URL(window.location.href);
+        url.searchParams.delete(APPROVED_ACCESS_QUERY_PARAM);
+        window.history.replaceState(null, "", url.toString());
+      }
     };
 
     void redeemAccess();

@@ -2250,6 +2250,7 @@
     "submitCode": "Access content",
     "submitEmail": "Access content",
     "sendingRequest": "Sending request...",
+    "redeemFailed": "We couldn't activate this content access link. Please request a new link and try again.",
     "invalidCodeTitle": "Invalid Access Code",
     "invalidCodeMessage": "The code you entered is incorrect. Please check it and try again.",
     "cancel": "Cancel",

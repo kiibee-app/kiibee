@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { and, eq, gt, isNotNull, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
@@ -12,10 +12,6 @@ import { fail, success } from 'src/utils/sendResponse';
 
 export const getAccessibleContentIds = async (userId: string) => {
   try {
-    if (!userId) {
-      return fail('User ID is required', HttpStatus.BAD_REQUEST);
-    }
-
     const now = new Date();
 
     const [purchasedOrGranted, emailApproved] = await Promise.all([
@@ -48,11 +44,10 @@ export const getAccessibleContentIds = async (userId: string) => {
     ]);
 
     const contentIds = Array.from(
-      new Set(
-        [...purchasedOrGranted, ...emailApproved]
-          .map((row) => row.contentId)
-          .filter((id): id is string => Boolean(id)),
-      ),
+      new Set([
+        ...purchasedOrGranted.map(({ contentId }) => contentId as string),
+        ...emailApproved.map(({ contentId }) => contentId),
+      ]),
     );
 
     return success(
@@ -62,8 +57,6 @@ export const getAccessibleContentIds = async (userId: string) => {
     );
   } catch (error) {
     logger.error('Error retrieving accessible content ids:', error);
-
-    if (error instanceof HttpException) throw error;
 
     return fail(
       'Failed to retrieve accessible content ids',

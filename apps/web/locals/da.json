@@ -2258,6 +2258,7 @@
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
     "sendingRequest": "Sender anmodning...",
+    "redeemFailed": "Vi kunne ikke aktivere dette adgangslink. Anmod om et nyt link, og pr\u00f8v igen.",
     "invalidCodeTitle": "Ugyldig adgangskode",
     "invalidCodeMessage": "Den kode, du indtastede, er forkert. Kontrollér den, og prøv igen.",
     "cancel": "Annuller",

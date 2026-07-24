@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  GoneException,
+  HttpStatus,
+} from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { contentAccessRequests, users } from 'src/database/schema';
@@ -13,17 +18,11 @@ export const redeemContentAccessService = async (
   const request = await getAccessRequest(token);
 
   if (request.status !== STATUS.APPROVED) {
-    throw new HttpException(
-      'Content access request is not approved',
-      HttpStatus.FORBIDDEN,
-    );
+    throw new ForbiddenException('Content access request is not approved');
   }
 
   if (request.expiresAt.getTime() < Date.now()) {
-    throw new HttpException(
-      'Content access request has expired',
-      HttpStatus.GONE,
-    );
+    throw new GoneException('Content access request has expired');
   }
 
   const [user] = await db
@@ -32,9 +31,9 @@ export const redeemContentAccessService = async (
     .where(eq(users.id, userId))
     .limit(1);
 
-  const accountEmail = user?.email?.trim().toLowerCase();
+  const accountEmail = user?.email.trim().toLowerCase();
   if (!accountEmail) {
-    throw new HttpException('User email not found', HttpStatus.BAD_REQUEST);
+    throw new BadRequestException('User email not found');
   }
 
   const requestEmail = request.viewerEmail.trim().toLowerCase();
@@ -53,24 +52,23 @@ export const redeemContentAccessService = async (
       )
       .limit(1);
 
-    if (existingForAccount) {
-      await db
-        .update(contentAccessRequests)
-        .set({
-          status: STATUS.APPROVED,
-          approvedAt: now,
-          updatedAt: now,
-        })
-        .where(eq(contentAccessRequests.id, existingForAccount.id));
-    } else {
-      await db
-        .update(contentAccessRequests)
-        .set({
-          viewerEmail: accountEmail,
-          updatedAt: now,
-        })
-        .where(eq(contentAccessRequests.id, request.id));
-    }
+    await db
+      .update(contentAccessRequests)
+      .set(
+        existingForAccount
+          ? {
+              status: STATUS.APPROVED,
+              approvedAt: now,
+              updatedAt: now,
+            }
+          : {
+              viewerEmail: accountEmail,
+              updatedAt: now,
+            },
+      )
+      .where(
+        eq(contentAccessRequests.id, existingForAccount?.id ?? request.id),
+      );
   }
 
   return success(
