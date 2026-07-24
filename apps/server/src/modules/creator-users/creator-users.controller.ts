@@ -45,6 +45,18 @@ export class CreatorUsersController {
     return this.creatorUsersService.approveContentAccess(query.token);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Post('content-access/redeem')
+  redeemContentAccess(
+    @Req() req: AuthenticatedRequest,
+    @Body() body: ApproveContentAccessDto,
+  ) {
+    return this.creatorUsersService.redeemContentAccess(
+      body.token,
+      req.user.userId,
+    );
+  }
+
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('registrations')
   getRegistrations(@Req() req: AuthenticatedRequest) {

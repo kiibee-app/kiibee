@@ -46,6 +46,7 @@ import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
   getContentDetailPricingActions,
+  getContentPricingActions,
   getPricingLabels,
   isBuyActionLabel,
   isFreeContentItem,
@@ -57,6 +58,7 @@ import {
   isCloudflareStreamEmbedUrl,
   isThirdPartyVideoUrl,
 } from "@/utils/media";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 
 type LatestUploadAction = {
   title: string;
@@ -112,10 +114,15 @@ export default function LatestUpload({
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const trailerVideoRef = useRef<HTMLVideoElement | null>(null);
   const { navigateToContent } = useProtectedContentNavigation();
+  const { hasAccess } = useViewerContentAccess(
+    data.contentId ?? "",
+    null,
+    null,
+  );
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
-      if (isOwner) {
+      if (isOwner || hasAccess) {
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
@@ -130,6 +137,7 @@ export default function LatestUpload({
         rentPrice: data.rentPrice,
         rentDurationHours: data.rentDurationHours,
       };
+      const labels = getPricingLabels(t);
 
       if (isFreeContentItem(pricingItem)) {
         return [
@@ -145,8 +153,22 @@ export default function LatestUpload({
         ];
       }
 
+      const gatedActions = getContentPricingActions(pricingItem, labels.free, {
+        labels,
+      });
+      const isGatedLabel =
+        gatedActions[0]?.label === labels.accessCodeRequired ||
+        gatedActions[0]?.label === labels.emailRequired;
+
+      if (isGatedLabel) {
+        return gatedActions.map((action) => ({
+          title: action.label,
+          href: pathPublishedContent(data.contentId!),
+        }));
+      }
+
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-        labels: getPricingLabels(t),
+        labels,
       });
 
       if (pricingActions.length === 0) {
@@ -166,7 +188,7 @@ export default function LatestUpload({
           action.label,
           pricingItem,
           pricingActions.length,
-          { labels: getPricingLabels(t) },
+          { labels },
         ),
       }));
     }
@@ -181,7 +203,7 @@ export default function LatestUpload({
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t, isOwner]);
+  }, [data, t, isOwner, hasAccess]);
 
   const visibleActions = computedActions;
 

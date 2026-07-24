@@ -71,16 +71,35 @@ export function useContentAccessGate(
       return;
     }
 
-    const url = new URL(window.location.href);
-    url.searchParams.delete("approvedAccess");
-    window.location.replace(url.toString());
+    let cancelled = false;
+
+    const redeemAccess = async () => {
+      try {
+        await axiosClient.post(API.creatorUsers.redeemContentAccess, {
+          token: approvedAccessToken,
+        });
+      } catch {}
+
+      if (cancelled) return;
+
+      window.localStorage.setItem(contentStorageKey, "true");
+      const url = new URL(window.location.href);
+      url.searchParams.delete("approvedAccess");
+      window.location.replace(url.toString());
+    };
+
+    void redeemAccess();
+
+    return () => {
+      cancelled = true;
+    };
   }, [approvedAccessToken, content?.id, contentStorageKey, loginUser?.id]);
 
   const hasContentGate = isContentCode || isContentEmail;
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
   const isContentUnlocked = isContentEmail
-    ? hasApprovedEmailAccess
+    ? hasApprovedEmailAccess || isLocallyUnlocked
     : isLocallyUnlocked || hasServerAccess;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
