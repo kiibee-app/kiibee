@@ -12,11 +12,15 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/** Same allow-list as before: Lenis only outside app/grid routes. */
 function shouldUseSmoothScroll(pathname: string) {
   return !(
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/creator/") ||
     pathname.startsWith("/auth") ||
+    pathname.startsWith("/explore") ||
+    pathname.startsWith("/formats") ||
+    pathname.startsWith("/content/") ||
     pathname.startsWith("/subscription") ||
     pathname.startsWith("/payment")
   );
