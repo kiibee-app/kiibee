@@ -118,6 +118,8 @@ export type ContentFormState = {
   portraitThumbnail: string | null;
   admissionRequirement: string;
   password: string;
+  /** True when a password was previously saved (hashed). Never returns the actual value. */
+  hasPassword?: boolean;
   rentalAmount: string;
   purchaseAmount: string;
   maxDownloadLimit: string;
@@ -162,6 +164,7 @@ export const defaultState: ContentFormState = {
   portraitThumbnail: null,
   admissionRequirement: ADMISSION_TYPE.FREE,
   password: "",
+  hasPassword: false,
   rentalAmount: "",
   purchaseAmount: "",
   maxDownloadLimit: "5",

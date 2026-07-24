@@ -503,8 +503,13 @@ function CreatorsContentsInner() {
             (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+              !selectedCollection?.hasPassword &&
               (!collectionPasswords.trim() ||
                 validatePasswordInput(collectionPasswords))) ||
+            (activeTab === SETTINGS &&
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+              !!collectionPasswords.trim() &&
+              validatePasswordInput(collectionPasswords)) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
@@ -513,8 +518,12 @@ function CreatorsContentsInner() {
               !hasPaymentUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.PAYMENT &&
               formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
-              (!formState.password.trim() ||
-                validatePasswordInput(formState.password)))
+              !formState.hasPassword &&
+              !formState.password.trim()) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+              !!formState.password.trim() &&
+              validatePasswordInput(formState.password))
           }
           isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
@@ -575,6 +584,7 @@ function CreatorsContentsInner() {
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
             onPasswordValidationChange={setHasPasswordError}
+            collectionHasPassword={selectedCollection?.hasPassword}
           />
         </ContentPanel>
       </ContentsScrollArea>
