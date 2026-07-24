@@ -323,6 +323,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const hasViewerAccess = Boolean(content?.accessInfo);
 
+  const heroPrimaryAction = accessGate ? undefined : modifiedPrimaryAction;
+
   const openOwnerContentInDashboard = () => {
     const params = new URLSearchParams({
       [VIEW]: CREATORS_LABELS.CONTENTS,
@@ -438,7 +440,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           <SingleContentHero
             hero={hero}
             isPdfLayout={isPdfLayout}
-            primaryAction={modifiedPrimaryAction}
+            primaryAction={heroPrimaryAction}
           />
 
           <SingleContentBody
