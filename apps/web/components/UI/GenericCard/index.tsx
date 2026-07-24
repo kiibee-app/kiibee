@@ -10,6 +10,7 @@ import {
 } from "@/utils/media";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
+import { useDownscaledRemoteImage } from "@/hooks/useDownscaledRemoteImage";
 import {
   Card,
   ImageWrapper,
@@ -65,6 +66,11 @@ function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
   });
 }
 
+function toImageKey(image?: string | StaticImageData) {
+  if (!image) return "";
+  return typeof image === "string" ? image : image.src;
+}
+
 export default function GenericCard({
   image,
   imageFallback,
@@ -80,18 +86,16 @@ export default function GenericCard({
   children,
   width,
   imagePriority = false,
-  optimizeRemoteImage = false,
   deferImage = false,
   onClick,
   onImageError,
 }: GenericCardProps) {
-  const selectedImage = image ?? imageFallback;
-  const imageKey = selectedImage
-    ? typeof selectedImage === "string"
-      ? selectedImage
-      : selectedImage.src
-    : "";
+  const imageKey = toImageKey(image);
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
+  const [fallbackState, setFallbackState] = useState<{
+    forKey: string;
+    url: string;
+  } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
   const [shouldLoadImage, setShouldLoadImage] = useState(
     !deferImage || imagePriority,
@@ -105,19 +109,36 @@ export default function GenericCard({
     setImageLoading(true);
   }
 
-  const imageFailed = failedImageKey === imageKey;
+  const activeFallback =
+    fallbackState?.forKey === imageKey ? fallbackState.url : null;
+  const imageFailed = failedImageKey === imageKey && !activeFallback;
 
-  const imageSrc = selectedImage ? resolveImageUrl(selectedImage) : null;
-  const showRemoteImage =
+  const imageSrc =
+    activeFallback ??
+    (image ? resolveImageUrl(image) : null) ??
+    (imageFallback && !image ? resolveImageUrl(imageFallback) : null);
+
+  const isRemote =
     Boolean(imageSrc) &&
-    !imageFailed &&
     typeof imageSrc === "string" &&
-    isRemoteImageSource(imageSrc) &&
-    !optimizeRemoteImage;
-  const showOptimizedImage =
-    Boolean(imageSrc) && !imageFailed && !showRemoteImage;
-  const showInitials =
-    Boolean(imageInitials) && !image && !imageFallback && !imageFailed;
+    isRemoteImageSource(imageSrc);
+
+  const { displaySrc: downscaledSrc, isPreparing } = useDownscaledRemoteImage(
+    isRemote && typeof imageSrc === "string" ? imageSrc : null,
+    shouldLoadImage && isRemote && !imageFailed,
+  );
+
+  const remoteDisplaySrc = downscaledSrc;
+
+  const showRemoteImage =
+    Boolean(remoteDisplaySrc) &&
+    !imageFailed &&
+    isRemote &&
+    typeof remoteDisplaySrc === "string";
+
+  const showOptimizedImage = Boolean(imageSrc) && !imageFailed && !isRemote;
+
+  const showInitials = Boolean(imageInitials) && (!imageSrc || imageFailed);
 
   const markImageLoaded = () => setImageLoading(false);
 
@@ -128,6 +149,12 @@ export default function GenericCard({
   };
 
   const handleImageError = () => {
+    if (imageFallback && activeFallback !== imageFallback) {
+      setFallbackState({ forKey: imageKey, url: imageFallback });
+      setImageLoading(true);
+      return;
+    }
+
     setFailedImageKey(imageKey);
     setImageLoading(false);
     onImageError?.();
@@ -138,7 +165,11 @@ export default function GenericCard({
     : REMOTE_COVER_IMAGE_STYLE;
 
   const isCurrentlyLoading =
-    imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
+    (imageLoading || isPreparing) &&
+    shouldLoadImage &&
+    !showInitials &&
+    !imageFailed &&
+    Boolean(imageSrc);
 
   useEffect(() => {
     if (shouldLoadImage || !deferImage) return;
@@ -159,7 +190,7 @@ export default function GenericCard({
         setShouldLoadImage(true);
         observer.disconnect();
       },
-      { rootMargin: "800px 0px" },
+      { rootMargin: "240px 0px" },
     );
 
     observer.observe(wrapper);
@@ -184,22 +215,25 @@ export default function GenericCard({
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {shouldLoadImage && showRemoteImage ? (
-            <Image
+            <img
+              key={remoteDisplaySrc}
               ref={handleImageRef}
-              src={imageSrc!}
+              src={remoteDisplaySrc}
               alt={alt || "card image"}
-              fill
-              sizes="(max-width: 767px) 100vw, 50vw"
-              style={posterImageStyle}
-              priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
-              unoptimized
+              decoding="async"
+              style={posterImageStyle}
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
           ) : shouldLoadImage && showOptimizedImage ? (
             <Image
-              src={imageSrc!}
+              key={typeof imageSrc === "string" ? imageSrc : imageKey}
+              src={
+                !activeFallback && image && typeof image !== "string"
+                  ? image
+                  : imageSrc!
+              }
               alt={alt || "card image"}
               fill
               sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 50vw, 360px"

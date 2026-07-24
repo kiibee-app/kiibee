@@ -53,6 +53,7 @@ export const Card = styled.div<{
     top: auto;
     width: ${({ $mobileOnly }) => ($mobileOnly ? "100%" : "18%")};
     height: ${({ $mobileOnly }) => ($mobileOnly ? "114px" : "28%")};
+    min-height: ${({ $mobileOnly }) => ($mobileOnly ? "114px" : undefined)};
   }
 `;
 
@@ -89,6 +90,8 @@ export const CardImage = styled(SafeImage).attrs({
   fill: true,
   sizes: "(max-width: 1024px) 50vw, 16vw",
 })`
+  position: absolute !important;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -252,12 +255,22 @@ export function getRevealCardStyle(
   card: CtaImageCard,
   mobile: boolean,
 ): CSSProperties {
+  if (mobile) {
+    return {
+      position: "relative",
+      width: "100%",
+      height: "114px",
+      opacity: 0,
+      transform: CTA_CARD.initialTransform,
+    };
+  }
+
   return {
-    position: !mobile ? "absolute" : undefined,
-    left: !mobile && card.left != null ? `${card.left}%` : undefined,
-    top: !mobile && card.top != null ? `${card.top}%` : undefined,
-    width: !mobile && card.width != null ? `${card.width}%` : undefined,
-    height: !mobile && card.height != null ? `${card.height}%` : undefined,
+    position: "absolute",
+    left: card.left != null ? `${card.left}%` : undefined,
+    top: card.top != null ? `${card.top}%` : undefined,
+    width: card.width != null ? `${card.width}%` : undefined,
+    height: card.height != null ? `${card.height}%` : undefined,
     opacity: 0,
     transform: CTA_CARD.initialTransform,
   };
@@ -269,4 +282,5 @@ export const callToActionCardStyle: CSSProperties = {
   top: "auto",
   width: "100%",
   height: "100%",
+  minHeight: "100%",
 };

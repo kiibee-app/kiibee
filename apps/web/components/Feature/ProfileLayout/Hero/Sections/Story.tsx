@@ -40,6 +40,7 @@ export default function StorySection() {
             fill
             sizes="(max-width: 900px) 100vw, 70vw"
             priority
+            unoptimized={Boolean(coverImageUrl)}
           />
         </HeroMedia>
 

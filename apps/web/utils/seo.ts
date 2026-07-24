@@ -35,3 +35,10 @@ export function getSiteUrl(errorContext: string): string {
 
   return rawSiteUrl.replace(TRAILING_SLASH_REGEX, "");
 }
+
+export function getMetadataBaseUrl(): URL {
+  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL;
+  const base =
+    rawSiteUrl?.replace(TRAILING_SLASH_REGEX, "") || "http://localhost:3000";
+  return new URL(base);
+}

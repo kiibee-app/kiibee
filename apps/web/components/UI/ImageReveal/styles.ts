@@ -7,6 +7,8 @@ export function getImageRevealContainerStyle(
   style?: CSSProperties,
 ): CSSProperties {
   return {
+    // Next/Image `fill` requires a positioned parent (not static).
+    position: "relative",
     visibility:
       variant === IMAGE_REVEAL_DEFAULTS.clipRevealVariant
         ? "visible"

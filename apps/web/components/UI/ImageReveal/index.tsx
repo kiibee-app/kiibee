@@ -52,7 +52,12 @@ export default function ImageReveal({
       };
 
       media.add(LANDING_MOTION.reducedMotionQuery, () => {
-        gsap.set(element, { clearProps: LANDING_MOTION.clearPropsAll });
+        // Do not clear layout props (position/size) — Next/Image `fill` needs them.
+        gsap.set(element, {
+          clearProps:
+            "transform,opacity,visibility,clipPath,scale,x,y,xPercent,yPercent",
+          autoAlpha: LANDING_MOTION.visibleAlpha,
+        });
       });
 
       media.add(LANDING_MOTION.noReducedMotionQuery, () => {

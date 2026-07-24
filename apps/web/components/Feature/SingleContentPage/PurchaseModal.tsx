@@ -392,7 +392,15 @@ export default function PurchaseModal({
                   </MonoText>
                 </PurchaseModalCollectionCardBadge>
               ) : null}
-              <Image src={image} alt={imageAlt || title} fill sizes="120px" />
+              <Image
+                src={image}
+                alt={imageAlt || title}
+                fill
+                sizes="120px"
+                unoptimized={
+                  typeof image === "string" && /^https?:\/\//.test(image)
+                }
+              />
             </ModalCardImage>
           ) : null}
 

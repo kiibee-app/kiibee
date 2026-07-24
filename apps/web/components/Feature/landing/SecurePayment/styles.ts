@@ -74,10 +74,12 @@ export const ImageCard = styled(ImageBox)`
 `;
 
 export const securePaymentRevealStyle: CSSProperties = {
+  // Must stay positioned so Next/Image `fill` does not warn about static parents.
   position: "absolute",
   inset: 0,
   width: "100%",
   height: "100%",
+  display: "block",
 };
 
 export const securePaymentImageStyle: CSSProperties = {

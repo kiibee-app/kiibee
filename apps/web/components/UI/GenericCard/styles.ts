@@ -24,6 +24,9 @@ export const Card = styled.div<{
   }};
   width: ${({ $width }) => $width || "100%"};
   box-shadow: ${({ theme }) => theme.shadows.xl};
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+  contain: layout paint style;
   transition:
     transform ${({ theme }) => theme.animations.normal}
       ${({ theme }) => theme.animations.easing},
@@ -35,8 +38,9 @@ export const Card = styled.div<{
     box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 
+  /* Mild zoom only — posters are downscaled for display. */
   &:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 `;
 

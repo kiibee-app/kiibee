@@ -69,19 +69,52 @@ function TutorialCard({
   const handleCloseLoginModal = () => setLoginModalVisible(false);
 
   const thumbnailCandidates = useMemo(() => {
+    const candidates: string[] = [];
+
     if (tutorial.videoUrl) {
-      return resolveTutorialThumbnailCandidates({
-        videoUrl: tutorial.videoUrl,
-        trailerUrl: tutorial.trailerUrl,
-      });
+      candidates.push(
+        ...resolveTutorialThumbnailCandidates({
+          videoUrl: tutorial.videoUrl,
+          trailerUrl: tutorial.trailerUrl,
+        }),
+      );
     }
 
     const staticImage = resolveImageUrl(tutorial.image);
-    return staticImage ? [staticImage] : [];
-  }, [tutorial.image, tutorial.trailerUrl, tutorial.videoUrl]);
+    if (staticImage) {
+      candidates.push(staticImage);
+    }
+
+    if (tutorial.imageFallback) {
+      const fallback = resolveImageUrl(tutorial.imageFallback);
+      if (fallback) {
+        candidates.push(fallback);
+      }
+    }
+
+    return [...new Set(candidates.filter(Boolean))];
+  }, [
+    tutorial.image,
+    tutorial.imageFallback,
+    tutorial.trailerUrl,
+    tutorial.videoUrl,
+  ]);
+
+  const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
   const image =
-    thumbnailCandidates[0] ?? resolveImageUrl(tutorial.image) ?? undefined;
+    thumbnailCandidates[thumbnailIndex] ??
+    resolveImageUrl(tutorial.image) ??
+    undefined;
+  const imageFallback =
+    thumbnailCandidates[thumbnailIndex + 1] ?? tutorial.imageFallback;
+
+  const handleThumbnailError = () => {
+    setThumbnailIndex((current) => {
+      const nextIndex = current + 1;
+      return nextIndex < thumbnailCandidates.length ? nextIndex : current;
+    });
+  };
 
   const FormatIcon = useMemo(() => {
     const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
@@ -178,10 +211,11 @@ function TutorialCard({
   const card = (
     <GenericCard
       coverImage
-      optimizeRemoteImage
       deferImage
       image={image}
+      imageFallback={imageFallback}
       imagePriority={imagePriority}
+      onImageError={handleThumbnailError}
       imageInitials="Video"
       alt={tutorial.title}
       badge={

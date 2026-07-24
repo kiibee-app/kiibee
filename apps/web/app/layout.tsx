@@ -16,6 +16,7 @@ import {
 } from "@/utils/Constants";
 import { STORAGE_KEY } from "@/utils/common";
 import { normalizeAppLanguage } from "@/utils/language";
+import { getMetadataBaseUrl } from "@/utils/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: getMetadataBaseUrl(),
   title: {
     default: "Kiibee - Discover Unique Digital Content",
     template: "%s | Kiibee",
