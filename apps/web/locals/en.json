@@ -1909,7 +1909,7 @@
         "subtitle": "The large image at the top of the page",
         "uploadDesktop": "Upload desktop cover image",
         "uploadMobile": "Upload mobile cover image",
-        "desktopSize": "Use size 1440 × 224 pixel image",
+        "desktopSize": "Use size 1200 × 400 pixel image",
         "mobileSize": "Use size 640 × 600 pixel image",
         "desktopAlt": "Desktop cover image",
         "mobileAlt": "Mobile cover image",

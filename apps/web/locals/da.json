@@ -1892,7 +1892,7 @@
         "subtitle": "Det store billede øverst på siden",
         "uploadDesktop": "Upload forsidebillede til desktop",
         "uploadMobile": "Upload forsidebillede til mobil",
-        "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
+        "desktopSize": "Brug billedstørrelse 1200 × 400 pixels",
         "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
         "desktopAlt": "Desktop forsidebillede",
         "mobileAlt": "Mobil forsidebillede",

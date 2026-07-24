@@ -187,8 +187,8 @@ export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
-    width: 1440,
-    height: 224,
+    width: 1200,
+    height: 400,
   },
   [IMAGE_TYPE.MOBILE]: {
     width: 640,
@@ -229,7 +229,7 @@ export const CONTENT = "content_";
 export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.DESKTOP]: {
     maxWidth: "514px",
-    aspectRatio: "257 / 40",
+    aspectRatio: "3 / 1",
     tablet: {
       maxWidth: "320px",
     },
@@ -268,8 +268,8 @@ export const defaultUploadConfigs: UploadConfig[] = [
   {
     labelKey: CONTENTS.appearance.coverImage.uploadDesktop,
     sizeKey: CONTENTS.appearance.coverImage.desktopSize,
-    cropWidth: 1440,
-    cropHeight: 224,
+    cropWidth: 1200,
+    cropHeight: 400,
     type: IMAGE_TYPE.DESKTOP,
   },
   {
