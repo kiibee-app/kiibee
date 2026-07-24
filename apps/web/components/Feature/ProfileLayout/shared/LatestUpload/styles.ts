@@ -100,6 +100,26 @@ export const UploadBackgroundImage = styled.img`
   z-index: 0;
 `;
 
+export const TrailerVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  z-index: 1;
+`;
+
+export const TrailerEmbed = styled.iframe`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  z-index: 1;
+`;
+
 export const TextSection = styled.div`
   flex: 1;
   width: 100%;

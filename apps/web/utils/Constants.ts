@@ -445,6 +445,7 @@ export const TYPE_CODE: AccessGateType = "code";
 export const TYPE_EMAIL: AccessGateType = "email";
 export const GATE_QUERY_PARAM = "gate";
 export const ID_QUERY_PARAM = "id";
+export const APPROVED_ACCESS_QUERY_PARAM = "approvedAccess";
 export const SET_PASSWORD_ACCESS = "set_password";
 export const REQUEST_EMAIL_ACCESS = "request_email";
 

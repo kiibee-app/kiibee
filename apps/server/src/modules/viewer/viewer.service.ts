@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { getPurchasedData } from './services/getPurchasedData.service';
 import { getRentedData } from './services/getRentedData.service';
 import { getExpiredRentedData } from './services/getExpiredRentedData.service';
+import { getAccessibleContentIds } from './services/getAccessibleContentIds.service';
 import { getPaymentMethodsService } from './services/getPaymentMethods.service';
 import { createPaymentMethodService } from './services/createPaymentMethod.service';
 import { updatePaymentMethodService } from './services/updatePaymentMethod.service';
@@ -25,6 +26,10 @@ export class ViewerService {
 
   async getPurchasedDataService(userId: string) {
     return getPurchasedData(userId);
+  }
+
+  async getAccessibleContentIdsService(userId: string) {
+    return getAccessibleContentIds(userId);
   }
 
   async getRentedDataService(userId: string) {
