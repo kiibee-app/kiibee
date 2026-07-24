@@ -80,14 +80,17 @@ export default function Payment() {
 
   const updatePasswordValidationError = (committed: string, typed: string) => {
     const full = combinePasswords(committed, typed);
-    if (validatePasswordInput(full)) {
-      setFieldError(
-        PAYMENTS_FORM_FIELDS.PASSWORD,
-        t("contents.admissionRequirements.password.error.minLength"),
-      );
-    } else {
+    const hasError = validatePasswordInput(full);
+
+    if (!hasError) {
       clearFieldError(PAYMENTS_FORM_FIELDS.PASSWORD);
+      return;
     }
+
+    setFieldError(
+      PAYMENTS_FORM_FIELDS.PASSWORD,
+      t("contents.admissionRequirements.password.error.minLength"),
+    );
   };
 
   const paymentTexts = useMemo(

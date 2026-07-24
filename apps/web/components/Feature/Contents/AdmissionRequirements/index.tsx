@@ -54,6 +54,9 @@ const updateValue = <T,>(
   }
 };
 
+const isPasswordInvalid = (passwords: string): boolean =>
+  validatePasswordInput(passwords) || !passwords.trim();
+
 interface AdmissionRequirementsProps {
   accessType?: AdmissionRequirementValue;
   onChangeAccessType?: (value: AdmissionRequirementValue) => void;
@@ -164,16 +167,13 @@ function AdmissionRequirements({
   const handleSelect = useCallback(
     (value: AdmissionRequirementValue) => {
       updateValue(value, onChangeAccessType, setLocalSelected);
-      if (onValidationChange) {
-        if (value !== ADMISSION_REQUIREMENT_VALUES.password) {
-          onValidationChange(false);
-        } else {
-          onValidationChange(
-            validatePasswordInput(effectivePasswords) ||
-              !effectivePasswords.trim(),
-          );
-        }
-      }
+
+      const isPasswordRequirement =
+        value === ADMISSION_REQUIREMENT_VALUES.password;
+      const hasError =
+        isPasswordRequirement && isPasswordInvalid(effectivePasswords);
+
+      onValidationChange?.(hasError);
       setOpen(false);
     },
     [onChangeAccessType, onValidationChange, effectivePasswords],
@@ -186,17 +186,13 @@ function AdmissionRequirements({
   const handlePasswordsChange = (val: string) => {
     updateValue(val, onChangePasswords, setLocalPasswords);
     const full = combinePasswords(val, typedPasswords);
-    if (onValidationChange) {
-      onValidationChange(validatePasswordInput(full) || !full.trim());
-    }
+    onValidationChange?.(isPasswordInvalid(full));
   };
 
   const handleTypedPasswordsChange = (typed: string) => {
     setTypedPasswords(typed);
     const full = combinePasswords(passwords, typed);
-    if (onValidationChange) {
-      onValidationChange(validatePasswordInput(full) || !full.trim());
-    }
+    onValidationChange?.(isPasswordInvalid(full));
   };
 
   return (
