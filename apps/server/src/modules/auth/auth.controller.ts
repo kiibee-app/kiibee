@@ -25,6 +25,13 @@ import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { logAudit } from 'src/services/auditLog.service';
+import {
+  RESOURCE,
+  USER_LOGIN,
+  USER_LOGIN_FAILED,
+  USER_REGISTRATION,
+} from 'src/utils/auditConstant';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -41,6 +48,13 @@ class CreatorRequestActionDto {
 
 @Controller('auth')
 export class AuthController {
+  private getClientInfo(req: Request) {
+    return {
+      ipAddress: (req as any).ip || req.connection?.remoteAddress,
+      userAgent: req.headers['user-agent'],
+    };
+  }
+
   constructor(
     private readonly authService: AuthService,
     private readonly tokenService: TokenService,
@@ -65,6 +79,16 @@ export class AuthController {
       userAgent,
     );
 
+    await logAudit({
+      userId: result.data.id,
+      action: USER_REGISTRATION,
+      resource: RESOURCE.USER,
+      resourceId: result.data.id,
+      ipAddress,
+      userAgent,
+      metadata: { email: result.data.email },
+    });
+
     return {
       ...result,
       data: {
@@ -77,31 +101,52 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() dto: LoginDto, @Req() req: Request) {
-    const result = await this.authService.login(dto);
-    const tokens = await this.tokenService.generateAuthTokens({
-      id: result.data.id,
-      email: result.data.email,
-      role: result.data.role,
-    });
+    const { ipAddress, userAgent } = this.getClientInfo(req);
 
-    const ipAddress = req.ip || req.connection?.remoteAddress;
-    const userAgent = req.headers['user-agent'];
+    try {
+      const result = await this.authService.login(dto);
+      const tokens = await this.tokenService.generateAuthTokens({
+        id: result.data.id,
+        email: result.data.email,
+        role: result.data.role,
+      });
 
-    await this.authService.createSession(
-      result.data.id,
-      tokens.refreshToken,
-      ipAddress,
-      userAgent,
-    );
+      await this.authService.createSession(
+        result.data.id,
+        tokens.refreshToken,
+        ipAddress,
+        userAgent,
+      );
 
-    return {
-      ...result,
-      data: {
-        ...result.data,
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-      },
-    };
+      await logAudit({
+        userId: result.data.id,
+        action: USER_LOGIN,
+        resource: RESOURCE.SESSION,
+        resourceId: result.data.id,
+        ipAddress,
+        userAgent,
+        metadata: { email: result.data.email },
+      });
+
+      return {
+        ...result,
+        data: {
+          ...result.data,
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+        },
+      };
+    } catch (error) {
+      await logAudit({
+        userId: null,
+        action: USER_LOGIN_FAILED,
+        resource: RESOURCE.SESSION,
+        ipAddress,
+        userAgent,
+        metadata: { email: dto.email },
+      });
+      throw error;
+    }
   }
 
   @Post('refresh')
