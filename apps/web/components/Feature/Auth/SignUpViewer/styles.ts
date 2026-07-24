@@ -213,7 +213,7 @@ export const TypeGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.625rem;
-  margin: 0.875rem 0 0;
+  margin: 2.5rem 0 0;
 
   ${media.mobile} {
     gap: 0.5rem;
@@ -226,12 +226,15 @@ export const TypeCard = styled.button<{ $selected: boolean }>`
   height: 52px;
   border: 1px solid
     ${({ theme, $selected }) =>
-      $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_200};
+      $selected
+        ? theme.colors.neutral.PALE_GREEN
+        : theme.colors.neutral.GRAY_200};
   border-radius: 6px;
   background: ${({ theme, $selected }) =>
-    $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_200};
-  color: ${({ theme, $selected }) =>
-    $selected ? theme.colors.primary.WHITE : theme.colors.primary.BLACK};
+    $selected
+      ? theme.colors.neutral.PALE_GREEN
+      : theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   display: flex;
   flex-direction: column;
   align-items: center;
