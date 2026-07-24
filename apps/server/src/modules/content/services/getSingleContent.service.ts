@@ -6,6 +6,8 @@ import {
   mediaFiles,
   mediaFileCategories,
   contentCategories,
+  mediaFileTags,
+  tags,
   userContentAccess,
   contentAccessRequests,
   users,
@@ -123,6 +125,12 @@ export const getSingleContentService = async (
       )
       .where(eq(mediaFileCategories.mediaFileId, contentId));
 
+    const contentTags = await db
+      .select({ name: tags.name })
+      .from(mediaFileTags)
+      .innerJoin(tags, eq(tags.id, mediaFileTags.tagId))
+      .where(eq(mediaFileTags.mediaFileId, contentId));
+
     const isRented = access?.accessType === ACCRESS_TYPES.RENTED;
     const isExpired =
       isRented &&
@@ -164,6 +172,7 @@ export const getSingleContentService = async (
       {
         ...content,
         categories,
+        tags: contentTags.map((tag) => tag.name),
         ...(accessInfo && { accessInfo }),
       },
       'Content fetched successfully',
