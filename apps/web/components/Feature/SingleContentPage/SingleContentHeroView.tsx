@@ -352,16 +352,14 @@ export default function SingleContentHeroView({
 
   const isHeroLoading = isImageDisplayed && imageLoading;
 
+  const shouldAutoPlayDirectVideo =
+    hasTrailerLink && !isCloudflareVideo && !isThirdPartyVideo;
+
   useEffect(() => {
-    if (
-      hasTrailerLink &&
-      !isCloudflareVideo &&
-      !isThirdPartyVideo &&
-      videoRef.current
-    ) {
+    if (shouldAutoPlayDirectVideo && videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
-  }, [hasTrailerLink, isCloudflareVideo, isThirdPartyVideo]);
+  }, [shouldAutoPlayDirectVideo]);
 
   return (
     <Hero $isPdf={isPdfLayout} $isLoading={isHeroLoading}>
