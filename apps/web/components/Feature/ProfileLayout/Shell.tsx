@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import ProfileHero from "@/components/Feature/ProfileLayout/Hero";
 import ProfileFooter from "@/components/Feature/ProfileLayout/shared/Footer";
-import MainFooter from "@/components/Layout/Footer";
 import ProfileNavbar from "@/components/Feature/ProfileLayout/Navbar";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
@@ -44,7 +43,6 @@ export default function ProfileShell({ variant, children }: ProfileShellProps) {
         <ProfileHero variant={variant} />
         {children}
         <ProfileFooter />
-        <MainFooter />
         <ProfileAboutModal />
       </PageShell>
     </CreatorProfileUiProvider>
