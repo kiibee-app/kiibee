@@ -26,7 +26,6 @@ export function useScrollAnimation({
     let ctx: gsap.Context | undefined;
     let checkInterval: ReturnType<typeof setInterval> | undefined;
     let refreshTimeout: ReturnType<typeof setTimeout> | undefined;
-    let refreshOnScroll: () => void = () => {};
 
     const initGSAP = (): boolean => {
       let foundCards = false;
@@ -53,6 +52,7 @@ export function useScrollAnimation({
                 trigger: card,
                 start: SCROLL_ANIMATION_CONFIG.TRIGGER_START,
                 toggleActions: SCROLL_ANIMATION_CONFIG.TOGGLE_ACTIONS,
+                invalidateOnRefresh: false,
               },
             },
           );
@@ -68,19 +68,6 @@ export function useScrollAnimation({
       refreshTimeout = setTimeout(() => {
         ScrollTrigger.refresh();
       }, SCROLL_ANIMATION_CONFIG.REFRESH_DELAY_MS);
-
-      refreshOnScroll = () => {
-        ScrollTrigger.refresh();
-        window.removeEventListener(
-          SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
-          refreshOnScroll,
-        );
-      };
-      window.addEventListener(
-        SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
-        refreshOnScroll,
-        { passive: true },
-      );
 
       return true;
     };
@@ -103,10 +90,6 @@ export function useScrollAnimation({
       clearInterval(checkInterval);
       clearTimeout(refreshTimeout);
       ctx?.revert();
-      window.removeEventListener(
-        SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
-        refreshOnScroll,
-      );
     };
   }, [cardsSelector, trigger]);
 }
