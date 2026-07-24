@@ -59,13 +59,17 @@ export default function TagsInput({
 
       if (shouldSkip) {
         setInputValue("");
-        onInputChange?.("");
+        if (onInputChange) {
+          onInputChange("");
+        }
         return;
       }
 
       onChange([...tags, trimmedTag].join(", "));
       setInputValue("");
-      onInputChange?.("");
+      if (onInputChange) {
+        onInputChange("");
+      }
     },
     [tags, onChange, maxLength, currentTotalLength, onInputChange],
   );
@@ -95,14 +99,18 @@ export default function TagsInput({
     const delimiter = separateOnSpace ? /[\n, ]+/ : TAG_DELIMITER;
     if (!delimiter.test(newValue)) {
       setInputValue(newValue);
-      onInputChange?.(newValue);
+      if (onInputChange) {
+        onInputChange(newValue);
+      }
       return;
     }
     const parts = newValue.split(delimiter);
     parts.slice(0, -1).forEach(addTag);
     const lastPart = parts.at(-1) ?? "";
     setInputValue(lastPart);
-    onInputChange?.(lastPart);
+    if (onInputChange) {
+      onInputChange(lastPart);
+    }
   };
 
   return (

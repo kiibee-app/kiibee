@@ -49,8 +49,8 @@ const updateValue = <T,>(
 ) => {
   if (onChange) {
     onChange(value);
-  } else {
-    setLocal?.(value);
+  } else if (setLocal) {
+    setLocal(value);
   }
 };
 
@@ -164,13 +164,15 @@ function AdmissionRequirements({
   const handleSelect = useCallback(
     (value: AdmissionRequirementValue) => {
       updateValue(value, onChangeAccessType, setLocalSelected);
-      if (value !== ADMISSION_REQUIREMENT_VALUES.password) {
-        onValidationChange?.(false);
-      } else {
-        onValidationChange?.(
-          validatePasswordInput(effectivePasswords) ||
-            !effectivePasswords.trim(),
-        );
+      if (onValidationChange) {
+        if (value !== ADMISSION_REQUIREMENT_VALUES.password) {
+          onValidationChange(false);
+        } else {
+          onValidationChange(
+            validatePasswordInput(effectivePasswords) ||
+              !effectivePasswords.trim(),
+          );
+        }
       }
       setOpen(false);
     },
@@ -184,13 +186,17 @@ function AdmissionRequirements({
   const handlePasswordsChange = (val: string) => {
     updateValue(val, onChangePasswords, setLocalPasswords);
     const full = combinePasswords(val, typedPasswords);
-    onValidationChange?.(validatePasswordInput(full) || !full.trim());
+    if (onValidationChange) {
+      onValidationChange(validatePasswordInput(full) || !full.trim());
+    }
   };
 
   const handleTypedPasswordsChange = (typed: string) => {
     setTypedPasswords(typed);
     const full = combinePasswords(passwords, typed);
-    onValidationChange?.(validatePasswordInput(full) || !full.trim());
+    if (onValidationChange) {
+      onValidationChange(validatePasswordInput(full) || !full.trim());
+    }
   };
 
   return (

@@ -29,7 +29,6 @@ import {
   HelperFormRow,
   HelperText,
 } from "./styles";
-import { INPUT_TYPE } from "@/utils/ui";
 import TrailerList from "../General/TrailerList";
 import {
   ADMISSION_TYPE,
@@ -81,12 +80,14 @@ export default function Payment() {
 
   const updatePasswordValidationError = (committed: string, typed: string) => {
     const full = combinePasswords(committed, typed);
-    validatePasswordInput(full)
-      ? setFieldError(
-          PAYMENTS_FORM_FIELDS.PASSWORD,
-          t("contents.admissionRequirements.password.error.minLength"),
-        )
-      : clearFieldError(PAYMENTS_FORM_FIELDS.PASSWORD);
+    if (validatePasswordInput(full)) {
+      setFieldError(
+        PAYMENTS_FORM_FIELDS.PASSWORD,
+        t("contents.admissionRequirements.password.error.minLength"),
+      );
+    } else {
+      clearFieldError(PAYMENTS_FORM_FIELDS.PASSWORD);
+    }
   };
 
   const paymentTexts = useMemo(
