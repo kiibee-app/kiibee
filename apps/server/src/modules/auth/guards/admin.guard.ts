@@ -2,31 +2,44 @@ import { Injectable, ForbiddenException } from '@nestjs/common';
 import { ExecutionContext } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ROLE } from 'src/utils/constant';
+import { db } from 'src/database/db';
+import { users } from 'src/database/schema';
+import { eq } from 'drizzle-orm';
 
 @Injectable()
 export class AdminGuard extends AuthGuard('jwt') {
-  canActivate(context: ExecutionContext) {
-    return super.canActivate(context);
-  }
+  async canActivate(context: ExecutionContext) {
+    await super.canActivate(context);
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
 
-  handleRequest(err: any, user: any) {
-    if (!user || user.role !== ROLE.ADMIN) {
+    const dbUser = await db.query.users.findFirst({
+      where: eq(users.id, user.userId),
+      columns: { role: true },
+    });
+
+    if (!dbUser || dbUser.role !== ROLE.ADMIN) {
       throw new ForbiddenException('Only admins can access this resource');
     }
-    return user;
+    return true;
   }
 }
 
 @Injectable()
 export class CreatorGuard extends AuthGuard('jwt') {
-  canActivate(context: ExecutionContext) {
-    return super.canActivate(context);
-  }
+  async canActivate(context: ExecutionContext) {
+    await super.canActivate(context);
+    const request = context.switchToHttp().getRequest();
+    const user = request.user;
 
-  handleRequest(err: any, user: any) {
-    if (!user || user.role !== ROLE.CREATOR) {
+    const dbUser = await db.query.users.findFirst({
+      where: eq(users.id, user.userId),
+      columns: { role: true },
+    });
+
+    if (!dbUser || dbUser.role !== ROLE.CREATOR) {
       throw new ForbiddenException('Only creators can access this resource');
     }
-    return user;
+    return true;
   }
 }
