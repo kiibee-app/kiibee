@@ -4,6 +4,8 @@ export enum ExploreType {
   NEW = 'new',
   TRENDING = 'trending',
   CREATED_FOR_YOU = 'created_for_you',
+  RECENT = 'recent',
+  TOP_CREATORS = 'top_creators',
 }
 
 export class ExploreQueryDto {

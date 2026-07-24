@@ -5,6 +5,7 @@ import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, FIXED_LIMIT } from 'src/utils/constant';
+import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
 
 import { buildSearch, format, cleanNumber } from '../feed.helper';
 import {
@@ -13,6 +14,7 @@ import {
   getRecentQuery,
   getTopCreatorsQuery,
 } from '../feed.query';
+import { ExploreType } from '../dto/exploreQuery.dto';
 
 const cleanArray = (value?: string[] | string | null) => {
   if (!value) return [];
@@ -37,13 +39,33 @@ const pushCondition = (
   );
 };
 
+const resolveSections = (type?: ExploreType) => {
+  if (!type || type === ExploreType.NEW) {
+    return {
+      trending: true,
+      recent: true,
+      latest: true,
+      topCreators: true,
+    };
+  }
+
+  return {
+    trending: type === ExploreType.TRENDING,
+    recent: type === ExploreType.RECENT,
+    latest: type === ExploreType.CREATED_FOR_YOU,
+    topCreators: type === ExploreType.TOP_CREATORS,
+  };
+};
+
 export const exploreService = async (
   limit?: number,
   search?: string,
   filter?: any,
+  type?: ExploreType,
 ) => {
   try {
-    const resolvedLimit = limit ?? FIXED_LIMIT;
+    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT, MAX_LIMIT);
+    const sections = resolveSections(type);
     const searchCondition = buildSearch(search);
     const contentTypeIds = cleanArray(filter?.contentTypeId);
     const creatorIds = cleanArray(filter?.creatorId);
@@ -91,15 +113,31 @@ export const exploreService = async (
     }
 
     const baseWhere = sql.join(baseConditions, sql` AND `);
-    const latestWhere = extra.length
+    const contentWhere = extra.length
       ? sql`${baseWhere} AND ${sql.join(extra, sql` AND `)}`
       : baseWhere;
 
     const [trending, recent, latest, topCreators] = await Promise.all([
-      getTrendingQuery(baseWhere, resolvedLimit),
-      getRecentQuery(baseWhere, resolvedLimit),
-      getLatestQuery(latestWhere, desc(mediaFiles.publishedAt), resolvedLimit),
-      getTopCreatorsQuery(),
+      sections.trending
+        ? getTrendingQuery(contentWhere, resolvedLimit)
+        : Promise.resolve([]),
+      sections.recent
+        ? getRecentQuery(contentWhere, resolvedLimit)
+        : Promise.resolve([]),
+      sections.latest
+        ? getLatestQuery(
+            contentWhere,
+            desc(mediaFiles.publishedAt),
+            resolvedLimit,
+          )
+        : Promise.resolve([]),
+      sections.topCreators
+        ? getTopCreatorsQuery(
+            type === ExploreType.TOP_CREATORS
+              ? resolvedLimit
+              : Math.min(resolvedLimit, 10),
+          )
+        : Promise.resolve([]),
     ]);
 
     return success(
