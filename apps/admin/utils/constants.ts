@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
   CREATOR_DELETION_REQUESTS: "/auth/creator-deletion-requests",
+  CREATOR_DELETION_HISTORY: "/auth/creator-deletion-history",
   APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
   REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
@@ -78,6 +79,7 @@ export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
   CREATOR_DELETION_REQUESTS: "creator-deletion-requests",
+  CREATOR_DELETION_HISTORY: "creator-deletion-history",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
   VIEWER_DETAIL: "viewer-detail",

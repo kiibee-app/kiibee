@@ -2,6 +2,7 @@ export const templateName = {
   APPROVED_CREATOR: 'approvedCreator',
   APPROVED_CREATOR_DELETION: 'approvedCreatorDeletion',
   REJECTED_CREATOR: 'rejectedCreator',
+  REJECTED_CREATOR_DELETION: 'rejectedCreatorDeletion',
   RESET_PASSWORD: 'resetPassword',
   APPROVED_PAYOUT: 'approvedPayout',
   REJECTED_PAYOUT: 'rejectedPayout',
@@ -11,8 +12,9 @@ export const templateName = {
 
 export const mailSubject = {
   APPROVED_CREATOR: 'Your Kiibee Creator Request Has Been Approved 🎉',
-  APPROVED_CREATOR_DELETION: 'Your Kiibee Account Has Been Deleted',
+  APPROVED_CREATOR_DELETION: 'Your Kiibee Account Deletion Was Approved',
   REJECTED_CREATOR: 'Update on Your Kiibee Creator Application',
+  REJECTED_CREATOR_DELETION: 'Update on Your Kiibee Account Deletion Request',
   RESET_PASSWORD: 'Reset Your Kiibee Password',
   APPROVED_PAYOUT: 'Your Payout Has Been Approved',
   REJECTED_PAYOUT: 'Your Payout Has Been Rejected',
