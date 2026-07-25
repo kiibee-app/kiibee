@@ -21,6 +21,7 @@ import LeftIcon from "@/assets/icons/LeftIcon";
 import { useTranslation } from "react-i18next";
 import {
   getRentedMediaSections,
+  COLLECTION_ACCESS_STATUS,
   RENTED_SECTION_KEYS,
   RENTED_MODES,
   type RentedSectionKey,
@@ -110,8 +111,6 @@ export default function MediaSections({
 
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
-  const shouldShowAccessCta =
-    mode === RENTED_MODES.CURRENTLY || mode === RENTED_MODES.PURCHASED;
 
   return (
     <>
@@ -182,69 +181,77 @@ export default function MediaSections({
               ) : null}
             </SectionHeader>
             <MediaGrid>
-              {displayItems.map((item) => (
-                <GenericCard
-                  key={item.id}
-                  coverImage
-                  image={item.thumbSrc}
-                  title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
-                  subtitle={
-                    <MonoText $use="Body_Medium">{item.author}</MonoText>
-                  }
-                  badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
-                  onClick={onCardClick ? () => onCardClick(item) : undefined}
-                  footer={
-                    shouldShowAccessCta ? (
-                      <GenericButton
-                        variant={VARIANT.SECONDARY}
-                        size="md"
-                        fullWidth
-                        onClick={
-                          onMediaPrimaryAction
-                            ? () => onMediaPrimaryAction(item)
-                            : undefined
-                        }
-                      >
-                        {getMediaAction(section.key, t)}
-                      </GenericButton>
-                    ) : (
-                      <TwoButtonRow>
+              {displayItems.map((item) => {
+                const shouldShowAccessCta =
+                  mode === RENTED_MODES.CURRENTLY ||
+                  item.accessStatus === COLLECTION_ACCESS_STATUS.PURCHASED;
+
+                return (
+                  <GenericCard
+                    key={item.id}
+                    coverImage
+                    image={item.thumbSrc}
+                    title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
+                    subtitle={
+                      <MonoText $use="Body_Medium">{item.author}</MonoText>
+                    }
+                    badge={
+                      <MonoText $use="Body_Bold">{item.category}</MonoText>
+                    }
+                    onClick={onCardClick ? () => onCardClick(item) : undefined}
+                    footer={
+                      shouldShowAccessCta ? (
                         <GenericButton
                           variant={VARIANT.SECONDARY}
                           size="md"
                           fullWidth
+                          onClick={
+                            onMediaPrimaryAction
+                              ? () => onMediaPrimaryAction(item)
+                              : undefined
+                          }
                         >
-                          {formatPriceLabel(BUY_PREFIX, item.buyPrice) ??
-                            t("pricingLabels.buy")}
+                          {getMediaAction(section.key, t)}
                         </GenericButton>
-                        <GenericButton
-                          variant={VARIANT.SECONDARY}
-                          size="md"
-                          fullWidth
-                        >
-                          {formatPriceLabel(RENT_PREFIX, item.rentPrice) ??
-                            t("pricingLabels.rent")}
-                        </GenericButton>
-                      </TwoButtonRow>
-                    )
-                  }
-                >
-                  <MonoText
-                    $use="Body_Medium"
-                    color={
-                      isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
+                      ) : (
+                        <TwoButtonRow>
+                          <GenericButton
+                            variant={VARIANT.SECONDARY}
+                            size="md"
+                            fullWidth
+                          >
+                            {formatPriceLabel(BUY_PREFIX, item.buyPrice) ??
+                              t("pricingLabels.buy")}
+                          </GenericButton>
+                          <GenericButton
+                            variant={VARIANT.SECONDARY}
+                            size="md"
+                            fullWidth
+                          >
+                            {formatPriceLabel(RENT_PREFIX, item.rentPrice) ??
+                              t("pricingLabels.rent")}
+                          </GenericButton>
+                        </TwoButtonRow>
+                      )
                     }
                   >
-                    {item.expiryText}
-                  </MonoText>
-                  <MediaTypePill>
-                    <MediaTypeIcon type={section.key} />
-                    <MonoText $use="Body_Bold">
-                      {getMediaLabel(section.key, t)}
+                    <MonoText
+                      $use="Body_Medium"
+                      color={
+                        isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
+                      }
+                    >
+                      {item.expiryText}
                     </MonoText>
-                  </MediaTypePill>
-                </GenericCard>
-              ))}
+                    <MediaTypePill>
+                      <MediaTypeIcon type={section.key} />
+                      <MonoText $use="Body_Bold">
+                        {getMediaLabel(section.key, t)}
+                      </MonoText>
+                    </MediaTypePill>
+                  </GenericCard>
+                );
+              })}
             </MediaGrid>
           </SectionBlock>
         );

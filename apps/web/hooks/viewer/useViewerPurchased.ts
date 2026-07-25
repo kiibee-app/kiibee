@@ -2,7 +2,10 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { API, useGetAPI } from "@/lib/http/api";
-import { RentedContentSources } from "@/utils/viewerRented";
+import {
+  COLLECTION_ACCESS_STATUS,
+  RentedContentSources,
+} from "@/utils/viewerRented";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { UNKNOWN } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
@@ -56,6 +59,7 @@ const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) || "",
   title: item.title,
   author: item.creatorName || "",
+  accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
   expiryText: item.purchasedAt
     ? t("viewerRented.purchasedOn", {
         date: new Date(item.purchasedAt).toLocaleDateString(),
@@ -69,6 +73,7 @@ const mapCollectionItem = (item: PurchasedCollectionResponse) => ({
   author: item.creatorName || "",
   elementCount: item.elementCount ?? 0,
   coverSrc: resolvePublicMediaUrl(item.coverImageUrl) || "",
+  accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
 });
 
 export const useViewerPurchased = (enabled: boolean = true) => {

@@ -25,6 +25,7 @@ export type RentedCollectionItem = {
   actions?: CollectionAction[];
   hideBadge?: boolean;
   href?: string;
+  accessStatus?: CollectionAccessStatus;
 };
 
 export type RentedMediaItem = {
@@ -37,6 +38,7 @@ export type RentedMediaItem = {
   expiryText: string;
   buyPrice?: string | null;
   rentPrice?: string | null;
+  accessStatus?: CollectionAccessStatus;
 };
 import {
   CURRENT_RENTED_AUDIOS,
@@ -108,6 +110,21 @@ export type RentedContentSources = {
   pdfs: RentedMediaItem[];
   webs: RentedMediaItem[];
 };
+
+const RENTED_CONTENT_SOURCE_KEYS = Object.values(
+  RENTED_SECTION_KEYS,
+) as RentedSectionKey[];
+
+export function mergeRentedContentSources(
+  ...sources: Array<RentedContentSources | undefined>
+): RentedContentSources {
+  return Object.fromEntries(
+    RENTED_CONTENT_SOURCE_KEYS.map((key) => [
+      key,
+      sources.flatMap((source) => (source?.[key] ?? []) as unknown[]),
+    ]),
+  ) as RentedContentSources;
+}
 
 export type RentedMediaSectionItems = Record<
   RentedMediaSectionKey,
