@@ -10,9 +10,12 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-
-const PLANS_SECTION_ID = "plans";
-const PLANS_HASH = `#${PLANS_SECTION_ID}`;
+import {
+  HASH_PLANS,
+  PLANS_SECTION_ID,
+  SCROLL_TO_START_OPTIONS,
+  STRING_TRUE,
+} from "@/utils/Constants";
 
 function subscribeToHash(onStoreChange: () => void) {
   window.addEventListener("hashchange", onStoreChange);
@@ -20,7 +23,7 @@ function subscribeToHash(onStoreChange: () => void) {
 }
 
 function getPlansHashSnapshot() {
-  return window.location.hash === PLANS_HASH;
+  return window.location.hash === HASH_PLANS;
 }
 
 function getPlansHashServerSnapshot() {
@@ -88,7 +91,7 @@ export default function PricingPlansSection({
     const scrollToPlans = () => {
       document
         .getElementById(PLANS_SECTION_ID)
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        ?.scrollIntoView(SCROLL_TO_START_OPTIONS);
     };
 
     const frame = window.requestAnimationFrame(scrollToPlans);
@@ -106,7 +109,7 @@ export default function PricingPlansSection({
     <Section
       id={PLANS_SECTION_ID}
       $focused={isFocusedFromUpgrade}
-      aria-current={isFocusedFromUpgrade ? "true" : undefined}
+      aria-current={isFocusedFromUpgrade ? STRING_TRUE : undefined}
     >
       {isFocusedFromUpgrade ? (
         title

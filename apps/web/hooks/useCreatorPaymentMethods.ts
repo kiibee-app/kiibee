@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { CARD, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
-import { formatSavedCardLabel } from "@/utils/common";
+import { formatSavedCardLabel, FRESH_QUERY_OPTIONS } from "@/utils/common";
 import { formatCardExpiry } from "@/utils/formatDate";
 import type {
   BackendPaymentMethod,
@@ -45,8 +45,7 @@ export const useCreatorPaymentMethods = () => {
     API.payment.cards,
     undefined,
     {
-      refetchOnMount: "always",
-      refetchOnWindowFocus: true,
+      ...FRESH_QUERY_OPTIONS,
       staleTime: 0,
     },
   );

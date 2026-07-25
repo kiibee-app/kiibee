@@ -10,6 +10,7 @@ import { PATHS } from "@/utils/path";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
+import { FRESH_QUERY_OPTIONS } from "@/utils/common";
 import {
   PlanCardRoot,
   PlanCardHeader,
@@ -43,10 +44,7 @@ export default function CurrentPlanCard() {
   const { data: creatorPlanData, isLoading } = useGetAPI<CreatorPlanResponse>(
     API.subscription.creatorPlan,
     undefined,
-    {
-      refetchOnMount: "always",
-      refetchOnWindowFocus: true,
-    },
+    FRESH_QUERY_OPTIONS,
   );
 
   const currentPlan = creatorPlanData?.data?.[0];
