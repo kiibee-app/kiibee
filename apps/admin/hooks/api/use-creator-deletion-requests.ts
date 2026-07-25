@@ -14,6 +14,8 @@ const CREATOR_DELETION_REQUESTS_QUERY_KEY = [
   QUERY_KEY.CREATOR_DELETION_REQUESTS,
 ];
 
+const CREATOR_DELETION_HISTORY_QUERY_KEY = [QUERY_KEY.CREATOR_DELETION_HISTORY];
+
 type CreatorDeletionRequestActionPayload = {
   requestId: string;
 };
@@ -59,6 +61,21 @@ export function useCreatorDeletionRequests() {
   });
 }
 
+export function useCreatorDeletionHistory() {
+  return useQuery({
+    queryKey: CREATOR_DELETION_HISTORY_QUERY_KEY,
+    queryFn: async () => {
+      const data = await ensureSuccess<CreatorDeletionRequest[]>(
+        apiClient<CreatorDeletionRequest[]>(
+          API_ENDPOINTS.CREATOR_DELETION_HISTORY,
+        ),
+      );
+
+      return data ?? [];
+    },
+  });
+}
+
 export function useCreatorDeletionRequestAction(
   action: CreatorDeletionRequestAction,
 ) {
@@ -73,9 +90,14 @@ export function useCreatorDeletionRequestAction(
         }),
       ),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: CREATOR_DELETION_REQUESTS_QUERY_KEY,
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: CREATOR_DELETION_REQUESTS_QUERY_KEY,
+        }),
+        queryClient.invalidateQueries({
+          queryKey: CREATOR_DELETION_HISTORY_QUERY_KEY,
+        }),
+      ]);
     },
   });
 }

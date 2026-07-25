@@ -15,7 +15,7 @@ export interface CreatorDeletionRequestColumn {
   label: string;
   renderCell: (
     request: CreatorDeletionRequest,
-    actionConfig: CreatorDeletionRequestActionConfig,
+    actionConfig?: CreatorDeletionRequestActionConfig,
   ) => ReactNode;
 }
 

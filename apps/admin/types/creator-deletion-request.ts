@@ -10,6 +10,7 @@ export type CreatorDeletionRequestUser = {
   firstName: string;
   lastName: string;
   role: string;
+  deletedAt?: string | null;
 };
 
 export type CreatorDeletionRequest = {
@@ -20,3 +21,5 @@ export type CreatorDeletionRequest = {
   updatedAt: string;
   user: CreatorDeletionRequestUser;
 };
+
+export type DeletionRequestsTab = "requests" | "history";

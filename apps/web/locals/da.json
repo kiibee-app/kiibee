@@ -1028,12 +1028,12 @@
     "deleteSuccessModal": {
       "title": "Anmodning om kontosletning sendt",
       "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
-      "confirm": "Færdig"
+      "confirm": "Ok"
     },
     "deletePendingModal": {
       "title": "Sletteanmodning er i gang",
       "message": "Din anmodning om kontosletning afventer allerede. En administrator gennemgår den og giver dig besked, når det er gjort.",
-      "confirm": "Færdig"
+      "confirm": "Ok"
     },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",

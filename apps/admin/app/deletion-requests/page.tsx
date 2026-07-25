@@ -1,5 +1,5 @@
-import { DeletionRequestsList } from "../../components/features/deletion-requests/DeletionRequestsList";
+import { DeletionRequestsDashboard } from "../../components/features/deletion-requests/DeletionRequestsDashboard";
 
 export default function DeletionRequestsPage() {
-  return <DeletionRequestsList />;
+  return <DeletionRequestsDashboard />;
 }

@@ -292,6 +292,13 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('creator-deletion-history')
+  async getCreatorDeletionHistory() {
+    const result = await this.authService.getCreatorDeletionHistory();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('approve-creator-deletion')
   async approveCreatorDeletionRequest(
     @Body() body: CreatorRequestActionDto,

@@ -1028,12 +1028,12 @@
     "deleteSuccessModal": {
       "title": "Request Sent for Account Deletion",
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
-      "confirm": "Done"
+      "confirm": "Ok"
     },
     "deletePendingModal": {
       "title": "Delete request is in progress",
       "message": "Your account deletion request is already pending. An administrator will review it and notify you once it's done.",
-      "confirm": "Done"
+      "confirm": "Ok"
     },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",

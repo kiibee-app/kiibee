@@ -7,6 +7,7 @@ export {
 } from "./use-creator-requests";
 export {
   useCreatorDeletionRequests,
+  useCreatorDeletionHistory,
   useCreatorDeletionRequestAction,
 } from "./use-creator-deletion-requests";
 export { useCreatorUploads, type UploadItem } from "./use-creator-uploads";
