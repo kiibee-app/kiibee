@@ -9,6 +9,7 @@ export const PATHS = {
   DASHBOARD_CREATOR: "/dashboard/creators",
   DASHBOARD_VIEWER: "/dashboard/viewer",
   PRICING: "/pricing",
+  PRICING_PLANS: "/pricing#plans",
   AUTH_SIGNUP_VIEWER_PREFERENCES: "/auth/signup-viewer/preferences",
   EXPLORE_CREATORS: "/creators/all",
   EXPLORE: "/explore",

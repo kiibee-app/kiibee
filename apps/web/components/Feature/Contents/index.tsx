@@ -402,13 +402,21 @@ function CreatorsContentsInner() {
   };
 
   const handleDiscardOrBack = useCallback(() => {
-    hasUploadUnsavedChanges ? openDiscardModal() : handleBack();
+    if (hasUploadUnsavedChanges) {
+      openDiscardModal();
+    } else {
+      handleBack();
+    }
   }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
 
   const handleUploadBackClick = handleDiscardOrBack;
 
   const handleCancel = useCallback(() => {
-    isUploadMode ? handleDiscardOrBack() : handleHeaderCancel();
+    if (isUploadMode) {
+      handleDiscardOrBack();
+    } else {
+      handleHeaderCancel();
+    }
   }, [isUploadMode, handleDiscardOrBack, handleHeaderCancel]);
 
   const handleAppearanceAwareTabChange = useCallback(

@@ -36,4 +36,6 @@ export const AvatarInitial = styled(MonoText)`
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   user-select: none;
+  line-height: 1;
+  padding: 1px;
 `;

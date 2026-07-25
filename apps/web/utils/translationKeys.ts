@@ -204,6 +204,16 @@ export const CREATOR_PROFILE = {
     message: "creatorProfile.deletePendingModal.message",
     confirm: "creatorProfile.deletePendingModal.confirm",
   },
+  currentPlan: {
+    label: "creatorProfile.currentPlan.label",
+    upgrade: "creatorProfile.currentPlan.upgrade",
+    changePlan: "creatorProfile.currentPlan.changePlan",
+    loading: "creatorProfile.currentPlan.loading",
+    fallbackName: "creatorProfile.currentPlan.fallbackName",
+    pricePerMonth: "creatorProfile.currentPlan.pricePerMonth",
+    maxFiles: "creatorProfile.currentPlan.maxFiles",
+    activeBadge: "creatorProfile.currentPlan.activeBadge",
+  },
 };
 
 export const DASHBOARD_USERS = {

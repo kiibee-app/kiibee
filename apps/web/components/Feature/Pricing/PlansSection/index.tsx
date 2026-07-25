@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import PlanCard from "./PlanCard";
 import { CardsWrapper, Section, SectionTitle } from "./styles";
@@ -10,6 +10,22 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+
+const PLANS_SECTION_ID = "plans";
+const PLANS_HASH = `#${PLANS_SECTION_ID}`;
+
+function subscribeToHash(onStoreChange: () => void) {
+  window.addEventListener("hashchange", onStoreChange);
+  return () => window.removeEventListener("hashchange", onStoreChange);
+}
+
+function getPlansHashSnapshot() {
+  return window.location.hash === PLANS_HASH;
+}
+
+function getPlansHashServerSnapshot() {
+  return false;
+}
 
 type ApiPlan = {
   id: string;
@@ -40,6 +56,11 @@ export default function PricingPlansSection({
 }: PricingPlansSectionProps) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
+  const isFocusedFromUpgrade = useSyncExternalStore(
+    subscribeToHash,
+    getPlansHashSnapshot,
+    getPlansHashServerSnapshot,
+  );
 
   const { data: plansData } = useGetAPI<PlansResponse>(API.subscription.plans);
   const { data: creatorPlanData } = useGetAPI<CreatorPlanResponse>(
@@ -61,40 +82,70 @@ export default function PricingPlansSection({
     });
   }, [apiPlans]);
 
+  useEffect(() => {
+    if (!isFocusedFromUpgrade) return;
+
+    const scrollToPlans = () => {
+      document
+        .getElementById(PLANS_SECTION_ID)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToPlans);
+    const timeout = window.setTimeout(scrollToPlans, 150);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
+  }, [isFocusedFromUpgrade]);
+
+  const title = <SectionTitle>{t(titleKey)}</SectionTitle>;
+
   return (
-    <Section>
-      <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-        <SectionTitle>{t(titleKey)}</SectionTitle>
-      </ScrollReveal>
+    <Section
+      id={PLANS_SECTION_ID}
+      $focused={isFocusedFromUpgrade}
+      aria-current={isFocusedFromUpgrade ? "true" : undefined}
+    >
+      {isFocusedFromUpgrade ? (
+        title
+      ) : (
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>{title}</ScrollReveal>
+      )}
       <CardsWrapper>
         {matchedPlans.map(({ planKey, apiPlan }, index) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
           const isCurrentPlan = !!apiPlan && apiPlan.id === activePlanId;
+
+          const card = (
+            <PlanCard
+              title={apiPlan?.name || t(`${baseKey}.title`)}
+              price={apiPlan ? `${apiPlan.price} kr/md` : t(`${baseKey}.price`)}
+              descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
+              features={
+                t(`${baseKey}.features`, { returnObjects: true }) as string[]
+              }
+              cta={
+                isCurrentPlan ? t("pricingPlans.active") : t("pricingPlans.cta")
+              }
+              highlight={planKey === planOrder[1]}
+              planKey={planKey}
+              planId={apiPlan?.id}
+              isCurrentPlan={isCurrentPlan}
+            />
+          );
+
+          if (isFocusedFromUpgrade) {
+            return <div key={planKey}>{card}</div>;
+          }
 
           return (
             <ScrollReveal
               key={planKey}
               delay={(index + 1) * LANDING_REVEAL.ctaCardStaggerDelay}
             >
-              <PlanCard
-                title={apiPlan?.name || t(`${baseKey}.title`)}
-                price={
-                  apiPlan ? `${apiPlan.price} kr/md` : t(`${baseKey}.price`)
-                }
-                descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
-                features={
-                  t(`${baseKey}.features`, { returnObjects: true }) as string[]
-                }
-                cta={
-                  isCurrentPlan
-                    ? t("pricingPlans.active")
-                    : t("pricingPlans.cta")
-                }
-                highlight={planKey === planOrder[1]}
-                planKey={planKey}
-                planId={apiPlan?.id}
-                isCurrentPlan={isCurrentPlan}
-              />
+              {card}
             </ScrollReveal>
           );
         })}
