@@ -13,8 +13,6 @@ export const PAYMENT_ICONS = [
   { src: masterCardSvg, alt: "Mastercard" },
   { src: jcbSvg, alt: "JCB" },
   { src: amexSvg, alt: "American Express" },
-  { src: unionPaySvg, alt: "UnionPay" },
-  { src: discoverSvg, alt: "Discover" },
   { src: dinerClubSvg, alt: "Diners Club" },
   { src: googlePaySvg, alt: "Google Pay" },
   { src: applePaySvg, alt: "Apple Pay" },
