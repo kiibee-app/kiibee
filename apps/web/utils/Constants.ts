@@ -412,6 +412,7 @@ export const HASH_RENT = "#rent";
 export const HASH_BUY = "#buy";
 export const PLANS_SECTION_ID = "plans";
 export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
+export const EVENT_HASHCHANGE = "hashchange";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";

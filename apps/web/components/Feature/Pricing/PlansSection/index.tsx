@@ -11,6 +11,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
+  EVENT_HASHCHANGE,
   HASH_PLANS,
   PLANS_SECTION_ID,
   SCROLL_TO_START_OPTIONS,
@@ -18,8 +19,8 @@ import {
 } from "@/utils/Constants";
 
 function subscribeToHash(onStoreChange: () => void) {
-  window.addEventListener("hashchange", onStoreChange);
-  return () => window.removeEventListener("hashchange", onStoreChange);
+  window.addEventListener(EVENT_HASHCHANGE, onStoreChange);
+  return () => window.removeEventListener(EVENT_HASHCHANGE, onStoreChange);
 }
 
 function getPlansHashSnapshot() {

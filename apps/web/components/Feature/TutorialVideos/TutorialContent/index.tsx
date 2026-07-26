@@ -15,7 +15,7 @@ import TutorialCard from "../TutorialCard";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { useRouter } from "next/navigation";
-import { SCROLL_TO_START_OPTIONS } from "@/utils/Constants";
+import { EVENT_HASHCHANGE, SCROLL_TO_START_OPTIONS } from "@/utils/Constants";
 import { useTutorialVideos } from "@/hooks/useTutorialVideos";
 import Skeleton from "@/components/UI/Skeleton";
 import GenericCard from "@/components/UI/GenericCard";
@@ -236,10 +236,10 @@ export default function TutorialContent() {
   useEffect(() => {
     scrollToSectionHash();
     const retry = window.setTimeout(scrollToSectionHash, 100);
-    window.addEventListener("hashchange", scrollToSectionHash);
+    window.addEventListener(EVENT_HASHCHANGE, scrollToSectionHash);
     return () => {
       window.clearTimeout(retry);
-      window.removeEventListener("hashchange", scrollToSectionHash);
+      window.removeEventListener(EVENT_HASHCHANGE, scrollToSectionHash);
     };
   }, []);
 
