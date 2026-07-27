@@ -10,6 +10,7 @@ import { logoutService } from './logout.service';
 
 export const deleteUserService = async (
   userId: string,
+  reason: string | undefined,
   jti?: string,
   exp?: number,
 ) => {
@@ -60,6 +61,7 @@ export const deleteUserService = async (
       await db.insert(creatorDeletionRequests).values({
         userId,
         status: STATUS.PENDING,
+        reason,
       });
 
       return success(
