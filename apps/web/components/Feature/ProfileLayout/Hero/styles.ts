@@ -47,19 +47,19 @@ export const CoverFrame = styled.div`
 export const CoverFrameFull = styled.div`
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 480px;
   overflow: hidden;
 
   ${({ theme }) => theme.media.desktopMd} {
-    height: 320px;
+    height: 420px;
   }
 
   ${({ theme }) => theme.media.desktopSm} {
-    height: 270px;
+    height: 350px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
-    height: 210px;
+    height: 260px;
   }
 `;
 
@@ -68,7 +68,7 @@ export const CoverImage = styled(Image)`
 `;
 
 export const CoverImageTop = styled(CoverImage)`
-  object-position: center top;
+  object-position: center 35%;
 `;
 
 export const AvatarImage = styled(Image)`
