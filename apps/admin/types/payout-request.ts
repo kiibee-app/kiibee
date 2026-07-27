@@ -62,5 +62,69 @@ export interface PayoutHistoryQuery {
   search?: string;
 }
 
-export type PayoutTab = "requests" | "creator-history" | "all-history";
+export type PayoutTab =
+  | "balances"
+  | "requests"
+  | "creator-history"
+  | "all-history";
 export type BadgeStatus = "approved" | "pending" | "rejected";
+
+export interface CreatorWalletPaymentMethod {
+  id: string;
+  label: string;
+  type: "bank" | "card";
+  isDefault: boolean;
+}
+
+export interface CreatorWalletItem {
+  creatorId: string;
+  email: string;
+  fullName: string | null;
+  walletBalance: string;
+  walletCurrency: string;
+  pendingRequestId: string | null;
+  hasPendingRequest: boolean;
+  paymentMethods: CreatorWalletPaymentMethod[];
+  hasPaymentMethod: boolean;
+}
+
+export interface CreatorWalletsResponse {
+  items: CreatorWalletItem[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
+}
+
+export interface AdminPayoutCalculateResponse {
+  amount: number;
+  walletBalance: number;
+  walletCurrency: string;
+  planPrice: number;
+  platformFeePercentage: number;
+  processingFeePercentage: number;
+  platformFee: number;
+  processingFee: number;
+  payableAmount: number;
+}
+
+export type AdminPayoutRequestPayload = {
+  creatorId: string;
+  paymentMethodId: string;
+  amount?: number;
+  processImmediately?: boolean;
+};
+
+export type AdminPayoutRequestResult = {
+  payoutId: string;
+  payoutRequestId: string;
+  requestCreated: boolean;
+  processed: boolean;
+  processError?: string;
+  amount?: number;
+  platformFee?: number;
+  processingFee?: number;
+  payableAmount?: number;
+};

@@ -8,7 +8,7 @@ import {
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
+import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const createPayoutService = async (
@@ -26,8 +26,11 @@ export const createPayoutService = async (
       return fail('Payment method ID is required', HttpStatus.BAD_REQUEST);
     }
 
-    if (amount <= 0) {
-      return fail('Amount must be greater than 0', HttpStatus.BAD_REQUEST);
+    if (amount <= MIN_PAYOUT_AMOUNT) {
+      return fail(
+        `Amount must be greater than ${MIN_PAYOUT_AMOUNT} DKK`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const [[creator], [creatorPlan], [wallet]] = await Promise.all([
@@ -92,7 +95,7 @@ export const createPayoutService = async (
     );
 
     if (payoutAmount < 1) {
-      return fail('Minimum payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
+      return fail('Minimum net payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
     }
 
     const payload = {

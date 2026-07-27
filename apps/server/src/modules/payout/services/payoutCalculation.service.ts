@@ -3,7 +3,7 @@ import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPlans, creatorWallets, plans } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
+import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { success } from 'src/utils/sendResponse';
 
 export const payoutCalculationService = async (creatorId: string) => {
@@ -43,9 +43,9 @@ export const payoutCalculationService = async (creatorId: string) => {
       );
     }
 
-    if (walletBalance <= 0) {
+    if (walletBalance <= MIN_PAYOUT_AMOUNT) {
       throw new HttpException(
-        'Insufficient wallet balance',
+        `Insufficient wallet balance. Amount must be greater than ${MIN_PAYOUT_AMOUNT} DKK`,
         HttpStatus.BAD_REQUEST,
       );
     }

@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { getSettlementHistoryService } from './services/getSettlementHistory.service';
 import { getPayoutStatsService } from './services/getPayoutStats.service';
-import { SettlementHistoryQueryDto } from './dto/payout.dto';
+import {
+  AdminPayoutRequestDto,
+  SettlementHistoryQueryDto,
+} from './dto/payout.dto';
 import { createPayoutService } from './services/createPayout.service';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
 import { payoutCalculationService } from './services/payoutCalculation.service';
@@ -11,6 +14,8 @@ import { getPayoutRequestByIdService } from './services/getPayoutRequestById.ser
 import { rejectPayoutRequestService } from './services/rejectPayoutRequest.service';
 import { getPayoutHistoryByCreatorIdService } from './services/getPayoutHistoryByCreator.service';
 import { getAllPayoutHistoryService } from './services/getAllPayoutHistory.service';
+import { getCreatorWalletsService } from './services/getCreatorWallets.service';
+import { createAdminPayoutRequestService } from './services/createAdminPayoutRequest.service';
 
 @Injectable()
 export class PayoutService {
@@ -71,5 +76,18 @@ export class PayoutService {
 
   async getAllPayoutHistoryService(query?: SettlementHistoryQueryDto) {
     return getAllPayoutHistoryService(query);
+  }
+
+  async getCreatorWalletsService(query?: SettlementHistoryQueryDto) {
+    return getCreatorWalletsService(query);
+  }
+
+  async createAdminPayoutRequestService(dto: AdminPayoutRequestDto) {
+    return createAdminPayoutRequestService(
+      dto.creatorId,
+      dto.paymentMethodId,
+      dto.amount,
+      dto.processImmediately ?? true,
+    );
   }
 }

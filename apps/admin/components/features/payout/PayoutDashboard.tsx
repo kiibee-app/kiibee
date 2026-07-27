@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PayoutRequestsList } from "../payout-requests/PayoutRequestsList";
 import { CreatorPagination } from "../all-creators/CreatorPagination";
+import { CreatorBalancesTab } from "./CreatorBalancesTab";
 import {
   useAllPayoutHistory,
   useExistingCreators,
@@ -407,7 +408,7 @@ function AllHistoryTab() {
 }
 
 export function PayoutDashboard() {
-  const [activeTab, setActiveTab] = useState<PayoutTab>("requests");
+  const [activeTab, setActiveTab] = useState<PayoutTab>("balances");
 
   return (
     <AllCreatorsLayout>
@@ -426,6 +427,7 @@ export function PayoutDashboard() {
         </AllCreatorsTabs>
       </AllCreatorsHeader>
 
+      {activeTab === "balances" ? <CreatorBalancesTab /> : null}
       {activeTab === "requests" ? <PayoutRequestsList /> : null}
       {activeTab === "creator-history" ? <CreatorHistoryTab /> : null}
       {activeTab === "all-history" ? <AllHistoryTab /> : null}

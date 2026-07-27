@@ -1,7 +1,11 @@
 import { toCreatorStatus } from "./status";
 import type { PayoutTab, BadgeStatus } from "../types/payout-request";
 
+/** Gross payout amount must be greater than this (DKK). */
+export const MIN_PAYOUT_AMOUNT = 8;
+
 export const payoutTabs: Array<{ key: PayoutTab; label: string }> = [
+  { key: "balances", label: "Creator Balances" },
   { key: "requests", label: "Payout Requests" },
   { key: "creator-history", label: "History by Creator" },
   { key: "all-history", label: "All History" },
