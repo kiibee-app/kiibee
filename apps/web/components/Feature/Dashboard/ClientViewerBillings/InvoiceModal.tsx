@@ -4,18 +4,17 @@ import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
-import { ShareIcon } from "@/assets/icons/shareIcon";
 import COLORS from "@repo/ui/colors";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { CARD_BRANDS } from "@/utils/Constants";
 import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useViewerBillingInvoice } from "@/hooks/useViewerBillingInvoice";
-import useShare from "@/hooks/useShare";
+import { useSendReceipt } from "@/hooks/useExport";
 import { useLocalTime } from "@/hooks/useLocalTime";
-import ShareModal from "@/components/UI/Modals/ShareModal";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
+import { toast } from "react-toastify";
 import {
   InvoiceCard,
   InvoiceContentMeta,
@@ -42,14 +41,32 @@ export default function InvoiceModal({
   onClose,
 }: InvoiceModalProps) {
   const { t } = useTranslation();
-  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const { formatTime } = useLocalTime();
   const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
+  const { sendReceipt, isPending: isSendingReceipt } = useSendReceipt();
 
   const { contentTitle, contentImage, creatorName } =
     invoice?.contentDetails ?? {};
   const paymentMethod = resolveCardBrand(invoice?.paymentMethod) ?? null;
   const cardNumber = invoice?.cardNumber ? invoice.cardNumber.slice(-3) : "";
+
+  const handleSendReceipt = async () => {
+    if (!invoice?.orderNumber) return;
+
+    try {
+      await sendReceipt(invoice.orderNumber);
+      toast.success(
+        t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.receiptSent),
+      );
+    } catch {
+      toast.error(
+        t(
+          DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
+            .receiptSendFailed,
+        ),
+      );
+    }
+  };
 
   return (
     <GenericModal
@@ -165,20 +182,20 @@ export default function InvoiceModal({
             </InvoiceInfo>
           )}
 
-          <InvoiceShareButton type="button" onClick={share}>
-            <ShareIcon width={16} height={16} />
+          <InvoiceShareButton
+            type="button"
+            onClick={handleSendReceipt}
+            disabled={isSendingReceipt}
+          >
             <MonoText $use="Body_Medium">
-              {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.share)}
+              {t(
+                DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
+                  .sendReceipt,
+              )}
             </MonoText>
           </InvoiceShareButton>
         </InvoiceCard>
       )}
-
-      <ShareModal
-        visible={showShareModal}
-        url={shareUrl}
-        onClose={() => setShowShareModal(false)}
-      />
     </GenericModal>
   );
 }
