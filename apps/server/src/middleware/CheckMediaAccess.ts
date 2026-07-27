@@ -20,7 +20,6 @@ import { ACCESS_TYPE, STATUS, ROLE } from 'src/utils/constant';
 export class CheckMediaAccessGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-
     const userId = request.user?.userId || request.user?.id;
 
     if (!userId) {
