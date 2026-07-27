@@ -26,6 +26,11 @@ export const BrandWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+
+  ${media.mobileXl} {
+    max-width: calc(100vw - 140px);
+  }
 `;
 
 export const BackButton = styled.button`
@@ -46,10 +51,6 @@ export const Brand = styled(Link)`
   text-decoration: none;
   color: inherit;
   min-width: 0;
-
-  ${media.mobileXl} {
-    max-width: calc(100vw - 92px);
-  }
 `;
 
 export const BrandAvatar = styled.span`
