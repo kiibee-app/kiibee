@@ -75,8 +75,8 @@ export default function TagsInput({
   );
 
   const removeTag = useCallback(
-    (tagToRemove: string) => {
-      onChange?.(tags.filter((tag) => tag !== tagToRemove).join(", "));
+    (indexToRemove: number) => {
+      onChange?.(tags.filter((_, index) => index !== indexToRemove).join(", "));
     },
     [tags, onChange],
   );
@@ -120,13 +120,13 @@ export default function TagsInput({
       onClick={() => inputRef.current?.focus()}
     >
       <TagsContainer>
-        {tags.map((tag) => (
-          <TagChip key={tag}>
+        {tags.map((tag, index) => (
+          <TagChip key={`${tag}-${index}`}>
             <TagText>{tag}</TagText>
             <TagRemoveButton
               onClick={(e) => {
                 e.stopPropagation();
-                removeTag(tag);
+                removeTag(index);
               }}
               disabled={disabled}
               type={BUTTON}
