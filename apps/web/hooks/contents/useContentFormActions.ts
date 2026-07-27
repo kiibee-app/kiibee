@@ -443,7 +443,6 @@ export function useContentFormActions({
 
   const validateContentPaymentAmounts = () => {
     if (formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD) {
-      // If there's an existing password hash and no new password entered, keep the existing one
       if (!formState.password.trim() && formState.hasPassword) {
         setFormErrors((prev) => {
           if (!prev.password) return prev;
@@ -624,7 +623,6 @@ export function useContentFormActions({
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
     if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
-      // If no new password was entered, only require one when there's no existing hash
       const hasExistingPassword = Boolean(selectedCollection.hasPassword);
       if (!collectionPasswords.trim() && !hasExistingPassword) {
         toast.error(t("authForm.errors.required"));

@@ -118,7 +118,6 @@ export type ContentFormState = {
   portraitThumbnail: string | null;
   admissionRequirement: string;
   password: string;
-  /** True when a password was previously saved (hashed). Never returns the actual value. */
   hasPassword?: boolean;
   passwordCount?: number;
   rentalAmount: string;
