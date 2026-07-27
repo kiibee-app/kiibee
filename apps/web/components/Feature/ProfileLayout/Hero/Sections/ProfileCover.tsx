@@ -35,7 +35,7 @@ export default function ProfileCoverSection() {
   const biography = about?.description ?? "";
 
   return (
-    <HeroWrapper data-creator-cover-text>
+    <HeroWrapper>
       <CoverFrame>
         <CoverImage
           src={coverImageUrl || coverImage}

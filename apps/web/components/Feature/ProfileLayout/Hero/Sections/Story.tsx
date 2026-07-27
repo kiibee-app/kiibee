@@ -31,7 +31,7 @@ export default function StorySection() {
   const biography = about?.description ?? "";
 
   return (
-    <HeroFrame data-creator-cover-text>
+    <HeroFrame>
       <HeroGrid>
         <HeroMedia>
           <Image
@@ -44,7 +44,7 @@ export default function StorySection() {
         </HeroMedia>
 
         <HeroContent>
-          <StoryPanel>
+          <StoryPanel data-creator-cover-text>
             <StoryMeta>
               <StoryUploadsText>
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>

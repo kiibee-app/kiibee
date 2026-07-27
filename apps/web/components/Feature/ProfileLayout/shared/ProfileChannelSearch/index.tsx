@@ -6,6 +6,7 @@ import { useTheme } from "styled-components";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   SearchButton,
@@ -14,7 +15,13 @@ import {
 } from "@/components/UI/GenericTabs/styles";
 import { NavbarSearchArea } from "./styles";
 
-export default function ProfileChannelSearch() {
+type ProfileChannelSearchProps = {
+  textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
+};
+
+export default function ProfileChannelSearch({
+  textTone = TONE_DARK,
+}: ProfileChannelSearchProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -31,6 +38,10 @@ export default function ProfileChannelSearch() {
   const placeholder = isCollectionsPage
     ? t(CREATE_PROFILE_HOME.searchCollectionsPlaceholder)
     : t(CREATE_PROFILE_HOME.searchPlaceholder);
+  const closedIconColor =
+    textTone === TONE_LIGHT
+      ? theme.colors.primary.WHITE_90
+      : theme.colors.primary.BLACK;
 
   const handleSearchToggle = useCallback(() => {
     if (hasSearchText) return;
@@ -58,11 +69,7 @@ export default function ProfileChannelSearch() {
         <SearchIcon
           width={18}
           height={18}
-          color={
-            isSearchOpen
-              ? theme.colors.neutral.GRAY_400
-              : theme.colors.primary.BLACK
-          }
+          color={isSearchOpen ? theme.colors.neutral.GRAY_400 : closedIconColor}
         />
       </SearchButton>
 

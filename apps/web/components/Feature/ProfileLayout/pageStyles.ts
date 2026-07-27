@@ -118,6 +118,10 @@ export const BrandName = styled.span<{
       ? theme.colors.primary.WHITE_90
       : theme.colors.primary.BLACK};
 
+  & * {
+    color: inherit;
+  }
+
   ${media.mobileXl} {
     max-width: 100%;
   }
