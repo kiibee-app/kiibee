@@ -30,6 +30,7 @@ import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
   validatePasswordInput,
+  getPasswordCount,
 } from "@/utils/admissionRequirements";
 import { AccessDurationValue } from "@/utils/common";
 import {
@@ -976,6 +977,7 @@ export function useContentFormActions({
                     : "free",
           password: "",
           hasPassword: Boolean(fullContent.passwordHash),
+          passwordCount: getPasswordCount(fullContent.passwordHash),
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",

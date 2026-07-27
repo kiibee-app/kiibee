@@ -76,6 +76,7 @@ interface AdmissionRequirementsProps {
   onValidationChange?: (hasError: boolean) => void;
   /** True when a password is already stored (hashed). Used to show •••••• indicator. */
   hasPassword?: boolean;
+  passwordCount?: number;
 }
 
 function AdmissionRequirements({
@@ -96,6 +97,7 @@ function AdmissionRequirements({
   showPasswordMeta = false,
   onValidationChange,
   hasPassword = false,
+  passwordCount = 1,
 }: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -269,7 +271,9 @@ function AdmissionRequirements({
           {/* Show masked indicator when a password is already set and no new one has been typed */}
           {hasPassword && !passwords && !typedPasswords ? (
             <TagsInput
-              value="••••••"
+              value={Array(passwordCount || 1)
+                .fill("••••••")
+                .join(", ")}
               onChange={() => {}}
               onInputChange={(typed) => handleTypedPasswordsChange(typed)}
               placeholder={t(

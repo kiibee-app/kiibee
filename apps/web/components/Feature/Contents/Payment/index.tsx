@@ -243,7 +243,9 @@ export default function Payment() {
               !formState.password &&
               !typedPassword ? (
                 <TagsInput
-                  value="••••••"
+                  value={Array(formState.passwordCount || 1)
+                    .fill("••••••")
+                    .join(", ")}
                   onChange={() => {}}
                   onInputChange={handleTypedPasswordChange}
                   placeholder={t("contents.payment.password.placeholder")}

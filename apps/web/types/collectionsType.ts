@@ -24,6 +24,7 @@ export type CollectionRow = {
   rentPrice?: number | null;
   rentDuration?: string | null;
   hasPassword?: boolean;
+  passwordCount?: number;
 };
 
 export type CollectionContentType = ContentType;

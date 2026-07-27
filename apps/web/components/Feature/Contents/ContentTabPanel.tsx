@@ -244,6 +244,7 @@ export default function ContentTabPanel({
         showPaymentOption={Boolean(selectedCollection)}
         onValidationChange={onPasswordValidationChange}
         hasPassword={collectionHasPassword}
+        passwordCount={selectedCollection?.passwordCount}
       />
     );
   }
