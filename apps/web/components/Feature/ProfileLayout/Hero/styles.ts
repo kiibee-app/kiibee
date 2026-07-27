@@ -25,17 +25,21 @@ export const CoverFrame = styled.div`
   position: relative;
   width: min(100%, 1380px);
   margin: 0 auto;
-  height: 265px;
+  height: 360px;
   overflow: hidden;
   border-radius: 22px;
 
+  ${({ theme }) => theme.media.desktopMd} {
+    height: 310px;
+  }
+
   ${({ theme }) => theme.media.desktopSm} {
-    height: 220px;
+    height: 260px;
     border-radius: 18px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
-    height: 170px;
+    height: 190px;
     border-radius: 14px;
   }
 `;
@@ -43,10 +47,15 @@ export const CoverFrame = styled.div`
 export const CoverFrameFull = styled.div`
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 380px;
   overflow: hidden;
+
+  ${({ theme }) => theme.media.desktopMd} {
+    height: 320px;
+  }
+
   ${({ theme }) => theme.media.desktopSm} {
-    height: 250px;
+    height: 270px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
