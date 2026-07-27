@@ -28,6 +28,7 @@ type SharedProps = {
   options: OptionItem[];
   placeholder?: string;
   showSelectedIndicator?: boolean;
+  expandLayoutOnOpen?: boolean;
 };
 
 type SingleProps = SharedProps & {
@@ -49,7 +50,13 @@ type MultiProps = SharedProps & {
 type Props = SingleProps | MultiProps;
 
 export default function DropdownField(props: Props) {
-  const { label, options, placeholder, showSelectedIndicator = false } = props;
+  const {
+    label,
+    options,
+    placeholder,
+    showSelectedIndicator = false,
+    expandLayoutOnOpen = false,
+  } = props;
   const multi = props.multi === true;
   const onChange = props.onChange;
   const value = props.value;
@@ -212,6 +219,7 @@ export default function DropdownField(props: Props) {
 
         {open && (
           <Menu
+            $inFlow={expandLayoutOnOpen}
             role="listbox"
             id={listboxId}
             data-lenis-prevent
