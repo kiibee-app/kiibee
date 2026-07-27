@@ -2258,7 +2258,8 @@
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billedupload mislykkedes",
-    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen."
+    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
+    "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
   },
   "sidebar": {
     "users": "Brugere",
