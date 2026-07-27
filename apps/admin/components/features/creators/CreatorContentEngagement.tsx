@@ -1,10 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Film } from "lucide-react";
-import { useContentEngagement } from "../../../hooks/api";
+import { ArrowLeft, Film, Play } from "lucide-react";
+import {
+  useContentEngagement,
+  useContentMediaPreview,
+} from "../../../hooks/api";
 import { formatRequestedAt } from "../../../utils/date";
+import {
+  formatBuyPrice,
+  formatRentPrice,
+} from "../../../utils/creatorUploadsConfig";
+import {
+  creatorContentEngagementLabels,
+  creatorContentEngagementLayout,
+  creatorContentEngagementValues,
+} from "../../../utils/contentConfig";
+import {
+  canPreviewContent,
+  type ContentFormat,
+} from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
+import { ContentPreviewModal } from "./ContentPreviewModal";
+import { HeroActions, PlayButton, PriceMeta } from "./Creators.styles";
 import {
   BackLink,
   ContentThumb,
@@ -49,16 +67,29 @@ export function CreatorContentEngagement({
   const [activeTab, setActiveTab] = useState<EngagementTab>(
     ENGAGEMENT_TAB.PURCHASES,
   );
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewFormat, setPreviewFormat] = useState<ContentFormat | null>(
+    null,
+  );
+  const [previewError, setPreviewError] = useState<string | null>(null);
+
   const engagementQuery = useContentEngagement(contentId);
+  const mediaPreview = useContentMediaPreview();
 
   if (engagementQuery.isLoading) {
-    return <LoadingState>Loading content details…</LoadingState>;
+    return (
+      <LoadingState>
+        {creatorContentEngagementLabels.loadingDetails}
+      </LoadingState>
+    );
   }
 
   if (engagementQuery.isError || !engagementQuery.data) {
     return (
       <ViewersState>
-        {engagementQuery.error?.message || "Failed to load content details."}
+        {engagementQuery.error?.message ||
+          creatorContentEngagementLabels.loadDetailsFailed}
       </ViewersState>
     );
   }
@@ -66,15 +97,63 @@ export function CreatorContentEngagement({
   const { content, purchases, rentals, downloads, stats } =
     engagementQuery.data;
 
+  const showPricing =
+    content.accessType === creatorContentEngagementValues.paidAccessType;
+  const canPlay = canPreviewContent({
+    contentType: content.contentType,
+    contentTypeId: content.contentTypeId,
+    fileKey: content.fileKey,
+    contentUrl: content.contentUrl,
+  });
+
+  const handlePlay = async () => {
+    setPreviewOpen(true);
+    setPreviewError(null);
+    setPreviewUrl(null);
+    setPreviewFormat(null);
+
+    try {
+      const result = await mediaPreview.mutateAsync({
+        contentType: content.contentType,
+        contentTypeId: content.contentTypeId,
+        fileKey: content.fileKey,
+        contentUrl: content.contentUrl,
+      });
+      setPreviewUrl(result.url);
+      setPreviewFormat(result.format);
+    } catch (error) {
+      setPreviewError(
+        error instanceof Error
+          ? error.message
+          : creatorContentEngagementLabels.previewLoadFailed,
+      );
+    }
+  };
+
+  const handleClosePreview = () => {
+    setPreviewOpen(false);
+    setPreviewUrl(null);
+    setPreviewFormat(null);
+    setPreviewError(null);
+  };
+
   return (
     <DetailsLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
         <ArrowLeft size={16} />
-        Back to creator
+        {creatorContentEngagementLabels.backToCreator}
       </BackLink>
 
       <ProfileHero>
-        <ContentThumb style={{ width: 120, borderRadius: 12, flexShrink: 0 }}>
+        <ContentThumb
+          style={{
+            width: creatorContentEngagementLayout.heroThumbWidth,
+            height: creatorContentEngagementLayout.heroThumbHeight,
+            borderRadius: creatorContentEngagementLayout.heroThumbRadius,
+            flexShrink: 0,
+            overflow: "hidden",
+          }}
+        >
           {content.thumbnailUrl ? (
             <ContentThumbImage src={content.thumbnailUrl} alt={content.title} />
           ) : (
@@ -86,53 +165,77 @@ export function CreatorContentEngagement({
         <ProfileInfo>
           <ProfileName>{content.title}</ProfileName>
           <ProfileEmail>
-            {content.contentType || "Content"} · {content.accessType} ·{" "}
-            {content.isPublished ? "Published" : "Draft"}
+            {content.contentType ||
+              creatorContentEngagementLabels.fallbackContentType}{" "}
+            · {content.accessType} ·{" "}
+            {content.isPublished
+              ? creatorContentEngagementLabels.published
+              : creatorContentEngagementLabels.draft}
           </ProfileEmail>
+          {showPricing ? (
+            <PriceMeta>
+              {formatBuyPrice(content.buyPrice)} ·{" "}
+              {formatRentPrice(content.rentPrice)}
+            </PriceMeta>
+          ) : null}
           {content.publishedAt || content.createdAt ? (
             <ProfileEmail>
               {formatRequestedAt(content.publishedAt || content.createdAt)}
             </ProfileEmail>
+          ) : null}
+          {canPlay ? (
+            <HeroActions>
+              <PlayButton
+                type="button"
+                onClick={handlePlay}
+                disabled={mediaPreview.isPending}
+              >
+                <Play size={14} />
+                {mediaPreview.isPending
+                  ? creatorContentEngagementLabels.loadingPreview
+                  : creatorContentEngagementLabels.playContent}
+              </PlayButton>
+            </HeroActions>
           ) : null}
         </ProfileInfo>
       </ProfileHero>
 
       <StatsRow>
         <StatCard>
-          <StatLabel>Purchased</StatLabel>
+          <StatLabel>{creatorContentEngagementLabels.purchased}</StatLabel>
           <StatValue>{stats.purchaseCount}</StatValue>
         </StatCard>
         <StatCard>
-          <StatLabel>Rented</StatLabel>
+          <StatLabel>{creatorContentEngagementLabels.rented}</StatLabel>
           <StatValue>{stats.rentalCount}</StatValue>
         </StatCard>
         <StatCard>
-          <StatLabel>Downloads</StatLabel>
+          <StatLabel>{creatorContentEngagementLabels.downloads}</StatLabel>
           <StatValue>{stats.downloadCount}</StatValue>
         </StatCard>
       </StatsRow>
 
-      <DetailsTabs aria-label="Content engagement sections">
+      <DetailsTabs aria-label={creatorContentEngagementLabels.tabsAriaLabel}>
         <DetailsTabButton
           type="button"
           $active={activeTab === ENGAGEMENT_TAB.PURCHASES}
           onClick={() => setActiveTab(ENGAGEMENT_TAB.PURCHASES)}
         >
-          Purchased ({stats.purchaseCount})
+          {creatorContentEngagementLabels.purchasedTab} ({stats.purchaseCount})
         </DetailsTabButton>
         <DetailsTabButton
           type="button"
           $active={activeTab === ENGAGEMENT_TAB.RENTALS}
           onClick={() => setActiveTab(ENGAGEMENT_TAB.RENTALS)}
         >
-          Rented ({stats.rentalCount})
+          {creatorContentEngagementLabels.rentedTab} ({stats.rentalCount})
         </DetailsTabButton>
         <DetailsTabButton
           type="button"
           $active={activeTab === ENGAGEMENT_TAB.DOWNLOADS}
           onClick={() => setActiveTab(ENGAGEMENT_TAB.DOWNLOADS)}
         >
-          Downloaded ({stats.downloadCount})
+          {creatorContentEngagementLabels.downloadedTab} ({stats.downloadCount})
         </DetailsTabButton>
       </DetailsTabs>
 
@@ -140,34 +243,44 @@ export function CreatorContentEngagement({
         <DetailsSectionHeader>
           <DetailsSectionTitle>
             {activeTab === ENGAGEMENT_TAB.PURCHASES
-              ? "Who Purchased"
+              ? creatorContentEngagementLabels.whoPurchased
               : activeTab === ENGAGEMENT_TAB.RENTALS
-                ? "Who Rented"
-                : "Who Downloaded"}
+                ? creatorContentEngagementLabels.whoRented
+                : creatorContentEngagementLabels.whoDownloaded}
           </DetailsSectionTitle>
         </DetailsSectionHeader>
         <DetailsSectionBody>
           {activeTab === ENGAGEMENT_TAB.PURCHASES ? (
             <EngagementUserList
               users={purchases}
-              emptyMessage="No purchases yet."
+              emptyMessage={creatorContentEngagementLabels.noPurchases}
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.RENTALS ? (
             <EngagementUserList
               users={rentals}
-              emptyMessage="No rentals yet."
+              emptyMessage={creatorContentEngagementLabels.noRentals}
               showExpiry
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.DOWNLOADS ? (
             <EngagementUserList
               users={downloads}
-              emptyMessage="No downloads yet."
+              emptyMessage={creatorContentEngagementLabels.noDownloads}
             />
           ) : null}
         </DetailsSectionBody>
       </DetailsSection>
+
+      <ContentPreviewModal
+        open={previewOpen}
+        onClose={handleClosePreview}
+        title={content.title}
+        url={previewUrl}
+        format={previewFormat}
+        isLoading={mediaPreview.isPending}
+        error={previewError}
+      />
     </DetailsLayout>
   );
 }

@@ -34,11 +34,14 @@ export type ContentEngagement = {
     description: string | null;
     thumbnailUrl: string | null;
     contentType: string | null;
+    contentTypeId?: string | null;
     accessType: string | null;
     visibility: string | null;
     isPublished: boolean;
     buyPrice: string | number | null;
     rentPrice: string | number | null;
+    fileKey?: string | null;
+    contentUrl?: string | null;
     creatorId: string;
     createdAt: string;
     publishedAt: string | null;

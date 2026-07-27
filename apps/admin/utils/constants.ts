@@ -22,6 +22,8 @@ export const API_ENDPOINTS = {
     `/content/admin/content-engagement/${contentId}`,
   CREATOR_APPEARANCE: (creatorId: string) =>
     `/content/admin/appearance/${creatorId}`,
+  MEDIA_VIDEO_STREAM: "/media/videos/stream",
+  MEDIA_SIGNED_URL: "/media/signed-url",
   MEDIA_IMAGES_UPLOAD: "/media/images/upload",
   VIEWER_SALES: (viewerId: string) =>
     `/order/admin/billing-history/${viewerId}`,
