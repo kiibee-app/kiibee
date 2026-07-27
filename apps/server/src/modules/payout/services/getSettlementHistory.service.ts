@@ -84,6 +84,10 @@ export async function getSettlementHistoryService(
 
     let settlements = [...paidRows, ...unpaidRows];
 
+    settlements.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
+
     if (query?.status) {
       const filterStatus =
         query.status.charAt(0).toUpperCase() + query.status.slice(1);
