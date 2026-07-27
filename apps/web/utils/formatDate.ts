@@ -1,3 +1,11 @@
+export const DEFAULT_OPTIONS: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
+
 export function formatDate(iso?: string) {
   if (!iso) return "";
 
