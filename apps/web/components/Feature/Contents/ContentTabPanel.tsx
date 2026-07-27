@@ -226,6 +226,7 @@ export default function ContentTabPanel({
   if (activeTab === SETTINGS) {
     return (
       <AdmissionRequirements
+        contentType={collectionContents?.[0]?.contentType}
         accessType={collectionAccessType}
         onChangeAccessType={setCollectionAccessType}
         passwords={collectionPasswords}
@@ -301,6 +302,11 @@ export default function ContentTabPanel({
     );
   }
   if (activeTab === ADD_CONTENT_TABS.METADATA) return <MetaData />;
-  if (activeTab === ADD_CONTENT_TABS.PAYMENT) return <Payment />;
+  if (activeTab === ADD_CONTENT_TABS.PAYMENT) {
+    const editingContent = collectionContents?.find(
+      (c) => c.id === editingContentId,
+    );
+    return <Payment contentType={editingContent?.contentType} />;
+  }
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }

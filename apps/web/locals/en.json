@@ -1851,7 +1851,8 @@
     },
     "admissionRequirements": {
       "title": "Admission requirements",
-      "description": "Consider what type of access your [contentType] should have",
+      "description": "Consider what type of access your {{contentType}} should have",
+      "fallbackContentType": "content",
       "options": {
         "free": "Free",
         "payment": "Payment",
@@ -2104,7 +2105,8 @@
     "payment": {
       "admission": {
         "title": "Admission requirements",
-        "description": "Consider what type of access your [contentType] should have",
+        "description": "Consider what type of access your {{contentType}} should have",
+        "fallbackContentType": "content",
         "options": {
           "free": "Free",
           "payment": "Payment",
