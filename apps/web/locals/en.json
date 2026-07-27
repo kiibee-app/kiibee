@@ -1697,7 +1697,7 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",
+      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note. Transferring your balance may take up to 5 business days.",
       "balance": "Balance",
       "purchase": "Purchase",
       "rent": "Rent",
@@ -1716,6 +1716,7 @@
         "processingFee": "Transaction fee ({{percent}})",
         "platformFee": "Kiibee payment ({{percent}})",
         "total": "Total payout amount",
+        "transferNote": "Transferring your balance may take up to 5 business days.",
         "success": "Payout request submitted successfully.",
         "calculateError": "Unable to calculate payout. Please try again.",
         "requestError": "Unable to submit payout request. Please try again.",
