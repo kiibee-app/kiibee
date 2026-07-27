@@ -22,6 +22,23 @@ export const Page = styled.main`
   display: flow-root;
 `;
 
+export const BrandWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const BackButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+`;
+
 export const Brand = styled(Link)`
   display: inline-flex;
   align-items: center;
