@@ -31,6 +31,7 @@ export default function Footer() {
           <CTA>
             <JoinButton
               asAnchor
+              data-creator-join-button
               href={PATHS.AUTH_SIGNUP_CREATOR}
               variant={VARIANT.PRIMARY}
             >

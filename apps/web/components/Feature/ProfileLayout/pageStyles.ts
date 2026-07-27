@@ -4,6 +4,49 @@ import Image from "next/image";
 import { media } from "@repo/ui/breakpoints";
 import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 
+type CreatorButtonColorProps = {
+  $buttonColor?: string | null;
+  $buttonTextColor?: string;
+};
+
+const creatorButtonColorCss = css<CreatorButtonColorProps>`
+  ${({ $buttonColor, $buttonTextColor }) =>
+    $buttonColor &&
+    css`
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        ) {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        )
+        * {
+        color: inherit;
+      }
+
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        ):not([type="submit"]):hover {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+    `}
+`;
+
 export const avatarFrameCss = css`
   position: relative;
   width: 44px;
@@ -14,11 +57,11 @@ export const avatarFrameCss = css`
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
-export const Page = styled.main<{
-  $buttonColor?: string | null;
-  $buttonTextColor?: string;
-  $textColor?: string | null;
-}>`
+export const Page = styled.main<
+  CreatorButtonColorProps & {
+    $textColor?: string | null;
+  }
+>`
   min-height: 100vh;
   width: 100%;
   overflow-x: clip;
@@ -34,21 +77,7 @@ export const Page = styled.main<{
       }
     `}
 
-  ${({ $buttonColor, $buttonTextColor }) =>
-    $buttonColor &&
-    css`
-      [data-variant="primary"] {
-        background: ${$buttonColor};
-        border-color: ${$buttonColor};
-        color: ${$buttonTextColor};
-      }
-
-      [data-variant="primary"]:not([type="submit"]):hover {
-        background: ${$buttonColor};
-        border-color: ${$buttonColor};
-        color: ${$buttonTextColor};
-      }
-    `}
+  ${creatorButtonColorCss}
 `;
 
 export const Brand = styled(Link)`
