@@ -247,19 +247,38 @@ export default function Payment({ contentType }: PaymentProps = {}) {
 
           {isSetPassword && (
             <ControlWrap>
-              <TagsInput
-                value={formState.password}
-                onChange={handlePasswordChange}
-                onInputChange={handleTypedPasswordChange}
-                placeholder={t("contents.payment.password.placeholder")}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                hasError={passwordHasError}
-                separateOnSpace={true}
-              />
-
-              {passwordHasError && passwordErrorMessage && (
-                <ErrorText>{passwordErrorMessage}</ErrorText>
+              {formState.hasPassword &&
+              !formState.password &&
+              !typedPassword ? (
+                <TagsInput
+                  value={Array(formState.passwordCount || 1)
+                    .fill("••••••")
+                    .join(", ")}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={false}
+                  separateOnSpace={true}
+                />
+              ) : (
+                <TagsInput
+                  value={formState.password}
+                  onChange={handlePasswordChange}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={passwordHasError}
+                  separateOnSpace={true}
+                />
               )}
+
+              {(!formState.hasPassword ||
+                formState.password ||
+                typedPassword) &&
+                passwordHasError &&
+                passwordErrorMessage && (
+                  <ErrorText>{passwordErrorMessage}</ErrorText>
+                )}
 
               <HelperFormRow>
                 <HelperText>{t("contents.payment.password.helper")}</HelperText>
