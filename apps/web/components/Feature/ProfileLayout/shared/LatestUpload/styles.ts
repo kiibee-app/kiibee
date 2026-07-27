@@ -131,17 +131,22 @@ export const TextSection = styled.div`
 `;
 
 export const Title = styled(MonoText).attrs({
-  $use: "Body_Medium",
+  $use: "H5_Medium",
 })`
   margin: 0;
   align-self: stretch;
 `;
 
 export const Paragraph = styled(MonoText).attrs({
-  $use: "Body_Small",
+  $use: "Body_Medium",
 })`
   margin: 0;
   align-self: stretch;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 `;
 
 export const ActionButtons = styled.div`
