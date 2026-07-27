@@ -172,6 +172,7 @@ export const ProfileButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
+  position: relative;
 
   &:focus,
   &:focus-visible {

@@ -15,6 +15,11 @@ export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 export const MAX_COUPON_PERCENTAGE_DISCOUNT = 50;
 export const COUPON_CODES_LIMIT = 100;
 export const QUERY_REFETCH_TYPE_ACTIVE = "active";
+export const QUERY_REFETCH_ON_MOUNT_ALWAYS = "always";
+export const FRESH_QUERY_OPTIONS = {
+  refetchOnMount: QUERY_REFETCH_ON_MOUNT_ALWAYS,
+  refetchOnWindowFocus: true,
+} as const;
 export const PAGE_SIZE_OPTIONS = [10, 20, 50];
 export const DA = "da";
 export const EN = "en";

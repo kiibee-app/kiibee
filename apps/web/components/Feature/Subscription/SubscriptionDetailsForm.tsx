@@ -45,7 +45,6 @@ export default function SubscriptionDetailsForm() {
     isPasswordValid,
     passwordsMatch,
     validationError,
-    isCreatorInviteFlow,
     isPostPaymentSetup,
   } = useSubscriptionContext();
 

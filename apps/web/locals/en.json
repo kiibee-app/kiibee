@@ -1048,7 +1048,17 @@
     "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
-    "profilePhotoAlt": "Profile photo"
+    "profilePhotoAlt": "Profile photo",
+    "currentPlan": {
+      "label": "Current plan",
+      "upgrade": "Upgrade",
+      "changePlan": "Change plan",
+      "loading": "Loading…",
+      "fallbackName": "Free",
+      "pricePerMonth": "{{price}} kr/md",
+      "maxFiles": "Up to {{count}} files",
+      "activeBadge": "Active"
+    }
   },
   "singleContent": {
     "purchaseSuccessModal": {

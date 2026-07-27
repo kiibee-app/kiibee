@@ -16,6 +16,8 @@ import {
   InlineLabel,
   HeaderActions,
   NameBlock,
+  ProfileBody,
+  ProfileMain,
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
@@ -23,6 +25,7 @@ import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
 import DeleteSection from "./DeleteSection";
+import CurrentPlanCard from "./CurrentPlanCard";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
@@ -160,53 +163,59 @@ export default function CreatorProfile() {
       </HeaderRow>
 
       <Card>
-        <Row>
-          <ImageUploader
-            image={avatarImage}
-            fallback={getDisplayFirstLetter(displayName, user)}
-            alt={t("creatorProfile.profilePhotoAlt")}
-            uploadTitle={t("creatorProfile.uploadPhotoTitle")}
-            editTitle={t("creatorProfile.editPhotoTitle")}
-            onChange={setAvatarImage}
-          />
-
-          <NameBlock>
-            <MonoText $use="Heading3">{displayName}</MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {form.email}
-            </MonoText>
-          </NameBlock>
-        </Row>
-
-        <Fields>
-          {fields.map((field, index) => {
-            const fieldKey = field.key as keyof ProfileForm;
-            const errorMessage = profileFieldErrors[fieldKey];
-            return (
-              <InputField
-                key={field.key}
-                label={field.label}
-                value={form[fieldKey]}
-                onChange={onChange(fieldKey)}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                labelMarginTop={index ? "16px" : undefined}
-                hasError={!!errorMessage}
-                errorMessage={errorMessage}
-                max={field.max}
+        <ProfileBody>
+          <ProfileMain>
+            <Row>
+              <ImageUploader
+                image={avatarImage}
+                fallback={getDisplayFirstLetter(displayName, user)}
+                alt={t("creatorProfile.profilePhotoAlt")}
+                uploadTitle={t("creatorProfile.uploadPhotoTitle")}
+                editTitle={t("creatorProfile.editPhotoTitle")}
+                onChange={setAvatarImage}
               />
-            );
-          })}
 
-          <Action>
-            <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
-            <GenericButton
-              variant={VARIANT.PRIMARY}
-              onClick={() => setShowPassword(true)}
-            >
-              {t(CREATOR_PROFILE.changePassword)}
-            </GenericButton>
-          </Action>
-        </Fields>
+              <NameBlock>
+                <MonoText $use="Heading3">{displayName}</MonoText>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                  {form.email}
+                </MonoText>
+              </NameBlock>
+            </Row>
+
+            <Fields>
+              {fields.map((field, index) => {
+                const fieldKey = field.key as keyof ProfileForm;
+                const errorMessage = profileFieldErrors[fieldKey];
+                return (
+                  <InputField
+                    key={field.key}
+                    label={field.label}
+                    value={form[fieldKey]}
+                    onChange={onChange(fieldKey)}
+                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                    labelMarginTop={index ? "16px" : undefined}
+                    hasError={!!errorMessage}
+                    errorMessage={errorMessage}
+                    max={field.max}
+                  />
+                );
+              })}
+
+              <Action>
+                <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
+                <GenericButton
+                  variant={VARIANT.PRIMARY}
+                  onClick={() => setShowPassword(true)}
+                >
+                  {t(CREATOR_PROFILE.changePassword)}
+                </GenericButton>
+              </Action>
+            </Fields>
+          </ProfileMain>
+
+          <CurrentPlanCard />
+        </ProfileBody>
       </Card>
       <CompanySection
         form={form}

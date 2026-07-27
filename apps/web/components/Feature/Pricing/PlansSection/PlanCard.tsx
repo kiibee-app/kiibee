@@ -23,6 +23,7 @@ import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import type { PlanKey } from "@/utils/pricingPlanKeys";
 import { useTranslation } from "react-i18next";
 import { FREE_LABEL, VARIANT } from "@/utils/Constants";
+import { useQueryClient } from "@tanstack/react-query";
 
 type CreateSubscriptionResponse = {
   success: boolean;
@@ -62,6 +63,7 @@ export default function PlanCard({
 }: PlanCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
   const { getErrorMessage } = useApiErrorMessage();
@@ -71,6 +73,11 @@ export default function PlanCard({
     CreateSubscriptionResponse,
     CreateSubscriptionPayload
   >(API.subscription.create);
+
+  const invalidateCreatorPlan = () =>
+    queryClient.invalidateQueries({
+      queryKey: [API.subscription.creatorPlan],
+    });
 
   const handlePlanClick = async () => {
     if (!isLoggedIn) {
@@ -91,12 +98,14 @@ export default function PlanCard({
       });
 
       if (response.type?.toLowerCase() === FREE_LABEL) {
+        await invalidateCreatorPlan();
         toast.success(t("pricingPlans.subscriptionActivated"));
         return;
       }
 
       const paymentUrl = response?.data?.paymentWindowUrl;
       if (paymentUrl) {
+        await invalidateCreatorPlan();
         window.location.assign(paymentUrl);
       }
     } catch (error) {

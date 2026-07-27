@@ -1048,7 +1048,17 @@
     "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
-    "profilePhotoAlt": "Profilfoto"
+    "profilePhotoAlt": "Profilfoto",
+    "currentPlan": {
+      "label": "Nuværende plan",
+      "upgrade": "Opgrader",
+      "changePlan": "Skift plan",
+      "loading": "Indlæser…",
+      "fallbackName": "Gratis",
+      "pricePerMonth": "{{price}} kr/md",
+      "maxFiles": "Op til {{count}} filer",
+      "activeBadge": "Aktiv"
+    }
   },
   "singleContent": {
     "purchaseSuccessModal": {
