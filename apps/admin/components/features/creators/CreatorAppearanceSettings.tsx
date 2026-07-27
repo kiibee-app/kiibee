@@ -24,6 +24,12 @@ import {
   MAX_RECEIPT_LENGTH,
   TEXT_COLOR_OPTIONS,
 } from "../../../utils/appearance";
+import {
+  creatorAppearanceLabels,
+  getCreatorAppearanceSubtitle,
+  getDescriptionMaxError,
+} from "../../../utils/creatorAppearanceLabels";
+import { CREATOR_APPEARANCE_SECTIONS } from "../../../utils/creatorAppearanceSections";
 import { getExistingCreatorDisplayName } from "../../../utils/existingCreatorsConfig";
 import {
   BackLink,
@@ -84,33 +90,6 @@ type CreatorAppearanceSettingsProps = {
   creatorId: string;
 };
 
-const SECTION_META = [
-  {
-    title: "Layout",
-    hint: "Choose which channel layout viewers see on the public profile.",
-  },
-  {
-    title: "Colors",
-    hint: "Text and button colors for the channel.",
-  },
-  {
-    title: "Logo",
-    hint: "Use channel name text or upload a logo image.",
-  },
-  {
-    title: "Description",
-    hint: "Shown on the creator channel profile.",
-  },
-  {
-    title: "Cover images",
-    hint: "Replace desktop or mobile covers if the current images look wrong.",
-  },
-  {
-    title: "Receipt",
-    hint: "Receipt message and support contact email.",
-  },
-] as const;
-
 function SectionHeader({
   index,
   title,
@@ -134,6 +113,7 @@ function SectionHeader({
 export function CreatorAppearanceSettings({
   creatorId,
 }: CreatorAppearanceSettingsProps) {
+  const labels = creatorAppearanceLabels;
   const creatorQuery = useCreator(creatorId);
   const appearanceQuery = useCreatorAppearance(creatorId);
   const updateMutation = useUpdateCreatorAppearance(creatorId);
@@ -164,7 +144,7 @@ export function CreatorAppearanceSettings({
 
   const displayName = creatorQuery.data
     ? getExistingCreatorDisplayName(creatorQuery.data)
-    : "Creator";
+    : labels.fallbackCreatorName;
 
   const updateField = <K extends keyof AppearanceFormValues>(
     key: K,
@@ -181,7 +161,7 @@ export function CreatorAppearanceSettings({
     if (!file) return;
     if (!file.type.startsWith("image/")) {
       setStatusTone("error");
-      setStatusMessage("Please select a valid image file.");
+      setStatusMessage(labels.invalidImageFile);
       return;
     }
 
@@ -190,7 +170,7 @@ export function CreatorAppearanceSettings({
       updateField(key, dataUrl);
     } catch {
       setStatusTone("error");
-      setStatusMessage("Failed to read the selected image.");
+      setStatusMessage(labels.readImageFailed);
     }
   };
 
@@ -206,9 +186,7 @@ export function CreatorAppearanceSettings({
 
     if (values.description.length > MAX_DESCRIPTION_LENGTH) {
       setStatusTone("error");
-      setStatusMessage(
-        `Description must be ${MAX_DESCRIPTION_LENGTH} characters or fewer.`,
-      );
+      setStatusMessage(getDescriptionMaxError());
       return;
     }
 
@@ -217,7 +195,7 @@ export function CreatorAppearanceSettings({
       !/^#[0-9a-f]{6}$/i.test(values.buttonHex.trim())
     ) {
       setStatusTone("error");
-      setStatusMessage("Enter a valid hex color (e.g. #1a2b3c).");
+      setStatusMessage(labels.invalidHex);
       return;
     }
 
@@ -239,15 +217,11 @@ export function CreatorAppearanceSettings({
       });
 
       setStatusTone("success");
-      setStatusMessage(
-        "Creator appearance updated. Changes are live on the creator dashboard and public channel.",
-      );
+      setStatusMessage(labels.saveSuccess);
     } catch (error) {
       setStatusTone("error");
       setStatusMessage(
-        error instanceof Error
-          ? error.message
-          : "Failed to update creator appearance.",
+        error instanceof Error ? error.message : labels.saveFailed,
       );
     } finally {
       setIsUploading(false);
@@ -255,13 +229,13 @@ export function CreatorAppearanceSettings({
   };
 
   if (creatorQuery.isLoading || appearanceQuery.isLoading) {
-    return <LoadingState>Loading creator appearance…</LoadingState>;
+    return <LoadingState>{labels.loading}</LoadingState>;
   }
 
   if (creatorQuery.isError || !creatorQuery.data) {
     return (
       <ViewersState>
-        {creatorQuery.error?.message || "Failed to load creator details."}
+        {creatorQuery.error?.message || labels.loadCreatorFailed}
       </ViewersState>
     );
   }
@@ -269,8 +243,7 @@ export function CreatorAppearanceSettings({
   if (appearanceQuery.isError) {
     return (
       <ViewersState>
-        {appearanceQuery.error?.message ||
-          "Failed to load creator appearance settings."}
+        {appearanceQuery.error?.message || labels.loadAppearanceFailed}
       </ViewersState>
     );
   }
@@ -282,7 +255,7 @@ export function CreatorAppearanceSettings({
         onClick={handleCancel}
         disabled={!hasUnsavedChanges || isBusy}
       >
-        Cancel
+        {labels.cancel}
       </SecondaryButton>
       <PrimaryButton
         type="button"
@@ -290,7 +263,7 @@ export function CreatorAppearanceSettings({
         disabled={!hasUnsavedChanges || isBusy}
       >
         <Save size={15} />
-        {isBusy ? "Saving…" : "Save changes"}
+        {isBusy ? labels.saving : labels.save}
       </PrimaryButton>
     </>
   );
@@ -299,19 +272,18 @@ export function CreatorAppearanceSettings({
     <AppearanceLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
         <ArrowLeft size={16} />
-        Back to creator details
+        {labels.backToDetails}
       </BackLink>
 
       <AppearanceHero>
         <AppearanceHeaderCopy>
           <AppearanceEyebrow>
             <Palette size={12} />
-            Channel appearance
+            {labels.eyebrow}
           </AppearanceEyebrow>
-          <AppearanceTitle>Update creator settings</AppearanceTitle>
+          <AppearanceTitle>{labels.pageTitle}</AppearanceTitle>
           <AppearanceSubtitle>
-            Edit layout, covers, and branding for {displayName}. Changes sync to
-            the creator dashboard and public profile.
+            {getCreatorAppearanceSubtitle(displayName)}
           </AppearanceSubtitle>
         </AppearanceHeaderCopy>
         <AppearanceActions>{actionButtons}</AppearanceActions>
@@ -322,7 +294,7 @@ export function CreatorAppearanceSettings({
       ) : null}
 
       <AppearancePanel>
-        <SectionHeader index={1} {...SECTION_META[0]} />
+        <SectionHeader index={1} {...CREATOR_APPEARANCE_SECTIONS[0]} />
         <PanelBody>
           <LayoutGrid>
             {LAYOUT_OPTIONS.map((option) => {
@@ -361,11 +333,11 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={2} {...SECTION_META[1]} />
+        <SectionHeader index={2} {...CREATOR_APPEARANCE_SECTIONS[1]} />
         <PanelBody>
           <FieldGrid>
             <Field>
-              <FieldLabel>Text color</FieldLabel>
+              <FieldLabel>{labels.textColor}</FieldLabel>
               <SelectInput
                 value={values.textColor}
                 onChange={(event) =>
@@ -380,7 +352,7 @@ export function CreatorAppearanceSettings({
               </SelectInput>
             </Field>
             <Field>
-              <FieldLabel>Button color</FieldLabel>
+              <FieldLabel>{labels.buttonColor}</FieldLabel>
               <SelectInput
                 value={values.buttonColor}
                 onChange={(event) =>
@@ -397,14 +369,14 @@ export function CreatorAppearanceSettings({
           </FieldGrid>
           {values.buttonColor === BUTTON_COLOR_VALUES.CUSTOM ? (
             <Field>
-              <FieldLabel>Custom button hex</FieldLabel>
+              <FieldLabel>{labels.customButtonHex}</FieldLabel>
               <ColorRow>
                 <ColorSwatch
                   type="color"
                   value={
                     /^#[0-9a-f]{6}$/i.test(values.buttonHex)
                       ? values.buttonHex
-                      : "#000000"
+                      : labels.hexPlaceholder
                   }
                   onChange={(event) =>
                     updateField("buttonHex", event.target.value)
@@ -415,7 +387,7 @@ export function CreatorAppearanceSettings({
                   onChange={(event) =>
                     updateField("buttonHex", event.target.value)
                   }
-                  placeholder="#000000"
+                  placeholder={labels.hexPlaceholder}
                 />
               </ColorRow>
             </Field>
@@ -424,7 +396,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={3} {...SECTION_META[2]} />
+        <SectionHeader index={3} {...CREATOR_APPEARANCE_SECTIONS[2]} />
         <PanelBody>
           <ToggleRow>
             <ToggleButton
@@ -432,20 +404,20 @@ export function CreatorAppearanceSettings({
               $active={values.logoType === LOGO_TYPE.TEXT}
               onClick={() => updateField("logoType", LOGO_TYPE.TEXT)}
             >
-              Text
+              {labels.logoText}
             </ToggleButton>
             <ToggleButton
               type="button"
               $active={values.logoType === LOGO_TYPE.PICTURE}
               onClick={() => updateField("logoType", LOGO_TYPE.PICTURE)}
             >
-              Picture
+              {labels.logoPicture}
             </ToggleButton>
           </ToggleRow>
 
           {values.logoType === LOGO_TYPE.TEXT ? (
             <Field>
-              <FieldLabel>Logo name</FieldLabel>
+              <FieldLabel>{labels.logoName}</FieldLabel>
               <TextInput
                 value={values.logoName}
                 maxLength={MAX_LOGO_NAME_LENGTH}
@@ -455,7 +427,7 @@ export function CreatorAppearanceSettings({
                     event.target.value.slice(0, MAX_LOGO_NAME_LENGTH),
                   )
                 }
-                placeholder="Channel name"
+                placeholder={labels.logoNamePlaceholder}
               />
               {values.logoName.trim() ? (
                 <LogoTextPreview>{values.logoName.trim()}</LogoTextPreview>
@@ -466,21 +438,24 @@ export function CreatorAppearanceSettings({
             </Field>
           ) : (
             <Field>
-              <FieldLabel>Logo image</FieldLabel>
+              <FieldLabel>{labels.logoImage}</FieldLabel>
               <LogoPreview $empty={!values.logoUrl}>
                 {values.logoUrl ? (
-                  <PreviewImage src={values.logoUrl} alt="Logo preview" />
+                  <PreviewImage
+                    src={values.logoUrl}
+                    alt={labels.logoPreviewAlt}
+                  />
                 ) : (
                   <PreviewPlaceholder>
                     <ImagePlus size={22} />
-                    No logo uploaded
+                    {labels.noLogo}
                   </PreviewPlaceholder>
                 )}
               </LogoPreview>
               <ImageActions>
                 <FileButton>
                   <ImagePlus size={14} />
-                  Upload logo
+                  {labels.uploadLogo}
                   <input
                     type="file"
                     accept="image/*"
@@ -498,7 +473,7 @@ export function CreatorAppearanceSettings({
                   disabled={!values.logoUrl}
                   onClick={() => updateField("logoUrl", null)}
                 >
-                  Remove
+                  {labels.remove}
                 </DangerButton>
               </ImageActions>
             </Field>
@@ -507,10 +482,10 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={4} {...SECTION_META[3]} />
+        <SectionHeader index={4} {...CREATOR_APPEARANCE_SECTIONS[3]} />
         <PanelBody>
           <Field>
-            <FieldLabel>Channel description</FieldLabel>
+            <FieldLabel>{labels.channelDescription}</FieldLabel>
             <TextArea
               value={values.description}
               maxLength={MAX_DESCRIPTION_LENGTH}
@@ -520,7 +495,7 @@ export function CreatorAppearanceSettings({
                   event.target.value.slice(0, MAX_DESCRIPTION_LENGTH),
                 )
               }
-              placeholder="Describe this creator channel"
+              placeholder={labels.descriptionPlaceholder}
             />
             <CounterText>
               {values.description.length}/{MAX_DESCRIPTION_LENGTH}
@@ -530,29 +505,29 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={5} {...SECTION_META[4]} />
+        <SectionHeader index={5} {...CREATOR_APPEARANCE_SECTIONS[4]} />
         <PanelBody>
           <FieldGrid>
             <Field>
-              <FieldLabel>Desktop cover</FieldLabel>
-              <FieldHint>Recommended wide landscape image</FieldHint>
+              <FieldLabel>{labels.desktopCover}</FieldLabel>
+              <FieldHint>{labels.desktopCoverHint}</FieldHint>
               <ImagePreview $empty={!values.desktopCoverImageUrl}>
                 {values.desktopCoverImageUrl ? (
                   <PreviewImage
                     src={values.desktopCoverImageUrl}
-                    alt="Desktop cover preview"
+                    alt={labels.desktopCoverAlt}
                   />
                 ) : (
                   <PreviewPlaceholder>
                     <ImagePlus size={22} />
-                    No desktop cover
+                    {labels.noDesktopCover}
                   </PreviewPlaceholder>
                 )}
               </ImagePreview>
               <ImageActions>
                 <FileButton>
                   <ImagePlus size={14} />
-                  Upload desktop
+                  {labels.uploadDesktop}
                   <input
                     type="file"
                     accept="image/*"
@@ -570,31 +545,31 @@ export function CreatorAppearanceSettings({
                   disabled={!values.desktopCoverImageUrl}
                   onClick={() => updateField("desktopCoverImageUrl", null)}
                 >
-                  Remove
+                  {labels.remove}
                 </DangerButton>
               </ImageActions>
             </Field>
 
             <Field>
-              <FieldLabel>Mobile cover</FieldLabel>
-              <FieldHint>Recommended taller mobile image</FieldHint>
+              <FieldLabel>{labels.mobileCover}</FieldLabel>
+              <FieldHint>{labels.mobileCoverHint}</FieldHint>
               <ImagePreview $empty={!values.mobileCoverImageUrl}>
                 {values.mobileCoverImageUrl ? (
                   <PreviewImage
                     src={values.mobileCoverImageUrl}
-                    alt="Mobile cover preview"
+                    alt={labels.mobileCoverAlt}
                   />
                 ) : (
                   <PreviewPlaceholder>
                     <ImagePlus size={22} />
-                    No mobile cover
+                    {labels.noMobileCover}
                   </PreviewPlaceholder>
                 )}
               </ImagePreview>
               <ImageActions>
                 <FileButton>
                   <ImagePlus size={14} />
-                  Upload mobile
+                  {labels.uploadMobile}
                   <input
                     type="file"
                     accept="image/*"
@@ -612,7 +587,7 @@ export function CreatorAppearanceSettings({
                   disabled={!values.mobileCoverImageUrl}
                   onClick={() => updateField("mobileCoverImageUrl", null)}
                 >
-                  Remove
+                  {labels.remove}
                 </DangerButton>
               </ImageActions>
             </Field>
@@ -621,10 +596,10 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={6} {...SECTION_META[5]} />
+        <SectionHeader index={6} {...CREATOR_APPEARANCE_SECTIONS[5]} />
         <PanelBody>
           <Field>
-            <FieldLabel>Receipt message</FieldLabel>
+            <FieldLabel>{labels.receiptMessage}</FieldLabel>
             <TextArea
               value={values.receipt}
               maxLength={MAX_RECEIPT_LENGTH}
@@ -634,28 +609,28 @@ export function CreatorAppearanceSettings({
                   event.target.value.slice(0, MAX_RECEIPT_LENGTH),
                 )
               }
-              placeholder="Shown on purchase receipts"
+              placeholder={labels.receiptPlaceholder}
             />
             <CounterText>
               {values.receipt.length}/{MAX_RECEIPT_LENGTH}
             </CounterText>
           </Field>
           <Field>
-            <FieldLabel>Support email</FieldLabel>
+            <FieldLabel>{labels.supportEmail}</FieldLabel>
             <TextInput
               type="email"
               value={values.supportEmail}
               onChange={(event) =>
                 updateField("supportEmail", event.target.value)
               }
-              placeholder="support@example.com"
+              placeholder={labels.supportEmailPlaceholder}
             />
           </Field>
         </PanelBody>
       </AppearancePanel>
 
       <StickyActions $visible={hasUnsavedChanges || isBusy}>
-        <StickyHint>Unsaved appearance changes</StickyHint>
+        <StickyHint>{labels.stickyHint}</StickyHint>
         {actionButtons}
       </StickyActions>
     </AppearanceLayout>
