@@ -14,6 +14,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
 import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 import { CreatorGuard } from '../auth/guards/admin.guard';
+import { validateImageMagicNumber } from '../../utils/file-validation.util';
 import { ROLE } from 'src/utils/constant';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
@@ -97,9 +98,12 @@ export class MediaController {
       }
 
       const buffer = await this.streamToBuffer(file.file);
+
+      const typeInfo = await validateImageMagicNumber(buffer);
+
       return this.mediaService.uploadPublicImage({
         buffer,
-        mimetype: file.mimetype,
+        mimetype: typeInfo.mime,
         filename: file.filename,
       });
     }
