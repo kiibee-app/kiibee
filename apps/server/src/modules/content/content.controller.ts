@@ -84,6 +84,21 @@ export class ContentController {
     return this.contentService.getAdminContentEngagement(contentId);
   }
 
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/appearance/:creatorId')
+  async getAdminCreatorAppearance(@Param('creatorId') creatorId: string) {
+    return this.contentService.getContentAppearanceService(creatorId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Put('admin/appearance/:creatorId')
+  async updateAdminCreatorAppearance(
+    @Param('creatorId') creatorId: string,
+    @Body() dto: ContentAppearanceDto,
+  ) {
+    return this.contentService.ContentAppearanceService(creatorId, dto);
+  }
+
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('/:id')
   async getContentById(@Req() req: any) {

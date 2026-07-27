@@ -17,6 +17,7 @@ import {
   VISIBILITY_BY_API_VALUE,
 } from "@/utils/collection";
 import { normalizeContentTypeValue } from "@/utils/content";
+import { getPasswordCount } from "@/utils/admissionRequirements";
 
 type UnknownRecord = Record<string, unknown>;
 const EMPTY_ACTION = "";
@@ -157,6 +158,7 @@ export const getCollectionRows = (
       rentPrice: item.rentPrice != null ? Number(item.rentPrice) : null,
       rentDuration: item.rentDuration ?? null,
       hasPassword: Boolean(item.passwordHash),
+      passwordCount: getPasswordCount(item.passwordHash),
     }));
 };
 

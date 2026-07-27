@@ -25,6 +25,7 @@ import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { DeleteUserDto } from './dto/deleteUser.dto';
 import { logAudit } from 'src/services/auditLog.service';
 import {
   RESOURCE,
@@ -368,6 +369,7 @@ export class AuthController {
   @Delete('delete-user')
   async deleteUser(
     @Req() req: AuthenticatedRequest,
+    @Body() body: DeleteUserDto,
     @Headers('authorization') authorization?: string,
   ) {
     let jti: string | undefined;
@@ -382,6 +384,6 @@ export class AuthController {
       }
     }
     const userId = req.user.userId;
-    return this.authService.deleteUserService(userId, jti, exp);
+    return this.authService.deleteUserService(userId, body.reason, jti, exp);
   }
 }

@@ -40,3 +40,17 @@ export const validatePasswordInput = (val: string): boolean => {
 
 export const combinePasswords = (committed: string, typed: string): string =>
   [committed, typed].filter(Boolean).join(", ");
+
+export const getPasswordCount = (hash: string | null | undefined): number => {
+  if (!hash) return 0;
+  if (!hash.startsWith("[") || !hash.endsWith("]")) {
+    return 1;
+  }
+
+  try {
+    const parsed = JSON.parse(hash);
+    return Array.isArray(parsed) ? parsed.length : 1;
+  } catch {
+    return 1;
+  }
+};

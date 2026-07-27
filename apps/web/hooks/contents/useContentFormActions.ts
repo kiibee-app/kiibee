@@ -30,6 +30,7 @@ import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
   validatePasswordInput,
+  getPasswordCount,
 } from "@/utils/admissionRequirements";
 import { AccessDurationValue } from "@/utils/common";
 import {
@@ -442,6 +443,15 @@ export function useContentFormActions({
 
   const validateContentPaymentAmounts = () => {
     if (formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD) {
+      if (!formState.password.trim() && formState.hasPassword) {
+        setFormErrors((prev) => {
+          if (!prev.password) return prev;
+          const copy = { ...prev };
+          delete copy.password;
+          return copy;
+        });
+        return true;
+      }
       if (!formState.password.trim()) {
         setFormErrors((prev) => ({
           ...prev,
@@ -613,11 +623,15 @@ export function useContentFormActions({
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
     if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
-      if (!collectionPasswords.trim()) {
+      const hasExistingPassword = Boolean(selectedCollection.hasPassword);
+      if (!collectionPasswords.trim() && !hasExistingPassword) {
         toast.error(t("authForm.errors.required"));
         return;
       }
-      if (validatePasswordInput(collectionPasswords)) {
+      if (
+        collectionPasswords.trim() &&
+        validatePasswordInput(collectionPasswords)
+      ) {
         toast.error(
           t("contents.admissionRequirements.password.error.minLength"),
         );
@@ -866,6 +880,7 @@ export function useContentFormActions({
         openInNewWindow?: boolean;
         openDirectFromList?: boolean;
         fileSize?: number | null;
+        passwordHash?: string | null;
       }
 
       const response = await axiosClient.get(API.content.get(id));
@@ -959,6 +974,8 @@ export function useContentFormActions({
                     ? "request_email"
                     : "free",
           password: "",
+          hasPassword: Boolean(fullContent.passwordHash),
+          passwordCount: getPasswordCount(fullContent.passwordHash),
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",

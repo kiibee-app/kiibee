@@ -19,3 +19,17 @@ export async function hashAccessPasswords(raw: string): Promise<string | null> {
   );
   return JSON.stringify(hashes);
 }
+
+export function getPasswordCount(hash: string | null | undefined): number {
+  if (!hash) return 0;
+  if (!hash.startsWith('[') || !hash.endsWith(']')) {
+    return 1;
+  }
+
+  try {
+    const parsed = JSON.parse(hash);
+    return Array.isArray(parsed) ? parsed.length : 1;
+  } catch {
+    return 1;
+  }
+}

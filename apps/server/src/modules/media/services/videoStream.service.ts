@@ -12,7 +12,11 @@ export class VideoStreamService {
   private readonly pem = process.env.CF_STREAM_PEM as string;
   private readonly customerId = process.env.CF_STREAM_ACCOUNT_HASH as string;
 
-  async getStreamUrl(videoId: string, expiresInSec = 3600) {
+  async getStreamUrl(
+    videoId: string,
+    expiresInSec = 3600,
+    options?: { recordView?: boolean },
+  ) {
     const response = await fetch(
       `https://api.cloudflare.com/client/v4/accounts/${this.accountId}/stream/${videoId}/token`,
       {
@@ -49,11 +53,13 @@ export class VideoStreamService {
       return fail('Media file not found', HttpStatus.NOT_FOUND);
     }
 
-    await insertContentViewService(
-      mediaInfo.creatorId,
-      mediaInfo.mediaFileId,
-      null,
-    );
+    if (options?.recordView !== false) {
+      await insertContentViewService(
+        mediaInfo.creatorId,
+        mediaInfo.mediaFileId,
+        null,
+      );
+    }
 
     return {
       token: data.result.token as string,
