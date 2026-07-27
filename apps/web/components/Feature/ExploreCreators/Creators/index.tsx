@@ -107,8 +107,6 @@ export default function ExploreCreators({
                 <GenericButton
                   asAnchor
                   href={getPublicCreatorProfilePath(creator.id, creator.layout)}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   variant={VARIANT.SECONDARY}
                 >
                   {t(CREATORS.viewProfile)}

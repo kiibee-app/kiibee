@@ -19,10 +19,14 @@ import {
   TONE_LIGHT,
 } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
+import { useRouter } from "next/navigation";
+import { BackButtonIcon } from "@/assets/icons";
 import {
   Brand,
   BrandAvatar,
   BrandName,
+  BrandWrapper,
+  BackButton,
 } from "@/components/Feature/ProfileLayout/pageStyles";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -62,6 +66,7 @@ const navConfigByVariant: Record<
 };
 
 export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const config = navConfigByVariant[variant] || {
     navTextTone: TONE_DARK,
@@ -79,20 +84,29 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       : PATHS.DASHBOARD_CREATOR;
 
   const brand = (
-    <Brand href={brandHref}>
-      <BrandAvatar>
-        <CreatorChannelAvatar
-          avatarUrl={avatarUrl}
-          initial={initial}
-          alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
-          sizes="44px"
-          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
-        />
-      </BrandAvatar>
-      <BrandName $textTone={navTextTone}>
-        <MonoText $use="Body_SemiBold">{brandName}</MonoText>
-      </BrandName>
-    </Brand>
+    <BrandWrapper>
+      <BackButton
+        type="button"
+        onClick={() => router.back()}
+        aria-label={t("common.goBack")}
+      >
+        <BackButtonIcon size={36} />
+      </BackButton>
+      <Brand href={brandHref}>
+        <BrandAvatar>
+          <CreatorChannelAvatar
+            avatarUrl={avatarUrl}
+            initial={initial}
+            alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
+            sizes="44px"
+            initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
+          />
+        </BrandAvatar>
+        <BrandName $textTone={navTextTone}>
+          <MonoText $use="Body_SemiBold">{brandName}</MonoText>
+        </BrandName>
+      </Brand>
+    </BrandWrapper>
   );
 
   const actions = (
