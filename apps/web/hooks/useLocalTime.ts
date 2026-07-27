@@ -10,29 +10,16 @@ export const useLocalTime = () => {
       value: string | Date | number | null | undefined,
       options?: Intl.DateTimeFormatOptions,
     ) => {
-      if (value === null || value === undefined || value === "") return "";
+      if (!value) return "";
 
       const date = value instanceof Date ? value : new Date(value);
 
-      if (isNaN(date.getTime())) return "";
+      if (Number.isNaN(date.getTime())) return "";
 
-      const mergedOptions: Intl.DateTimeFormatOptions = {
+      return new Intl.DateTimeFormat(i18n.language, {
         ...DEFAULT_OPTIONS,
         ...options,
-      };
-
-      const locale = i18n.language || undefined;
-
-      try {
-        return new Intl.DateTimeFormat(locale, mergedOptions).format(date);
-      } catch (error) {
-        console.error("Error formatting time:", error);
-        try {
-          return new Intl.DateTimeFormat(undefined, mergedOptions).format(date);
-        } catch {
-          return date.toISOString();
-        }
-      }
+      }).format(date);
     },
     [i18n.language],
   );
