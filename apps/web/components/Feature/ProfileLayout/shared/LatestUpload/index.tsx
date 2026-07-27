@@ -364,6 +364,7 @@ export default function LatestUpload({
             <ActionButtons>
               <ReadMoreButton
                 type="button"
+                data-creator-content-button
                 onClick={handlePrimaryActionClick}
                 $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
               >
@@ -386,6 +387,7 @@ export default function LatestUpload({
               {secondaryAction ? (
                 <ReadMoreButton
                   type="button"
+                  data-creator-content-button
                   onClick={handleSecondaryActionClick}
                   $tone={VARIANT.SECONDARY}
                 >

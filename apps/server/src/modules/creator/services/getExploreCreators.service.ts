@@ -30,6 +30,8 @@ export type ExploreCreatorItem = {
   accountEmail: string | null;
   accessType: string | null;
   layout: string | null;
+  textColor: string | null;
+  buttonColor: string | null;
 };
 
 const subscriberCounts = db
@@ -127,6 +129,8 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
       accountEmail: users.email,
       accessType: contentSettings.accessType,
       layout: contentAppearance.layout,
+      textColor: contentAppearance.textColor,
+      buttonColor: contentAppearance.buttonColor,
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
@@ -162,6 +166,8 @@ const mapCreatorRow = (row: {
   accountEmail: string | null;
   accessType: string | null;
   layout: string | null;
+  textColor: string | null;
+  buttonColor: string | null;
 }): ExploreCreatorItem => ({
   id: row.id,
   name: row.name,
@@ -181,6 +187,8 @@ const mapCreatorRow = (row: {
   accountEmail: row.accountEmail,
   accessType: row.accessType,
   layout: row.layout,
+  textColor: row.textColor,
+  buttonColor: row.buttonColor,
 });
 
 export const getExploreCreatorsService = async (

@@ -238,6 +238,7 @@ function TutorialCard({
                 <GenericButton
                   key={buttonKey}
                   {...commonProps}
+                  data-creator-content-button
                   aria-pressed={isSelected}
                   onClick={() => onPlayClick(tutorial.id)}
                 >
@@ -250,6 +251,7 @@ function TutorialCard({
               <GenericButton
                 key={buttonKey}
                 {...commonProps}
+                data-creator-content-button
                 onClick={
                   button.href
                     ? (event) => handleButtonClick(event, button)

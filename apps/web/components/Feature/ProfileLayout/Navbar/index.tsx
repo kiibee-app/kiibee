@@ -18,6 +18,7 @@ import {
   TONE_DARK,
   TONE_LIGHT,
 } from "@/utils/Constants";
+import { TEXT_COLOR_VALUES } from "@/utils/appearance";
 import NavBar from "@/components/Layout/Navbar";
 import { useRouter } from "next/navigation";
 import { BackButtonIcon } from "@/assets/icons";
@@ -73,10 +74,22 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     showNavItems: false,
     hasSearch: false,
   };
-  const { navTextTone, showNavItems, hasSearch } = config;
+  const { showNavItems, hasSearch } = config;
   const { navItems } = useCreatorNavItems();
-  const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    avatarUrl,
+    initial,
+    isPublicView,
+    publicCreatorId,
+    textColor,
+  } = useCreatorChannelProfile();
+  const navTextTone =
+    textColor === TEXT_COLOR_VALUES.WHITE_TEXT
+      ? TONE_LIGHT
+      : textColor === TEXT_COLOR_VALUES.DARK_TEXT
+        ? TONE_DARK
+        : config.navTextTone;
   const brandName = displayName;
   const brandHref =
     isPublicView && publicCreatorId
@@ -136,7 +149,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       hideMobileHamburger={true}
       showActionsOnMobile={true}
       routeActiveItems={showNavItems}
-      navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
+      navBefore={
+        hasSearch ? <ProfileChannelSearch textTone={navTextTone} /> : undefined
+      }
       navTextTone={navTextTone}
       actions={actions}
     />

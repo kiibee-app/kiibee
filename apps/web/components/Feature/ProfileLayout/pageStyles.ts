@@ -4,6 +4,49 @@ import Image from "next/image";
 import { media } from "@repo/ui/breakpoints";
 import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 
+type CreatorButtonColorProps = {
+  $buttonColor?: string | null;
+  $buttonTextColor?: string;
+};
+
+const creatorButtonColorCss = css<CreatorButtonColorProps>`
+  ${({ $buttonColor, $buttonTextColor }) =>
+    $buttonColor &&
+    css`
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        ) {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        )
+        * {
+        color: inherit;
+      }
+
+      &&
+        :is(
+          [data-creator-content-button],
+          [data-creator-collection] [data-variant],
+          [data-creator-join-button]
+        ):not([type="submit"]):hover {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+    `}
+`;
+
 export const avatarFrameCss = css`
   position: relative;
   width: 44px;
@@ -14,12 +57,27 @@ export const avatarFrameCss = css`
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
-export const Page = styled.main`
+export const Page = styled.main<
+  CreatorButtonColorProps & {
+    $textColor?: string | null;
+  }
+>`
   min-height: 100vh;
   width: 100%;
   overflow-x: clip;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   display: flow-root;
+
+  ${({ $textColor }) =>
+    $textColor &&
+    css`
+      [data-creator-cover-text],
+      [data-creator-cover-text] * {
+        color: ${$textColor};
+      }
+    `}
+
+  ${creatorButtonColorCss}
 `;
 
 export const BrandWrapper = styled.div`
@@ -77,6 +135,10 @@ export const BrandName = styled.span<{
     $textTone === TONE_LIGHT
       ? theme.colors.primary.WHITE_90
       : theme.colors.primary.BLACK};
+
+  & * {
+    color: inherit;
+  }
 
   ${media.mobileXl} {
     max-width: 100%;
