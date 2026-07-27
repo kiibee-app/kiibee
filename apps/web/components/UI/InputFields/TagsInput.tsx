@@ -23,7 +23,7 @@ import { INPUT_TYPE } from "@/utils/ui";
 
 export type TagsInputProps = {
   value: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   onInputChange?: (typed: string) => void;
   placeholder?: string;
   maxLength?: number;
@@ -65,7 +65,7 @@ export default function TagsInput({
         return;
       }
 
-      onChange([...tags, trimmedTag].join(", "));
+      onChange?.([...tags, trimmedTag].join(", "));
       setInputValue("");
       if (onInputChange) {
         onInputChange("");
@@ -76,7 +76,7 @@ export default function TagsInput({
 
   const removeTag = useCallback(
     (tagToRemove: string) => {
-      onChange(tags.filter((tag) => tag !== tagToRemove).join(", "));
+      onChange?.(tags.filter((tag) => tag !== tagToRemove).join(", "));
     },
     [tags, onChange],
   );

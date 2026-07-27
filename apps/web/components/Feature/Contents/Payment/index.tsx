@@ -246,7 +246,6 @@ export default function Payment() {
                   value={Array(formState.passwordCount || 1)
                     .fill("••••••")
                     .join(", ")}
-                  onChange={() => {}}
                   onInputChange={handleTypedPasswordChange}
                   placeholder={t("contents.payment.password.placeholder")}
                   variant={INPUT_VARIANTS.PRIMARY_GRAY}
