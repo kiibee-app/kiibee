@@ -191,6 +191,18 @@ export const CREATOR_PROFILE = {
     message: "creatorProfile.deleteModal.message",
     cancel: "creatorProfile.deleteModal.cancel",
     confirm: "creatorProfile.deleteModal.confirm",
+    reasonLabel: "creatorProfile.deleteModal.reasonLabel",
+    reasonPlaceholder: "creatorProfile.deleteModal.reasonPlaceholder",
+    customReasonLabel: "creatorProfile.deleteModal.customReasonLabel",
+    customReasonPlaceholder:
+      "creatorProfile.deleteModal.customReasonPlaceholder",
+    reasons: {
+      notUsing: "creatorProfile.deleteModal.reasons.notUsing",
+      tooExpensive: "creatorProfile.deleteModal.reasons.tooExpensive",
+      missingFeatures: "creatorProfile.deleteModal.reasons.missingFeatures",
+      privacyConcerns: "creatorProfile.deleteModal.reasons.privacyConcerns",
+      others: "creatorProfile.deleteModal.reasons.others",
+    },
   },
   deleteToastMessage: "creatorProfile.deleteToastMessage",
   deleteErrorMessage: "creatorProfile.deleteErrorMessage",

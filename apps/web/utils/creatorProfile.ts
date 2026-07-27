@@ -62,6 +62,31 @@ export const FORM_KEYS = {
   account: "account",
 } as const;
 
+export const DELETE_REASON_OTHERS = "others";
+
+export const DELETE_REASON_OPTIONS = [
+  {
+    value: "not_using",
+    labelKey: "creatorProfile.deleteModal.reasons.notUsing",
+  },
+  {
+    value: "too_expensive",
+    labelKey: "creatorProfile.deleteModal.reasons.tooExpensive",
+  },
+  {
+    value: "missing_features",
+    labelKey: "creatorProfile.deleteModal.reasons.missingFeatures",
+  },
+  {
+    value: "privacy_concerns",
+    labelKey: "creatorProfile.deleteModal.reasons.privacyConcerns",
+  },
+  {
+    value: DELETE_REASON_OTHERS,
+    labelKey: "creatorProfile.deleteModal.reasons.others",
+  },
+] as const;
+
 export type FormKeys = (typeof FORM_KEYS)[keyof typeof FORM_KEYS];
 
 export type CreatorBoot = Pick<ProfileForm, "firstName" | "lastName" | "email">;

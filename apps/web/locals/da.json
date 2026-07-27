@@ -1022,7 +1022,18 @@
       "title": "Anmod om sletning af konto?",
       "message": "Er du sikker på, at du vil anmode om at slette din konto? En administrator vil gennemse og behandle din anmodning.",
       "cancel": "Annuller",
-      "confirm": "Anmod om sletning"
+      "confirm": "Anmod om sletning",
+      "reasonLabel": "Årsag til sletning",
+      "reasonPlaceholder": "Vælg en årsag...",
+      "customReasonLabel": "Forklar venligst",
+      "customReasonPlaceholder": "Forklar venligst kort, hvorfor du vil slette din konto...",
+      "reasons": {
+        "notUsing": "Jeg bruger ikke længere platformen",
+        "tooExpensive": "Det er for dyrt",
+        "missingFeatures": "Mangler funktioner, jeg har brug for",
+        "privacyConcerns": "Privatlivsbetænkeligheder",
+        "others": "Andet"
+      }
     },
     "deleteToastMessage": "Anmodning om kontosletning er sendt. Vent venligst på administratorens godkendelse.",
     "deleteSuccessModal": {
