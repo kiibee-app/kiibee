@@ -18,6 +18,7 @@ import {
 } from 'src/utils/constant';
 import { addWallet } from 'src/services/addWallet';
 import { parseRentDurationToHours } from 'src/utils/rentDuration';
+import { sendReceiptService } from 'src/modules/export/services/sendReceipt.service';
 
 export async function handleEpayPayment(body: any) {
   const {
@@ -147,6 +148,7 @@ export async function handleEpayPayment(body: any) {
   } as any);
 
   await addWallet(creatorId, resolvedAmount, currency);
+  await sendReceiptService(orderId);
 
   const existingCard = await db.query.userCardInfo.findFirst({
     where: and(
