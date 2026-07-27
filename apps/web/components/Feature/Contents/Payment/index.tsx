@@ -48,7 +48,11 @@ import {
 } from "@/utils/admissionRequirements";
 import { useContentForm } from "../ContentFormContext";
 
-export default function Payment() {
+interface PaymentProps {
+  contentType?: string;
+}
+
+export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
@@ -141,7 +145,11 @@ export default function Payment() {
           <Block>
             <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
             <SectionText>
-              {t("contents.payment.admission.description")}
+              {t("contents.payment.admission.description", {
+                contentType:
+                  contentType ||
+                  t("contents.payment.admission.fallbackContentType"),
+              })}
             </SectionText>
 
             <DropdownWrap>

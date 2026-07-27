@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
@@ -120,7 +120,10 @@ export default function ClientDashboardViewer({
     await logout();
   }, [logout]);
 
-  const sectionTitle = useMemo(() => activePage, [activePage]);
+  const sectionTitle =
+    activePage === VIEWER_LABELS.PURCHASED
+      ? t("sidebar.purchaseRentalHistory")
+      : activePage;
 
   if (!isReady) {
     return (
@@ -166,13 +169,6 @@ export default function ClientDashboardViewer({
           key={RENTED_MODES.CURRENTLY}
           title={sectionTitle}
           mode={RENTED_MODES.CURRENTLY}
-          initialExpandedSection={initialExpandedSection}
-        />
-      ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
-        <RentedContent
-          key={RENTED_MODES.PREVIOUSLY}
-          title={sectionTitle}
-          mode={RENTED_MODES.PREVIOUSLY}
           initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (

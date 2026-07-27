@@ -1697,7 +1697,7 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
+      "description": "Når du klikker på knappen, oprettes en opgørelse, som du kan udbetale. Klik på udbetaling for at se din kreditnota. Overførsel af din saldo kan tage op til 5 hverdage.",
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
@@ -1716,6 +1716,7 @@
         "processingFee": "Transaktionsgebyr ({{percent}})",
         "platformFee": "Kiibee-betaling ({{percent}})",
         "total": "Samlet udbetalingsbeløb",
+        "transferNote": "Overførsel af din saldo kan tage op til 5 hverdage.",
         "success": "Udbetalingsanmodning er indsendt.",
         "calculateError": "Kunne ikke beregne udbetaling. Prøv igen.",
         "requestError": "Kunne ikke indsende udbetalingsanmodning. Prøv igen.",
@@ -1946,7 +1947,8 @@
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
-      "description": "Overvej hvilken type adgang dit [contentType] skal have",
+      "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+      "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
@@ -2114,7 +2116,8 @@
     "payment": {
       "admission": {
         "title": "Adgangskrav",
-        "description": "Overvej hvilken type adgang dit [contentType] skal have",
+        "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+        "fallbackContentType": "indhold",
         "options": {
           "free": "Gratis",
           "payment": "Betaling",
@@ -2250,6 +2253,7 @@
     "users": "Brugere",
     "help": "Hjælp",
     "currentlyRented": "I øjeblikket lejet",
+    "purchaseRentalHistory": "Tidligere køb og lejet indhold",
     "previouslyRented": "Tidligere lejet",
     "helpVideos": "Hjælpevideoer",
     "userManual": "Brugervejledning",

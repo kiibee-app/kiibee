@@ -226,6 +226,11 @@ export const DetailsSectionHeader = styled.div`
   padding: ${({ theme }) => theme.spacing(4)}
     ${({ theme }) => theme.spacing(4.5)};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.spacing(2)};
+  flex-wrap: wrap;
 `;
 
 export const DetailsSectionTitle = styled.h3`
@@ -233,6 +238,32 @@ export const DetailsSectionTitle = styled.h3`
   font-size: 15px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const DetailsSectionAction = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
+  background: ${({ theme }) => theme.colors.primary.GREEN};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    transform ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+    border-color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+    transform: translateY(-1px);
+  }
 `;
 
 export const DetailsSectionBody = styled.div`
