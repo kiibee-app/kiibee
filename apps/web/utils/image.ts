@@ -122,7 +122,7 @@ export const getCroppedImg = (
       ctx.drawImage(img, destX, destY, destW, destH);
       ctx.restore();
 
-      resolve(canvas.toDataURL("image/jpeg", 0.85));
+      resolve(canvas.toDataURL("image/jpeg", 0.95));
     };
     img.onerror = () => reject(new Error("Failed to load image"));
   });
