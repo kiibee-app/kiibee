@@ -3,6 +3,7 @@
 import type { CreatorDeletionRequest } from "../../../types/creator-deletion-request";
 import {
   RequestsTable,
+  RequestTableRow,
   TableBodyCell,
   TableHeaderCell,
   TableScrollWrapper,
@@ -11,9 +12,13 @@ import { creatorDeletionHistoryColumns } from "../../../utils/deletionRequestsCo
 
 type DeletionHistoryTableProps = {
   requests: CreatorDeletionRequest[];
+  onSelectRequest: (request: CreatorDeletionRequest) => void;
 };
 
-export function DeletionHistoryTable({ requests }: DeletionHistoryTableProps) {
+export function DeletionHistoryTable({
+  requests,
+  onSelectRequest,
+}: DeletionHistoryTableProps) {
   return (
     <TableScrollWrapper>
       <RequestsTable>
@@ -26,13 +31,16 @@ export function DeletionHistoryTable({ requests }: DeletionHistoryTableProps) {
         </thead>
         <tbody>
           {requests.map((request) => (
-            <tr key={request.id}>
+            <RequestTableRow
+              key={request.id}
+              onClick={() => onSelectRequest(request)}
+            >
               {creatorDeletionHistoryColumns.map((column) => (
                 <TableBodyCell key={`${request.id}-${column.key}`}>
                   {column.renderCell(request)}
                 </TableBodyCell>
               ))}
-            </tr>
+            </RequestTableRow>
           ))}
         </tbody>
       </RequestsTable>
