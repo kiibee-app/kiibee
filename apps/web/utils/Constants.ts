@@ -335,7 +335,7 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
   return {
     title: formState.title,
     description: formState.description,
-    trailerUrl: formState.trailerLink || undefined,
+    trailerUrl: formState.trailerLink.trim(),
     thumbnailUrl: formState.mediaCardThumbnail || undefined,
     thumbnailLandscapeUrl: formState.portraitThumbnail || undefined,
     publishedYear: formState.publishedYear
