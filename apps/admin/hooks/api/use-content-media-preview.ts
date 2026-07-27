@@ -8,6 +8,7 @@ import {
   normalizeContentFormat,
   type ContentFormat,
 } from "../../utils/contentMedia";
+import { contentPreviewLabels } from "../../utils/contentConfig";
 
 type MediaPreviewPayload = {
   url?: string;
@@ -66,7 +67,7 @@ export function useContentMediaPreview() {
 
       if (format === CONTENT_FORMAT.WEB) {
         if (!contentUrl) {
-          throw new Error("No web link available for this content.");
+          throw new Error(contentPreviewLabels.noWebLink);
         }
         return { url: contentUrl, format };
       }
@@ -75,7 +76,7 @@ export function useContentMediaPreview() {
         if (contentUrl) {
           return { url: contentUrl, format };
         }
-        throw new Error("No media file available for preview.");
+        throw new Error(contentPreviewLabels.noMediaFile);
       }
 
       const response = await apiClient<MediaPreviewPayload>(
@@ -86,13 +87,17 @@ export function useContentMediaPreview() {
       const raw = response as unknown as MediaPreviewResponse;
 
       if (raw.success === false) {
-        throw new Error(raw.message || "Failed to load media preview URL.");
+        throw new Error(
+          raw.message || contentPreviewLabels.failedMediaPreviewUrl,
+        );
       }
 
       const url = resolvePreviewUrl(raw, contentUrl);
 
       if (!url) {
-        throw new Error(raw.message || "Failed to load media preview URL.");
+        throw new Error(
+          raw.message || contentPreviewLabels.failedMediaPreviewUrl,
+        );
       }
 
       return { url, format };

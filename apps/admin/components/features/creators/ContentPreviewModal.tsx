@@ -5,6 +5,7 @@ import {
   CONTENT_FORMAT,
   type ContentFormat,
 } from "../../../utils/contentMedia";
+import { contentPreviewLabels } from "../../../utils/contentConfig";
 import {
   PreviewAudio,
   PreviewFrame,
@@ -34,7 +35,7 @@ export function ContentPreviewModal({
 }: ContentPreviewModalProps) {
   const renderBody = () => {
     if (isLoading) {
-      return <PreviewState>Loading preview…</PreviewState>;
+      return <PreviewState>{contentPreviewLabels.loadingPreview}</PreviewState>;
     }
 
     if (error) {
@@ -42,7 +43,7 @@ export function ContentPreviewModal({
     }
 
     if (!url || !format) {
-      return <PreviewState>No preview available.</PreviewState>;
+      return <PreviewState>{contentPreviewLabels.noPreview}</PreviewState>;
     }
 
     if (format === CONTENT_FORMAT.VIDEO) {
@@ -68,7 +69,7 @@ export function ContentPreviewModal({
       return (
         <PreviewState>
           <PreviewLink href={url} target="_blank" rel="noreferrer">
-            Open EPUB file
+            {contentPreviewLabels.openEpubFile}
           </PreviewLink>
         </PreviewState>
       );

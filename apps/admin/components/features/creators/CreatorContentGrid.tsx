@@ -6,6 +6,7 @@ import {
   CONTENT_FORMAT,
   normalizeContentFormat,
 } from "../../../utils/contentMedia";
+import { creatorContentGridLabels } from "../../../utils/contentConfig";
 import {
   ContentBody,
   ContentGrid,
@@ -43,7 +44,7 @@ function renderMediaIcon(type: string | null, size = 28) {
 export function CreatorContentGrid({
   contents,
   onSelectContent,
-  emptyMessage = "No content found.",
+  emptyMessage = creatorContentGridLabels.emptyState,
 }: CreatorContentGridProps) {
   if (!contents.length) {
     return <EmptyState>{emptyMessage}</EmptyState>;
@@ -82,7 +83,9 @@ export function CreatorContentGrid({
             <ContentBody>
               <ContentTitle>{content.title}</ContentTitle>
               <ContentMeta>
-                {content.contentType || "Content"} · {content.accessType}
+                {content.contentType ||
+                  creatorContentGridLabels.fallbackContentType}{" "}
+                · {content.accessType}
               </ContentMeta>
               {priceSummary ? <PriceMeta>{priceSummary}</PriceMeta> : null}
               {content.publishedAt || content.createdAt ? (
@@ -92,13 +95,15 @@ export function CreatorContentGrid({
               ) : null}
               <ContentStatsRow>
                 <ContentStatBadge $variant="buy">
-                  {content.purchaseCount} bought
+                  {content.purchaseCount}{" "}
+                  {creatorContentGridLabels.boughtSuffix}
                 </ContentStatBadge>
                 <ContentStatBadge $variant="rent">
-                  {content.rentalCount} rented
+                  {content.rentalCount} {creatorContentGridLabels.rentedSuffix}
                 </ContentStatBadge>
                 <ContentStatBadge $variant="download">
-                  {content.downloadCount} downloads
+                  {content.downloadCount}{" "}
+                  {creatorContentGridLabels.downloadsSuffix}
                 </ContentStatBadge>
               </ContentStatsRow>
             </ContentBody>
