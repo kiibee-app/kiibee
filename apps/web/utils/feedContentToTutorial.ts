@@ -6,7 +6,10 @@ import {
   type PricingLabels,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
-import { resolveContentThumbnailCandidates } from "@/utils/media";
+import {
+  resolveContentThumbnailCandidates,
+  resolveImageUrl,
+} from "@/utils/media";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -110,6 +113,7 @@ export function feedContentToTutorial(
     item.thumbnailUrl,
     item.thumbnailLandscapeUrl,
   );
+  const fallbackImage = resolveImageUrl(recentCreator);
 
   return {
     id: item.id,
@@ -126,7 +130,9 @@ export function feedContentToTutorial(
     image: thumbnailCandidates[0] ?? recentCreator,
     ...(thumbnailCandidates[1]
       ? { imageFallback: thumbnailCandidates[1] }
-      : {}),
+      : thumbnailCandidates[0]
+        ? { imageFallback: fallbackImage }
+        : {}),
     buttons: buildPricingButtons(item, freeLabel, options),
   };
 }

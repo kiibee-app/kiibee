@@ -70,6 +70,7 @@ export type LatestUploadData = {
   sectionTitle: string;
   badge: string;
   image: ImageSource;
+  imageFallbacks?: ImageSource[];
   imageAlt: string;
   title: string;
   year: string;
@@ -242,7 +243,31 @@ export default function LatestUpload({
     (isCloudflareStreamEmbedUrl(trailerUrl) ||
       isThirdPartyVideoUrl(trailerUrl));
   const TypeIcon = contentIconMap[normalizedContentType];
-  const uploadImageUrl = resolveImageUrl(data.image);
+  const imageCandidates = useMemo(() => {
+    const urls = [data.image, ...(data.imageFallbacks ?? [])]
+      .map((source) => resolveImageUrl(source))
+      .filter((url): url is string => Boolean(url));
+    return [...new Set(urls)];
+  }, [data.image, data.imageFallbacks]);
+  const imageCandidatesKey = imageCandidates.join("|");
+  const [imageIndex, setImageIndex] = useState(0);
+  const [prevImageCandidatesKey, setPrevImageCandidatesKey] =
+    useState(imageCandidatesKey);
+
+  if (imageCandidatesKey !== prevImageCandidatesKey) {
+    setPrevImageCandidatesKey(imageCandidatesKey);
+    setImageIndex(0);
+  }
+
+  const uploadImageUrl =
+    imageCandidates[imageIndex] ?? imageCandidates[0] ?? "";
+
+  const handleThumbnailError = () => {
+    setImageIndex((current) => {
+      const nextIndex = current + 1;
+      return nextIndex < imageCandidates.length ? nextIndex : current;
+    });
+  };
 
   const handlePlayTrailer = async (event: MouseEvent) => {
     event.preventDefault();
@@ -299,7 +324,11 @@ export default function LatestUpload({
                 src={uploadImageUrl}
                 {...DECORATIVE_IMAGE_PROPS}
               />
-              <UploadImage src={uploadImageUrl} alt={data.imageAlt} />
+              <UploadImage
+                src={uploadImageUrl}
+                alt={data.imageAlt}
+                onError={handleThumbnailError}
+              />
               {hasTrailer && !isEmbedTrailer ? (
                 <TrailerVideo
                   ref={trailerVideoRef}
