@@ -1947,7 +1947,8 @@
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
-      "description": "Overvej hvilken type adgang dit [contentType] skal have",
+      "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+      "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
@@ -2115,7 +2116,8 @@
     "payment": {
       "admission": {
         "title": "Adgangskrav",
-        "description": "Overvej hvilken type adgang dit [contentType] skal have",
+        "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+        "fallbackContentType": "indhold",
         "options": {
           "free": "Gratis",
           "payment": "Betaling",

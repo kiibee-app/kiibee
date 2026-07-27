@@ -59,6 +59,7 @@ const isPasswordInvalid = (passwords: string): boolean =>
 
 interface AdmissionRequirementsProps {
   accessType?: AdmissionRequirementValue;
+  contentType?: string;
   onChangeAccessType?: (value: AdmissionRequirementValue) => void;
   passwords?: string;
   onChangePasswords?: (value: string) => void;
@@ -78,6 +79,7 @@ interface AdmissionRequirementsProps {
 
 function AdmissionRequirements({
   accessType,
+  contentType,
   onChangeAccessType,
   passwords: propPasswords,
   onChangePasswords,
@@ -203,7 +205,11 @@ function AdmissionRequirements({
         </MonoText>
 
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          {t("contents.admissionRequirements.description")}
+          {t("contents.admissionRequirements.description", {
+            contentType:
+              contentType ||
+              t("contents.admissionRequirements.fallbackContentType"),
+          })}
         </MonoText>
       </TextBlock>
 
