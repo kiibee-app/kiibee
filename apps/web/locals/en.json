@@ -1852,7 +1852,7 @@
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your {{contentType}} should have",
-      "fallbackContentType": "content",
+      "fallbackContentType": "collection",
       "options": {
         "free": "Free",
         "payment": "Payment",

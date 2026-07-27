@@ -226,7 +226,6 @@ export default function ContentTabPanel({
   if (activeTab === SETTINGS) {
     return (
       <AdmissionRequirements
-        contentType={collectionContents?.[0]?.contentType}
         accessType={collectionAccessType}
         onChangeAccessType={setCollectionAccessType}
         passwords={collectionPasswords}

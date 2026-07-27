@@ -1937,7 +1937,7 @@
     "admissionRequirements": {
       "title": "Adgangskrav",
       "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
-      "fallbackContentType": "indhold",
+      "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
