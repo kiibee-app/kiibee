@@ -112,6 +112,9 @@ export default function MediaSections({
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
 
+  const getMediaPrimaryActionHandler = (item: RentedMediaItem) =>
+    onMediaPrimaryAction ? () => onMediaPrimaryAction(item) : undefined;
+
   return (
     <>
       {getRentedMediaSections(t).map((section) => {
@@ -205,11 +208,7 @@ export default function MediaSections({
                           variant={VARIANT.SECONDARY}
                           size="md"
                           fullWidth
-                          onClick={
-                            onMediaPrimaryAction
-                              ? () => onMediaPrimaryAction(item)
-                              : undefined
-                          }
+                          onClick={getMediaPrimaryActionHandler(item)}
                         >
                           {getMediaAction(section.key, t)}
                         </GenericButton>
