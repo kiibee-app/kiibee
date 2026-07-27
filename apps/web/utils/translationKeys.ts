@@ -296,7 +296,12 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.billingHistory.invoiceModal.orderNumber",
       contentDetails:
         "dashboard.viewerBillings.billingHistory.invoiceModal.contentDetails",
-      share: "dashboard.viewerBillings.billingHistory.invoiceModal.share",
+      sendReceipt:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.sendReceipt",
+      receiptSent:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSent",
+      receiptSendFailed:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSendFailed",
     },
     tableHeaders: {
       contentTitle:

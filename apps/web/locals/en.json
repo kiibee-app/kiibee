@@ -1510,7 +1510,9 @@
           "title": "Invoice",
           "orderNumber": "Order number",
           "contentDetails": "Content details",
-          "share": "Share"
+          "sendReceipt": "Send receipt by email",
+          "receiptSent": "Receipt sent by email.",
+          "receiptSendFailed": "Unable to send the receipt. Please try again."
         },
         "tableHeaders": {
           "contentTitle": "Content title",

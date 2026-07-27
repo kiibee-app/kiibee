@@ -14,6 +14,13 @@ interface ExportResponse {
   data: Record<string, unknown>[];
 }
 
+interface SendReceiptResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: null;
+}
+
 const convertToCSV = (data: Record<string, unknown>[]): string => {
   if (data.length === 0) return "";
 
@@ -61,5 +68,16 @@ export const useExportRequest = () => {
     isPending: mutation.isPending,
     isSuccess: mutation.isSuccess,
     error: mutation.error,
+  };
+};
+
+export const useSendReceipt = () => {
+  const mutation = usePostAPI<SendReceiptResponse, { orderId: string }>(
+    API.export.sendReceipt,
+  );
+
+  return {
+    sendReceipt: (orderId: string) => mutation.mutateAsync({ orderId }),
+    isPending: mutation.isPending,
   };
 };

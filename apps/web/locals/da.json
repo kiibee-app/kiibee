@@ -1510,7 +1510,9 @@
           "title": "Faktura",
           "orderNumber": "Ordrenummer",
           "contentDetails": "Indholdsdetaljer",
-          "share": "Del"
+          "sendReceipt": "Send kvittering via e-mail",
+          "receiptSent": "Kvitteringen er sendt via e-mail.",
+          "receiptSendFailed": "Kvitteringen kunne ikke sendes. Prøv igen."
         },
         "tableHeaders": {
           "contentTitle": "Indholdstitel",
