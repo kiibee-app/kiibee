@@ -20,6 +20,11 @@ export const API_ENDPOINTS = {
     `/content/admin/creator-contents/${creatorId}`,
   CONTENT_ENGAGEMENT: (contentId: string) =>
     `/content/admin/content-engagement/${contentId}`,
+  CREATOR_APPEARANCE: (creatorId: string) =>
+    `/content/admin/appearance/${creatorId}`,
+  MEDIA_VIDEO_STREAM: "/media/videos/stream",
+  MEDIA_SIGNED_URL: "/media/signed-url",
+  MEDIA_IMAGES_UPLOAD: "/media/images/upload",
   VIEWER_SALES: (viewerId: string) =>
     `/order/admin/billing-history/${viewerId}`,
   VIEWER_PURCHASED_DATA: (viewerId: string) =>
@@ -92,6 +97,7 @@ export const QUERY_KEY = {
   CREATOR_DETAIL: "creator-detail",
   CREATOR_CONTENTS: "creator-contents",
   CONTENT_ENGAGEMENT: "content-engagement",
+  CREATOR_APPEARANCE: "creator-appearance",
   PAYOUT_REQUESTS: "payout-requests",
   PAYOUT_REQUEST_DETAIL: "payout-request-detail",
   PAYOUT_HISTORY_BY_CREATOR: "payout-history-by-creator",
@@ -144,6 +150,8 @@ export const CREATOR_LAYOUT_KEY = {
   LAYOUT2: "layout2",
   LAYOUT3: "layout3",
 } as const;
+
+export const DEFAULT_CREATOR_LAYOUT = CREATOR_LAYOUT_KEY.LAYOUT1;
 
 export const CREATOR_LAYOUT_KEY_TO_PARAM: Record<string, string> = {
   [CREATOR_LAYOUT_KEY.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,

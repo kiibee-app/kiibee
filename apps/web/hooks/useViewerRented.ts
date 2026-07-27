@@ -7,6 +7,7 @@ import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import {
   RENTED_MODES,
+  COLLECTION_ACCESS_STATUS,
   formatExpiryText,
   formatExpiredText,
   RentedMode,
@@ -72,6 +73,7 @@ function toMediaItem(
     author: item.creatorName ?? "",
     buyPrice: item.buyPrice,
     rentPrice: item.rentPrice,
+    accessStatus: COLLECTION_ACCESS_STATUS.RENTED,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
         ? formatExpiredText(item.rentExpiresAt, t)
@@ -91,6 +93,7 @@ function toCollectionItem(
     elementCount: item.elementCount ?? 0,
     coverSrc: resolvePublicMediaUrl(item.coverImageUrl) ?? "",
     buyPrice: item.buyPrice,
+    accessStatus: COLLECTION_ACCESS_STATUS.RENTED,
     rentExpiresAt: item.rentExpiresAt,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY

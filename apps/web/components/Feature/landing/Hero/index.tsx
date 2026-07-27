@@ -11,13 +11,13 @@ import {
   Title,
   Subtitle,
   CTAWrap,
+  HeroCTAButton,
   Background,
   heroImageStyle,
   heroRevealStyle,
 } from "./styles";
 import Image from "@/components/UI/SafeImage";
 import hero from "@/assets/images/hero-background.webp";
-import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
@@ -76,13 +76,13 @@ export default function HeroSection() {
 
           <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
             <CTAWrap>
-              <GenericButton
+              <HeroCTAButton
                 asAnchor
                 href={isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP}
                 variant={VARIANT.PRIMARY}
               >
                 {isLoggedIn ? t("how.cta") : t(HERO.cta)}
-              </GenericButton>
+              </HeroCTAButton>
             </CTAWrap>
           </ScrollReveal>
         </Content>

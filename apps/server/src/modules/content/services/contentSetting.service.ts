@@ -6,7 +6,10 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { logger } from 'src/logger/logger';
 import { ContentSettingDto } from '../dto/contentSetting.dto';
 import { randomUUID } from 'crypto';
-import { hashAccessPasswords } from 'src/utils/accessPassword';
+import {
+  hashAccessPasswords,
+  getPasswordCount,
+} from 'src/utils/accessPassword';
 
 const toContentSettingResponse = (setting: {
   userId: string;
@@ -16,6 +19,7 @@ const toContentSettingResponse = (setting: {
   userId: setting.userId,
   accessType: setting.accessType,
   hasPassword: Boolean(setting.passwordHash),
+  passwordCount: getPasswordCount(setting.passwordHash),
 });
 
 export const getContentSettingByUserId = async (userId: string) => {

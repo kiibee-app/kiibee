@@ -16,6 +16,7 @@ export type CreatorDeletionRequestUser = {
 export type CreatorDeletionRequest = {
   id: string;
   status: CreatorDeletionRequestStatus;
+  reason: string;
   approvedUserId: string | null;
   createdAt: string;
   updatedAt: string;

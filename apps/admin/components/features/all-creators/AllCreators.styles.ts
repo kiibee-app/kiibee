@@ -305,8 +305,12 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
 
     if ($status === "rejected") {
       return css`
-        background: ${theme.colors.neutral.GRAY_100};
-        color: ${theme.colors.secondary.main};
+        background: color-mix(
+          in srgb,
+          ${theme.colors.primary.RED} 12%,
+          ${theme.colors.neutral.WHITE}
+        );
+        color: ${theme.colors.primary.RED};
       `;
     }
 
@@ -333,7 +337,7 @@ export const StatusDot = styled.span<{ $status: CreatorStatus }>`
 
     if ($status === "rejected") {
       return css`
-        background: ${theme.colors.secondary.muted};
+        background: ${theme.colors.primary.RED};
       `;
     }
 

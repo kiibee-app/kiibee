@@ -17,6 +17,7 @@ import {
   BackLink,
   DetailsLayout,
   DetailsSection,
+  DetailsSectionAction,
   DetailsSectionBody,
   DetailsSectionHeader,
   DetailsSectionTitle,
@@ -127,6 +128,9 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
       <DetailsSection>
         <DetailsSectionHeader>
           <DetailsSectionTitle>Profile Details</DetailsSectionTitle>
+          <DetailsSectionAction href={`/all-creators/${creatorId}/appearance`}>
+            Update creator setting
+          </DetailsSectionAction>
         </DetailsSectionHeader>
         <DetailsSectionBody>
           <InfoGrid>

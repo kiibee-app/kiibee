@@ -9,6 +9,7 @@ import LeftIcon from "@/assets/icons/LeftIcon";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
   COLLECTION_SORT_KEY_LIST,
+  COLLECTION_ACCESS_STATUS,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
   type CollectionSortKey,
@@ -77,7 +78,6 @@ export default function CollectionsSection({
 }: Props) {
   const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
-  const isPurchased = mode === RENTED_MODES.PURCHASED;
   const { navigateToContent } = useProtectedContentNavigation();
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
     null,
@@ -175,90 +175,84 @@ export default function CollectionsSection({
         )}
       </SectionHeader>
       <CollectionGrid>
-        {displayItems.map((item) => (
-          <CollectionCard
-            key={item.id}
-            onClick={handleCardClick(item)}
-            style={{ cursor: onCollectionClick ? "pointer" : undefined }}
-          >
-            <CollectionImageWrap>
-              {item.hideBadge ? null : (
-                <CollectionBadge>
-                  {getCollectionBadgeText(mode, t)}
-                </CollectionBadge>
-              )}
-              {item.coverSrc ? (
-                <CollectionImage src={item.coverSrc} alt={item.title} />
-              ) : null}
-            </CollectionImageWrap>
+        {displayItems.map((item) => {
+          const itemMode =
+            item.accessStatus === COLLECTION_ACCESS_STATUS.RENTED
+              ? RENTED_MODES.PREVIOUSLY
+              : mode;
+          const itemIsPurchased = itemMode === RENTED_MODES.PURCHASED;
 
-            <CollectionBody>
-              <MonoText $use="H4_Medium">{item.title}</MonoText>
-              <MonoText $use="Body_Medium">{item.author}</MonoText>
+          return (
+            <CollectionCard
+              key={item.id}
+              onClick={handleCardClick(item)}
+              style={{ cursor: onCollectionClick ? "pointer" : undefined }}
+            >
+              <CollectionImageWrap>
+                {item.hideBadge ? null : (
+                  <CollectionBadge>
+                    {getCollectionBadgeText(itemMode, t)}
+                  </CollectionBadge>
+                )}
+                {item.coverSrc ? (
+                  <CollectionImage src={item.coverSrc} alt={item.title} />
+                ) : null}
+              </CollectionImageWrap>
 
-              <ElementsPill>
-                <PlaylistIcon
-                  width={20}
-                  height={20}
-                  color={COLORS.neutral.GRAY_700}
-                />
-                <MonoText $use="Body_Bold">
-                  {t("collections.elementsCount", { count: item.elementCount })}
-                </MonoText>
-              </ElementsPill>
+              <CollectionBody>
+                <MonoText $use="H4_Medium">{item.title}</MonoText>
+                <MonoText $use="Body_Medium">{item.author}</MonoText>
 
-              <CollectionActionRow>
-                {item.actions?.length ? (
-                  item.actions.map((action, index) => {
-                    const isSecondary = index > 0;
-                    const labelColor = isSecondary
-                      ? COLORS.primary.BLACK
-                      : COLORS.primary.WHITE;
-                    const sublabelColor = isSecondary
-                      ? COLORS.neutral.GRAY_500
-                      : COLORS.primary.WHITE_90;
+                <ElementsPill>
+                  <PlaylistIcon
+                    width={20}
+                    height={20}
+                    color={COLORS.neutral.GRAY_700}
+                  />
+                  <MonoText $use="Body_Bold">
+                    {t("collections.elementsCount", {
+                      count: item.elementCount,
+                    })}
+                  </MonoText>
+                </ElementsPill>
 
-                    const Button = isSecondary
-                      ? CollectionRentButton
-                      : CollectionBuyButton;
+                <CollectionActionRow>
+                  {item.actions?.length ? (
+                    item.actions.map((action, index) => {
+                      const isSecondary = index > 0;
+                      const labelColor = isSecondary
+                        ? COLORS.primary.BLACK
+                        : COLORS.primary.WHITE;
+                      const sublabelColor = isSecondary
+                        ? COLORS.neutral.GRAY_500
+                        : COLORS.primary.WHITE_90;
 
-                    return (
-                      <Button
-                        key={`${item.id}-${action.label}`}
-                        className="collection-cta"
-                        onClick={handleActionClick(action.href)}
-                      >
-                        <CollectionCtaContent>
-                          <MonoText $use="Body_Medium" color={labelColor}>
-                            {action.label}
-                          </MonoText>
-                          {action.sublabel ? (
-                            <CollectionCtaSubtext
-                              style={{ color: sublabelColor }}
-                            >
-                              {action.sublabel}
-                            </CollectionCtaSubtext>
-                          ) : null}
-                        </CollectionCtaContent>
-                      </Button>
-                    );
-                  })
-                ) : isPurchased ? (
-                  <CollectionBuyButton
-                    className="collection-cta"
-                    onClick={handlePrimaryClick(item)}
-                  >
-                    <CollectionCtaContent>
-                      <MonoText
-                        $use="Body_SemiBold"
-                        color={COLORS.primary.WHITE}
-                      >
-                        {getCollectionPrimaryActionText(mode, t, item)}
-                      </MonoText>
-                    </CollectionCtaContent>
-                  </CollectionBuyButton>
-                ) : (
-                  <>
+                      const Button = isSecondary
+                        ? CollectionRentButton
+                        : CollectionBuyButton;
+
+                      return (
+                        <Button
+                          key={`${item.id}-${action.label}`}
+                          className="collection-cta"
+                          onClick={handleActionClick(action.href)}
+                        >
+                          <CollectionCtaContent>
+                            <MonoText $use="Body_Medium" color={labelColor}>
+                              {action.label}
+                            </MonoText>
+                            {action.sublabel ? (
+                              <CollectionCtaSubtext
+                                style={{ color: sublabelColor }}
+                              >
+                                {action.sublabel}
+                              </CollectionCtaSubtext>
+                            ) : null}
+                          </CollectionCtaContent>
+                        </Button>
+                      );
+                    })
+                  ) : itemIsPurchased ? (
                     <CollectionBuyButton
                       className="collection-cta"
                       onClick={handlePrimaryClick(item)}
@@ -268,50 +262,66 @@ export default function CollectionsSection({
                           $use="Body_SemiBold"
                           color={COLORS.primary.WHITE}
                         >
-                          {getCollectionPrimaryActionText(mode, t, item)}
+                          {getCollectionPrimaryActionText(itemMode, t, item)}
                         </MonoText>
                       </CollectionCtaContent>
                     </CollectionBuyButton>
-                    {isCurrent ? (
-                      <PassiveActionBlock>
-                        <MonoText
-                          $use="Body_Medium"
-                          color={COLORS.neutral.GRAY_400}
-                        >
-                          {t("viewerRented.activeRental")}
-                        </MonoText>
-                        <MonoText
-                          $use="Body_Small"
-                          color={
-                            isUrgentExpiry(item.rentExpiresAt)
-                              ? COLORS.primary.RED
-                              : COLORS.neutral.GRAY_400
-                          }
-                        >
-                          {item.expiryText || t("viewerRented.expiresIn")}
-                        </MonoText>
-                      </PassiveActionBlock>
-                    ) : isPurchased ? null : (
-                      <CollectionRentButton
+                  ) : (
+                    <>
+                      <CollectionBuyButton
                         className="collection-cta"
-                        onClick={stopPropagation}
+                        onClick={handlePrimaryClick(item)}
                       >
                         <CollectionCtaContent>
                           <MonoText
                             $use="Body_SemiBold"
-                            color={COLORS.primary.BLACK}
+                            color={COLORS.primary.WHITE}
                           >
-                            {t("pricingLabels.rent")}
+                            {getCollectionPrimaryActionText(itemMode, t, item)}
                           </MonoText>
                         </CollectionCtaContent>
-                      </CollectionRentButton>
-                    )}
-                  </>
-                )}
-              </CollectionActionRow>
-            </CollectionBody>
-          </CollectionCard>
-        ))}
+                      </CollectionBuyButton>
+                      {isCurrent ? (
+                        <PassiveActionBlock>
+                          <MonoText
+                            $use="Body_Medium"
+                            color={COLORS.neutral.GRAY_400}
+                          >
+                            {t("viewerRented.activeRental")}
+                          </MonoText>
+                          <MonoText
+                            $use="Body_Small"
+                            color={
+                              isUrgentExpiry(item.rentExpiresAt)
+                                ? COLORS.primary.RED
+                                : COLORS.neutral.GRAY_400
+                            }
+                          >
+                            {item.expiryText || t("viewerRented.expiresIn")}
+                          </MonoText>
+                        </PassiveActionBlock>
+                      ) : itemIsPurchased ? null : (
+                        <CollectionRentButton
+                          className="collection-cta"
+                          onClick={stopPropagation}
+                        >
+                          <CollectionCtaContent>
+                            <MonoText
+                              $use="Body_SemiBold"
+                              color={COLORS.primary.BLACK}
+                            >
+                              {t("pricingLabels.rent")}
+                            </MonoText>
+                          </CollectionCtaContent>
+                        </CollectionRentButton>
+                      )}
+                    </>
+                  )}
+                </CollectionActionRow>
+              </CollectionBody>
+            </CollectionCard>
+          );
+        })}
       </CollectionGrid>
     </>
   );

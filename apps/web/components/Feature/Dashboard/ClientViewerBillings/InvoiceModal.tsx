@@ -11,6 +11,7 @@ import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useViewerBillingInvoice } from "@/hooks/useViewerBillingInvoice";
 import { useSendReceipt } from "@/hooks/useExport";
+import { useLocalTime } from "@/hooks/useLocalTime";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 import { toast } from "react-toastify";
@@ -40,6 +41,7 @@ export default function InvoiceModal({
   onClose,
 }: InvoiceModalProps) {
   const { t } = useTranslation();
+  const { formatTime } = useLocalTime();
   const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
   const { sendReceipt, isPending: isSendingReceipt } = useSendReceipt();
 
@@ -105,7 +107,9 @@ export default function InvoiceModal({
                     .paymentDate,
                 )}
               </InvoiceLabel>
-              <MonoText $use="Body_SemiBold">{invoice.paymentDate}</MonoText>
+              <MonoText $use="Body_SemiBold">
+                {formatTime(invoice.paymentDate)}
+              </MonoText>
             </InvoiceInfo>
 
             <InvoiceInfo>

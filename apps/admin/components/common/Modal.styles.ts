@@ -16,7 +16,7 @@ export const Overlay = styled.div`
 `;
 
 export const ModalCard = styled.div`
-  width: min(760px, 100%);
+  width: min(960px, 100%);
   max-height: calc(100vh - 48px);
   overflow: auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};

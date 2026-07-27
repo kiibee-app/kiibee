@@ -14,7 +14,7 @@ import { userContentAccess } from 'src/database/schema/access/userContentAccess.
 import { contentAccessRequests } from 'src/database/schema/marketing/contentAccessRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
 import { and, eq, or, isNull, gt, sql } from 'drizzle-orm';
-import { ACCESS_TYPE, STATUS } from 'src/utils/constant';
+import { ACCESS_TYPE, STATUS, ROLE } from 'src/utils/constant';
 
 @Injectable()
 export class CheckMediaAccessGuard implements CanActivate {
@@ -55,6 +55,11 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     if (!mediaFile) {
       throw new NotFoundException('Media not found');
+    }
+
+    if (String(request.user?.role || '').toLowerCase() === ROLE.ADMIN) {
+      request.mediaFile = mediaFile;
+      return true;
     }
 
     if (mediaFile.creatorId === userId) {

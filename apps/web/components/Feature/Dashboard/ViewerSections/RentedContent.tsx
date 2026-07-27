@@ -24,6 +24,7 @@ import {
   filterMedia,
   getRentedMediaSectionItems,
   getViewerExpandedSection,
+  mergeRentedContentSources,
   syncViewerExpandedSectionParam,
 } from "@/utils/viewerRented";
 import {
@@ -96,6 +97,14 @@ export default function RentedContent({
     isFetching,
   } = useViewerRentedData(mode);
   const {
+    sources: previouslyRentedSources,
+    isLoading: isPreviouslyRentedLoading,
+    isFetching: isPreviouslyRentedFetching,
+  } = useViewerRentedData(
+    RENTED_MODES.PREVIOUSLY,
+    mode === RENTED_MODES.PURCHASED,
+  );
+  const {
     data: purchasedData,
     isLoading: isPurchasedLoading,
     isFetching: isPurchasedFetching,
@@ -103,18 +112,16 @@ export default function RentedContent({
 
   const sources = useMemo(() => {
     if (mode === RENTED_MODES.PURCHASED) {
-      return (
-        purchasedData || {
-          collections: [],
-          videos: [],
-          audios: [],
-          pdfs: [],
-          webs: [],
-        }
-      );
+      return mergeRentedContentSources(purchasedData, previouslyRentedSources);
     }
     return rentedSources;
-  }, [mode, purchasedData, rentedSources]);
+  }, [mode, purchasedData, previouslyRentedSources, rentedSources]);
+
+  const isHistoryLoading =
+    isPurchasedLoading ||
+    isPurchasedFetching ||
+    isPreviouslyRentedLoading ||
+    isPreviouslyRentedFetching;
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -229,7 +236,7 @@ export default function RentedContent({
     selectedCollectionId &&
     !selectedCollection &&
     (mode === RENTED_MODES.PURCHASED
-      ? isPurchasedLoading || isPurchasedFetching
+      ? isHistoryLoading
       : isLoading || isFetching),
   );
 
@@ -323,7 +330,7 @@ export default function RentedContent({
         }
       />
 
-      {(mode === RENTED_MODES.PURCHASED ? isPurchasedLoading : isLoading) ? (
+      {(mode === RENTED_MODES.PURCHASED ? isHistoryLoading : isLoading) ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
             {LOADING_TEXT_FALLBACK}

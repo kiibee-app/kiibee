@@ -59,6 +59,7 @@ const isPasswordInvalid = (passwords: string): boolean =>
 
 interface AdmissionRequirementsProps {
   accessType?: AdmissionRequirementValue;
+  contentType?: string;
   onChangeAccessType?: (value: AdmissionRequirementValue) => void;
   passwords?: string;
   onChangePasswords?: (value: string) => void;
@@ -74,10 +75,13 @@ interface AdmissionRequirementsProps {
   showPaymentOption?: boolean;
   showPasswordMeta?: boolean;
   onValidationChange?: (hasError: boolean) => void;
+  hasPassword?: boolean;
+  passwordCount?: number;
 }
 
 function AdmissionRequirements({
   accessType,
+  contentType,
   onChangeAccessType,
   passwords: propPasswords,
   onChangePasswords,
@@ -93,6 +97,8 @@ function AdmissionRequirements({
   showPaymentOption = true,
   showPasswordMeta = false,
   onValidationChange,
+  hasPassword = false,
+  passwordCount = 1,
 }: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -203,7 +209,11 @@ function AdmissionRequirements({
         </MonoText>
 
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          {t("contents.admissionRequirements.description")}
+          {t("contents.admissionRequirements.description", {
+            contentType:
+              contentType ||
+              t("contents.admissionRequirements.fallbackContentType"),
+          })}
         </MonoText>
       </TextBlock>
 
@@ -263,23 +273,40 @@ function AdmissionRequirements({
 
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>
-          <TagsInput
-            value={passwords}
-            onChange={(value) => handlePasswordsChange(value as string)}
-            onInputChange={(typed) => handleTypedPasswordsChange(typed)}
-            placeholder={t(
-              "contents.admissionRequirements.password.placeholder",
-            )}
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            hasError={validatePasswordInput(effectivePasswords)}
-            separateOnSpace={true}
-          />
-
-          {validatePasswordInput(effectivePasswords) && (
-            <ErrorText>
-              {t("contents.admissionRequirements.password.error.minLength")}
-            </ErrorText>
+          {hasPassword && !passwords && !typedPasswords ? (
+            <TagsInput
+              value={Array(passwordCount || 1)
+                .fill("••••••")
+                .join(", ")}
+              onInputChange={(typed) => handleTypedPasswordsChange(typed)}
+              placeholder={t(
+                "contents.admissionRequirements.password.placeholder",
+              )}
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              hasError={false}
+              separateOnSpace={true}
+            />
+          ) : (
+            <TagsInput
+              value={passwords}
+              onChange={(value) => handlePasswordsChange(value as string)}
+              onInputChange={(typed) => handleTypedPasswordsChange(typed)}
+              placeholder={t(
+                "contents.admissionRequirements.password.placeholder",
+              )}
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              hasError={validatePasswordInput(effectivePasswords)}
+              separateOnSpace={true}
+            />
           )}
+
+          {!hasPassword || passwords || typedPasswords
+            ? validatePasswordInput(effectivePasswords) && (
+                <ErrorText>
+                  {t("contents.admissionRequirements.password.error.minLength")}
+                </ErrorText>
+              )
+            : null}
 
           {showPasswordMeta && (
             <PasswordMetaRow>

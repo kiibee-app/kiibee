@@ -226,8 +226,13 @@ export class AuthService {
     return updateCreatorProfileService(userId, profileData);
   }
 
-  async deleteUserService(userId: string, jti?: string, exp?: number) {
-    return deleteUserService(userId, jti, exp);
+  async deleteUserService(
+    userId: string,
+    reason: string | undefined,
+    jti?: string,
+    exp?: number,
+  ) {
+    return deleteUserService(userId, reason, jti, exp);
   }
 
   async getCreatorDeletionRequests() {

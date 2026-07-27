@@ -118,3 +118,118 @@ export const ClickableContentCard = styled.button`
     box-shadow: ${({ theme }) => theme.shadows.md};
   }
 `;
+
+export const CardCover = styled.div`
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
+export const CardCoverBlur = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+  transform: scale(1.08);
+  opacity: 1;
+`;
+
+export const CardCoverOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(12, 14, 18, 0.22) 0%,
+    rgba(12, 14, 18, 0.06) 50%,
+    rgba(12, 14, 18, 0.22) 100%
+  );
+`;
+
+export const CardCoverMain = styled.img`
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0;
+`;
+
+export const PriceMeta = styled.p`
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+`;
+
+export const HeroActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+export const PlayButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
+  background: ${({ theme }) => theme.colors.primary.GREEN};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    opacity ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+    border-color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+`;
+
+export const PreviewFrame = styled.iframe`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const PreviewVideo = styled.video`
+  width: 100%;
+  max-height: 70vh;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const PreviewAudio = styled.audio`
+  width: 100%;
+`;
+
+export const PreviewState = styled.div`
+  padding: ${({ theme }) => theme.spacing(6)};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  font-size: 14px;
+`;
+
+export const PreviewLink = styled.a`
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  font-weight: 600;
+  word-break: break-all;
+`;

@@ -3,7 +3,7 @@ import { db } from 'src/database/db';
 import { collectionItems, contentTypes, mediaFiles } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, desc } from 'drizzle-orm';
 
 export const getContentByCollectionIdService = async (collectionId: string) => {
   try {
@@ -33,7 +33,8 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
           eq(collectionItems.collectionId, collectionId),
           eq(mediaFiles.isDeleted, false),
         ),
-      );
+      )
+      .orderBy(desc(mediaFiles.createdAt));
 
     const responseData = contentItems.map((item) => ({
       id: item.id,

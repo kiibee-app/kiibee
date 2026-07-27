@@ -48,7 +48,11 @@ import {
 } from "@/utils/admissionRequirements";
 import { useContentForm } from "../ContentFormContext";
 
-export default function Payment() {
+interface PaymentProps {
+  contentType?: string;
+}
+
+export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
@@ -141,7 +145,11 @@ export default function Payment() {
           <Block>
             <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
             <SectionText>
-              {t("contents.payment.admission.description")}
+              {t("contents.payment.admission.description", {
+                contentType:
+                  contentType ||
+                  t("contents.payment.admission.fallbackContentType"),
+              })}
             </SectionText>
 
             <DropdownWrap>
@@ -239,19 +247,38 @@ export default function Payment() {
 
           {isSetPassword && (
             <ControlWrap>
-              <TagsInput
-                value={formState.password}
-                onChange={handlePasswordChange}
-                onInputChange={handleTypedPasswordChange}
-                placeholder={t("contents.payment.password.placeholder")}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                hasError={passwordHasError}
-                separateOnSpace={true}
-              />
-
-              {passwordHasError && passwordErrorMessage && (
-                <ErrorText>{passwordErrorMessage}</ErrorText>
+              {formState.hasPassword &&
+              !formState.password &&
+              !typedPassword ? (
+                <TagsInput
+                  value={Array(formState.passwordCount || 1)
+                    .fill("••••••")
+                    .join(", ")}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={false}
+                  separateOnSpace={true}
+                />
+              ) : (
+                <TagsInput
+                  value={formState.password}
+                  onChange={handlePasswordChange}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={passwordHasError}
+                  separateOnSpace={true}
+                />
               )}
+
+              {(!formState.hasPassword ||
+                formState.password ||
+                typedPassword) &&
+                passwordHasError &&
+                passwordErrorMessage && (
+                  <ErrorText>{passwordErrorMessage}</ErrorText>
+                )}
 
               <HelperFormRow>
                 <HelperText>{t("contents.payment.password.helper")}</HelperText>

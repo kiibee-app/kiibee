@@ -243,6 +243,10 @@ export default function PayoutDetailsModal({
               </MonoText>
               <MonoText $use="H4_Medium">{totalValue}</MonoText>
             </FooterNote>
+
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              {t("settings.payout.modal.transferNote")}
+            </MonoText>
           </>
         )}
       </PayoutWrapper>

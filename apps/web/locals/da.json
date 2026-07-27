@@ -1022,7 +1022,18 @@
       "title": "Anmod om sletning af konto?",
       "message": "Er du sikker på, at du vil anmode om at slette din konto? En administrator vil gennemse og behandle din anmodning.",
       "cancel": "Annuller",
-      "confirm": "Anmod om sletning"
+      "confirm": "Anmod om sletning",
+      "reasonLabel": "Årsag til sletning",
+      "reasonPlaceholder": "Vælg en årsag...",
+      "customReasonLabel": "Forklar venligst",
+      "customReasonPlaceholder": "Forklar venligst kort, hvorfor du vil slette din konto...",
+      "reasons": {
+        "notUsing": "Jeg bruger ikke længere platformen",
+        "tooExpensive": "Det er for dyrt",
+        "missingFeatures": "Mangler funktioner, jeg har brug for",
+        "privacyConcerns": "Privatlivsbetænkeligheder",
+        "others": "Andet"
+      }
     },
     "deleteToastMessage": "Anmodning om kontosletning er sendt. Vent venligst på administratorens godkendelse.",
     "deleteSuccessModal": {
@@ -1699,7 +1710,7 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
+      "description": "Når du klikker på knappen, oprettes en opgørelse, som du kan udbetale. Klik på udbetaling for at se din kreditnota. Overførsel af din saldo kan tage op til 5 hverdage.",
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
@@ -1718,6 +1729,7 @@
         "processingFee": "Transaktionsgebyr ({{percent}})",
         "platformFee": "Kiibee-betaling ({{percent}})",
         "total": "Samlet udbetalingsbeløb",
+        "transferNote": "Overførsel af din saldo kan tage op til 5 hverdage.",
         "success": "Udbetalingsanmodning er indsendt.",
         "calculateError": "Kunne ikke beregne udbetaling. Prøv igen.",
         "requestError": "Kunne ikke indsende udbetalingsanmodning. Prøv igen.",
@@ -1948,7 +1960,8 @@
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
-      "description": "Overvej hvilken type adgang dit [contentType] skal have",
+      "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+      "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
@@ -2116,7 +2129,8 @@
     "payment": {
       "admission": {
         "title": "Adgangskrav",
-        "description": "Overvej hvilken type adgang dit [contentType] skal have",
+        "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+        "fallbackContentType": "indhold",
         "options": {
           "free": "Gratis",
           "payment": "Betaling",
@@ -2246,12 +2260,14 @@
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billedupload mislykkedes",
-    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen."
+    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
+    "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
   },
   "sidebar": {
     "users": "Brugere",
     "help": "Hjælp",
     "currentlyRented": "I øjeblikket lejet",
+    "purchaseRentalHistory": "Tidligere køb og lejet indhold",
     "previouslyRented": "Tidligere lejet",
     "helpVideos": "Hjælpevideoer",
     "userManual": "Brugervejledning",

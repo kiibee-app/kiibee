@@ -74,8 +74,6 @@ export default function TopCreators({ search }: { search?: string }) {
                 key={creator.id}
                 as="a"
                 href={getPublicCreatorProfilePath(creator.id)}
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 <Avatar>
                   <CreatorChannelAvatar

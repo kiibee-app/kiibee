@@ -233,7 +233,7 @@ export default function CollectionList() {
   }
 
   return (
-    <CollectionListShell>
+    <CollectionListShell data-creator-collection>
       <CollectionListInner>
         {filteredItems.length === 0 && !isLoading ? (
           <ProfileEmptyState
