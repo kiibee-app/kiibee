@@ -57,7 +57,7 @@ export class CheckMediaAccessGuard implements CanActivate {
       throw new NotFoundException('Media not found');
     }
 
-    if (request.user?.role === ROLE.ADMIN) {
+    if (String(request.user?.role || '').toLowerCase() === ROLE.ADMIN) {
       request.mediaFile = mediaFile;
       return true;
     }

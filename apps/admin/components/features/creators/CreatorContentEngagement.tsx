@@ -1,10 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Film } from "lucide-react";
-import { useContentEngagement } from "../../../hooks/api";
+import { ArrowLeft, Film, Play } from "lucide-react";
+import {
+  useContentEngagement,
+  useContentMediaPreview,
+} from "../../../hooks/api";
 import { formatRequestedAt } from "../../../utils/date";
+import {
+  formatBuyPrice,
+  formatRentPrice,
+} from "../../../utils/creatorUploadsConfig";
+import {
+  canPreviewContent,
+  type ContentFormat,
+} from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
+import { ContentPreviewModal } from "./ContentPreviewModal";
+import { HeroActions, PlayButton, PriceMeta } from "./Creators.styles";
 import {
   BackLink,
   ContentThumb,
@@ -49,7 +62,15 @@ export function CreatorContentEngagement({
   const [activeTab, setActiveTab] = useState<EngagementTab>(
     ENGAGEMENT_TAB.PURCHASES,
   );
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewFormat, setPreviewFormat] = useState<ContentFormat | null>(
+    null,
+  );
+  const [previewError, setPreviewError] = useState<string | null>(null);
+
   const engagementQuery = useContentEngagement(contentId);
+  const mediaPreview = useContentMediaPreview();
 
   if (engagementQuery.isLoading) {
     return <LoadingState>Loading content details…</LoadingState>;
@@ -66,6 +87,43 @@ export function CreatorContentEngagement({
   const { content, purchases, rentals, downloads, stats } =
     engagementQuery.data;
 
+  const showPricing = content.accessType === "paid";
+  const canPlay = canPreviewContent({
+    contentType: content.contentType,
+    contentTypeId: content.contentTypeId,
+    fileKey: content.fileKey,
+    contentUrl: content.contentUrl,
+  });
+
+  const handlePlay = async () => {
+    setPreviewOpen(true);
+    setPreviewError(null);
+    setPreviewUrl(null);
+    setPreviewFormat(null);
+
+    try {
+      const result = await mediaPreview.mutateAsync({
+        contentType: content.contentType,
+        contentTypeId: content.contentTypeId,
+        fileKey: content.fileKey,
+        contentUrl: content.contentUrl,
+      });
+      setPreviewUrl(result.url);
+      setPreviewFormat(result.format);
+    } catch (error) {
+      setPreviewError(
+        error instanceof Error ? error.message : "Failed to load preview.",
+      );
+    }
+  };
+
+  const handleClosePreview = () => {
+    setPreviewOpen(false);
+    setPreviewUrl(null);
+    setPreviewFormat(null);
+    setPreviewError(null);
+  };
+
   return (
     <DetailsLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
@@ -74,7 +132,15 @@ export function CreatorContentEngagement({
       </BackLink>
 
       <ProfileHero>
-        <ContentThumb style={{ width: 120, borderRadius: 12, flexShrink: 0 }}>
+        <ContentThumb
+          style={{
+            width: 100,
+            height: 134,
+            borderRadius: 12,
+            flexShrink: 0,
+            overflow: "hidden",
+          }}
+        >
           {content.thumbnailUrl ? (
             <ContentThumbImage src={content.thumbnailUrl} alt={content.title} />
           ) : (
@@ -89,10 +155,28 @@ export function CreatorContentEngagement({
             {content.contentType || "Content"} · {content.accessType} ·{" "}
             {content.isPublished ? "Published" : "Draft"}
           </ProfileEmail>
+          {showPricing ? (
+            <PriceMeta>
+              {formatBuyPrice(content.buyPrice)} ·{" "}
+              {formatRentPrice(content.rentPrice)}
+            </PriceMeta>
+          ) : null}
           {content.publishedAt || content.createdAt ? (
             <ProfileEmail>
               {formatRequestedAt(content.publishedAt || content.createdAt)}
             </ProfileEmail>
+          ) : null}
+          {canPlay ? (
+            <HeroActions>
+              <PlayButton
+                type="button"
+                onClick={handlePlay}
+                disabled={mediaPreview.isPending}
+              >
+                <Play size={14} />
+                {mediaPreview.isPending ? "Loading…" : "Play content"}
+              </PlayButton>
+            </HeroActions>
           ) : null}
         </ProfileInfo>
       </ProfileHero>
@@ -168,6 +252,16 @@ export function CreatorContentEngagement({
           ) : null}
         </DetailsSectionBody>
       </DetailsSection>
+
+      <ContentPreviewModal
+        open={previewOpen}
+        onClose={handleClosePreview}
+        title={content.title}
+        url={previewUrl}
+        format={previewFormat}
+        isLoading={mediaPreview.isPending}
+        error={previewError}
+      />
     </DetailsLayout>
   );
 }

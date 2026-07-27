@@ -20,6 +20,7 @@ export {
   readFileAsDataUrl,
 } from "./use-creator-appearance";
 export { useContentEngagement } from "./use-content-engagement";
+export { useContentMediaPreview } from "./use-content-media-preview";
 export { useViewers } from "./use-viewers";
 export { useViewer } from "./use-viewer";
 export { useViewerSales } from "./use-viewer-sales";

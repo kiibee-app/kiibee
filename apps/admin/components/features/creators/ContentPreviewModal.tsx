@@ -1,0 +1,85 @@
+"use client";
+
+import { Modal } from "../../common/Modal";
+import {
+  CONTENT_FORMAT,
+  type ContentFormat,
+} from "../../../utils/contentMedia";
+import {
+  PreviewAudio,
+  PreviewFrame,
+  PreviewLink,
+  PreviewState,
+  PreviewVideo,
+} from "./Creators.styles";
+
+type ContentPreviewModalProps = {
+  open: boolean;
+  onClose: () => void;
+  title: string;
+  url: string | null;
+  format: ContentFormat | null;
+  isLoading?: boolean;
+  error?: string | null;
+};
+
+export function ContentPreviewModal({
+  open,
+  onClose,
+  title,
+  url,
+  format,
+  isLoading = false,
+  error = null,
+}: ContentPreviewModalProps) {
+  const renderBody = () => {
+    if (isLoading) {
+      return <PreviewState>Loading preview…</PreviewState>;
+    }
+
+    if (error) {
+      return <PreviewState>{error}</PreviewState>;
+    }
+
+    if (!url || !format) {
+      return <PreviewState>No preview available.</PreviewState>;
+    }
+
+    if (format === CONTENT_FORMAT.VIDEO) {
+      return (
+        <PreviewFrame
+          src={url}
+          title={title}
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+        />
+      );
+    }
+
+    if (format === CONTENT_FORMAT.AUDIO) {
+      return <PreviewAudio src={url} controls autoPlay />;
+    }
+
+    if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.WEB) {
+      return <PreviewFrame src={url} title={title} allowFullScreen />;
+    }
+
+    if (format === CONTENT_FORMAT.EPUB) {
+      return (
+        <PreviewState>
+          <PreviewLink href={url} target="_blank" rel="noreferrer">
+            Open EPUB file
+          </PreviewLink>
+        </PreviewState>
+      );
+    }
+
+    return <PreviewVideo src={url} controls autoPlay />;
+  };
+
+  return (
+    <Modal title={title} open={open} onClose={onClose}>
+      {renderBody()}
+    </Modal>
+  );
+}
