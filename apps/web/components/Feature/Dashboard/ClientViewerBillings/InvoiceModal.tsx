@@ -12,6 +12,7 @@ import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useViewerBillingInvoice } from "@/hooks/useViewerBillingInvoice";
 import useShare from "@/hooks/useShare";
+import { useLocalTime } from "@/hooks/useLocalTime";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
@@ -42,6 +43,7 @@ export default function InvoiceModal({
 }: InvoiceModalProps) {
   const { t } = useTranslation();
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
+  const { formatTime } = useLocalTime();
   const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
 
   const { contentTitle, contentImage, creatorName } =
@@ -88,7 +90,9 @@ export default function InvoiceModal({
                     .paymentDate,
                 )}
               </InvoiceLabel>
-              <MonoText $use="Body_SemiBold">{invoice.paymentDate}</MonoText>
+              <MonoText $use="Body_SemiBold">
+                {formatTime(invoice.paymentDate)}
+              </MonoText>
             </InvoiceInfo>
 
             <InvoiceInfo>
