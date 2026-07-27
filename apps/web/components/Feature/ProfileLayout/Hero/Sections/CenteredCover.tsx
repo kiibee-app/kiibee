@@ -30,7 +30,7 @@ export default function CenteredCoverSection() {
   const biography = about?.description ?? "";
 
   return (
-    <HeroWrapperCentered>
+    <HeroWrapperCentered data-creator-cover-text>
       <CoverFrameFull>
         <CoverImageTop
           src={coverImageUrl || coverImage}

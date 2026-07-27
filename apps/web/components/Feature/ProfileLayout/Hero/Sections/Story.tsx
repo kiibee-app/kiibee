@@ -31,7 +31,7 @@ export default function StorySection() {
   const biography = about?.description ?? "";
 
   return (
-    <HeroFrame>
+    <HeroFrame data-creator-cover-text>
       <HeroGrid>
         <HeroMedia>
           <Image

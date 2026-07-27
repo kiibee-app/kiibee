@@ -18,6 +18,8 @@ export type ExploreCreator = {
   accountEmail?: string | null;
   accessType?: string | null;
   layout?: CreatorLayoutKey | null;
+  textColor?: string | null;
+  buttonColor?: string | null;
 };
 
 export type ExploreCreatorsResponse = {

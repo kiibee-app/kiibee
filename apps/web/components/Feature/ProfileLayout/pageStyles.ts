@@ -14,12 +14,41 @@ export const avatarFrameCss = css`
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
-export const Page = styled.main`
+export const Page = styled.main<{
+  $buttonColor?: string | null;
+  $buttonTextColor?: string;
+  $textColor?: string | null;
+}>`
   min-height: 100vh;
   width: 100%;
   overflow-x: clip;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   display: flow-root;
+
+  ${({ $textColor }) =>
+    $textColor &&
+    css`
+      [data-creator-cover-text],
+      [data-creator-cover-text] * {
+        color: ${$textColor};
+      }
+    `}
+
+  ${({ $buttonColor, $buttonTextColor }) =>
+    $buttonColor &&
+    css`
+      [data-variant="primary"] {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+
+      [data-variant="primary"]:not([type="submit"]):hover {
+        background: ${$buttonColor};
+        border-color: ${$buttonColor};
+        color: ${$buttonTextColor};
+      }
+    `}
 `;
 
 export const Brand = styled(Link)`
