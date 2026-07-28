@@ -2324,6 +2324,8 @@
     "expiresIn": "Expires in 2 days",
     "seeContent": "See content",
     "buyPlaceholder": "Buy xx kr",
+    "categories": "Categories",
+    "allCategories": "All categories",
     "searchPurchased": "Search Purchased Content",
     "searchCurrentlyRented": "Search Currently Rented",
     "searchPreviouslyRented": "Search Previously Rented",

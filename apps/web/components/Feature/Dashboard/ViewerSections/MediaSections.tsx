@@ -11,6 +11,7 @@ import {
   SORT_ARROW_DOWN,
   BUY_PREFIX,
   RENT_PREFIX,
+  SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 import COLORS from "@repo/ui/colors";
@@ -27,6 +28,7 @@ import {
   type RentedSectionKey,
   type RentedMode,
   type RentedMediaItem,
+  type RentedMediaSectionKey,
   type RentedMediaSectionItems,
   getMediaAction,
   getMediaLabel,
@@ -34,7 +36,12 @@ import {
   sortViewerMedia,
   type CollectionSortKey,
   MEDIA_ICON_SIZE,
+  ALL_CATEGORIES,
+  getUniqueMediaCategories,
 } from "@/utils/viewerRented";
+import SortDropdown, {
+  type DropdownOption,
+} from "@/components/UI/SortDropdown";
 import {
   MediaGrid,
   MediaTypePill,
@@ -104,6 +111,9 @@ export default function MediaSections({
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
     null,
   );
+  const [selectedCategories, setSelectedCategories] = useState<
+    Partial<Record<RentedMediaSectionKey, string>>
+  >({});
 
   const toggleSort = (key: CollectionSortKey) => {
     setActiveSortKey((prev) => (prev === key ? null : key));
@@ -126,9 +136,49 @@ export default function MediaSections({
 
         const effectiveSortKey =
           expandedSection === section.key ? activeSortKey : null;
+        const availableCategories = getUniqueMediaCategories(
+          sectionItems[section.key],
+        );
+        const categoryOptions: DropdownOption[] = [
+          {
+            value: ALL_CATEGORIES,
+            label: t("viewerRented.allCategories"),
+          },
+          ...availableCategories.map((category) => ({
+            value: category,
+            label: category,
+          })),
+        ];
+        const selectedCategory =
+          selectedCategories[section.key] ?? ALL_CATEGORIES;
+        const effectiveCategory = availableCategories.includes(selectedCategory)
+          ? selectedCategory
+          : ALL_CATEGORIES;
+        const matchesEffectiveCategory = (item: RentedMediaItem) =>
+          item.category.trim() === effectiveCategory;
+        const itemsMatchingCategory = sectionItems[section.key].filter(
+          matchesEffectiveCategory,
+        );
+        const categoryFilteredItems =
+          effectiveCategory === ALL_CATEGORIES
+            ? sectionItems[section.key]
+            : itemsMatchingCategory;
         const displayItems = effectiveSortKey
-          ? sortViewerMedia(sectionItems[section.key], effectiveSortKey)
-          : sectionItems[section.key];
+          ? sortViewerMedia(categoryFilteredItems, effectiveSortKey)
+          : categoryFilteredItems;
+        const handleCategoryChange = (category: string) => {
+          setSelectedCategories((prev) => ({
+            ...prev,
+            [section.key]: category,
+          }));
+        };
+        const renderSelectedCategoryLabel = (
+          value: string,
+          option?: DropdownOption,
+        ) =>
+          value === ALL_CATEGORIES
+            ? t("viewerRented.categories")
+            : option?.label;
 
         return (
           <SectionBlock key={section.title}>
@@ -170,6 +220,15 @@ export default function MediaSections({
                       </CollectionMetaHeaderItem>
                     );
                   })}
+                  <SortDropdown
+                    options={categoryOptions}
+                    value={effectiveCategory}
+                    onChange={handleCategoryChange}
+                    renderSelectedLabel={renderSelectedCategoryLabel}
+                    width="176px"
+                    dropdownWidth="200px"
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                  />
                 </CollectionMetaHeader>
               ) : !expandedSection ? (
                 <SectionPaginationArrows

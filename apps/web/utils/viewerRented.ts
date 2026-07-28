@@ -1,10 +1,16 @@
 import type { TFunction } from "i18next";
-import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
+import {
+  HOURS_IN_DAY,
+  MILLISECONDS_IN_HOUR,
+  SENSITIVITY_BASE,
+  VIEWER_SECTION,
+  VIEWER_SECTION_VALUES,
+} from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
-import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 
 export const MEDIA_ICON_SIZE = 22;
+export const ALL_CATEGORIES = "__all_categories__";
 
 export type CollectionAction = {
   label: string;
@@ -225,6 +231,26 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
+export function getUniqueMediaCategories(items: RentedMediaItem[]): string[] {
+  const categories: string[] = [];
+  const seenCategories = new Set<string>();
+
+  items.forEach((item) => {
+    const category = item.category.trim();
+    const normalizedCategory = category.toLocaleLowerCase();
+
+    if (!category || seenCategories.has(normalizedCategory)) return;
+
+    seenCategories.add(normalizedCategory);
+    categories.push(category);
+  });
+
+  const compareCategoriesAlphabetically = (a: string, b: string) =>
+    a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE });
+
+  return categories.sort(compareCategoriesAlphabetically);
+}
+
 export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
   const map: Record<string, string> = {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
@@ -361,11 +387,13 @@ export function sortViewerCollections(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return a.elementCount - b.elementCount;
   });
@@ -387,11 +415,13 @@ export function sortViewerMedia(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return 0;
   });
