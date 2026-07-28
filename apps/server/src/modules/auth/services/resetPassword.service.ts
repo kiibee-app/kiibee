@@ -5,6 +5,7 @@ import { logger } from 'src/logger/logger';
 import { db } from 'src/database/db';
 import { usersToken } from 'src/database/schema/users/usersToken.schema';
 import { users } from 'src/database/schema/users/users.schema';
+import { userSessions } from 'src/database/schema/users/userSessions.schema';
 import { eq } from 'drizzle-orm';
 import { hashPassword } from 'src/utils/passwordHash';
 
@@ -76,6 +77,10 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
         .update(usersToken)
         .set({ isUsed: true })
         .where(eq(usersToken.token, token));
+
+      await tx
+        .delete(userSessions)
+        .where(eq(userSessions.userId, tokenData.userId));
 
       return success(
         { email: user.email },
