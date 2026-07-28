@@ -55,7 +55,7 @@ export const createCouponService = async (
     const normalizedStatus = normalizeCouponStatus(payload.status);
     const parsedDiscountValue = Number(payload.discountValue ?? 0);
     const normalizedCodes = (payload.codes ?? [])
-      .map((code) => code.trim())
+      .map((code) => code.trim().toUpperCase())
       .filter((code) => code.length > 0);
 
     if (!trimmedTitle) {
