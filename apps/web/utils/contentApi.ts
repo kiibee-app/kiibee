@@ -1,9 +1,9 @@
 import React from "react";
 import type { TFunction } from "i18next";
-import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
+import contentFallbackImage from "@/assets/images/single-tutorial/Content image.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
-import draftFallbackImage from "@/assets/images/dafault.png";
+import draftFallbackImage from "@/assets/images/dafault.webp";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
 import { JAVASCRIPT_TYPE } from "@/utils/collection";

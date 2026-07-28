@@ -1,5 +1,5 @@
 import type { TFunction } from "i18next";
-import logo from "@/assets/images/logo.png";
+import logo from "@/assets/images/logo.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import { VARIANT } from "@/utils/Constants";
