@@ -11,6 +11,7 @@ import {
   SORT_ARROW_DOWN,
   BUY_PREFIX,
   RENT_PREFIX,
+  SENSITIVITY_BASE,
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
@@ -36,6 +37,7 @@ import {
   sortViewerMedia,
   type CollectionSortKey,
   MEDIA_ICON_SIZE,
+  ALL_CATEGORIES,
 } from "@/utils/viewerRented";
 import SortDropdown, {
   type DropdownOption,
@@ -54,8 +56,6 @@ import {
   CollectionMetaSortArrow,
 } from "./styles";
 import SectionPaginationArrows from "./SectionPaginationArrows";
-
-const ALL_CATEGORIES = "__all_categories__";
 
 type Props = {
   mode: RentedMode;
@@ -144,7 +144,7 @@ export default function MediaSections({
               .map((category) => [category.toLocaleLowerCase(), category]),
           ).values(),
         ).sort((a, b) =>
-          a.localeCompare(b, undefined, { sensitivity: "base" }),
+          a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE }),
         );
         const categoryOptions: DropdownOption[] = [
           {
@@ -170,6 +170,12 @@ export default function MediaSections({
         const displayItems = effectiveSortKey
           ? sortViewerMedia(categoryFilteredItems, effectiveSortKey)
           : categoryFilteredItems;
+        const handleCategoryChange = (category: string) => {
+          setSelectedCategories((prev) => ({
+            ...prev,
+            [section.key]: category,
+          }));
+        };
 
         return (
           <SectionBlock key={section.title}>
@@ -214,12 +220,7 @@ export default function MediaSections({
                   <SortDropdown
                     options={categoryOptions}
                     value={effectiveCategory}
-                    onChange={(category) =>
-                      setSelectedCategories((prev) => ({
-                        ...prev,
-                        [section.key]: category,
-                      }))
-                    }
+                    onChange={handleCategoryChange}
                     renderSelectedLabel={(value, option) =>
                       value === ALL_CATEGORIES
                         ? t("viewerRented.categories")

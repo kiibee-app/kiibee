@@ -1,10 +1,16 @@
 import type { TFunction } from "i18next";
-import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
+import {
+  HOURS_IN_DAY,
+  MILLISECONDS_IN_HOUR,
+  SENSITIVITY_BASE,
+  VIEWER_SECTION,
+  VIEWER_SECTION_VALUES,
+} from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
-import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 
 export const MEDIA_ICON_SIZE = 22;
+export const ALL_CATEGORIES = "__all_categories__";
 
 export type CollectionAction = {
   label: string;
@@ -361,11 +367,13 @@ export function sortViewerCollections(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return a.elementCount - b.elementCount;
   });
@@ -387,11 +395,13 @@ export function sortViewerMedia(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return 0;
   });
