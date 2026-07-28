@@ -1,174 +1,19 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, sql } from 'drizzle-orm';
+import { randomUUID } from 'crypto';
+import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
-  creatorBankAccounts,
   creatorPayoutRequests,
   creatorPayouts,
+  creatorPlans,
   creatorWallets,
-  userCardInfo,
+  plans,
+  users,
 } from 'src/database/schema';
-import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { logger } from 'src/logger/logger';
-import { runInBackground } from 'src/utils/backgroundTask';
-import { ORDER_STATUS } from 'src/utils/constant';
-import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
-import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
+import { STATUS } from 'src/utils/constant';
+import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
-import { createPayoutService } from './createPayout.service';
-import { payoutRequestCalculationService } from './createPayoutRequest.service';
-import { payoutInfoService } from './payoutInfo.service';
-
-async function paymentMethodBelongsToCreator(
-  creatorId: string,
-  paymentMethodId: string,
-) {
-  const [[bankAccount], [card]] = await Promise.all([
-    db
-      .select({ id: creatorBankAccounts.id })
-      .from(creatorBankAccounts)
-      .where(
-        and(
-          eq(creatorBankAccounts.creatorId, creatorId),
-          eq(creatorBankAccounts.id, paymentMethodId),
-        ),
-      )
-      .limit(1),
-    db
-      .select({ id: userCardInfo.id })
-      .from(userCardInfo)
-      .where(
-        and(
-          eq(userCardInfo.userId, creatorId),
-          eq(userCardInfo.paymentMethodId, paymentMethodId),
-        ),
-      )
-      .limit(1),
-  ]);
-
-  return Boolean(bankAccount || card);
-}
-
-function getProcessErrorMessage(processError: unknown) {
-  let processMessage = 'Failed to submit payout to payment provider';
-
-  if (processError instanceof HttpException) {
-    const response = processError.getResponse();
-    if (typeof response === 'string') {
-      processMessage = response;
-    } else if (
-      response &&
-      typeof response === 'object' &&
-      'message' in response
-    ) {
-      const message = (response as { message?: string | string[] }).message;
-      processMessage = Array.isArray(message)
-        ? message.join(', ')
-        : (message ?? processError.message);
-    } else {
-      processMessage = processError.message;
-    }
-  }
-
-  return processMessage;
-}
-
-async function rollbackAdminPayout(payoutId: string, payoutRequestId: string) {
-  await db.transaction(async (tx) => {
-    await tx
-      .delete(creatorPayoutRequests)
-      .where(eq(creatorPayoutRequests.id, payoutRequestId));
-    await tx.delete(creatorPayouts).where(eq(creatorPayouts.id, payoutId));
-  });
-}
-
-/** Completes payout + debits wallet. Returns false if webhook already completed it. */
-async function completeDirectAdminPayout(
-  creatorId: string,
-  payoutId: string,
-  payoutRequestId: string,
-  rawAmount: number,
-): Promise<boolean> {
-  const now = new Date();
-
-  return db.transaction(async (tx) => {
-    const [updatedPayout] = await tx
-      .update(creatorPayouts)
-      .set({
-        status: ORDER_STATUS.COMPLETED,
-        payoutDate: now,
-        updatedAt: now,
-      })
-      .where(
-        and(
-          eq(creatorPayouts.id, payoutId),
-          eq(creatorPayouts.status, ORDER_STATUS.PENDING),
-        ),
-      )
-      .returning({ id: creatorPayouts.id });
-
-    if (!updatedPayout) {
-      // Webhook already finalized this payout — ensure request is not left pending.
-      await tx
-        .update(creatorPayoutRequests)
-        .set({
-          status: ORDER_STATUS.COMPLETED,
-          updatedAt: now,
-        })
-        .where(
-          and(
-            eq(creatorPayoutRequests.id, payoutRequestId),
-            eq(creatorPayoutRequests.status, ORDER_STATUS.PENDING),
-          ),
-        );
-
-      return false;
-    }
-
-    await tx
-      .update(creatorPayoutRequests)
-      .set({
-        status: ORDER_STATUS.COMPLETED,
-        updatedAt: now,
-      })
-      .where(eq(creatorPayoutRequests.id, payoutRequestId));
-
-    await tx
-      .update(creatorWallets)
-      .set({
-        amount: sql`${creatorWallets.amount} - ${rawAmount}`,
-        updatedAt: now,
-      })
-      .where(eq(creatorWallets.creatorId, creatorId));
-
-    return true;
-  });
-}
-
-function sendApprovedPayoutEmail(payoutId: string) {
-  runInBackground(
-    (async () => {
-      const payoutInfo = await payoutInfoService(payoutId);
-
-      await sendTemplateEmail({
-        to: payoutInfo.creator.email ?? '',
-        subject: mailSubject.APPROVED_PAYOUT,
-        templateName: templateName.APPROVED_PAYOUT,
-        variables: {
-          creator: {
-            fullName: payoutInfo.creator.fullName,
-          },
-          payoutId: payoutInfo.payoutId,
-          rawAmount: payoutInfo.rawAmount,
-          processingFee: payoutInfo.processingFee,
-          platformFee: payoutInfo.platformFee,
-          payableAmount: payoutInfo.payableAmount,
-          currency: payoutInfo.currency,
-        },
-      });
-    })(),
-  );
-}
 
 export const createAdminPayoutRequestService = async (
   creatorId: string,
@@ -185,155 +30,207 @@ export const createAdminPayoutRequestService = async (
       return fail('Payment method ID is required', HttpStatus.BAD_REQUEST);
     }
 
-    const belongsToCreator = await paymentMethodBelongsToCreator(
-      creatorId,
-      paymentMethodId,
-    );
+    const [[creator], [creatorPlan], [wallet]] = await Promise.all([
+      db.select().from(users).where(eq(users.id, creatorId)).limit(1),
+      db
+        .select()
+        .from(creatorPlans)
+        .where(eq(creatorPlans.creatorId, creatorId))
+        .limit(1),
+      db
+        .select()
+        .from(creatorWallets)
+        .where(eq(creatorWallets.creatorId, creatorId))
+        .limit(1),
+    ]);
 
-    if (!belongsToCreator) {
-      return fail(
-        'Payment method does not belong to this creator',
-        HttpStatus.BAD_REQUEST,
-      );
+    if (!creator) {
+      return fail('Creator not found', HttpStatus.NOT_FOUND);
     }
 
-    const [wallet] = await db
-      .select()
-      .from(creatorWallets)
-      .where(eq(creatorWallets.creatorId, creatorId))
-      .limit(1);
+    if (!creatorPlan) {
+      return fail('Creator plan not found', HttpStatus.NOT_FOUND);
+    }
 
     if (!wallet) {
       return fail('Creator wallet not found', HttpStatus.NOT_FOUND);
     }
 
-    const walletBalance = Number(wallet.amount);
+    const [plan] = await db
+      .select()
+      .from(plans)
+      .where(eq(plans.id, creatorPlan.planId))
+      .limit(1);
 
-    if (!Number.isFinite(walletBalance) || walletBalance <= MIN_PAYOUT_AMOUNT) {
-      return fail(
-        `Insufficient wallet balance. Amount must be greater than ${MIN_PAYOUT_AMOUNT} DKK`,
-        HttpStatus.BAD_REQUEST,
-      );
+    if (!plan) {
+      return fail('Plan not found', HttpStatus.NOT_FOUND);
     }
 
-    const payoutAmount =
-      amount !== undefined && amount !== null ? Number(amount) : walletBalance;
+    const walletBalance = Number(wallet.amount);
 
-    if (!Number.isFinite(payoutAmount) || payoutAmount <= MIN_PAYOUT_AMOUNT) {
+    if (Number.isNaN(walletBalance)) {
+      logger.error(
+        `Invalid wallet balance for creator ${creatorId}: ${wallet.amount}`,
+      );
+
+      return fail('Invalid wallet balance', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    const requestedAmount = amount ?? walletBalance;
+
+    if (!requestedAmount || requestedAmount <= MIN_PAYOUT_AMOUNT) {
       return fail(
         `Amount must be greater than ${MIN_PAYOUT_AMOUNT} DKK`,
         HttpStatus.BAD_REQUEST,
       );
     }
 
-    if (payoutAmount > walletBalance) {
-      return fail(
-        'Amount exceeds available wallet balance',
-        HttpStatus.BAD_REQUEST,
-      );
+    if (walletBalance < requestedAmount) {
+      return fail('Insufficient wallet balance', HttpStatus.BAD_REQUEST);
     }
 
-    const requestResult = await payoutRequestCalculationService(
-      creatorId,
-      payoutAmount,
-      paymentMethodId,
+    const planPrice = Number(plan.price ?? 0);
+
+    const platformFeePercentage =
+      PLATFORM_FEE_PERCENTAGES[planPrice] ?? PLATFORM_FEE_PERCENTAGES[0];
+
+    const processingFeePercentage = 0.05;
+
+    const platformFee = Number(
+      (requestedAmount * platformFeePercentage).toFixed(2),
     );
 
-    const { payoutId, payoutRequestId, ...feeBreakdown } = requestResult.data;
+    const processingFee = Number(
+      (requestedAmount * processingFeePercentage).toFixed(2),
+    );
+
+    const payableAmount = Number(
+      (requestedAmount - platformFee - processingFee).toFixed(2),
+    );
+
+    if (payableAmount < 1) {
+      return fail('Minimum net payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
+    }
+
+    const payoutId = randomUUID();
+    const payoutRequestId = randomUUID();
+
+    const baseResponseData = {
+      payoutId,
+      payoutRequestId,
+      amount: requestedAmount,
+      planPrice,
+      platformFeePercentage,
+      processingFeePercentage,
+      platformFee,
+      processingFee,
+      payableAmount,
+    };
 
     if (!processImmediately) {
       return success(
-        {
-          ...feeBreakdown,
-          payoutId,
-          payoutRequestId,
-          requestCreated: true,
-          processed: false,
-        },
+        { ...baseResponseData, status: STATUS.PENDING },
         'Payout request created successfully',
         HttpStatus.CREATED,
       );
     }
 
-    try {
-      const processResult = await createPayoutService(
+    const payload = {
+      amount: Math.round(payableAmount * 100),
+      currency: wallet.currency,
+      pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID!,
+      paymentMethodId,
+      reference: payoutId,
+      notificationUrl: process.env.EPAY_PAYOUT_NOTIFICATION_URL!,
+      attributes: {
         creatorId,
-        payoutAmount,
+        payoutId,
+      },
+      customer: {
+        firstName: creator.firstName,
+        lastName: creator.lastName,
+        ip: '127.0.0.1',
+      },
+    };
+
+    logger.info('Admin creating payout', payload);
+
+    let response: Response;
+
+    try {
+      response = await fetch(
+        `${process.env.EPAY_BASE_URL}/public/api/v1/payout`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${process.env.EPAY_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+    } catch (err) {
+      logger.error('ePay request failed to send', err);
+      return fail('Failed to reach payment provider', HttpStatus.BAD_GATEWAY);
+    }
+
+    let data: any = {};
+
+    try {
+      data = await response.json();
+    } catch (err) {
+      logger.error('Unable to parse ePay response', err);
+    }
+
+    if (!response.ok) {
+      logger.error('ePay payout failed', {
+        status: response.status,
+        data,
+      });
+      return fail(data?.message ?? 'Failed to create payout', response.status);
+    }
+
+    await db.transaction(async (trx) => {
+      await trx.insert(creatorPayouts).values({
+        id: payoutId,
+        creatorId,
+        rawAmount: requestedAmount.toString(),
+        amount: payableAmount.toString(),
+        currency: 'DKK',
+        status: STATUS.PENDING,
+      });
+
+      await trx.insert(creatorPayoutRequests).values({
+        id: payoutRequestId,
+        creatorId,
         payoutId,
         paymentMethodId,
-      );
-
-      const completedHere = await completeDirectAdminPayout(
-        creatorId,
-        payoutId,
-        payoutRequestId,
-        payoutAmount,
-      );
-
-      // Webhook may have already emailed if it won the race.
-      if (completedHere) {
-        sendApprovedPayoutEmail(payoutId);
-      }
-
-      return success(
-        {
-          ...feeBreakdown,
-          ...processResult.data,
-          payoutId,
-          payoutRequestId,
-          requestCreated: false,
-          processed: true,
-        },
-        'Payout processed successfully',
-        HttpStatus.CREATED,
-      );
-    } catch (processError) {
-      const processMessage = getProcessErrorMessage(processError);
-
-      try {
-        await rollbackAdminPayout(payoutId, payoutRequestId);
-      } catch (rollbackError) {
-        logger.error(
-          'Admin payout processing failed and rollback also failed',
-          {
-            creatorId,
-            payoutId,
-            payoutRequestId,
-            processError,
-            rollbackError,
-          },
-        );
-
-        return fail(
-          `Payout processing failed: ${processMessage}. Cleanup also failed — check for a stuck pending request.`,
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-      }
-
-      logger.error(
-        'Admin direct payout processing failed; request rolled back',
-        {
-          creatorId,
-          payoutId,
-          payoutRequestId,
-          processError,
-        },
-      );
-
-      return fail(
-        `Payout processing failed: ${processMessage}`,
-        HttpStatus.BAD_REQUEST,
-      );
-    }
+        rawAmount: requestedAmount.toString(),
+        processingFee: processingFee.toString(),
+        platformFee: platformFee.toString(),
+        payableAmount: payableAmount.toString(),
+        currency: 'DKK',
+        status: STATUS.PENDING,
+      });
+    });
+    logger.info(`Admin payout created successfully: ${data.id}`);
+    return success(
+      {
+        ...baseResponseData,
+        epay: data,
+      },
+      'Payout created successfully',
+      HttpStatus.CREATED,
+    );
   } catch (error) {
     if (error instanceof HttpException) {
       throw error;
     }
 
-    logger.error('Failed to create admin payout request', error);
+    logger.error('Failed to create admin payout', error);
 
     throw new HttpException(
-      'Failed to create admin payout request',
+      'Failed to create admin payout',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }
