@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { DEFAULT_MODAL_SIZE, type ModalSize } from "../../utils/constants";
 import {
   Body,
   CloseButton,
@@ -8,7 +9,6 @@ import {
   ModalCard,
   Overlay,
   Title,
-  type ModalSize,
 } from "./Modal.styles";
 
 interface ModalProps {
@@ -24,7 +24,7 @@ export function Modal({
   open,
   onClose,
   children,
-  size = "lg",
+  size = DEFAULT_MODAL_SIZE,
 }: ModalProps) {
   if (!open) {
     return null;

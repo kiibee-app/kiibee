@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Modal } from "../../common/Modal";
+import { MODAL_SIZE } from "../../../utils/constants";
 import { creatorContentEngagementLabels } from "../../../utils/contentConfig";
 import {
   ModalActions,
@@ -48,7 +49,7 @@ export function RejectContentModal({
       title={creatorContentEngagementLabels.rejectModalTitle}
       open={open}
       onClose={handleClose}
-      size="sm"
+      size={MODAL_SIZE.SM}
     >
       <ModalDescription>
         {creatorContentEngagementLabels.rejectModalDescription(contentTitle)}

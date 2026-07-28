@@ -82,6 +82,22 @@ export const STAT_ACCENT = {
 
 export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
 
+export const MODAL_SIZE = {
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+} as const;
+
+export type ModalSize = (typeof MODAL_SIZE)[keyof typeof MODAL_SIZE];
+
+export const MODAL_WIDTH_BY_SIZE: Record<ModalSize, string> = {
+  [MODAL_SIZE.SM]: "440px",
+  [MODAL_SIZE.MD]: "640px",
+  [MODAL_SIZE.LG]: "960px",
+};
+
+export const DEFAULT_MODAL_SIZE = MODAL_SIZE.LG;
+
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
   CREATOR_DELETION_REQUESTS: "creator-deletion-requests",

@@ -1,12 +1,11 @@
 import styled from "styled-components";
+import {
+  DEFAULT_MODAL_SIZE,
+  MODAL_WIDTH_BY_SIZE,
+  type ModalSize,
+} from "../../utils/constants";
 
-export type ModalSize = "sm" | "md" | "lg";
-
-const modalWidthBySize: Record<ModalSize, string> = {
-  sm: "440px",
-  md: "640px",
-  lg: "960px",
-};
+export type { ModalSize };
 
 export const Overlay = styled.div`
   position: fixed;
@@ -24,7 +23,10 @@ export const Overlay = styled.div`
 `;
 
 export const ModalCard = styled.div<{ $size?: ModalSize }>`
-  width: min(${({ $size = "lg" }) => modalWidthBySize[$size]}, 100%);
+  width: min(
+    ${({ $size = DEFAULT_MODAL_SIZE }) => MODAL_WIDTH_BY_SIZE[$size]},
+    100%
+  );
   max-height: calc(100vh - 48px);
   overflow-x: hidden;
   overflow-y: auto;
