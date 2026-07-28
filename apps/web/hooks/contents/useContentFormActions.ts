@@ -283,13 +283,13 @@ export function useContentFormActions({
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
-    details?: { title: string; description: string },
+    details?: { title: string; description: string; webLink?: string },
   ) => {
     if (!createdContentId) {
       setActiveTabAndQuery(tab);
     }
     setUploadedFile(file ?? null);
-    setUploadedPreview(preview ?? null);
+    setUploadedPreview(preview ?? details?.webLink ?? null);
     const prefilledState =
       file == null
         ? formState
@@ -301,6 +301,7 @@ export function useContentFormActions({
       ...prefilledState,
       title: details?.title ?? prefilledState.title,
       description: details?.description ?? prefilledState.description,
+      webLink: details?.webLink ?? prefilledState.webLink,
       contentTypeId:
         contentTypeFlow.selectedContentType ?? prefilledState.contentTypeId,
     };
