@@ -84,6 +84,7 @@ export const API = {
   },
   export: {
     request: "/export/request",
+    sendReceipt: "/export/send-receipt",
   },
   creatorOverview: {
     contentPerformance: "/creator-overview/content-performance",

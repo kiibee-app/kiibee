@@ -10,6 +10,7 @@ import { ProfileIcon } from "@/assets/icons/profileIcon";
 import AccountMenu from "./AccountMenu";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import { ProfileButton } from "./styles";
+import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
 
 type ViewerHeaderRightProps = {
   initial: string;
@@ -39,6 +40,7 @@ const ViewerHeaderRight = ({
             initial={initial}
             alt={t("common.viewerProfile")}
             sizes="44px"
+            initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
           />
         </ProfileButton>
       )}

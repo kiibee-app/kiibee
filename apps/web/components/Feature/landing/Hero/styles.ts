@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
+import GenericButton from "@/components/UI/GenericButton";
 
 export const Hero = styled.section`
   width: 100%;
@@ -120,6 +121,23 @@ export const CTAWrap = styled.div`
 
   @media (min-width: 640px) {
     justify-content: flex-start;
+  }
+`;
+
+export const HeroCTAButton = styled(GenericButton)`
+  && {
+    background: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+    border: 1px solid ${({ theme }) => theme.colors.primary.WHITE_18};
+    transition: all 150ms ease-in-out;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.primary.WHITE};
+      color: ${({ theme }) => theme.colors.primary.BLACK};
+      border-color: ${({ theme }) => theme.colors.primary.WHITE};
+      box-shadow: ${({ theme }) => theme.shadows.lg};
+      opacity: 1;
+    }
   }
 `;
 

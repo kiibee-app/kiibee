@@ -1,20 +1,29 @@
 import { Film, Headphones, FileText } from "lucide-react";
 import type { CreatorContentItem } from "../../../types/creator-content";
 import { formatRequestedAt } from "../../../utils/date";
+import { formatPriceSummary } from "../../../utils/creatorUploadsConfig";
+import {
+  CONTENT_FORMAT,
+  normalizeContentFormat,
+} from "../../../utils/contentMedia";
+import { creatorContentGridLabels } from "../../../utils/contentConfig";
 import {
   ContentBody,
   ContentGrid,
   ContentMeta,
-  ContentThumb,
   ContentThumbFallback,
-  ContentThumbImage,
   ContentTitle,
   EmptyState,
 } from "../viewers/Viewers.styles";
 import {
+  CardCover,
+  CardCoverBlur,
+  CardCoverMain,
+  CardCoverOverlay,
   ClickableContentCard,
   ContentStatBadge,
   ContentStatsRow,
+  PriceMeta,
 } from "./Creators.styles";
 
 type CreatorContentGridProps = {
@@ -24,15 +33,18 @@ type CreatorContentGridProps = {
 };
 
 function renderMediaIcon(type: string | null, size = 28) {
-  if (type === "audio") return <Headphones size={size} />;
-  if (type === "pdf") return <FileText size={size} />;
+  const format = normalizeContentFormat(type);
+  if (format === CONTENT_FORMAT.AUDIO) return <Headphones size={size} />;
+  if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.EPUB) {
+    return <FileText size={size} />;
+  }
   return <Film size={size} />;
 }
 
 export function CreatorContentGrid({
   contents,
   onSelectContent,
-  emptyMessage = "No content found.",
+  emptyMessage = creatorContentGridLabels.emptyState,
 }: CreatorContentGridProps) {
   if (!contents.length) {
     return <EmptyState>{emptyMessage}</EmptyState>;
@@ -40,48 +52,64 @@ export function CreatorContentGrid({
 
   return (
     <ContentGrid>
-      {contents.map((content) => (
-        <ClickableContentCard
-          key={content.id}
-          type="button"
-          onClick={() => onSelectContent(content)}
-        >
-          <ContentThumb>
-            {content.thumbnailUrl ? (
-              <ContentThumbImage
-                src={content.thumbnailUrl}
-                alt={content.title}
-              />
-            ) : (
-              <ContentThumbFallback>
-                {renderMediaIcon(content.contentType)}
-              </ContentThumbFallback>
-            )}
-          </ContentThumb>
-          <ContentBody>
-            <ContentTitle>{content.title}</ContentTitle>
-            <ContentMeta>
-              {content.contentType || "Content"} · {content.accessType}
-            </ContentMeta>
-            {content.publishedAt || content.createdAt ? (
+      {contents.map((content) => {
+        const priceSummary = formatPriceSummary(
+          content.buyPrice,
+          content.rentPrice,
+        );
+
+        return (
+          <ClickableContentCard
+            key={content.id}
+            type="button"
+            onClick={() => onSelectContent(content)}
+          >
+            <CardCover>
+              {content.thumbnailUrl ? (
+                <>
+                  <CardCoverBlur src={content.thumbnailUrl} alt="" />
+                  <CardCoverOverlay />
+                  <CardCoverMain
+                    src={content.thumbnailUrl}
+                    alt={content.title}
+                  />
+                </>
+              ) : (
+                <ContentThumbFallback>
+                  {renderMediaIcon(content.contentType)}
+                </ContentThumbFallback>
+              )}
+            </CardCover>
+            <ContentBody>
+              <ContentTitle>{content.title}</ContentTitle>
               <ContentMeta>
-                {formatRequestedAt(content.publishedAt || content.createdAt)}
+                {content.contentType ||
+                  creatorContentGridLabels.fallbackContentType}{" "}
+                · {content.accessType}
               </ContentMeta>
-            ) : null}
-            <ContentStatsRow>
-              <ContentStatBadge $variant="buy">
-                {content.purchaseCount} bought
-              </ContentStatBadge>
-              <ContentStatBadge $variant="rent">
-                {content.rentalCount} rented
-              </ContentStatBadge>
-              <ContentStatBadge $variant="download">
-                {content.downloadCount} downloads
-              </ContentStatBadge>
-            </ContentStatsRow>
-          </ContentBody>
-        </ClickableContentCard>
-      ))}
+              {priceSummary ? <PriceMeta>{priceSummary}</PriceMeta> : null}
+              {content.publishedAt || content.createdAt ? (
+                <ContentMeta>
+                  {formatRequestedAt(content.publishedAt || content.createdAt)}
+                </ContentMeta>
+              ) : null}
+              <ContentStatsRow>
+                <ContentStatBadge $variant="buy">
+                  {content.purchaseCount}{" "}
+                  {creatorContentGridLabels.boughtSuffix}
+                </ContentStatBadge>
+                <ContentStatBadge $variant="rent">
+                  {content.rentalCount} {creatorContentGridLabels.rentedSuffix}
+                </ContentStatBadge>
+                <ContentStatBadge $variant="download">
+                  {content.downloadCount}{" "}
+                  {creatorContentGridLabels.downloadsSuffix}
+                </ContentStatBadge>
+              </ContentStatsRow>
+            </ContentBody>
+          </ClickableContentCard>
+        );
+      })}
     </ContentGrid>
   );
 }

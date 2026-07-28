@@ -58,9 +58,142 @@ export const Row = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
+  margin-bottom: 24px;
 
   ${media.mobile} {
     gap: 16px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const ProfileBody = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+
+  ${media.tablet} {
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
+export const ProfileMain = styled.div`
+  flex: 1 1 auto;
+  min-width: 0;
+`;
+
+export const PlanCardRoot = styled.aside`
+  flex: 0 0 260px;
+  width: 260px;
+  overflow: hidden;
+  padding: 18px 18px 16px;
+  border-radius: 14px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN} 28%,
+      ${({ theme }) => theme.colors.neutral.GRAY_200}
+    );
+  box-shadow:
+    0 1px 2px ${({ theme }) => theme.colors.neutral.GRAY_300},
+    0 8px 20px
+      color-mix(
+        in srgb,
+        ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN} 8%,
+        transparent
+      );
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+  }
+
+  ${media.tablet} {
+    flex: none;
+    width: 100%;
+  }
+`;
+
+export const PlanCardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+`;
+
+export const PlanCardLabel = styled.div`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+
+  ${MonoText} {
+    font-size: 11px;
+    font-weight: 600;
+    color: inherit;
+  }
+`;
+
+export const PlanStatusBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN} 18%,
+    ${({ theme }) => theme.colors.neutral.WHITE}
+  );
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+`;
+
+export const PlanCardName = styled.div`
+  color: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+
+  ${MonoText} {
+    color: inherit;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+`;
+
+export const PlanCardMeta = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+`;
+
+export const PlanMetaChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+`;
+
+export const PlanCardActions = styled.div`
+  margin-top: 16px;
+
+  button {
+    width: 100%;
+    border-radius: 10px;
   }
 `;
 
@@ -127,6 +260,14 @@ export const Fields = styled.div`
   max-width: 640px;
 `;
 
+export const Action = styled.div`
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
 export const TitleText = styled(MonoText).attrs({
   $use: "Body_Bold",
 })`
@@ -178,14 +319,6 @@ export const Input = styled.input`
   border: none;
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   box-shadow: inset 0 0 0 1px ${(p) => p.theme.colors.primary.GRAY};
-`;
-
-export const Action = styled.div`
-  margin-top: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
 `;
 
 export const Button = styled.button`

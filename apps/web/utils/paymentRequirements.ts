@@ -127,6 +127,7 @@ export const PAYMENTS_FORM_FIELDS = {
   PHYSICAL_PRODUCT_LINK: "physicalProductLink",
   VISIBILITY: "visibility",
   MAX_ACCESS_LIMIT: "maxAccessLimit",
+  PASSWORD: "password",
 } as const;
 
 export const PAYMENT_AMOUNT_FIELDS = [

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { requestExportService } from './services/requestExport.service';
+import { sendReceiptService } from './services/sendReceipt.service';
 
 @Injectable()
 export class ExportService {
@@ -10,5 +11,9 @@ export class ExportService {
     endDate?: string,
   ) {
     return requestExportService(creatorId, type, startDate, endDate);
+  }
+
+  async sendReceiptService(orderId: string) {
+    return sendReceiptService(orderId);
   }
 }

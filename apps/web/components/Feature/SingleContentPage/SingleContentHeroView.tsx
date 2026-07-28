@@ -323,6 +323,7 @@ export default function SingleContentHeroView({
 
   const showTrailerButton =
     hero.trailerLabel &&
+    hasTrailerLink &&
     !hasStartedPlayback &&
     !isTrailerPlaying &&
     !isCloudflarePlaying;

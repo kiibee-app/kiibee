@@ -36,6 +36,7 @@ import { updateCreatorProfileService } from './services/updateCreatorProfile.ser
 import { getCreatorProfileService } from './services/getCreatorProfile.service';
 import { deleteUserService } from './services/deleteUser.service';
 import { getCreatorDeletionRequestsService } from './services/getCreatorDeletionRequests.service';
+import { getCreatorDeletionHistoryService } from './services/getCreatorDeletionHistory.service';
 import { approveCreatorDeletionRequestService } from './services/approveCreatorDeletionRequest.service';
 import { rejectCreatorDeletionRequestService } from './services/rejectCreatorDeletionRequest.service';
 
@@ -64,14 +65,17 @@ export class AuthService {
 
     return db.transaction(async (tx) => {
       const user = await tx.query.users.findFirst({
-        where: eq(users.id, userFromToken.userId),
+        where: and(
+          eq(users.id, userFromToken.userId),
+          eq(users.isDeleted, false),
+        ),
         columns: {
           role: true,
         },
       });
 
       if (!user) {
-        throw new HttpException('User not found', 404);
+        throw new HttpException('Account no longer exists', 401);
       }
 
       const existingSession = await tx.query.userSessions.findFirst({
@@ -222,12 +226,21 @@ export class AuthService {
     return updateCreatorProfileService(userId, profileData);
   }
 
-  async deleteUserService(userId: string, jti?: string, exp?: number) {
-    return deleteUserService(userId, jti, exp);
+  async deleteUserService(
+    userId: string,
+    reason: string | undefined,
+    jti?: string,
+    exp?: number,
+  ) {
+    return deleteUserService(userId, reason, jti, exp);
   }
 
   async getCreatorDeletionRequests() {
     return getCreatorDeletionRequestsService();
+  }
+
+  async getCreatorDeletionHistory() {
+    return getCreatorDeletionHistoryService();
   }
 
   async approveCreatorDeletionRequest(

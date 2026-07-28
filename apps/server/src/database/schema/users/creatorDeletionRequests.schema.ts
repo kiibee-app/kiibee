@@ -18,6 +18,7 @@ export const creatorDeletionRequests = pgTable(
       onDelete: 'set null',
     }),
     status: varchar('status', { length: 30 }).notNull().default('pending'),
+    reason: text('reason'),
     approvedUserId: text('approved_user_id').references(() => users.id, {
       onDelete: 'set null',
     }),

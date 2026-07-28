@@ -118,6 +118,8 @@ export type ContentFormState = {
   portraitThumbnail: string | null;
   admissionRequirement: string;
   password: string;
+  hasPassword?: boolean;
+  passwordCount?: number;
   rentalAmount: string;
   purchaseAmount: string;
   maxDownloadLimit: string;
@@ -142,7 +144,9 @@ export type ContentFormErrorKey =
   | "rentalAmount"
   | "purchaseAmount"
   | "trailerLink"
-  | "physicalProductLink";
+  | "physicalProductLink"
+  | "password"
+  | "webLink";
 
 export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
 
@@ -161,6 +165,7 @@ export const defaultState: ContentFormState = {
   portraitThumbnail: null,
   admissionRequirement: ADMISSION_TYPE.FREE,
   password: "",
+  hasPassword: false,
   rentalAmount: "",
   purchaseAmount: "",
   maxDownloadLimit: "5",

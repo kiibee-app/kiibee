@@ -37,8 +37,15 @@ import {
   APPEARANCE,
   ContentTab,
   SETTINGS,
+  isValidUrl,
 } from "@/utils/common";
-import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
+import { FORMAT_TYPE } from "@/utils/types";
+import {
+  ADMISSION_REQUIREMENTS,
+  ADMISSION_REQUIREMENT_VALUES,
+  validatePasswordInput,
+} from "@/utils/admissionRequirements";
+import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
   CONTENT_UPLOAD_MODE,
@@ -63,6 +70,7 @@ function ContentsUploadTitle({ fallback }: { fallback: string }) {
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
+  const { formState } = useContentForm();
   const [postCreateContentId, setPostCreateContentId] = useState<string | null>(
     null,
   );
@@ -396,13 +404,21 @@ function CreatorsContentsInner() {
   };
 
   const handleDiscardOrBack = useCallback(() => {
-    hasUploadUnsavedChanges ? openDiscardModal() : handleBack();
+    if (hasUploadUnsavedChanges) {
+      openDiscardModal();
+    } else {
+      handleBack();
+    }
   }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
 
   const handleUploadBackClick = handleDiscardOrBack;
 
   const handleCancel = useCallback(() => {
-    isUploadMode ? handleDiscardOrBack() : handleHeaderCancel();
+    if (isUploadMode) {
+      handleDiscardOrBack();
+    } else {
+      handleHeaderCancel();
+    }
   }, [isUploadMode, handleDiscardOrBack, handleHeaderCancel]);
 
   const handleAppearanceAwareTabChange = useCallback(
@@ -495,12 +511,32 @@ function CreatorsContentsInner() {
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
             (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
             (activeTab === SETTINGS && hasPasswordError) ||
+            (activeTab === SETTINGS &&
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+              !selectedCollection?.hasPassword &&
+              (!collectionPasswords.trim() ||
+                validatePasswordInput(collectionPasswords))) ||
+            (activeTab === SETTINGS &&
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+              !!collectionPasswords.trim() &&
+              validatePasswordInput(collectionPasswords)) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.GENERAL &&
+              formState.contentTypeId === FORMAT_TYPE.WEB &&
+              (!formState.webLink?.trim() || !isValidUrl(formState.webLink))) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.PAYMENT &&
-              !hasPaymentUnsavedChanges)
+              !hasPaymentUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+              !formState.hasPassword &&
+              !formState.password.trim()) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
+              !!formState.password.trim() &&
+              validatePasswordInput(formState.password))
           }
           isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
@@ -561,6 +597,7 @@ function CreatorsContentsInner() {
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
             onPasswordValidationChange={setHasPasswordError}
+            collectionHasPassword={selectedCollection?.hasPassword}
           />
         </ContentPanel>
       </ContentsScrollArea>

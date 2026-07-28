@@ -3,12 +3,12 @@ import { typography } from "@repo/ui/typography";
 
 export const Section = styled.section`
   width: 100%;
-  min-height: 85vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px;
+  padding: 40px 20px;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;

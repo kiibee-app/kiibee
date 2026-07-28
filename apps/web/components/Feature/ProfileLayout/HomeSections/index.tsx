@@ -24,6 +24,10 @@ import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { useProfileHomeCollections } from "@/hooks/useProfileHomeCollections";
+import {
+  resolveContentThumbnailCandidates,
+  resolveImageUrl,
+} from "@/utils/media";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -64,32 +68,53 @@ export default function ProfileHomeSections({
     : null;
 
   const latestUploadData = latest
-    ? {
-        sectionTitle: latestConfig.sectionTitle,
-        badge:
-          (latest as { category?: string | null }).category ??
-          latestConfig.badge ??
-          "",
-        image: latest.thumbnailLandscapeUrl ?? latestUploadImage,
-        contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
-        imageAlt: latest.title || "",
-        title: latest.title || "",
-        year: new Date(latest.createdAt).getFullYear().toString(),
-        description: latest.description ?? "",
-        actions: latestConfig.actions,
-        contentId: latest.id,
-        trailerUrl:
-          (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
-        accessType:
-          (latest as { accessType?: string | null }).accessType ?? null,
-        buyPrice:
-          (latest as { buyPrice?: string | number | null }).buyPrice ?? null,
-        rentPrice:
-          (latest as { rentPrice?: string | number | null }).rentPrice ?? null,
-        rentDurationHours:
-          (latest as { rentDurationHours?: string | number | null })
-            .rentDurationHours ?? null,
-      }
+    ? (() => {
+        const thumbnailCandidates = resolveContentThumbnailCandidates(
+          (latest as { thumbnailUrl?: string | null }).thumbnailUrl,
+          typeof latest.thumbnailLandscapeUrl === "string"
+            ? latest.thumbnailLandscapeUrl
+            : null,
+          { preferLandscape: true },
+        );
+        const staticFallback = resolveImageUrl(latestUploadImage);
+        const imageFallbacks = [
+          ...thumbnailCandidates.slice(1),
+          ...(thumbnailCandidates[0] &&
+          thumbnailCandidates[0] !== staticFallback
+            ? [staticFallback]
+            : []),
+        ];
+
+        return {
+          sectionTitle: latestConfig.sectionTitle,
+          badge:
+            (latest as { category?: string | null }).category ??
+            latestConfig.badge ??
+            "",
+          image: thumbnailCandidates[0] ?? latestUploadImage,
+          imageFallbacks:
+            imageFallbacks.length > 0 ? imageFallbacks : undefined,
+          contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
+          imageAlt: latest.title || "",
+          title: latest.title || "",
+          year: new Date(latest.createdAt).getFullYear().toString(),
+          description: latest.description ?? "",
+          actions: latestConfig.actions,
+          contentId: latest.id,
+          trailerUrl:
+            (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
+          accessType:
+            (latest as { accessType?: string | null }).accessType ?? null,
+          buyPrice:
+            (latest as { buyPrice?: string | number | null }).buyPrice ?? null,
+          rentPrice:
+            (latest as { rentPrice?: string | number | null }).rentPrice ??
+            null,
+          rentDurationHours:
+            (latest as { rentDurationHours?: string | number | null })
+              .rentDurationHours ?? null,
+        };
+      })()
     : null;
 
   const showLatestUpload =

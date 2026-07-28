@@ -191,6 +191,18 @@ export const CREATOR_PROFILE = {
     message: "creatorProfile.deleteModal.message",
     cancel: "creatorProfile.deleteModal.cancel",
     confirm: "creatorProfile.deleteModal.confirm",
+    reasonLabel: "creatorProfile.deleteModal.reasonLabel",
+    reasonPlaceholder: "creatorProfile.deleteModal.reasonPlaceholder",
+    customReasonLabel: "creatorProfile.deleteModal.customReasonLabel",
+    customReasonPlaceholder:
+      "creatorProfile.deleteModal.customReasonPlaceholder",
+    reasons: {
+      notUsing: "creatorProfile.deleteModal.reasons.notUsing",
+      tooExpensive: "creatorProfile.deleteModal.reasons.tooExpensive",
+      missingFeatures: "creatorProfile.deleteModal.reasons.missingFeatures",
+      privacyConcerns: "creatorProfile.deleteModal.reasons.privacyConcerns",
+      others: "creatorProfile.deleteModal.reasons.others",
+    },
   },
   deleteToastMessage: "creatorProfile.deleteToastMessage",
   deleteErrorMessage: "creatorProfile.deleteErrorMessage",
@@ -203,6 +215,16 @@ export const CREATOR_PROFILE = {
     title: "creatorProfile.deletePendingModal.title",
     message: "creatorProfile.deletePendingModal.message",
     confirm: "creatorProfile.deletePendingModal.confirm",
+  },
+  currentPlan: {
+    label: "creatorProfile.currentPlan.label",
+    upgrade: "creatorProfile.currentPlan.upgrade",
+    changePlan: "creatorProfile.currentPlan.changePlan",
+    loading: "creatorProfile.currentPlan.loading",
+    fallbackName: "creatorProfile.currentPlan.fallbackName",
+    pricePerMonth: "creatorProfile.currentPlan.pricePerMonth",
+    maxFiles: "creatorProfile.currentPlan.maxFiles",
+    activeBadge: "creatorProfile.currentPlan.activeBadge",
   },
 };
 
@@ -286,7 +308,12 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.billingHistory.invoiceModal.orderNumber",
       contentDetails:
         "dashboard.viewerBillings.billingHistory.invoiceModal.contentDetails",
-      share: "dashboard.viewerBillings.billingHistory.invoiceModal.share",
+      sendReceipt:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.sendReceipt",
+      receiptSent:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSent",
+      receiptSendFailed:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSendFailed",
     },
     tableHeaders: {
       contentTitle:

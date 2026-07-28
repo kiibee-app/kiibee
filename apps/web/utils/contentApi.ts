@@ -336,10 +336,14 @@ export const getSingleContentProps = (
         : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(isVideo || showTrailerInHero
+      ...(isVideo
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
+          }
+        : {}),
+      ...(showTrailerInHero
+        ? {
             trailerLabel: t(CONTENT_TRANSLATION_KEYS.playTrailer),
             trailerIcon: playIcon,
             trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playTrailer),

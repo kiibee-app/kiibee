@@ -1022,18 +1022,29 @@
       "title": "Request Account Deletion?",
       "message": "Are you sure you want to request account deletion? An administrator will review and process your request.",
       "cancel": "Cancel",
-      "confirm": "Request Deletion"
+      "confirm": "Request Deletion",
+      "reasonLabel": "Reason for deletion",
+      "reasonPlaceholder": "Select a reason...",
+      "customReasonLabel": "Please explain",
+      "customReasonPlaceholder": "Please briefly explain why you want to delete your account...",
+      "reasons": {
+        "notUsing": "I'm no longer using the platform",
+        "tooExpensive": "It's too expensive",
+        "missingFeatures": "Missing features I need",
+        "privacyConcerns": "Privacy concerns",
+        "others": "Other"
+      }
     },
     "deleteToastMessage": "Account deletion request sent. Please wait for administrator approval.",
     "deleteSuccessModal": {
       "title": "Request Sent for Account Deletion",
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
-      "confirm": "Done"
+      "confirm": "Ok"
     },
     "deletePendingModal": {
       "title": "Delete request is in progress",
       "message": "Your account deletion request is already pending. An administrator will review it and notify you once it's done.",
-      "confirm": "Done"
+      "confirm": "Ok"
     },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
@@ -1048,7 +1059,17 @@
     "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
-    "profilePhotoAlt": "Profile photo"
+    "profilePhotoAlt": "Profile photo",
+    "currentPlan": {
+      "label": "Current plan",
+      "upgrade": "Upgrade",
+      "changePlan": "Change plan",
+      "loading": "Loading…",
+      "fallbackName": "Free",
+      "pricePerMonth": "{{price}} kr/md",
+      "maxFiles": "Up to {{count}} files",
+      "activeBadge": "Active"
+    }
   },
   "singleContent": {
     "purchaseSuccessModal": {
@@ -1500,7 +1521,9 @@
           "title": "Invoice",
           "orderNumber": "Order number",
           "contentDetails": "Content details",
-          "share": "Share"
+          "sendReceipt": "Send receipt by email",
+          "receiptSent": "Receipt sent by email.",
+          "receiptSendFailed": "Unable to send the receipt. Please try again."
         },
         "tableHeaders": {
           "contentTitle": "Content title",
@@ -1687,7 +1710,7 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",
+      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note. Transferring your balance may take up to 5 business days.",
       "balance": "Balance",
       "purchase": "Purchase",
       "rent": "Rent",
@@ -1706,6 +1729,7 @@
         "processingFee": "Transaction fee ({{percent}})",
         "platformFee": "Kiibee payment ({{percent}})",
         "total": "Total payout amount",
+        "transferNote": "Transferring your balance may take up to 5 business days.",
         "success": "Payout request submitted successfully.",
         "calculateError": "Unable to calculate payout. Please try again.",
         "requestError": "Unable to submit payout request. Please try again.",
@@ -1851,7 +1875,8 @@
     },
     "admissionRequirements": {
       "title": "Admission requirements",
-      "description": "Consider what type of access your [contentType] should have",
+      "description": "Consider what type of access your {{contentType}} should have",
+      "fallbackContentType": "collection",
       "options": {
         "free": "Free",
         "payment": "Payment",
@@ -1909,7 +1934,7 @@
         "subtitle": "The large image at the top of the page",
         "uploadDesktop": "Upload desktop cover image",
         "uploadMobile": "Upload mobile cover image",
-        "desktopSize": "Use size 1440 × 224 pixel image",
+        "desktopSize": "Use size 1200 × 400 pixel image",
         "mobileSize": "Use size 640 × 600 pixel image",
         "desktopAlt": "Desktop cover image",
         "mobileAlt": "Mobile cover image",
@@ -2104,7 +2129,8 @@
     "payment": {
       "admission": {
         "title": "Admission requirements",
-        "description": "Consider what type of access your [contentType] should have",
+        "description": "Consider what type of access your {{contentType}} should have",
+        "fallbackContentType": "content",
         "options": {
           "free": "Free",
           "payment": "Payment",
@@ -2221,6 +2247,7 @@
     "users": "Users",
     "help": "Help",
     "currentlyRented": "Currently Rented",
+    "purchaseRentalHistory": "Previously purchased and rented content",
     "previouslyRented": "Previously Rented",
     "helpVideos": "Help videos",
     "userManual": "User manual",
@@ -2235,7 +2262,8 @@
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed",
-    "exportRequestFailed": "Failed to request export. Please try again."
+    "exportRequestFailed": "Failed to request export. Please try again.",
+    "addPaymentMethod": "Please add a payment method before accessing this section."
   },
   "accessGate": {
     "pageCodeTitle": "This page requires a code to access",

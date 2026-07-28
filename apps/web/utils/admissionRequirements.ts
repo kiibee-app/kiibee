@@ -31,3 +31,26 @@ export const ADMISSION_REQUIREMENTS: {
     labelKey: "contents.admissionRequirements.options.email",
   },
 ];
+
+export const validatePasswordInput = (val: string): boolean => {
+  if (!val) return false;
+  const passwords = val.split(",").map((p) => p.trim());
+  return passwords.some((p) => p.length > 0 && p.length < 6);
+};
+
+export const combinePasswords = (committed: string, typed: string): string =>
+  [committed, typed].filter(Boolean).join(", ");
+
+export const getPasswordCount = (hash: string | null | undefined): number => {
+  if (!hash) return 0;
+  if (!hash.startsWith("[") || !hash.endsWith("]")) {
+    return 1;
+  }
+
+  try {
+    const parsed = JSON.parse(hash);
+    return Array.isArray(parsed) ? parsed.length : 1;
+  } catch {
+    return 1;
+  }
+};

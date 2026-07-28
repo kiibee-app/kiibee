@@ -335,7 +335,7 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
   return {
     title: formState.title,
     description: formState.description,
-    trailerUrl: formState.trailerLink || undefined,
+    trailerUrl: formState.trailerLink.trim(),
     thumbnailUrl: formState.mediaCardThumbnail || undefined,
     thumbnailLandscapeUrl: formState.portraitThumbnail || undefined,
     publishedYear: formState.publishedYear
@@ -392,6 +392,7 @@ export const CONTENT_FORM_FIELDS = {
   PRODUCTION_COMPANY: "productionCompany",
   MANUFACTURER_LINK: "manufacturerLink",
   TAGS: "tags",
+  WEB_LINK: "webLink",
 } as const;
 
 export const TAG_DELIMITER = /[\n,]+/;
@@ -410,6 +411,9 @@ export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";
 export const HASH_RENT = "#rent";
 export const HASH_BUY = "#buy";
+export const PLANS_SECTION_ID = "plans";
+export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
+export const EVENT_HASHCHANGE = "hashchange";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";

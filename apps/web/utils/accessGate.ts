@@ -28,5 +28,7 @@ export const unlockCreatorAccessGate = (
   if (!unlockKey) return;
 
   window.localStorage.setItem(unlockKey, STRING_TRUE);
-  shouldReload && window.location.reload();
+  if (shouldReload) {
+    window.location.reload();
+  }
 };

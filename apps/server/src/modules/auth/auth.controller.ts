@@ -25,6 +25,7 @@ import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { DeleteUserDto } from './dto/deleteUser.dto';
 import { logAudit } from 'src/services/auditLog.service';
 import {
   RESOURCE,
@@ -292,6 +293,13 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('creator-deletion-history')
+  async getCreatorDeletionHistory() {
+    const result = await this.authService.getCreatorDeletionHistory();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('approve-creator-deletion')
   async approveCreatorDeletionRequest(
     @Body() body: CreatorRequestActionDto,
@@ -361,6 +369,7 @@ export class AuthController {
   @Delete('delete-user')
   async deleteUser(
     @Req() req: AuthenticatedRequest,
+    @Body() body: DeleteUserDto,
     @Headers('authorization') authorization?: string,
   ) {
     let jti: string | undefined;
@@ -375,6 +384,6 @@ export class AuthController {
       }
     }
     const userId = req.user.userId;
-    return this.authService.deleteUserService(userId, jti, exp);
+    return this.authService.deleteUserService(userId, body.reason, jti, exp);
   }
 }

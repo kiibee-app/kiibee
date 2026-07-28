@@ -20,7 +20,7 @@ const pageMeta: Record<string, PageMeta> = {
   "/deletion-requests": {
     title: "Deletion Requests",
     description:
-      "Review and approve or reject creator account deletion requests.",
+      "Review pending creator deletion requests and browse previously deleted creator accounts.",
   },
   "/viewers": {
     title: "All Viewers",

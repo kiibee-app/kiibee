@@ -1,8 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import TagsInput from "@/components/UI/InputFields/TagsInput";
+import { ErrorText } from "@/components/UI/InputFields/styles";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import {
@@ -27,7 +29,6 @@ import {
   HelperFormRow,
   HelperText,
 } from "./styles";
-import { INPUT_TYPE } from "@/utils/ui";
 import TrailerList from "../General/TrailerList";
 import {
   ADMISSION_TYPE,
@@ -41,9 +42,17 @@ import {
   PAYMENTS_FORM_FIELDS,
   toText,
 } from "@/utils/paymentRequirements";
+import {
+  combinePasswords,
+  validatePasswordInput,
+} from "@/utils/admissionRequirements";
 import { useContentForm } from "../ContentFormContext";
 
-export default function Payment() {
+interface PaymentProps {
+  contentType?: string;
+}
+
+export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
@@ -54,11 +63,39 @@ export default function Payment() {
   );
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
+  const [typedPassword, setTypedPassword] = useState("");
 
   const isPayment = formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
 
   const isSetPassword =
     formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
+
+  const effectivePassword = useMemo(
+    () => combinePasswords(formState.password, typedPassword),
+    [formState.password, typedPassword],
+  );
+
+  const passwordHasError =
+    validatePasswordInput(effectivePassword) ||
+    Boolean(formErrors[PAYMENTS_FORM_FIELDS.PASSWORD]);
+  const passwordErrorMessage = validatePasswordInput(effectivePassword)
+    ? t("contents.admissionRequirements.password.error.minLength")
+    : formErrors[PAYMENTS_FORM_FIELDS.PASSWORD];
+
+  const updatePasswordValidationError = (committed: string, typed: string) => {
+    const full = combinePasswords(committed, typed);
+    const hasError = validatePasswordInput(full);
+
+    if (!hasError) {
+      clearFieldError(PAYMENTS_FORM_FIELDS.PASSWORD);
+      return;
+    }
+
+    setFieldError(
+      PAYMENTS_FORM_FIELDS.PASSWORD,
+      t("contents.admissionRequirements.password.error.minLength"),
+    );
+  };
 
   const paymentTexts = useMemo(
     () => getPaymentContentTexts(t, formState.contentTypeId),
@@ -90,6 +127,17 @@ export default function Payment() {
     }
   };
 
+  const handlePasswordChange = (v: string | string[]) => {
+    const text = toText(v).slice(0, maxDescriptionCharacters);
+    updateField(PAYMENTS_FORM_FIELDS.PASSWORD, text);
+    updatePasswordValidationError(text, typedPassword);
+  };
+
+  const handleTypedPasswordChange = (typed: string) => {
+    setTypedPassword(typed);
+    updatePasswordValidationError(formState.password, typed);
+  };
+
   return (
     <>
       <PaymentCard>
@@ -97,7 +145,11 @@ export default function Payment() {
           <Block>
             <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
             <SectionText>
-              {t("contents.payment.admission.description")}
+              {t("contents.payment.admission.description", {
+                contentType:
+                  contentType ||
+                  t("contents.payment.admission.fallbackContentType"),
+              })}
             </SectionText>
 
             <DropdownWrap>
@@ -195,16 +247,38 @@ export default function Payment() {
 
           {isSetPassword && (
             <ControlWrap>
-              <InputField
-                value={formState.password}
-                onChange={(v) => {
-                  const text = toText(v).slice(0, maxDescriptionCharacters);
-                  updateField("password", text);
-                }}
-                placeholder={t("contents.payment.password.placeholder")}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                type={INPUT_TYPE.TEXTAREA}
-              />
+              {formState.hasPassword &&
+              !formState.password &&
+              !typedPassword ? (
+                <TagsInput
+                  value={Array(formState.passwordCount || 1)
+                    .fill("••••••")
+                    .join(", ")}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={false}
+                  separateOnSpace={true}
+                />
+              ) : (
+                <TagsInput
+                  value={formState.password}
+                  onChange={handlePasswordChange}
+                  onInputChange={handleTypedPasswordChange}
+                  placeholder={t("contents.payment.password.placeholder")}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  hasError={passwordHasError}
+                  separateOnSpace={true}
+                />
+              )}
+
+              {(!formState.hasPassword ||
+                formState.password ||
+                typedPassword) &&
+                passwordHasError &&
+                passwordErrorMessage && (
+                  <ErrorText>{passwordErrorMessage}</ErrorText>
+                )}
 
               <HelperFormRow>
                 <HelperText>{t("contents.payment.password.helper")}</HelperText>

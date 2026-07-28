@@ -81,7 +81,7 @@ export async function createOrderService(
       mediaFileId: contentId || null,
       collectionId: collectionId || null,
       itemType: normalizedItemType,
-      price: String(resolvedPrice),
+      price: String(price),
       currency: resolvedCurrency,
       status: 'pending' as const,
     };

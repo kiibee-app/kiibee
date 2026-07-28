@@ -1,7 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
+import { and, eq } from 'drizzle-orm';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { db } from 'src/database/db';
+import { users } from 'src/database/schema';
 import { TokenDenylistService } from '../services/token-denylist.service';
 
 @Injectable()
@@ -32,6 +35,19 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       if (revoked) {
         throw new UnauthorizedException('Token has been revoked');
       }
+    }
+
+    const [user] = await db
+      .select({
+        id: users.id,
+        isDeleted: users.isDeleted,
+      })
+      .from(users)
+      .where(and(eq(users.id, payload.sub), eq(users.isDeleted, false)))
+      .limit(1);
+
+    if (!user) {
+      throw new UnauthorizedException('Account no longer exists');
     }
 
     return {

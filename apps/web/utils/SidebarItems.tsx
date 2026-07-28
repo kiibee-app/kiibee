@@ -77,7 +77,7 @@ export const VIEWER_LABEL_TO_VIEW: Record<ViewerLabel, ViewerViewValue> = {
 export const VIEWER_VIEW_TO_LABEL: Record<ViewerViewValue, ViewerLabel> = {
   [VIEWER_VIEW_VALUES.PURCHASED]: VIEWER_LABELS.PURCHASED,
   [VIEWER_VIEW_VALUES.CURRENTLY_RENTED]: VIEWER_LABELS.CURRENTLY_RENTED,
-  [VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED]: VIEWER_LABELS.PREVIOUSLY_RENTED,
+  [VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED]: VIEWER_LABELS.PURCHASED,
   [VIEWER_VIEW_VALUES.BILLINGS]: VIEWER_LABELS.BILLINGS,
   [VIEWER_VIEW_VALUES.MY_PROFILE]: VIEWER_LABELS.MY_PROFILE,
 };
@@ -126,17 +126,12 @@ export const creatorsItems: DashboardSidebarItem[] = [
 export const viewerItems: DashboardSidebarItem[] = [
   {
     label: VIEWER_LABELS.PURCHASED,
-    labelKey: "dashboard.viewerPurchased.title",
+    labelKey: "sidebar.purchaseRentalHistory",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.CURRENTLY_RENTED,
     labelKey: "sidebar.currentlyRented",
-    section: CREATOR_SECTIONS.TOP,
-  },
-  {
-    label: VIEWER_LABELS.PREVIOUSLY_RENTED,
-    labelKey: "sidebar.previouslyRented",
     section: CREATOR_SECTIONS.TOP,
   },
   {

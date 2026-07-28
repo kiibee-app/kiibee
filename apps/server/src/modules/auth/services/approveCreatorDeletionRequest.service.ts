@@ -4,6 +4,7 @@ import {
   creatorDeletionRequests,
   creatorPlans,
   subscriptions,
+  userSessions,
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
@@ -115,6 +116,10 @@ export const approveCreatorDeletionRequestService = async (
         .update(users)
         .set({ isDeleted: true, deletedAt })
         .where(eq(users.id, targetUserId));
+
+      await tx
+        .delete(userSessions)
+        .where(eq(userSessions.userId, targetUserId));
 
       await tx
         .update(creatorPlans)

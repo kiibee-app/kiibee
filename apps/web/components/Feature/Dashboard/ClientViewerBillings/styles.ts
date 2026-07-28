@@ -437,4 +437,9 @@ export const InvoiceShareButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.65;
+  }
 `;

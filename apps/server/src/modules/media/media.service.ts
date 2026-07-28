@@ -20,8 +20,8 @@ export class MediaService {
     return this.multipart.createUpload();
   }
 
-  getStreamUrl(videoId: string) {
-    return this.stream.getStreamUrl(videoId);
+  getStreamUrl(videoId: string, options?: { recordView?: boolean }) {
+    return this.stream.getStreamUrl(videoId, 3600, options);
   }
 
   getDownloadUrl(key: string) {

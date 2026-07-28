@@ -22,6 +22,7 @@ export class FeedController {
       query.limit ? Number(query.limit) : 12,
       query.search,
       body,
+      query.type,
     );
   }
 }

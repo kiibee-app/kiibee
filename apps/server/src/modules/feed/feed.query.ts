@@ -100,7 +100,7 @@ export const getRecentQuery = async (where: any, limit: number) => {
   return fetchMediaFilesByIds(idRows.map((row) => row.id));
 };
 
-export const getTopCreatorsQuery = () =>
+export const getTopCreatorsQuery = (limit = 10) =>
   db
     .select({
       id: users.id,
@@ -122,4 +122,4 @@ export const getTopCreatorsQuery = () =>
     )
     .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
     .orderBy(desc(sql`COUNT(DISTINCT media_files.id)`))
-    .limit(10);
+    .limit(limit);

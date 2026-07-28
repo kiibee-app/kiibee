@@ -14,6 +14,8 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
 import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 import { CreatorGuard } from '../auth/guards/admin.guard';
+import { validateImageMagicNumber } from '../../utils/file-validation.util';
+import { ROLE } from 'src/utils/constant';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -34,8 +36,12 @@ export class MediaController {
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/stream')
-  stream(@Query('key') key: string) {
-    return this.mediaService.getStreamUrl(key);
+  stream(@Query('key') key: string, @Req() req: FastifyRequest) {
+    const role = (req as FastifyRequest & { user?: { role?: string } }).user
+      ?.role;
+    return this.mediaService.getStreamUrl(key, {
+      recordView: role !== ROLE.ADMIN,
+    });
   }
 
   @Get('videos/download')
@@ -92,9 +98,12 @@ export class MediaController {
       }
 
       const buffer = await this.streamToBuffer(file.file);
+
+      const typeInfo = await validateImageMagicNumber(buffer);
+
       return this.mediaService.uploadPublicImage({
         buffer,
-        mimetype: file.mimetype,
+        mimetype: typeInfo.mime,
         filename: file.filename,
       });
     }
