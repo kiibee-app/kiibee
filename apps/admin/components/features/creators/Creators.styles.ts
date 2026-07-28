@@ -202,6 +202,177 @@ export const PlayButton = styled.button`
   }
 `;
 
+export const RejectContentButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.RED};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.RED};
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    opacity ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    background: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.RED} 10%,
+      ${({ theme }) => theme.colors.neutral.WHITE}
+    );
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+`;
+
+export const ModalDescription = styled.p`
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.RED} 22%,
+      ${({ theme }) => theme.colors.secondary.border}
+    );
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.primary.RED} 7%,
+    ${({ theme }) => theme.colors.neutral.WHITE}
+  );
+  font-size: 13px;
+  line-height: 1.55;
+  color: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const ModalField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const ModalFieldLabel = styled.label`
+  font-size: 13px;
+  font-weight: 650;
+  color: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const ModalTextArea = styled.textarea`
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 108px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: inherit;
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+  }
+
+  &:focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.colors.primary.RED};
+    box-shadow: 0 0 0 3px
+      color-mix(
+        in srgb,
+        ${({ theme }) => theme.colors.primary.RED} 16%,
+        transparent
+      );
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+`;
+
+export const ModalActions = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+export const ModalCancelButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 11px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    border-color: ${({ theme }) => theme.colors.secondary.muted};
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+`;
+
+export const ModalConfirmButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 11px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.RED};
+  background: ${({ theme }) => theme.colors.primary.RED};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    filter ${({ theme }) => theme.animations.fast},
+    transform ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+`;
+
 export const PreviewFrame = styled.iframe`
   width: 100%;
   aspect-ratio: 16 / 9;

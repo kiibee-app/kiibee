@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export type ModalSize = "sm" | "md" | "lg";
+
+const modalWidthBySize: Record<ModalSize, string> = {
+  sm: "440px",
+  md: "640px",
+  lg: "960px",
+};
+
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
@@ -15,13 +23,15 @@ export const Overlay = styled.div`
   }
 `;
 
-export const ModalCard = styled.div`
-  width: min(960px, 100%);
+export const ModalCard = styled.div<{ $size?: ModalSize }>`
+  width: min(${({ $size = "lg" }) => modalWidthBySize[$size]}, 100%);
   max-height: calc(100vh - 48px);
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  box-shadow: ${({ theme }) => theme.shadows.lg};
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     max-height: calc(100vh - 24px);
@@ -34,7 +44,7 @@ export const ModalCard = styled.div`
 `;
 
 export const Header = styled.div`
-  padding: 18px 20px;
+  padding: 16px 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   display: flex;
   align-items: center;
@@ -44,14 +54,16 @@ export const Header = styled.div`
 
 export const Title = styled.h3`
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: ${({ theme }) => theme.colors.secondary.main};
 `;
 
 export const Body = styled.div`
   padding: 20px;
+  box-sizing: border-box;
 
   @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
     padding: 16px;
@@ -63,10 +75,19 @@ export const CloseButton = styled.button`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-radius: 8px;
-  min-width: 34px;
-  height: 34px;
+  min-width: 32px;
+  height: 32px;
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
   line-height: 1;
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
 `;

@@ -20,6 +20,7 @@ export const API_ENDPOINTS = {
     `/content/admin/creator-contents/${creatorId}`,
   CONTENT_ENGAGEMENT: (contentId: string) =>
     `/content/admin/content-engagement/${contentId}`,
+  REJECT_CONTENT: (contentId: string) => `/content/admin/reject/${contentId}`,
   CREATOR_APPEARANCE: (creatorId: string) =>
     `/content/admin/appearance/${creatorId}`,
   MEDIA_VIDEO_STREAM: "/media/videos/stream",
