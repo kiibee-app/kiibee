@@ -231,6 +231,25 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
+export function getUniqueMediaCategories(items: RentedMediaItem[]): string[] {
+  const categories: string[] = [];
+  const seenCategories = new Set<string>();
+
+  items.forEach((item) => {
+    const category = item.category.trim();
+    const normalizedCategory = category.toLocaleLowerCase();
+
+    if (!category || seenCategories.has(normalizedCategory)) return;
+
+    seenCategories.add(normalizedCategory);
+    categories.push(category);
+  });
+
+  return categories.sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE }),
+  );
+}
+
 export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
   const map: Record<string, string> = {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),

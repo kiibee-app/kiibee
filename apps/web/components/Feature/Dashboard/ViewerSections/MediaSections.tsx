@@ -11,7 +11,6 @@ import {
   SORT_ARROW_DOWN,
   BUY_PREFIX,
   RENT_PREFIX,
-  SENSITIVITY_BASE,
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
@@ -38,6 +37,7 @@ import {
   type CollectionSortKey,
   MEDIA_ICON_SIZE,
   ALL_CATEGORIES,
+  getUniqueMediaCategories,
 } from "@/utils/viewerRented";
 import SortDropdown, {
   type DropdownOption,
@@ -136,15 +136,8 @@ export default function MediaSections({
 
         const effectiveSortKey =
           expandedSection === section.key ? activeSortKey : null;
-        const availableCategories = Array.from(
-          new Map(
-            sectionItems[section.key]
-              .map((item) => item.category.trim())
-              .filter(Boolean)
-              .map((category) => [category.toLocaleLowerCase(), category]),
-          ).values(),
-        ).sort((a, b) =>
-          a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE }),
+        const availableCategories = getUniqueMediaCategories(
+          sectionItems[section.key],
         );
         const categoryOptions: DropdownOption[] = [
           {
@@ -161,12 +154,15 @@ export default function MediaSections({
         const effectiveCategory = availableCategories.includes(selectedCategory)
           ? selectedCategory
           : ALL_CATEGORIES;
+        const matchesEffectiveCategory = (item: RentedMediaItem) =>
+          item.category.trim() === effectiveCategory;
+        const itemsMatchingCategory = sectionItems[section.key].filter(
+          matchesEffectiveCategory,
+        );
         const categoryFilteredItems =
           effectiveCategory === ALL_CATEGORIES
             ? sectionItems[section.key]
-            : sectionItems[section.key].filter(
-                (item) => item.category.trim() === effectiveCategory,
-              );
+            : itemsMatchingCategory;
         const displayItems = effectiveSortKey
           ? sortViewerMedia(categoryFilteredItems, effectiveSortKey)
           : categoryFilteredItems;
