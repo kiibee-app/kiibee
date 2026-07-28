@@ -74,6 +74,14 @@ export default function GeneralContent({
   );
   const resolvedThumbnail = thumbnailUrl || getFallbackThumbnailUrl(previewUrl);
 
+  const handleWebLinkChange = (value: string | string[]) => {
+    const valStr = Array.isArray(value) ? value.join("") : value;
+    updateField(CONTENT_FORM_FIELDS.WEB_LINK, valStr);
+    if (formErrors[CONTENT_FORM_FIELDS.WEB_LINK]) {
+      clearFieldError(CONTENT_FORM_FIELDS.WEB_LINK);
+    }
+  };
+
   const renderWebSection = () => {
     if (uploadType !== FORMAT_TYPE.WEB) return null;
 
@@ -85,13 +93,7 @@ export default function GeneralContent({
         <ControlWrap>
           <InputField
             value={formState.webLink || ""}
-            onChange={(value) => {
-              const valStr = Array.isArray(value) ? value.join("") : value;
-              updateField(CONTENT_FORM_FIELDS.WEB_LINK, valStr);
-              if (formErrors[CONTENT_FORM_FIELDS.WEB_LINK]) {
-                clearFieldError(CONTENT_FORM_FIELDS.WEB_LINK);
-              }
-            }}
+            onChange={handleWebLinkChange}
             placeholder={t("contents.web.placeholder")}
             width="100%"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
