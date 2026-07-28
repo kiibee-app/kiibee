@@ -44,3 +44,9 @@ export const IconContainer = styled.div`
       transparent
     );
 `;
+
+export const ActionContainer = styled.div`
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+`;
