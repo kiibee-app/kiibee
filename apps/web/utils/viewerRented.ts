@@ -245,9 +245,10 @@ export function getUniqueMediaCategories(items: RentedMediaItem[]): string[] {
     categories.push(category);
   });
 
-  return categories.sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE }),
-  );
+  const compareCategoriesAlphabetically = (a: string, b: string) =>
+    a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE });
+
+  return categories.sort(compareCategoriesAlphabetically);
 }
 
 export function getMediaLabel(type: RentedSectionKey, t: TFunction) {

@@ -172,6 +172,13 @@ export default function MediaSections({
             [section.key]: category,
           }));
         };
+        const renderSelectedCategoryLabel = (
+          value: string,
+          option?: DropdownOption,
+        ) =>
+          value === ALL_CATEGORIES
+            ? t("viewerRented.categories")
+            : option?.label;
 
         return (
           <SectionBlock key={section.title}>
@@ -217,11 +224,7 @@ export default function MediaSections({
                     options={categoryOptions}
                     value={effectiveCategory}
                     onChange={handleCategoryChange}
-                    renderSelectedLabel={(value, option) =>
-                      value === ALL_CATEGORIES
-                        ? t("viewerRented.categories")
-                        : option?.label
-                    }
+                    renderSelectedLabel={renderSelectedCategoryLabel}
                     width="176px"
                     dropdownWidth="200px"
                     variant={SORT_DROPDOWN_VARIANT.SURFACE}
