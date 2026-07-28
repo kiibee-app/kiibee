@@ -172,8 +172,14 @@ export function CreatorBalancesTab() {
                             <StatusBadge $status="approved">
                               Available
                             </StatusBadge>
+                          ) : balance > 0 ? (
+                            <StatusBadge $status="pending">
+                              Below minimum
+                            </StatusBadge>
                           ) : (
-                            <MiniText>Empty</MiniText>
+                            <StatusBadge $status="rejected">
+                              No balance
+                            </StatusBadge>
                           )}
                         </TableBodyCell>
                         <TableBodyCell>

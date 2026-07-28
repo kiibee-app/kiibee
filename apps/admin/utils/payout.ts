@@ -11,6 +11,19 @@ export const payoutTabs: Array<{ key: PayoutTab; label: string }> = [
   { key: "all-history", label: "All History" },
 ];
 
+export const PAYOUT_TAB_QUERY = "tab";
+
+export function isPayoutTab(
+  value: string | null | undefined,
+): value is PayoutTab {
+  return payoutTabs.some((tab) => tab.key === value);
+}
+
+export function payoutTabHref(tab: PayoutTab = "balances") {
+  if (tab === "balances") return "/payout";
+  return `/payout?${PAYOUT_TAB_QUERY}=${tab}`;
+}
+
 export function formatDate(value?: string | null) {
   if (!value) return "N/A";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PayoutRequestsList } from "../payout-requests/PayoutRequestsList";
 import { CreatorPagination } from "../all-creators/CreatorPagination";
 import { CreatorBalancesTab } from "./CreatorBalancesTab";
@@ -21,6 +21,9 @@ import { toCreatorStatus } from "../../../utils/status";
 import {
   formatAmount,
   formatDate,
+  isPayoutTab,
+  PAYOUT_TAB_QUERY,
+  payoutTabHref,
   payoutTabs,
   toPayoutBadgeStatus,
 } from "../../../utils/payout";
@@ -408,7 +411,16 @@ function AllHistoryTab() {
 }
 
 export function PayoutDashboard() {
-  const [activeTab, setActiveTab] = useState<PayoutTab>("balances");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const activeTab = useMemo<PayoutTab>(() => {
+    const tab = searchParams.get(PAYOUT_TAB_QUERY);
+    return isPayoutTab(tab) ? tab : "balances";
+  }, [searchParams]);
+
+  const setActiveTab = (tab: PayoutTab) => {
+    router.replace(payoutTabHref(tab), { scroll: false });
+  };
 
   return (
     <AllCreatorsLayout>
