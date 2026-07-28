@@ -29,7 +29,7 @@ function CreatorsFilterPageContent({
     setSearchQuery,
     creators,
     isLoading,
-    isFetching,
+    isFetchingNextPage,
     pageTitle,
     showLoadMoreButton,
     handleLoadMore,
@@ -58,7 +58,8 @@ function CreatorsFilterPageContent({
           <div ref={trendingRef}>
             <ExploreCreators
               creators={creators}
-              isLoading={isLoading || isFetching}
+              isLoading={isLoading}
+              isLoadingMore={isFetchingNextPage}
               showLoadMoreButton={showLoadMoreButton}
               onLoadMore={handleLoadMore}
             />

@@ -91,6 +91,7 @@ export const isValidAvatarUrl = (value: string): boolean => {
   return isDataUrl || isHttpUrl;
 };
 export const FIXED_LIMIT = 10;
+export const DEFAULT_ALL_CREATORS_LIMIT = 12;
 
 export const SORT_DIRECTIONS = {
   ASC: 'asc',
