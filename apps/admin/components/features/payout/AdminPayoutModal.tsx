@@ -96,8 +96,24 @@ function AdminPayoutForm({
     onClose();
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const getSuccessMessage = (result?: {
+    processed?: boolean;
+    requestCreated?: boolean;
+  }) => {
+    if (result?.processed) {
+      return "Payout processed successfully. The creator has been notified by email.";
+    }
+
+    if (result?.requestCreated) {
+      return "Payout request created. Review it under Payout Requests.";
+    }
+
+    return "Payout processed successfully.";
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     if (!canSubmit) return;
 
     submitPayout(
@@ -109,21 +125,11 @@ function AdminPayoutForm({
       },
       {
         onSuccess: (result) => {
-          if (result?.processed) {
-            toast.success(
-              "Payout processed successfully. The creator has been notified by email.",
-            );
-          } else if (result?.requestCreated) {
-            toast.success(
-              "Payout request created. Review it under Payout Requests.",
-            );
-          } else {
-            toast.success("Payout processed successfully.");
-          }
+          toast.success(getSuccessMessage(result));
           onClose();
         },
-        onError: (error) => {
-          toast.error(error.message || "Failed to process payout.");
+        onError: ({ message }) => {
+          toast.error(message || "Failed to process payout.");
         },
       },
     );
