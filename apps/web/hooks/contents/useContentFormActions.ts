@@ -427,10 +427,15 @@ export function useContentFormActions({
 
     if (isWebType || formState.webLink?.trim()) {
       const webLink = formState.webLink?.trim() || "";
-      if (isWebType && !webLink) {
-        nextErrors.webLink = t("contents.general.trailerLinkInvalid");
-      } else if (webLink && !isValidUrl(webLink)) {
-        nextErrors.webLink = t("contents.general.trailerLinkInvalid");
+      const errorMsg =
+        isWebType && !webLink
+          ? t("contents.general.trailerLinkInvalid")
+          : webLink && !isValidUrl(webLink)
+            ? t("contents.general.trailerLinkInvalid")
+            : undefined;
+
+      if (errorMsg) {
+        nextErrors[CONTENT_FORM_FIELDS.WEB_LINK] = errorMsg;
       }
     }
 
@@ -441,7 +446,7 @@ export function useContentFormActions({
     setFormErrors((prev) => {
       const rest = { ...prev };
       delete rest.trailerLink;
-      delete rest.webLink;
+      delete rest[CONTENT_FORM_FIELDS.WEB_LINK];
       return {
         ...rest,
         ...nextErrors,

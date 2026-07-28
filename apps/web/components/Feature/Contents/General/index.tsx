@@ -40,7 +40,11 @@ import { useContentForm } from "../ContentFormContext";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import InputField from "@/components/UI/InputFields";
 import { Checkbox } from "@/app/auth/signup-creator/styles";
-import { BLANK, IS_FALLBACK_SIZE } from "@/utils/Constants";
+import {
+  BLANK,
+  IS_FALLBACK_SIZE,
+  CONTENT_FORM_FIELDS,
+} from "@/utils/Constants";
 
 type Props = {
   id: string;
@@ -83,16 +87,16 @@ export default function GeneralContent({
             value={formState.webLink || ""}
             onChange={(value) => {
               const valStr = Array.isArray(value) ? value.join("") : value;
-              updateField("webLink", valStr);
-              if (formErrors.webLink) {
-                clearFieldError("webLink");
+              updateField(CONTENT_FORM_FIELDS.WEB_LINK, valStr);
+              if (formErrors[CONTENT_FORM_FIELDS.WEB_LINK]) {
+                clearFieldError(CONTENT_FORM_FIELDS.WEB_LINK);
               }
             }}
             placeholder={t("contents.web.placeholder")}
             width="100%"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            hasError={Boolean(formErrors.webLink)}
-            errorMessage={formErrors.webLink}
+            hasError={Boolean(formErrors[CONTENT_FORM_FIELDS.WEB_LINK])}
+            errorMessage={formErrors[CONTENT_FORM_FIELDS.WEB_LINK]}
           />
         </ControlWrap>
         <CheckboxRow>
