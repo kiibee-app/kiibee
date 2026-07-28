@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
-import heroImage from "@/assets/images/creators/layout2defaultimage.png";
+import heroImage from "@/assets/images/creators/layout2defaultimage.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
