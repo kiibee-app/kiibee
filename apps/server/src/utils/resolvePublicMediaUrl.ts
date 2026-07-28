@@ -89,7 +89,9 @@ function rewriteAbsoluteMediaUrl(url: string): string {
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
       KIIBEE_MEDIA_PATH_PREFIX.test(pathname)
     ) {
-      return `${KIIBEE_MEDIA_BASE_URL}${pathname}`;
+      return (
+        buildCdnMediaUrl(pathname) ?? `${KIIBEE_MEDIA_BASE_URL}${pathname}`
+      );
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {

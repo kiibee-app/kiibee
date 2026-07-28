@@ -1521,7 +1521,9 @@
           "title": "Faktura",
           "orderNumber": "Ordrenummer",
           "contentDetails": "Indholdsdetaljer",
-          "share": "Del"
+          "sendReceipt": "Send kvittering via e-mail",
+          "receiptSent": "Kvitteringen er sendt via e-mail.",
+          "receiptSendFailed": "Kvitteringen kunne ikke sendes. Prøv igen."
         },
         "tableHeaders": {
           "contentTitle": "Indholdstitel",
@@ -2258,7 +2260,8 @@
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billedupload mislykkedes",
-    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen."
+    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
+    "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
   },
   "sidebar": {
     "users": "Brugere",

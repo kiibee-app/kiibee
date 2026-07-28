@@ -1521,7 +1521,9 @@
           "title": "Invoice",
           "orderNumber": "Order number",
           "contentDetails": "Content details",
-          "share": "Share"
+          "sendReceipt": "Send receipt by email",
+          "receiptSent": "Receipt sent by email.",
+          "receiptSendFailed": "Unable to send the receipt. Please try again."
         },
         "tableHeaders": {
           "contentTitle": "Content title",
@@ -2260,7 +2262,8 @@
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed",
-    "exportRequestFailed": "Failed to request export. Please try again."
+    "exportRequestFailed": "Failed to request export. Please try again.",
+    "addPaymentMethod": "Please add a payment method before accessing this section."
   },
   "accessGate": {
     "pageCodeTitle": "This page requires a code to access",

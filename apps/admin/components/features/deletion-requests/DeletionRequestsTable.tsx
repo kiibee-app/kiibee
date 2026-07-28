@@ -3,6 +3,7 @@
 import type { DeletionRequestsTableProps } from "../../../types/deletion-requests-table";
 import {
   RequestsTable,
+  RequestTableRow,
   TableBodyCell,
   TableHeaderCell,
   TableScrollWrapper,
@@ -15,6 +16,7 @@ export function DeletionRequestsTable({
   onRejectRequest,
   activeAction,
   activeRequestId,
+  onSelectRequest,
 }: DeletionRequestsTableProps) {
   return (
     <TableScrollWrapper>
@@ -28,7 +30,10 @@ export function DeletionRequestsTable({
         </thead>
         <tbody>
           {requests.map((request) => (
-            <tr key={request.id}>
+            <RequestTableRow
+              key={request.id}
+              onClick={() => onSelectRequest(request)}
+            >
               {creatorDeletionRequestColumns.map((column) => (
                 <TableBodyCell key={`${request.id}-${column.key}`}>
                   {column.renderCell(request, {
@@ -39,7 +44,7 @@ export function DeletionRequestsTable({
                   })}
                 </TableBodyCell>
               ))}
-            </tr>
+            </RequestTableRow>
           ))}
         </tbody>
       </RequestsTable>

@@ -80,6 +80,7 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
               <DropdownField
                 options={visibilityOptions}
                 value={formState.visibility}
+                expandLayoutOnOpen
                 onChange={(value) =>
                   updateField(PAYMENTS_FORM_FIELDS.VISIBILITY, value as string)
                 }

@@ -8,6 +8,8 @@ export const templateName = {
   REJECTED_PAYOUT: 'rejectedPayout',
   CONTENT_ACCESS_APPROVAL: 'contentAccessApproval',
   CONTENT_ACCESS_GRANTED: 'contentAccessGranted',
+  RENTAL_RECEIPT: 'sendReceipt',
+  PURCHASE_RECEIPT: 'sendReceipt',
 };
 
 export const mailSubject = {
@@ -20,4 +22,13 @@ export const mailSubject = {
   REJECTED_PAYOUT: 'Your Payout Has Been Rejected',
   CONTENT_ACCESS_APPROVAL: 'A viewer requested access to your content',
   CONTENT_ACCESS_GRANTED: 'Your content access request was approved',
+  RENTAL_RECEIPT: 'Your Kiibee Rental Receipt',
+  PURCHASE_RECEIPT: 'Your Kiibee Purchase Receipt',
+};
+
+export const mailNote = {
+  RENTAL_RECEIPT:
+    'You can access your rented content from your Kiibee library for the duration of your rental period.',
+  PURCHASE_RECEIPT:
+    'You now have permanent access to this content from your Kiibee library.',
 };

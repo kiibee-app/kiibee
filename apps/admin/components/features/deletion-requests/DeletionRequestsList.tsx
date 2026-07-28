@@ -14,11 +14,14 @@ import {
   AllCreatorsPanel,
   AllCreatorsState,
 } from "../all-creators/AllCreators.styles";
+import { DeletionRequestDetailsDrawer } from "./DeletionRequestDetailsDrawer";
 
 export function DeletionRequestsList() {
   const [requestOverrides, setRequestOverrides] = useState<
     CreatorDeletionRequest[]
   >([]);
+  const [selectedRequest, setSelectedRequest] =
+    useState<CreatorDeletionRequest | null>(null);
   const deletionRequestsQuery = useCreatorDeletionRequests();
 
   const requests = useMemo(() => {
@@ -60,13 +63,19 @@ export function DeletionRequestsList() {
     return updatedRequest;
   };
 
+  const handleRequestUpdated = (request: CreatorDeletionRequest) => {
+    const updated = updateRequestStatus(request, request.status);
+    setSelectedRequest((prev) => (prev?.id === request.id ? updated : prev));
+    return updated;
+  };
+
   const {
     activeAction,
     activeRequestId,
     handleApproveRequest,
     handleRejectRequest,
   } = useDeletionRequestActions({
-    onRequestUpdated: (request) => updateRequestStatus(request, request.status),
+    onRequestUpdated: handleRequestUpdated,
   });
 
   const totalRequests = requests.length;
@@ -96,6 +105,7 @@ export function DeletionRequestsList() {
         onRejectRequest={handleRejectRequest}
         activeAction={activeAction}
         activeRequestId={activeRequestId}
+        onSelectRequest={setSelectedRequest}
       />
     );
   };
@@ -103,6 +113,16 @@ export function DeletionRequestsList() {
   return (
     <AllCreatorsLayout>
       <AllCreatorsPanel>{renderContent()}</AllCreatorsPanel>
+      <DeletionRequestDetailsDrawer
+        request={selectedRequest}
+        onClose={() => setSelectedRequest(null)}
+        actions={{
+          activeAction,
+          activeRequestId,
+          onApproveRequest: handleApproveRequest,
+          onRejectRequest: handleRejectRequest,
+        }}
+      />
     </AllCreatorsLayout>
   );
 }

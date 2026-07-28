@@ -14,15 +14,19 @@ import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_CREATOR,
+  CONTENT_TAB,
 } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import UsersContent from "../Users/UsersContent";
+import { toast } from "react-toastify";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
+import { useCreatorPaymentMethods } from "@/hooks/useCreatorPaymentMethods";
+import { TAB_KEYS } from "@/utils/settingsTabs";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
@@ -46,7 +50,9 @@ export default function ClientDashboardCreators() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { logout } = useLogout();
-  const { getUser } = useAuthSession();
+  const { getRole, getUser } = useAuthSession();
+  const { paymentMethods, isLoading: isPaymentMethodsLoading } =
+    useCreatorPaymentMethods();
   const { isReady } = useRequireAuthSession();
   useProfileSync();
 
@@ -106,11 +112,51 @@ export default function ClientDashboardCreators() {
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
   }, [pathname, router, searchParams, view]);
 
+  const isCreatorNoPaymentMethods =
+    getRole() === ROLE_CREATOR &&
+    !isPaymentMethodsLoading &&
+    paymentMethods.length === 0;
+
+  useEffect(() => {
+    if (!isCreatorNoPaymentMethods) return;
+
+    const view = searchParams?.get(VIEW);
+    const tab = searchParams?.get(CONTENT_TAB);
+
+    if (view !== CREATORS_LABELS.SETTINGS || tab !== TAB_KEYS.payoutMethods) {
+      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      params.set(VIEW, CREATORS_LABELS.SETTINGS);
+      params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
+      sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    }
+  }, [isCreatorNoPaymentMethods, searchParams, router, pathname]);
+
   const handleSelect = useCallback(
     (label: string) => {
+      if (isCreatorNoPaymentMethods) {
+        if (label !== CREATORS_LABELS.SETTINGS) {
+          toast.error(t("errors.addPaymentMethod"));
+        }
+        const params = new URLSearchParams(searchParams?.toString() ?? "");
+        params.set(VIEW, CREATORS_LABELS.SETTINGS);
+        params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
+        sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
+        const qs = params.toString();
+        router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+        return;
+      }
       router.push(getHrefForView(label), { scroll: false });
     },
-    [getHrefForView, router],
+    [
+      getHrefForView,
+      router,
+      searchParams,
+      pathname,
+      isCreatorNoPaymentMethods,
+      t,
+    ],
   );
 
   const renderContent = useMemo(() => {

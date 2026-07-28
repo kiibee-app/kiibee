@@ -47,7 +47,7 @@ const CreatorHeaderRight = ({
             initial={initial}
             alt={t("common.creatorProfile")}
             sizes="44px"
-            fit="contain"
+            fit="cover"
             initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
           />
         </ProfileCircle>

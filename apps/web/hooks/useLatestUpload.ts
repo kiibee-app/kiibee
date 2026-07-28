@@ -17,11 +17,12 @@ import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 import { convertRentDurationToHours } from "@/utils/formatDate";
-import { resolveContentThumbnailUrl } from "@/utils/media";
+import { resolvePublicMediaUrl } from "@/utils/media";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
+  thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: ImageSource | null;
   trailerUrl?: string | null;
   accessType?: string | null;
@@ -62,12 +63,14 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             : Date.now(),
           category: latest.categoryName ?? null,
           contentType: latest.contentType ?? "video",
+          thumbnailUrl:
+            resolvePublicMediaUrl(latest.thumbnailUrl) ??
+            latest.thumbnailUrl ??
+            null,
           thumbnailLandscapeUrl:
-            resolveContentThumbnailUrl(
-              latest.thumbnailUrl,
-              latest.thumbnailLandscapeUrl,
-              { preferLandscape: true },
-            ) ?? null,
+            resolvePublicMediaUrl(latest.thumbnailLandscapeUrl) ??
+            latest.thumbnailLandscapeUrl ??
+            null,
           trailerUrl: latest.trailerUrl ?? null,
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
@@ -130,12 +133,14 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           ...latest,
           title: content?.title || latest.name || "",
           category: category ?? null,
+          thumbnailUrl:
+            resolvePublicMediaUrl(content?.thumbnailUrl) ??
+            content?.thumbnailUrl ??
+            null,
           thumbnailLandscapeUrl:
-            resolveContentThumbnailUrl(
-              content?.thumbnailUrl,
-              content?.thumbnailLandscapeUrl,
-              { preferLandscape: true },
-            ) ?? null,
+            resolvePublicMediaUrl(content?.thumbnailLandscapeUrl) ??
+            content?.thumbnailLandscapeUrl ??
+            null,
           trailerUrl: content?.trailerUrl ?? null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
@@ -153,6 +158,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           ...latest,
           title: latest.name || "",
           category: null,
+          thumbnailUrl: null,
           thumbnailLandscapeUrl: null,
           trailerUrl: null,
           accessType: parentCollection?.accessType ?? null,
