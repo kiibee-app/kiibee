@@ -110,15 +110,15 @@ function AdminPayoutForm({
       {
         onSuccess: (result) => {
           if (result?.processed) {
-            toast.success("Payout submitted successfully.");
+            toast.success(
+              "Payout processed successfully. The creator has been notified by email.",
+            );
           } else if (result?.requestCreated) {
             toast.success(
-              result.processError
-                ? `Request created. Processing failed: ${result.processError}`
-                : "Payout request created. Review it under Payout Requests.",
+              "Payout request created. Review it under Payout Requests.",
             );
           } else {
-            toast.success("Payout request created.");
+            toast.success("Payout processed successfully.");
           }
           onClose();
         },
