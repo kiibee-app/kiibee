@@ -12,13 +12,16 @@ import {
   featureCreators,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { CONTENT_VISIBILITY, ROLE, SORT_DIRECTIONS } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  DEFAULT_ALL_CREATORS_LIMIT,
+  ROLE,
+  SORT_DIRECTIONS,
+} from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
 import { fail, success } from 'src/utils/sendResponse';
 
 type SortBy = 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
-
-const DEFAULT_ALL_CREATORS_LIMIT = 12;
 
 const publishedMediaJoinCondition = and(
   eq(mediaFiles.creatorId, users.id),
@@ -119,7 +122,7 @@ export const allCreatorsService = async ({
       .where(whereCondition);
 
     const totalItems = Number(totalResult?.count ?? 0);
-    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize) || 1);
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
     const currentPage = Math.min(requestedPage, totalPages);
     const offset = (currentPage - 1) * pageSize;
 
