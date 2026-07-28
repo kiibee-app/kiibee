@@ -56,7 +56,8 @@ export default function GeneralContent({
   onDelete,
 }: Props) {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, updateField, formErrors, clearFieldError } =
+    useContentForm();
   const uploadType = formState.contentTypeId;
   if (!uploadedFile && uploadType !== FORMAT_TYPE.WEB) return null;
   const handleDelete = (e: React.MouseEvent) => {
@@ -80,10 +81,18 @@ export default function GeneralContent({
         <ControlWrap>
           <InputField
             value={formState.webLink || ""}
-            onChange={(value) => updateField("webLink", value as string)}
+            onChange={(value) => {
+              const valStr = Array.isArray(value) ? value.join("") : value;
+              updateField("webLink", valStr);
+              if (formErrors.webLink) {
+                clearFieldError("webLink");
+              }
+            }}
             placeholder={t("contents.web.placeholder")}
             width="100%"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            hasError={Boolean(formErrors.webLink)}
+            errorMessage={formErrors.webLink}
           />
         </ControlWrap>
         <CheckboxRow>

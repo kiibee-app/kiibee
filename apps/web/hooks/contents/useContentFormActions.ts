@@ -421,6 +421,19 @@ export function useContentFormActions({
   const validateGeneralForm = () => {
     const nextErrors: Partial<ContentFormErrors> = {};
 
+    const isWebType =
+      formState.contentTypeId === FORMAT_TYPE.WEB ||
+      editingContent?.contentType === FORMAT_TYPE.WEB;
+
+    if (isWebType || formState.webLink?.trim()) {
+      const webLink = formState.webLink?.trim() || "";
+      if (isWebType && !webLink) {
+        nextErrors.webLink = t("contents.general.trailerLinkInvalid");
+      } else if (webLink && !isValidUrl(webLink)) {
+        nextErrors.webLink = t("contents.general.trailerLinkInvalid");
+      }
+    }
+
     if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
       nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
     }
@@ -428,9 +441,11 @@ export function useContentFormActions({
     setFormErrors((prev) => {
       const rest = { ...prev };
       delete rest.trailerLink;
-      return nextErrors.trailerLink
-        ? { ...rest, trailerLink: nextErrors.trailerLink }
-        : rest;
+      delete rest.webLink;
+      return {
+        ...rest,
+        ...nextErrors,
+      };
     });
 
     if (Object.keys(nextErrors).length > 0) {

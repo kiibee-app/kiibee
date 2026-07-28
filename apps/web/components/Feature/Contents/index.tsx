@@ -37,7 +37,9 @@ import {
   APPEARANCE,
   ContentTab,
   SETTINGS,
+  isValidUrl,
 } from "@/utils/common";
+import { FORMAT_TYPE } from "@/utils/types";
 import {
   ADMISSION_REQUIREMENTS,
   ADMISSION_REQUIREMENT_VALUES,
@@ -520,6 +522,9 @@ function CreatorsContentsInner() {
               validatePasswordInput(collectionPasswords)) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.GENERAL &&
+              formState.contentTypeId === FORMAT_TYPE.WEB &&
+              (!formState.webLink?.trim() || !isValidUrl(formState.webLink))) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.PAYMENT &&
