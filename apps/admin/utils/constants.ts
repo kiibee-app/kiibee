@@ -20,6 +20,7 @@ export const API_ENDPOINTS = {
     `/content/admin/creator-contents/${creatorId}`,
   CONTENT_ENGAGEMENT: (contentId: string) =>
     `/content/admin/content-engagement/${contentId}`,
+  REJECT_CONTENT: (contentId: string) => `/content/admin/reject/${contentId}`,
   CREATOR_APPEARANCE: (creatorId: string) =>
     `/content/admin/appearance/${creatorId}`,
   MEDIA_VIDEO_STREAM: "/media/videos/stream",
@@ -80,6 +81,22 @@ export const STAT_ACCENT = {
 } as const;
 
 export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
+
+export const MODAL_SIZE = {
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+} as const;
+
+export type ModalSize = (typeof MODAL_SIZE)[keyof typeof MODAL_SIZE];
+
+export const MODAL_WIDTH_BY_SIZE: Record<ModalSize, string> = {
+  [MODAL_SIZE.SM]: "440px",
+  [MODAL_SIZE.MD]: "640px",
+  [MODAL_SIZE.LG]: "960px",
+};
+
+export const DEFAULT_MODAL_SIZE = MODAL_SIZE.LG;
 
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",

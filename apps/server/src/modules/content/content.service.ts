@@ -8,11 +8,13 @@ import { getContentByCollectionIdService } from './services/getContentByCollecti
 import { updateContentService } from './services/updateContent.service';
 import { getContentByIdService } from './services/getContentById.service';
 import { deleteContentService } from './services/delete.content.service';
+import { rejectContentService } from './services/rejectContent.service';
 import {
   contentAppearanceService,
   getContentAppearanceService,
 } from './services/contentAppearance.service';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
+import { RejectContentDto } from './dto/rejectContent.dto';
 import {
   createOrUpdateContentSetting,
   getContentSettingByUserId,
@@ -68,6 +70,10 @@ export class ContentService {
 
   async deleteContentService(contentId: string) {
     return deleteContentService(contentId);
+  }
+
+  async rejectContentService(contentId: string, dto: RejectContentDto) {
+    return rejectContentService(contentId, dto.reason);
   }
 
   async ContentAppearanceService(userId: string, dto: ContentAppearanceDto) {

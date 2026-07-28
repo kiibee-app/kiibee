@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Film, Play } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, Film, Play, X } from "lucide-react";
+import toast from "react-hot-toast";
 import {
   useContentEngagement,
   useContentMediaPreview,
+  useRejectContent,
 } from "../../../hooks/api";
 import { formatRequestedAt } from "../../../utils/date";
 import {
@@ -22,7 +25,13 @@ import {
 } from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
 import { ContentPreviewModal } from "./ContentPreviewModal";
-import { HeroActions, PlayButton, PriceMeta } from "./Creators.styles";
+import { RejectContentModal } from "./RejectContentModal";
+import {
+  HeroActions,
+  PlayButton,
+  PriceMeta,
+  RejectContentButton,
+} from "./Creators.styles";
 import {
   BackLink,
   ContentThumb,
@@ -64,6 +73,7 @@ export function CreatorContentEngagement({
   creatorId,
   contentId,
 }: CreatorContentEngagementProps) {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<EngagementTab>(
     ENGAGEMENT_TAB.PURCHASES,
   );
@@ -73,9 +83,11 @@ export function CreatorContentEngagement({
     null,
   );
   const [previewError, setPreviewError] = useState<string | null>(null);
+  const [rejectOpen, setRejectOpen] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
   const mediaPreview = useContentMediaPreview();
+  const rejectContent = useRejectContent();
 
   if (engagementQuery.isLoading) {
     return (
@@ -137,6 +149,21 @@ export function CreatorContentEngagement({
     setPreviewError(null);
   };
 
+  const handleReject = async (reason: string) => {
+    try {
+      await rejectContent.mutateAsync({ contentId, reason, creatorId });
+      toast.success(creatorContentEngagementLabels.rejectSuccess);
+      setRejectOpen(false);
+      router.push(`/all-creators/${creatorId}`);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : creatorContentEngagementLabels.rejectFailed,
+      );
+    }
+  };
+
   return (
     <DetailsLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
@@ -183,20 +210,28 @@ export function CreatorContentEngagement({
               {formatRequestedAt(content.publishedAt || content.createdAt)}
             </ProfileEmail>
           ) : null}
-          {canPlay ? (
-            <HeroActions>
+          <HeroActions>
+            {canPlay ? (
               <PlayButton
                 type="button"
                 onClick={handlePlay}
-                disabled={mediaPreview.isPending}
+                disabled={mediaPreview.isPending || rejectContent.isPending}
               >
                 <Play size={14} />
                 {mediaPreview.isPending
                   ? creatorContentEngagementLabels.loadingPreview
                   : creatorContentEngagementLabels.playContent}
               </PlayButton>
-            </HeroActions>
-          ) : null}
+            ) : null}
+            <RejectContentButton
+              type="button"
+              onClick={() => setRejectOpen(true)}
+              disabled={rejectContent.isPending}
+            >
+              <X size={14} />
+              {creatorContentEngagementLabels.rejectContent}
+            </RejectContentButton>
+          </HeroActions>
         </ProfileInfo>
       </ProfileHero>
 
@@ -280,6 +315,14 @@ export function CreatorContentEngagement({
         format={previewFormat}
         isLoading={mediaPreview.isPending}
         error={previewError}
+      />
+
+      <RejectContentModal
+        open={rejectOpen}
+        contentTitle={content.title}
+        isSubmitting={rejectContent.isPending}
+        onClose={() => setRejectOpen(false)}
+        onConfirm={handleReject}
       />
     </DetailsLayout>
   );
