@@ -22,10 +22,24 @@ export type ExploreCreator = {
   buttonColor?: string | null;
 };
 
+export type ExploreCreatorsPagination = {
+  page: number;
+  limit: number;
+  totalItems: number;
+  totalPages: number;
+  hasMore?: boolean;
+};
+
+export type ExploreCreatorsPaginatedData = {
+  items: ExploreCreator[];
+  pagination: ExploreCreatorsPagination;
+};
+
 export type ExploreCreatorsResponse = {
   success?: boolean;
   message?: string;
-  data?: ExploreCreator[];
+  /** Legacy flat list (e.g. GET /creators) or paginated all-creators payload. */
+  data?: ExploreCreator[] | ExploreCreatorsPaginatedData;
 };
 
 export type CreatorContentCategoryItem = {

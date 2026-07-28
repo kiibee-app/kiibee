@@ -54,21 +54,19 @@ export class CreatorController {
 
   @Get('all')
   async getAllCreators(
+    @Query('page') page?: string,
     @Query('limit') limit?: string,
     @Query('sortBy')
     sortBy?: 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured',
     @Query('search') search?: string,
   ) {
-    const parsedLimit = Number.parseInt(limit ?? '24', 10);
-
-    const safeLimit =
-      Number.isFinite(parsedLimit) && parsedLimit > 0 ? parsedLimit : 24;
-
-    const safeSortBy = sortBy ?? 'name';
+    const parsedPage = page ? Number.parseInt(page, 10) : undefined;
+    const parsedLimit = limit ? Number.parseInt(limit, 10) : undefined;
 
     return this.creatorService.getAllCreators({
-      limit: safeLimit,
-      sortBy: safeSortBy,
+      page: Number.isFinite(parsedPage) ? parsedPage : undefined,
+      limit: Number.isFinite(parsedLimit) ? parsedLimit : undefined,
+      sortBy: sortBy ?? 'name',
       search: search?.trim() || undefined,
     });
   }
