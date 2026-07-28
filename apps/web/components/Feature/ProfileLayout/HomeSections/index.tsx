@@ -5,7 +5,10 @@ import CollectionPreview from "@/components/Feature/ProfileLayout/shared/Collect
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
-import { PROFILE_HOME_SECTION, VARIANT_PAGE } from "@/utils/Constants";
+import GenericButton from "@/components/UI/GenericButton";
+import PlusIcon from "@/assets/icons/PlusIcon";
+import COLORS from "@repo/ui/colors";
+import { PROFILE_HOME_SECTION, VARIANT, VARIANT_PAGE } from "@/utils/Constants";
 import {
   ContentAdjust,
   SectionWrapper,
@@ -194,18 +197,34 @@ export default function ProfileHomeSections({
 
   if (hasNoContent && !isLoading) {
     const isSearching = searchQuery.trim() !== "";
+    let emptyTitle = isSearching
+      ? t("createProfileHome.noSearchResultsTitle")
+      : t("createProfileHome.noContentTitle");
+    let emptyDescription = isSearching
+      ? t("createProfileHome.noSearchResultsDescription")
+      : t("createProfileHome.noContentDescription");
+    let emptyAction: React.ReactNode = undefined;
+
+    if (!isSearching && isOwner) {
+      emptyTitle = t("createProfileHome.ownerNoContentTitle");
+      emptyDescription = t("createProfileHome.ownerNoContentDescription");
+      emptyAction = (
+        <GenericButton
+          variant={VARIANT.PRIMARY}
+          href="/dashboard/creators?view=Contents"
+          style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+        >
+          <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
+          {t("contents.actions.createCollection")}
+        </GenericButton>
+      );
+    }
+
     return (
       <ProfileEmptyState
-        title={
-          isSearching
-            ? t("createProfileHome.noSearchResultsTitle")
-            : t("createProfileHome.noContentTitle")
-        }
-        description={
-          isSearching
-            ? t("createProfileHome.noSearchResultsDescription")
-            : t("createProfileHome.noContentDescription")
-        }
+        title={emptyTitle}
+        description={emptyDescription}
+        action={emptyAction}
       />
     );
   }

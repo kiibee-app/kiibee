@@ -66,6 +66,8 @@
     "searchAriaLabel": "Søg i profilindhold",
     "noContentTitle": "Indhold på vej",
     "noContentDescription": "Denne kreatør har ikke publiceret noget indhold endnu.",
+    "ownerNoContentTitle": "Din kanal er tom",
+    "ownerNoContentDescription": "Opret en samling og upload dit første indhold for at begynde at dele med dit publikum.",
     "noSearchResultsTitle": "Ingen resultater fundet",
     "noSearchResultsDescription": "Vi kunne ikke finde noget indhold, der matcher dit søgeord.",
     "aboutModal": {
