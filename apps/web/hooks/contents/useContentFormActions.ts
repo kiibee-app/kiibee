@@ -283,13 +283,13 @@ export function useContentFormActions({
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
-    details?: { title: string; description: string },
+    details?: { title: string; description: string; webLink?: string },
   ) => {
     if (!createdContentId) {
       setActiveTabAndQuery(tab);
     }
     setUploadedFile(file ?? null);
-    setUploadedPreview(preview ?? null);
+    setUploadedPreview(preview ?? details?.webLink ?? null);
     const prefilledState =
       file == null
         ? formState
@@ -301,6 +301,7 @@ export function useContentFormActions({
       ...prefilledState,
       title: details?.title ?? prefilledState.title,
       description: details?.description ?? prefilledState.description,
+      webLink: details?.webLink ?? prefilledState.webLink,
       contentTypeId:
         contentTypeFlow.selectedContentType ?? prefilledState.contentTypeId,
     };
@@ -421,6 +422,24 @@ export function useContentFormActions({
   const validateGeneralForm = () => {
     const nextErrors: Partial<ContentFormErrors> = {};
 
+    const isWebType =
+      formState.contentTypeId === FORMAT_TYPE.WEB ||
+      editingContent?.contentType === FORMAT_TYPE.WEB;
+
+    if (isWebType || formState.webLink?.trim()) {
+      const webLink = formState.webLink?.trim() || "";
+      const errorMsg =
+        isWebType && !webLink
+          ? t("contents.general.trailerLinkInvalid")
+          : webLink && !isValidUrl(webLink)
+            ? t("contents.general.trailerLinkInvalid")
+            : undefined;
+
+      if (errorMsg) {
+        nextErrors[CONTENT_FORM_FIELDS.WEB_LINK] = errorMsg;
+      }
+    }
+
     if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
       nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
     }
@@ -428,9 +447,11 @@ export function useContentFormActions({
     setFormErrors((prev) => {
       const rest = { ...prev };
       delete rest.trailerLink;
-      return nextErrors.trailerLink
-        ? { ...rest, trailerLink: nextErrors.trailerLink }
-        : rest;
+      delete rest[CONTENT_FORM_FIELDS.WEB_LINK];
+      return {
+        ...rest,
+        ...nextErrors,
+      };
     });
 
     if (Object.keys(nextErrors).length > 0) {

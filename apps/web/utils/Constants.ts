@@ -392,6 +392,7 @@ export const CONTENT_FORM_FIELDS = {
   PRODUCTION_COMPANY: "productionCompany",
   MANUFACTURER_LINK: "manufacturerLink",
   TAGS: "tags",
+  WEB_LINK: "webLink",
 } as const;
 
 export const TAG_DELIMITER = /[\n,]+/;
