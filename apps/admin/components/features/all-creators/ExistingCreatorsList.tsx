@@ -11,14 +11,25 @@ import {
   STORAGE_KEYS,
 } from "@/utils/constants";
 import { DEFAULT_PAGE_SIZE, getInitialPageSize } from "@/utils/pagination";
+import {
+  ALL_CREATORS_TABLIST_LABEL,
+  ALL_CREATORS_TAB_KEYS,
+  ALL_CREATORS_TABS,
+  DEFAULT_ALL_CREATORS_TAB,
+  type AllCreatorsTab,
+} from "@/utils/allCreators";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
+import { CreatorSettings } from "./CreatorSettings";
 import {
+  AllCreatorsControlsHeader,
   AllCreatorsHeader,
   AllCreatorsLayout,
   AllCreatorsPanel,
   AllCreatorsState,
+  AllCreatorsTabButton,
+  AllCreatorsTabs,
   ClearIcon,
   HeaderControls,
   PlanFilterSelect,
@@ -31,6 +42,9 @@ import {
 
 export function ExistingCreatorsList() {
   const router = useRouter();
+  const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
+    DEFAULT_ALL_CREATORS_TAB,
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -120,45 +134,68 @@ export function ExistingCreatorsList() {
 
   return (
     <AllCreatorsLayout>
-      <AllCreatorsHeader style={{ justifyContent: "flex-end" }}>
-        <HeaderControls>
-          <PlanFilterSelect
-            aria-label="Filter creators by plan"
-            value={selectedPlan}
-            onChange={(event) => handlePlanChange(event.target.value)}
-          >
-            <option value="">All plans</option>
-            {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
-              <option key={plan} value={plan}>
-                {plan}
-              </option>
-            ))}
-          </PlanFilterSelect>
-
-          <SearchContainer>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <SearchInput
-              ref={searchInputRef}
-              placeholder={PLACEHOLDERS.SEARCH_USERS}
-              value={searchTerm}
-              onChange={(event) => handleSearchChange(event.target.value)}
-            />
-            {searchTerm ? (
-              <SearchClearButton
-                type="button"
-                onClick={handleSearchClear}
-                aria-label="Clear search"
-              >
-                <ClearIcon />
-              </SearchClearButton>
-            ) : null}
-          </SearchContainer>
-        </HeaderControls>
+      <AllCreatorsHeader>
+        <AllCreatorsTabs role="tablist" aria-label={ALL_CREATORS_TABLIST_LABEL}>
+          {ALL_CREATORS_TABS.map((tab) => (
+            <AllCreatorsTabButton
+              key={tab.key}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab.key}
+              $active={activeTab === tab.key}
+              onClick={() => setActiveTab(tab.key)}
+            >
+              {tab.label}
+            </AllCreatorsTabButton>
+          ))}
+        </AllCreatorsTabs>
       </AllCreatorsHeader>
 
-      <AllCreatorsPanel>{renderContent()}</AllCreatorsPanel>
+      {activeTab === ALL_CREATORS_TAB_KEYS.CREATORS ? (
+        <>
+          <AllCreatorsControlsHeader>
+            <HeaderControls>
+              <PlanFilterSelect
+                aria-label="Filter creators by plan"
+                value={selectedPlan}
+                onChange={(event) => handlePlanChange(event.target.value)}
+              >
+                <option value="">All plans</option>
+                {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
+                  <option key={plan} value={plan}>
+                    {plan}
+                  </option>
+                ))}
+              </PlanFilterSelect>
+
+              <SearchContainer>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <SearchInput
+                  ref={searchInputRef}
+                  placeholder={PLACEHOLDERS.SEARCH_USERS}
+                  value={searchTerm}
+                  onChange={(event) => handleSearchChange(event.target.value)}
+                />
+                {searchTerm ? (
+                  <SearchClearButton
+                    type="button"
+                    onClick={handleSearchClear}
+                    aria-label="Clear search"
+                  >
+                    <ClearIcon />
+                  </SearchClearButton>
+                ) : null}
+              </SearchContainer>
+            </HeaderControls>
+          </AllCreatorsControlsHeader>
+
+          <AllCreatorsPanel>{renderContent()}</AllCreatorsPanel>
+        </>
+      ) : (
+        <CreatorSettings />
+      )}
     </AllCreatorsLayout>
   );
 }
