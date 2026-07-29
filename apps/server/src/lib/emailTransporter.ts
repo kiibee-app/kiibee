@@ -67,6 +67,9 @@ export const getEmailTransporter = (): nodemailer.Transporter => {
       user: smtpConfig.SMTP_USER,
       pass: smtpConfig.SMTP_PASS,
     },
+    pool: true,
+    maxConnections: smtpConfig.SMTP_POOL_MAX_CONNECTIONS,
+    maxMessages: smtpConfig.SMTP_POOL_MAX_MESSAGES,
   });
 
   return transporter;
