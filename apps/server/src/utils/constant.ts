@@ -194,3 +194,8 @@ export const SERVER_TIMEOUT = {
   CONNECTION: 5000,
   KEEP_ALIVE: 72000,
 } as const;
+
+export const EMAIL_RETRY = {
+  MAX_RETRIES: 3,
+  BASE_DELAY_MS: 1000,
+} as const;
