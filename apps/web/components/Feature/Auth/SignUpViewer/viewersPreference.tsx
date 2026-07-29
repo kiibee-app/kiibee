@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
-import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
@@ -78,23 +77,10 @@ export default function ViewerPreference({
     }
   };
 
-  const handleBack = () => {
-    if (onBack) {
-      onBack();
-      return;
-    }
-
-    clearSession();
-    router.push(PATHS.AUTH_LOGIN);
-  };
-
   const isModal = !!onComplete;
 
   return (
     <PreContentWrap $isModal={isModal}>
-      <ContentWrap $isModal={isModal}>
-        <AuthBackButton onClick={handleBack} />
-      </ContentWrap>
       <PrepCard $isModal={isModal}>
         <PreferenceStepContent
           step={step}
