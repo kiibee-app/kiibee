@@ -25,6 +25,10 @@ export const AllCreatorsHeader = styled.div`
   gap: ${({ theme }) => theme.spacing(4)};
 `;
 
+export const AllCreatorsControlsHeader = styled(AllCreatorsHeader)`
+  justify-content: flex-end;
+`;
+
 export const AllCreatorsTabs = styled.div`
   display: inline-flex;
   align-items: center;

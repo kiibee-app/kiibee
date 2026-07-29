@@ -165,7 +165,7 @@ function AdmissionRequirements({
       visibleOptions[0],
     [selected, visibleOptions],
   );
-  const downloadLimitOptions = useMemo(
+  const accessDurationOptions = useMemo(
     () => getAccessDurationOptions(t, ACCESS_DURATION_VALUES),
     [t],
   );
@@ -267,7 +267,7 @@ function AdmissionRequirements({
               showPurchaseSection: true,
             }}
             updateField={updateField}
-            downloadLimitOptions={downloadLimitOptions}
+            accessDurationOptions={accessDurationOptions}
           />
         )}
 
