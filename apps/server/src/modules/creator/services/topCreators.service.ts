@@ -3,7 +3,7 @@ import { desc, eq, sql, and } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { emailSubscribers, mediaFiles, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ROLE } from 'src/utils/constant';
+import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const topCreatorsService = async () => {
@@ -18,7 +18,15 @@ export const topCreatorsService = async () => {
         subscriberCount: sql<number>`COUNT(DISTINCT ${emailSubscribers.id})`,
       })
       .from(users)
-      .leftJoin(mediaFiles, eq(mediaFiles.creatorId, users.id))
+      .leftJoin(
+        mediaFiles,
+        and(
+          eq(mediaFiles.creatorId, users.id),
+          eq(mediaFiles.isDeleted, false),
+          eq(mediaFiles.isPublished, true),
+          eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
+        ),
+      )
       .leftJoin(emailSubscribers, eq(emailSubscribers.creatorId, users.id))
       .where(
         and(
