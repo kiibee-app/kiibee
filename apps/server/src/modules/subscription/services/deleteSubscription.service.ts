@@ -24,12 +24,7 @@ export const deleteSubscriptionService = async (userId: string) => {
     const [currentSubscription] = await db
       .select()
       .from(subscriptions)
-      .where(
-        and(
-          eq(subscriptions.creatorId, userId),
-          eq(subscriptions.isActive, true),
-        ),
-      )
+      .where(and(eq(subscriptions.creatorId, userId)))
       .limit(1);
 
     if (!currentSubscription) {
