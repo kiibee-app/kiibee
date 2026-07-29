@@ -128,6 +128,7 @@ export const PAYMENT_STATUS = {
   PAYMENT_SUCCESS: 'SUCCESS',
   PAYMENT_FAILED: 'FAILED',
   PAYMENT_EXPIRED: 'EXPIRED',
+  OVERDUE: 'overdue',
 } as const;
 
 export const CONTENT_TYPES = {
@@ -185,6 +186,8 @@ export const CHANNEL_SLUG_SUFFIX_LENGTH = 8;
 export const CHANNEL_SLUG_UNIQUE_ATTEMPTS = 20;
 export const SLUG_AMPERSAND_REPLACEMENT = ' and ';
 export const STRING = 'string' as const;
+export const MONTHLY = 'monthly' as const;
+export const UNKNOWN = 'Unknown' as const;
 
 export const SERVER_TIMEOUT = {
   REQUEST: 30000,

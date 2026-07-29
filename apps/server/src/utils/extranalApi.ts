@@ -1,5 +1,5 @@
 export const externalApi = {
-  getBillingAgreements: `${process.env.EPAY_API_URL}/public/api/v1/subscriptions/billing/agreements`,
+  getBillingAgreements: `${process.env.EPAY_BASE_URL}/public/api/v1/subscriptions/billing/agreements`,
   stopAgreement: (billingAgreementId: string) =>
-    `${process.env.EPAY_API_URL}/public/api/v1/subscriptions/billing/agreements/${billingAgreementId}/stop`,
+    `${process.env.EPAY_BASE_URL}/public/api/v1/subscriptions/billing/agreements/${billingAgreementId}/stop`,
 };

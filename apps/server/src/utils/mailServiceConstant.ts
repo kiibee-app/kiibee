@@ -11,6 +11,8 @@ export const templateName = {
   CONTENT_ACCESS_GRANTED: 'contentAccessGranted',
   RENTAL_RECEIPT: 'sendReceipt',
   PURCHASE_RECEIPT: 'sendReceipt',
+  SUBSCRIPTION_PAYMENT_FAILED: 'subscriptionPaymentFailed',
+  SUBSCRIPTION_PAYMENT_FAILED_ADMIN: 'subscriptionPaymentFailedAdmin',
 };
 
 export const mailSubject = {
@@ -26,6 +28,10 @@ export const mailSubject = {
   CONTENT_ACCESS_GRANTED: 'Your content access request was approved',
   RENTAL_RECEIPT: 'Your Kiibee Rental Receipt',
   PURCHASE_RECEIPT: 'Your Kiibee Purchase Receipt',
+  SUBSCRIPTION_PAYMENT_FAILED:
+    'Your Kiibee Subscription Payment Could Not Be Processed',
+  SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
+    'Creator Subscription Payment Failed – Kiibee',
 };
 
 export const mailNote = {
