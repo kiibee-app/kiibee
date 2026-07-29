@@ -22,6 +22,7 @@ import { SupportModule } from './modules/support/support.module';
 import { PayoutModule } from './modules/payout/payout.module';
 import { NotificationSettingsModule } from './modules/notification-settings/notification-settings.module';
 import { TutorialVideosModule } from './modules/tutorial-videos/tutorial-videos.module';
+import { DownloadModule } from './modules/download/download.module';
 import { AppController } from './app.controller';
 
 @Module({
@@ -51,6 +52,7 @@ import { AppController } from './app.controller';
     PayoutModule,
     NotificationSettingsModule,
     TutorialVideosModule,
+    DownloadModule,
   ],
   controllers: [AppController],
 })
