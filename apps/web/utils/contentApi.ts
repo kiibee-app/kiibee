@@ -30,6 +30,7 @@ import {
   getPricingLabels,
   isFreeContentItem,
   getDownloadAction,
+  hasDownloadLimit,
 } from "@/utils/contentPricingActions";
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -316,8 +317,7 @@ export const getSingleContentProps = (
     (content as UnknownRecord).max_download_count ??
     (content as UnknownRecord).maxDownloadLimit;
 
-  const hasDownloadLimit =
-    Boolean(rawDownloadLimit) && String(rawDownloadLimit) !== "0";
+  const hasDownloadLimitAction = hasDownloadLimit(rawDownloadLimit);
 
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
@@ -364,7 +364,7 @@ export const getSingleContentProps = (
         : {}),
     },
     ...(showSeeContentAction
-      ? hasDownloadLimit
+      ? hasDownloadLimitAction
         ? {
             primaryActions: [
               {

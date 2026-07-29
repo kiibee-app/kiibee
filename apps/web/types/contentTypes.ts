@@ -3,6 +3,7 @@ import type { ImageSource, Variant } from "@/utils/Constants";
 import { TRAILER_VISIBILITY, type ContentType } from "@/utils/content";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentDetailItem } from "@/utils/contentApi";
+import { PAYMENT_DEFAULT_DOWNLOAD_LIMIT } from "@/utils/common";
 
 export type SingleContentMetaItem = {
   label: string;
@@ -168,7 +169,7 @@ export const defaultState: ContentFormState = {
   hasPassword: false,
   rentalAmount: "",
   purchaseAmount: "",
-  maxDownloadLimit: "5",
+  maxDownloadLimit: PAYMENT_DEFAULT_DOWNLOAD_LIMIT,
   physicalProductLink: "",
   openInNewWindow: false,
   openDirectFromList: false,

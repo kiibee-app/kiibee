@@ -41,6 +41,10 @@ export function formatDownloadActionSubtitle(
   return `${str} ${REMAINING_LABEL}`;
 }
 
+export function hasDownloadLimit(rawDownloadLimit: unknown): boolean {
+  return Boolean(rawDownloadLimit) && String(rawDownloadLimit) !== "0";
+}
+
 export function getDownloadAction(
   rawDownloadLimit: unknown,
 ): SingleContentAction {

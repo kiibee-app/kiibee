@@ -1003,9 +1003,11 @@ export function useContentFormActions({
           purchaseAmount: fullContent.buyPrice
             ? String(fullContent.buyPrice)
             : "",
-          maxDownloadLimit: fullContent.maxDownloadCount
-            ? String(fullContent.maxDownloadCount)
-            : DOWNLOAD_LIMIT_DEFAULT,
+          maxDownloadLimit:
+            fullContent.maxDownloadCount !== undefined &&
+            fullContent.maxDownloadCount !== null
+              ? String(fullContent.maxDownloadCount)
+              : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
           webLink: fullContent.contentUrl || "",
           openInNewWindow: fullContent.openInNewWindow ?? false,

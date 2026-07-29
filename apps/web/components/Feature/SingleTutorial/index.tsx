@@ -8,7 +8,10 @@ import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { VARIANT } from "@/utils/Constants";
-import { getDownloadAction } from "@/utils/contentPricingActions";
+import {
+  getDownloadAction,
+  hasDownloadLimit,
+} from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
@@ -74,8 +77,7 @@ export default function SingleTutorial({
   const rawDownloadLimit =
     tutorial.maxDownloadLimit ?? tutorial.maxDownloadCount;
 
-  const hasDownloadLimit =
-    Boolean(rawDownloadLimit) && String(rawDownloadLimit) !== "0";
+  const hasDownloadLimitAction = hasDownloadLimit(rawDownloadLimit);
 
   return (
     <SingleContentPage
@@ -113,14 +115,14 @@ export default function SingleTutorial({
         mediaIconAlt: t("singleTutorial.seeContent"),
       }}
       primaryAction={
-        hasDownloadLimit
+        hasDownloadLimitAction
           ? undefined
           : {
               label: t("singleTutorial.seeContent"),
             }
       }
       primaryActions={
-        hasDownloadLimit
+        hasDownloadLimitAction
           ? [
               {
                 label: t("singleTutorial.seeContent"),

@@ -250,7 +250,7 @@ export type CollectionContentVisibilityType =
 export const CATEGORY_EDUCATION_LOWER = "education";
 export const RENT_DURATION_DEFAULT = 48;
 export const DOWNLOAD_LIMIT_UNLIMITED = "Unlimited";
-export const DOWNLOAD_LIMIT_DEFAULT = "5";
+export const DOWNLOAD_LIMIT_DEFAULT = "0";
 
 export const CONTENT_TYPE_VIDEO = "video";
 export const CONTENT_TYPE_AUDIO = "audio";

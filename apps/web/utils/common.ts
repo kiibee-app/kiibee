@@ -110,7 +110,7 @@ export const ADD_CONTENT_TABS = {
 } as const;
 
 export const PAYMENT_ADMISSION_VALUE = "payment" as const;
-export const PAYMENT_DEFAULT_DOWNLOAD_LIMIT = "5" as const;
+export const PAYMENT_DEFAULT_DOWNLOAD_LIMIT = "0" as const;
 export const PAYMENT_UNLIMITED_DOWNLOAD_LIMIT = "unlimited" as const;
 export const PAYMENT_DOWNLOAD_LIMIT_VALUES = [
   "0",
