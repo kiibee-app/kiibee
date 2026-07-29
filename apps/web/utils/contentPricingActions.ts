@@ -17,8 +17,39 @@ import type { FeedContentItem } from "./feedContentToTutorial";
 import type { TutorialButton } from "./types";
 import { CONTENT_RESPONSE_KEYS } from "./contentApi";
 
+import { PAYMENT_UNLIMITED_DOWNLOAD_LIMIT } from "./common";
+import { DOWNLOAD_LIMIT_UNLIMITED } from "./Constants";
+import type { SingleContentAction } from "@/types/contentTypes";
+
 export const ACCESS_CODE_REQUIRED_LABEL = "Access code required";
 export const EMAIL_REQUIRED_LABEL = "Email required";
+
+export const DOWNLOAD_LABEL = "Download";
+export const UNLIMITED_LABEL = "Unlimited";
+export const REMAINING_LABEL = "remaining";
+
+export function formatDownloadActionSubtitle(
+  rawDownloadLimit: unknown,
+): string {
+  const str = String(rawDownloadLimit ?? "");
+  if (
+    str === PAYMENT_UNLIMITED_DOWNLOAD_LIMIT ||
+    str === DOWNLOAD_LIMIT_UNLIMITED
+  ) {
+    return UNLIMITED_LABEL;
+  }
+  return `${str} ${REMAINING_LABEL}`;
+}
+
+export function getDownloadAction(
+  rawDownloadLimit: unknown,
+): SingleContentAction {
+  return {
+    label: DOWNLOAD_LABEL,
+    subtitle: formatDownloadActionSubtitle(rawDownloadLimit),
+    variant: VARIANT.SOFT_OUTLINE,
+  };
+}
 
 export type PricingLabels = {
   rent: string;

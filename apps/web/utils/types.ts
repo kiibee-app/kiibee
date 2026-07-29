@@ -47,6 +47,8 @@ export type TutorialVideo = {
   publishedYear?: string | null;
   duration?: string | null;
   tags?: string[];
+  maxDownloadLimit?: string | number | null;
+  maxDownloadCount?: number | null;
 };
 
 export type TutorialVideoSection = {

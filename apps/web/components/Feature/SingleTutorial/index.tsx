@@ -7,6 +7,8 @@ import logo from "@/assets/images/logo.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
+import { VARIANT } from "@/utils/Constants";
+import { getDownloadAction } from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
@@ -69,6 +71,12 @@ export default function SingleTutorial({
   const durationValue =
     tutorial.duration ?? t("singleTutorial.meta.durationValue");
 
+  const rawDownloadLimit =
+    tutorial.maxDownloadLimit ?? tutorial.maxDownloadCount;
+
+  const hasDownloadLimit =
+    Boolean(rawDownloadLimit) && String(rawDownloadLimit) !== "0";
+
   return (
     <SingleContentPage
       contentId={tutorial.id}
@@ -104,9 +112,24 @@ export default function SingleTutorial({
         mediaIcon: playCircleIcon,
         mediaIconAlt: t("singleTutorial.seeContent"),
       }}
-      primaryAction={{
-        label: t("singleTutorial.seeContent"),
-      }}
+      primaryAction={
+        hasDownloadLimit
+          ? undefined
+          : {
+              label: t("singleTutorial.seeContent"),
+            }
+      }
+      primaryActions={
+        hasDownloadLimit
+          ? [
+              {
+                label: t("singleTutorial.seeContent"),
+                variant: VARIANT.PRIMARY,
+              },
+              getDownloadAction(rawDownloadLimit),
+            ]
+          : undefined
+      }
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),

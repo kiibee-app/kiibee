@@ -13,6 +13,7 @@ import {
   ACCESS_STATUS_EXPIRED,
   VISIBILITY_DRAFT_LOWER,
   VISIBILITY_DRAFT_UPPER,
+  VARIANT,
 } from "@/utils/Constants";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
@@ -28,6 +29,7 @@ import {
   getContentDetailPricingActions,
   getPricingLabels,
   isFreeContentItem,
+  getDownloadAction,
 } from "@/utils/contentPricingActions";
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -62,6 +64,7 @@ export const CONTENT_RESPONSE_KEYS = {
   PUBLISHED_YEAR: "publishedYear",
   PRODUCTION_COMPANY: "production_company",
   MANUFACTURER_LINK: "manufacturerLink",
+  MAX_DOWNLOAD_COUNT: "maxDownloadCount",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -125,6 +128,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
   [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
+  [CONTENT_RESPONSE_KEYS.MAX_DOWNLOAD_COUNT]?: number | string | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -306,6 +310,15 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
   );
 
+  const rawDownloadLimit =
+    content[CONTENT_RESPONSE_KEYS.MAX_DOWNLOAD_COUNT] ??
+    content.maxDownloadCount ??
+    (content as UnknownRecord).max_download_count ??
+    (content as UnknownRecord).maxDownloadLimit;
+
+  const hasDownloadLimit =
+    Boolean(rawDownloadLimit) && String(rawDownloadLimit) !== "0";
+
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
@@ -351,11 +364,21 @@ export const getSingleContentProps = (
         : {}),
     },
     ...(showSeeContentAction
-      ? {
-          primaryAction: {
-            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-          },
-        }
+      ? hasDownloadLimit
+        ? {
+            primaryActions: [
+              {
+                label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+                variant: VARIANT.PRIMARY,
+              },
+              getDownloadAction(rawDownloadLimit),
+            ],
+          }
+        : {
+            primaryAction: {
+              label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+            },
+          }
       : {
           primaryActions: pricingActions.map((action) => ({
             label: action.label,
