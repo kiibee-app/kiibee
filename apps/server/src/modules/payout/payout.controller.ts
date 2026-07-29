@@ -13,7 +13,10 @@ import type { Request } from 'express';
 import { PayoutService } from './payout.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard, CreatorGuard } from '../auth/guards/admin.guard';
-import { SettlementHistoryQueryDto } from './dto/payout.dto';
+import {
+  AdminPayoutRequestDto,
+  SettlementHistoryQueryDto,
+} from './dto/payout.dto';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
 
 type AuthenticatedRequest = Request & {
@@ -118,5 +121,23 @@ export class PayoutController {
   @Get('all-history')
   getAllPayoutHistory(@Query() query: SettlementHistoryQueryDto) {
     return this.payoutService.getAllPayoutHistoryService(query);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('wallets')
+  getCreatorWallets(@Query() query: SettlementHistoryQueryDto) {
+    return this.payoutService.getCreatorWalletsService(query);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('calculate/:creatorId')
+  getAdminPayoutCalculation(@Param('creatorId') creatorId: string) {
+    return this.payoutService.payoutCalculationService(creatorId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin-request')
+  createAdminPayoutRequest(@Body() body: AdminPayoutRequestDto) {
+    return this.payoutService.createAdminPayoutRequestService(body);
   }
 }

@@ -1,5 +1,6 @@
-import { PayoutRequestsList } from "../../components/features/payout-requests/PayoutRequestsList";
+import { redirect } from "next/navigation";
+import { payoutTabHref } from "../../utils/payout";
 
 export default function PayoutRequestsPage() {
-  return <PayoutRequestsList />;
+  redirect(payoutTabHref("requests"));
 }

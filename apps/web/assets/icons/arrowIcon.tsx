@@ -1,6 +1,5 @@
 "use client";
 
-import { SVG_XMLNS } from "@/utils/Constants";
 import { Direction, Directions } from "@/utils/ui";
 import { useDirection } from "@/utils/useDirection";
 import COLORS from "@repo/ui/colors";
@@ -23,7 +22,7 @@ export const ArrowIcon: React.FC<ArrowIconProps> = ({
 
   return (
     <svg
-      xmlns={SVG_XMLNS}
+      xmlns="http://www.w3.org/2000/svg"
       width={width}
       height={height}
       viewBox="0 0 12 6"

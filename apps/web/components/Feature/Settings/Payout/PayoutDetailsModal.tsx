@@ -10,6 +10,7 @@ import {
   formatFeePercent,
   formatPayoutNumber,
   isPayoutBalanceError,
+  MIN_PAYOUT_AMOUNT,
   type PayoutRow,
 } from "@/utils/payout";
 import { MODAL_ALIGN } from "@/utils/ui";
@@ -140,8 +141,10 @@ export default function PayoutDetailsModal({
 
   const canConfirm =
     !!calculation &&
+    calculation.amount > MIN_PAYOUT_AMOUNT &&
     calculation.payableAmount > 0 &&
     !!activeMethodId &&
+    paymentOptions.length > 0 &&
     !isBusy &&
     !isPending;
 

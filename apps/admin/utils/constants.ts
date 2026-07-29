@@ -39,6 +39,10 @@ export const API_ENDPOINTS = {
   PAYOUT_HISTORY_BY_CREATOR: (creatorId: string) =>
     `/payout/history/${creatorId}`,
   ALL_PAYOUT_HISTORY: "/payout/all-history",
+  CREATOR_WALLETS: "/payout/wallets",
+  ADMIN_PAYOUT_CALCULATE: (creatorId: string) =>
+    `/payout/calculate/${creatorId}`,
+  ADMIN_PAYOUT_REQUEST: "/payout/admin-request",
   CREATE_PAYOUT: "/payout/create",
   REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
 } as const;
@@ -119,6 +123,8 @@ export const QUERY_KEY = {
   PAYOUT_REQUEST_DETAIL: "payout-request-detail",
   PAYOUT_HISTORY_BY_CREATOR: "payout-history-by-creator",
   ALL_PAYOUT_HISTORY: "all-payout-history",
+  CREATOR_WALLETS: "creator-wallets",
+  ADMIN_PAYOUT_CALCULATE: "admin-payout-calculate",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {

@@ -10,10 +10,13 @@ import {
 } from "./admissionRequirements";
 import { ADMISSION_TYPE, parsePaymentAmount } from "./paymentRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
-import {
-  EXPLORE_CONTENT_SORT,
-  ExploreContentSort,
-} from "@/hooks/feed/useExploreContent";
+
+type ExploreContentSort = "new" | "popular" | "all";
+const EXPLORE_CONTENT_SORT = {
+  NEW: "new",
+  POPULAR: "popular",
+  ALL: "all",
+} as const;
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",

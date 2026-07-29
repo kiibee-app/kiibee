@@ -4,7 +4,11 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 import type {
+  AdminPayoutCalculateResponse,
+  AdminPayoutRequestPayload,
+  AdminPayoutRequestResult,
   AllPayoutHistoryResponse,
+  CreatorWalletsResponse,
   PayoutHistoryItem,
   PayoutHistoryQuery,
   PayoutRequest,
@@ -121,6 +125,75 @@ export function useAllPayoutHistory(query?: PayoutHistoryQuery) {
           },
         }
       );
+    },
+  });
+}
+
+export function useCreatorWallets(query?: PayoutHistoryQuery) {
+  return useQuery({
+    queryKey: [QUERY_KEY.CREATOR_WALLETS, query],
+    queryFn: async () => {
+      const data = await ensureSuccess<CreatorWalletsResponse>(
+        apiClient<CreatorWalletsResponse>(
+          withQuery(API_ENDPOINTS.CREATOR_WALLETS, query),
+        ),
+      );
+      return (
+        data ?? {
+          items: [],
+          pagination: {
+            page: query?.page ?? 1,
+            limit: query?.limit ?? 10,
+            totalItems: 0,
+            totalPages: 1,
+          },
+        }
+      );
+    },
+  });
+}
+
+export function useAdminPayoutCalculate(creatorId: string, enabled = true) {
+  return useQuery({
+    queryKey: [QUERY_KEY.ADMIN_PAYOUT_CALCULATE, creatorId],
+    queryFn: async () => {
+      const data = await ensureSuccess<AdminPayoutCalculateResponse>(
+        apiClient<AdminPayoutCalculateResponse>(
+          API_ENDPOINTS.ADMIN_PAYOUT_CALCULATE(creatorId),
+        ),
+      );
+      return data;
+    },
+    enabled: Boolean(creatorId.trim()) && enabled,
+    retry: false,
+  });
+}
+
+export function useAdminPayoutRequest() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: AdminPayoutRequestPayload) => {
+      const data = await ensureSuccess<AdminPayoutRequestResult>(
+        apiClient<AdminPayoutRequestResult>(
+          API_ENDPOINTS.ADMIN_PAYOUT_REQUEST,
+          {
+            method: "POST",
+            body: JSON.stringify(payload),
+          },
+        ),
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.CREATOR_WALLETS] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.PAYOUT_REQUESTS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.ALL_PAYOUT_HISTORY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.PAYOUT_HISTORY_BY_CREATOR],
+      });
     },
   });
 }
