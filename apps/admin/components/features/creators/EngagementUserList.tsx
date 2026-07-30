@@ -1,4 +1,5 @@
 import type { ContentEngagementUser } from "../../../types/creator-content";
+import { creatorContentGridLabels } from "../../../utils/contentConfig";
 import { getViewerInitials } from "../../../utils/viewersConfig";
 import { EmptyState } from "../viewers/Viewers.styles";
 import {
@@ -47,7 +48,9 @@ export function EngagementUserList({
             {user.downloadCount !== undefined && user.downloadCount > 0 ? (
               <EngagementSubDate>
                 {user.downloadCount}{" "}
-                {user.downloadCount === 1 ? "download" : "downloads"}
+                {user.downloadCount === 1
+                  ? creatorContentGridLabels.downloadSuffix
+                  : creatorContentGridLabels.downloadsSuffix}
               </EngagementSubDate>
             ) : null}
           </EngagementMeta>

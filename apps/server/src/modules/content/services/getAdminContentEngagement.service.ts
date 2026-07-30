@@ -11,7 +11,12 @@ import {
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, ORDER_TYPES, STATUS } from 'src/utils/constant';
+import {
+  ANALYTICS_EVENT_TYPES,
+  ORDER_STATUS,
+  ORDER_TYPES,
+  STATUS,
+} from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 import {
   formatDisplayDate,
@@ -133,7 +138,7 @@ export const getAdminContentEngagementService = async (contentId: string) => {
         .where(
           and(
             eq(analyticsEvents.mediaFileId, contentId),
-            eq(analyticsEvents.eventType, 'download'),
+            eq(analyticsEvents.eventType, ANALYTICS_EVENT_TYPES.DOWNLOAD),
           ),
         )
         .orderBy(desc(analyticsEvents.createdAt)),
@@ -187,7 +192,6 @@ export const getAdminContentEngagementService = async (contentId: string) => {
     const emailRegistrations = emailAccessRows.map(mapUser);
     const rentals = rentalRows.map(mapUser);
 
-    // Compute per-user download counts
     const userDownloadCountsMap = new Map<string, number>();
     downloadCountRows.forEach((r) => {
       if (r.userId) {

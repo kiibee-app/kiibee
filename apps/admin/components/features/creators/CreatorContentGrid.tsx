@@ -9,6 +9,7 @@ import {
 import {
   creatorContentGridLabels,
   isEmailGatedAccessType,
+  STAT_BADGE_VARIANTS,
 } from "../../../utils/contentConfig";
 import {
   ContentBody,
@@ -99,12 +100,12 @@ export function CreatorContentGrid({
               <ContentStatsRow>
                 {isEmailGatedAccessType(content.accessType) ? (
                   <>
-                    <ContentStatBadge $variant="buy">
+                    <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
                       {content.emailRegisteredCount ?? 0}{" "}
                       {creatorContentGridLabels.emailRegisteredSuffix}
                     </ContentStatBadge>
                     {content.purchaseCount > 0 ? (
-                      <ContentStatBadge $variant="buy">
+                      <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
                         {content.purchaseCount}{" "}
                         {creatorContentGridLabels.boughtSuffix}
                       </ContentStatBadge>
@@ -112,22 +113,22 @@ export function CreatorContentGrid({
                   </>
                 ) : (
                   <>
-                    <ContentStatBadge $variant="buy">
+                    <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
                       {content.purchaseCount}{" "}
                       {creatorContentGridLabels.boughtSuffix}
                     </ContentStatBadge>
                     {(content.emailRegisteredCount ?? 0) > 0 ? (
-                      <ContentStatBadge $variant="buy">
+                      <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
                         {content.emailRegisteredCount}{" "}
                         {creatorContentGridLabels.emailRegisteredSuffix}
                       </ContentStatBadge>
                     ) : null}
                   </>
                 )}
-                <ContentStatBadge $variant="rent">
+                <ContentStatBadge $variant={STAT_BADGE_VARIANTS.RENT}>
                   {content.rentalCount} {creatorContentGridLabels.rentedSuffix}
                 </ContentStatBadge>
-                <ContentStatBadge $variant="download">
+                <ContentStatBadge $variant={STAT_BADGE_VARIANTS.DOWNLOAD}>
                   {content.downloadCount}{" "}
                   {creatorContentGridLabels.downloadsSuffix}
                 </ContentStatBadge>

@@ -55,6 +55,12 @@ export const CONTENT_ACCESS_TYPES = {
   FREE: "free",
 } as const;
 
+export const STAT_BADGE_VARIANTS = {
+  BUY: "buy",
+  RENT: "rent",
+  DOWNLOAD: "download",
+} as const;
+
 export function isEmailGatedAccessType(accessType?: string | null): boolean {
   return (
     accessType === CONTENT_ACCESS_TYPES.EMAIL_GATED ||

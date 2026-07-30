@@ -11,7 +11,12 @@ import {
   orders,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, ORDER_TYPES, STATUS } from 'src/utils/constant';
+import {
+  ANALYTICS_EVENT_TYPES,
+  ORDER_STATUS,
+  ORDER_TYPES,
+  STATUS,
+} from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAdminCreatorContentsService = async (creatorId: string) => {
@@ -56,7 +61,7 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
             FROM ${analyticsEvents}
             WHERE
               ${analyticsEvents.mediaFileId} = ${mediaFiles.id}
-              AND ${analyticsEvents.eventType} = 'download'
+              AND ${analyticsEvents.eventType} = ${ANALYTICS_EVENT_TYPES.DOWNLOAD}
           ),
           (
             SELECT COALESCE(SUM(${contentDownloadCount.downloadCount}), 0)

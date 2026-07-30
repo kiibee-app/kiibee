@@ -14,7 +14,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { s3 } from 'src/services/s3.client';
 import { fail, success } from 'src/utils/sendResponse';
-import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
+import { ANALYTICS_EVENT_TYPES, SIGNED_URL_EXPIRY } from 'src/utils/constant';
 
 export const contentDownLoad = async (contentId: string, userId: string) => {
   try {
@@ -85,7 +85,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
           userId,
           creatorId: content.creatorId,
           mediaFileId: contentId,
-          eventType: 'download',
+          eventType: ANALYTICS_EVENT_TYPES.DOWNLOAD,
         });
       });
     };
