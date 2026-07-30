@@ -6,7 +6,10 @@ import {
   CONTENT_FORMAT,
   normalizeContentFormat,
 } from "../../../utils/contentMedia";
-import { creatorContentGridLabels } from "../../../utils/contentConfig";
+import {
+  creatorContentGridLabels,
+  getPurchaseStatSuffix,
+} from "../../../utils/contentConfig";
 import {
   ContentBody,
   ContentGrid,
@@ -96,7 +99,7 @@ export function CreatorContentGrid({
               <ContentStatsRow>
                 <ContentStatBadge $variant="buy">
                   {content.purchaseCount}{" "}
-                  {creatorContentGridLabels.boughtSuffix}
+                  {getPurchaseStatSuffix(content.accessType)}
                 </ContentStatBadge>
                 <ContentStatBadge $variant="rent">
                   {content.rentalCount} {creatorContentGridLabels.rentedSuffix}

@@ -48,9 +48,17 @@ export const creatorContentGridLabels = {
   emptyState: "No content found.",
   fallbackContentType: "Content",
   boughtSuffix: "bought",
+  emailRegisteredSuffix: "email registered",
   rentedSuffix: "rented",
   downloadsSuffix: "downloads",
 } as const;
+
+export function getPurchaseStatSuffix(accessType?: string | null): string {
+  if (accessType === "email_gated" || accessType === "request_email") {
+    return creatorContentGridLabels.emailRegisteredSuffix;
+  }
+  return creatorContentGridLabels.boughtSuffix;
+}
 
 export const contentPreviewLabels = {
   loadingPreview: "Loading preview…",

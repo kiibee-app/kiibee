@@ -4,24 +4,33 @@ import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   analyticsEvents,
+  contentAccessRequests,
   contentTypes,
   mediaFiles,
   orders,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+import { ORDER_STATUS, ORDER_TYPES, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAdminCreatorContentsService = async (creatorId: string) => {
   try {
     const purchaseCountSql = sql<number>`
       (
-        SELECT COUNT(*)
-        FROM ${orders}
-        WHERE
-          ${orders.mediaFileId} = ${mediaFiles.id}
-          AND ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
-          AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
+        (
+          SELECT COUNT(*)
+          FROM ${orders}
+          WHERE
+            ${orders.mediaFileId} = ${mediaFiles.id}
+            AND ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
+            AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
+        ) + (
+          SELECT COUNT(*)
+          FROM ${contentAccessRequests}
+          WHERE
+            ${contentAccessRequests.contentId} = ${mediaFiles.id}
+            AND ${contentAccessRequests.status} = ${STATUS.APPROVED}
+        )
       )
     `;
 
