@@ -197,6 +197,7 @@ export const emptyPurchasedResult = () => ({
   videos: [],
   audios: [],
   pdfs: [],
+  epubs: [],
   webs: [],
   collections: [],
 });

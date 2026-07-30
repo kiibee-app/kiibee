@@ -1500,6 +1500,7 @@
         "videos": "Videos",
         "audios": "Audios",
         "pdf": "PDF",
+        "epub": "EPUB",
         "web": "Web Link"
       },
       "buttons": {
@@ -2335,10 +2336,12 @@
     "playVideo": "Play video",
     "playAudio": "Play audio",
     "openPdf": "Open pdf",
+    "openEpub": "Open epub",
     "openWeb": "Open Link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Audio",
     "mediaLabelPdf": "PDF",
+    "mediaLabelEpub": "EPUB",
     "mediaLabelWeb": "Web Link",
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",

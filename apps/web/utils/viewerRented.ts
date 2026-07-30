@@ -68,6 +68,7 @@ export type RentedSectionKey =
   | "videos"
   | "audios"
   | "pdfs"
+  | "epubs"
   | "webs";
 
 export const RENTED_MODES = {
@@ -91,6 +92,7 @@ export const RENTED_MEDIA_TYPES = {
   VIDEO: "video",
   AUDIO: "audio",
   PDF: "pdf",
+  EPUB: "epub",
   WEB: "web",
 } as const;
 
@@ -99,6 +101,7 @@ export const RENTED_SECTION_KEYS = {
   VIDEOS: "videos",
   AUDIOS: "audios",
   PDFS: "pdfs",
+  EPUBS: "epubs",
   WEBS: "webs",
 } as const;
 
@@ -114,6 +117,7 @@ export type RentedContentSources = {
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
+  epubs: RentedMediaItem[];
   webs: RentedMediaItem[];
 };
 
@@ -151,6 +155,7 @@ const PURCHASED_SOURCES: RentedContentSources = {
     ...item,
     expiryText: item.dateLabel,
   })),
+  epubs: [],
   webs: [],
 };
 
@@ -171,6 +176,10 @@ export function getRentedMediaSections(
       title: t("dashboard.viewerPurchased.sections.pdf"),
     },
     {
+      key: RENTED_SECTION_KEYS.EPUBS,
+      title: t("dashboard.viewerPurchased.sections.epub", "EPUB"),
+    },
+    {
       key: RENTED_SECTION_KEYS.WEBS,
       title: t("dashboard.viewerPurchased.sections.web"),
     },
@@ -181,12 +190,14 @@ export function getRentedMediaSectionItems(items: {
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
+  epubs: RentedMediaItem[];
   webs: RentedMediaItem[];
 }): RentedMediaSectionItems {
   return {
     [RENTED_SECTION_KEYS.VIDEOS]: items.videos,
     [RENTED_SECTION_KEYS.AUDIOS]: items.audios,
     [RENTED_SECTION_KEYS.PDFS]: items.pdfs,
+    [RENTED_SECTION_KEYS.EPUBS]: items.epubs,
     [RENTED_SECTION_KEYS.WEBS]: items.webs,
   };
 }
@@ -196,6 +207,7 @@ export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.VIDEOS]: 4,
   [RENTED_SECTION_KEYS.AUDIOS]: 4,
   [RENTED_SECTION_KEYS.PDFS]: 4,
+  [RENTED_SECTION_KEYS.EPUBS]: 4,
   [RENTED_SECTION_KEYS.WEBS]: 4,
 };
 
@@ -256,6 +268,7 @@ export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+    [RENTED_SECTION_KEYS.EPUBS]: t("viewerRented.mediaLabelEpub", "EPUB"),
     [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.mediaLabelWeb"),
   };
   return map[type] ?? "";
@@ -266,6 +279,7 @@ export function getMediaAction(type: RentedSectionKey, t: TFunction) {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+    [RENTED_SECTION_KEYS.EPUBS]: t("viewerRented.openEpub", "Open epub"),
     [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.openWeb"),
   };
   return map[type] ?? "";
@@ -282,6 +296,7 @@ export function getRentedContentSources(
       videos: CURRENT_RENTED_VIDEOS,
       audios: CURRENT_RENTED_AUDIOS,
       pdfs: CURRENT_RENTED_PDFS,
+      epubs: [],
       webs: [],
     };
   }
@@ -291,6 +306,7 @@ export function getRentedContentSources(
     videos: PREVIOUS_RENTED_VIDEOS,
     audios: PREVIOUS_RENTED_AUDIOS,
     pdfs: PREVIOUS_RENTED_PDFS,
+    epubs: [],
     webs: [],
   };
 }

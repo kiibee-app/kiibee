@@ -1500,6 +1500,7 @@
         "videos": "Videoer",
         "audios": "Lydfiler",
         "pdf": "PDF",
+        "epub": "EPUB",
         "web": "Weblink"
       },
       "buttons": {
@@ -2342,11 +2343,13 @@
     "searchPreviouslyRented": "Søg i tidligere leje",
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
-    "openPdf": "Åben PDF",
+    "openPdf": "Åbn pdf",
+    "openEpub": "Åbn epub",
     "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
     "mediaLabelPdf": "PDF",
+    "mediaLabelEpub": "EPUB",
     "mediaLabelWeb": "Weblink",
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
