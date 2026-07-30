@@ -45,6 +45,8 @@ export const API_ENDPOINTS = {
   ADMIN_PAYOUT_REQUEST: "/payout/admin-request",
   CREATE_PAYOUT: "/payout/create",
   REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
+  DOWNLOAD_LIMIT: "/download/limit",
+  SET_DOWNLOAD_LIMIT: "/download/limit/set",
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -125,6 +127,7 @@ export const QUERY_KEY = {
   ALL_PAYOUT_HISTORY: "all-payout-history",
   CREATOR_WALLETS: "creator-wallets",
   ADMIN_PAYOUT_CALCULATE: "admin-payout-calculate",
+  DOWNLOAD_LIMIT: "download-limit",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {

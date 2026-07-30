@@ -1088,6 +1088,8 @@
     "openInDashboard": "Open in Dashboard",
     "myContent": "My content",
     "seeContent": "See content",
+    "download": "Download",
+    "remainingDownloads": "{{count}} remaining",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",
     "videoPlaybackError": "Video playback could not be started. Please try again.",

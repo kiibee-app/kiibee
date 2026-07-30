@@ -41,6 +41,7 @@ export {
   useRejectPayoutRequest,
 } from "./use-payout-requests";
 export { useLogin } from "./use-login";
+export { useDownloadLimit, useSetDownloadLimit } from "./use-download-limit";
 export {
   setTokens,
   clearTokens,

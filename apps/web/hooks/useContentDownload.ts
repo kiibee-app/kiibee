@@ -1,0 +1,98 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import { axiosClient } from "@/lib/http/axiosClient";
+
+export type ContentDownloadInfo = {
+  maxDownloadLimit: number;
+  downloadCount: number;
+  remainingDownloads: number;
+};
+
+export type ContentDownloadInfoResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: ContentDownloadInfo;
+};
+
+export type ContentDownloadUrlResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    downloadUrl: string;
+  };
+};
+
+export function useContentDownload(
+  contentId?: string,
+  enabled: boolean = true,
+) {
+  const queryClient = useQueryClient();
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const route = contentId ? API.download.contentInfo(contentId) : "";
+
+  const { data, isLoading, refetch } = useGetAPI<ContentDownloadInfoResponse>(
+    route,
+    undefined,
+    {
+      enabled: Boolean(contentId && enabled),
+      staleTime: 1000 * 60,
+    },
+  );
+
+  const downloadInfo = data?.data;
+
+  const triggerDownload = useCallback(async () => {
+    if (!contentId || isDownloading) return;
+
+    try {
+      setIsDownloading(true);
+      const response = await axiosClient.get<ContentDownloadUrlResponse>(
+        API.download.url(contentId),
+      );
+
+      const downloadUrl = response.data?.data?.downloadUrl;
+
+      if (!downloadUrl) {
+        throw new Error(response.data?.message || "Failed to get download URL");
+      }
+
+      // Create a temporary link element to trigger browser download
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.setAttribute("download", "");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Invalidate & refetch remaining downloads info
+      await queryClient.invalidateQueries({ queryKey: [route] });
+      await refetch();
+    } catch (error: unknown) {
+      const errorMessage =
+        (error as { response?: { data?: { message?: string } } })?.response
+          ?.data?.message ||
+        (error as Error)?.message ||
+        "Failed to download content";
+      toast.error(errorMessage);
+    } finally {
+      setIsDownloading(false);
+    }
+  }, [contentId, isDownloading, queryClient, refetch, route]);
+
+  return {
+    downloadInfo,
+    isLoading,
+    isDownloading,
+    triggerDownload,
+  };
+}
