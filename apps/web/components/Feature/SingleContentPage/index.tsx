@@ -450,7 +450,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         }),
         variant: VARIANT.SOFT_OUTLINE,
         disabled: isDownloading || downloadInfo.remainingDownloads <= 0,
-        onClick: triggerDownload,
+        onClick: () => triggerDownload(title),
       };
 
       return [...baseActions, downloadAction];
@@ -468,6 +468,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryActions,
     shouldEnableDownload,
     t,
+    title,
     triggerDownload,
   ]);
 

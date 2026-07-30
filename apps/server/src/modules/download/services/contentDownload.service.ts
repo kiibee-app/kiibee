@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { getDownloadDispositionAndFileName } from 'src/utils/download';
 import { GetObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { HttpStatus } from '@nestjs/common';
@@ -56,6 +57,11 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       );
     }
 
+    const { fileName, contentDisposition } = getDownloadDispositionAndFileName(
+      content.fileKey,
+      content.title,
+    );
+
     let publicUrl: string | null = null;
     try {
       await s3.send(
@@ -80,7 +86,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
 
       if (publicUrl) {
         return success(
-          { downloadUrl: publicUrl },
+          { downloadUrl: publicUrl, fileName },
           'Download URL generated successfully',
         );
       }
@@ -91,7 +97,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
     const command = new GetObjectCommand({
       Bucket: process.env.DO_BUCKET!,
       Key: content.fileKey,
-      ResponseContentDisposition: 'attachment',
+      ResponseContentDisposition: contentDisposition,
     });
 
     const url = await getSignedUrl(s3, command, {
@@ -120,6 +126,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
     return success(
       {
         downloadUrl: publicUrl ?? url,
+        fileName,
       },
       'Download URL generated successfully',
     );

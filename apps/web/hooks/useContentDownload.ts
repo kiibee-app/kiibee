@@ -27,6 +27,7 @@ export type ContentDownloadUrlResponse = {
   message: string;
   data: {
     downloadUrl: string;
+    fileName?: string;
   };
 };
 
@@ -50,43 +51,55 @@ export function useContentDownload(
 
   const downloadInfo = data?.data;
 
-  const triggerDownload = useCallback(async () => {
-    if (!contentId || isDownloading) return;
+  const triggerDownload = useCallback(
+    async (customTitle?: string) => {
+      if (!contentId || isDownloading) return;
 
-    try {
-      setIsDownloading(true);
-      const response = await axiosClient.get<ContentDownloadUrlResponse>(
-        API.download.url(contentId),
-      );
+      try {
+        setIsDownloading(true);
+        const response = await axiosClient.get<ContentDownloadUrlResponse>(
+          API.download.url(contentId),
+        );
 
-      const downloadUrl = response.data?.data?.downloadUrl;
+        const downloadUrl = response.data?.data?.downloadUrl;
+        const fileName = response.data?.data?.fileName;
 
-      if (!downloadUrl) {
-        throw new Error(response.data?.message || "Failed to get download URL");
+        if (!downloadUrl) {
+          throw new Error(
+            response.data?.message || "Failed to get download URL",
+          );
+        }
+
+        const targetFileName = fileName || customTitle;
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        if (targetFileName) {
+          link.setAttribute("download", targetFileName);
+        } else {
+          link.setAttribute("download", "");
+        }
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        await queryClient.invalidateQueries({ queryKey: [route] });
+        await refetch();
+      } catch (error: unknown) {
+        const errorMessage =
+          (error as { response?: { data?: { message?: string } } })?.response
+            ?.data?.message ||
+          (error as Error)?.message ||
+          "Failed to download content";
+        toast.error(errorMessage);
+      } finally {
+        setIsDownloading(false);
       }
-
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.setAttribute("download", "");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      await queryClient.invalidateQueries({ queryKey: [route] });
-      await refetch();
-    } catch (error: unknown) {
-      const errorMessage =
-        (error as { response?: { data?: { message?: string } } })?.response
-          ?.data?.message ||
-        (error as Error)?.message ||
-        "Failed to download content";
-      toast.error(errorMessage);
-    } finally {
-      setIsDownloading(false);
-    }
-  }, [contentId, isDownloading, queryClient, refetch, route]);
+    },
+    [contentId, isDownloading, queryClient, refetch, route],
+  );
 
   return {
     downloadInfo,
