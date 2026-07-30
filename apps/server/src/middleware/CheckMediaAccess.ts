@@ -29,8 +29,13 @@ export class CheckMediaAccessGuard implements CanActivate {
     const mediaId =
       request.params?.id ||
       request.params?.mediaId ||
+      request.params?.contentId ||
       request.body?.id ||
-      request.query?.id;
+      request.body?.mediaId ||
+      request.body?.contentId ||
+      request.query?.id ||
+      request.query?.mediaId ||
+      request.query?.contentId;
 
     const mediaKey =
       request.params?.key || request.query?.key || request.body?.key;

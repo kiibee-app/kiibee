@@ -33,4 +33,7 @@ export const CREATOR_SETTINGS_TEXT = {
   DESCRIPTION: "Set maximum number of times creator content can be downloaded.",
   FIELD_LABEL: "Maximum download limit",
   SAVE_BUTTON: "Save",
+  SAVING_BUTTON: "Saving...",
+  SUCCESS_MESSAGE: "Download limit saved successfully",
+  ERROR_MESSAGE: "Failed to save download limit",
 } as const;

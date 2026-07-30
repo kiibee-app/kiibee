@@ -1088,6 +1088,8 @@
     "openInDashboard": "Åben i dashboard",
     "myContent": "Mit indhold",
     "seeContent": "Se indhold",
+    "download": "Download",
+    "remainingDownloads": "{{count}} tilbage",
     "playVideo": "Afspil video",
     "playTrailer": "Afspil trailer",
     "videoPlaybackError": "Videoen kunne ikke startes. Prøv venligst igen.",

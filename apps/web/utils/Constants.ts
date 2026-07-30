@@ -607,3 +607,8 @@ export const REGISTER_SOURCE = {
 
 export type RegisterSource =
   (typeof REGISTER_SOURCE)[keyof typeof REGISTER_SOURCE];
+
+export const TIME_MS = {
+  ONE_SECOND: 1000,
+  ONE_MINUTE: 60 * 1000,
+} as const;
