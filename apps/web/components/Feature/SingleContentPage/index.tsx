@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_RENTED,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
   ORDER_TYPES,
@@ -401,8 +402,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     previewContentType === FORMAT_TYPE.PDF ||
     previewContentType === FORMAT_TYPE.EPUB;
 
+  const isRented = content?.accessInfo?.accessType === ACCESS_TYPE_RENTED;
+
   const shouldEnableDownload = Boolean(
-    user?.id && contentId && isDownloadableType && (hasViewerAccess || isOwner),
+    user?.id &&
+    contentId &&
+    isDownloadableType &&
+    !isRented &&
+    (hasViewerAccess || isOwner),
   );
 
   const { downloadInfo, isDownloading, triggerDownload } = useContentDownload(

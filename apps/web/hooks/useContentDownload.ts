@@ -74,8 +74,6 @@ export function useContentDownload(
 
         const link = document.createElement("a");
         link.href = downloadUrl;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
         if (targetFileName) {
           link.setAttribute("download", targetFileName);
         } else {
