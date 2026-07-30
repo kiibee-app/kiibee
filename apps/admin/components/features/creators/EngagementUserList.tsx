@@ -44,6 +44,12 @@ export function EngagementUserList({
                 Expires {user.rentExpiresDisplay}
               </EngagementSubDate>
             ) : null}
+            {user.downloadCount !== undefined && user.downloadCount > 0 ? (
+              <EngagementSubDate>
+                {user.downloadCount}{" "}
+                {user.downloadCount === 1 ? "download" : "downloads"}
+              </EngagementSubDate>
+            ) : null}
           </EngagementMeta>
         </EngagementItem>
       ))}

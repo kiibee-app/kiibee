@@ -8,7 +8,7 @@ import {
 } from "../../../utils/contentMedia";
 import {
   creatorContentGridLabels,
-  getPurchaseStatSuffix,
+  isEmailGatedAccessType,
 } from "../../../utils/contentConfig";
 import {
   ContentBody,
@@ -97,10 +97,33 @@ export function CreatorContentGrid({
                 </ContentMeta>
               ) : null}
               <ContentStatsRow>
-                <ContentStatBadge $variant="buy">
-                  {content.purchaseCount}{" "}
-                  {getPurchaseStatSuffix(content.accessType)}
-                </ContentStatBadge>
+                {isEmailGatedAccessType(content.accessType) ? (
+                  <>
+                    <ContentStatBadge $variant="buy">
+                      {content.emailRegisteredCount ?? 0}{" "}
+                      {creatorContentGridLabels.emailRegisteredSuffix}
+                    </ContentStatBadge>
+                    {content.purchaseCount > 0 ? (
+                      <ContentStatBadge $variant="buy">
+                        {content.purchaseCount}{" "}
+                        {creatorContentGridLabels.boughtSuffix}
+                      </ContentStatBadge>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <ContentStatBadge $variant="buy">
+                      {content.purchaseCount}{" "}
+                      {creatorContentGridLabels.boughtSuffix}
+                    </ContentStatBadge>
+                    {(content.emailRegisteredCount ?? 0) > 0 ? (
+                      <ContentStatBadge $variant="buy">
+                        {content.emailRegisteredCount}{" "}
+                        {creatorContentGridLabels.emailRegisteredSuffix}
+                      </ContentStatBadge>
+                    ) : null}
+                  </>
+                )}
                 <ContentStatBadge $variant="rent">
                   {content.rentalCount} {creatorContentGridLabels.rentedSuffix}
                 </ContentStatBadge>

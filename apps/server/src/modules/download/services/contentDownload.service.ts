@@ -6,7 +6,11 @@ import { HttpStatus } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { contentDownloadCount, mediaFiles } from 'src/database/schema';
+import {
+  analyticsEvents,
+  contentDownloadCount,
+  mediaFiles,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { s3 } from 'src/services/s3.client';
 import { fail, success } from 'src/utils/sendResponse';
@@ -57,6 +61,35 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       );
     }
 
+    const recordDownload = async () => {
+      await db.transaction(async (tx) => {
+        if (download) {
+          await tx
+            .update(contentDownloadCount)
+            .set({
+              downloadCount: download.downloadCount + 1,
+              updatedAt: new Date(),
+            })
+            .where(eq(contentDownloadCount.id, download.id));
+        } else {
+          await tx.insert(contentDownloadCount).values({
+            id: randomUUID(),
+            userId,
+            contentId,
+            downloadCount: 1,
+          });
+        }
+
+        await tx.insert(analyticsEvents).values({
+          id: randomUUID(),
+          userId,
+          creatorId: content.creatorId,
+          mediaFileId: contentId,
+          eventType: 'download',
+        });
+      });
+    };
+
     const { fileName, contentDisposition } = getDownloadDispositionAndFileName(
       content.fileKey,
       content.title,
@@ -85,6 +118,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       publicUrl = row?.publicUrl ?? null;
 
       if (publicUrl) {
+        await recordDownload();
         return success(
           { downloadUrl: publicUrl, fileName },
           'Download URL generated successfully',
@@ -104,24 +138,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       expiresIn: SIGNED_URL_EXPIRY.SHORT,
     });
 
-    await db.transaction(async (tx) => {
-      if (download) {
-        await tx
-          .update(contentDownloadCount)
-          .set({
-            downloadCount: download.downloadCount + 1,
-            updatedAt: new Date(),
-          })
-          .where(eq(contentDownloadCount.id, download.id));
-      } else {
-        await tx.insert(contentDownloadCount).values({
-          id: randomUUID(),
-          userId,
-          contentId,
-          downloadCount: 1,
-        });
-      }
-    });
+    await recordDownload();
 
     return success(
       {
