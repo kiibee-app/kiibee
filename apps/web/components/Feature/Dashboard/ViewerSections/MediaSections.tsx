@@ -15,7 +15,7 @@ import {
 } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 import COLORS from "@repo/ui/colors";
-import { VideoIcon, WebIcon } from "@/assets/icons";
+import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -78,6 +78,7 @@ const MEDIA_TYPE_ICON: Record<
 > = {
   [RENTED_SECTION_KEYS.AUDIOS]: AudioFileIcon,
   [RENTED_SECTION_KEYS.PDFS]: PdfFileIcon,
+  [RENTED_SECTION_KEYS.EPUBS]: EpubIcon,
   [RENTED_SECTION_KEYS.WEBS]: WebIcon,
   [RENTED_SECTION_KEYS.VIDEOS]: VideoIcon,
 };
@@ -190,6 +191,7 @@ export default function MediaSections({
                 (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                   section.key === RENTED_SECTION_KEYS.AUDIOS ||
                   section.key === RENTED_SECTION_KEYS.PDFS ||
+                  section.key === RENTED_SECTION_KEYS.EPUBS ||
                   section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"

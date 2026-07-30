@@ -135,6 +135,7 @@ export const CONTENT_TYPES = {
   VIDEO: 'Video',
   AUDIO: 'Audio',
   PDF: 'PDF',
+  EPUB: 'EPUB',
   WEB: 'Web Link',
 } as const;
 
