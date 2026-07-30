@@ -435,12 +435,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
               ]
           : undefined;
 
-    if (
+    const canShowDownload = Boolean(
       shouldEnableDownload &&
       downloadInfo &&
       downloadInfo.maxDownloadLimit > 0 &&
-      baseActions
-    ) {
+      baseActions,
+    );
+
+    if (canShowDownload && baseActions && downloadInfo) {
       const downloadAction: SingleContentAction = {
         label: t("singleContent.download"),
         subtitle: t("singleContent.remainingDownloads", {

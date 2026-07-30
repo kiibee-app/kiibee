@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
+import { TIME_MS } from "@/utils/Constants";
 
 export type ContentDownloadInfo = {
   maxDownloadLimit: number;
@@ -43,7 +44,7 @@ export function useContentDownload(
     undefined,
     {
       enabled: Boolean(contentId && enabled),
-      staleTime: 1000 * 60,
+      staleTime: TIME_MS.ONE_MINUTE,
     },
   );
 
@@ -64,7 +65,6 @@ export function useContentDownload(
         throw new Error(response.data?.message || "Failed to get download URL");
       }
 
-      // Create a temporary link element to trigger browser download
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.target = "_blank";
@@ -74,7 +74,6 @@ export function useContentDownload(
       link.click();
       document.body.removeChild(link);
 
-      // Invalidate & refetch remaining downloads info
       await queryClient.invalidateQueries({ queryKey: [route] });
       await refetch();
     } catch (error: unknown) {
