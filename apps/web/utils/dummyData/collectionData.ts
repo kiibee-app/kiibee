@@ -1,8 +1,8 @@
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
-import design4 from "@/assets/images/crafts.png";
-import design5 from "@/assets/images/flower.png";
+import design4 from "@/assets/images/crafts.webp";
+import design5 from "@/assets/images/flower.webp";
 import { FORMAT_TYPE } from "../types";
 
 export const ABOUT_VIDEO_OVERRIDES = [

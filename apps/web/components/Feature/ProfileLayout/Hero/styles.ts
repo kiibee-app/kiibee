@@ -84,19 +84,19 @@ export const ProfileSection = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 24px;
-  margin-top: 25px;
+  margin-top: 28px;
   padding: 0 6px;
 
   ${({ theme }) => theme.media.desktopSm} {
     gap: 16px;
-    margin-top: 20px;
+    margin-top: 24px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     align-items: center;
     flex-direction: column-reverse;
     gap: 12px;
-    margin-top: 16px;
+    margin-top: 20px;
   }
 `;
 
@@ -104,7 +104,7 @@ export const AvatarWrap = styled.div`
   position: relative;
   width: 9.5rem;
   height: 9.5rem;
-  margin-top: -1.5625rem;
+  margin-top: 0;
   border-radius: 50%;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
@@ -113,13 +113,13 @@ export const AvatarWrap = styled.div`
   ${({ theme }) => theme.media.desktopSm} {
     width: 8.125rem;
     height: 8.125rem;
-    margin-top: -1.25rem;
+    margin-top: 0;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 6.75rem;
     height: 6.75rem;
-    margin-top: -1rem;
+    margin-top: 0;
   }
 `;
 

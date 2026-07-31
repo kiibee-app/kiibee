@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm';
 import {
   pgTable,
   text,
@@ -37,7 +38,9 @@ export const users = pgTable(
     ...baseTimestamps,
   },
   (table) => ({
-    emailUnique: uniqueIndex('users_email_unique').on(table.email),
+    emailUnique: uniqueIndex('users_email_unique')
+      .on(table.email)
+      .where(sql`${table.isDeleted} = false`),
     roleIdx: index('users_role_idx').on(table.role),
     statusIdx: index('users_status_idx').on(table.status),
     isDeletedIdx: index('users_is_deleted_idx').on(table.isDeleted),

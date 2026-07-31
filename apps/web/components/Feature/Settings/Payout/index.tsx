@@ -20,7 +20,11 @@ import SettlementInvoiceModal from "./SettlementInvoiceModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
 import { settlementHeaders } from "@/utils/dummyData/payout";
-import { CENTER_ALIGNED_HEADERS, parsePayoutBalance } from "@/utils/payout";
+import {
+  CENTER_ALIGNED_HEADERS,
+  MIN_PAYOUT_AMOUNT,
+  parsePayoutBalance,
+} from "@/utils/payout";
 import { Settlement } from "../styles";
 import { Directions, MODAL_ALIGN } from "@/utils/ui";
 import { useSettlementHistory } from "@/hooks/useSettlementHistory";
@@ -43,7 +47,7 @@ export default function PayoutContent() {
   const rentalsValue = stats?.rentals ?? 0;
 
   const handlePayoutClick = () => {
-    if (balanceAmount <= 0) {
+    if (balanceAmount <= MIN_PAYOUT_AMOUNT) {
       setOpenZeroBalance(true);
       return;
     }

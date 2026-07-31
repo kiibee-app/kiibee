@@ -40,15 +40,17 @@ export const getPurchasedData = async (userId: string) => {
 
     const { mediaMap, collectionMap } = buildAccessMap(ordersData);
 
-    const [videos, audios, pdfs, webs, collectionsData] = await Promise.all([
-      getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
-      getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
-      getMediaByType(mediaIds, CONTENT_TYPES.PDF),
-      getMediaByType(mediaIds, CONTENT_TYPES.WEB),
-      getCollectionsWithDetails(collectionIds),
-    ]);
+    const [videos, audios, pdfs, epubs, webs, collectionsData] =
+      await Promise.all([
+        getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
+        getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
+        getMediaByType(mediaIds, CONTENT_TYPES.PDF),
+        getMediaByType(mediaIds, CONTENT_TYPES.EPUB),
+        getMediaByType(mediaIds, CONTENT_TYPES.WEB),
+        getCollectionsWithDetails(collectionIds),
+      ]);
 
-    const allMediaIds = [...videos, ...audios, ...pdfs, ...webs].map(
+    const allMediaIds = [...videos, ...audios, ...pdfs, ...epubs, ...webs].map(
       (m) => m.id,
     );
     const categoryMap = await getMediaCategories(allMediaIds);
@@ -60,6 +62,7 @@ export const getPurchasedData = async (userId: string) => {
         videos: enrichMedia(videos, mediaMap, categoryMap),
         audios: enrichMedia(audios, mediaMap, categoryMap),
         pdfs: enrichMedia(pdfs, mediaMap, categoryMap),
+        epubs: enrichMedia(epubs, mediaMap, categoryMap),
         webs: enrichMedia(webs, mediaMap, categoryMap),
         collections: collectionsData.map((c) => ({
           ...c,

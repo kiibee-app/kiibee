@@ -6,17 +6,12 @@ import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
 import { ErrorText } from "@/components/UI/InputFields/styles";
 import SortDropdown from "@/components/UI/SortDropdown";
-import { MonoText } from "@/components/UI/Monotext";
 import {
   INPUT_VARIANTS,
   maxDescriptionCharacters,
   SORT_DROPDOWN_VARIANT,
   STRING_EMPTY,
 } from "@/utils/Constants";
-import {
-  PAYMENT_DOWNLOAD_LIMIT_VALUES,
-  type PaymentDownloadLimitValue,
-} from "@/utils/common";
 import {
   Block,
   ControlWrap,
@@ -34,7 +29,6 @@ import {
   ADMISSION_TYPE,
   AdmissionValue,
   getAdmissionOptions,
-  getDownloadLimitOptions,
   getPaymentContentTexts,
   getPaymentAmountErrorMessage,
   hasNegativeAmountInput,
@@ -57,10 +51,6 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
   const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
-  const downloadLimitOptions = useMemo(
-    () => getDownloadLimitOptions(t, PAYMENT_DOWNLOAD_LIMIT_VALUES),
-    [t],
-  );
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");
@@ -213,35 +203,6 @@ export default function Payment({ contentType }: PaymentProps = {}) {
                   <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
                 </Block>
               )}
-
-              <Block>
-                <SectionTitle>
-                  {t("contents.payment.downloadLimit.title")}
-                </SectionTitle>
-                <SectionText>
-                  {t("contents.payment.downloadLimit.description")}
-                </SectionText>
-
-                <DropdownWrap>
-                  <SortDropdown
-                    options={downloadLimitOptions}
-                    value={formState.maxDownloadLimit}
-                    onChange={(value) =>
-                      updateField(
-                        PAYMENTS_FORM_FIELDS.MAX_DOWNLOAD_LIMIT,
-                        String(value) as PaymentDownloadLimitValue,
-                      )
-                    }
-                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
-                    maxWidth="100%"
-                    renderSelectedLabel={(value, option) => (
-                      <MonoText $use="Body_Regular">
-                        {option?.label ?? value}
-                      </MonoText>
-                    )}
-                  />
-                </DropdownWrap>
-              </Block>
             </>
           )}
 

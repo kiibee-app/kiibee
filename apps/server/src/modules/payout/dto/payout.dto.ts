@@ -1,4 +1,13 @@
-import { IsOptional, IsString, IsIn, IsInt, Min } from 'class-validator';
+import {
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsIn,
+  IsInt,
+  IsNotEmpty,
+  Min,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class SettlementHistoryQueryDto {
@@ -22,4 +31,25 @@ export class SettlementHistoryQueryDto {
   @IsInt()
   @Min(1)
   limit?: number;
+}
+
+export class AdminPayoutRequestDto {
+  @IsString()
+  @IsNotEmpty()
+  creatorId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  paymentMethodId!: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(8.01)
+  amount?: number;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  processImmediately?: boolean;
 }

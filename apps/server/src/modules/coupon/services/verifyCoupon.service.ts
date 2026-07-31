@@ -108,10 +108,15 @@ export const verifyCouponService = async (
   collectionId?: string,
 ) => {
   try {
+    const normalizedCode = code ? code.trim().toUpperCase() : '';
+    if (!normalizedCode) {
+      return fail('Invalid coupon code', HttpStatus.BAD_REQUEST);
+    }
+
     const [couponCode] = await db
       .select()
       .from(couponCodes)
-      .where(eq(couponCodes.code, code))
+      .where(eq(couponCodes.code, normalizedCode))
       .limit(1);
 
     if (!couponCode) {

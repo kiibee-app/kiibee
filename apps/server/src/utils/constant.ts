@@ -91,6 +91,7 @@ export const isValidAvatarUrl = (value: string): boolean => {
   return isDataUrl || isHttpUrl;
 };
 export const FIXED_LIMIT = 10;
+export const DEFAULT_ALL_CREATORS_LIMIT = 12;
 
 export const SORT_DIRECTIONS = {
   ASC: 'asc',
@@ -127,12 +128,14 @@ export const PAYMENT_STATUS = {
   PAYMENT_SUCCESS: 'SUCCESS',
   PAYMENT_FAILED: 'FAILED',
   PAYMENT_EXPIRED: 'EXPIRED',
+  OVERDUE: 'overdue',
 } as const;
 
 export const CONTENT_TYPES = {
   VIDEO: 'Video',
   AUDIO: 'Audio',
   PDF: 'PDF',
+  EPUB: 'EPUB',
   WEB: 'Web Link',
 } as const;
 
@@ -184,9 +187,20 @@ export const CHANNEL_SLUG_SUFFIX_LENGTH = 8;
 export const CHANNEL_SLUG_UNIQUE_ATTEMPTS = 20;
 export const SLUG_AMPERSAND_REPLACEMENT = ' and ';
 export const STRING = 'string' as const;
+export const MONTHLY = 'monthly' as const;
+export const UNKNOWN = 'Unknown' as const;
 
 export const SERVER_TIMEOUT = {
   REQUEST: 30000,
   CONNECTION: 5000,
   KEEP_ALIVE: 72000,
+} as const;
+
+export const EMAIL_RETRY = {
+  MAX_RETRIES: 3,
+  BASE_DELAY_MS: 1000,
+} as const;
+
+export const ANALYTICS_EVENT_TYPES = {
+  DOWNLOAD: 'download',
 } as const;

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { useCallback, useState } from "react";
 import {
   getExploreCreatorInitialSort,
   getExploreCreatorTitleKey,
@@ -9,40 +8,42 @@ import {
   type ExploreCreatorFilter,
   type SortValue,
 } from "@/utils/sortOptions";
-import { useExploreCreators } from "./useExploreCreators";
+import { usePaginatedExploreCreators } from "./useExploreCreators";
 import { useDebounce } from "@/hooks/useDebounce";
+import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 
 export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
   const [sortBy, setSortBy] = useState<SortValue>(() =>
     getExploreCreatorInitialSort(filter),
   );
   const [searchQuery, setSearchQuery] = useState("");
-  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
   const debouncedSearchQuery = useDebounce(searchQuery);
 
-  const resetLimit = () => {
-    setLimit(EXPLORE_PAGE_SIZE);
-  };
-
-  const handleSortChange = (value: SortValue) => {
+  const handleSortChange = useCallback((value: SortValue) => {
     setSortBy(value);
-    resetLimit();
-  };
+  }, []);
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchChange = useCallback((value: string) => {
     setSearchQuery(value);
-    resetLimit();
-  };
+  }, []);
 
-  const { creators, isLoading, isFetching } = useExploreCreators(
-    limit,
-    debouncedSearchQuery,
-    mapCreatorSortToExploreFilter(filter, sortBy),
-  );
+  const {
+    creators,
+    isLoading,
+    isFetching,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+  } = usePaginatedExploreCreators({
+    limit: EXPLORE_PAGE_SIZE,
+    search: debouncedSearchQuery,
+    filter: mapCreatorSortToExploreFilter(filter, sortBy),
+  });
 
-  const handleLoadMore = () => {
-    setLimit((prev) => prev + EXPLORE_PAGE_SIZE);
-  };
+  const handleLoadMore = useCallback(() => {
+    if (!hasNextPage || isFetchingNextPage) return;
+    void fetchNextPage();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   return {
     filter,
@@ -53,8 +54,9 @@ export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
     creators,
     isLoading,
     isFetching,
+    isFetchingNextPage,
     pageTitle: getExploreCreatorTitleKey(filter),
-    showLoadMoreButton: creators.length > 0 && creators.length === limit,
+    showLoadMoreButton: creators.length > 0 && hasNextPage,
     handleLoadMore,
   };
 }

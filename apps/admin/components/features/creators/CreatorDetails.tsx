@@ -9,6 +9,7 @@ import {
   getExistingCreatorDisplayName,
   getExistingCreatorInitials,
 } from "../../../utils/existingCreatorsConfig";
+import { creatorContentGridLabels } from "../../../utils/contentConfig";
 import { formatRequestedAt } from "../../../utils/date";
 import { AccountStatusBadge } from "../all-creators/AllCreators.styles";
 import { CreatorContentGrid } from "./CreatorContentGrid";
@@ -69,10 +70,16 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
   const creator = creatorQuery.data;
   const displayName = getExistingCreatorDisplayName(creator);
   const contents = contentsQuery.data ?? [];
-  const totalPurchases = contents.reduce(
-    (sum, item) => sum + item.purchaseCount,
+  const totalBought = contents.reduce(
+    (sum, item) => sum + (item.purchaseCount ?? 0),
     0,
   );
+  const totalEmailRegistered = contents.reduce(
+    (sum, item) => sum + (item.emailRegisteredCount ?? 0),
+    0,
+  );
+
+  const totalPurchases = totalBought + totalEmailRegistered;
   const totalRentals = contents.reduce(
     (sum, item) => sum + item.rentalCount,
     0,
@@ -81,6 +88,21 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
     (sum, item) => sum + item.downloadCount,
     0,
   );
+
+  const stats = [
+    { count: totalBought, label: creatorContentGridLabels.boughtSuffix },
+    {
+      count: totalEmailRegistered,
+      label: creatorContentGridLabels.emailRegisteredSuffix,
+    },
+    { count: totalRentals, label: creatorContentGridLabels.rentedSuffix },
+    { count: totalDownloads, label: creatorContentGridLabels.downloadsSuffix },
+  ];
+
+  const summaryParts = [
+    `Content (${contents.length})`,
+    ...stats.filter((s) => s.count > 0).map((s) => `${s.count} ${s.label}`),
+  ];
 
   return (
     <DetailsLayout>
@@ -187,10 +209,7 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
 
       <DetailsSection>
         <DetailsSectionHeader>
-          <DetailsSectionTitle>
-            Content ({contents.length}) · {totalPurchases} bought ·{" "}
-            {totalRentals} rented · {totalDownloads} downloads
-          </DetailsSectionTitle>
+          <DetailsSectionTitle>{summaryParts.join(" · ")}</DetailsSectionTitle>
         </DetailsSectionHeader>
         <DetailsSectionBody>
           {contentsQuery.isLoading ? (

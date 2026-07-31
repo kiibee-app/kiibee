@@ -264,6 +264,10 @@ export const PreContentWrap = styled.div<{ $isModal?: boolean }>`
     $isModal ? "transparent" : theme.colors.neutral.OFF_WHITE};
   width: 100%;
   min-height: ${({ $isModal }) => ($isModal ? "auto" : "100dvh")};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding-bottom: ${({ $isModal }) => ($isModal ? "0" : "1rem")};
 
   ${media.tablet} {

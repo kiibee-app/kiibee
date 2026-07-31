@@ -10,10 +10,13 @@ import {
 } from "./admissionRequirements";
 import { ADMISSION_TYPE, parsePaymentAmount } from "./paymentRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
-import {
-  EXPLORE_CONTENT_SORT,
-  ExploreContentSort,
-} from "@/hooks/feed/useExploreContent";
+
+type ExploreContentSort = "new" | "popular" | "all";
+const EXPLORE_CONTENT_SORT = {
+  NEW: "new",
+  POPULAR: "popular",
+  ALL: "all",
+} as const;
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
@@ -604,3 +607,8 @@ export const REGISTER_SOURCE = {
 
 export type RegisterSource =
   (typeof REGISTER_SOURCE)[keyof typeof REGISTER_SOURCE];
+
+export const TIME_MS = {
+  ONE_SECOND: 1000,
+  ONE_MINUTE: 60 * 1000,
+} as const;

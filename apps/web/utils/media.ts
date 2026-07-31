@@ -501,3 +501,8 @@ export function getFallbackThumbnailUrl(
   }
   return null;
 }
+
+export function getPdfEmbedUrl(src?: string | null): string {
+  if (!src) return "";
+  return src.includes("#") ? src : `${src}#toolbar=0&navpanes=0`;
+}

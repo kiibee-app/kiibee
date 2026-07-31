@@ -28,6 +28,7 @@ export const orders = pgTable(
     ...baseTimestamps,
   },
   (table) => ({
+    userIdIdx: index('orders_user_id_idx').on(table.userId),
     mediaFileIdIdx: index('order_items_media_file_id_idx').on(
       table.mediaFileId,
     ),
@@ -35,5 +36,7 @@ export const orders = pgTable(
       table.collectionId,
     ),
     itemTypeIdx: index('order_items_item_type_idx').on(table.itemType),
+    statusIdx: index('orders_status_idx').on(table.status),
+    createdAtIdx: index('orders_created_at_idx').on(table.createdAt),
   }),
 );

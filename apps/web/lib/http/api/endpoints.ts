@@ -133,4 +133,10 @@ export const API = {
     paymentMethodDefault: (id: string) =>
       `/viewer/payment-methods/${id}/default`,
   },
+  download: {
+    limit: "/download/limit",
+    url: (contentId: string) => `/download/url?contentId=${contentId}`,
+    contentInfo: (contentId: string) =>
+      `/download/content-info?contentId=${contentId}`,
+  },
 } as const;

@@ -6,7 +6,11 @@ import {
   CONTENT_FORMAT,
   normalizeContentFormat,
 } from "../../../utils/contentMedia";
-import { creatorContentGridLabels } from "../../../utils/contentConfig";
+import {
+  creatorContentGridLabels,
+  isEmailGatedAccessType,
+  STAT_BADGE_VARIANTS,
+} from "../../../utils/contentConfig";
 import {
   ContentBody,
   ContentGrid,
@@ -94,14 +98,37 @@ export function CreatorContentGrid({
                 </ContentMeta>
               ) : null}
               <ContentStatsRow>
-                <ContentStatBadge $variant="buy">
-                  {content.purchaseCount}{" "}
-                  {creatorContentGridLabels.boughtSuffix}
-                </ContentStatBadge>
-                <ContentStatBadge $variant="rent">
+                {isEmailGatedAccessType(content.accessType) ? (
+                  <>
+                    <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
+                      {content.emailRegisteredCount ?? 0}{" "}
+                      {creatorContentGridLabels.emailRegisteredSuffix}
+                    </ContentStatBadge>
+                    {content.purchaseCount > 0 ? (
+                      <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
+                        {content.purchaseCount}{" "}
+                        {creatorContentGridLabels.boughtSuffix}
+                      </ContentStatBadge>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
+                      {content.purchaseCount}{" "}
+                      {creatorContentGridLabels.boughtSuffix}
+                    </ContentStatBadge>
+                    {(content.emailRegisteredCount ?? 0) > 0 ? (
+                      <ContentStatBadge $variant={STAT_BADGE_VARIANTS.BUY}>
+                        {content.emailRegisteredCount}{" "}
+                        {creatorContentGridLabels.emailRegisteredSuffix}
+                      </ContentStatBadge>
+                    ) : null}
+                  </>
+                )}
+                <ContentStatBadge $variant={STAT_BADGE_VARIANTS.RENT}>
                   {content.rentalCount} {creatorContentGridLabels.rentedSuffix}
                 </ContentStatBadge>
-                <ContentStatBadge $variant="download">
+                <ContentStatBadge $variant={STAT_BADGE_VARIANTS.DOWNLOAD}>
                   {content.downloadCount}{" "}
                   {creatorContentGridLabels.downloadsSuffix}
                 </ContentStatBadge>

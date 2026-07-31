@@ -23,6 +23,8 @@ export const smtpEnvSchema = z.object({
     .refine((value) => !/[\r\n]/.test(value), {
       message: 'SMTP_PASS contains invalid control characters',
     }),
+  SMTP_POOL_MAX_CONNECTIONS: z.coerce.number().int().min(1).max(50).default(5),
+  SMTP_POOL_MAX_MESSAGES: z.coerce.number().int().min(1).max(1000).default(100),
 });
 
 export type SmtpConfig = z.infer<typeof smtpEnvSchema>;

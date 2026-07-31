@@ -4,18 +4,20 @@ import React from "react";
 import FolderIcon from "@/assets/icons/FolderIcon";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import { EmptyStateWrapper, IconContainer } from "./styles";
+import { ActionContainer, EmptyStateWrapper, IconContainer } from "./styles";
 
 type ProfileEmptyStateProps = {
   title: string;
   description: string;
   icon?: React.ReactNode;
+  action?: React.ReactNode;
 };
 
 export default function ProfileEmptyState({
   title,
   description,
   icon,
+  action,
 }: ProfileEmptyStateProps) {
   return (
     <EmptyStateWrapper>
@@ -38,6 +40,7 @@ export default function ProfileEmptyState({
       >
         {description}
       </MonoText>
+      {action && <ActionContainer>{action}</ActionContainer>}
     </EmptyStateWrapper>
   );
 }
