@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_RENTED,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
   ORDER_TYPES,
@@ -27,6 +28,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
+import { useContentDownload } from "@/hooks/useContentDownload";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
 import { toast } from "react-toastify";
 import {
@@ -121,14 +123,15 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     setShowCreatorModal2(true);
   };
 
-  const handleShowLoginModal = (msg?: string) => {
+  const handleShowLoginModal = useCallback((msg?: string) => {
     setLoginModalMessage(msg);
     setLoginModalVisible(true);
-  };
-  const handleCloseLoginModal = () => {
+  }, []);
+
+  const handleCloseLoginModal = useCallback(() => {
     setLoginModalVisible(false);
     setLoginModalMessage(undefined);
-  };
+  }, []);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -162,7 +165,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
       action.onClick?.();
     },
-    [user?.id],
+    [handleShowLoginModal, user?.id],
   );
 
   const actionsWithPayment = useMemo(() => {
@@ -215,6 +218,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId,
     createOrderMutation,
     handleActionClick,
+    handleShowLoginModal,
     primaryAction,
     primaryActions,
     t,
@@ -283,7 +287,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       canFetchMedia ||
       Boolean(previewMediaUrl));
 
-  const handlePrimaryActionClick = async () => {
+  const handlePrimaryActionClick = useCallback(async () => {
     if (!user?.id) {
       handleShowLoginModal();
       return;
@@ -347,22 +351,38 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         setShowPreviewModal(true);
       }
     }
-  };
+  }, [
+    canFetchMedia,
+    canPreview,
+    fetchMediaUrl,
+    handleShowLoginModal,
+    isWebType,
+    metaItems,
+    previewMediaUrl,
+    primaryAction,
+    t,
+    user?.id,
+    user?.role,
+  ]);
 
-  const modifiedPrimaryAction = primaryAction
-    ? {
-        ...primaryAction,
-        onClick: handlePrimaryActionClick,
-        disabled: primaryAction.disabled || isMediaLoading,
-      }
-    : undefined;
+  const modifiedPrimaryAction = useMemo(
+    () =>
+      primaryAction
+        ? {
+            ...primaryAction,
+            onClick: handlePrimaryActionClick,
+            disabled: primaryAction.disabled || isMediaLoading,
+          }
+        : undefined,
+    [handlePrimaryActionClick, isMediaLoading, primaryAction],
+  );
 
   const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const hasViewerAccess = Boolean(content?.accessInfo);
 
   const heroPrimaryAction = accessGate ? undefined : modifiedPrimaryAction;
 
-  const openOwnerContentInDashboard = () => {
+  const openOwnerContentInDashboard = useCallback(() => {
     const params = new URLSearchParams({
       [VIEW]: CREATORS_LABELS.CONTENTS,
     });
@@ -375,31 +395,89 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
-  };
+  }, [collectionId, contentId, router]);
 
-  const bodyPrimaryActions: SingleContentAction[] | undefined =
-    primaryActions != null
-      ? actionsWithPayment
-      : modifiedPrimaryAction
-        ? isOwner
-          ? [
-              {
-                label: t("singleContent.openInDashboard"),
-                variant: VARIANT.PRIMARY,
-                onClick: openOwnerContentInDashboard,
-              },
-              {
-                ...modifiedPrimaryAction,
-                variant: VARIANT.SECONDARY,
-              },
-            ]
-          : [
-              {
-                ...modifiedPrimaryAction,
-                variant: hasViewerAccess ? VARIANT.SECONDARY : undefined,
-              },
-            ]
-        : undefined;
+  const isDownloadableType =
+    previewContentType === FORMAT_TYPE.AUDIO ||
+    previewContentType === FORMAT_TYPE.PDF ||
+    previewContentType === FORMAT_TYPE.EPUB;
+
+  const isRented = content?.accessInfo?.accessType === ACCESS_TYPE_RENTED;
+
+  const shouldEnableDownload = Boolean(
+    user?.id &&
+    contentId &&
+    isDownloadableType &&
+    !isRented &&
+    (hasViewerAccess || isOwner),
+  );
+
+  const { downloadInfo, isDownloading, triggerDownload } = useContentDownload(
+    contentId,
+    shouldEnableDownload,
+  );
+
+  const bodyPrimaryActions = useMemo(() => {
+    const baseActions: SingleContentAction[] | undefined =
+      primaryActions != null
+        ? actionsWithPayment
+        : modifiedPrimaryAction
+          ? isOwner
+            ? [
+                {
+                  label: t("singleContent.openInDashboard"),
+                  variant: VARIANT.PRIMARY,
+                  onClick: openOwnerContentInDashboard,
+                },
+                {
+                  ...modifiedPrimaryAction,
+                  variant: VARIANT.SECONDARY,
+                },
+              ]
+            : [
+                {
+                  ...modifiedPrimaryAction,
+                  variant: hasViewerAccess ? VARIANT.PRIMARY : undefined,
+                },
+              ]
+          : undefined;
+
+    const canShowDownload = Boolean(
+      shouldEnableDownload &&
+      downloadInfo &&
+      downloadInfo.maxDownloadLimit > 0 &&
+      baseActions,
+    );
+
+    if (canShowDownload && baseActions && downloadInfo) {
+      const downloadAction: SingleContentAction = {
+        label: t("singleContent.download"),
+        subtitle: t("singleContent.remainingDownloads", {
+          count: downloadInfo.remainingDownloads,
+        }),
+        variant: VARIANT.SOFT_OUTLINE,
+        disabled: isDownloading || downloadInfo.remainingDownloads <= 0,
+        onClick: () => triggerDownload(title),
+      };
+
+      return [...baseActions, downloadAction];
+    }
+
+    return baseActions;
+  }, [
+    actionsWithPayment,
+    downloadInfo,
+    hasViewerAccess,
+    isDownloading,
+    isOwner,
+    modifiedPrimaryAction,
+    openOwnerContentInDashboard,
+    primaryActions,
+    shouldEnableDownload,
+    t,
+    title,
+    triggerDownload,
+  ]);
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const isPdfLayout =

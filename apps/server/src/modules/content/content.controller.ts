@@ -17,6 +17,7 @@ import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard, AdminGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 import { ContentSettingDto } from './dto/contentSetting.dto';
+import { RejectContentDto } from './dto/rejectContent.dto';
 import * as getAllContentsService from './services/getAllContents.service';
 import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 
@@ -82,6 +83,15 @@ export class ContentController {
   @Get('admin/content-engagement/:contentId')
   async getAdminContentEngagement(@Param('contentId') contentId: string) {
     return this.contentService.getAdminContentEngagement(contentId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/reject/:contentId')
+  async rejectContent(
+    @Param('contentId') contentId: string,
+    @Body() body: RejectContentDto,
+  ) {
+    return this.contentService.rejectContentService(contentId, body);
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)

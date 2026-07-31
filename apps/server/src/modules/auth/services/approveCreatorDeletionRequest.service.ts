@@ -2,6 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import {
   creatorDeletionRequests,
+  creatorInfo,
   creatorPlans,
   subscriptions,
   userSessions,
@@ -120,6 +121,8 @@ export const approveCreatorDeletionRequestService = async (
       await tx
         .delete(userSessions)
         .where(eq(userSessions.userId, targetUserId));
+
+      await tx.delete(creatorInfo).where(eq(creatorInfo.userId, targetUserId));
 
       await tx
         .update(creatorPlans)

@@ -13,6 +13,7 @@ import {
   checkDuplicateContentTitle,
   contentSlugGenerator,
 } from '../content.helper';
+import { contentLimits } from 'src/database/schema';
 
 export const createContent = async (
   dto: CreateContentDto,
@@ -41,6 +42,7 @@ export const createContent = async (
 
     const contentId = crypto.randomUUID();
     const slug = await contentSlugGenerator(title);
+    const downloadLimit = await db.select().from(contentLimits).limit(1);
 
     const response = await db.transaction(async (tx) => {
       await tx.insert(mediaFiles).values({
@@ -53,6 +55,7 @@ export const createContent = async (
         contentTypeId,
         creatorId,
         fileSize,
+        maxDownloadCount: downloadLimit[0]?.maxLimit || 0,
       });
 
       await tx.insert(collectionItems).values({

@@ -22,15 +22,18 @@ export class CreatorService {
   }
 
   getAllCreators({
+    page,
     limit,
     sortBy,
     search,
   }: {
+    page?: number;
     limit?: number;
     sortBy?: 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
     search?: string;
   }) {
     return allCreatorsService({
+      page,
       limit,
       sortBy,
       search,

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
-import heroImage from "@/assets/images/creators/creator_profile_hero.png";
+import heroImage from "@/assets/images/creators/layout2defaultimage.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
@@ -40,6 +40,7 @@ export default function StorySection() {
             fill
             sizes="(max-width: 900px) 100vw, 70vw"
             priority
+            unoptimized={Boolean(coverImageUrl)}
           />
         </HeroMedia>
 

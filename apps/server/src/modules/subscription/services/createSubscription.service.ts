@@ -10,6 +10,7 @@ import {
   STATUS,
   TIMEOUT,
 } from 'src/utils/constant';
+import { deleteSubscriptionService } from './deleteSubscription.service';
 
 const epay = axios.create({
   baseURL: process.env.EPAY_BASE_URL,
@@ -49,6 +50,18 @@ export const createSubscriptionService = async ({
     if (!user) throw new Error('User not found');
 
     if (plan.price === 0) {
+      const existingActiveSubscription = await db.query.subscriptions.findFirst(
+        {
+          where: (t) => and(eq(t.creatorId, userId)),
+        },
+      );
+
+      if (
+        existingActiveSubscription &&
+        existingActiveSubscription.planId !== plan.id
+      ) {
+        await deleteSubscriptionService(userId);
+      }
       await db
         .update(creatorPlans)
         .set({ status: STATUS.INACTIVE })

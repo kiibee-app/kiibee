@@ -126,7 +126,7 @@ export const creatorsItems: DashboardSidebarItem[] = [
 export const viewerItems: DashboardSidebarItem[] = [
   {
     label: VIEWER_LABELS.PURCHASED,
-    labelKey: "sidebar.purchaseRentalHistory",
+    labelKey: "sidebar.purchasedAndRented",
     section: CREATOR_SECTIONS.TOP,
   },
   {

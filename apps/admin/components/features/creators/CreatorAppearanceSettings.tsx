@@ -30,6 +30,7 @@ import {
   getDescriptionMaxError,
 } from "../../../utils/creatorAppearanceLabels";
 import { CREATOR_APPEARANCE_SECTIONS } from "../../../utils/creatorAppearanceSections";
+import { CREATOR_LAYOUT_KEY } from "../../../utils/constants";
 import { getExistingCreatorDisplayName } from "../../../utils/existingCreatorsConfig";
 import {
   BackLink,
@@ -308,7 +309,9 @@ export function CreatorAppearanceSettings({
                   onClick={() => updateField("layout", option.key)}
                 >
                   <LayoutPreview $variant={option.key} $active={active}>
-                    <LayoutPreviewBars>
+                    <LayoutPreviewBars
+                      $visible={option.key !== CREATOR_LAYOUT_KEY.LAYOUT2}
+                    >
                       <span />
                       <span />
                       <span />

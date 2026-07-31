@@ -1,4 +1,5 @@
 import { PAYOUT_BALANCE_API_ERRORS } from "@/utils/Constants";
+export const MIN_PAYOUT_AMOUNT = 8;
 
 export type PayoutRow = {
   label: string;

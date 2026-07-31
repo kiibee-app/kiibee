@@ -12,6 +12,7 @@ export type CreatorContentItem = {
   createdAt: string;
   publishedAt: string | null;
   purchaseCount: number;
+  emailRegisteredCount?: number;
   rentalCount: number;
   downloadCount: number;
 };
@@ -25,6 +26,7 @@ export type ContentEngagementUser = {
   displayDate: string;
   rentExpiresAt?: string | null;
   rentExpiresDisplay?: string | null;
+  downloadCount?: number;
 };
 
 export type ContentEngagement = {
@@ -47,10 +49,12 @@ export type ContentEngagement = {
     publishedAt: string | null;
   };
   purchases: ContentEngagementUser[];
+  emailRegistrations?: ContentEngagementUser[];
   rentals: ContentEngagementUser[];
   downloads: ContentEngagementUser[];
   stats: {
     purchaseCount: number;
+    emailRegisteredCount?: number;
     rentalCount: number;
     downloadCount: number;
   };

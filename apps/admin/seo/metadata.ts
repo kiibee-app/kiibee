@@ -26,6 +26,15 @@ const pageMeta: Record<string, PageMeta> = {
     title: "All Viewers",
     description: "Browse viewer accounts, billing history, and content access.",
   },
+  "/payout": {
+    title: "Payout",
+    description:
+      "View creator balances, process payouts, and review payout history.",
+  },
+  "/payout-requests": {
+    title: "Payout Requests",
+    description: "Review and approve pending creator payout requests.",
+  },
   "/profile": {
     title: "Profile",
     description: "View full authenticated admin account details and tokens.",
@@ -62,6 +71,16 @@ export function getPageMeta(pathname: string): PageMeta {
     return {
       title: "Creator Details",
       description: "View creator profile and content performance.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/payout-requests/") &&
+    normalized !== "/payout-requests"
+  ) {
+    return {
+      title: "Payout Request",
+      description: "Review payout request details and approve or reject.",
     };
   }
 

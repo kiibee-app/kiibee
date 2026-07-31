@@ -75,8 +75,15 @@ export const approveCreatorRequestService = async (
       );
     }
 
+    const [deletedUser] = await db
+      .select({ id: users.id })
+      .from(users)
+      .where(and(eq(users.email, applicationEmail), eq(users.isDeleted, true)))
+      .limit(1);
+
+    const now = new Date();
     const userData = {
-      id: randomUUID(),
+      id: deletedUser?.id ?? randomUUID(),
       firstName: validatedRequest[0].firstName,
       lastName: validatedRequest[0].lastName,
       fullName: validatedRequest[0].fullName,
@@ -98,12 +105,28 @@ export const approveCreatorRequestService = async (
     };
 
     await db.transaction(async (tx) => {
-      await tx.insert(users).values(userData);
+      if (deletedUser) {
+        await tx
+          .update(users)
+          .set({
+            ...userData,
+            isDeleted: false,
+            deletedAt: null,
+            updatedAt: now,
+          })
+          .where(eq(users.id, deletedUser.id));
+      } else {
+        await tx
+          .insert(users)
+          .values({ ...userData, createdAt: now, updatedAt: now });
+      }
       await tx.insert(creatorInfo).values(creatorData);
+
       await ensureCreatorChannel(tx, {
         creatorId: userData.id,
         channelName: userData.fullName || userData.firstName,
       });
+
       await tx
         .update(creatorApplicationRequests)
         .set({

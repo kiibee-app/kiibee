@@ -193,7 +193,7 @@ export const updateCouponService = async (
       if (hasCodeUpdates) {
         await tx.delete(couponCodes).where(eq(couponCodes.couponId, couponId));
         const normalizedCodes = (payload.codes ?? [])
-          .map((code) => code.trim())
+          .map((code) => code.trim().toUpperCase())
           .filter((code) => code.length > 0);
         if (normalizedCodes.length > 0) {
           await tx.insert(couponCodes).values(

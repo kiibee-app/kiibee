@@ -18,7 +18,7 @@ import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
-import { VARIANT } from "@/utils/Constants";
+import { EXPLORE_PAGE_SIZE, VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
 import { getCreatorCardImage } from "@/hooks/creators/useExploreCreators";
 import type { ExploreCreator } from "@/types/exploreCreators";
@@ -28,6 +28,7 @@ import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 type Props = {
   creators: ExploreCreator[];
   isLoading?: boolean;
+  isLoadingMore?: boolean;
   showLoadMoreButton?: boolean;
   onLoadMore?: () => void;
 };
@@ -35,29 +36,32 @@ type Props = {
 export default function ExploreCreators({
   creators,
   isLoading,
+  isLoadingMore,
   showLoadMoreButton,
   onLoadMore,
 }: Props) {
   const { t } = useTranslation();
 
-  if (isLoading) {
+  if (isLoading && creators.length === 0) {
     return (
       <PageWrapper>
         <Grid>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <SkeletonCard key={i}>
-              <SkeletonImage />
-              <SkeletonTitleRow>
-                <SkeletonAvatar />
-                <SkeletonTextBlock>
-                  <SkeletonRow $width="70%" $height="16px" />
-                  <SkeletonRow $width="100%" $height="12px" />
-                  <SkeletonRow $width="50%" $height="12px" />
-                </SkeletonTextBlock>
-              </SkeletonTitleRow>
-              <CreatorSkeletonFooter />
-            </SkeletonCard>
-          ))}
+          {Array.from({ length: Math.min(EXPLORE_PAGE_SIZE, 8) }).map(
+            (_, i) => (
+              <SkeletonCard key={i}>
+                <SkeletonImage />
+                <SkeletonTitleRow>
+                  <SkeletonAvatar />
+                  <SkeletonTextBlock>
+                    <SkeletonRow $width="70%" $height="16px" />
+                    <SkeletonRow $width="100%" $height="12px" />
+                    <SkeletonRow $width="50%" $height="12px" />
+                  </SkeletonTextBlock>
+                </SkeletonTitleRow>
+                <CreatorSkeletonFooter />
+              </SkeletonCard>
+            ),
+          )}
         </Grid>
       </PageWrapper>
     );
@@ -123,6 +127,7 @@ export default function ExploreCreators({
             onClick={onLoadMore}
             variant={VARIANT.PRIMARY}
             type="button"
+            isLoading={Boolean(isLoadingMore)}
           >
             {t(CREATORS.loadMore)}
           </GenericButton>

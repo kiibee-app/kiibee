@@ -12,6 +12,7 @@ import {
   getYouTubeEmbedUrl,
   isVimeoUrl,
   getVimeoEmbedUrl,
+  getPdfEmbedUrl,
 } from "@/utils/media";
 import EpubViewer from "@/utils/EpubViewer";
 import AudioPlayer from "./AudioPlayer";
@@ -66,6 +67,14 @@ export default function ContentPreviewModal({
   const renderContent = () => {
     switch (type) {
       case FORMAT_TYPE.PDF:
+        return (
+          <PreviewContent
+            as="iframe"
+            src={getPdfEmbedUrl(src)}
+            title={title}
+            allowFullScreen
+          />
+        );
       case FORMAT_TYPE.WEB:
         return (
           <PreviewContent as="iframe" src={src} title={title} allowFullScreen />

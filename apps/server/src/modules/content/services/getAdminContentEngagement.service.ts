@@ -1,15 +1,22 @@
 import { HttpStatus } from '@nestjs/common';
-import { and, desc, eq } from 'drizzle-orm';
+import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   analyticsEvents,
+  contentAccessRequests,
+  contentDownloadCount,
   contentTypes,
   mediaFiles,
   orders,
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+import {
+  ANALYTICS_EVENT_TYPES,
+  ORDER_STATUS,
+  ORDER_TYPES,
+  STATUS,
+} from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 import {
   formatDisplayDate,
@@ -46,7 +53,13 @@ export const getAdminContentEngagementService = async (contentId: string) => {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
-    const [purchaseRows, rentalRows, downloadRows] = await Promise.all([
+    const [
+      orderPurchases,
+      emailAccessRows,
+      rentalRows,
+      downloadEvents,
+      downloadCountRows,
+    ] = await Promise.all([
       db
         .select({
           id: orders.id,
@@ -67,6 +80,28 @@ export const getAdminContentEngagementService = async (contentId: string) => {
           ),
         )
         .orderBy(desc(orders.createdAt)),
+      db
+        .select({
+          id: contentAccessRequests.id,
+          userId: users.id,
+          fullName: users.fullName,
+          firstName: users.firstName,
+          lastName: users.lastName,
+          email: contentAccessRequests.viewerEmail,
+          createdAt: contentAccessRequests.createdAt,
+        })
+        .from(contentAccessRequests)
+        .leftJoin(
+          users,
+          sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
+        )
+        .where(
+          and(
+            eq(contentAccessRequests.contentId, contentId),
+            eq(contentAccessRequests.status, STATUS.APPROVED),
+          ),
+        )
+        .orderBy(desc(contentAccessRequests.createdAt)),
       db
         .select({
           id: orders.id,
@@ -103,10 +138,25 @@ export const getAdminContentEngagementService = async (contentId: string) => {
         .where(
           and(
             eq(analyticsEvents.mediaFileId, contentId),
-            eq(analyticsEvents.eventType, 'download'),
+            eq(analyticsEvents.eventType, ANALYTICS_EVENT_TYPES.DOWNLOAD),
           ),
         )
         .orderBy(desc(analyticsEvents.createdAt)),
+      db
+        .select({
+          id: contentDownloadCount.id,
+          userId: users.id,
+          fullName: users.fullName,
+          firstName: users.firstName,
+          lastName: users.lastName,
+          email: users.email,
+          downloadCount: contentDownloadCount.downloadCount,
+          createdAt: contentDownloadCount.updatedAt,
+        })
+        .from(contentDownloadCount)
+        .innerJoin(users, eq(users.id, contentDownloadCount.userId))
+        .where(eq(contentDownloadCount.contentId, contentId))
+        .orderBy(desc(contentDownloadCount.updatedAt)),
     ]);
 
     const mapUser = (row: {
@@ -118,6 +168,7 @@ export const getAdminContentEngagementService = async (contentId: string) => {
       email: string | null;
       createdAt: Date;
       rentExpiresAt?: Date | null;
+      downloadCount?: number;
     }) => ({
       id: row.id,
       userId: row.userId,
@@ -134,22 +185,66 @@ export const getAdminContentEngagementService = async (contentId: string) => {
       rentExpiresDisplay: row.rentExpiresAt
         ? formatDisplayDate(row.rentExpiresAt)
         : null,
+      downloadCount: row.downloadCount,
     });
 
-    const purchases = purchaseRows.map(mapUser);
+    const purchases = orderPurchases.map(mapUser);
+    const emailRegistrations = emailAccessRows.map(mapUser);
     const rentals = rentalRows.map(mapUser);
-    const downloads = downloadRows.map(mapUser);
+
+    const userDownloadCountsMap = new Map<string, number>();
+    downloadCountRows.forEach((r) => {
+      if (r.userId) {
+        userDownloadCountsMap.set(
+          r.userId,
+          (userDownloadCountsMap.get(r.userId) ?? 0) + (r.downloadCount ?? 1),
+        );
+      }
+    });
+    downloadEvents.forEach((r) => {
+      if (r.userId && !userDownloadCountsMap.has(r.userId)) {
+        userDownloadCountsMap.set(
+          r.userId,
+          (userDownloadCountsMap.get(r.userId) ?? 0) + 1,
+        );
+      }
+    });
+
+    const combinedDownloadRows = [...downloadCountRows, ...downloadEvents];
+    const seenUserIds = new Set<string>();
+    const uniqueDownloadRows = combinedDownloadRows.filter((row) => {
+      if (!row.userId) return true;
+      if (seenUserIds.has(row.userId)) return false;
+      seenUserIds.add(row.userId);
+      return true;
+    });
+
+    const downloads = uniqueDownloadRows.map((row) => {
+      const user = mapUser(row);
+      if (row.userId && userDownloadCountsMap.has(row.userId)) {
+        user.downloadCount = userDownloadCountsMap.get(row.userId);
+      }
+      return user;
+    });
+
+    const totalFromCounts = downloadCountRows.reduce(
+      (sum, row) => sum + (row.downloadCount ?? 0),
+      0,
+    );
+    const totalDownloadCount = Math.max(downloadEvents.length, totalFromCounts);
 
     return success(
       {
         content,
         purchases,
+        emailRegistrations,
         rentals,
         downloads,
         stats: {
           purchaseCount: purchases.length,
+          emailRegisteredCount: emailRegistrations.length,
           rentalCount: rentals.length,
-          downloadCount: downloads.length,
+          downloadCount: totalDownloadCount,
         },
       },
       'Content engagement fetched successfully',

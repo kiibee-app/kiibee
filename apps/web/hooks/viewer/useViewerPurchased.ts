@@ -47,6 +47,7 @@ type PurchasedDataResponse = {
     videos: PurchasedMediaResponse[];
     audios: PurchasedMediaResponse[];
     pdfs: PurchasedMediaResponse[];
+    epubs?: PurchasedMediaResponse[];
     webs?: PurchasedMediaResponse[];
     collections: PurchasedCollectionResponse[];
   };
@@ -94,6 +95,7 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       videos: (responseData.videos || []).map((item) => mapMediaItem(item, t)),
       audios: (responseData.audios || []).map((item) => mapMediaItem(item, t)),
       pdfs: (responseData.pdfs || []).map((item) => mapMediaItem(item, t)),
+      epubs: (responseData.epubs || []).map((item) => mapMediaItem(item, t)),
       webs: (responseData.webs || []).map((item) => mapMediaItem(item, t)),
       collections: (responseData.collections || []).map(mapCollectionItem),
     };

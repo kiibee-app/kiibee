@@ -17,6 +17,7 @@ function shouldUseSmoothScroll(pathname: string) {
   return !(
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/creator/") ||
+    pathname.startsWith("/creators") ||
     pathname.startsWith("/auth") ||
     pathname.startsWith("/explore") ||
     pathname.startsWith("/formats") ||
