@@ -19,7 +19,7 @@ export const Section = styled.section`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 78.125rem;
+  max-width: 76.125rem;
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;

@@ -119,6 +119,7 @@ export const CREATORS = {
   subscribersCount: "creators.subscribersCount",
   topCreatorUploads: "creators.topCreatorUploads",
   heading: {
+    title: "creators.heading.title",
     lineOne: "creators.heading.lineOne",
     lineTwo: "creators.heading.lineTwo",
     lineThree: "creators.heading.lineThree",

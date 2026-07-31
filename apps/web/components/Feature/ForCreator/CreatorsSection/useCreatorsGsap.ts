@@ -1,10 +1,6 @@
 import { useEffect, RefObject, MutableRefObject } from "react";
 import gsap from "gsap";
-import {
-  getCardDimensions,
-  getCardAnimation,
-  HERO_MOTION,
-} from "@/utils/creatorAnimations";
+import { HERO_MOTION } from "@/utils/creatorAnimations";
 import { LANDING_MOTION } from "@/utils/landingUtils";
 
 export const getLiveCards = (cards: Array<HTMLDivElement | null>) =>
@@ -17,29 +13,25 @@ export const prefersReducedMotion = () =>
 interface UseCreatorsGsapProps {
   sectionRef: RefObject<HTMLElement | null>;
   cardRefs: MutableRefObject<Array<HTMLDivElement | null>>;
-  activeCardIndex: number;
-  isMobile: boolean;
 }
 
 export function useCreatorsGsap({
   sectionRef,
   cardRefs,
-  activeCardIndex,
-  isMobile,
 }: UseCreatorsGsapProps) {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      const headingLines = Array.from(
-        section.querySelectorAll<HTMLElement>("[data-creator-hero-line]"),
+      const heading = section.querySelectorAll<HTMLElement>(
+        "[data-creator-hero-line]",
       );
       const heroItems = Array.from(
         section.querySelectorAll<HTMLElement>("[data-creator-hero-animate]"),
       );
       const cardElements = getLiveCards(cardRefs.current);
-      const revealTargets = [...headingLines, ...heroItems, ...cardElements];
+      const revealTargets = [...heading, ...heroItems, ...cardElements];
 
       if (prefersReducedMotion()) {
         gsap.set(revealTargets, {
@@ -51,7 +43,6 @@ export function useCreatorsGsap({
 
       gsap.set(cardElements, {
         transformOrigin: "50% 100%",
-        willChange: "opacity, transform, filter, width, padding",
       });
 
       gsap
@@ -61,11 +52,11 @@ export function useCreatorsGsap({
           },
         })
         .fromTo(
-          headingLines,
+          heading,
           {
             autoAlpha: LANDING_MOTION.hiddenAlpha,
             filter: HERO_MOTION.blurFrom,
-            yPercent: 58,
+            yPercent: 40,
           },
           {
             autoAlpha: LANDING_MOTION.visibleAlpha,
@@ -99,7 +90,7 @@ export function useCreatorsGsap({
             autoAlpha: LANDING_MOTION.hiddenAlpha,
             filter: HERO_MOTION.blurFrom,
             scale: 0.96,
-            y: 58,
+            y: 40,
           },
           {
             autoAlpha: LANDING_MOTION.visibleAlpha,
@@ -116,52 +107,4 @@ export function useCreatorsGsap({
 
     return () => ctx.revert();
   }, [sectionRef, cardRefs]);
-
-  useEffect(() => {
-    const shouldReduceMotion = prefersReducedMotion();
-    const cardDimensions = getCardDimensions(isMobile);
-
-    getLiveCards(cardRefs.current).forEach((card, index) => {
-      const cardAnimation = getCardAnimation(
-        activeCardIndex === index,
-        cardDimensions,
-      );
-      const target = {
-        paddingBottom: cardAnimation.paddingBottom,
-        paddingLeft: cardAnimation.paddingLeft,
-        paddingRight: cardAnimation.paddingRight,
-        paddingTop: cardAnimation.paddingTop,
-        width: cardAnimation.width,
-      };
-
-      if (shouldReduceMotion) {
-        gsap.set(card, target);
-        return;
-      }
-
-      gsap.to(card, {
-        ...target,
-        duration: HERO_MOTION.cardResizeDuration,
-        ease: HERO_MOTION.easeExpoOut,
-        overwrite: "auto",
-      });
-    });
-  }, [activeCardIndex, isMobile, cardRefs]);
-
-  const animateCardLift = (hoveredIndex: number | null) => {
-    if (isMobile || prefersReducedMotion()) return;
-
-    cardRefs.current.forEach((card, index) => {
-      if (!card) return;
-
-      gsap.to(card, {
-        duration: HERO_MOTION.hoverDuration,
-        ease: LANDING_MOTION.easePower3Out,
-        overwrite: "auto",
-        y: hoveredIndex === index ? HERO_MOTION.hoverLift : 0,
-      });
-    });
-  };
-
-  return { animateCardLift };
 }
