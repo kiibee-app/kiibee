@@ -41,12 +41,12 @@ export const LAYOUT_OPTIONS: {
   {
     key: CREATOR_LAYOUT_KEY.LAYOUT2,
     label: "Layout 2",
-    description: "Centered cover layout",
+    description: "Story cover layout",
   },
   {
     key: CREATOR_LAYOUT_KEY.LAYOUT3,
     label: "Layout 3",
-    description: "Compact profile layout",
+    description: "Centered cover layout",
   },
 ];
 

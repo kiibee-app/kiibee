@@ -391,7 +391,7 @@ export const LayoutPreview = styled.div<{ $variant: string; $active: boolean }>`
     opacity: 0.28;
   }
 
-  ${({ $variant }) => {
+  ${({ $variant, theme }) => {
     if ($variant === "layout1") {
       return css`
         &::before {
@@ -416,53 +416,50 @@ export const LayoutPreview = styled.div<{ $variant: string; $active: boolean }>`
     if ($variant === "layout2") {
       return css`
         &::before {
-          top: 8px;
-          left: 18px;
-          right: 18px;
-          height: 42px;
-          opacity: 0.35;
+          inset: 10px;
+          opacity: 0.45;
         }
 
         &::after {
-          top: 38px;
-          left: 50%;
-          width: 34px;
-          height: 34px;
-          margin-left: -17px;
-          border-radius: 50%;
-          opacity: 0.5;
-          box-shadow: 0 0 0 4px #fff;
+          bottom: 20px;
+          left: 18px;
+          width: 72px;
+          height: 24px;
+          background: ${theme.colors.neutral.WHITE};
+          opacity: 0.82;
         }
       `;
     }
 
     return css`
       &::before {
-        top: 12px;
-        left: 12px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        opacity: 0.45;
+        top: 8px;
+        left: 18px;
+        right: 18px;
+        height: 42px;
+        opacity: 0.35;
       }
 
       &::after {
-        top: 18px;
-        left: 58px;
-        right: 12px;
-        height: 24px;
-        opacity: 0.28;
+        top: 38px;
+        left: 50%;
+        width: 34px;
+        height: 34px;
+        margin-left: -17px;
+        border-radius: 50%;
+        opacity: 0.5;
+        box-shadow: 0 0 0 4px #fff;
       }
     `;
   }}
 `;
 
-export const LayoutPreviewBars = styled.div`
+export const LayoutPreviewBars = styled.div<{ $visible: boolean }>`
   position: absolute;
   left: 10px;
   right: 10px;
   bottom: 12px;
-  display: grid;
+  display: ${({ $visible }) => ($visible ? "grid" : "none")};
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 
