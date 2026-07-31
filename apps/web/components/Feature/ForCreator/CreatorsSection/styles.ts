@@ -108,11 +108,18 @@ type CardProps = {
 
 export const Card = styled.div<CardProps>`
   position: relative;
-  flex: 1 1 0;
+  display: flex;
+  flex: 1 1 230px;
+  align-items: flex-start;
+  gap: 10px;
+  width: 230px;
+  max-width: 230px;
   min-width: 0;
+  padding: 12px;
+  box-sizing: border-box;
   height: ${({ $heightState }) =>
-    $heightState === 3 ? "300px" : $heightState === 2 ? "275px" : "240px"};
-  border-radius: 16px;
+    $heightState === 3 ? "300px" : $heightState === 2 ? "270px" : "240px"};
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   touch-action: manipulation;
@@ -120,12 +127,26 @@ export const Card = styled.div<CardProps>`
   transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   background: ${({ theme }) => theme.colors.primary.BLACK};
 
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
+    pointer-events: none;
+  }
+
   ${media.tablet} {
     flex: 0 0 148px;
+    width: 148px;
     max-width: 148px;
     height: ${({ $heightState }) =>
       $heightState === 3 ? "220px" : $heightState === 2 ? "190px" : "165px"};
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   &:focus-visible {
@@ -136,14 +157,48 @@ export const Card = styled.div<CardProps>`
 
 export const CardImage = styled.img`
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 300px;
   object-fit: cover;
   object-position: left top;
   display: block;
   pointer-events: none;
   user-select: none;
+
+  ${media.tablet} {
+    height: 220px;
+  }
+`;
+
+export const CardContent = styled.div<{ $visible: boolean }>`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+  pointer-events: none;
+`;
+
+export const CardTitle = styled.h2`
+  ${({ theme }) => theme.typography.H4_SemiBold};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+`;
+
+export const CardSubtitle = styled.p`
+  ${({ theme }) => theme.typography.Body_SemiMedium};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const AnimatedCard = styled(Card)``;

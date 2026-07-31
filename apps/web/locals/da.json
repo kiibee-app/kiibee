@@ -351,7 +351,7 @@
       "payments": {
         "alt": "Smartphone med Apple Pay på en laptop",
         "title": "Payments",
-        "subtitle": ""
+        "subtitle": "Hurtig og sikker betaling."
       },
       "streaming": {
         "alt": "Hånd der holder en telefon med streamingindhold",
@@ -371,7 +371,7 @@
       "customerAccess": {
         "alt": "Laptopskærm med kunde-adgang og downloads",
         "title": "Customer Access",
-        "subtitle": ""
+        "subtitle": "Sikker adgang, når som helst."
       }
     },
     "mainCard": {

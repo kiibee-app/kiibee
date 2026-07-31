@@ -18,6 +18,9 @@ import {
   CardsRow,
   AnimatedCard,
   CardImage,
+  CardContent,
+  CardTitle,
+  CardSubtitle,
 } from "./styles";
 import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
@@ -102,6 +105,12 @@ export default function CreatorsSection() {
                   alt={card.alt}
                   draggable={false}
                 />
+                <CardContent $visible={heightState !== 1}>
+                  <CardTitle>{card.title}</CardTitle>
+                  {card.subtitle && (
+                    <CardSubtitle>{card.subtitle}</CardSubtitle>
+                  )}
+                </CardContent>
               </AnimatedCard>
             );
           })}
