@@ -341,11 +341,39 @@
     },
     "trendingContent": "Trending content",
     "heading": {
+      "title": "From Content to Revenue – Kiibee helps you every step of the way",
       "lineOne": "Upload.",
       "lineTwo": "Market.",
       "lineThree": "Earn."
     },
     "cta": "Join kiibee today",
+    "heroCards": {
+      "payments": {
+        "alt": "Smartphone showing Apple Pay on a laptop",
+        "title": "Payments",
+        "subtitle": ""
+      },
+      "streaming": {
+        "alt": "Hand holding a phone with streaming content",
+        "title": "Streaming",
+        "subtitle": "Deliver content instantly."
+      },
+      "distribution": {
+        "alt": "Friends smiling together around a phone",
+        "title": "Distribution",
+        "subtitle": "Reach more people."
+      },
+      "marketing": {
+        "alt": "Hands with a notebook and laptop for marketing work",
+        "title": "Marketing",
+        "subtitle": "Get discovered faster."
+      },
+      "customerAccess": {
+        "alt": "Laptop screen showing customer access and downloads",
+        "title": "Customer Access",
+        "subtitle": ""
+      }
+    },
     "mainCard": {
       "alt": "Man recording podcast",
       "title": "Built-in Features",

@@ -341,11 +341,39 @@
     },
     "trendingContent": "Populært indhold",
     "heading": {
+      "title": "Fra indhold til omsætning – Kiibee hjælper dig hele vejen.",
       "lineOne": "Upload.",
       "lineTwo": "Market.",
       "lineThree": "Earn."
     },
     "cta": "Tilmeld Kiibee i dag",
+    "heroCards": {
+      "payments": {
+        "alt": "Smartphone med Apple Pay på en laptop",
+        "title": "Payments",
+        "subtitle": ""
+      },
+      "streaming": {
+        "alt": "Hånd der holder en telefon med streamingindhold",
+        "title": "Streaming",
+        "subtitle": "Lever indhold med det samme."
+      },
+      "distribution": {
+        "alt": "Venner der smiler sammen omkring en telefon",
+        "title": "Distribution",
+        "subtitle": "Nå flere mennesker."
+      },
+      "marketing": {
+        "alt": "Hænder med notesbog og laptop til marketing",
+        "title": "Marketing",
+        "subtitle": "Bliv opdaget hurtigere."
+      },
+      "customerAccess": {
+        "alt": "Laptopskærm med kunde-adgang og downloads",
+        "title": "Customer Access",
+        "subtitle": ""
+      }
+    },
     "mainCard": {
       "alt": "Mand optager podcast",
       "title": "Indbyggede funktioner",

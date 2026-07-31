@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { DEFAULT_ACTIVE_CREATOR_CARD_INDEX } from "@/utils/creatorCardData";
 
 export interface UseCreatorCardsReturn {
   activeCardIndex: number;
@@ -11,7 +12,9 @@ export interface UseCreatorCardsReturn {
 }
 
 export const useCreatorCards = (isMobile: boolean): UseCreatorCardsReturn => {
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [activeCardIndex, setActiveCardIndex] = useState(
+    DEFAULT_ACTIVE_CREATOR_CARD_INDEX,
+  );
 
   const handleMouseEnter = useCallback(
     (index: number) => {
@@ -23,7 +26,7 @@ export const useCreatorCards = (isMobile: boolean): UseCreatorCardsReturn => {
   );
 
   const handleMouseLeave = useCallback(() => {
-    setActiveCardIndex(0);
+    setActiveCardIndex(DEFAULT_ACTIVE_CREATOR_CARD_INDEX);
   }, []);
 
   const handleCardClick = useCallback((index: number) => {

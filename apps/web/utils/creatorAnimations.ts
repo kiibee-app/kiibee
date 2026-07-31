@@ -1,72 +1,36 @@
-export interface CardDimensions {
-  activeWidth: string | number;
-  inactiveWidth: string | number;
-  activePadding: [number, number, number, number];
-  inactivePadding: [number, number, number, number];
+export type CardHeightState = 1 | 2 | 3;
+
+export interface CardHeightDimensions {
+  state1: number;
+  state2: number;
+  state3: number;
+  width: number;
 }
 
-export interface SpringTransition {
-  type: "spring";
-  stiffness: number;
-  damping: number;
-  mass: number;
-}
+export const getCardHeightDimensions = (
+  isMobile: boolean,
+): CardHeightDimensions =>
+  isMobile
+    ? { state1: 185, state2: 215, state3: 250, width: 148 }
+    : { state1: 250, state2: 290, state3: 340, width: 230 };
 
-export const getCardDimensions = (isMobile: boolean): CardDimensions => ({
-  activeWidth: isMobile ? "56vw" : 498,
-  inactiveWidth: isMobile ? "18vw" : 154,
-  activePadding: isMobile ? [20, 16, 18, 14] : [34, 54, 26, 20],
-  inactivePadding: isMobile ? [18, 0, 18, 0] : [26, 0, 26, 0],
-});
-
-export const springTransition: SpringTransition = {
-  type: "spring",
-  stiffness: 220,
-  damping: 28,
-  mass: 0.7,
+export const getCardHeightState = (
+  index: number,
+  activeIndex: number,
+): CardHeightState => {
+  if (index === activeIndex) return 3;
+  if (Math.abs(index - activeIndex) === 1) return 2;
+  return 1;
 };
 
-export const createCardTransition = (): {
-  width: SpringTransition;
-  paddingTop: SpringTransition;
-  paddingRight: SpringTransition;
-  paddingLeft: SpringTransition;
-  paddingBottom: SpringTransition;
-} => ({
-  width: springTransition,
-  paddingTop: springTransition,
-  paddingRight: springTransition,
-  paddingLeft: springTransition,
-  paddingBottom: springTransition,
-});
-
-export interface CardAnimation {
-  width: string | number;
-  paddingTop: number;
-  paddingRight: number;
-  paddingBottom: number;
-  paddingLeft: number;
-  [key: `--${string}`]: string | number;
-}
-
-export const getCardAnimation = (
-  isActive: boolean,
-  dimensions: CardDimensions,
-): CardAnimation => ({
-  width: isActive ? dimensions.activeWidth : dimensions.inactiveWidth,
-  paddingTop: isActive
-    ? dimensions.activePadding[0]
-    : dimensions.inactivePadding[0],
-  paddingRight: isActive
-    ? dimensions.activePadding[1]
-    : dimensions.inactivePadding[1],
-  paddingBottom: isActive
-    ? dimensions.activePadding[2]
-    : dimensions.inactivePadding[2],
-  paddingLeft: isActive
-    ? dimensions.activePadding[3]
-    : dimensions.inactivePadding[3],
-});
+export const getCardHeight = (
+  state: CardHeightState,
+  dimensions: CardHeightDimensions,
+): number => {
+  if (state === 3) return dimensions.state3;
+  if (state === 2) return dimensions.state2;
+  return dimensions.state1;
+};
 
 export const HERO_MOTION = {
   textDuration: 0.9,
@@ -74,9 +38,9 @@ export const HERO_MOTION = {
   ctaDuration: 0.72,
   cardEntranceDuration: 1.08,
   cardEntranceStagger: 0.11,
-  cardResizeDuration: 0.82,
+  cardResizeDuration: 0.45,
   hoverDuration: 0.42,
-  hoverLift: -8,
+  hoverLift: 0,
   blurFrom: "blur(12px)",
   blurTo: "blur(0px)",
   easeBackOut: "back.out(1.35)",
