@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import {
   Section,
   Background,
+  BackgroundVideo,
+  BackgroundOverlay,
   Inner,
   Content,
   Title,
@@ -21,6 +23,7 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function CtaSection({
   bgImage,
+  bgVideo,
   title,
   subtitle,
   subtitleLines,
@@ -34,12 +37,27 @@ export default function CtaSection({
 
   return (
     <Section ref={sectionRef} $aspect={background?.aspect}>
-      {background && (
-        <Background
-          $src={background.src}
-          role="img"
-          aria-label={t("ctaSection.bgAlt")}
-        />
+      {bgVideo ? (
+        <>
+          <BackgroundVideo
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={t("ctaSection.bgAlt")}
+          >
+            <source src={bgVideo} type="video/mp4" />
+          </BackgroundVideo>
+          <BackgroundOverlay />
+        </>
+      ) : (
+        background && (
+          <Background
+            $src={background.src}
+            role="img"
+            aria-label={t("ctaSection.bgAlt")}
+          />
+        )
       )}
 
       <Inner>

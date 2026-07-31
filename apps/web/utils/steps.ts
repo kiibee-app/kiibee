@@ -1,10 +1,9 @@
-import imgRequestAccess from "@/assets/images/request-access.webp";
-import imgGetApproved from "@/assets/images/get-approved-choose-a-plan.webp";
-import imgDashboardOverview from "@/assets/images/dashboard-overview.webp";
-import imgContentCollections from "@/assets/images/content-collections.webp";
-import imgUsersSales from "@/assets/images/users-and-sales.webp";
-import imgSettingsPayouts from "@/assets/images/settings-and-payouts.webp";
-import imgProfile from "@/assets/images/profile.webp";
+import imgGetDiscovered from "@/assets/images/steps/get-discovered.webp";
+import imgFrictionlessPayments from "@/assets/images/steps/frictionless-payments.webp";
+import imgSellFromOwnWebsite from "@/assets/images/steps/sell-from-your-own-website.webp";
+import imgPromotionsDiscountCodes from "@/assets/images/steps/promotions-discount-codes.webp";
+import imgDataThatDrivesGrowth from "@/assets/images/steps/data-that-drives-growth.webp";
+import imgFocusOnCreating from "@/assets/images/steps/focus-on-creating.webp";
 import step1 from "../assets/images/steps/step1.webp";
 import step2 from "../assets/images/steps/step2.webp";
 import step3 from "../assets/images/steps/step3.webp";
@@ -17,50 +16,44 @@ import {
 export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
   {
     id: 1,
-    titleKey: "creators.howToGetStarted.steps.requestAccess.title",
-    descriptionKey: "creators.howToGetStarted.steps.requestAccess.description",
-    image: imgRequestAccess,
+    titleKey: "creators.howToGetStarted.steps.getDiscovered.title",
+    descriptionKey: "creators.howToGetStarted.steps.getDiscovered.description",
+    image: imgGetDiscovered,
   },
   {
     id: 2,
-    titleKey: "creators.howToGetStarted.steps.getApproved.title",
-    descriptionKey: "creators.howToGetStarted.steps.getApproved.description",
-    image: imgGetApproved,
+    titleKey: "creators.howToGetStarted.steps.frictionlessPayments.title",
+    descriptionKey:
+      "creators.howToGetStarted.steps.frictionlessPayments.description",
+    image: imgFrictionlessPayments,
   },
   {
     id: 3,
-    titleKey: "creators.howToGetStarted.steps.dashboard.title",
-    descriptionKey: "creators.howToGetStarted.steps.dashboard.description",
-    image: imgDashboardOverview,
+    titleKey: "creators.howToGetStarted.steps.sellFromOwnWebsite.title",
+    descriptionKey:
+      "creators.howToGetStarted.steps.sellFromOwnWebsite.description",
+    image: imgSellFromOwnWebsite,
   },
   {
     id: 4,
-    titleKey: "creators.howToGetStarted.steps.contentCollections.title",
+    titleKey: "creators.howToGetStarted.steps.promotionsDiscountCodes.title",
     descriptionKey:
-      "creators.howToGetStarted.steps.contentCollections.description",
-    listKey: "creators.howToGetStarted.steps.contentCollections.list",
-    image: imgContentCollections,
+      "creators.howToGetStarted.steps.promotionsDiscountCodes.description",
+    image: imgPromotionsDiscountCodes,
   },
   {
     id: 5,
-    titleKey: "creators.howToGetStarted.steps.usersSales.title",
-    descriptionKey: "creators.howToGetStarted.steps.usersSales.description",
-    listKey: "creators.howToGetStarted.steps.usersSales.list",
-    image: imgUsersSales,
+    titleKey: "creators.howToGetStarted.steps.dataThatDrivesGrowth.title",
+    descriptionKey:
+      "creators.howToGetStarted.steps.dataThatDrivesGrowth.description",
+    image: imgDataThatDrivesGrowth,
   },
   {
     id: 6,
-    titleKey: "creators.howToGetStarted.steps.settingsPayouts.title",
+    titleKey: "creators.howToGetStarted.steps.focusOnCreating.title",
     descriptionKey:
-      "creators.howToGetStarted.steps.settingsPayouts.description",
-    image: imgSettingsPayouts,
-  },
-  {
-    id: 7,
-    titleKey: "creators.howToGetStarted.steps.profileSettings.title",
-    descriptionKey:
-      "creators.howToGetStarted.steps.profileSettings.description",
-    image: imgProfile,
+      "creators.howToGetStarted.steps.focusOnCreating.description",
+    image: imgFocusOnCreating,
   },
 ];
 

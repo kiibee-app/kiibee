@@ -419,6 +419,11 @@
       "tutorial": "Tutorial videos",
       "guide": "User guide"
     },
+    "value": {
+      "title": "More visibility. More opportunities. More time to create.",
+      "subtitle": "Kiibee provides the tools you need to sell digital content professionally, while helping your content reach a wider audience through marketing, promotion and distribution.",
+      "cta": "Join kiibee today"
+    },
     "whyChoose": {
       "heading": "Why creators choose Kiibee",
       "leftItems": [
@@ -442,47 +447,32 @@
       ]
     },
     "howToGetStarted": {
-      "title": "How to get started as a creator",
+      "title": "How Kiibee helps you sell more",
+      "subtitle": "More than a platform. A partner in growing your business.",
       "steps": {
-        "requestAccess": {
-          "title": "1. Request access",
-          "description": "Sign up as a creator and request access to join Kiibee."
+        "getDiscovered": {
+          "title": "Get discovered",
+          "description": "Your content can be featured across the Kiibee platform, newsletters, social media, and curated campaigns—helping more people find your work."
         },
-        "getApproved": {
-          "title": "2. Get approved & choose a plan",
-          "description": "Once approved, you select the plan that fits your needs."
+        "frictionlessPayments": {
+          "title": "Frictionless payments",
+          "description": "Make buying effortless with MobilePay, Apple Pay, Google Pay, and major credit and debit cards."
         },
-        "dashboard": {
-          "title": "3. Dashboard overview",
-          "description": "Get a full overview of your content performance and sales."
+        "sellFromOwnWebsite": {
+          "title": "Sell from your own website",
+          "description": "Keep your audience on your own website while Kiibee securely handles payments, access, and content delivery."
         },
-        "contentCollections": {
-          "title": "4. Content & collections",
-          "description": "Under Content, you can:",
-          "list": [
-            "Create collections",
-            "Upload content",
-            "Personalize your creator profile",
-            "Choose how content is accessed (free, paid, code-based)",
-            "Create discount or access codes"
-          ]
+        "promotionsDiscountCodes": {
+          "title": "Promotions & Discount Codes",
+          "description": "Launch discount codes, limited-time offers, campaigns, and product releases to engage your audience and increase sales."
         },
-        "usersSales": {
-          "title": "5. Users & sales",
-          "description": "Under Users, you can:",
-          "list": [
-            "See users subscribed to emails",
-            "See users who have purchased content",
-            "Get a clear sales overview"
-          ]
+        "dataThatDrivesGrowth": {
+          "title": "Data that drives growth",
+          "description": "Understand your audience with insights into sales, customer behaviour, top-performing content, and revenue trends."
         },
-        "settingsPayouts": {
-          "title": "6. Settings & payouts",
-          "description": "Under Settings, you can request payouts and manage payment details."
-        },
-        "profileSettings": {
-          "title": "7. Profile settings",
-          "description": "Update your personal and company information directly from your profile."
+        "focusOnCreating": {
+          "title": "Focus on Creating",
+          "description": "Spend more time creating while Kiibee manages payments, streaming, downloads, access control, and platform infrastructure."
         }
       }
     },
