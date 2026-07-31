@@ -7,7 +7,6 @@ import CreatorsSection from "@/components/Feature/ForCreator/CreatorsSection";
 import ShortStory from "../../../components/Feature/ForCreator/ShortStory";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
 import ContentPerform from "@/components/Feature/ForCreator/ContentPerform";
-import MarketingSection from "../../../components/Feature/ForCreator/MarketingSection";
 import GetStarted from "@/components/Feature/HowItWork/GetStarted";
 import { BG_WHITE } from "@/utils/Constants";
 import WhyCreatorsChoose from "@/components/Feature/ForCreator/WhyCreatorsChoose";
@@ -20,7 +19,6 @@ export default function CreatorsPage() {
       <Main>
         <CreatorsSection />
         <ShortStory />
-        <MarketingSection />
         <ContentPerform />
         <HowToGetStarted />
         <WhyCreatorsChoose />
