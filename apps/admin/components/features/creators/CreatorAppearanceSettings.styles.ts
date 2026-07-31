@@ -448,7 +448,7 @@ export const LayoutPreview = styled.div<{ $variant: string; $active: boolean }>`
         margin-left: -17px;
         border-radius: 50%;
         opacity: 0.5;
-        box-shadow: 0 0 0 4px #fff;
+        box-shadow: 0 0 0 4px ${theme.colors.neutral.WHITE};
       }
     `;
   }}
