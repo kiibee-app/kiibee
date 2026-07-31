@@ -45,11 +45,11 @@ export const StickyImageWrapper = styled.div`
   position: sticky;
   top: 8rem;
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 1146 / 710;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 20px ${COLORS.primary.GRAY};
-  background: ${COLORS.primary.WHITE};
+  background: ${COLORS.primary.GREEN_100};
 `;
 
 export const ImageWrapper = styled.div<{ $active: boolean }>`
@@ -86,11 +86,27 @@ export const Title = styled.h1`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-bottom: 3rem;
+  margin-bottom: 0.75rem;
   margin-top: 0;
 
   @media (min-width: ${breakpoints.tablet}) {
   }
+`;
+
+export const Subtitle = styled.p`
+  ${({ theme }) => theme.typography.H5_Medium};
+  color: ${COLORS.gradient.NEAR_BLACK};
+  font-family:
+    "Reddit Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 3rem;
 `;
 
 export const StepsContainer = styled.div`
@@ -103,29 +119,32 @@ export const StepWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   min-height: 0;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 
   &:last-child {
     padding-bottom: 0;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 0;
-    padding-bottom: 7.75rem;
+    min-height: 28rem;
+    justify-content: center;
+    padding-bottom: 12.5rem;
 
     &:last-child {
-      padding-bottom: 40vh;
+      min-height: 0;
+      justify-content: flex-start;
+      padding-bottom: 45vh;
     }
   }
 `;
 
 export const MobileStepImage = styled.div`
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 1146 / 710;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 20px ${COLORS.primary.GRAY};
-  background: ${COLORS.primary.WHITE};
+  background: ${COLORS.primary.GREEN_100};
   margin-bottom: 1.5rem;
   position: relative;
 

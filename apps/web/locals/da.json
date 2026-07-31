@@ -419,6 +419,11 @@
       "tutorial": "Videovejledninger",
       "guide": "Brugervejledning"
     },
+    "value": {
+      "title": "Mere synlighed. Flere muligheder. Mere tid til at skabe.",
+      "subtitle": "Kiibee giver dig de værktøjer, du skal bruge for at sælge digitalt indhold professionelt, samtidig med at dit indhold når et bredere publikum gennem marketing, promovering og distribution.",
+      "cta": "Tilmeld Kiibee i dag"
+    },
     "whyChoose": {
       "heading": "Hvorfor skabere vælger Kiibee",
       "leftItems": [
@@ -442,47 +447,32 @@
       ]
     },
     "howToGetStarted": {
-      "title": "Sådan kommer du i gang som skaber",
+      "title": "Sådan hjælper Kiibee dig med at sælge mere",
+      "subtitle": "Mere end en platform. En partner i at vokse din forretning.",
       "steps": {
-        "requestAccess": {
-          "title": "1. Anmod om adgang",
-          "description": "Tilmeld dig som skaber og anmod om adgang til at deltage i Kiibee."
+        "getDiscovered": {
+          "title": "Bliv opdaget",
+          "description": "Dit indhold kan blive fremhævet på Kiibee-platformen, i nyhedsbreve, på sociale medier og i kuraterede kampagner — så flere finder dit arbejde."
         },
-        "getApproved": {
-          "title": "2. Bliv godkendt og vælg en plan",
-          "description": "Når du er godkendt, vælger du den plan, der passer til dine behov."
+        "frictionlessPayments": {
+          "title": "Ubesværet betaling",
+          "description": "Gør køb nemt med MobilePay, Apple Pay, Google Pay og de fleste kredit- og debetkort."
         },
-        "dashboard": {
-          "title": "3. Dashboard oversigt",
-          "description": "Få et komplet overblik over dit indholds præstation og salg."
+        "sellFromOwnWebsite": {
+          "title": "Sælg fra din egen hjemmeside",
+          "description": "Behold dit publikum på din egen hjemmeside, mens Kiibee sikkert håndterer betalinger, adgang og indholdslevering."
         },
-        "contentCollections": {
-          "title": "4. Indhold og samlinger",
-          "description": "Under Indhold kan du:",
-          "list": [
-            "Oprette samlinger",
-            "Uploade indhold",
-            "Personliggøre din skaberprofil",
-            "Vælge hvordan indhold tilgås (gratis, betalt, kodebaseret)",
-            "Oprette rabat- eller adgangskoder"
-          ]
+        "promotionsDiscountCodes": {
+          "title": "Kampagner & rabatkoder",
+          "description": "Start rabatkoder, tidsbegrænsede tilbud, kampagner og produktlanceringer for at engagere dit publikum og øge salget."
         },
-        "usersSales": {
-          "title": "5. Brugere og salg",
-          "description": "Under Brugere kan du:",
-          "list": [
-            "Se brugere, der er tilmeldt e-mails",
-            "Se brugere, der har købt indhold",
-            "Få et klart salgsoverblik"
-          ]
+        "dataThatDrivesGrowth": {
+          "title": "Data der driver vækst",
+          "description": "Forstå dit publikum med indblik i salg, kundeadfærd, bedst præsterende indhold og omsætningstendenser."
         },
-        "settingsPayouts": {
-          "title": "6. Indstillinger og udbetalinger",
-          "description": "Under Indstillinger kan du anmode om udbetalinger og administrere betalingsoplysninger."
-        },
-        "profileSettings": {
-          "title": "7. Profilindstillinger",
-          "description": "Opdater dine personlige og virksomhedsoplysninger direkte fra din profil."
+        "focusOnCreating": {
+          "title": "Fokusér på at skabe",
+          "description": "Brug mere tid på at skabe, mens Kiibee håndterer betalinger, streaming, downloads, adgangskontrol og platforminfrastruktur."
         }
       }
     },
