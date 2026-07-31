@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, type KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { useIsMobile } from "@/utils/useIsMobile";
@@ -46,6 +46,21 @@ export default function CreatorsSection() {
     cardRefs,
   });
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        handleMouseLeave();
+      }
+    });
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [handleMouseLeave]);
+
   const handleCardKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>, index: number) => {
       if (event.key !== "Enter" && event.key !== " ") return;
@@ -77,7 +92,7 @@ export default function CreatorsSection() {
           )}
         </CopyBlock>
 
-        <CardsRow onMouseLeave={handleMouseLeave}>
+        <CardsRow>
           {cards.map((card, index) => {
             const heightState = getCardHeightState(index, activeCardIndex);
             const isActive = heightState === 3;
