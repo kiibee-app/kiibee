@@ -395,13 +395,14 @@
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "A short story about Kiibee",
-      "lead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
-      "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
+      "lead": "Kiibee was founded in 2017 with one simple mission: to help creators turn great content into a successful business.",
+      "body": "We saw talented creators producing valuable digital content but lacking an easy, professional way to sell it. At the same time, consumers struggled to discover and access quality content without unnecessary barriers.",
+      "closing": "Kiibee was built to solve both challenges—giving creators the tools to sell, grow, and reach more people, while making it easier for audiences to enjoy the content they love.",
       "cta": "Read more about Kiibee"
     },
     "contentPerform": {
       "imageAlt": "Creator dashboard preview",
-      "title": "See how your content performs",
+      "title": "Understand your audience. Grow your business.",
       "intro": "With Kiibee, you get clear insights into how your content is doing.",
       "listIntro": "In your dashboard, you can:",
       "points": [

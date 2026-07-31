@@ -8,47 +8,41 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 0;
   box-sizing: border-box;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  padding: clamp(3.5rem, 7.3vw, 6.5625rem) clamp(1.25rem, 7.7vw, 6.9375rem);
 
   ${media.tablet} {
-    padding: 2.5rem 0;
+    padding: 2.5rem 1.25rem;
   }
 `;
 
-export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
+export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 1440px;
+  max-width: 78.125rem;
   margin: 0 auto;
-  padding: 0 1.5rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
+  gap: 2.5rem;
   flex: 1 0 0;
+  min-width: 0;
 
-  ${media.tablet} {
+  ${media.desktop} {
     flex-direction: column;
-    gap: 2rem;
     align-items: stretch;
-    padding: 0 1rem;
+    gap: 2rem;
   }
 `;
 
 export const ImageSection = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
-  width: min(100%, 37.0625rem);
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
   height: auto;
-  padding: 0.625rem;
-  border-radius: 0.5rem;
-
-  ${media.tablet} {
-    width: 100%;
-    padding: 0;
-  }
+  border-radius: 0.75rem;
 
   > #short-story-image-reveal {
     width: 100%;
@@ -56,36 +50,37 @@ export const ImageSection = styled.div`
 `;
 
 export const StoryImage = styled.img`
-  display: flex;
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 37.0625 / 32.4375;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   object-fit: cover;
 `;
 
 export const TextSection = styled.div`
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.25rem;
 
   > [data-scroll-reveal] {
     width: 100%;
   }
 `;
 
-export const Title = styled.h2<{ $isMobile: boolean }>`
+export const Title = styled.h2`
   margin: 0;
   align-self: stretch;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   font-family: "Reddit Sans", sans-serif;
-  font-size: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
+  font-size: clamp(2rem, 2.2vw, 2.5rem);
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.15;
 `;
 
 export const Paragraph = styled.p`

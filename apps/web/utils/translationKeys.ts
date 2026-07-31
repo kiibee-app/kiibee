@@ -129,6 +129,7 @@ export const CREATORS = {
     title: "creators.shortStory.title",
     lead: "creators.shortStory.lead",
     body: "creators.shortStory.body",
+    closing: "creators.shortStory.closing",
     cta: "creators.shortStory.cta",
   },
   whyChoose: {
