@@ -1,28 +1,26 @@
 "use client";
 
-import { useCallback, useRef, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useRef, type KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { getCreatorCards } from "@/utils/creatorCardData";
 import { useCreatorCards } from "@/utils/useCreatorCards";
+import { getCardHeightState } from "@/utils/creatorAnimations";
 import { useCreatorsGsap } from "./useCreatorsGsap";
 import {
   Section,
   Container,
-  LeftColumn,
   CopyBlock,
   Heading,
   HeadingLine,
   CTAButton,
-  RightColumn,
+  CardsRow,
   AnimatedCard,
-  MainGradientOverlay,
-  NarrowGradientOverlay,
-  MainCardTextContainer,
-  MainCardTitle,
-  MainCardSubtitle,
-  NarrowCardText,
+  CardImage,
+  CardContent,
+  CardTitle,
+  CardSubtitle,
 } from "./styles";
 import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
@@ -43,25 +41,25 @@ export default function CreatorsSection() {
     handleCardClick,
   } = useCreatorCards(isMobile);
 
-  const { animateCardLift } = useCreatorsGsap({
+  useCreatorsGsap({
     sectionRef,
     cardRefs,
-    activeCardIndex,
-    isMobile,
   });
 
-  const handleCardMouseEnter = useCallback(
-    (index: number) => {
-      handleMouseEnter(index);
-      animateCardLift(index);
-    },
-    [animateCardLift, handleMouseEnter],
-  );
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-  const handleCardsMouseLeave = useCallback(() => {
-    handleMouseLeave();
-    animateCardLift(null);
-  }, [animateCardLift, handleMouseLeave]);
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        handleMouseLeave();
+      }
+    });
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [handleMouseLeave]);
 
   const handleCardKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>, index: number) => {
@@ -76,35 +74,28 @@ export default function CreatorsSection() {
   return (
     <Section ref={sectionRef}>
       <Container>
-        <LeftColumn>
-          <CopyBlock>
-            <Heading>
-              <HeadingLine data-creator-hero-line>
-                {t(CREATORS.heading.lineOne)}
-              </HeadingLine>
-              <HeadingLine data-creator-hero-line>
-                {t(CREATORS.heading.lineTwo)}
-              </HeadingLine>
-              <HeadingLine data-creator-hero-line>
-                {t(CREATORS.heading.lineThree)}
-              </HeadingLine>
-            </Heading>
-            {!isLoggedIn && (
-              <CTAButton
-                asAnchor
-                href={PATHS.AUTH_SIGNUP}
-                data-creator-hero-animate
-                data-creator-hero-cta
-              >
-                {t(CREATORS.cta)}
-              </CTAButton>
-            )}
-          </CopyBlock>
-        </LeftColumn>
+        <CopyBlock>
+          <Heading>
+            <HeadingLine data-creator-hero-line>
+              {t(CREATORS.heading.title)}
+            </HeadingLine>
+          </Heading>
+          {!isLoggedIn && (
+            <CTAButton
+              asAnchor
+              href={PATHS.AUTH_SIGNUP}
+              data-creator-hero-animate
+              data-creator-hero-cta
+            >
+              {t(CREATORS.cta)}
+            </CTAButton>
+          )}
+        </CopyBlock>
 
-        <RightColumn onMouseLeave={handleCardsMouseLeave}>
+        <CardsRow>
           {cards.map((card, index) => {
-            const isActive = activeCardIndex === index;
+            const heightState = getCardHeightState(index, activeCardIndex);
+            const isActive = heightState === 3;
 
             return (
               <AnimatedCard
@@ -113,35 +104,34 @@ export default function CreatorsSection() {
                   cardRefs.current[index] = node;
                 }}
                 data-creator-card
-                $isActive={isActive}
-                $image={resolveImageUrl(card.image)}
-                $narrowBgPosition={card.narrowBgPosition}
-                $narrowBgSize={card.narrowBgSize}
+                $heightState={heightState}
                 aria-label={card.alt}
                 aria-pressed={isActive}
                 role="button"
                 tabIndex={0}
                 onFocus={() => handleCardClick(index)}
                 onKeyDown={(event) => handleCardKeyDown(event, index)}
-                onMouseEnter={() => handleCardMouseEnter(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
                 onClick={() => handleCardClick(index)}
                 onTouchStart={() => handleCardClick(index)}
               >
-                <MainGradientOverlay $visible={isActive} />
-                <NarrowGradientOverlay $visible={!isActive} />
-                <MainCardTextContainer $visible={isActive}>
-                  <MainCardTitle>{card.title}</MainCardTitle>
-                  {card.subtitle ? (
-                    <MainCardSubtitle>{card.subtitle}</MainCardSubtitle>
-                  ) : null}
-                </MainCardTextContainer>
-                <NarrowCardText $visible={!isActive}>
-                  {card.title}
-                </NarrowCardText>
+                <CardImage
+                  src={resolveImageUrl(card.image)}
+                  alt={card.alt}
+                  draggable={false}
+                />
+                <CardContent>
+                  <CardTitle>{card.title}</CardTitle>
+                  {card.subtitle && (
+                    <CardSubtitle $visible={heightState !== 1}>
+                      {card.subtitle}
+                    </CardSubtitle>
+                  )}
+                </CardContent>
               </AnimatedCard>
             );
           })}
-        </RightColumn>
+        </CardsRow>
       </Container>
     </Section>
   );

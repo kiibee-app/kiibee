@@ -33,22 +33,6 @@ export default function ContentPerform() {
   return (
     <Section>
       <ContentWrapper>
-        <ImageColumn>
-          <ImageReveal
-            id="cp-image-reveal"
-            variant={LANDING_REVEAL_VARIANTS.slideUp}
-            duration={LANDING_REVEAL.longRevealDuration}
-            style={DASHBOARD_REVEAL_STYLE}
-          >
-            <ImageFrame>
-              <DashboardImage
-                src={creatorDashboardImage.src}
-                alt={t("creators.contentPerform.imageAlt")}
-              />
-            </ImageFrame>
-          </ImageReveal>
-        </ImageColumn>
-
         <TextColumn>
           <ScrollReveal>
             <Title as="h2">{t("creators.contentPerform.title")}</Title>
@@ -83,6 +67,22 @@ export default function ContentPerform() {
             <Outro as="p">{t("creators.contentPerform.outro")}</Outro>
           </ScrollReveal>
         </TextColumn>
+
+        <ImageColumn>
+          <ImageReveal
+            id="cp-image-reveal"
+            variant={LANDING_REVEAL_VARIANTS.slideUp}
+            duration={LANDING_REVEAL.longRevealDuration}
+            style={DASHBOARD_REVEAL_STYLE}
+          >
+            <ImageFrame>
+              <DashboardImage
+                src={creatorDashboardImage.src}
+                alt={t("creators.contentPerform.imageAlt")}
+              />
+            </ImageFrame>
+          </ImageReveal>
+        </ImageColumn>
       </ContentWrapper>
     </Section>
   );

@@ -52,6 +52,28 @@ export const Background = styled.div<{ $src: string }>`
   }
 `;
 
+export const BackgroundVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+export const BackgroundOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  pointer-events: none;
+`;
+
 export const Inner = styled.div`
   position: relative;
   z-index: 2;

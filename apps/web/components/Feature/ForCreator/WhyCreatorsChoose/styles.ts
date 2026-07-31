@@ -17,19 +17,19 @@ export const SectionInner = styled.div`
   position: relative;
   width: 100%;
   max-width: 1440px;
-  min-height: 43rem;
+  min-height: 49.375rem;
   overflow: hidden;
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4.5rem 2rem;
+  padding: 5rem clamp(2rem, 7.65vw, 6.875rem);
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 
   ${media.tablet} {
     min-height: auto;
-    padding: 3rem 1rem;
+    padding: 3.5rem 1rem;
     border-radius: 0.5rem;
   }
 `;
@@ -40,37 +40,17 @@ export const BackgroundImage = styled.div<{ $image: string }>`
   background: url(${({ $image }) => $image}) center center / cover no-repeat;
 `;
 
-export const GradientOverlay = styled.div`
-  position: absolute;
-  opacity: 0;
-  background:
-    linear-gradient(
-      180deg,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_START} 0%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_MID} 45%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_END} 100%
-    ),
-    linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 0%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 18%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_FADE} 50%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 82%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 100%
-    );
-`;
-
 export const Content = styled.div`
   position: relative;
   z-index: 1;
-  width: min(100%, 77.5rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 3.75rem;
 
   ${media.tablet} {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 `;
 
@@ -82,43 +62,64 @@ export const Heading = styled.h2`
   line-height: 1.2;
 `;
 
-export const Panel = styled.div`
+export const FeatureGrid = styled.div`
   width: 100%;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  background: ${({ theme }) => theme.colors.primary.GREEN_50};
-  box-sizing: border-box;
-
-  ${media.tablet} {
-    padding: 1.5rem 1rem;
-  }
-`;
-
-export const Columns = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  ${media.desktopSm} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${media.mobileXl} {
+    grid-template-columns: minmax(0, 1fr);
+  }
+`;
+
+export const FeatureCard = styled.article`
+  height: 12.75rem;
+  padding: 1.875rem;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+
+  ${media.desktop} {
+    height: auto;
+    min-height: 11rem;
+  }
 
   ${media.tablet} {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
+    min-height: 10rem;
+    padding: 1.5rem;
   }
 `;
 
-export const BulletList = styled.ul`
-  margin: 0;
-  padding-left: 1.5rem;
+export const FeatureCardContent = styled.div`
+  width: 100%;
+`;
+
+export const IconSlot = styled.div`
+  height: 2.5rem;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  line-height: 0;
 `;
 
-export const BulletItem = styled.li`
-  color: ${({ theme }) => theme.colors.primary.GREEN_100};
-  ${({ theme }) => theme.typography.Body_Regular};
-  line-height: 1.6;
+export const FeatureTitle = styled.h3`
+  margin: 0.875rem 0 0;
+  color: inherit;
+  ${({ theme }) => theme.typography.H4_Medium};
+  line-height: 1.2;
+`;
 
-  &::marker {
-    color: ${({ theme }) => theme.colors.primary.GREEN_100};
-  }
+export const FeatureDescription = styled.p`
+  margin: 0.75rem 0 0;
+  color: inherit;
+  ${({ theme }) => theme.typography.Body_Regular};
+  line-height: 1.4;
 `;
