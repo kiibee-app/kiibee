@@ -14,6 +14,7 @@ import {
   ImageWrapper,
   ContentContainer,
   Title,
+  Subtitle,
   StepsContainer,
   StepWrapper,
   MobileStepImage,
@@ -78,6 +79,7 @@ export default function HowToGetStarted() {
 
         <ContentContainer>
           <Title>{t(CREATORS.howToGetStarted.title)}</Title>
+          <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
 
           <StepsContainer>
             {creatorOnboardingSteps.map((step, index) => {

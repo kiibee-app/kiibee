@@ -119,6 +119,7 @@ export const CREATORS = {
   subscribersCount: "creators.subscribersCount",
   topCreatorUploads: "creators.topCreatorUploads",
   heading: {
+    title: "creators.heading.title",
     lineOne: "creators.heading.lineOne",
     lineTwo: "creators.heading.lineTwo",
     lineThree: "creators.heading.lineThree",
@@ -129,12 +130,14 @@ export const CREATORS = {
     title: "creators.shortStory.title",
     lead: "creators.shortStory.lead",
     body: "creators.shortStory.body",
+    closing: "creators.shortStory.closing",
     cta: "creators.shortStory.cta",
   },
   whyChoose: {
-    leftItems: "creators.whyChoose.leftItems",
-    rightItems: "creators.whyChoose.rightItems",
     heading: "creators.whyChoose.heading",
+    featureTitle: (key: string) => `creators.whyChoose.features.${key}.title`,
+    featureDescription: (key: string) =>
+      `creators.whyChoose.features.${key}.description`,
   },
   viewProfile: "creators.viewProfile",
   noCreatorsFound: "creators.noCreatorsFound",
@@ -149,6 +152,7 @@ export const CREATORS = {
   popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
+    subtitle: "creators.howToGetStarted.subtitle",
   },
   marketing: {
     title: "creators.marketing.title",

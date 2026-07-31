@@ -7,14 +7,14 @@ import { media } from "@repo/ui/breakpoints";
 export const Section = styled.section`
   width: 100%;
   min-height: 100vh;
-  display: inline-flex;
-  padding: 88px 113px 148px 114px;
+  display: flex;
+  box-sizing: border-box;
+  padding: clamp(3.5rem, 7.3vw, 6.5625rem) clamp(1.25rem, 7.7vw, 6.9375rem);
   justify-content: center;
   align-items: center;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${media.desktop} {
-    display: flex;
     padding: 2.5rem 1.25rem;
     min-height: unset;
   }
@@ -22,7 +22,7 @@ export const Section = styled.section`
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 68.75rem;
+  max-width: 78.125rem;
   display: flex;
   align-items: center;
   gap: 3.75rem;

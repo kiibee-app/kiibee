@@ -341,11 +341,39 @@
     },
     "trendingContent": "Populært indhold",
     "heading": {
+      "title": "Fra indhold til omsætning – Kiibee hjælper dig hele vejen.",
       "lineOne": "Upload.",
       "lineTwo": "Market.",
       "lineThree": "Earn."
     },
     "cta": "Tilmeld Kiibee i dag",
+    "heroCards": {
+      "payments": {
+        "alt": "Smartphone med Apple Pay på en laptop",
+        "title": "Payments",
+        "subtitle": "Hurtig og sikker betaling."
+      },
+      "streaming": {
+        "alt": "Hånd der holder en telefon med streamingindhold",
+        "title": "Streaming",
+        "subtitle": "Lever indhold med det samme."
+      },
+      "distribution": {
+        "alt": "Venner der smiler sammen omkring en telefon",
+        "title": "Distribution",
+        "subtitle": "Nå flere mennesker."
+      },
+      "marketing": {
+        "alt": "Hænder med notesbog og laptop til marketing",
+        "title": "Marketing",
+        "subtitle": "Bliv opdaget hurtigere."
+      },
+      "customerAccess": {
+        "alt": "Laptopskærm med kunde-adgang og downloads",
+        "title": "Customer Access",
+        "subtitle": "Sikker adgang, når som helst."
+      }
+    },
     "mainCard": {
       "alt": "Mand optager podcast",
       "title": "Indbyggede funktioner",
@@ -395,13 +423,14 @@
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "En kort historie om Kiibee",
-      "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
-      "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
+      "lead": "Kiibee blev grundlagt i 2017 med én simpel mission: at hjælpe skabere med at gøre godt indhold til en succesfuld forretning.",
+      "body": "Vi så talentfulde skabere producere værdifuldt digitalt indhold, men mangle en nem, professionel måde at sælge det på. Samtidig havde forbrugere svært ved at opdage og få adgang til kvalitetsindhold uden unødvendige barrierer.",
+      "closing": "Kiibee blev bygget til at løse begge udfordringer — give skabere værktøjerne til at sælge, vokse og nå flere, mens det bliver nemmere for publikum at nyde det indhold, de elsker.",
       "cta": "Læs mere om Kiibee"
     },
     "contentPerform": {
       "imageAlt": "Forhåndsvisning af creator-dashboard",
-      "title": "Se, hvordan dit indhold klarer sig",
+      "title": "Forstå dit publikum. Voks din forretning.",
       "intro": "Med Kiibee får du klare indsigter i, hvordan dit indhold klarer sig.",
       "listIntro": "I dit dashboard kan du:",
       "points": [
@@ -418,70 +447,67 @@
       "tutorial": "Videovejledninger",
       "guide": "Brugervejledning"
     },
+    "value": {
+      "title": "Mere synlighed. Flere muligheder. Mere tid til at skabe.",
+      "subtitle": "Kiibee giver dig de værktøjer, du skal bruge for at sælge digitalt indhold professionelt, samtidig med at dit indhold når et bredere publikum gennem marketing, promovering og distribution.",
+      "cta": "Tilmeld Kiibee i dag"
+    },
     "whyChoose": {
       "heading": "Hvorfor skabere vælger Kiibee",
-      "leftItems": [
-        "Få din egen digitale indholds-hjemmeside med få klik",
-        "Saml indhold fra flere platforme (YouTube, Vimeo, Dropbox osv.) på ét sted",
-        "Sælg indhold eller tilbyd det gratis",
-        "Beskyt indhold med adgangskoder eller e-mailtilmeldinger",
-        "Brug dit eget betalingsmodul (Dankort, kreditkort, MobilePay)",
-        "Tilbyd indhold som downloads eller online streaming",
-        "Opret online programmer og digitale kurser",
-        "Tag betaling for livestreaming-begivenheder"
-      ],
-      "rightItems": [
-        "Se statistik over visninger og salg",
-        "Vis indhold på alle enheder — mobil, tablet og desktop",
-        "Sælg flere formater (video, PDF, Epub, MP3, lyd)",
-        "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
-        "Få skræddersyede løsninger baseret på dine behov",
-        "Sælg og vis dit indhold hvor som helst på nettet",
-        "Opret din egen kanal eller side med kuraterede samlinger"
-      ]
+      "features": {
+        "website": {
+          "title": "Dit website, dit brand",
+          "description": "Sælg direkte fra dit eget website."
+        },
+        "payments": {
+          "title": "Nemme betalinger",
+          "description": "Hurtig og sikker betaling med pålidelige betalingsmetoder."
+        },
+        "insights": {
+          "title": "Forretningsindsigt",
+          "description": "Følg salg og forstå dit publikum."
+        },
+        "marketing": {
+          "title": "Marketing og promovering",
+          "description": "Nå ud til flere kunder gennem Kiibee."
+        },
+        "streaming": {
+          "title": "Streaming og downloads",
+          "description": "Levér indhold nemt og pålideligt."
+        },
+        "security": {
+          "title": "Sikker og GDPR-kompatibel",
+          "description": "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt."
+        }
+      }
     },
     "howToGetStarted": {
-      "title": "Sådan kommer du i gang som skaber",
+      "title": "Sådan hjælper Kiibee dig med at sælge mere",
+      "subtitle": "Mere end en platform. En partner i at vokse din forretning.",
       "steps": {
-        "requestAccess": {
-          "title": "1. Anmod om adgang",
-          "description": "Tilmeld dig som skaber og anmod om adgang til at deltage i Kiibee."
+        "getDiscovered": {
+          "title": "Bliv opdaget",
+          "description": "Dit indhold kan blive fremhævet på Kiibee-platformen, i nyhedsbreve, på sociale medier og i kuraterede kampagner — så flere finder dit arbejde."
         },
-        "getApproved": {
-          "title": "2. Bliv godkendt og vælg en plan",
-          "description": "Når du er godkendt, vælger du den plan, der passer til dine behov."
+        "frictionlessPayments": {
+          "title": "Ubesværet betaling",
+          "description": "Gør køb nemt med MobilePay, Apple Pay, Google Pay og de fleste kredit- og debetkort."
         },
-        "dashboard": {
-          "title": "3. Dashboard oversigt",
-          "description": "Få et komplet overblik over dit indholds præstation og salg."
+        "sellFromOwnWebsite": {
+          "title": "Sælg fra din egen hjemmeside",
+          "description": "Behold dit publikum på din egen hjemmeside, mens Kiibee sikkert håndterer betalinger, adgang og indholdslevering."
         },
-        "contentCollections": {
-          "title": "4. Indhold og samlinger",
-          "description": "Under Indhold kan du:",
-          "list": [
-            "Oprette samlinger",
-            "Uploade indhold",
-            "Personliggøre din skaberprofil",
-            "Vælge hvordan indhold tilgås (gratis, betalt, kodebaseret)",
-            "Oprette rabat- eller adgangskoder"
-          ]
+        "promotionsDiscountCodes": {
+          "title": "Kampagner & rabatkoder",
+          "description": "Start rabatkoder, tidsbegrænsede tilbud, kampagner og produktlanceringer for at engagere dit publikum og øge salget."
         },
-        "usersSales": {
-          "title": "5. Brugere og salg",
-          "description": "Under Brugere kan du:",
-          "list": [
-            "Se brugere, der er tilmeldt e-mails",
-            "Se brugere, der har købt indhold",
-            "Få et klart salgsoverblik"
-          ]
+        "dataThatDrivesGrowth": {
+          "title": "Data der driver vækst",
+          "description": "Forstå dit publikum med indblik i salg, kundeadfærd, bedst præsterende indhold og omsætningstendenser."
         },
-        "settingsPayouts": {
-          "title": "6. Indstillinger og udbetalinger",
-          "description": "Under Indstillinger kan du anmode om udbetalinger og administrere betalingsoplysninger."
-        },
-        "profileSettings": {
-          "title": "7. Profilindstillinger",
-          "description": "Opdater dine personlige og virksomhedsoplysninger direkte fra din profil."
+        "focusOnCreating": {
+          "title": "Fokusér på at skabe",
+          "description": "Brug mere tid på at skabe, mens Kiibee håndterer betalinger, streaming, downloads, adgangskontrol og platforminfrastruktur."
         }
       }
     },

@@ -13,8 +13,7 @@ import {
   Title,
   Paragraph,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
-import { useIsMobile } from "@/utils/useIsMobile";
+import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
@@ -24,11 +23,10 @@ import GenericButton from "@/components/UI/GenericButton";
 
 export default function ShortStory() {
   const { t } = useTranslation();
-  const isMobile = useIsMobile(MOBILE_BREAKPOINT);
 
   return (
     <Section>
-      <ContentWrapper $isMobile={isMobile}>
+      <ContentWrapper>
         <ImageSection>
           <ImageReveal
             id="short-story-image-reveal"
@@ -44,7 +42,7 @@ export default function ShortStory() {
 
         <TextSection>
           <ScrollReveal>
-            <Title $isMobile={isMobile}>{t(CREATORS.shortStory.title)}</Title>
+            <Title>{t(CREATORS.shortStory.title)}</Title>
           </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
@@ -53,8 +51,11 @@ export default function ShortStory() {
           <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
             <Paragraph>{t(CREATORS.shortStory.body)}</Paragraph>
           </ScrollReveal>
-
           <ScrollReveal delay={LANDING_REVEAL.shortDelay * 3}>
+            <Paragraph>{t(CREATORS.shortStory.closing)}</Paragraph>
+          </ScrollReveal>
+
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay * 4}>
             <CTAWrap>
               <GenericButton
                 asAnchor
