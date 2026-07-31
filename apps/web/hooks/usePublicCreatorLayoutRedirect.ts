@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
@@ -11,6 +11,7 @@ import {
   CREATOR_ID_PARAM,
   isCreatorLayoutKey,
   layoutParamFromKey,
+  readSavedCreatorLayout,
   writeSavedCreatorLayout,
 } from "@/utils/creatorChannel";
 
@@ -40,12 +41,6 @@ export function usePublicCreatorLayoutRedirect(
     : appearanceQuery.data?.data?.layout;
   const isLoading = isPublicView ? isLoadingPublic : appearanceQuery.isLoading;
 
-  useEffect(() => {
-    if (!isPublicView && activeLayout && isCreatorLayoutKey(activeLayout)) {
-      writeSavedCreatorLayout(activeLayout);
-    }
-  }, [isPublicView, activeLayout]);
-
   const isLayoutPending =
     isLoading ||
     Boolean(
@@ -58,6 +53,10 @@ export function usePublicCreatorLayoutRedirect(
     if (isLoading || !activeLayout) return;
     if (!isCreatorLayoutKey(activeLayout)) return;
 
+    if (!isPublicView && readSavedCreatorLayout() !== activeLayout) {
+      writeSavedCreatorLayout(activeLayout);
+    }
+
     const expectedLayout = layoutParamFromKey(activeLayout);
     if (expectedLayout === currentLayout) return;
 
@@ -68,7 +67,15 @@ export function usePublicCreatorLayoutRedirect(
     const query = searchParams.toString();
 
     router.replace(query ? `${nextPath}?${query}` : nextPath);
-  }, [activeLayout, currentLayout, isLoading, pathname, router, searchParams]);
+  }, [
+    activeLayout,
+    currentLayout,
+    isLoading,
+    isPublicView,
+    pathname,
+    router,
+    searchParams,
+  ]);
 
   return isLayoutPending;
 }

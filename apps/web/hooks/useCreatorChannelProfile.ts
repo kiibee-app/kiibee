@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   mapCreatorProfileToForm,
@@ -26,11 +26,7 @@ import {
   type CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
-import {
-  CREATOR_ID_PARAM,
-  isCreatorLayoutKey,
-  writeSavedCreatorLayout,
-} from "@/utils/creatorChannel";
+import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 
 export function useCreatorChannelProfile(enabled = true) {
@@ -62,18 +58,6 @@ export function useCreatorChannelProfile(enabled = true) {
       refetchOnWindowFocus: false,
     },
   );
-
-  const appearanceLayout = appearanceQuery.data?.data?.layout;
-
-  useEffect(() => {
-    if (
-      (!isPublicView || isOwnerOfPublicView) &&
-      appearanceLayout &&
-      isCreatorLayoutKey(appearanceLayout)
-    ) {
-      writeSavedCreatorLayout(appearanceLayout);
-    }
-  }, [isPublicView, isOwnerOfPublicView, appearanceLayout]);
 
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,

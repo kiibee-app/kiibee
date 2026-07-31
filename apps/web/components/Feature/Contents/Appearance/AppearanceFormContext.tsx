@@ -1,12 +1,6 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-} from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -18,10 +12,7 @@ import {
   mapAppearanceToApi,
 } from "@/utils/appearanceApi";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
-import {
-  isCreatorLayoutKey,
-  writeSavedCreatorLayout,
-} from "@/utils/creatorChannel";
+import { writeSavedCreatorLayout } from "@/utils/creatorChannel";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import type { AppearanceFormContextValue } from "./appearanceFormTypes";
 import { useAppearanceDraft } from "./useAppearanceDraft";
@@ -56,15 +47,6 @@ export function AppearanceFormProvider({
     }
     return mapped;
   }, [appearanceResponse, profileResponse]);
-
-  useEffect(() => {
-    if (
-      appearanceResponse?.data?.layout &&
-      isCreatorLayoutKey(appearanceResponse.data.layout)
-    ) {
-      writeSavedCreatorLayout(appearanceResponse.data.layout);
-    }
-  }, [appearanceResponse?.data?.layout]);
   const {
     errors,
     clearFieldError,
