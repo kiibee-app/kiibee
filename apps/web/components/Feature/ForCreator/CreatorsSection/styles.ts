@@ -134,8 +134,8 @@ export const Card = styled.div<CardProps>`
     z-index: 0;
     background: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 100%
+      ${({ theme }) => theme.colors.primary.BLACK_20} 0%,
+      ${({ theme }) => theme.colors.primary.BLACK_20} 100%
     );
     pointer-events: none;
   }
