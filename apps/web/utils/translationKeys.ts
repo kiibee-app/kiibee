@@ -133,9 +133,10 @@ export const CREATORS = {
     cta: "creators.shortStory.cta",
   },
   whyChoose: {
-    leftItems: "creators.whyChoose.leftItems",
-    rightItems: "creators.whyChoose.rightItems",
     heading: "creators.whyChoose.heading",
+    featureTitle: (key: string) => `creators.whyChoose.features.${key}.title`,
+    featureDescription: (key: string) =>
+      `creators.whyChoose.features.${key}.description`,
   },
   viewProfile: "creators.viewProfile",
   noCreatorsFound: "creators.noCreatorsFound",

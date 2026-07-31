@@ -1,64 +1,80 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import {
+  BusinessInsightsIcon,
+  CardIcon,
+  GuardIcon,
+  MarketingIcon,
+  StreamingIcon,
+  WebIcon,
+} from "@/assets/icons";
 import { CREATORS } from "@/utils/translationKeys";
 import creatorChooseImage from "@/assets/images/creators/creator_choose.webp";
 import {
   Section,
   SectionInner,
   BackgroundImage,
-  GradientOverlay,
   Content,
   Heading,
-  Panel,
-  Columns,
-  BulletList,
-  BulletItem,
+  FeatureGrid,
+  FeatureCard,
+  FeatureCardContent,
+  IconSlot,
+  FeatureTitle,
+  FeatureDescription,
 } from "./styles";
 
 const HEADING_FALLBACK = "Why creators choose Kiibee";
-const LEFT_ITEMS_FALLBACK = [
-  "Get your own digital content website in just a few clicks",
-  "Collect content from multiple platforms (YouTube, Vimeo, Dropbox, etc.) in one place",
-  "Sell content or offer it for free",
-  "Protect content with access codes or email signups",
-  "Use your own payment module (Dankort, credit card, MobilePay)",
-  "Offer content as downloads or online streaming",
-  "Create online programs and digital courses",
-  "Take payment for live streaming events",
-];
-const RIGHT_ITEMS_FALLBACK = [
-  "See statistics on views and sales",
-  "Show content on all devices — mobile, tablet and desktop",
-  "Sell multiple formats (video, PDF, ePub, MP3, audio)",
-  "Store content securely on Danish servers, fully GDPR compliant",
-  "Get tailored solutions based on your needs",
-  "Sell and show your content anywhere on the web",
-  "Create your own channel or site with curated collections",
-];
+const FEATURE_ICON_COLOR = "currentColor";
 
-const getItems = (value: unknown): string[] =>
-  Array.isArray(value)
-    ? value.filter((item): item is string => typeof item === "string")
-    : [];
+const FEATURES = [
+  {
+    key: "website",
+    title: "Your Website, Your Brand",
+    description: "Sell directly from your own website.",
+    icon: <WebIcon width={30} height={30} color={FEATURE_ICON_COLOR} />,
+  },
+  {
+    key: "payments",
+    title: "Easy Payments",
+    description: "Fast, secure checkout with trusted payment methods.",
+    icon: <CardIcon width={40} height={40} color={FEATURE_ICON_COLOR} />,
+  },
+  {
+    key: "insights",
+    title: "Business Insights",
+    description: "Track sales and understand your audience.",
+    icon: <BusinessInsightsIcon color={FEATURE_ICON_COLOR} />,
+  },
+  {
+    key: "marketing",
+    title: "Marketing & Promotion",
+    description: "Reach more customers through Kiibee.",
+    icon: <MarketingIcon color={FEATURE_ICON_COLOR} />,
+  },
+  {
+    key: "streaming",
+    title: "Streaming & Downloads",
+    description: "Deliver content with ease and reliability.",
+    icon: <StreamingIcon color={FEATURE_ICON_COLOR} />,
+  },
+  {
+    key: "security",
+    title: "Secure & GDPR Compliant",
+    description:
+      "Store content securely on Danish servers, fully GDPR compliant.",
+    icon: <GuardIcon color={FEATURE_ICON_COLOR} />,
+  },
+] as const;
 
 export default function WhyCreatorsChoose() {
   const { t } = useTranslation();
-  const leftItems = getItems(
-    t(CREATORS.whyChoose.leftItems, { returnObjects: true }),
-  );
-  const rightItems = getItems(
-    t(CREATORS.whyChoose.rightItems, { returnObjects: true }),
-  );
-  const safeLeftItems = leftItems.length > 0 ? leftItems : LEFT_ITEMS_FALLBACK;
-  const safeRightItems =
-    rightItems.length > 0 ? rightItems : RIGHT_ITEMS_FALLBACK;
 
   return (
     <Section>
       <SectionInner>
         <BackgroundImage $image={creatorChooseImage.src} aria-hidden="true" />
-        <GradientOverlay aria-hidden="true" />
 
         <Content>
           <Heading>
@@ -67,21 +83,25 @@ export default function WhyCreatorsChoose() {
             })}
           </Heading>
 
-          <Panel>
-            <Columns>
-              <BulletList>
-                {safeLeftItems.map((item) => (
-                  <BulletItem key={item}>{item}</BulletItem>
-                ))}
-              </BulletList>
-
-              <BulletList>
-                {safeRightItems.map((item) => (
-                  <BulletItem key={item}>{item}</BulletItem>
-                ))}
-              </BulletList>
-            </Columns>
-          </Panel>
+          <FeatureGrid>
+            {FEATURES.map(({ key, title, description, icon }) => (
+              <FeatureCard key={key}>
+                <FeatureCardContent>
+                  <IconSlot>{icon}</IconSlot>
+                  <FeatureTitle>
+                    {t(CREATORS.whyChoose.featureTitle(key), {
+                      defaultValue: title,
+                    })}
+                  </FeatureTitle>
+                  <FeatureDescription>
+                    {t(CREATORS.whyChoose.featureDescription(key), {
+                      defaultValue: description,
+                    })}
+                  </FeatureDescription>
+                </FeatureCardContent>
+              </FeatureCard>
+            ))}
+          </FeatureGrid>
         </Content>
       </SectionInner>
     </Section>
