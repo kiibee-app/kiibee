@@ -1,13 +1,17 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { API } from "@/lib/http/api/endpoints";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 import {
   CREATOR_ID_PARAM,
   isCreatorLayoutKey,
   layoutParamFromKey,
+  writeSavedCreatorLayout,
 } from "@/utils/creatorChannel";
 
 export function usePublicCreatorLayoutRedirect(
@@ -17,23 +21,44 @@ export function usePublicCreatorLayoutRedirect(
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
-  const { creator, isLoading } = useCreatorPublicProfile(publicCreatorId);
-  const creatorLayout = creator?.layout;
+  const { creator, isLoading: isLoadingPublic } =
+    useCreatorPublicProfile(publicCreatorId);
+
+  const appearanceQuery = useGetAPI<ContentAppearanceResponse>(
+    API.content.appearance,
+    undefined,
+    {
+      enabled: !publicCreatorId,
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  const isPublicView = Boolean(publicCreatorId);
+  const activeLayout = isPublicView
+    ? creator?.layout
+    : appearanceQuery.data?.data?.layout;
+  const isLoading = isPublicView ? isLoadingPublic : appearanceQuery.isLoading;
+
+  useEffect(() => {
+    if (!isPublicView && activeLayout && isCreatorLayoutKey(activeLayout)) {
+      writeSavedCreatorLayout(activeLayout);
+    }
+  }, [isPublicView, activeLayout]);
 
   const isLayoutPending =
-    Boolean(publicCreatorId) &&
-    (isLoading ||
-      Boolean(
-        creatorLayout &&
-        isCreatorLayoutKey(creatorLayout) &&
-        layoutParamFromKey(creatorLayout) !== currentLayout,
-      ));
+    isLoading ||
+    Boolean(
+      activeLayout &&
+      isCreatorLayoutKey(activeLayout) &&
+      layoutParamFromKey(activeLayout) !== currentLayout,
+    );
 
   useLayoutEffect(() => {
-    if (!publicCreatorId || isLoading || !creatorLayout) return;
-    if (!isCreatorLayoutKey(creatorLayout)) return;
+    if (isLoading || !activeLayout) return;
+    if (!isCreatorLayoutKey(activeLayout)) return;
 
-    const expectedLayout = layoutParamFromKey(creatorLayout);
+    const expectedLayout = layoutParamFromKey(activeLayout);
     if (expectedLayout === currentLayout) return;
 
     const nextPath = pathname.replace(
@@ -43,15 +68,7 @@ export function usePublicCreatorLayoutRedirect(
     const query = searchParams.toString();
 
     router.replace(query ? `${nextPath}?${query}` : nextPath);
-  }, [
-    creatorLayout,
-    currentLayout,
-    isLoading,
-    pathname,
-    publicCreatorId,
-    router,
-    searchParams,
-  ]);
+  }, [activeLayout, currentLayout, isLoading, pathname, router, searchParams]);
 
   return isLayoutPending;
 }
