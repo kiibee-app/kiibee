@@ -58,6 +58,7 @@ import {
 
 const ENGAGEMENT_TAB = {
   PURCHASES: "purchases",
+  EMAIL_REGISTERED: "email_registered",
   RENTALS: "rentals",
   DOWNLOADS: "downloads",
 } as const;
@@ -106,8 +107,14 @@ export function CreatorContentEngagement({
     );
   }
 
-  const { content, purchases, rentals, downloads, stats } =
-    engagementQuery.data;
+  const {
+    content,
+    purchases,
+    emailRegistrations = [],
+    rentals,
+    downloads,
+    stats,
+  } = engagementQuery.data;
 
   const showPricing =
     content.accessType === creatorContentEngagementValues.paidAccessType;
@@ -241,6 +248,12 @@ export function CreatorContentEngagement({
           <StatValue>{stats.purchaseCount}</StatValue>
         </StatCard>
         <StatCard>
+          <StatLabel>
+            {creatorContentEngagementLabels.emailRegistered}
+          </StatLabel>
+          <StatValue>{stats.emailRegisteredCount ?? 0}</StatValue>
+        </StatCard>
+        <StatCard>
           <StatLabel>{creatorContentEngagementLabels.rented}</StatLabel>
           <StatValue>{stats.rentalCount}</StatValue>
         </StatCard>
@@ -257,6 +270,14 @@ export function CreatorContentEngagement({
           onClick={() => setActiveTab(ENGAGEMENT_TAB.PURCHASES)}
         >
           {creatorContentEngagementLabels.purchasedTab} ({stats.purchaseCount})
+        </DetailsTabButton>
+        <DetailsTabButton
+          type="button"
+          $active={activeTab === ENGAGEMENT_TAB.EMAIL_REGISTERED}
+          onClick={() => setActiveTab(ENGAGEMENT_TAB.EMAIL_REGISTERED)}
+        >
+          {creatorContentEngagementLabels.emailRegisteredTab} (
+          {stats.emailRegisteredCount ?? 0})
         </DetailsTabButton>
         <DetailsTabButton
           type="button"
@@ -279,9 +300,11 @@ export function CreatorContentEngagement({
           <DetailsSectionTitle>
             {activeTab === ENGAGEMENT_TAB.PURCHASES
               ? creatorContentEngagementLabels.whoPurchased
-              : activeTab === ENGAGEMENT_TAB.RENTALS
-                ? creatorContentEngagementLabels.whoRented
-                : creatorContentEngagementLabels.whoDownloaded}
+              : activeTab === ENGAGEMENT_TAB.EMAIL_REGISTERED
+                ? creatorContentEngagementLabels.whoRegisteredEmail
+                : activeTab === ENGAGEMENT_TAB.RENTALS
+                  ? creatorContentEngagementLabels.whoRented
+                  : creatorContentEngagementLabels.whoDownloaded}
           </DetailsSectionTitle>
         </DetailsSectionHeader>
         <DetailsSectionBody>
@@ -289,6 +312,12 @@ export function CreatorContentEngagement({
             <EngagementUserList
               users={purchases}
               emptyMessage={creatorContentEngagementLabels.noPurchases}
+            />
+          ) : null}
+          {activeTab === ENGAGEMENT_TAB.EMAIL_REGISTERED ? (
+            <EngagementUserList
+              users={emailRegistrations}
+              emptyMessage={creatorContentEngagementLabels.noEmailRegistrations}
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.RENTALS ? (

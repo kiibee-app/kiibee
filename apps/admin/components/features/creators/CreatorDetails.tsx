@@ -9,10 +9,7 @@ import {
   getExistingCreatorDisplayName,
   getExistingCreatorInitials,
 } from "../../../utils/existingCreatorsConfig";
-import {
-  creatorContentGridLabels,
-  getPurchaseStatSuffix,
-} from "../../../utils/contentConfig";
+import { creatorContentGridLabels } from "../../../utils/contentConfig";
 import { formatRequestedAt } from "../../../utils/date";
 import { AccountStatusBadge } from "../all-creators/AllCreators.styles";
 import { CreatorContentGrid } from "./CreatorContentGrid";
@@ -73,21 +70,14 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
   const creator = creatorQuery.data;
   const displayName = getExistingCreatorDisplayName(creator);
   const contents = contentsQuery.data ?? [];
-  const totalBought = contents
-    .filter(
-      (item) =>
-        getPurchaseStatSuffix(item.accessType) ===
-        creatorContentGridLabels.boughtSuffix,
-    )
-    .reduce((sum, item) => sum + item.purchaseCount, 0);
-
-  const totalEmailRegistered = contents
-    .filter(
-      (item) =>
-        getPurchaseStatSuffix(item.accessType) ===
-        creatorContentGridLabels.emailRegisteredSuffix,
-    )
-    .reduce((sum, item) => sum + item.purchaseCount, 0);
+  const totalBought = contents.reduce(
+    (sum, item) => sum + (item.purchaseCount ?? 0),
+    0,
+  );
+  const totalEmailRegistered = contents.reduce(
+    (sum, item) => sum + (item.emailRegisteredCount ?? 0),
+    0,
+  );
 
   const totalPurchases = totalBought + totalEmailRegistered;
   const totalRentals = contents.reduce(

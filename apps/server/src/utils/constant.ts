@@ -200,3 +200,7 @@ export const EMAIL_RETRY = {
   MAX_RETRIES: 3,
   BASE_DELAY_MS: 1000,
 } as const;
+
+export const ANALYTICS_EVENT_TYPES = {
+  DOWNLOAD: 'download',
+} as const;

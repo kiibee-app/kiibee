@@ -5,32 +5,40 @@ import { db } from 'src/database/db';
 import {
   analyticsEvents,
   contentAccessRequests,
+  contentDownloadCount,
   contentTypes,
   mediaFiles,
   orders,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, ORDER_TYPES, STATUS } from 'src/utils/constant';
+import {
+  ANALYTICS_EVENT_TYPES,
+  ORDER_STATUS,
+  ORDER_TYPES,
+  STATUS,
+} from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAdminCreatorContentsService = async (creatorId: string) => {
   try {
     const purchaseCountSql = sql<number>`
       (
-        (
-          SELECT COUNT(*)
-          FROM ${orders}
-          WHERE
-            ${orders.mediaFileId} = ${mediaFiles.id}
-            AND ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
-            AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
-        ) + (
-          SELECT COUNT(*)
-          FROM ${contentAccessRequests}
-          WHERE
-            ${contentAccessRequests.contentId} = ${mediaFiles.id}
-            AND ${contentAccessRequests.status} = ${STATUS.APPROVED}
-        )
+        SELECT COUNT(*)
+        FROM ${orders}
+        WHERE
+          ${orders.mediaFileId} = ${mediaFiles.id}
+          AND ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
+          AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
+      )
+    `;
+
+    const emailRegisteredCountSql = sql<number>`
+      (
+        SELECT COUNT(*)
+        FROM ${contentAccessRequests}
+        WHERE
+          ${contentAccessRequests.contentId} = ${mediaFiles.id}
+          AND ${contentAccessRequests.status} = ${STATUS.APPROVED}
       )
     `;
 
@@ -47,11 +55,20 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
 
     const downloadCountSql = sql<number>`
       (
-        SELECT COUNT(*)
-        FROM ${analyticsEvents}
-        WHERE
-          ${analyticsEvents.mediaFileId} = ${mediaFiles.id}
-          AND ${analyticsEvents.eventType} = 'download'
+        GREATEST(
+          (
+            SELECT COUNT(*)
+            FROM ${analyticsEvents}
+            WHERE
+              ${analyticsEvents.mediaFileId} = ${mediaFiles.id}
+              AND ${analyticsEvents.eventType} = ${ANALYTICS_EVENT_TYPES.DOWNLOAD}
+          ),
+          (
+            SELECT COALESCE(SUM(${contentDownloadCount.downloadCount}), 0)
+            FROM ${contentDownloadCount}
+            WHERE ${contentDownloadCount.contentId} = ${mediaFiles.id}
+          )
+        )
       )
     `;
 
@@ -70,6 +87,7 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
         createdAt: mediaFiles.createdAt,
         publishedAt: mediaFiles.publishedAt,
         purchaseCount: purchaseCountSql,
+        emailRegisteredCount: emailRegisteredCountSql,
         rentalCount: rentalCountSql,
         downloadCount: downloadCountSql,
       })
@@ -87,6 +105,7 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
       rows.map((row) => ({
         ...row,
         purchaseCount: Number(row.purchaseCount ?? 0),
+        emailRegisteredCount: Number(row.emailRegisteredCount ?? 0),
         rentalCount: Number(row.rentalCount ?? 0),
         downloadCount: Number(row.downloadCount ?? 0),
       })),
