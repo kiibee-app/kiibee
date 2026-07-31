@@ -11,8 +11,8 @@ export const getCardHeightDimensions = (
   isMobile: boolean,
 ): CardHeightDimensions =>
   isMobile
-    ? { state1: 185, state2: 215, state3: 250, width: 148 }
-    : { state1: 250, state2: 290, state3: 340, width: 230 };
+    ? { state1: 165, state2: 190, state3: 220, width: 148 }
+    : { state1: 220, state2: 255, state3: 300, width: 230 };
 
 export const getCardHeightState = (
   index: number,

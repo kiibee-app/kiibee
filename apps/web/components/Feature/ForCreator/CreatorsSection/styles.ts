@@ -10,7 +10,7 @@ export const Section = styled.section`
   align-items: flex-start;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.GRAY};
-  padding: 6.5625rem 6.9375rem 6.5625rem;
+  padding: clamp(5rem, 7.3vw, 6.5625rem) clamp(1.25rem, 7.7vw, 6.9375rem);
   box-sizing: border-box;
   overflow: hidden;
 
@@ -19,10 +19,6 @@ export const Section = styled.section`
   [data-creator-card] {
     opacity: 0;
     visibility: hidden;
-  }
-
-  ${media.desktopMd} {
-    padding: 5rem 3rem;
   }
 
   ${media.tablet} {
@@ -36,7 +32,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: 76.125rem;
-  gap: 2.5rem;
+  gap: 3.5rem;
   box-sizing: border-box;
 
   ${media.tablet} {
@@ -86,15 +82,14 @@ export const CTAButton = styled(GenericButton).attrs({
 export const CardsRow = styled.div`
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: stretch;
   gap: 17px;
   width: 100%;
-  max-width: 1218px;
-  min-height: 340px;
+  min-height: 300px;
 
   ${media.tablet} {
     gap: 0.5rem;
-    min-height: 250px;
+    min-height: 220px;
     justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
@@ -115,9 +110,8 @@ export const Card = styled.div<CardProps>`
   position: relative;
   flex: 1 1 0;
   min-width: 0;
-  max-width: 230px;
   height: ${({ $heightState }) =>
-    $heightState === 3 ? "340px" : $heightState === 2 ? "290px" : "250px"};
+    $heightState === 3 ? "300px" : $heightState === 2 ? "255px" : "220px"};
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
@@ -130,7 +124,7 @@ export const Card = styled.div<CardProps>`
     flex: 0 0 148px;
     max-width: 148px;
     height: ${({ $heightState }) =>
-      $heightState === 3 ? "250px" : $heightState === 2 ? "215px" : "185px"};
+      $heightState === 3 ? "220px" : $heightState === 2 ? "190px" : "165px"};
     border-radius: 12px;
   }
 
@@ -146,7 +140,7 @@ export const CardImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: left top;
   display: block;
   pointer-events: none;
   user-select: none;
