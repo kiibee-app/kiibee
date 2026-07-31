@@ -72,7 +72,7 @@ export const FeatureGrid = styled.div`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  ${media.tablet} {
+  ${media.mobileXl} {
     grid-template-columns: minmax(0, 1fr);
   }
 `;
