@@ -1,3 +1,4 @@
+"use client";
 import { Suspense } from "react";
 import { PayoutDashboard } from "../../components/features/payout/PayoutDashboard";
 import {
