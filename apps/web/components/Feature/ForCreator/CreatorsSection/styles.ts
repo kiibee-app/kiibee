@@ -111,7 +111,7 @@ export const Card = styled.div<CardProps>`
   flex: 1 1 0;
   min-width: 0;
   height: ${({ $heightState }) =>
-    $heightState === 3 ? "300px" : $heightState === 2 ? "255px" : "220px"};
+    $heightState === 3 ? "300px" : $heightState === 2 ? "275px" : "240px"};
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
