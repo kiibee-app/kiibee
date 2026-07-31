@@ -105,10 +105,12 @@ export default function CreatorsSection() {
                   alt={card.alt}
                   draggable={false}
                 />
-                <CardContent $visible={heightState !== 1}>
+                <CardContent>
                   <CardTitle>{card.title}</CardTitle>
                   {card.subtitle && (
-                    <CardSubtitle>{card.subtitle}</CardSubtitle>
+                    <CardSubtitle $visible={heightState !== 1}>
+                      {card.subtitle}
+                    </CardSubtitle>
                   )}
                 </CardContent>
               </AnimatedCard>

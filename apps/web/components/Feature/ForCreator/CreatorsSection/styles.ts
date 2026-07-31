@@ -172,7 +172,7 @@ export const CardImage = styled.img`
   }
 `;
 
-export const CardContent = styled.div<{ $visible: boolean }>`
+export const CardContent = styled.div`
   position: relative;
   z-index: 1;
   display: flex;
@@ -181,11 +181,6 @@ export const CardContent = styled.div<{ $visible: boolean }>`
   align-items: flex-start;
   width: 100%;
   height: 100%;
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease;
   pointer-events: none;
 `;
 
@@ -195,10 +190,15 @@ export const CardTitle = styled.h2`
   color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
-export const CardSubtitle = styled.p`
+export const CardSubtitle = styled.p<{ $visible: boolean }>`
   ${({ theme }) => theme.typography.Body_SemiMedium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 `;
 
 export const AnimatedCard = styled(Card)``;
