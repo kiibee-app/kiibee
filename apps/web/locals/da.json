@@ -426,25 +426,32 @@
     },
     "whyChoose": {
       "heading": "Hvorfor skabere vælger Kiibee",
-      "leftItems": [
-        "Få din egen digitale indholds-hjemmeside med få klik",
-        "Saml indhold fra flere platforme (YouTube, Vimeo, Dropbox osv.) på ét sted",
-        "Sælg indhold eller tilbyd det gratis",
-        "Beskyt indhold med adgangskoder eller e-mailtilmeldinger",
-        "Brug dit eget betalingsmodul (Dankort, kreditkort, MobilePay)",
-        "Tilbyd indhold som downloads eller online streaming",
-        "Opret online programmer og digitale kurser",
-        "Tag betaling for livestreaming-begivenheder"
-      ],
-      "rightItems": [
-        "Se statistik over visninger og salg",
-        "Vis indhold på alle enheder — mobil, tablet og desktop",
-        "Sælg flere formater (video, PDF, Epub, MP3, lyd)",
-        "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
-        "Få skræddersyede løsninger baseret på dine behov",
-        "Sælg og vis dit indhold hvor som helst på nettet",
-        "Opret din egen kanal eller side med kuraterede samlinger"
-      ]
+      "features": {
+        "website": {
+          "title": "Dit website, dit brand",
+          "description": "Sælg direkte fra dit eget website."
+        },
+        "payments": {
+          "title": "Nemme betalinger",
+          "description": "Hurtig og sikker betaling med pålidelige betalingsmetoder."
+        },
+        "insights": {
+          "title": "Forretningsindsigt",
+          "description": "Følg salg og forstå dit publikum."
+        },
+        "marketing": {
+          "title": "Marketing og promovering",
+          "description": "Nå ud til flere kunder gennem Kiibee."
+        },
+        "streaming": {
+          "title": "Streaming og downloads",
+          "description": "Levér indhold nemt og pålideligt."
+        },
+        "security": {
+          "title": "Sikker og GDPR-kompatibel",
+          "description": "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt."
+        }
+      }
     },
     "howToGetStarted": {
       "title": "Sådan hjælper Kiibee dig med at sælge mere",
