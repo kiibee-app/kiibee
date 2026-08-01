@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 export const Section = styled.section`
   width: 100%;
@@ -9,7 +10,7 @@ export const Section = styled.section`
   justify-content: center;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
-  padding: clamp(4rem, 9.24vw, 8.3125rem) clamp(1.25rem, 7.7vw, 6.9375rem)
+  padding: clamp(4rem, 9.24vw, 8.3125rem) ${FOR_CREATORS_LAYOUT.sectionPaddingX}
     clamp(3.5rem, 8.13vw, 7.3125rem);
 
   ${media.tablet} {
@@ -19,7 +20,7 @@ export const Section = styled.section`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 76.125rem;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;

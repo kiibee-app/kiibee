@@ -2,6 +2,7 @@ import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 export const Section = styled.section`
   width: 100%;
@@ -10,7 +11,8 @@ export const Section = styled.section`
   justify-content: center;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  padding: clamp(3.5rem, 7.3vw, 6.5625rem) clamp(1.25rem, 7.7vw, 6.9375rem);
+  padding: clamp(3.5rem, 7.3vw, 6.5625rem)
+    ${FOR_CREATORS_LAYOUT.sectionPaddingX};
 
   ${media.tablet} {
     padding: 2.5rem 1.25rem;
@@ -19,7 +21,7 @@ export const Section = styled.section`
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  max-width: 76.125rem;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   margin: 0 auto;
   box-sizing: border-box;
   display: flex;
