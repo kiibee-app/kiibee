@@ -2,6 +2,7 @@ import styled from "styled-components";
 import breakpoints from "@repo/ui/breakpoints";
 import COLORS from "@repo/ui/colors";
 import { type CSSProperties } from "react";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 export const Section = styled.div`
   display: flex;
@@ -9,25 +10,28 @@ export const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   background: ${COLORS.primary.GRAY};
+  padding: 0 ${FOR_CREATORS_LAYOUT.sectionPaddingX};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 0 1.25rem;
+  }
 `;
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1440px;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 4rem 20px;
+  padding: 4rem 0;
+  box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
     gap: 4rem;
-    padding: 6rem 60px;
-  }
-
-  @media (min-width: ${breakpoints.desktop}) {
-    padding: 6rem 111px;
+    padding: 6rem 0;
   }
 `;
 
