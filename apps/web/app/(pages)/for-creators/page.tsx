@@ -39,10 +39,11 @@ export default function CreatorsPage() {
           ctaHref={PATHS.AUTH_SIGNUP}
         />
         <WhyCreatorsChoose />
-        <PricingPlansSection titleKey="pricingPage.title" />
+        <PricingPlansSection titleKey="pricingPage.title" alignWide />
         <GetStarted
           translationPrefix="creators.getStarted"
           bgVariant={BG_WHITE}
+          alignWide
         />
       </Main>
       <Footer />

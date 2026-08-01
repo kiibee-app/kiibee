@@ -20,6 +20,8 @@ export const Section = styled.section<{ $aspect?: number }>`
     682px
   );
   padding: clamp(3rem, 8vh, 5rem) 1.5rem;
+  margin-bottom: -1px;
+  background: ${({ theme }) => theme.colors.primary.GREEN_100};
 
   ${media.tablet} {
     padding: clamp(2.5rem, 6vh, 4rem) 1.25rem;
@@ -28,7 +30,7 @@ export const Section = styled.section<{ $aspect?: number }>`
 
 export const Background = styled.div<{ $src: string }>`
   position: absolute;
-  inset: 0;
+  inset: -1px;
   z-index: 0;
   background-image: url(${({ $src }) => $src});
   background-size: cover;

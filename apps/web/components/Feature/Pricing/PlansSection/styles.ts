@@ -3,6 +3,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 const plansFocusPulse = keyframes`
   0% {
@@ -16,22 +17,29 @@ const plansFocusPulse = keyframes`
   }
 `;
 
-export const Section = styled.section<{ $focused?: boolean }>`
+export const Section = styled.section<{
+  $focused?: boolean;
+  $alignWide?: boolean;
+}>`
   width: 100%;
   min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 34px 20px 50px;
+  box-sizing: border-box;
+  padding: ${({ $alignWide }) =>
+    $alignWide
+      ? `5rem ${FOR_CREATORS_LAYOUT.sectionPaddingX}`
+      : "5rem 20px 50px"};
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   scroll-margin-top: calc(var(--navbar-height, 73px) + 12px);
 
   ${media.tablet} {
-    padding: 28px 16px 40px;
+    padding: 3.5rem 16px 40px;
   }
 
   ${media.mobileLg} {
-    padding: 20px 12px 32px;
+    padding: 2.5rem 12px 32px;
   }
 
   ${({ $focused }) =>
@@ -41,9 +49,12 @@ export const Section = styled.section<{ $focused?: boolean }>`
     `}
 `;
 
-export const SectionTitle = styled.h2`
+export const SectionTitle = styled.h2<{ $alignWide?: boolean }>`
   ${({ theme }) => theme.typography.Heading2};
-  margin: 0 0 36px 0;
+  width: 100%;
+  max-width: ${({ $alignWide }) =>
+    $alignWide ? FOR_CREATORS_LAYOUT.contentMaxWidth : "1120px"};
+  margin: 0 0 46px 0;
   font-size: clamp(1.65rem, 3.75vw, 2.35rem);
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: center;
@@ -62,9 +73,10 @@ export const SectionTitle = styled.h2`
   }
 `;
 
-export const CardsWrapper = styled.div`
+export const CardsWrapper = styled.div<{ $alignWide?: boolean }>`
   width: 100%;
-  max-width: 1120px;
+  max-width: ${({ $alignWide }) =>
+    $alignWide ? FOR_CREATORS_LAYOUT.contentMaxWidth : "1120px"};
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -73,9 +85,9 @@ export const CardsWrapper = styled.div`
 
   > * {
     display: flex;
-    flex: 1 1 280px;
+    flex: 1 1 ${({ $alignWide }) => ($alignWide ? "0" : "280px")};
     width: 100%;
-    max-width: 340px;
+    max-width: ${({ $alignWide }) => ($alignWide ? "none" : "340px")};
     align-self: stretch;
     min-height: 100%;
 

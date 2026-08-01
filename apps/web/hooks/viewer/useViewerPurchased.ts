@@ -97,7 +97,9 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       pdfs: (responseData.pdfs || []).map((item) => mapMediaItem(item, t)),
       epubs: (responseData.epubs || []).map((item) => mapMediaItem(item, t)),
       webs: (responseData.webs || []).map((item) => mapMediaItem(item, t)),
-      collections: (responseData.collections || []).map(mapCollectionItem),
+      collections: (responseData.collections || [])
+        .map(mapCollectionItem)
+        .filter((item) => item.elementCount > 0),
     };
   }, [query.data, t]);
 

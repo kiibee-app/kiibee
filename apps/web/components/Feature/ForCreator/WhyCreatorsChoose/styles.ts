@@ -1,42 +1,42 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 export const Section = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 0 1.5rem 6.5625rem;
+  padding: 0;
+  margin: -1px 0;
   box-sizing: border-box;
+  background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 
   ${media.tablet} {
-    padding: 0 1rem 2.5rem;
+    padding: 0;
   }
 `;
 
 export const SectionInner = styled.div`
   position: relative;
   width: 100%;
-  max-width: 1440px;
   min-height: 49.375rem;
   overflow: hidden;
-  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem clamp(2rem, 7.65vw, 6.875rem);
+  padding: 5rem ${FOR_CREATORS_LAYOUT.sectionPaddingX};
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 
   ${media.tablet} {
     min-height: auto;
     padding: 3.5rem 1rem;
-    border-radius: 0.5rem;
   }
 `;
 
 export const BackgroundImage = styled.div<{ $image: string }>`
   position: absolute;
-  inset: 0;
+  inset: -1px;
   background: url(${({ $image }) => $image}) center center / cover no-repeat;
 `;
 
@@ -44,6 +44,7 @@ export const Content = styled.div`
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   display: flex;
   flex-direction: column;
   align-items: center;

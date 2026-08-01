@@ -131,9 +131,9 @@ export const useViewerRentedData = (
       };
 
     return {
-      collections: data.collections.map((item) =>
-        toCollectionItem(item, mode, t),
-      ),
+      collections: data.collections
+        .map((item) => toCollectionItem(item, mode, t))
+        .filter((item) => item.elementCount > 0),
       videos: data.videos.map((item) => toMediaItem(item, mode, t)),
       audios: data.audios.map((item) => toMediaItem(item, mode, t)),
       pdfs: data.pdfs.map((item) => toMediaItem(item, mode, t)),
