@@ -224,9 +224,10 @@ export function filterCollections(
   searchValue: string,
   items: RentedCollectionItem[],
 ) {
+  const withContent = items.filter((item) => item.elementCount > 0);
   const needle = searchValue.trim().toLowerCase();
-  if (!needle) return items;
-  return items.filter((item) =>
+  if (!needle) return withContent;
+  return withContent.filter((item) =>
     [item.title, item.author, String(item.elementCount)].some((part) =>
       part.toLowerCase().includes(needle),
     ),

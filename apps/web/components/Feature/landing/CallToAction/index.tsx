@@ -53,7 +53,7 @@ export default function CallToAction() {
 
   const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
     <div
-      key={`${CTA_CARD.keyPrefix}${card.src}-${mobile ? CTA_CARD.mobileLabel : CTA_CARD.desktopLabel}-${index}`}
+      key={`${CTA_CARD.keyPrefix}${resolveImageUrl(card.src)}-${mobile ? CTA_CARD.mobileLabel : CTA_CARD.desktopLabel}-${index}`}
       {...{ [CTA_CARD.attr]: STRING_EMPTY }}
       style={getRevealCardStyle(card, mobile)}
     >
@@ -65,10 +65,7 @@ export default function CallToAction() {
         $mobileOnly={mobile}
         style={callToActionCardStyle}
       >
-        <CardImage
-          src={resolveImageUrl(card.src)}
-          alt={t("callToAction.creatorAlt")}
-        />
+        <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
         <CardTint />
       </Card>
     </div>
@@ -84,6 +81,9 @@ export default function CallToAction() {
       );
       if (cards.length === 0) return;
 
+      // Always keep cards visible — avoid stuck opacity:0 if ScrollTrigger misses.
+      gsap.set(cards, { autoAlpha: 1, scale: 1 });
+
       const mm = gsap.matchMedia();
 
       mm.add(LANDING_MOTION.reducedMotionQuery, () => {
@@ -91,15 +91,17 @@ export default function CallToAction() {
       });
 
       mm.add(LANDING_MOTION.noReducedMotionQuery, () => {
-        gsap.fromTo(cards, CTA_CARD.fromVars, {
-          ...CTA_CARD.toVars,
+        gsap.from(cards, {
+          scale: 0.96,
           duration: LANDING_REVEAL.revealDuration,
           stagger: LANDING_REVEAL.ctaCardStaggerDelay,
           ease: LANDING_MOTION.easePower2Out,
+          immediateRender: false,
           scrollTrigger: {
             trigger: section,
             start: LANDING_REVEAL.imageRevealStart,
             toggleActions: SCROLL_REVEAL.onceToggleActions,
+            once: true,
           },
         });
       });

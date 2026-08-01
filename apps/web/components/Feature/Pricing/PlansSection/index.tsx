@@ -53,10 +53,13 @@ type CreatorPlanResponse = {
 
 type PricingPlansSectionProps = {
   titleKey?: string;
+  /** Match /for-creators content column without changing the pricing page layout. */
+  alignWide?: boolean;
 };
 
 export default function PricingPlansSection({
   titleKey = "pricingPlans.title",
+  alignWide = false,
 }: PricingPlansSectionProps) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
@@ -104,12 +107,15 @@ export default function PricingPlansSection({
     };
   }, [isFocusedFromUpgrade]);
 
-  const title = <SectionTitle>{t(titleKey)}</SectionTitle>;
+  const title = (
+    <SectionTitle $alignWide={alignWide}>{t(titleKey)}</SectionTitle>
+  );
 
   return (
     <Section
       id={PLANS_SECTION_ID}
       $focused={isFocusedFromUpgrade}
+      $alignWide={alignWide}
       aria-current={isFocusedFromUpgrade ? STRING_TRUE : undefined}
     >
       {isFocusedFromUpgrade ? (
@@ -117,7 +123,7 @@ export default function PricingPlansSection({
       ) : (
         <ScrollReveal delay={LANDING_REVEAL.shortDelay}>{title}</ScrollReveal>
       )}
-      <CardsWrapper>
+      <CardsWrapper $alignWide={alignWide}>
         {matchedPlans.map(({ planKey, apiPlan }, index) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
           const isCurrentPlan = !!apiPlan && apiPlan.id === activePlanId;
