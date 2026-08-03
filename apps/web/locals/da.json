@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Opdag og nyd unikt digitalt indhold fra dine foretrukne skabere.",
-    "subtitle": "Se, lyt og lær direkte fra uafhængige skabere. Lej eller køb eksklusivt indhold med få klik.",
+    "title": "Opdag og nyd unikt digitalt indhold fra dine foretrukne kreatør eller udgiver.",
+    "subtitle": "Se, lyt og lær direkte fra uafhængige udgiver. Lej eller køb eksklusivt indhold med få klik.",
     "cta": "Deltag i Kiibee nu"
   },
   "nav": {
@@ -9,11 +9,11 @@
     "exploreCreators": "Udforsk",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Instrumentbræt",
+    "dashboard": "Dashboard",
     "accountProfile": "Profil",
     "logout": "Log ud",
-    "profileMenu": "Kontomenu",
-    "startCreating": "Begynd at skabe",
+    "profileMenu": "Profil",
+    "startCreating": "Begynd at udgive",
     "logoAlt": "Kiibee",
     "profile": {
       "home": "Hjem",
@@ -23,19 +23,19 @@
     "explore": {
       "allContentTitle": "Alt indhold",
       "everything": "Alle",
-      "newReleases": "Nyudgivelser",
+      "newReleases": "Nye udgivelser",
       "latest": "Seneste udgivelser",
-      "loading": "Indlaeser udgivelser...",
+      "loading": "Indlæser udgivelser...",
       "noResults": "Ingen udgivelser fundet",
       "popular": "Populært",
       "freeContent": "Gratis indhold",
       "formatTitle": "Format",
       "format": {
         "video": "Video",
-        "audio": "Audio",
+        "audio": "Lyd fil",
         "pdf": "PDF",
         "epub": "Epub",
-        "web": "Webindhold"
+        "web": "Web fil"
       },
       "categoryTitle": "Kategori",
       "category": {
@@ -43,13 +43,13 @@
         "education": "Uddannelse & Kurser",
         "business": "Business & Marketing",
         "arts": "Kunst & Kultur",
-        "tech": "Tech & Digital"
+        "tech": "Tech"
       },
-      "creatorTitle": "Skaber",
+      "creatorTitle": "Udgiver",
       "creator": {
-        "allCreators": "Alle skabere",
-        "featured": "Fremhævede skabere",
-        "newCreators": "Nye skabere",
+        "allCreators": "Alle udgivere",
+        "featured": "Fremhævede udgivere",
+        "newCreators": "Nye udgivere",
         "popular": "Mest populære"
       }
     }
@@ -65,7 +65,7 @@
     "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
     "noContentTitle": "Indhold på vej",
-    "noContentDescription": "Denne kreatør har ikke publiceret noget indhold endnu.",
+    "noContentDescription": "Denne udgiver har ikke publiceret noget indhold endnu.",
     "ownerNoContentTitle": "Din kanal er tom",
     "ownerNoContentDescription": "Opret en samling og upload dit første indhold for at begynde at dele med dit publikum.",
     "noSearchResultsTitle": "Ingen resultater fundet",
@@ -104,11 +104,11 @@
   },
   "createProfileCollections": {
     "title": "Samlinger",
-    "description": "Organisér dit indhold i enkle og flotte samlinger til dit publikum."
+    "description": "Organiser dit indhold i enkle og flotte samlinger til dit publikum."
   },
   "createProfileAbout": {
     "title": "Om",
-    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
+    "description": "Del din historie, dit arbejde og hvad seer kan forvente af din profil.",
     "sectionTitle": "Planter og dyr",
     "sectionTitleClothes": "Tøj",
     "buyCollection": "Køb samling xx kr",
@@ -116,21 +116,21 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Tilmeld Kiibee"
+    "cta": "Tilmeld dig Kiibee"
   },
   "auth": {
-    "title": "Stedet hvor skabere og støtter mødes",
-    "subtitle": "Skabere tjener ved at dele indhold. Seere opdager og støtter det arbejde, de elsker. Bliv en del af et fællesskab, hvor kreativitet trives på begge sider.",
-    "signupCreator": "Tilmeld dig som skaber",
+    "title": "Stedet hvor udgivere og seere mødes",
+    "subtitle": "Udgiver tjener ved at dele indhold. Seere opdager og støtter det arbejde, de elsker. Bliv en del af et fællesskab, hvor kreativitet trives på begge sider.",
+    "signupCreator": "Tilmeld dig som udgiver",
     "signupViewer": "Tilmeld dig som seer",
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
-    "mediaCard1Alt": "Mediekort for skaber",
-    "mediaCard2Alt": "Opskriftskort for skaber"
+    "mediaCard1Alt": "Mediekort for udgiver",
+    "mediaCard2Alt": "Opskriftskort for udgiver"
   },
   "authForm": {
     "title": "Log ind",
-    "emailLabel": "E-mailadresse",
+    "emailLabel": "E-mail adresse",
     "passwordLabel": "Adgangskode",
     "remember": "Husk mig",
     "forgot": "Glemt din adgangskode?",
@@ -138,8 +138,8 @@
     "footer": "Har du ikke en konto?",
     "signUp": "Tilmeld dig",
     "errors": {
-      "emailRequired": "E-mailadresse er påkrævet",
-      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "emailRequired": "E-mail adresse er påkrævet",
+      "emailInvalid": "Indtast en gyldig e-mail adresse",
       "passwordRequired": "Adgangskode er påkrævet",
       "fixHighlightedFields": "Ret venligst de fremhævede felter.",
       "invalidCredentials": "Ugyldig e-mail eller adgangskode",
@@ -148,26 +148,26 @@
   },
   "forgotPassword": {
     "title": "Nulstil adgangskode",
-    "description": "Indtast din e-mailadresse, saa sender vi et link til at nulstille din adgangskode.",
-    "emailLabel": "E-mailadresse",
-    "submit": "Indsende",
-    "rememberPassword": "Kan du huske din adgangskode?",
+    "description": "Indtast din e-mail adresse, så sender vi et link til at nulstille din adgangskode.",
+    "emailLabel": "E-mail adresse",
+    "submit": "Indsend",
+    "rememberPassword": "Husk adgangskode?",
     "login": "Log ind",
     "checkEmailTitle": "Tjek din e-mail",
-    "checkEmailDescription": "Vi har sendt et link til nulstilling af din adgangskode til din e-mail. Hvis det ikke ankommer inden for få minutter, kan det skyldes, at det ikke matcher en eksisterende brugerkonto.",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af din adgangskode til din e-mail. Hvis det ikke ankommer inden for få minutter, kan det skyldes, at e-mailen ikke matcher en eksisterende brugerkonto.",
     "didNotReceive": "Har du ikke modtaget e-mailen?",
     "resend": "Send igen",
     "submitFailed": "Vi kunne ikke sende nulstillingslinket lige nu. Prøv igen."
   },
   "viewerSignup": {
-    "title": "Opret seerkonto",
-    "heading": "Opret seerkonto",
-    "description": "Viewer-tilmeldingsformular kommer snart...",
+    "title": "Opret seer konto",
+    "heading": "Opret seer konto",
+    "description": "Seer-tilmeldingsformular kommer snart...",
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "preference": {
       "title": "Lad os tilpasse din oplevelse",
-      "description": "Fortæl os, hvad du kan lide, så vi kan anbefale skabere og indhold, du vil elske. Du kan altid opdatere dine præferencer senere i dine profilindstillinger.",
+      "description": "Fortæl os, hvad du kan lide, så vi kan anbefale udgivere og indhold, du vil elske. Du kan altid opdatere dine præferencer senere i dine profil indstillinger.",
       "submit": "Fortsæt",
       "content": {
         "title": "Hvilken slags indhold er du interesseret i?",
@@ -176,13 +176,13 @@
           "comedy": "Komedie",
           "music": "Musik",
           "podcasts": "Podcasts",
-          "artsAndIllustration": "Kunst og illustration",
-          "booksAndWriting": "Bøger og skrivning",
-          "wellnessAndMindfulness": "Wellness og mindfulness",
-          "educationAndLearning": "Uddannelse / læring",
-          "lifestyleAndVlogs": "Livsstil og vlogs",
-          "cookingAndFood": "Madlavning / mad",
-          "sportsAndFitness": "Sport og fitness"
+          "artsAndIllustration": "Kunst & illustration",
+          "booksAndWriting": "Bøger & skrivning",
+          "wellnessAndMindfulness": "Wellness & mindfulness",
+          "educationAndLearning": "Uddannelse & læring",
+          "lifestyleAndVlogs": "Livsstil & vlogs",
+          "cookingAndFood": "Madlavning",
+          "sportsAndFitness": "Sport & fitness"
         }
       },
       "types": {
@@ -205,8 +205,8 @@
     "form": {
       "fullName": "Fulde navn",
       "fullNamePlaceholder": "Indtast dit fulde navn",
-      "email": "E-mailadresse",
-      "emailPlaceholder": "Indtast din e-mailadresse",
+      "email": "E-mail adresse",
+      "emailPlaceholder": "Indtast din e-mail adresse",
       "password": "Adgangskode",
       "passwordPlaceholder": "Indtast ny adgangskode",
       "repeatPassword": "Gentag adgangskode",
@@ -215,17 +215,17 @@
       "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
       "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
-      "terms": "Vilkår for brug",
+      "terms": "Handelsesbetingelser",
       "and": " og ",
-      "privacy": "Privatlivspolitik",
+      "privacy": "Privatlivs politik",
       "submit": "Fortsæt"
     }
   },
   "authSlide": {
     "carousel": [
       {
-        "title": "Se eller skab",
-        "description": "Støt de skabere, du elsker, eller byg dit eget fællesskab af støtter."
+        "title": "Se eller udgiv",
+        "description": "Støt de kreatør, du elsker, eller byg dit eget fællesskab af støtter."
       },
       {
         "title": "Bliv inspireret",
@@ -238,8 +238,8 @@
   },
   "authCreator": {
     "backAria": "Tilbage",
-    "title": "Anmod om at blive Kiibee-skaber",
-    "subtitle": "Vi er glade for, at du vil være med på Kiibee! Før du går i gang, bedes du udfylde formularen nedenfor. Vi gennemgår alle skaberanmodninger for at sikre indhold af høj kvalitet på platformen.",
+    "title": "Anmod om at blive kreatør eller udgiver",
+    "subtitle": "Vi er glade for, at du vil være med på Kiibee! Før du går i gang, bedes du udfylde formularen nedenfor. Vi gennemgår alle anmodninger for at sikre indhold af høj kvalitet på platformen.",
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "form": {
@@ -247,7 +247,7 @@
       "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",
       "lastNameMax": "Efternavn må højst være 50 tegn",
-      "email": "E-mailadresse",
+      "email": "E-mail adresse",
       "phone": "Telefonnummer (valgfrit)",
       "cvr": "CVR (valgfrit)",
       "cvrHelp": "8 cifre - kun hvis du driver en virksomhed",
@@ -260,12 +260,12 @@
       "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
       "contentMax": "Beskrivelsen skal være kortere end eller lig med 500 tegn.",
       "consentPrefix": "Jeg accepterer Kiibees",
-      "terms": "Vilkår for brug",
+      "terms": "Handelsesbetingelser",
       "and": "og",
-      "privacy": "Privatlivspolitik",
+      "privacy": "Privatlivs politik",
       "submit": "Send anmodning",
-      "submitSuccess": "Skabertilladelse indsendt med succes.",
-      "submitError": "Kunne ikke indsende skabertilladelse."
+      "submitSuccess": "Anmodning indsendt med succes.",
+      "submitError": "Kunne ikke indsende anmodning."
     },
     "requestSent": {
       "title": "Tak! Din anmodning er sendt.",
@@ -282,8 +282,8 @@
     "fields": {
       "payment": "Betalingsmetode",
       "cardNumber": "Kortnummer",
-      "cardholderName": "Kortholders navn",
-      "expiryDate": "Udlobsdato",
+      "cardholderName": "Kort holders navn",
+      "expiryDate": "Udløbsdato",
       "cvc": "CVC"
     },
     "submit": "Opret en konto"
@@ -298,7 +298,7 @@
       "browseTitle": "Gennemse & opdag",
       "browseText": "Udforsk 50+ kategorier og 500+ skabere",
       "chooseTitle": "Vælg & køb",
-      "chooseText": "Køb eller lej enkeltindhold eller samlinger",
+      "chooseText": "Køb eller lej enkelt indhold eller samlinger",
       "accessTitle": "Få øjeblikkelig adgang",
       "accessText": "Stream eller download — det er dit at beholde"
     },
@@ -336,8 +336,8 @@
   },
   "creators": {
     "marquee": {
-      "title": "Udforsk Kiibee creators og find dine favoritter",
-      "defaultDescription": "Onlinekurserne hos Kammas Kantine er for dig, der vil lære at tage bedre vare på din krop. Du får viden om sundhed, praktiske tips og tricks samt adgang til fantastiske opskrifter, der er enkle at tilberede i dit eget køkken."
+      "title": "Udforsk Kiibee og find din favorit kratør",
+      "defaultDescription": "Online kurserne hos Kammas Kantine er for dig, der vil lære at tage bedre vare på din krop. Du får viden om sundhed, praktiske tips og tricks samt adgang til fantastiske opskrifter, der er enkle at tilberede i dit eget køkken."
     },
     "trendingContent": "Populært indhold",
     "heading": {
@@ -346,7 +346,7 @@
       "lineTwo": "Market.",
       "lineThree": "Earn."
     },
-    "cta": "Tilmeld Kiibee i dag",
+    "cta": "Tilmeld dig Kiibee i dag",
     "heroCards": {
       "payments": {
         "alt": "Smartphone med Apple Pay på en laptop",
@@ -377,60 +377,60 @@
     "mainCard": {
       "alt": "Mand optager podcast",
       "title": "Indbyggede funktioner",
-      "subtitle": "Alt hvad du skal bruge for at saelge"
+      "subtitle": "Alt hvad du skal bruge for at sælge"
     },
     "salesInsights": {
       "alt": "Smilende kvinde",
-      "title": "Salgsindsigter"
+      "title": "Salgs indsigter"
     },
     "paymentSolutions": {
-      "alt": "Kvinde i graa jakke",
-      "title": "Betalingsloesninger"
+      "alt": "Kvinde i grå jakke",
+      "title": "Betalings løsninger"
     },
     "marketing": {
       "title": "Vi hjælper dig med at markedsføre dit indhold",
-      "description": "Kiibee er ikke kun en hostingplatform - den hjælper dig aktivt med at promovere og vækste dit indhold. Du kan nemt integrere din egen salgsside eller shop i dit eksisterende setup, samtidig med at du får ekstra synlighed via Kiibees portal, nyhedsbreve og sociale medier.",
+      "description": "Kiibee er ikke kun en hosting platform - den hjælper dig aktivt med at promovere og vækste dit indhold. Du kan nemt integrere din egen salgsside eller shop i dit eksisterende setup, samtidig med at du får ekstra synlighed via Kiibees portal, nyhedsbreve og sociale medier.",
       "listIntro": "Med Kiibee kan du:",
       "list": [
         "Dele dit indhold overalt på nettet",
-        "Oprette din egen kanal eller side med kuraterede samlinger",
-        "Styre adgang med betalinger, koder eller e-mailtilmeldinger",
-        "Indsamle e-mailtilladelser til nyhedsbreve og markedsføring",
+        "Oprette din egen kanal eller side med samlinger",
+        "Styre adgang med betalinger, koder eller e-mail tilmeldinger",
+        "Indsamle e-mail tilladelser til nyhedsbreve og markedsføring",
         "Integrere eller præsentere dit indhold direkte på din egen hjemmeside"
       ],
-      "summary": "Dit indhold. Dit publikum. Dine regler.",
-      "cta": "Kom gratis i gang",
+      "summary": "Dit indhold & dit publikum.",
+      "cta": "Kom i gang gratis",
       "images": {
-        "creatorsAlt": "Skabere, der arbejder sammen",
+        "creatorsAlt": "Udgivere, der arbejder sammen",
         "downloadsAlt": "Instruktør, der præsenterer",
-        "setupAlt": "Skaber, der planlægger indhold"
+        "setupAlt": "Udgivere, der planlægger indhold"
       },
       "stats": {
         "products": {
           "value": "50.000+",
-          "label": "produkter solgt af vores skabere"
+          "label": "produkter solgt af vores kreatør og udgivere"
         },
         "downloads": {
           "value": "2,4M",
-          "label": "Kundedownloads har nået"
+          "label": "Kunde downloads"
         },
         "setup": {
           "value": "5 minutter",
-          "label": "Få dit første produkt live på under"
+          "label": "Få din første udgivelse live på under"
         }
       }
     },
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "En kort historie om Kiibee",
-      "lead": "Kiibee blev grundlagt i 2017 med én simpel mission: at hjælpe skabere med at gøre godt indhold til en succesfuld forretning.",
-      "body": "Vi så talentfulde skabere producere værdifuldt digitalt indhold, men mangle en nem, professionel måde at sælge det på. Samtidig havde forbrugere svært ved at opdage og få adgang til kvalitetsindhold uden unødvendige barrierer.",
+      "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
+      "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
       "closing": "Kiibee blev bygget til at løse begge udfordringer — give skabere værktøjerne til at sælge, vokse og nå flere, mens det bliver nemmere for publikum at nyde det indhold, de elsker.",
       "cta": "Læs mere om Kiibee"
     },
     "contentPerform": {
       "imageAlt": "Forhåndsvisning af creator-dashboard",
-      "title": "Forstå dit publikum. Voks din forretning.",
+      "title": "Se, hvordan dit indhold klarer sig",
       "intro": "Med Kiibee får du klare indsigter i, hvordan dit indhold klarer sig.",
       "listIntro": "I dit dashboard kan du:",
       "points": [
@@ -453,7 +453,7 @@
       "cta": "Tilmeld Kiibee i dag"
     },
     "whyChoose": {
-      "heading": "Hvorfor skabere vælger Kiibee",
+      "heading": "Hvorfor vælger udgivere Kiibee",
       "features": {
         "website": {
           "title": "Dit website, dit brand",
@@ -482,7 +482,7 @@
       }
     },
     "howToGetStarted": {
-      "title": "Sådan hjælper Kiibee dig med at sælge mere",
+      "title": "Sådan kommer du i gang som udgiver",
       "subtitle": "Mere end en platform. En partner i at vokse din forretning.",
       "steps": {
         "getDiscovered": {
@@ -511,23 +511,23 @@
         }
       }
     },
-    "title": "All creators",
+    "title": "Alle kratør",
     "filter": "Filter",
     "filters": {
       "title": "Filtre",
       "showMore": "Vis flere",
       "seeLess": "Vis færre",
       "sections": {
-        "creators": "Skabere",
+        "creators": "Udgiver",
         "categories": "Kategorier",
         "formats": "Formater",
         "price": "Pris",
         "rating": "Bedømmelse"
       },
       "price": {
-        "minimum": "Minimumspris",
-        "maximum": "Maksimumspris",
-        "currency": "DKK"
+        "minimum": "Minimums pris",
+        "maximum": "Maksimums pris",
+        "currency": "Kr"
       },
       "options": {
         "categories": {
@@ -554,7 +554,7 @@
       }
     },
     "search": "Søg efter opslag",
-    "searchCreators": "Søg efter skabere",
+    "searchCreators": "Søg efter udgiver",
     "sort": "Sorter efter:",
     "recentlyAdded": {
       "badge": "Senest tilføjet",
@@ -562,18 +562,18 @@
       "tag": "Senest tilføjet"
     },
     "viewProfile": "Se profil",
-    "noCreatorsFound": "Ingen skabere fundet",
+    "noCreatorsFound": "Ingen udgiver fundet",
     "uploadsCount": "{{count}} uploads",
     "loadMore": "Indlæs mere",
     "a-z": "A-Å",
     "subscribers": "Abonnenter",
     "newest": "Nyeste",
-    "topCreators": "Topskabere",
-    "seeAll": "Se alle skabere",
+    "topCreators": "Top udgivere",
+    "seeAll": "Se alle udgivere",
     "subscribersCount": "{{count}}K abonnenter",
     "topCreatorUploads_one": "{{formattedCount}} content upload",
     "topCreatorUploads_other": "{{formattedCount}} content uploads",
-    "creators": "Skabere",
+    "creators": "Udgivere",
     "contents": "Indhold"
   },
   "discoverContent": {
@@ -583,7 +583,7 @@
     },
     "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
     "ctaPrimary": "Deltag nu",
-    "ctaSecondary": "Se alle skabere",
+    "ctaSecondary": "Se alle udgivere",
     "mediaTypes": {
       "video": "Video",
       "epub": "E-pub"
@@ -591,7 +591,7 @@
     "items": {
       "1": {
         "category": "Komedie",
-        "title": "Krøllehjern",
+        "title": "Krølle hjern",
         "author": "Jacob Taarnhøj",
         "date": "For 7 dage siden",
         "actions": {
@@ -629,7 +629,7 @@
     }
   },
   "exploreCategories": {
-    "title": "Topkategorier til at komme i gang",
+    "title": "Top kategorier til at komme i gang",
     "subtitle": "Gennemse platformen og køb eller lej nemt med blot et par klik. Du kan se med når som helst og hvor som helst.",
     "browseAll": "Gennemse alle",
     "categories": {
@@ -645,19 +645,19 @@
     "information": "Oplysninger",
     "about": "Om os",
     "howItWorks": "Sådan fungerer det",
-    "forCreators": "For skabere",
-    "exploreCreators": "Udforsk skabere",
+    "forCreators": "For udgivere",
+    "exploreCreators": "Udforsk udgivere",
     "pricing": "Priser",
     "helpfulLinks": "Nyttige links",
-    "tutorialVideos": "Videovejledninger",
-    "userGuides": "Brugervejledninger",
+    "tutorialVideos": "Video vejledninger",
+    "userGuides": "Bruger vejledninger",
     "contactUs": "Kontakt os",
     "support": "Support",
-    "creatorTerms": "Betingelser for skabere",
+    "creatorTerms": "Handelsbetingelser for udgivere",
     "privacyPolicy": "Privatlivspolitik",
-    "termsOfService": "Servicevilkår",
-    "cookieSettings": "Cookie-indstillinger",
-    "subscriptionTerms": "Abonnementsbetingelser",
+    "termsOfService": "Handelsbetingelser",
+    "cookieSettings": "Cookie indstillinger",
+    "subscriptionTerms": "Abonnements betingelser",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
   "supportPage": {
@@ -667,10 +667,10 @@
     "resourcesLead": "Du kan også se vores",
     "resourcesMiddle": "og",
     "resourcesEnd": "for hurtige svar.",
-    "tutorialVideos": "videovejledninger",
-    "userGuides": "brugervejledninger",
+    "tutorialVideos": "video vejledninger",
+    "userGuides": "bruger vejledninger",
     "supportTitle": "Support",
-    "supportEmail": "support@kiibee.dk",
+    "supportEmail": "info@kiibee.dk",
     "salesTitle": "Salg og partnerskab",
     "salesEmail": "info@kiibee.dk",
     "success": {
@@ -682,20 +682,20 @@
       "lastName": "Efternavn",
       "companyName": "Firmanavn",
       "phoneNumber": "Telefonnummer",
-      "email": "E-mailadresse",
+      "email": "E-mail adresse",
       "message": "Hvordan kan vi hjælpe dig?",
       "placeholders": {
         "firstName": "Indtast dit fornavn",
         "lastName": "Indtast dit efternavn",
-        "companyName": "Indtast firmanavn",
+        "companyName": "Indtast firma navn",
         "phoneNumber": "Indtast telefonnummer",
-        "email": "Indtast e-mailadresse",
+        "email": "Indtast e-mail adresse",
         "message": "Skriv din besked..."
       },
       "errors": {
         "firstNameRequired": "Fornavn er påkrævet",
-        "emailRequired": "E-mailadresse er påkrævet",
-        "emailInvalid": "Indtast en gyldig e-mailadresse",
+        "emailRequired": "E-mail adresse er påkrævet",
+        "emailInvalid": "Indtast en gyldig e-mail adresse",
         "phoneInvalid": "Indtast et gyldigt telefonnummer",
         "messageRequired": "Besked er påkrævet"
       },
@@ -708,13 +708,13 @@
     "bgAlt": "Baggrundsbillede",
     "title": "Det du ved, er noget værd",
     "subtitle": "Gør din ekspertise til indtjening",
-    "cta": "Tilmeld Kiibee i dag"
+    "cta": "Tilmeld dig Kiibee i dag"
   },
   "testimonial": {
-    "backgroundAlt": "Baggrund til skaberudtalelse",
+    "backgroundAlt": "Baggrund til udtalelser",
     "prevAriaLabel": "Forrige udtalelse",
     "nextAriaLabel": "Næste udtalelse",
-    "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
+    "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibee har været en game changer for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer",
     "quote2": "Kiibee har gjort det utroligt nemt at pakke mine online tutorials og sælge dem direkte til mit publikum. Jeg behøver ikke bekymre mig om at administrere abonnementsplatforme eller betalingssystemer; det virker bare. Jeg gik fra nul indtjening til en stabil sideindkomst på få uger!",
     "author2": "Sarah, online indholdsskaber",
@@ -730,10 +730,10 @@
   "about": {
     "hero": {
       "title": "Styrker kreativitet. Forbinder mennesker.",
-      "subtitle": "Kiibee er en digital platform, hvor skabere deler deres viden, passion og historier, og hvor seere nemt kan opdage, leje eller købe inspirerende indhold.",
+      "subtitle": "Kiibee er en digital platform, hvor kreatør og udgivere deler deres viden, passion og historier, og hvor seere nemt kan opdage, leje eller købe inspirerende indhold.",
       "cta": {
         "explore": "Udforsk indhold",
-        "creator": "Bliv skaber"
+        "creator": "Bliv udgiver"
       }
     },
     "ourStory": {
@@ -750,18 +750,20 @@
       }
     },
     "believe": {
-      "title": "Hvad vi tror på",
+      "title": "Hvad er en udgiver?",
       "alt": "Kreative fagfolk arbejder med digitalt indhold",
       "content": {
-        "quality": "Vi tror på, at kvalitetsindhold fortjener et professionelt hjem.",
-        "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
-        "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
+        "quality": "...Udgiver, kreatør, creator, skaber... forskellige navne, men samme rolle. Her hos os kalder vi dem udgivere. En udgiver er den person, virksomhed eller organisation, der skaber og deler det indhold, du finder på Kiibee.",
+        "creators": "Det kan være en komiker, underviser, forfatter, ekspert eller en helt anden type udgiver, som ønsker at dele sin viden og kreativitet i sit indhold med andre.",
+        "viewers": "Hos Kiibee samler vi udgivere fra mange forskellige brancher og områder, så du nemt kan finde adgang til kvalitetsindhold samlet ét sted. Uanset om du leder efter underholdning, læring eller inspiration, hjælper vi dig med at finde indhold fra mennesker, der brænder for det, de laver."
       }
     },
     "platform": {
-      "title": "Mere end en platform",
-      "intro": "Kiibee er ikke bare en teknisk løsning.",
-      "description": "Det er en bro mellem skabere og deres publikum, bygget til at understøtte langsigtet værdi, bæredygtig indholdsdistribution og en bedre oplevelse for alle involverede."
+      "title": "Så hvad tror vi på?",
+      "intro": "Vi tror på, at kvalitetsindhold fortjener et professionelt hjem.",
+      "publishers": "Udgivere bør kunne eje deres arbejde, kontrollere hvordan det deles og hvem der ser det – helt uden at skulle bekymre sig om tekniske løsninger.",
+      "viewers": "Du bør nemt kunne opdage nyt indhold, samtidig med, at du nøjes med at betale for det, du faktisk ønsker adgang til, og få en enkel og god oplevelse.",
+      "description": "Derfor har vi skabt Kiibee – en platform, hvor udgivere og seere mødes på en nemmere, mere fair og mere direkte måde."
     },
     "value": {
       "title": "Bliv en del af Kiibee-bevægelsen",
@@ -785,7 +787,7 @@
       },
       {
         "title": "Alle køb samlet ét sted",
-        "text": "Efter køb eller leje omdirigeres du til din købsside. Du modtager også en kvittering via e-mail med et direkte link til dit indhold.",
+        "text": "Efter køb eller leje omdirigeres du til dit dashboard. Du modtager også en kvittering via e-mail med et direkte link til dit indhold.",
         "imageAlt": "købshistorik"
       },
       {
@@ -802,14 +804,14 @@
     "sectionLabel": "Grundlæggende kapitler",
     "sectionLink": "Se playliste",
     "buttonFreeLabel": "Gratis",
-    "quickguidesTitle": "Brugervejledning - Quickguides"
+    "quickguidesTitle": "Brugervejledning"
   },
   "callToAction": {
     "logoAlt": "Kiibee",
-    "creatorAlt": "Skaber",
-    "title": "Er du en skaber?\nBliv en del af Kiibee i dag",
+    "creatorAlt": "Udgiver",
+    "title": "Er du en udgiver?\nBliv en del af Kiibee i dag",
     "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
-    "cta": "Begynd at skabe"
+    "cta": "Begynd at udgive"
   },
   "interests": {
     "title": "Udforsk indhold til enhver interesse",
@@ -835,7 +837,7 @@
     "cta": "Kom gratis i gang"
   },
   "pricingPlans": {
-    "title": "Oversigt over prisplaner",
+    "title": "Oversigt over pris planer",
     "cta": "Kom i gang",
     "active": "Aktiv",
     "planNotFound": "Planen blev ikke fundet",
@@ -889,11 +891,11 @@
   },
   "subscriptionPage": {
     "logoAlt": "Kiibee Logo",
-    "title": "Vælg den rigtige plan til at komme i gang med din konto",
-    "comparePlans": "Sammenlign planer og funktioner",
+    "title": "Vælg den rigtige løsning til at komme i gang med din konto",
+    "comparePlans": "Sammenlign pakker og funktioner",
     "continue": "Fortsæt",
     "creatorDetails": {
-      "email": "Bekræft e-mailadresse",
+      "email": "Bekræft e-mail adresse",
       "password": "Opret adgangskode",
       "repeatPassword": "Gentag adgangskode"
     },
@@ -915,10 +917,10 @@
       }
     },
     "invite": {
-      "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee, hvis du har brug for en ny invitation.",
-      "setupFailed": "Vi kunne ikke færdiggøre din kontooversigt. Tjek din e-mail og adgangskode, og prøv igen.",
-      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden.",
-      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee support, hvis du har brug for en ny invitation.",
+      "setupFailed": "Vi kunne ikke færdiggøre din konto. Tjek din e-mail og adgangskode, og prøv igen.",
+      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login siden.",
+      "emailInvalid": "Indtast en gyldig e-mail adresse",
       "passwordMinLength": "Adgangskoden skal være mindst 6 tegn",
       "passwordMismatch": "Adgangskoderne matcher ikke"
     },
@@ -957,7 +959,7 @@
   "cardFailurePage": {
     "title": "Kortet blev ikke tilføjet",
     "message": "Kortopsætningen blev ikke fuldført. Vi tager dig tilbage til udbetalingsmetoder.",
-    "hint": "Du kan prøve at tilføje kortet igen fra indstillinger."
+    "hint": "Tilføj kortet igen fra indstillinger."
   },
   "cardSuccessPage": {
     "title": "Kortet blev tilføjet med succes",
@@ -996,9 +998,9 @@
     "back": "Tilbage",
     "goBack": "Gå tilbage",
     "close": "Luk",
-    "helpOptions": "Hjælpemuligheder",
-    "viewerProfile": "Seerprofil",
-    "creatorProfile": "Skaberprofil",
+    "helpOptions": "Hjælpe muligheder",
+    "viewerProfile": "Seer profil",
+    "creatorProfile": "Udgiver profil",
     "createProfileFooterAria": "Opret profilefooter",
     "creatorActivityChart": "Skaberaktivitet stablet søjlediagram",
     "previous": "Forrige",
@@ -1014,7 +1016,7 @@
     "noData": "Ingen data fundet",
     "showing": "Viser",
     "outOf": "ud af",
-    "paginationPage": "Ga til side {{page}}"
+    "paginationPage": "Gå til side {{page}}"
   },
   "creatorProfile": {
     "title": "Min konto",
@@ -1024,7 +1026,7 @@
     "lastName": "Efternavn",
     "lastNameRequired": "Efternavn er påkrævet",
     "lastNameMax": "Efternavn må højst være 50 tegn",
-    "cvrInvalid": "CVR skal være på mindst 8 cifre",
+    "cvrInvalid": "CVR nr. skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",
     "companyName": "Firmanavn",
@@ -1036,9 +1038,9 @@
     "city": "By",
     "postal": "Postnummer",
     "paymentTitle": "Betalingsinformation",
-    "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
+    "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine penge.",
     "regLabel": "Reg. nr.",
-    "accountLabel": "Kontonr.",
+    "accountLabel": "Konto nr.",
     "currentPassword": "Indtast nuværende adgangskode",
     "newPassword": "Indtast ny adgangskode",
     "confirmPassword": "Indtast ny adgangskode igen",
@@ -1063,16 +1065,16 @@
         "others": "Andet"
       }
     },
-    "deleteToastMessage": "Anmodning om kontosletning er sendt. Vent venligst på administratorens godkendelse.",
+    "deleteToastMessage": "Din anmodning er sendt og afventer administrator godkendelse.",
     "deleteSuccessModal": {
       "title": "Anmodning om kontosletning sendt",
       "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
-      "confirm": "Ok"
+      "confirm": "Færdig"
     },
     "deletePendingModal": {
-      "title": "Sletteanmodning er i gang",
+      "title": "Slette anmodning er i gang",
       "message": "Din anmodning om kontosletning afventer allerede. En administrator gennemgår den og giver dig besked, når det er gjort.",
-      "confirm": "Ok"
+      "confirm": "Færdig"
     },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",
@@ -1087,7 +1089,7 @@
     "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
-    "profilePhotoAlt": "Profilfoto",
+    "profilePhotoAlt": "Profilbillede",
     "currentPlan": {
       "label": "Nuværende plan",
       "upgrade": "Opgrader",
@@ -1102,15 +1104,15 @@
   "singleContent": {
     "purchaseSuccessModal": {
       "title": "Køb gennemført!",
-      "contentMessage": "Betaling bekræftet — du ejer nu dette indhold og kan få adgang til det når som helst i dit bibliotek.",
-      "collectionMessage": "Betaling bekræftet — du ejer nu denne samling og kan få adgang til den når som helst i dit bibliotek.",
+      "contentMessage": "Betaling bekræftet — du ejer nu dette indhold og kan få adgang til det når som helst i dit dashboard.",
+      "collectionMessage": "Betaling bekræftet — du ejer nu denne samling og kan få adgang til den når som helst i dit dashboard.",
       "goBack": "Gå tilbage",
       "goToContent": "Gå til indhold",
       "goToCollection": "Gå til samling"
     },
     "notFound": "Dette indhold blev ikke fundet.",
-    "loading": "Indhold indlaeses...",
-    "imageAlt": "Forhaandsvisning af indhold",
+    "loading": "Indhold indlæses...",
+    "imageAlt": "Forhåndsvisning af indhold",
     "openInDashboard": "Åben i dashboard",
     "myContent": "Mit indhold",
     "seeContent": "Se indhold",
@@ -1193,7 +1195,7 @@
     "noResults": "Ingen uploads matcher din søgning."
   },
   "singleTutorial": {
-    "title": "Del 1. Oprettelse af profil og kanal & site",
+    "title": "Del 1. Oprettelse af profil og kanal & side",
     "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
     "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
     "playTrailer": "Se trailer",
@@ -1213,7 +1215,7 @@
   },
   "startCreating": {
     "heading": "Start med at skabe med Kiibee i dag",
-    "description1": "Bliv en af hundredsvis af skabere, der deler deres arbejde og vokser deres publikum på Kiibee.",
+    "description1": "Bliv en af hundredevis af kreatør & udgivere, der deler deres arbejde og vokser deres seer på Kiibee.",
     "description2": "Du kan starte gratis og opgradere, når du er klar.",
     "cta": "Kom gratis i gang"
   },
@@ -1469,7 +1471,7 @@
     }
   },
   "users": {
-    "search": "Sog efter navn",
+    "search": "Søg efter navn",
     "tabs": {
       "registrations": "Registreringer",
       "sales": "Salg",
@@ -1619,9 +1621,9 @@
       "saveChanges": "Gem ændringer",
       "saveSuccess": "Profil gemt",
       "saveError": "Profilen kunne ikke gemmes",
-      "saveModalTitle": "Aendringer gemt",
+      "saveModalTitle": "Ændringer gemt",
       "saveModalMessage": "Dine opdateringer er blevet gemt.",
-      "saveModalDone": "Faerdig",
+      "saveModalDone": "Færdig",
       "fullName": "Fulde navn",
       "email": "E-mailadresse",
       "downloads": "{{count}} downloads",
@@ -1672,7 +1674,7 @@
       }
     },
     "contentName": "Indholdsnavn",
-    "pageVisits": "Sidebesog",
+    "pageVisits": "Side besøg",
     "clicks": "Klik",
     "views": "Visninger",
     "range": {
@@ -1691,8 +1693,8 @@
     },
     "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
     "previous": "Forrige",
-    "next": "Naeste",
-    "paginationPage": "Ga til side {{page}}"
+    "next": "Næste",
+    "paginationPage": "Gå til side {{page}}"
   },
   "settings": {
     "title": "Indstillinger",
@@ -1706,7 +1708,7 @@
       "title": "Udbetalingsmetoder",
       "subtitle": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
       "regLabel": "Reg. nr.",
-      "accountLabel": "Kontonr.",
+      "accountLabel": "Konto nr.",
       "addPayoutMethod": "Tilføj udbetalingsmetode"
     },
     "notifications": {
@@ -1718,20 +1720,20 @@
       "form": "Formular",
       "sales": "Salg",
       "frequency": "Hvor ofte vil du modtage opdateringer?",
-      "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
+      "frequencyDesc": "Vælg hvor ofte du vil modtage e-mail opdateringer",
       "monthly": "Månedligt",
       "weekly": "Ugentligt",
       "daily": "Dagligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail",
+      "accountEmail": "Konto e-mail",
       "otherEmail": "Anden e-mail",
       "enterEmail": "Indtast e-mail",
       "discardModal": {
-        "title": "Kassér ændringer?",
+        "title": "Kasser ændringer?",
         "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
         "goBack": "Gå tilbage",
-        "discard": "Kassér"
+        "discard": "Kasser"
       },
       "successModal": {
         "title": "Ændringer gemt",
@@ -1741,15 +1743,15 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "Når du klikker på knappen, oprettes en opgørelse, som du kan udbetale. Klik på udbetaling for at se din kreditnota. Overførsel af din saldo kan tage op til 5 hverdage.",
+      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
-      "settlementHistory": "Afregningshistorik",
+      "settlementHistory": "Betalingshistorik",
       "tableHeaders": {
         "amount": "Beløb",
         "status": "Status",
-        "creditNo": "Kreditnr.",
+        "creditNo": "Kredit nr.",
         "bank": "Bank",
         "date": "Dato"
       },
@@ -1809,15 +1811,15 @@
       },
       "placeholders": {
         "title": "Indtast kort titel",
-        "discountAmount": "Indtast rabatbeloeb",
-        "discountPercentage": "Indtast rabatprocent"
+        "discountAmount": "Indtast rabat beløb",
+        "discountPercentage": "Indtast rabat procent"
       },
-      "discountValue": "Rabatvaerdi",
-      "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
+      "discountValue": "Rabatværdi",
+      "discountHelp": "Indtast det rabat beløb eller den procentdel, du vil tilbyde.",
       "discountHelpPercentage": "Indtast en procentrabat op til {{max}}%.",
       "maxPercentageError": "Maksimal rabat er {{max}}%.",
       "discountType": {
-        "fixedAmount": "Fast beloeb",
+        "fixedAmount": "Fast beløb",
         "percentage": "Procent"
       },
       "editButton": "Rediger kupon",
@@ -1826,7 +1828,7 @@
     },
     "couponCodes": {
       "title": "Kuponkoder",
-      "description": "Tilfoj en eller flere koder, som kunder kan bruge til at indlose denne rabat.",
+      "description": "Tilføj en eller flere koder, som kunder kan bruge til at indløse denne rabat.",
       "fields": {
         "discountCodes": "Rabatkoder"
       },
@@ -1836,15 +1838,15 @@
       "helper": "Adskil flere koder ved at trykke enter"
     },
     "couponApplicableProducts": {
-      "title": "Gaeldende produkter",
-      "description": "Du kan vaelge specifikke samlinger eller indhold, eller lade feltet vaere tomt for at gore rabatten tilgaengelig for alt.",
+      "title": "Gældende produkter",
+      "description": "Du kan vælge specifikke samlinger eller indhold, eller lade feltet være tomt for at gore rabatten tilgængelig for alt.",
       "fields": {
-        "collections": "Vaelg samling",
-        "contents": "Vaelg enkelt indhold"
+        "collections": "Vælg samling",
+        "contents": "Vælg enkelt indhold"
       },
       "helpers": {
-        "collections": "Tilfoj en eller flere samlinger, som kunder kan faa denne rabat paa.",
-        "contents": "Tilfoj et eller flere indhold, som kunder kan faa denne rabat paa."
+        "collections": "Tilføj en eller flere samlinger, som kunder kan få denne rabat på.",
+        "contents": "Tilføj et eller flere indhold, som kunder kan få denne rabat på."
       },
       "buttons": {
         "collections": "Samlinger",
@@ -1900,8 +1902,8 @@
     },
     "couponActions": {
       "editCoupon": "Rediger kupon",
-      "makeActive": "Gor aktiv",
-      "makeInactive": "Gor inaktiv",
+      "makeActive": "Gør aktiv",
+      "makeInactive": "Gør inaktiv",
       "delete": "Slet"
     },
     "placeholders": {
@@ -1933,7 +1935,7 @@
       "validation": {
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
-        "fixErrors": "Ret fejlene i appearance-sektionen, fÃ¸r du gemmer.",
+        "fixErrors": "Ret fejlene i appearance-sektionen, før du gemmer.",
         "descriptionMax": "Beskrivelsen skal være kortere end eller lig med {{max}} tegn.",
         "descriptionRequired": "Beskrivelse er påkrævet.",
         "logoNameRequired": "Logotekst er påkrævet.",
@@ -1947,7 +1949,7 @@
         "subtitle": "Det store billede øverst på siden",
         "uploadDesktop": "Upload forsidebillede til desktop",
         "uploadMobile": "Upload forsidebillede til mobil",
-        "desktopSize": "Brug billedstørrelse 1200 × 400 pixels",
+        "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
         "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
         "desktopAlt": "Desktop forsidebillede",
         "mobileAlt": "Mobil forsidebillede",
@@ -1980,8 +1982,8 @@
     },
     "general": {
       "trailerLink": "Trailer-link",
-      "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
-      "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "trailerLinkHint": "Hvis du vil tilføje en trailer, skal du indtaste linket her.",
+      "trailerLinkPlaceholder": "Tilføj YouTube- eller Video-link",
       "trailerLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
@@ -2094,23 +2096,23 @@
       "placeholder": "Indtast navn"
     },
     "createCollectionSuccessModal": {
-      "title": "Aendringer gemt",
+      "title": "Ændringer gemt",
       "message": "Dine opdateringer er blevet gemt.",
-      "done": "Faerdig"
+      "done": "Færdig"
     },
     "moveContentModal": {
       "title": "Flyt indhold",
       "collectionLabel": "Samlinger",
-      "description": "Vaelg den samling, du vil flytte indholdet til",
+      "description": "Vælg den samling, du vil flytte indholdet til",
       "successTitle": "Flyttet",
       "successMessage": "Indholdet blev flyttet til {{collectionName}}."
     },
     "web": {
       "placeholder": "https://eksempel.dk/",
-      "ePublicationLink": "E-publicationslink",
+      "ePublicationLink": "E-publications link",
       "openInNewWindow": "Åbn altid webindhold i nyt vindue?",
       "openDirectFromList": "Åbn webindhold direkte fra listen?",
-      "helperLiveStreaming": "Kan f.eks. bruges sammen med livestreaming"
+      "helperLiveStreaming": "Kan f.eks. bruges sammen med live streaming"
     },
     "metadata": {
       "validation": {
@@ -2127,7 +2129,7 @@
       },
       "published": {
         "title": "Udgivet",
-        "yearPlaceholder": "Udgivelsesår",
+        "yearPlaceholder": "Udgivelses år",
         "duration": "Varighed",
         "durationPlaceholder": "Varighed i minutter",
         "category": "Kategori",
@@ -2175,7 +2177,7 @@
       },
       "webPurchase": {
         "title": "Webindhold køb (livstidsadgang)",
-        "description": "Brugere får permanent adgang til webindholdet."
+        "description": "Brugere får permanent adgang til web indholdet."
       },
       "epubRental": {
         "title": "E-publikation leje",
@@ -2195,7 +2197,7 @@
       },
       "audioRental": {
         "title": "Lyd leje (streaming)",
-        "description": "Lydindhold kan streames i en begrænset periode."
+        "description": "Lyd indhold kan streames i en begrænset periode."
       },
       "audioPurchase": {
         "title": "Lyd køb/download",
@@ -2206,7 +2208,7 @@
         "description": "Når en video lejes, vil den være tilgængelig i 48 timer."
       },
       "purchase": {
-        "title": "Videokøb/download",
+        "title": "Video køb/download",
         "description": "Købte videoer vil være tilgængelige i brugerens profil."
       },
       "downloadLimit": {
@@ -2235,7 +2237,7 @@
       "physicalProduct": {
         "title": "Fysisk produkt",
         "description": "Hvis du har en fysisk version af produktet, kan du linke til en webshop.",
-        "placeholder": "TilfÃ¸j produktlink"
+        "placeholder": "Tilføj produktlink"
       },
       "common": {
         "enterAmount": "Indtast beløb",
@@ -2290,7 +2292,7 @@
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
-    "imageUploadFailed": "Billedupload mislykkedes",
+    "imageUploadFailed": "Billed upload mislykkedet",
     "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
     "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
   },
@@ -2319,7 +2321,7 @@
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
     "sendingRequest": "Sender anmodning...",
-    "redeemFailed": "Vi kunne ikke aktivere dette adgangslink. Anmod om et nyt link, og pr\u00f8v igen.",
+    "redeemFailed": "Vi kunne ikke aktivere dette adgangslink. Anmod om et nyt link, og prøv igen.",
     "invalidCodeTitle": "Ugyldig adgangskode",
     "invalidCodeMessage": "Den kode, du indtastede, er forkert. Kontrollér den, og prøv igen.",
     "cancel": "Annuller",
@@ -2369,7 +2371,7 @@
     "searchPreviouslyRented": "Søg i tidligere leje",
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
-    "openPdf": "Åbn pdf",
+    "openPdf": "Åben PDF",
     "openEpub": "Åbn epub",
     "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
@@ -2401,13 +2403,13 @@
   },
   "creatorPurchaseFlow": {
     "modal1": {
-      "title": "Du er logget ind som skaber",
-      "message": "For at købe eller leje indhold skal du bruge en seerkonto. Log ind med en eksisterende seerkonto eller opret en ny for at fortsætte.",
+      "title": "Du er logget ind som udgiver",
+      "message": "For at købe eller leje indhold skal du bruge en seer konto. Log ind med en eksisterende seer konto eller opret en ny for at fortsætte.",
       "primaryBtn": "Log ind som seer",
-      "secondaryBtn": "Opret seerkonto"
+      "secondaryBtn": "Opret seer konto"
     },
     "modal2": {
-      "title": "Du vil blive logget ud af din skaberkonto og logget ind som seer.",
+      "title": "Du vil blive logget ud af din udgiver konto og logget ind som seer.",
       "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }
