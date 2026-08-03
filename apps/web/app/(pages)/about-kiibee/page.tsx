@@ -5,6 +5,7 @@ import NavBar from "@/components/Layout/Navbar";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import AboutHero from "@/components/Feature/AboutKiibee/Hero";
 import AboutStorySection from "@/components/Feature/AboutKiibee/AboutStorySection";
+import KiibeeMeaningSection from "@/components/Feature/AboutKiibee/KiibeeMeaningSection";
 import { Main, PageContainer, Section } from "@/app/styles";
 import WhatWeBelieveSection from "@/components/Feature/AboutKiibee/WhatWeBelieveSection";
 import MoreThanPlatformSection from "@/components/Feature/AboutKiibee/MorePlatform";
@@ -31,6 +32,7 @@ export default function AboutKiibeePage() {
         <Section>
           <AboutHero />
           <AboutStorySection />
+          <KiibeeMeaningSection />
           <WhatWeBelieveSection />
           <div ref={darkSectionRef}>
             <MoreThanPlatformSection />
