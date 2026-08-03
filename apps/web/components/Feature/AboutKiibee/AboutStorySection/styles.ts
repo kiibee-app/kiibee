@@ -4,7 +4,7 @@ import { media } from "@repo/ui/breakpoints";
 export const SectionWrapper = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: 3.5rem 1.25rem 7rem;
+  padding: 3.5rem 1.25rem 2.75rem;
 `;
 
 export const Inner = styled.div`

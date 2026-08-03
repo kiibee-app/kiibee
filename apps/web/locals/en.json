@@ -749,19 +749,25 @@
         "evolution": "Since 2017, Kiibee has evolved into a flexible platform used by a wide range of creators and organisations."
       }
     },
+    "kiibeeMeaning": {
+      "title": "What does \"Kiibee\" mean?",
+      "body": "<brand>KiiBee</brand> is a name inspired by kilobyte — a unit of digital data. The name symbolizes the small digital building blocks that together create great experiences. <brand>KiiBee</brand> connects creators and users through a platform where digital content can be shared, bought, and enjoyed easily."
+    },
     "believe": {
-      "title": "What we believe",
+      "title": "What is a publisher?",
       "alt": "Creative professionals working on digital content",
       "content": {
-        "quality": "We believe that quality content deserves a professional home.",
-        "creators": "Creators should be able to own their work, control how it's shared, and get paid without technical complexity.",
-        "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
+        "quality": "...Publisher, creator, maker... different names, but the same role. Here we call them publishers. A publisher is the person, company, or organization that creates and shares the content you find on Kiibee.",
+        "creators": "It can be a comedian, teacher, author, expert, or any other kind of publisher who wants to share their knowledge and creativity with others.",
+        "viewers": "At Kiibee we bring together publishers from many different industries and fields, so you can easily find quality content in one place. Whether you are looking for entertainment, learning, or inspiration, we help you discover content from people who are passionate about what they do."
       }
     },
     "platform": {
-      "title": "More than a platform",
-      "intro": "Kiibee is not just a technical solution.",
-      "description": "It's a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+      "title": "So what do we believe?",
+      "intro": "We believe that quality content deserves a professional home.",
+      "publishers": "Publishers should be able to own their work, control how it is shared and who sees it — without having to worry about technical solutions.",
+      "viewers": "You should be able to discover new content easily, pay only for what you actually want access to, and get a simple, great experience.",
+      "description": "That is why we created Kiibee — a platform where publishers and viewers meet in an easier, fairer, and more direct way."
     },
     "value": {
       "title": "Join the Kiibee movement",
