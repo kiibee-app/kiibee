@@ -16,6 +16,7 @@ import {
   INPUT_FIELD_CONTAINER_TAGS,
   INPUT_FIELD_LABEL_TAGS,
   INPUT_FIELD_ROLES,
+  KEYBOARD_KEYS,
   AriaInvalidValue,
   InputType,
   InputModeValue,
@@ -172,6 +173,13 @@ export default React.forwardRef<
     onFocus?.(e);
   };
 
+  const handleIconKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === KEYBOARD_KEYS.ENTER || e.key === KEYBOARD_KEYS.SPACE) {
+      e.preventDefault();
+      onIconClick?.();
+    }
+  };
+
   const normalizeError = (err: boolean | undefined) => !!err;
   const hasErrorValue = Array.isArray(hasError)
     ? hasError.some(Boolean)
@@ -297,7 +305,13 @@ export default React.forwardRef<
               min={min}
             />
             {icon && (
-              <IconWrapper onClick={onIconClick} data-test-id={iconDataTestId}>
+              <IconWrapper
+                onClick={onIconClick}
+                onKeyDown={handleIconKeyDown}
+                role={INPUT_FIELD_ROLES.BUTTON}
+                tabIndex={0}
+                data-test-id={iconDataTestId}
+              >
                 {icon}
               </IconWrapper>
             )}
