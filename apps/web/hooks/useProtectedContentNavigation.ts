@@ -3,7 +3,7 @@
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { authStorage } from "@/lib/auth/authStorage";
-import { pathLoginWithNext, isSafePostLoginPath, PATHS } from "@/utils/path";
+import { pathLoginWithNext, isSafePostLoginPath } from "@/utils/path";
 import { logger } from "@/lib/logger";
 
 export function useProtectedContentNavigation() {
@@ -12,15 +12,22 @@ export function useProtectedContentNavigation() {
   const navigateToContent = useCallback(
     (href: string, requiresAuth = false) => {
       const isInternal =
-        href.startsWith(PATHS.HOME) &&
-        !href.startsWith(`${PATHS.HOME}${PATHS.HOME}`);
-      if (!isInternal || !isSafePostLoginPath(href)) {
-        logger.warn("Blocked external redirect:", href);
+        href.startsWith("/") &&
+        !href.startsWith("//") &&
+        !href.startsWith("/\\");
+
+      if (!isInternal) {
+        logger.warn("Blocked external navigation:", href);
         return;
       }
 
       if (!requiresAuth || authStorage.hasSession()) {
         router.push(href);
+        return;
+      }
+
+      if (!isSafePostLoginPath(href)) {
+        logger.warn("Blocked unsafe post-login redirect:", href);
         return;
       }
 
