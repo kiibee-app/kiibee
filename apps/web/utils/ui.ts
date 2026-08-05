@@ -20,6 +20,7 @@ export const INPUT_FIELD_LABEL_TAGS = {
 } as const;
 export const INPUT_FIELD_ROLES = {
   GROUP: "group",
+  BUTTON: "button",
 } as const;
 export const INPUT_FIELD_ARIA_INVALID_VALUES = [
   "false",
