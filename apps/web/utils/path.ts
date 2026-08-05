@@ -1,4 +1,4 @@
-import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
+import { PROTOCOL_HTTP, PROTOCOL_HTTPS, STRING_EMPTY } from "./Constants";
 
 export const PATHS = {
   HOME: "/",
@@ -103,17 +103,16 @@ export function isSafePostLoginPath(
 }
 
 export function isSafeDownloadUrl(url: string | null | undefined): boolean {
-  if (!url) return false;
-  const normalized = url.trim().toLowerCase();
+  const normalized = (url ?? STRING_EMPTY).trim().toLowerCase();
 
-  const isAllowedScheme = [PROTOCOL_HTTP, PROTOCOL_HTTPS].some((scheme) =>
-    normalized.startsWith(scheme),
+  const isAllowedScheme = [PROTOCOL_HTTP, PROTOCOL_HTTPS].some(
+    (scheme) => Boolean(normalized) && normalized.startsWith(scheme),
   );
   const isInternalPath =
     normalized.startsWith(PATHS.HOME) &&
     !normalized.startsWith(`${PATHS.HOME}${PATHS.HOME}`);
 
-  return isAllowedScheme || isInternalPath;
+  return Boolean(normalized) && (isAllowedScheme || isInternalPath);
 }
 
 export function pathLoginWithNext(returnTo: string): string {
