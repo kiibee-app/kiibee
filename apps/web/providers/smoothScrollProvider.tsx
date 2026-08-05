@@ -46,6 +46,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     let resizeRafId: number | null = null;
     let destroyed = false;
+    const fontAbortController = new AbortController();
 
     const removeLenisScrollHandler = lenis.on("scroll", ScrollTrigger.update);
 
@@ -99,11 +100,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     );
     window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
     document.fonts?.ready.then(() => {
-      if (!destroyed) scheduleResize();
+      if (!destroyed && !fontAbortController.signal.aborted) {
+        scheduleResize();
+      }
     });
 
     return () => {
       destroyed = true;
+      fontAbortController.abort();
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
