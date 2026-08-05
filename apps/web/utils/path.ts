@@ -1,3 +1,5 @@
+import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
+
 export const PATHS = {
   HOME: "/",
   AUTH_LOGIN: "/auth/login",
@@ -98,6 +100,20 @@ export function isSafePostLoginPath(
     path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
     path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
+}
+
+export function isSafeDownloadUrl(url: string | null | undefined): boolean {
+  if (!url) return false;
+  const normalized = url.trim().toLowerCase();
+
+  const isAllowedScheme = [PROTOCOL_HTTP, PROTOCOL_HTTPS].some((scheme) =>
+    normalized.startsWith(scheme),
+  );
+  const isInternalPath =
+    normalized.startsWith(PATHS.HOME) &&
+    !normalized.startsWith(`${PATHS.HOME}${PATHS.HOME}`);
+
+  return isAllowedScheme || isInternalPath;
 }
 
 export function pathLoginWithNext(returnTo: string): string {

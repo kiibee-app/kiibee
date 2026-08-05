@@ -7,6 +7,8 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { TIME_MS } from "@/utils/Constants";
+import { isSafeDownloadUrl } from "@/utils/path";
+import { logger } from "@/lib/logger";
 
 export type ContentDownloadInfo = {
   maxDownloadLimit: number;
@@ -68,6 +70,11 @@ export function useContentDownload(
           throw new Error(
             response.data?.message || "Failed to get download URL",
           );
+        }
+
+        if (!isSafeDownloadUrl(downloadUrl)) {
+          logger.error("Blocked unsafe download URL protocol:", downloadUrl);
+          throw new Error("Invalid download URL protocol");
         }
 
         const targetFileName = fileName || customTitle;
