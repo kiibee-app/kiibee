@@ -36,6 +36,7 @@ export * from "./keyboard";
 export * from "@/lib/subscription/constants";
 export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
+export const FONT_SUBSETS: ("latin" | "latin-ext")[] = ["latin", "latin-ext"];
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
 export const DECORATIVE_IMAGE_PROPS = {
   alt: "",
