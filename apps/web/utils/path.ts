@@ -96,7 +96,10 @@ export function isSafePostLoginPath(
     path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     path === PATHS.DASHBOARD_VIEWER ||
     path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
-    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
+    path.startsWith(`${PATHS.CREATOR_PROFILE}/`) ||
+    path === COLLECTION_ROUTE ||
+    path.startsWith(`${COLLECTION_ROUTE}?`) ||
+    path.startsWith(`${COLLECTION_ROUTE}/`)
   );
 }
 
