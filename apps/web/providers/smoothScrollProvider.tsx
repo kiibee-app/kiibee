@@ -46,7 +46,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     let resizeRafId: number | null = null;
     let destroyed = false;
-    const fontAbortController = new AbortController();
 
     const removeLenisScrollHandler = lenis.on("scroll", ScrollTrigger.update);
 
