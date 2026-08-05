@@ -100,14 +100,13 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     );
     window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
     document.fonts?.ready.then(() => {
-      if (!destroyed && !fontAbortController.signal.aborted) {
+      if (!destroyed) {
         scheduleResize();
       }
     });
 
     return () => {
       destroyed = true;
-      fontAbortController.abort();
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
