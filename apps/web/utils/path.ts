@@ -1,8 +1,4 @@
-import {
-  STRING_EMPTY,
-  SAFE_DOWNLOAD_SCHEMES,
-  DOUBLE_SLASH_PREFIX,
-} from "./Constants";
+import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
 
 export const PATHS = {
   HOME: "/",
@@ -107,14 +103,20 @@ export function isSafePostLoginPath(
 }
 
 export function isSafeDownloadUrl(url: string | null | undefined): boolean {
-  const normalized = (url ?? STRING_EMPTY).trim().toLowerCase();
+  if (!url) {
+    return false;
+  }
 
-  return (
-    Boolean(normalized) &&
-    (SAFE_DOWNLOAD_SCHEMES.some((scheme) => normalized.startsWith(scheme)) ||
-      (normalized.startsWith(PATHS.HOME) &&
-        !normalized.startsWith(DOUBLE_SLASH_PREFIX)))
-  );
+  try {
+    const parsedUrl = new URL(url);
+
+    return (
+      parsedUrl.protocol === PROTOCOL_HTTP ||
+      parsedUrl.protocol === PROTOCOL_HTTPS
+    );
+  } catch {
+    return false;
+  }
 }
 
 export function pathLoginWithNext(returnTo: string): string {
