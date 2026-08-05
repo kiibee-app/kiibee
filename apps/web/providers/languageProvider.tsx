@@ -39,7 +39,7 @@ function createI18nInstance(lng: AppLanguage): I18nInstance {
     fallbackLng: DA,
     supportedLngs: SUPPORTED_LANGS,
     nonExplicitSupportedLngs: false,
-    interpolation: { escapeValue: true },
+    interpolation: { escapeValue: false },
     react: { useSuspense: false },
     initImmediate: false,
   };
