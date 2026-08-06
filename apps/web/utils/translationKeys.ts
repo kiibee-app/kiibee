@@ -8,6 +8,7 @@ export const HERO = {
 export const NAV = {
   howItWorks: "nav.howItWorks",
   exploreCreators: "nav.exploreCreators",
+  explore: "nav.explore",
   about: "nav.about",
   login: "nav.login",
   dashboard: "nav.dashboard",

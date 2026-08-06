@@ -53,7 +53,9 @@ import {
   DrawerSubMenuTitle,
   DrawerSubMenuLink,
   DrawerActions,
+  SearchIconButton,
 } from "./styles";
+import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -692,10 +694,28 @@ export default function NavBar({
               <ActionsPlaceholder />
             )
           ) : isLoggedIn && dashboardPath ? (
-            <NavAccountMenu dashboardPath={dashboardPath} />
+            <>
+              {!actions && (
+                <SearchIconButton
+                  href={PATHS.EXPLORE}
+                  $textTone={navTextTone}
+                  aria-label={t(NAV.explore)}
+                >
+                  <SearchIcon width={18} height={18} color="currentColor" />
+                </SearchIconButton>
+              )}
+              <NavAccountMenu dashboardPath={dashboardPath} />
+            </>
           ) : (
             (actions ?? (
               <>
+                <SearchIconButton
+                  href={PATHS.EXPLORE}
+                  $textTone={navTextTone}
+                  aria-label={t(NAV.explore)}
+                >
+                  <SearchIcon width={18} height={18} color="currentColor" />
+                </SearchIconButton>
                 <GenericButton
                   className="login-btn"
                   asAnchor
@@ -806,6 +826,13 @@ export default function NavBar({
             ) : (
               (actions ?? (
                 <>
+                  <SearchIconButton
+                    href={PATHS.EXPLORE}
+                    $textTone={navTextTone}
+                    aria-label={t(NAV.explore)}
+                  >
+                    <SearchIcon width={18} height={18} color="currentColor" />
+                  </SearchIconButton>
                   <GenericButton
                     className="login-btn"
                     asAnchor

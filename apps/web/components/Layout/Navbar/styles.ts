@@ -298,6 +298,42 @@ export const ColumnItem = styled.a`
   }
 `;
 
+export const SearchIconButton = styled(Link)<{
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: transparent;
+  color: ${({ theme, $textTone }) =>
+    $textTone === TONE_LIGHT
+      ? theme.colors.neutral.OFF_WHITE
+      : theme.colors.primary.BLACK};
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
+`;
+
 export const Actions = styled.div<{
   $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
   $showOnMobile?: boolean;
