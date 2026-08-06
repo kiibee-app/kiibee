@@ -10,7 +10,6 @@ import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
 import { cookies } from "next/headers";
 import {
-  FONT_SUBSETS,
   OPEN_GRAPH_LOCALE_DA_DK,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
@@ -20,12 +19,12 @@ import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: FONT_SUBSETS,
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: FONT_SUBSETS,
+  subsets: ["latin", "latin-ext"],
 });
 
 export const metadata: Metadata = {
