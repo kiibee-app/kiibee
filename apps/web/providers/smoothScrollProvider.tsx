@@ -12,7 +12,6 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/** Same allow-list as before: Lenis only outside app/grid routes. */
 function shouldUseSmoothScroll(pathname: string) {
   return !(
     pathname.startsWith("/dashboard") ||
@@ -98,12 +97,21 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       scheduleResize,
     );
     window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
-    document.fonts?.ready.then(() => {
+
+    let fontReadyHandler: (() => void) | null = () => {
       if (!destroyed) scheduleResize();
+    };
+
+    document.fonts?.ready.then(() => {
+      if (fontReadyHandler) {
+        fontReadyHandler();
+      }
     });
 
     return () => {
       destroyed = true;
+      fontReadyHandler = null;
+
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
