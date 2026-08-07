@@ -4,6 +4,7 @@ import { getSiteUrl, INDEXABLE_ROUTES, SEO_HEADERS_CONTEXT } from "./utils/seo";
 const SITE_URL = getSiteUrl(SEO_HEADERS_CONTEXT);
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["192.168.0.102", "localhost:3000", "192.168.0.102:3000"],
   compiler: {
     styledComponents: true,
   },
