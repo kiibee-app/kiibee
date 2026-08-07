@@ -614,3 +614,20 @@ export const TIME_MS = {
   ONE_SECOND: 1000,
   ONE_MINUTE: 60 * 1000,
 } as const;
+
+export const XSRF_COOKIE_NAME = "XSRF-TOKEN";
+export const XSRF_HEADER_NAME = "X-CSRF-Token";
+export const HEADER_CONTENT_TYPE = "Content-Type";
+export const HEADER_X_REQUESTED_WITH = "X-Requested-With";
+export const HEADER_X_CSRF_TOKEN = "X-CSRF-Token";
+export const VALUE_APPLICATION_JSON = "application/json";
+export const VALUE_XML_HTTP_REQUEST = "XMLHttpRequest";
+export const CSRF_COOKIE_REGEX =
+  /(?:^|;\s*)(?:XSRF-TOKEN|csrf_token|csrftoken)=([^;]*)/i;
+
+export const STATE_CHANGING_HTTP_METHODS: readonly string[] = [
+  "POST",
+  "PUT",
+  "PATCH",
+  "DELETE",
+];
