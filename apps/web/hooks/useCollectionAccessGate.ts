@@ -43,16 +43,6 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
     },
   );
 
-  const storageKey = id ? `kiibee:gate:unlocked:collection:${id}` : "";
-  const isUnlocked =
-    typeof window !== "undefined" && storageKey
-      ? window.localStorage.getItem(storageKey) === "true"
-      : false;
-
-  if (isUnlocked) {
-    return { gateType: null, isLoading: false };
-  }
-
   if (gateParam === TYPE_CODE || gateParam === TYPE_EMAIL) {
     return { gateType: gateParam, isLoading: false };
   }
