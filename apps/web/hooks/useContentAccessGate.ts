@@ -61,10 +61,6 @@ export function useContentAccessGate(
   const contentStorageKey = content?.id
     ? `kiibee:gate:unlocked:content:${content.id}`
     : "";
-  const isLocallyUnlocked =
-    typeof window !== "undefined" && contentStorageKey
-      ? window.localStorage.getItem(contentStorageKey) === "true"
-      : false;
 
   const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
@@ -117,8 +113,8 @@ export function useContentAccessGate(
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
   const isContentUnlocked = isContentEmail
-    ? hasApprovedEmailAccess || isLocallyUnlocked
-    : isLocallyUnlocked || hasServerAccess;
+    ? hasApprovedEmailAccess
+    : hasServerAccess;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
