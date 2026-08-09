@@ -401,6 +401,8 @@ export const CONTENT_FORM_FIELDS = {
 } as const;
 
 export const TAG_DELIMITER = /[\n,]+/;
+export const EXPIRY_DATE_REGEX = /^(0[1-9]|1[0-2])\/(\d{2})$/;
+export const CVC_REGEX = /^\d{3,4}$/;
 
 export function parseTags(value: string): string[] {
   return value
