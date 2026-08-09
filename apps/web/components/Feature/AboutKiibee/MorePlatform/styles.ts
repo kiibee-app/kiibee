@@ -100,4 +100,5 @@ export const platformImageStyle: CSSProperties = {
   objectFit: "cover",
 };
 
-export const PLATFORM_IMAGE_SIZES = "(max-width: 767px) 116px, 126px" as const;
+export const PLATFORM_IMAGE_SIZES =
+  "(max-width: 767px) 50vw, (max-width: 1200px) 25vw, 350px" as const;
