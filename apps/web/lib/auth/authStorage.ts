@@ -99,7 +99,11 @@ const toRole = (value: unknown) => {
 
 const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+
+  const isProduction = process.env.NODE_ENV === "production";
+  const isHttps =
+    typeof window !== "undefined" && window.location.protocol === "https:";
+  const secure = isProduction || isHttps ? "; Secure" : "";
 
   return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
@@ -119,7 +123,12 @@ const setCookie = (
 const removeCookie = (name: string) => {
   if (!isBrowser) return;
 
-  document.cookie = `${name}=; Path=${COOKIE_PATH}; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=${COOKIE_SAME_SITE}`;
+  const isProduction = process.env.NODE_ENV === "production";
+  const isHttps =
+    typeof window !== "undefined" && window.location.protocol === "https:";
+  const secure = isProduction || isHttps ? "; Secure" : "";
+
+  document.cookie = `${name}=; Path=${COOKIE_PATH}; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
 
 const clearLegacyLocalStorageSession = () => {
