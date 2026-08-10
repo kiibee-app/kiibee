@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import type { ErrorFallbackProps } from "@/types/error";
 import {
   Badge,
   ConsoleBlock,
@@ -12,14 +13,6 @@ import {
   RetryButton,
   Title,
 } from "./ErrorFallback.styles";
-
-type AppError = Error & { digest?: string };
-
-type ErrorFallbackProps = {
-  title?: string;
-  error: AppError;
-  resetErrorBoundary: () => void;
-};
 
 export default function ErrorFallback({
   error,

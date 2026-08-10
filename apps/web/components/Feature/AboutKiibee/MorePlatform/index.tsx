@@ -59,6 +59,7 @@ export default function MoreThanPlatformSection() {
                   src={img}
                   alt="platform"
                   fill
+                  quality={95}
                   style={platformImageStyle}
                   sizes={PLATFORM_IMAGE_SIZES}
                 />

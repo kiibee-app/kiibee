@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { isValidCardExpiry, isValidLuhn } from "@/utils/luhn";
+import { CVC_REGEX } from "@/utils/Constants";
 
 export const createLoginSchema = (messages: {
   emailRequired: string;
@@ -159,10 +161,22 @@ export const createPaymentSchema = (messages: {
   cvcRequired: string;
 }) =>
   z.object({
-    cardNumber: z.string().trim().min(1, messages.cardNumberRequired),
+    cardNumber: z
+      .string()
+      .trim()
+      .min(1, messages.cardNumberRequired)
+      .refine(isValidLuhn, { message: messages.cardNumberRequired }),
     cardholderName: z.string().trim().min(1, messages.cardholderNameRequired),
-    expiryDate: z.string().trim().min(1, messages.expiryDateRequired),
-    cvc: z.string().trim().min(1, messages.cvcRequired),
+    expiryDate: z
+      .string()
+      .trim()
+      .min(1, messages.expiryDateRequired)
+      .refine(isValidCardExpiry, { message: messages.expiryDateRequired }),
+    cvc: z
+      .string()
+      .trim()
+      .min(1, messages.cvcRequired)
+      .regex(CVC_REGEX, messages.cvcRequired),
   });
 
 export const createResetPasswordSchema = (

@@ -37,6 +37,8 @@ export * from "@/lib/subscription/constants";
 export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
+export const PROTOCOL_HTTP = "http:";
+export const PROTOCOL_HTTPS = "https:";
 export const DECORATIVE_IMAGE_PROPS = {
   alt: "",
   "aria-hidden": true,
@@ -399,6 +401,8 @@ export const CONTENT_FORM_FIELDS = {
 } as const;
 
 export const TAG_DELIMITER = /[\n,]+/;
+export const EXPIRY_DATE_REGEX = /^(0[1-9]|1[0-2])\/(\d{2})$/;
+export const CVC_REGEX = /^\d{3,4}$/;
 
 export function parseTags(value: string): string[] {
   return value

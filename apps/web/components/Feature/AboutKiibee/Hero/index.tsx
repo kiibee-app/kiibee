@@ -47,6 +47,7 @@ export default function AboutHero() {
             alt={t("how.heroAlt")}
             fill
             priority
+            quality={95}
             sizes={HERO_IMAGE_SIZES}
             style={heroImageStyle}
           />
