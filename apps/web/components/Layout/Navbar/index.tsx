@@ -54,6 +54,7 @@ import {
   DrawerSubMenuLink,
   DrawerActions,
 } from "./styles";
+import NavSearchButton from "./NavSearchButton";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -692,10 +693,17 @@ export default function NavBar({
               <ActionsPlaceholder />
             )
           ) : isLoggedIn && dashboardPath ? (
-            <NavAccountMenu dashboardPath={dashboardPath} />
+            <>
+              <NavSearchButton textTone={navTextTone} hide={Boolean(actions)} />
+              <NavAccountMenu dashboardPath={dashboardPath} />
+            </>
           ) : (
             (actions ?? (
               <>
+                <NavSearchButton
+                  textTone={navTextTone}
+                  hide={Boolean(actions)}
+                />
                 <GenericButton
                   className="login-btn"
                   asAnchor
@@ -806,6 +814,10 @@ export default function NavBar({
             ) : (
               (actions ?? (
                 <>
+                  <NavSearchButton
+                    textTone={navTextTone}
+                    hide={Boolean(actions)}
+                  />
                   <GenericButton
                     className="login-btn"
                     asAnchor

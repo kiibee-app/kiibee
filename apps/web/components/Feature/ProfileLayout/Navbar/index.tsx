@@ -20,6 +20,8 @@ import {
 } from "@/utils/Constants";
 import { TEXT_COLOR_VALUES } from "@/utils/appearance";
 import NavBar from "@/components/Layout/Navbar";
+import { SearchIconButton } from "@/components/Layout/Navbar/styles";
+import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { useRouter } from "next/navigation";
 import { BackButtonIcon } from "@/assets/icons";
 import {
@@ -124,6 +126,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
 
   const actions = (
     <>
+      <SearchIconButton href={PATHS.EXPLORE} aria-label={t(NAV.explore)}>
+        <SearchIcon width={18} height={18} color="currentColor" />
+      </SearchIconButton>
       <GenericButton
         asAnchor
         href={PATHS.AUTH_LOGIN}

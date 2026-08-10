@@ -98,12 +98,21 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       scheduleResize,
     );
     window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
-    document.fonts?.ready.then(() => {
+
+    let fontReadyHandler: (() => void) | null = () => {
       if (!destroyed) scheduleResize();
+    };
+
+    document.fonts?.ready.then(() => {
+      if (fontReadyHandler) {
+        fontReadyHandler();
+      }
     });
 
     return () => {
       destroyed = true;
+      fontReadyHandler = null;
+
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
