@@ -11,7 +11,7 @@ const getCsrfTokenFromCookie = () => {
   if (typeof document === "undefined") return null;
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${XSRF_COOKIE_NAME}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift();
+  if (parts.length === 2) return parts[1].split(";")[0];
   return null;
 };
 
