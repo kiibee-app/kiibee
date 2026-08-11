@@ -3,12 +3,13 @@ import { API } from "@/lib/http/api/endpoints";
 import { authStorage } from "@/lib/auth/authStorage";
 import {
   STATE_CHANGING_METHODS,
+  UNDEFINED_VALUE,
   XSRF_COOKIE_NAME,
   XSRF_HEADER_NAME,
 } from "@/utils/common";
 
 const getCsrfTokenFromCookie = () => {
-  if (typeof document === "undefined") return null;
+  if (typeof document === UNDEFINED_VALUE) return null;
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${XSRF_COOKIE_NAME}=`);
   if (parts.length === 2) return parts[1].split(";")[0];

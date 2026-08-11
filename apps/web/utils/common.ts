@@ -242,6 +242,7 @@ export const openInNewTab = (url: string): Window | null => {
 
 export const XSRF_COOKIE_NAME = "XSRF-TOKEN";
 export const XSRF_HEADER_NAME = "X-CSRF-Token";
+export const UNDEFINED_VALUE = "undefined";
 
 export const HTTP_METHODS = {
   GET: "get",
