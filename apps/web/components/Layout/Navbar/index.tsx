@@ -172,6 +172,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           aria-haspopup="menu"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
+          $hasImage={showAvatar}
         >
           {showAvatar && avatarUrl ? (
             <ProfileAvatarImage
