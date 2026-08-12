@@ -19,7 +19,7 @@ export const Card = styled.div<{
   height: 100%;
   min-height: ${({ $compact, $coverImage }) => {
     if ($compact) return "0";
-    if ($coverImage) return "300px";
+    if ($coverImage) return "0";
     return "315px";
   }};
   width: ${({ $width }) => $width || "100%"};
@@ -44,20 +44,27 @@ export const ImageWrapper = styled.div<{
   $compact?: boolean;
   $coverImage?: boolean;
   $isLoading?: boolean;
+  $imageAspectRatio?: string;
 }>`
   position: relative;
   width: 100%;
   overflow: hidden;
   display: flex;
   min-height: ${({ $compact, $coverImage }) => {
-    if ($coverImage) return "220px";
+    if ($coverImage) return "0";
     if ($compact) return "104px";
     return "190px";
   }};
-  aspect-ratio: ${({ $coverImage }) => ($coverImage ? "1 / 1" : "16 / 9")};
+  /* High thumbnail crop: 650 × 920 */
+  aspect-ratio: ${({ $coverImage, $imageAspectRatio }) =>
+    $imageAspectRatio ?? ($coverImage ? "650 / 920" : "16 / 9")};
 
   @supports not (aspect-ratio: 1 / 1) {
-    padding-bottom: ${({ $coverImage }) => ($coverImage ? "100%" : "56.25%")};
+    padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
+      if ($imageAspectRatio === "1 / 1") return "100%";
+      if ($imageAspectRatio) return undefined;
+      return $coverImage ? "141.538%" : "56.25%";
+    }};
   }
 
   padding: ${({ $compact, $coverImage }) =>
@@ -83,7 +90,6 @@ export const ImageWrapper = styled.div<{
   }
 
   ${media.tablet} {
-    min-height: ${({ $coverImage }) => ($coverImage ? "200px" : undefined)};
     padding: ${({ $compact, $coverImage }) =>
       $coverImage || $compact ? "0" : "0"};
   }

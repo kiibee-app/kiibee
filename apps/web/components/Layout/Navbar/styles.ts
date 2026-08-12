@@ -813,8 +813,8 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
 
-  a,
-  button {
+  > a,
+  > button {
     width: 100%;
   }
 `;

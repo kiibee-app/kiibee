@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
@@ -40,6 +46,8 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.PROFILE,
 ]);
 
+const ADD_PAYMENT_TOAST_ID = "creator-add-payment-method";
+
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
@@ -55,6 +63,13 @@ export default function ClientDashboardCreators() {
     useCreatorPaymentMethods();
   const { isReady } = useRequireAuthSession();
   useProfileSync();
+  const hasLockedToPayoutMethodsRef = useRef(false);
+
+  const warnAddPaymentMethod = useCallback(() => {
+    toast.warning(t("errors.addPaymentMethod"), {
+      toastId: ADD_PAYMENT_TOAST_ID,
+    });
+  }, [t]);
 
   const handleLogoutClick = useCallback(() => {
     const email = (getUser() as { email?: string })?.email || "";
@@ -117,34 +132,52 @@ export default function ClientDashboardCreators() {
     !isPaymentMethodsLoading &&
     paymentMethods.length === 0;
 
+  const redirectToPayoutMethods = useCallback(() => {
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.set(VIEW, CREATORS_LABELS.SETTINGS);
+    params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
+    sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }, [pathname, router, searchParams]);
+
   useEffect(() => {
-    if (!isCreatorNoPaymentMethods) return;
-
-    const view = searchParams?.get(VIEW);
-    const tab = searchParams?.get(CONTENT_TAB);
-
-    if (view !== CREATORS_LABELS.SETTINGS || tab !== TAB_KEYS.payoutMethods) {
-      const params = new URLSearchParams(searchParams?.toString() ?? "");
-      params.set(VIEW, CREATORS_LABELS.SETTINGS);
-      params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
-      sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
-      const qs = params.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    if (!isCreatorNoPaymentMethods) {
+      hasLockedToPayoutMethodsRef.current = false;
+      return;
     }
-  }, [isCreatorNoPaymentMethods, searchParams, router, pathname]);
+
+    const currentView = searchParams?.get(VIEW);
+    const tab = searchParams?.get(CONTENT_TAB);
+    const onPayoutMethods =
+      currentView === CREATORS_LABELS.SETTINGS &&
+      tab === TAB_KEYS.payoutMethods;
+
+    if (onPayoutMethods) {
+      hasLockedToPayoutMethodsRef.current = true;
+      return;
+    }
+
+    // After the first lock, any attempt to leave should warn.
+    if (hasLockedToPayoutMethodsRef.current) {
+      warnAddPaymentMethod();
+    }
+
+    redirectToPayoutMethods();
+  }, [
+    isCreatorNoPaymentMethods,
+    searchParams,
+    redirectToPayoutMethods,
+    warnAddPaymentMethod,
+  ]);
 
   const handleSelect = useCallback(
     (label: string) => {
       if (isCreatorNoPaymentMethods) {
         if (label !== CREATORS_LABELS.SETTINGS) {
-          toast.error(t("errors.addPaymentMethod"));
+          warnAddPaymentMethod();
         }
-        const params = new URLSearchParams(searchParams?.toString() ?? "");
-        params.set(VIEW, CREATORS_LABELS.SETTINGS);
-        params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
-        sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
-        const qs = params.toString();
-        router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+        redirectToPayoutMethods();
         return;
       }
       router.push(getHrefForView(label), { scroll: false });
@@ -152,10 +185,9 @@ export default function ClientDashboardCreators() {
     [
       getHrefForView,
       router,
-      searchParams,
-      pathname,
       isCreatorNoPaymentMethods,
-      t,
+      redirectToPayoutMethods,
+      warnAddPaymentMethod,
     ],
   );
 

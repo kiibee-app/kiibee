@@ -196,12 +196,12 @@ export const THUMBNAIL_MIN_DIMENSIONS = {
     height: 600,
   },
   [IMAGE_TYPE.MEDIA_CARD]: {
-    width: 250,
-    height: 190,
+    width: 650,
+    height: 920,
   },
   [IMAGE_TYPE.PORTRAIT]: {
-    width: 376,
-    height: 530,
+    width: 1920,
+    height: 1080,
   },
 } as const;
 
@@ -245,11 +245,11 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   },
 
   [IMAGE_TYPE.MEDIA_CARD]: {
-    maxWidth: "129px",
+    maxWidth: "71px",
     minHeight: "100px",
-    aspectRatio: "129 / 100",
+    aspectRatio: "650 / 920",
     tablet: {
-      maxWidth: "100px",
+      maxWidth: "55px",
       minHeight: "78px",
     },
   },
@@ -257,10 +257,10 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.PORTRAIT]: {
     maxWidth: "184px",
     minHeight: "100px",
-    aspectRatio: "46 / 25",
+    aspectRatio: "1920 / 1080",
     tablet: {
       maxWidth: "140px",
-      minHeight: "76px",
+      minHeight: "79px",
     },
   },
 };

@@ -89,6 +89,7 @@ export default function ExploreCreators({
             <GenericCard
               key={creator.id}
               coverImage
+              imageAspectRatio="1 / 1"
               image={image ?? undefined}
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
