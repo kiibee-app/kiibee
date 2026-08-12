@@ -4,6 +4,7 @@ import {
   STORED_LOGIN_USER_UPDATED,
 } from "./storageKeys";
 import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
+import { isProduction } from "@/utils/common";
 import { isString, PROTOCOL_HTTPS, toTrimmedString } from "@/utils/Constants";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { isBrowser } from "@/utils/ui";
@@ -100,7 +101,6 @@ const toRole = (value: unknown) => {
 const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
 
-  const isProduction = process.env.NODE_ENV === "production";
   const isHttps = isBrowser && window.location.protocol === PROTOCOL_HTTPS;
   const secure = isProduction || isHttps ? "; Secure" : "";
 
