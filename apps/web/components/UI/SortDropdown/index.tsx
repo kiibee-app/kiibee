@@ -7,7 +7,12 @@ import { Dropdown, DropdownItem, SortBox, Text } from "./styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { MonoText } from "../Monotext";
 import { DEFAULT_SORT } from "@/utils/sortOptions";
-import { SORT_DROPDOWN_VARIANT, SortDropdownVariant } from "@/utils/Constants";
+import {
+  SORT_DROPDOWN_VARIANT,
+  SortDropdownVariant,
+  SCROLL_NEAREST_OPTIONS,
+  DROPDOWN_AUTO_SCROLL_DELAY_MS,
+} from "@/utils/Constants";
 import { useTheme } from "styled-components";
 
 export type DropdownOption<T extends string = string> = {
@@ -34,6 +39,7 @@ type Props<T extends string = string> = {
   hideSelectedOption?: boolean;
   allowNoSelection?: boolean;
   variant?: SortDropdownVariant;
+  expandLayoutOnOpen?: boolean;
 };
 
 function SortDropdown<T extends string = string>({
@@ -51,6 +57,7 @@ function SortDropdown<T extends string = string>({
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
   allowNoSelection = false,
+  expandLayoutOnOpen = true,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -71,6 +78,15 @@ function SortDropdown<T extends string = string>({
     eventType: "click",
     handler: () => setOpen(false),
   });
+
+  React.useEffect(() => {
+    if (open && ref.current) {
+      const timer = setTimeout(() => {
+        ref.current?.scrollIntoView(SCROLL_NEAREST_OPTIONS);
+      }, DROPDOWN_AUTO_SCROLL_DELAY_MS);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
   const handleSelect = useCallback(
     (val: T) => {
@@ -137,6 +153,7 @@ function SortDropdown<T extends string = string>({
           $maxWidth={maxWidth}
           $width={dropdownWidth}
           $variant={variant}
+          $inFlow={expandLayoutOnOpen}
         >
           {visibleOptions.map((opt) => (
             <DropdownItem
