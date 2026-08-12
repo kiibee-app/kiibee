@@ -5,7 +5,13 @@ import {
 } from "./storageKeys";
 import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
 import { isProduction } from "@/utils/common";
-import { isString, PROTOCOL_HTTPS, toTrimmedString } from "@/utils/Constants";
+import {
+  COOKIE_FLAG_SECURE,
+  isString,
+  PROTOCOL_HTTPS,
+  STRING_EMPTY,
+  toTrimmedString,
+} from "@/utils/Constants";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { isBrowser } from "@/utils/ui";
 import { logger } from "@/lib/logger";
@@ -102,7 +108,7 @@ const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
 
   const isHttps = isBrowser && window.location.protocol === PROTOCOL_HTTPS;
-  const secure = isProduction || isHttps ? "; Secure" : "";
+  const secure = isProduction || isHttps ? COOKIE_FLAG_SECURE : STRING_EMPTY;
 
   return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
