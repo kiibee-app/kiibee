@@ -109,10 +109,9 @@ export const ProfileCircle = styled.div<{ $hasImage: boolean }>`
 export const ProfileAvatarImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  padding: 14% 8%;
-  box-sizing: border-box;
+  display: block;
 `;
 
 export const InitialAvatar = styled(MonoText).attrs({
@@ -158,13 +157,14 @@ export const NavItem = styled(Link)`
   }
 `;
 
-export const ProfileButton = styled.button`
+export const ProfileButton = styled.button<{ $hasImage?: boolean }>`
   border: none;
   width: 44px;
   height: 44px;
   border-radius: 8px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ $hasImage, theme }) =>
+    $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
   cursor: pointer;

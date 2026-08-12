@@ -21,8 +21,6 @@ import {
   Heading,
   Subtitle,
   CTAButton,
-  getRevealCardStyle,
-  callToActionCardStyle,
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
@@ -45,6 +43,9 @@ import { type CtaImageCard } from "@/utils/landingShared";
 
 registerGsapPlugins();
 
+/** Only clear animation props — never wipe layout (left/top/width/height). */
+const CTA_CLEAR_PROPS = "opacity,visibility,transform";
+
 export default function CallToAction() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
@@ -52,23 +53,18 @@ export default function CallToAction() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
-    <div
+    <Card
       key={`${CTA_CARD.keyPrefix}${resolveImageUrl(card.src)}-${mobile ? CTA_CARD.mobileLabel : CTA_CARD.desktopLabel}-${index}`}
       {...{ [CTA_CARD.attr]: STRING_EMPTY }}
-      style={getRevealCardStyle(card, mobile)}
+      $left={!mobile ? card.left : undefined}
+      $top={!mobile ? card.top : undefined}
+      $width={!mobile ? card.width : undefined}
+      $height={!mobile ? card.height : undefined}
+      $mobileOnly={mobile}
     >
-      <Card
-        $left={!mobile ? card.left : undefined}
-        $top={!mobile ? card.top : undefined}
-        $width={!mobile ? card.width : undefined}
-        $height={!mobile ? card.height : undefined}
-        $mobileOnly={mobile}
-        style={callToActionCardStyle}
-      >
-        <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
-        <CardTint />
-      </Card>
-    </div>
+      <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
+      <CardTint />
+    </Card>
   );
 
   useEffect(() => {
@@ -80,14 +76,12 @@ export default function CallToAction() {
         section.querySelectorAll(CTA_CARD.selector),
       );
       if (cards.length === 0) return;
-
-      // Always keep cards visible — avoid stuck opacity:0 if ScrollTrigger misses.
       gsap.set(cards, { autoAlpha: 1, scale: 1 });
 
       const mm = gsap.matchMedia();
 
       mm.add(LANDING_MOTION.reducedMotionQuery, () => {
-        gsap.set(cards, { clearProps: LANDING_MOTION.clearPropsAll });
+        gsap.set(cards, { clearProps: CTA_CLEAR_PROPS });
       });
 
       mm.add(LANDING_MOTION.noReducedMotionQuery, () => {
@@ -97,6 +91,7 @@ export default function CallToAction() {
           stagger: LANDING_REVEAL.ctaCardStaggerDelay,
           ease: LANDING_MOTION.easePower2Out,
           immediateRender: false,
+          clearProps: CTA_CLEAR_PROPS,
           scrollTrigger: {
             trigger: section,
             start: LANDING_REVEAL.imageRevealStart,

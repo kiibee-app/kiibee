@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import SafeImage from "@/components/UI/SafeImage";
-import { type CtaImageCard } from "@/utils/landingShared";
-import { CTA_CARD } from "@/utils/Constants";
 
 export const Section = styled.section`
   position: relative;
@@ -41,24 +38,27 @@ export const Card = styled.div<{
   $height?: number;
   $mobileOnly?: boolean;
 }>`
-  left: ${({ $left = 0 }) => `${$left}%`};
-  top: ${({ $top = 0 }) => `${$top}%`};
-  width: ${({ $width = 20 }) => `${$width}%`};
-  height: ${({ $height = 30 }) => `${$height}%`};
-  position: absolute;
+  ${({ $mobileOnly, $left = 0, $top = 0, $width = 20, $height = 30 }) =>
+    $mobileOnly
+      ? `
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+  `
+      : `
+    position: absolute;
+    left: ${$left}%;
+    top: ${$top}%;
+    width: ${$width}%;
+    height: ${$height}%;
+  `}
   overflow: hidden;
   border-radius: 14px;
   background: ${({ theme }) => theme.colors.gradient.CARD_BG};
   box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
-
-  ${media.desktop} {
-    position: ${({ $mobileOnly }) => ($mobileOnly ? "relative" : "absolute")};
-    left: auto;
-    top: auto;
-    width: ${({ $mobileOnly }) => ($mobileOnly ? "100%" : "18%")};
-    height: ${({ $mobileOnly }) => ($mobileOnly ? "100%" : "28%")};
-    min-height: ${({ $mobileOnly }) => ($mobileOnly ? "120px" : "0")};
-  }
 `;
 
 export const MobileBackdrop = styled.div`
@@ -115,9 +115,9 @@ export const GradientOverlay = styled.div`
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(4, 41, 11, 1) 0%,
-    rgba(4, 41, 11, 0.7) 50%,
-    rgba(4, 41, 11, 1) 100%
+    rgba(4, 41, 11, 0.88) 0%,
+    rgba(4, 41, 11, 0.45) 50%,
+    rgba(4, 41, 11, 0.9) 100%
   );
 `;
 
@@ -234,25 +234,3 @@ export const CTAButton = styled(GenericButton).attrs({
     border-color: ${({ theme }) => theme.colors.primary.WHITE};
   }
 `;
-
-export function getRevealCardStyle(
-  card: CtaImageCard,
-  mobile: boolean,
-): CSSProperties {
-  return {
-    position: !mobile ? "absolute" : undefined,
-    left: !mobile && card.left != null ? `${card.left}%` : undefined,
-    top: !mobile && card.top != null ? `${card.top}%` : undefined,
-    width: !mobile && card.width != null ? `${card.width}%` : undefined,
-    height: !mobile && card.height != null ? `${card.height}%` : undefined,
-  };
-}
-
-export const callToActionCardStyle: CSSProperties = {
-  position: "relative",
-  left: "auto",
-  top: "auto",
-  width: "100%",
-  height: "100%",
-  minHeight: "100%",
-};

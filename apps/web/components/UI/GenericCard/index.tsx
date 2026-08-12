@@ -27,6 +27,7 @@ type GenericCardProps = {
   imageFallback?: string;
   imageInitials?: string;
   coverImage?: boolean;
+  imageAspectRatio?: string;
   alt?: string;
   title?: ReactNode;
   subtitle?: ReactNode;
@@ -68,6 +69,7 @@ export default function GenericCard({
   imageFallback,
   imageInitials,
   coverImage = false,
+  imageAspectRatio,
   alt,
   title,
   subtitle,
@@ -146,6 +148,7 @@ export default function GenericCard({
         <ImageWrapper
           $compact={compact}
           $coverImage={coverImage}
+          $imageAspectRatio={imageAspectRatio}
           $isLoading={isCurrentlyLoading}
         >
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
