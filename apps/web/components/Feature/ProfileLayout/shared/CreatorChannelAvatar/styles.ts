@@ -19,12 +19,14 @@ const fitStyles = css<{ $fit: AvatarFit }>`
 
 export const AvatarImage = styled(Image)<{ $fit: AvatarFit }>`
   ${fitStyles}
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ $fit, theme }) =>
+    $fit === "contain" ? theme.colors.gradient.PALE_GREEN : "transparent"};
 `;
 
 export const RemoteAvatarImage = styled.img<{ $fit: AvatarFit }>`
   ${fitStyles}
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ $fit, theme }) =>
+    $fit === "contain" ? theme.colors.gradient.PALE_GREEN : "transparent"};
 `;
 
 export const AvatarInitial = styled(MonoText)`

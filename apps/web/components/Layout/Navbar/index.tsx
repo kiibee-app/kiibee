@@ -55,6 +55,7 @@ import {
   DrawerActions,
 } from "./styles";
 import NavSearchButton from "./NavSearchButton";
+import LanguageToggle from "@/components/UI/LanguageToggle";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -172,6 +173,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           aria-haspopup="menu"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
+          $hasImage={showAvatar}
         >
           {showAvatar && avatarUrl ? (
             <ProfileAvatarImage
@@ -686,6 +688,7 @@ export default function NavBar({
           $textTone={navTextTone}
           $showOnMobile={showActionsOnMobile}
         >
+          <LanguageToggle />
           {!isMounted ? (
             actions ? (
               actions
@@ -783,6 +786,7 @@ export default function NavBar({
             </DrawerMenu>
           )}
           <DrawerActions $showDivider={drawerItems.length > 0}>
+            <LanguageToggle />
             {isLoggedIn && dashboardPath ? (
               <>
                 <NavAccountMenuItem

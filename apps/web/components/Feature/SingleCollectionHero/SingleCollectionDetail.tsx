@@ -38,6 +38,7 @@ import {
   HeroWrapper,
   TopBar,
   BackButtonWrapper,
+  Section as HeroSection,
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
@@ -517,11 +518,13 @@ export default function SingleCollectionDetail({
           showBack={showBack}
           embedded={embedded}
         />
-        <AccessGate
-          type={gateType}
-          variant={VARIANT_CONTENT}
-          onSuccess={handleCollectionGateSuccess}
-        />
+        <HeroSection>
+          <AccessGate
+            type={gateType}
+            variant={VARIANT_CONTENT}
+            onSuccess={handleCollectionGateSuccess}
+          />
+        </HeroSection>
         {purchaseModals}
       </Section>
     );

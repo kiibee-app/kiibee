@@ -58,9 +58,11 @@ export const Dropdown = styled.div<{
   $maxWidth?: string;
   $variant?: SortDropdownVariant;
   $width?: string;
+  $inFlow?: boolean;
 }>`
-  position: absolute;
-  top: 120%;
+  position: ${({ $inFlow }) => ($inFlow ? "relative" : "absolute")};
+  top: ${({ $inFlow }) => ($inFlow ? "auto" : "120%")};
+  margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
   right: 0;
   width: ${({ $width }) => $width || "100%"};
   max-width: ${({ $maxWidth }) => $maxWidth || "200px"};

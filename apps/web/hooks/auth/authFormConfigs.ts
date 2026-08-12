@@ -54,11 +54,13 @@ export const viewerSignUpFormBase = {
     email: string;
     password: string;
     repeatPassword: string;
+    agreed: boolean;
   }) => ({
     fullName: values.fullName.trim(),
     email: values.email.trim(),
     password: values.password,
     confirmPassword: values.repeatPassword,
+    agreed: true,
   }),
   failedMessageKey: "viewerSignup.form.signupFailed",
   passwordVisibility: "multi" as const,
@@ -107,6 +109,7 @@ export const creatorRequestFormBase = {
     postalCode: values.postalCode.trim(),
     exampleWorkLink: values.workLink.trim(),
     contentDescription: values.contentDescription.trim(),
+    agreed: true,
   }),
   failedMessageKey: "authForm.errors.submitFailed",
   failedResponseAs: "throw" as const,

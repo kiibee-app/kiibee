@@ -34,6 +34,7 @@ const ViewerHeaderRight = ({
           aria-haspopup="menu"
           aria-expanded={open}
           onClick={toggle}
+          $hasImage={Boolean(avatarUrl)}
         >
           <CreatorChannelAvatar
             avatarUrl={avatarUrl}
@@ -41,6 +42,7 @@ const ViewerHeaderRight = ({
             alt={t("common.viewerProfile")}
             sizes="44px"
             initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
+            fit="cover"
           />
         </ProfileButton>
       )}

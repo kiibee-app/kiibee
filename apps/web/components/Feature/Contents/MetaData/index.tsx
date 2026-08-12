@@ -23,19 +23,22 @@ export default function MetaData() {
       {
         label: t("contents.metadata.coverImage.mediaCardLabel"),
         sizeText: t("contents.metadata.coverImage.mediaCardSize"),
-        cropWidth: 250,
-        cropHeight: 190,
+        cropWidth: 650,
+        cropHeight: 920,
         type: IMAGE_TYPE.MEDIA_CARD,
+        previewAspectRatio: "650 / 920",
+        previewMaxWidth: "71px",
+        previewMinHeight: "100px",
       },
       {
         label: t("contents.metadata.coverImage.portraitLabel"),
         sizeText: isPortraitPdf
           ? t("contents.metadata.coverImage.portraitPdfSize")
           : t("contents.metadata.coverImage.portraitSize"),
-        cropWidth: isPortraitPdf ? 376 : 634,
-        cropHeight: isPortraitPdf ? 530 : 345,
+        cropWidth: isPortraitPdf ? 376 : 1920,
+        cropHeight: isPortraitPdf ? 530 : 1080,
         type: IMAGE_TYPE.PORTRAIT,
-        previewAspectRatio: isPortraitPdf ? "71 / 100" : "634 / 345",
+        previewAspectRatio: isPortraitPdf ? "71 / 100" : "1920 / 1080",
         previewMaxWidth: isPortraitPdf ? "71px" : "184px",
         previewHeight: isPortraitPdf ? "100px" : undefined,
         previewMinHeight: isPortraitPdf ? "100px" : "100px",
