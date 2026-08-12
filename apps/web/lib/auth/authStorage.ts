@@ -97,41 +97,33 @@ const toRole = (value: unknown) => {
   return trimmed || null;
 };
 
-const getCookieAttributes = (maxAgeSeconds: number, httpOnly = false) => {
+const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
 
   const isProduction = process.env.NODE_ENV === "production";
   const isHttps =
     typeof window !== "undefined" && window.location.protocol === "https:";
   const secure = isProduction || isHttps ? "; Secure" : "";
-  const httpOnlyFlag = httpOnly ? "; HttpOnly" : "";
 
-  return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}${httpOnlyFlag}`;
+  return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
 
 const setCookie = (
   name: string,
   value: string,
   maxAgeSeconds = AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
-  httpOnly = false,
 ) => {
   if (!isBrowser) return;
 
   document.cookie = `${name}=${encodeURIComponent(value)}; ${getCookieAttributes(
     maxAgeSeconds,
-    httpOnly,
   )}`;
 };
 
 const removeCookie = (name: string) => {
   if (!isBrowser) return;
 
-  const isProduction = process.env.NODE_ENV === "production";
-  const isHttps =
-    typeof window !== "undefined" && window.location.protocol === "https:";
-  const secure = isProduction || isHttps ? "; Secure" : "";
-
-  document.cookie = `${name}=; Path=${COOKIE_PATH}; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=${COOKIE_SAME_SITE}${secure}`;
+  document.cookie = `${name}=; ${getCookieAttributes(0)}`;
 };
 
 const clearLegacyLocalStorageSession = () => {
@@ -266,21 +258,11 @@ export const authStorage = {
     const role = getSessionRole(payload);
 
     if (accessToken) {
-      setCookie(
-        AUTH_STORAGE_KEYS.accessToken,
-        accessToken,
-        maxAgeSeconds,
-        true,
-      );
+      setCookie(AUTH_STORAGE_KEYS.accessToken, accessToken, maxAgeSeconds);
     }
 
     if (refreshToken) {
-      setCookie(
-        AUTH_STORAGE_KEYS.refreshToken,
-        refreshToken,
-        maxAgeSeconds,
-        true,
-      );
+      setCookie(AUTH_STORAGE_KEYS.refreshToken, refreshToken, maxAgeSeconds);
     }
 
     if (user !== undefined && user !== null) {
