@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/utils/landingShared";
 import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
+import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -78,6 +79,13 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     scheduleResize();
 
+    const resizeObserver = new ResizeObserver(() => {
+      if (!destroyed) scheduleResize();
+    });
+    if (canUseDOM && document.body) {
+      resizeObserver.observe(document.body);
+    }
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
         lenis.stop();
@@ -112,6 +120,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     return () => {
       destroyed = true;
       fontReadyHandler = null;
+
+      resizeObserver.disconnect();
 
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
