@@ -16,6 +16,7 @@ import { SelectedCheckIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
+import { useDropdownAutoScroll } from "@/hooks/useDropdownAutoScroll";
 
 export type OptionItem = {
   value: string;
@@ -55,7 +56,7 @@ export default function DropdownField(props: Props) {
     options,
     placeholder,
     showSelectedIndicator = false,
-    expandLayoutOnOpen = false,
+    expandLayoutOnOpen = true,
   } = props;
   const multi = props.multi === true;
   const onChange = props.onChange;
@@ -164,6 +165,8 @@ export default function DropdownField(props: Props) {
       resetActiveIndex();
     },
   });
+
+  useDropdownAutoScroll({ open, ref: containerRef });
 
   const renderTriggerValue = () =>
     multi

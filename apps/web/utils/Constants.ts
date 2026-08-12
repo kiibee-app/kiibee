@@ -285,6 +285,7 @@ export const SCROLL_BEHAVIOR = {
 export const SCROLL_BLOCK = {
   CENTER: "center",
   START: "start",
+  NEAREST: "nearest",
 } as const;
 
 export const SCROLL_OPTIONS = {
@@ -296,6 +297,13 @@ export const SCROLL_TO_START_OPTIONS = {
   behavior: SCROLL_BEHAVIOR.SMOOTH,
   block: SCROLL_BLOCK.START,
 } as const;
+
+export const SCROLL_NEAREST_OPTIONS = {
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.NEAREST,
+} as const;
+
+export const DROPDOWN_AUTO_SCROLL_DELAY_MS = 60;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,
