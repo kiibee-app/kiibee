@@ -5,14 +5,10 @@ import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
 import { Dropdown, DropdownItem, SortBox, Text } from "./styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useDropdownAutoScroll } from "@/hooks/useDropdownAutoScroll";
 import { MonoText } from "../Monotext";
 import { DEFAULT_SORT } from "@/utils/sortOptions";
-import {
-  SORT_DROPDOWN_VARIANT,
-  SortDropdownVariant,
-  SCROLL_NEAREST_OPTIONS,
-  DROPDOWN_AUTO_SCROLL_DELAY_MS,
-} from "@/utils/Constants";
+import { SORT_DROPDOWN_VARIANT, SortDropdownVariant } from "@/utils/Constants";
 import { useTheme } from "styled-components";
 
 export type DropdownOption<T extends string = string> = {
@@ -79,14 +75,7 @@ function SortDropdown<T extends string = string>({
     handler: () => setOpen(false),
   });
 
-  React.useEffect(() => {
-    if (open && ref.current) {
-      const timer = setTimeout(() => {
-        ref.current?.scrollIntoView(SCROLL_NEAREST_OPTIONS);
-      }, DROPDOWN_AUTO_SCROLL_DELAY_MS);
-      return () => clearTimeout(timer);
-    }
-  }, [open]);
+  useDropdownAutoScroll({ open, ref });
 
   const handleSelect = useCallback(
     (val: T) => {

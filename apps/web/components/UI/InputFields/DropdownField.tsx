@@ -16,10 +16,7 @@ import { SelectedCheckIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
-import {
-  SCROLL_NEAREST_OPTIONS,
-  DROPDOWN_AUTO_SCROLL_DELAY_MS,
-} from "@/utils/Constants";
+import { useDropdownAutoScroll } from "@/hooks/useDropdownAutoScroll";
 
 export type OptionItem = {
   value: string;
@@ -169,14 +166,7 @@ export default function DropdownField(props: Props) {
     },
   });
 
-  React.useEffect(() => {
-    if (open && containerRef.current) {
-      const timer = setTimeout(() => {
-        containerRef.current?.scrollIntoView(SCROLL_NEAREST_OPTIONS);
-      }, DROPDOWN_AUTO_SCROLL_DELAY_MS);
-      return () => clearTimeout(timer);
-    }
-  }, [open]);
+  useDropdownAutoScroll({ open, ref: containerRef });
 
   const renderTriggerValue = () =>
     multi
