@@ -39,6 +39,9 @@ export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
 export const PROTOCOL_HTTP = "http:";
 export const PROTOCOL_HTTPS = "https:";
+export const COOKIE_ATTRIBUTE_SECURE = "Secure";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL;
 export const DECORATIVE_IMAGE_PROPS = {
   alt: "",
   "aria-hidden": true,
