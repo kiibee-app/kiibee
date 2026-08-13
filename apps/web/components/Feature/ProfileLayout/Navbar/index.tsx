@@ -34,6 +34,7 @@ import {
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorNavItems } from "@/hooks/useCreatorChannelLayout";
+import { isBrowser } from "@/utils/ui";
 
 type ProfileNavbarProps = {
   variant: ProfileLayoutVariant;
@@ -98,11 +99,19 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       ? getPublicCreatorProfilePath(publicCreatorId, variant)
       : PATHS.DASHBOARD_CREATOR;
 
+  const handleBack = () => {
+    if (isBrowser && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  };
+
   const brand = (
     <BrandWrapper>
       <BackButton
         type="button"
-        onClick={() => router.back()}
+        onClick={handleBack}
         aria-label={t("common.goBack")}
       >
         <BackButtonIcon size={36} />
