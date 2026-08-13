@@ -61,9 +61,10 @@ export const Dropdown = styled.div<{
   $inFlow?: boolean;
 }>`
   position: ${({ $inFlow }) => ($inFlow ? "relative" : "absolute")};
-  top: ${({ $inFlow }) => ($inFlow ? "auto" : "120%")};
-  margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
+  top: ${({ $inFlow }) => ($inFlow ? "auto" : "calc(100% + 6px)")};
+  left: ${({ $inFlow }) => ($inFlow ? "auto" : "0")};
   right: 0;
+  margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
   width: ${({ $width }) => $width || "100%"};
   max-width: ${({ $maxWidth }) => $maxWidth || "200px"};
   padding: ${({ $variant }) =>

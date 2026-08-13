@@ -75,6 +75,7 @@ export default function SubscriptionDetailsForm() {
           width="100%"
           maxWidth="312px"
           variant={SORT_DROPDOWN_VARIANT.SUCCESS}
+          expandLayoutOnOpen={false}
         />
       </PlanSelectRow>
 

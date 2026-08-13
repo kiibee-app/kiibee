@@ -53,7 +53,7 @@ function SortDropdown<T extends string = string>({
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
   allowNoSelection = false,
-  expandLayoutOnOpen = true,
+  expandLayoutOnOpen = !trigger,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
