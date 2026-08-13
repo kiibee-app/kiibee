@@ -6,7 +6,7 @@ import {
 import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
 import { isProduction } from "@/utils/common";
 import {
-  COOKIE_FLAG_SECURE,
+  COOKIE_ATTRIBUTE_SECURE,
   isString,
   PROTOCOL_HTTPS,
   STRING_EMPTY,
@@ -108,7 +108,8 @@ const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
 
   const isHttps = isBrowser && window.location.protocol === PROTOCOL_HTTPS;
-  const secure = isProduction || isHttps ? COOKIE_FLAG_SECURE : STRING_EMPTY;
+  const secure =
+    isProduction || isHttps ? `; ${COOKIE_ATTRIBUTE_SECURE}` : STRING_EMPTY;
 
   return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
