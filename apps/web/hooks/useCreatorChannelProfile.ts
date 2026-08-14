@@ -116,6 +116,13 @@ export function useCreatorChannelProfile(enabled = true) {
     return getAvatarUrl(appearanceQuery.data?.data?.desktopCoverImageUrl);
   }, [isPublicView, publicCreator, appearanceQuery.data]);
 
+  const mobileCoverImageUrl = useMemo(() => {
+    if (isPublicView) {
+      return getAvatarUrl(publicCreator?.mobileCoverImageUrl);
+    }
+    return getAvatarUrl(appearanceQuery.data?.data?.mobileCoverImageUrl);
+  }, [isPublicView, publicCreator, appearanceQuery.data]);
+
   const appearance = isPublicView ? publicCreator : appearanceQuery.data?.data;
 
   const initial = useMemo(
@@ -180,6 +187,7 @@ export function useCreatorChannelProfile(enabled = true) {
     displayName,
     avatarUrl,
     coverImageUrl,
+    mobileCoverImageUrl,
     initial,
     isLoadingProfile: isPublicView
       ? isLoadingPublic

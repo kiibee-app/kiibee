@@ -65,6 +65,7 @@ export function sortExploreCreators(
 
 export function getCreatorCardImage(creator: ExploreCreator): string | null {
   return (
+    resolvePublicMediaUrl(creator.mobileCoverImageUrl) ??
     resolvePublicMediaUrl(creator.coverImageUrl) ??
     resolvePublicMediaUrl(creator.profileImageUrl)
   );

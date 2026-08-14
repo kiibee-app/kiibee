@@ -6,6 +6,7 @@ export type ExploreCreator = {
   slug: string | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
+  mobileCoverImageUrl?: string | null;
   category: string | null;
   categoryName?: string | null;
   contentCategory?: Array<string | { name?: string | null }> | null;

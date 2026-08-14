@@ -28,8 +28,14 @@ export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { openAbout } = tabState;
-  const { displayName, avatarUrl, coverImageUrl, initial, about } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    avatarUrl,
+    coverImageUrl,
+    mobileCoverImageUrl,
+    initial,
+    about,
+  } = useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
@@ -51,7 +57,7 @@ export default function ProfileCoverSection() {
         <ProfileSection>
           <AvatarWrap>
             <CreatorChannelAvatar
-              avatarUrl={avatarUrl}
+              avatarUrl={mobileCoverImageUrl || avatarUrl}
               initial={initial}
               alt={creatorName || t(CREATE_PROFILE_HOME.title)}
               sizes="152px"
