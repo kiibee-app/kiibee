@@ -241,6 +241,7 @@ export default function CouponTable({
                       maxWidth="200px"
                       variant={SORT_DROPDOWN_VARIANT.SURFACE}
                       trigger={<ThreeDotIcon />}
+                      expandLayoutOnOpen={false}
                       renderOptionLabel={(option) => (
                         <CouponActionText
                           $danger={option.value === COUPON_ACTION_DELETE}
