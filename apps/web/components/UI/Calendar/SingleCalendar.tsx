@@ -13,8 +13,8 @@ import {
   SingleCalendarWrapper,
   MonthNavLeft,
   MonthNavRight,
+  MonthNavButton,
 } from "./styles";
-import { ArrowWrap } from "../InputFields/styles";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions, WEEK_DAYS } from "@/utils/ui";
 import {
@@ -27,7 +27,7 @@ import {
 } from "@/utils/formatDate";
 
 const renderDayContent = (iso: string, isSelected: boolean) => {
-  const dayNumber = new Date(iso).getDate();
+  const dayNumber = Number(iso.split("-")[2]);
   return isSelected ? (
     <DaySelected>{dayNumber}</DaySelected>
   ) : (
@@ -38,26 +38,43 @@ const renderDayContent = (iso: string, isSelected: boolean) => {
 type Props = {
   value?: string;
   onChange?: (iso: string) => void;
+  minDate?: string;
 };
 
-export default function SingleCalendar({ value, onChange }: Props) {
+export default function SingleCalendar({ value, onChange, minDate }: Props) {
   const initialMonth = useMemo(() => {
     const s = fromISO(value);
-    return s ? startOfMonth(s) : startOfMonth(new Date());
-  }, [value]);
+    const mDate = s ? startOfMonth(s) : startOfMonth(new Date());
+    if (minDate) {
+      const minMonthDate = startOfMonth(fromISO(minDate) || new Date());
+      if (mDate < minMonthDate) {
+        return minMonthDate;
+      }
+    }
+    return mDate;
+  }, [value, minDate]);
 
   const [currentMonth, setCurrentMonth] = useState<Date>(initialMonth);
+
+  const isPrevMonthDisabled = useMemo(() => {
+    if (!minDate) return false;
+    const minMonthDate = startOfMonth(fromISO(minDate) || new Date());
+    return startOfMonth(currentMonth).getTime() <= minMonthDate.getTime();
+  }, [currentMonth, minDate]);
 
   const renderDay = (d: CalendarDay, index: number) => {
     if (d.isOutside) return <div key={`blank-${index}`} />;
 
     const isSelected = value === d.iso;
+    const isDisabled = !!minDate && d.iso < minDate;
 
     return (
       <DayCell key={d.iso}>
         <DayButtonBase
           type="button"
-          onClick={() => onChange?.(d.iso)}
+          onClick={() => !isDisabled && onChange?.(d.iso)}
+          disabled={isDisabled}
+          aria-disabled={isDisabled}
           aria-pressed={isSelected}
         >
           {renderDayContent(d.iso, isSelected)}
@@ -73,15 +90,22 @@ export default function SingleCalendar({ value, onChange }: Props) {
       <CalendarMonth>
         <CalendarHeader>
           <MonthNavLeft>
-            <ArrowWrap onClick={() => setCurrentMonth((m) => addMonths(m, -1))}>
+            <MonthNavButton
+              type="button"
+              disabled={isPrevMonthDisabled}
+              onClick={() => setCurrentMonth((m) => addMonths(m, -1))}
+            >
               <ArrowIcon width={15} height={10} direction={Directions.LEFT} />
-            </ArrowWrap>
+            </MonthNavButton>
           </MonthNavLeft>
           <MonthTitle>{formatMonthYear(monthDate)}</MonthTitle>
           <MonthNavRight>
-            <ArrowWrap onClick={() => setCurrentMonth((m) => addMonths(m, 1))}>
+            <MonthNavButton
+              type="button"
+              onClick={() => setCurrentMonth((m) => addMonths(m, 1))}
+            >
               <ArrowIcon width={15} height={10} direction={Directions.RIGHT} />
-            </ArrowWrap>
+            </MonthNavButton>
           </MonthNavRight>
         </CalendarHeader>
 
