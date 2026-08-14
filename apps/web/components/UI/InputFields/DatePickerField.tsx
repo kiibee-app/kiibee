@@ -31,6 +31,7 @@ type Props = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  minDate?: string;
 };
 
 export default function DatePickerField({
@@ -38,12 +39,16 @@ export default function DatePickerField({
   value,
   onChange,
   placeholder,
+  minDate,
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [tempValue, setTempValue] = useState(value || toISO(new Date()));
+
+  const [tempValue, setTempValue] = useState(
+    value || minDate || toISO(new Date()),
+  );
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const hasValue = !!value;
@@ -71,7 +76,7 @@ export default function DatePickerField({
     if (rect) {
       setPos(getPopupPosition(rect));
     }
-    setTempValue(value || toISO(new Date()));
+    setTempValue(value || minDate || toISO(new Date()));
     setOpen(true);
   };
 
@@ -83,7 +88,7 @@ export default function DatePickerField({
   };
 
   const handleCancel = () => {
-    setTempValue(value || toISO(new Date()));
+    setTempValue(value || minDate || toISO(new Date()));
     setOpen(false);
   };
 
@@ -121,7 +126,11 @@ export default function DatePickerField({
               <DatePopup $top={pos.top} $left={pos.left}>
                 <DatePopupScrollCustom>
                   <DatePopupBodyCustom>
-                    <SingleCalendar value={tempValue} onChange={setTempValue} />
+                    <SingleCalendar
+                      value={tempValue}
+                      onChange={setTempValue}
+                      minDate={minDate}
+                    />
                   </DatePopupBodyCustom>
                   <DatePopupActionsCustom>
                     <CancelButton type="button" onClick={handleCancel}>

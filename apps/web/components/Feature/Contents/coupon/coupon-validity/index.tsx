@@ -7,6 +7,7 @@ import { GenericModal } from "@/components/UI/Modals";
 import DatePickerField from "@/components/UI/InputFields/DatePickerField";
 import { CreateCouponPayload } from "@/types/couponType";
 import { COUPON_VALIDITY_FIELDS, CouponValidityField } from "@/utils/Constants";
+import { toISO } from "@/utils/formatDate";
 import { BackButton, FieldGroup, ModalTitle, NextButton } from "../styles";
 import {
   TitleHelperText,
@@ -33,6 +34,7 @@ export default function CouponValidityModal({
   onNext,
 }: Props) {
   const { t } = useTranslation();
+  const todayISO = toISO(new Date());
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,10 +42,17 @@ export default function CouponValidityModal({
   };
 
   const handleDateChange = (key: CouponValidityField) => (val: string) => {
-    setForm((prev) => ({
-      ...prev,
-      [key]: val,
-    }));
+    setForm((prev) => {
+      const next = { ...prev, [key]: val };
+      if (
+        key === COUPON_VALIDITY_FIELDS.START_DATE &&
+        next.endDate &&
+        next.endDate < val
+      ) {
+        next.endDate = "";
+      }
+      return next;
+    });
   };
 
   return (
@@ -80,6 +89,7 @@ export default function CouponValidityModal({
                   "contents.couponValidity.placeholders.startDate",
                 )}
                 value={form.startDate}
+                minDate={todayISO}
                 onChange={handleDateChange(COUPON_VALIDITY_FIELDS.START_DATE)}
               />
             </FieldGroup>
@@ -89,6 +99,7 @@ export default function CouponValidityModal({
                 label={t("contents.couponValidity.fields.endDate")}
                 placeholder={t("contents.couponValidity.placeholders.endDate")}
                 value={form.endDate}
+                minDate={form.startDate || todayISO}
                 onChange={handleDateChange(COUPON_VALIDITY_FIELDS.END_DATE)}
               />
             </FieldGroup>
