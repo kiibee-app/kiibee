@@ -160,13 +160,15 @@ export const StatusBadge = styled.span<{ $status: string }>`
 `;
 
 export const ActionWrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
 
   ${Dropdown} {
-    top: 0;
-    right: 24px;
+    top: 100%;
+    right: 0;
+    transform: translateX(-170px);
   }
 `;
 

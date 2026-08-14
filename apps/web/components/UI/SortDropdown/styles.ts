@@ -59,11 +59,17 @@ export const Dropdown = styled.div<{
   $variant?: SortDropdownVariant;
   $width?: string;
   $inFlow?: boolean;
+  $alignRight?: boolean;
+  $topOffset?: string;
 }>`
   position: ${({ $inFlow }) => ($inFlow ? "relative" : "absolute")};
-  top: ${({ $inFlow }) => ($inFlow ? "auto" : "120%")};
+  top: ${({ $inFlow, $topOffset }) =>
+    $inFlow ? "auto" : ($topOffset ?? "calc(100% + 2px)")};
+  left: ${({ $inFlow, $alignRight }) =>
+    $inFlow ? "auto" : $alignRight ? "auto" : "0"};
+  right: ${({ $inFlow, $alignRight }) =>
+    $inFlow ? "0" : $alignRight ? "0" : "auto"};
   margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
-  right: 0;
   width: ${({ $width }) => $width || "100%"};
   max-width: ${({ $maxWidth }) => $maxWidth || "200px"};
   padding: ${({ $variant }) =>

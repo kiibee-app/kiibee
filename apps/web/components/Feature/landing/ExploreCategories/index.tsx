@@ -129,7 +129,7 @@ export default function ExploreCategories() {
               $active={isActive}
               onClick={() => setActiveCategory(catKey)}
             >
-              <MonoText $use="Body_Bold">
+              <MonoText $use="Body_Medium">
                 {getCategoryLabel(catKey, t)}
               </MonoText>
             </FilterPill>
@@ -149,7 +149,7 @@ export default function ExploreCategories() {
           asAnchor
           href={PATHS.EXPLORE}
         >
-          <MonoText $use="Body_Bold">
+          <MonoText $use="Body_Medium">
             {t("exploreCategories.browseAll")}
           </MonoText>
         </BrowseAllButton>

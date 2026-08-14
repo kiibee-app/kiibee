@@ -2,6 +2,7 @@
 
 import { useState, type ComponentType, type MouseEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
@@ -81,6 +82,7 @@ export default function CollectionItemCard({
   ownerCreatorId,
   collectionId = null,
 }: Props) {
+  const router = useRouter();
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
@@ -153,11 +155,7 @@ export default function CollectionItemCard({
   const openCreatorProfile = (event: MouseEvent) => {
     if (!video.creatorId) return;
     stopCardNavigation(event);
-    window.open(
-      getPublicCreatorProfilePath(video.creatorId),
-      "_blank",
-      "noopener,noreferrer",
-    );
+    router.push(getPublicCreatorProfilePath(video.creatorId));
   };
 
   const title = <CollectionTitle>{video.title}</CollectionTitle>;

@@ -19,6 +19,12 @@ export const Wrapper = styled.div`
     height: 30px;
     padding: 2px;
   }
+  ${media.mobileLg} {
+    height: 30px;
+    width: 72px;
+    max-width: 72px;
+    padding: 2px;
+  }
 `;
 
 export const Slider = styled.span<{ $active: typeof DA | typeof EN }>`
