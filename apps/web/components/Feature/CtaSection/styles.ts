@@ -20,6 +20,8 @@ export const Section = styled.section<{ $aspect?: number }>`
     682px
   );
   padding: clamp(3rem, 8vh, 5rem) 1.5rem;
+  margin-bottom: -1px;
+  background: ${({ theme }) => theme.colors.primary.GREEN_100};
 
   ${media.tablet} {
     padding: clamp(2.5rem, 6vh, 4rem) 1.25rem;
@@ -28,7 +30,7 @@ export const Section = styled.section<{ $aspect?: number }>`
 
 export const Background = styled.div<{ $src: string }>`
   position: absolute;
-  inset: 0;
+  inset: -1px;
   z-index: 0;
   background-image: url(${({ $src }) => $src});
   background-size: cover;
@@ -50,6 +52,28 @@ export const Background = styled.div<{ $src: string }>`
   ${media.tablet} {
     background-position: center 28%;
   }
+`;
+
+export const BackgroundVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+export const BackgroundOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  pointer-events: none;
 `;
 
 export const Inner = styled.div`

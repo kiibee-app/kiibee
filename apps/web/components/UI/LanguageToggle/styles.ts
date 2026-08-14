@@ -10,12 +10,19 @@ export const Wrapper = styled.div`
   height: 34px;
   padding: 3px;
   border-radius: 999px;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
-  box-shadow: inset ${({ theme }) => theme.shadows.sm};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_250};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 
   ${media.tablet} {
     height: 30px;
+    padding: 2px;
+  }
+  ${media.mobileLg} {
+    height: 30px;
+    width: 72px;
+    max-width: 72px;
     padding: 2px;
   }
 `;
@@ -27,8 +34,10 @@ export const Slider = styled.span<{ $active: typeof DA | typeof EN }>`
   width: calc(50% - 3px);
   height: calc(100% - 6px);
   border-radius: 999px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ theme }) => theme.colors.primary.WHITE_80};
   box-shadow: ${({ theme }) => theme.shadows.md};
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   transform: translateX(${({ $active }) => ($active === EN ? "100%" : "0")});

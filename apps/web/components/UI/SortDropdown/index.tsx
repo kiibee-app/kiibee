@@ -5,6 +5,7 @@ import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
 import { Dropdown, DropdownItem, SortBox, Text } from "./styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useDropdownAutoScroll } from "@/hooks/useDropdownAutoScroll";
 import { MonoText } from "../Monotext";
 import { DEFAULT_SORT } from "@/utils/sortOptions";
 import { SORT_DROPDOWN_VARIANT, SortDropdownVariant } from "@/utils/Constants";
@@ -34,6 +35,9 @@ type Props<T extends string = string> = {
   hideSelectedOption?: boolean;
   allowNoSelection?: boolean;
   variant?: SortDropdownVariant;
+  expandLayoutOnOpen?: boolean;
+  alignRight?: boolean;
+  topOffset?: string;
 };
 
 function SortDropdown<T extends string = string>({
@@ -51,6 +55,9 @@ function SortDropdown<T extends string = string>({
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
   allowNoSelection = false,
+  expandLayoutOnOpen = !trigger,
+  alignRight,
+  topOffset,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -71,6 +78,8 @@ function SortDropdown<T extends string = string>({
     eventType: "click",
     handler: () => setOpen(false),
   });
+
+  useDropdownAutoScroll({ open, ref });
 
   const handleSelect = useCallback(
     (val: T) => {
@@ -137,6 +146,9 @@ function SortDropdown<T extends string = string>({
           $maxWidth={maxWidth}
           $width={dropdownWidth}
           $variant={variant}
+          $inFlow={expandLayoutOnOpen}
+          $alignRight={alignRight}
+          $topOffset={topOffset}
         >
           {visibleOptions.map((opt) => (
             <DropdownItem

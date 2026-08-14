@@ -54,6 +54,7 @@ export const viewerSignUpFormBase = {
     email: string;
     password: string;
     repeatPassword: string;
+    agreed: boolean;
   }) => ({
     fullName: values.fullName.trim(),
     email: values.email.trim(),

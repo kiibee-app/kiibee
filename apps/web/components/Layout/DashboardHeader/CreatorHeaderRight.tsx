@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
+import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
@@ -46,7 +47,8 @@ const CreatorHeaderRight = ({
             initial={initial}
             alt={t("common.creatorProfile")}
             sizes="44px"
-            fit="contain"
+            fit="cover"
+            initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
           />
         </ProfileCircle>
         <EmailWrapper>

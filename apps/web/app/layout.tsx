@@ -11,6 +11,7 @@ import { ToastProvider } from "@/providers/toastProvider";
 import { cookies } from "next/headers";
 import {
   OPEN_GRAPH_LOCALE_DA_DK,
+  SITE_URL,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
@@ -19,15 +20,16 @@ import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 export const metadata: Metadata = {
+  ...(SITE_URL && { metadataBase: new URL(SITE_URL) }),
   title: {
     default: "Kiibee - Discover Unique Digital Content",
     template: "%s | Kiibee",

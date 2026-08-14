@@ -76,11 +76,15 @@ export const API = {
   creatorUsers: {
     registrations: "/creator-users/registrations",
     register: "/creator-users/register",
+    requestContentAccess: "/creator-users/content-access/request",
+    approveContentAccess: "/creator-users/content-access/approve",
+    redeemContentAccess: "/creator-users/content-access/redeem",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
   export: {
     request: "/export/request",
+    sendReceipt: "/export/send-receipt",
   },
   creatorOverview: {
     contentPerformance: "/creator-overview/content-performance",
@@ -123,9 +127,16 @@ export const API = {
     purchasedData: "/viewer/purchased-data",
     rentedData: "/viewer/rented-data",
     previouslyRentedData: "/viewer/previously-rented-data",
+    accessibleContentIds: "/viewer/accessible-content-ids",
     paymentMethods: "/viewer/payment-methods",
     paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
     paymentMethodDefault: (id: string) =>
       `/viewer/payment-methods/${id}/default`,
+  },
+  download: {
+    limit: "/download/limit",
+    url: (contentId: string) => `/download/url?contentId=${contentId}`,
+    contentInfo: (contentId: string) =>
+      `/download/content-info?contentId=${contentId}`,
   },
 } as const;

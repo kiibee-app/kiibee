@@ -1,6 +1,5 @@
 "use client";
 
-import type { MouseEvent } from "react";
 import type { CreatorDeletionRequest } from "../../../types/creator-deletion-request";
 import type { CreatorDeletionRequestActionConfig } from "../../../types/deletion-requests-table";
 import {
@@ -35,22 +34,14 @@ export function CreatorDeletionRequestActions({
     activeRequestId === id;
   const isActionDisabled = isApproving || isRejecting;
 
-  const handleClick = (
-    event: MouseEvent<HTMLButtonElement>,
-    handler: (request: CreatorDeletionRequest) => void,
-  ) => {
-    event.stopPropagation();
-    handler(request);
-  };
-
   return (
-    <RowActionGroup>
+    <RowActionGroup onClick={(event) => event.stopPropagation()}>
       {isPending ? (
         <RowActionButton
           $variant={CREATOR_DELETION_REQUEST_ACTION.APPROVE}
           type="button"
           disabled={isActionDisabled}
-          onClick={(event) => handleClick(event, actions.onApproveRequest)}
+          onClick={() => actions.onApproveRequest(request)}
         >
           <ActionIcon $variant={CREATOR_DELETION_REQUEST_ACTION.APPROVE}>
             {ACTION_ICONS.APPROVE}
@@ -63,7 +54,7 @@ export function CreatorDeletionRequestActions({
           $variant={CREATOR_DELETION_REQUEST_ACTION.REJECT}
           type="button"
           disabled={isActionDisabled}
-          onClick={(event) => handleClick(event, actions.onRejectRequest)}
+          onClick={() => actions.onRejectRequest(request)}
         >
           <ActionIcon $variant={CREATOR_DELETION_REQUEST_ACTION.REJECT}>
             {ACTION_ICONS.REJECT}

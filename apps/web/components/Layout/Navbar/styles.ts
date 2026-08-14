@@ -57,7 +57,8 @@ export const Inner = styled.div`
 export const Left = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
+  flex-shrink: 0;
 
   ${media.mobileXl} {
     flex: 1 1 auto;
@@ -91,9 +92,11 @@ const navLinkColor = (
 
 export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
   display: flex;
-  gap: 1.25rem;
+  gap: 0.75rem;
   align-items: center;
   flex-wrap: nowrap;
+  flex-shrink: 0;
+  white-space: nowrap;
   ${({ $navPosition }) =>
     $navPosition === "right"
       ? css`
@@ -101,11 +104,17 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
           justify-content: flex-end;
         `
       : css`
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+          margin: 0 auto;
+          justify-content: center;
         `}
+
+  > span,
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+  }
 
   ${({ $routeActiveItems, theme, $textTone }) =>
     !$routeActiveItems &&
@@ -114,7 +123,7 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
       button {
         color: ${navLinkColor($textTone, theme)};
         text-decoration: none;
-        padding: 0.5rem 0.75rem;
+        padding: 0.4rem 0.5rem;
         border-radius: 0.375rem;
         white-space: nowrap;
         transition:
@@ -298,15 +307,53 @@ export const ColumnItem = styled.a`
   }
 `;
 
+export const SearchIconButton = styled(Link)<{
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: transparent;
+  color: ${({ theme, $textTone }) =>
+    $textTone === TONE_LIGHT
+      ? theme.colors.neutral.OFF_WHITE
+      : theme.colors.primary.BLACK};
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.75;
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
+`;
+
 export const Actions = styled.div<{
   $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
   $showOnMobile?: boolean;
 }>`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-left: 1rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  white-space: nowrap;
 
   .login-btn {
     color: ${({ theme, $textTone }) =>
@@ -771,14 +818,15 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   margin-top: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
   padding-top: ${({ $showDivider }) => ($showDivider ? "16px" : "0")};
   padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
 
-  a,
-  button {
+  > a,
+  > button {
     width: 100%;
   }
 `;

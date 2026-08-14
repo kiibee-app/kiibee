@@ -468,7 +468,7 @@ export const PricingCtaSubtext = styled.span<{ $isPrimary?: boolean }>`
 
 export const MainActionText = styled.span`
   color: inherit;
-  ${({ theme }) => theme.typography.Body_Bold}
+  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
 export const ExpiryText = styled.p<{ $tone?: "default" | "urgent" }>`

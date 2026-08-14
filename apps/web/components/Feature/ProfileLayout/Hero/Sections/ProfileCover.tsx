@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import coverImage from "@/assets/images/creators/create_profile_hero1.png";
+import coverImage from "@/assets/images/creators/layout1defaultimage.svg";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -28,8 +28,14 @@ export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { openAbout } = tabState;
-  const { displayName, avatarUrl, coverImageUrl, initial, about } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    avatarUrl,
+    coverImageUrl,
+    mobileCoverImageUrl,
+    initial,
+    about,
+  } = useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
@@ -51,7 +57,7 @@ export default function ProfileCoverSection() {
         <ProfileSection>
           <AvatarWrap>
             <CreatorChannelAvatar
-              avatarUrl={avatarUrl}
+              avatarUrl={mobileCoverImageUrl || avatarUrl}
               initial={initial}
               alt={creatorName || t(CREATE_PROFILE_HOME.title)}
               sizes="152px"

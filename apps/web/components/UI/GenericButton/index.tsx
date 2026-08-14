@@ -38,6 +38,7 @@ export default function GenericButton({
         $size={size}
         $fullWidth={fullWidth}
         $minWidth={minWidth}
+        data-variant={variant}
         {...anchorProps}
         aria-disabled={isLoading || anchorProps["aria-disabled"]}
         href={isLoading ? undefined : href}
@@ -54,6 +55,7 @@ export default function GenericButton({
       $size={size}
       $fullWidth={fullWidth}
       $minWidth={minWidth}
+      data-variant={variant}
       {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       disabled={isLoading || rest.disabled}
     >

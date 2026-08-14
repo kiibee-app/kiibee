@@ -1,44 +1,48 @@
-import creatorMainImage from "@/assets/images/creators/creator-woman-orange.webp";
-import creatorSideImageOne from "@/assets/images/creators/creator-man-podcast.webp";
-import creatorSideImageTwo from "@/assets/images/creators/creator-woman-gray-jacket.webp";
+import heroPayments from "@/assets/images/creators/hero-payments.webp";
+import heroStreaming from "@/assets/images/creators/hero-streaming.webp";
+import heroDistribution from "@/assets/images/creators/hero-distribution.webp";
+import heroMarketing from "@/assets/images/creators/hero-marketing.webp";
+import heroCustomerAccess from "@/assets/images/creators/hero-customer-access.webp";
 import { ImageSource } from "./Constants";
 
 export interface CreatorCard {
   image: ImageSource;
   alt: string;
   title: string;
-  subtitle: string;
-  narrowBgPosition: string;
-  narrowBgSize: string;
+  subtitle?: string;
 }
 
-export interface CreatorCardData {
-  cards: CreatorCard[];
-}
+export const DEFAULT_ACTIVE_CREATOR_CARD_INDEX = 2;
 
 export const getCreatorCards = (t: (key: string) => string): CreatorCard[] => [
   {
-    image: creatorMainImage,
-    alt: t("creators.mainCard.alt"),
-    title: t("creators.mainCard.title"),
-    subtitle: t("creators.mainCard.subtitle"),
-    narrowBgPosition: "-360px -1.138px",
-    narrowBgSize: "320% 100.235%",
+    image: heroPayments,
+    alt: t("creators.heroCards.payments.alt"),
+    title: t("creators.heroCards.payments.title"),
+    subtitle: t("creators.heroCards.payments.subtitle"),
   },
   {
-    image: creatorSideImageOne,
-    alt: t("creators.salesInsights.alt"),
-    title: t("creators.salesInsights.title"),
-    subtitle: "",
-    narrowBgPosition: "-622.927px -28.838px",
-    narrowBgSize: "661.917% 106.472%",
+    image: heroStreaming,
+    alt: t("creators.heroCards.streaming.alt"),
+    title: t("creators.heroCards.streaming.title"),
+    subtitle: t("creators.heroCards.streaming.subtitle"),
   },
   {
-    image: creatorSideImageTwo,
-    alt: t("creators.paymentSolutions.alt"),
-    title: t("creators.paymentSolutions.title"),
-    subtitle: "",
-    narrowBgPosition: "-192.28px -0.516px",
-    narrowBgSize: "321.398% 125.046%",
+    image: heroDistribution,
+    alt: t("creators.heroCards.distribution.alt"),
+    title: t("creators.heroCards.distribution.title"),
+    subtitle: t("creators.heroCards.distribution.subtitle"),
+  },
+  {
+    image: heroMarketing,
+    alt: t("creators.heroCards.marketing.alt"),
+    title: t("creators.heroCards.marketing.title"),
+    subtitle: t("creators.heroCards.marketing.subtitle"),
+  },
+  {
+    image: heroCustomerAccess,
+    alt: t("creators.heroCards.customerAccess.alt"),
+    title: t("creators.heroCards.customerAccess.title"),
+    subtitle: t("creators.heroCards.customerAccess.subtitle"),
   },
 ];

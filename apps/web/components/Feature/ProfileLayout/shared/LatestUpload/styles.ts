@@ -100,6 +100,26 @@ export const UploadBackgroundImage = styled.img`
   z-index: 0;
 `;
 
+export const TrailerVideo = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  z-index: 1;
+`;
+
+export const TrailerEmbed = styled.iframe`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  z-index: 1;
+`;
+
 export const TextSection = styled.div`
   flex: 1;
   width: 100%;
@@ -111,17 +131,22 @@ export const TextSection = styled.div`
 `;
 
 export const Title = styled(MonoText).attrs({
-  $use: "Body_Medium",
+  $use: "H5_Medium",
 })`
   margin: 0;
   align-self: stretch;
 `;
 
 export const Paragraph = styled(MonoText).attrs({
-  $use: "Body_Small",
+  $use: "Body_Medium",
 })`
   margin: 0;
   align-self: stretch;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 `;
 
 export const ActionButtons = styled.div`

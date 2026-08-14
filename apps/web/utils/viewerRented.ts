@@ -1,10 +1,16 @@
 import type { TFunction } from "i18next";
-import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
+import {
+  HOURS_IN_DAY,
+  MILLISECONDS_IN_HOUR,
+  SENSITIVITY_BASE,
+  VIEWER_SECTION,
+  VIEWER_SECTION_VALUES,
+} from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
-import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 
 export const MEDIA_ICON_SIZE = 22;
+export const ALL_CATEGORIES = "__all_categories__";
 
 export type CollectionAction = {
   label: string;
@@ -25,6 +31,7 @@ export type RentedCollectionItem = {
   actions?: CollectionAction[];
   hideBadge?: boolean;
   href?: string;
+  accessStatus?: CollectionAccessStatus;
 };
 
 export type RentedMediaItem = {
@@ -37,6 +44,7 @@ export type RentedMediaItem = {
   expiryText: string;
   buyPrice?: string | null;
   rentPrice?: string | null;
+  accessStatus?: CollectionAccessStatus;
 };
 import {
   CURRENT_RENTED_AUDIOS,
@@ -60,6 +68,7 @@ export type RentedSectionKey =
   | "videos"
   | "audios"
   | "pdfs"
+  | "epubs"
   | "webs";
 
 export const RENTED_MODES = {
@@ -83,6 +92,7 @@ export const RENTED_MEDIA_TYPES = {
   VIDEO: "video",
   AUDIO: "audio",
   PDF: "pdf",
+  EPUB: "epub",
   WEB: "web",
 } as const;
 
@@ -91,6 +101,7 @@ export const RENTED_SECTION_KEYS = {
   VIDEOS: "videos",
   AUDIOS: "audios",
   PDFS: "pdfs",
+  EPUBS: "epubs",
   WEBS: "webs",
 } as const;
 
@@ -106,8 +117,24 @@ export type RentedContentSources = {
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
+  epubs: RentedMediaItem[];
   webs: RentedMediaItem[];
 };
+
+const RENTED_CONTENT_SOURCE_KEYS = Object.values(
+  RENTED_SECTION_KEYS,
+) as RentedSectionKey[];
+
+export function mergeRentedContentSources(
+  ...sources: Array<RentedContentSources | undefined>
+): RentedContentSources {
+  return Object.fromEntries(
+    RENTED_CONTENT_SOURCE_KEYS.map((key) => [
+      key,
+      sources.flatMap((source) => (source?.[key] ?? []) as unknown[]),
+    ]),
+  ) as RentedContentSources;
+}
 
 export type RentedMediaSectionItems = Record<
   RentedMediaSectionKey,
@@ -128,6 +155,7 @@ const PURCHASED_SOURCES: RentedContentSources = {
     ...item,
     expiryText: item.dateLabel,
   })),
+  epubs: [],
   webs: [],
 };
 
@@ -148,6 +176,10 @@ export function getRentedMediaSections(
       title: t("dashboard.viewerPurchased.sections.pdf"),
     },
     {
+      key: RENTED_SECTION_KEYS.EPUBS,
+      title: t("dashboard.viewerPurchased.sections.epub", "EPUB"),
+    },
+    {
       key: RENTED_SECTION_KEYS.WEBS,
       title: t("dashboard.viewerPurchased.sections.web"),
     },
@@ -158,12 +190,14 @@ export function getRentedMediaSectionItems(items: {
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
+  epubs: RentedMediaItem[];
   webs: RentedMediaItem[];
 }): RentedMediaSectionItems {
   return {
     [RENTED_SECTION_KEYS.VIDEOS]: items.videos,
     [RENTED_SECTION_KEYS.AUDIOS]: items.audios,
     [RENTED_SECTION_KEYS.PDFS]: items.pdfs,
+    [RENTED_SECTION_KEYS.EPUBS]: items.epubs,
     [RENTED_SECTION_KEYS.WEBS]: items.webs,
   };
 }
@@ -173,6 +207,7 @@ export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.VIDEOS]: 4,
   [RENTED_SECTION_KEYS.AUDIOS]: 4,
   [RENTED_SECTION_KEYS.PDFS]: 4,
+  [RENTED_SECTION_KEYS.EPUBS]: 4,
   [RENTED_SECTION_KEYS.WEBS]: 4,
 };
 
@@ -189,9 +224,10 @@ export function filterCollections(
   searchValue: string,
   items: RentedCollectionItem[],
 ) {
+  const withContent = items.filter((item) => item.elementCount > 0);
   const needle = searchValue.trim().toLowerCase();
-  if (!needle) return items;
-  return items.filter((item) =>
+  if (!needle) return withContent;
+  return withContent.filter((item) =>
     [item.title, item.author, String(item.elementCount)].some((part) =>
       part.toLowerCase().includes(needle),
     ),
@@ -208,11 +244,32 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
+export function getUniqueMediaCategories(items: RentedMediaItem[]): string[] {
+  const categories: string[] = [];
+  const seenCategories = new Set<string>();
+
+  items.forEach((item) => {
+    const category = item.category.trim();
+    const normalizedCategory = category.toLocaleLowerCase();
+
+    if (!category || seenCategories.has(normalizedCategory)) return;
+
+    seenCategories.add(normalizedCategory);
+    categories.push(category);
+  });
+
+  const compareCategoriesAlphabetically = (a: string, b: string) =>
+    a.localeCompare(b, undefined, { sensitivity: SENSITIVITY_BASE });
+
+  return categories.sort(compareCategoriesAlphabetically);
+}
+
 export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
   const map: Record<string, string> = {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+    [RENTED_SECTION_KEYS.EPUBS]: t("viewerRented.mediaLabelEpub", "EPUB"),
     [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.mediaLabelWeb"),
   };
   return map[type] ?? "";
@@ -223,6 +280,7 @@ export function getMediaAction(type: RentedSectionKey, t: TFunction) {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+    [RENTED_SECTION_KEYS.EPUBS]: t("viewerRented.openEpub", "Open epub"),
     [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.openWeb"),
   };
   return map[type] ?? "";
@@ -239,6 +297,7 @@ export function getRentedContentSources(
       videos: CURRENT_RENTED_VIDEOS,
       audios: CURRENT_RENTED_AUDIOS,
       pdfs: CURRENT_RENTED_PDFS,
+      epubs: [],
       webs: [],
     };
   }
@@ -248,6 +307,7 @@ export function getRentedContentSources(
     videos: PREVIOUS_RENTED_VIDEOS,
     audios: PREVIOUS_RENTED_AUDIOS,
     pdfs: PREVIOUS_RENTED_PDFS,
+    epubs: [],
     webs: [],
   };
 }
@@ -344,11 +404,13 @@ export function sortViewerCollections(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return a.elementCount - b.elementCount;
   });
@@ -370,11 +432,13 @@ export function sortViewerMedia(
   sorted.sort((a, b) => {
     if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
       return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
+        sensitivity: SENSITIVITY_BASE,
       });
     }
     if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+      return a.title.localeCompare(b.title, undefined, {
+        sensitivity: SENSITIVITY_BASE,
+      });
     }
     return 0;
   });

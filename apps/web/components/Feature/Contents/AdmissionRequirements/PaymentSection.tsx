@@ -35,7 +35,7 @@ interface SettingsPaymentSectionProps {
     showPurchaseSection: boolean;
   };
   updateField: (key: string, value: string) => void;
-  downloadLimitOptions: DropdownOption<AccessDurationValue>[];
+  accessDurationOptions: DropdownOption<AccessDurationValue>[];
 }
 
 interface AmountBlockProps {
@@ -91,7 +91,7 @@ const SettingsPaymentSection = ({
   t,
   formState,
   updateField,
-  downloadLimitOptions,
+  accessDurationOptions,
 }: SettingsPaymentSectionProps) => {
   const amountPlaceholder = t("contents.payment.common.enterAmount");
   const feeNote = t("contents.payment.common.feeNote");
@@ -132,7 +132,7 @@ const SettingsPaymentSection = ({
 
         <DropdownWrap>
           <SortDropdown
-            options={downloadLimitOptions}
+            options={accessDurationOptions}
             value={formState.maxAccessLimit}
             onChange={(value) =>
               updateField(

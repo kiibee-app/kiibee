@@ -1,18 +1,20 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import {
   GATE_QUERY_PARAM,
+  APPROVED_ACCESS_QUERY_PARAM,
   TYPE_CODE,
   TYPE_EMAIL,
   ACCESS_TYPE_PASSWORD,
   ACCESS_TYPE_EMAIL_GATED,
   SET_PASSWORD_ACCESS,
   REQUEST_EMAIL_ACCESS,
-  REGISTER_SOURCE,
 } from "@/utils/Constants";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -23,6 +25,9 @@ import {
   getCollectionUnlockStorageKey,
   getCreatorUnlockStorageKey,
 } from "@/utils/accessGate";
+import { pathLoginWithNext } from "@/utils/path";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { toast } from "react-toastify";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -33,8 +38,13 @@ export function useContentAccessGate(
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
+  const { getErrorMessage } = useApiErrorMessage();
+  const getErrorMessageRef = useRef(getErrorMessage);
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
+  const approvedAccessToken = searchParams.get(APPROVED_ACCESS_QUERY_PARAM);
   const storedUser = useStoredLoginUser();
+  const loginUser = storedUser ?? readStoredLoginUser();
+  const isApprovingAccess = Boolean(approvedAccessToken);
 
   const { gateType: creatorGateType, isLoading: creatorLoading } =
     useCreatorAccessGate(content?.creatorId);
@@ -51,16 +61,60 @@ export function useContentAccessGate(
   const contentStorageKey = content?.id
     ? `kiibee:gate:unlocked:content:${content.id}`
     : "";
-  const isContentUnlocked =
-    typeof window !== "undefined" && contentStorageKey
-      ? window.localStorage.getItem(contentStorageKey) === "true"
-      : false;
 
-  const isOwner = Boolean(
-    storedUser?.id && content?.creatorId === storedUser.id,
-  );
+  const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
+
+  useEffect(() => {
+    getErrorMessageRef.current = getErrorMessage;
+  }, [getErrorMessage]);
+
+  useEffect(() => {
+    if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
+    if (!loginUser?.id) {
+      const returnTo = `${window.location.pathname}${window.location.search}`;
+      window.location.replace(pathLoginWithNext(returnTo));
+      return;
+    }
+
+    let cancelled = false;
+
+    const redeemAccess = async () => {
+      try {
+        await axiosClient.post(API.creatorUsers.redeemContentAccess, {
+          token: approvedAccessToken,
+        });
+
+        if (cancelled) return;
+
+        window.localStorage.setItem(contentStorageKey, "true");
+        const url = new URL(window.location.href);
+        url.searchParams.delete(APPROVED_ACCESS_QUERY_PARAM);
+        window.location.replace(url.toString());
+      } catch (error) {
+        if (cancelled) return;
+
+        toast.error(
+          getErrorMessageRef.current(error, "accessGate.redeemFailed"),
+        );
+        const url = new URL(window.location.href);
+        url.searchParams.delete(APPROVED_ACCESS_QUERY_PARAM);
+        window.history.replaceState(null, "", url.toString());
+      }
+    };
+
+    void redeemAccess();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [approvedAccessToken, content?.id, contentStorageKey, loginUser?.id]);
 
   const hasContentGate = isContentCode || isContentEmail;
+  const hasServerAccess = Boolean(content?.accessInfo);
+  const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
+  const isContentUnlocked = isContentEmail
+    ? hasApprovedEmailAccess
+    : hasServerAccess;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
@@ -99,13 +153,13 @@ export function useContentAccessGate(
       value &&
       content?.creatorId
     ) {
-      await axiosClient.post(API.creatorUsers.register, {
+      await axiosClient.post(API.creatorUsers.requestContentAccess, {
         creatorId: content.creatorId,
+        contentId: content.id,
         email: value,
         name,
-        source: REGISTER_SOURCE.CONTENT,
-        sourceId: content.id,
       });
+      return true;
     }
 
     const unlockStorageKey = [
@@ -116,7 +170,7 @@ export function useContentAccessGate(
         ? getCollectionUnlockStorageKey(collectionId)
         : "",
       !hasContentGate && creatorGateType
-        ? getCreatorUnlockStorageKey(content?.creatorId, storedUser?.id)
+        ? getCreatorUnlockStorageKey(content?.creatorId, loginUser?.id)
         : "",
     ].find(Boolean);
 
@@ -129,7 +183,7 @@ export function useContentAccessGate(
 
   return {
     gateType: finalGateType,
-    isLoading: creatorLoading || collectionLoading,
+    isLoading: creatorLoading || collectionLoading || isApprovingAccess,
     handleSuccess,
   };
 }

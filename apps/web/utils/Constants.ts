@@ -10,10 +10,13 @@ import {
 } from "./admissionRequirements";
 import { ADMISSION_TYPE, parsePaymentAmount } from "./paymentRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
-import {
-  EXPLORE_CONTENT_SORT,
-  ExploreContentSort,
-} from "@/hooks/feed/useExploreContent";
+
+type ExploreContentSort = "new" | "popular" | "all";
+const EXPLORE_CONTENT_SORT = {
+  NEW: "new",
+  POPULAR: "popular",
+  ALL: "all",
+} as const;
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
@@ -34,6 +37,11 @@ export * from "@/lib/subscription/constants";
 export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
+export const PROTOCOL_HTTP = "http:";
+export const PROTOCOL_HTTPS = "https:";
+export const COOKIE_ATTRIBUTE_SECURE = "Secure";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL;
 export const DECORATIVE_IMAGE_PROPS = {
   alt: "",
   "aria-hidden": true,
@@ -280,6 +288,7 @@ export const SCROLL_BEHAVIOR = {
 export const SCROLL_BLOCK = {
   CENTER: "center",
   START: "start",
+  NEAREST: "nearest",
 } as const;
 
 export const SCROLL_OPTIONS = {
@@ -291,6 +300,13 @@ export const SCROLL_TO_START_OPTIONS = {
   behavior: SCROLL_BEHAVIOR.SMOOTH,
   block: SCROLL_BLOCK.START,
 } as const;
+
+export const SCROLL_NEAREST_OPTIONS = {
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.NEAREST,
+} as const;
+
+export const DROPDOWN_AUTO_SCROLL_DELAY_MS = 60;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,
@@ -335,7 +351,7 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
   return {
     title: formState.title,
     description: formState.description,
-    trailerUrl: formState.trailerLink || undefined,
+    trailerUrl: formState.trailerLink.trim(),
     thumbnailUrl: formState.mediaCardThumbnail || undefined,
     thumbnailLandscapeUrl: formState.portraitThumbnail || undefined,
     publishedYear: formState.publishedYear
@@ -392,9 +408,12 @@ export const CONTENT_FORM_FIELDS = {
   PRODUCTION_COMPANY: "productionCompany",
   MANUFACTURER_LINK: "manufacturerLink",
   TAGS: "tags",
+  WEB_LINK: "webLink",
 } as const;
 
 export const TAG_DELIMITER = /[\n,]+/;
+export const EXPIRY_DATE_REGEX = /^(0[1-9]|1[0-2])\/(\d{2})$/;
+export const CVC_REGEX = /^\d{3,4}$/;
 
 export function parseTags(value: string): string[] {
   return value
@@ -410,6 +429,9 @@ export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";
 export const HASH_RENT = "#rent";
 export const HASH_BUY = "#buy";
+export const PLANS_SECTION_ID = "plans";
+export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
+export const EVENT_HASHCHANGE = "hashchange";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
@@ -445,6 +467,7 @@ export const TYPE_CODE: AccessGateType = "code";
 export const TYPE_EMAIL: AccessGateType = "email";
 export const GATE_QUERY_PARAM = "gate";
 export const ID_QUERY_PARAM = "id";
+export const APPROVED_ACCESS_QUERY_PARAM = "approvedAccess";
 export const SET_PASSWORD_ACCESS = "set_password";
 export const REQUEST_EMAIL_ACCESS = "request_email";
 
@@ -579,14 +602,14 @@ export const SCROLL_ANIMATION_CONFIG = {
   MAX_INIT_ATTEMPTS: 60,
   INIT_RETRY_INTERVAL_MS: 50,
   REFRESH_DELAY_MS: 600,
-  ANIMATION_Y_OFFSET: 40,
+  ANIMATION_Y_OFFSET: 24,
   ANIMATION_Y_END: 0,
-  ANIMATION_DURATION: 0.6,
+  ANIMATION_DURATION: 0.45,
   ANIMATION_OPACITY_START: 0,
   ANIMATION_OPACITY_END: 1,
   ANIMATION_EASE: "power2.out",
-  TRIGGER_START: "top 90%",
-  TOGGLE_ACTIONS: "play none none reverse",
+  TRIGGER_START: "top 92%",
+  TOGGLE_ACTIONS: "play none none none",
   EVENT_SCROLL: "scroll",
 } as const;
 
@@ -599,3 +622,8 @@ export const REGISTER_SOURCE = {
 
 export type RegisterSource =
   (typeof REGISTER_SOURCE)[keyof typeof REGISTER_SOURCE];
+
+export const TIME_MS = {
+  ONE_SECOND: 1000,
+  ONE_MINUTE: 60 * 1000,
+} as const;

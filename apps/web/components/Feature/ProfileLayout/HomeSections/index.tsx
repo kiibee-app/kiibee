@@ -5,7 +5,10 @@ import CollectionPreview from "@/components/Feature/ProfileLayout/shared/Collect
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
-import { PROFILE_HOME_SECTION, VARIANT_PAGE } from "@/utils/Constants";
+import GenericButton from "@/components/UI/GenericButton";
+import PlusIcon from "@/assets/icons/PlusIcon";
+import COLORS from "@repo/ui/colors";
+import { PROFILE_HOME_SECTION, VARIANT, VARIANT_PAGE } from "@/utils/Constants";
 import {
   ContentAdjust,
   SectionWrapper,
@@ -24,6 +27,10 @@ import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { useProfileHomeCollections } from "@/hooks/useProfileHomeCollections";
+import {
+  resolveContentThumbnailCandidates,
+  resolveImageUrl,
+} from "@/utils/media";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -64,32 +71,53 @@ export default function ProfileHomeSections({
     : null;
 
   const latestUploadData = latest
-    ? {
-        sectionTitle: latestConfig.sectionTitle,
-        badge:
-          (latest as { category?: string | null }).category ??
-          latestConfig.badge ??
-          "",
-        image: latest.thumbnailLandscapeUrl ?? latestUploadImage,
-        contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
-        imageAlt: latest.title || "",
-        title: latest.title || "",
-        year: new Date(latest.createdAt).getFullYear().toString(),
-        description: latest.description ?? "",
-        actions: latestConfig.actions,
-        contentId: latest.id,
-        trailerUrl:
-          (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
-        accessType:
-          (latest as { accessType?: string | null }).accessType ?? null,
-        buyPrice:
-          (latest as { buyPrice?: string | number | null }).buyPrice ?? null,
-        rentPrice:
-          (latest as { rentPrice?: string | number | null }).rentPrice ?? null,
-        rentDurationHours:
-          (latest as { rentDurationHours?: string | number | null })
-            .rentDurationHours ?? null,
-      }
+    ? (() => {
+        const thumbnailCandidates = resolveContentThumbnailCandidates(
+          (latest as { thumbnailUrl?: string | null }).thumbnailUrl,
+          typeof latest.thumbnailLandscapeUrl === "string"
+            ? latest.thumbnailLandscapeUrl
+            : null,
+          { preferLandscape: true },
+        );
+        const staticFallback = resolveImageUrl(latestUploadImage);
+        const imageFallbacks = [
+          ...thumbnailCandidates.slice(1),
+          ...(thumbnailCandidates[0] &&
+          thumbnailCandidates[0] !== staticFallback
+            ? [staticFallback]
+            : []),
+        ];
+
+        return {
+          sectionTitle: latestConfig.sectionTitle,
+          badge:
+            (latest as { category?: string | null }).category ??
+            latestConfig.badge ??
+            "",
+          image: thumbnailCandidates[0] ?? latestUploadImage,
+          imageFallbacks:
+            imageFallbacks.length > 0 ? imageFallbacks : undefined,
+          contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
+          imageAlt: latest.title || "",
+          title: latest.title || "",
+          year: new Date(latest.createdAt).getFullYear().toString(),
+          description: latest.description ?? "",
+          actions: latestConfig.actions,
+          contentId: latest.id,
+          trailerUrl:
+            (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
+          accessType:
+            (latest as { accessType?: string | null }).accessType ?? null,
+          buyPrice:
+            (latest as { buyPrice?: string | number | null }).buyPrice ?? null,
+          rentPrice:
+            (latest as { rentPrice?: string | number | null }).rentPrice ??
+            null,
+          rentDurationHours:
+            (latest as { rentDurationHours?: string | number | null })
+              .rentDurationHours ?? null,
+        };
+      })()
     : null;
 
   const showLatestUpload =
@@ -169,18 +197,34 @@ export default function ProfileHomeSections({
 
   if (hasNoContent && !isLoading) {
     const isSearching = searchQuery.trim() !== "";
+    let emptyTitle = isSearching
+      ? t("createProfileHome.noSearchResultsTitle")
+      : t("createProfileHome.noContentTitle");
+    let emptyDescription = isSearching
+      ? t("createProfileHome.noSearchResultsDescription")
+      : t("createProfileHome.noContentDescription");
+    let emptyAction: React.ReactNode = undefined;
+
+    if (!isSearching && isOwner) {
+      emptyTitle = t("createProfileHome.ownerNoContentTitle");
+      emptyDescription = t("createProfileHome.ownerNoContentDescription");
+      emptyAction = (
+        <GenericButton
+          variant={VARIANT.PRIMARY}
+          href="/dashboard/creators?view=Contents"
+          style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+        >
+          <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
+          {t("contents.actions.createCollection")}
+        </GenericButton>
+      );
+    }
+
     return (
       <ProfileEmptyState
-        title={
-          isSearching
-            ? t("createProfileHome.noSearchResultsTitle")
-            : t("createProfileHome.noContentTitle")
-        }
-        description={
-          isSearching
-            ? t("createProfileHome.noSearchResultsDescription")
-            : t("createProfileHome.noContentDescription")
-        }
+        title={emptyTitle}
+        description={emptyDescription}
+        action={emptyAction}
       />
     );
   }

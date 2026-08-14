@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
-import Footer from "@/components/Layout/Footer";
+import ProfileFooter from "@/components/Feature/ProfileLayout/shared/Footer";
 import { PageContainer, Main } from "../../styles";
 import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/SingleCollectionDetail";
 
@@ -30,7 +30,7 @@ export default function SingleCollectionPage() {
           <SingleCollectionContent />
         </Suspense>
       </Main>
-      <Footer />
+      <ProfileFooter />
     </PageContainer>
   );
 }

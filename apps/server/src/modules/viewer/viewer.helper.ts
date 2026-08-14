@@ -177,10 +177,12 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     countMap.set(row.collectionId, row.count);
   }
 
-  return items.map((item) => ({
-    ...item,
-    elementCount: countMap.get(item.id) ?? 0,
-  }));
+  return items
+    .map((item) => ({
+      ...item,
+      elementCount: countMap.get(item.id) ?? 0,
+    }))
+    .filter((item) => item.elementCount > 0);
 };
 
 export const enrichCollections = (
@@ -197,6 +199,7 @@ export const emptyPurchasedResult = () => ({
   videos: [],
   audios: [],
   pdfs: [],
+  epubs: [],
   webs: [],
   collections: [],
 });

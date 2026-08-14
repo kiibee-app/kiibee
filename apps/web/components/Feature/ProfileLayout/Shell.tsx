@@ -1,8 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
+import COLORS from "@repo/ui/colors";
 import ProfileHero from "@/components/Feature/ProfileLayout/Hero";
-import Footer from "@/components/Feature/ProfileLayout/shared/Footer";
+import ProfileFooter from "@/components/Feature/ProfileLayout/shared/Footer";
 import ProfileNavbar from "@/components/Feature/ProfileLayout/Navbar";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
@@ -15,6 +16,13 @@ import {
 import { usePublicCreatorLayoutRedirect } from "@/hooks/usePublicCreatorLayoutRedirect";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import GenericSpinner from "@/components/UI/GenericSpinner";
+import {
+  API_BUTTON_COLOR,
+  API_TEXT_COLOR,
+  getReadableTextColor,
+  HEX_COLOR_RE,
+  TEXT_COLOR_VALUES,
+} from "@/utils/appearance";
 
 type ProfileShellProps = {
   variant: ProfileLayoutVariant;
@@ -30,7 +38,20 @@ function ProfileAboutModal() {
 export default function ProfileShell({ variant, children }: ProfileShellProps) {
   useProfileSync();
   const isLayoutPending = usePublicCreatorLayoutRedirect(variant);
-  const { isLoadingProfile } = useCreatorChannelProfile();
+  const { isLoadingProfile, textColor, buttonColor } =
+    useCreatorChannelProfile();
+  const resolvedTextColor =
+    textColor === TEXT_COLOR_VALUES.DARK_TEXT
+      ? COLORS.primary.BLACK
+      : textColor === TEXT_COLOR_VALUES.WHITE_TEXT
+        ? COLORS.primary.WHITE
+        : null;
+  const resolvedButtonColor =
+    buttonColor &&
+    buttonColor !== API_BUTTON_COLOR &&
+    HEX_COLOR_RE.test(buttonColor)
+      ? buttonColor
+      : null;
 
   if (isLayoutPending || isLoadingProfile) {
     return <GenericSpinner isOverlay />;
@@ -38,11 +59,19 @@ export default function ProfileShell({ variant, children }: ProfileShellProps) {
 
   return (
     <CreatorProfileUiProvider>
-      <PageShell>
+      <PageShell
+        $textColor={textColor === API_TEXT_COLOR ? null : resolvedTextColor}
+        $buttonColor={resolvedButtonColor}
+        $buttonTextColor={
+          resolvedButtonColor
+            ? getReadableTextColor(resolvedButtonColor)
+            : undefined
+        }
+      >
         <ProfileNavbar variant={variant} />
         <ProfileHero variant={variant} />
         {children}
-        <Footer />
+        <ProfileFooter />
         <ProfileAboutModal />
       </PageShell>
     </CreatorProfileUiProvider>

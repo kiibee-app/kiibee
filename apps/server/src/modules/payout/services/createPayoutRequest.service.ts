@@ -10,7 +10,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { STATUS } from 'src/utils/constant';
-import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
+import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const payoutRequestCalculationService = async (
@@ -27,8 +27,11 @@ export const payoutRequestCalculationService = async (
       return fail('Payment method ID is required', HttpStatus.BAD_REQUEST);
     }
 
-    if (!amount || amount <= 0) {
-      return fail('Amount must be greater than 0', HttpStatus.BAD_REQUEST);
+    if (!amount || amount <= MIN_PAYOUT_AMOUNT) {
+      return fail(
+        `Amount must be greater than ${MIN_PAYOUT_AMOUNT} DKK`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const [existingPendingRequest] = await db

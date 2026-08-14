@@ -1,7 +1,7 @@
 import { db } from 'src/database/db';
 import { randomUUID } from 'crypto';
 import { orders } from 'src/database/schema/commerce/orders.schema';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, ne } from 'drizzle-orm';
 import {
   collections,
   mediaFiles,
@@ -18,6 +18,7 @@ import {
 } from 'src/utils/constant';
 import { addWallet } from 'src/services/addWallet';
 import { parseRentDurationToHours } from 'src/utils/rentDuration';
+import { sendReceiptService } from 'src/modules/export/services/sendReceipt.service';
 
 export async function handleEpayPayment(body: any) {
   const {
@@ -113,40 +114,65 @@ export async function handleEpayPayment(body: any) {
   }
 
   logger.info('✅ Payment success:', orderId);
-  await db.insert(payments).values({
-    id: randomUUID(),
-    orderId: orderId,
-    provider: 'card',
-    providerReference: orderId,
-    amount: resolvedAmount,
-    currency: currency,
-    status: ORDER_STATUS.COMPLETED,
-    paymentMethod: paymentMethodType,
-    cardNo: paymentMethodDisplayText,
-    cardExpiry: paymentMethodExpiry,
-    cardType: paymentMethodSubType,
-    paidAt: new Date(),
-  } as any);
 
-  await db
-    .update(orders)
-    .set({ status: ORDER_STATUS.COMPLETED, rentExpiresAt })
-    .where(eq(orders.id, orderId));
+  const processed = await db.transaction(async (tx) => {
+    const [completedOrder] = await tx
+      .update(orders)
+      .set({
+        status: ORDER_STATUS.COMPLETED,
+        rentExpiresAt,
+        updatedAt: new Date(),
+      })
+      .where(
+        and(eq(orders.id, orderId), ne(orders.status, ORDER_STATUS.COMPLETED)),
+      )
+      .returning({ id: orders.id });
 
-  await db.insert(userContentAccess).values({
-    id: randomUUID(),
-    orderId: orderId,
-    userId: orderInfo.userId,
-    mediaFileId: orderInfo.mediaFileId || null,
-    collectionId: orderInfo.collectionId || null,
-    accessType:
-      orderInfo.itemType === ORDER_TYPES.PURCHASE
-        ? ACCRESS_TYPES.PURCHASED
-        : ACCRESS_TYPES.RENTED,
-    rentExpiresAt,
-  } as any);
+    if (!completedOrder) {
+      return false;
+    }
 
-  await addWallet(creatorId, resolvedAmount, currency);
+    await tx.insert(payments).values({
+      id: randomUUID(),
+      orderId: orderId,
+      provider: 'card',
+      providerReference: orderId,
+      amount: resolvedAmount,
+      currency: currency,
+      status: ORDER_STATUS.COMPLETED,
+      paymentMethod: paymentMethodType,
+      cardNo: paymentMethodDisplayText,
+      cardExpiry: paymentMethodExpiry,
+      cardType: paymentMethodSubType,
+      paidAt: new Date(),
+    } as any);
+
+    await tx.insert(userContentAccess).values({
+      id: randomUUID(),
+      orderId: orderId,
+      userId: orderInfo.userId,
+      mediaFileId: orderInfo.mediaFileId || null,
+      collectionId: orderInfo.collectionId || null,
+      accessType:
+        orderInfo.itemType === ORDER_TYPES.PURCHASE
+          ? ACCRESS_TYPES.PURCHASED
+          : ACCRESS_TYPES.RENTED,
+      rentExpiresAt,
+    } as any);
+
+    await addWallet(creatorId, resolvedAmount, currency);
+
+    return true;
+  });
+
+  if (!processed) {
+    logger.info('ℹ️ Order already processed, skipping duplicate webhook:', {
+      orderId,
+    });
+    return;
+  }
+
+  await sendReceiptService(orderId);
 
   const existingCard = await db.query.userCardInfo.findFirst({
     where: and(

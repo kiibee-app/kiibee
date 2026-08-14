@@ -1,11 +1,12 @@
 import * as React from "react";
-import { CURRENT_COLOR } from "@/utils/Constants";
 import type { IconProps } from "./types";
+
+const DEFAULT_ICON_COLOR = "currentColor";
 
 export default function VideoIcon({
   width = 22,
   height = 22,
-  color = CURRENT_COLOR,
+  color = DEFAULT_ICON_COLOR,
   title,
   ...props
 }: IconProps) {

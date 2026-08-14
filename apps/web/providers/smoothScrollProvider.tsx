@@ -7,17 +7,21 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/utils/landingShared";
 import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
+import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+/** Same allow-list as before: Lenis only outside app/grid routes. */
 function shouldUseSmoothScroll(pathname: string) {
   return !(
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/creator/") ||
+    pathname.startsWith("/creators") ||
     pathname.startsWith("/auth") ||
     pathname.startsWith("/explore") ||
+    pathname.startsWith("/formats") ||
     pathname.startsWith("/content/") ||
     pathname.startsWith("/subscription") ||
     pathname.startsWith("/payment")
@@ -33,7 +37,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const lenis = new Lenis({
       autoRaf: false,
       smoothWheel: true,
-      syncTouch: true,
+      syncTouch: false,
       lerp: SMOOTH_SCROLL.lerp,
       wheelMultiplier: SMOOTH_SCROLL.wheelMultiplier,
       touchMultiplier: SMOOTH_SCROLL.touchMultiplier,
@@ -42,14 +46,9 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     });
 
     let resizeRafId: number | null = null;
-
     let destroyed = false;
-    let bodyResizeObserver: ResizeObserver | null = null;
+
     const removeLenisScrollHandler = lenis.on("scroll", ScrollTrigger.update);
-    const handleScrollTriggerRefresh = () => {
-      lenis.resize();
-    };
-    ScrollTrigger.addEventListener("refresh", handleScrollTriggerRefresh);
 
     const updateLenis = (time: number) => {
       lenis.raf(time * SMOOTH_SCROLL.gsapTimeMultiplier);
@@ -61,7 +60,9 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const scheduleRefresh = () => {
       if (refreshCall) refreshCall.kill();
       refreshCall = gsap.delayedCall(SMOOTH_SCROLL.refreshDelay, () => {
-        ScrollTrigger.refresh();
+        if (!destroyed) {
+          ScrollTrigger.refresh();
+        }
       });
     };
 
@@ -70,13 +71,20 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
       resizeRafId = requestAnimationFrame(() => {
         resizeRafId = null;
+        if (destroyed) return;
         lenis.resize();
         scheduleRefresh();
       });
     };
 
     scheduleResize();
-    scheduleRefresh();
+
+    const resizeObserver = new ResizeObserver(() => {
+      if (!destroyed) scheduleResize();
+    });
+    if (canUseDOM && document.body) {
+      resizeObserver.observe(document.body);
+    }
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -87,65 +95,51 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       }
     };
 
-    const handleWindowResize = () => {
-      scheduleResize();
-    };
-    const handleWindowLoad = () => {
-      scheduleResize();
-    };
-    const handlePageShow = () => {
-      scheduleResize();
-    };
-    const handleOrientationChange = () => {
-      scheduleResize();
-    };
-
-    if (typeof ResizeObserver !== "undefined") {
-      bodyResizeObserver = new ResizeObserver(scheduleResize);
-      bodyResizeObserver.observe(document.body);
-    }
-
     document.addEventListener(
       SMOOTH_SCROLL_EVENTS.visibilitychange,
       handleVisibilityChange,
     );
-    window.addEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowLoad);
-    window.addEventListener(SMOOTH_SCROLL_EVENTS.pageshow, handlePageShow);
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.load, scheduleResize);
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.pageshow, scheduleResize);
     window.addEventListener(
       SMOOTH_SCROLL_EVENTS.orientationchange,
-      handleOrientationChange,
+      scheduleResize,
     );
-    window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, handleWindowResize);
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
+
+    let fontReadyHandler: (() => void) | null = () => {
+      if (!destroyed) scheduleResize();
+    };
+
     document.fonts?.ready.then(() => {
-      if (!destroyed) {
-        scheduleResize();
+      if (fontReadyHandler) {
+        fontReadyHandler();
       }
     });
 
     return () => {
       destroyed = true;
+      fontReadyHandler = null;
+
+      resizeObserver.disconnect();
+
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
       if (refreshCall) {
         refreshCall.kill();
       }
-      bodyResizeObserver?.disconnect();
       document.removeEventListener(
         SMOOTH_SCROLL_EVENTS.visibilitychange,
         handleVisibilityChange,
       );
-      window.removeEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowLoad);
-      window.removeEventListener(SMOOTH_SCROLL_EVENTS.pageshow, handlePageShow);
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.load, scheduleResize);
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.pageshow, scheduleResize);
       window.removeEventListener(
         SMOOTH_SCROLL_EVENTS.orientationchange,
-        handleOrientationChange,
+        scheduleResize,
       );
-      window.removeEventListener(
-        SMOOTH_SCROLL_EVENTS.resize,
-        handleWindowResize,
-      );
-      ScrollTrigger.removeEventListener("refresh", handleScrollTriggerRefresh);
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.resize, scheduleResize);
       removeLenisScrollHandler();
       gsap.ticker.remove(updateLenis);
       lenis.destroy();

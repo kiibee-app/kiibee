@@ -21,6 +21,7 @@ import {
 } from "../all-creators/AllCreators.styles";
 import { ArrowLeft } from "lucide-react";
 import { toCreatorStatus } from "../../../utils/status";
+import { payoutTabHref } from "../../../utils/payout";
 import {
   BackButton,
   ActionRow,
@@ -69,7 +70,7 @@ export function PayoutRequestDetail({ id }: { id: string }) {
 
   return (
     <AllCreatorsLayout>
-      <BackButton onClick={() => router.back()}>
+      <BackButton onClick={() => router.push(payoutTabHref("requests"))}>
         <ArrowLeft size={16} /> Back to Payout Requests
       </BackButton>
 

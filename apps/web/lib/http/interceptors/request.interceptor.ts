@@ -1,6 +1,20 @@
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { API } from "@/lib/http/api/endpoints";
 import { authStorage } from "@/lib/auth/authStorage";
+import {
+  STATE_CHANGING_METHODS,
+  UNDEFINED_VALUE,
+  XSRF_COOKIE_NAME,
+  XSRF_HEADER_NAME,
+} from "@/utils/common";
+
+const getCsrfTokenFromCookie = () => {
+  if (typeof document === UNDEFINED_VALUE) return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${XSRF_COOKIE_NAME}=`);
+  if (parts.length === 2) return parts[1].split(";")[0];
+  return null;
+};
 
 export const attachRequestInterceptor = (client: AxiosInstance) => {
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -12,7 +26,16 @@ export const attachRequestInterceptor = (client: AxiosInstance) => {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    config.headers.Accept = "application/json";
+    if (
+      config.method &&
+      STATE_CHANGING_METHODS.includes(config.method.toLowerCase())
+    ) {
+      const csrfToken = getCsrfTokenFromCookie();
+
+      if (csrfToken) {
+        config.headers[XSRF_HEADER_NAME] = decodeURIComponent(csrfToken);
+      }
+    }
 
     return config;
   });

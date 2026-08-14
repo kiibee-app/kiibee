@@ -2,16 +2,16 @@ import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import { FOR_CREATORS_LAYOUT } from "@/utils/forCreatorsLayout";
 
 export const Section = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100svh;
+  align-items: flex-start;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.GRAY};
-  padding: 7.25rem 0 3.5rem;
+  padding: clamp(5rem, 7.3vw, 6.5625rem) ${FOR_CREATORS_LAYOUT.sectionPaddingX};
   box-sizing: border-box;
   overflow: hidden;
 
@@ -22,97 +22,49 @@ export const Section = styled.section`
     visibility: hidden;
   }
 
-  ${media.desktop} {
-    min-height: unset;
-  }
-
   ${media.tablet} {
-    padding: 6.25rem 0 2.5rem;
+    padding: 5rem 1rem 2.5rem;
   }
 `;
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1440px;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
-  gap: 3.25rem;
-
-  ${media.desktop} {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  ${media.tablet} {
-    gap: 1.75rem;
-    padding: 0 1rem;
-  }
-`;
-
-export const LeftColumn = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1.875rem;
-  flex: 0 1 31.5rem;
-  min-width: 20rem;
-
-  ${media.desktop} {
-    width: 100%;
-    flex: none;
-  }
+  align-items: center;
+  width: 100%;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
+  gap: 3.5rem;
+  box-sizing: border-box;
 
   ${media.tablet} {
-    width: 100%;
-    min-width: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 `;
 
 export const CopyBlock = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2.125rem;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
   width: 100%;
+  max-width: 48rem;
 
   ${media.tablet} {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 `;
 
-export const Heading = styled.h2`
+export const Heading = styled.h1`
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
   font-family: "Reddit Sans", sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 5.25rem;
-  line-height: 0.98;
-  letter-spacing: 0;
-
-  ${media.desktopMd} {
-    font-size: 4.75rem;
-  }
-
-  ${media.desktop} {
-    font-size: 4.25rem;
-  }
-
-  ${media.tablet} {
-    font-size: 3.75rem;
-    line-height: 1.02;
-  }
-
-  ${media.mobileLg} {
-    font-size: 3.375rem;
-  }
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
 `;
 
 export const HeadingLine = styled.span`
@@ -123,38 +75,23 @@ export const CTAButton = styled(GenericButton).attrs({
   variant: VARIANT.PRIMARY,
   size: SIZE.LG,
 })`
-  align-self: flex-start;
-  min-width: 9.75rem;
-  box-shadow: 0 1rem 2.25rem rgba(0, 0, 0, 0.16);
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
-
-  &:hover {
-    box-shadow: none;
-  }
+  align-self: center;
+  min-width: 10.5rem;
+  border-radius: 0.5rem;
 `;
 
-export const RightColumn = styled.div`
+export const CardsRow = styled.div`
   display: flex;
-  gap: 1.25rem;
-  flex: 1 1 49rem;
-  justify-content: flex-end;
-  min-width: 0;
-
-  ${media.desktop} {
-    width: 100%;
-    justify-content: flex-start;
-    flex: none;
-  }
+  align-items: flex-end;
+  justify-content: stretch;
+  gap: 17px;
+  width: 100%;
+  min-height: 300px;
 
   ${media.tablet} {
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     gap: 0.5rem;
+    min-height: 220px;
+    justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 0.25rem;
@@ -167,52 +104,51 @@ export const RightColumn = styled.div`
 `;
 
 type CardProps = {
-  $image: string;
-  $isActive?: boolean;
-  $narrowBgPosition?: string;
-  $narrowBgSize?: string;
+  $heightState: 1 | 2 | 3;
 };
 
 export const Card = styled.div<CardProps>`
-  display: flex;
-  width: ${({ $isActive }) => ($isActive ? "498px" : "154px")};
-  height: 593px;
-  padding: ${({ $isActive }) => ($isActive ? "34px 54px 26px 20px" : "26px 0")};
-  flex-direction: column;
-  align-items: ${({ $isActive }) => ($isActive ? "flex-start" : "center")};
-  gap: 10px;
   position: relative;
-  border-radius: 8px;
+  display: flex;
+  flex: 1 1 230px;
+  align-items: flex-start;
+  gap: 10px;
+  width: 230px;
+  max-width: 230px;
+  min-width: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  height: ${({ $heightState }) =>
+    $heightState === 3 ? "300px" : $heightState === 2 ? "270px" : "240px"};
+  border-radius: 10px;
   overflow: hidden;
-  will-change: opacity, transform, filter, width, height, padding;
-  box-shadow: 0 0.5rem 1.5rem
-    ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
-  background: ${({
-    $image,
-    $isActive,
-    theme,
-    $narrowBgPosition = "center center",
-    $narrowBgSize = "cover",
-  }) =>
-    `url(${$image}) ${theme.colors.primary.GRAY} ${
-      $isActive ? "center center" : $narrowBgPosition
-    } / ${$isActive ? "cover" : $narrowBgSize} no-repeat`};
+  cursor: pointer;
+  touch-action: manipulation;
+  will-change: height;
+  transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  background: ${({ theme }) => theme.colors.primary.BLACK};
 
-  ${media.desktop} {
-    width: min(498px, 100%);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      0deg,
+      ${({ theme }) => theme.colors.primary.BLACK_20} 0%,
+      ${({ theme }) => theme.colors.primary.BLACK_20} 100%
+    );
+    pointer-events: none;
   }
 
   ${media.tablet} {
-    min-width: 96px;
-    height: 320px;
-    border-radius: 8px;
+    flex: 0 0 148px;
+    width: 148px;
+    max-width: 148px;
+    height: ${({ $heightState }) =>
+      $heightState === 3 ? "220px" : $heightState === 2 ? "190px" : "165px"};
+    border-radius: 10px;
   }
-`;
-
-export const AnimatedCard = styled(Card)`
-  flex-shrink: 0;
-  cursor: pointer;
-  touch-action: manipulation;
 
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
@@ -220,82 +156,50 @@ export const AnimatedCard = styled(Card)`
   }
 `;
 
-export const MainGradientOverlay = styled.div<{ $visible?: boolean }>`
+export const CardImage = styled.img`
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  height: 60%;
-  background: linear-gradient(
-    to top,
-    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gradient.CARD_BG} 40%,
-    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-  );
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: left top;
+  display: block;
   pointer-events: none;
-  opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
-  transition: opacity 0.32s ease;
-`;
-
-export const NarrowGradientOverlay = styled.div<{ $visible?: boolean }>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80%;
-  background: linear-gradient(
-    to top,
-    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-  );
-  pointer-events: none;
-  opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
-  transition: opacity 0.32s ease;
-`;
-
-export const MainCardTextContainer = styled.div<{ $visible?: boolean }>`
-  position: absolute;
-  bottom: 1.875rem;
-  left: 1.875rem;
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  z-index: 2;
-  opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
-  transition: opacity 0.28s ease;
-  pointer-events: none;
-`;
-
-export const MainCardTitle = styled.h3`
-  ${({ theme }) => theme.typography.H4_Medium};
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-  letter-spacing: 0;
-`;
-
-export const MainCardSubtitle = styled.p`
-  ${({ theme }) => theme.typography.Body_Medium};
-  margin: 0;
-  color: ${({ theme }) => theme.colors.primary.WHITE_90};
-  font-weight: 400;
-`;
-
-export const NarrowCardText = styled.p<{ $visible?: boolean }>`
-  ${({ theme }) => theme.typography.H4_Medium};
-  position: absolute;
-  bottom: 1.875rem;
-  left: 50%;
-  transform-origin: 0 50%;
-  transform: rotate(-90deg);
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-weight: 600;
-  white-space: nowrap;
-  letter-spacing: 0;
-  z-index: 2;
-  margin: 0;
-  opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
-  transition: opacity 0.28s ease;
-  pointer-events: none;
+  user-select: none;
 
   ${media.tablet} {
-    bottom: 1rem;
+    height: 220px;
   }
 `;
+
+export const CardContent = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+`;
+
+export const CardTitle = styled.h2`
+  ${({ theme }) => theme.typography.H4_SemiBold};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+`;
+
+export const CardSubtitle = styled.p<{ $visible: boolean }>`
+  ${({ theme }) => theme.typography.Body_SemiMedium};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+`;
+
+export const AnimatedCard = styled(Card)``;

@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
@@ -14,15 +20,19 @@ import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_CREATOR,
+  CONTENT_TAB,
 } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import UsersContent from "../Users/UsersContent";
+import { toast } from "react-toastify";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
+import { useCreatorPaymentMethods } from "@/hooks/useCreatorPaymentMethods";
+import { TAB_KEYS } from "@/utils/settingsTabs";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
@@ -36,6 +46,8 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.PROFILE,
 ]);
 
+const ADD_PAYMENT_TOAST_ID = "creator-add-payment-method";
+
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
@@ -46,9 +58,18 @@ export default function ClientDashboardCreators() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { logout } = useLogout();
-  const { getUser } = useAuthSession();
+  const { getRole, getUser } = useAuthSession();
+  const { paymentMethods, isLoading: isPaymentMethodsLoading } =
+    useCreatorPaymentMethods();
   const { isReady } = useRequireAuthSession();
   useProfileSync();
+  const hasLockedToPayoutMethodsRef = useRef(false);
+
+  const warnAddPaymentMethod = useCallback(() => {
+    toast.warning(t("errors.addPaymentMethod"), {
+      toastId: ADD_PAYMENT_TOAST_ID,
+    });
+  }, [t]);
 
   const handleLogoutClick = useCallback(() => {
     const email = (getUser() as { email?: string })?.email || "";
@@ -106,11 +127,68 @@ export default function ClientDashboardCreators() {
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
   }, [pathname, router, searchParams, view]);
 
+  const isCreatorNoPaymentMethods =
+    getRole() === ROLE_CREATOR &&
+    !isPaymentMethodsLoading &&
+    paymentMethods.length === 0;
+
+  const redirectToPayoutMethods = useCallback(() => {
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    params.set(VIEW, CREATORS_LABELS.SETTINGS);
+    params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
+    sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }, [pathname, router, searchParams]);
+
+  useEffect(() => {
+    if (!isCreatorNoPaymentMethods) {
+      hasLockedToPayoutMethodsRef.current = false;
+      return;
+    }
+
+    const currentView = searchParams?.get(VIEW);
+    const tab = searchParams?.get(CONTENT_TAB);
+    const onPayoutMethods =
+      currentView === CREATORS_LABELS.SETTINGS &&
+      tab === TAB_KEYS.payoutMethods;
+
+    if (onPayoutMethods) {
+      hasLockedToPayoutMethodsRef.current = true;
+      return;
+    }
+
+    // After the first lock, any attempt to leave should warn.
+    if (hasLockedToPayoutMethodsRef.current) {
+      warnAddPaymentMethod();
+    }
+
+    redirectToPayoutMethods();
+  }, [
+    isCreatorNoPaymentMethods,
+    searchParams,
+    redirectToPayoutMethods,
+    warnAddPaymentMethod,
+  ]);
+
   const handleSelect = useCallback(
     (label: string) => {
+      if (isCreatorNoPaymentMethods) {
+        if (label !== CREATORS_LABELS.SETTINGS) {
+          warnAddPaymentMethod();
+        }
+        redirectToPayoutMethods();
+        return;
+      }
       router.push(getHrefForView(label), { scroll: false });
     },
-    [getHrefForView, router],
+    [
+      getHrefForView,
+      router,
+      isCreatorNoPaymentMethods,
+      redirectToPayoutMethods,
+      warnAddPaymentMethod,
+    ],
   );
 
   const renderContent = useMemo(() => {

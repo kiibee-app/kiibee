@@ -39,7 +39,7 @@ export default function ImageUploader({
           initial={fallback}
           alt={alt}
           sizes="(max-width: 767px) 88px, 120px"
-          fit="contain"
+          fit="cover"
         />
 
         <AvatarEditButton

@@ -64,6 +64,7 @@ type PendingUploadSuccess = {
   createdContentId?: string;
   title: string;
   description: string;
+  webLink?: string;
 };
 
 type ContentUploadModalProps = {
@@ -170,6 +171,7 @@ export default function ContentUploadModal({
         {
           title: pendingUploadSuccess.title,
           description: pendingUploadSuccess.description,
+          webLink: pendingUploadSuccess.webLink,
         },
       );
     }
@@ -311,10 +313,11 @@ export default function ContentUploadModal({
       setPendingUploadSuccess({
         tab: ADD_CONTENT_TABS.GENERAL,
         file: selectedFile,
-        preview: uploadPreview ?? null,
+        preview: uploadPreview ?? trimmedContentUrl ?? null,
         createdContentId: createdId,
         title: trimmedTitle,
         description: trimmedDescription,
+        webLink: isWebContent ? trimmedContentUrl : undefined,
       });
     } catch (error) {
       const message =

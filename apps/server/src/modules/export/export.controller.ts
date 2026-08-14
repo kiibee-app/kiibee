@@ -33,4 +33,15 @@ export class ExportController {
       body.endDate,
     );
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('send-receipt')
+  async sendReceiptService(
+    @Body()
+    body: {
+      orderId: string;
+    },
+  ) {
+    return this.exportService.sendReceiptService(body.orderId);
+  }
 }

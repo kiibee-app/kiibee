@@ -20,11 +20,20 @@ const pageMeta: Record<string, PageMeta> = {
   "/deletion-requests": {
     title: "Deletion Requests",
     description:
-      "Review and approve or reject creator account deletion requests.",
+      "Review pending creator deletion requests and browse previously deleted creator accounts.",
   },
   "/viewers": {
     title: "All Viewers",
     description: "Browse viewer accounts, billing history, and content access.",
+  },
+  "/payout": {
+    title: "Payout",
+    description:
+      "View creator balances, process payouts, and review payout history.",
+  },
+  "/payout-requests": {
+    title: "Payout Requests",
+    description: "Review and approve pending creator payout requests.",
   },
   "/profile": {
     title: "Profile",
@@ -62,6 +71,16 @@ export function getPageMeta(pathname: string): PageMeta {
     return {
       title: "Creator Details",
       description: "View creator profile and content performance.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/payout-requests/") &&
+    normalized !== "/payout-requests"
+  ) {
+    return {
+      title: "Payout Request",
+      description: "Review payout request details and approve or reject.",
     };
   }
 

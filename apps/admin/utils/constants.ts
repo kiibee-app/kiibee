@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
   CREATOR_DELETION_REQUESTS: "/auth/creator-deletion-requests",
+  CREATOR_DELETION_HISTORY: "/auth/creator-deletion-history",
   APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
   REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
@@ -19,6 +20,12 @@ export const API_ENDPOINTS = {
     `/content/admin/creator-contents/${creatorId}`,
   CONTENT_ENGAGEMENT: (contentId: string) =>
     `/content/admin/content-engagement/${contentId}`,
+  REJECT_CONTENT: (contentId: string) => `/content/admin/reject/${contentId}`,
+  CREATOR_APPEARANCE: (creatorId: string) =>
+    `/content/admin/appearance/${creatorId}`,
+  MEDIA_VIDEO_STREAM: "/media/videos/stream",
+  MEDIA_SIGNED_URL: "/media/signed-url",
+  MEDIA_IMAGES_UPLOAD: "/media/images/upload",
   VIEWER_SALES: (viewerId: string) =>
     `/order/admin/billing-history/${viewerId}`,
   VIEWER_PURCHASED_DATA: (viewerId: string) =>
@@ -32,8 +39,14 @@ export const API_ENDPOINTS = {
   PAYOUT_HISTORY_BY_CREATOR: (creatorId: string) =>
     `/payout/history/${creatorId}`,
   ALL_PAYOUT_HISTORY: "/payout/all-history",
+  CREATOR_WALLETS: "/payout/wallets",
+  ADMIN_PAYOUT_CALCULATE: (creatorId: string) =>
+    `/payout/calculate/${creatorId}`,
+  ADMIN_PAYOUT_REQUEST: "/payout/admin-request",
   CREATE_PAYOUT: "/payout/create",
   REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
+  DOWNLOAD_LIMIT: "/download/limit",
+  SET_DOWNLOAD_LIMIT: "/download/limit/set",
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -75,9 +88,26 @@ export const STAT_ACCENT = {
 
 export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
 
+export const MODAL_SIZE = {
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+} as const;
+
+export type ModalSize = (typeof MODAL_SIZE)[keyof typeof MODAL_SIZE];
+
+export const MODAL_WIDTH_BY_SIZE: Record<ModalSize, string> = {
+  [MODAL_SIZE.SM]: "440px",
+  [MODAL_SIZE.MD]: "640px",
+  [MODAL_SIZE.LG]: "960px",
+};
+
+export const DEFAULT_MODAL_SIZE = MODAL_SIZE.LG;
+
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
   CREATOR_DELETION_REQUESTS: "creator-deletion-requests",
+  CREATOR_DELETION_HISTORY: "creator-deletion-history",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
   VIEWER_DETAIL: "viewer-detail",
@@ -90,10 +120,14 @@ export const QUERY_KEY = {
   CREATOR_DETAIL: "creator-detail",
   CREATOR_CONTENTS: "creator-contents",
   CONTENT_ENGAGEMENT: "content-engagement",
+  CREATOR_APPEARANCE: "creator-appearance",
   PAYOUT_REQUESTS: "payout-requests",
   PAYOUT_REQUEST_DETAIL: "payout-request-detail",
   PAYOUT_HISTORY_BY_CREATOR: "payout-history-by-creator",
   ALL_PAYOUT_HISTORY: "all-payout-history",
+  CREATOR_WALLETS: "creator-wallets",
+  ADMIN_PAYOUT_CALCULATE: "admin-payout-calculate",
+  DOWNLOAD_LIMIT: "download-limit",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {
@@ -142,6 +176,8 @@ export const CREATOR_LAYOUT_KEY = {
   LAYOUT2: "layout2",
   LAYOUT3: "layout3",
 } as const;
+
+export const DEFAULT_CREATOR_LAYOUT = CREATOR_LAYOUT_KEY.LAYOUT1;
 
 export const CREATOR_LAYOUT_KEY_TO_PARAM: Record<string, string> = {
   [CREATOR_LAYOUT_KEY.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,

@@ -13,6 +13,7 @@ export const getCreatorDeletionRequestsService = async () => {
         requestId: creatorDeletionRequests.id,
         requestUserId: creatorDeletionRequests.userId,
         status: creatorDeletionRequests.status,
+        reason: creatorDeletionRequests.reason,
         approvedUserId: creatorDeletionRequests.approvedUserId,
         createdAt: creatorDeletionRequests.createdAt,
         updatedAt: creatorDeletionRequests.updatedAt,
@@ -34,6 +35,7 @@ export const getCreatorDeletionRequestsService = async () => {
     const data = rows.map((row) => ({
       id: row.requestId,
       status: row.status,
+      reason: row.reason,
       approvedUserId: row.approvedUserId,
       createdAt: row.createdAt,
       updatedAt: row.updatedAt,

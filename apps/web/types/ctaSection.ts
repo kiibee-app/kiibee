@@ -3,6 +3,7 @@ import { ImageSource } from "@/utils/Constants";
 
 export type CtaSectionProps = {
   bgImage?: ImageSource;
+  bgVideo?: string;
   title: string;
   subtitle?: string;
   subtitleLines?: string[];

@@ -54,6 +54,8 @@ import {
   DrawerSubMenuLink,
   DrawerActions,
 } from "./styles";
+import NavSearchButton from "./NavSearchButton";
+import LanguageToggle from "@/components/UI/LanguageToggle";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -171,6 +173,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           aria-haspopup="menu"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
+          $hasImage={showAvatar}
         >
           {showAvatar && avatarUrl ? (
             <ProfileAvatarImage
@@ -685,6 +688,7 @@ export default function NavBar({
           $textTone={navTextTone}
           $showOnMobile={showActionsOnMobile}
         >
+          <LanguageToggle />
           {!isMounted ? (
             actions ? (
               actions
@@ -692,10 +696,17 @@ export default function NavBar({
               <ActionsPlaceholder />
             )
           ) : isLoggedIn && dashboardPath ? (
-            <NavAccountMenu dashboardPath={dashboardPath} />
+            <>
+              <NavSearchButton textTone={navTextTone} hide={Boolean(actions)} />
+              <NavAccountMenu dashboardPath={dashboardPath} />
+            </>
           ) : (
             (actions ?? (
               <>
+                <NavSearchButton
+                  textTone={navTextTone}
+                  hide={Boolean(actions)}
+                />
                 <GenericButton
                   className="login-btn"
                   asAnchor
@@ -775,6 +786,7 @@ export default function NavBar({
             </DrawerMenu>
           )}
           <DrawerActions $showDivider={drawerItems.length > 0}>
+            <LanguageToggle />
             {isLoggedIn && dashboardPath ? (
               <>
                 <NavAccountMenuItem
@@ -806,6 +818,10 @@ export default function NavBar({
             ) : (
               (actions ?? (
                 <>
+                  <NavSearchButton
+                    textTone={navTextTone}
+                    hide={Boolean(actions)}
+                  />
                   <GenericButton
                     className="login-btn"
                     asAnchor

@@ -152,6 +152,7 @@ function EmailGate({
   const [name, setName] = useState(EMPTY_STRING);
   const [email, setEmail] = useState(EMPTY_STRING);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isRequestSent, setIsRequestSent] = useState(false);
 
   const titleKey =
     variant === VARIANT_CONTENT
@@ -163,13 +164,26 @@ function EmailGate({
     if (email.trim() && !isSubmitting) {
       setIsSubmitting(true);
       try {
-        await onSuccess?.(email.trim(), name.trim());
+        const result = await onSuccess?.(email.trim(), name.trim());
+        if (result !== false && variant === VARIANT_CONTENT)
+          setIsRequestSent(true);
       } catch {
       } finally {
         setIsSubmitting(false);
       }
     }
   };
+
+  if (isRequestSent) {
+    return (
+      <GateCard $variant={variant}>
+        <GateTitle>
+          <GateTitleText>{t(ACCESS_GATE.requestSentTitle)}</GateTitleText>
+        </GateTitle>
+        <GateConsentText>{t(ACCESS_GATE.requestSentMessage)}</GateConsentText>
+      </GateCard>
+    );
+  }
 
   return (
     <GateCard $variant={variant}>
@@ -221,7 +235,9 @@ function EmailGate({
           type={BUTTON_TYPE_SUBMIT}
           disabled={!name.trim() || !email.trim() || isSubmitting}
         >
-          {t(ACCESS_GATE.submitEmail)}
+          {isSubmitting && variant === VARIANT_CONTENT
+            ? t(ACCESS_GATE.sendingRequest)
+            : t(ACCESS_GATE.submitEmail)}
         </GateSubmitButton>
       </GateForm>
     </GateCard>

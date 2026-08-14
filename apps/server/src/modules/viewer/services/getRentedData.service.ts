@@ -40,15 +40,17 @@ export const getRentedData = async (userId: string) => {
 
     const { mediaMap, collectionMap, expiresMap } = buildAccessMap(ordersData);
 
-    const [videos, audios, pdfs, webs, collectionsData] = await Promise.all([
-      getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
-      getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
-      getMediaByType(mediaIds, CONTENT_TYPES.PDF),
-      getMediaByType(mediaIds, CONTENT_TYPES.WEB),
-      getCollectionsWithDetails(collectionIds),
-    ]);
+    const [videos, audios, pdfs, epubs, webs, collectionsData] =
+      await Promise.all([
+        getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
+        getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
+        getMediaByType(mediaIds, CONTENT_TYPES.PDF),
+        getMediaByType(mediaIds, CONTENT_TYPES.EPUB),
+        getMediaByType(mediaIds, CONTENT_TYPES.WEB),
+        getCollectionsWithDetails(collectionIds),
+      ]);
 
-    const allMediaIds = [...videos, ...audios, ...pdfs, ...webs].map(
+    const allMediaIds = [...videos, ...audios, ...pdfs, ...epubs, ...webs].map(
       (m) => m.id,
     );
     const categoryMap = await getMediaCategories(allMediaIds);
@@ -60,6 +62,7 @@ export const getRentedData = async (userId: string) => {
         videos: enrichMedia(videos, mediaMap, categoryMap, expiresMap),
         audios: enrichMedia(audios, mediaMap, categoryMap, expiresMap),
         pdfs: enrichMedia(pdfs, mediaMap, categoryMap, expiresMap),
+        epubs: enrichMedia(epubs, mediaMap, categoryMap, expiresMap),
         webs: enrichMedia(webs, mediaMap, categoryMap, expiresMap),
         collections: collectionsData.map((c) => ({
           ...c,

@@ -40,7 +40,11 @@ import { useContentForm } from "../ContentFormContext";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import InputField from "@/components/UI/InputFields";
 import { Checkbox } from "@/app/auth/signup-creator/styles";
-import { BLANK, IS_FALLBACK_SIZE } from "@/utils/Constants";
+import {
+  BLANK,
+  IS_FALLBACK_SIZE,
+  CONTENT_FORM_FIELDS,
+} from "@/utils/Constants";
 
 type Props = {
   id: string;
@@ -56,7 +60,8 @@ export default function GeneralContent({
   onDelete,
 }: Props) {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, updateField, formErrors, clearFieldError } =
+    useContentForm();
   const uploadType = formState.contentTypeId;
   if (!uploadedFile && uploadType !== FORMAT_TYPE.WEB) return null;
   const handleDelete = (e: React.MouseEvent) => {
@@ -69,6 +74,14 @@ export default function GeneralContent({
   );
   const resolvedThumbnail = thumbnailUrl || getFallbackThumbnailUrl(previewUrl);
 
+  const handleWebLinkChange = (value: string | string[]) => {
+    const valStr = Array.isArray(value) ? value.join("") : value;
+    updateField(CONTENT_FORM_FIELDS.WEB_LINK, valStr);
+    if (formErrors[CONTENT_FORM_FIELDS.WEB_LINK]) {
+      clearFieldError(CONTENT_FORM_FIELDS.WEB_LINK);
+    }
+  };
+
   const renderWebSection = () => {
     if (uploadType !== FORMAT_TYPE.WEB) return null;
 
@@ -80,10 +93,12 @@ export default function GeneralContent({
         <ControlWrap>
           <InputField
             value={formState.webLink || ""}
-            onChange={(value) => updateField("webLink", value as string)}
+            onChange={handleWebLinkChange}
             placeholder={t("contents.web.placeholder")}
             width="100%"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            hasError={Boolean(formErrors[CONTENT_FORM_FIELDS.WEB_LINK])}
+            errorMessage={formErrors[CONTENT_FORM_FIELDS.WEB_LINK]}
           />
         </ControlWrap>
         <CheckboxRow>

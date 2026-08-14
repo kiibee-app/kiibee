@@ -8,6 +8,7 @@ export interface DeletionRequestsTableProps {
   onRejectRequest: (request: CreatorDeletionRequest) => void;
   activeAction: CreatorDeletionRequestAction | null;
   activeRequestId: string | null;
+  onSelectRequest: (request: CreatorDeletionRequest) => void;
 }
 
 export interface CreatorDeletionRequestColumn {
@@ -15,7 +16,7 @@ export interface CreatorDeletionRequestColumn {
   label: string;
   renderCell: (
     request: CreatorDeletionRequest,
-    actionConfig: CreatorDeletionRequestActionConfig,
+    actionConfig?: CreatorDeletionRequestActionConfig,
   ) => ReactNode;
 }
 

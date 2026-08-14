@@ -13,17 +13,20 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 type GetStartedProps = {
   translationPrefix?: string;
   bgVariant?: BgVariant;
+  /** Match /for-creators content column; leave off on other pages. */
+  alignWide?: boolean;
 };
 
 export default function GetStarted({
   translationPrefix = "how.getStarted",
   bgVariant = BG_GREEN,
+  alignWide = false,
 }: GetStartedProps) {
   const { t } = useTranslation();
 
   return (
-    <Section $bgVariant={bgVariant}>
-      <Inner>
+    <Section $bgVariant={bgVariant} $alignWide={alignWide}>
+      <Inner $alignWide={alignWide}>
         <ScrollReveal>
           <Heading>
             <MonoText $use="Heading2">

@@ -5,6 +5,7 @@ import {
   numeric,
   timestamp,
   jsonb,
+  index,
 } from 'drizzle-orm/pg-core';
 
 import { users } from '../users/users.schema';
@@ -44,4 +45,12 @@ export const subscriptionPaymentsHistory = pgTable(
     processedAt: timestamp('processed_at'),
     createdAt: timestamp('created_at').defaultNow(),
   },
+  (table) => ({
+    subscriptionIdIdx: index(
+      'subscription_payments_history_subscription_id_idx',
+    ).on(table.subscriptionId),
+    creatorIdIdx: index('subscription_payments_history_creator_id_idx').on(
+      table.creatorId,
+    ),
+  }),
 );

@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { TutorialVideo } from "@/utils/types";
-import logo from "@/assets/images/logo.png";
+import logo from "@/assets/images/logo.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";

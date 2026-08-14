@@ -108,7 +108,9 @@ function rewriteAbsoluteMediaUrl(url: string): string {
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
       isLegacyKiibeeMediaPath(pathname)
     ) {
-      return `${KIIBEE_MEDIA_BASE_URL}${pathname}`;
+      return (
+        buildCdnMediaUrl(pathname) ?? `${KIIBEE_MEDIA_BASE_URL}${pathname}`
+      );
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
@@ -208,6 +210,31 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   return trimmed;
 }
 
+const CLOUDFLARE_THUMBNAIL_URL_PATTERN =
+  /^(https?:\/\/(?:[^/]+\.)?(?:videodelivery\.net|cloudflarestream\.com))\/([a-f0-9]{32})\/thumbnails\/thumbnail\.jpg(?:\?.*)?$/i;
+
+/** Expand Cloudflare stream thumbnail URLs into timed/height variants. */
+export function expandCloudflareThumbnailCandidates(url: string): string[] {
+  const match = url.trim().match(CLOUDFLARE_THUMBNAIL_URL_PATTERN);
+  if (!match) {
+    return [url];
+  }
+
+  const [, origin, videoId] = match;
+  return [
+    `${origin}/${videoId}/thumbnails/thumbnail.jpg?time=1s&height=600`,
+    `${origin}/${videoId}/thumbnails/thumbnail.jpg?time=1s`,
+    `${origin}/${videoId}/thumbnails/thumbnail.jpg`,
+    `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg?time=1s&height=600`,
+    `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg?time=1s`,
+    `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg`,
+  ];
+}
+
+function isCloudflareThumbnailHost(url: string): boolean {
+  return /(?:videodelivery\.net|cloudflarestream\.com)/i.test(url);
+}
+
 export function resolveContentThumbnailCandidates(
   thumbnailUrl?: string | null,
   thumbnailLandscapeUrl?: string | null,
@@ -222,9 +249,21 @@ export function resolveContentThumbnailCandidates(
 
   const candidates = [primary, secondary]
     .map((url) => resolvePublicMediaUrl(url))
-    .filter((url): url is string => Boolean(url));
+    .filter((url): url is string => Boolean(url))
+    .flatMap(expandCloudflareThumbnailCandidates);
 
-  return [...new Set(candidates)];
+  // Prefer durable media URLs — many legacy Cloudflare stream IDs 404.
+  const durable: string[] = [];
+  const cloudflare: string[] = [];
+  for (const candidate of candidates) {
+    if (isCloudflareThumbnailHost(candidate)) {
+      cloudflare.push(candidate);
+    } else {
+      durable.push(candidate);
+    }
+  }
+
+  return [...new Set([...durable, ...cloudflare])];
 }
 
 export function resolveContentThumbnailUrl(
@@ -458,7 +497,12 @@ export function getFallbackThumbnailUrl(
   if (!previewUrl) return null;
   const cfVideoId = extractCloudflareStreamVideoId(undefined, previewUrl);
   if (cfVideoId) {
-    return `https://videodelivery.net/${cfVideoId}/thumbnails/thumbnail.jpg`;
+    return `https://videodelivery.net/${cfVideoId}/thumbnails/thumbnail.jpg?time=1s&height=600`;
   }
   return null;
+}
+
+export function getPdfEmbedUrl(src?: string | null): string {
+  if (!src) return "";
+  return src.includes("#") ? src : `${src}#toolbar=0&navpanes=0`;
 }

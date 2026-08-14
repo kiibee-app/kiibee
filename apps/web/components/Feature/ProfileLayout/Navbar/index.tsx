@@ -18,15 +18,23 @@ import {
   TONE_DARK,
   TONE_LIGHT,
 } from "@/utils/Constants";
+import { TEXT_COLOR_VALUES } from "@/utils/appearance";
 import NavBar from "@/components/Layout/Navbar";
+import { SearchIconButton } from "@/components/Layout/Navbar/styles";
+import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import { useRouter } from "next/navigation";
+import { BackButtonIcon } from "@/assets/icons";
 import {
   Brand,
   BrandAvatar,
   BrandName,
+  BrandWrapper,
+  BackButton,
 } from "@/components/Feature/ProfileLayout/pageStyles";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorNavItems } from "@/hooks/useCreatorChannelLayout";
+import { isBrowser } from "@/utils/ui";
 
 type ProfileNavbarProps = {
   variant: ProfileLayoutVariant;
@@ -62,41 +70,75 @@ const navConfigByVariant: Record<
 };
 
 export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const config = navConfigByVariant[variant] || {
     navTextTone: TONE_DARK,
     showNavItems: false,
     hasSearch: false,
   };
-  const { navTextTone, showNavItems, hasSearch } = config;
+  const { showNavItems, hasSearch } = config;
   const { navItems } = useCreatorNavItems();
-  const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    avatarUrl,
+    mobileCoverImageUrl,
+    initial,
+    isPublicView,
+    publicCreatorId,
+    textColor,
+  } = useCreatorChannelProfile();
+  const navTextTone =
+    textColor === TEXT_COLOR_VALUES.WHITE_TEXT
+      ? TONE_LIGHT
+      : textColor === TEXT_COLOR_VALUES.DARK_TEXT
+        ? TONE_DARK
+        : config.navTextTone;
   const brandName = displayName;
   const brandHref =
     isPublicView && publicCreatorId
       ? getPublicCreatorProfilePath(publicCreatorId, variant)
       : PATHS.DASHBOARD_CREATOR;
 
+  const handleBack = () => {
+    if (isBrowser && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  };
+
   const brand = (
-    <Brand href={brandHref}>
-      <BrandAvatar>
-        <CreatorChannelAvatar
-          avatarUrl={avatarUrl}
-          initial={initial}
-          alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
-          sizes="44px"
-          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
-        />
-      </BrandAvatar>
-      <BrandName $textTone={navTextTone}>
-        <MonoText $use="Body_SemiBold">{brandName}</MonoText>
-      </BrandName>
-    </Brand>
+    <BrandWrapper>
+      <BackButton
+        type="button"
+        onClick={handleBack}
+        aria-label={t("common.goBack")}
+      >
+        <BackButtonIcon size={36} />
+      </BackButton>
+      <Brand href={brandHref}>
+        <BrandAvatar>
+          <CreatorChannelAvatar
+            avatarUrl={avatarUrl || mobileCoverImageUrl}
+            initial={initial}
+            alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
+            sizes="44px"
+            initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
+          />
+        </BrandAvatar>
+        <BrandName $textTone={navTextTone}>
+          <MonoText $use="Body_SemiBold">{brandName}</MonoText>
+        </BrandName>
+      </Brand>
+    </BrandWrapper>
   );
 
   const actions = (
     <>
+      <SearchIconButton href={PATHS.EXPLORE} aria-label={t(NAV.explore)}>
+        <SearchIcon width={18} height={18} color="currentColor" />
+      </SearchIconButton>
       <GenericButton
         asAnchor
         href={PATHS.AUTH_LOGIN}
@@ -122,7 +164,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       hideMobileHamburger={true}
       showActionsOnMobile={true}
       routeActiveItems={showNavItems}
-      navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
+      navBefore={
+        hasSearch ? <ProfileChannelSearch textTone={navTextTone} /> : undefined
+      }
       navTextTone={navTextTone}
       actions={actions}
     />

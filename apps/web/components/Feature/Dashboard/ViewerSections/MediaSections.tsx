@@ -11,21 +11,24 @@ import {
   SORT_ARROW_DOWN,
   BUY_PREFIX,
   RENT_PREFIX,
+  SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { formatPriceLabel } from "@/utils/contentPricingActions";
 import COLORS from "@repo/ui/colors";
-import { VideoIcon, WebIcon } from "@/assets/icons";
+import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
 import { useTranslation } from "react-i18next";
 import {
   getRentedMediaSections,
+  COLLECTION_ACCESS_STATUS,
   RENTED_SECTION_KEYS,
   RENTED_MODES,
   type RentedSectionKey,
   type RentedMode,
   type RentedMediaItem,
+  type RentedMediaSectionKey,
   type RentedMediaSectionItems,
   getMediaAction,
   getMediaLabel,
@@ -33,7 +36,12 @@ import {
   sortViewerMedia,
   type CollectionSortKey,
   MEDIA_ICON_SIZE,
+  ALL_CATEGORIES,
+  getUniqueMediaCategories,
 } from "@/utils/viewerRented";
+import SortDropdown, {
+  type DropdownOption,
+} from "@/components/UI/SortDropdown";
 import {
   MediaGrid,
   MediaTypePill,
@@ -70,6 +78,7 @@ const MEDIA_TYPE_ICON: Record<
 > = {
   [RENTED_SECTION_KEYS.AUDIOS]: AudioFileIcon,
   [RENTED_SECTION_KEYS.PDFS]: PdfFileIcon,
+  [RENTED_SECTION_KEYS.EPUBS]: EpubIcon,
   [RENTED_SECTION_KEYS.WEBS]: WebIcon,
   [RENTED_SECTION_KEYS.VIDEOS]: VideoIcon,
 };
@@ -103,6 +112,9 @@ export default function MediaSections({
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
     null,
   );
+  const [selectedCategories, setSelectedCategories] = useState<
+    Partial<Record<RentedMediaSectionKey, string>>
+  >({});
 
   const toggleSort = (key: CollectionSortKey) => {
     setActiveSortKey((prev) => (prev === key ? null : key));
@@ -110,8 +122,9 @@ export default function MediaSections({
 
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
-  const shouldShowAccessCta =
-    mode === RENTED_MODES.CURRENTLY || mode === RENTED_MODES.PURCHASED;
+
+  const getMediaPrimaryActionHandler = (item: RentedMediaItem) =>
+    onMediaPrimaryAction ? () => onMediaPrimaryAction(item) : undefined;
 
   return (
     <>
@@ -124,9 +137,49 @@ export default function MediaSections({
 
         const effectiveSortKey =
           expandedSection === section.key ? activeSortKey : null;
+        const availableCategories = getUniqueMediaCategories(
+          sectionItems[section.key],
+        );
+        const categoryOptions: DropdownOption[] = [
+          {
+            value: ALL_CATEGORIES,
+            label: t("viewerRented.allCategories"),
+          },
+          ...availableCategories.map((category) => ({
+            value: category,
+            label: category,
+          })),
+        ];
+        const selectedCategory =
+          selectedCategories[section.key] ?? ALL_CATEGORIES;
+        const effectiveCategory = availableCategories.includes(selectedCategory)
+          ? selectedCategory
+          : ALL_CATEGORIES;
+        const matchesEffectiveCategory = (item: RentedMediaItem) =>
+          item.category.trim() === effectiveCategory;
+        const itemsMatchingCategory = sectionItems[section.key].filter(
+          matchesEffectiveCategory,
+        );
+        const categoryFilteredItems =
+          effectiveCategory === ALL_CATEGORIES
+            ? sectionItems[section.key]
+            : itemsMatchingCategory;
         const displayItems = effectiveSortKey
-          ? sortViewerMedia(sectionItems[section.key], effectiveSortKey)
-          : sectionItems[section.key];
+          ? sortViewerMedia(categoryFilteredItems, effectiveSortKey)
+          : categoryFilteredItems;
+        const handleCategoryChange = (category: string) => {
+          setSelectedCategories((prev) => ({
+            ...prev,
+            [section.key]: category,
+          }));
+        };
+        const renderSelectedCategoryLabel = (
+          value: string,
+          option?: DropdownOption,
+        ) =>
+          value === ALL_CATEGORIES
+            ? t("viewerRented.categories")
+            : option?.label;
 
         return (
           <SectionBlock key={section.title}>
@@ -138,6 +191,7 @@ export default function MediaSections({
                 (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                   section.key === RENTED_SECTION_KEYS.AUDIOS ||
                   section.key === RENTED_SECTION_KEYS.PDFS ||
+                  section.key === RENTED_SECTION_KEYS.EPUBS ||
                   section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"
@@ -168,6 +222,15 @@ export default function MediaSections({
                       </CollectionMetaHeaderItem>
                     );
                   })}
+                  <SortDropdown
+                    options={categoryOptions}
+                    value={effectiveCategory}
+                    onChange={handleCategoryChange}
+                    renderSelectedLabel={renderSelectedCategoryLabel}
+                    width="176px"
+                    dropdownWidth="200px"
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                  />
                 </CollectionMetaHeader>
               ) : !expandedSection ? (
                 <SectionPaginationArrows
@@ -182,69 +245,73 @@ export default function MediaSections({
               ) : null}
             </SectionHeader>
             <MediaGrid>
-              {displayItems.map((item) => (
-                <GenericCard
-                  key={item.id}
-                  coverImage
-                  image={item.thumbSrc}
-                  title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
-                  subtitle={
-                    <MonoText $use="Body_Medium">{item.author}</MonoText>
-                  }
-                  badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
-                  onClick={onCardClick ? () => onCardClick(item) : undefined}
-                  footer={
-                    shouldShowAccessCta ? (
-                      <GenericButton
-                        variant={VARIANT.SECONDARY}
-                        size="md"
-                        fullWidth
-                        onClick={
-                          onMediaPrimaryAction
-                            ? () => onMediaPrimaryAction(item)
-                            : undefined
-                        }
-                      >
-                        {getMediaAction(section.key, t)}
-                      </GenericButton>
-                    ) : (
-                      <TwoButtonRow>
+              {displayItems.map((item) => {
+                const shouldShowAccessCta =
+                  mode === RENTED_MODES.CURRENTLY ||
+                  item.accessStatus === COLLECTION_ACCESS_STATUS.PURCHASED;
+
+                return (
+                  <GenericCard
+                    key={item.id}
+                    coverImage
+                    image={item.thumbSrc}
+                    title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
+                    subtitle={
+                      <MonoText $use="Body_Medium">{item.author}</MonoText>
+                    }
+                    badge={
+                      <MonoText $use="Body_Bold">{item.category}</MonoText>
+                    }
+                    onClick={onCardClick ? () => onCardClick(item) : undefined}
+                    footer={
+                      shouldShowAccessCta ? (
                         <GenericButton
                           variant={VARIANT.SECONDARY}
                           size="md"
                           fullWidth
+                          onClick={getMediaPrimaryActionHandler(item)}
                         >
-                          {formatPriceLabel(BUY_PREFIX, item.buyPrice) ??
-                            t("pricingLabels.buy")}
+                          {getMediaAction(section.key, t)}
                         </GenericButton>
-                        <GenericButton
-                          variant={VARIANT.SECONDARY}
-                          size="md"
-                          fullWidth
-                        >
-                          {formatPriceLabel(RENT_PREFIX, item.rentPrice) ??
-                            t("pricingLabels.rent")}
-                        </GenericButton>
-                      </TwoButtonRow>
-                    )
-                  }
-                >
-                  <MonoText
-                    $use="Body_Medium"
-                    color={
-                      isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
+                      ) : (
+                        <TwoButtonRow>
+                          <GenericButton
+                            variant={VARIANT.SECONDARY}
+                            size="md"
+                            fullWidth
+                          >
+                            {formatPriceLabel(BUY_PREFIX, item.buyPrice) ??
+                              t("pricingLabels.buy")}
+                          </GenericButton>
+                          <GenericButton
+                            variant={VARIANT.SECONDARY}
+                            size="md"
+                            fullWidth
+                          >
+                            {formatPriceLabel(RENT_PREFIX, item.rentPrice) ??
+                              t("pricingLabels.rent")}
+                          </GenericButton>
+                        </TwoButtonRow>
+                      )
                     }
                   >
-                    {item.expiryText}
-                  </MonoText>
-                  <MediaTypePill>
-                    <MediaTypeIcon type={section.key} />
-                    <MonoText $use="Body_Bold">
-                      {getMediaLabel(section.key, t)}
+                    <MonoText
+                      $use="Body_Medium"
+                      color={
+                        isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
+                      }
+                    >
+                      {item.expiryText}
                     </MonoText>
-                  </MediaTypePill>
-                </GenericCard>
-              ))}
+                    <MediaTypePill>
+                      <MediaTypeIcon type={section.key} />
+                      <MonoText $use="Body_Bold">
+                        {getMediaLabel(section.key, t)}
+                      </MonoText>
+                    </MediaTypePill>
+                  </GenericCard>
+                );
+              })}
             </MediaGrid>
           </SectionBlock>
         );

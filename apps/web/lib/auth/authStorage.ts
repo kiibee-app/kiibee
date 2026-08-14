@@ -4,7 +4,14 @@ import {
   STORED_LOGIN_USER_UPDATED,
 } from "./storageKeys";
 import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
-import { isString, toTrimmedString } from "@/utils/Constants";
+import { isProduction } from "@/utils/common";
+import {
+  COOKIE_ATTRIBUTE_SECURE,
+  isString,
+  PROTOCOL_HTTPS,
+  STRING_EMPTY,
+  toTrimmedString,
+} from "@/utils/Constants";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { isBrowser } from "@/utils/ui";
 import { logger } from "@/lib/logger";
@@ -99,7 +106,10 @@ const toRole = (value: unknown) => {
 
 const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
-  const secure = window.location.protocol === "https:" ? "; Secure" : "";
+
+  const isHttps = isBrowser && window.location.protocol === PROTOCOL_HTTPS;
+  const secure =
+    isProduction || isHttps ? `; ${COOKIE_ATTRIBUTE_SECURE}` : STRING_EMPTY;
 
   return `Path=${COOKIE_PATH}; Max-Age=${maxAgeSeconds}; Expires=${expires}; SameSite=${COOKIE_SAME_SITE}${secure}`;
 };
@@ -119,7 +129,7 @@ const setCookie = (
 const removeCookie = (name: string) => {
   if (!isBrowser) return;
 
-  document.cookie = `${name}=; Path=${COOKIE_PATH}; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=${COOKIE_SAME_SITE}`;
+  document.cookie = `${name}=; ${getCookieAttributes(0)}`;
 };
 
 const clearLegacyLocalStorageSession = () => {

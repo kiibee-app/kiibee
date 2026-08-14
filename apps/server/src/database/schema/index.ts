@@ -32,6 +32,8 @@ export * from './content/contentAccess.schema';
 export * from './content/contentAppearance.schema';
 export * from './content/contentSetting.schema';
 export * from './content/tutorialItems.schema';
+export * from './content/contentLimits.schema';
+export * from './content/contentDownloadCount.shema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';
@@ -62,6 +64,7 @@ export * from './analytics/analyticsDailySummary.schema';
 
 // Marketing
 export * from './marketing/emailSubscribers.schema';
+export * from './marketing/contentAccessRequests.schema';
 
 // Events
 export * from './events/liveEvents.schema';

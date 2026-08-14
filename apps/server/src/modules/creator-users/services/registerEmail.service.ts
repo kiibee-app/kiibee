@@ -4,6 +4,7 @@ import { db } from 'src/database/db';
 import { emailSubscribers } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { success } from 'src/utils/sendResponse';
+import { EMAIL_SUBSCRIBER_SOURCE } from 'src/utils/constant';
 
 export type RegisterEmailDto = {
   creatorId: string;
@@ -35,7 +36,7 @@ export const registerEmailService = async (dto: RegisterEmailDto) => {
         creatorId,
         email: trimmedEmail,
         name: trimmedName,
-        source: source || 'email_gate',
+        source: source || EMAIL_SUBSCRIBER_SOURCE.EMAIL_GATE,
         sourceId: sourceId || null,
         isActive: true,
         subscribedAt: now,

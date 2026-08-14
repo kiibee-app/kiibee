@@ -8,6 +8,7 @@ export const HERO = {
 export const NAV = {
   howItWorks: "nav.howItWorks",
   exploreCreators: "nav.exploreCreators",
+  explore: "nav.explore",
   about: "nav.about",
   login: "nav.login",
   dashboard: "nav.dashboard",
@@ -119,6 +120,7 @@ export const CREATORS = {
   subscribersCount: "creators.subscribersCount",
   topCreatorUploads: "creators.topCreatorUploads",
   heading: {
+    title: "creators.heading.title",
     lineOne: "creators.heading.lineOne",
     lineTwo: "creators.heading.lineTwo",
     lineThree: "creators.heading.lineThree",
@@ -129,12 +131,14 @@ export const CREATORS = {
     title: "creators.shortStory.title",
     lead: "creators.shortStory.lead",
     body: "creators.shortStory.body",
+    closing: "creators.shortStory.closing",
     cta: "creators.shortStory.cta",
   },
   whyChoose: {
-    leftItems: "creators.whyChoose.leftItems",
-    rightItems: "creators.whyChoose.rightItems",
     heading: "creators.whyChoose.heading",
+    featureTitle: (key: string) => `creators.whyChoose.features.${key}.title`,
+    featureDescription: (key: string) =>
+      `creators.whyChoose.features.${key}.description`,
   },
   viewProfile: "creators.viewProfile",
   noCreatorsFound: "creators.noCreatorsFound",
@@ -149,6 +153,7 @@ export const CREATORS = {
   popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
+    subtitle: "creators.howToGetStarted.subtitle",
   },
   marketing: {
     title: "creators.marketing.title",
@@ -191,6 +196,18 @@ export const CREATOR_PROFILE = {
     message: "creatorProfile.deleteModal.message",
     cancel: "creatorProfile.deleteModal.cancel",
     confirm: "creatorProfile.deleteModal.confirm",
+    reasonLabel: "creatorProfile.deleteModal.reasonLabel",
+    reasonPlaceholder: "creatorProfile.deleteModal.reasonPlaceholder",
+    customReasonLabel: "creatorProfile.deleteModal.customReasonLabel",
+    customReasonPlaceholder:
+      "creatorProfile.deleteModal.customReasonPlaceholder",
+    reasons: {
+      notUsing: "creatorProfile.deleteModal.reasons.notUsing",
+      tooExpensive: "creatorProfile.deleteModal.reasons.tooExpensive",
+      missingFeatures: "creatorProfile.deleteModal.reasons.missingFeatures",
+      privacyConcerns: "creatorProfile.deleteModal.reasons.privacyConcerns",
+      others: "creatorProfile.deleteModal.reasons.others",
+    },
   },
   deleteToastMessage: "creatorProfile.deleteToastMessage",
   deleteErrorMessage: "creatorProfile.deleteErrorMessage",
@@ -203,6 +220,16 @@ export const CREATOR_PROFILE = {
     title: "creatorProfile.deletePendingModal.title",
     message: "creatorProfile.deletePendingModal.message",
     confirm: "creatorProfile.deletePendingModal.confirm",
+  },
+  currentPlan: {
+    label: "creatorProfile.currentPlan.label",
+    upgrade: "creatorProfile.currentPlan.upgrade",
+    changePlan: "creatorProfile.currentPlan.changePlan",
+    loading: "creatorProfile.currentPlan.loading",
+    fallbackName: "creatorProfile.currentPlan.fallbackName",
+    pricePerMonth: "creatorProfile.currentPlan.pricePerMonth",
+    maxFiles: "creatorProfile.currentPlan.maxFiles",
+    activeBadge: "creatorProfile.currentPlan.activeBadge",
   },
 };
 
@@ -286,7 +313,12 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.billingHistory.invoiceModal.orderNumber",
       contentDetails:
         "dashboard.viewerBillings.billingHistory.invoiceModal.contentDetails",
-      share: "dashboard.viewerBillings.billingHistory.invoiceModal.share",
+      sendReceipt:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.sendReceipt",
+      receiptSent:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSent",
+      receiptSendFailed:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.receiptSendFailed",
     },
     tableHeaders: {
       contentTitle:
@@ -572,11 +604,14 @@ export const ACCESS_GATE = {
   emailPlaceholder: "accessGate.emailPlaceholder",
   submitCode: "accessGate.submitCode",
   submitEmail: "accessGate.submitEmail",
+  sendingRequest: "accessGate.sendingRequest",
   consentText: "accessGate.consentText",
   invalidCodeTitle: "accessGate.invalidCodeTitle",
   invalidCodeMessage: "accessGate.invalidCodeMessage",
   cancel: "accessGate.cancel",
   tryAgain: "accessGate.tryAgain",
+  requestSentTitle: "accessGate.requestSentTitle",
+  requestSentMessage: "accessGate.requestSentMessage",
 } as const;
 
 const TRANSLATION_KEYS = {

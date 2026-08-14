@@ -44,6 +44,13 @@ export class ViewerController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('accessible-content-ids')
+  async getAccessibleContentIds(@Req() req: any) {
+    const userId = req.user.userId;
+    return this.viewerService.getAccessibleContentIdsService(userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get('rented-data')
   async getRentedData(@Req() req: any) {
     const userId = req.user.userId;

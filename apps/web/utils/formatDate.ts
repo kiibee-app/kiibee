@@ -1,3 +1,11 @@
+export const DEFAULT_OPTIONS: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
+
 export function formatDate(iso?: string) {
   if (!iso) return "";
 
@@ -28,11 +36,18 @@ export function daysInMonth(date: Date) {
 }
 
 export function toISO(date: Date) {
-  return date.toISOString().slice(0, 10);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 export function fromISO(iso?: string) {
   if (!iso) return null;
+  const parts = iso.split("-").map(Number);
+  if (parts.length === 3 && !parts.some(isNaN)) {
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
   const d = new Date(iso);
   return isNaN(d.getTime()) ? null : d;
 }

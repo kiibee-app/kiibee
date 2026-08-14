@@ -8,7 +8,7 @@ import {
   emailSubscribers,
 } from 'src/database/schema';
 import { eq, desc, and, sql, inArray } from 'drizzle-orm';
-import { ROLE } from 'src/utils/constant';
+import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
 import { dedupeFeedMediaById, orderFeedMediaByIds } from './feed.helper';
 
 const baseSelect = {
@@ -100,7 +100,7 @@ export const getRecentQuery = async (where: any, limit: number) => {
   return fetchMediaFilesByIds(idRows.map((row) => row.id));
 };
 
-export const getTopCreatorsQuery = () =>
+export const getTopCreatorsQuery = (limit = 10) =>
   db
     .select({
       id: users.id,
@@ -111,7 +111,15 @@ export const getTopCreatorsQuery = () =>
       subscriberCount: sql<number>`COUNT(DISTINCT email_subscribers.id)`,
     })
     .from(users)
-    .leftJoin(mediaFiles, eq(mediaFiles.creatorId, users.id))
+    .leftJoin(
+      mediaFiles,
+      and(
+        eq(mediaFiles.creatorId, users.id),
+        eq(mediaFiles.isDeleted, false),
+        eq(mediaFiles.isPublished, true),
+        eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
+      ),
+    )
     .leftJoin(emailSubscribers, eq(emailSubscribers.creatorId, users.id))
     .where(
       and(
@@ -122,4 +130,4 @@ export const getTopCreatorsQuery = () =>
     )
     .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
     .orderBy(desc(sql`COUNT(DISTINCT media_files.id)`))
-    .limit(10);
+    .limit(limit);

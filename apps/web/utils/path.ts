@@ -1,3 +1,5 @@
+import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
+
 export const PATHS = {
   HOME: "/",
   AUTH_LOGIN: "/auth/login",
@@ -9,6 +11,7 @@ export const PATHS = {
   DASHBOARD_CREATOR: "/dashboard/creators",
   DASHBOARD_VIEWER: "/dashboard/viewer",
   PRICING: "/pricing",
+  PRICING_PLANS: "/pricing#plans",
   AUTH_SIGNUP_VIEWER_PREFERENCES: "/auth/signup-viewer/preferences",
   EXPLORE_CREATORS: "/creators/all",
   EXPLORE: "/explore",
@@ -97,6 +100,23 @@ export function isSafePostLoginPath(
     path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
     path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
+}
+
+export function isSafeDownloadUrl(url: string | null | undefined): boolean {
+  if (!url) {
+    return false;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+
+    return (
+      parsedUrl.protocol === PROTOCOL_HTTP ||
+      parsedUrl.protocol === PROTOCOL_HTTPS
+    );
+  } catch {
+    return false;
+  }
 }
 
 export function pathLoginWithNext(returnTo: string): string {

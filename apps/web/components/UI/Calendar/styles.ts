@@ -70,14 +70,6 @@ export const DayCell = styled.div`
   text-align: center;
 `;
 
-export const DayButtonBase = styled.button`
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-`;
-
 export const DayButton = styled.div`
   width: 32px;
   height: 32px;
@@ -88,6 +80,22 @@ export const DayButton = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const DayButtonBase = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+
+    ${DayButton} {
+      color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    }
+  }
 `;
 
 export const DaySelected = styled.div`
@@ -112,6 +120,23 @@ export const DayInRange = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const MonthNavButton = styled.button`
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 `;
 
 export const MonthNav = styled.div`

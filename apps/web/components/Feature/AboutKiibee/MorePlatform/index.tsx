@@ -41,6 +41,8 @@ export default function MoreThanPlatformSection() {
         <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
           <Subtitle>
             <Text>{t("about.platform.intro")}</Text>
+            <Text>{t("about.platform.publishers")}</Text>
+            <Text>{t("about.platform.viewers")}</Text>
             <Text>{t("about.platform.description")}</Text>
           </Subtitle>
         </ScrollReveal>
@@ -57,6 +59,7 @@ export default function MoreThanPlatformSection() {
                   src={img}
                   alt="platform"
                   fill
+                  quality={95}
                   style={platformImageStyle}
                   sizes={PLATFORM_IMAGE_SIZES}
                 />

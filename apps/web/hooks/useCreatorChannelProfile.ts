@@ -116,6 +116,15 @@ export function useCreatorChannelProfile(enabled = true) {
     return getAvatarUrl(appearanceQuery.data?.data?.desktopCoverImageUrl);
   }, [isPublicView, publicCreator, appearanceQuery.data]);
 
+  const mobileCoverImageUrl = useMemo(() => {
+    if (isPublicView) {
+      return getAvatarUrl(publicCreator?.mobileCoverImageUrl);
+    }
+    return getAvatarUrl(appearanceQuery.data?.data?.mobileCoverImageUrl);
+  }, [isPublicView, publicCreator, appearanceQuery.data]);
+
+  const appearance = isPublicView ? publicCreator : appearanceQuery.data?.data;
+
   const initial = useMemo(
     () => getDisplayFirstLetter(displayName, storedUser),
     [displayName, storedUser],
@@ -178,12 +187,15 @@ export function useCreatorChannelProfile(enabled = true) {
     displayName,
     avatarUrl,
     coverImageUrl,
+    mobileCoverImageUrl,
     initial,
     isLoadingProfile: isPublicView
       ? isLoadingPublic
       : profileQuery.isLoading || appearanceQuery.isLoading,
     isPublicView,
     publicCreatorId,
+    textColor: appearance?.textColor ?? null,
+    buttonColor: appearance?.buttonColor ?? null,
     about: aboutData,
   };
 }

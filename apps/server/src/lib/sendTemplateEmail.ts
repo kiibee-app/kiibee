@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { getEmailTransporter } from './emailTransporter';
 import { logger } from 'src/logger/logger';
 import { renderTemplate } from './renderTemplate';
 import { env } from 'src/config/env';
+import { sendEmailWithRetry } from './sendWithRetry';
 
 interface SendEmailOptions {
   to: string;
@@ -25,18 +25,17 @@ export async function sendTemplateEmail({
       'templates',
       `${templateName}.html`,
     );
+
     const template = await fs.promises.readFile(templatePath, 'utf8');
 
     const htmlContent = renderTemplate(template, variables);
 
-    await getEmailTransporter().sendMail({
+    return await sendEmailWithRetry({
       from: `"${env.SENDER_NAME}" <${env.SENDER_EMAIL}>`,
       to,
       subject,
       html: htmlContent,
     });
-
-    return true;
   } catch (error) {
     logger.error('Failed to send email:', error);
     return false;

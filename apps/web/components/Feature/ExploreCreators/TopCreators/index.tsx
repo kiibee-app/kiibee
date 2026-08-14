@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
@@ -72,10 +73,8 @@ export default function TopCreators({ search }: { search?: string }) {
           : creators.map((creator) => (
               <Card
                 key={creator.id}
-                as="a"
+                as={Link}
                 href={getPublicCreatorProfilePath(creator.id)}
-                target="_blank"
-                rel="noopener noreferrer"
               >
                 <Avatar>
                   <CreatorChannelAvatar

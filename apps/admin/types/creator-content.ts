@@ -12,6 +12,7 @@ export type CreatorContentItem = {
   createdAt: string;
   publishedAt: string | null;
   purchaseCount: number;
+  emailRegisteredCount?: number;
   rentalCount: number;
   downloadCount: number;
 };
@@ -25,6 +26,7 @@ export type ContentEngagementUser = {
   displayDate: string;
   rentExpiresAt?: string | null;
   rentExpiresDisplay?: string | null;
+  downloadCount?: number;
 };
 
 export type ContentEngagement = {
@@ -34,20 +36,25 @@ export type ContentEngagement = {
     description: string | null;
     thumbnailUrl: string | null;
     contentType: string | null;
+    contentTypeId?: string | null;
     accessType: string | null;
     visibility: string | null;
     isPublished: boolean;
     buyPrice: string | number | null;
     rentPrice: string | number | null;
+    fileKey?: string | null;
+    contentUrl?: string | null;
     creatorId: string;
     createdAt: string;
     publishedAt: string | null;
   };
   purchases: ContentEngagementUser[];
+  emailRegistrations?: ContentEngagementUser[];
   rentals: ContentEngagementUser[];
   downloads: ContentEngagementUser[];
   stats: {
     purchaseCount: number;
+    emailRegisteredCount?: number;
     rentalCount: number;
     downloadCount: number;
   };

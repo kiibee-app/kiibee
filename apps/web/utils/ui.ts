@@ -20,6 +20,7 @@ export const INPUT_FIELD_LABEL_TAGS = {
 } as const;
 export const INPUT_FIELD_ROLES = {
   GROUP: "group",
+  BUTTON: "button",
 } as const;
 export const INPUT_FIELD_ARIA_INVALID_VALUES = [
   "false",
@@ -187,20 +188,20 @@ export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
-    width: 1440,
-    height: 224,
+    width: 1200,
+    height: 400,
   },
   [IMAGE_TYPE.MOBILE]: {
     width: 640,
     height: 600,
   },
   [IMAGE_TYPE.MEDIA_CARD]: {
-    width: 250,
-    height: 190,
+    width: 650,
+    height: 920,
   },
   [IMAGE_TYPE.PORTRAIT]: {
-    width: 376,
-    height: 530,
+    width: 1920,
+    height: 1080,
   },
 } as const;
 
@@ -229,7 +230,7 @@ export const CONTENT = "content_";
 export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.DESKTOP]: {
     maxWidth: "514px",
-    aspectRatio: "257 / 40",
+    aspectRatio: "3 / 1",
     tablet: {
       maxWidth: "320px",
     },
@@ -244,11 +245,11 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   },
 
   [IMAGE_TYPE.MEDIA_CARD]: {
-    maxWidth: "129px",
+    maxWidth: "71px",
     minHeight: "100px",
-    aspectRatio: "129 / 100",
+    aspectRatio: "650 / 920",
     tablet: {
-      maxWidth: "100px",
+      maxWidth: "55px",
       minHeight: "78px",
     },
   },
@@ -256,10 +257,10 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.PORTRAIT]: {
     maxWidth: "184px",
     minHeight: "100px",
-    aspectRatio: "46 / 25",
+    aspectRatio: "1920 / 1080",
     tablet: {
       maxWidth: "140px",
-      minHeight: "76px",
+      minHeight: "79px",
     },
   },
 };
@@ -268,8 +269,8 @@ export const defaultUploadConfigs: UploadConfig[] = [
   {
     labelKey: CONTENTS.appearance.coverImage.uploadDesktop,
     sizeKey: CONTENTS.appearance.coverImage.desktopSize,
-    cropWidth: 1440,
-    cropHeight: 224,
+    cropWidth: 1200,
+    cropHeight: 400,
     type: IMAGE_TYPE.DESKTOP,
   },
   {

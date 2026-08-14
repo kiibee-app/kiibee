@@ -184,10 +184,11 @@ export const StyledTextArea = styled.textarea<{
   }
 `;
 
-export const ErrorText = styled.span`
+export const ErrorText = styled.span<{ $marginTop?: string }>`
   display: block;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.RED};
+  margin-top: ${({ $marginTop }) => $marginTop || "4px"};
 `;
 
 export const HelperText = styled.span`
@@ -240,9 +241,10 @@ export const Selected = styled.div`
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
-export const Menu = styled.div`
-  position: absolute;
-  top: calc(100% + 8px);
+export const Menu = styled.div<{ $inFlow?: boolean }>`
+  position: ${({ $inFlow }) => ($inFlow ? "relative" : "absolute")};
+  top: ${({ $inFlow }) => ($inFlow ? "auto" : "calc(100% + 8px)")};
+  margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
   left: 0;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 8px;

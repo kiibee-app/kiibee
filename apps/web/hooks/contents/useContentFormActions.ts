@@ -29,6 +29,8 @@ import {
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
+  validatePasswordInput,
+  getPasswordCount,
 } from "@/utils/admissionRequirements";
 import { AccessDurationValue } from "@/utils/common";
 import {
@@ -281,13 +283,13 @@ export function useContentFormActions({
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
-    details?: { title: string; description: string },
+    details?: { title: string; description: string; webLink?: string },
   ) => {
     if (!createdContentId) {
       setActiveTabAndQuery(tab);
     }
     setUploadedFile(file ?? null);
-    setUploadedPreview(preview ?? null);
+    setUploadedPreview(preview ?? details?.webLink ?? null);
     const prefilledState =
       file == null
         ? formState
@@ -299,6 +301,7 @@ export function useContentFormActions({
       ...prefilledState,
       title: details?.title ?? prefilledState.title,
       description: details?.description ?? prefilledState.description,
+      webLink: details?.webLink ?? prefilledState.webLink,
       contentTypeId:
         contentTypeFlow.selectedContentType ?? prefilledState.contentTypeId,
     };
@@ -419,6 +422,24 @@ export function useContentFormActions({
   const validateGeneralForm = () => {
     const nextErrors: Partial<ContentFormErrors> = {};
 
+    const isWebType =
+      formState.contentTypeId === FORMAT_TYPE.WEB ||
+      editingContent?.contentType === FORMAT_TYPE.WEB;
+
+    if (isWebType || formState.webLink?.trim()) {
+      const webLink = formState.webLink?.trim() || "";
+      const errorMsg =
+        isWebType && !webLink
+          ? t("contents.general.trailerLinkInvalid")
+          : webLink && !isValidUrl(webLink)
+            ? t("contents.general.trailerLinkInvalid")
+            : undefined;
+
+      if (errorMsg) {
+        nextErrors[CONTENT_FORM_FIELDS.WEB_LINK] = errorMsg;
+      }
+    }
+
     if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
       nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
     }
@@ -426,9 +447,11 @@ export function useContentFormActions({
     setFormErrors((prev) => {
       const rest = { ...prev };
       delete rest.trailerLink;
-      return nextErrors.trailerLink
-        ? { ...rest, trailerLink: nextErrors.trailerLink }
-        : rest;
+      delete rest[CONTENT_FORM_FIELDS.WEB_LINK];
+      return {
+        ...rest,
+        ...nextErrors,
+      };
     });
 
     if (Object.keys(nextErrors).length > 0) {
@@ -440,12 +463,52 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
+    if (formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD) {
+      if (!formState.password.trim() && formState.hasPassword) {
+        setFormErrors((prev) => {
+          if (!prev.password) return prev;
+          const copy = { ...prev };
+          delete copy.password;
+          return copy;
+        });
+        return true;
+      }
+      if (!formState.password.trim()) {
+        setFormErrors((prev) => ({
+          ...prev,
+          password: t("authForm.errors.required"),
+        }));
+        toast.error(t("authForm.errors.required"));
+        return false;
+      }
+      if (validatePasswordInput(formState.password)) {
+        const errorMsg = t(
+          "contents.admissionRequirements.password.error.minLength",
+        );
+        setFormErrors((prev) => ({
+          ...prev,
+          password: errorMsg,
+        }));
+        toast.error(errorMsg);
+        return false;
+      }
+      setFormErrors((prev) => {
+        if (!prev.password) return prev;
+        const copy = { ...prev };
+        delete copy.password;
+        return copy;
+      });
+      return true;
+    }
+
     if (formState.admissionRequirement !== ADMISSION_TYPE.PAYMENT) {
       setFormErrors((prev) => {
-        if (!prev.rentalAmount && !prev.purchaseAmount) return prev;
+        if (!prev.rentalAmount && !prev.purchaseAmount && !prev.password)
+          return prev;
         const mergedErrors = { ...prev };
         delete mergedErrors.rentalAmount;
         delete mergedErrors.purchaseAmount;
+        delete mergedErrors.password;
         return mergedErrors;
       });
       return true;
@@ -580,6 +643,22 @@ export function useContentFormActions({
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+      const hasExistingPassword = Boolean(selectedCollection.hasPassword);
+      if (!collectionPasswords.trim() && !hasExistingPassword) {
+        toast.error(t("authForm.errors.required"));
+        return;
+      }
+      if (
+        collectionPasswords.trim() &&
+        validatePasswordInput(collectionPasswords)
+      ) {
+        toast.error(
+          t("contents.admissionRequirements.password.error.minLength"),
+        );
+        return;
+      }
+    }
     if (!validateCollectionPaymentAmounts()) return;
     try {
       const apiAccessType =
@@ -822,6 +901,7 @@ export function useContentFormActions({
         openInNewWindow?: boolean;
         openDirectFromList?: boolean;
         fileSize?: number | null;
+        passwordHash?: string | null;
       }
 
       const response = await axiosClient.get(API.content.get(id));
@@ -915,6 +995,8 @@ export function useContentFormActions({
                     ? "request_email"
                     : "free",
           password: "",
+          hasPassword: Boolean(fullContent.passwordHash),
+          passwordCount: getPasswordCount(fullContent.passwordHash),
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",

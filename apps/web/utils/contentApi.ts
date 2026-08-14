@@ -1,9 +1,9 @@
 import React from "react";
 import type { TFunction } from "i18next";
-import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
+import contentFallbackImage from "@/assets/images/single-tutorial/Content image.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
-import draftFallbackImage from "@/assets/images/dafault.png";
+import draftFallbackImage from "@/assets/images/dafault.webp";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
 import { JAVASCRIPT_TYPE } from "@/utils/collection";
@@ -56,6 +56,7 @@ export const CONTENT_RESPONSE_KEYS = {
   DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
+  TAGS: "tags",
   NAME: "name",
   CREATOR_ID: "creatorId",
   PUBLISHED_YEAR: "publishedYear",
@@ -76,6 +77,8 @@ export const CONTENT_TRANSLATION_KEYS = {
   loading: "singleContent.loading",
   imageAlt: "singleContent.imageAlt",
   seeContent: "singleContent.seeContent",
+  download: "singleContent.download",
+  remainingDownloads: "singleContent.remainingDownloads",
   playTrailer: "singleContent.playTrailer",
   editSuccess: "contents.contentUploadModal.updateSuccess",
   updateError: "contents.contentUploadModal.updateError",
@@ -113,6 +116,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  [CONTENT_RESPONSE_KEYS.TAGS]?: string[] | null;
   accessInfo?: {
     accessType?: string;
     rentExpiresAt?: string | null;
@@ -230,6 +234,11 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .map((category) => toTrimmedString(category.name))
     .filter(Boolean);
 
+const getTagNames = (content: ContentDetailItem) =>
+  (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
+    .map(toTrimmedString)
+    .filter(Boolean);
+
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
@@ -243,6 +252,7 @@ export const getSingleContentProps = (
   );
   const contentType = getContentType(content);
   const categories = getCategoryNames(content);
+  const tags = getTagNames(content);
   const mainCategory = categories[0];
   const createdAt = formatDateUSShort(
     content[CONTENT_RESPONSE_KEYS.CREATED_AT] ?? undefined,
@@ -302,7 +312,7 @@ export const getSingleContentProps = (
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
     descriptions: description ? [description] : [],
-    tags: categories,
+    tags,
     statusLabel: statusLabel,
     ...(expiryLabel
       ? {
@@ -328,10 +338,14 @@ export const getSingleContentProps = (
         : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(isVideo || showTrailerInHero
+      ...(isVideo
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
+          }
+        : {}),
+      ...(showTrailerInHero
+        ? {
             trailerLabel: t(CONTENT_TRANSLATION_KEYS.playTrailer),
             trailerIcon: playIcon,
             trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playTrailer),

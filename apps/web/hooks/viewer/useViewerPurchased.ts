@@ -2,7 +2,10 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { API, useGetAPI } from "@/lib/http/api";
-import { RentedContentSources } from "@/utils/viewerRented";
+import {
+  COLLECTION_ACCESS_STATUS,
+  RentedContentSources,
+} from "@/utils/viewerRented";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { UNKNOWN } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
@@ -44,6 +47,7 @@ type PurchasedDataResponse = {
     videos: PurchasedMediaResponse[];
     audios: PurchasedMediaResponse[];
     pdfs: PurchasedMediaResponse[];
+    epubs?: PurchasedMediaResponse[];
     webs?: PurchasedMediaResponse[];
     collections: PurchasedCollectionResponse[];
   };
@@ -56,6 +60,7 @@ const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) || "",
   title: item.title,
   author: item.creatorName || "",
+  accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
   expiryText: item.purchasedAt
     ? t("viewerRented.purchasedOn", {
         date: new Date(item.purchasedAt).toLocaleDateString(),
@@ -69,6 +74,7 @@ const mapCollectionItem = (item: PurchasedCollectionResponse) => ({
   author: item.creatorName || "",
   elementCount: item.elementCount ?? 0,
   coverSrc: resolvePublicMediaUrl(item.coverImageUrl) || "",
+  accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
 });
 
 export const useViewerPurchased = (enabled: boolean = true) => {
@@ -89,8 +95,11 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       videos: (responseData.videos || []).map((item) => mapMediaItem(item, t)),
       audios: (responseData.audios || []).map((item) => mapMediaItem(item, t)),
       pdfs: (responseData.pdfs || []).map((item) => mapMediaItem(item, t)),
+      epubs: (responseData.epubs || []).map((item) => mapMediaItem(item, t)),
       webs: (responseData.webs || []).map((item) => mapMediaItem(item, t)),
-      collections: (responseData.collections || []).map(mapCollectionItem),
+      collections: (responseData.collections || [])
+        .map(mapCollectionItem)
+        .filter((item) => item.elementCount > 0),
     };
   }, [query.data, t]);
 

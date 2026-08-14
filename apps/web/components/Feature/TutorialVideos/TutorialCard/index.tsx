@@ -1,10 +1,12 @@
 "use client";
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { ActionRow, CardLink, VideoBox } from "./styles";
+import { ActionRow, CardLink, CardTitle, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -21,6 +23,10 @@ import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -52,21 +58,29 @@ function TutorialCard({
   collectionId = null,
   imagePriority = false,
 }: TutorialCardProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const [loginModalMessage, setLoginModalMessage] = useState<
+    string | undefined
+  >(undefined);
   const { user, hasAccess, rentedItem } = useViewerContentAccess(
     tutorial.id,
     tutorial.creatorId,
     collectionId,
   );
 
-  const handleShowLoginModal = (url: string) => {
+  const handleShowLoginModal = (url: string, message?: string) => {
     setPendingRedirectUrl(url);
+    setLoginModalMessage(message);
     setLoginModalVisible(true);
   };
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setLoginModalMessage(undefined);
+  };
 
   const thumbnailCandidates = useMemo(() => {
     if (tutorial.videoUrl) {
@@ -140,11 +154,7 @@ function TutorialCard({
 
     event.preventDefault();
     event.stopPropagation();
-    window.open(
-      getPublicCreatorProfilePath(tutorial.creatorId),
-      "_blank",
-      "noopener,noreferrer",
-    );
+    router.push(getPublicCreatorProfilePath(tutorial.creatorId));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
@@ -155,7 +165,13 @@ function TutorialCard({
     const targetHref = resolveButtonHref(button.href);
 
     if (button.requiresAuth && !isLoggedIn) {
-      handleShowLoginModal(targetHref);
+      const isPurchaseOrRent =
+        isBuyActionLabel(button.label) || isRentActionLabel(button.label);
+      const msg = isPurchaseOrRent
+        ? t("createProfileHome.latestUpload.loginModal.message")
+        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+
+      handleShowLoginModal(targetHref, msg);
       return;
     }
 
@@ -172,16 +188,15 @@ function TutorialCard({
         {tutorial.creator}
       </MonoText>
     ) : (
-      <a
+      <Link
         href={getPublicCreatorProfilePath(tutorial.creatorId)}
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={openCreatorProfile}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
           {tutorial.creator}
         </MonoText>
-      </a>
+      </Link>
     )
   ) : (
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
@@ -202,7 +217,7 @@ function TutorialCard({
           </MonoText>
         ) : undefined
       }
-      title={<MonoText $use="Body_Medium">{tutorial.title}</MonoText>}
+      title={<CardTitle $use="H5_Medium">{tutorial.title}</CardTitle>}
       subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
@@ -221,6 +236,7 @@ function TutorialCard({
                 <GenericButton
                   key={buttonKey}
                   {...commonProps}
+                  data-creator-content-button
                   aria-pressed={isSelected}
                   onClick={() => onPlayClick(tutorial.id)}
                 >
@@ -233,6 +249,7 @@ function TutorialCard({
               <GenericButton
                 key={buttonKey}
                 {...commonProps}
+                data-creator-content-button
                 onClick={
                   button.href
                     ? (event) => handleButtonClick(event, button)
@@ -269,6 +286,7 @@ function TutorialCard({
     <LoginRequiredModal
       visible={isLoginModalVisible}
       onClose={handleCloseLoginModal}
+      message={loginModalMessage}
       onSuccess={() => {
         if (pendingRedirectUrl) {
           navigateToContent(pendingRedirectUrl, true);

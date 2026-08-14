@@ -16,22 +16,29 @@ import {
   InlineLabel,
   HeaderActions,
   NameBlock,
+  ProfileBody,
+  ProfileMain,
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
 import DeleteSection from "./DeleteSection";
+import CurrentPlanCard from "./CurrentPlanCard";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getProfileFields } from "@/utils/creatorProfilefields";
-import { ProfileForm } from "@/utils/creatorProfile";
-import { MODAL_ALIGN } from "@/utils/ui";
+import {
+  ProfileForm,
+  DELETE_REASON_OPTIONS,
+  DELETE_REASON_OTHERS,
+} from "@/utils/creatorProfile";
+import { MODAL_ALIGN, INPUT_TYPE } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
-import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import { InfoIcon } from "@/assets/icons";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
@@ -63,10 +70,21 @@ export default function CreatorProfile() {
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
   const [showDeletePendingModal, setShowDeletePendingModal] = useState(false);
   const [locallyPendingDeletion, setLocallyPendingDeletion] = useState(false);
+  const [selectedReason, setSelectedReason] = useState("");
+  const [customReason, setCustomReason] = useState("");
   const user = useStoredLoginUser();
-  const deleteUserMutation = useDeleteAPI<DeleteUserResponse, void>(
-    API.auth.deleteUser,
+  const deleteUserMutation = useDeleteAPI<
+    DeleteUserResponse,
+    { reason: string }
+  >(API.auth.deleteUser);
+
+  const isOthersSelected = selectedReason === DELETE_REASON_OTHERS;
+  const matchedOption = DELETE_REASON_OPTIONS.find(
+    (opt) => opt.value === selectedReason,
   );
+  const deleteReason = isOthersSelected
+    ? customReason.trim()
+    : t(matchedOption?.labelKey ?? "");
 
   const {
     form,
@@ -110,9 +128,12 @@ export default function CreatorProfile() {
   };
 
   const handleDeleteRequest = async () => {
+    if (!deleteReason.trim()) return;
     try {
-      await deleteUserMutation.mutateAsync();
+      await deleteUserMutation.mutateAsync({ reason: deleteReason.trim() });
       setShowDeleteModal(false);
+      setSelectedReason("");
+      setCustomReason("");
       setLocallyPendingDeletion(true);
       setShowDeleteSuccessModal(true);
       toast.success(t(CREATOR_PROFILE.deleteToastMessage));
@@ -120,6 +141,8 @@ export default function CreatorProfile() {
       const apiError = normalizeApiError(error);
       if (apiError.status === 409) {
         setShowDeleteModal(false);
+        setSelectedReason("");
+        setCustomReason("");
         setLocallyPendingDeletion(true);
         setShowDeletePendingModal(true);
         return;
@@ -130,6 +153,8 @@ export default function CreatorProfile() {
 
   const handleDeleteClose = () => {
     setShowDeleteModal(false);
+    setSelectedReason("");
+    setCustomReason("");
   };
 
   const handleDeleteSuccessClose = () => {
@@ -160,53 +185,59 @@ export default function CreatorProfile() {
       </HeaderRow>
 
       <Card>
-        <Row>
-          <ImageUploader
-            image={avatarImage}
-            fallback={getDisplayFirstLetter(displayName, user)}
-            alt={t("creatorProfile.profilePhotoAlt")}
-            uploadTitle={t("creatorProfile.uploadPhotoTitle")}
-            editTitle={t("creatorProfile.editPhotoTitle")}
-            onChange={setAvatarImage}
-          />
-
-          <NameBlock>
-            <MonoText $use="Heading3">{displayName}</MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {form.email}
-            </MonoText>
-          </NameBlock>
-        </Row>
-
-        <Fields>
-          {fields.map((field, index) => {
-            const fieldKey = field.key as keyof ProfileForm;
-            const errorMessage = profileFieldErrors[fieldKey];
-            return (
-              <InputField
-                key={field.key}
-                label={field.label}
-                value={form[fieldKey]}
-                onChange={onChange(fieldKey)}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                labelMarginTop={index ? "16px" : undefined}
-                hasError={!!errorMessage}
-                errorMessage={errorMessage}
-                max={field.max}
+        <ProfileBody>
+          <ProfileMain>
+            <Row>
+              <ImageUploader
+                image={avatarImage}
+                fallback={getDisplayFirstLetter(displayName, user)}
+                alt={t("creatorProfile.profilePhotoAlt")}
+                uploadTitle={t("creatorProfile.uploadPhotoTitle")}
+                editTitle={t("creatorProfile.editPhotoTitle")}
+                onChange={setAvatarImage}
               />
-            );
-          })}
 
-          <Action>
-            <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
-            <GenericButton
-              variant={VARIANT.PRIMARY}
-              onClick={() => setShowPassword(true)}
-            >
-              {t(CREATOR_PROFILE.changePassword)}
-            </GenericButton>
-          </Action>
-        </Fields>
+              <NameBlock>
+                <MonoText $use="Heading3">{displayName}</MonoText>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                  {form.email}
+                </MonoText>
+              </NameBlock>
+            </Row>
+
+            <Fields>
+              {fields.map((field, index) => {
+                const fieldKey = field.key as keyof ProfileForm;
+                const errorMessage = profileFieldErrors[fieldKey];
+                return (
+                  <InputField
+                    key={field.key}
+                    label={field.label}
+                    value={form[fieldKey]}
+                    onChange={onChange(fieldKey)}
+                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                    labelMarginTop={index ? "16px" : undefined}
+                    hasError={!!errorMessage}
+                    errorMessage={errorMessage}
+                    max={field.max}
+                  />
+                );
+              })}
+
+              <Action>
+                <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
+                <GenericButton
+                  variant={VARIANT.PRIMARY}
+                  onClick={() => setShowPassword(true)}
+                >
+                  {t(CREATOR_PROFILE.changePassword)}
+                </GenericButton>
+              </Action>
+            </Fields>
+          </ProfileMain>
+
+          <CurrentPlanCard />
+        </ProfileBody>
       </Card>
       <CompanySection
         form={form}
@@ -270,22 +301,54 @@ export default function CreatorProfile() {
         showCloseButton={false}
       />
 
-      <ConfirmationModal
-        isOpen={showDeleteModal}
-        onClose={handleDeleteClose}
+      <GenericModal
+        visible={showDeleteModal}
         title={t(CREATOR_PROFILE.deleteModal.title)}
-        body={t(CREATOR_PROFILE.deleteModal.message)}
-        cancelLabel={t(CREATOR_PROFILE.deleteModal.cancel)}
         confirmLabel={t(CREATOR_PROFILE.deleteModal.confirm)}
+        cancelLabel={t(CREATOR_PROFILE.deleteModal.cancel)}
+        onClose={handleDeleteClose}
+        onCancel={handleDeleteClose}
         onConfirm={handleDeleteRequest}
-        isLoading={deleteUserMutation.isPending}
+        confirmDisabled={!deleteReason.trim() || deleteUserMutation.isPending}
+        confirmLoading={deleteUserMutation.isPending}
         confirmVariant={VARIANT.DANGER}
         size="sm"
         spacing="xs"
         buttonRow
         fullWidthButtons
         showCloseButton={false}
-      />
+        textAlign={MODAL_ALIGN.START}
+      >
+        <MonoText $use="Body_Medium" style={{ marginBottom: "12px" }}>
+          {t(CREATOR_PROFILE.deleteModal.message)}
+        </MonoText>
+        <DropdownField
+          label={t(CREATOR_PROFILE.deleteModal.reasonLabel)}
+          options={DELETE_REASON_OPTIONS.map((option) => ({
+            value: option.value,
+            label: t(option.labelKey),
+          }))}
+          value={selectedReason}
+          onChange={setSelectedReason}
+          placeholder={t(CREATOR_PROFILE.deleteModal.reasonPlaceholder)}
+        />
+        {isOthersSelected && (
+          <div style={{ marginTop: "12px" }}>
+            <InputField
+              label={t(CREATOR_PROFILE.deleteModal.customReasonLabel)}
+              type={INPUT_TYPE.TEXTAREA}
+              value={customReason}
+              onChange={(value) => setCustomReason(value as string)}
+              placeholder={t(
+                CREATOR_PROFILE.deleteModal.customReasonPlaceholder,
+              )}
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              required
+              max={1000}
+            />
+          </div>
+        )}
+      </GenericModal>
       <GenericModal
         visible={showDeleteSuccessModal}
         icon={<SuccessModalIcon />}

@@ -113,6 +113,8 @@ export default function CollectionTable(props: CollectionTableProps) {
             options={isCollections ? actionOptions : contentActionOptions}
             allowNoSelection
             compact
+            alignRight
+            topOffset="calc(100% - 6px)"
             dropdownWidth={isCollections ? "196px" : "250px"}
             maxWidth={isCollections ? "196px" : "250px"}
             variant={SORT_DROPDOWN_VARIANT.SURFACE}

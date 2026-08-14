@@ -16,6 +16,7 @@ import { SelectedCheckIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
+import { useDropdownAutoScroll } from "@/hooks/useDropdownAutoScroll";
 
 export type OptionItem = {
   value: string;
@@ -28,6 +29,7 @@ type SharedProps = {
   options: OptionItem[];
   placeholder?: string;
   showSelectedIndicator?: boolean;
+  expandLayoutOnOpen?: boolean;
 };
 
 type SingleProps = SharedProps & {
@@ -49,7 +51,13 @@ type MultiProps = SharedProps & {
 type Props = SingleProps | MultiProps;
 
 export default function DropdownField(props: Props) {
-  const { label, options, placeholder, showSelectedIndicator = false } = props;
+  const {
+    label,
+    options,
+    placeholder,
+    showSelectedIndicator = false,
+    expandLayoutOnOpen = true,
+  } = props;
   const multi = props.multi === true;
   const onChange = props.onChange;
   const value = props.value;
@@ -158,6 +166,8 @@ export default function DropdownField(props: Props) {
     },
   });
 
+  useDropdownAutoScroll({ open, ref: containerRef });
+
   const renderTriggerValue = () =>
     multi
       ? renderSelectedValues
@@ -212,6 +222,7 @@ export default function DropdownField(props: Props) {
 
         {open && (
           <Menu
+            $inFlow={expandLayoutOnOpen}
             role="listbox"
             id={listboxId}
             data-lenis-prevent

@@ -7,6 +7,7 @@ import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import {
   RENTED_MODES,
+  COLLECTION_ACCESS_STATUS,
   formatExpiryText,
   formatExpiredText,
   RentedMode,
@@ -52,6 +53,7 @@ type ViewerDataResponse = {
     videos: BackendMediaItem[];
     audios: BackendMediaItem[];
     pdfs: BackendMediaItem[];
+    epubs?: BackendMediaItem[];
     webs?: BackendMediaItem[];
     collections: BackendCollectionItem[];
   };
@@ -72,6 +74,7 @@ function toMediaItem(
     author: item.creatorName ?? "",
     buyPrice: item.buyPrice,
     rentPrice: item.rentPrice,
+    accessStatus: COLLECTION_ACCESS_STATUS.RENTED,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
         ? formatExpiredText(item.rentExpiresAt, t)
@@ -91,6 +94,7 @@ function toCollectionItem(
     elementCount: item.elementCount ?? 0,
     coverSrc: resolvePublicMediaUrl(item.coverImageUrl) ?? "",
     buyPrice: item.buyPrice,
+    accessStatus: COLLECTION_ACCESS_STATUS.RENTED,
     rentExpiresAt: item.rentExpiresAt,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
@@ -117,15 +121,23 @@ export const useViewerRentedData = (
   const sources = useMemo(() => {
     const data = query.data?.data;
     if (!data)
-      return { collections: [], videos: [], audios: [], pdfs: [], webs: [] };
+      return {
+        collections: [],
+        videos: [],
+        audios: [],
+        pdfs: [],
+        epubs: [],
+        webs: [],
+      };
 
     return {
-      collections: data.collections.map((item) =>
-        toCollectionItem(item, mode, t),
-      ),
+      collections: data.collections
+        .map((item) => toCollectionItem(item, mode, t))
+        .filter((item) => item.elementCount > 0),
       videos: data.videos.map((item) => toMediaItem(item, mode, t)),
       audios: data.audios.map((item) => toMediaItem(item, mode, t)),
       pdfs: data.pdfs.map((item) => toMediaItem(item, mode, t)),
+      epubs: (data.epubs || []).map((item) => toMediaItem(item, mode, t)),
       webs: (data.webs || []).map((item) => toMediaItem(item, mode, t)),
     };
   }, [query.data, mode, t]);
