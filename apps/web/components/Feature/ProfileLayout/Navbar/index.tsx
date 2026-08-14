@@ -82,6 +82,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const {
     displayName,
     avatarUrl,
+    mobileCoverImageUrl,
     initial,
     isPublicView,
     publicCreatorId,
@@ -119,7 +120,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       <Brand href={brandHref}>
         <BrandAvatar>
           <CreatorChannelAvatar
-            avatarUrl={avatarUrl}
+            avatarUrl={avatarUrl || mobileCoverImageUrl}
             initial={initial}
             alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
             sizes="44px"
