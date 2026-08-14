@@ -181,6 +181,21 @@ export const PlanSelectRow = styled.div`
   margin-bottom: ${({ theme }) => theme.spacing(7.5)};
 `;
 
+export const SelectedPlanBadge = styled.div`
+  width: 100%;
+  max-width: 312px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 16px;
+  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-align: center;
+`;
+
 export const FieldGrid = styled.div`
   width: 100%;
   display: grid;

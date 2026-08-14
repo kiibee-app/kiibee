@@ -4,11 +4,8 @@ import type React from "react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
-import SortDropdown from "@/components/UI/SortDropdown";
-import {
-  PASSWORD_VISIBILITY_KEY,
-  SORT_DROPDOWN_VARIANT,
-} from "@/utils/Constants";
+import { MonoText } from "@/components/UI/Monotext";
+import { PASSWORD_VISIBILITY_KEY } from "@/utils/Constants";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { SUBSCRIPTION } from "@/utils/translationKeys";
 import { INPUT_TYPE } from "@/utils/ui";
@@ -18,6 +15,7 @@ import {
   FieldGrid,
   Form,
   PlanSelectRow,
+  SelectedPlanBadge,
   StyledInputField,
   TwoColumnRow,
   ValidationErrorContainer,
@@ -28,7 +26,6 @@ export default function SubscriptionDetailsForm() {
   const { t } = useTranslation();
   const {
     selectedPlan,
-    onSelectPlan,
     email,
     password,
     repeatPassword,
@@ -45,38 +42,23 @@ export default function SubscriptionDetailsForm() {
     isPasswordValid,
     passwordsMatch,
     validationError,
-    isPostPaymentSetup,
   } = useSubscriptionContext();
 
-  const planOptions = useMemo(
-    () =>
-      subscriptionPlans.map((plan) => ({
-        value: plan.id,
-        label: t(plan.nameKey),
-      })),
-    [t],
+  const currentPlan = useMemo(
+    () => subscriptionPlans.find((plan) => plan.id === selectedPlan),
+    [selectedPlan],
   );
+
+  const selectedPlanLabel = currentPlan
+    ? `${t(currentPlan.nameKey)} (${getPlanPriceLabel(currentPlan.id)})`
+    : "";
 
   return (
     <Form onSubmit={onSubmit}>
       <PlanSelectRow>
-        <SortDropdown
-          options={planOptions}
-          value={selectedPlan}
-          onChange={isPostPaymentSetup ? undefined : onSelectPlan}
-          renderSelectedLabel={(_, option) =>
-            option ? `${option.label} (${getPlanPriceLabel(option.value)})` : ""
-          }
-          renderOptionLabel={(option) => (
-            <span>
-              {option.label} ({getPlanPriceLabel(option.value)})
-            </span>
-          )}
-          width="100%"
-          maxWidth="312px"
-          variant={SORT_DROPDOWN_VARIANT.SUCCESS}
-          expandLayoutOnOpen={false}
-        />
+        <SelectedPlanBadge>
+          <MonoText $use="Body_Regular">{selectedPlanLabel}</MonoText>
+        </SelectedPlanBadge>
       </PlanSelectRow>
 
       <FieldGrid>
