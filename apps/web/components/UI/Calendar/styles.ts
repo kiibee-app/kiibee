@@ -93,7 +93,7 @@ export const DayButtonBase = styled.button`
     cursor: not-allowed;
 
     ${DayButton} {
-      color: ${({ theme }) => theme.colors.neutral.GRAY_300};
+      color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     }
   }
 `;

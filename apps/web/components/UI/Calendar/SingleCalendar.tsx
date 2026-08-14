@@ -27,7 +27,7 @@ import {
 } from "@/utils/formatDate";
 
 const renderDayContent = (iso: string, isSelected: boolean) => {
-  const dayNumber = Number(iso.split("-")[2]);
+  const dayNumber = fromISO(iso)?.getDate() ?? new Date(iso).getDate();
   return isSelected ? (
     <DaySelected>{dayNumber}</DaySelected>
   ) : (
