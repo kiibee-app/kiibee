@@ -54,6 +54,7 @@ export const allCreatorsService = async ({
 
     const hasImageSql = sql<number>`
       CASE 
+        WHEN ${contentAppearance.mobileCoverImageUrl} IS NOT NULL AND trim(${contentAppearance.mobileCoverImageUrl}) <> '' THEN 1
         WHEN ${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '' THEN 1
         WHEN ${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '' THEN 1
         ELSE 0
@@ -85,6 +86,7 @@ export const allCreatorsService = async ({
         name: creatorDisplayNameSql.as('name'),
         profileImageUrl: users.avatarUrl,
         coverImageUrl: creatorChannels.coverImageUrl,
+        mobileCoverImageUrl: contentAppearance.mobileCoverImageUrl,
         createdAt: users.createdAt,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
@@ -128,6 +130,7 @@ export const allCreatorsService = async ({
         users.createdAt,
         creatorChannels.name,
         creatorChannels.coverImageUrl,
+        contentAppearance.mobileCoverImageUrl,
         contentAppearance.layout,
         userContentCategory.categoryIds,
         featureCreators.creatorId,
@@ -161,6 +164,7 @@ export const allCreatorsService = async ({
         name: creator.name,
         profileImageUrl: creator.profileImageUrl,
         coverImageUrl: creator.coverImageUrl,
+        mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,
         createdAt: creator.createdAt,
         uploadCount: Number(creator.uploadCount ?? 0),
         subscriberCount: Number(creator.subscriberCount ?? 0),

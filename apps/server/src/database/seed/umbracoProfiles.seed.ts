@@ -77,6 +77,7 @@ type MappedProfile = {
   channelSlug: string;
   logoUrl: string | null;
   coverImageUrl: string | null;
+  mobileCoverImageUrl: string | null;
   headline: string | null;
   description: string | null;
   bio: string | null;
@@ -186,19 +187,6 @@ function imageUrl(value: unknown): string | null {
   }
 
   return resolveUmbracoMediaUrl((value as JsonRecord).src);
-}
-
-function isEnabled(value: unknown): boolean {
-  if (value === true || value === 1) {
-    return true;
-  }
-
-  if (typeof value === 'string') {
-    const normalized = value.trim().toLowerCase();
-    return normalized === '1' || normalized === 'true' || normalized === 'yes';
-  }
-
-  return false;
 }
 
 function ownerName(value: unknown): string | null {
@@ -385,9 +373,11 @@ function mapProfile(
   const name = truncate(profileName(profile), 200);
   const { firstName, lastName } = splitName(name);
   // Prefer real media src when present — Umbraco often keeps the file even
-  // when useCoverImage / useLogoImage is "0".
+  // when useCoverImage / useLogoImage is "0". Channel cover and mobile cover
+  // are separate assets (wide banner vs square card image).
   const logoUrl = imageUrl(layout.logoImage);
   const coverImageUrl = imageUrl(layout.coverImage);
+  const mobileCoverImageUrl = imageUrl(layout.coverImageMobile);
   const descriptionHtml =
     textOrNull(layout.descriptionHtml) ?? textOrNull(layout.description);
   const bio = stripHtml(descriptionHtml);
@@ -413,6 +403,7 @@ function mapProfile(
     channelSlug,
     logoUrl,
     coverImageUrl,
+    mobileCoverImageUrl,
     headline,
     description: description || null,
     bio,
@@ -604,12 +595,20 @@ export const seedUmbracoProfiles = async () => {
           ),
           layout: DEFAULT_CONTENT_APPEARANCE_LAYOUT,
           desktopCoverImageUrl: mapped.coverImageUrl,
-          mobileCoverImageUrl: null,
+          mobileCoverImageUrl: mapped.mobileCoverImageUrl,
           supportEmail: mapped.supportEmail ?? '',
           createdAt: now,
           updatedAt: now,
         })
-        .onConflictDoNothing({ target: contentAppearance.userId });
+        .onConflictDoUpdate({
+          target: contentAppearance.userId,
+          set: {
+            mobileCoverImageUrl:
+              mapped.mobileCoverImageUrl ??
+              sql`${contentAppearance.mobileCoverImageUrl}`,
+            updatedAt: now,
+          },
+        });
 
       await tx
         .insert(creatorPlans)
