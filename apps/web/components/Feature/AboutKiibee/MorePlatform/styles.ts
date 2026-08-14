@@ -48,7 +48,7 @@ export const Grid = styled.div`
 export const Card = styled.div`
   position: relative;
   width: 100%;
-  min-height: 18.35938rem;
+  aspect-ratio: 1 / 1;
   border-radius: 0.75rem;
   overflow: hidden;
   cursor: pointer;
@@ -72,14 +72,6 @@ export const Card = styled.div`
 
   &:hover img {
     transform: scale(1.08) !important;
-  }
-
-  ${media.tablet} {
-    min-height: 17.5rem;
-  }
-
-  ${media.mobileLg} {
-    min-height: 13rem;
   }
 `;
 

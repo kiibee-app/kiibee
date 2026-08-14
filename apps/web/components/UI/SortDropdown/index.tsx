@@ -36,6 +36,8 @@ type Props<T extends string = string> = {
   allowNoSelection?: boolean;
   variant?: SortDropdownVariant;
   expandLayoutOnOpen?: boolean;
+  alignRight?: boolean;
+  topOffset?: string;
 };
 
 function SortDropdown<T extends string = string>({
@@ -53,7 +55,9 @@ function SortDropdown<T extends string = string>({
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
   allowNoSelection = false,
-  expandLayoutOnOpen = true,
+  expandLayoutOnOpen = !trigger,
+  alignRight,
+  topOffset,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -143,6 +147,8 @@ function SortDropdown<T extends string = string>({
           $width={dropdownWidth}
           $variant={variant}
           $inFlow={expandLayoutOnOpen}
+          $alignRight={alignRight}
+          $topOffset={topOffset}
         >
           {visibleOptions.map((opt) => (
             <DropdownItem

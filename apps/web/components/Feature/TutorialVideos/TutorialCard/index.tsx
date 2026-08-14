@@ -1,6 +1,8 @@
 "use client";
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
@@ -56,6 +58,7 @@ function TutorialCard({
   collectionId = null,
   imagePriority = false,
 }: TutorialCardProps) {
+  const router = useRouter();
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
@@ -151,11 +154,7 @@ function TutorialCard({
 
     event.preventDefault();
     event.stopPropagation();
-    window.open(
-      getPublicCreatorProfilePath(tutorial.creatorId),
-      "_blank",
-      "noopener,noreferrer",
-    );
+    router.push(getPublicCreatorProfilePath(tutorial.creatorId));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
@@ -189,16 +188,15 @@ function TutorialCard({
         {tutorial.creator}
       </MonoText>
     ) : (
-      <a
+      <Link
         href={getPublicCreatorProfilePath(tutorial.creatorId)}
-        target="_blank"
-        rel="noopener noreferrer"
+        onClick={openCreatorProfile}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
           {tutorial.creator}
         </MonoText>
-      </a>
+      </Link>
     )
   ) : (
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
