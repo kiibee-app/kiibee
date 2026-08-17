@@ -20,6 +20,7 @@ export type ExploreCreatorItem = {
   slug: string | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
+  mobileCoverImageUrl: string | null;
   category: string | null;
   uploadCount: number;
   subscriberCount: number;
@@ -110,6 +111,11 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
             then nullif(${contentAppearance.desktopCoverImageUrl}, '')
           else nullif(${creatorChannels.coverImageUrl}, '')
         end`.as('cover_image_url'),
+      mobileCoverImageUrl: sql<
+        string | null
+      >`nullif(${contentAppearance.mobileCoverImageUrl}, '')`.as(
+        'mobile_cover_image_url',
+      ),
       category: sql<string | null>`null`.as('category'),
       uploadCount:
         sql<number>`coalesce(${uploadCounts.uploadCount}, 0)::int`.as(
@@ -156,6 +162,7 @@ const mapCreatorRow = (row: {
   slug: string | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
+  mobileCoverImageUrl: string | null;
   category: string | null;
   uploadCount: number;
   subscriberCount: number;
@@ -174,6 +181,7 @@ const mapCreatorRow = (row: {
   slug: row.slug,
   profileImageUrl: row.profileImageUrl,
   coverImageUrl: row.coverImageUrl,
+  mobileCoverImageUrl: row.mobileCoverImageUrl,
   category: row.category,
   uploadCount: row.uploadCount,
   subscriberCount: row.subscriberCount,
