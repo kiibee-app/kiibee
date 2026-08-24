@@ -1,0 +1,15 @@
+{
+  "requestedName": "Peter Peitersen",
+  "liveName": "Peter Peitersen",
+  "userId": 125039,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Jobmatch",
+      "id": 125046,
+      "status": "ok"
+    }
+  ]
+}

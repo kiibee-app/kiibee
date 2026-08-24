@@ -1,0 +1,20 @@
+{
+  "requestedName": "B Entertained",
+  "liveName": "B Entertained",
+  "userId": 55246,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Johnni Gade - Kogekone",
+      "id": 68863,
+      "status": "ok"
+    },
+    {
+      "name": "Conrad Molden - ÆØÅ",
+      "id": 100090,
+      "status": "ok"
+    }
+  ]
+}

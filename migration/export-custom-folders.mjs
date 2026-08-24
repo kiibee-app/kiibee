@@ -84,11 +84,26 @@ async function children(parentId) {
   }
 }
 
-function matchesUser(node, requested) {
-  const actual = clean(nameOf(node));
+function findUser(liveUsers, requested) {
   const wanted = clean(requested.replace(/\([^)]*@[^)]*\)/g, ""));
-  if (wanted === "puplika") return actual === "publika";
-  return actual === wanted || actual.startsWith(wanted) || wanted.startsWith(actual);
+  if (wanted === "puplika") {
+    const publika = liveUsers.find((node) => clean(nameOf(node)) === "publika");
+    return { user: publika || null, ambiguous: [] };
+  }
+  const exact = liveUsers.find((node) => clean(nameOf(node)) === wanted);
+  if (exact) return { user: exact, ambiguous: [] };
+  const prefix = liveUsers.filter((node) => {
+    const actual = clean(nameOf(node));
+    if (actual.startsWith(wanted)) return true;
+    return wanted.startsWith(actual) && Math.abs(wanted.length - actual.length) <= 3;
+  });
+  if (prefix.length === 1) return { user: prefix[0], ambiguous: [] };
+  return { user: null, ambiguous: prefix.map((node) => nameOf(node)) };
+}
+
+function isSkipped(userDir, liveName) {
+  const keys = new Set((config.skipProfileKeys || []).map(clean));
+  return keys.has(clean(userDir)) || keys.has(clean(liveName));
 }
 
 function runCollection(folderId, folderName, outDir) {
@@ -130,19 +145,29 @@ async function main() {
   for (const requested of config.users) {
     const selection = typeof requested === "string" ? { name: requested, folders: [] } : requested;
     if (!selection?.name) { console.log("[skipped] User entry has no name"); continue; }
-    const user = liveUsers.find((node) => matchesUser(node, selection.name));
+    const { user, ambiguous } = findUser(liveUsers, selection.name);
     if (!user) {
       const userDir = safe(selection.name);
-      const contentDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content");
-      const result = { requestedName: selection.name, liveName: null, userId: null, status: "missing", folderCount: 0, folders: [] };
-      await mkdir(contentDir, { recursive: true });
-      await safeWriteFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
+      const status = ambiguous.length ? "ambiguous" : "missing";
+      const result = { requestedName: selection.name, liveName: null, userId: null, status, folderCount: 0, folders: [], ambiguous: ambiguous.length ? ambiguous : undefined };
+      if (status === "missing") {
+        const contentDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content");
+        await mkdir(contentDir, { recursive: true });
+        await safeWriteFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
+      }
       report.missingUsers.push(selection.name);
       report.users.push(result);
-      console.log(`[missing] ${selection.name} (empty local content folder created)`);
+      console.log(`[${status}] ${selection.name}${ambiguous.length ? ` candidates=${ambiguous.join(", ")}` : " (empty local content folder created)"}`);
       continue;
     }
-    const userName = nameOf(user), userDir = safe(userName);
+    const userName = nameOf(user);
+    const userDir = safe(userName);
+    if (isSkipped(userDir, userName)) {
+      const result = { requestedName: selection.name, liveName: userName, userId: idOf(user), status: "skipped", reason: "skip list", folderCount: 0, folders: [] };
+      report.users.push(result);
+      console.log(`[skipped] ${userName}`);
+      continue;
+    }
     const directChildren = await children(idOf(user));
     const wantedFolders = (selection.folders || []).map(clean);
     const folders = directChildren.filter((node) => !SYSTEM_FOLDERS.has(clean(nameOf(node))) && (!wantedFolders.length || wantedFolders.includes(clean(nameOf(node)))));

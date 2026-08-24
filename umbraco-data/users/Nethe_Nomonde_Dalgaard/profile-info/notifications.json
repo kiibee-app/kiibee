@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Nethe Nomonde Dalgaard",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-08-24",
+  "frequency": "1",
+  "notificationsType": "1",
+  "emails": ""
+}

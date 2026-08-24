@@ -1,0 +1,15 @@
+{
+  "requestedName": "Johanne Kubert",
+  "liveName": "Johanne Kubert",
+  "userId": 126402,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "musical",
+      "id": 126409,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "requestedName": "Funktionel Neuroterapeut 2026",
+  "liveName": "Funktionel Neuroterapeut 2026",
+  "userId": 126039,
+  "status": "found",
+  "folderCount": 4,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Undervisningsmateriale",
+      "id": 127382,
+      "status": "ok"
+    },
+    {
+      "name": "Supplerende materiale",
+      "id": 127383,
+      "status": "ok"
+    },
+    {
+      "name": "Bevægekontrol Øvelser",
+      "id": 127384,
+      "status": "ok"
+    },
+    {
+      "name": "Cerebellum - Test",
+      "id": 127385,
+      "status": "ok"
+    }
+  ]
+}

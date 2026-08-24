@@ -1,0 +1,888 @@
+{
+  "publishDate": "2021-04-21 13:01:51",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "Collection",
+  "templateId": 1288,
+  "allowedTemplates": {
+    "Collection": "Collection"
+  },
+  "documentType": {
+    "alias": "collection",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-04 19:48:03",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Collection",
+    "id": 1079,
+    "udi": "umb://document-type/585919bd6e334da8bb62afdd3952d66e",
+    "icon": "icon-folder-close color-black",
+    "trashed": false,
+    "key": "585919bd-6e33-4da8-bb62-afdd3952d66e",
+    "parentId": -1,
+    "path": "-1,1079",
+    "metaData": {}
+  },
+  "urls": ["/kammas-kantine/introduktion-til-kram-din-krop-med-kål/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/f865a4822cdb40ee8f9c6cc91cd00cb3",
+  "contentTypeName": "Collection",
+  "isContainer": true,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 6,
+      "active": true,
+      "label": "Undersider",
+      "alias": "umbContainerView",
+      "properties": [
+        {
+          "label": "",
+          "description": null,
+          "view": "listview",
+          "config": {
+            "pageSize": "10",
+            "displayAtTabNumber": "1",
+            "orderBy": "orderID",
+            "orderDirection": "asc",
+            "includeProperties": [
+              {
+                "alias": "title",
+                "isSystem": 0,
+                "header": "Title"
+              },
+              {
+                "alias": "orderID",
+                "isSystem": 0,
+                "header": "Sort"
+              },
+              {
+                "alias": "hidden",
+                "isSystem": 0,
+                "header": "Hidden"
+              }
+            ],
+            "layouts": [
+              {
+                "name": "List",
+                "path": "views/propertyeditors/listview/layouts/list/list.html",
+                "icon": "icon-list",
+                "isSystem": 1,
+                "selected": true
+              },
+              {
+                "name": "Grid",
+                "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+                "icon": "icon-thumbnails-small",
+                "isSystem": 1,
+                "selected": true
+              }
+            ],
+            "bulkActionPermissions": {
+              "allowBulkPublish": true,
+              "allowBulkUnpublish": true,
+              "allowBulkCopy": true,
+              "allowBulkMove": false,
+              "allowBulkDelete": true
+            },
+            "tabName": null,
+            "entityType": "content"
+          },
+          "hideLabel": true,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": null,
+          "value": null,
+          "alias": "_umb_containerView",
+          "editor": null,
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Order ID",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771711,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "0",
+          "alias": "orderID",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "active": false,
+      "label": "Access & Price",
+      "alias": "Access & Price",
+      "properties": [
+        {
+          "label": "Access",
+          "description": null,
+          "view": "dropdownFlexible",
+          "config": {
+            "items": {
+              "57": {
+                "value": "Free",
+                "sortOrder": 1
+              },
+              "58": {
+                "value": "Payment",
+                "sortOrder": 2
+              },
+              "59": {
+                "value": "Code",
+                "sortOrder": 3
+              },
+              "60": {
+                "value": "Email",
+                "sortOrder": 4
+              }
+            },
+            "multiple": "0"
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771708,
+          "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+          "value": ["57"],
+          "alias": "access",
+          "editor": "Umbraco.DropDown.Flexible",
+          "isSensitive": false
+        },
+        {
+          "label": "Rental Price",
+          "description": null,
+          "view": "decimal",
+          "config": {
+            "min": null,
+            "step": null,
+            "max": null
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771709,
+          "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+          "value": "",
+          "alias": "rentalPrice",
+          "editor": "Umbraco.Decimal",
+          "isSensitive": false
+        },
+        {
+          "label": "Purchase Price",
+          "description": null,
+          "view": "decimal",
+          "config": {
+            "min": null,
+            "step": null,
+            "max": null
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771707,
+          "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+          "value": "",
+          "alias": "purchasePrice",
+          "editor": "Umbraco.Decimal",
+          "isSensitive": false
+        },
+        {
+          "label": "Code",
+          "description": null,
+          "view": "textarea",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771710,
+          "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+          "value": "",
+          "alias": "code",
+          "editor": "Umbraco.TextboxMultiple",
+          "isSensitive": false
+        },
+        {
+          "label": "Period",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771718,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "",
+          "alias": "period",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "active": false,
+      "label": "Layout",
+      "alias": "Layout",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771717,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Description",
+          "description": null,
+          "view": "textarea",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771712,
+          "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+          "value": "Velkommen til online kurser i Kammas Kantine.<br/><br/>Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop med fuld fokus på viden, sundhed og fantastiske retter - der er enkle at lave i dit eget køkken. <br/><br/>Det er også online kurser til dig, som elsker ny viden, men foretrækker at få den leveret, når det passer dig og din hverdag. Det er kurser til dig, der sætter pris på video af høj kvalitet, energi og vel fortalte historier.<br/><br/>Kurserne er for dig, der gerne vil:<br/><br/>- Tabe dig<br/>- Vide mere om den mad, du spiser<br/>- Vide hvordan du laver skøn mad, du kan nyde hver dag<br/>- Af med den insisterende sukkertrang<br/>- Stabilisere dit blodsukker <br/>- Give din krop og dine celler mulighed for at holde på både ungdom og et stærkt helbred<br/>",
+          "alias": "description",
+          "editor": "Umbraco.TextboxMultiple",
+          "isSensitive": false
+        },
+        {
+          "label": "Cover Image",
+          "description": null,
+          "view": "imagecropper",
+          "config": {
+            "focalPoint": {
+              "left": 0.5,
+              "top": 0.5
+            },
+            "src": "",
+            "crops": [
+              {
+                "alias": "Image",
+                "width": 2000,
+                "height": 600
+              }
+            ]
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771716,
+          "dataTypeId": "43f6a262-a006-4f31-8a19-52fb1177cd11",
+          "value": "",
+          "alias": "coverImage",
+          "editor": "Umbraco.ImageCropper",
+          "isSensitive": false
+        },
+        {
+          "label": "Fade Cover Image",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771715,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "0",
+          "alias": "fadeCoverImage",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Thumbnail Wide",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771714,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "1",
+          "alias": "thumbnailWide",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Column Amount",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 771713,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "1",
+          "alias": "columnAmount",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "active": false,
+      "label": "SiteMap",
+      "alias": "SiteMap",
+      "properties": [
+        {
+          "label": "siteMapOption",
+          "description": null,
+          "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+          "value": "",
+          "alias": "siteMapOption",
+          "editor": "MBran.SitemapXml",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "active": false,
+      "label": "SEO",
+      "alias": "SEO",
+      "properties": [
+        {
+          "label": "Title",
+          "description": "Max 64 characters",
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": "^.{0,64}$"
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "metaTitle",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Description",
+          "description": "Max 160 characters",
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": "^.{0,160}$"
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "metaDescription",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "",
+      "description": null,
+      "view": "listview",
+      "config": {
+        "pageSize": "10",
+        "displayAtTabNumber": "1",
+        "orderBy": "orderID",
+        "orderDirection": "asc",
+        "includeProperties": [
+          {
+            "alias": "title",
+            "isSystem": 0,
+            "header": "Title"
+          },
+          {
+            "alias": "orderID",
+            "isSystem": 0,
+            "header": "Sort"
+          },
+          {
+            "alias": "hidden",
+            "isSystem": 0,
+            "header": "Hidden"
+          }
+        ],
+        "layouts": [
+          {
+            "name": "List",
+            "path": "views/propertyeditors/listview/layouts/list/list.html",
+            "icon": "icon-list",
+            "isSystem": 1,
+            "selected": true
+          },
+          {
+            "name": "Grid",
+            "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+            "icon": "icon-thumbnails-small",
+            "isSystem": 1,
+            "selected": true
+          }
+        ],
+        "bulkActionPermissions": {
+          "allowBulkPublish": true,
+          "allowBulkUnpublish": true,
+          "allowBulkCopy": true,
+          "allowBulkMove": false,
+          "allowBulkDelete": true
+        },
+        "tabName": null,
+        "entityType": "content"
+      },
+      "hideLabel": true,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": null,
+      "value": null,
+      "alias": "_umb_containerView",
+      "editor": null,
+      "isSensitive": false
+    },
+    {
+      "label": "Order ID",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771711,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "0",
+      "alias": "orderID",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "Access",
+      "description": null,
+      "view": "dropdownFlexible",
+      "config": {
+        "items": {
+          "57": {
+            "value": "Free",
+            "sortOrder": 1
+          },
+          "58": {
+            "value": "Payment",
+            "sortOrder": 2
+          },
+          "59": {
+            "value": "Code",
+            "sortOrder": 3
+          },
+          "60": {
+            "value": "Email",
+            "sortOrder": 4
+          }
+        },
+        "multiple": "0"
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771708,
+      "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+      "value": ["57"],
+      "alias": "access",
+      "editor": "Umbraco.DropDown.Flexible",
+      "isSensitive": false
+    },
+    {
+      "label": "Rental Price",
+      "description": null,
+      "view": "decimal",
+      "config": {
+        "min": null,
+        "step": null,
+        "max": null
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771709,
+      "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+      "value": "",
+      "alias": "rentalPrice",
+      "editor": "Umbraco.Decimal",
+      "isSensitive": false
+    },
+    {
+      "label": "Purchase Price",
+      "description": null,
+      "view": "decimal",
+      "config": {
+        "min": null,
+        "step": null,
+        "max": null
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771707,
+      "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+      "value": "",
+      "alias": "purchasePrice",
+      "editor": "Umbraco.Decimal",
+      "isSensitive": false
+    },
+    {
+      "label": "Code",
+      "description": null,
+      "view": "textarea",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771710,
+      "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+      "value": "",
+      "alias": "code",
+      "editor": "Umbraco.TextboxMultiple",
+      "isSensitive": false
+    },
+    {
+      "label": "Period",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771718,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "",
+      "alias": "period",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771717,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Description",
+      "description": null,
+      "view": "textarea",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771712,
+      "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+      "value": "Velkommen til online kurser i Kammas Kantine.<br/><br/>Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop med fuld fokus på viden, sundhed og fantastiske retter - der er enkle at lave i dit eget køkken. <br/><br/>Det er også online kurser til dig, som elsker ny viden, men foretrækker at få den leveret, når det passer dig og din hverdag. Det er kurser til dig, der sætter pris på video af høj kvalitet, energi og vel fortalte historier.<br/><br/>Kurserne er for dig, der gerne vil:<br/><br/>- Tabe dig<br/>- Vide mere om den mad, du spiser<br/>- Vide hvordan du laver skøn mad, du kan nyde hver dag<br/>- Af med den insisterende sukkertrang<br/>- Stabilisere dit blodsukker <br/>- Give din krop og dine celler mulighed for at holde på både ungdom og et stærkt helbred<br/>",
+      "alias": "description",
+      "editor": "Umbraco.TextboxMultiple",
+      "isSensitive": false
+    },
+    {
+      "label": "Cover Image",
+      "description": null,
+      "view": "imagecropper",
+      "config": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "",
+        "crops": [
+          {
+            "alias": "Image",
+            "width": 2000,
+            "height": 600
+          }
+        ]
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771716,
+      "dataTypeId": "43f6a262-a006-4f31-8a19-52fb1177cd11",
+      "value": "",
+      "alias": "coverImage",
+      "editor": "Umbraco.ImageCropper",
+      "isSensitive": false
+    },
+    {
+      "label": "Fade Cover Image",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771715,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "0",
+      "alias": "fadeCoverImage",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Thumbnail Wide",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771714,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "1",
+      "alias": "thumbnailWide",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Column Amount",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 771713,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "1",
+      "alias": "columnAmount",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "siteMapOption",
+      "description": null,
+      "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+      "value": "",
+      "alias": "siteMapOption",
+      "editor": "MBran.SitemapXml",
+      "isSensitive": false
+    },
+    {
+      "label": "Title",
+      "description": "Max 64 characters",
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": "^.{0,64}$"
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "metaTitle",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Description",
+      "description": "Max 160 characters",
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": "^.{0,160}$"
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "metaDescription",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2021-04-21 13:01:51",
+  "createDate": "2021-04-14 22:47:09",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "collection",
+  "sortOrder": 7,
+  "name": "Introduktion til KRAM DIN KROP MED KÅL",
+  "id": 42955,
+  "udi": "umb://document/f865a4822cdb40ee8f9c6cc91cd00cb3",
+  "icon": "icon-folder-close color-black",
+  "trashed": false,
+  "key": "f865a482-2cdb-40ee-8f9c-6cc91cd00cb3",
+  "parentId": 41628,
+  "alias": null,
+  "path": "-1,1067,41628,42955",
+  "metaData": {}
+}

@@ -173,11 +173,25 @@ async function children(parentId) {
 function matchesUser(node, requested) {
   const actual = clean(node?.name ?? node?.Name);
   const wanted = clean(String(requested).replace(/\([^)]*@[^)]*\)/g, ''));
-  return (
-    actual === wanted ||
-    actual.startsWith(wanted) ||
-    wanted.startsWith(actual)
-  );
+  return actual === wanted;
+}
+
+function findUser(liveUsers, requested) {
+  const wanted = clean(String(requested).replace(/\([^)]*@[^)]*\)/g, ''));
+  const exact = liveUsers.find((node) => clean(node?.name ?? node?.Name) === wanted);
+  if (exact) return { user: exact, ambiguous: [] };
+  const prefix = liveUsers.filter((node) => {
+    const actual = clean(node?.name ?? node?.Name);
+    if (actual.startsWith(wanted)) return true;
+    return wanted.startsWith(actual) && Math.abs(wanted.length - actual.length) <= 3;
+  });
+  if (prefix.length === 1) return { user: prefix[0], ambiguous: [] };
+  return { user: null, ambiguous: prefix.map((node) => node?.name ?? node?.Name) };
+}
+
+function isSkipped(userDir, liveName) {
+  const keys = new Set((config.skipProfileKeys || []).map(clean));
+  return keys.has(clean(userDir)) || keys.has(clean(liveName));
 }
 
 function normalizeImage(value) {
@@ -271,11 +285,63 @@ async function exportProfile(userDir, liveName, userId) {
 
   const cover = files['layout.json'].coverImage;
   const logo = files['layout.json'].logoImage;
+  const mobile = files['layout.json'].coverImageMobile;
+  const imageSrcs = [cover, logo, mobile]
+    .map((value) => (typeof value === 'object' ? value?.src : value))
+    .filter((src) => typeof src === 'string' && src.trim());
+  const downloaded = await downloadProfileImages(userDir, imageSrcs);
+
   return {
     coverSrc: typeof cover === 'object' ? cover?.src : cover || null,
     logoSrc: typeof logo === 'object' ? logo?.src : logo || null,
     headline: files['layout.json'].headline || null,
+    downloadedImages: downloaded,
   };
+}
+
+function imageFileName(src) {
+  try {
+    const url = new URL(src, BASE_URL);
+    return path.basename(url.pathname) || 'image';
+  } catch {
+    return path.basename(String(src).split('?')[0]) || 'image';
+  }
+}
+
+async function downloadProfileImages(userDir, srcs) {
+  const unique = [...new Set(srcs.map((src) => String(src).trim()).filter(Boolean))];
+  const mediaDirs = [
+    path.join(config.outputDir || 'umbraco-data/users', userDir, 'profile-info', 'media'),
+    path.join(config.outputDir || 'umbraco-data/users', userDir, 'media'),
+  ];
+  for (const dir of mediaDirs) await mkdir(dir, { recursive: true });
+
+  const results = [];
+  for (const src of unique) {
+    const url = src.startsWith('http') ? src : `${BASE_URL}${src.startsWith('/') ? src : `/${src}`}`;
+    const fileName = imageFileName(src);
+    try {
+      const response = await fetch(url, {
+        headers: {
+          cookie: auth.cookie,
+          referer: `${BASE_URL}/umbraco`,
+          'x-umb-xsrf-token': auth.xsrfToken,
+        },
+      });
+      if (!response.ok) {
+        results.push({ src, status: response.status, error: true });
+        continue;
+      }
+      const buffer = Buffer.from(await response.arrayBuffer());
+      for (const dir of mediaDirs) {
+        await writeFile(path.join(dir, fileName), buffer);
+      }
+      results.push({ src, fileName, bytes: buffer.length });
+    } catch (error) {
+      results.push({ src, error: error.message });
+    }
+  }
+  return results;
 }
 
 async function localDirsWithProfileInfo() {
@@ -314,14 +380,16 @@ async function main() {
   };
 
   for (const requestedName of requested) {
-    const live = liveUsers.find((node) => matchesUser(node, requestedName));
+    const { user: live, ambiguous } = findUser(liveUsers, requestedName);
     if (!live) {
+      const status = ambiguous.length ? 'ambiguous' : 'missing';
       report.missingUsers.push(requestedName);
       report.users.push({
         requestedName,
-        status: 'missing',
+        status,
+        ambiguous: ambiguous.length ? ambiguous : undefined,
       });
-      console.log(`[missing] ${requestedName}`);
+      console.log(`[${status}] ${requestedName}${ambiguous.length ? ` candidates=${ambiguous.join(', ')}` : ''}`);
       continue;
     }
     const liveName = live.name ?? live.Name;
@@ -332,6 +400,18 @@ async function main() {
       localDirs.find((d) => clean(d) === clean(requestedName)) ||
       localDirs.find((d) => clean(d) === clean(liveName)) ||
       safe(liveName);
+    if (isSkipped(localHit, liveName)) {
+      report.users.push({
+        requestedName,
+        liveName,
+        userId,
+        userDir: localHit,
+        status: 'skipped',
+        reason: 'skip list',
+      });
+      console.log(`[skipped] ${liveName}`);
+      continue;
+    }
     try {
       const meta = await exportProfile(localHit, liveName, userId);
       report.users.push({

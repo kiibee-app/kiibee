@@ -1,783 +1,560 @@
 {
-  "startedAt": "2026-07-22T06:15:13.193Z",
+  "startedAt": "2026-08-24T14:41:53.844Z",
   "users": [
     {
-      "requestedName": "@lawn.dk",
-      "liveName": "@lawn.dk",
-      "userId": 79943,
-      "userDir": "@lawn.dk",
+      "requestedName": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "userDir": "FBI.DK",
       "status": "ok",
-      "coverSrc": "/media/4377/unavngivet.png",
-      "logoSrc": "/media/4376/skaermbillede-2023-04-09-kl-094110.png",
-      "headline": null
+      "coverSrc": "/media/3084/skaermbillede-2021-04-02-kl-145953.png",
+      "logoSrc": "/media/3073/fbi-logo.png",
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/3084/skaermbillede-2021-04-02-kl-145953.png",
+          "fileName": "skaermbillede-2021-04-02-kl-145953.png",
+          "bytes": 235205
+        },
+        {
+          "src": "/media/3073/fbi-logo.png",
+          "fileName": "fbi-logo.png",
+          "bytes": 66490
+        }
+      ]
     },
     {
-      "requestedName": "A5_Forlag_ApS",
-      "liveName": "A5 Forlag ApS",
-      "userId": 73339,
-      "userDir": "A5_Forlag_ApS",
-      "status": "ok",
-      "coverSrc": "/media/4185/2000x800-cover_2.png",
-      "logoSrc": "/media/4187/a5.png",
-      "headline": "DET' HELT VILDT "
-    },
-    {
-      "requestedName": "ADHDFOKUS",
-      "liveName": "ADHDFOKUS",
-      "userId": 75311,
-      "userDir": "ADHDFOKUS",
-      "status": "ok",
-      "coverSrc": "/media/4234/coverfoto_kiibee_.png",
-      "logoSrc": null,
-      "headline": "VIDEN OM ADD OG ADHD"
-    },
-    {
-      "requestedName": "Ahmed_Mittani",
-      "liveName": "Ahmed Mittani",
-      "userId": 115623,
-      "userDir": "Ahmed_Mittani",
+      "requestedName": "Lisathe Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "userDir": "Lisathe_Møller",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "Ali_El-Atbi",
-      "liveName": "Ali El-Atbi",
-      "userId": 113834,
-      "userDir": "Ali_El-Atbi",
+      "requestedName": "Bettina Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "userDir": "Bettina_Ramsing",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "Amin_Jensen_Entertainment",
-      "liveName": "Amin Jensen Entertainment",
-      "userId": 1902,
-      "userDir": "Amin_Jensen_Entertainment",
-      "status": "ok",
-      "coverSrc": "/media/1231/top.jpg",
-      "logoSrc": "/media/2601/logo_amin_jensen300.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Ana_Castellanos",
-      "liveName": "Ana Castellanos",
-      "userId": 113739,
-      "userDir": "Ana_Castellanos",
+      "requestedName": "Heidi Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "userDir": "Heidi_Stjerne",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "Anders_Fjelsted",
-      "liveName": "Anders Fjelsted",
-      "userId": 42509,
-      "userDir": "Anders_Fjelsted",
-      "status": "ok",
-      "coverSrc": "/media/3158/anders-fjelsted-final-top.png",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "Anne_brietzke",
-      "liveName": "Anne brietzke",
-      "userId": 112870,
-      "userDir": "Anne_brietzke",
-      "status": "ok",
-      "coverSrc": "/media/4968/unavngivet-2000-x-600-px.png",
-      "logoSrc": "/media/4967/annes-have-2.png",
-      "headline": null
-    },
-    {
-      "requestedName": "APHypnose",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Britta_Koch_-_Qigong",
-      "liveName": "Britta Koch - Qigong",
-      "userId": 19329,
-      "userDir": "Britta_Koch_-_Qigong",
-      "status": "ok",
-      "coverSrc": "/media/2236/touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "CamComm",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Carsten_Bang",
-      "liveName": "Carsten Bang",
-      "userId": 42166,
-      "userDir": "Carsten_Bang",
-      "status": "ok",
-      "coverSrc": "/media/3103/carsten-bang.png",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "Cathrine_Guldberg",
-      "liveName": "Cathrine Guldberg",
-      "userId": 1841,
-      "userDir": "Cathrine_Guldberg",
-      "status": "ok",
-      "coverSrc": "/media/1190/cathrine-guldbjerg.png",
-      "logoSrc": "/media/1188/facebook.jpg",
-      "headline": "Velkommen til Guldberg Adaptive Training "
-    },
-    {
-      "requestedName": "Chief1",
-      "liveName": "Chief1",
-      "userId": 23691,
-      "userDir": "Chief1",
-      "status": "ok",
-      "coverSrc": "/media/2660/kiibee-top.jpg",
-      "logoSrc": "/media/2696/cheif1.png",
-      "headline": "Ska´ vi give hinanden en gave? Stream min nye film her!"
-    },
-    {
-      "requestedName": "Comedy-TV",
-      "liveName": "Comedy-TV",
-      "userId": 39727,
-      "userDir": "Comedy-TV",
-      "status": "ok",
-      "coverSrc": "/media/3027/comedy-top-final.png",
-      "logoSrc": "/media/3028/nyt-comedy-tv.png",
-      "headline": "Få dit yndlings comedy show fra Danmarks sjoveste komikere"
-    },
-    {
-      "requestedName": "Damkjær_Medier",
-      "liveName": "Damkjær Medier",
-      "userId": 94485,
-      "userDir": "Damkjær_Medier",
-      "status": "ok",
-      "coverSrc": "/media/4530/kiibee-banner-til-kurser-damkjaer-medier-2000-x-600-px.png",
-      "logoSrc": "/media/4529/black_icon.png",
-      "headline": "Slip bekymringerne omkring din markedsføring"
-    },
-    {
-      "requestedName": "Dan_Andersen",
-      "liveName": "Dan Andersen",
-      "userId": 42292,
-      "userDir": "Dan_Andersen",
-      "status": "ok",
-      "coverSrc": "/media/3124/dan-anders.png",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "Diy_for_børn",
-      "status": "missing"
-    },
-    {
-      "requestedName": "ElStudio",
-      "status": "missing"
-    },
-    {
-      "requestedName": "EvaFogNoer",
-      "liveName": "EvaFogNoer",
-      "userId": 57261,
-      "userDir": "EvaFogNoer",
-      "status": "ok",
-      "coverSrc": "/media/4035/smartgurlz_mobile-1-9.jpg",
-      "logoSrc": "/media/4034/efn_logo_long_kiibee.png",
-      "headline": "Materiale til det digitale liv"
-    },
-    {
-      "requestedName": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
-      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
-      "userId": 91260,
-      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
-      "status": "ok",
-      "coverSrc": "/media/4488/logo.png",
-      "logoSrc": "/media/4487/logo.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Find_dig_ikke_i_smerte",
-      "liveName": "Find dig ikke i smerte",
-      "userId": 13618,
-      "userDir": "Find_dig_ikke_i_smerte",
-      "status": "ok",
-      "coverSrc": "/media/1818/coverbillede.png",
-      "logoSrc": "/media/1819/massoeruddannelser_v_mona-kyed_500.png",
-      "headline": "Velkommen til Wellness Online Uddannelse "
-    },
-    {
-      "requestedName": "Fonden_Eventyrteatret",
-      "liveName": "Fonden Eventyrteatret",
-      "userId": 96011,
-      "userDir": "Fonden_Eventyrteatret",
-      "status": "ok",
-      "coverSrc": "/media/4594/ny-banner-27-juni-2024-2.jpg",
-      "logoSrc": "/media/4593/eventyrteatret-2013_gulguld_med-overgang_srgb.png",
-      "headline": "Eventyrteatrets musicals"
-    },
-    {
-      "requestedName": "Foreningen_Danske_Revisorer",
-      "liveName": "Foreningen Danske Revisorer",
-      "userId": 65131,
-      "userDir": "Foreningen_Danske_Revisorer",
-      "status": "ok",
-      "coverSrc": "/media/4097/fdr-logo-blackred-rgb.png",
-      "logoSrc": "/media/4096/fdr-logo-blackred-rgb.png",
-      "headline": "FDR - Foreningen Danske Revisorer"
-    },
-    {
-      "requestedName": "Forlaget_AKKA",
-      "liveName": "Forlaget AKKA",
-      "userId": 96549,
-      "userDir": "Forlaget_AKKA",
-      "status": "ok",
-      "coverSrc": "/media/4645/coverbillede.jpg",
-      "logoSrc": "/media/4640/akka-logo.jpeg",
-      "headline": "Velkommen til Hammel – kanten"
-    },
-    {
-      "requestedName": "Fysioteamet",
-      "liveName": "Fysioteamet",
-      "userId": 1790,
-      "userDir": "Fysioteamet",
-      "status": "ok",
-      "coverSrc": "/media/1165/massage-cover-kiibee-2.png",
-      "logoSrc": "/media/1620/ft_logo_tag_pos.gif",
-      "headline": "Fysioteamet"
-    },
-    {
-      "requestedName": "Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Gottleben",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Granli_Velvære",
-      "liveName": "Granli Velvære",
-      "userId": 18838,
-      "userDir": "Granli_Velvære",
-      "status": "ok",
-      "coverSrc": "/media/2233/krop-og-sind-forside.png",
-      "logoSrc": "/media/2220/gv_logo.jpg",
-      "headline": "Velkommen til Granli Velvære"
-    },
-    {
-      "requestedName": "gymstream",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Hundedamen",
-      "liveName": "Hundedamen",
-      "userId": 21046,
-      "userDir": "Hundedamen",
-      "status": "ok",
-      "coverSrc": "/media/2535/img_9547-cropped-a-lot.jpg",
-      "logoSrc": "/media/2537/logo.jpg",
-      "headline": "Online kurser i hundetræning "
-    },
-    {
-      "requestedName": "Ilona_Margibell",
-      "liveName": "Ilona Margibell",
-      "userId": 25340,
-      "userDir": "Ilona_Margibell",
-      "status": "ok",
-      "coverSrc": "/media/2732/heltinden_original_lys.jpg",
-      "logoSrc": "/media/2731/logo_ny_pb-mere-farve.png",
-      "headline": "Gavekort til bogen \"Jordomrejse med engle og dæmoner\""
-    },
-    {
-      "requestedName": "Jacob_Taarnhøj",
-      "liveName": "Jacob Taarnhøj",
-      "userId": 75778,
-      "userDir": "Jacob_Taarnhøj",
-      "status": "ok",
-      "coverSrc": "/media/4248/jacob-taarnhoej-cover.png",
-      "logoSrc": "/media/4250/skaermbillede-2022-12-09-kl-100644.png",
-      "headline": "Jacob Taarnhøj - stort komisk talent"
-    },
-    {
-      "requestedName": "Jacob_Wilson",
-      "liveName": "Jacob Wilson",
-      "userId": 46212,
-      "userDir": "Jacob_Wilson",
-      "status": "ok",
-      "coverSrc": "/media/3501/wilson-top-web.png",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "Janni_-_Køreskole_og_Terapi",
-      "liveName": "Janni - Køreskole og Terapi",
-      "userId": 100586,
-      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "requestedName": "Lea Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "userDir": "Lea_Nielsen",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "Johnny_Logan",
-      "liveName": "Johnny Logan",
-      "userId": 42410,
-      "userDir": "Johnny_Logan",
-      "status": "ok",
-      "coverSrc": "/media/3121/logan-kiibee-2000x600-banner.jpg",
-      "logoSrc": "/media/3122/johnny-logan-logo.png",
-      "headline": null
-    },
-    {
-      "requestedName": "jwtc",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Karina_Eckhausen",
-      "liveName": "Karina Eckhausen",
-      "userId": 95577,
-      "userDir": "Karina_Eckhausen",
-      "status": "ok",
-      "coverSrc": "/media/4564/img_0346.png",
-      "logoSrc": null,
-      "headline": "Smutvejen til at få motivationen igen!"
-    },
-    {
-      "requestedName": "Kiibee",
-      "liveName": "Kiibee",
-      "userId": 1812,
-      "userDir": "Kiibee",
-      "status": "ok",
-      "coverSrc": "/media/1171/card-coffee-cup-1449082.jpg",
-      "logoSrc": null,
-      "headline": "Velkommen til din kanal for digitalt indhold  "
-    },
-    {
-      "requestedName": "Kiibee_Comedy",
-      "liveName": "Kiibee",
-      "userId": 1812,
-      "userDir": "Kiibee_Comedy",
-      "status": "ok",
-      "coverSrc": "/media/1171/card-coffee-cup-1449082.jpg",
-      "logoSrc": null,
-      "headline": "Velkommen til din kanal for digitalt indhold  "
-    },
-    {
-      "requestedName": "Kiibee_hjælpe_videoer",
-      "liveName": "Kiibee",
-      "userId": 1812,
-      "userDir": "Kiibee_hjælpe_videoer",
-      "status": "ok",
-      "coverSrc": "/media/1171/card-coffee-cup-1449082.jpg",
-      "logoSrc": null,
-      "headline": "Velkommen til din kanal for digitalt indhold  "
-    },
-    {
-      "requestedName": "Kitnoergaard.dk",
-      "liveName": "Kitnoergaard.dk",
-      "userId": 93855,
-      "userDir": "Kitnoergaard.dk",
-      "status": "ok",
-      "coverSrc": "/media/4510/banner-til-hjemmeside.jpg",
-      "logoSrc": "/media/4509/legepaletten-uden-kanter.jpg",
-      "headline": "Legepaletten"
-    },
-    {
-      "requestedName": "Kort_&_Dokumentar_Filmskolen",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Kryptovaluta_for_kvinder",
-      "liveName": "Kryptovaluta for kvinder",
-      "userId": 42880,
-      "userDir": "Kryptovaluta_for_kvinder",
-      "status": "ok",
-      "coverSrc": "/media/3169/fb-cover-kfk.png",
-      "logoSrc": "/media/3168/skaermbillede-2021-04-14-kl-131051.png",
-      "headline": "Kursusportal for Kryptovaluta for kvinder"
-    },
-    {
-      "requestedName": "Langes_Entertainment_ApS",
-      "liveName": "Langes Entertainment ApS",
-      "userId": 31200,
-      "userDir": "Langes_Entertainment_ApS",
-      "status": "ok",
-      "coverSrc": "/media/2893/den-brede-lange-bremen.jpeg",
-      "logoSrc": "/media/2906/skaermbillede-2021-02-01-kl-174547.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Letsmove_-_Motion_i_Centrum",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Lev_Dit_Liv_NU",
-      "liveName": "Lev Dit Liv NU",
-      "userId": 97418,
-      "userDir": "Lev_Dit_Liv_NU",
-      "status": "ok",
-      "coverSrc": "/media/4657/picsart_24-06-07_12-19-42-102.jpg",
-      "logoSrc": "/media/4656/picsart_24-04-26_14-31-26-387.png",
-      "headline": "Lev Dit Liv NU"
-    },
-    {
-      "requestedName": "Lindhardt_A-S",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Line_JL_Feel_the_Heal",
-      "liveName": "Line JL Feel the Heal",
-      "userId": 78467,
-      "userDir": "Line_JL_Feel_the_Heal",
-      "status": "ok",
-      "coverSrc": null,
-      "logoSrc": "/media/4363/colorful-kids-playground-logo.png",
-      "headline": "SkoleRo"
-    },
-    {
-      "requestedName": "M.C._Caffe",
-      "liveName": "M.C. Caffe",
-      "userId": 50894,
-      "userDir": "M.C._Caffe",
-      "status": "ok",
-      "coverSrc": "/media/3708/mccaffe-3-of-61-kiibee.jpg",
-      "logoSrc": "/media/3707/mc-caffe_final_300.png",
-      "headline": "Rap Med M.C. Caffe"
-    },
-    {
-      "requestedName": "Maria_Birch_Rasmussen",
-      "liveName": "Maria Birch Rasmussen",
-      "userId": 123123,
-      "userDir": "Maria_Birch_Rasmussen",
+      "requestedName": "Johanne Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "userDir": "Johanne_Kubert",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "mariebrixtofte",
-      "liveName": "mariebrixtofte",
-      "userId": 22550,
-      "userDir": "mariebrixtofte",
-      "status": "ok",
-      "coverSrc": "/media/2614/kiibee-top-stoet.png",
-      "logoSrc": "/media/2625/brix-logo-test-final.png",
-      "headline": "Foredragsfilm: Marie Brixtofte - \"Barn af en alkoholiker\""
-    },
-    {
-      "requestedName": "Maximilian_Nielsen",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Microphone Entertainment",
-      "liveName": "Microphone Entertainment",
-      "userId": 1894,
-      "userDir": "Microphone_Entertainment",
-      "status": "ok",
-      "coverSrc": "/media/2605/mick-2-retina.png",
-      "logoSrc": "/media/1720/microphone.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Mirna_Barbar",
-      "liveName": "Mirna Barbar",
-      "userId": 119675,
-      "userDir": "Mirna_Barbar",
-      "status": "ok",
-      "coverSrc": "/media/5135/billede333.jpg",
-      "logoSrc": null,
-      "headline": "Skab dig selv"
-    },
-    {
-      "requestedName": "Morten_Bonde_Development",
-      "liveName": "Morten Bonde Development",
-      "userId": 11654,
-      "userDir": "Morten_Bonde_Development",
-      "status": "ok",
-      "coverSrc": "/media/1850/kiibee-forside.jpg",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "networker",
-      "liveName": "networker",
-      "userId": 41818,
-      "userDir": "networker",
-      "status": "ok",
-      "coverSrc": "/media/3053/jenn-evelyn-ann-uydoe_ayjqs-unsplash.jpg",
-      "logoSrc": null,
-      "headline": null
-    },
-    {
-      "requestedName": "NSCCM_ApS",
-      "liveName": "NSCCM ApS",
-      "userId": 50069,
-      "userDir": "NSCCM_ApS",
+      "requestedName": "Kristian Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "userDir": "Kristian_Kjaer",
       "status": "ok",
       "coverSrc": null,
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "NuVenue",
-      "status": "missing"
-    },
-    {
-      "requestedName": "Omar_Marzouk",
-      "liveName": "Omar Marzouk",
-      "userId": 46871,
-      "userDir": "Omar_Marzouk",
+      "requestedName": "Funktionel Neuroterapeut 2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "userDir": "Funktionel_Neuroterapeut_2026",
       "status": "ok",
-      "coverSrc": "/media/3542/omar-topgrafik.png",
+      "coverSrc": "/media/5187/kiibee-coverbillede.jpg",
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5187/kiibee-coverbillede.jpg",
+          "fileName": "kiibee-coverbillede.jpg",
+          "bytes": 335872
+        }
+      ]
     },
     {
-      "requestedName": "Pædagogisk_Psykologisk_Tidsskrift",
-      "liveName": "Pædagogisk Psykologisk Tidsskrift",
-      "userId": 16702,
-      "userDir": "Pædagogisk_Psykologisk_Tidsskrift",
+      "requestedName": "Jesper Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "userDir": "Jesper_Jensen",
       "status": "ok",
-      "coverSrc": "/media/1910/logo-streamer-2000-6000.jpg",
-      "logoSrc": "/media/1909/logo-streamer-2000-600.jpg",
-      "headline": "Køb enkeltartikler - \"Pædagogisk Psykologisk Tidsskrift\" "
+      "coverSrc": "/media/5180/cover1.png",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5180/cover1.png",
+          "fileName": "cover1.png",
+          "bytes": 2525388
+        }
+      ]
     },
     {
-      "requestedName": "Per_Vers",
-      "liveName": "Per Vers",
-      "userId": 91682,
-      "userDir": "Per_Vers",
-      "status": "ok",
-      "coverSrc": "/media/4494/biografitop3.jpeg",
-      "logoSrc": "/media/4493/pertv-logo-2.png",
-      "headline": "KNUST KUNST - EN VINYLVISION"
-    },
-    {
-      "requestedName": "Publika",
-      "liveName": "Publika",
-      "userId": 101314,
-      "userDir": "Publika",
-      "status": "ok",
-      "coverSrc": "/media/4782/budget.jpg",
-      "logoSrc": "/media/4781/6.gif",
-      "headline": "Nemt bilbudget"
-    },
-    {
-      "requestedName": "RauJensen",
-      "liveName": "RauJensen",
-      "userId": 99738,
-      "userDir": "RauJensen",
-      "status": "ok",
-      "coverSrc": "/media/4756/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-2.png",
-      "logoSrc": "/media/4772/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-4.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Red_Barnet",
-      "liveName": "Red Barnet",
-      "userId": 46713,
-      "userDir": "Red_Barnet",
+      "requestedName": "Marner Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "userDir": "Marner_Analytics",
       "status": "ok",
       "coverSrc": null,
-      "logoSrc": "/media/3507/redbarnetlogo_17.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Rikke_Brünner",
-      "liveName": "Rikke Brünner ",
-      "userId": 67371,
-      "userDir": "Rikke_Brünner",
-      "status": "ok",
-      "coverSrc": "/media/4119/rikke-47.jpg",
-      "logoSrc": "/media/4118/logo_simpelt.jpg",
-      "headline": "Rikke Brünner Coaching "
-    },
-    {
-      "requestedName": "Selvvær(dk)stedet",
-      "liveName": "Selvvær(dk)stedet",
-      "userId": 16444,
-      "userDir": "Selvvær(dk)stedet",
-      "status": "ok",
-      "coverSrc": "/media/1897/received_792741987927399.jpeg",
       "logoSrc": null,
-      "headline": "Selvvær(dk)stedet"
+      "headline": null,
+      "downloadedImages": []
     },
     {
-      "requestedName": "SigneNeslein.dk",
-      "liveName": "SigneNeslein.dk",
-      "userId": 27108,
-      "userDir": "SigneNeslein.dk",
+      "requestedName": "Peter Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "userDir": "Peter_Peitersen",
       "status": "ok",
-      "coverSrc": "/media/2783/signe-neslein.png",
-      "logoSrc": "/media/2786/neslein-4.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Simon_Talbot",
-      "liveName": "Simon Talbot",
-      "userId": 77648,
-      "userDir": "Simon_Talbot",
-      "status": "ok",
-      "coverSrc": "/media/4338/simon-talbot-cover-2.png",
+      "coverSrc": "/media/5188/kiibee-cover.png",
       "logoSrc": null,
-      "headline": null
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5188/kiibee-cover.png",
+          "fileName": "kiibee-cover.png",
+          "bytes": 44280
+        }
+      ]
     },
     {
-      "requestedName": "slank_og_wellness",
-      "liveName": "slank og wellness",
-      "userId": 2072,
-      "userDir": "slank_og_wellness",
+      "requestedName": "Funktionel Neuro Terapeut (1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
       "status": "ok",
-      "coverSrc": "/media/1343/slank-og-wellness-1.png",
-      "logoSrc": "/media/1342/kiibee-slank-wellness.png",
-      "headline": "Velkommen til Slank og wellness vidensbibliotek"
-    },
-    {
-      "requestedName": "Stopsygefravær.nu",
-      "liveName": "Stopsygefravær.nu",
-      "userId": 14217,
-      "userDir": "Stopsygefravær.nu",
-      "status": "ok",
-      "coverSrc": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
-      "logoSrc": "/media/1833/logo-stopsygefravaer-3.png",
-      "headline": "Velkommen til online ydelser fra Stopsygefravær.nu"
-    },
-    {
-      "requestedName": "Sundt_indtag",
-      "liveName": "Sundt indtag",
-      "userId": 2679,
-      "userDir": "Sundt_indtag",
-      "status": "ok",
-      "coverSrc": "/media/1554/medlemsklub-bliv.jpg",
-      "logoSrc": "/media/1553/si.jpg",
-      "headline": "Mangler du motivation til mere bevægelse?"
-    },
-    {
-      "requestedName": "TANIA_ELLIS_-_The_Social_Business_Company",
-      "liveName": "TANIA ELLIS - The Social Business Company",
-      "userId": 1957,
-      "userDir": "TANIA_ELLIS_-_The_Social_Business_Company",
-      "status": "ok",
-      "coverSrc": "/media/1418/kiibee-cover.png",
-      "logoSrc": "/media/1417/stort-logo.jpg",
-      "headline": "Videos from The Social Business Club "
-    },
-    {
-      "requestedName": "Tegnestuen_Undertryk",
-      "liveName": "Tegnestuen Undertryk",
-      "userId": 18467,
-      "userDir": "Tegnestuen_Undertryk",
-      "status": "ok",
-      "coverSrc": "/media/2207/touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
+      "coverSrc": "/media/4957/hjernebilleder-til-a4-opslag-kopi.jpg",
       "logoSrc": null,
-      "headline": "Bøger og film"
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/4957/hjernebilleder-til-a4-opslag-kopi.jpg",
+          "fileName": "hjernebilleder-til-a4-opslag-kopi.jpg",
+          "bytes": 3674981
+        }
+      ]
     },
     {
-      "requestedName": "Thomas_Hartmann",
-      "liveName": "Thomas Hartmann",
-      "userId": 41761,
-      "userDir": "Thomas_Hartmann",
+      "requestedName": "Diana Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "userDir": "Diana_Myjak",
       "status": "ok",
-      "coverSrc": "/media/3049/thomas-hartmann.png",
-      "logoSrc": "/media/3056/thomas-logo.png",
-      "headline": null
-    },
-    {
-      "requestedName": "Thomas_Wivel",
-      "liveName": "Thomas Wivel",
-      "userId": 42475,
-      "userDir": "Thomas_Wivel",
-      "status": "ok",
-      "coverSrc": "/media/3134/thomas-wivel.png",
+      "coverSrc": "/media/5128/ai.png",
       "logoSrc": null,
-      "headline": null
+      "headline": "Hverdags struktur med ChatGPT",
+      "downloadedImages": [
+        {
+          "src": "/media/5128/ai.png",
+          "fileName": "ai.png",
+          "bytes": 1695675
+        }
+      ]
     },
     {
-      "requestedName": "Tine_Rask_Mathiesen",
-      "liveName": "Tine Rask Mathiesen",
-      "userId": 115439,
-      "userDir": "Tine_Rask_Mathiesen",
+      "requestedName": "Laura Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "userDir": "Laura_Nielsen",
       "status": "ok",
-      "coverSrc": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-      "logoSrc": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-      "headline": "Nissebreve 50kr pdf "
-    },
-    {
-      "requestedName": "TjelesVenner",
-      "liveName": "TjelesVenner",
-      "userId": 50462,
-      "userDir": "TjelesVenner",
-      "status": "ok",
-      "coverSrc": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+      "coverSrc": null,
       "logoSrc": null,
-      "headline": "Stream eller download film, bøger, Apps & meditationer"
+      "headline": "Bareosto",
+      "downloadedImages": []
     },
     {
-      "requestedName": "Tobias_Dybvad",
-      "liveName": "Tobias Dybvad",
-      "userId": 42275,
-      "userDir": "Tobias_Dybvad",
+      "requestedName": "Dahls regnskabsservice ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "userDir": "Dahls_regnskabsservice_ApS",
       "status": "ok",
-      "coverSrc": "/media/3125/tobias-dybvad-prange.png",
+      "coverSrc": "/media/5103/skaermbillede-2026-01-12-232255.png",
+      "logoSrc": "/media/5102/dahls-regnskabsservice-logo.jpg",
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5103/skaermbillede-2026-01-12-232255.png",
+          "fileName": "skaermbillede-2026-01-12-232255.png",
+          "bytes": 719254
+        },
+        {
+          "src": "/media/5102/dahls-regnskabsservice-logo.jpg",
+          "fileName": "dahls-regnskabsservice-logo.jpg",
+          "bytes": 44476
+        }
+      ]
+    },
+    {
+      "requestedName": "Nethe Nomonde Dalgaarda",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "status": "ok",
+      "coverSrc": "/media/5096/front-danish-cover-ebook.jpg",
       "logoSrc": null,
-      "headline": null
+      "headline": "Vil I også lære de 10 vigtigste færdselsregler for cyklister",
+      "downloadedImages": [
+        {
+          "src": "/media/5096/front-danish-cover-ebook.jpg",
+          "fileName": "front-danish-cover-ebook.jpg",
+          "bytes": 1357917
+        },
+        {
+          "src": "/media/5098/front-danish-cover-ebook.jpg",
+          "fileName": "front-danish-cover-ebook.jpg",
+          "bytes": 1357917
+        }
+      ]
     },
     {
-      "requestedName": "Uffe_Holm",
-      "liveName": "Uffe Holm",
-      "userId": 1879,
-      "userDir": "Uffe_Holm",
+      "requestedName": "Akupunktør Stine Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "userDir": "Akupunktør_Stine_Vogel",
       "status": "ok",
-      "coverSrc": "/media/1221/uffe-cover-1.png",
-      "logoSrc": "/media/1618/uh_logo.png",
-      "headline": null
+      "coverSrc": "/media/5093/blide-akupressur-guides-til-egenomsorg-i-hverdagen-skabt-til-dig-der-oensker-ro-balance-og-kropsforstaaelse-udviklet-af-rab-uddannet-akupunktoer-1.png",
+      "logoSrc": "/media/5092/yin-yang-akupunktur-logo-design.png",
+      "headline": "Akupunktør Stine Vogel",
+      "downloadedImages": [
+        {
+          "src": "/media/5093/blide-akupressur-guides-til-egenomsorg-i-hverdagen-skabt-til-dig-der-oensker-ro-balance-og-kropsforstaaelse-udviklet-af-rab-uddannet-akupunktoer-1.png",
+          "fileName": "blide-akupressur-guides-til-egenomsorg-i-hverdagen-skabt-til-dig-der-oensker-ro-balance-og-kropsforstaaelse-udviklet-af-rab-uddannet-akupunktoer-1.png",
+          "bytes": 111152
+        },
+        {
+          "src": "/media/5092/yin-yang-akupunktur-logo-design.png",
+          "fileName": "yin-yang-akupunktur-logo-design.png",
+          "bytes": 2323740
+        }
+      ]
     },
     {
-      "requestedName": "VideoVisionær_kursus",
-      "liveName": "VideoVisionær kursus",
-      "userId": 100020,
-      "userDir": "VideoVisionær_kursus",
+      "requestedName": "Olivia Hvoslef Mejer Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
       "status": "ok",
-      "coverSrc": "/media/4761/topbanner-kiibee-optimeret.jpg",
-      "logoSrc": "/media/4760/black_horizontal.png",
-      "headline": "Slip bekymringerne omkring din markedsføring"
+      "coverSrc": "/media/4883/img_6999.jpeg",
+      "logoSrc": "/media/4882/img_6999.jpeg",
+      "headline": "My booty program",
+      "downloadedImages": [
+        {
+          "src": "/media/4883/img_6999.jpeg",
+          "fileName": "img_6999.jpeg",
+          "bytes": 196687
+        },
+        {
+          "src": "/media/4882/img_6999.jpeg",
+          "fileName": "img_6999.jpeg",
+          "bytes": 590061
+        }
+      ]
     },
     {
-      "requestedName": "Vital_New_Software_ApS",
-      "liveName": "Vital New Software ApS",
-      "userId": 62344,
-      "userDir": "Vital_New_Software_ApS",
+      "requestedName": "SkoleRo ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "userDir": "SkoleRo_ApS",
       "status": "ok",
-      "coverSrc": "/media/4208/kiibee-test-2000x600.jpg",
+      "coverSrc": "/media/4952/skolero-logo-1200-x-600-px.png",
       "logoSrc": null,
-      "headline": null
+      "headline": "SkoleRo",
+      "downloadedImages": [
+        {
+          "src": "/media/4952/skolero-logo-1200-x-600-px.png",
+          "fileName": "skolero-logo-1200-x-600-px.png",
+          "bytes": 27383
+        }
+      ]
     },
     {
-      "requestedName": "You_Consulting",
-      "liveName": "You Consulting",
-      "userId": 78110,
-      "userDir": "You_Consulting",
+      "requestedName": "B Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "userDir": "B_Entertained",
       "status": "ok",
-      "coverSrc": "/media/4351/you-do-you.jpg",
-      "logoSrc": "/media/4350/skaermbillede-2023-02-24-kl-193531.png",
-      "headline": "You Do You"
+      "coverSrc": "/media/3912/background1.jpg",
+      "logoSrc": "/media/4133/download.png",
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/3912/background1.jpg",
+          "fileName": "background1.jpg",
+          "bytes": 300789
+        },
+        {
+          "src": "/media/4133/download.png",
+          "fileName": "download.png",
+          "bytes": 6879
+        }
+      ]
+    },
+    {
+      "requestedName": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "userDir": "FliCFLAC",
+      "status": "ok",
+      "coverSrc": "/media/1178/kari-cover-1.png",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/1178/kari-cover-1.png",
+          "fileName": "kari-cover-1.png",
+          "bytes": 398979
+        }
+      ]
+    },
+    {
+      "requestedName": "Mit test site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "userDir": "Mit_test_site",
+      "status": "ok",
+      "coverSrc": "/media/1491/action-adult-aperture-blur-320617.jpg",
+      "logoSrc": "/media/1864/kiibee-logo-meget-lille.png",
+      "headline": "Test site for Online Streaming & LIVE streaming ",
+      "downloadedImages": [
+        {
+          "src": "/media/1491/action-adult-aperture-blur-320617.jpg",
+          "fileName": "action-adult-aperture-blur-320617.jpg",
+          "bytes": 1889635
+        },
+        {
+          "src": "/media/1864/kiibee-logo-meget-lille.png",
+          "fileName": "kiibee-logo-meget-lille.png",
+          "bytes": 2694
+        }
+      ]
+    },
+    {
+      "requestedName": "Elsebeth Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "userDir": "Elsebeth_Fogh",
+      "status": "ok",
+      "coverSrc": "/media/1563/elesbeth-kiibee.jpg",
+      "logoSrc": "/media/1562/elsebeth-fogh-logo-1.jpg",
+      "headline": "Styrk din indre power med Girafsprog",
+      "downloadedImages": [
+        {
+          "src": "/media/1563/elesbeth-kiibee.jpg",
+          "fileName": "elesbeth-kiibee.jpg",
+          "bytes": 66695
+        },
+        {
+          "src": "/media/1562/elsebeth-fogh-logo-1.jpg",
+          "fileName": "elsebeth-fogh-logo-1.jpg",
+          "bytes": 3279
+        }
+      ]
+    },
+    {
+      "requestedName": "Life- & Business Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "userDir": "Life-_&_Business_Coach",
+      "status": "ok",
+      "coverSrc": "/media/1656/dsc_0368.jpg",
+      "logoSrc": "/media/1655/sanne-pedersen-6-2-1.jpg",
+      "headline": "Kurser i personlig udvikling",
+      "downloadedImages": [
+        {
+          "src": "/media/1656/dsc_0368.jpg",
+          "fileName": "dsc_0368.jpg",
+          "bytes": 2788555
+        },
+        {
+          "src": "/media/1655/sanne-pedersen-6-2-1.jpg",
+          "fileName": "sanne-pedersen-6-2-1.jpg",
+          "bytes": 96876
+        }
+      ]
+    },
+    {
+      "requestedName": "Songs Of Jacob Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "userDir": "Songs_Of_Jacob_Elk",
+      "status": "ok",
+      "coverSrc": "/media/1846/top-kiibee.png",
+      "logoSrc": "/media/1847/koncertforedrag-logo.png",
+      "headline": "NYT ALBUM med 12 NYE sange ! Køb sangene og film her.",
+      "downloadedImages": [
+        {
+          "src": "/media/1846/top-kiibee.png",
+          "fileName": "top-kiibee.png",
+          "bytes": 1228672
+        },
+        {
+          "src": "/media/1847/koncertforedrag-logo.png",
+          "fileName": "koncertforedrag-logo.png",
+          "bytes": 77637
+        }
+      ]
+    },
+    {
+      "requestedName": "Adal Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "userDir": "Adal_Faragalla",
+      "status": "ok",
+      "coverSrc": "/media/1958/facebook-cover-photo.png",
+      "logoSrc": "/media/1957/logo-stort-graa.png",
+      "headline": "Der findes ingen quickfixes!",
+      "downloadedImages": [
+        {
+          "src": "/media/1958/facebook-cover-photo.png",
+          "fileName": "facebook-cover-photo.png",
+          "bytes": 94525
+        },
+        {
+          "src": "/media/1957/logo-stort-graa.png",
+          "fileName": "logo-stort-graa.png",
+          "bytes": 205249
+        },
+        {
+          "src": "/media/3630/original.png",
+          "fileName": "original.png",
+          "bytes": 669151
+        }
+      ]
+    },
+    {
+      "requestedName": "Anne Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "userDir": "Anne_Kongsbak",
+      "status": "ok",
+      "coverSrc": null,
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": []
+    },
+    {
+      "requestedName": "Brian Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "userDir": "Brian_Mørk",
+      "status": "ok",
+      "coverSrc": "/media/3159/brian-maerk-top.png",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/3159/brian-maerk-top.png",
+          "fileName": "brian-maerk-top.png",
+          "bytes": 783656
+        },
+        {
+          "src": "/media/3382/brian-moerk-mobil.png",
+          "fileName": "brian-moerk-mobil.png",
+          "bytes": 318912
+        }
+      ]
+    },
+    {
+      "requestedName": "Jacob Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "userDir": "Jacob_Tingleff",
+      "status": "ok",
+      "coverSrc": "/media/3160/jacob-tigleff-top.png",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/3160/jacob-tigleff-top.png",
+          "fileName": "jacob-tigleff-top.png",
+          "bytes": 1532241
+        },
+        {
+          "src": "/media/3384/jacob-tingleff-mobil.png",
+          "fileName": "jacob-tingleff-mobil.png",
+          "bytes": 514401
+        }
+      ]
+    },
+    {
+      "requestedName": "Torben Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "userDir": "Torben_Chris",
+      "status": "ok",
+      "coverSrc": "/media/3157/torben-chris-final.png",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/3157/torben-chris-final.png",
+          "fileName": "torben-chris-final.png",
+          "bytes": 660974
+        },
+        {
+          "src": "/media/3391/torben-chris-mobil.png",
+          "fileName": "torben-chris-mobil.png",
+          "bytes": 373978
+        }
+      ]
+    },
+    {
+      "requestedName": "Kammas Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "userDir": "Kammas_Kantine",
+      "status": "ok",
+      "coverSrc": "/media/3177/karm-din-krop-3-1920x658.png",
+      "logoSrc": "/media/3176/kk500x500.png",
+      "headline": "Online kurser i Kammas Kantine",
+      "downloadedImages": [
+        {
+          "src": "/media/3177/karm-din-krop-3-1920x658.png",
+          "fileName": "karm-din-krop-3-1920x658.png",
+          "bytes": 1772236
+        },
+        {
+          "src": "/media/3176/kk500x500.png",
+          "fileName": "kk500x500.png",
+          "bytes": 15467
+        }
+      ]
     }
   ],
-  "missingUsers": [
-    "APHypnose",
-    "CamComm",
-    "Diy_for_børn",
-    "ElStudio",
-    "Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed",
-    "Gottleben",
-    "gymstream",
-    "jwtc",
-    "Kort_&_Dokumentar_Filmskolen",
-    "Letsmove_-_Motion_i_Centrum",
-    "Lindhardt_A-S",
-    "Maximilian_Nielsen",
-    "NuVenue"
-  ],
-  "finishedAt": "2026-07-22T06:15:41.499Z"
+  "missingUsers": [],
+  "finishedAt": "2026-08-24T14:42:39.569Z"
 }

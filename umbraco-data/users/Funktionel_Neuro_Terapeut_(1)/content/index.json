@@ -1,0 +1,40 @@
+{
+  "requestedName": "Funktionel Neuro Terapeut (1)",
+  "liveName": "Funktionel Neuro Terapeut (1)",
+  "userId": 112070,
+  "status": "found",
+  "folderCount": 6,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Cerebellum (lillehjernen) - Test og Øvelser",
+      "id": 112360,
+      "status": "ok"
+    },
+    {
+      "name": "Bevægekontrol Øvelser",
+      "id": 112362,
+      "status": "ok"
+    },
+    {
+      "name": "Undervisningsmateriale",
+      "id": 114073,
+      "status": "ok"
+    },
+    {
+      "name": "Hjernestammen - Test og Øvelser",
+      "id": 114075,
+      "status": "ok"
+    },
+    {
+      "name": "Supplerende Materiale",
+      "id": 114076,
+      "status": "ok"
+    },
+    {
+      "name": "Vestibulære system - Test og Øvelser",
+      "id": 114088,
+      "status": "ok"
+    }
+  ]
+}

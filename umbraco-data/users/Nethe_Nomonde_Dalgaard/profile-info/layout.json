@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Nethe Nomonde Dalgaard",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Nethe Nomonde Dalgaard",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5096/front-danish-cover-ebook.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5098/front-danish-cover-ebook.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Vil I også lære de 10 vigtigste færdselsregler for cyklister",
+  "description": "Min bog er fyldt med lærerige og sjove historier om Molly og hendes familie og venner og om hvordan Molly  og hendes venner lærer at cykle sikkert i trafikken.\r\nGod fornøjelse med læsning og læring.",
+  "css": "",
+  "javaScript": ""
+}

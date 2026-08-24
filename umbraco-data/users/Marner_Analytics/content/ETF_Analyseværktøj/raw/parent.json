@@ -1,0 +1,894 @@
+{
+  "publishDate": "2026-06-23 10:18:22",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "Collection",
+  "templateId": 1288,
+  "allowedTemplates": {
+    "Collection": "Collection"
+  },
+  "documentType": {
+    "alias": "collection",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-04 19:48:03",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Collection",
+    "id": 1079,
+    "udi": "umb://document-type/585919bd6e334da8bb62afdd3952d66e",
+    "icon": "icon-folder-close color-black",
+    "trashed": false,
+    "key": "585919bd-6e33-4da8-bb62-afdd3952d66e",
+    "parentId": -1,
+    "path": "-1,1079",
+    "metaData": {}
+  },
+  "urls": [
+    "/marner-analytics/etf-analysevaerktoej/"
+  ],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/60a92a26d5e6443e84fb24432b419efb",
+  "contentTypeName": "Collection",
+  "isContainer": true,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 6,
+      "active": true,
+      "label": "Undersider",
+      "alias": "umbContainerView",
+      "properties": [
+        {
+          "label": "",
+          "description": null,
+          "view": "listview",
+          "config": {
+            "pageSize": "10",
+            "displayAtTabNumber": "1",
+            "orderBy": "orderID",
+            "orderDirection": "asc",
+            "includeProperties": [
+              {
+                "alias": "title",
+                "isSystem": 0,
+                "header": "Title"
+              },
+              {
+                "alias": "orderID",
+                "isSystem": 0,
+                "header": "Sort"
+              },
+              {
+                "alias": "hidden",
+                "isSystem": 0,
+                "header": "Hidden"
+              }
+            ],
+            "layouts": [
+              {
+                "name": "List",
+                "path": "views/propertyeditors/listview/layouts/list/list.html",
+                "icon": "icon-list",
+                "isSystem": 1,
+                "selected": true
+              },
+              {
+                "name": "Grid",
+                "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+                "icon": "icon-thumbnails-small",
+                "isSystem": 1,
+                "selected": true
+              }
+            ],
+            "bulkActionPermissions": {
+              "allowBulkPublish": true,
+              "allowBulkUnpublish": true,
+              "allowBulkCopy": true,
+              "allowBulkMove": false,
+              "allowBulkDelete": true
+            },
+            "tabName": null,
+            "entityType": "content"
+          },
+          "hideLabel": true,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": null,
+          "value": null,
+          "alias": "_umb_containerView",
+          "editor": null,
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Order ID",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475277,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "0",
+          "alias": "orderID",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "active": false,
+      "label": "Access & Price",
+      "alias": "Access & Price",
+      "properties": [
+        {
+          "label": "Access",
+          "description": null,
+          "view": "dropdownFlexible",
+          "config": {
+            "items": {
+              "57": {
+                "value": "Free",
+                "sortOrder": 1
+              },
+              "58": {
+                "value": "Payment",
+                "sortOrder": 2
+              },
+              "59": {
+                "value": "Code",
+                "sortOrder": 3
+              },
+              "60": {
+                "value": "Email",
+                "sortOrder": 4
+              }
+            },
+            "multiple": "0"
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475272,
+          "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+          "value": [
+            "58"
+          ],
+          "alias": "access",
+          "editor": "Umbraco.DropDown.Flexible",
+          "isSensitive": false
+        },
+        {
+          "label": "Rental Price",
+          "description": null,
+          "view": "decimal",
+          "config": {
+            "min": null,
+            "step": null,
+            "max": null
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475273,
+          "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+          "value": "",
+          "alias": "rentalPrice",
+          "editor": "Umbraco.Decimal",
+          "isSensitive": false
+        },
+        {
+          "label": "Purchase Price",
+          "description": null,
+          "view": "decimal",
+          "config": {
+            "min": null,
+            "step": null,
+            "max": null
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475271,
+          "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+          "value": "225",
+          "alias": "purchasePrice",
+          "editor": "Umbraco.Decimal",
+          "isSensitive": false
+        },
+        {
+          "label": "Code",
+          "description": null,
+          "view": "textarea",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475274,
+          "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+          "value": "",
+          "alias": "code",
+          "editor": "Umbraco.TextboxMultiple",
+          "isSensitive": false
+        },
+        {
+          "label": "Period",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475284,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "3",
+          "alias": "period",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "active": false,
+      "label": "Layout",
+      "alias": "Layout",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475283,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Description",
+          "description": null,
+          "view": "textarea",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475278,
+          "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+          "value": "ETF Analyse-assistent — AI-drevet ETF-værktøj til danske Nordnet-investorer<br/><br/>Analysér markedet, byg risikotilpassede porteføljer, rebalancér på ETF-niveau og sæt stop/loss — drevet af Claude AI. til Windows.<br/><br/><br/><br/>Få overblik over dine ETF-investeringer — og lad AI gøre det tunge arbejde.<br/><br/>ETF Analyse-assistent er et dansk skrivebordsprogram bygget til private investorer, der bruger Nordnet. Det kombinerer hele Nordnets ETF-univers (2.000+ fonde) med Claude AI og giver dig konkrete, gennemtænkte analyser — ikke bare tal.<br/><br/>Det kan værktøjet:<br/><br/><br/><br/><br/><br/>🔍 AI-analyse af markedet og enkelte ETF'er med nyhedskontekst<br/><br/><br/><br/>📊 Markedsoverblik pr. sektor med live kurser<br/><br/><br/><br/>📈 Porteføljeforslag efter risikoprofil (aggressiv/balanceret/defensiv) — skattebevidst for både pension og frie midler<br/><br/><br/><br/>🌍 Regionsvisning (Verden, USA, Europa, Asien, Emerging Markets, Latinamerika)<br/><br/><br/><br/>💰 Porteføljestyring med live-værdier — importér dine beholdninger direkte fra Nordnet, så værdierne matcher præcist<br/><br/><br/><br/>⚖️ Rebalancering på ETF-niveau — får du at vide præcis hvilken fond du skal købe/sælge og for hvor meget<br/><br/><br/><br/>🛑 Trailing stop/loss-vagter med alarm (skærm + lyd; e-mail/Pushover som tilvalg)<br/><br/><br/><br/>📉 Afkastfremskrivning med konservative, realistiske estimater<br/><br/>Dine data bliver på din PC. Programmet kører lokalt — kun selve AI-analysen sender forespørgsler til Claude.<br/><br/>Hvad du skal bruge:<br/><br/><br/><br/><br/><br/>Windows 10/11<br/><br/><br/><br/>En Claude API-nøgle (gratis at oprette på platform.claude.com — du betaler kun dit eget forbrug, typisk under 1 krone pr. analyse). Trin-for-trin guide er med i pakken.<br/><br/><br/><br/>En Nordnet-konto (værktøjet er bygget til Nordnets ETF-univers)<br/><br/>Hvad du får:<br/><br/><br/><br/><br/><br/>ETF Analyse-assistent.exe — ingen installation, bare dobbeltklik<br/><br/><br/><br/>Nordnets ETF-liste er allerede inkluderet<br/><br/><br/><br/>Dansk LÆS MIG med komplet kom-godt-i-gang + API-nøgle-guide<br/><br/>⚠️ Vigtigt: Brugerfladen er på dansk og bygget til Nordnet. Programmet er ikke finansiel rådgivning — det leverer information og analyse, og du træffer alle investeringsbeslutninger selv og på eget ansvar. Windows kan vise en SmartScreen-advarsel første gang (filen er ikke signeret) → vælg \"Mere info\" → \"Kør alligevel\".<br/><br/>📜 Kort licens (kan sættes nederst i beskrivelsen eller som separat fil)<br/><br/><br/><br/>Licens: Du må bruge programmet til personligt brug på dine egne enheder. Videresalg, videredistribution eller deling af filen er ikke tilladt. Programmet leveres \"som det er\", uden nogen garanti. Hverken værktøjet eller udvikleren påtager sig ansvar for økonomiske tab. Ved køb accepterer du disse vilkår.",
+          "alias": "description",
+          "editor": "Umbraco.TextboxMultiple",
+          "isSensitive": false
+        },
+        {
+          "label": "Cover Image",
+          "description": null,
+          "view": "imagecropper",
+          "config": {
+            "focalPoint": {
+              "left": 0.5,
+              "top": 0.5
+            },
+            "src": "",
+            "crops": [
+              {
+                "alias": "Image",
+                "width": 2000,
+                "height": 600
+              }
+            ]
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475282,
+          "dataTypeId": "43f6a262-a006-4f31-8a19-52fb1177cd11",
+          "value": "",
+          "alias": "coverImage",
+          "editor": "Umbraco.ImageCropper",
+          "isSensitive": false
+        },
+        {
+          "label": "Fade Cover Image",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475281,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "0",
+          "alias": "fadeCoverImage",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Thumbnail Wide",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475280,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "0",
+          "alias": "thumbnailWide",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Column Amount",
+          "description": null,
+          "view": "integer",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475279,
+          "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+          "value": "4",
+          "alias": "columnAmount",
+          "editor": "Umbraco.Integer",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "active": false,
+      "label": "SiteMap",
+      "alias": "SiteMap",
+      "properties": [
+        {
+          "label": "siteMapOption",
+          "description": null,
+          "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2475285,
+          "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+          "value": "",
+          "alias": "siteMapOption",
+          "editor": "MBran.SitemapXml",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "active": false,
+      "label": "SEO",
+      "alias": "SEO",
+      "properties": [
+        {
+          "label": "Title",
+          "description": "Max 64 characters",
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": "^.{0,64}$"
+          },
+          "readonly": false,
+          "id": 2475276,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "metaTitle",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Description",
+          "description": "Max 160 characters",
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": "^.{0,160}$"
+          },
+          "readonly": false,
+          "id": 2475275,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "metaDescription",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "",
+      "description": null,
+      "view": "listview",
+      "config": {
+        "pageSize": "10",
+        "displayAtTabNumber": "1",
+        "orderBy": "orderID",
+        "orderDirection": "asc",
+        "includeProperties": [
+          {
+            "alias": "title",
+            "isSystem": 0,
+            "header": "Title"
+          },
+          {
+            "alias": "orderID",
+            "isSystem": 0,
+            "header": "Sort"
+          },
+          {
+            "alias": "hidden",
+            "isSystem": 0,
+            "header": "Hidden"
+          }
+        ],
+        "layouts": [
+          {
+            "name": "List",
+            "path": "views/propertyeditors/listview/layouts/list/list.html",
+            "icon": "icon-list",
+            "isSystem": 1,
+            "selected": true
+          },
+          {
+            "name": "Grid",
+            "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+            "icon": "icon-thumbnails-small",
+            "isSystem": 1,
+            "selected": true
+          }
+        ],
+        "bulkActionPermissions": {
+          "allowBulkPublish": true,
+          "allowBulkUnpublish": true,
+          "allowBulkCopy": true,
+          "allowBulkMove": false,
+          "allowBulkDelete": true
+        },
+        "tabName": null,
+        "entityType": "content"
+      },
+      "hideLabel": true,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": null,
+      "value": null,
+      "alias": "_umb_containerView",
+      "editor": null,
+      "isSensitive": false
+    },
+    {
+      "label": "Order ID",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475277,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "0",
+      "alias": "orderID",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "Access",
+      "description": null,
+      "view": "dropdownFlexible",
+      "config": {
+        "items": {
+          "57": {
+            "value": "Free",
+            "sortOrder": 1
+          },
+          "58": {
+            "value": "Payment",
+            "sortOrder": 2
+          },
+          "59": {
+            "value": "Code",
+            "sortOrder": 3
+          },
+          "60": {
+            "value": "Email",
+            "sortOrder": 4
+          }
+        },
+        "multiple": "0"
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475272,
+      "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+      "value": [
+        "58"
+      ],
+      "alias": "access",
+      "editor": "Umbraco.DropDown.Flexible",
+      "isSensitive": false
+    },
+    {
+      "label": "Rental Price",
+      "description": null,
+      "view": "decimal",
+      "config": {
+        "min": null,
+        "step": null,
+        "max": null
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475273,
+      "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+      "value": "",
+      "alias": "rentalPrice",
+      "editor": "Umbraco.Decimal",
+      "isSensitive": false
+    },
+    {
+      "label": "Purchase Price",
+      "description": null,
+      "view": "decimal",
+      "config": {
+        "min": null,
+        "step": null,
+        "max": null
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475271,
+      "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+      "value": "225",
+      "alias": "purchasePrice",
+      "editor": "Umbraco.Decimal",
+      "isSensitive": false
+    },
+    {
+      "label": "Code",
+      "description": null,
+      "view": "textarea",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475274,
+      "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+      "value": "",
+      "alias": "code",
+      "editor": "Umbraco.TextboxMultiple",
+      "isSensitive": false
+    },
+    {
+      "label": "Period",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475284,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "3",
+      "alias": "period",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475283,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Description",
+      "description": null,
+      "view": "textarea",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475278,
+      "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+      "value": "ETF Analyse-assistent — AI-drevet ETF-værktøj til danske Nordnet-investorer<br/><br/>Analysér markedet, byg risikotilpassede porteføljer, rebalancér på ETF-niveau og sæt stop/loss — drevet af Claude AI. til Windows.<br/><br/><br/><br/>Få overblik over dine ETF-investeringer — og lad AI gøre det tunge arbejde.<br/><br/>ETF Analyse-assistent er et dansk skrivebordsprogram bygget til private investorer, der bruger Nordnet. Det kombinerer hele Nordnets ETF-univers (2.000+ fonde) med Claude AI og giver dig konkrete, gennemtænkte analyser — ikke bare tal.<br/><br/>Det kan værktøjet:<br/><br/><br/><br/><br/><br/>🔍 AI-analyse af markedet og enkelte ETF'er med nyhedskontekst<br/><br/><br/><br/>📊 Markedsoverblik pr. sektor med live kurser<br/><br/><br/><br/>📈 Porteføljeforslag efter risikoprofil (aggressiv/balanceret/defensiv) — skattebevidst for både pension og frie midler<br/><br/><br/><br/>🌍 Regionsvisning (Verden, USA, Europa, Asien, Emerging Markets, Latinamerika)<br/><br/><br/><br/>💰 Porteføljestyring med live-værdier — importér dine beholdninger direkte fra Nordnet, så værdierne matcher præcist<br/><br/><br/><br/>⚖️ Rebalancering på ETF-niveau — får du at vide præcis hvilken fond du skal købe/sælge og for hvor meget<br/><br/><br/><br/>🛑 Trailing stop/loss-vagter med alarm (skærm + lyd; e-mail/Pushover som tilvalg)<br/><br/><br/><br/>📉 Afkastfremskrivning med konservative, realistiske estimater<br/><br/>Dine data bliver på din PC. Programmet kører lokalt — kun selve AI-analysen sender forespørgsler til Claude.<br/><br/>Hvad du skal bruge:<br/><br/><br/><br/><br/><br/>Windows 10/11<br/><br/><br/><br/>En Claude API-nøgle (gratis at oprette på platform.claude.com — du betaler kun dit eget forbrug, typisk under 1 krone pr. analyse). Trin-for-trin guide er med i pakken.<br/><br/><br/><br/>En Nordnet-konto (værktøjet er bygget til Nordnets ETF-univers)<br/><br/>Hvad du får:<br/><br/><br/><br/><br/><br/>ETF Analyse-assistent.exe — ingen installation, bare dobbeltklik<br/><br/><br/><br/>Nordnets ETF-liste er allerede inkluderet<br/><br/><br/><br/>Dansk LÆS MIG med komplet kom-godt-i-gang + API-nøgle-guide<br/><br/>⚠️ Vigtigt: Brugerfladen er på dansk og bygget til Nordnet. Programmet er ikke finansiel rådgivning — det leverer information og analyse, og du træffer alle investeringsbeslutninger selv og på eget ansvar. Windows kan vise en SmartScreen-advarsel første gang (filen er ikke signeret) → vælg \"Mere info\" → \"Kør alligevel\".<br/><br/>📜 Kort licens (kan sættes nederst i beskrivelsen eller som separat fil)<br/><br/><br/><br/>Licens: Du må bruge programmet til personligt brug på dine egne enheder. Videresalg, videredistribution eller deling af filen er ikke tilladt. Programmet leveres \"som det er\", uden nogen garanti. Hverken værktøjet eller udvikleren påtager sig ansvar for økonomiske tab. Ved køb accepterer du disse vilkår.",
+      "alias": "description",
+      "editor": "Umbraco.TextboxMultiple",
+      "isSensitive": false
+    },
+    {
+      "label": "Cover Image",
+      "description": null,
+      "view": "imagecropper",
+      "config": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "",
+        "crops": [
+          {
+            "alias": "Image",
+            "width": 2000,
+            "height": 600
+          }
+        ]
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475282,
+      "dataTypeId": "43f6a262-a006-4f31-8a19-52fb1177cd11",
+      "value": "",
+      "alias": "coverImage",
+      "editor": "Umbraco.ImageCropper",
+      "isSensitive": false
+    },
+    {
+      "label": "Fade Cover Image",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475281,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "0",
+      "alias": "fadeCoverImage",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Thumbnail Wide",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475280,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "0",
+      "alias": "thumbnailWide",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Column Amount",
+      "description": null,
+      "view": "integer",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475279,
+      "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+      "value": "4",
+      "alias": "columnAmount",
+      "editor": "Umbraco.Integer",
+      "isSensitive": false
+    },
+    {
+      "label": "siteMapOption",
+      "description": null,
+      "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2475285,
+      "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+      "value": "",
+      "alias": "siteMapOption",
+      "editor": "MBran.SitemapXml",
+      "isSensitive": false
+    },
+    {
+      "label": "Title",
+      "description": "Max 64 characters",
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": "^.{0,64}$"
+      },
+      "readonly": false,
+      "id": 2475276,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "metaTitle",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Description",
+      "description": "Max 160 characters",
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": "^.{0,160}$"
+      },
+      "readonly": false,
+      "id": 2475275,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "metaDescription",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2026-06-23 10:18:22",
+  "createDate": "2026-06-23 10:16:55",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "collection",
+  "sortOrder": 6,
+  "name": "ETF Analyseværktøj",
+  "id": 125592,
+  "udi": "umb://document/60a92a26d5e6443e84fb24432b419efb",
+  "icon": "icon-folder-close color-black",
+  "trashed": false,
+  "key": "60a92a26-d5e6-443e-84fb-24432b419efb",
+  "parentId": 125584,
+  "alias": null,
+  "path": "-1,1067,125584,125592",
+  "metaData": {}
+}

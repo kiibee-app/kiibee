@@ -1,0 +1,35 @@
+{
+  "tab": "Layout",
+  "name": "Jesper Jensen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "PalmtreeThai",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5180/cover1.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "PalmtreeThai er Thai kurser skræddersyet til danskere.\r\n\r\nUdover at lære Thilandske ord og sætninger indeholder vores kurser også små opgaver. Det unikke ved vores kurser er at vi også beskriver den danske udtale af hvert eneste ord på Thai.",
+  "css": "",
+  "javaScript": ""
+}

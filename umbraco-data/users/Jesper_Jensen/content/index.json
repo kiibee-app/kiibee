@@ -1,0 +1,15 @@
+{
+  "requestedName": "Jesper Jensen",
+  "liveName": "Jesper Jensen",
+  "userId": 125708,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "PalmtreeThai",
+      "id": 125715,
+      "status": "ok"
+    }
+  ]
+}

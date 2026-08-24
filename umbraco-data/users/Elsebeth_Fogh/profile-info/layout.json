@@ -1,0 +1,59 @@
+{
+  "tab": "Layout",
+  "name": "Elsebeth Fogh",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Elsebeth Fogh",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1562/elsebeth-fogh-logo-1.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1563/elesbeth-kiibee.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      },
+      {
+        "alias": "Cover",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Styrk din indre power med Girafsprog",
+  "description": "Kurset består af 5 moduler, hvor du øger din selvforståelse & indsigt i kommunikationsmønstre via øvelser &  meditationer\r\n\r\nDu får værktøjer til at udvikle din EQ Emotionelle intelligens, forbedre dine relationer & øge din indflydelse\r\n\r\nLær at lytte, forstå, forebygge & håndtere konflikter\r\n\r\nSig hvad du mener (med omtanke) & men hvad du siger \r\n\r\nBliv den person, du altid har drømt om at være\r\n\r\nAlle 5 moduler Før 1.495 Nu kun 279\r\n\r\nEnkelt moduler Før 299 Nu kun 79\r\n\r\nLæs mere Klik på foto\r\nelsebethfogh.dk",
+  "css": "",
+  "javaScript": ""
+}
