@@ -231,29 +231,120 @@ export function loadCmsMembersByNodeId(): Map<number, string> {
   return map;
 }
 
-export function loadContentUserIdByProfileKey(): Map<string, number> {
-  const exportRunFile = findUmbracoExportRunFile();
-  if (!exportRunFile) {
-    return new Map();
-  }
-
-  const parsed = JSON.parse(readFileSync(exportRunFile, 'utf8')) as {
-    users?: Array<{ userDir?: string; userId?: number }>;
-  };
+export function loadContentUserIdByProfileKey(
+  umbracoUsersRoot?: string,
+): Map<string, number> {
   const map = new Map<string, number>();
 
-  for (const user of parsed.users ?? []) {
-    if (user.userDir && user.userId) {
-      map.set(user.userDir, user.userId);
-      // Also index renamed dirs (spaces → underscores).
-      const underscored = user.userDir.replace(/ /g, '_');
-      if (underscored !== user.userDir) {
-        map.set(underscored, user.userId);
+  const remember = (profileKey: string, userId: number) => {
+    if (!profileKey || !Number.isFinite(userId) || userId <= 0) {
+      return;
+    }
+    map.set(profileKey, userId);
+    const underscored = profileKey.replace(/ /g, '_');
+    if (underscored !== profileKey) {
+      map.set(underscored, userId);
+    }
+  };
+
+  const exportRunFile = findUmbracoExportRunFile();
+  if (exportRunFile) {
+    try {
+      const parsed = JSON.parse(readFileSync(exportRunFile, 'utf8')) as {
+        users?: Array<{ userDir?: string; userId?: number }>;
+      };
+      for (const user of parsed.users ?? []) {
+        if (user.userDir && user.userId) {
+          remember(user.userDir, user.userId);
+        }
       }
+    } catch {
+      // Ignore corrupt export-run files; local folders are the fallback.
+    }
+  }
+
+  const rootCandidates = [
+    ...(umbracoUsersRoot ? [umbracoUsersRoot] : []),
+    resolve(process.cwd(), 'umbraco-data', 'users'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'users'),
+    resolve(process.cwd(), '..', '..', 'umbraco-data', 'users'),
+  ];
+  const root = rootCandidates.find((candidate) => existsSync(candidate));
+  if (!root) {
+    return map;
+  }
+
+  for (const profileKey of readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)) {
+    if (map.has(profileKey)) {
+      continue;
+    }
+    const userId = readContentUserIdFromProfileDir(join(root, profileKey));
+    if (userId) {
+      remember(profileKey, userId);
     }
   }
 
   return map;
+}
+
+function readContentUserIdFromProfileDir(profileDir: string): number | null {
+  const candidates = [
+    'content/index.json',
+    'stats/index.json',
+    'shows/index.json',
+    'purchases/index.json',
+    'payouts/index.json',
+    'logs/index.json',
+  ];
+
+  for (const relativePath of candidates) {
+    const filePath = join(profileDir, relativePath);
+    if (!existsSync(filePath)) {
+      continue;
+    }
+
+    try {
+      const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as JsonRecord;
+      const direct = Number(parsed.userId);
+      if (Number.isFinite(direct) && direct > 0) {
+        return direct;
+      }
+
+      const parent = parsed.parent;
+      if (parent && typeof parent === 'object') {
+        const pathValue = textOrNull((parent as JsonRecord).path);
+        const fromPath = contentUserIdFromUmbracoPath(pathValue);
+        if (fromPath) {
+          return fromPath;
+        }
+      }
+    } catch {
+      // Try the next candidate file.
+    }
+  }
+
+  return null;
+}
+
+/** Umbraco path like "-1,1067,41913,41914" → content user node 41913. */
+function contentUserIdFromUmbracoPath(pathValue: string | null): number | null {
+  if (!pathValue) {
+    return null;
+  }
+
+  const parts = pathValue
+    .split(',')
+    .map((part) => Number(part.trim()))
+    .filter((part) => Number.isFinite(part));
+
+  // [-1, usersRoot, contentUser, ...]
+  if (parts.length >= 3 && parts[0] === -1) {
+    return parts[2];
+  }
+
+  return null;
 }
 
 /** Match a profile to its Umbraco CMS member login email. */
@@ -284,7 +375,8 @@ export function loadCmsMemberEmailByProfileKey(
     return new Map();
   }
 
-  const contentUserIdByProfileKey = loadContentUserIdByProfileKey();
+  const contentUserIdByProfileKey =
+    loadContentUserIdByProfileKey(umbracoUsersRoot);
   const map = new Map<string, string>();
 
   for (const profileKey of loadUmbracoProfileKeys(umbracoUsersRoot)) {

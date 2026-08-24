@@ -44,8 +44,10 @@ export const seedUsers = async () => {
         updatedAt: now,
       })
       .onConflictDoUpdate({
-        target: users.email,
+        // email unique index is partial (is_deleted = false), so ON CONFLICT(email) is invalid
+        target: users.id,
         set: {
+          email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
           fullName: user.fullName,
@@ -53,6 +55,7 @@ export const seedUsers = async () => {
           status: 'active',
           isEmailVerified: true,
           isActive: true,
+          passwordHash,
           updatedAt: now,
         },
       });

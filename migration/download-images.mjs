@@ -1,7 +1,3 @@
-#!/usr/bin/env node
-/**
- * Download image files referenced in exported Umbraco JSON into each user's media folders.
- */
 import { mkdir, readdir, readFile, writeFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import config from './config.mjs';

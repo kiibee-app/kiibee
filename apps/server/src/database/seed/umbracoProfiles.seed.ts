@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { eq, sql } from 'drizzle-orm';
+import { eq, and, ne, sql } from 'drizzle-orm';
 
 import {
   DEFAULT_CONTENT_APPEARANCE_LAYOUT,
@@ -487,6 +487,29 @@ export const seedUmbracoProfiles = async () => {
     const now = new Date();
 
     await db.transaction(async (tx) => {
+      // Purchases seed may have created a viewer with this email already.
+      // Creator IDs are deterministic from profileKey, so free the email first.
+      const emailHolders = await tx
+        .select({ id: users.id })
+        .from(users)
+        .where(
+          and(
+            eq(users.email, mapped.email),
+            ne(users.id, mapped.userId),
+            eq(users.isDeleted, false),
+          ),
+        );
+
+      for (const holder of emailHolders) {
+        await tx
+          .update(users)
+          .set({
+            email: `${mapped.email}.migrated-viewer-${holder.id}`,
+            updatedAt: now,
+          })
+          .where(eq(users.id, holder.id));
+      }
+
       await tx
         .insert(users)
         .values({
