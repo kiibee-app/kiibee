@@ -5,7 +5,6 @@ import {
   type CreatorChannelAvatarTextUse,
 } from "@/utils/Constants";
 import { isRemoteImageSource, resolvePublicMediaUrl } from "@/utils/media";
-import COLORS from "@repo/ui/colors";
 import {
   AvatarImage,
   AvatarInitial,
