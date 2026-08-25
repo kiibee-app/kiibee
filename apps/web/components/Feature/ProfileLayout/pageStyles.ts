@@ -113,6 +113,9 @@ export const Brand = styled(Link)`
 
 export const BrandAvatar = styled.span`
   ${avatarFrameCss};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 6px;
+  box-sizing: border-box;
 `;
 
 export const BrandAvatarImage = styled(Image)`
