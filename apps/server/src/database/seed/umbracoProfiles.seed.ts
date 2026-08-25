@@ -584,6 +584,7 @@ export const seedUmbracoProfiles = async () => {
           avatarUrl: mapped.logoUrl,
           isEmailVerified: true,
           isActive: true,
+          isDeleted: false,
           createdAt: joinedAt,
           updatedAt: now,
         })
@@ -599,6 +600,7 @@ export const seedUmbracoProfiles = async () => {
             avatarUrl: mapped.logoUrl,
             isEmailVerified: true,
             isActive: true,
+            isDeleted: false,
             passwordHash: sql`COALESCE(${users.passwordHash}, ${creatorPasswordHash})`,
             createdAt: joinedAt,
             updatedAt: now,
