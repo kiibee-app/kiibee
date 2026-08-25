@@ -2426,5 +2426,18 @@
       "primaryBtn": "Continue",
       "secondaryBtn": "Cancel"
     }
+  },
+  "viewerSubscriptionFlow": {
+    "modal1": {
+      "title": "You're signed in as a Viewer",
+      "message": "To subscribe to a creator plan, you'll need a Creator account. Sign in with an existing Creator account or create a new Creator profile to continue.",
+      "primaryBtn": "Sign in as Creator",
+      "secondaryBtn": "Create Creator Account"
+    },
+    "modal2": {
+      "title": "You'll be signed out of your Viewer account and signed in as a Creator.",
+      "primaryBtn": "Continue",
+      "secondaryBtn": "Cancel"
+    }
   }
 }
