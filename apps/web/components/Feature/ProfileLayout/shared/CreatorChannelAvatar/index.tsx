@@ -42,7 +42,7 @@ export default function CreatorChannelAvatar({
           style={{
             objectFit: fit,
             objectPosition: "center",
-            backgroundColor: COLORS.neutral.WHITE,
+            backgroundColor: "transparent",
           }}
           loading="lazy"
           decoding="async"
@@ -61,7 +61,7 @@ export default function CreatorChannelAvatar({
         style={{
           objectFit: fit,
           objectPosition: "center",
-          backgroundColor: COLORS.neutral.WHITE,
+          backgroundColor: "transparent",
         }}
       />
     );

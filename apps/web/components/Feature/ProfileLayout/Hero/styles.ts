@@ -148,6 +148,7 @@ export const AvatarWrap = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   flex: 0 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   ${({ theme }) => theme.media.desktopSm} {
     width: 8.125rem;
@@ -170,6 +171,7 @@ export const AvatarWrapCentered = styled.div`
   border-radius: 999px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 136px;

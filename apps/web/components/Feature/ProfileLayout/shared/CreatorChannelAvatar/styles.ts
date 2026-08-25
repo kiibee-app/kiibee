@@ -9,7 +9,7 @@ const fitStyles = css<{ $fit: AvatarFit }>`
   object-position: center;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  background: transparent;
 `;
 
 export const AvatarImage = styled(Image)<{ $fit: AvatarFit }>`

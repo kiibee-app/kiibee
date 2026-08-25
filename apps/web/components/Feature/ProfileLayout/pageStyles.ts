@@ -55,6 +55,7 @@ export const avatarFrameCss = css`
   border-radius: 50%;
   flex: 0 0 auto;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 `;
 
 export const Page = styled.main<
