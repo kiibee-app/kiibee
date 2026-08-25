@@ -35,6 +35,7 @@ const ViewerHeaderRight = ({
           aria-expanded={open}
           onClick={toggle}
           $hasImage={Boolean(avatarUrl)}
+          $isDashboard={true}
         >
           <CreatorChannelAvatar
             avatarUrl={avatarUrl}
