@@ -96,12 +96,9 @@ const safe = (value) =>
 let auth;
 
 function parseCookies(text) {
-  const wanted = new Set([
-    'UMB_UCONTEXT',
-    'UMB_UCONTEXT_C',
-    'UMB-XSRF-TOKEN',
-    'UMB-XSRF-V',
-  ]);
+  const required = ['UMB_UCONTEXT', 'UMB-XSRF-TOKEN', 'UMB-XSRF-V'];
+  const optional = ['UMB_UCONTEXT_C'];
+  const wanted = new Set([...required, ...optional]);
   const values = new Map();
   for (const line of text.split(/\r?\n/)) {
     const trimmed = line.trim();
@@ -118,12 +115,15 @@ function parseCookies(text) {
       if (wanted.has(name)) values.set(name, part.slice(separator + 1).trim());
     }
   }
-  const missing = [...wanted].filter((name) => !values.get(name));
+  const missing = required.filter((name) => !values.get(name));
   if (missing.length) {
     throw new Error(`Missing cookies: ${missing.join(', ')}`);
   }
   return {
-    cookie: [...wanted].map((name) => `${name}=${values.get(name)}`).join('; '),
+    cookie: [...wanted]
+      .filter((name) => values.get(name))
+      .map((name) => `${name}=${values.get(name)}`)
+      .join('; '),
     xsrfToken: values.get('UMB-XSRF-TOKEN'),
   };
 }
@@ -273,7 +273,22 @@ async function exportProfile(userDir, liveName, userId) {
     ),
     'sitemap.json': buildTabFile('SiteMap', name, FILE_ALIASES['sitemap.json'], props),
     'seo.json': buildTabFile('SEO', name, FILE_ALIASES['seo.json'], props),
-    'info.json': buildTabFile('Info', name, FILE_ALIASES['info.json'], props),
+    // Info tab system fields (join/create date) live on the content node, not properties.
+    'info.json': {
+      ...buildTabFile('Info', name, FILE_ALIASES['info.json'], props),
+      id: detail.id ?? detail.Id ?? userId,
+      key: detail.key ?? detail.Key ?? null,
+      udi: detail.udi ?? detail.Udi ?? null,
+      path: detail.path ?? detail.Path ?? null,
+      url: detail.urls?.[0] ?? detail.Urls?.[0] ?? null,
+      createDate: detail.createDate ?? detail.CreateDate ?? null,
+      updateDate: detail.updateDate ?? detail.UpdateDate ?? null,
+      publishDate: detail.publishDate ?? detail.PublishDate ?? null,
+      documentTypeAlias:
+        detail.documentType?.alias ?? detail.DocumentType?.Alias ?? null,
+      creatorName: detail.creatorName ?? detail.CreatorName ?? null,
+      writerName: detail.writerName ?? detail.WriterName ?? null,
+    },
   };
 
   for (const [fileName, payload] of Object.entries(files)) {

@@ -618,6 +618,7 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'Publika',
   'Puplika',
   'Rikke_Brunner',
+  'Rikke_Brünner',
   'Rumhed',
   'TjelesVenner',
   'Vocal_Line',
@@ -625,8 +626,102 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'jwtc',
 ]);
 
+export const UMBRACO_SEED_PROFILE_ALLOWLIST = new Set([
+  'You_Consulting',
+  'Damkjær_Medier',
+  'TANIA_ELLIS_-_The_Social_Business_Company',
+  'Stopsygefravær.nu',
+  'SigneNeslein.dk',
+  'Selvvær(dk)stedet',
+  'RauJensen',
+  'Per_Vers',
+  'Pædagogisk_Psykologisk_Tidsskrift',
+  'NSCCM_ApS',
+  'networker',
+  'Morten_Bonde_Development',
+  '@lawn.dk',
+  'Amin_Jensen_Entertainment',
+  'A5_Forlag_ApS',
+  'Mirna_Barbar',
+  'Anne_brietzke',
+  'Britta_Koch_-_Qigong',
+  'M.C._Caffe',
+  'Line_JL_Feel_the_Heal',
+  'Cathrine_Guldberg',
+  'Lev_Dit_Liv_NU',
+  'Chief1',
+  'Langes_Entertainment_ApS',
+  'EvaFogNoer',
+  'Kryptovaluta_for_kvinder',
+  'Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen',
+  'Find_dig_ikke_i_smerte',
+  'Fonden_Eventyrteatret',
+  'Kitnoergaard.dk',
+  'Forlaget_AKKA',
+  'Fysioteamet',
+  'Granli_Velvære',
+  'Karina_Eckhausen',
+  'Johnny_Logan',
+  'Hundedamen',
+  'Janni_-_Køreskole_og_Terapi',
+  'Ilona_Margibell',
+  'FBI.DK',
+  'Lisathe_Møller',
+  'Bettina_Ramsing',
+  'Heidi_Stjerne',
+  'Lea_Nielsen',
+  'Johanne_Kubert',
+  'Kristian_Kjaer',
+  'Funktionel_Neuroterapeut_2026',
+  'Jesper_Jensen',
+  'Marner_Analytics',
+  'Peter_Peitersen',
+  'Funktionel_Neuro_Terapeut_(1)',
+  'Diana_Myjak',
+  'Laura_Nielsen',
+  'Dahls_regnskabsservice_ApS',
+  'Nethe_Nomonde_Dalgaard',
+  'Akupunktør_Stine_Vogel',
+  'Olivia_Hvoslef_Mejer_Madsen',
+  'SkoleRo_ApS',
+  'B_Entertained',
+  'FliCFLAC',
+  'Mit_test_site',
+  'Elsebeth_Fogh',
+  'Life-_&_Business_Coach',
+  'Songs_Of_Jacob_Elk',
+  'Adal_Faragalla',
+  'Anne_Kongsbak',
+  'Brian_Mørk',
+  'Jacob_Tingleff',
+  'Torben_Chris',
+  'Kammas_Kantine',
+]);
+
+function normalizeProfileKey(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/gi, '')
+    .toLowerCase();
+}
+
+const SKIPPED_PROFILE_KEY_NORMALIZED = new Set(
+  [...UMBRACO_SKIP_PROFILE_KEYS].map(normalizeProfileKey),
+);
+
 export function isSkippedUmbracoProfile(profileKey: string): boolean {
-  return UMBRACO_SKIP_PROFILE_KEYS.has(profileKey);
+  return (
+    UMBRACO_SKIP_PROFILE_KEYS.has(profileKey) ||
+    SKIPPED_PROFILE_KEY_NORMALIZED.has(normalizeProfileKey(profileKey))
+  );
+}
+
+export function isAllowlistedUmbracoProfile(profileKey: string): boolean {
+  if (UMBRACO_SEED_PROFILE_ALLOWLIST.size === 0) {
+    return true;
+  }
+  return UMBRACO_SEED_PROFILE_ALLOWLIST.has(profileKey);
 }
 
 export function loadUmbracoProfileKeys(root: string): string[] {
@@ -634,6 +729,7 @@ export function loadUmbracoProfileKeys(root: string): string[] {
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .filter((profileKey) => !isSkippedUmbracoProfile(profileKey))
+    .filter((profileKey) => isAllowlistedUmbracoProfile(profileKey))
     .filter((profileKey) => existsSync(join(root, profileKey, 'profile-info')))
     .sort((left, right) => left.localeCompare(right));
 }

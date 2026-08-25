@@ -16,12 +16,9 @@ const MEMBER_LIST_API = `${BASE_URL}/umbraco/backoffice/UmbracoApi/Member/GetPag
 const MEMBER_BY_ID_API = `${BASE_URL}/umbraco/backoffice/UmbracoApi/Member/GetById`;
 
 function parseCookies(text) {
-  const wanted = new Set([
-    'UMB_UCONTEXT',
-    'UMB_UCONTEXT_C',
-    'UMB-XSRF-TOKEN',
-    'UMB-XSRF-V',
-  ]);
+  const required = ['UMB_UCONTEXT', 'UMB-XSRF-TOKEN', 'UMB-XSRF-V'];
+  const optional = ['UMB_UCONTEXT_C'];
+  const wanted = new Set([...required, ...optional]);
   const values = new Map();
   for (const line of text.split(/\r?\n/)) {
     const trimmed = line.trim();
@@ -38,12 +35,15 @@ function parseCookies(text) {
       if (wanted.has(name)) values.set(name, part.slice(separator + 1).trim());
     }
   }
-  const missing = [...wanted].filter((name) => !values.get(name));
+  const missing = required.filter((name) => !values.get(name));
   if (missing.length) {
     throw new Error(`Missing cookies: ${missing.join(', ')}`);
   }
   return {
-    cookie: [...wanted].map((name) => `${name}=${values.get(name)}`).join('; '),
+    cookie: [...wanted]
+      .filter((name) => values.get(name))
+      .map((name) => `${name}=${values.get(name)}`)
+      .join('; '),
     xsrfToken: values.get('UMB-XSRF-TOKEN'),
   };
 }

@@ -1,6 +1,6 @@
 {
   "tab": "Info",
-  "name": "Rikke Brünner ",
+  "name": "Rikke Brünner",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -10,5 +10,9 @@
     "SiteMap",
     "SEO",
     "Info"
-  ]
+  ],
+  "id": 67371,
+  "createDate": "2022-07-01 21:06:21",
+  "createDateSource": "earliest-child-folder (stats); refresh from Umbraco Info when cookies available",
+  "path": "-1,1067,67371"
 }

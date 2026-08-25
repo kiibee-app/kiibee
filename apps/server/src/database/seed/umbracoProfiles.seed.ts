@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, readdirSync } from 'fs';
 import { join, resolve } from 'path';
-import { eq, and, ne, sql } from 'drizzle-orm';
+import { eq, and, ne, sql, inArray } from 'drizzle-orm';
 
 import {
   DEFAULT_CONTENT_APPEARANCE_LAYOUT,
@@ -25,9 +25,12 @@ import {
 import {
   loadCmsMemberEmailByProfileKey,
   loadUmbracoProfileKeys,
+  parseDate,
   profileSeedKey,
   resolveCreatorEmailFromUmbraco,
   resolveUmbracoMediaUrl,
+  UMBRACO_SEED_PROFILE_ALLOWLIST,
+  isSkippedUmbracoProfile,
 } from './umbracoSeed.helpers';
 
 const PROFILE_FILES = [
@@ -86,6 +89,8 @@ type MappedProfile = {
   legacyOwner: string | null;
   legacySubscription: string | null;
   desiredPlanName: string;
+  /** Umbraco Info tab "Oprettelsesdato" → users.createdAt (join date). */
+  joinedAt: Date | null;
   rawFiles: ProfileFiles;
 };
 
@@ -283,6 +288,53 @@ function findUmbracoProfileRoot(): string | null {
   return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }
 
+/** Fallback join date from nested export parents when info.json lacks createDate. */
+function resolveJoinedAtFallback(profileKey: string): Date | null {
+  const root = findUmbracoProfileRoot();
+  if (!root) {
+    return null;
+  }
+
+  const profileDir = join(root, profileKey);
+  const candidates = [
+    join(profileDir, 'stats', 'raw', 'parent.json'),
+    join(profileDir, 'purchases', 'raw', 'parent.json'),
+    join(profileDir, 'payouts', 'raw', 'parent.json'),
+    join(profileDir, 'logs', 'raw', 'parent.json'),
+  ];
+
+  if (existsSync(join(profileDir, 'content'))) {
+    for (const entry of readdirSync(join(profileDir, 'content'), {
+      withFileTypes: true,
+    })) {
+      if (!entry.isDirectory()) {
+        continue;
+      }
+      candidates.push(
+        join(profileDir, 'content', entry.name, 'raw', 'parent.json'),
+      );
+    }
+  }
+
+  let earliest: Date | null = null;
+  for (const filePath of candidates) {
+    if (!existsSync(filePath)) {
+      continue;
+    }
+    try {
+      const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as JsonRecord;
+      const date = parseDate(parsed.createDate);
+      if (date && (!earliest || date < earliest)) {
+        earliest = date;
+      }
+    } catch {
+      // Ignore corrupt fallback files.
+    }
+  }
+
+  return earliest;
+}
+
 function resolveCreatorEmail(
   profile: LoadedProfile,
   usedEmails: Set<string>,
@@ -367,10 +419,16 @@ function mapProfile(
 ): MappedProfile {
   const general = profile.files['general.json'] ?? {};
   const layout = profile.files['layout.json'] ?? {};
+  const info = profile.files['info.json'] ?? {};
   const notifications = profile.files['notifications.json'] ?? {};
   const seo = profile.files['seo.json'] ?? {};
   const subscription = profile.files['subscription.json'] ?? {};
   const name = truncate(profileName(profile), 200);
+  const joinedAt =
+    parseDate(info.createDate) ??
+    parseDate(info.publishDate) ??
+    resolveJoinedAtFallback(profile.profileKey) ??
+    null;
   const { firstName, lastName } = splitName(name);
   // Prefer real media src when present — Umbraco often keeps the file even
   // when useCoverImage / useLogoImage is "0". Channel cover and mobile cover
@@ -412,6 +470,7 @@ function mapProfile(
     legacyOwner: ownerName(general.owner),
     legacySubscription: subscriptionKey(subscription.subscription),
     desiredPlanName,
+    joinedAt,
     rawFiles: profile.files,
   };
 }
@@ -485,6 +544,7 @@ export const seedUmbracoProfiles = async () => {
     );
     const planId = await resolvePlanId(mapped.desiredPlanName);
     const now = new Date();
+    const joinedAt = mapped.joinedAt ?? now;
 
     await db.transaction(async (tx) => {
       // Purchases seed may have created a viewer with this email already.
@@ -524,7 +584,7 @@ export const seedUmbracoProfiles = async () => {
           avatarUrl: mapped.logoUrl,
           isEmailVerified: true,
           isActive: true,
-          createdAt: now,
+          createdAt: joinedAt,
           updatedAt: now,
         })
         .onConflictDoUpdate({
@@ -540,6 +600,7 @@ export const seedUmbracoProfiles = async () => {
             isEmailVerified: true,
             isActive: true,
             passwordHash: sql`COALESCE(${users.passwordHash}, ${creatorPasswordHash})`,
+            createdAt: joinedAt,
             updatedAt: now,
           },
         });
@@ -678,6 +739,44 @@ export const seedUmbracoProfiles = async () => {
     });
 
     processed += 1;
+  }
+
+  // Soft-delete Umbraco creators that are on disk but outside the allowlist,
+  // so Admin "All Creators" matches the migration list (skip list stays skipped).
+  if (UMBRACO_SEED_PROFILE_ALLOWLIST.size > 0) {
+    const allProfileDirs = readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .filter((profileKey) =>
+        existsSync(join(root, profileKey, 'profile-info')),
+      )
+      .filter((profileKey) => !isSkippedUmbracoProfile(profileKey))
+      .filter((profileKey) => !UMBRACO_SEED_PROFILE_ALLOWLIST.has(profileKey));
+
+    const extraIds = allProfileDirs.map((profileKey) =>
+      seedUuid('user', profileKey),
+    );
+
+    if (extraIds.length) {
+      const now = new Date();
+      const deactivated = await db
+        .update(users)
+        .set({ isDeleted: true, isActive: false, updatedAt: now })
+        .where(
+          and(
+            inArray(users.id, extraIds),
+            eq(users.role, ROLE.CREATOR),
+            eq(users.isDeleted, false),
+          ),
+        )
+        .returning({ id: users.id });
+
+      if (deactivated.length) {
+        console.log(
+          `Umbraco profile seed soft-deleted ${deactivated.length} creators outside allowlist`,
+        );
+      }
+    }
   }
 
   console.log(
