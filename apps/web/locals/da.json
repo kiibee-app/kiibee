@@ -2417,5 +2417,18 @@
       "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }
+  },
+  "viewerSubscriptionFlow": {
+    "modal1": {
+      "title": "Du er logget ind som seer",
+      "message": "For at abonnere på en udgiver-pakke skal du bruge en udgiver-konto. Log ind med en eksisterende udgiver-konto eller opret en ny for at fortsætte.",
+      "primaryBtn": "Log ind som udgiver",
+      "secondaryBtn": "Opret udgiver konto"
+    },
+    "modal2": {
+      "title": "Du vil blive logget ud af din seer konto og logget ind som udgiver.",
+      "primaryBtn": "Fortsæt",
+      "secondaryBtn": "Annuller"
+    }
   }
 }
