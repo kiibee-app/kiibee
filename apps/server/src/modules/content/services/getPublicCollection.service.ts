@@ -14,6 +14,10 @@ import {
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
+import {
+  publiclyVisibleCreatorWhere,
+  requirePubliclyVisibleCreator,
+} from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 
 const collectionItemSelect = {
@@ -78,6 +82,7 @@ export const getPublicCollectionService = async (
         name: collections.name,
         description: collections.description,
         isDeleted: collections.isDeleted,
+        creatorId: collections.creatorId,
       })
       .from(collections)
       .where(eq(collections.id, collectionId))
@@ -86,6 +91,8 @@ export const getPublicCollectionService = async (
     if (!collection) {
       return fail('Collection not found', HttpStatus.NOT_FOUND);
     }
+
+    await requirePubliclyVisibleCreator(collection.creatorId);
 
     if (collection.isDeleted) {
       if (
@@ -107,7 +114,11 @@ export const getPublicCollectionService = async (
       .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
       .innerJoin(
         users,
-        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+        and(
+          eq(users.id, mediaFiles.creatorId),
+          eq(users.isDeleted, false),
+          publiclyVisibleCreatorWhere,
+        ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(

@@ -88,6 +88,7 @@ export const getAdminCreatorsService = async ({
         status: users.status,
         isEmailVerified: users.isEmailVerified,
         isActive: users.isActive,
+        isHidden: users.isHidden,
         avatarUrl: users.avatarUrl,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt,

@@ -33,6 +33,7 @@ export const users = pgTable(
 
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
     isActive: boolean('is_active').notNull().default(true),
+    isHidden: boolean('is_hidden').notNull().default(false),
 
     ...softDeleteFields,
     ...baseTimestamps,
@@ -44,5 +45,6 @@ export const users = pgTable(
     roleIdx: index('users_role_idx').on(table.role),
     statusIdx: index('users_status_idx').on(table.status),
     isDeletedIdx: index('users_is_deleted_idx').on(table.isDeleted),
+    isHiddenIdx: index('users_is_hidden_idx').on(table.isHidden),
   }),
 );

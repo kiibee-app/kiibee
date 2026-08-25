@@ -20,22 +20,29 @@ import {
   CreatorName,
   MetricGroup,
   MiniText,
-  PublicationBadge,
   RequestsTable,
   RequestTableRow,
   TableBodyCell,
   TableHeaderCell,
   TableScrollWrapper,
+  VisibilitySwitchLabel,
+  VisibilitySwitchThumb,
+  VisibilitySwitchTrack,
+  VisibilityToggle,
 } from "./AllCreators.styles";
 
 type ExistingCreatorsTableProps = {
   creators: ExistingCreator[];
   onSelectCreator?: (creator: ExistingCreator) => void;
+  onToggleVisibility?: (creator: ExistingCreator) => void;
+  pendingCreatorId?: string | null;
 };
 
 export function ExistingCreatorsTable({
   creators,
   onSelectCreator,
+  onToggleVisibility,
+  pendingCreatorId,
 }: ExistingCreatorsTableProps) {
   return (
     <TableScrollWrapper>
@@ -125,11 +132,33 @@ export function ExistingCreatorsTable({
                   </AccountStatusBadge>
                 </TableBodyCell>
                 <TableBodyCell>
-                  <PublicationBadge $published={Boolean(creator.isPublished)}>
-                    {creator.isPublished
-                      ? existingCreatorLabels.published
-                      : existingCreatorLabels.draft}
-                  </PublicationBadge>
+                  <VisibilityToggle
+                    type="button"
+                    role="switch"
+                    aria-checked={!creator.isHidden}
+                    $hidden={Boolean(creator.isHidden)}
+                    disabled={pendingCreatorId === creator.id}
+                    title={
+                      creator.isHidden
+                        ? "Creator is hidden on website. Click to unhide."
+                        : "Creator is visible on website. Click to hide."
+                    }
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onToggleVisibility?.(creator);
+                    }}
+                  >
+                    <VisibilitySwitchTrack $hidden={Boolean(creator.isHidden)}>
+                      <VisibilitySwitchThumb
+                        $hidden={Boolean(creator.isHidden)}
+                      />
+                    </VisibilitySwitchTrack>
+                    <VisibilitySwitchLabel $hidden={Boolean(creator.isHidden)}>
+                      {creator.isHidden
+                        ? existingCreatorLabels.hiddenState
+                        : existingCreatorLabels.visibleState}
+                    </VisibilitySwitchLabel>
+                  </VisibilityToggle>
                 </TableBodyCell>
               </RequestTableRow>
             );

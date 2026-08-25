@@ -100,6 +100,18 @@ export const getSingleContentService = async (
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
+    const [creator] = await db
+      .select({
+        isHidden: users.isHidden,
+        isDeleted: users.isDeleted,
+      })
+      .from(users)
+      .where(eq(users.id, content.creatorId))
+      .limit(1);
+
+    const isCreatorPubliclyHidden =
+      !creator || creator.isDeleted || creator.isHidden;
+
     const access = directAccess ?? collectionAccess;
 
     const hasActiveAccess = Boolean(
@@ -109,7 +121,11 @@ export const getSingleContentService = async (
           new Date(access.rentExpiresAt).getTime() > now.getTime())),
     );
 
-    if (content.isDeleted && content.creatorId !== userId && !hasActiveAccess) {
+    if (
+      (content.isDeleted || isCreatorPubliclyHidden) &&
+      content.creatorId !== userId &&
+      !hasActiveAccess
+    ) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
