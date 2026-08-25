@@ -1453,20 +1453,36 @@
           "body": "KIIBEE is not liable for indirect losses, including:\n- loss of revenue\n- loss of profit\n- data loss"
         },
         "termination": {
-          "title": "11. Termination",
+          "title": "Termination",
           "body": "KIIBEE may at any time:\n- suspend or close your account for non-compliance\n- change or discontinue the Platform with reasonable notice\n- Terminate your account with one month's notice; paid subscriptions will not be refunded, after which your account will be closed and your data and content will be deleted."
         },
         "changes": {
-          "title": "12. Amendments",
+          "title": "Amendments",
           "body": "KIIBEE may amend these Terms with reasonable notice. Continued use of the Platform constitutes acceptance of the amendments."
         },
         "personalData": {
-          "title": "13. Personal data (GDPR)",
+          "title": "Personal data (GDPR)",
           "body": "The processing of personal data is carried out in accordance with KIIBEE's privacy policy."
         },
         "governingLaw": {
-          "title": "14. Governing law and jurisdiction",
+          "title": "Governing law and jurisdiction",
           "body": "These Terms are governed by Danish law. Any disputes shall be settled by the Danish courts."
+        },
+        "subscriptionGeneral": {
+          "title": "Subscription Terms – General",
+          "body": "By creating a subscription with KIIBEE, you accept that the subscription runs continuously until cancelled by either you (the customer) or KIIBEE ApS."
+        },
+        "subscriptionPayment": {
+          "title": "Subscription Terms – Payment and invoicing",
+          "body": "The subscription is invoiced in advance according to the chosen subscription period (monthly, quarterly, annually, or equivalent).\nPayment is made automatically via the payment method you have registered on the due date.\nYou are responsible for ensuring that your payment information is correct and up to date."
+        },
+        "subscriptionCancellation": {
+          "title": "Subscription Terms – Cancellation",
+          "body": "The subscription can be cancelled with 31 days' notice to the end of a subscription period.\nCancellation can be made via your account in KIIBEE's customer portal or by contacting customer service.\nAlready paid subscription periods are not refunded in whole or in part."
+        },
+        "subscriptionNonPayment": {
+          "title": "Subscription Terms – Non-payment",
+          "body": "In case of non-payment, KIIBEE reserves the right to:\n- Suspend your access to the subscription\n- Close the subscription entirely\nThis may occur without further notice until payment is received."
         },
         "contact": {
           "title": "Contact",
