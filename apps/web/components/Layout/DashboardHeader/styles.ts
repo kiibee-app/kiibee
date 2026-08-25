@@ -161,7 +161,7 @@ export const ProfileButton = styled.button<{ $hasImage?: boolean }>`
   border: none;
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: 50%;
   overflow: hidden;
   background: ${({ $hasImage, theme }) =>
     $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
