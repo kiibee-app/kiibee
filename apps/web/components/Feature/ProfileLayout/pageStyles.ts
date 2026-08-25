@@ -55,6 +55,7 @@ export const avatarFrameCss = css`
   border-radius: 50%;
   flex: 0 0 auto;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 `;
 
 export const Page = styled.main<
@@ -113,6 +114,9 @@ export const Brand = styled(Link)`
 
 export const BrandAvatar = styled.span`
   ${avatarFrameCss};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 6px;
+  box-sizing: border-box;
 `;
 
 export const BrandAvatarImage = styled(Image)`

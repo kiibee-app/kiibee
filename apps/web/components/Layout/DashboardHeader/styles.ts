@@ -100,16 +100,18 @@ export const EmailWrapper = styled.div`
 export const ProfileCircle = styled.div<{ $hasImage: boolean }>`
   ${avatarFrameCss};
   background: ${({ $hasImage, theme }) =>
-    $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
+    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: ${({ $hasImage }) => ($hasImage ? "4px" : "0")};
+  box-sizing: border-box;
 `;
 
 export const ProfileAvatarImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
 `;
@@ -161,17 +163,18 @@ export const ProfileButton = styled.button<{ $hasImage?: boolean }>`
   border: none;
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: 50%;
   overflow: hidden;
   background: ${({ $hasImage, theme }) =>
-    $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
+    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: ${({ $hasImage }) => ($hasImage ? "4px" : "0")};
+  box-sizing: border-box;
   position: relative;
 
   &:focus,
