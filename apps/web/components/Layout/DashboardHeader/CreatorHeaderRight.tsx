@@ -41,13 +41,13 @@ const CreatorHeaderRight = ({
         href={PATHS.DASHBOARD_CREATOR_PROFILE}
         aria-label={t("common.creatorProfile")}
       >
-        <ProfileCircle $hasImage={Boolean(avatarUrl)}>
+        <ProfileCircle $hasImage={Boolean(avatarUrl)} $isDashboard={true}>
           <CreatorChannelAvatar
             avatarUrl={avatarUrl}
             initial={initial}
             alt={t("common.creatorProfile")}
-            sizes="44px"
-            fit="cover"
+            sizes="36px"
+            fit="contain"
             initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
           />
         </ProfileCircle>

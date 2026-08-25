@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
-import heroImage from "@/assets/images/creators/layout2defaultimage.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
+  CoverInitial,
   HeroContent,
   HeroFrame,
   HeroGrid,
@@ -26,22 +26,27 @@ export default function StorySection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { openAbout } = tabState;
-  const { displayName, coverImageUrl, about } = useCreatorChannelProfile();
+  const { displayName, coverImageUrl, initial, about } =
+    useCreatorChannelProfile();
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
 
   return (
     <HeroFrame>
       <HeroGrid>
-        <HeroMedia>
-          <Image
-            src={coverImageUrl || heroImage}
-            alt="Creator workspace"
-            fill
-            sizes="(max-width: 900px) 100vw, 70vw"
-            priority
-            unoptimized={Boolean(coverImageUrl)}
-          />
+        <HeroMedia $hasImage={Boolean(coverImageUrl)}>
+          {coverImageUrl ? (
+            <Image
+              src={coverImageUrl}
+              alt="Creator workspace"
+              fill
+              sizes="(max-width: 900px) 100vw, 70vw"
+              priority
+              unoptimized
+            />
+          ) : (
+            <CoverInitial>{initial}</CoverInitial>
+          )}
         </HeroMedia>
 
         <HeroContent>

@@ -10,6 +10,8 @@ export const API_ENDPOINTS = {
   APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
   REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
+  CREATOR_VISIBILITY: (creatorId: string) =>
+    `/creators/admin/${creatorId}/visibility`,
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/viewer/admin/all-viewers",

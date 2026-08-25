@@ -28,6 +28,10 @@ const SECTIONS = [
   "changes",
   "personalData",
   "governingLaw",
+  "subscriptionGeneral",
+  "subscriptionPayment",
+  "subscriptionCancellation",
+  "subscriptionNonPayment",
   "contact",
 ] as const;
 

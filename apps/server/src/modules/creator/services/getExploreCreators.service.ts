@@ -12,6 +12,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE, STATUS } from 'src/utils/constant';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { success } from 'src/utils/sendResponse';
 
 export type ExploreCreatorItem = {
@@ -66,6 +67,7 @@ const activeCreatorConditions = (): SQL[] => [
   eq(users.isDeleted, false),
   eq(users.isActive, true),
   eq(users.status, STATUS.ACTIVE),
+  publiclyVisibleCreatorWhere,
 ];
 
 const creatorDisplayNameSql = sql<string>`trim(coalesce(

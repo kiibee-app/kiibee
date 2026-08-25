@@ -12,6 +12,7 @@ import { success, fail } from 'src/utils/sendResponse';
 import { HttpStatus } from '@nestjs/common';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { dedupeFeedMediaById, orderFeedMediaByIds } from '../feed.helper';
 
 const trendingSelect = {
@@ -38,6 +39,7 @@ const publishedPublicWhere = and(
 const activeCreatorJoin = and(
   eq(users.id, mediaFiles.creatorId),
   eq(users.isDeleted, false),
+  publiclyVisibleCreatorWhere,
 );
 
 export const getTrendingContentService = async (limit = 10) => {

@@ -1,7 +1,6 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import coverImage from "@/assets/images/creators/layout1defaultimage.svg";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -13,6 +12,7 @@ import {
   BioMoreButton,
   CoverFrameFull,
   CoverImageTop,
+  CoverInitial,
   HeroWrapperCentered,
   InfoSection,
   NameText,
@@ -38,23 +38,28 @@ export default function CenteredCoverSection() {
   return (
     <HeroWrapperCentered>
       <CoverFrameFull>
-        <CoverImageTop
-          src={coverImageUrl || coverImage}
-          alt={t(CREATE_PROFILE_HOME.title)}
-          fill
-          sizes="100vw"
-          priority
-          unoptimized={Boolean(coverImageUrl)}
-        />
+        {coverImageUrl ? (
+          <CoverImageTop
+            src={coverImageUrl}
+            alt={t(CREATE_PROFILE_HOME.title)}
+            fill
+            sizes="100vw"
+            priority
+            unoptimized
+          />
+        ) : (
+          <CoverInitial>{initial}</CoverInitial>
+        )}
       </CoverFrameFull>
 
       <InfoSection>
         <AvatarWrapCentered>
           <CreatorChannelAvatar
-            avatarUrl={mobileCoverImageUrl || avatarUrl}
+            avatarUrl={avatarUrl || mobileCoverImageUrl}
             initial={initial}
             alt={creatorName || t(CREATE_PROFILE_HOME.title)}
             sizes="180px"
+            fit="contain"
           />
         </AvatarWrapCentered>
 

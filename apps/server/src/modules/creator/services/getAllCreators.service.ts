@@ -19,6 +19,7 @@ import {
   SORT_DIRECTIONS,
 } from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 
 type SortBy = 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
@@ -99,6 +100,7 @@ export const allCreatorsService = async ({
       eq(users.isActive, true),
       eq(users.role, ROLE.CREATOR),
       eq(users.isDeleted, false),
+      publiclyVisibleCreatorWhere,
       sql`${creatorDisplayNameSql} <> ''`,
       isFeaturedOnly
         ? sql`${featureCreators.creatorId} IS NOT NULL`

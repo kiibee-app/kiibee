@@ -18,7 +18,6 @@ export const INDEXABLE_ROUTES = [
   "/privacy-policy",
   "/single-collection",
   "/subscription",
-  "/subscription-terms",
   "/support",
   "/terms-of-service",
   "/tutorial-videos",

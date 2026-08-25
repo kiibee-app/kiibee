@@ -2,9 +2,14 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useExistingCreators } from "../../../hooks/api";
+import toast from "react-hot-toast";
+import {
+  useExistingCreators,
+  useUpdateCreatorVisibility,
+} from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import { useDebounce } from "@/hooks/ui/use-debounce";
+import { Modal } from "../../common/Modal";
 import {
   CREATOR_PLAN_FILTER_OPTIONS,
   PLACEHOLDERS,
@@ -18,6 +23,7 @@ import {
   DEFAULT_ALL_CREATORS_TAB,
   type AllCreatorsTab,
 } from "@/utils/allCreators";
+import type { ExistingCreator } from "../../../types/existing-creator";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
@@ -38,6 +44,9 @@ import {
   SearchIcon,
   SearchIconWrapper,
   SearchInput,
+  VisibilityConfirmActions,
+  VisibilityConfirmButton,
+  VisibilityConfirmText,
 } from "./AllCreators.styles";
 
 export function ExistingCreatorsList() {
@@ -48,6 +57,9 @@ export function ExistingCreatorsList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [creatorToHide, setCreatorToHide] = useState<ExistingCreator | null>(
+    null,
+  );
   const [pageSize, setPageSize] = useState(() =>
     getInitialPageSize(STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS, DEFAULT_PAGE_SIZE),
   );
@@ -59,6 +71,7 @@ export function ExistingCreatorsList() {
     page: currentPage,
     limit: pageSize,
   });
+  const updateVisibilityMutation = useUpdateCreatorVisibility();
 
   const handleSearchClear = () => {
     setSearchTerm("");
@@ -91,6 +104,48 @@ export function ExistingCreatorsList() {
     existingCreatorsPagination.onPageChange(1);
   };
 
+  const handleToggleVisibility = (creator: ExistingCreator) => {
+    const nextHidden = !creator.isHidden;
+
+    if (nextHidden) {
+      setCreatorToHide(creator);
+      return;
+    }
+
+    updateVisibilityMutation.mutate(
+      { creatorId: creator.id, isHidden: nextHidden },
+      {
+        onSuccess: () => {
+          toast.success(
+            nextHidden
+              ? "Creator hidden from the public site"
+              : "Creator is visible on the public site",
+          );
+        },
+        onError: (error) => {
+          toast.error(error.message || "Failed to update creator visibility");
+        },
+      },
+    );
+  };
+
+  const handleConfirmHide = () => {
+    if (!creatorToHide) return;
+
+    updateVisibilityMutation.mutate(
+      { creatorId: creatorToHide.id, isHidden: true },
+      {
+        onSuccess: () => {
+          toast.success("Creator hidden from the public site");
+          setCreatorToHide(null);
+        },
+        onError: (error) => {
+          toast.error(error.message || "Failed to update creator visibility");
+        },
+      },
+    );
+  };
+
   const renderContent = () => {
     if (existingCreatorsQuery.isLoading) {
       return <CreatorRequestsTableSkeleton />;
@@ -114,6 +169,12 @@ export function ExistingCreatorsList() {
           creators={existingCreatorsPagination.paginatedData}
           onSelectCreator={(creator) =>
             router.push(`/all-creators/${creator.id}`)
+          }
+          onToggleVisibility={handleToggleVisibility}
+          pendingCreatorId={
+            updateVisibilityMutation.isPending
+              ? (updateVisibilityMutation.variables?.creatorId ?? null)
+              : null
           }
         />
         <CreatorPagination
@@ -192,6 +253,37 @@ export function ExistingCreatorsList() {
           </AllCreatorsControlsHeader>
 
           <AllCreatorsPanel>{renderContent()}</AllCreatorsPanel>
+
+          <Modal
+            title="Hide creator?"
+            open={Boolean(creatorToHide)}
+            onClose={() => setCreatorToHide(null)}
+            size="sm"
+          >
+            <VisibilityConfirmText>
+              {creatorToHide
+                ? `Are you sure you want to hide ${creatorToHide.fullName || creatorToHide.email}? Their public profile and public contents will be hidden from the website.`
+                : ""}
+            </VisibilityConfirmText>
+            <VisibilityConfirmActions>
+              <VisibilityConfirmButton
+                type="button"
+                $variant="cancel"
+                onClick={() => setCreatorToHide(null)}
+                disabled={updateVisibilityMutation.isPending}
+              >
+                Cancel
+              </VisibilityConfirmButton>
+              <VisibilityConfirmButton
+                type="button"
+                $variant="confirm"
+                onClick={handleConfirmHide}
+                disabled={updateVisibilityMutation.isPending}
+              >
+                {updateVisibilityMutation.isPending ? "Hiding..." : "Hide"}
+              </VisibilityConfirmButton>
+            </VisibilityConfirmActions>
+          </Modal>
         </>
       ) : (
         <CreatorSettings />

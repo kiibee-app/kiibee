@@ -19,6 +19,7 @@ import {
 } from 'src/database/schema';
 
 import { buildSearch, format } from '../content.helper';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 
 const baseSelect = {
   id: mediaFiles.id,
@@ -182,7 +183,11 @@ export const getAllContentsService = async (
       .from(mediaFiles)
       .innerJoin(
         users,
-        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+        and(
+          eq(users.id, mediaFiles.creatorId),
+          eq(users.isDeleted, false),
+          publiclyVisibleCreatorWhere,
+        ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
