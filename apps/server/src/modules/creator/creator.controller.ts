@@ -1,7 +1,16 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CreatorService } from './creator.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
+import { UpdateCreatorVisibilityDto } from './dto/updateCreatorVisibility.dto';
 
 @Controller('creators')
 export class CreatorController {
@@ -40,6 +49,15 @@ export class CreatorController {
       page: page ? Number(page) : undefined,
       limit: limit ? Number(limit) : undefined,
     });
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('admin/:id/visibility')
+  async updateCreatorVisibility(
+    @Param('id') id: string,
+    @Body() body: UpdateCreatorVisibilityDto,
+  ) {
+    return this.creatorService.updateCreatorVisibility(id, body.isHidden);
   }
 
   @Get(':id')

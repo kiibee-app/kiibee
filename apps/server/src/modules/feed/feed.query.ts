@@ -9,6 +9,7 @@ import {
 } from 'src/database/schema';
 import { eq, desc, and, sql, inArray } from 'drizzle-orm';
 import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { dedupeFeedMediaById, orderFeedMediaByIds } from './feed.helper';
 
 const baseSelect = {
@@ -35,7 +36,11 @@ async function fetchMediaFilesByIds(ids: string[]) {
     .from(mediaFiles)
     .innerJoin(
       users,
-      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      and(
+        eq(users.id, mediaFiles.creatorId),
+        eq(users.isDeleted, false),
+        publiclyVisibleCreatorWhere,
+      ),
     )
     .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
     .leftJoin(
@@ -57,7 +62,11 @@ export const getTrendingQuery = async (where: any, limit: number) => {
     .from(mediaFiles)
     .innerJoin(
       users,
-      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      and(
+        eq(users.id, mediaFiles.creatorId),
+        eq(users.isDeleted, false),
+        publiclyVisibleCreatorWhere,
+      ),
     )
     .where(where)
     .orderBy(desc(mediaFiles.sortOrder))
@@ -76,7 +85,11 @@ export const getLatestQuery = async (
     .from(mediaFiles)
     .innerJoin(
       users,
-      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      and(
+        eq(users.id, mediaFiles.creatorId),
+        eq(users.isDeleted, false),
+        publiclyVisibleCreatorWhere,
+      ),
     )
     .where(where)
     .orderBy(orderBy)
@@ -91,7 +104,11 @@ export const getRecentQuery = async (where: any, limit: number) => {
     .from(mediaFiles)
     .innerJoin(
       users,
-      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      and(
+        eq(users.id, mediaFiles.creatorId),
+        eq(users.isDeleted, false),
+        publiclyVisibleCreatorWhere,
+      ),
     )
     .where(where)
     .orderBy(desc(mediaFiles.createdAt))
@@ -126,6 +143,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
         eq(users.isActive, true),
         eq(users.role, ROLE.CREATOR),
         eq(users.isDeleted, false),
+        publiclyVisibleCreatorWhere,
       ),
     )
     .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
