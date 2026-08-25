@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Elias Ehlers",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Elias Ehlers",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3165/kopi-af-kopi-af-kopi-af-kopi-af-kopi-af-carsten-bang-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3383/elias-ehlers-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "Elias Ehlers - Skarp samfundssatiriker\r\nElias Ehlers er kendt for sin skarpe samfundssatire og gennemtænkte historiefortælling. Med et højt tempo og en effektiv punchline får han enhver sal til at ligge ned af grin.",
+  "css": "",
+  "javaScript": ""
+}

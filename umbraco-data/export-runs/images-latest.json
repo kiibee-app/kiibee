@@ -1,332 +1,93 @@
 {
-  "startedAt": "2026-08-24T15:08:12.730Z",
+  "startedAt": "2026-08-25T14:24:36.534Z",
   "users": [
     {
-      "name": "FBI.DK",
-      "userDir": "FBI.DK",
-      "srcs": 92,
-      "ok": 92,
+      "name": "Elias Ehlers",
+      "userDir": "Elias_Ehlers",
+      "srcs": 5,
+      "ok": 5,
       "failed": []
     },
     {
-      "name": "Lisathe Møller",
-      "userDir": "Lisathe_Møller",
-      "srcs": 2,
-      "ok": 1,
+      "name": "Funktionel Neuro Terapeut",
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "srcs": 67,
+      "ok": 61,
       "failed": [
         {
-          "src": "/media/5199/kalaallisut-oqaasilerissut_e-bogitut.pdf",
-          "fileName": "5199_kalaallisut-oqaasilerissut_e-bogitut.pdf",
+          "src": "/media/4909/modul-3-dag-1.pdf",
+          "fileName": "4909_modul-3-dag-1.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4798/nervesystem_kvindeloeber.jpg",
+          "fileName": "4798_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4823/nervesystem_kvindeloeber.jpg",
+          "fileName": "4823_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4849/nervesystem_kvindeloeber.jpg",
+          "fileName": "4849_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4850/nervesystem_kvindeloeber.jpg",
+          "fileName": "4850_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4795/skaermbillede-2019-11-21-kl-113408.png",
+          "fileName": "4795_skaermbillede-2019-11-21-kl-113408.png",
           "error": "The operation was aborted due to timeout"
         }
       ]
     },
     {
-      "name": "Bettina Ramsing",
-      "userDir": "Bettina_Ramsing",
-      "srcs": 0,
-      "ok": 0,
+      "name": "Tine Rask Mathiesen",
+      "userDir": "Tine_Rask_Mathiesen",
+      "srcs": 3,
+      "ok": 3,
       "failed": []
     },
     {
-      "name": "Heidi Stjerne",
-      "userDir": "Heidi_Stjerne",
-      "srcs": 0,
-      "ok": 0,
-      "failed": []
-    },
-    {
-      "name": "Lea Nielsen",
-      "userDir": "Lea_Nielsen",
-      "srcs": 0,
-      "ok": 0,
-      "failed": []
-    },
-    {
-      "name": "Johanne Kubert",
-      "userDir": "Johanne_Kubert",
-      "srcs": 0,
-      "ok": 0,
-      "failed": []
-    },
-    {
-      "name": "Kristian Kjaer",
-      "userDir": "Kristian_Kjaer",
+      "name": "Vital New Software ApS",
+      "userDir": "Vital_New_Software_ApS",
       "srcs": 1,
       "ok": 1,
       "failed": []
     },
     {
-      "name": "Funktionel Neuroterapeut 2026",
-      "userDir": "Funktionel_Neuroterapeut_2026",
-      "srcs": 11,
-      "ok": 11,
+      "name": "Comedy-TV",
+      "userDir": "Comedy-TV",
+      "srcs": 140,
+      "ok": 140,
       "failed": []
     },
     {
-      "name": "Jesper Jensen",
-      "userDir": "Jesper_Jensen",
-      "srcs": 3,
-      "ok": 3,
+      "name": "Thomas Hartmann",
+      "userDir": "Thomas_Hartmann",
+      "srcs": 15,
+      "ok": 15,
       "failed": []
     },
     {
-      "name": "Marner Analytics",
-      "userDir": "Marner_Analytics",
-      "srcs": 0,
-      "ok": 0,
-      "failed": []
-    },
-    {
-      "name": "Peter Peitersen",
-      "userDir": "Peter_Peitersen",
-      "srcs": 3,
-      "ok": 3,
-      "failed": []
-    },
-    {
-      "name": "Funktionel Neuro Terapeut (1)",
-      "userDir": "Funktionel_Neuro_Terapeut_(1)",
-      "srcs": 61,
-      "ok": 60,
-      "failed": [
-        {
-          "src": "/media/5022/nervesystem_kvindeloeber.jpg",
-          "fileName": "5022_nervesystem_kvindeloeber.jpg",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Diana Myjak",
-      "userDir": "Diana_Myjak",
-      "srcs": 3,
-      "ok": 3,
-      "failed": []
-    },
-    {
-      "name": "Laura Nielsen",
-      "userDir": "Laura_Nielsen",
-      "srcs": 2,
-      "ok": 1,
-      "failed": [
-        {
-          "src": "/media/5108/det-vi-sjaeldent-siger.pdf",
-          "fileName": "5108_det-vi-sjaeldent-siger.pdf",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Dahls regnskabsservice ApS",
-      "userDir": "Dahls_regnskabsservice_ApS",
+      "name": "slank og wellness",
+      "userDir": "slank_og_wellness",
       "srcs": 4,
       "ok": 4,
       "failed": []
     },
     {
-      "name": "Nethe Nomonde Dalgaarda",
-      "userDir": "Nethe_Nomonde_Dalgaard",
-      "srcs": 5,
-      "ok": 3,
-      "failed": [
-        {
-          "src": "/media/5097/molly_og_cykelstiens_hemmeligheder.pdf",
-          "fileName": "5097_molly_og_cykelstiens_hemmeligheder.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/5099/molly.png",
-          "fileName": "5099_molly.png",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Akupunktør Stine Vogel",
-      "userDir": "Akupunktør_Stine_Vogel",
-      "srcs": 6,
-      "ok": 5,
-      "failed": [
-        {
-          "src": "/media/5182/nulstilling-et-21-dages-forloeb-til-et-roligere-nervesystem.pdf",
-          "fileName": "5182_nulstilling-et-21-dages-forloeb-til-et-roligere-nervesystem.pdf",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Olivia Hvoslef Mejer Madsen",
-      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
-      "srcs": 4,
-      "ok": 4,
-      "failed": []
-    },
-    {
-      "name": "SkoleRo ApS",
-      "userDir": "SkoleRo_ApS",
-      "srcs": 5,
-      "ok": 3,
-      "failed": [
-        {
-          "src": "/media/4955/mariehoenen-plet-der-mistede-alle-sine-pletter-e-bog.pdf",
-          "fileName": "4955_mariehoenen-plet-der-mistede-alle-sine-pletter-e-bog.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4948/rolighedspausesaettet.pdf",
-          "fileName": "4948_rolighedspausesaettet.pdf",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "B Entertained",
-      "userDir": "B_Entertained",
-      "srcs": 5,
-      "ok": 4,
-      "failed": [
-        {
-          "src": "/media/4770/aeoeaa-2024_3.mp4",
-          "fileName": "4770_aeoeaa-2024_3.mp4",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "FliCFLAC",
-      "userDir": "FliCFLAC",
+      "name": "Sundt indtag",
+      "userDir": "Sundt_indtag",
       "srcs": 3,
       "ok": 3,
       "failed": []
-    },
-    {
-      "name": "Mit test site",
-      "userDir": "Mit_test_site",
-      "srcs": 9,
-      "ok": 9,
-      "failed": []
-    },
-    {
-      "name": "Elsebeth Fogh",
-      "userDir": "Elsebeth_Fogh",
-      "srcs": 16,
-      "ok": 16,
-      "failed": []
-    },
-    {
-      "name": "Life- & Business Coach",
-      "userDir": "Life-_&_Business_Coach",
-      "srcs": 4,
-      "ok": 4,
-      "failed": []
-    },
-    {
-      "name": "Songs Of Jacob Elk",
-      "userDir": "Songs_Of_Jacob_Elk",
-      "srcs": 36,
-      "ok": 32,
-      "failed": [
-        {
-          "src": "/media/2481/dem-vi-hver-isaer-er.mp3",
-          "fileName": "2481_dem-vi-hver-isaer-er.mp3",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/2487/hr-og-fru-hakkeboef.mp3",
-          "fileName": "2487_hr-og-fru-hakkeboef.mp3",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/2489/hvad-skete-der-lige-der.mp3",
-          "fileName": "2489_hvad-skete-der-lige-der.mp3",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/2493/kender-du-det.mp3",
-          "fileName": "2493_kender-du-det.mp3",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Adal Faragalla",
-      "userDir": "Adal_Faragalla",
-      "srcs": 19,
-      "ok": 19,
-      "failed": []
-    },
-    {
-      "name": "Anne Kongsbak",
-      "userDir": "Anne_Kongsbak",
-      "srcs": 2,
-      "ok": 2,
-      "failed": []
-    },
-    {
-      "name": "Brian Mørk",
-      "userDir": "Brian_Mørk",
-      "srcs": 3,
-      "ok": 3,
-      "failed": []
-    },
-    {
-      "name": "Jacob Tingleff",
-      "userDir": "Jacob_Tingleff",
-      "srcs": 5,
-      "ok": 5,
-      "failed": []
-    },
-    {
-      "name": "Torben Chris",
-      "userDir": "Torben_Chris",
-      "srcs": 8,
-      "ok": 8,
-      "failed": []
-    },
-    {
-      "name": "Kammas Kantine",
-      "userDir": "Kammas_Kantine",
-      "srcs": 44,
-      "ok": 37,
-      "failed": [
-        {
-          "src": "/media/3213/den-stegte-ka-l00_01_42_16still004.png",
-          "fileName": "3213_den-stegte-ka-l00_01_42_16still004.png",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3228/opskrifterne-pdf.pdf",
-          "fileName": "3228_opskrifterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3231/indkoebslisterne-pdf.pdf",
-          "fileName": "3231_indkoebslisterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3222/opskrifterne-pdf.pdf",
-          "fileName": "3222_opskrifterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3224/indkoebslisterne-pdf.pdf",
-          "fileName": "3224_indkoebslisterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3216/opskrifterne-pdf.pdf",
-          "fileName": "3216_opskrifterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/3218/indkoebslisterne-pdf.pdf",
-          "fileName": "3218_indkoebslisterne-pdf.pdf",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
     }
   ],
-  "finishedAt": "2026-08-24T15:11:21.869Z"
+  "finishedAt": "2026-08-25T14:25:39.941Z"
 }
