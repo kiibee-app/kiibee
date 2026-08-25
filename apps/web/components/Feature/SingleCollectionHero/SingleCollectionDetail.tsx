@@ -203,7 +203,11 @@ export default function SingleCollectionDetail({
     publicCreator?.name || dynamicSection?.creatorName;
 
   const resolvedCreatorAvatar = useMemo(() => {
-    return resolvePublicMediaUrl(publicCreator?.profileImageUrl) ?? undefined;
+    return (
+      resolvePublicMediaUrl(
+        publicCreator?.profileImageUrl || publicCreator?.mobileCoverImageUrl,
+      ) ?? undefined
+    );
   }, [publicCreator]);
 
   const resolvedImage =

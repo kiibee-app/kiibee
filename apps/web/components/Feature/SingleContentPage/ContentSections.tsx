@@ -119,6 +119,7 @@ function SingleContentCreator({ creator }: SingleContentCreatorProps) {
           alt={creator.avatarAlt ?? creator.name}
           sizes="30px"
           initialUse={CREATOR_CHANNEL_AVATAR_TEXT.COMPACT}
+          fit="contain"
         />
       </CreatorAvatar>
       <CreatorName>{creator.name}</CreatorName>
