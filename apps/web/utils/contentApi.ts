@@ -384,18 +384,6 @@ export const getSingleContentProps = (
             value: createdAt,
           }
         : undefined,
-      accessType
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.accessType),
-            value: accessType,
-          }
-        : undefined,
-      visibility
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
-            value: visibility,
-          }
-        : undefined,
       content[CONTENT_RESPONSE_KEYS.DURATION]
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
