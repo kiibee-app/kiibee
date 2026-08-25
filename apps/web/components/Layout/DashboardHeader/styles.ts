@@ -97,22 +97,27 @@ export const EmailWrapper = styled.div`
   }
 `;
 
-export const ProfileCircle = styled.div<{ $hasImage: boolean }>`
+export const ProfileCircle = styled.div<{
+  $hasImage: boolean;
+  $isDashboard?: boolean;
+}>`
   ${avatarFrameCss};
-  background: ${({ $hasImage, theme }) =>
-    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
+  background: ${({ $isDashboard, theme }) =>
+    $isDashboard ? theme.colors.neutral.WHITE : "transparent"};
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ $hasImage }) => ($hasImage ? "4px" : "0")};
+  padding: ${({ $hasImage, $isDashboard }) =>
+    $hasImage && $isDashboard ? "4px" : "0"};
   box-sizing: border-box;
 `;
 
 export const ProfileAvatarImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  border-radius: 50%;
   display: block;
 `;
 
@@ -159,21 +164,25 @@ export const NavItem = styled(Link)`
   }
 `;
 
-export const ProfileButton = styled.button<{ $hasImage?: boolean }>`
+export const ProfileButton = styled.button<{
+  $hasImage?: boolean;
+  $isDashboard?: boolean;
+}>`
   border: none;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   overflow: hidden;
-  background: ${({ $hasImage, theme }) =>
-    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
+  background: ${({ $isDashboard, theme }) =>
+    $isDashboard ? theme.colors.neutral.WHITE : "transparent"};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${({ $hasImage }) => ($hasImage ? "4px" : "0")};
+  padding: ${({ $hasImage, $isDashboard }) =>
+    $hasImage && $isDashboard ? "4px" : "0"};
   box-sizing: border-box;
   position: relative;
 
