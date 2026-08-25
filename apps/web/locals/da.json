@@ -1453,20 +1453,36 @@
           "body": "KIIBEE er ikke ansvarlig for indirekte tab, herunder:\n- driftstab\n- tabt fortjeneste\n- datatab"
         },
         "termination": {
-          "title": "11. Opsigelse",
+          "title": "Opsigelse",
           "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- Opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
         },
         "changes": {
-          "title": "12. Ændringer",
+          "title": "Ændringer",
           "body": "KIIBEE kan ændre disse Betingelser med rimeligt varsel. Fortsat brug af Platformen udgør accept af ændringerne."
         },
         "personalData": {
-          "title": "13. Persondata (GDPR)",
+          "title": "Persondata (GDPR)",
           "body": "Behandling af personoplysninger sker i henhold til KIIBEE's privatlivspolitik."
         },
         "governingLaw": {
-          "title": "14. Lovvalg og værneting",
+          "title": "Lovvalg og værneting",
           "body": "Betingelserne er underlagt dansk ret. Enhver tvist afgøres ved danske domstole."
+        },
+        "subscriptionGeneral": {
+          "title": "Abonnementsbetingelser – Generelt",
+          "body": "Ved oprettelse af et abonnement hos KIIBEE accepterer du, at abonnementet løber løbende, indtil det opsiges af enten dig (kunden) eller KIIBEE ApS."
+        },
+        "subscriptionPayment": {
+          "title": "Abonnementsbetingelser – Betaling og fakturering",
+          "body": "Abonnementet faktureres forud i henhold til den valgte abonnementsperiode (månedligt, kvartalsvist, årligt eller tilsvarende).\nBetaling sker automatisk via den betalingsmetode, du har registreret, på forfaldsdatoen.\nDu er selv ansvarlig for at sikre, at dine betalingsoplysninger er korrekte og opdaterede."
+        },
+        "subscriptionCancellation": {
+          "title": "Abonnementsbetingelser – Opsigelse",
+          "body": "Abonnementet kan opsiges med 31 dages varsel til udgangen af en abonnementsperiode.\nOpsigelse kan foretages via din konto i KIIBEE's kundeportal eller ved henvendelse til kundeservice.\nAllerede betalte abonnementsperioder refunderes hverken helt eller delvist."
+        },
+        "subscriptionNonPayment": {
+          "title": "Abonnementsbetingelser – Manglende betaling",
+          "body": "Ved manglende betaling forbeholder KIIBEE sig retten til at:\n- Suspendere din adgang til abonnementet\n- Lukke abonnementet helt\nDette kan ske uden yderligere varsel, indtil betaling er modtaget."
         },
         "contact": {
           "title": "Kontakt",

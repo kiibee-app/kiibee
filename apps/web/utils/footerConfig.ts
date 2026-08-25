@@ -67,9 +67,5 @@ export const footerLinks: FooterLink[][] = [
       href: "/cookie-settings",
       label: "footer.cookieSettings",
     },
-    {
-      href: "/subscription-terms",
-      label: "footer.subscriptionTerms",
-    },
   ],
 ];
