@@ -846,6 +846,7 @@
     "active": "Active",
     "planNotFound": "Plan not found",
     "subscriptionActivated": "Subscription activated!",
+    "enterprise": "Enterprise",
     "plans": {
       "launch": {
         "title": "Launch",
