@@ -260,7 +260,6 @@ export const getSingleContentProps = (
   const accessType = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.ACCESS_TYPE],
   );
-  const visibility = toTrimmedString(content[CONTENT_RESPONSE_KEYS.VISIBILITY]);
   const buyPrice = content[CONTENT_RESPONSE_KEYS.BUY_PRICE];
   const rentPrice = content[CONTENT_RESPONSE_KEYS.RENT_PRICE];
   const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
