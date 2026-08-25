@@ -846,6 +846,7 @@
     "active": "Aktiv",
     "planNotFound": "Planen blev ikke fundet",
     "subscriptionActivated": "Abonnementet er aktiveret!",
+    "enterprise": "Virksomhed",
     "plans": {
       "launch": {
         "title": "Launch",

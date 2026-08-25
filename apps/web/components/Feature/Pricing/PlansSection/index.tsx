@@ -3,7 +3,12 @@
 import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import PlanCard from "./PlanCard";
-import { CardsWrapper, Section, SectionTitle } from "./styles";
+import {
+  CardsWrapper,
+  EnterpriseSection,
+  Section,
+  SectionTitle,
+} from "./styles";
 import { planOrder, pricingPlanToPlanName } from "@/utils/pricingPlanKeys";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
@@ -16,7 +21,10 @@ import {
   PLANS_SECTION_ID,
   SCROLL_TO_START_OPTIONS,
   STRING_TRUE,
+  VARIANT,
 } from "@/utils/Constants";
+import GenericButton from "@/components/UI/GenericButton";
+import { PATHS } from "@/utils/path";
 
 function subscribeToHash(onStoreChange: () => void) {
   window.addEventListener(EVENT_HASHCHANGE, onStoreChange);
@@ -160,6 +168,11 @@ export default function PricingPlansSection({
           );
         })}
       </CardsWrapper>
+      <EnterpriseSection>
+        <GenericButton variant={VARIANT.PRIMARY} href={PATHS.SUPPORT}>
+          {t("pricingPlans.enterprise", "Enterprise")}
+        </GenericButton>
+      </EnterpriseSection>
     </Section>
   );
 }

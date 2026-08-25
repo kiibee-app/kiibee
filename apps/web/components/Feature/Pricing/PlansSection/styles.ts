@@ -112,6 +112,18 @@ export const CardsWrapper = styled.div<{ $alignWide?: boolean }>`
   }
 `;
 
+export const EnterpriseSection = styled.div`
+  margin-top: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  ${media.tablet} {
+    margin-top: 24px;
+  }
+`;
+
 export const Card = styled.article<{ $highlight?: boolean }>`
   display: flex;
   width: 100%;
