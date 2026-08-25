@@ -177,16 +177,27 @@ function matchesUser(node, requested) {
 }
 
 function findUser(liveUsers, requested) {
-  const wanted = clean(String(requested).replace(/\([^)]*@[^)]*\)/g, ''));
+  const wanted = clean(String(requested).replace(/\([^)]*@[^)]*\)/g, '').replace(/_/g, ' '));
   const exact = liveUsers.find((node) => clean(node?.name ?? node?.Name) === wanted);
   if (exact) return { user: exact, ambiguous: [] };
   const prefix = liveUsers.filter((node) => {
     const actual = clean(node?.name ?? node?.Name);
-    if (actual.startsWith(wanted)) return true;
-    return wanted.startsWith(actual) && Math.abs(wanted.length - actual.length) <= 3;
+    if (actual.startsWith(wanted) || wanted.startsWith(actual)) {
+      return Math.abs(wanted.length - actual.length) <= 8;
+    }
+    return false;
   });
   if (prefix.length === 1) return { user: prefix[0], ambiguous: [] };
-  return { user: null, ambiguous: prefix.map((node) => node?.name ?? node?.Name) };
+  // Contains match for long names (e.g. Gitte_Hildebrandt_-_små...)
+  const contains = liveUsers.filter((node) => {
+    const actual = clean(node?.name ?? node?.Name);
+    return actual.includes(wanted) || wanted.includes(actual);
+  });
+  if (contains.length === 1) return { user: contains[0], ambiguous: [] };
+  return {
+    user: null,
+    ambiguous: [...new Set([...prefix, ...contains].map((node) => node?.name ?? node?.Name))],
+  };
 }
 
 function isSkipped(userDir, liveName) {

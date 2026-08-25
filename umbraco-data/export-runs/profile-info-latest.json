@@ -1,5 +1,5 @@
 {
-  "startedAt": "2026-08-25T11:20:17.291Z",
+  "startedAt": "2026-08-25T12:43:14.005Z",
   "users": [
     {
       "requestedName": "@lawn.dk",
@@ -1576,8 +1576,22 @@
       "liveName": "Rikke Brünner ",
       "userId": 67371,
       "userDir": "Rikke_Brünner",
-      "status": "skipped",
-      "reason": "skip list"
+      "status": "ok",
+      "coverSrc": "/media/4119/rikke-47.jpg",
+      "logoSrc": "/media/4118/logo_simpelt.jpg",
+      "headline": "Rikke Brünner Coaching ",
+      "downloadedImages": [
+        {
+          "src": "/media/4119/rikke-47.jpg",
+          "fileName": "rikke-47.jpg",
+          "bytes": 860592
+        },
+        {
+          "src": "/media/4118/logo_simpelt.jpg",
+          "fileName": "logo_simpelt.jpg",
+          "bytes": 623169
+        }
+      ]
     },
     {
       "requestedName": "Selvvær(dk)stedet",
@@ -1705,155 +1719,50 @@
       "requestedName": "Stopsygefravær.nu",
       "liveName": "Stopsygefravær.nu",
       "userId": 14217,
-      "userDir": "Stopsygefravær.nu",
-      "status": "ok",
-      "coverSrc": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
-      "logoSrc": "/media/1833/logo-stopsygefravaer-3.png",
-      "headline": "Velkommen til online ydelser fra Stopsygefravær.nu",
-      "downloadedImages": [
-        {
-          "src": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
-          "fileName": "kirsten-loevschall-sygefravaer-pa-formel.jpg",
-          "bytes": 10148283
-        },
-        {
-          "src": "/media/1833/logo-stopsygefravaer-3.png",
-          "fileName": "logo-stopsygefravaer-3.png",
-          "bytes": 7658
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Sundt_indtag",
       "liveName": "Sundt indtag",
       "userId": 2679,
-      "userDir": "Sundt_indtag",
-      "status": "ok",
-      "coverSrc": "/media/1554/medlemsklub-bliv.jpg",
-      "logoSrc": "/media/1553/si.jpg",
-      "headline": "Mangler du motivation til mere bevægelse?",
-      "downloadedImages": [
-        {
-          "src": "/media/1554/medlemsklub-bliv.jpg",
-          "fileName": "medlemsklub-bliv.jpg",
-          "bytes": 61782
-        },
-        {
-          "src": "/media/1553/si.jpg",
-          "fileName": "si.jpg",
-          "bytes": 22799
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "TANIA_ELLIS_-_The_Social_Business_Company",
       "liveName": "TANIA ELLIS - The Social Business Company",
       "userId": 1957,
-      "userDir": "TANIA_ELLIS_-_The_Social_Business_Company",
-      "status": "ok",
-      "coverSrc": "/media/1418/kiibee-cover.png",
-      "logoSrc": "/media/1417/stort-logo.jpg",
-      "headline": "Videos from The Social Business Club ",
-      "downloadedImages": [
-        {
-          "src": "/media/1418/kiibee-cover.png",
-          "fileName": "kiibee-cover.png",
-          "bytes": 482569
-        },
-        {
-          "src": "/media/1417/stort-logo.jpg",
-          "fileName": "stort-logo.jpg",
-          "bytes": 148101
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Tegnestuen_Undertryk",
       "liveName": "Tegnestuen Undertryk",
       "userId": 18467,
-      "userDir": "Tegnestuen_Undertryk",
-      "status": "ok",
-      "coverSrc": "/media/2207/touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
-      "logoSrc": null,
-      "headline": "Bøger og film",
-      "downloadedImages": [
-        {
-          "src": "/media/2207/touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
-          "fileName": "touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
-          "bytes": 1654055
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Thomas_Hartmann",
       "liveName": "Thomas Hartmann",
       "userId": 41761,
-      "userDir": "Thomas_Hartmann",
-      "status": "ok",
-      "coverSrc": "/media/3049/thomas-hartmann.png",
-      "logoSrc": "/media/3056/thomas-logo.png",
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3049/thomas-hartmann.png",
-          "fileName": "thomas-hartmann.png",
-          "bytes": 716184
-        },
-        {
-          "src": "/media/3056/thomas-logo.png",
-          "fileName": "thomas-logo.png",
-          "bytes": 10305
-        },
-        {
-          "src": "/media/3390/thomas-hartmann-mobil.png",
-          "fileName": "thomas-hartmann-mobil.png",
-          "bytes": 399625
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Thomas_Wivel",
       "liveName": "Thomas Wivel",
       "userId": 42475,
-      "userDir": "Thomas_Wivel",
-      "status": "ok",
-      "coverSrc": "/media/3134/thomas-wivel.png",
-      "logoSrc": null,
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3134/thomas-wivel.png",
-          "fileName": "thomas-wivel.png",
-          "bytes": 257082
-        },
-        {
-          "src": "/media/3386/thomas-wivel-mobil.png",
-          "fileName": "thomas-wivel-mobil.png",
-          "bytes": 201456
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Tine_Rask_Mathiesen",
       "liveName": "Tine Rask Mathiesen",
       "userId": 115439,
-      "userDir": "Tine_Rask_Mathiesen",
-      "status": "ok",
-      "coverSrc": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-      "logoSrc": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-      "headline": "Nissebreve 50kr pdf ",
-      "downloadedImages": [
-        {
-          "src": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-          "fileName": "file_00000000ef3c7209a9559b260a13f87d-2.png",
-          "bytes": 130578
-        },
-        {
-          "src": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-          "fileName": "nissevers-billede-1-tre-der-duer-2.png",
-          "bytes": 127276
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "TjelesVenner",
@@ -1867,138 +1776,43 @@
       "requestedName": "Tobias_Dybvad",
       "liveName": "Tobias Dybvad",
       "userId": 42275,
-      "userDir": "Tobias_Dybvad",
-      "status": "ok",
-      "coverSrc": "/media/3125/tobias-dybvad-prange.png",
-      "logoSrc": null,
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3125/tobias-dybvad-prange.png",
-          "fileName": "tobias-dybvad-prange.png",
-          "bytes": 505198
-        },
-        {
-          "src": "/media/3385/tobias-dybvad-mobil.png",
-          "fileName": "tobias-dybvad-mobil.png",
-          "bytes": 400496
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Torben_Chris",
       "liveName": "Torben Chris",
       "userId": 42564,
-      "userDir": "Torben_Chris",
-      "status": "ok",
-      "coverSrc": "/media/3157/torben-chris-final.png",
-      "logoSrc": null,
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3157/torben-chris-final.png",
-          "fileName": "torben-chris-final.png",
-          "bytes": 660974
-        },
-        {
-          "src": "/media/3391/torben-chris-mobil.png",
-          "fileName": "torben-chris-mobil.png",
-          "bytes": 373978
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Uffe_Holm",
       "liveName": "Uffe Holm",
       "userId": 1879,
-      "userDir": "Uffe_Holm",
-      "status": "ok",
-      "coverSrc": "/media/1221/uffe-cover-1.png",
-      "logoSrc": "/media/1618/uh_logo.png",
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/1221/uffe-cover-1.png",
-          "fileName": "uffe-cover-1.png",
-          "bytes": 761340
-        },
-        {
-          "src": "/media/1618/uh_logo.png",
-          "fileName": "uh_logo.png",
-          "bytes": 3585
-        },
-        {
-          "src": "/media/3392/uffe-holm-mobil.png",
-          "fileName": "uffe-holm-mobil.png",
-          "bytes": 387076
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "VideoVisionær_kursus",
       "liveName": "VideoVisionær kursus",
       "userId": 100020,
-      "userDir": "VideoVisionær_kursus",
-      "status": "ok",
-      "coverSrc": "/media/4761/topbanner-kiibee-optimeret.jpg",
-      "logoSrc": "/media/4760/black_horizontal.png",
-      "headline": "Slip bekymringerne omkring din markedsføring",
-      "downloadedImages": [
-        {
-          "src": "/media/4761/topbanner-kiibee-optimeret.jpg",
-          "fileName": "topbanner-kiibee-optimeret.jpg",
-          "bytes": 364494
-        },
-        {
-          "src": "/media/4760/black_horizontal.png",
-          "fileName": "black_horizontal.png",
-          "bytes": 20189
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "Vital_New_Software_ApS",
       "liveName": "Vital New Software ApS",
       "userId": 62344,
-      "userDir": "Vital_New_Software_ApS",
-      "status": "ok",
-      "coverSrc": "/media/4208/kiibee-test-2000x600.jpg",
-      "logoSrc": null,
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/4208/kiibee-test-2000x600.jpg",
-          "fileName": "kiibee-test-2000x600.jpg",
-          "bytes": 6827
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     },
     {
       "requestedName": "You_Consulting",
       "liveName": "You Consulting",
       "userId": 78110,
-      "userDir": "You_Consulting",
-      "status": "ok",
-      "coverSrc": "/media/4351/you-do-you.jpg",
-      "logoSrc": "/media/4350/skaermbillede-2023-02-24-kl-193531.png",
-      "headline": "You Do You",
-      "downloadedImages": [
-        {
-          "src": "/media/4351/you-do-you.jpg",
-          "fileName": "you-do-you.jpg",
-          "bytes": 105538
-        },
-        {
-          "src": "/media/4350/skaermbillede-2023-02-24-kl-193531.png",
-          "fileName": "skaermbillede-2023-02-24-kl-193531.png",
-          "bytes": 25564
-        },
-        {
-          "src": "/media/4352/you-do-you.jpg",
-          "fileName": "you-do-you.jpg",
-          "bytes": 52769
-        }
-      ]
+      "status": "error",
+      "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
     }
   ],
   "missingUsers": [
@@ -2016,5 +1830,5 @@
     "Maximilian_Nielsen",
     "NuVenue"
   ],
-  "finishedAt": "2026-08-25T11:25:10.319Z"
+  "finishedAt": "2026-08-25T12:45:08.504Z"
 }
