@@ -4,11 +4,13 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 import type {
+  AdminAccountDetailsPayload,
   AdminPayoutCalculateResponse,
   AdminPayoutRequestPayload,
   AdminPayoutRequestResult,
   AllPayoutHistoryResponse,
   CreatorWalletsResponse,
+  CreatorWalletAccountDetails,
   PayoutHistoryItem,
   PayoutHistoryQuery,
   PayoutRequest,
@@ -194,6 +196,29 @@ export function useAdminPayoutRequest() {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.PAYOUT_HISTORY_BY_CREATOR],
       });
+    },
+  });
+}
+
+export function useUpsertAdminAccountDetails() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (payload: AdminAccountDetailsPayload) => {
+      const { creatorId, ...body } = payload;
+      const data = await ensureSuccess<CreatorWalletAccountDetails>(
+        apiClient<CreatorWalletAccountDetails>(
+          API_ENDPOINTS.ADMIN_ACCOUNT_DETAILS(creatorId),
+          {
+            method: "PUT",
+            body: JSON.stringify(body),
+          },
+        ),
+      );
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.CREATOR_WALLETS] });
     },
   });
 }

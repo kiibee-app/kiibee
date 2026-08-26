@@ -30,8 +30,14 @@ import {
   TableHeaderCell,
   TableScrollWrapper,
 } from "../all-creators/AllCreators.styles";
-import { InlineActionButton, PayoutHint } from "./PayoutDashboard.styles";
+import {
+  InlineActionButton,
+  InlineActionGroup,
+  InlineSecondaryButton,
+  PayoutHint,
+} from "./PayoutDashboard.styles";
 import { AdminPayoutModal } from "./AdminPayoutModal";
+import { AccountDetailsModal } from "./AccountDetailsModal";
 
 export function CreatorBalancesTab() {
   const router = useRouter();
@@ -39,6 +45,8 @@ export function CreatorBalancesTab() {
   const [pageSize, setPageSize] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCreator, setSelectedCreator] =
+    useState<CreatorWalletItem | null>(null);
+  const [accountDetailsCreator, setAccountDetailsCreator] =
     useState<CreatorWalletItem | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const debouncedSearch = useDebounce(searchTerm);
@@ -151,7 +159,21 @@ export function CreatorBalancesTab() {
                           </CreatorName>
                         </TableBodyCell>
                         <TableBodyCell>
-                          {creator.hasPaymentMethod ? (
+                          {creator.accountDetails ? (
+                            <CreatorCell>
+                              <CreatorName>
+                                {creator.accountDetails.methodType === "card"
+                                  ? `Card •••• ${(creator.accountDetails.cardNumber || "").slice(-4) || "----"}`
+                                  : creator.accountDetails.bankName ||
+                                    "Bank account"}
+                              </CreatorName>
+                              <MiniText>
+                                {creator.accountDetails.methodType === "card"
+                                  ? `Valid ${creator.accountDetails.cardExpiry || "—"}`
+                                  : `•••• ${(creator.accountDetails.accountNumber || "").slice(-4) || "----"}`}
+                              </MiniText>
+                            </CreatorCell>
+                          ) : creator.hasPaymentMethod ? (
                             <CreatorCell>
                               <CreatorName>
                                 {creator.paymentMethods[0]?.label || "On file"}
@@ -183,34 +205,44 @@ export function CreatorBalancesTab() {
                           )}
                         </TableBodyCell>
                         <TableBodyCell>
-                          {creator.hasPendingRequest &&
-                          creator.pendingRequestId ? (
-                            <InlineActionButton
+                          <InlineActionGroup>
+                            {creator.hasPendingRequest &&
+                            creator.pendingRequestId ? (
+                              <InlineActionButton
+                                type="button"
+                                onClick={() =>
+                                  router.push(
+                                    `/payout-requests/${creator.pendingRequestId}`,
+                                  )
+                                }
+                              >
+                                View request
+                              </InlineActionButton>
+                            ) : (
+                              <InlineActionButton
+                                type="button"
+                                disabled={!canPayout}
+                                onClick={() => setSelectedCreator(creator)}
+                                title={
+                                  !creator.hasPaymentMethod
+                                    ? "Creator needs a bank account"
+                                    : balance <= MIN_PAYOUT_AMOUNT
+                                      ? `Balance must be greater than ${MIN_PAYOUT_AMOUNT} DKK`
+                                      : "Process payout"
+                                }
+                              >
+                                Process payout
+                              </InlineActionButton>
+                            )}
+                            <InlineSecondaryButton
                               type="button"
-                              onClick={() =>
-                                router.push(
-                                  `/payout-requests/${creator.pendingRequestId}`,
-                                )
-                              }
+                              onClick={() => setAccountDetailsCreator(creator)}
                             >
-                              View request
-                            </InlineActionButton>
-                          ) : (
-                            <InlineActionButton
-                              type="button"
-                              disabled={!canPayout}
-                              onClick={() => setSelectedCreator(creator)}
-                              title={
-                                !creator.hasPaymentMethod
-                                  ? "Creator needs a payment method"
-                                  : balance <= MIN_PAYOUT_AMOUNT
-                                    ? `Balance must be greater than ${MIN_PAYOUT_AMOUNT} DKK`
-                                    : "Process payout"
-                              }
-                            >
-                              Process payout
-                            </InlineActionButton>
-                          )}
+                              {creator.accountDetails
+                                ? "Edit details"
+                                : "Add details"}
+                            </InlineSecondaryButton>
+                          </InlineActionGroup>
                         </TableBodyCell>
                       </RequestTableRow>
                     );
@@ -240,6 +272,11 @@ export function CreatorBalancesTab() {
         creator={selectedCreator}
         open={Boolean(selectedCreator)}
         onClose={() => setSelectedCreator(null)}
+      />
+      <AccountDetailsModal
+        creator={accountDetailsCreator}
+        open={Boolean(accountDetailsCreator)}
+        onClose={() => setAccountDetailsCreator(null)}
       />
     </AllCreatorsLayout>
   );

@@ -16,6 +16,7 @@ import { AdminGuard, CreatorGuard } from '../auth/guards/admin.guard';
 import {
   AdminPayoutRequestDto,
   SettlementHistoryQueryDto,
+  UpsertAdminAccountDetailsDto,
 } from './dto/payout.dto';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
 
@@ -139,5 +140,14 @@ export class PayoutController {
   @Post('admin-request')
   createAdminPayoutRequest(@Body() body: AdminPayoutRequestDto) {
     return this.payoutService.createAdminPayoutRequestService(body);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Put('account-details/:creatorId')
+  upsertAdminAccountDetails(
+    @Param('creatorId') creatorId: string,
+    @Body() body: UpsertAdminAccountDetailsDto,
+  ) {
+    return this.payoutService.upsertAdminAccountDetailsService(creatorId, body);
   }
 }

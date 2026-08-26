@@ -7,6 +7,7 @@ import {
   IsInt,
   IsNotEmpty,
   Min,
+  ValidateIf,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -52,4 +53,34 @@ export class AdminPayoutRequestDto {
   @Type(() => Boolean)
   @IsBoolean()
   processImmediately?: boolean;
+}
+
+export class UpsertAdminAccountDetailsDto {
+  @IsString()
+  @IsIn(['bank', 'card'])
+  methodType!: 'bank' | 'card';
+
+  @ValidateIf((dto: UpsertAdminAccountDetailsDto) => dto.methodType === 'bank')
+  @IsString()
+  @IsNotEmpty()
+  accountNumber?: string;
+
+  @ValidateIf((dto: UpsertAdminAccountDetailsDto) => dto.methodType === 'bank')
+  @IsString()
+  @IsNotEmpty()
+  bankName?: string;
+
+  @ValidateIf((dto: UpsertAdminAccountDetailsDto) => dto.methodType === 'card')
+  @IsString()
+  @IsNotEmpty()
+  cardNumber?: string;
+
+  @ValidateIf((dto: UpsertAdminAccountDetailsDto) => dto.methodType === 'card')
+  @IsString()
+  @IsNotEmpty()
+  cardExpiry?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  accountHolderName!: string;
 }

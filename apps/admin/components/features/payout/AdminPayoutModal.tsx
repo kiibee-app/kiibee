@@ -177,7 +177,8 @@ function AdminPayoutForm({
             </PayoutFormSelect>
           ) : (
             <PayoutHint>
-              This creator has no bank account or card on file.
+              This creator has no bank account on file. Card payouts are
+              temporarily disabled.
             </PayoutHint>
           )}
         </PayoutFormField>

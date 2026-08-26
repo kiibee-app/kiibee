@@ -9,6 +9,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { assertBankPayoutMethod } from './assertBankPayoutMethod.service';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const createPayoutService = async (
@@ -25,6 +26,8 @@ export const createPayoutService = async (
     if (!paymentMethodId) {
       return fail('Payment method ID is required', HttpStatus.BAD_REQUEST);
     }
+
+    await assertBankPayoutMethod(creatorId, paymentMethodId);
 
     if (amount <= MIN_PAYOUT_AMOUNT) {
       return fail(

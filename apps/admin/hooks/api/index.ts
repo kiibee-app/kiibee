@@ -38,6 +38,7 @@ export {
   useCreatorWallets,
   useAdminPayoutCalculate,
   useAdminPayoutRequest,
+  useUpsertAdminAccountDetails,
   useCreatePayout,
   useRejectPayoutRequest,
 } from "./use-payout-requests";

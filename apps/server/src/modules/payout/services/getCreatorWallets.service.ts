@@ -2,6 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, ilike, inArray, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  adminCreatorAccountDetails,
   creatorBankAccounts,
   creatorPayoutRequests,
   creatorWallets,
@@ -16,6 +17,7 @@ import {
   getSafePositiveInteger,
   MAX_LIMIT,
 } from 'src/utils/pagination';
+import { CARD_PAYOUTS_ENABLED } from 'src/utils/fees';
 import { SettlementHistoryQueryDto } from '../dto/payout.dto';
 
 type PaymentMethodOption = {
@@ -23,6 +25,15 @@ type PaymentMethodOption = {
   label: string;
   type: 'bank' | 'card';
   isDefault: boolean;
+};
+
+type AccountDetails = {
+  methodType: 'bank' | 'card';
+  accountNumber: string | null;
+  accountHolderName: string | null;
+  bankName: string | null;
+  cardNumber: string | null;
+  cardExpiry: string | null;
 };
 
 export const getCreatorWalletsService = async (
@@ -95,7 +106,7 @@ export const getCreatorWalletsService = async (
 
     const creatorIds = rows.map((row) => row.creatorId);
 
-    const [bankAccounts, cards] = creatorIds.length
+    const [bankAccounts, cards, adminAccountDetails] = creatorIds.length
       ? await Promise.all([
           db
             .select({
@@ -107,21 +118,45 @@ export const getCreatorWalletsService = async (
             })
             .from(creatorBankAccounts)
             .where(inArray(creatorBankAccounts.creatorId, creatorIds)),
+          CARD_PAYOUTS_ENABLED
+            ? db
+                .select({
+                  id: userCardInfo.id,
+                  userId: userCardInfo.userId,
+                  paymentMethodId: userCardInfo.paymentMethodId,
+                  cardNo: userCardInfo.cardNo,
+                  cardType: userCardInfo.cardType,
+                  isDefault: userCardInfo.isDefault,
+                })
+                .from(userCardInfo)
+                .where(inArray(userCardInfo.userId, creatorIds))
+            : Promise.resolve(
+                [] as Array<{
+                  id: string;
+                  userId: string;
+                  paymentMethodId: string;
+                  cardNo: string;
+                  cardType: string;
+                  isDefault: boolean;
+                }>,
+              ),
           db
             .select({
-              id: userCardInfo.id,
-              userId: userCardInfo.userId,
-              paymentMethodId: userCardInfo.paymentMethodId,
-              cardNo: userCardInfo.cardNo,
-              cardType: userCardInfo.cardType,
-              isDefault: userCardInfo.isDefault,
+              creatorId: adminCreatorAccountDetails.creatorId,
+              methodType: adminCreatorAccountDetails.methodType,
+              accountNumber: adminCreatorAccountDetails.accountNumber,
+              accountHolderName: adminCreatorAccountDetails.accountHolderName,
+              bankName: adminCreatorAccountDetails.bankName,
+              cardNumber: adminCreatorAccountDetails.cardNumber,
+              cardExpiry: adminCreatorAccountDetails.cardExpiry,
             })
-            .from(userCardInfo)
-            .where(inArray(userCardInfo.userId, creatorIds)),
+            .from(adminCreatorAccountDetails)
+            .where(inArray(adminCreatorAccountDetails.creatorId, creatorIds)),
         ])
-      : [[], []];
+      : [[], [], []];
 
     const paymentMethodsByCreator = new Map<string, PaymentMethodOption[]>();
+    const accountDetailsByCreator = new Map<string, AccountDetails>();
 
     for (const account of bankAccounts) {
       const methods = paymentMethodsByCreator.get(account.creatorId) ?? [];
@@ -146,6 +181,17 @@ export const getCreatorWalletsService = async (
       paymentMethodsByCreator.set(card.userId, methods);
     }
 
+    for (const details of adminAccountDetails) {
+      accountDetailsByCreator.set(details.creatorId, {
+        methodType: details.methodType === 'card' ? 'card' : 'bank',
+        accountNumber: details.accountNumber ?? null,
+        accountHolderName: details.accountHolderName ?? null,
+        bankName: details.bankName ?? null,
+        cardNumber: details.cardNumber ?? null,
+        cardExpiry: details.cardExpiry ?? null,
+      });
+    }
+
     const items = rows.map((row) => {
       const paymentMethods = paymentMethodsByCreator.get(row.creatorId) ?? [];
       const balance = Number(row.walletBalance ?? 0);
@@ -160,6 +206,7 @@ export const getCreatorWalletsService = async (
         hasPendingRequest: Boolean(row.pendingRequestId),
         paymentMethods,
         hasPaymentMethod: paymentMethods.length > 0,
+        accountDetails: accountDetailsByCreator.get(row.creatorId) ?? null,
       };
     });
 

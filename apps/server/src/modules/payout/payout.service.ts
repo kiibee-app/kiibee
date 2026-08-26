@@ -4,6 +4,7 @@ import { getPayoutStatsService } from './services/getPayoutStats.service';
 import {
   AdminPayoutRequestDto,
   SettlementHistoryQueryDto,
+  UpsertAdminAccountDetailsDto,
 } from './dto/payout.dto';
 import { createPayoutService } from './services/createPayout.service';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
@@ -16,6 +17,7 @@ import { getPayoutHistoryByCreatorIdService } from './services/getPayoutHistoryB
 import { getAllPayoutHistoryService } from './services/getAllPayoutHistory.service';
 import { getCreatorWalletsService } from './services/getCreatorWallets.service';
 import { createAdminPayoutRequestService } from './services/createAdminPayoutRequest.service';
+import { upsertAdminAccountDetailsService } from './services/upsertAdminAccountDetails.service';
 
 @Injectable()
 export class PayoutService {
@@ -89,5 +91,12 @@ export class PayoutService {
       dto.amount,
       dto.processImmediately ?? true,
     );
+  }
+
+  async upsertAdminAccountDetailsService(
+    creatorId: string,
+    dto: UpsertAdminAccountDetailsDto,
+  ) {
+    return upsertAdminAccountDetailsService(creatorId, dto);
   }
 }

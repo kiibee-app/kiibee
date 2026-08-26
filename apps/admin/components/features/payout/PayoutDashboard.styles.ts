@@ -162,6 +162,16 @@ export const InlineActionButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(1.5)};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
 
   &:hover:not(:disabled) {
     background: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
@@ -171,9 +181,100 @@ export const InlineActionButton = styled.button`
   &:disabled {
     opacity: 0.55;
     cursor: not-allowed;
+    box-shadow: none;
   }
 
   ${media.mobileLg} {
     width: 100%;
   }
+`;
+
+export const InlineSecondaryButton = styled(InlineActionButton)`
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+  border-color: ${({ theme }) => theme.colors.primary.GREEN};
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+    color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+    border-color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+  }
+`;
+
+export const InlineActionGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  flex-wrap: wrap;
+
+  ${media.mobileLg} {
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
+
+export const MethodToggle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => theme.spacing(1)};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
+export const MethodToggleButton = styled.button<{ $active?: boolean }>`
+  min-height: 40px;
+  border: 1px solid
+    ${({ $active, theme }) =>
+      $active ? theme.colors.primary.GREEN : "transparent"};
+  border-radius: 10px;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.neutral.WHITE : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.secondary.main : theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: ${({ $active, theme }) => ($active ? theme.shadows.sm : "none")};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+export const PayoutFormGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${({ theme }) => theme.spacing(3)};
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const PayoutFormSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(3)};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+export const PayoutFormSectionTitle = styled.span`
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 13px;
+  font-weight: 700;
 `;

@@ -76,6 +76,15 @@ export interface CreatorWalletPaymentMethod {
   isDefault: boolean;
 }
 
+export interface CreatorWalletAccountDetails {
+  methodType: "bank" | "card";
+  accountNumber: string | null;
+  accountHolderName: string | null;
+  bankName: string | null;
+  cardNumber: string | null;
+  cardExpiry: string | null;
+}
+
 export interface CreatorWalletItem {
   creatorId: string;
   email: string;
@@ -86,6 +95,7 @@ export interface CreatorWalletItem {
   hasPendingRequest: boolean;
   paymentMethods: CreatorWalletPaymentMethod[];
   hasPaymentMethod: boolean;
+  accountDetails: CreatorWalletAccountDetails | null;
 }
 
 export interface CreatorWalletsResponse {
@@ -127,4 +137,14 @@ export type AdminPayoutRequestResult = {
   platformFee?: number;
   processingFee?: number;
   payableAmount?: number;
+};
+
+export type AdminAccountDetailsPayload = {
+  creatorId: string;
+  methodType: "bank" | "card";
+  accountNumber?: string;
+  accountHolderName: string;
+  bankName?: string;
+  cardNumber?: string;
+  cardExpiry?: string;
 };

@@ -45,6 +45,8 @@ export const API_ENDPOINTS = {
   ADMIN_PAYOUT_CALCULATE: (creatorId: string) =>
     `/payout/calculate/${creatorId}`,
   ADMIN_PAYOUT_REQUEST: "/payout/admin-request",
+  ADMIN_ACCOUNT_DETAILS: (creatorId: string) =>
+    `/payout/account-details/${creatorId}`,
   CREATE_PAYOUT: "/payout/create",
   REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
   DOWNLOAD_LIMIT: "/download/limit",

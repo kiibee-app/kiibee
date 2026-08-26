@@ -13,6 +13,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { STATUS } from 'src/utils/constant';
 import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { assertBankPayoutMethod } from './assertBankPayoutMethod.service';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const createAdminPayoutRequestService = async (
@@ -29,6 +30,8 @@ export const createAdminPayoutRequestService = async (
     if (!paymentMethodId) {
       return fail('Payment method ID is required', HttpStatus.BAD_REQUEST);
     }
+
+    await assertBankPayoutMethod(creatorId, paymentMethodId);
 
     const [[creator], [creatorPlan], [wallet]] = await Promise.all([
       db.select().from(users).where(eq(users.id, creatorId)).limit(1),
