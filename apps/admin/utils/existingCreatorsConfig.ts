@@ -8,7 +8,7 @@ export const existingCreatorTableColumns = [
   "Plan",
   "Metrics",
   "Status",
-  "Published",
+  "Visibility",
 ] as const;
 
 export const existingCreatorLabels = {
@@ -17,8 +17,10 @@ export const existingCreatorLabels = {
   noPlan: "No plan",
   noSlug: "No slug",
   notProvided: "Not provided",
-  published: "Published",
-  draft: "Draft",
+  hide: "Hide",
+  unhide: "Unhide",
+  hiddenState: "Hidden",
+  visibleState: "Visible",
   uploads: "uploads",
   subscribers: "subscribers",
   backToDetails: "Back to Details",

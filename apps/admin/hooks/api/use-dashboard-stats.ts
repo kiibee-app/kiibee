@@ -40,6 +40,8 @@ export function useDashboardStats() {
           totalContent: 0,
           freeContent: 0,
           paidContent: 0,
+          passwordContent: 0,
+          emailGatedContent: 0,
         }
       );
     },

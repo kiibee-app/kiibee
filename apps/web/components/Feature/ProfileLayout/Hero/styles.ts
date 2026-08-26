@@ -1,10 +1,28 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
+import { profileNavShellProps } from "@/utils/Constants";
 
-const imageCoverStyles = css`
-  object-fit: cover;
+const imageContainStyles = css`
+  object-fit: contain;
   object-position: center;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+const layoutAlignCss = css`
+  width: 100%;
+  max-width: ${profileNavShellProps.innerMaxWidth};
+  margin: 0 auto;
+  padding: 0 110px;
+  box-sizing: border-box;
+
+  ${({ theme }) => theme.media.desktop} {
+    padding: 0 28px;
+  }
+
+  ${({ theme }) => theme.media.mobileXl} {
+    padding: 0 16px;
+  }
 `;
 
 export const HeroWrapper = styled.section`
@@ -22,12 +40,15 @@ export const HeroWrapperCentered = styled.section`
 `;
 
 export const CoverFrame = styled.div`
+  ${layoutAlignCss};
+`;
+
+export const CoverMedia = styled.div`
   position: relative;
-  width: min(100%, 1380px);
-  margin: 0 auto;
   height: 360px;
   overflow: hidden;
   border-radius: 22px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopMd} {
     height: 310px;
@@ -49,6 +70,7 @@ export const CoverFrameFull = styled.div`
   width: 100%;
   height: 480px;
   overflow: hidden;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopMd} {
     height: 420px;
@@ -64,20 +86,37 @@ export const CoverFrameFull = styled.div`
 `;
 
 export const CoverImage = styled(Image)`
-  ${imageCoverStyles}
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+export const CoverInitial = styled(MonoText).attrs(({ theme }) => ({
+  $use: "Heading1",
+  color: theme.colors.primary.BLACK,
+}))`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  user-select: none;
 `;
 
 export const CoverImageTop = styled(CoverImage)`
-  object-position: center 35%;
+  object-position: center;
 `;
 
 export const AvatarImage = styled(Image)`
-  ${imageCoverStyles}
+  ${imageContainStyles}
 `;
 
 export const ContentInner = styled.div`
-  width: min(100%, 1380px);
-  margin: 0 auto;
+  ${layoutAlignCss};
 `;
 
 export const ProfileSection = styled.div`
@@ -85,7 +124,7 @@ export const ProfileSection = styled.div`
   align-items: flex-end;
   gap: 24px;
   margin-top: 28px;
-  padding: 0 6px;
+  padding: 0;
 
   ${({ theme }) => theme.media.desktopSm} {
     gap: 16px;
@@ -107,8 +146,9 @@ export const AvatarWrap = styled.div`
   margin-top: 0;
   border-radius: 50%;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
   flex: 0 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   ${({ theme }) => theme.media.desktopSm} {
     width: 8.125rem;
@@ -130,7 +170,8 @@ export const AvatarWrapCentered = styled.div`
   margin-top: -82px;
   border-radius: 999px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 136px;
@@ -234,7 +275,7 @@ export const MoreText = styled.span`
 
 export const TabsWrapper = styled.div`
   margin-top: 24px;
-  padding: 0 6px 12px;
+  padding: 0 0 12px;
 
   ${({ theme }) => theme.media.mobileXl} {
     margin-top: 16px;
@@ -371,10 +412,12 @@ export const StoryMoreButton = styled(MonoText).attrs(({ theme }) => ({
   margin-top: 2px;
 `;
 
-export const HeroMedia = styled.div`
+export const HeroMedia = styled.div<{ $hasImage?: boolean }>`
   position: absolute;
   inset: 0;
   overflow: hidden;
+  background: ${({ $hasImage, theme }) =>
+    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
 
   &::after {
     content: "";
@@ -384,13 +427,15 @@ export const HeroMedia = styled.div`
       `linear-gradient(262deg, ${theme.colors.gradient.TRANSPARENT} 36.41%, ${theme.colors.primary.BLACK_90} 100%)`};
     pointer-events: none;
     z-index: 1;
+    display: ${({ $hasImage }) => ($hasImage ? "block" : "none")};
   }
 
   img {
     filter: saturate(0.95) contrast(0.96);
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    object-fit: contain;
+    object-position: center;
+    background: ${({ theme }) => theme.colors.neutral.WHITE};
   }
 `;

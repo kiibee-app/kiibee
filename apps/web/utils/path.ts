@@ -2,6 +2,7 @@ import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
 
 export const PATHS = {
   HOME: "/",
+  DASHBOARD: "/dashboard",
   AUTH_LOGIN: "/auth/login",
   AUTH_SIGNUP: "/auth/signup",
   AUTH_FORGET_PASSWORD: "/auth/forget-password",
@@ -43,7 +44,6 @@ export const PATHS = {
   TERMS: "/terms-of-service",
   CREATOR_TERMS: "/creator-terms",
   PRIVACY_POLICY: "/privacy-policy",
-  SUBSCRIPTION_TERMS: "/subscription-terms",
   CREATOR_PROFILE: "/creator",
   CREATOR_PLANS: "/creator-plans",
 } as const;
@@ -122,4 +122,8 @@ export function isSafeDownloadUrl(url: string | null | undefined): boolean {
 export function pathLoginWithNext(returnTo: string): string {
   const params = new URLSearchParams({ next: returnTo });
   return `${PATHS.AUTH_LOGIN}?${params.toString()}`;
+}
+
+export function isDashboardPath(path: string | null | undefined): boolean {
+  return Boolean(path?.startsWith(PATHS.DASHBOARD));
 }

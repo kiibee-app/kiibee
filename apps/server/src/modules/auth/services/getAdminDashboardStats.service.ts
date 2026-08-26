@@ -2,7 +2,6 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, count, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
-  collections,
   creatorApplicationRequests,
   mediaFiles,
   users,
@@ -21,9 +20,8 @@ export const getAdminDashboardStatsService = async () => {
       totalMediaResult,
       freeMediaResult,
       paidMediaResult,
-      totalCollectionsResult,
-      freeCollectionsResult,
-      paidCollectionsResult,
+      passwordMediaResult,
+      emailGatedMediaResult,
     ] = await Promise.all([
       db
         .select({ count: count() })
@@ -70,24 +68,20 @@ export const getAdminDashboardStatsService = async () => {
         ),
       db
         .select({ count: count() })
-        .from(collections)
-        .where(eq(collections.isDeleted, false)),
-      db
-        .select({ count: count() })
-        .from(collections)
+        .from(mediaFiles)
         .where(
           and(
-            eq(collections.isDeleted, false),
-            eq(collections.accessType, ACCESS_TYPE.FREE),
+            eq(mediaFiles.isDeleted, false),
+            eq(mediaFiles.accessType, ACCESS_TYPE.PASSWORD),
           ),
         ),
       db
         .select({ count: count() })
-        .from(collections)
+        .from(mediaFiles)
         .where(
           and(
-            eq(collections.isDeleted, false),
-            eq(collections.accessType, ACCESS_TYPE.PAID),
+            eq(mediaFiles.isDeleted, false),
+            eq(mediaFiles.accessType, ACCESS_TYPE.EMAIL_GATED),
           ),
         ),
     ]);
@@ -95,9 +89,8 @@ export const getAdminDashboardStatsService = async () => {
     const totalMedia = Number(totalMediaResult[0]?.count ?? 0);
     const freeMedia = Number(freeMediaResult[0]?.count ?? 0);
     const paidMedia = Number(paidMediaResult[0]?.count ?? 0);
-    const totalCollections = Number(totalCollectionsResult[0]?.count ?? 0);
-    const freeCollections = Number(freeCollectionsResult[0]?.count ?? 0);
-    const paidCollections = Number(paidCollectionsResult[0]?.count ?? 0);
+    const passwordMedia = Number(passwordMediaResult[0]?.count ?? 0);
+    const emailGatedMedia = Number(emailGatedMediaResult[0]?.count ?? 0);
 
     return success(
       {
@@ -105,9 +98,11 @@ export const getAdminDashboardStatsService = async () => {
         creators: Number(creatorsResult[0]?.count ?? 0),
         viewers: Number(viewersResult[0]?.count ?? 0),
         pendingRequests: Number(pendingRequestsResult[0]?.count ?? 0),
-        totalContent: totalMedia + totalCollections,
-        freeContent: freeMedia + freeCollections,
-        paidContent: paidMedia + paidCollections,
+        totalContent: totalMedia,
+        freeContent: freeMedia,
+        paidContent: paidMedia,
+        passwordContent: passwordMedia,
+        emailGatedContent: emailGatedMedia,
       },
       'Dashboard stats fetched successfully',
       HttpStatus.OK,

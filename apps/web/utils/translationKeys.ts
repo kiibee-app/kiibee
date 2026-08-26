@@ -184,6 +184,8 @@ export const CREATOR_PROFILE = {
   paymentText: "creatorProfile.paymentText",
   regLabel: "creatorProfile.regLabel",
   accountLabel: "creatorProfile.accountLabel",
+  accountHolderNameLabel: "creatorProfile.accountHolderNameLabel",
+  bankNameLabel: "creatorProfile.bankNameLabel",
   currentPassword: "creatorProfile.currentPassword",
   newPassword: "creatorProfile.newPassword",
   confirmPassword: "creatorProfile.confirmPassword",

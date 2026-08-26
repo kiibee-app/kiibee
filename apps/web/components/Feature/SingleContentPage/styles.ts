@@ -318,10 +318,10 @@ export const CreatorAvatar = styled.span`
   flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
 
   img {
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

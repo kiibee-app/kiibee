@@ -10,6 +10,8 @@ export const API_ENDPOINTS = {
   APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
   REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
+  CREATOR_VISIBILITY: (creatorId: string) =>
+    `/creators/admin/${creatorId}/visibility`,
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/viewer/admin/all-viewers",
@@ -138,6 +140,8 @@ export const DASHBOARD_STAT_KEY = {
   TOTAL_CONTENT: "total-content",
   FREE_CONTENT: "free-content",
   PAID_CONTENT: "paid-content",
+  PASSWORD_CONTENT: "password-content",
+  EMAIL_GATED_CONTENT: "email-gated-content",
 } as const;
 
 export const DEBOUNCE_DELAY = 300;

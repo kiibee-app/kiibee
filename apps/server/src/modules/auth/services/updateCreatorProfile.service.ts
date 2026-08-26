@@ -41,6 +41,8 @@ export const updateCreatorProfileService = async (
       postalCode,
       regNumber,
       accountNumber,
+      accountHolderName,
+      bankName,
     } = profileData;
 
     if (
@@ -119,25 +121,38 @@ export const updateCreatorProfileService = async (
           },
         });
 
-      await trx
-        .insert(creatorBankAccounts)
-        .values({
-          id: randomUUID(),
-          creatorId: userId,
-          bankName: 'Default Bank',
-          registrationNumber: regNumber || '',
-          accountNumber: accountNumber || '',
-          createdAt: now,
-          updatedAt: now,
-        } as any)
-        .onConflictDoUpdate({
-          target: creatorBankAccounts.creatorId,
-          set: {
-            registrationNumber: regNumber,
-            accountNumber,
+      const hasBankUpdate =
+        regNumber !== undefined ||
+        accountNumber !== undefined ||
+        accountHolderName !== undefined ||
+        bankName !== undefined;
+
+      if (hasBankUpdate) {
+        await trx
+          .insert(creatorBankAccounts)
+          .values({
+            id: randomUUID(),
+            creatorId: userId,
+            bankName: bankName || '',
+            accountHolderName: accountHolderName || null,
+            registrationNumber: regNumber || '',
+            accountNumber: accountNumber || '',
+            createdAt: now,
             updatedAt: now,
-          },
-        });
+          } as any)
+          .onConflictDoUpdate({
+            target: creatorBankAccounts.creatorId,
+            set: {
+              ...(regNumber !== undefined
+                ? { registrationNumber: regNumber }
+                : {}),
+              ...(accountNumber !== undefined ? { accountNumber } : {}),
+              ...(accountHolderName !== undefined ? { accountHolderName } : {}),
+              ...(bankName !== undefined ? { bankName } : {}),
+              updatedAt: now,
+            },
+          });
+      }
 
       const userUpdates: {
         firstName?: string;
@@ -209,6 +224,8 @@ export const updateCreatorProfileService = async (
         postalCode,
         regNumber,
         accountNumber,
+        accountHolderName,
+        bankName,
       },
       'Creator profile updated successfully',
       HttpStatus.OK,

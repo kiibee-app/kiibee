@@ -402,6 +402,105 @@ export const PublicationBadge = styled.span<{ $published: boolean }>`
     $published ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
 `;
 
+export const VisibilityToggle = styled.button<{ $hidden: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+`;
+
+export const VisibilitySwitchTrack = styled.span<{ $hidden: boolean }>`
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  transition: background ${({ theme }) => theme.animations.fast};
+
+  ${({ $hidden, theme }) =>
+    $hidden
+      ? css`
+          background: color-mix(
+            in srgb,
+            ${theme.colors.primary.RED} 55%,
+            ${theme.colors.neutral.WHITE}
+          );
+        `
+      : css`
+          background: ${theme.colors.primary.GREEN};
+        `}
+`;
+
+export const VisibilitySwitchThumb = styled.span<{ $hidden: boolean }>`
+  position: absolute;
+  top: 2px;
+  left: ${({ $hidden }) => ($hidden ? "2px" : "20px")};
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition: left ${({ theme }) => theme.animations.fast};
+`;
+
+export const VisibilitySwitchLabel = styled.span<{ $hidden: boolean }>`
+  font-size: 12px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  line-height: 1.4;
+  white-space: nowrap;
+  color: ${({ $hidden, theme }) =>
+    $hidden ? theme.colors.primary.RED : theme.colors.primary.GREEN_100};
+`;
+
+export const VisibilityConfirmText = styled.p`
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.secondary.main};
+`;
+
+export const VisibilityConfirmActions = styled.div`
+  margin-top: ${({ theme }) => theme.spacing(4)};
+  display: flex;
+  justify-content: flex-end;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+export const VisibilityConfirmButton = styled.button<{
+  $variant: "cancel" | "confirm";
+}>`
+  min-height: 36px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  line-height: 1.4;
+  padding: 0 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  ${({ $variant, theme }) =>
+    $variant === "confirm"
+      ? css`
+          border-color: ${theme.colors.primary.RED};
+          background: ${theme.colors.primary.RED};
+          color: ${theme.colors.neutral.WHITE};
+        `
+      : css`
+          border-color: ${theme.colors.secondary.border};
+          background: ${theme.colors.neutral.WHITE};
+          color: ${theme.colors.secondary.muted};
+        `}
+`;
+
 export const MetricGroup = styled.div`
   display: flex;
   flex-direction: column;

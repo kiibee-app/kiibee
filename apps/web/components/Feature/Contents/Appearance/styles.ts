@@ -268,6 +268,7 @@ export const LogoImage = styled.img<{ $fit?: "cover" | "contain" }>`
     `}
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 `;
 
 export const LogoUploadWrap = styled.div`
