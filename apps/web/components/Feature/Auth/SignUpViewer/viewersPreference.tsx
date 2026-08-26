@@ -8,14 +8,13 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
 import { PATHS, isSafePostLoginPath } from "@/utils/path";
-import { PrepCard, PreContentWrap, ContentWrap } from "./styles";
+import { PrepCard, PreContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 import { UNDEFINED_STRING, REDIRECT_NEXT_QUERY_PARAM } from "@/utils/Constants";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 
 export default function ViewerPreference({
   onComplete,
-  onBack,
 }: {
   onComplete?: () => void;
   onBack?: () => void;
@@ -23,7 +22,7 @@ export default function ViewerPreference({
   const router = useRouter();
   const { t } = useTranslation();
   const theme = useTheme();
-  const { clearSession } = useAuthSession();
+  useAuthSession();
   const [step, setStep] = useState<ViewerPreferenceStep>(PREF_STEP.INTRO);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
