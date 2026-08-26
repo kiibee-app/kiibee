@@ -33,7 +33,7 @@ import {
 import {
   InlineActionButton,
   InlineActionGroup,
-  InlineSecondaryButton,
+  InlineDetailsButton,
   PayoutHint,
 } from "./PayoutDashboard.styles";
 import { AdminPayoutModal } from "./AdminPayoutModal";
@@ -234,14 +234,15 @@ export function CreatorBalancesTab() {
                                 Process payout
                               </InlineActionButton>
                             )}
-                            <InlineSecondaryButton
+                            <InlineDetailsButton
                               type="button"
+                              $variant={creator.accountDetails ? "edit" : "add"}
                               onClick={() => setAccountDetailsCreator(creator)}
                             >
                               {creator.accountDetails
                                 ? "Edit details"
                                 : "Add details"}
-                            </InlineSecondaryButton>
+                            </InlineDetailsButton>
                           </InlineActionGroup>
                         </TableBodyCell>
                       </RequestTableRow>

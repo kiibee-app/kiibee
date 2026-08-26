@@ -7,9 +7,17 @@ import { MODAL_SIZE } from "../../../utils/constants";
 import { useUpsertAdminAccountDetails } from "../../../hooks/api";
 import type { CreatorWalletItem } from "../../../types/payout-request";
 import {
+  formatAdminCardExpiry,
+  formatAdminCardNumber,
+  validateAccountDetailsForm,
+  type AccountDetailsFormErrors,
+  type AccountDetailsMethodType,
+} from "../../../utils/payout";
+import {
   MethodToggle,
   MethodToggleButton,
   PayoutButton,
+  PayoutFieldError,
   PayoutForm,
   PayoutFormField,
   PayoutFormGrid,
@@ -27,8 +35,6 @@ type AccountDetailsModalProps = {
   onClose: () => void;
 };
 
-type MethodType = "bank" | "card";
-
 function AccountDetailsForm({
   creator,
   onClose,
@@ -37,7 +43,7 @@ function AccountDetailsForm({
   onClose: () => void;
 }) {
   const existing = creator.accountDetails;
-  const [methodType, setMethodType] = useState<MethodType>(
+  const [methodType, setMethodType] = useState<AccountDetailsMethodType>(
     existing?.methodType ?? "bank",
   );
   const [accountNumber, setAccountNumber] = useState(
@@ -47,18 +53,32 @@ function AccountDetailsForm({
     existing?.accountHolderName ?? "",
   );
   const [bankName, setBankName] = useState(existing?.bankName ?? "");
-  const [cardNumber, setCardNumber] = useState(existing?.cardNumber ?? "");
+  const [cardNumber, setCardNumber] = useState(
+    existing?.cardNumber ? formatAdminCardNumber(existing.cardNumber) : "",
+  );
   const [cardExpiry, setCardExpiry] = useState(existing?.cardExpiry ?? "");
+  const [errors, setErrors] = useState<AccountDetailsFormErrors>({});
+  const [showErrors, setShowErrors] = useState(false);
   const { mutate: saveDetails, isPending } = useUpsertAdminAccountDetails();
 
-  const canSubmitBank =
-    accountNumber.trim() && accountHolderName.trim() && bankName.trim();
+  const values = {
+    methodType,
+    accountNumber,
+    accountHolderName,
+    bankName,
+    cardNumber,
+    cardExpiry,
+  };
 
-  const canSubmitCard =
-    cardNumber.trim() && cardExpiry.trim() && accountHolderName.trim();
+  const currentErrors = validateAccountDetailsForm(values);
+  const visibleErrors = showErrors ? currentErrors : {};
+  const canSubmit = Object.keys(currentErrors).length === 0;
 
-  const canSubmit =
-    !isPending && (methodType === "bank" ? canSubmitBank : canSubmitCard);
+  const handleMethodChange = (nextType: AccountDetailsMethodType) => {
+    setMethodType(nextType);
+    setShowErrors(false);
+    setErrors({});
+  };
 
   const handleClose = () => {
     if (isPending) return;
@@ -67,7 +87,11 @@ function AccountDetailsForm({
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!canSubmit) return;
+    const nextErrors = validateAccountDetailsForm(values);
+    setErrors(nextErrors);
+    setShowErrors(true);
+
+    if (Object.keys(nextErrors).length > 0 || isPending) return;
 
     saveDetails(
       {
@@ -76,11 +100,11 @@ function AccountDetailsForm({
         accountHolderName: accountHolderName.trim(),
         ...(methodType === "bank"
           ? {
-              accountNumber: accountNumber.trim(),
+              accountNumber: accountNumber.replace(/\s/g, "").trim(),
               bankName: bankName.trim(),
             }
           : {
-              cardNumber: cardNumber.trim(),
+              cardNumber: cardNumber.replace(/\D/g, ""),
               cardExpiry: cardExpiry.trim(),
             }),
       },
@@ -107,7 +131,7 @@ function AccountDetailsForm({
       onClose={handleClose}
       size={MODAL_SIZE.MD}
     >
-      <PayoutForm onSubmit={handleSubmit}>
+      <PayoutForm onSubmit={handleSubmit} noValidate>
         <PayoutHint>
           Save bank or card details for admin payout reference. Separate from
           creator web settings.
@@ -120,7 +144,7 @@ function AccountDetailsForm({
             $active={methodType === "bank"}
             aria-selected={methodType === "bank"}
             disabled={isPending}
-            onClick={() => setMethodType("bank")}
+            onClick={() => handleMethodChange("bank")}
           >
             Bank account
           </MethodToggleButton>
@@ -130,7 +154,7 @@ function AccountDetailsForm({
             $active={methodType === "card"}
             aria-selected={methodType === "card"}
             disabled={isPending}
-            onClick={() => setMethodType("card")}
+            onClick={() => handleMethodChange("card")}
           >
             Card
           </MethodToggleButton>
@@ -147,31 +171,56 @@ function AccountDetailsForm({
                 Account number
                 <PayoutFormInput
                   value={accountNumber}
-                  onChange={(event) => setAccountNumber(event.target.value)}
+                  onChange={(event) => {
+                    setAccountNumber(
+                      event.target.value.replace(/[^\d\s]/g, ""),
+                    );
+                  }}
                   placeholder="Enter account number"
-                  required
+                  inputMode="numeric"
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.accountNumber)}
+                  aria-invalid={Boolean(visibleErrors.accountNumber)}
                 />
+                {visibleErrors.accountNumber ? (
+                  <PayoutFieldError>
+                    {visibleErrors.accountNumber}
+                  </PayoutFieldError>
+                ) : null}
               </PayoutFormField>
               <PayoutFormField>
                 Account holder name
                 <PayoutFormInput
                   value={accountHolderName}
-                  onChange={(event) => setAccountHolderName(event.target.value)}
+                  onChange={(event) => {
+                    setAccountHolderName(event.target.value);
+                  }}
                   placeholder="Enter account holder name"
-                  required
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.accountHolderName)}
+                  aria-invalid={Boolean(visibleErrors.accountHolderName)}
                 />
+                {visibleErrors.accountHolderName ? (
+                  <PayoutFieldError>
+                    {visibleErrors.accountHolderName}
+                  </PayoutFieldError>
+                ) : null}
               </PayoutFormField>
               <PayoutFormField>
                 Bank name
                 <PayoutFormInput
                   value={bankName}
-                  onChange={(event) => setBankName(event.target.value)}
+                  onChange={(event) => {
+                    setBankName(event.target.value);
+                  }}
                   placeholder="Enter bank name"
-                  required
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.bankName)}
+                  aria-invalid={Boolean(visibleErrors.bankName)}
                 />
+                {visibleErrors.bankName ? (
+                  <PayoutFieldError>{visibleErrors.bankName}</PayoutFieldError>
+                ) : null}
               </PayoutFormField>
             </PayoutFormGrid>
           ) : (
@@ -180,31 +229,57 @@ function AccountDetailsForm({
                 Card number
                 <PayoutFormInput
                   value={cardNumber}
-                  onChange={(event) => setCardNumber(event.target.value)}
+                  onChange={(event) => {
+                    setCardNumber(formatAdminCardNumber(event.target.value));
+                  }}
                   placeholder="Enter card number"
-                  required
+                  inputMode="numeric"
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.cardNumber)}
+                  aria-invalid={Boolean(visibleErrors.cardNumber)}
                 />
+                {visibleErrors.cardNumber ? (
+                  <PayoutFieldError>
+                    {visibleErrors.cardNumber}
+                  </PayoutFieldError>
+                ) : null}
               </PayoutFormField>
               <PayoutFormField>
                 Validity
                 <PayoutFormInput
                   value={cardExpiry}
-                  onChange={(event) => setCardExpiry(event.target.value)}
+                  onChange={(event) => {
+                    setCardExpiry(formatAdminCardExpiry(event.target.value));
+                  }}
                   placeholder="MM/YY"
-                  required
+                  inputMode="numeric"
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.cardExpiry)}
+                  aria-invalid={Boolean(visibleErrors.cardExpiry)}
                 />
+                {visibleErrors.cardExpiry ? (
+                  <PayoutFieldError>
+                    {visibleErrors.cardExpiry}
+                  </PayoutFieldError>
+                ) : null}
               </PayoutFormField>
               <PayoutFormField>
                 Card holder name
                 <PayoutFormInput
                   value={accountHolderName}
-                  onChange={(event) => setAccountHolderName(event.target.value)}
+                  onChange={(event) => {
+                    setAccountHolderName(event.target.value);
+                  }}
                   placeholder="Enter card holder name"
-                  required
                   disabled={isPending}
+                  $invalid={Boolean(visibleErrors.accountHolderName)}
+                  aria-invalid={Boolean(visibleErrors.accountHolderName)}
                 />
+                {visibleErrors.accountHolderName ? (
+                  <PayoutFieldError>
+                    {visibleErrors.accountHolderName}
+                  </PayoutFieldError>
+                ) : null}
               </PayoutFormField>
             </PayoutFormGrid>
           )}
@@ -218,7 +293,7 @@ function AccountDetailsForm({
           >
             Cancel
           </PayoutSecondaryButton>
-          <PayoutButton type="submit" disabled={!canSubmit}>
+          <PayoutButton type="submit" disabled={isPending}>
             {isPending ? "Saving..." : "Save details"}
           </PayoutButton>
         </PayoutModalActions>

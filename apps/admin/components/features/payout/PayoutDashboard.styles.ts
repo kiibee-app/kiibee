@@ -211,6 +211,37 @@ export const InlineSecondaryButton = styled(InlineActionButton)`
   }
 `;
 
+export const InlineDetailsButton = styled(InlineActionButton)<{
+  $variant: "add" | "edit";
+}>`
+  box-shadow: none;
+
+  ${({ $variant, theme }) =>
+    $variant === "add"
+      ? `
+        background: ${theme.colors.primary.GREEN};
+        border-color: ${theme.colors.primary.GREEN};
+        color: ${theme.colors.neutral.WHITE};
+
+        &:hover:not(:disabled) {
+          background: ${theme.colors.neutral.DUSTY_TEAL};
+          border-color: ${theme.colors.neutral.DUSTY_TEAL};
+          color: ${theme.colors.neutral.WHITE};
+        }
+      `
+      : `
+        background: ${theme.colors.neutral.WHITE};
+        border-color: ${theme.colors.primary.ORANGE};
+        color: ${theme.colors.primary.ORANGE};
+
+        &:hover:not(:disabled) {
+          background: rgba(255, 140, 66, 0.08);
+          border-color: ${theme.colors.primary.ORANGE};
+          color: ${theme.colors.primary.ORANGE};
+        }
+      `}
+`;
+
 export const InlineActionGroup = styled.div`
   display: flex;
   align-items: center;
