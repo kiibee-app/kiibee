@@ -6,4 +6,6 @@ export type DashboardStats = {
   totalContent: number;
   freeContent: number;
   paidContent: number;
+  passwordContent: number;
+  emailGatedContent: number;
 };
