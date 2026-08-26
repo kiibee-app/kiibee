@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
+import ProfileCoverImage from "@/components/Feature/ProfileLayout/Hero/ProfileCoverImage";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
@@ -10,8 +11,6 @@ import {
   AvatarWrap,
   ContentInner,
   CoverFrame,
-  CoverImage,
-  CoverInitial,
   CoverMedia,
   CreatorBio,
   CreatorBioText,
@@ -45,19 +44,14 @@ export default function ProfileCoverSection() {
     <HeroWrapper>
       <CoverFrame>
         <CoverMedia>
-          {coverImageUrl ? (
-            <CoverImage
-              src={coverImageUrl}
-              alt={t(CREATE_PROFILE_HOME.title)}
-              fill
-              sizes="100vw"
-              priority
-              unoptimized
-              style={{ objectFit: "cover", objectPosition: "center" }}
-            />
-          ) : (
-            <CoverInitial>{initial}</CoverInitial>
-          )}
+          <ProfileCoverImage
+            src={coverImageUrl}
+            alt={t(CREATE_PROFILE_HOME.title)}
+            fill
+            sizes="100vw"
+            priority
+            unoptimized
+          />
         </CoverMedia>
       </CoverFrame>
 
