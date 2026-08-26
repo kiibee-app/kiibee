@@ -10,6 +10,4 @@ export const SectionWrapper = styled(HeroWrapper)`
   background: transparent;
 `;
 
-export const ContentAdjust = styled(ContentInner)`
-  padding: 0 6px;
-`;
+export const ContentAdjust = styled(ContentInner)``;

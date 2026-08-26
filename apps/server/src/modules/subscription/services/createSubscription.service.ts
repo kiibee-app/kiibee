@@ -11,6 +11,7 @@ import {
   TIMEOUT,
 } from 'src/utils/constant';
 import { deleteSubscriptionService } from './deleteSubscription.service';
+import { stripUrlPort } from 'src/utils/extranalApi';
 
 const epay = axios.create({
   baseURL: process.env.EPAY_BASE_URL,
@@ -146,10 +147,16 @@ export const createSubscriptionService = async ({
       generateQrCode: false,
 
       notificationUrl,
-      successUrl: `${process.env.FRONTEND_URL}/subscription/success`,
-      returnUrl: `${process.env.FRONTEND_URL}/subscription/success`,
-      failureUrl: `${process.env.FRONTEND_URL}/subscription/failure`,
-      retryUrl: `${process.env.FRONTEND_URL}/subscription/retry`,
+      successUrl: stripUrlPort(
+        `${process.env.FRONTEND_URL}/subscription/success`,
+      ),
+      returnUrl: stripUrlPort(
+        `${process.env.FRONTEND_URL}/subscription/success`,
+      ),
+      failureUrl: stripUrlPort(
+        `${process.env.FRONTEND_URL}/subscription/failure`,
+      ),
+      retryUrl: stripUrlPort(`${process.env.FRONTEND_URL}/subscription/retry`),
 
       subscription: {
         amount: plan.price * 100,

@@ -70,7 +70,7 @@ import {
   DRAWER_VARIANT,
   TOUCH,
 } from "@/utils/Constants";
-import { PATHS } from "@/utils/path";
+import { PATHS, isDashboardPath } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
@@ -131,6 +131,7 @@ type SidebarState = {
 };
 
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
+  const pathname = usePathname();
   const { t } = useTranslation();
   const router = useRouter();
   const userFromHook = useStoredLoginUser();
@@ -140,6 +141,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const isDashboard = isDashboardPath(pathname);
   const user = userFromHook || (isBrowser ? readStoredLoginUser() : null);
   const avatarUrl = avatarUrlFromHook || getAvatarUrl(user?.avatarUrl);
 
@@ -174,6 +176,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
           $hasImage={showAvatar}
+          $isDashboard={isDashboard}
         >
           {showAvatar && avatarUrl ? (
             <ProfileAvatarImage

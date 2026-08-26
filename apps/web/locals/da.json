@@ -846,6 +846,7 @@
     "active": "Aktiv",
     "planNotFound": "Planen blev ikke fundet",
     "subscriptionActivated": "Abonnementet er aktiveret!",
+    "enterprise": "Virksomhed",
     "plans": {
       "launch": {
         "title": "Launch",
@@ -1045,6 +1046,8 @@
     "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine penge.",
     "regLabel": "Reg. nr.",
     "accountLabel": "Konto nr.",
+    "accountHolderNameLabel": "Kontohavers navn",
+    "bankNameLabel": "Banknavn",
     "currentPassword": "Indtast nuværende adgangskode",
     "newPassword": "Indtast ny adgangskode",
     "confirmPassword": "Indtast ny adgangskode igen",
@@ -1452,20 +1455,36 @@
           "body": "KIIBEE er ikke ansvarlig for indirekte tab, herunder:\n- driftstab\n- tabt fortjeneste\n- datatab"
         },
         "termination": {
-          "title": "11. Opsigelse",
+          "title": "Opsigelse",
           "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- Opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
         },
         "changes": {
-          "title": "12. Ændringer",
+          "title": "Ændringer",
           "body": "KIIBEE kan ændre disse Betingelser med rimeligt varsel. Fortsat brug af Platformen udgør accept af ændringerne."
         },
         "personalData": {
-          "title": "13. Persondata (GDPR)",
+          "title": "Persondata (GDPR)",
           "body": "Behandling af personoplysninger sker i henhold til KIIBEE's privatlivspolitik."
         },
         "governingLaw": {
-          "title": "14. Lovvalg og værneting",
+          "title": "Lovvalg og værneting",
           "body": "Betingelserne er underlagt dansk ret. Enhver tvist afgøres ved danske domstole."
+        },
+        "subscriptionGeneral": {
+          "title": "Abonnementsbetingelser – Generelt",
+          "body": "Ved oprettelse af et abonnement hos KIIBEE accepterer du, at abonnementet løber løbende, indtil det opsiges af enten dig (kunden) eller KIIBEE ApS."
+        },
+        "subscriptionPayment": {
+          "title": "Abonnementsbetingelser – Betaling og fakturering",
+          "body": "Abonnementet faktureres forud i henhold til den valgte abonnementsperiode (månedligt, kvartalsvist, årligt eller tilsvarende).\nBetaling sker automatisk via den betalingsmetode, du har registreret, på forfaldsdatoen.\nDu er selv ansvarlig for at sikre, at dine betalingsoplysninger er korrekte og opdaterede."
+        },
+        "subscriptionCancellation": {
+          "title": "Abonnementsbetingelser – Opsigelse",
+          "body": "Abonnementet kan opsiges med 31 dages varsel til udgangen af en abonnementsperiode.\nOpsigelse kan foretages via din konto i KIIBEE's kundeportal eller ved henvendelse til kundeservice.\nAllerede betalte abonnementsperioder refunderes hverken helt eller delvist."
+        },
+        "subscriptionNonPayment": {
+          "title": "Abonnementsbetingelser – Manglende betaling",
+          "body": "Ved manglende betaling forbeholder KIIBEE sig retten til at:\n- Suspendere din adgang til abonnementet\n- Lukke abonnementet helt\nDette kan ske uden yderligere varsel, indtil betaling er modtaget."
         },
         "contact": {
           "title": "Kontakt",
@@ -2298,7 +2317,7 @@
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billed upload mislykkedet",
     "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
-    "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
+    "addPaymentMethod": "Tilføj venligst dine betalingsoplysninger, før du får adgang til dette afsnit."
   },
   "sidebar": {
     "users": "Brugere",
@@ -2414,6 +2433,19 @@
     },
     "modal2": {
       "title": "Du vil blive logget ud af din udgiver konto og logget ind som seer.",
+      "primaryBtn": "Fortsæt",
+      "secondaryBtn": "Annuller"
+    }
+  },
+  "viewerSubscriptionFlow": {
+    "modal1": {
+      "title": "Du er logget ind som seer",
+      "message": "For at abonnere på en udgiver-pakke skal du bruge en udgiver-konto. Log ind med en eksisterende udgiver-konto eller opret en ny for at fortsætte.",
+      "primaryBtn": "Log ind som udgiver",
+      "secondaryBtn": "Opret udgiver konto"
+    },
+    "modal2": {
+      "title": "Du vil blive logget ud af din seer konto og logget ind som udgiver.",
       "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }

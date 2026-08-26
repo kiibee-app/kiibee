@@ -40,6 +40,8 @@ export type CreatorProfileBankAccount = {
   id?: string | null;
   registrationNumber?: string | null;
   accountNumber?: string | null;
+  accountHolderName?: string | null;
+  bankName?: string | null;
 };
 
 export type CreatorProfileApiData = {
@@ -94,5 +96,7 @@ export function mapCreatorProfileToForm(
     postal: str(info?.postalCode),
     reg: str(bank?.registrationNumber),
     account: str(bank?.accountNumber),
+    accountHolderName: str(bank?.accountHolderName),
+    bankName: bank?.bankName === "Default Bank" ? "" : str(bank?.bankName),
   };
 }

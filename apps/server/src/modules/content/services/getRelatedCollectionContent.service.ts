@@ -12,6 +12,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
+import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 import { fail, success } from 'src/utils/sendResponse';
 
@@ -66,7 +67,11 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
       .innerJoin(
         users,
-        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+        and(
+          eq(users.id, mediaFiles.creatorId),
+          eq(users.isDeleted, false),
+          publiclyVisibleCreatorWhere,
+        ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(

@@ -9,24 +9,17 @@ const fitStyles = css<{ $fit: AvatarFit }>`
   object-position: center;
   width: 100%;
   height: 100%;
-  ${({ $fit }) =>
-    $fit === "contain" &&
-    css`
-      padding: 12% 10%;
-      box-sizing: border-box;
-    `}
+  background: transparent;
 `;
 
 export const AvatarImage = styled(Image)<{ $fit: AvatarFit }>`
   ${fitStyles}
-  background: ${({ $fit, theme }) =>
-    $fit === "contain" ? theme.colors.gradient.PALE_GREEN : "transparent"};
 `;
 
 export const RemoteAvatarImage = styled.img<{ $fit: AvatarFit }>`
+  position: absolute;
+  inset: 0;
   ${fitStyles}
-  background: ${({ $fit, theme }) =>
-    $fit === "contain" ? theme.colors.gradient.PALE_GREEN : "transparent"};
 `;
 
 export const AvatarInitial = styled(MonoText)`

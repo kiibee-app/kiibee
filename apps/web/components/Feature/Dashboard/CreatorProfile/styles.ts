@@ -43,11 +43,25 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const Card = styled.section`
+export const Card = styled.section<{ $emphasized?: boolean }>`
   margin-top: 16px;
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border-radius: 12px;
   padding: 28px;
+  border: 1px solid
+    ${({ theme, $emphasized }) =>
+      $emphasized
+        ? "color-mix(in srgb, " +
+          theme.colors.primary.RED +
+          " 42%, transparent)"
+        : "transparent"};
+  box-shadow: ${({ theme, $emphasized }) =>
+    $emphasized
+      ? `0 0 0 3px color-mix(in srgb, ${theme.colors.primary.RED} 14%, transparent)`
+      : "none"};
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
   ${media.tablet} {
     padding: 20px;

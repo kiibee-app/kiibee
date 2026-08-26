@@ -25,6 +25,13 @@ type PaymentMethodOption = {
   isDefault: boolean;
 };
 
+type CreatorAccountDetails = {
+  registrationNumber: string;
+  accountNumber: string;
+  accountHolderName: string | null;
+  bankName: string;
+};
+
 export const getCreatorWalletsService = async (
   query?: SettlementHistoryQueryDto,
 ) => {
@@ -102,7 +109,9 @@ export const getCreatorWalletsService = async (
               id: creatorBankAccounts.id,
               creatorId: creatorBankAccounts.creatorId,
               bankName: creatorBankAccounts.bankName,
+              accountHolderName: creatorBankAccounts.accountHolderName,
               accountNumber: creatorBankAccounts.accountNumber,
+              registrationNumber: creatorBankAccounts.registrationNumber,
               isDefault: creatorBankAccounts.isDefault,
             })
             .from(creatorBankAccounts)
@@ -122,6 +131,7 @@ export const getCreatorWalletsService = async (
       : [[], []];
 
     const paymentMethodsByCreator = new Map<string, PaymentMethodOption[]>();
+    const accountDetailsByCreator = new Map<string, CreatorAccountDetails>();
 
     for (const account of bankAccounts) {
       const methods = paymentMethodsByCreator.get(account.creatorId) ?? [];
@@ -132,6 +142,13 @@ export const getCreatorWalletsService = async (
         isDefault: account.isDefault,
       });
       paymentMethodsByCreator.set(account.creatorId, methods);
+
+      accountDetailsByCreator.set(account.creatorId, {
+        registrationNumber: account.registrationNumber,
+        accountNumber: account.accountNumber,
+        accountHolderName: account.accountHolderName,
+        bankName: account.bankName,
+      });
     }
 
     for (const card of cards) {
@@ -160,6 +177,7 @@ export const getCreatorWalletsService = async (
         hasPendingRequest: Boolean(row.pendingRequestId),
         paymentMethods,
         hasPaymentMethod: paymentMethods.length > 0,
+        accountDetails: accountDetailsByCreator.get(row.creatorId) ?? null,
       };
     });
 

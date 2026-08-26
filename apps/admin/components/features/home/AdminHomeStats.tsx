@@ -6,7 +6,9 @@ import {
   CreditCard,
   Eye,
   Gift,
+  KeyRound,
   Layers,
+  Mail,
   UserRound,
   Users,
 } from "lucide-react";
@@ -83,7 +85,7 @@ const contentStatCards: StatCardConfig[] = [
   {
     key: DASHBOARD_STAT_KEY.TOTAL_CONTENT,
     label: "Total Content",
-    hint: "Media files and collections",
+    hint: "All media files",
     accent: STAT_ACCENT.PURPLE,
     icon: Layers,
     getValue: (stats) => stats.totalContent,
@@ -103,6 +105,22 @@ const contentStatCards: StatCardConfig[] = [
     accent: STAT_ACCENT.ORANGE,
     icon: CreditCard,
     getValue: (stats) => stats.paidContent,
+  },
+  {
+    key: DASHBOARD_STAT_KEY.PASSWORD_CONTENT,
+    label: "Password Content",
+    hint: "Content locked with a password",
+    accent: STAT_ACCENT.TEAL,
+    icon: KeyRound,
+    getValue: (stats) => stats.passwordContent,
+  },
+  {
+    key: DASHBOARD_STAT_KEY.EMAIL_GATED_CONTENT,
+    label: "Email-gated Content",
+    hint: "Content that requires an email",
+    accent: STAT_ACCENT.BLUE,
+    icon: Mail,
+    getValue: (stats) => stats.emailGatedContent,
   },
 ];
 
@@ -155,7 +173,7 @@ export function AdminHomeStats() {
         <HomeStatsGrid>
           {renderStatSkeletons(userStatCards.length)}
         </HomeStatsGrid>
-        <HomeStatsGrid $columns={3}>
+        <HomeStatsGrid $columns={5}>
           {renderStatSkeletons(contentStatCards.length)}
         </HomeStatsGrid>
       </HomeStatsLayout>
@@ -177,7 +195,7 @@ export function AdminHomeStats() {
       <HomeStatsGrid>
         {renderStatCards(userStatCards, statsQuery.data)}
       </HomeStatsGrid>
-      <HomeStatsGrid $columns={3}>
+      <HomeStatsGrid $columns={5}>
         {renderStatCards(contentStatCards, statsQuery.data)}
       </HomeStatsGrid>
     </HomeStatsLayout>

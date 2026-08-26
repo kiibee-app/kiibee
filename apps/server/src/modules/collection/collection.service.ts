@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { createCollection } from './services/createCollection.service';
 import { getAllCollections } from './services/getAllCollections.service';
 import { getCollectionById } from './services/getCollectionById.service';
@@ -18,6 +19,11 @@ export class CollectionService {
   }
 
   async getAllCollectionsService(creatorId: string) {
+    return getAllCollections(creatorId);
+  }
+
+  async getPublicCollectionsService(creatorId: string) {
+    await requirePubliclyVisibleCreator(creatorId);
     return getAllCollections(creatorId);
   }
 

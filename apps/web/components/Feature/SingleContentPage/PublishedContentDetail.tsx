@@ -207,8 +207,10 @@ export default function PublishedContentDetail({
                   id: publicCreator.id,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
-                    undefined,
+                    resolvePublicMediaUrl(
+                      publicCreator.profileImageUrl ||
+                        publicCreator.mobileCoverImageUrl,
+                    ) ?? undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined
