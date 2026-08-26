@@ -6,6 +6,7 @@ import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import GenericButton from "@/components/UI/GenericButton";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import COLORS from "@repo/ui/colors";
 import { PROFILE_HOME_SECTION, VARIANT, VARIANT_PAGE } from "@/utils/Constants";
@@ -13,6 +14,7 @@ import {
   ContentAdjust,
   SectionWrapper,
 } from "@/components/Feature/ProfileLayout/HomeSections/styles";
+import { ProfileLoadingWrapper } from "@/components/Feature/ProfileLayout/pageStyles";
 import { useTranslation } from "react-i18next";
 import { useLatestUpload } from "@/hooks/useLatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
@@ -41,7 +43,7 @@ export default function ProfileHomeSections({
 }: ProfileHomeSectionsProps) {
   const { t } = useTranslation();
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
-  const { isPublicView, publicCreatorId, displayName } =
+  const { isPublicView, publicCreatorId, displayName, isLoadingProfile } =
     useCreatorChannelProfile();
   const storedUser = useStoredLoginUser();
   const isOwner =
@@ -193,7 +195,21 @@ export default function ProfileHomeSections({
     ) : null;
 
   const isLoading =
-    isLatestLoading || (isPublicView ? isPublicLoading : isPrivateLoading);
+    isLoadingProfile ||
+    isLatestLoading ||
+    (isPublicView ? isPublicLoading : isPrivateLoading);
+
+  if (isLoading) {
+    return (
+      <SectionWrapper>
+        <ContentAdjust>
+          <ProfileLoadingWrapper>
+            <GenericSpinner size={48} />
+          </ProfileLoadingWrapper>
+        </ContentAdjust>
+      </SectionWrapper>
+    );
+  }
 
   if (hasNoContent && !isLoading) {
     const isSearching = searchQuery.trim() !== "";
