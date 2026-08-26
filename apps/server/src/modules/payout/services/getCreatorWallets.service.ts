@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, ilike, inArray, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
-  adminCreatorAccountDetails,
+  accountDetails,
   creatorBankAccounts,
   creatorPayoutRequests,
   creatorWallets,
@@ -142,16 +142,16 @@ export const getCreatorWalletsService = async (
               ),
           db
             .select({
-              creatorId: adminCreatorAccountDetails.creatorId,
-              methodType: adminCreatorAccountDetails.methodType,
-              accountNumber: adminCreatorAccountDetails.accountNumber,
-              accountHolderName: adminCreatorAccountDetails.accountHolderName,
-              bankName: adminCreatorAccountDetails.bankName,
-              cardNumber: adminCreatorAccountDetails.cardNumber,
-              cardExpiry: adminCreatorAccountDetails.cardExpiry,
+              creatorId: accountDetails.creatorId,
+              methodType: accountDetails.methodType,
+              accountNumber: accountDetails.accountNumber,
+              accountHolderName: accountDetails.accountHolderName,
+              bankName: accountDetails.bankName,
+              cardNumber: accountDetails.cardNumber,
+              cardExpiry: accountDetails.cardExpiry,
             })
-            .from(adminCreatorAccountDetails)
-            .where(inArray(adminCreatorAccountDetails.creatorId, creatorIds)),
+            .from(accountDetails)
+            .where(inArray(accountDetails.creatorId, creatorIds)),
         ])
       : [[], [], []];
 

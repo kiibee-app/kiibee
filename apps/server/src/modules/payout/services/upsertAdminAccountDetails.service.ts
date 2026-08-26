@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { adminCreatorAccountDetails, users } from 'src/database/schema';
+import { accountDetails, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ROLE } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
@@ -78,7 +78,7 @@ export const upsertAdminAccountDetailsService = async (
     };
 
     const [saved] = await db
-      .insert(adminCreatorAccountDetails)
+      .insert(accountDetails)
       .values({
         id: randomUUID(),
         creatorId,
@@ -86,18 +86,18 @@ export const upsertAdminAccountDetailsService = async (
         createdAt: now,
       })
       .onConflictDoUpdate({
-        target: adminCreatorAccountDetails.creatorId,
+        target: accountDetails.creatorId,
         set: values,
       })
       .returning({
-        id: adminCreatorAccountDetails.id,
-        creatorId: adminCreatorAccountDetails.creatorId,
-        methodType: adminCreatorAccountDetails.methodType,
-        accountNumber: adminCreatorAccountDetails.accountNumber,
-        accountHolderName: adminCreatorAccountDetails.accountHolderName,
-        bankName: adminCreatorAccountDetails.bankName,
-        cardNumber: adminCreatorAccountDetails.cardNumber,
-        cardExpiry: adminCreatorAccountDetails.cardExpiry,
+        id: accountDetails.id,
+        creatorId: accountDetails.creatorId,
+        methodType: accountDetails.methodType,
+        accountNumber: accountDetails.accountNumber,
+        accountHolderName: accountDetails.accountHolderName,
+        bankName: accountDetails.bankName,
+        cardNumber: accountDetails.cardNumber,
+        cardExpiry: accountDetails.cardExpiry,
       });
 
     return success(saved, 'Account details saved successfully', HttpStatus.OK);

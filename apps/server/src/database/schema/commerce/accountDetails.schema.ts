@@ -2,8 +2,9 @@ import { pgTable, text, varchar, unique } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 
-export const adminCreatorAccountDetails = pgTable(
-  'admin_creator_account_details',
+/** Admin-managed payout details (separate from creator web payout settings). */
+export const accountDetails = pgTable(
+  'account_details',
   {
     id: text('id').primaryKey(),
     creatorId: text('creator_id')
@@ -24,8 +25,8 @@ export const adminCreatorAccountDetails = pgTable(
     ...baseTimestamps,
   },
   (table) => ({
-    creatorIdUnique: unique(
-      'admin_creator_account_details_creator_id_unique',
-    ).on(table.creatorId),
+    creatorIdUnique: unique('account_details_creator_id_unique').on(
+      table.creatorId,
+    ),
   }),
 );

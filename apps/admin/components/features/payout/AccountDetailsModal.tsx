@@ -10,7 +10,6 @@ import {
   formatAdminCardExpiry,
   formatAdminCardNumber,
   validateAccountDetailsForm,
-  type AccountDetailsFormErrors,
   type AccountDetailsMethodType,
 } from "../../../utils/payout";
 import {
@@ -57,7 +56,6 @@ function AccountDetailsForm({
     existing?.cardNumber ? formatAdminCardNumber(existing.cardNumber) : "",
   );
   const [cardExpiry, setCardExpiry] = useState(existing?.cardExpiry ?? "");
-  const [errors, setErrors] = useState<AccountDetailsFormErrors>({});
   const [showErrors, setShowErrors] = useState(false);
   const { mutate: saveDetails, isPending } = useUpsertAdminAccountDetails();
 
@@ -72,12 +70,10 @@ function AccountDetailsForm({
 
   const currentErrors = validateAccountDetailsForm(values);
   const visibleErrors = showErrors ? currentErrors : {};
-  const canSubmit = Object.keys(currentErrors).length === 0;
 
   const handleMethodChange = (nextType: AccountDetailsMethodType) => {
     setMethodType(nextType);
     setShowErrors(false);
-    setErrors({});
   };
 
   const handleClose = () => {
@@ -88,7 +84,6 @@ function AccountDetailsForm({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validateAccountDetailsForm(values);
-    setErrors(nextErrors);
     setShowErrors(true);
 
     if (Object.keys(nextErrors).length > 0 || isPending) return;
