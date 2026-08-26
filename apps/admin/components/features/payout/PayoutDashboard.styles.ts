@@ -26,9 +26,11 @@ export const PayoutFormField = styled.label`
   font-weight: 600;
 `;
 
-export const PayoutFormInput = styled.input`
+export const PayoutFormInput = styled.input<{ $invalid?: boolean }>`
   height: ${({ theme }) => theme.spacing(10.5)};
-  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border: 1px solid
+    ${({ $invalid, theme }) =>
+      $invalid ? theme.colors.primary.RED : theme.colors.secondary.border};
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   color: ${({ theme }) => theme.colors.secondary.main};
@@ -37,13 +39,20 @@ export const PayoutFormInput = styled.input`
   outline: none;
 
   &:focus {
-    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    border-color: ${({ $invalid, theme }) =>
+      $invalid ? theme.colors.primary.RED : theme.colors.primary.GREEN};
   }
 
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
+`;
+
+export const PayoutFieldError = styled.span`
+  color: ${({ theme }) => theme.colors.primary.RED};
+  font-size: 12px;
+  font-weight: 500;
 `;
 
 export const PayoutFormSelect = styled.select`
