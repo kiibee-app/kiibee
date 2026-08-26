@@ -144,6 +144,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
         asAnchor
         href={PATHS.AUTH_LOGIN}
         variant={VARIANT.SECONDARY}
+        className="login-btn"
       >
         {t(NAV.login)}
       </GenericButton>
@@ -151,8 +152,10 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
         asAnchor
         href={PATHS.AUTH_SIGNUP_CREATOR}
         variant={VARIANT.PRIMARY}
+        className="start-btn"
       >
-        {t(NAV.startCreating)}
+        <span className="desktop-text">{t(NAV.startCreating)}</span>
+        <span className="mobile-text">{t(NAV.startCreatingShort)}</span>
       </GenericButton>
     </>
   );

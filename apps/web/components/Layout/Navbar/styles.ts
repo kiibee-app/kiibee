@@ -355,6 +355,13 @@ export const Actions = styled.div<{
   flex-shrink: 0;
   white-space: nowrap;
 
+  .mobile-text {
+    display: none;
+  }
+  .desktop-text {
+    display: inline;
+  }
+
   .login-btn {
     color: ${({ theme, $textTone }) =>
       $textTone === "light"
@@ -407,13 +414,22 @@ export const Actions = styled.div<{
     $showOnMobile
       ? css`
           ${media.mobileXl} {
-            gap: 0.5rem;
+            gap: 0.35rem;
             margin-left: auto;
+
+            .mobile-text {
+              display: inline;
+            }
+            .desktop-text {
+              display: none;
+            }
 
             a,
             button {
-              min-height: 30px;
-              font-size: 12px;
+              min-height: 32px;
+              height: 32px;
+              padding: 0 10px;
+              font-size: 11px;
             }
           }
         `

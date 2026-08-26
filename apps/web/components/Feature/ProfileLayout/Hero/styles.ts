@@ -30,13 +30,21 @@ export const HeroWrapper = styled.section`
   max-width: 100%;
   margin: 70px auto 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  ${({ theme }) => theme.media.mobileXl} {
+    margin-top: calc(var(--navbar-height, 73px) + 16px);
+  }
 `;
 
 export const HeroWrapperCentered = styled.section`
   width: 100%;
-  margin-top: 0;
+  margin-top: 70px;
   padding: 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  ${({ theme }) => theme.media.mobileXl} {
+    margin-top: calc(var(--navbar-height, 73px) + 16px);
+  }
 `;
 
 export const CoverFrame = styled.div`
@@ -182,9 +190,14 @@ export const AvatarWrapCentered = styled.div`
 export const ProfileMeta = styled.div`
   padding-bottom: 8px;
   max-width: 760px;
+  width: 100%;
 
   ${({ theme }) => theme.media.mobileXl} {
     padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -200,6 +213,11 @@ export const CreatorName = styled.h1`
   margin: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
+
+  ${({ theme }) => theme.media.mobileXl} {
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 export const CreatorNameText = styled(MonoText).attrs(({ theme }) => ({
@@ -296,18 +314,20 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 0 0 48px;
+  margin: 70px 0 48px;
   padding: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopSm} {
     height: 460px;
+    margin-top: 70px;
     margin-bottom: 36px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     height: 420px;
+    margin-top: calc(var(--navbar-height, 73px) + 16px);
     margin-bottom: 24px;
   }
 `;
@@ -341,7 +361,7 @@ export const HeroContent = styled.div`
   }
 
   ${({ theme }) => theme.media.mobileXl} {
-    padding: 0 10px;
+    padding: 0 16px;
   }
 `;
 
@@ -434,7 +454,7 @@ export const HeroMedia = styled.div<{ $hasImage?: boolean }>`
     filter: saturate(0.95) contrast(0.96);
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     background: ${({ theme }) => theme.colors.neutral.WHITE};
   }
