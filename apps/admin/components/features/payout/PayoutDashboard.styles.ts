@@ -177,3 +177,199 @@ export const InlineActionButton = styled.button`
     width: 100%;
   }
 `;
+
+export const InlineActionGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  flex-wrap: wrap;
+
+  ${media.mobileLg} {
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
+
+export const InlineSecondaryButton = styled(InlineActionButton)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing(1.5)};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+  border-color: ${({ theme }) => theme.colors.primary.GREEN};
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.GREEN} 8%,
+      ${({ theme }) => theme.colors.neutral.WHITE}
+    );
+    color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+    border-color: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+  }
+`;
+
+export const AccountDetailsBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const AccountDetailsHeaderCard = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(3.5)};
+  border-radius: 14px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background: linear-gradient(
+    135deg,
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.GREEN} 8%,
+      ${({ theme }) => theme.colors.neutral.WHITE}
+    ),
+    ${({ theme }) => theme.colors.neutral.GRAY_100}
+  );
+`;
+
+export const AccountDetailsAvatar = styled.div`
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: ${({ theme }) => theme.colors.primary.GREEN};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+`;
+
+export const AccountDetailsHeaderMeta = styled.div`
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const AccountDetailsHeaderName = styled.div`
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const AccountDetailsHeaderEmail = styled.div`
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const AccountDetailsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(2.5)};
+`;
+
+export const AccountDetailsSectionTitle = styled.h4`
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+`;
+
+export const AccountDetailsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: ${({ theme }) => theme.spacing(2.5)};
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const AccountDetailsField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(1.5)};
+  padding: ${({ theme }) => theme.spacing(3)};
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  min-width: 0;
+`;
+
+export const AccountDetailsFieldLabel = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(1.5)};
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+`;
+
+export const AccountDetailsFieldValue = styled.span`
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.35;
+  word-break: break-word;
+`;
+
+export const AccountDetailsEmpty = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => `${theme.spacing(6)} ${theme.spacing(4)}`};
+  border-radius: 14px;
+  border: 1px dashed ${({ theme }) => theme.colors.secondary.border};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
+export const AccountDetailsEmptyIcon = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.primary.GREEN} 12%,
+    ${({ theme }) => theme.colors.neutral.WHITE}
+  );
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+`;
+
+export const AccountDetailsEmptyTitle = styled.div`
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 15px;
+  font-weight: 700;
+`;
+
+export const AccountDetailsEmptyText = styled.p`
+  margin: 0;
+  max-width: 320px;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+`;

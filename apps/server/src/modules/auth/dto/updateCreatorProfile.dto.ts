@@ -3,7 +3,6 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  Matches,
   MaxLength,
 } from 'class-validator';
 
@@ -55,4 +54,14 @@ export class UpdateCreatorProfileDto {
   @IsOptional()
   @IsString()
   accountNumber?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  accountHolderName?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  bankName?: string;
 }

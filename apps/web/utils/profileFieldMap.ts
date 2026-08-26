@@ -9,6 +9,8 @@ export const PROFILE_FIELD_MAP = [
   ["postal", "postalCode"],
   ["reg", "regNumber"],
   ["account", "accountNumber"],
+  ["accountHolderName", "accountHolderName"],
+  ["bankName", "bankName"],
 ] as const;
 
 export type CreatorProfileFormKey = (typeof PROFILE_FIELD_MAP)[number][0];
