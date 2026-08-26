@@ -34,6 +34,7 @@ import { useCreatorPaymentInfo } from "@/hooks/useCreatorPaymentInfo";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
+import { requestCreatorPaymentInfoFocus } from "@/utils/creatorPaymentInfoFocus";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -67,6 +68,7 @@ export default function ClientDashboardCreators() {
     toast.warning(t("errors.addPaymentMethod"), {
       toastId: ADD_PAYMENT_TOAST_ID,
     });
+    requestCreatorPaymentInfoFocus();
   }, [t]);
 
   const handleLogoutClick = useCallback(() => {
