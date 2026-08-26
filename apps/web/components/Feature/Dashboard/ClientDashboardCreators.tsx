@@ -20,7 +20,6 @@ import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_CREATOR,
-  CONTENT_TAB,
 } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
@@ -31,8 +30,7 @@ import { toast } from "react-toastify";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
-import { useCreatorPaymentMethods } from "@/hooks/useCreatorPaymentMethods";
-import { TAB_KEYS } from "@/utils/settingsTabs";
+import { useCreatorPaymentInfo } from "@/hooks/useCreatorPaymentInfo";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
@@ -46,7 +44,7 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.PROFILE,
 ]);
 
-const ADD_PAYMENT_TOAST_ID = "creator-add-payment-method";
+const ADD_PAYMENT_TOAST_ID = "creator-add-payment-info";
 
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
@@ -59,13 +57,13 @@ export default function ClientDashboardCreators() {
   const searchParams = useSearchParams();
   const { logout } = useLogout();
   const { getRole, getUser } = useAuthSession();
-  const { paymentMethods, isLoading: isPaymentMethodsLoading } =
-    useCreatorPaymentMethods();
+  const { hasPaymentInfo, isLoading: isPaymentInfoLoading } =
+    useCreatorPaymentInfo();
   const { isReady } = useRequireAuthSession();
   useProfileSync();
-  const hasLockedToPayoutMethodsRef = useRef(false);
+  const hasLockedToPaymentInfoRef = useRef(false);
 
-  const warnAddPaymentMethod = useCallback(() => {
+  const warnAddPaymentInfo = useCallback(() => {
     toast.warning(t("errors.addPaymentMethod"), {
       toastId: ADD_PAYMENT_TOAST_ID,
     });
@@ -127,57 +125,49 @@ export default function ClientDashboardCreators() {
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
   }, [pathname, router, searchParams, view]);
 
-  const isCreatorNoPaymentMethods =
-    getRole() === ROLE_CREATOR &&
-    !isPaymentMethodsLoading &&
-    paymentMethods.length === 0;
+  const isCreatorMissingPaymentInfo =
+    getRole() === ROLE_CREATOR && !isPaymentInfoLoading && !hasPaymentInfo;
 
-  const redirectToPayoutMethods = useCallback(() => {
+  const redirectToPaymentInfo = useCallback(() => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
-    params.set(VIEW, CREATORS_LABELS.SETTINGS);
-    params.set(CONTENT_TAB, TAB_KEYS.payoutMethods);
-    sanitizeDashboardQueryParams(params, CREATORS_LABELS.SETTINGS);
+    params.set(VIEW, CREATORS_LABELS.PROFILE);
+    sanitizeDashboardQueryParams(params, CREATORS_LABELS.PROFILE);
     const qs = params.toString();
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
   }, [pathname, router, searchParams]);
 
   useEffect(() => {
-    if (!isCreatorNoPaymentMethods) {
-      hasLockedToPayoutMethodsRef.current = false;
+    if (!isCreatorMissingPaymentInfo) {
+      hasLockedToPaymentInfoRef.current = false;
       return;
     }
 
     const currentView = searchParams?.get(VIEW);
-    const tab = searchParams?.get(CONTENT_TAB);
-    const onPayoutMethods =
-      currentView === CREATORS_LABELS.SETTINGS &&
-      tab === TAB_KEYS.payoutMethods;
+    const onPaymentInfo = currentView === CREATORS_LABELS.PROFILE;
 
-    if (onPayoutMethods) {
-      hasLockedToPayoutMethodsRef.current = true;
+    if (onPaymentInfo) {
+      hasLockedToPaymentInfoRef.current = true;
       return;
     }
 
     // After the first lock, any attempt to leave should warn.
-    if (hasLockedToPayoutMethodsRef.current) {
-      warnAddPaymentMethod();
+    if (hasLockedToPaymentInfoRef.current) {
+      warnAddPaymentInfo();
     }
 
-    redirectToPayoutMethods();
+    redirectToPaymentInfo();
   }, [
-    isCreatorNoPaymentMethods,
+    isCreatorMissingPaymentInfo,
     searchParams,
-    redirectToPayoutMethods,
-    warnAddPaymentMethod,
+    redirectToPaymentInfo,
+    warnAddPaymentInfo,
   ]);
 
   const handleSelect = useCallback(
     (label: string) => {
-      if (isCreatorNoPaymentMethods) {
-        if (label !== CREATORS_LABELS.SETTINGS) {
-          warnAddPaymentMethod();
-        }
-        redirectToPayoutMethods();
+      if (isCreatorMissingPaymentInfo) {
+        warnAddPaymentInfo();
+        redirectToPaymentInfo();
         return;
       }
       router.push(getHrefForView(label), { scroll: false });
@@ -185,9 +175,9 @@ export default function ClientDashboardCreators() {
     [
       getHrefForView,
       router,
-      isCreatorNoPaymentMethods,
-      redirectToPayoutMethods,
-      warnAddPaymentMethod,
+      isCreatorMissingPaymentInfo,
+      redirectToPaymentInfo,
+      warnAddPaymentInfo,
     ],
   );
 

@@ -11,6 +11,7 @@ export const creatorBankAccounts = pgTable(
       .references(() => users.id, { onDelete: 'cascade' }),
 
     bankName: varchar('bank_name', { length: 255 }).notNull(),
+    accountHolderName: varchar('account_holder_name', { length: 255 }),
     accountNumber: varchar('account_number', { length: 50 }).notNull(),
     registrationNumber: varchar('registration_number', {
       length: 20,

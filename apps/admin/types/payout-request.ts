@@ -76,6 +76,13 @@ export interface CreatorWalletPaymentMethod {
   isDefault: boolean;
 }
 
+export interface CreatorWalletAccountDetails {
+  registrationNumber: string;
+  accountNumber: string;
+  accountHolderName: string | null;
+  bankName: string;
+}
+
 export interface CreatorWalletItem {
   creatorId: string;
   email: string;
@@ -86,6 +93,7 @@ export interface CreatorWalletItem {
   hasPendingRequest: boolean;
   paymentMethods: CreatorWalletPaymentMethod[];
   hasPaymentMethod: boolean;
+  accountDetails: CreatorWalletAccountDetails | null;
 }
 
 export interface CreatorWalletsResponse {

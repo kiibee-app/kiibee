@@ -21,10 +21,12 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
   const fields = getPaymentFields(t);
 
   const handlePaymentChange =
-    (key: PaymentKeys) => (value: string | string[]) => {
+    (key: PaymentKeys, digitsOnly: boolean) => (value: string | string[]) => {
       const text = Array.isArray(value) ? value.join("") : value;
-      onChange(key)(sanitizeDigits(text));
+      onChange(key)(digitsOnly ? sanitizeDigits(text) : text);
     };
+
+  const rows = [fields.slice(0, 2), fields.slice(2, 4)];
 
   return (
     <Card>
@@ -39,19 +41,24 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
       </MonoText>
 
       <Fields>
-        <TwoColumnRow>
-          {fields.map((field) => (
-            <InputField
-              key={field.key}
-              label={field.label}
-              value={form[field.key]}
-              onChange={handlePaymentChange(field.key as PaymentKeys)}
-              inputMode={NUMERIC_INPUT_MODE}
-              labelFontStyle="Body_Regular"
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            />
-          ))}
-        </TwoColumnRow>
+        {rows.map((row) => (
+          <TwoColumnRow key={row.map((field) => field.key).join("-")}>
+            {row.map((field) => (
+              <InputField
+                key={field.key}
+                label={field.label}
+                value={form[field.key]}
+                onChange={handlePaymentChange(
+                  field.key as PaymentKeys,
+                  field.digitsOnly,
+                )}
+                inputMode={field.digitsOnly ? NUMERIC_INPUT_MODE : undefined}
+                labelFontStyle="Body_Regular"
+                variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              />
+            ))}
+          </TwoColumnRow>
+        ))}
       </Fields>
     </Card>
   );

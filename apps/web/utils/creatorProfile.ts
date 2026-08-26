@@ -25,6 +25,8 @@ export type ProfileForm = {
   postal: string;
   reg: string;
   account: string;
+  accountHolderName: string;
+  bankName: string;
   email: string;
 };
 
@@ -40,7 +42,7 @@ export const emptyPasswords: PasswordState = {
   confirm: "",
 };
 
-export type PaymentKeys = "reg" | "account";
+export type PaymentKeys = "reg" | "account" | "accountHolderName" | "bankName";
 export type CompanyKeys =
   | "company"
   | "phone"
@@ -60,6 +62,8 @@ export const FORM_KEYS = {
   postal: "postal",
   reg: "reg",
   account: "account",
+  accountHolderName: "accountHolderName",
+  bankName: "bankName",
 } as const;
 
 export const DELETE_REASON_OTHERS = "others";
@@ -102,6 +106,8 @@ export const EMPTY_CREATOR_PROFILE_FORM: ProfileForm = {
   postal: "",
   reg: "",
   account: "",
+  accountHolderName: "",
+  bankName: "",
   email: "",
 };
 
