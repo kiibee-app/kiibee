@@ -355,13 +355,6 @@ export const Actions = styled.div<{
   flex-shrink: 0;
   white-space: nowrap;
 
-  .mobile-text {
-    display: none;
-  }
-  .desktop-text {
-    display: inline;
-  }
-
   .login-btn {
     color: ${({ theme, $textTone }) =>
       $textTone === "light"
@@ -394,6 +387,13 @@ export const Actions = styled.div<{
         ? theme.colors.neutral.OFF_WHITE
         : theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
+
+    .mobile-text {
+      display: none;
+    }
+    .desktop-text {
+      display: inline;
+    }
   }
 
   .start-btn:hover {
@@ -417,11 +417,13 @@ export const Actions = styled.div<{
             gap: 0.35rem;
             margin-left: auto;
 
-            .mobile-text {
-              display: inline;
-            }
-            .desktop-text {
-              display: none;
+            .start-btn {
+              .mobile-text {
+                display: inline;
+              }
+              .desktop-text {
+                display: none;
+              }
             }
 
             a,
@@ -840,6 +842,15 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
+
+  .start-btn {
+    .mobile-text {
+      display: inline;
+    }
+    .desktop-text {
+      display: none;
+    }
+  }
 
   > a,
   > button {

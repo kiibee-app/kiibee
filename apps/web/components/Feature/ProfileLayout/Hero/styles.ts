@@ -39,13 +39,9 @@ export const HeroWrapper = styled.section`
 
 export const HeroWrapperCentered = styled.section`
   width: 100%;
-  margin-top: 70px;
+  margin-top: 0;
   padding: 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-
-  ${media.mobileXl} {
-    margin-top: calc(var(--navbar-height, 73px) + 16px);
-  }
 `;
 
 export const CoverFrame = styled.div`
@@ -316,20 +312,18 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 70px 0 48px;
+  margin: 0 0 48px;
   padding: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${media.desktopSm} {
     height: 460px;
-    margin-top: 70px;
     margin-bottom: 36px;
   }
 
   ${media.mobileXl} {
     height: 420px;
-    margin-top: calc(var(--navbar-height, 73px) + 16px);
     margin-bottom: 24px;
   }
 `;
