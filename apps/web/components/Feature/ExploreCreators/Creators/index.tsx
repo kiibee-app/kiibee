@@ -82,7 +82,7 @@ export default function ExploreCreators({
   return (
     <PageWrapper>
       <Grid>
-        {creators.map((creator) => {
+        {creators.map((creator, index) => {
           const image = getCreatorCardImage(creator);
 
           return (
@@ -93,6 +93,7 @@ export default function ExploreCreators({
               image={image ?? undefined}
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
+              imagePriority={index < 4}
               badge={
                 creator.category ? (
                   <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
