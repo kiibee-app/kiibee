@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FORMAT_TYPE } from "@/utils/types";
 import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
 import { ErrorText } from "@/components/UI/InputFields/styles";
@@ -50,7 +51,34 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
-  const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
+  const admissionOptions = useMemo(
+    () => getAdmissionOptions(t, formState.contentTypeId),
+    [t, formState.contentTypeId],
+  );
+
+  useEffect(() => {
+    const isWeb = formState.contentTypeId === FORMAT_TYPE.WEB;
+    const currentRequirement = formState.admissionRequirement;
+
+    if (isWeb) {
+      if (currentRequirement === ADMISSION_TYPE.PAYMENT) {
+        updateField(
+          PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
+          ADMISSION_TYPE.FREE,
+        );
+      }
+    } else {
+      if (
+        currentRequirement === ADMISSION_TYPE.SET_PASSWORD ||
+        currentRequirement === ADMISSION_TYPE.REQUEST_EMAIL
+      ) {
+        updateField(
+          PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
+          ADMISSION_TYPE.FREE,
+        );
+      }
+    }
+  }, [formState.contentTypeId, formState.admissionRequirement, updateField]);
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");
@@ -154,6 +182,7 @@ export default function Payment({ contentType }: PaymentProps = {}) {
                 }
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
+                expandLayoutOnOpen={false}
               />
             </DropdownWrap>
           </Block>
