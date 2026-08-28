@@ -76,6 +76,7 @@ export default function ContentUploadDetails({
         variant={INPUT_VARIANTS.PRIMARY_GRAY}
         onChange={setTitle}
         label={t("contents.contentUploadModal.details.title")}
+        required={true}
       />
 
       <InputFields
@@ -88,6 +89,7 @@ export default function ContentUploadDetails({
         variant={INPUT_VARIANTS.PRIMARY_GRAY}
         onChange={setDescription}
         label={t("contents.contentUploadModal.details.description")}
+        required={true}
       />
 
       <AddButtom>
