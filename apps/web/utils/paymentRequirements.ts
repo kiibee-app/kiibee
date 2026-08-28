@@ -25,24 +25,28 @@ export type TrailerFieldKey =
 
 export const getAdmissionOptions = (
   t: TFunction,
-): DropdownOption<AdmissionValue>[] => [
-  {
-    label: t("contents.payment.admission.options.free"),
-    value: ADMISSION_TYPE.FREE,
-  },
-  {
-    label: t("contents.payment.admission.options.payment"),
-    value: ADMISSION_TYPE.PAYMENT,
-  },
-  {
-    label: t("contents.payment.admission.options.setPassword"),
-    value: ADMISSION_TYPE.SET_PASSWORD,
-  },
-  {
-    label: t("contents.payment.admission.options.requestEmail"),
-    value: ADMISSION_TYPE.REQUEST_EMAIL,
-  },
-];
+  contentTypeId?: string,
+): DropdownOption<AdmissionValue>[] => {
+  const createOption = (
+    key: string,
+    value: AdmissionValue,
+  ): DropdownOption<AdmissionValue> => ({
+    label: t(`contents.payment.admission.options.${key}`),
+    value,
+  });
+
+  const commonOptions = [createOption("free", ADMISSION_TYPE.FREE)];
+
+  const additionalOptions =
+    contentTypeId === FORMAT_TYPE.WEB
+      ? [
+          createOption("setPassword", ADMISSION_TYPE.SET_PASSWORD),
+          createOption("requestEmail", ADMISSION_TYPE.REQUEST_EMAIL),
+        ]
+      : [createOption("payment", ADMISSION_TYPE.PAYMENT)];
+
+  return [...commonOptions, ...additionalOptions];
+};
 
 export const ADMISSION_TYPE = {
   FREE: "free",

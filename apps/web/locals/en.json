@@ -14,6 +14,7 @@
     "logout": "Log out",
     "profileMenu": "Account menu",
     "startCreating": "Start creating",
+    "startCreatingShort": "Create",
     "logoAlt": "Kiibee",
     "profile": {
       "home": "Home",
@@ -1046,6 +1047,8 @@
     "paymentText": "We need your payment information so we can pay out your earnings.",
     "regLabel": "Reg. no.",
     "accountLabel": "Account no.",
+    "accountHolderNameLabel": "Account holder name",
+    "bankNameLabel": "Bank name",
     "currentPassword": "Enter current password",
     "newPassword": "Enter new password",
     "confirmPassword": "Re-enter new password",
@@ -2318,7 +2321,7 @@
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed",
     "exportRequestFailed": "Failed to request export. Please try again.",
-    "addPaymentMethod": "Please add a payment method before accessing this section."
+    "addPaymentMethod": "Please add your payment information before accessing this section."
   },
   "accessGate": {
     "pageCodeTitle": "This page requires a code to access",

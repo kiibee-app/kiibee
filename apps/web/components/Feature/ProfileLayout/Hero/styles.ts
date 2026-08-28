@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
 import { profileNavShellProps } from "@/utils/Constants";
+import { shimmer } from "@/utils/animations";
+import { media } from "@repo/ui/breakpoints";
 
 const imageContainStyles = css`
   object-fit: contain;
@@ -16,11 +18,11 @@ const layoutAlignCss = css`
   padding: 0 110px;
   box-sizing: border-box;
 
-  ${({ theme }) => theme.media.desktop} {
+  ${media.desktop} {
     padding: 0 28px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     padding: 0 16px;
   }
 `;
@@ -30,6 +32,10 @@ export const HeroWrapper = styled.section`
   max-width: 100%;
   margin: 70px auto 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  ${media.mobileXl} {
+    margin-top: calc(var(--navbar-height, 73px) + 16px);
+  }
 `;
 
 export const HeroWrapperCentered = styled.section`
@@ -50,16 +56,16 @@ export const CoverMedia = styled.div`
   border-radius: 22px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  ${({ theme }) => theme.media.desktopMd} {
+  ${media.desktopMd} {
     height: 310px;
   }
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     height: 260px;
     border-radius: 18px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     height: 190px;
     border-radius: 14px;
   }
@@ -72,26 +78,28 @@ export const CoverFrameFull = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  ${({ theme }) => theme.media.desktopMd} {
+  ${media.desktopMd} {
     height: 420px;
   }
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     height: 350px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     height: 260px;
   }
 `;
 
-export const CoverImage = styled(Image)`
+export const CoverImage = styled(Image)<{ $isLoaded?: boolean }>`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const CoverInitial = styled(MonoText).attrs(({ theme }) => ({
@@ -105,6 +113,23 @@ export const CoverInitial = styled(MonoText).attrs(({ theme }) => ({
   justify-content: center;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   user-select: none;
+`;
+
+export const CoverSkeleton = styled.div`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
+  border-radius: inherit;
+  z-index: 1;
 `;
 
 export const CoverImageTop = styled(CoverImage)`
@@ -126,12 +151,12 @@ export const ProfileSection = styled.div`
   margin-top: 28px;
   padding: 0;
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     gap: 16px;
     margin-top: 24px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     align-items: center;
     flex-direction: column-reverse;
     gap: 12px;
@@ -150,13 +175,13 @@ export const AvatarWrap = styled.div`
   flex: 0 0 auto;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     width: 8.125rem;
     height: 8.125rem;
     margin-top: 0;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     width: 6.75rem;
     height: 6.75rem;
     margin-top: 0;
@@ -182,9 +207,14 @@ export const AvatarWrapCentered = styled.div`
 export const ProfileMeta = styled.div`
   padding-bottom: 8px;
   max-width: 760px;
+  width: 100%;
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -200,6 +230,11 @@ export const CreatorName = styled.h1`
   margin: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
+
+  ${media.mobileXl} {
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 export const CreatorNameText = styled(MonoText).attrs(({ theme }) => ({
@@ -277,7 +312,7 @@ export const TabsWrapper = styled.div`
   margin-top: 24px;
   padding: 0 0 12px;
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     margin-top: 16px;
     padding-bottom: 10px;
   }
@@ -301,12 +336,12 @@ export const HeroFrame = styled.section`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     height: 460px;
     margin-bottom: 36px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     height: 420px;
     margin-bottom: 24px;
   }
@@ -328,20 +363,20 @@ export const HeroContent = styled.div`
   display: flex;
   align-items: flex-end;
 
-  ${({ theme }) => theme.media.tablet} {
+  ${media.tablet} {
     padding: 0 73px;
   }
 
-  ${({ theme }) => theme.media.desktopMd} {
+  ${media.desktopMd} {
     padding: 0 73px;
   }
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     padding: 0 28px;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
-    padding: 0 10px;
+  ${media.mobileXl} {
+    padding: 0 16px;
   }
 `;
 
@@ -356,17 +391,17 @@ export const StoryPanel = styled.aside`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background: none;
 
-  ${({ theme }) => theme.media.desktopMd} {
+  ${media.desktopMd} {
     width: min(560px, 100%);
     padding: 44px 0;
   }
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     width: min(100%, 520px);
     padding: 32px 0;
   }
 
-  ${({ theme }) => theme.media.mobileXl} {
+  ${media.mobileXl} {
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
@@ -416,8 +451,7 @@ export const HeroMedia = styled.div<{ $hasImage?: boolean }>`
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: ${({ $hasImage, theme }) =>
-    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   &::after {
     content: "";
@@ -434,7 +468,7 @@ export const HeroMedia = styled.div<{ $hasImage?: boolean }>`
     filter: saturate(0.95) contrast(0.96);
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     background: ${({ theme }) => theme.colors.neutral.WHITE};
   }

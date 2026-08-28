@@ -1,10 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FORMAT_TYPE } from "@/utils/types";
 import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
-import { ErrorText } from "@/components/UI/InputFields/styles";
+import {
+  ErrorText,
+  RequiredIndicator,
+} from "@/components/UI/InputFields/styles";
 import SortDropdown from "@/components/UI/SortDropdown";
 import {
   INPUT_VARIANTS,
@@ -50,15 +54,35 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
-  const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
+  const { contentTypeId, admissionRequirement } = formState;
+
+  const admissionOptions = useMemo(
+    () => getAdmissionOptions(t, contentTypeId),
+    [t, contentTypeId],
+  );
+
+  useEffect(() => {
+    const isWeb = contentTypeId === FORMAT_TYPE.WEB;
+
+    const shouldResetAdmission = isWeb
+      ? admissionRequirement === ADMISSION_TYPE.PAYMENT
+      : admissionRequirement === ADMISSION_TYPE.SET_PASSWORD ||
+        admissionRequirement === ADMISSION_TYPE.REQUEST_EMAIL;
+
+    if (shouldResetAdmission) {
+      updateField(
+        PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
+        ADMISSION_TYPE.FREE,
+      );
+    }
+  }, [contentTypeId, admissionRequirement, updateField]);
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");
 
-  const isPayment = formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+  const isPayment = admissionRequirement === ADMISSION_TYPE.PAYMENT;
 
-  const isSetPassword =
-    formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
+  const isSetPassword = admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
 
   const effectivePassword = useMemo(
     () => combinePasswords(formState.password, typedPassword),
@@ -88,8 +112,8 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   };
 
   const paymentTexts = useMemo(
-    () => getPaymentContentTexts(t, formState.contentTypeId),
-    [t, formState.contentTypeId],
+    () => getPaymentContentTexts(t, contentTypeId),
+    [t, contentTypeId],
   );
 
   const showRentalSection = Boolean(
@@ -133,7 +157,10 @@ export default function Payment({ contentType }: PaymentProps = {}) {
       <PaymentCard>
         <PaymentForm>
           <Block>
-            <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
+            <SectionTitle>
+              {t("contents.payment.admission.title")}
+              <RequiredIndicator>*</RequiredIndicator>
+            </SectionTitle>
             <SectionText>
               {t("contents.payment.admission.description", {
                 contentType:
@@ -154,6 +181,7 @@ export default function Payment({ contentType }: PaymentProps = {}) {
                 }
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
+                expandLayoutOnOpen={false}
               />
             </DropdownWrap>
           </Block>

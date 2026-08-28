@@ -14,6 +14,7 @@
     "logout": "Log ud",
     "profileMenu": "Profil",
     "startCreating": "Begynd at udgive",
+    "startCreatingShort": "Udgiv",
     "logoAlt": "Kiibee",
     "profile": {
       "home": "Hjem",
@@ -1046,6 +1047,8 @@
     "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine penge.",
     "regLabel": "Reg. nr.",
     "accountLabel": "Konto nr.",
+    "accountHolderNameLabel": "Kontohavers navn",
+    "bankNameLabel": "Banknavn",
     "currentPassword": "Indtast nuværende adgangskode",
     "newPassword": "Indtast ny adgangskode",
     "confirmPassword": "Indtast ny adgangskode igen",
@@ -2315,7 +2318,7 @@
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billed upload mislykkedet",
     "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
-    "addPaymentMethod": "Tilføj venligst en betalingsmetode, før du får adgang til dette afsnit."
+    "addPaymentMethod": "Tilføj venligst dine betalingsoplysninger, før du får adgang til dette afsnit."
   },
   "sidebar": {
     "users": "Brugere",

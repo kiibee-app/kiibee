@@ -39,7 +39,8 @@ function PrivateCollectionPreview({
   searchQuery: string;
   displayName: string;
 }) {
-  const { data: sections = [] } = useProfileHomeCollections(displayName);
+  const { data: sections = [], isLoading } =
+    useProfileHomeCollections(displayName);
 
   const visibleSections = useMemo(() => {
     const limited = sections.slice(0, 4);
@@ -54,6 +55,18 @@ function PrivateCollectionPreview({
       }))
       .filter((section) => section.cards.length > 0);
   }, [searchQuery, sections]);
+
+  if (isLoading) {
+    return (
+      <CollectionSection $variant={variant}>
+        <FourColumnGrid>
+          {Array.from({ length: COLLECTION_PREVIEW_LIMIT }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </FourColumnGrid>
+      </CollectionSection>
+    );
+  }
 
   if (!visibleSections.length) return null;
 

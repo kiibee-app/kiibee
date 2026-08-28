@@ -140,6 +140,8 @@ export const DASHBOARD_STAT_KEY = {
   TOTAL_CONTENT: "total-content",
   FREE_CONTENT: "free-content",
   PAID_CONTENT: "paid-content",
+  PASSWORD_CONTENT: "password-content",
+  EMAIL_GATED_CONTENT: "email-gated-content",
 } as const;
 
 export const DEBOUNCE_DELAY = 300;
@@ -197,4 +199,10 @@ export const ROUTES = {
   DELETION_REQUESTS: "/deletion-requests",
   PAYOUT_REQUESTS: "/payout-requests",
   PAYOUT: "/payout",
+} as const;
+
+export const CREATOR_STATUS = {
+  PENDING_SETUP: "pending-setup",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
 } as const;

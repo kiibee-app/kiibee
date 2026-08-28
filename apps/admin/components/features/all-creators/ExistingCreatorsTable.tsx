@@ -1,5 +1,6 @@
 "use client";
 
+import { CREATOR_STATUS } from "@/utils/constants";
 import type { ExistingCreator } from "../../../types/existing-creator";
 import { formatRequestedAt } from "../../../utils/date";
 import {
@@ -101,7 +102,15 @@ export function ExistingCreatorsTable({
                       }
                       layout={creator.layout}
                       fallbackLabel={existingCreatorLabels.noChannel}
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (
+                          creator.status === CREATOR_STATUS.PENDING_SETUP ||
+                          creator.isHidden
+                        ) {
+                          e.preventDefault();
+                        }
+                      }}
                     >
                       <CreatorName>{channelDisplayName}</CreatorName>
                     </ChannelLink>
@@ -135,28 +144,59 @@ export function ExistingCreatorsTable({
                   <VisibilityToggle
                     type="button"
                     role="switch"
-                    aria-checked={!creator.isHidden}
-                    $hidden={Boolean(creator.isHidden)}
-                    disabled={pendingCreatorId === creator.id}
+                    aria-checked={
+                      creator.status === CREATOR_STATUS.PENDING_SETUP
+                        ? false
+                        : !creator.isHidden
+                    }
+                    $hidden={
+                      creator.status === CREATOR_STATUS.PENDING_SETUP
+                        ? true
+                        : Boolean(creator.isHidden)
+                    }
+                    disabled={
+                      pendingCreatorId === creator.id ||
+                      creator.status === CREATOR_STATUS.PENDING_SETUP
+                    }
                     title={
-                      creator.isHidden
-                        ? "Creator is hidden on website. Click to unhide."
-                        : "Creator is visible on website. Click to hide."
+                      creator.status === CREATOR_STATUS.PENDING_SETUP
+                        ? "Visibility cannot be changed while setup is pending."
+                        : creator.isHidden
+                          ? "Creator is hidden on website. Click to unhide."
+                          : "Creator is visible on website. Click to hide."
                     }
                     onClick={(event) => {
                       event.stopPropagation();
                       onToggleVisibility?.(creator);
                     }}
                   >
-                    <VisibilitySwitchTrack $hidden={Boolean(creator.isHidden)}>
+                    <VisibilitySwitchTrack
+                      $hidden={
+                        creator.status === CREATOR_STATUS.PENDING_SETUP
+                          ? true
+                          : Boolean(creator.isHidden)
+                      }
+                    >
                       <VisibilitySwitchThumb
-                        $hidden={Boolean(creator.isHidden)}
+                        $hidden={
+                          creator.status === CREATOR_STATUS.PENDING_SETUP
+                            ? true
+                            : Boolean(creator.isHidden)
+                        }
                       />
                     </VisibilitySwitchTrack>
-                    <VisibilitySwitchLabel $hidden={Boolean(creator.isHidden)}>
-                      {creator.isHidden
-                        ? existingCreatorLabels.hiddenState
-                        : existingCreatorLabels.visibleState}
+                    <VisibilitySwitchLabel
+                      $hidden={
+                        creator.status === CREATOR_STATUS.PENDING_SETUP
+                          ? true
+                          : Boolean(creator.isHidden)
+                      }
+                    >
+                      {creator.status === CREATOR_STATUS.PENDING_SETUP
+                        ? "Hidden"
+                        : creator.isHidden
+                          ? existingCreatorLabels.hiddenState
+                          : existingCreatorLabels.visibleState}
                     </VisibilitySwitchLabel>
                   </VisibilityToggle>
                 </TableBodyCell>

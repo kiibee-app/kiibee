@@ -19,6 +19,7 @@ import { ItemRow } from "../Appearance/styles";
 import { useContentForm } from "../ContentFormContext";
 import { useGetAPI } from "@/lib/http/api";
 import { API } from "@/lib/http/api";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type TaxonomyItem = { id: string; name: string };
 type ApiResponse<T> = { data?: T | null };
@@ -28,6 +29,10 @@ export default function PublishedSection() {
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
   const [isDurationFocused, setIsDurationFocused] = useState(false);
+
+  const isAudioOrVideo =
+    formState.contentTypeId === FORMAT_TYPE.AUDIO ||
+    formState.contentTypeId === FORMAT_TYPE.VIDEO;
 
   const categoriesQuery = useGetAPI<ApiResponse<TaxonomyItem[]>>(
     API.content.categories,
@@ -91,7 +96,7 @@ export default function PublishedSection() {
           <ItemText>
             <MonoText $use="Body_SemiBold">
               {t("contents.metadata.published.duration")}
-              <RequiredIndicator>*</RequiredIndicator>
+              {isAudioOrVideo && <RequiredIndicator>*</RequiredIndicator>}
             </MonoText>
           </ItemText>
 

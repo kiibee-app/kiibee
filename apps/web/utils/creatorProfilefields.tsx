@@ -35,12 +35,24 @@ export const getPasswordFields = (t: (key: string) => string) => [
 
 export const getPaymentFields = (t: (key: string) => string) => [
   {
-    key: "reg",
+    key: FORM_KEYS.reg,
     label: t(CREATOR_PROFILE.regLabel),
+    digitsOnly: true,
   },
   {
-    key: "account",
+    key: FORM_KEYS.account,
     label: t(CREATOR_PROFILE.accountLabel),
+    digitsOnly: true,
+  },
+  {
+    key: FORM_KEYS.accountHolderName,
+    label: t(CREATOR_PROFILE.accountHolderNameLabel),
+    digitsOnly: false,
+  },
+  {
+    key: FORM_KEYS.bankName,
+    label: t(CREATOR_PROFILE.bankNameLabel),
+    digitsOnly: false,
   },
 ];
 

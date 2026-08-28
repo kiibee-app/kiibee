@@ -30,15 +30,21 @@ import {
   TableHeaderCell,
   TableScrollWrapper,
 } from "../all-creators/AllCreators.styles";
-import { InlineActionButton, PayoutHint } from "./PayoutDashboard.styles";
-import { AdminPayoutModal } from "./AdminPayoutModal";
+import { Building2 } from "lucide-react";
+import {
+  InlineActionButton,
+  InlineActionGroup,
+  InlineSecondaryButton,
+  PayoutHint,
+} from "./PayoutDashboard.styles";
+import { AccountDetailsModal } from "./AccountDetailsModal";
 
 export function CreatorBalancesTab() {
   const router = useRouter();
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCreator, setSelectedCreator] =
+  const [accountDetailsCreator, setAccountDetailsCreator] =
     useState<CreatorWalletItem | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const debouncedSearch = useDebounce(searchTerm);
@@ -127,10 +133,6 @@ export function CreatorBalancesTab() {
                 <tbody>
                   {items.map((creator) => {
                     const balance = Number(creator.walletBalance);
-                    const canPayout =
-                      balance > MIN_PAYOUT_AMOUNT &&
-                      creator.hasPaymentMethod &&
-                      !creator.hasPendingRequest;
 
                     return (
                       <RequestTableRow key={creator.creatorId}>
@@ -183,34 +185,36 @@ export function CreatorBalancesTab() {
                           )}
                         </TableBodyCell>
                         <TableBodyCell>
-                          {creator.hasPendingRequest &&
-                          creator.pendingRequestId ? (
-                            <InlineActionButton
+                          <InlineActionGroup>
+                            {creator.hasPendingRequest &&
+                            creator.pendingRequestId ? (
+                              <InlineActionButton
+                                type="button"
+                                onClick={() =>
+                                  router.push(
+                                    `/payout-requests/${creator.pendingRequestId}`,
+                                  )
+                                }
+                              >
+                                View request
+                              </InlineActionButton>
+                            ) : (
+                              <InlineActionButton
+                                type="button"
+                                disabled
+                                title="Payout processing is disabled"
+                              >
+                                Process payout
+                              </InlineActionButton>
+                            )}
+                            <InlineSecondaryButton
                               type="button"
-                              onClick={() =>
-                                router.push(
-                                  `/payout-requests/${creator.pendingRequestId}`,
-                                )
-                              }
+                              onClick={() => setAccountDetailsCreator(creator)}
                             >
-                              View request
-                            </InlineActionButton>
-                          ) : (
-                            <InlineActionButton
-                              type="button"
-                              disabled={!canPayout}
-                              onClick={() => setSelectedCreator(creator)}
-                              title={
-                                !creator.hasPaymentMethod
-                                  ? "Creator needs a payment method"
-                                  : balance <= MIN_PAYOUT_AMOUNT
-                                    ? `Balance must be greater than ${MIN_PAYOUT_AMOUNT} DKK`
-                                    : "Process payout"
-                              }
-                            >
-                              Process payout
-                            </InlineActionButton>
-                          )}
+                              <Building2 size={14} aria-hidden />
+                              Account details
+                            </InlineSecondaryButton>
+                          </InlineActionGroup>
                         </TableBodyCell>
                       </RequestTableRow>
                     );
@@ -236,10 +240,10 @@ export function CreatorBalancesTab() {
         )}
       </AllCreatorsPanel>
 
-      <AdminPayoutModal
-        creator={selectedCreator}
-        open={Boolean(selectedCreator)}
-        onClose={() => setSelectedCreator(null)}
+      <AccountDetailsModal
+        creator={accountDetailsCreator}
+        open={Boolean(accountDetailsCreator)}
+        onClose={() => setAccountDetailsCreator(null)}
       />
     </AllCreatorsLayout>
   );

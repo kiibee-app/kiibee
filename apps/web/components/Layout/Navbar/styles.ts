@@ -387,6 +387,13 @@ export const Actions = styled.div<{
         ? theme.colors.neutral.OFF_WHITE
         : theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
+
+    .mobile-text {
+      display: none;
+    }
+    .desktop-text {
+      display: inline;
+    }
   }
 
   .start-btn:hover {
@@ -407,13 +414,24 @@ export const Actions = styled.div<{
     $showOnMobile
       ? css`
           ${media.mobileXl} {
-            gap: 0.5rem;
+            gap: 0.35rem;
             margin-left: auto;
+
+            .start-btn {
+              .mobile-text {
+                display: inline;
+              }
+              .desktop-text {
+                display: none;
+              }
+            }
 
             a,
             button {
-              min-height: 30px;
-              font-size: 12px;
+              min-height: 32px;
+              height: 32px;
+              padding: 0 10px;
+              font-size: 11px;
             }
           }
         `
@@ -824,6 +842,15 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
+
+  .start-btn {
+    .mobile-text {
+      display: inline;
+    }
+    .desktop-text {
+      display: none;
+    }
+  }
 
   > a,
   > button {

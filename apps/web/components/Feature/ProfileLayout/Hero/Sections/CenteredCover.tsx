@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
+import ProfileCoverImage from "@/components/Feature/ProfileLayout/Hero/ProfileCoverImage";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
@@ -11,8 +12,6 @@ import {
   BioText,
   BioMoreButton,
   CoverFrameFull,
-  CoverImageTop,
-  CoverInitial,
   HeroWrapperCentered,
   InfoSection,
   NameText,
@@ -38,18 +37,14 @@ export default function CenteredCoverSection() {
   return (
     <HeroWrapperCentered>
       <CoverFrameFull>
-        {coverImageUrl ? (
-          <CoverImageTop
-            src={coverImageUrl}
-            alt={t(CREATE_PROFILE_HOME.title)}
-            fill
-            sizes="100vw"
-            priority
-            unoptimized
-          />
-        ) : (
-          <CoverInitial>{initial}</CoverInitial>
-        )}
+        <ProfileCoverImage
+          src={coverImageUrl}
+          alt={t(CREATE_PROFILE_HOME.title)}
+          fill
+          sizes="100vw"
+          priority
+          unoptimized
+        />
       </CoverFrameFull>
 
       <InfoSection>

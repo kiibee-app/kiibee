@@ -2,6 +2,7 @@ import type { TFunction } from "i18next";
 import {
   ACCESS_TYPE_EMAIL_GATED,
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_PAID,
   ACCESS_TYPE_PASSWORD,
   BUY_KEYWORDS,
   BUY_PREFIX,
@@ -85,8 +86,7 @@ export function formatPriceLabel(
   if (price == null || price === "") return null;
   const num = Number(price);
   if (Number.isNaN(num) || num <= 0) return null;
-  const amount = Number.isInteger(num) ? String(num) : String(Math.round(num));
-  return `${prefix} ${amount} kr`;
+  return `${prefix} ${String(num)} kr`;
 }
 
 export function isBuyActionLabel(label: string): boolean {
@@ -102,7 +102,8 @@ export function isFreeContentItem(
 ): boolean {
   if (
     isPasswordAccessType(item.accessType) ||
-    isEmailAccessType(item.accessType)
+    isEmailAccessType(item.accessType) ||
+    item.accessType === ACCESS_TYPE_PAID
   ) {
     return false;
   }
@@ -118,7 +119,7 @@ function resolvePricingPrefixes(labels?: PricingLabels) {
   return {
     rentPrefix: labels?.rent ?? RENT_PREFIX,
     buyPrefix: labels?.buy ?? BUY_PREFIX,
-    buyCollectionPrefix: labels?.buy ?? BUY_PREFIX,
+    buyCollectionPrefix: labels?.buyCollection ?? BUY_PREFIX,
   };
 }
 
@@ -203,6 +204,9 @@ export function getContentPricingActions(
   );
 
   if (!rent && !buy) {
+    if (item.accessType === ACCESS_TYPE_PAID) {
+      return [];
+    }
     return [{ label: freeLabel, fullWidth: true }];
   }
 
