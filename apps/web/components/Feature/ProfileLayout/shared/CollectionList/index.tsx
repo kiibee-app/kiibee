@@ -177,7 +177,7 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: collectionHref,
+            href: `${collectionHref}${hash}`,
           };
         });
       } else {
