@@ -103,6 +103,7 @@ type CollectionMeta = {
   accessType: 'free' | 'paid' | 'password' | 'email_gated';
   buyPrice: string | null;
   rentPrice: string | null;
+  accessCode: string | null;
   passwordHash: string | null;
   visibility: 'public' | 'hidden' | 'draft' | 'private';
   isPublished: boolean;
@@ -331,10 +332,10 @@ function resolveAccessType(
     return mapped;
   }
 
-  const buyPrice = textOrNull(showValue(show, 'purchasePrice'));
-  const rentPrice = textOrNull(showValue(show, 'rentalPrice'));
-
-  if (buyPrice || rentPrice) {
+  if (
+    hasPositivePrice(showValue(show, 'purchasePrice')) ||
+    hasPositivePrice(showValue(show, 'rentalPrice'))
+  ) {
     return 'paid';
   }
 
@@ -389,6 +390,11 @@ function parseDecimal(value: unknown): string | null {
 
   const parsed = Number.parseFloat(text);
   return Number.isFinite(parsed) ? parsed.toFixed(2) : null;
+}
+
+function hasPositivePrice(value: unknown): boolean {
+  const parsed = parseDecimal(value);
+  return parsed != null && Number.parseFloat(parsed) > 0;
 }
 
 function normalizeStorageFileKey(value: string | null): string | null {
@@ -786,7 +792,10 @@ function resolveAccessTypeFromFields(
     return mapped;
   }
 
-  if (textOrNull(fields.purchasePrice) || textOrNull(fields.rentalPrice)) {
+  if (
+    hasPositivePrice(fields.purchasePrice) ||
+    hasPositivePrice(fields.rentalPrice)
+  ) {
     return 'paid';
   }
 
@@ -829,6 +838,7 @@ function buildCollectionMetaFromParent(
     accessType,
     buyPrice: parseDecimal(fields?.purchasePrice),
     rentPrice: parseDecimal(fields?.rentalPrice),
+    accessCode: textOrNull(fields?.code),
     passwordHash: null,
     visibility: hidden ? 'hidden' : published ? 'public' : 'draft',
     isPublished: !hidden && published,
@@ -920,6 +930,7 @@ function groupShowsBySourceFolder(shows: UmbracoShow[]): LoadedCollection[] {
     accessType: 'free' as const,
     buyPrice: null,
     rentPrice: null,
+    accessCode: null,
     passwordHash: null,
     visibility: 'public' as const,
     isPublished: true,
@@ -1013,7 +1024,9 @@ async function ensureCollection(
   );
   const passwordHash =
     collection.accessType === 'password'
-      ? defaultPasswordHash
+      ? collection.accessCode
+        ? await hashPassword(collection.accessCode)
+        : defaultPasswordHash
       : collection.passwordHash;
 
   await db
@@ -1030,7 +1043,8 @@ async function ensureCollection(
       buyPrice: collection.buyPrice,
       rentPrice: collection.rentPrice,
       rentDuration:
-        collection.rentPrice && collection.accessType === 'paid'
+        collection.accessType === 'paid' &&
+        hasPositivePrice(collection.rentPrice)
           ? String(DEFAULT_RENT_DURATION_HOURS)
           : null,
       sortOrder: collection.sortOrder,
@@ -1052,7 +1066,8 @@ async function ensureCollection(
         buyPrice: collection.buyPrice,
         rentPrice: collection.rentPrice,
         rentDuration:
-          collection.rentPrice && collection.accessType === 'paid'
+          collection.accessType === 'paid' &&
+          hasPositivePrice(collection.rentPrice)
             ? String(DEFAULT_RENT_DURATION_HOURS)
             : null,
         sortOrder: collection.sortOrder,
@@ -1252,7 +1267,7 @@ export const seedUmbracoShows = async () => {
               buyPrice,
               rentPrice,
               rentDurationHours:
-                rentPrice && accessType === 'paid'
+                accessType === 'paid' && hasPositivePrice(rentPrice)
                   ? DEFAULT_RENT_DURATION_HOURS
                   : null,
               currency: 'DKK',
@@ -1291,7 +1306,7 @@ export const seedUmbracoShows = async () => {
                 buyPrice,
                 rentPrice,
                 rentDurationHours:
-                  rentPrice && accessType === 'paid'
+                  accessType === 'paid' && hasPositivePrice(rentPrice)
                     ? DEFAULT_RENT_DURATION_HOURS
                     : null,
                 physicalProductLink:

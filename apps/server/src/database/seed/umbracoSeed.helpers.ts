@@ -160,6 +160,7 @@ export type CmsMemberRecord = {
   Email?: string;
   loginName?: string;
   LoginName?: string;
+  key?: string;
   profileKey?: string | null;
   Password?: string;
 };
@@ -177,6 +178,17 @@ function parseOwnerNodeId(owner: unknown): number | null {
   }
 
   return Number(text);
+}
+
+function normalizeMemberKey(value: unknown): string | null {
+  const text = textOrNull(value);
+  if (!text) {
+    return null;
+  }
+
+  const fromUdi = text.match(/umb:\/\/member\/([a-f0-9-]+)/i);
+  const raw = fromUdi?.[1] ?? (/^[a-f0-9-]{32,36}$/i.test(text) ? text : null);
+  return raw ? raw.replace(/-/g, '').toLowerCase() : null;
 }
 
 export function findCmsMembersFile(): string | null {
@@ -225,6 +237,28 @@ export function loadCmsMembersByNodeId(): Map<number, string> {
     const email = cmsMemberEmail(member);
     if (email) {
       map.set(member.nodeId, email);
+    }
+  }
+
+  return map;
+}
+
+function loadCmsMembersByKey(): Map<string, string> {
+  const filePath = findCmsMembersFile();
+  if (!filePath) {
+    return new Map();
+  }
+
+  const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as {
+    cmsMember?: CmsMemberRecord[];
+  };
+  const map = new Map<string, string>();
+
+  for (const member of parsed.cmsMember ?? []) {
+    const email = cmsMemberEmail(member);
+    const key = normalizeMemberKey(member.key);
+    if (email && key) {
+      map.set(key, email);
     }
   }
 
@@ -352,7 +386,10 @@ export function resolveProfileCmsMemberEmail(
   owner: unknown,
   contentUserId: number | undefined,
   cmsByNodeId: Map<number, string>,
+  cmsByKey: Map<string, string> = new Map(),
 ): string | null {
+  const ownerKey = normalizeMemberKey(owner);
+  const byOwnerKey = ownerKey ? (cmsByKey.get(ownerKey) ?? null) : null;
   const byContent = contentUserId
     ? (cmsByNodeId.get(contentUserId - CONTENT_NODE_ID_OFFSET) ?? null)
     : null;
@@ -360,10 +397,10 @@ export function resolveProfileCmsMemberEmail(
   const byOwner = ownerNodeId ? (cmsByNodeId.get(ownerNodeId) ?? null) : null;
 
   if (byOwner && byContent && byOwner !== byContent) {
-    return byContent;
+    return byOwnerKey ?? byContent;
   }
 
-  return byOwner ?? byContent ?? null;
+  return byOwnerKey ?? byOwner ?? byContent ?? null;
 }
 
 /** Umbraco CMS member login emails keyed by exported profile directory name. */
@@ -371,7 +408,8 @@ export function loadCmsMemberEmailByProfileKey(
   umbracoUsersRoot: string,
 ): Map<string, string> {
   const cmsByNodeId = loadCmsMembersByNodeId();
-  if (!cmsByNodeId.size) {
+  const cmsByKey = loadCmsMembersByKey();
+  if (!cmsByNodeId.size && !cmsByKey.size) {
     return new Map();
   }
 
@@ -391,6 +429,7 @@ export function loadCmsMemberEmailByProfileKey(
       general.owner,
       contentUserIdByProfileKey.get(profileKey),
       cmsByNodeId,
+      cmsByKey,
     );
 
     if (email) {
@@ -928,24 +967,36 @@ const CLOUDFLARE_VIDEO_ID_PATTERN =
 
 const IMAGE_MEDIA_PATH_PATTERN = /\.(jpe?g|png|webp|gif|avif)(\?.*)?$/i;
 
+function unwrapUmbracoProperty(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return value;
+  }
+
+  const record = value as JsonRecord;
+  if ('value' in record && 'alias' in record) {
+    return record.value;
+  }
+
+  return value;
+}
+
+function isPresentUmbracoValue(value: unknown): boolean {
+  return value !== undefined && value !== null && value !== '';
+}
+
 export function getUmbracoShowValue(show: JsonRecord, key: string): unknown {
-  const direct = show[key];
-  if (direct !== undefined && direct !== null && direct !== '') {
-    return direct;
-  }
+  const candidates = [
+    show[key],
+    (show.properties as JsonRecord | undefined)?.[key],
+    (show.fields as JsonRecord | undefined)?.[key],
+    (show.fieldDetails as JsonRecord | undefined)?.[key],
+  ];
 
-  const fromProperties = (show.properties as JsonRecord | undefined)?.[key];
-  if (
-    fromProperties !== undefined &&
-    fromProperties !== null &&
-    fromProperties !== ''
-  ) {
-    return fromProperties;
-  }
-
-  const fromFields = (show.fields as JsonRecord | undefined)?.[key];
-  if (fromFields !== undefined && fromFields !== null && fromFields !== '') {
-    return fromFields;
+  for (const candidate of candidates) {
+    const unwrapped = unwrapUmbracoProperty(candidate);
+    if (isPresentUmbracoValue(unwrapped)) {
+      return unwrapped;
+    }
   }
 
   return undefined;

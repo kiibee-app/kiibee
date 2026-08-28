@@ -176,9 +176,20 @@ async function main() {
     const result = { requestedName: selection.name, liveName: userName, userId: idOf(user), status: "found", folderCount: folders.length, missingFolders, folders: [] };
 
     for (const folder of folders) {
-      const folderName = nameOf(folder), outDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content", safe(folderName));
-      if (!config.overwrite) { try { await access(path.join(outDir, "index.json")); result.folders.push({ name: folderName, id: idOf(folder), status: "skipped" }); continue; } catch {} }
-      const run = await runCollection(idOf(folder), folderName, outDir);
+      const folderName = nameOf(folder);
+      const folderId = idOf(folder);
+      let dirName = safe(folderName);
+      let outDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content", dirName);
+      try {
+        const existing = JSON.parse(await readFile(path.join(outDir, "index.json"), "utf8"));
+        const existingId = existing?.source?.parentId ?? existing?.parent?.id;
+        if (existingId && Number(existingId) !== Number(folderId)) {
+          dirName = `${safe(folderName)}_${folderId}`;
+          outDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content", dirName);
+        }
+      } catch {}
+      if (!config.overwrite) { try { await access(path.join(outDir, "index.json")); result.folders.push({ name: folderName, id: folderId, status: "skipped" }); continue; } catch {} }
+      const run = await runCollection(folderId, folderName, outDir);
       const status = run.code === 0 ? "ok" : "error";
       result.folders.push({ name: folderName, id: idOf(folder), status, error: run.stderr || undefined });
       console.log(`[${status}] ${userName} / ${folderName}`);

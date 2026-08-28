@@ -3,11 +3,12 @@
   "liveName": "Funktionel Neuroterapeut 2026",
   "userId": 126039,
   "status": "found",
-  "folderCount": 4,
+  "folderCount": 5,
+  "itemCount": 11,
   "missingFolders": [],
   "folders": [
     {
-      "name": "Undervisningsmateriale",
+      "name": "Undervisningsmanualer",
       "id": 127382,
       "status": "ok"
     },
@@ -24,6 +25,11 @@
     {
       "name": "Cerebellum - Test",
       "id": 127385,
+      "status": "ok"
+    },
+    {
+      "name": "Supplerende videomateriale",
+      "id": 128116,
       "status": "ok"
     }
   ]
