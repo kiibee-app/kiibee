@@ -4,7 +4,10 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
-import { ErrorText } from "@/components/UI/InputFields/styles";
+import {
+  ErrorText,
+  RequiredIndicator,
+} from "@/components/UI/InputFields/styles";
 import SortDropdown from "@/components/UI/SortDropdown";
 import {
   INPUT_VARIANTS,
@@ -133,7 +136,10 @@ export default function Payment({ contentType }: PaymentProps = {}) {
       <PaymentCard>
         <PaymentForm>
           <Block>
-            <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
+            <SectionTitle>
+              {t("contents.payment.admission.title")}
+              <RequiredIndicator>*</RequiredIndicator>
+            </SectionTitle>
             <SectionText>
               {t("contents.payment.admission.description", {
                 contentType:
