@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
 import { profileNavShellProps } from "@/utils/Constants";
+import { shimmer } from "@/utils/animations";
 
 const imageContainStyles = css`
   object-fit: contain;
@@ -85,13 +86,15 @@ export const CoverFrameFull = styled.div`
   }
 `;
 
-export const CoverImage = styled(Image)`
+export const CoverImage = styled(Image)<{ $isLoaded?: boolean }>`
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
+  transition: opacity 0.3s ease-in-out;
 `;
 
 export const CoverInitial = styled(MonoText).attrs(({ theme }) => ({
@@ -105,6 +108,23 @@ export const CoverInitial = styled(MonoText).attrs(({ theme }) => ({
   justify-content: center;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   user-select: none;
+`;
+
+export const CoverSkeleton = styled.div`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
+  border-radius: inherit;
+  z-index: 1;
 `;
 
 export const CoverImageTop = styled(CoverImage)`
@@ -416,8 +436,7 @@ export const HeroMedia = styled.div<{ $hasImage?: boolean }>`
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: ${({ $hasImage, theme }) =>
-    $hasImage ? theme.colors.neutral.WHITE : theme.colors.gradient.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   &::after {
     content: "";

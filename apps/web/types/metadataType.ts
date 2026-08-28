@@ -1,4 +1,10 @@
+import type { ImageProps } from "next/image";
 import { ImageType } from "@/utils/ui";
+
+export interface ProfileCoverImageProps extends Omit<ImageProps, "src"> {
+  src?: string | null;
+  alt: string;
+}
 
 export type UploadConfig = {
   labelKey?: string;
