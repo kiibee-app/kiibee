@@ -3,6 +3,7 @@ import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const Section = styled.section`
   width: 100%;
@@ -97,8 +98,12 @@ export const TextSection = styled.div`
   flex: 1;
 `;
 
-export const CardTitle = styled.h3`
-  margin: 0 0 0.25rem;
+export const CardTitle = styled(MonoText)`
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
 `;
 
 export const CardAuthor = styled.p`
