@@ -380,12 +380,24 @@ export function useContentFormActions({
         "contents.metadata.validation.numbersOnly",
       );
     }
-    if (!formState.duration.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
-    } else if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
-      nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
-        "contents.metadata.validation.numbersOnly",
-      );
+    const contentType = formState.contentTypeId || editingContent?.contentType;
+    const isAudioOrVideo =
+      contentType === FORMAT_TYPE.AUDIO || contentType === FORMAT_TYPE.VIDEO;
+
+    if (isAudioOrVideo) {
+      if (!formState.duration.trim()) {
+        nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+      } else if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
+        nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
+          "contents.metadata.validation.numbersOnly",
+        );
+      }
+    } else if (formState.duration.trim()) {
+      if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
+        nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
+          "contents.metadata.validation.numbersOnly",
+        );
+      }
     }
     if (!formState.category.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
