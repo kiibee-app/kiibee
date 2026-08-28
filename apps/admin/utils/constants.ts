@@ -200,3 +200,9 @@ export const ROUTES = {
   PAYOUT_REQUESTS: "/payout-requests",
   PAYOUT: "/payout",
 } as const;
+
+export const CREATOR_STATUS = {
+  PENDING_SETUP: "pending-setup",
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+} as const;
