@@ -724,7 +724,10 @@ export default function NavBar({
                   href={PATHS.AUTH_SIGNUP}
                   variant={VARIANT.PRIMARY}
                 >
-                  {t(NAV.startCreating)}
+                  <span className="desktop-text">{t(NAV.startCreating)}</span>
+                  <span className="mobile-text">
+                    {t(NAV.startCreatingShort)}
+                  </span>
                 </GenericButton>
               </>
             ))
@@ -839,7 +842,10 @@ export default function NavBar({
                     href={PATHS.AUTH_SIGNUP}
                     variant={VARIANT.PRIMARY}
                   >
-                    {t(NAV.startCreating)}
+                    <span className="desktop-text">{t(NAV.startCreating)}</span>
+                    <span className="mobile-text">
+                      {t(NAV.startCreatingShort)}
+                    </span>
                   </GenericButton>
                 </>
               ))

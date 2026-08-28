@@ -16,6 +16,7 @@ export const NAV = {
   logout: "nav.logout",
   profileMenu: "nav.profileMenu",
   startCreating: "nav.startCreating",
+  startCreatingShort: "nav.startCreatingShort",
   logoAlt: "nav.logoAlt",
 };
 
