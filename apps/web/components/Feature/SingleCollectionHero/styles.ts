@@ -142,7 +142,7 @@ export const ContentRow = styled.div`
   width: 100%;
 
   ${media.tablet} {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 24px;
   }
 `;

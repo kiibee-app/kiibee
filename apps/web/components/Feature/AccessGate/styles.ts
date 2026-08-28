@@ -41,7 +41,9 @@ export const GateCard = styled.div<{ $variant?: string }>`
       : "none"};
   border-radius: ${({ theme }) => theme.radius.lg};
   padding: ${({ $variant }) => ($variant === "content" ? "24px" : "28px 32px")};
+  width: 100%;
   max-width: ${({ $variant }) => ($variant === "content" ? "520px" : "480px")};
+  box-sizing: border-box;
 
   ${({ theme }) => theme.media.mobileLg} {
     padding: 24px 20px;

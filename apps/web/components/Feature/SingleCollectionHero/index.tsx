@@ -67,6 +67,7 @@ type Props = {
   onBack?: () => void;
   showBack?: boolean;
   embedded?: boolean;
+  accessGate?: React.ReactNode;
 };
 
 export default function SingleCollectionHero({
@@ -84,6 +85,7 @@ export default function SingleCollectionHero({
   onBack,
   showBack = true,
   embedded = false,
+  accessGate,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -172,7 +174,9 @@ export default function SingleCollectionHero({
             {description || t("singleCollection.subtitle")}
           </Description>
 
-          {isOwner ? (
+          {accessGate ? (
+            accessGate
+          ) : isOwner ? (
             <OwnerActions>
               {onOpenDashboard && (
                 <ActionButton onClick={onOpenDashboard}>
