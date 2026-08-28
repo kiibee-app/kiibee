@@ -45,10 +45,10 @@ const LEGACY_ACCESS_IDS: Record<
   string,
   'free' | 'paid' | 'password' | 'email_gated'
 > = {
-  '57': 'email_gated',
+  '57': 'free',
   '58': 'paid',
   '59': 'password',
-  '60': 'free',
+  '60': 'email_gated',
 };
 
 type JsonRecord = Record<string, unknown>;
