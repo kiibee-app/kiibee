@@ -142,6 +142,7 @@ const SettingsPaymentSection = ({
             }
             variant={SORT_DROPDOWN_VARIANT.SURFACE}
             maxWidth="100%"
+            expandLayoutOnOpen={false}
             renderSelectedLabel={(value, option) => (
               <MonoText $use="Body_Regular">{option?.label ?? value}</MonoText>
             )}

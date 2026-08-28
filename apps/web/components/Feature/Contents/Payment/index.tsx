@@ -160,6 +160,7 @@ export default function Payment({ contentType }: PaymentProps = {}) {
                 }
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
+                expandLayoutOnOpen={false}
               />
             </DropdownWrap>
           </Block>
