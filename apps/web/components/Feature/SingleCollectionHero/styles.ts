@@ -141,6 +141,10 @@ export const ContentRow = styled.div`
   gap: 40px;
   width: 100%;
 
+  ${media.desktopSm} {
+    gap: 28px;
+  }
+
   ${media.tablet} {
     flex-direction: column-reverse;
     gap: 24px;
@@ -150,7 +154,9 @@ export const ContentRow = styled.div`
 export const HeroImage = styled.div`
   position: relative;
   width: 33.75rem;
-  height: 23.125rem;
+  max-width: 45%;
+  height: auto;
+  aspect-ratio: 16 / 10;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
@@ -163,9 +169,14 @@ export const HeroImage = styled.div`
   background-size: 200% 100%;
   animation: ${shimmer} 1.5s infinite ease-in-out;
 
+  ${media.desktopSm} {
+    width: 40%;
+    max-width: 400px;
+  }
+
   ${media.tablet} {
     width: 100%;
-    height: auto;
+    max-width: none;
     aspect-ratio: 16 / 10;
   }
 `;
