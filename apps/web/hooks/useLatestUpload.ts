@@ -16,7 +16,6 @@ import {
 import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
-import { convertRentDurationToHours } from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
@@ -117,10 +116,6 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
       const latest = allContents[0];
       if (!latest) return null;
 
-      const parentCollection = collections.find(
-        (c) => c.id === latest.collectionId,
-      );
-
       try {
         const res = await axiosClient.get<ContentDetailResponse>(
           API.content.get(String(latest.id)),
@@ -142,12 +137,10 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             content?.thumbnailLandscapeUrl ??
             null,
           trailerUrl: content?.trailerUrl ?? null,
-          accessType: parentCollection?.accessType ?? null,
-          buyPrice: parentCollection?.buyPrice ?? null,
-          rentPrice: parentCollection?.rentPrice ?? null,
-          rentDurationHours: convertRentDurationToHours(
-            parentCollection?.rentDuration,
-          ),
+          accessType: content?.accessType ?? latest.accessType ?? null,
+          buyPrice: content?.buyPrice ?? latest.buyPrice ?? null,
+          rentPrice: content?.rentPrice ?? latest.rentPrice ?? null,
+          rentDurationHours: content?.rentDurationHours ?? null,
         };
       } catch (error) {
         console.error(
@@ -161,12 +154,10 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           thumbnailUrl: null,
           thumbnailLandscapeUrl: null,
           trailerUrl: null,
-          accessType: parentCollection?.accessType ?? null,
-          buyPrice: parentCollection?.buyPrice ?? null,
-          rentPrice: parentCollection?.rentPrice ?? null,
-          rentDurationHours: convertRentDurationToHours(
-            parentCollection?.rentDuration,
-          ),
+          accessType: latest.accessType ?? null,
+          buyPrice: latest.buyPrice ?? null,
+          rentPrice: latest.rentPrice ?? null,
+          rentDurationHours: latest.rentDurationHours ?? null,
         };
       }
     },
