@@ -17,6 +17,7 @@ import {
   DEFAULT_ALL_CREATORS_LIMIT,
   ROLE,
   SORT_DIRECTIONS,
+  STATUS,
 } from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
@@ -100,6 +101,7 @@ export const allCreatorsService = async ({
       eq(users.isActive, true),
       eq(users.role, ROLE.CREATOR),
       eq(users.isDeleted, false),
+      eq(users.status, STATUS.ACTIVE),
       publiclyVisibleCreatorWhere,
       sql`${creatorDisplayNameSql} <> ''`,
       isFeaturedOnly
