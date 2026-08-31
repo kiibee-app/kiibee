@@ -54,26 +54,30 @@ export const ModalSubtitle = styled(MonoText).attrs({
 
 export const TypeGrid = styled.div<{ $columns?: number }>`
   display: grid;
-  grid-template-columns: repeat(
-    ${({ $columns = 5 }) => $columns},
-    minmax(0, 1fr)
-  );
-  width: 100%;
-  gap: 12px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(${({ $columns = 5 }) => $columns}, 76px);
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 54px;
+
+  ${media.tablet} {
+    grid-template-columns: repeat(${({ $columns = 5 }) => $columns}, 64px);
+    gap: 10px;
+    margin-bottom: 32px;
+  }
 
   ${media.mobileLg} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
   }
 `;
 
 export const TypeButton = styled.button<{ $selected: boolean }>`
-  width: 100%;
-  min-height: 108px;
-  padding: 16px 8px;
+  width: 76px;
+  height: 74px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   background: ${({ $selected, theme }) =>
     $selected
       ? theme.colors.neutral.PALE_GREEN
@@ -84,10 +88,17 @@ export const TypeButton = styled.button<{ $selected: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 7px;
+
+  ${media.tablet} {
+    width: 64px;
+    height: 66px;
+    gap: 6px;
+  }
 
   ${media.mobileLg} {
-    min-height: 96px;
+    width: calc((100% - 20px) / 3);
+    height: 70px;
   }
 `;
 

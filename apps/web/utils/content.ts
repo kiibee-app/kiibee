@@ -115,8 +115,9 @@ export const getContentTypeLabel = (contentType: ContentType) =>
   contentType.toUpperCase();
 
 export const CONTENT_TYPE_MODAL = {
-  WIDTH: "560px",
-  PADDING: "24px",
+  WIDTH: "670px",
+  HEIGHT: "450px",
+  PADDING: "20px",
   BORDER_RADIUS: "20px",
   ICON_SIZE: 24,
 } as const;

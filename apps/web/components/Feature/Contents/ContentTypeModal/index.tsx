@@ -14,9 +14,9 @@ import {
 import { COMMON, CONTENTS } from "@/utils/translationKeys";
 import {
   BackButton,
-  CompactHeadingGroup,
-  CompactModalContent,
-  KindContinueButton,
+  ContinueButton,
+  HeadingGroup,
+  ModalContent,
   ModalSubtitle,
   ModalTitle,
   TypeButton,
@@ -58,6 +58,7 @@ export default function ContentTypeModal({
       visible={visible}
       onClose={handleModalClose}
       width={CONTENT_TYPE_MODAL.WIDTH}
+      height={CONTENT_TYPE_MODAL.HEIGHT}
       padding={CONTENT_TYPE_MODAL.PADDING}
       borderRadius={CONTENT_TYPE_MODAL.BORDER_RADIUS}
     >
@@ -69,11 +70,11 @@ export default function ContentTypeModal({
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
 
-      <CompactModalContent>
-        <CompactHeadingGroup>
+      <ModalContent>
+        <HeadingGroup>
           <ModalTitle>{t(CONTENTS.contentTypeModal.title)}</ModalTitle>
           <ModalSubtitle>{t(CONTENTS.contentTypeModal.subtitle)}</ModalSubtitle>
-        </CompactHeadingGroup>
+        </HeadingGroup>
 
         <TypeGrid $columns={typeOptions.length}>
           {typeOptions.map(({ key, labelKey, Icon }) => (
@@ -93,7 +94,7 @@ export default function ContentTypeModal({
           ))}
         </TypeGrid>
 
-        <KindContinueButton
+        <ContinueButton
           type="button"
           disabled={!selectedType}
           onClick={handleContinue}
@@ -101,8 +102,8 @@ export default function ContentTypeModal({
           <MonoText $use="Body_Bold" color="inherit">
             {t(CONTENTS.contentTypeModal.continue)}
           </MonoText>
-        </KindContinueButton>
-      </CompactModalContent>
+        </ContinueButton>
+      </ModalContent>
     </GenericModal>
   );
 }
