@@ -16,6 +16,7 @@ export const NAV = {
   logout: "nav.logout",
   profileMenu: "nav.profileMenu",
   startCreating: "nav.startCreating",
+  startCreatingShort: "nav.startCreatingShort",
   logoAlt: "nav.logoAlt",
 };
 
@@ -406,8 +407,11 @@ export const CONTENTS = {
   title: "contents.title",
   actions: {
     createCollection: "contents.actions.createCollection",
+    upload: "contents.actions.upload",
     createCoupon: "contents.actions.createCoupon",
     search: "contents.actions.search",
+    addContent: "contents.actions.addContent",
+    deleteContent: "contents.actions.deleteContent",
   },
   tabs: {
     coupons: "contents.tabs.coupons",
@@ -505,6 +509,59 @@ export const CONTENTS = {
     hidden: "contents.general.hidden",
     draft: "contents.general.draft",
   },
+  uploadKindModal: {
+    title: "contents.uploadKindModal.title",
+    subtitle: "contents.uploadKindModal.subtitle",
+    continue: "contents.uploadKindModal.continue",
+    options: {
+      collection: "contents.uploadKindModal.options.collection",
+      collectionHint: "contents.uploadKindModal.options.collectionHint",
+      singleContent: "contents.uploadKindModal.options.singleContent",
+      singleContentHint: "contents.uploadKindModal.options.singleContentHint",
+    },
+  },
+  contentTypeModal: {
+    title: "contents.contentTypeModal.title",
+    subtitle: "contents.contentTypeModal.subtitle",
+    continue: "contents.contentTypeModal.continue",
+    options: {
+      video: "contents.contentTypeModal.options.video",
+      audio: "contents.contentTypeModal.options.audio",
+      pdf: "contents.contentTypeModal.options.pdf",
+      epub: "contents.contentTypeModal.options.epub",
+      web: "contents.contentTypeModal.options.web",
+    },
+  },
+  singleContentCollection: {
+    name: "contents.singleContentCollection.name",
+  },
+  metadata: {
+    coverImage: {
+      title: "contents.metadata.coverImage.title",
+      mediaCardLabel: "contents.metadata.coverImage.mediaCardLabel",
+      mediaCardSize: "contents.metadata.coverImage.mediaCardSize",
+      portraitLabel: "contents.metadata.coverImage.portraitLabel",
+      portraitSize: "contents.metadata.coverImage.portraitSize",
+      portraitPdfSize: "contents.metadata.coverImage.portraitPdfSize",
+    },
+  },
+  payment: {
+    admission: {
+      title: "contents.payment.admission.title",
+      description: "contents.payment.admission.description",
+      fallbackContentType: "contents.payment.admission.fallbackContentType",
+      options: {
+        free: "contents.payment.admission.options.free",
+        payment: "contents.payment.admission.options.payment",
+        setPassword: "contents.payment.admission.options.setPassword",
+        requestEmail: "contents.payment.admission.options.requestEmail",
+      },
+    },
+    common: {
+      invalidNumber: "contents.payment.common.invalidNumber",
+      minAmount: "contents.payment.common.minAmount",
+    },
+  },
   deleteModal: {
     title: "contents.deleteModal.title",
     message: "contents.deleteModal.message",
@@ -579,6 +636,8 @@ export const COMMON = {
   back: "common.back",
   close: "common.close",
   share: "common.share",
+  cancel: "common.cancel",
+  save: "common.save",
 };
 
 export const SUBSCRIPTION = {

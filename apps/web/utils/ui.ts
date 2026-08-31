@@ -158,6 +158,8 @@ export const IMAGE_MODAL = {
 } as const;
 
 export const PREVIEW_FRAME_SIZE = 320;
+export const CROP_PREVIEW_MAX_EDGE = 280;
+export const CROP_STAGE_PADDING = "24px";
 export const DRAG_CLICK_THRESHOLD_PX = 8;
 export const DEFAULT_CROP_SIZE = 320;
 export const IMAGE_ZOOM = {
@@ -178,6 +180,19 @@ export const CROP_SHAPE = {
 
 export type CropShapeType = (typeof CROP_SHAPE)[keyof typeof CROP_SHAPE];
 
+export const IMAGE_FIT = {
+  COVER: "cover",
+  CONTAIN: "contain",
+} as const;
+
+export type ImageFit = (typeof IMAGE_FIT)[keyof typeof IMAGE_FIT];
+
+export const CROP_EXPORT_MAX_EDGE = 1920;
+export const CROP_LETTERBOX_FILL = "#111111";
+export const CROP_LETTERBOX_BLUR_PX = 24;
+export const CROP_LETTERBOX_SCALE = 1.15;
+export const CROP_LETTERBOX_DIM = "rgba(0, 0, 0, 0.28)";
+
 export const IMAGE_TYPE = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
@@ -185,6 +200,20 @@ export const IMAGE_TYPE = {
   PORTRAIT: "portrait",
 } as const;
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
+
+export const CONTENT_THUMBNAIL_SIZE = {
+  MEDIA_CARD: { width: 300, height: 424 },
+  PORTRAIT: { width: 1920, height: 1080 },
+  PORTRAIT_PDF: { width: 376, height: 530 },
+} as const;
+
+export const CONTENT_THUMBNAIL_PREVIEW = {
+  MEDIA_CARD: { maxWidth: "71px", minHeight: "100px" },
+  PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
+  PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
+} as const;
+
+export const CARD_IMAGE_RADIUS = "12px";
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
@@ -195,14 +224,8 @@ export const THUMBNAIL_MIN_DIMENSIONS = {
     width: 640,
     height: 600,
   },
-  [IMAGE_TYPE.MEDIA_CARD]: {
-    width: 650,
-    height: 920,
-  },
-  [IMAGE_TYPE.PORTRAIT]: {
-    width: 1920,
-    height: 1080,
-  },
+  [IMAGE_TYPE.MEDIA_CARD]: CONTENT_THUMBNAIL_SIZE.MEDIA_CARD,
+  [IMAGE_TYPE.PORTRAIT]: CONTENT_THUMBNAIL_SIZE.PORTRAIT,
 } as const;
 
 export const isBrowser = typeof window !== "undefined";
@@ -247,7 +270,7 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.MEDIA_CARD]: {
     maxWidth: "71px",
     minHeight: "100px",
-    aspectRatio: "650 / 920",
+    aspectRatio: `${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.width} / ${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.height}`,
     tablet: {
       maxWidth: "55px",
       minHeight: "78px",
@@ -257,7 +280,7 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   [IMAGE_TYPE.PORTRAIT]: {
     maxWidth: "184px",
     minHeight: "100px",
-    aspectRatio: "1920 / 1080",
+    aspectRatio: `${CONTENT_THUMBNAIL_SIZE.PORTRAIT.width} / ${CONTENT_THUMBNAIL_SIZE.PORTRAIT.height}`,
     tablet: {
       maxWidth: "140px",
       minHeight: "79px",

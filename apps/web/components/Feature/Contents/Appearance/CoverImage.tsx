@@ -26,6 +26,7 @@ import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
 import {
   CROP_SHAPE,
   defaultUploadConfigs,
+  IMAGE_FIT,
   IMAGE_TYPE,
   ImageType,
 } from "@/utils/ui";
@@ -222,6 +223,7 @@ export default function CoverImageSection({
                         $previewMaxWidth={item.previewMaxWidth}
                         $previewHeight={item.previewHeight}
                         $previewMinHeight={item.previewMinHeight}
+                        $fit={IMAGE_FIT.COVER}
                       />
                       <DeleteImageButton
                         type="button"
@@ -252,6 +254,7 @@ export default function CoverImageSection({
           cropHeight={selectedConfig.cropHeight}
           recommendedText={true}
           onImageSelected={handleImageSelected}
+          fit={IMAGE_FIT.COVER}
         />
       )}
     </AppearancePanel>

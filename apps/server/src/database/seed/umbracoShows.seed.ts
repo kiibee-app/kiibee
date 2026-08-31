@@ -7,6 +7,7 @@ import { hashPassword } from 'src/utils/passwordHash';
 
 import { db } from '../db';
 import {
+  getUmbracoShowValue,
   inferContentCategoryId,
   loadProfileCategoryContext,
   resolveProfileDefaultCategoryId,
@@ -575,8 +576,9 @@ export const seedUmbracoShows = async () => {
           creatorCoverImageUrl: channel.coverImageUrl,
           creatorLogoUrl: channel.logoUrl,
         });
-      const trailerRaw =
-        textOrNull(showValue(show, 'trailer')) ?? textOrNull(show.trailer);
+      const trailerRaw = textOrNull(
+        getUmbracoShowValue(show as JsonRecord, 'trailer'),
+      );
       const trailerUrl = trailerRaw
         ? /^https?:\/\//i.test(trailerRaw)
           ? trailerRaw.trim()

@@ -166,3 +166,11 @@ export const MobileProfileTriggerAvatar = styled.span`
   width: 36px;
   height: 36px;
 `;
+
+export const ProfileLoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 60px 0;
+`;

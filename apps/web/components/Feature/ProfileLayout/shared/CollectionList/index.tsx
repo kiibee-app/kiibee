@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useQueries } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import {
   CollectionsApiResponse,
   getCollectionRows,
@@ -33,6 +34,7 @@ import {
   type RentedCollectionItem,
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
+import { ProfileLoadingWrapper } from "@/components/Feature/ProfileLayout/pageStyles";
 import { pathPublicCollection } from "@/utils/path";
 import { VARIANT } from "@/utils/variants";
 import {
@@ -55,7 +57,7 @@ type PublicCollectionResponse = {
 export default function CollectionList() {
   const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName, isPublicView, publicCreatorId } =
+  const { displayName, isPublicView, publicCreatorId, isLoadingProfile } =
     useCreatorChannelProfile();
   const router = useRouter();
   const user = useStoredLoginUser();
@@ -175,7 +177,7 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: collectionHref,
+            href: `${collectionHref}${hash}`,
           };
         });
       } else {
@@ -218,6 +220,7 @@ export default function CollectionList() {
   }, [items, searchQuery]);
 
   const isLoading =
+    isLoadingProfile ||
     isCollectionsLoading ||
     publicContentQueries.some((query) => query.isLoading);
 
@@ -235,7 +238,11 @@ export default function CollectionList() {
   return (
     <CollectionListShell data-creator-collection>
       <CollectionListInner>
-        {filteredItems.length === 0 && !isLoading ? (
+        {isLoading ? (
+          <ProfileLoadingWrapper>
+            <GenericSpinner size={48} />
+          </ProfileLoadingWrapper>
+        ) : filteredItems.length === 0 ? (
           <ProfileEmptyState
             title={
               searchQuery.trim() !== ""

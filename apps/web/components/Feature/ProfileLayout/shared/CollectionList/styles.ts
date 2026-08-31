@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const CollectionListShell = styled.section`
   width: 100%;
@@ -8,19 +9,19 @@ export const CollectionListShell = styled.section`
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.primary.WHITE};
 
-  ${({ theme }) => theme.media.desktopMd} {
+  ${media.desktopMd} {
     padding: 10px 10px 80px;
   }
 
-  ${({ theme }) => theme.media.desktopSm} {
+  ${media.desktopSm} {
     padding: 10px 10px 88px;
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  ${media.tablet} {
     padding: 10px 10px 88px;
   }
 
-  ${({ theme }) => theme.media.mobileLg} {
+  ${media.mobileLg} {
     padding: 10px 10px 56px;
   }
 `;
@@ -30,7 +31,7 @@ export const CollectionListInner = styled.div`
   margin: 0 auto;
   padding: 0 6px;
 
-  ${({ theme }) => theme.media.mobileLg} {
+  ${media.mobileLg} {
     padding: 0;
   }
 `;

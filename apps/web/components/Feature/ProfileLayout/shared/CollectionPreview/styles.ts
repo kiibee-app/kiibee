@@ -8,11 +8,11 @@ export const CollectionSection = styled.section<{
 }>`
   width: min(100%, 1300px);
   margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
-  padding: 10px;
+  padding: 10px 0;
 
   ${media.tablet} {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
   }
 `;
 

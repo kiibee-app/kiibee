@@ -521,14 +521,14 @@ export default function SingleCollectionDetail({
           onBack={onBack}
           showBack={showBack}
           embedded={embedded}
+          accessGate={
+            <AccessGate
+              type={gateType}
+              variant={VARIANT_CONTENT}
+              onSuccess={handleCollectionGateSuccess}
+            />
+          }
         />
-        <HeroSection>
-          <AccessGate
-            type={gateType}
-            variant={VARIANT_CONTENT}
-            onSuccess={handleCollectionGateSuccess}
-          />
-        </HeroSection>
         {purchaseModals}
       </Section>
     );
