@@ -14,6 +14,7 @@
     "logout": "Log out",
     "profileMenu": "Account menu",
     "startCreating": "Start creating",
+    "startCreatingShort": "Create",
     "logoAlt": "Kiibee",
     "profile": {
       "home": "Home",
@@ -1820,6 +1821,7 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
+      "upload": "Upload",
       "createCoupon": "Create coupon",
       "search": "Search contents",
       "cancel": "Cancel",
@@ -2032,6 +2034,20 @@
       "hidden": "Hidden",
       "draft": "Draft"
     },
+    "uploadKindModal": {
+      "title": "What do you want to upload?",
+      "subtitle": "Choose a collection or a single piece of content.",
+      "continue": "Continue",
+      "options": {
+        "collection": "Collection",
+        "collectionHint": "A folder for several items",
+        "singleContent": "Single content",
+        "singleContentHint": "One video, file, or page"
+      }
+    },
+    "singleContentCollection": {
+      "name": "Single content"
+    },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
       "subtitle": "Select a format to continue.",
@@ -2172,10 +2188,10 @@
       "coverImage": {
         "title": "Thumbnail",
         "mediaCardLabel": "Upload thumbnail for the media card",
-        "mediaCardSize": "Use size 250x190 pixel image",
+        "mediaCardSize": "Use size {{width}}x{{height}} pixel image",
         "portraitLabel": "Upload thumbnail for portrait format",
-        "portraitSize": "Use size 634x345 pixel image",
-        "portraitPdfSize": "Use size 376x530 pixel image"
+        "portraitSize": "Use size {{width}}x{{height}} pixel image",
+        "portraitPdfSize": "Use size {{width}}x{{height}} pixel image"
       }
     },
     "couponSearch": {
@@ -2316,6 +2332,7 @@
     "metadataValidationFailed": "Please complete all required metadata fields.",
     "saveChangesFailed": "Failed to save changes",
     "saveSettingsFailed": "Failed to save settings",
+    "saveCollectionFailed": "Failed to save collection",
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed",

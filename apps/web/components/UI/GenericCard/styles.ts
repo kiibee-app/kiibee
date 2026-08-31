@@ -55,15 +55,14 @@ export const ImageWrapper = styled.div<{
     if ($compact) return "104px";
     return "190px";
   }};
-  /* High thumbnail crop: 650 × 920 */
   aspect-ratio: ${({ $coverImage, $imageAspectRatio }) =>
-    $imageAspectRatio ?? ($coverImage ? "650 / 920" : "16 / 9")};
+    $imageAspectRatio ?? ($coverImage ? "650 / 868" : "16 / 9")};
 
   @supports not (aspect-ratio: 1 / 1) {
     padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
       if ($imageAspectRatio === "1 / 1") return "100%";
       if ($imageAspectRatio) return undefined;
-      return $coverImage ? "141.538%" : "56.25%";
+      return $coverImage ? "133.538%" : "56.25%";
     }};
   }
 
@@ -71,7 +70,8 @@ export const ImageWrapper = styled.div<{
     $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
   align-items: center;
   align-self: stretch;
-  border-radius: ${({ theme }) => `${theme.radius.lg} ${theme.radius.lg} 0 0`};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  isolation: isolate;
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   img {
@@ -87,6 +87,7 @@ export const ImageWrapper = styled.div<{
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
       $coverImage ? "center top" : "center"};
+    border-radius: inherit;
   }
 
   ${media.tablet} {

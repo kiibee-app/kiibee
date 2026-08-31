@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS } from "@/utils/Constants";
@@ -70,6 +71,7 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
             <ItemText>
               <MonoText $use="Body_SemiBold">
                 {t(CONTENTS.general.visibility)}
+                <RequiredIndicator>*</RequiredIndicator>
               </MonoText>
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
                 {t(CONTENTS.general.visibilityHint)}

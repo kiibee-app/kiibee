@@ -14,6 +14,7 @@
     "logout": "Log ud",
     "profileMenu": "Profil",
     "startCreating": "Begynd at udgive",
+    "startCreatingShort": "Udgiv",
     "logoAlt": "Kiibee",
     "profile": {
       "home": "Hjem",
@@ -1820,6 +1821,7 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
+      "upload": "Upload",
       "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "cancel": "Annuller",
@@ -2032,6 +2034,20 @@
         }
       }
     },
+    "uploadKindModal": {
+      "title": "Hvad vil du uploade?",
+      "subtitle": "Vælg en samling eller et enkelt indhold.",
+      "continue": "Fortsæt",
+      "options": {
+        "collection": "Samling",
+        "collectionHint": "En mappe til flere elementer",
+        "singleContent": "Enkelt indhold",
+        "singleContentHint": "Én video, fil eller side"
+      }
+    },
+    "singleContentCollection": {
+      "name": "Enkelt indhold"
+    },
     "contentTypeModal": {
       "title": "Vælg den type indhold, du vil tilføje",
       "subtitle": "Vælg et format for at fortsætte.",
@@ -2172,10 +2188,10 @@
       "coverImage": {
         "title": "Miniature",
         "mediaCardLabel": "Upload miniature til mediekortet",
-        "mediaCardSize": "Brug størrelse 250x190 pixel billede",
+        "mediaCardSize": "Brug størrelse {{width}}x{{height}} pixel billede",
         "portraitLabel": "Upload miniature til portrætformat",
-        "portraitSize": "Brug størrelse 634x345 pixel billede",
-        "portraitPdfSize": "Brug størrelse 376x530 pixel billede"
+        "portraitSize": "Brug størrelse {{width}}x{{height}} pixel billede",
+        "portraitPdfSize": "Brug størrelse {{width}}x{{height}} pixel billede"
       }
     },
     "couponSearch": {
@@ -2313,6 +2329,7 @@
     "metadataValidationFailed": "Udfyld venligst alle obligatoriske metadatafelter.",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
+    "saveCollectionFailed": "Kunne ikke gemme samling",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billed upload mislykkedet",

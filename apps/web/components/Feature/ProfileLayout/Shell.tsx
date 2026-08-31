@@ -15,7 +15,6 @@ import {
 } from "@/hooks/useCreatorChannelLayout";
 import { usePublicCreatorLayoutRedirect } from "@/hooks/usePublicCreatorLayoutRedirect";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
-import GenericSpinner from "@/components/UI/GenericSpinner";
 import {
   API_BUTTON_COLOR,
   API_TEXT_COLOR,
@@ -37,9 +36,8 @@ function ProfileAboutModal() {
 
 export default function ProfileShell({ variant, children }: ProfileShellProps) {
   useProfileSync();
-  const isLayoutPending = usePublicCreatorLayoutRedirect(variant);
-  const { isLoadingProfile, textColor, buttonColor } =
-    useCreatorChannelProfile();
+  usePublicCreatorLayoutRedirect(variant);
+  const { textColor, buttonColor } = useCreatorChannelProfile();
   const resolvedTextColor =
     textColor === TEXT_COLOR_VALUES.DARK_TEXT
       ? COLORS.primary.BLACK
@@ -52,10 +50,6 @@ export default function ProfileShell({ variant, children }: ProfileShellProps) {
     HEX_COLOR_RE.test(buttonColor)
       ? buttonColor
       : null;
-
-  if (isLayoutPending || isLoadingProfile) {
-    return <GenericSpinner isOverlay />;
-  }
 
   return (
     <CreatorProfileUiProvider>

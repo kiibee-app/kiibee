@@ -9,7 +9,12 @@ import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { MediaTypeBox, IconFrame, DiscoverContainer } from "./styles";
+import {
+  MediaTypeBox,
+  IconFrame,
+  DiscoverContainer,
+  CardTitle,
+} from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_IMAGE_DIMENSIONS } from "@/utils/landingUtils";
@@ -50,7 +55,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
           </MonoText>
         ) : undefined
       }
-      title={<MonoText $use="Body_Medium">{safeT(item.titleKey)}</MonoText>}
+      title={<CardTitle $use="Body_Medium">{safeT(item.titleKey)}</CardTitle>}
       subtitle={
         <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
           {safeT(item.authorKey)}

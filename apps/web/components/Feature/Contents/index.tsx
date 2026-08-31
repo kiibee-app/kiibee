@@ -19,6 +19,7 @@ import GenericTabs from "@/components/UI/GenericTabs";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import AuthBackButton from "../Auth/AuthBackButton";
 import CreateCollectionModal from "./Collections/CreateCollectionModal";
+import UploadKindModal from "./UploadKindModal";
 import ContentTabPanel from "./ContentTabPanel";
 import CouponFlowModals from "./coupon/CouponFlowModals";
 import ContentTypeModal from "./ContentTypeModal";
@@ -35,6 +36,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import {
   ADD_CONTENT_TABS,
   APPEARANCE,
+  COUPONS,
   ContentTab,
   SETTINGS,
   isValidUrl,
@@ -61,7 +63,6 @@ import {
   UI_TITLE_FALLBACK,
   CONTENT_ITEM_QUERY_KEY,
 } from "@/utils/Constants";
-import { COUPONS } from "@/utils/common";
 
 function ContentsUploadTitle({ fallback }: { fallback: string }) {
   const { formState } = useContentForm();
@@ -92,6 +93,7 @@ function CreatorsContentsInner() {
   } = useContentsViewState();
   const {
     collections,
+    collectionsReady,
     setCollections,
     resetAfterRefetch,
     collectionContents,
@@ -122,11 +124,12 @@ function CreatorsContentsInner() {
       t("contents.tabs.collections"),
       t("contents.tabs.contents"),
       t(CONTENTS_KEYS.title),
-      t("contents.actions.search"),
-      t("contents.actions.createCollection"),
-      t("contents.actions.createCoupon"),
-      t("contents.actions.deleteContent"),
-      t("contents.actions.addContent"),
+      t(CONTENTS_KEYS.actions.search),
+      t(CONTENTS_KEYS.actions.createCollection),
+      t(CONTENTS_KEYS.actions.upload),
+      t(CONTENTS_KEYS.actions.createCoupon),
+      t(CONTENTS_KEYS.actions.deleteContent),
+      t(CONTENTS_KEYS.actions.addContent),
       t("contents.emptyCollection.title"),
       t("contents.emptyCollection.description"),
       ...colNames,
@@ -257,6 +260,7 @@ function CreatorsContentsInner() {
   ]);
   const {
     createCollectionFlow,
+    uploadKindFlow,
     contentTypeFlow,
     couponForm,
     setCouponForm,
@@ -279,6 +283,8 @@ function CreatorsContentsInner() {
     isCollectionContentMode,
     setCollections,
     resetAfterRefetch,
+    setSelectedCollection,
+    collectionsReady,
   );
 
   const contentSettings = useContentSettings();
@@ -602,6 +608,16 @@ function CreatorsContentsInner() {
         </ContentPanel>
       </ContentsScrollArea>
 
+      {uploadKindFlow.showUploadKindModal && (
+        <UploadKindModal
+          visible={uploadKindFlow.showUploadKindModal}
+          onClose={uploadKindFlow.close}
+          onContinue={(kind) => {
+            void uploadKindFlow.continueWithKind(kind);
+          }}
+        />
+      )}
+
       {createCollectionFlow.showCreateModal && (
         <CreateCollectionModal
           visible={createCollectionFlow.showCreateModal}
@@ -616,7 +632,7 @@ function CreatorsContentsInner() {
         <ContentTypeModal
           visible={contentTypeFlow.showContentTypeModal}
           onClose={contentTypeFlow.close}
-          onBack={contentTypeFlow.close}
+          onBack={contentTypeFlow.backFromTypeSelect}
           onContinue={contentTypeFlow.continueWithType}
         />
       )}
@@ -644,6 +660,7 @@ function CreatorsContentsInner() {
           onClose={closeContentUpload}
           onBack={handleContentUploadBack}
           onUploadSuccess={(tab, file, preview, createdId, details) => {
+            contentTypeFlow.commitUploadKind();
             clearSelectedCollectionContentsOverride();
             handleUploadSuccess(tab, file, preview, createdId, details);
             if (createdId) {

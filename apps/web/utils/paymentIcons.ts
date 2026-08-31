@@ -2,8 +2,6 @@ import visaSvg from "@/assets/icons/visa.svg";
 import masterCardSvg from "@/assets/icons/masterCard.svg";
 import jcbSvg from "@/assets/icons/jcb.svg";
 import amexSvg from "@/assets/icons/amiricanExpress.svg";
-import unionPaySvg from "@/assets/icons/unionPay.svg";
-import discoverSvg from "@/assets/icons/discover.svg";
 import dinerClubSvg from "@/assets/icons/dinerClub.svg";
 import googlePaySvg from "@/assets/icons/googlePay.svg";
 import applePaySvg from "@/assets/icons/applePay.svg";
