@@ -19,19 +19,35 @@ export const Section = styled.div`
   }
 `;
 
+export const HeaderWrapper = styled.div`
+  width: 100%;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    padding-top: 5rem;
+    padding-bottom: 5.5rem;
+  }
+`;
+
 export const Container = styled.div`
   width: 100%;
   max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 4rem 0;
+  padding-bottom: 4rem;
   box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
     gap: 4rem;
-    padding: 6rem 0;
+    padding-bottom: 6rem;
   }
 `;
 
@@ -47,7 +63,7 @@ export const ImageContainer = styled.div`
 
 export const StickyImageWrapper = styled.div`
   position: sticky;
-  top: 8rem;
+  top: max(6.5rem, calc(50vh - 11rem));
   width: 100%;
   aspect-ratio: 1146 / 710;
   border-radius: 8px;
@@ -77,7 +93,7 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   ${({ theme }) => theme.typography.Heading2};
   color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
@@ -92,6 +108,7 @@ export const Title = styled.h1`
   line-height: normal;
   margin-bottom: 0.75rem;
   margin-top: 0;
+  text-align: center;
 
   @media (min-width: ${breakpoints.tablet}) {
   }
@@ -110,7 +127,8 @@ export const Subtitle = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 1.4;
-  margin: 0 0 3rem;
+  margin: 0;
+  text-align: center;
 `;
 
 export const StepsContainer = styled.div`
@@ -123,21 +141,21 @@ export const StepWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   min-height: 0;
-  padding-bottom: 4rem;
+  padding-bottom: 3.5rem;
 
   &:last-child {
     padding-bottom: 0;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 28rem;
+    min-height: 24rem;
     justify-content: center;
-    padding-bottom: 12.5rem;
+    padding-bottom: 6rem;
 
     &:last-child {
-      min-height: 0;
-      justify-content: flex-start;
-      padding-bottom: 45vh;
+      min-height: 24rem;
+      justify-content: center;
+      padding-bottom: 20vh;
     }
   }
 `;

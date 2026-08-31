@@ -8,6 +8,7 @@ import { creatorOnboardingSteps } from "@/utils/steps";
 import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
   Section,
+  HeaderWrapper,
   Container,
   ImageContainer,
   StickyImageWrapper,
@@ -59,6 +60,11 @@ export default function HowToGetStarted() {
 
   return (
     <Section>
+      <HeaderWrapper>
+        <Title>{t(CREATORS.howToGetStarted.title)}</Title>
+        <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
+      </HeaderWrapper>
+
       <Container>
         <ImageContainer>
           <StickyImageWrapper>
@@ -78,9 +84,6 @@ export default function HowToGetStarted() {
         </ImageContainer>
 
         <ContentContainer>
-          <Title>{t(CREATORS.howToGetStarted.title)}</Title>
-          <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
-
           <StepsContainer>
             {creatorOnboardingSteps.map((step, index) => {
               const listItems = step.listKey
