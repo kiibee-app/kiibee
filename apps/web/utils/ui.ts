@@ -158,6 +158,8 @@ export const IMAGE_MODAL = {
 } as const;
 
 export const PREVIEW_FRAME_SIZE = 320;
+export const CROP_PREVIEW_MAX_EDGE = 280;
+export const CROP_STAGE_PADDING = "24px";
 export const DRAG_CLICK_THRESHOLD_PX = 8;
 export const DEFAULT_CROP_SIZE = 320;
 export const IMAGE_ZOOM = {

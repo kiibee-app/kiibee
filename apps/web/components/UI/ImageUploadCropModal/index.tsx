@@ -475,6 +475,7 @@ export default function ImageUploadCropModal({
                 ref={previewFrameRef}
                 $cropWidth={cropWidth}
                 $cropHeight={cropHeight}
+                $shape={shape}
                 onDragEnter={handleDragEnter}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
