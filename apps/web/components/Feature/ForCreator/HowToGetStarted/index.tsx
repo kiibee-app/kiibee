@@ -5,9 +5,10 @@ import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { creatorOnboardingSteps } from "@/utils/steps";
-import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
+import { EVENT_SCROLL, EVENT_RESIZE } from "@/utils/Constants";
 import {
   Section,
+  HeaderWrapper,
   Container,
   ImageContainer,
   StickyImageWrapper,
@@ -31,37 +32,82 @@ import {
 export default function HowToGetStarted() {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [stepMinHeight, setStepMinHeight] = useState(0);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const visibleEntry = entries.find((entry) => entry.isIntersecting);
-      if (!visibleEntry) return;
+    const sticky = stickyRef.current;
+    if (!sticky) return;
 
-      const index = sectionRefs.current.indexOf(
-        visibleEntry.target as HTMLDivElement,
-      );
+    const syncHeight = () => {
+      const height = Math.round(sticky.getBoundingClientRect().height);
+      setStepMinHeight((prev) => (prev === height ? prev : height));
+    };
 
-      if (index !== -1) {
-        setActiveIndex(index);
-      }
-    }, intersectionObserverConfig);
-
-    const elements = sectionRefs.current.filter(Boolean);
-    elements.forEach((el) => observer.observe(el!));
+    syncHeight();
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(sticky);
 
     return () => observer.disconnect();
   }, []);
 
-  const setRef = (index: number) => (el: HTMLDivElement | null) => {
+  useEffect(() => {
+    let frame = 0;
+
+    const updateActive = () => {
+      const stickyBox = stickyRef.current?.getBoundingClientRect();
+      const imageMid = stickyBox
+        ? stickyBox.top + stickyBox.height / 2
+        : window.innerHeight / 2;
+
+      let next = 0;
+      let closest = Number.POSITIVE_INFINITY;
+
+      sectionRefs.current.forEach((el, index) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const stepMid = rect.top + rect.height / 2;
+        const distance = Math.abs(stepMid - imageMid);
+        if (distance < closest) {
+          closest = distance;
+          next = index;
+        }
+      });
+
+      setActiveIndex((prev) => (prev === next ? prev : next));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener(EVENT_SCROLL, onScroll, { passive: true });
+    window.addEventListener(EVENT_RESIZE, onScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener(EVENT_SCROLL, onScroll);
+      window.removeEventListener(EVENT_RESIZE, onScroll);
+    };
+  }, []);
+
+  const setRef = (index: number) => (el: HTMLElement | null) => {
     sectionRefs.current[index] = el;
   };
 
   return (
     <Section>
+      <HeaderWrapper>
+        <Title>{t(CREATORS.howToGetStarted.title)}</Title>
+        <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
+      </HeaderWrapper>
+
       <Container>
         <ImageContainer>
-          <StickyImageWrapper>
+          <StickyImageWrapper ref={stickyRef}>
             {creatorOnboardingSteps.map((step, index) => (
               <ImageWrapper key={step.id} $active={activeIndex === index}>
                 <Image
@@ -78,9 +124,6 @@ export default function HowToGetStarted() {
         </ImageContainer>
 
         <ContentContainer>
-          <Title>{t(CREATORS.howToGetStarted.title)}</Title>
-          <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
-
           <StepsContainer>
             {creatorOnboardingSteps.map((step, index) => {
               const listItems = step.listKey
@@ -88,7 +131,11 @@ export default function HowToGetStarted() {
                 : null;
 
               return (
-                <StepWrapper key={step.id} ref={setRef(index)}>
+                <StepWrapper
+                  key={step.id}
+                  ref={setRef(index)}
+                  $minHeight={stepMinHeight}
+                >
                   <MobileStepImage>
                     <Image
                       src={step.image}
