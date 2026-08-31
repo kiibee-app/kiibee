@@ -55,15 +55,14 @@ export const ImageWrapper = styled.div<{
     if ($compact) return "104px";
     return "190px";
   }};
-  /* High thumbnail crop: 650 × 920 */
   aspect-ratio: ${({ $coverImage, $imageAspectRatio }) =>
-    $imageAspectRatio ?? ($coverImage ? "650 / 920" : "16 / 9")};
+    $imageAspectRatio ?? ($coverImage ? "650 / 868" : "16 / 9")};
 
   @supports not (aspect-ratio: 1 / 1) {
     padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
       if ($imageAspectRatio === "1 / 1") return "100%";
       if ($imageAspectRatio) return undefined;
-      return $coverImage ? "141.538%" : "56.25%";
+      return $coverImage ? "133.538%" : "56.25%";
     }};
   }
 

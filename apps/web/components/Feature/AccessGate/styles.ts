@@ -42,20 +42,20 @@ export const GateCard = styled.div<{ $variant?: string }>`
   border-radius: ${({ theme }) => theme.radius.lg};
   padding: ${({ $variant }) => ($variant === "content" ? "24px" : "28px 32px")};
   width: 100%;
-  max-width: ${({ $variant }) => ($variant === "content" ? "520px" : "480px")};
+  max-width: ${({ $variant }) => ($variant === "content" ? "580px" : "540px")};
   box-sizing: border-box;
 
   ${({ theme }) => theme.media.mobileLg} {
-    padding: 24px 20px;
+    padding: 20px 16px;
     max-width: 100%;
   }
 `;
 
 export const GateTitle = styled.h2`
-  margin: 0 0 24px;
+  margin: 0 0 20px;
 
   ${({ theme }) => theme.media.mobileLg} {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -70,10 +70,22 @@ export const GateForm = styled.form`
   gap: 16px;
 `;
 
+export const GateFieldsRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+
+  ${({ theme }) => theme.media.mobileLg} {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+`;
+
 export const GateFieldGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 `;
 
 export const GateLabel = styled(MonoText).attrs(({ theme }) => ({
@@ -81,7 +93,6 @@ export const GateLabel = styled(MonoText).attrs(({ theme }) => ({
   color: theme.colors.neutral.GRAY_500,
 }))`
   display: block;
-  margin-bottom: 4px;
 `;
 
 export const GateInput = styled.input`
