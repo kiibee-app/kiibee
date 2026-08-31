@@ -31,22 +31,45 @@ import {
 export default function HowToGetStarted() {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [stepMinHeight, setStepMinHeight] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const stickyRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const sticky = stickyRef.current;
+    if (!sticky) return;
+
+    const syncHeight = () => {
+      const height = Math.round(sticky.getBoundingClientRect().height);
+      setStepMinHeight((prev) => (prev === height ? prev : height));
+    };
+
+    syncHeight();
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(sticky);
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let frame = 0;
 
     const updateActive = () => {
       const stickyBox = stickyRef.current?.getBoundingClientRect();
-      const triggerY = stickyBox
-        ? stickyBox.bottom - 16
-        : window.innerHeight * 0.72;
+      const imageMid = stickyBox
+        ? stickyBox.top + stickyBox.height / 2
+        : window.innerHeight / 2;
+
       let next = 0;
+      let closest = Number.POSITIVE_INFINITY;
 
       sectionRefs.current.forEach((el, index) => {
         if (!el) return;
-        if (el.getBoundingClientRect().top <= triggerY) {
+        const rect = el.getBoundingClientRect();
+        const stepMid = rect.top + rect.height / 2;
+        const distance = Math.abs(stepMid - imageMid);
+        if (distance < closest) {
+          closest = distance;
           next = index;
         }
       });
@@ -107,7 +130,11 @@ export default function HowToGetStarted() {
                 : null;
 
               return (
-                <StepWrapper key={step.id}>
+                <StepWrapper
+                  key={step.id}
+                  ref={setRef(index)}
+                  $minHeight={stepMinHeight}
+                >
                   <MobileStepImage>
                     <Image
                       src={step.image}
@@ -118,7 +145,7 @@ export default function HowToGetStarted() {
                     />
                   </MobileStepImage>
 
-                  <StepTitle ref={setRef(index)}>{t(step.titleKey)}</StepTitle>
+                  <StepTitle>{t(step.titleKey)}</StepTitle>
 
                   <StepDescription>{t(step.descriptionKey)}</StepDescription>
 

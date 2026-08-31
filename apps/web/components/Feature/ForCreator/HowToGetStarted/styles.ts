@@ -46,8 +46,9 @@ export const Container = styled.div`
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
+    align-items: stretch;
     gap: 4rem;
-    padding-bottom: 6rem;
+    padding-bottom: 4rem;
   }
 `;
 
@@ -56,14 +57,16 @@ export const ImageContainer = styled.div`
   display: none;
 
   @media (min-width: ${breakpoints.tablet}) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
     width: 45%;
   }
 `;
 
 export const StickyImageWrapper = styled.div`
   position: sticky;
-  top: max(6.5rem, calc(50vh - 11rem));
+  top: 6.5rem;
   width: 100%;
   aspect-ratio: 1146 / 710;
   border-radius: 8px;
@@ -136,7 +139,7 @@ export const StepsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StepWrapper = styled.div`
+export const StepWrapper = styled.div<{ $minHeight?: number }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -148,14 +151,20 @@ export const StepWrapper = styled.div`
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 18rem;
-    justify-content: flex-start;
-    padding-bottom: 3.5rem;
+    min-height: ${({ $minHeight }) =>
+      $minHeight
+        ? `${$minHeight}px`
+        : `calc(min(${FOR_CREATORS_LAYOUT.contentMaxWidth}, 100vw) * 0.4 * 710 / 1146)`};
+    justify-content: center;
+    padding-bottom: 0;
 
     &:last-child {
-      min-height: 18rem;
-      justify-content: flex-start;
-      padding-bottom: 18vh;
+      min-height: ${({ $minHeight }) =>
+        $minHeight
+          ? `${$minHeight}px`
+          : `calc(min(${FOR_CREATORS_LAYOUT.contentMaxWidth}, 100vw) * 0.4 * 710 / 1146)`};
+      justify-content: center;
+      padding-bottom: 0;
     }
   }
 `;
