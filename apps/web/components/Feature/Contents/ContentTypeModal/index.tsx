@@ -5,12 +5,16 @@ import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
-import { CONTENT_TYPE_OPTIONS, type ContentType } from "@/utils/content";
+import {
+  CONTENT_TYPE_OPTIONS,
+  type ContentType,
+  type ContentTypeOption,
+} from "@/utils/content";
 import {
   BackButton,
-  ContinueButton,
-  HeadingGroup,
-  ModalContent,
+  CompactHeadingGroup,
+  CompactModalContent,
+  KindContinueButton,
   ModalSubtitle,
   ModalTitle,
   TypeButton,
@@ -20,6 +24,7 @@ import {
 
 type ContentTypeModalProps = {
   visible: boolean;
+  options?: readonly ContentTypeOption[];
   onBack?: () => void;
   onClose: () => void;
   onContinue?: (contentType: ContentType) => void;
@@ -27,12 +32,14 @@ type ContentTypeModalProps = {
 
 export default function ContentTypeModal({
   visible,
+  options = CONTENT_TYPE_OPTIONS,
   onBack,
   onClose,
   onContinue,
 }: ContentTypeModalProps) {
   const { t } = useTranslation();
   const [selectedType, setSelectedType] = useState<ContentType | null>(null);
+  const typeOptions = options.length ? options : CONTENT_TYPE_OPTIONS;
 
   const handleModalClose = () => {
     setSelectedType(null);
@@ -48,9 +55,8 @@ export default function ContentTypeModal({
     <GenericModal
       visible={visible}
       onClose={handleModalClose}
-      width="670px"
-      height="450px"
-      padding="20px"
+      width="560px"
+      padding="24px"
       borderRadius="20px"
     >
       <BackButton
@@ -61,16 +67,16 @@ export default function ContentTypeModal({
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
 
-      <ModalContent>
-        <HeadingGroup>
+      <CompactModalContent>
+        <CompactHeadingGroup>
           <ModalTitle>{t("contents.contentTypeModal.title")}</ModalTitle>
           <ModalSubtitle>
             {t("contents.contentTypeModal.subtitle")}
           </ModalSubtitle>
-        </HeadingGroup>
+        </CompactHeadingGroup>
 
-        <TypeGrid>
-          {CONTENT_TYPE_OPTIONS.map(({ key, labelKey, Icon }) => (
+        <TypeGrid $columns={typeOptions.length}>
+          {typeOptions.map(({ key, labelKey, Icon }) => (
             <TypeButton
               key={key}
               type="button"
@@ -78,13 +84,13 @@ export default function ContentTypeModal({
               aria-pressed={selectedType === key}
               onClick={() => setSelectedType(key)}
             >
-              <Icon width={18} height={18} />
+              <Icon width={24} height={24} />
               <TypeLabel>{t(labelKey)}</TypeLabel>
             </TypeButton>
           ))}
         </TypeGrid>
 
-        <ContinueButton
+        <KindContinueButton
           type="button"
           disabled={!selectedType}
           onClick={handleContinue}
@@ -92,8 +98,8 @@ export default function ContentTypeModal({
           <MonoText $use="Body_Bold" color="inherit">
             {t("contents.contentTypeModal.continue")}
           </MonoText>
-        </ContinueButton>
-      </ModalContent>
+        </KindContinueButton>
+      </CompactModalContent>
     </GenericModal>
   );
 }

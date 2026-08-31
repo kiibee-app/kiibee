@@ -407,6 +407,7 @@ export const CONTENTS = {
   title: "contents.title",
   actions: {
     createCollection: "contents.actions.createCollection",
+    upload: "contents.actions.upload",
     createCoupon: "contents.actions.createCoupon",
     search: "contents.actions.search",
   },

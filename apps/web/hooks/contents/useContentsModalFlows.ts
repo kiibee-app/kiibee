@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -24,8 +24,37 @@ import {
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import { COLLECTION, CONTENT } from "@/utils/ui";
+import {
+  findSingleContentCollection,
+  SINGLE_CONTENT_COLLECTION_NAME,
+  UPLOAD_KIND,
+  type UploadKind,
+} from "@/utils/collection";
 import { toValidFrom, toValidUntil } from "@/utils/couponDates";
 import { getCouponErrorMessage } from "@/utils/couponErrors";
+
+type CreatedCollectionResponse = {
+  id?: string;
+  name?: string;
+  data?: { id?: string; name?: string };
+};
+
+const mapCreatedCollection = (
+  createdRes: CreatedCollectionResponse,
+  fallbackName: string,
+): CollectionRow | null => {
+  const createdData = createdRes?.data || createdRes;
+  const createdId = createdData?.id;
+  if (!createdId) return null;
+
+  return {
+    id: createdId,
+    name: createdData?.name || fallbackName,
+    contentsCount: 0,
+    createdAt: new Date().toISOString(),
+    actions: "",
+  };
+};
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
@@ -33,6 +62,8 @@ export const useContentsModalFlows = (
   isCollectionContentMode: boolean,
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>,
   resetAfterRefetch: () => void,
+  setSelectedCollection: (collection: CollectionRow | null) => void,
+  collectionsReady: boolean,
 ) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
@@ -45,6 +76,15 @@ export const useContentsModalFlows = (
   const [editingCouponId, setEditingCouponId] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showUploadKindModal, setShowUploadKindModal] = useState(false);
+  const [contentTypeFromUploadKind, setContentTypeFromUploadKind] =
+    useState(false);
+  const contentTypeFromUploadKindRef = useRef(false);
+
+  const setFromUploadKind = (value: boolean) => {
+    contentTypeFromUploadKindRef.current = value;
+    setContentTypeFromUploadKind(value);
+  };
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showContentUploadModal, setShowContentUploadModal] = useState(false);
   const [selectedContentType, setSelectedContentType] =
@@ -159,27 +199,12 @@ export const useContentsModalFlows = (
 
         const createdRes = (await createCollectionMutation.mutateAsync({
           name: trimmedName,
-        })) as {
-          id?: string;
-          name?: string;
-          data?: { id?: string; name?: string };
-        };
+        })) as CreatedCollectionResponse;
 
-        const createdData = createdRes?.data || createdRes;
-        const createdId = createdData?.id;
-        const createdName = createdData?.name || trimmedName;
+        const createdCollection = mapCreatedCollection(createdRes, trimmedName);
 
-        if (createdId) {
-          setCollections((prev) => [
-            ...prev,
-            {
-              id: createdId,
-              name: createdName,
-              contentsCount: 0,
-              createdAt: new Date().toISOString(),
-              actions: "",
-            },
-          ]);
+        if (createdCollection) {
+          setCollections((prev) => [...prev, createdCollection]);
         }
 
         await queryClient.invalidateQueries({
@@ -207,19 +232,126 @@ export const useContentsModalFlows = (
     openSuccess: () => setShowSuccessModal(true),
   };
 
+  const collectionsRef = useRef(collections);
+  collectionsRef.current = collections;
+  const ensureSingleContentStartedRef = useRef(false);
+
+  const refreshCollections = async () => {
+    await queryClient.invalidateQueries({
+      queryKey: [API.collection.getAll],
+    });
+    await queryClient.refetchQueries({
+      queryKey: [API.collection.getAll],
+      type: QUERY_REFETCH_TYPE_ACTIVE,
+    });
+    resetAfterRefetch();
+  };
+
+  const ensureSingleContentCollection = async (
+    options: { silent?: boolean } = {},
+  ): Promise<CollectionRow | null> => {
+    const localizedName = t("contents.singleContentCollection.name", {
+      defaultValue: SINGLE_CONTENT_COLLECTION_NAME,
+    });
+    const existing = findSingleContentCollection(
+      collectionsRef.current,
+      localizedName,
+    );
+    if (existing) {
+      return existing;
+    }
+
+    try {
+      const createdRes = (await createCollectionMutation.mutateAsync({
+        name: localizedName,
+      })) as CreatedCollectionResponse;
+      const createdCollection = mapCreatedCollection(createdRes, localizedName);
+
+      if (createdCollection) {
+        setCollections((prev) => {
+          if (prev.some((item) => item.id === createdCollection.id)) {
+            return prev;
+          }
+          return [...prev, createdCollection];
+        });
+        collectionsRef.current = [
+          ...collectionsRef.current.filter(
+            (item) => item.id !== createdCollection.id,
+          ),
+          createdCollection,
+        ];
+      }
+
+      await refreshCollections();
+      return (
+        findSingleContentCollection(collectionsRef.current, localizedName) ??
+        createdCollection
+      );
+    } catch (error) {
+      const err = error as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
+      const apiError = err?.response?.data?.message || err?.message || "";
+      if (apiError.toLowerCase().includes("already exists")) {
+        await refreshCollections();
+        return (
+          findSingleContentCollection(collectionsRef.current, localizedName) ??
+          null
+        );
+      }
+
+      if (!options.silent) {
+        toast.error(apiError || "Failed to save collection");
+      }
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (!collectionsReady || ensureSingleContentStartedRef.current) {
+      return;
+    }
+
+    ensureSingleContentStartedRef.current = true;
+    void ensureSingleContentCollection({ silent: true });
+    // Create the default folder once after collections first load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collectionsReady]);
+
+  const exitSingleContentUploadSelection = () => {
+    if (contentTypeFromUploadKindRef.current) {
+      setSelectedCollection(null);
+      setFromUploadKind(false);
+    }
+  };
+
   const contentTypeFlow = {
     showContentTypeModal,
     showContentUploadModal,
     selectedContentType,
+    fromUploadKind: contentTypeFromUploadKind,
     open: () => setShowContentTypeModal(true),
+    commitUploadKind: () => setFromUploadKind(false),
     close: () => {
       setShowContentTypeModal(false);
       setShowContentUploadModal(false);
       setSelectedContentType(null);
+      exitSingleContentUploadSelection();
     },
     backToTypeSelect: () => {
       setShowContentUploadModal(false);
       setShowContentTypeModal(true);
+    },
+    backFromTypeSelect: () => {
+      setShowContentTypeModal(false);
+      setSelectedContentType(null);
+      if (contentTypeFromUploadKindRef.current) {
+        setSelectedCollection(null);
+        setFromUploadKind(false);
+        setShowUploadKindModal(true);
+        return;
+      }
     },
     continueWithType: (contentType: ContentType) => {
       setSelectedContentType(contentType);
@@ -310,6 +442,29 @@ export const useContentsModalFlows = (
     }
   };
 
+  const uploadKindFlow = {
+    showUploadKindModal,
+    open: () => setShowUploadKindModal(true),
+    close: () => setShowUploadKindModal(false),
+    continueWithKind: async (kind: UploadKind) => {
+      setShowUploadKindModal(false);
+      if (kind === UPLOAD_KIND.COLLECTION) {
+        createCollectionFlow.openCreate();
+        return;
+      }
+
+      const singleContentCollection = await ensureSingleContentCollection();
+      if (!singleContentCollection) {
+        setShowUploadKindModal(true);
+        return;
+      }
+
+      setSelectedCollection(singleContentCollection);
+      setFromUploadKind(true);
+      contentTypeFlow.open();
+    },
+  };
+
   const handleCreateClick = () => {
     if (activeTab === COUPONS) {
       couponFlow.open();
@@ -317,10 +472,11 @@ export const useContentsModalFlows = (
     }
     if (activeTab === COLLECTIONS) {
       if (isCollectionContentMode) {
+        setFromUploadKind(false);
         contentTypeFlow.open();
         return;
       }
-      createCollectionFlow.openCreate();
+      uploadKindFlow.open();
     }
   };
   const handleEditCollection = (id: string) => {
@@ -348,6 +504,7 @@ export const useContentsModalFlows = (
 
   return {
     createCollectionFlow,
+    uploadKindFlow,
     contentTypeFlow,
     couponForm,
     setCouponForm,

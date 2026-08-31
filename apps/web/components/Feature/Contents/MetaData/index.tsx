@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { PanelStack } from "./styles";
 import DescriptionSection from "../Appearance/Description";
 import CoverImageSection from "../Appearance/CoverImage";
-import { IMAGE_TYPE } from "@/utils/ui";
+import { CONTENT_THUMBNAIL_SIZE, IMAGE_TYPE } from "@/utils/ui";
 import { FORMAT_TYPE } from "@/utils/types";
 import { useTranslation } from "react-i18next";
 import ProductionSection from "./Production";
@@ -18,33 +18,54 @@ export default function MetaData() {
     formState.contentTypeId === FORMAT_TYPE.PDF ||
     formState.contentTypeId === FORMAT_TYPE.EPUB;
 
+  const mediaCard = CONTENT_THUMBNAIL_SIZE.MEDIA_CARD;
+  const portrait = isPortraitPdf
+    ? CONTENT_THUMBNAIL_SIZE.PORTRAIT_PDF
+    : CONTENT_THUMBNAIL_SIZE.PORTRAIT;
+
   const uploadConfigs = useMemo(
     () => [
       {
         label: t("contents.metadata.coverImage.mediaCardLabel"),
-        sizeText: t("contents.metadata.coverImage.mediaCardSize"),
-        cropWidth: 650,
-        cropHeight: 920,
+        sizeText: t("contents.metadata.coverImage.mediaCardSize", {
+          width: mediaCard.width,
+          height: mediaCard.height,
+        }),
+        cropWidth: mediaCard.width,
+        cropHeight: mediaCard.height,
         type: IMAGE_TYPE.MEDIA_CARD,
-        previewAspectRatio: "650 / 920",
+        previewAspectRatio: `${mediaCard.width} / ${mediaCard.height}`,
         previewMaxWidth: "71px",
-        previewMinHeight: "100px",
+        previewMinHeight: "54px",
       },
       {
         label: t("contents.metadata.coverImage.portraitLabel"),
-        sizeText: isPortraitPdf
-          ? t("contents.metadata.coverImage.portraitPdfSize")
-          : t("contents.metadata.coverImage.portraitSize"),
-        cropWidth: isPortraitPdf ? 376 : 1920,
-        cropHeight: isPortraitPdf ? 530 : 1080,
+        sizeText: t(
+          isPortraitPdf
+            ? "contents.metadata.coverImage.portraitPdfSize"
+            : "contents.metadata.coverImage.portraitSize",
+          {
+            width: portrait.width,
+            height: portrait.height,
+          },
+        ),
+        cropWidth: portrait.width,
+        cropHeight: portrait.height,
         type: IMAGE_TYPE.PORTRAIT,
-        previewAspectRatio: isPortraitPdf ? "71 / 100" : "1920 / 1080",
+        previewAspectRatio: `${portrait.width} / ${portrait.height}`,
         previewMaxWidth: isPortraitPdf ? "71px" : "184px",
         previewHeight: isPortraitPdf ? "100px" : undefined,
         previewMinHeight: isPortraitPdf ? "100px" : "100px",
       },
     ],
-    [isPortraitPdf, t],
+    [
+      isPortraitPdf,
+      mediaCard.height,
+      mediaCard.width,
+      portrait.height,
+      portrait.width,
+      t,
+    ],
   );
 
   return (

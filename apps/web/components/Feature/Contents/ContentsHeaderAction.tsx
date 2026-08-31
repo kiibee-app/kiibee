@@ -46,7 +46,7 @@ export default function ContentsHeaderAction({
   if (activeTab === COLLECTIONS) {
     const label = isCollectionContentMode
       ? t("contents.actions.addContent")
-      : t("contents.actions.createCollection");
+      : t("contents.actions.upload");
 
     return (
       <CreateButton type="button" onClick={onCreate}>

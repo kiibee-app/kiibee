@@ -96,3 +96,41 @@ export const COLLECTION_TABLE_TYPE = {
 
 export type CollectionTableType =
   (typeof COLLECTION_TABLE_TYPE)[keyof typeof COLLECTION_TABLE_TYPE];
+
+export const UPLOAD_KIND = {
+  COLLECTION: "collection",
+  SINGLE_CONTENT: "single-content",
+} as const;
+
+export type UploadKind = (typeof UPLOAD_KIND)[keyof typeof UPLOAD_KIND];
+
+export const SINGLE_CONTENT_COLLECTION_NAME = "Single content";
+
+const SINGLE_CONTENT_COLLECTION_ALIASES = new Set([
+  "single content",
+  "enkelt indhold",
+]);
+
+export function isSingleContentCollectionName(
+  name: string,
+  localizedName?: string,
+): boolean {
+  const normalized = name.trim().toLowerCase();
+  if (SINGLE_CONTENT_COLLECTION_ALIASES.has(normalized)) {
+    return true;
+  }
+
+  return (
+    Boolean(localizedName?.trim()) &&
+    normalized === localizedName.trim().toLowerCase()
+  );
+}
+
+export function findSingleContentCollection<T extends { name: string }>(
+  collections: T[],
+  localizedName?: string,
+): T | undefined {
+  return collections.find((collection) =>
+    isSingleContentCollectionName(collection.name, localizedName),
+  );
+}

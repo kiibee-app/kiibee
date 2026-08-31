@@ -186,6 +186,12 @@ export const IMAGE_TYPE = {
 } as const;
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
+export const CONTENT_THUMBNAIL_SIZE = {
+  MEDIA_CARD: { width: 250, height: 190 },
+  PORTRAIT: { width: 634, height: 345 },
+  PORTRAIT_PDF: { width: 376, height: 530 },
+} as const;
+
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
     width: 1200,
@@ -195,14 +201,8 @@ export const THUMBNAIL_MIN_DIMENSIONS = {
     width: 640,
     height: 600,
   },
-  [IMAGE_TYPE.MEDIA_CARD]: {
-    width: 650,
-    height: 920,
-  },
-  [IMAGE_TYPE.PORTRAIT]: {
-    width: 1920,
-    height: 1080,
-  },
+  [IMAGE_TYPE.MEDIA_CARD]: CONTENT_THUMBNAIL_SIZE.MEDIA_CARD,
+  [IMAGE_TYPE.PORTRAIT]: CONTENT_THUMBNAIL_SIZE.PORTRAIT,
 } as const;
 
 export const isBrowser = typeof window !== "undefined";
@@ -246,18 +246,18 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
 
   [IMAGE_TYPE.MEDIA_CARD]: {
     maxWidth: "71px",
-    minHeight: "100px",
-    aspectRatio: "650 / 920",
+    minHeight: "54px",
+    aspectRatio: `${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.width} / ${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.height}`,
     tablet: {
       maxWidth: "55px",
-      minHeight: "78px",
+      minHeight: "42px",
     },
   },
 
   [IMAGE_TYPE.PORTRAIT]: {
     maxWidth: "184px",
     minHeight: "100px",
-    aspectRatio: "1920 / 1080",
+    aspectRatio: `${CONTENT_THUMBNAIL_SIZE.PORTRAIT.width} / ${CONTENT_THUMBNAIL_SIZE.PORTRAIT.height}`,
     tablet: {
       maxWidth: "140px",
       minHeight: "79px",
