@@ -14,6 +14,10 @@ export const Section = styled.div`
   background: ${COLORS.primary.GRAY};
   padding: 0 ${FOR_CREATORS_LAYOUT.sectionPaddingX};
 
+  @media (min-width: ${breakpoints.tablet}) {
+    padding: 0;
+  }
+
   @media (max-width: ${breakpoints.tablet}) {
     padding: 0 1.25rem;
   }
@@ -45,9 +49,12 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
+    max-width: 1440px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     flex-direction: row;
     align-items: stretch;
-    gap: 4rem;
+    gap: 2.5rem;
     padding-bottom: 4rem;
   }
 `;
@@ -60,13 +67,13 @@ export const ImageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-self: stretch;
-    width: 45%;
+    width: 44%;
   }
 `;
 
 export const StickyImageWrapper = styled.div`
   position: sticky;
-  top: 6.5rem;
+  top: calc(var(--navbar-height, 73px) + 3.25rem);
   width: 100%;
   aspect-ratio: 1146 / 710;
   border-radius: 8px;
@@ -91,7 +98,7 @@ export const ContentContainer = styled.div`
   padding-bottom: 10vh;
 
   @media (min-width: ${breakpoints.tablet}) {
-    width: 55%;
+    width: 56%;
     padding-bottom: 0;
   }
 `;
@@ -139,7 +146,7 @@ export const StepsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StepWrapper = styled.div`
+export const StepWrapper = styled.div<{ $minHeight?: number }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -151,13 +158,15 @@ export const StepWrapper = styled.div`
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 17.5rem;
+    min-height: ${({ $minHeight }) =>
+      $minHeight ? `${Math.round($minHeight * 0.78)}px` : "18rem"};
     justify-content: center;
     padding-top: 0;
     padding-bottom: 0;
 
     &:last-child {
-      min-height: 17.5rem;
+      min-height: ${({ $minHeight }) =>
+        $minHeight ? `${Math.round($minHeight * 0.78)}px` : "18rem"};
       justify-content: center;
       padding-bottom: 0;
       margin-bottom: 2.75rem;
@@ -271,6 +280,6 @@ export const stepImageStyle: CSSProperties = {
 };
 
 export const STEP_IMAGE_SIZES = {
-  desktop: "(max-width: 767px) 100vw, 45vw",
+  desktop: "(max-width: 767px) 100vw, 44vw",
   mobile: "100vw",
 } as const;
