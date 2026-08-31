@@ -40,6 +40,7 @@ import {
   PAYMENTS_FORM_FIELDS,
   toText,
 } from "@/utils/paymentRequirements";
+import { CONTENTS } from "@/utils/translationKeys";
 import {
   combinePasswords,
   validatePasswordInput,
@@ -62,14 +63,10 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   );
 
   useEffect(() => {
-    const isWeb = contentTypeId === FORMAT_TYPE.WEB;
-
-    const shouldResetAdmission = isWeb
-      ? admissionRequirement === ADMISSION_TYPE.PAYMENT
-      : admissionRequirement === ADMISSION_TYPE.SET_PASSWORD ||
-        admissionRequirement === ADMISSION_TYPE.REQUEST_EMAIL;
-
-    if (shouldResetAdmission) {
+    if (
+      contentTypeId === FORMAT_TYPE.WEB &&
+      admissionRequirement === ADMISSION_TYPE.PAYMENT
+    ) {
       updateField(
         PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
         ADMISSION_TYPE.FREE,
@@ -158,14 +155,14 @@ export default function Payment({ contentType }: PaymentProps = {}) {
         <PaymentForm>
           <Block>
             <SectionTitle>
-              {t("contents.payment.admission.title")}
+              {t(CONTENTS.payment.admission.title)}
               <RequiredIndicator>*</RequiredIndicator>
             </SectionTitle>
             <SectionText>
-              {t("contents.payment.admission.description", {
+              {t(CONTENTS.payment.admission.description, {
                 contentType:
                   contentType ||
-                  t("contents.payment.admission.fallbackContentType"),
+                  t(CONTENTS.payment.admission.fallbackContentType),
               })}
             </SectionText>
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import Image from "next/image";
-import { ImageType, previewConfig } from "@/utils/ui";
+import { ImageFit, ImageType, previewConfig } from "@/utils/ui";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -312,8 +312,10 @@ export const PreviewImage = styled.img<{
   $previewMaxWidth?: string;
   $previewHeight?: string;
   $previewMinHeight?: string;
+  $fit?: ImageFit;
 }>`
-  object-fit: cover;
+  object-fit: ${({ $fit }) => $fit ?? "cover"};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   border-radius: 8px;
   width: 100%;
 

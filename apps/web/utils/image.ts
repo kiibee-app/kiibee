@@ -1,7 +1,15 @@
 import { authStorage } from "@/lib/auth/authStorage";
 import { API } from "@/lib/http/api/endpoints";
 import { API_BASE_URL } from "@/lib/http/config";
-import { canUseDOM, isBrowser } from "./ui";
+import {
+  canUseDOM,
+  CROP_EXPORT_MAX_EDGE,
+  CROP_LETTERBOX_BLUR_PX,
+  CROP_LETTERBOX_DIM,
+  CROP_LETTERBOX_FILL,
+  CROP_LETTERBOX_SCALE,
+  isBrowser,
+} from "./ui";
 import React, { useCallback, useRef, useState } from "react";
 
 export const readFileAsDataUrl = (file: File): Promise<string> =>
@@ -27,6 +35,102 @@ export type CropDisplayState = {
   cropHeight: number;
   position: { x: number; y: number };
   zoom: number;
+  displayWidth: number;
+  displayHeight: number;
+};
+
+const getSourceCropDraw = (
+  srcX: number,
+  srcY: number,
+  srcW: number,
+  srcH: number,
+  imageWidth: number,
+  imageHeight: number,
+  outW: number,
+  outH: number,
+) => {
+  let sx = srcX;
+  let sy = srcY;
+  let sw = srcW;
+  let sh = srcH;
+  let dx = 0;
+  let dy = 0;
+  let dw = outW;
+  let dh = outH;
+
+  if (sx < 0) {
+    const cut = (-sx / srcW) * outW;
+    dx += cut;
+    dw -= cut;
+    sw += sx;
+    sx = 0;
+  }
+  if (sy < 0) {
+    const cut = (-sy / srcH) * outH;
+    dy += cut;
+    dh -= cut;
+    sh += sy;
+    sy = 0;
+  }
+  if (sx + sw > imageWidth) {
+    const overflow = sx + sw - imageWidth;
+    dw -= (overflow / srcW) * outW;
+    sw = imageWidth - sx;
+  }
+  if (sy + sh > imageHeight) {
+    const overflow = sy + sh - imageHeight;
+    dh -= (overflow / srcH) * outH;
+    sh = imageHeight - sy;
+  }
+
+  return { sx, sy, sw, sh, dx, dy, dw, dh };
+};
+
+const drawCoverImage = (
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement,
+  outW: number,
+  outH: number,
+  scale = 1,
+) => {
+  const imgAspect = img.naturalWidth / img.naturalHeight;
+  const canvasAspect = outW / outH;
+  let drawW = outW;
+  let drawH = outH;
+  if (imgAspect > canvasAspect) {
+    drawH = outH * scale;
+    drawW = drawH * imgAspect;
+  } else {
+    drawW = outW * scale;
+    drawH = drawW / imgAspect;
+  }
+  ctx.drawImage(img, (outW - drawW) / 2, (outH - drawH) / 2, drawW, drawH);
+};
+
+const drawBlurredCover = (
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement,
+  outW: number,
+  outH: number,
+) => {
+  const blurCanvas = document.createElement("canvas");
+  blurCanvas.width = outW;
+  blurCanvas.height = outH;
+  const blurCtx = blurCanvas.getContext("2d");
+  if (!blurCtx) {
+    ctx.fillStyle = CROP_LETTERBOX_FILL;
+    ctx.fillRect(0, 0, outW, outH);
+    return;
+  }
+
+  blurCtx.imageSmoothingEnabled = true;
+  blurCtx.imageSmoothingQuality = "high";
+  blurCtx.filter = `blur(${CROP_LETTERBOX_BLUR_PX}px)`;
+  drawCoverImage(blurCtx, img, outW, outH, CROP_LETTERBOX_SCALE);
+  ctx.filter = "none";
+  ctx.drawImage(blurCanvas, 0, 0);
+  ctx.fillStyle = CROP_LETTERBOX_DIM;
+  ctx.fillRect(0, 0, outW, outH);
 };
 
 export const getCroppedImg = (
@@ -53,74 +157,64 @@ export const getCroppedImg = (
       const {
         containerWidth,
         containerHeight,
-        cropWidth,
-        cropHeight,
         position,
-        zoom,
+        displayWidth,
+        displayHeight,
       } = display;
-      const safeZoom = zoom > 0 ? zoom : 1;
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
+      const frameW = Math.max(1, containerWidth);
+      const frameH = Math.max(1, containerHeight);
+      const shownW = Math.max(1, displayWidth);
+      const shownH = Math.max(1, displayHeight);
 
-      const actualCropW = Math.max(1, containerWidth);
-      const actualCropH = Math.max(1, containerHeight);
-      const cropLeft = 0;
-      const cropTop = 0;
+      const imgLeft = frameW / 2 + position.x - shownW / 2;
+      const imgTop = frameH / 2 + position.y - shownH / 2;
+      const srcX = ((0 - imgLeft) / shownW) * iw;
+      const srcY = ((0 - imgTop) / shownH) * ih;
+      const srcW = (frameW / shownW) * iw;
+      const srcH = (frameH / shownH) * ih;
 
-      const rawCoverScale = Math.max(actualCropW / iw, actualCropH / ih);
-      const coverScale = rawCoverScale;
-      const baseW = iw * coverScale;
-      const baseH = ih * coverScale;
-      const displayW = baseW * safeZoom;
-      const displayH = baseH * safeZoom;
+      let outW = srcW;
+      let outH = srcH;
+      const longEdge = Math.max(outW, outH);
+      if (longEdge > CROP_EXPORT_MAX_EDGE) {
+        const scale = CROP_EXPORT_MAX_EDGE / longEdge;
+        outW *= scale;
+        outH *= scale;
+      }
 
-      const imgLeft = containerWidth / 2 + position.x - displayW / 2;
-      const imgTop = containerHeight / 2 + position.y - displayH / 2;
-
-      const outW = Math.round(cropWidth);
-      const outH = Math.round(cropHeight);
-
-      canvas.width = outW;
-      canvas.height = outH;
+      canvas.width = Math.max(1, Math.round(outW));
+      canvas.height = Math.max(1, Math.round(outH));
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
+      ctx.filter = "none";
+      drawBlurredCover(ctx, img, canvas.width, canvas.height);
 
-      ctx.save();
-      ctx.filter = "blur(20px)";
-      const canvasAspect = outW / outH;
-      const imgAspect = iw / ih;
-      let drawW = outW;
-      let drawH = outH;
-      if (imgAspect > canvasAspect) {
-        drawW = outH * imgAspect;
-      } else {
-        drawH = outW / imgAspect;
+      const draw = getSourceCropDraw(
+        srcX,
+        srcY,
+        srcW,
+        srcH,
+        iw,
+        ih,
+        canvas.width,
+        canvas.height,
+      );
+
+      if (draw.sw > 0 && draw.sh > 0 && draw.dw > 0 && draw.dh > 0) {
+        ctx.drawImage(
+          img,
+          draw.sx,
+          draw.sy,
+          draw.sw,
+          draw.sh,
+          draw.dx,
+          draw.dy,
+          draw.dw,
+          draw.dh,
+        );
       }
-      const scaleFactor = 1.15;
-      ctx.translate(outW / 2, outH / 2);
-      ctx.scale(scaleFactor, scaleFactor);
-      ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
-      ctx.restore();
-
-      ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
-      ctx.fillRect(0, 0, outW, outH);
-
-      const canvasScaleX = outW / actualCropW;
-      const canvasScaleY = outH / actualCropH;
-      const imgLeftRel = imgLeft - cropLeft;
-      const imgTopRel = imgTop - cropTop;
-
-      const destX = imgLeftRel * canvasScaleX;
-      const destY = imgTopRel * canvasScaleY;
-      const destW = displayW * canvasScaleX;
-      const destH = displayH * canvasScaleY;
-
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(0, 0, outW, outH);
-      ctx.clip();
-      ctx.drawImage(img, destX, destY, destW, destH);
-      ctx.restore();
 
       resolve(canvas.toDataURL("image/jpeg", 1));
     };

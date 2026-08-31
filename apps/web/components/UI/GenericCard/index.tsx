@@ -8,6 +8,7 @@ import {
   REMOTE_COVER_IMAGE_STYLE,
   resolveImageUrl,
 } from "@/utils/media";
+import { CARD_IMAGE_RADIUS } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import {
@@ -129,9 +130,10 @@ export default function GenericCard({
     onImageError?.();
   };
 
-  const posterImageStyle = coverImage
-    ? CONTENT_POSTER_IMAGE_STYLE
-    : REMOTE_COVER_IMAGE_STYLE;
+  const posterImageStyle = {
+    ...(coverImage ? CONTENT_POSTER_IMAGE_STYLE : REMOTE_COVER_IMAGE_STYLE),
+    borderRadius: CARD_IMAGE_RADIUS,
+  };
 
   const isCurrentlyLoading =
     imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
