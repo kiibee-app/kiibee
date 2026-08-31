@@ -62,14 +62,10 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   );
 
   useEffect(() => {
-    const isWeb = contentTypeId === FORMAT_TYPE.WEB;
-
-    const shouldResetAdmission = isWeb
-      ? admissionRequirement === ADMISSION_TYPE.PAYMENT
-      : admissionRequirement === ADMISSION_TYPE.SET_PASSWORD ||
-        admissionRequirement === ADMISSION_TYPE.REQUEST_EMAIL;
-
-    if (shouldResetAdmission) {
+    if (
+      contentTypeId === FORMAT_TYPE.WEB &&
+      admissionRequirement === ADMISSION_TYPE.PAYMENT
+    ) {
       updateField(
         PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
         ADMISSION_TYPE.FREE,

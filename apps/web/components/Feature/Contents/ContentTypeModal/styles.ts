@@ -100,13 +100,12 @@ export const TypeLabel = styled(MonoText).attrs({
 export const CompactModalContent = styled(ModalContent)`
   min-height: 0;
   width: 100%;
-  padding-top: 4px;
-  gap: 0;
+  padding-top: 8px;
 `;
 
 export const CompactHeadingGroup = styled(HeadingGroup)`
-  margin-bottom: 18px;
-  gap: 6px;
+  margin-bottom: 28px;
+  gap: 8px;
 `;
 
 export const KindModalTitle = styled(ModalTitle)`
@@ -123,19 +122,19 @@ export const KindGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: 100%;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 20px;
+  margin-bottom: 28px;
 
   ${media.mobileLg} {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 14px;
   }
 `;
 
 export const KindIconBadge = styled.span`
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -146,8 +145,8 @@ export const KindIconBadge = styled.span`
 
 export const KindButton = styled.button<{ $selected: boolean }>`
   width: 100%;
-  min-height: 128px;
-  padding: 18px 12px 16px;
+  min-height: 148px;
+  padding: 20px 16px 18px;
   border: 1.5px solid
     ${({ $selected, theme }) =>
       $selected ? theme.colors.primary.BLACK : "transparent"};
@@ -166,17 +165,15 @@ export const KindButton = styled.button<{ $selected: boolean }>`
   text-align: center;
   transition:
     border-color 0.15s ease,
-    background-color 0.15s ease,
-    transform 0.15s ease;
+    background-color 0.15s ease;
 
   &:hover {
     border-color: ${({ $selected, theme }) =>
       $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_400};
-    transform: translateY(-1px);
   }
 
   ${media.mobileLg} {
-    min-height: 108px;
+    min-height: 128px;
   }
 `;
 
@@ -190,8 +187,8 @@ export const KindHint = styled(MonoText).attrs({
   $use: "Body_Small",
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
-  max-width: 140px;
-  line-height: 1.3;
+  max-width: 160px;
+  line-height: 1.35;
 `;
 
 export const ContinueButton = styled.button`

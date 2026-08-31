@@ -35,17 +35,22 @@ export const getAdmissionOptions = (
     value,
   });
 
-  const commonOptions = [createOption("free", ADMISSION_TYPE.FREE)];
+  const options = [
+    createOption("free", ADMISSION_TYPE.FREE),
+    createOption("setPassword", ADMISSION_TYPE.SET_PASSWORD),
+    createOption("requestEmail", ADMISSION_TYPE.REQUEST_EMAIL),
+  ];
 
-  const additionalOptions =
-    contentTypeId === FORMAT_TYPE.WEB
-      ? [
-          createOption("setPassword", ADMISSION_TYPE.SET_PASSWORD),
-          createOption("requestEmail", ADMISSION_TYPE.REQUEST_EMAIL),
-        ]
-      : [createOption("payment", ADMISSION_TYPE.PAYMENT)];
+  if (contentTypeId === FORMAT_TYPE.WEB) {
+    return options;
+  }
 
-  return [...commonOptions, ...additionalOptions];
+  return [
+    options[0],
+    createOption("payment", ADMISSION_TYPE.PAYMENT),
+    options[1],
+    options[2],
+  ];
 };
 
 export const ADMISSION_TYPE = {

@@ -30,12 +30,14 @@ const UPLOAD_KIND_OPTIONS = [
     key: UPLOAD_KIND.COLLECTION,
     labelKey: "contents.uploadKindModal.options.collection",
     hintKey: "contents.uploadKindModal.options.collectionHint",
+    hintFallback: "A folder for several items",
     Icon: PlaylistIcon,
   },
   {
     key: UPLOAD_KIND.SINGLE_CONTENT,
     labelKey: "contents.uploadKindModal.options.singleContent",
     hintKey: "contents.uploadKindModal.options.singleContentHint",
+    hintFallback: "One video, file, or page",
     Icon: VideoIcon,
   },
 ] as const;
@@ -63,8 +65,8 @@ export default function UploadKindModal({
     <GenericModal
       visible={visible}
       onClose={handleClose}
-      width="400px"
-      padding="28px 24px 24px"
+      width="520px"
+      padding="36px 32px 32px"
       borderRadius="20px"
     >
       <CompactModalContent>
@@ -76,24 +78,28 @@ export default function UploadKindModal({
         </CompactHeadingGroup>
 
         <KindGrid>
-          {UPLOAD_KIND_OPTIONS.map(({ key, labelKey, hintKey, Icon }) => {
-            const selected = selectedKind === key;
-            return (
-              <KindButton
-                key={key}
-                type="button"
-                $selected={selected}
-                aria-pressed={selected}
-                onClick={() => setSelectedKind(key)}
-              >
-                <KindIconBadge>
-                  <Icon width={26} height={26} />
-                </KindIconBadge>
-                <KindLabel>{t(labelKey)}</KindLabel>
-                <KindHint>{t(hintKey)}</KindHint>
-              </KindButton>
-            );
-          })}
+          {UPLOAD_KIND_OPTIONS.map(
+            ({ key, labelKey, hintKey, hintFallback, Icon }) => {
+              const selected = selectedKind === key;
+              return (
+                <KindButton
+                  key={key}
+                  type="button"
+                  $selected={selected}
+                  aria-pressed={selected}
+                  onClick={() => setSelectedKind(key)}
+                >
+                  <KindIconBadge>
+                    <Icon width={24} height={24} />
+                  </KindIconBadge>
+                  <KindLabel>{t(labelKey)}</KindLabel>
+                  <KindHint>
+                    {t(hintKey, { defaultValue: hintFallback })}
+                  </KindHint>
+                </KindButton>
+              );
+            },
+          )}
         </KindGrid>
 
         <KindContinueButton
