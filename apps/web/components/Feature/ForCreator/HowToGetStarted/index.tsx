@@ -5,6 +5,7 @@ import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { creatorOnboardingSteps } from "@/utils/steps";
+import { EVENT_SCROLL, EVENT_RESIZE } from "@/utils/Constants";
 import {
   Section,
   HeaderWrapper,
@@ -66,13 +67,13 @@ export default function HowToGetStarted() {
     };
 
     updateActive();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener(EVENT_SCROLL, onScroll, { passive: true });
+    window.addEventListener(EVENT_RESIZE, onScroll);
 
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener(EVENT_SCROLL, onScroll);
+      window.removeEventListener(EVENT_RESIZE, onScroll);
     };
   }, []);
 
