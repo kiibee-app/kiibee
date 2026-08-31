@@ -139,7 +139,7 @@ export const StepsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StepWrapper = styled.div<{ $minHeight?: number }>`
+export const StepWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -151,20 +151,16 @@ export const StepWrapper = styled.div<{ $minHeight?: number }>`
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: ${({ $minHeight }) =>
-      $minHeight
-        ? `${$minHeight}px`
-        : `calc(min(${FOR_CREATORS_LAYOUT.contentMaxWidth}, 100vw) * 0.4 * 710 / 1146)`};
+    min-height: 17.5rem;
     justify-content: center;
+    padding-top: 0;
     padding-bottom: 0;
 
     &:last-child {
-      min-height: ${({ $minHeight }) =>
-        $minHeight
-          ? `${$minHeight}px`
-          : `calc(min(${FOR_CREATORS_LAYOUT.contentMaxWidth}, 100vw) * 0.4 * 710 / 1146)`};
+      min-height: 17.5rem;
       justify-content: center;
       padding-bottom: 0;
+      margin-bottom: 2.75rem;
     }
   }
 `;

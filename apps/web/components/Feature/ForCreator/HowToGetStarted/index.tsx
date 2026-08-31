@@ -31,25 +31,8 @@ import {
 export default function HowToGetStarted() {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [stepMinHeight, setStepMinHeight] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const stickyRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const sticky = stickyRef.current;
-    if (!sticky) return;
-
-    const syncHeight = () => {
-      const height = Math.round(sticky.getBoundingClientRect().height);
-      setStepMinHeight((prev) => (prev === height ? prev : height));
-    };
-
-    syncHeight();
-    const observer = new ResizeObserver(syncHeight);
-    observer.observe(sticky);
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -130,11 +113,7 @@ export default function HowToGetStarted() {
                 : null;
 
               return (
-                <StepWrapper
-                  key={step.id}
-                  ref={setRef(index)}
-                  $minHeight={stepMinHeight}
-                >
+                <StepWrapper key={step.id} ref={setRef(index)}>
                   <MobileStepImage>
                     <Image
                       src={step.image}
