@@ -8,6 +8,7 @@ import {
 } from "@/assets/icons";
 import { FORMAT_TYPE, FormatType } from "./types";
 import { FILE_EXTENSION, MIME_TYPE } from "./common";
+import { CONTENTS } from "./translationKeys";
 import { TFunction } from "i18next";
 
 export type ContentType = "video" | "audio" | "pdf" | "epub" | "web";
@@ -113,30 +114,37 @@ export const normalizeContentTypeValue = (
 export const getContentTypeLabel = (contentType: ContentType) =>
   contentType.toUpperCase();
 
+export const CONTENT_TYPE_MODAL = {
+  WIDTH: "560px",
+  PADDING: "24px",
+  BORDER_RADIUS: "20px",
+  ICON_SIZE: 24,
+} as const;
+
 export const CONTENT_TYPE_OPTIONS: readonly ContentTypeOption[] = [
   {
     key: "video",
-    labelKey: "contents.contentTypeModal.options.video",
+    labelKey: CONTENTS.contentTypeModal.options.video,
     Icon: VideoIcon,
   },
   {
     key: "audio",
-    labelKey: "contents.contentTypeModal.options.audio",
+    labelKey: CONTENTS.contentTypeModal.options.audio,
     Icon: AudioIcon,
   },
   {
     key: "pdf",
-    labelKey: "contents.contentTypeModal.options.pdf",
+    labelKey: CONTENTS.contentTypeModal.options.pdf,
     Icon: PdfIcon,
   },
   {
     key: "epub",
-    labelKey: "contents.contentTypeModal.options.epub",
+    labelKey: CONTENTS.contentTypeModal.options.epub,
     Icon: EpubIcon,
   },
   {
     key: "web",
-    labelKey: "contents.contentTypeModal.options.web",
+    labelKey: CONTENTS.contentTypeModal.options.web,
     Icon: WebIcon,
   },
 ] as const;

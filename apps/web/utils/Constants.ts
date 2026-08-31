@@ -269,6 +269,7 @@ export const ERROR_MESSAGES = {
   NO_CONTENT: "errors.noContentToSave",
   SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
   SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
+  SAVE_COLLECTION_FAILED: "errors.saveCollectionFailed",
   LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
   EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };

@@ -19,6 +19,7 @@ import {
   ADD_CONTENT_TABS,
 } from "@/utils/common";
 import COLORS from "@repo/ui/colors";
+import { COMMON, CONTENTS } from "@/utils/translationKeys";
 
 type Props = {
   activeTab: ContentTab;
@@ -45,8 +46,8 @@ export default function ContentsHeaderAction({
 
   if (activeTab === COLLECTIONS) {
     const label = isCollectionContentMode
-      ? t("contents.actions.addContent")
-      : t("contents.actions.upload");
+      ? t(CONTENTS.actions.addContent)
+      : t(CONTENTS.actions.upload);
 
     return (
       <CreateButton type="button" onClick={onCreate}>
@@ -67,7 +68,7 @@ export default function ContentsHeaderAction({
       <HeaderActions>
         <CancelButton type="button" onClick={onCancel}>
           <MonoText $use="Body_Medium" color="inherit">
-            {t("common.cancel")}
+            {t(COMMON.cancel)}
           </MonoText>
         </CancelButton>
         <SaveButton
@@ -76,7 +77,7 @@ export default function ContentsHeaderAction({
           disabled={isSaveDisabled || isSaving}
         >
           <MonoText $use="Body_Medium" color="inherit">
-            {t("common.save")}
+            {t(COMMON.save)}
           </MonoText>
         </SaveButton>
       </HeaderActions>
@@ -88,7 +89,7 @@ export default function ContentsHeaderAction({
       <CreateButton type="button" onClick={onCreateCoupon}>
         <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
         <MonoText $use="Body_Medium" color="inherit">
-          {t("contents.actions.createCoupon")}
+          {t(CONTENTS.actions.createCoupon)}
         </MonoText>
       </CreateButton>
     );

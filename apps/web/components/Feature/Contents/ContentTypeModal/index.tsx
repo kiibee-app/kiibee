@@ -6,10 +6,12 @@ import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import {
+  CONTENT_TYPE_MODAL,
   CONTENT_TYPE_OPTIONS,
   type ContentType,
   type ContentTypeOption,
 } from "@/utils/content";
+import { COMMON, CONTENTS } from "@/utils/translationKeys";
 import {
   BackButton,
   CompactHeadingGroup,
@@ -55,13 +57,13 @@ export default function ContentTypeModal({
     <GenericModal
       visible={visible}
       onClose={handleModalClose}
-      width="560px"
-      padding="24px"
-      borderRadius="20px"
+      width={CONTENT_TYPE_MODAL.WIDTH}
+      padding={CONTENT_TYPE_MODAL.PADDING}
+      borderRadius={CONTENT_TYPE_MODAL.BORDER_RADIUS}
     >
       <BackButton
         type="button"
-        aria-label={t("common.back", { defaultValue: "Back" })}
+        aria-label={t(COMMON.back)}
         onClick={onBack ?? handleModalClose}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
@@ -69,10 +71,8 @@ export default function ContentTypeModal({
 
       <CompactModalContent>
         <CompactHeadingGroup>
-          <ModalTitle>{t("contents.contentTypeModal.title")}</ModalTitle>
-          <ModalSubtitle>
-            {t("contents.contentTypeModal.subtitle")}
-          </ModalSubtitle>
+          <ModalTitle>{t(CONTENTS.contentTypeModal.title)}</ModalTitle>
+          <ModalSubtitle>{t(CONTENTS.contentTypeModal.subtitle)}</ModalSubtitle>
         </CompactHeadingGroup>
 
         <TypeGrid $columns={typeOptions.length}>
@@ -84,7 +84,10 @@ export default function ContentTypeModal({
               aria-pressed={selectedType === key}
               onClick={() => setSelectedType(key)}
             >
-              <Icon width={24} height={24} />
+              <Icon
+                width={CONTENT_TYPE_MODAL.ICON_SIZE}
+                height={CONTENT_TYPE_MODAL.ICON_SIZE}
+              />
               <TypeLabel>{t(labelKey)}</TypeLabel>
             </TypeButton>
           ))}
@@ -96,7 +99,7 @@ export default function ContentTypeModal({
           onClick={handleContinue}
         >
           <MonoText $use="Body_Bold" color="inherit">
-            {t("contents.contentTypeModal.continue")}
+            {t(CONTENTS.contentTypeModal.continue)}
           </MonoText>
         </KindContinueButton>
       </CompactModalContent>

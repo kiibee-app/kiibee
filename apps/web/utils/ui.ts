@@ -192,6 +192,12 @@ export const CONTENT_THUMBNAIL_SIZE = {
   PORTRAIT_PDF: { width: 376, height: 530 },
 } as const;
 
+export const CONTENT_THUMBNAIL_PREVIEW = {
+  MEDIA_CARD: { maxWidth: "71px", minHeight: "54px" },
+  PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
+  PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
+} as const;
+
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
     width: 1200,

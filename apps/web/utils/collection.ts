@@ -12,6 +12,7 @@ import type {
   CollectionContentType,
 } from "@/types/collectionsType";
 import type { IconComponent } from "./content";
+import { CONTENTS } from "./translationKeys";
 import { FORMAT_TYPE } from "./types";
 
 export const RESPONSE_KEYS = {
@@ -104,10 +105,52 @@ export const UPLOAD_KIND = {
 
 export type UploadKind = (typeof UPLOAD_KIND)[keyof typeof UPLOAD_KIND];
 
+export const UPLOAD_KIND_MODAL = {
+  WIDTH: "520px",
+  PADDING: "36px 32px 32px",
+  BORDER_RADIUS: "20px",
+  ICON_SIZE: 24,
+} as const;
+
+export const UPLOAD_KIND_ORDER: UploadKind[] = [
+  UPLOAD_KIND.COLLECTION,
+  UPLOAD_KIND.SINGLE_CONTENT,
+];
+
+export const UPLOAD_KIND_I18N = {
+  title: CONTENTS.uploadKindModal.title,
+  subtitle: CONTENTS.uploadKindModal.subtitle,
+  continue: CONTENTS.uploadKindModal.continue,
+  options: {
+    [UPLOAD_KIND.COLLECTION]: {
+      label: CONTENTS.uploadKindModal.options.collection,
+      hint: CONTENTS.uploadKindModal.options.collectionHint,
+    },
+    [UPLOAD_KIND.SINGLE_CONTENT]: {
+      label: CONTENTS.uploadKindModal.options.singleContent,
+      hint: CONTENTS.uploadKindModal.options.singleContentHint,
+    },
+  },
+} as const;
+
+export const COLLECTION_NAME_ALREADY_EXISTS = "already exists";
+
 export const SINGLE_CONTENT_COLLECTION_NAME = "Single content";
 
+export function getCollectionApiErrorMessage(error: unknown): string {
+  const err = error as {
+    response?: { data?: { message?: string } };
+    message?: string;
+  };
+  return err?.response?.data?.message || err?.message || "";
+}
+
+export function isCollectionNameExistsError(message: string): boolean {
+  return message.toLowerCase().includes(COLLECTION_NAME_ALREADY_EXISTS);
+}
+
 const SINGLE_CONTENT_COLLECTION_ALIASES = new Set([
-  "single content",
+  SINGLE_CONTENT_COLLECTION_NAME.toLowerCase(),
   "enkelt indhold",
 ]);
 
@@ -120,10 +163,8 @@ export function isSingleContentCollectionName(
     return true;
   }
 
-  return (
-    Boolean(localizedName?.trim()) &&
-    normalized === localizedName.trim().toLowerCase()
-  );
+  const localizedNormalized = localizedName?.trim().toLowerCase();
+  return Boolean(localizedNormalized) && normalized === localizedNormalized;
 }
 
 export function findSingleContentCollection<T extends { name: string }>(

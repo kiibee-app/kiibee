@@ -26,12 +26,15 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { COLLECTION, CONTENT } from "@/utils/ui";
 import {
   findSingleContentCollection,
-  SINGLE_CONTENT_COLLECTION_NAME,
+  getCollectionApiErrorMessage,
+  isCollectionNameExistsError,
   UPLOAD_KIND,
   type UploadKind,
 } from "@/utils/collection";
 import { toValidFrom, toValidUntil } from "@/utils/couponDates";
 import { getCouponErrorMessage } from "@/utils/couponErrors";
+import { ERROR_MESSAGES } from "@/utils/Constants";
+import { CONTENTS } from "@/utils/translationKeys";
 
 type CreatedCollectionResponse = {
   id?: string;
@@ -217,15 +220,10 @@ export const useContentsModalFlows = (
         resetAfterRefetch();
         resetCreateFlow();
       } catch (error) {
-        const err = error as {
-          response?: { data?: { message?: string } };
-          message?: string;
-        };
-        const apiError =
-          err?.response?.data?.message ||
-          err?.message ||
-          "Failed to save collection";
-        toast.error(apiError);
+        toast.error(
+          getCollectionApiErrorMessage(error) ||
+            t(ERROR_MESSAGES.SAVE_COLLECTION_FAILED),
+        );
       }
     },
     closeSuccess: () => setShowSuccessModal(false),
@@ -250,9 +248,7 @@ export const useContentsModalFlows = (
   const ensureSingleContentCollection = async (
     options: { silent?: boolean } = {},
   ): Promise<CollectionRow | null> => {
-    const localizedName = t("contents.singleContentCollection.name", {
-      defaultValue: SINGLE_CONTENT_COLLECTION_NAME,
-    });
+    const localizedName = t(CONTENTS.singleContentCollection.name);
     const existing = findSingleContentCollection(
       collectionsRef.current,
       localizedName,
@@ -288,12 +284,8 @@ export const useContentsModalFlows = (
         createdCollection
       );
     } catch (error) {
-      const err = error as {
-        response?: { data?: { message?: string } };
-        message?: string;
-      };
-      const apiError = err?.response?.data?.message || err?.message || "";
-      if (apiError.toLowerCase().includes("already exists")) {
+      const apiError = getCollectionApiErrorMessage(error);
+      if (isCollectionNameExistsError(apiError)) {
         await refreshCollections();
         return (
           findSingleContentCollection(collectionsRef.current, localizedName) ??
@@ -302,7 +294,7 @@ export const useContentsModalFlows = (
       }
 
       if (!options.silent) {
-        toast.error(apiError || "Failed to save collection");
+        toast.error(apiError || t(ERROR_MESSAGES.SAVE_COLLECTION_FAILED));
       }
       return null;
     }
@@ -315,7 +307,6 @@ export const useContentsModalFlows = (
 
     ensureSingleContentStartedRef.current = true;
     void ensureSingleContentCollection({ silent: true });
-    // Create the default folder once after collections first load.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collectionsReady]);
 

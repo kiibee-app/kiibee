@@ -4,7 +4,12 @@ import React, { useMemo } from "react";
 import { PanelStack } from "./styles";
 import DescriptionSection from "../Appearance/Description";
 import CoverImageSection from "../Appearance/CoverImage";
-import { CONTENT_THUMBNAIL_SIZE, IMAGE_TYPE } from "@/utils/ui";
+import {
+  CONTENT_THUMBNAIL_PREVIEW,
+  CONTENT_THUMBNAIL_SIZE,
+  IMAGE_TYPE,
+} from "@/utils/ui";
+import { CONTENTS } from "@/utils/translationKeys";
 import { FORMAT_TYPE } from "@/utils/types";
 import { useTranslation } from "react-i18next";
 import ProductionSection from "./Production";
@@ -26,8 +31,8 @@ export default function MetaData() {
   const uploadConfigs = useMemo(
     () => [
       {
-        label: t("contents.metadata.coverImage.mediaCardLabel"),
-        sizeText: t("contents.metadata.coverImage.mediaCardSize", {
+        label: t(CONTENTS.metadata.coverImage.mediaCardLabel),
+        sizeText: t(CONTENTS.metadata.coverImage.mediaCardSize, {
           width: mediaCard.width,
           height: mediaCard.height,
         }),
@@ -35,15 +40,15 @@ export default function MetaData() {
         cropHeight: mediaCard.height,
         type: IMAGE_TYPE.MEDIA_CARD,
         previewAspectRatio: `${mediaCard.width} / ${mediaCard.height}`,
-        previewMaxWidth: "71px",
-        previewMinHeight: "54px",
+        previewMaxWidth: CONTENT_THUMBNAIL_PREVIEW.MEDIA_CARD.maxWidth,
+        previewMinHeight: CONTENT_THUMBNAIL_PREVIEW.MEDIA_CARD.minHeight,
       },
       {
-        label: t("contents.metadata.coverImage.portraitLabel"),
+        label: t(CONTENTS.metadata.coverImage.portraitLabel),
         sizeText: t(
           isPortraitPdf
-            ? "contents.metadata.coverImage.portraitPdfSize"
-            : "contents.metadata.coverImage.portraitSize",
+            ? CONTENTS.metadata.coverImage.portraitPdfSize
+            : CONTENTS.metadata.coverImage.portraitSize,
           {
             width: portrait.width,
             height: portrait.height,
@@ -53,9 +58,15 @@ export default function MetaData() {
         cropHeight: portrait.height,
         type: IMAGE_TYPE.PORTRAIT,
         previewAspectRatio: `${portrait.width} / ${portrait.height}`,
-        previewMaxWidth: isPortraitPdf ? "71px" : "184px",
-        previewHeight: isPortraitPdf ? "100px" : undefined,
-        previewMinHeight: isPortraitPdf ? "100px" : "100px",
+        previewMaxWidth: isPortraitPdf
+          ? CONTENT_THUMBNAIL_PREVIEW.PORTRAIT_PDF.maxWidth
+          : CONTENT_THUMBNAIL_PREVIEW.PORTRAIT.maxWidth,
+        previewHeight: isPortraitPdf
+          ? CONTENT_THUMBNAIL_PREVIEW.PORTRAIT_PDF.height
+          : undefined,
+        previewMinHeight: isPortraitPdf
+          ? CONTENT_THUMBNAIL_PREVIEW.PORTRAIT_PDF.minHeight
+          : CONTENT_THUMBNAIL_PREVIEW.PORTRAIT.minHeight,
       },
     ],
     [
@@ -74,7 +85,7 @@ export default function MetaData() {
       <PublishedSection />
       <ProductionSection />
       <CoverImageSection
-        title={t("contents.metadata.coverImage.title")}
+        title={t(CONTENTS.metadata.coverImage.title)}
         subtitle={true}
         useFormContext={true}
         uploadConfigs={uploadConfigs}

@@ -5,6 +5,7 @@ import {
   PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
   PaymentDownloadLimitValue,
 } from "./common";
+import { CONTENTS } from "./translationKeys";
 import { FORMAT_TYPE } from "./types";
 
 export type TextConfig = {
@@ -23,34 +24,39 @@ export const TRAILER_FIELD_MAP = {
 export type TrailerFieldKey =
   (typeof TRAILER_FIELD_MAP)[keyof typeof TRAILER_FIELD_MAP];
 
+const ADMISSION_OPTION_I18N = {
+  FREE: CONTENTS.payment.admission.options.free,
+  PAYMENT: CONTENTS.payment.admission.options.payment,
+  SET_PASSWORD: CONTENTS.payment.admission.options.setPassword,
+  REQUEST_EMAIL: CONTENTS.payment.admission.options.requestEmail,
+} as const;
+
 export const getAdmissionOptions = (
   t: TFunction,
   contentTypeId?: string,
 ): DropdownOption<AdmissionValue>[] => {
-  const createOption = (
-    key: string,
-    value: AdmissionValue,
-  ): DropdownOption<AdmissionValue> => ({
-    label: t(`contents.payment.admission.options.${key}`),
-    value,
-  });
-
-  const options = [
-    createOption("free", ADMISSION_TYPE.FREE),
-    createOption("setPassword", ADMISSION_TYPE.SET_PASSWORD),
-    createOption("requestEmail", ADMISSION_TYPE.REQUEST_EMAIL),
-  ];
+  const free = {
+    label: t(ADMISSION_OPTION_I18N.FREE),
+    value: ADMISSION_TYPE.FREE,
+  };
+  const payment = {
+    label: t(ADMISSION_OPTION_I18N.PAYMENT),
+    value: ADMISSION_TYPE.PAYMENT,
+  };
+  const setPassword = {
+    label: t(ADMISSION_OPTION_I18N.SET_PASSWORD),
+    value: ADMISSION_TYPE.SET_PASSWORD,
+  };
+  const requestEmail = {
+    label: t(ADMISSION_OPTION_I18N.REQUEST_EMAIL),
+    value: ADMISSION_TYPE.REQUEST_EMAIL,
+  };
 
   if (contentTypeId === FORMAT_TYPE.WEB) {
-    return options;
+    return [free, setPassword, requestEmail];
   }
 
-  return [
-    options[0],
-    createOption("payment", ADMISSION_TYPE.PAYMENT),
-    options[1],
-    options[2],
-  ];
+  return [free, payment, setPassword, requestEmail];
 };
 
 export const ADMISSION_TYPE = {
@@ -96,9 +102,9 @@ export const getPaymentAmountErrorMessage = (
 
   const errorKey =
     amount === null
-      ? "contents.payment.common.invalidNumber"
+      ? CONTENTS.payment.common.invalidNumber
       : amount < MIN_PAYMENT_AMOUNT
-        ? "contents.payment.common.minAmount"
+        ? CONTENTS.payment.common.minAmount
         : null;
 
   return errorKey ? t(errorKey) : null;
