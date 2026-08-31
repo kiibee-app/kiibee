@@ -200,7 +200,7 @@ export const IMAGE_TYPE = {
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const CONTENT_THUMBNAIL_SIZE = {
-  MEDIA_CARD: { width: 325, height: 460 },
+  MEDIA_CARD: { width: 300, height: 424 },
   PORTRAIT: { width: 1920, height: 1080 },
   PORTRAIT_PDF: { width: 376, height: 530 },
 } as const;
@@ -210,6 +210,8 @@ export const CONTENT_THUMBNAIL_PREVIEW = {
   PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
   PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
 } as const;
+
+export const CARD_IMAGE_RADIUS = "12px";
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
