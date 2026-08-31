@@ -19,19 +19,36 @@ export const Section = styled.div`
   }
 `;
 
+export const HeaderWrapper = styled.div`
+  width: 100%;
+  max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    padding-top: 5rem;
+    padding-bottom: 5.5rem;
+  }
+`;
+
 export const Container = styled.div`
   width: 100%;
   max-width: ${FOR_CREATORS_LAYOUT.contentMaxWidth};
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 4rem 0;
+  padding-bottom: 4rem;
   box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
     flex-direction: row;
-    gap: 4rem;
-    padding: 6rem 0;
+    align-items: stretch;
+    gap: 2.5rem;
+    padding-bottom: 4rem;
   }
 `;
 
@@ -40,14 +57,16 @@ export const ImageContainer = styled.div`
   display: none;
 
   @media (min-width: ${breakpoints.tablet}) {
-    display: block;
-    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    width: 48%;
   }
 `;
 
 export const StickyImageWrapper = styled.div`
   position: sticky;
-  top: 8rem;
+  top: calc(var(--navbar-height, 73px) + 6.5rem);
   width: 100%;
   aspect-ratio: 1146 / 710;
   border-radius: 8px;
@@ -72,12 +91,12 @@ export const ContentContainer = styled.div`
   padding-bottom: 10vh;
 
   @media (min-width: ${breakpoints.tablet}) {
-    width: 55%;
+    width: 52%;
     padding-bottom: 0;
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   ${({ theme }) => theme.typography.Heading2};
   color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
@@ -92,6 +111,7 @@ export const Title = styled.h1`
   line-height: normal;
   margin-bottom: 0.75rem;
   margin-top: 0;
+  text-align: center;
 
   @media (min-width: ${breakpoints.tablet}) {
   }
@@ -110,7 +130,8 @@ export const Subtitle = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 1.4;
-  margin: 0 0 3rem;
+  margin: 0;
+  text-align: center;
 `;
 
 export const StepsContainer = styled.div`
@@ -118,26 +139,30 @@ export const StepsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StepWrapper = styled.div`
+export const StepWrapper = styled.div<{ $minHeight?: number }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-height: 0;
-  padding-bottom: 4rem;
+  padding-bottom: 2.5rem;
 
   &:last-child {
     padding-bottom: 0;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 28rem;
+    min-height: ${({ $minHeight }) =>
+      $minHeight ? `${Math.round($minHeight * 0.78)}px` : "18rem"};
     justify-content: center;
-    padding-bottom: 12.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
 
     &:last-child {
-      min-height: 0;
-      justify-content: flex-start;
-      padding-bottom: 45vh;
+      min-height: ${({ $minHeight }) =>
+        $minHeight ? `${Math.round($minHeight * 0.78)}px` : "18rem"};
+      justify-content: center;
+      padding-bottom: 0;
+      margin-bottom: 2.75rem;
     }
   }
 `;
@@ -248,6 +273,6 @@ export const stepImageStyle: CSSProperties = {
 };
 
 export const STEP_IMAGE_SIZES = {
-  desktop: "(max-width: 767px) 100vw, 45vw",
+  desktop: "(max-width: 767px) 100vw, 48vw",
   mobile: "100vw",
 } as const;
