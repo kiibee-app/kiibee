@@ -14,10 +14,6 @@ export const Section = styled.div`
   background: ${COLORS.primary.GRAY};
   padding: 0 ${FOR_CREATORS_LAYOUT.sectionPaddingX};
 
-  @media (min-width: ${breakpoints.tablet}) {
-    padding: 0;
-  }
-
   @media (max-width: ${breakpoints.tablet}) {
     padding: 0 1.25rem;
   }
@@ -49,9 +45,6 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   @media (min-width: ${breakpoints.tablet}) {
-    max-width: 1440px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
     flex-direction: row;
     align-items: stretch;
     gap: 2.5rem;
@@ -67,13 +60,13 @@ export const ImageContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-self: stretch;
-    width: 44%;
+    width: 48%;
   }
 `;
 
 export const StickyImageWrapper = styled.div`
   position: sticky;
-  top: calc(var(--navbar-height, 73px) + 3.25rem);
+  top: calc(var(--navbar-height, 73px) + 6.5rem);
   width: 100%;
   aspect-ratio: 1146 / 710;
   border-radius: 8px;
@@ -98,7 +91,7 @@ export const ContentContainer = styled.div`
   padding-bottom: 10vh;
 
   @media (min-width: ${breakpoints.tablet}) {
-    width: 56%;
+    width: 52%;
     padding-bottom: 0;
   }
 `;
@@ -280,6 +273,6 @@ export const stepImageStyle: CSSProperties = {
 };
 
 export const STEP_IMAGE_SIZES = {
-  desktop: "(max-width: 767px) 100vw, 44vw",
+  desktop: "(max-width: 767px) 100vw, 48vw",
   mobile: "100vw",
 } as const;
