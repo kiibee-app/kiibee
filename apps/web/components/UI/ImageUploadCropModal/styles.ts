@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { MonoText } from "../Monotext";
-import { CROP_SHAPE, CropShapeType } from "@/utils/ui";
+import {
+  CROP_PREVIEW_MAX_EDGE,
+  CROP_SHAPE,
+  CROP_STAGE_PADDING,
+  CropShapeType,
+} from "@/utils/ui";
 
 export const HiddenInput = styled.input`
   display: none;
@@ -43,11 +48,13 @@ export const UploadOrText = styled(MonoText).attrs({
 
 export const CropCanvas = styled.div`
   width: 100%;
-  border-radius: 8px;
+  padding: ${CROP_STAGE_PADDING};
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const ModalActions = styled.div`
@@ -60,26 +67,27 @@ export const ModalActions = styled.div`
 export const ImagePreviewWrapper = styled.div<{
   $cropWidth: number;
   $cropHeight: number;
+  $shape: CropShapeType;
 }>`
   position: relative;
-  width: 100%;
-  max-width: ${({ $cropWidth, $cropHeight }) =>
-    $cropHeight > 0 && $cropWidth > 0
-      ? `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`
-      : "100%"};
+  width: ${({ $cropWidth, $cropHeight }) => {
+    if ($cropHeight <= 0 || $cropWidth <= 0) return "100%";
+    if ($cropWidth >= $cropHeight) {
+      return `min(100%, ${CROP_PREVIEW_MAX_EDGE}px)`;
+    }
+    return `min(100%, calc(${CROP_PREVIEW_MAX_EDGE}px * ${$cropWidth} / ${$cropHeight}))`;
+  }};
   aspect-ratio: ${({ $cropWidth, $cropHeight }) =>
     $cropHeight > 0 && $cropWidth > 0
       ? `${$cropWidth} / ${$cropHeight}`
       : "auto"};
-  border-radius: 8px;
-  overflow: hidden;
+  border-radius: ${({ $shape }) =>
+    $shape === CROP_SHAPE.CIRCLE ? "50%" : "8px"};
+  overflow: ${({ $shape }) =>
+    $shape === CROP_SHAPE.CIRCLE ? "hidden" : "visible"};
   cursor: pointer;
-  background: radial-gradient(
-    circle,
-    ${({ theme }) => theme.colors.neutral.GRAY_700 || "#2a2b2f"} 0%,
-    ${({ theme }) => theme.colors.gradient.NEAR_BLACK || "#060606"} 100%
-  );
-  box-shadow: ${({ theme }) => theme.shadows.lg};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_700 || "#2a2b2f"};
+  box-shadow: ${({ theme }) => theme.shadows.md};
 
   &:active {
     cursor: grabbing;
@@ -114,7 +122,7 @@ export const ImagePreview = styled.img<{
   height: ${({ $height }) => $height}px;
   max-width: none;
   max-height: none;
-  object-fit: cover;
+  object-fit: fill;
   pointer-events: none;
   user-select: none;
   z-index: 2;
@@ -144,10 +152,15 @@ export const CropOverlay = styled.div<{
   z-index: 3;
 
   ${({ $shape, theme }) =>
-    $shape === CROP_SHAPE.CIRCLE &&
-    `
+    $shape === CROP_SHAPE.CIRCLE
+      ? `
     border-radius: 50%;
     box-shadow: 0 0 0 9999px ${theme.colors.neutral.OVERLAY};
+  `
+      : `
+    border-radius: 8px;
+    box-shadow: 0 0 0 9999px ${theme.colors.neutral.OVERLAY};
+    outline: 1px solid ${theme.colors.primary.WHITE};
   `}
 `;
 

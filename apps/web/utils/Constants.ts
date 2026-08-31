@@ -269,6 +269,7 @@ export const ERROR_MESSAGES = {
   NO_CONTENT: "errors.noContentToSave",
   SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
   SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
+  SAVE_COLLECTION_FAILED: "errors.saveCollectionFailed",
   LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
   EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
@@ -432,6 +433,8 @@ export const HASH_BUY = "#buy";
 export const PLANS_SECTION_ID = "plans";
 export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
 export const EVENT_HASHCHANGE = "hashchange";
+export const EVENT_SCROLL = "scroll";
+export const EVENT_RESIZE = "resize";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";

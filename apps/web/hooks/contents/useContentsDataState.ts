@@ -23,9 +23,8 @@ export const useContentsDataState = (
   const [contentsMap, setContentsMap] = useState<
     Record<string, CollectionContentRow[]>
   >({});
-  const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
-    API.collection.getAll,
-  );
+  const { data: collectionsResponse, isSuccess: collectionsReady } =
+    useGetAPI<CollectionsApiResponse>(API.collection.getAll);
   const selectedCollectionId = selectedCollection?.id ?? "";
   const { data: collectionContentsResponse } =
     useGetAPI<CollectionContentsApiResponse>(
@@ -84,6 +83,7 @@ export const useContentsDataState = (
 
   return {
     collections,
+    collectionsReady,
     setCollections,
     resetAfterRefetch,
     collectionContents,
