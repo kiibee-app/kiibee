@@ -28,7 +28,9 @@ import {
   DEFAULT_CROP_SIZE,
   DRAG_CLICK_THRESHOLD_PX,
   IMAGE_FILE_ACCEPT,
+  IMAGE_FIT,
   IMAGE_MODAL,
+  ImageFit,
   ImageModalStep,
   IMAGE_ZOOM,
   MODAL_ALIGN,
@@ -52,6 +54,7 @@ type Props = {
   maxSize?: number;
   onImageSelected?: (imageDataUrl: string) => void;
   uploadAsIs?: boolean;
+  fit?: ImageFit;
 };
 
 const loadImageDimensions = (imageDataUrl: string) =>
@@ -81,6 +84,7 @@ export default function ImageUploadCropModal({
   maxSize = MAX_IMAGE_SIZE,
   onImageSelected,
   uploadAsIs = false,
+  fit = IMAGE_FIT.COVER,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
@@ -110,22 +114,28 @@ export default function ImageUploadCropModal({
   const frameH = frameSize.height;
   const effectiveFrameW = Math.max(1, frameW);
   const effectiveFrameH = Math.max(1, frameH);
-  const rawCoverScale =
+  const containScale =
     naturalSize.width > 0 && naturalSize.height > 0
-      ? uploadAsIs
-        ? Math.min(
-            effectiveFrameW / naturalSize.width,
-            effectiveFrameH / naturalSize.height,
-          )
-        : Math.max(
-            effectiveFrameW / naturalSize.width,
-            effectiveFrameH / naturalSize.height,
-          )
+      ? Math.min(
+          effectiveFrameW / naturalSize.width,
+          effectiveFrameH / naturalSize.height,
+        )
       : 1;
-
-  const coverScale = rawCoverScale;
-  const displayW = naturalSize.width * coverScale * zoom;
-  const displayH = naturalSize.height * coverScale * zoom;
+  const coverScale =
+    naturalSize.width > 0 && naturalSize.height > 0
+      ? Math.max(
+          effectiveFrameW / naturalSize.width,
+          effectiveFrameH / naturalSize.height,
+        )
+      : 1;
+  const baseScale =
+    uploadAsIs || fit === IMAGE_FIT.CONTAIN ? containScale : coverScale;
+  const maxZoom = Math.max(
+    IMAGE_ZOOM.MAX,
+    coverScale > 0 && baseScale > 0 ? coverScale / baseScale : IMAGE_ZOOM.MAX,
+  );
+  const displayW = naturalSize.width * baseScale * zoom;
+  const displayH = naturalSize.height * baseScale * zoom;
 
   const {
     position,
@@ -353,7 +363,7 @@ export default function ImageUploadCropModal({
 
       setZoom((prevZoom) => {
         const newZoom = Math.min(
-          IMAGE_ZOOM.MAX,
+          maxZoom,
           Math.max(IMAGE_ZOOM.DEFAULT, prevZoom + zoomDirection * zoomStep),
         );
         return Number(newZoom.toFixed(2));
@@ -364,7 +374,7 @@ export default function ImageUploadCropModal({
     return () => {
       el.removeEventListener("wheel", handleWheelEvent);
     };
-  }, [pendingImage]);
+  }, [maxZoom, pendingImage]);
 
   const isImageSizeReady = naturalSize.width > 0 && naturalSize.height > 0;
   const isNaturalSizeSmaller =
@@ -394,6 +404,8 @@ export default function ImageUploadCropModal({
       cropHeight,
       position,
       zoom,
+      displayWidth: displayW,
+      displayHeight: displayH,
     });
 
     onApply(cropped);
@@ -404,6 +416,8 @@ export default function ImageUploadCropModal({
     cropHeight,
     position,
     zoom,
+    displayW,
+    displayH,
     onApply,
     onClose,
     isApplyDisabled,
@@ -506,7 +520,7 @@ export default function ImageUploadCropModal({
               <ZoomSlider
                 type="range"
                 min={IMAGE_ZOOM.DEFAULT}
-                max={IMAGE_ZOOM.MAX}
+                max={maxZoom}
                 step={IMAGE_ZOOM.STEP}
                 value={zoom}
                 onChange={(e) => setZoom(Number(e.target.value))}

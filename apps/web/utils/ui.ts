@@ -178,6 +178,19 @@ export const CROP_SHAPE = {
 
 export type CropShapeType = (typeof CROP_SHAPE)[keyof typeof CROP_SHAPE];
 
+export const IMAGE_FIT = {
+  COVER: "cover",
+  CONTAIN: "contain",
+} as const;
+
+export type ImageFit = (typeof IMAGE_FIT)[keyof typeof IMAGE_FIT];
+
+export const CROP_EXPORT_MAX_EDGE = 1920;
+export const CROP_LETTERBOX_FILL = "#111111";
+export const CROP_LETTERBOX_BLUR_PX = 24;
+export const CROP_LETTERBOX_SCALE = 1.15;
+export const CROP_LETTERBOX_DIM = "rgba(0, 0, 0, 0.28)";
+
 export const IMAGE_TYPE = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
@@ -187,13 +200,13 @@ export const IMAGE_TYPE = {
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const CONTENT_THUMBNAIL_SIZE = {
-  MEDIA_CARD: { width: 250, height: 190 },
-  PORTRAIT: { width: 634, height: 345 },
+  MEDIA_CARD: { width: 325, height: 460 },
+  PORTRAIT: { width: 1920, height: 1080 },
   PORTRAIT_PDF: { width: 376, height: 530 },
 } as const;
 
 export const CONTENT_THUMBNAIL_PREVIEW = {
-  MEDIA_CARD: { maxWidth: "71px", minHeight: "54px" },
+  MEDIA_CARD: { maxWidth: "71px", minHeight: "100px" },
   PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
   PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
 } as const;
@@ -252,11 +265,11 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
 
   [IMAGE_TYPE.MEDIA_CARD]: {
     maxWidth: "71px",
-    minHeight: "54px",
+    minHeight: "100px",
     aspectRatio: `${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.width} / ${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.height}`,
     tablet: {
       maxWidth: "55px",
-      minHeight: "42px",
+      minHeight: "78px",
     },
   },
 

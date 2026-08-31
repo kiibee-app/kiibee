@@ -114,7 +114,7 @@ export const ImagePreview = styled.img<{
   height: ${({ $height }) => $height}px;
   max-width: none;
   max-height: none;
-  object-fit: cover;
+  object-fit: fill;
   pointer-events: none;
   user-select: none;
   z-index: 2;
