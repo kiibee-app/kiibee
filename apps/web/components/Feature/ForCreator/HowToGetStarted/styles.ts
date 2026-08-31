@@ -141,21 +141,21 @@ export const StepWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   min-height: 0;
-  padding-bottom: 3.5rem;
+  padding-bottom: 2.5rem;
 
   &:last-child {
     padding-bottom: 0;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 24rem;
-    justify-content: center;
-    padding-bottom: 6rem;
+    min-height: 18rem;
+    justify-content: flex-start;
+    padding-bottom: 3.5rem;
 
     &:last-child {
-      min-height: 24rem;
-      justify-content: center;
-      padding-bottom: 20vh;
+      min-height: 18rem;
+      justify-content: flex-start;
+      padding-bottom: 18vh;
     }
   }
 `;

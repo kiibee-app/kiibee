@@ -5,7 +5,6 @@ import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { creatorOnboardingSteps } from "@/utils/steps";
-import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
   Section,
   HeaderWrapper,
@@ -32,29 +31,46 @@ import {
 export default function HowToGetStarted() {
   const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const visibleEntry = entries.find((entry) => entry.isIntersecting);
-      if (!visibleEntry) return;
+    let frame = 0;
 
-      const index = sectionRefs.current.indexOf(
-        visibleEntry.target as HTMLDivElement,
-      );
+    const updateActive = () => {
+      const stickyBox = stickyRef.current?.getBoundingClientRect();
+      const triggerY = stickyBox
+        ? stickyBox.bottom - 16
+        : window.innerHeight * 0.72;
+      let next = 0;
 
-      if (index !== -1) {
-        setActiveIndex(index);
-      }
-    }, intersectionObserverConfig);
+      sectionRefs.current.forEach((el, index) => {
+        if (!el) return;
+        if (el.getBoundingClientRect().top <= triggerY) {
+          next = index;
+        }
+      });
 
-    const elements = sectionRefs.current.filter(Boolean);
-    elements.forEach((el) => observer.observe(el!));
+      setActiveIndex((prev) => (prev === next ? prev : next));
+    };
 
-    return () => observer.disconnect();
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
-  const setRef = (index: number) => (el: HTMLDivElement | null) => {
+  const setRef = (index: number) => (el: HTMLElement | null) => {
     sectionRefs.current[index] = el;
   };
 
@@ -67,7 +83,7 @@ export default function HowToGetStarted() {
 
       <Container>
         <ImageContainer>
-          <StickyImageWrapper>
+          <StickyImageWrapper ref={stickyRef}>
             {creatorOnboardingSteps.map((step, index) => (
               <ImageWrapper key={step.id} $active={activeIndex === index}>
                 <Image
@@ -91,7 +107,7 @@ export default function HowToGetStarted() {
                 : null;
 
               return (
-                <StepWrapper key={step.id} ref={setRef(index)}>
+                <StepWrapper key={step.id}>
                   <MobileStepImage>
                     <Image
                       src={step.image}
@@ -102,7 +118,7 @@ export default function HowToGetStarted() {
                     />
                   </MobileStepImage>
 
-                  <StepTitle>{t(step.titleKey)}</StepTitle>
+                  <StepTitle ref={setRef(index)}>{t(step.titleKey)}</StepTitle>
 
                   <StepDescription>{t(step.descriptionKey)}</StepDescription>
 
