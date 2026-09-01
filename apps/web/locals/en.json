@@ -2189,7 +2189,7 @@
         "title": "Thumbnail",
         "mediaCardLabel": "Upload thumbnail for the media card",
         "mediaCardSize": "Use size {{width}}x{{height}} pixel image",
-        "portraitLabel": "Upload thumbnail for portrait format",
+        "portraitLabel": "Upload thumbnail for landscape format",
         "portraitSize": "Use size {{width}}x{{height}} pixel image",
         "portraitPdfSize": "Use size {{width}}x{{height}} pixel image"
       }
