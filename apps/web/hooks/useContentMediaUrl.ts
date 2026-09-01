@@ -11,15 +11,17 @@ import {
   getContentType,
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
+import { extractCloudflareStreamVideoId } from "@/utils/media";
 import { FORMAT_TYPE } from "@/utils/types";
 
 export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   const contentType = content && getContentType(content);
 
   const contentMediaKey = content && getContentMediaKey(content);
+  const cloudflareVideoId = extractCloudflareStreamVideoId(contentMediaKey);
 
   const mediaEndpoint =
-    contentType === FORMAT_TYPE.VIDEO
+    contentType === FORMAT_TYPE.VIDEO && cloudflareVideoId
       ? API.media.videoStream
       : API.media.fileSignedUrl;
 

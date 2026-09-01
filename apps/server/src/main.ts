@@ -91,7 +91,9 @@ async function bootstrap() {
       maxAge: 3600,
     });
 
-    await app.register(helmet);
+    await app.register(helmet, {
+      xFrameOptions: false,
+    });
 
     const port = Number(process.env.PORT) || 4001;
     await app.listen(port, '0.0.0.0');

@@ -42,6 +42,11 @@ export function canPreviewContent(params: {
   return Boolean(params.fileKey?.trim() || params.contentUrl?.trim());
 }
 
+export function isCloudflareStreamVideoId(key?: string | null): boolean {
+  const trimmed = key?.trim() ?? "";
+  return /^[a-f0-9]{32}$/i.test(trimmed) && !trimmed.includes("/");
+}
+
 function parsePreviewUrl(url: string): URL | null {
   try {
     return new URL(url);
@@ -99,6 +104,8 @@ export function isEmbedVideoUrl(url: string): boolean {
   return (
     host === "player.vimeo.com" ||
     host.endsWith("youtube.com") ||
+    host === "youtu.be" ||
+    host === "vimeo.com" ||
     host.endsWith("cloudflarestream.com")
   );
 }

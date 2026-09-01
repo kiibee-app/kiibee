@@ -66,7 +66,14 @@ export function ContentPreviewModal({
     }
 
     if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.WEB) {
-      return <PreviewFrame src={previewUrl} title={title} allowFullScreen />;
+      return (
+        <PreviewFrame
+          src={previewUrl}
+          title={title}
+          allowFullScreen
+          $tall={format === CONTENT_FORMAT.PDF}
+        />
+      );
     }
 
     if (format === CONTENT_FORMAT.EPUB) {
