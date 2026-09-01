@@ -205,6 +205,7 @@ function TutorialCard({
   const card = (
     <GenericCard
       coverImage
+      imageAspectRatio="1 / 1"
       image={image}
       imageFallback={imageFallback}
       imagePriority={imagePriority}

@@ -46,6 +46,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   return (
     <GenericCard
       coverImage
+      imageAspectRatio="1 / 1"
       image={item.image}
       alt={safeT(item.titleKey)}
       badge={
