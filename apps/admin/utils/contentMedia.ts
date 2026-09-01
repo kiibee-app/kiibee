@@ -41,3 +41,64 @@ export function canPreviewContent(params: {
 
   return Boolean(params.fileKey?.trim() || params.contentUrl?.trim());
 }
+
+function parsePreviewUrl(url: string): URL | null {
+  try {
+    return new URL(url);
+  } catch {
+    return null;
+  }
+}
+
+/** Watch-page URLs cannot be iframed; convert to the player embed URL. */
+export function toEmbeddablePreviewUrl(url: string): string {
+  const parsed = parsePreviewUrl(url.trim());
+  if (!parsed) {
+    return url;
+  }
+
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+
+  if (host === "youtu.be") {
+    const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  }
+
+  if (host === "youtube.com") {
+    const fromQuery = parsed.searchParams.get("v")?.trim();
+    if (fromQuery) {
+      return `https://www.youtube.com/embed/${fromQuery}`;
+    }
+    const segments = parsed.pathname.split("/").filter(Boolean);
+    if (
+      segments.length >= 2 &&
+      ["shorts", "embed", "live", "v", "e"].includes(segments[0].toLowerCase())
+    ) {
+      return `https://www.youtube.com/embed/${segments[1].split("?")[0]}`;
+    }
+  }
+
+  if (host === "vimeo.com") {
+    const segments = parsed.pathname
+      .replace(/^\/+/, "")
+      .split("/")
+      .filter(Boolean);
+    const videoId = segments[0] === "video" ? segments[1] : segments[0];
+    return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+  }
+
+  return url;
+}
+
+export function isEmbedVideoUrl(url: string): boolean {
+  const parsed = parsePreviewUrl(url);
+  if (!parsed) {
+    return false;
+  }
+  const host = parsed.hostname.replace(/^www\./i, "").toLowerCase();
+  return (
+    host === "player.vimeo.com" ||
+    host.endsWith("youtube.com") ||
+    host.endsWith("cloudflarestream.com")
+  );
+}

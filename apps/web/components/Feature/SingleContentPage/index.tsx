@@ -46,7 +46,7 @@ import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
-import { resolveImageUrl } from "@/utils/media";
+import { isEmbeddableVideoUrl, resolveImageUrl } from "@/utils/media";
 import { openInNewTab } from "@/utils/common";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
@@ -293,7 +293,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (isWebType && previewMediaUrl) {
+    if (
+      isWebType &&
+      previewMediaUrl &&
+      !isEmbeddableVideoUrl(previewMediaUrl) &&
+      !isEmbeddableVideoUrl(hero.contentUrl)
+    ) {
       openInNewTab(previewMediaUrl);
       return;
     }
@@ -356,6 +361,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     canPreview,
     fetchMediaUrl,
     handleShowLoginModal,
+    hero.contentUrl,
     isWebType,
     metaItems,
     previewMediaUrl,
