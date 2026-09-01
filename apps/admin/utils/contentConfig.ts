@@ -89,6 +89,9 @@ export const contentPreviewLabels = {
   loadingPreview: "Loading preview…",
   noPreview: "No preview available.",
   openEpubFile: "Open EPUB file",
+  openInNewTab: "Open in new tab",
+  iframeBlocked:
+    "This link cannot play inside the admin modal. It opened in a new tab.",
   noWebLink: "No web link available for this content.",
   noMediaFile: "No media file available for preview.",
   failedMediaPreviewUrl: "Failed to load media preview URL.",

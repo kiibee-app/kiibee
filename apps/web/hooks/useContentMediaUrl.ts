@@ -13,6 +13,20 @@ import {
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
 
+function pickMediaPlaybackUrl(
+  payload: ContentMediaUrlResponse | undefined,
+): string | undefined {
+  if (!payload) return undefined;
+
+  const nested =
+    payload && typeof payload === "object" && "data" in payload
+      ? ((payload as { data?: ContentMediaUrlResponse }).data ?? payload)
+      : payload;
+
+  const url = nested.iframeUrl || nested.url || nested.streamUrl;
+  return typeof url === "string" && url.trim() ? url.trim() : undefined;
+}
+
 export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   const contentType = content && getContentType(content);
 
@@ -38,10 +52,7 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
 
   const previewMediaUrl = useMemo(() => {
     if (!content) return undefined;
-    const signedUrl =
-      mediaResponse?.url ||
-      mediaResponse?.iframeUrl ||
-      mediaResponse?.streamUrl;
+    const signedUrl = pickMediaPlaybackUrl(mediaResponse);
 
     return resolveContentPlaybackUrl(content, signedUrl) || undefined;
   }, [content, mediaResponse]);
@@ -50,8 +61,11 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
     if (!canFetchMedia) return previewMediaUrl;
 
     const result = await refetch();
-    const signedUrl =
-      result.data?.url || result.data?.iframeUrl || result.data?.streamUrl;
+    if (result.error) {
+      throw result.error;
+    }
+
+    const signedUrl = pickMediaPlaybackUrl(result.data);
 
     return resolveContentPlaybackUrl(content, signedUrl) || previewMediaUrl;
   }, [canFetchMedia, content, previewMediaUrl, refetch]);

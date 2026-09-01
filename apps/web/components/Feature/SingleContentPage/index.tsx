@@ -23,6 +23,7 @@ import {
   ACTION_SIGNUP,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { CONTENT_TRANSLATION_KEYS } from "@/utils/contentApi";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -346,15 +347,22 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
       setShowPurchaseModal(true);
     } else {
-      const mediaUrl = await fetchMediaUrl();
-      if (mediaUrl) {
-        setShowPreviewModal(true);
+      try {
+        const mediaUrl = await fetchMediaUrl();
+        if (mediaUrl) {
+          setShowPreviewModal(true);
+          return;
+        }
+        toast.error(t(CONTENT_TRANSLATION_KEYS.notFound));
+      } catch (error) {
+        toast.error(getErrorMessage(error, CONTENT_TRANSLATION_KEYS.notFound));
       }
     }
   }, [
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
+    getErrorMessage,
     handleShowLoginModal,
     isWebType,
     metaItems,

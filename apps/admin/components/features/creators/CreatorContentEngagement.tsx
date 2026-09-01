@@ -20,7 +20,11 @@ import {
   creatorContentEngagementValues,
 } from "../../../utils/contentConfig";
 import {
+  CONTENT_FORMAT,
   canPreviewContent,
+  getContentExternalUrl,
+  isThirdPartyVideoPreviewUrl,
+  toEmbeddablePreviewUrl,
   type ContentFormat,
 } from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
@@ -122,10 +126,20 @@ export function CreatorContentEngagement({
     contentType: content.contentType,
     contentTypeId: content.contentTypeId,
     fileKey: content.fileKey,
-    contentUrl: content.contentUrl,
+    contentUrl: getContentExternalUrl(content),
   });
 
   const handlePlay = async () => {
+    const externalUrl = getContentExternalUrl(content);
+
+    if (externalUrl && isThirdPartyVideoPreviewUrl(externalUrl)) {
+      setPreviewOpen(true);
+      setPreviewError(null);
+      setPreviewUrl(toEmbeddablePreviewUrl(externalUrl));
+      setPreviewFormat(CONTENT_FORMAT.VIDEO);
+      return;
+    }
+
     setPreviewOpen(true);
     setPreviewError(null);
     setPreviewUrl(null);
@@ -136,7 +150,7 @@ export function CreatorContentEngagement({
         contentType: content.contentType,
         contentTypeId: content.contentTypeId,
         fileKey: content.fileKey,
-        contentUrl: content.contentUrl,
+        contentUrl: externalUrl,
       });
       setPreviewUrl(result.url);
       setPreviewFormat(result.format);

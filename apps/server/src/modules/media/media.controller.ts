@@ -29,6 +29,7 @@ export class MediaController {
     return this.mediaService.createVideoUpload();
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/playback')
   getPlayback(@Query('uid') uid: string) {
     return this.mediaService.getStreamUrl(uid);
@@ -44,6 +45,7 @@ export class MediaController {
     });
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/download')
   download(@Query('key') key: string) {
     return this.mediaService.getDownloadUrl(key);
@@ -82,6 +84,7 @@ export class MediaController {
     };
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('file/signed-url')
   async getSignedUrl(@Query('key') key: string) {
     return {

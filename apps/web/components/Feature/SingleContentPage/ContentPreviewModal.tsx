@@ -86,7 +86,10 @@ export default function ContentPreviewModal({
           </PreviewContent>
         );
       case FORMAT_TYPE.VIDEO:
-        if (isCloudflareStreamEmbedUrl(src)) {
+        if (
+          isCloudflareStreamEmbedUrl(src) &&
+          !src.toLowerCase().includes(".m3u8")
+        ) {
           return (
             <PreviewContent
               as="iframe"

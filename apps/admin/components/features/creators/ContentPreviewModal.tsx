@@ -3,6 +3,9 @@
 import { Modal } from "../../common/Modal";
 import {
   CONTENT_FORMAT,
+  canIframePreviewUrl,
+  isHlsPreviewUrl,
+  toEmbeddablePreviewUrl,
   type ContentFormat,
 } from "../../../utils/contentMedia";
 import { contentPreviewLabels } from "../../../utils/contentConfig";
@@ -46,36 +49,62 @@ export function ContentPreviewModal({
       return <PreviewState>{contentPreviewLabels.noPreview}</PreviewState>;
     }
 
-    if (format === CONTENT_FORMAT.VIDEO) {
-      return (
-        <PreviewFrame
-          src={url}
-          title={title}
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
-        />
-      );
-    }
+    const previewUrl = toEmbeddablePreviewUrl(url);
+    const openLink = (
+      <PreviewState>
+        <PreviewLink href={previewUrl} target="_blank" rel="noreferrer">
+          {contentPreviewLabels.openInNewTab}
+        </PreviewLink>
+      </PreviewState>
+    );
 
     if (format === CONTENT_FORMAT.AUDIO) {
-      return <PreviewAudio src={url} controls autoPlay />;
-    }
-
-    if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.WEB) {
-      return <PreviewFrame src={url} title={title} allowFullScreen />;
+      return <PreviewAudio src={previewUrl} controls autoPlay />;
     }
 
     if (format === CONTENT_FORMAT.EPUB) {
       return (
         <PreviewState>
-          <PreviewLink href={url} target="_blank" rel="noreferrer">
+          <PreviewLink href={previewUrl} target="_blank" rel="noreferrer">
             {contentPreviewLabels.openEpubFile}
           </PreviewLink>
         </PreviewState>
       );
     }
 
-    return <PreviewVideo src={url} controls autoPlay />;
+    if (format === CONTENT_FORMAT.VIDEO && !canIframePreviewUrl(previewUrl)) {
+      if (isHlsPreviewUrl(previewUrl)) {
+        return openLink;
+      }
+
+      return (
+        <>
+          <PreviewVideo src={previewUrl} controls autoPlay />
+          {openLink}
+        </>
+      );
+    }
+
+    if (!canIframePreviewUrl(previewUrl) && format !== CONTENT_FORMAT.PDF) {
+      return (
+        <PreviewState>
+          {contentPreviewLabels.iframeBlocked} {openLink}
+        </PreviewState>
+      );
+    }
+
+    return (
+      <>
+        <PreviewFrame
+          src={previewUrl}
+          title={title}
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
+        {openLink}
+      </>
+    );
   };
 
   return (

@@ -38,7 +38,10 @@ export class CheckMediaAccessGuard implements CanActivate {
       request.query?.contentId;
 
     const mediaKey =
-      request.params?.key || request.query?.key || request.body?.key;
+      request.params?.key ||
+      request.query?.key ||
+      request.body?.key ||
+      request.query?.uid;
 
     if (!mediaId && !mediaKey) {
       throw new BadRequestException('Media ID or key is required');

@@ -47,10 +47,13 @@ function resolvePreviewUrl(
   response: MediaPreviewResponse,
   fallbackUrl?: string | null,
 ) {
-  const payload = response.data ?? response;
-  return (
-    payload.iframeUrl || payload.url || payload.streamUrl || fallbackUrl || null
-  );
+  const nested = response.data ?? response;
+  const url =
+    [nested.iframeUrl, nested.url, fallbackUrl]
+      .find((value) => typeof value === "string" && value.trim())
+      ?.trim() || null;
+
+  return url;
 }
 
 export function useContentMediaPreview() {
@@ -85,8 +88,9 @@ export function useContentMediaPreview() {
       );
 
       const raw = response as unknown as MediaPreviewResponse;
+      const statusCode = (raw as { statusCode?: number }).statusCode;
 
-      if (raw.success === false) {
+      if (raw.success === false || (statusCode && statusCode >= 400)) {
         throw new Error(
           raw.message || contentPreviewLabels.failedMediaPreviewUrl,
         );
