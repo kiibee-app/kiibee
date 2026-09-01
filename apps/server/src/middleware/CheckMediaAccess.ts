@@ -138,6 +138,7 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const hasImmediateAccess =
       mediaFile.accessType === ACCESS_TYPE.FREE ||
+      mediaFile.accessType === ACCESS_TYPE.PASSWORD ||
       (mediaFile.isDeleted &&
         (hasDirectAccess || hasCollectionAccess || hasEmailAccess));
 

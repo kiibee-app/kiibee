@@ -15,6 +15,7 @@ import {
   ACCESS_TYPE_EMAIL_GATED,
   SET_PASSWORD_ACCESS,
   REQUEST_EMAIL_ACCESS,
+  STRING_TRUE,
 } from "@/utils/Constants";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -112,9 +113,14 @@ export function useContentAccessGate(
   const hasContentGate = isContentCode || isContentEmail;
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
+  const hasLocalCodeUnlock =
+    isContentCode &&
+    Boolean(contentStorageKey) &&
+    typeof window !== "undefined" &&
+    window.localStorage.getItem(contentStorageKey) === STRING_TRUE;
   const isContentUnlocked = isContentEmail
     ? hasApprovedEmailAccess
-    : hasServerAccess;
+    : hasServerAccess || hasLocalCodeUnlock;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
