@@ -233,10 +233,6 @@ export default function SingleCollectionDetail({
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
   const handlePricingActionClick = (action: PricingAction) => {
-    if (!user?.id) {
-      setLoginModalVisible(true);
-      return;
-    }
     if (user?.role === ROLE_CREATOR) {
       setShowCreatorModal1(true);
       return;

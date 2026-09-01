@@ -10,7 +10,7 @@ export function useProtectedContentNavigation() {
   const router = useRouter();
 
   const navigateToContent = useCallback(
-    (href: string, requiresAuth = false) => {
+    (href: string, _requiresAuth?: boolean) => {
       const isInternal =
         href.startsWith("/") &&
         !href.startsWith("//") &&
@@ -21,17 +21,7 @@ export function useProtectedContentNavigation() {
         return;
       }
 
-      if (!requiresAuth || authStorage.hasSession()) {
-        router.push(href);
-        return;
-      }
-
-      if (!isSafePostLoginPath(href)) {
-        logger.warn("Blocked unsafe post-login redirect:", href);
-        return;
-      }
-
-      router.push(pathLoginWithNext(href));
+      router.push(href);
     },
     [router],
   );

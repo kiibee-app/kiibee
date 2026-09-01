@@ -222,12 +222,6 @@ export default function LatestUpload({
       return;
     }
 
-    if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
-      setPendingHref(primaryAction.href);
-      setLoginModalVisible(true);
-      return;
-    }
-
     navigateToContent(primaryAction.href, true);
   };
   const normalizedContentType = normalizeContentTypeValue(

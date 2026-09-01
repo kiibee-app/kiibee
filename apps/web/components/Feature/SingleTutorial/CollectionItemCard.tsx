@@ -141,9 +141,12 @@ export default function CollectionItemCard({
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
-      const msg = isPurchaseOrRent
-        ? t("createProfileHome.latestUpload.loginModal.message")
-        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+      if (isPurchaseOrRent) {
+        navigateToContent(targetHref, true);
+        return;
+      }
+
+      const msg = t("createProfileHome.latestUpload.loginModal.viewMessage");
 
       handleShowLoginModal(targetHref, msg);
       return;

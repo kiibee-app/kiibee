@@ -51,6 +51,10 @@ import { openInNewTab } from "@/utils/common";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import { useLogout } from "@/hooks/auth/useLogout";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 
 import { useSearchParams } from "next/navigation";
 
@@ -176,13 +180,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     return actions.map((action) => {
-      const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes(
-        t("pricingLabels.buy").toLowerCase(),
-      );
-      const isRental = normalizedLabel.includes(
-        t("pricingLabels.rent").toLowerCase(),
-      );
+      const isPurchase =
+        action.label
+          .toLowerCase()
+          .includes(t("pricingLabels.buy").toLowerCase()) ||
+        isBuyActionLabel(action.label);
+      const isRental =
+        action.label
+          .toLowerCase()
+          .includes(t("pricingLabels.rent").toLowerCase()) ||
+        isRentActionLabel(action.label);
 
       if (!isPurchase && !isRental) {
         return {
@@ -195,12 +202,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal(
-              t("createProfileHome.latestUpload.loginModal.message"),
-            );
-            return;
-          }
           if (user?.role === ROLE_CREATOR) {
             setShowCreatorModal1(true);
             return;
@@ -218,11 +219,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId,
     createOrderMutation,
     handleActionClick,
-    handleShowLoginModal,
     primaryAction,
     primaryActions,
     t,
-    user?.id,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -288,13 +287,40 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = useCallback(async () => {
-    if (!user?.id) {
-      handleShowLoginModal();
+    if (isWebType && previewMediaUrl) {
+      openInNewTab(previewMediaUrl);
       return;
     }
 
-    if (isWebType && previewMediaUrl) {
-      openInNewTab(previewMediaUrl);
+    const actionLabel = primaryAction?.label ?? "";
+    const isPurchaseAction =
+      actionLabel
+        .toLowerCase()
+        .includes(t("pricingLabels.buy").toLowerCase()) ||
+      isBuyActionLabel(actionLabel);
+    const isRentalAction =
+      actionLabel
+        .toLowerCase()
+        .includes(t("pricingLabels.rent").toLowerCase()) ||
+      isRentActionLabel(actionLabel);
+
+    if (isPurchaseAction || isRentalAction) {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
+      setSelectedAction({
+        label: primaryAction?.label as string,
+        subtitle: primaryAction?.subtitle,
+        isPurchase: isPurchaseAction,
+      });
+
+      setShowPurchaseModal(true);
+      return;
+    }
+
+    if (!user?.id) {
+      handleShowLoginModal();
       return;
     }
 
@@ -314,7 +340,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         typeof accessMeta.value === STRING &&
         accessMeta.value !== ACCESS_TYPE_FREE;
 
-      if (isPaid && !user?.id) {
+      if (isPaid) {
         handleShowLoginModal();
       }
       return;
@@ -325,31 +351,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    const actionLabel = primaryAction?.label?.toLowerCase();
-    const isPurchaseAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
-    );
-    const isRentalAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
-    );
-
-    if (isPurchaseAction || isRentalAction) {
-      if (user?.role === ROLE_CREATOR) {
-        setShowCreatorModal1(true);
-        return;
-      }
-      setSelectedAction({
-        label: primaryAction?.label as string,
-        subtitle: primaryAction?.subtitle,
-        isPurchase: isPurchaseAction,
-      });
-
-      setShowPurchaseModal(true);
-    } else {
-      const mediaUrl = await fetchMediaUrl();
-      if (mediaUrl) {
-        setShowPreviewModal(true);
-      }
+    const mediaUrl = await fetchMediaUrl();
+    if (mediaUrl) {
+      setShowPreviewModal(true);
     }
   }, [
     canFetchMedia,
