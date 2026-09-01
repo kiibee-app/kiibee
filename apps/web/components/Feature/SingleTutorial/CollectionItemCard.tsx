@@ -142,7 +142,7 @@ export default function CollectionItemCard({
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
       if (isPurchaseOrRent) {
-        navigateToContent(targetHref, true);
+        navigateToContent(targetHref);
         return;
       }
 
@@ -152,7 +152,7 @@ export default function CollectionItemCard({
       return;
     }
 
-    navigateToContent(targetHref, button.requiresAuth ?? false);
+    navigateToContent(targetHref);
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
@@ -230,7 +230,7 @@ export default function CollectionItemCard({
         message={loginModalMessage}
         onSuccess={() => {
           if (pendingRedirectUrl) {
-            navigateToContent(pendingRedirectUrl, true);
+            navigateToContent(pendingRedirectUrl);
             setPendingRedirectUrl("");
           }
         }}

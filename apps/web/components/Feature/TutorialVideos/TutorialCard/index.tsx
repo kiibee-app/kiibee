@@ -168,7 +168,7 @@ function TutorialCard({
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
       if (isPurchaseOrRent) {
-        navigateToContent(targetHref, true);
+        navigateToContent(targetHref);
         return;
       }
 
@@ -178,7 +178,7 @@ function TutorialCard({
       return;
     }
 
-    navigateToContent(targetHref, button.requiresAuth ?? false);
+    navigateToContent(targetHref);
   };
 
   const creatorSubtitle = tutorial.creatorId ? (
@@ -292,7 +292,7 @@ function TutorialCard({
       message={loginModalMessage}
       onSuccess={() => {
         if (pendingRedirectUrl) {
-          navigateToContent(pendingRedirectUrl, true);
+          navigateToContent(pendingRedirectUrl);
           setPendingRedirectUrl("");
         }
       }}

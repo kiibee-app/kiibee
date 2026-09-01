@@ -52,7 +52,6 @@ import {
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
-import { authStorage } from "@/lib/auth/authStorage";
 import {
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
@@ -213,7 +212,7 @@ export default function LatestUpload({
 
   const handleSecondaryActionClick = () => {
     if (secondaryAction?.href) {
-      navigateToContent(secondaryAction.href, true);
+      navigateToContent(secondaryAction.href);
     }
   };
   const handlePrimaryActionClick = () => {
@@ -222,7 +221,7 @@ export default function LatestUpload({
       return;
     }
 
-    navigateToContent(primaryAction.href, true);
+    navigateToContent(primaryAction.href);
   };
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
@@ -439,7 +438,7 @@ export default function LatestUpload({
         }
         onSuccess={() => {
           if (pendingHref) {
-            navigateToContent(pendingHref, true);
+            navigateToContent(pendingHref);
             setPendingHref(null);
           }
         }}
