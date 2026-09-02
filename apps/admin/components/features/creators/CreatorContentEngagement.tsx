@@ -85,6 +85,7 @@ export function CreatorContentEngagement({
   );
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [rejectOpen, setRejectOpen] = useState(false);
+  const [thumbnailFailed, setThumbnailFailed] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
   const mediaPreview = useContentMediaPreview();
@@ -150,6 +151,9 @@ export function CreatorContentEngagement({
   };
 
   const handleClosePreview = () => {
+    if (previewUrl?.startsWith("blob:")) {
+      URL.revokeObjectURL(previewUrl);
+    }
     setPreviewOpen(false);
     setPreviewUrl(null);
     setPreviewFormat(null);
@@ -188,8 +192,12 @@ export function CreatorContentEngagement({
             overflow: "hidden",
           }}
         >
-          {content.thumbnailUrl ? (
-            <ContentThumbImage src={content.thumbnailUrl} alt={content.title} />
+          {content.thumbnailUrl && !thumbnailFailed ? (
+            <ContentThumbImage
+              src={content.thumbnailUrl}
+              alt={content.title}
+              onError={() => setThumbnailFailed(true)}
+            />
           ) : (
             <ContentThumbFallback>
               <Film size={32} />

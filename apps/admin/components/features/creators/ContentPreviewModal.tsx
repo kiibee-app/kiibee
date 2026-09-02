@@ -3,6 +3,8 @@
 import { Modal } from "../../common/Modal";
 import {
   CONTENT_FORMAT,
+  isEmbedVideoUrl,
+  toEmbeddablePreviewUrl,
   type ContentFormat,
 } from "../../../utils/contentMedia";
 import { contentPreviewLabels } from "../../../utils/contentConfig";
@@ -46,10 +48,12 @@ export function ContentPreviewModal({
       return <PreviewState>{contentPreviewLabels.noPreview}</PreviewState>;
     }
 
-    if (format === CONTENT_FORMAT.VIDEO) {
+    const previewUrl = toEmbeddablePreviewUrl(url);
+
+    if (format === CONTENT_FORMAT.VIDEO || isEmbedVideoUrl(previewUrl)) {
       return (
         <PreviewFrame
-          src={url}
+          src={previewUrl}
           title={title}
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
@@ -58,11 +62,18 @@ export function ContentPreviewModal({
     }
 
     if (format === CONTENT_FORMAT.AUDIO) {
-      return <PreviewAudio src={url} controls autoPlay />;
+      return <PreviewAudio src={previewUrl} controls autoPlay />;
     }
 
     if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.WEB) {
-      return <PreviewFrame src={url} title={title} allowFullScreen />;
+      return (
+        <PreviewFrame
+          src={previewUrl}
+          title={title}
+          allowFullScreen
+          $tall={format === CONTENT_FORMAT.PDF}
+        />
+      );
     }
 
     if (format === CONTENT_FORMAT.EPUB) {
