@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Film, Play, X } from "lucide-react";
+import { ArrowLeft, Play, X } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   useContentEngagement,
@@ -35,8 +35,6 @@ import {
 import {
   BackLink,
   ContentThumb,
-  ContentThumbFallback,
-  ContentThumbImage,
   DetailsLayout,
   DetailsSection,
   DetailsSectionBody,
@@ -55,6 +53,7 @@ import {
   StatsRow,
   ViewersState,
 } from "../viewers/Viewers.styles";
+import { ContentThumbnail } from "../../common/ContentThumbnail";
 
 const ENGAGEMENT_TAB = {
   PURCHASES: "purchases",
@@ -85,7 +84,6 @@ export function CreatorContentEngagement({
   );
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [rejectOpen, setRejectOpen] = useState(false);
-  const [thumbnailFailed, setThumbnailFailed] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
   const mediaPreview = useContentMediaPreview();
@@ -192,17 +190,12 @@ export function CreatorContentEngagement({
             overflow: "hidden",
           }}
         >
-          {content.thumbnailUrl && !thumbnailFailed ? (
-            <ContentThumbImage
-              src={content.thumbnailUrl}
-              alt={content.title}
-              onError={() => setThumbnailFailed(true)}
-            />
-          ) : (
-            <ContentThumbFallback>
-              <Film size={32} />
-            </ContentThumbFallback>
-          )}
+          <ContentThumbnail
+            src={content.thumbnailUrl}
+            alt={content.title}
+            contentType={content.contentType}
+            size={32}
+          />
         </ContentThumb>
         <ProfileInfo>
           <ProfileName>{content.title}</ProfileName>
