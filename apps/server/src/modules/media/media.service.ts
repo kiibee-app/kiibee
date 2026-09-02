@@ -5,6 +5,8 @@ import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
 import { PublicImageUploadService } from './services/publicImageUpload.service';
 import { GetMediaByKeyService } from './services/getmediaByKey.service';
+import { LegacyMediaProxyService } from './services/legacyMediaProxy.service';
+import type { FastifyReply } from 'fastify';
 
 @Injectable()
 export class MediaService {
@@ -15,6 +17,7 @@ export class MediaService {
     public readonly fileUpload: FileUploadService,
     public readonly images: PublicImageUploadService,
     public readonly getMediaByKey: GetMediaByKeyService,
+    private readonly legacyMedia: LegacyMediaProxyService,
   ) {}
   createVideoUpload() {
     return this.multipart.createUpload();
@@ -36,7 +39,25 @@ export class MediaService {
     return this.images.upload(file);
   }
 
-  getMediaSignedUrl(key: string, options?: any) {
+  getMediaSignedUrl(
+    key: string,
+    options?: {
+      expiresIn?: number;
+      contentType?: string;
+      disposition?: 'inline' | 'attachment';
+      apiBaseUrl?: string;
+      recordView?: boolean;
+    },
+  ) {
     return this.getMediaByKey.getSignedUrl(key, options);
+  }
+
+  streamLegacyFile(params: {
+    key: string;
+    exp: string;
+    sig: string;
+    reply: FastifyReply;
+  }) {
+    return this.legacyMedia.stream(params);
   }
 }

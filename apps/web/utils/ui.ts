@@ -202,13 +202,13 @@ export const IMAGE_TYPE = {
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const CONTENT_THUMBNAIL_SIZE = {
-  MEDIA_CARD: { width: 300, height: 424 },
-  PORTRAIT: { width: 1920, height: 1080 },
+  MEDIA_CARD: { width: 250, height: 190 },
+  PORTRAIT: { width: 634, height: 345 },
   PORTRAIT_PDF: { width: 376, height: 530 },
 } as const;
 
 export const CONTENT_THUMBNAIL_PREVIEW = {
-  MEDIA_CARD: { maxWidth: "71px", minHeight: "100px" },
+  MEDIA_CARD: { maxWidth: "131px", minHeight: "100px" },
   PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
   PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
 } as const;
@@ -268,12 +268,12 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   },
 
   [IMAGE_TYPE.MEDIA_CARD]: {
-    maxWidth: "71px",
+    maxWidth: "131px",
     minHeight: "100px",
     aspectRatio: `${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.width} / ${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.height}`,
     tablet: {
-      maxWidth: "55px",
-      minHeight: "78px",
+      maxWidth: "100px",
+      minHeight: "76px",
     },
   },
 

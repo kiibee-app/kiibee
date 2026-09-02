@@ -1,9 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { s3 } from 'src/services/s3.client';
 
+import { resolvePlayableFileUrl } from 'src/utils/resolvePlayableFileUrl';
 import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
@@ -62,21 +63,19 @@ export class FileUploadService {
     };
   }
 
-  async getSignedUrl(key: string) {
+  async getSignedUrl(key: string, apiBaseUrl?: string) {
     const externalUrl = await this.resolveImportedMediaUrl.findExternalUrl(key);
 
     if (externalUrl) {
       return externalUrl;
     }
 
-    const command = new GetObjectCommand({
-      Bucket: process.env.DO_BUCKET!,
-      Key: key,
-    });
+    const url = await resolvePlayableFileUrl(key, apiBaseUrl);
+    if (!url) {
+      throw new BadRequestException('Media file not found');
+    }
 
-    return await getSignedUrl(s3, command, {
-      expiresIn: 3600,
-    });
+    return url;
   }
 
   getMimeType(extension: string) {

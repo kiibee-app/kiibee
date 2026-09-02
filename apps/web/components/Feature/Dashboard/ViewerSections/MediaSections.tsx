@@ -254,6 +254,7 @@ export default function MediaSections({
                   <GenericCard
                     key={item.id}
                     coverImage
+                    imageAspectRatio="1 / 1"
                     image={item.thumbSrc}
                     title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
                     subtitle={

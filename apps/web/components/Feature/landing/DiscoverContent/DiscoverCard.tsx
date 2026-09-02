@@ -32,11 +32,11 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   const handleOpen = () => {
-    navigateToContent(targetHref, false);
+    navigateToContent(targetHref);
   };
 
   const handleActionClick = (href: string) => {
-    navigateToContent(href, false);
+    navigateToContent(href);
   };
 
   const stopCardNavigation = (event: MouseEvent) => {
@@ -46,6 +46,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   return (
     <GenericCard
       coverImage
+      imageAspectRatio="1 / 1"
       image={item.image}
       alt={safeT(item.titleKey)}
       badge={

@@ -6,9 +6,10 @@ import {
   Post,
   Query,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
-import type { FastifyRequest } from 'fastify';
+import type { FastifyReply, FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
@@ -18,6 +19,21 @@ import { validateImageMagicNumber } from '../../utils/file-validation.util';
 import { ROLE } from 'src/utils/constant';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
+
+function firstHeader(value: string | string[] | undefined): string | undefined {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function apiBaseFromRequest(req: FastifyRequest): string {
+  const proto =
+    firstHeader(req.headers['x-forwarded-proto']) || req.protocol || 'http';
+  const host =
+    firstHeader(req.headers['x-forwarded-host']) ||
+    req.headers.host ||
+    'localhost:4001';
+
+  return `${proto}://${host}/api/v1`;
+}
 
 @Controller('media')
 export class MediaController {
@@ -83,10 +99,23 @@ export class MediaController {
   }
 
   @Get('file/signed-url')
-  async getSignedUrl(@Query('key') key: string) {
+  async getSignedUrl(@Query('key') key: string, @Req() req: FastifyRequest) {
     return {
-      url: await this.mediaService.fileUpload.getSignedUrl(key),
+      url: await this.mediaService.fileUpload.getSignedUrl(
+        key,
+        apiBaseFromRequest(req),
+      ),
     };
+  }
+
+  @Get('legacy-file')
+  streamLegacyFile(
+    @Query('key') key: string,
+    @Query('exp') exp: string,
+    @Query('sig') sig: string,
+    @Res() reply: FastifyReply,
+  ) {
+    return this.mediaService.streamLegacyFile({ key, exp, sig, reply });
   }
 
   @Post('images/upload')
@@ -141,9 +170,18 @@ export class MediaController {
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('signed-url')
-  async getMediaSignedUrl(@Query('key') key: string) {
+  async getMediaSignedUrl(
+    @Query('key') key: string,
+    @Req() req: FastifyRequest,
+  ) {
+    const role = (req as FastifyRequest & { user?: { role?: string } }).user
+      ?.role;
+
     return {
-      url: await this.mediaService.getMediaSignedUrl(key),
+      url: await this.mediaService.getMediaSignedUrl(key, {
+        apiBaseUrl: apiBaseFromRequest(req),
+        recordView: role !== ROLE.ADMIN,
+      }),
     };
   }
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Film, Play, X } from "lucide-react";
+import { ArrowLeft, Play, X } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   useContentEngagement,
@@ -35,8 +35,6 @@ import {
 import {
   BackLink,
   ContentThumb,
-  ContentThumbFallback,
-  ContentThumbImage,
   DetailsLayout,
   DetailsSection,
   DetailsSectionBody,
@@ -55,6 +53,7 @@ import {
   StatsRow,
   ViewersState,
 } from "../viewers/Viewers.styles";
+import { ContentThumbnail } from "../../common/ContentThumbnail";
 
 const ENGAGEMENT_TAB = {
   PURCHASES: "purchases",
@@ -150,6 +149,9 @@ export function CreatorContentEngagement({
   };
 
   const handleClosePreview = () => {
+    if (previewUrl?.startsWith("blob:")) {
+      URL.revokeObjectURL(previewUrl);
+    }
     setPreviewOpen(false);
     setPreviewUrl(null);
     setPreviewFormat(null);
@@ -188,13 +190,12 @@ export function CreatorContentEngagement({
             overflow: "hidden",
           }}
         >
-          {content.thumbnailUrl ? (
-            <ContentThumbImage src={content.thumbnailUrl} alt={content.title} />
-          ) : (
-            <ContentThumbFallback>
-              <Film size={32} />
-            </ContentThumbFallback>
-          )}
+          <ContentThumbnail
+            src={content.thumbnailUrl}
+            alt={content.title}
+            contentType={content.contentType}
+            size={32}
+          />
         </ContentThumb>
         <ProfileInfo>
           <ProfileName>{content.title}</ProfileName>

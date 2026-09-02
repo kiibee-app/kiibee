@@ -21,6 +21,10 @@ import {
   normalizeContentTypeValue,
 } from "@/utils/content";
 import {
+  getVimeoEmbedUrl,
+  getYouTubeEmbedUrl,
+  isVimeoUrl,
+  isYouTubeUrl,
   resolveCloudflareStreamPlaybackUrl,
   resolveContentThumbnailCandidates,
 } from "@/utils/media";
@@ -183,7 +187,20 @@ export const resolveContentPlaybackUrl = (
   const contentUrl = getContentUrl(content);
   const fileKey = getContentMediaKey(content);
 
+  if (isYouTubeUrl(contentUrl)) {
+    return getYouTubeEmbedUrl(contentUrl);
+  }
+  if (isVimeoUrl(contentUrl)) {
+    return getVimeoEmbedUrl(contentUrl);
+  }
+
   if (contentType === FORMAT_TYPE.WEB) {
+    if (isYouTubeUrl(contentUrl)) {
+      return getYouTubeEmbedUrl(contentUrl);
+    }
+    if (isVimeoUrl(contentUrl)) {
+      return getVimeoEmbedUrl(contentUrl);
+    }
     return contentUrl;
   }
 
