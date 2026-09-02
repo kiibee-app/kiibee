@@ -2189,7 +2189,7 @@
         "title": "Miniature",
         "mediaCardLabel": "Upload miniature til mediekortet",
         "mediaCardSize": "Brug størrelse {{width}}x{{height}} pixel billede",
-        "portraitLabel": "Upload miniature til portrætformat",
+        "portraitLabel": "Upload miniature til landskabsformat",
         "portraitSize": "Brug størrelse {{width}}x{{height}} pixel billede",
         "portraitPdfSize": "Brug størrelse {{width}}x{{height}} pixel billede"
       }

@@ -38,7 +38,6 @@ import {
   HeroWrapper,
   TopBar,
   BackButtonWrapper,
-  Section as HeroSection,
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
@@ -233,10 +232,6 @@ export default function SingleCollectionDetail({
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
   const handlePricingActionClick = (action: PricingAction) => {
-    if (!user?.id) {
-      setLoginModalVisible(true);
-      return;
-    }
     if (user?.role === ROLE_CREATOR) {
       setShowCreatorModal1(true);
       return;

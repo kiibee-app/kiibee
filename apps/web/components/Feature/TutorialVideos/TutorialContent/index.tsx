@@ -85,6 +85,7 @@ function QuickguideItemCard({
     <>
       <GenericCard
         coverImage
+        imageAspectRatio="1 / 1"
         image={guide.thumbnailUrl ?? undefined}
         imageInitials={guide.thumbnailUrl ? undefined : "PDF"}
         alt={guide.title}

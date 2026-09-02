@@ -3,12 +3,15 @@
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import { API_ENDPOINTS } from "../../utils/constants";
+import { contentPreviewLabels } from "../../utils/contentConfig";
 import {
   CONTENT_FORMAT,
+  isCloudflareStreamVideoId,
+  isEmbedVideoUrl,
   normalizeContentFormat,
+  toEmbeddablePreviewUrl,
   type ContentFormat,
 } from "../../utils/contentMedia";
-import { contentPreviewLabels } from "../../utils/contentConfig";
 
 type MediaPreviewPayload = {
   url?: string;
@@ -35,14 +38,6 @@ export type ContentMediaPreviewResult = {
   format: ContentFormat;
 };
 
-function buildEndpoint(format: ContentFormat, fileKey: string) {
-  const query = `?key=${encodeURIComponent(fileKey)}`;
-  if (format === CONTENT_FORMAT.VIDEO) {
-    return `${API_ENDPOINTS.MEDIA_VIDEO_STREAM}${query}`;
-  }
-  return `${API_ENDPOINTS.MEDIA_SIGNED_URL}${query}`;
-}
-
 function resolvePreviewUrl(
   response: MediaPreviewResponse,
   fallbackUrl?: string | null,
@@ -65,24 +60,32 @@ export function useContentMediaPreview() {
       const fileKey = input.fileKey?.trim() || null;
       const contentUrl = input.contentUrl?.trim() || null;
 
+      if (contentUrl && isEmbedVideoUrl(contentUrl)) {
+        return { url: toEmbeddablePreviewUrl(contentUrl), format };
+      }
+
       if (format === CONTENT_FORMAT.WEB) {
         if (!contentUrl) {
           throw new Error(contentPreviewLabels.noWebLink);
         }
-        return { url: contentUrl, format };
+        return { url: toEmbeddablePreviewUrl(contentUrl), format };
       }
 
       if (!fileKey) {
         if (contentUrl) {
-          return { url: contentUrl, format };
+          return { url: toEmbeddablePreviewUrl(contentUrl), format };
         }
         throw new Error(contentPreviewLabels.noMediaFile);
       }
 
-      const response = await apiClient<MediaPreviewPayload>(
-        buildEndpoint(format, fileKey),
-        { method: "GET" },
-      );
+      const endpoint =
+        format === CONTENT_FORMAT.VIDEO && isCloudflareStreamVideoId(fileKey)
+          ? `${API_ENDPOINTS.MEDIA_VIDEO_STREAM}?key=${encodeURIComponent(fileKey)}`
+          : `${API_ENDPOINTS.MEDIA_SIGNED_URL}?key=${encodeURIComponent(fileKey)}`;
+
+      const response = await apiClient<MediaPreviewPayload>(endpoint, {
+        method: "GET",
+      });
 
       const raw = response as unknown as MediaPreviewResponse;
 
@@ -98,6 +101,26 @@ export function useContentMediaPreview() {
         throw new Error(
           raw.message || contentPreviewLabels.failedMediaPreviewUrl,
         );
+      }
+
+      const shouldBlobPreview =
+        (format === CONTENT_FORMAT.PDF ||
+          format === CONTENT_FORMAT.AUDIO ||
+          format === CONTENT_FORMAT.EPUB) &&
+        url.includes("/media/legacy-file");
+
+      if (shouldBlobPreview) {
+        const fileResponse = await fetch(url);
+        if (!fileResponse.ok) {
+          throw new Error(contentPreviewLabels.failedMediaPreviewUrl);
+        }
+
+        const blob = await fileResponse.blob();
+        if (/html|xml/i.test(blob.type)) {
+          throw new Error(contentPreviewLabels.failedMediaPreviewUrl);
+        }
+
+        return { url: URL.createObjectURL(blob), format };
       }
 
       return { url, format };

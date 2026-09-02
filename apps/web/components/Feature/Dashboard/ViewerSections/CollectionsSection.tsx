@@ -112,7 +112,7 @@ export default function CollectionsSection({
     (href?: string) => (e: React.MouseEvent) => {
       stopPropagation(e);
       if (href) {
-        navigateToContent(href, false);
+        navigateToContent(href);
       }
     },
     [navigateToContent, stopPropagation],
