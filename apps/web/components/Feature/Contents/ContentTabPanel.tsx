@@ -18,7 +18,11 @@ import AppearanceContent from "./Appearance";
 import AdmissionRequirements from "./AdmissionRequirements";
 import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
-import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
+import {
+  COLLECTION_TABLE_TYPE,
+  CollectionTableType,
+  isSingleContentCollectionName,
+} from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import { PlaceholderLine } from "./styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
@@ -154,6 +158,12 @@ export default function ContentTabPanel({
     );
   }, [collectionContents, searchValue, selectedCollection]);
 
+  const visibleCollections = useMemo(() => {
+    return collections.filter(
+      (c) => !(isSingleContentCollectionName(c.name) && c.contentsCount === 0),
+    );
+  }, [collections]);
+
   const renderCollectionsContent = () => {
     if (selectedCollection) {
       const data = filteredCollectionContents;
@@ -194,7 +204,7 @@ export default function ContentTabPanel({
       );
     }
 
-    if (collections.length === 0) {
+    if (visibleCollections.length === 0) {
       return (
         <GenericEmptyState
           title={t("contents.emptyCollection.title")}
@@ -206,7 +216,7 @@ export default function ContentTabPanel({
     return (
       <CollectionTable
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
-        data={collections}
+        data={visibleCollections}
         searchValue={searchValue}
         onRowClick={setSelectedCollection}
         onMoveUp={handleMoveUp}
