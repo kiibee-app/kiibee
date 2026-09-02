@@ -202,6 +202,7 @@ export default function CollectionItemCard({
           image={video.image}
           imageFallback={FALLBACK_THUMBNAIL_SRC}
           coverImage
+          imageAspectRatio="1 / 1"
           alt={video.title}
           title={title}
           subtitle={subtitle}
