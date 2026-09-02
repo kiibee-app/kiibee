@@ -46,15 +46,11 @@ import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
-import { resolveImageUrl } from "@/utils/media";
+import { isEmbeddableVideoUrl, resolveImageUrl } from "@/utils/media";
 import { openInNewTab } from "@/utils/common";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import { useLogout } from "@/hooks/auth/useLogout";
-import {
-  isBuyActionLabel,
-  isRentActionLabel,
-} from "@/utils/contentPricingActions";
 
 import { useSearchParams } from "next/navigation";
 
@@ -180,16 +176,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     return actions.map((action) => {
-      const isPurchase =
-        action.label
-          .toLowerCase()
-          .includes(t("pricingLabels.buy").toLowerCase()) ||
-        isBuyActionLabel(action.label);
-      const isRental =
-        action.label
-          .toLowerCase()
-          .includes(t("pricingLabels.rent").toLowerCase()) ||
-        isRentActionLabel(action.label);
+      const normalizedLabel = action.label.toLowerCase();
+      const isPurchase = normalizedLabel.includes(
+        t("pricingLabels.buy").toLowerCase(),
+      );
+      const isRental = normalizedLabel.includes(
+        t("pricingLabels.rent").toLowerCase(),
+      );
 
       if (!isPurchase && !isRental) {
         return {
@@ -202,6 +195,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
+          if (!user?.id) {
+            handleShowLoginModal(
+              t("createProfileHome.latestUpload.loginModal.message"),
+            );
+            return;
+          }
           if (user?.role === ROLE_CREATOR) {
             setShowCreatorModal1(true);
             return;
@@ -219,9 +218,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId,
     createOrderMutation,
     handleActionClick,
+    handleShowLoginModal,
     primaryAction,
     primaryActions,
     t,
+    user?.id,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -287,40 +288,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = useCallback(async () => {
-    if (isWebType && previewMediaUrl) {
-      openInNewTab(previewMediaUrl);
-      return;
-    }
-
-    const actionLabel = primaryAction?.label ?? "";
-    const isPurchaseAction =
-      actionLabel
-        .toLowerCase()
-        .includes(t("pricingLabels.buy").toLowerCase()) ||
-      isBuyActionLabel(actionLabel);
-    const isRentalAction =
-      actionLabel
-        .toLowerCase()
-        .includes(t("pricingLabels.rent").toLowerCase()) ||
-      isRentActionLabel(actionLabel);
-
-    if (isPurchaseAction || isRentalAction) {
-      if (user?.role === ROLE_CREATOR) {
-        setShowCreatorModal1(true);
-        return;
-      }
-      setSelectedAction({
-        label: primaryAction?.label as string,
-        subtitle: primaryAction?.subtitle,
-        isPurchase: isPurchaseAction,
-      });
-
-      setShowPurchaseModal(true);
-      return;
-    }
-
     if (!user?.id) {
       handleShowLoginModal();
+      return;
+    }
+
+    if (
+      isWebType &&
+      previewMediaUrl &&
+      !isEmbeddableVideoUrl(previewMediaUrl) &&
+      !isEmbeddableVideoUrl(hero.contentUrl)
+    ) {
+      openInNewTab(previewMediaUrl);
       return;
     }
 
@@ -340,7 +319,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         typeof accessMeta.value === STRING &&
         accessMeta.value !== ACCESS_TYPE_FREE;
 
-      if (isPaid) {
+      if (isPaid && !user?.id) {
         handleShowLoginModal();
       }
       return;
@@ -351,15 +330,38 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    const mediaUrl = await fetchMediaUrl();
-    if (mediaUrl) {
-      setShowPreviewModal(true);
+    const actionLabel = primaryAction?.label?.toLowerCase();
+    const isPurchaseAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+    );
+    const isRentalAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+    );
+
+    if (isPurchaseAction || isRentalAction) {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
+      setSelectedAction({
+        label: primaryAction?.label as string,
+        subtitle: primaryAction?.subtitle,
+        isPurchase: isPurchaseAction,
+      });
+
+      setShowPurchaseModal(true);
+    } else {
+      const mediaUrl = await fetchMediaUrl();
+      if (mediaUrl) {
+        setShowPreviewModal(true);
+      }
     }
   }, [
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
     handleShowLoginModal,
+    hero.contentUrl,
     isWebType,
     metaItems,
     previewMediaUrl,

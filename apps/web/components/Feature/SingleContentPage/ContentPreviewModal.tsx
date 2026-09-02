@@ -65,6 +65,24 @@ export default function ContentPreviewModal({
   if (!visible || !canUseDOM) return null;
 
   const renderContent = () => {
+    const videoEmbed = (() => {
+      if (isCloudflareStreamEmbedUrl(src)) return src;
+      if (isYouTubeUrl(src)) return getYouTubeEmbedUrl(src);
+      if (isVimeoUrl(src)) return getVimeoEmbedUrl(src);
+      return null;
+    })();
+
+    const renderVideoFrame = (embedSrc: string) => (
+      <PreviewContent
+        as="iframe"
+        src={embedSrc}
+        title={title}
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+        style={{ background: COLORS.primary.BLACK }}
+      />
+    );
+
     switch (type) {
       case FORMAT_TYPE.PDF:
         return (
@@ -76,6 +94,9 @@ export default function ContentPreviewModal({
           />
         );
       case FORMAT_TYPE.WEB:
+        if (videoEmbed) {
+          return renderVideoFrame(videoEmbed);
+        }
         return (
           <PreviewContent as="iframe" src={src} title={title} allowFullScreen />
         );
@@ -86,41 +107,8 @@ export default function ContentPreviewModal({
           </PreviewContent>
         );
       case FORMAT_TYPE.VIDEO:
-        if (isCloudflareStreamEmbedUrl(src)) {
-          return (
-            <PreviewContent
-              as="iframe"
-              src={src}
-              title={title}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              style={{ background: COLORS.primary.BLACK }}
-            />
-          );
-        }
-        if (isYouTubeUrl(src)) {
-          return (
-            <PreviewContent
-              as="iframe"
-              src={getYouTubeEmbedUrl(src)}
-              title={title}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              style={{ background: COLORS.primary.BLACK }}
-            />
-          );
-        }
-        if (isVimeoUrl(src)) {
-          return (
-            <PreviewContent
-              as="iframe"
-              src={getVimeoEmbedUrl(src)}
-              title={title}
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
-              allowFullScreen
-              style={{ background: COLORS.primary.BLACK }}
-            />
-          );
+        if (videoEmbed) {
+          return renderVideoFrame(videoEmbed);
         }
         return (
           <PreviewContent

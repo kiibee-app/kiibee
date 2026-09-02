@@ -480,6 +480,12 @@ export function isThirdPartyVideoUrl(src: string): boolean {
   return isYouTubeUrl(src) || isVimeoUrl(src);
 }
 
+export function isEmbeddableVideoUrl(url?: string | null): boolean {
+  return (
+    isYouTubeUrl(url) || isVimeoUrl(url) || isCloudflareStreamEmbedUrl(url)
+  );
+}
+
 function withAutoplay(embedUrl: string): string {
   const separator = embedUrl.includes("?") ? "&" : "?";
   return `${embedUrl}${separator}autoplay=1`;
