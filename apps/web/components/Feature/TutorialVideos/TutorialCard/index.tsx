@@ -167,15 +167,18 @@ function TutorialCard({
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
-      const msg = isPurchaseOrRent
-        ? t("createProfileHome.latestUpload.loginModal.message")
-        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+      if (isPurchaseOrRent) {
+        navigateToContent(targetHref);
+        return;
+      }
+
+      const msg = t("createProfileHome.latestUpload.loginModal.viewMessage");
 
       handleShowLoginModal(targetHref, msg);
       return;
     }
 
-    navigateToContent(targetHref, button.requiresAuth ?? false);
+    navigateToContent(targetHref);
   };
 
   const creatorSubtitle = tutorial.creatorId ? (
@@ -289,7 +292,7 @@ function TutorialCard({
       message={loginModalMessage}
       onSuccess={() => {
         if (pendingRedirectUrl) {
-          navigateToContent(pendingRedirectUrl, true);
+          navigateToContent(pendingRedirectUrl);
           setPendingRedirectUrl("");
         }
       }}
