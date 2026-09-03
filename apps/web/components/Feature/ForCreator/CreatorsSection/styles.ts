@@ -182,7 +182,8 @@ export const CardImage = styled.img`
   display: block;
   pointer-events: none;
   user-select: none;
-  will-change: transform, filter;
+  transform: translateZ(0);
+  will-change: transform;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
   ${media.tablet} {

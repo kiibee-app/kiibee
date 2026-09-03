@@ -100,12 +100,10 @@ export function useCreatorsGsap({
             autoAlpha: LANDING_MOTION.hiddenAlpha,
             scale: 0.92,
             y: 50,
-            filter: HERO_MOTION.blurFrom,
           },
           {
             autoAlpha: LANDING_MOTION.visibleAlpha,
-            filter: HERO_MOTION.blurTo,
-            clearProps: "transform,filter",
+            clearProps: "transform",
             duration: HERO_MOTION.cardEntranceDuration,
             scale: LANDING_MOTION.defaultScaleTo,
             stagger: HERO_MOTION.cardEntranceStagger,
