@@ -127,11 +127,16 @@ export const Card = styled.div<CardProps>`
   will-change: height, transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
   transition:
     height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   background: ${({ theme }) => theme.colors.primary.BLACK};
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+  }
 
   &::after {
     content: "";
