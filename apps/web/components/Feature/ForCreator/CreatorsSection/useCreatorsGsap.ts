@@ -41,28 +41,38 @@ export function useCreatorsGsap({
         return;
       }
 
+      const images = cardElements
+        .map((card) => card.querySelector<HTMLElement>("img"))
+        .filter((img): img is HTMLElement => Boolean(img));
+
       gsap.set(cardElements, {
         transformOrigin: "50% 100%",
       });
+
+      if (images.length > 0) {
+        gsap.set(images, {
+          scale: 1.15,
+          transformOrigin: "50% 50%",
+        });
+      }
 
       gsap
         .timeline({
           defaults: {
             ease: LANDING_MOTION.easePower3Out,
+            force3D: true,
           },
         })
         .fromTo(
           heading,
           {
             autoAlpha: LANDING_MOTION.hiddenAlpha,
-            filter: HERO_MOTION.blurFrom,
             yPercent: 40,
           },
           {
             autoAlpha: LANDING_MOTION.visibleAlpha,
-            clearProps: "filter,transform",
+            clearProps: "transform",
             duration: HERO_MOTION.textDuration,
-            filter: HERO_MOTION.blurTo,
             stagger: HERO_MOTION.textStagger,
             yPercent: LANDING_MOTION.defaultPositionTo,
           },
@@ -88,21 +98,31 @@ export function useCreatorsGsap({
           cardElements,
           {
             autoAlpha: LANDING_MOTION.hiddenAlpha,
+            scale: 0.92,
+            y: 50,
             filter: HERO_MOTION.blurFrom,
-            scale: 0.96,
-            y: 40,
           },
           {
             autoAlpha: LANDING_MOTION.visibleAlpha,
-            clearProps: "filter,transform",
-            duration: HERO_MOTION.cardEntranceDuration,
             filter: HERO_MOTION.blurTo,
+            clearProps: "transform,filter",
+            duration: HERO_MOTION.cardEntranceDuration,
             scale: LANDING_MOTION.defaultScaleTo,
             stagger: HERO_MOTION.cardEntranceStagger,
             y: LANDING_MOTION.defaultPositionTo,
           },
           "-=0.48",
         );
+
+      if (images.length > 0) {
+        gsap.to(images, {
+          scale: 1,
+          duration: HERO_MOTION.cardEntranceDuration + 0.3,
+          ease: "power2.out",
+          stagger: HERO_MOTION.cardEntranceStagger,
+          clearProps: "transform",
+        });
+      }
     }, section);
 
     return () => ctx.revert();

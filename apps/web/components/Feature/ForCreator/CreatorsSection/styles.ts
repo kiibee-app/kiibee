@@ -124,8 +124,13 @@ export const Card = styled.div<CardProps>`
   overflow: hidden;
   cursor: pointer;
   touch-action: manipulation;
-  will-change: height;
-  transition: height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: height, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition:
+    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   background: ${({ theme }) => theme.colors.primary.BLACK};
 
   &::after {
@@ -139,6 +144,7 @@ export const Card = styled.div<CardProps>`
       ${({ theme }) => theme.colors.primary.BLACK_20} 100%
     );
     pointer-events: none;
+    transition: opacity 0.5s ease;
   }
 
   ${media.tablet} {
@@ -154,6 +160,10 @@ export const Card = styled.div<CardProps>`
     outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
     outline-offset: 4px;
   }
+
+  &:hover img {
+    transform: scale(1.06);
+  }
 `;
 
 export const CardImage = styled.img`
@@ -167,6 +177,8 @@ export const CardImage = styled.img`
   display: block;
   pointer-events: none;
   user-select: none;
+  will-change: transform, filter;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
   ${media.tablet} {
     height: 220px;
