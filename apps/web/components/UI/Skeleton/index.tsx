@@ -35,7 +35,7 @@ export default function Skeleton() {
 function TutorialCardSkeleton() {
   return (
     <GenericCardWrapper $coverImage={true}>
-      <SkeletonImageWrapper $coverImage={true}>
+      <SkeletonImageWrapper $coverImage={true} $imageAspectRatio="1 / 1">
         <SkeletonImage />
       </SkeletonImageWrapper>
       <GenericCardContent>
