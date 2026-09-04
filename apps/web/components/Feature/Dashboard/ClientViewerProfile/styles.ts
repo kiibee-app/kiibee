@@ -4,11 +4,34 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 
 export const HeaderRow = styled.div`
+  position: sticky;
+  top: -10px;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 28px;
+  margin: -40px -30px 28px -30px;
+  padding: 40px 30px 16px 30px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+
+  ${media.desktop} {
+    top: -8px;
+    margin: -38px -30px 28px -30px;
+    padding: 38px 30px 16px 30px;
+  }
+
+  ${media.tablet} {
+    top: -8px;
+    margin: -32px -20px 28px -20px;
+    padding: 32px 20px 16px 20px;
+  }
+
+  ${media.mobileLg} {
+    top: -8px;
+    margin: -28px -16px 28px -16px;
+    padding: 28px 16px 16px 16px;
+  }
 
   ${media.mobile} {
     align-items: flex-start;
