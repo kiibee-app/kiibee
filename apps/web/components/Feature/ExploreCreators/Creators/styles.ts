@@ -134,7 +134,6 @@ export const SkeletonCard = styled.div`
   border-radius: 12px;
   gap: 8px;
   align-items: stretch;
-  min-height: 280px;
   width: 100%;
   max-width: 100%;
   box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
@@ -142,9 +141,8 @@ export const SkeletonCard = styled.div`
 
 export const SkeletonImage = styled.div`
   width: 100%;
-  min-height: 200px;
   border-radius: 12px 12px 0 0;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 1 / 1;
   ${shimmer}
 `;
 
