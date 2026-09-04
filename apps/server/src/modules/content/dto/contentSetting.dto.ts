@@ -4,6 +4,8 @@ export const contentSettingsEnumValues = [
   'free',
   'set_password',
   'request_email',
+  'payment',
+  'paid',
 ] as const;
 
 export type AccessType = (typeof contentSettingsEnumValues)[number];

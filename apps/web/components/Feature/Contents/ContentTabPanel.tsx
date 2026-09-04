@@ -250,8 +250,8 @@ export default function ContentTabPanel({
         onChangePurchaseAmount={setCollectionPurchaseAmount}
         accessDuration={collectionAccessDuration}
         onChangeAccessDuration={setCollectionAccessDuration}
-        showDescription={Boolean(selectedCollection)}
-        showPaymentOption={Boolean(selectedCollection)}
+        showDescription={true}
+        showPaymentOption={true}
         onValidationChange={onPasswordValidationChange}
         hasPassword={collectionHasPassword}
         passwordCount={selectedCollection?.passwordCount}
