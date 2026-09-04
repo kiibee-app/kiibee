@@ -483,32 +483,31 @@
       }
     },
     "howToGetStarted": {
-      "title": "How Kiibee helps you sell more",
-      "subtitle": "More than a platform. A partner in growing your business.",
+      "title": "How to get started as a publisher",
       "steps": {
-        "getDiscovered": {
-          "title": "Get discovered",
-          "description": "Your content can be featured across the Kiibee platform, newsletters, social media, and curated campaigns—helping more people find your work."
+        "createProfile": {
+          "title": "Create your profile",
+          "description": "Create your profile quickly and easily, and set up your layout in the theme you want with images and colors."
         },
-        "frictionlessPayments": {
-          "title": "Frictionless payments",
-          "description": "Make buying effortless with MobilePay, Apple Pay, Google Pay, and major credit and debit cards."
+        "uploadAndPublish": {
+          "title": "Upload and publish",
+          "description": "Upload video, PDF, audio, and other files to your profile, choose a payment method, and make the content public for your customers. Purchases are easy with MobilePay, Apple Pay, Google Pay, and most credit and debit cards."
         },
-        "sellFromOwnWebsite": {
-          "title": "Sell from your own website",
-          "description": "Keep your audience on your own website while Kiibee securely handles payments, access, and content delivery."
+        "connectWebsite": {
+          "title": "Connect your website",
+          "description": "Let us help you connect your profile to your own website so your customers can easily purchase your content."
         },
-        "promotionsDiscountCodes": {
-          "title": "Promotions & Discount Codes",
-          "description": "Launch discount codes, limited-time offers, campaigns, and product releases to engage your audience and increase sales."
+        "launchPromotions": {
+          "title": "Launch promotions",
+          "description": "Launch discount codes, limited-time offers, promotions, and product launches to engage your audience and increase sales."
         },
-        "dataThatDrivesGrowth": {
-          "title": "Data that drives growth",
-          "description": "Understand your audience with insights into sales, customer behaviour, top-performing content, and revenue trends."
+        "trackSales": {
+          "title": "Track your sales",
+          "description": "Track your sales on your dashboard, with daily updates so you are always up to date on your business."
         },
-        "focusOnCreating": {
-          "title": "Focus on Creating",
-          "description": "Spend more time creating while Kiibee manages payments, streaming, downloads, access control, and platform infrastructure."
+        "reachCustomers": {
+          "title": "Reach the right customers",
+          "description": "Sit back and see how we help you expose your content to the right customers through newsletters, social media, and advertising."
         }
       }
     },

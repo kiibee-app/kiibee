@@ -109,29 +109,12 @@ export const Title = styled.h2`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
   margin-top: 0;
   text-align: center;
 
   @media (min-width: ${breakpoints.tablet}) {
   }
-`;
-
-export const Subtitle = styled.p`
-  ${({ theme }) => theme.typography.H5_Medium};
-  color: ${COLORS.gradient.NEAR_BLACK};
-  font-family:
-    "Reddit Sans",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.4;
-  margin: 0;
-  text-align: center;
 `;
 
 export const StepsContainer = styled.div`
