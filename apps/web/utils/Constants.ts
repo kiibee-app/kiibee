@@ -445,6 +445,7 @@ export const MARQUEE_LIMIT = 8;
 export const EXPLORE_PAGE_SIZE = 12;
 export const EXPLORE_INITIAL_PAGE_SIZE = 24;
 export const TOP_CREATORS_LIMIT = 20;
+export const TOP_CREATORS_VISIBLE = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 export const SKELETON_COUNT = 5;
