@@ -18,20 +18,20 @@ export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
     id: 1,
     titleKey: "creators.howToGetStarted.steps.createProfile.title",
     descriptionKey: "creators.howToGetStarted.steps.createProfile.description",
-    image: imgFocusOnCreating,
+    image: imgGetDiscovered,
   },
   {
     id: 2,
     titleKey: "creators.howToGetStarted.steps.uploadAndPublish.title",
     descriptionKey:
       "creators.howToGetStarted.steps.uploadAndPublish.description",
-    image: imgFrictionlessPayments,
+    image: imgFocusOnCreating,
   },
   {
     id: 3,
     titleKey: "creators.howToGetStarted.steps.connectWebsite.title",
     descriptionKey: "creators.howToGetStarted.steps.connectWebsite.description",
-    image: imgSellFromOwnWebsite,
+    image: imgFrictionlessPayments,
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
     id: 6,
     titleKey: "creators.howToGetStarted.steps.reachCustomers.title",
     descriptionKey: "creators.howToGetStarted.steps.reachCustomers.description",
-    image: imgGetDiscovered,
+    image: imgSellFromOwnWebsite,
   },
 ];
 
