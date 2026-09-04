@@ -1,6 +1,15 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css, keyframes } from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+
+export const CreatorTitle = styled(MonoText)`
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+`;
 
 export const PageWrapper = styled.div`
   width: 100%;

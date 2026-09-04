@@ -1,6 +1,12 @@
 "use client";
 
-import { Grid, LoadMoreRow, PageWrapper, EmptyState } from "./styles";
+import {
+  CreatorTitle,
+  Grid,
+  LoadMoreRow,
+  PageWrapper,
+  EmptyState,
+} from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -81,7 +87,9 @@ export default function ExploreCreators({
                   </MonoText>
                 ) : undefined
               }
-              title={<MonoText $use="Body_Medium">{creator.name}</MonoText>}
+              title={
+                <CreatorTitle $use="Body_Medium">{creator.name}</CreatorTitle>
+              }
               subtitle={
                 creator.uploadCount > 0 ? (
                   <MonoText
