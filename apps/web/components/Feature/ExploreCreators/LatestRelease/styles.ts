@@ -4,7 +4,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Section = styled.section`
-  width: min(100%, 1320px);
+  width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
   margin: 0 auto;
   padding: 2.5rem 0 3rem;
 
@@ -21,19 +21,8 @@ export const HeaderWrap = styled.div`
   gap: 1rem;
   margin-bottom: 1.35rem;
 
-  ${media.desktopMd} {
-    width: 100%;
-    padding: 0 25px;
-  }
-
-  ${media.desktop} {
-    width: 100%;
-    padding: 0 25px;
-  }
-
   ${media.tablet} {
     align-items: flex-start;
-    padding: 0;
   }
 `;
 
@@ -87,31 +76,20 @@ export const TabButton = styled(GenericButton)<{ $active?: boolean }>`
 
 export const ContentGrid = styled.div`
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  column-gap: 3.5rem;
+  grid-template-columns: ${GENERIC_CARD_LAYOUT.FILTERS_WIDTH} minmax(0, 1fr);
+  column-gap: ${GENERIC_CARD_LAYOUT.FILTERS_GAP};
   row-gap: 1rem;
   align-items: start;
-
-  ${media.desktopMd} {
-    width: 100%;
-    padding: 40px 25px;
-  }
-
-  ${media.desktop} {
-    width: 100%;
-    padding: 40px 25px;
-  }
 
   ${media.tablet} {
     grid-template-columns: 1fr;
     row-gap: 1.5rem;
-    padding: 0;
   }
 `;
 
 export const FiltersColumn = styled.aside`
   width: 100%;
-  max-width: 260px;
+  max-width: ${GENERIC_CARD_LAYOUT.FILTERS_WIDTH};
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -144,7 +122,6 @@ export const CardsGrid = styled.div`
 
 export const CardsColumn = styled.div`
   min-width: 0;
-  overflow: hidden;
 `;
 
 export const ResultsState = styled.div`

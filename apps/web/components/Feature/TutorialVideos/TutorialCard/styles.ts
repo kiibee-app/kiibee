@@ -14,13 +14,12 @@ export const CardLink = styled(Link)<{ $clickable?: boolean }>`
 `;
 
 export const CardTitle = styled(MonoText)`
-  display: -webkit-box;
+  display: block;
   overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: 1.2;
-  overflow-wrap: anywhere;
+  min-width: 0;
 `;
 
 export const CardCreator = styled(MonoText)`

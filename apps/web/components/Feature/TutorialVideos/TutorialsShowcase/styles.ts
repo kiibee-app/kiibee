@@ -11,7 +11,7 @@ export const Grid = styled.div<{
 }>`
   width: 100%;
   max-width: ${({ $maxWidth, $columnMax, $columns }) =>
-    $maxWidth ?? ($columnMax ? "100%" : $columns ? "1300px" : "1300px")};
+    $maxWidth ?? GENERIC_CARD_LAYOUT.CONTENT_WIDTH};
   margin: 0 auto;
   display: grid;
   grid-template-columns: ${({ $columnMax, $columns }) => {
@@ -19,12 +19,12 @@ export const Grid = styled.div<{
       return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
     }
     if ($columns) {
-      return `repeat(${$columns}, minmax(0, ${GENERIC_CARD_LAYOUT.WIDTH}))`;
+      return `repeat(${$columns}, ${GENERIC_CARD_LAYOUT.WIDTH})`;
     }
     return `repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH})`;
   }};
   gap: ${GENERIC_CARD_LAYOUT.GAP};
-  justify-content: ${({ $alignStart }) => ($alignStart ? "start" : "center")};
+  justify-content: start;
 
   ${media.desktop} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
@@ -32,7 +32,7 @@ export const Grid = styled.div<{
         return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
       }
       if ($columns) {
-        return `repeat(${Math.min($columns, 3)}, minmax(0, ${GENERIC_CARD_LAYOUT.WIDTH}))`;
+        return `repeat(${Math.min($columns, 3)}, ${GENERIC_CARD_LAYOUT.WIDTH})`;
       }
       return `repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH})`;
     }};

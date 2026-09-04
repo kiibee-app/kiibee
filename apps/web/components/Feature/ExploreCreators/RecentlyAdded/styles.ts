@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Section = styled.section`
-  width: min(100%, 1300px);
+  width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
   margin: 0 auto;
   padding: 30px 0 40px 0;
 
@@ -31,7 +32,7 @@ export const Content = styled.div`
 `;
 
 export const SectionTag = styled.span`
-  padding: 2.35rem 0.75rem;
+  padding: 0;
   border-radius: ${({ theme }) => theme.radius.sm};
 `;
 

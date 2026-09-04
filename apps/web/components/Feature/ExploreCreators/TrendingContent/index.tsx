@@ -5,7 +5,6 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
 import { SKELETON_COUNT } from "@/utils/Constants";
-import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import {
   Section,
   SectionTag,
@@ -71,7 +70,7 @@ export default function TrendingContent({ search }: { search?: string }) {
             </SectionTag>
           </SectionLabel>
         </SectionHeader>
-        <Grid $columnMax={GENERIC_CARD_LAYOUT.WIDTH}>
+        <Grid $columns={4} $alignStart>
           {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
             <Skeleton.Card key={i} />
           ))}
@@ -121,7 +120,7 @@ export default function TrendingContent({ search }: { search?: string }) {
           )}
         </HeaderActions>
       </SectionHeader>
-      <Grid $columnMax={GENERIC_CARD_LAYOUT.WIDTH}>
+      <Grid $columns={4} $alignStart>
         {isLoading
           ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
               <SkeletonCard key={i}>

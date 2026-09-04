@@ -1,8 +1,9 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Wrapper = styled.section`
-  width: min(100%, 1300px);
+  width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
   margin: 0 auto;
   padding: 40px 0;
 
@@ -40,14 +41,12 @@ export const SeeAll = styled.a`
 
 export const List = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  gap: 73px;
   align-self: stretch;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  padding-right: 2rem;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {

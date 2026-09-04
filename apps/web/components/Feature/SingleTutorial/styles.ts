@@ -449,13 +449,10 @@ export const CollectionTitle = styled.h3`
   margin: 0;
   align-self: stretch;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
   line-height: 1.2;
-  overflow-wrap: anywhere;
   ${({ theme }) => theme.typography.H5_Medium}
   font-weight: 500;
   text-decoration: none;
