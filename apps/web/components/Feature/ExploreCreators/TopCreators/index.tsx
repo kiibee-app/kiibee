@@ -29,7 +29,10 @@ import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators({ search }: { search?: string }) {
   const { t } = useTranslation();
-  const { creators, isLoading } = useExploreTopCreators(6, search);
+  const { creators, isLoading } = useExploreTopCreators(
+    TOP_CREATORS_LIMIT,
+    search,
+  );
 
   if (isLoading) {
     return (

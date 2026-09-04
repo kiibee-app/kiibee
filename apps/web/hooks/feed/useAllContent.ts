@@ -15,6 +15,7 @@ import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
+  EXPLORE_INITIAL_PAGE_SIZE,
   EXPLORE_PAGE_SIZE,
   SORT_OPTION_AZ,
   SORT_OPTION_NEW,
@@ -39,13 +40,13 @@ export function useAllContent(allContentId: string) {
   }, [allContentId]);
 
   const [sortOption, setSortOption] = useState<string>(initialSortOption);
-  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
+  const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
   const [prevAllContentId, setPrevAllContentId] = useState(allContentId);
 
   if (allContentId !== prevAllContentId) {
     setPrevAllContentId(allContentId);
     setSortOption(initialSortOption);
-    setLimit(EXPLORE_PAGE_SIZE);
+    setLimit(EXPLORE_INITIAL_PAGE_SIZE);
   }
 
   const {

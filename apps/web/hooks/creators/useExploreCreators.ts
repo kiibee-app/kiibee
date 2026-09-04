@@ -22,7 +22,11 @@ import {
   SORT_OPTION_NEWEST,
   type SortValue,
 } from "@/utils/sortOptions";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import {
+  EXPLORE_INITIAL_PAGE_SIZE,
+  LOAD_MORE_SIZE,
+  TOP_CREATORS_LIMIT,
+} from "@/utils/Constants";
 
 const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
 const BACKEND_SORT_NAME = "name";
@@ -147,8 +151,6 @@ function mapFilterToSortBy(filter?: string): string | undefined {
   return undefined;
 }
 
-const TOP_CREATORS_LIMIT = 6;
-
 export const useExploreCreators = (
   limit?: number,
   search?: string,
@@ -235,12 +237,14 @@ export const useExploreCreators = (
 
 type UsePaginatedExploreCreatorsArgs = {
   limit?: number;
+  pageSize?: number;
   search?: string;
   filter: string;
 };
 
 export const usePaginatedExploreCreators = ({
-  limit = EXPLORE_PAGE_SIZE,
+  limit = EXPLORE_INITIAL_PAGE_SIZE,
+  pageSize = LOAD_MORE_SIZE,
   search,
   filter,
 }: UsePaginatedExploreCreatorsArgs) => {
@@ -251,15 +255,17 @@ export const usePaginatedExploreCreators = ({
     queryKey: [
       API.creators.all,
       "paginated",
-      { limit, search: trimmedSearch, sortBy },
+      { limit, pageSize, search: trimmedSearch, sortBy },
     ],
     queryFn: async ({ pageParam, signal }) => {
+      const isFirstPage = pageParam === 1;
+      const requestLimit = isFirstPage ? limit : pageSize;
       const response = await axiosClient.get<ExploreCreatorsResponse>(
         API.creators.all,
         {
           params: {
             page: pageParam,
-            limit,
+            limit: requestLimit,
             ...(trimmedSearch && { search: trimmedSearch }),
             ...(sortBy && { sortBy }),
           },
@@ -269,14 +275,20 @@ export const usePaginatedExploreCreators = ({
       return response.data;
     },
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
+    getNextPageParam: (lastPage, allPages) => {
       const pagination = extractPagination(lastPage.data);
       if (!pagination) {
         return undefined;
       }
       const hasMore =
         pagination.hasMore ?? pagination.page < pagination.totalPages;
-      return hasMore ? pagination.page + 1 : undefined;
+      if (!hasMore) {
+        return undefined;
+      }
+      if (allPages.length === 1) {
+        return Math.floor(limit / pageSize) + 1;
+      }
+      return pagination.page + 1;
     },
     refetchOnWindowFocus: false,
   });

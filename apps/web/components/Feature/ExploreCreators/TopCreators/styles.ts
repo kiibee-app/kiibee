@@ -41,26 +41,26 @@ export const SeeAll = styled.a`
 
 export const List = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  padding-bottom: 0.25rem;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
   ${media.tablet} {
-    gap: 60px;
-    padding: 0 1.25rem 0.25rem 1.25rem;
+    gap: 28px;
   }
 
   ${media.mobile} {
-    gap: 50px;
-    padding: 0 1rem 0.25rem 1rem;
+    gap: 20px;
   }
 `;
 
@@ -69,6 +69,8 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   min-width: 150px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
   gap: 7px;
   text-decoration: none;
   color: inherit;
