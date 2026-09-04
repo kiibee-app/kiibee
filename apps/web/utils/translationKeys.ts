@@ -154,7 +154,6 @@ export const CREATORS = {
   popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
-    subtitle: "creators.howToGetStarted.subtitle",
   },
   marketing: {
     title: "creators.marketing.title",

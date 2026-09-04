@@ -15,7 +15,6 @@ import {
   ImageWrapper,
   ContentContainer,
   Title,
-  Subtitle,
   StepsContainer,
   StepWrapper,
   MobileStepImage,
@@ -102,7 +101,6 @@ export default function HowToGetStarted() {
     <Section>
       <HeaderWrapper>
         <Title>{t(CREATORS.howToGetStarted.title)}</Title>
-        <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
       </HeaderWrapper>
 
       <Container>

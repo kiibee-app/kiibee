@@ -484,31 +484,30 @@
     },
     "howToGetStarted": {
       "title": "Sådan kommer du i gang som udgiver",
-      "subtitle": "Mere end en platform. En partner i at vokse din forretning.",
       "steps": {
-        "getDiscovered": {
-          "title": "Bliv opdaget",
-          "description": "Dit indhold kan blive fremhævet på Kiibee-platformen, i nyhedsbreve, på sociale medier og i kuraterede kampagner — så flere finder dit arbejde."
+        "createProfile": {
+          "title": "Opret din profil",
+          "description": "Opret din profil hurtigt og nemt, og sæt dit layout op med det tema, de billeder og de farver, du ønsker."
         },
-        "frictionlessPayments": {
-          "title": "Ubesværet betaling",
-          "description": "Gør køb nemt med MobilePay, Apple Pay, Google Pay og de fleste kredit- og debetkort."
+        "uploadAndPublish": {
+          "title": "Upload og udgiv",
+          "description": "Upload video, PDF, lydfiler og andet indhold til din profil, vælg en betalingsmetode, og gør indholdet offentligt for dine kunder. Køb er nemt med MobilePay, Apple Pay, Google Pay og de fleste kredit- og debetkort."
         },
-        "sellFromOwnWebsite": {
-          "title": "Sælg fra din egen hjemmeside",
-          "description": "Behold dit publikum på din egen hjemmeside, mens Kiibee sikkert håndterer betalinger, adgang og indholdslevering."
+        "connectWebsite": {
+          "title": "Forbind din hjemmeside",
+          "description": "Lad os hjælpe dig med at forbinde din profil til din egen hjemmeside, så dine kunder nemt kan købe dit indhold."
         },
-        "promotionsDiscountCodes": {
-          "title": "Kampagner & rabatkoder",
+        "launchPromotions": {
+          "title": "Start kampagner",
           "description": "Start rabatkoder, tidsbegrænsede tilbud, kampagner og produktlanceringer for at engagere dit publikum og øge salget."
         },
-        "dataThatDrivesGrowth": {
-          "title": "Data der driver vækst",
-          "description": "Forstå dit publikum med indblik i salg, kundeadfærd, bedst præsterende indhold og omsætningstendenser."
+        "trackSales": {
+          "title": "Følg dit salg",
+          "description": "Følg dit salg på dit dashboard, hvor du får daglige opdateringer, så du altid er opdateret på din forretning."
         },
-        "focusOnCreating": {
-          "title": "Fokusér på at skabe",
-          "description": "Brug mere tid på at skabe, mens Kiibee håndterer betalinger, streaming, downloads, adgangskontrol og platforminfrastruktur."
+        "reachCustomers": {
+          "title": "Nå de rigtige kunder",
+          "description": "Læn dig tilbage, mens vi hjælper med at eksponere dit indhold for de rigtige kunder via nyhedsbreve, sociale medier og annoncering."
         }
       }
     },
