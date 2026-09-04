@@ -65,7 +65,7 @@ export const SkeletonVideo = styled(SkeletonBase)`
 
 export const SkeletonButton = styled(SkeletonBase)`
   width: 100%;
-  height: 2.5rem;
+  height: 33px;
   border-radius: 8px;
 `;
 
@@ -112,7 +112,7 @@ export const SkeletonVideoBox = styled(BaseVideoBox)`
 `;
 
 export const SkeletonCardFooter = styled(BaseCardFooter)`
-  margin-top: auto;
+  margin-top: 0;
 `;
 
 export const SkeletonCreatorCardWrapper = styled(BaseCreatorCardWrapper)`

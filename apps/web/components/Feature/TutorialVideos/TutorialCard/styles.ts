@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { MonoText } from "@/components/UI/Monotext";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const CardLink = styled(Link)<{ $clickable?: boolean }>`
   display: flex;
@@ -16,8 +17,18 @@ export const CardTitle = styled(MonoText)`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+`;
+
+export const CardCreator = styled(MonoText)`
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
 `;
 
 export const CardShell = styled.div`
@@ -116,12 +127,20 @@ export const VideoBox = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 0.313rem;
+  box-sizing: border-box;
   width: 100%;
-  height: 33px;
-  padding: 0.313rem 0.75rem;
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  flex-shrink: 0;
+  padding: 0 12px;
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  border-radius: ${({ theme }) => theme.radius.xl};
-  margin-top: 0.75rem;
+  border-radius: ${({ theme }) => theme.radius.md};
+
+  span {
+    font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+    font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+    line-height: 1;
+  }
 `;
 
 export const VideoLabel = styled.span`
@@ -131,14 +150,14 @@ export const VideoLabel = styled.span`
 `;
 
 export const ActionRow = styled.div`
-  margin-top: 0.85rem;
   width: 100%;
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 
   > * {
-    flex: 1;
+    flex: 1 0 auto;
     min-width: 0;
   }
 `;

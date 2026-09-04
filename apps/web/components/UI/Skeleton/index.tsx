@@ -4,7 +4,6 @@ import React from "react";
 import {
   SkeletonBase,
   SkeletonImage,
-  SkeletonCategory,
   SkeletonTitle,
   SkeletonSubtitle,
   SkeletonDate,
@@ -24,9 +23,12 @@ import {
   Card as GenericCardWrapper,
   Content as GenericCardContent,
   CardHeader,
+  CardTitleBlock,
   CardChildren,
+  CardActions,
 } from "@/components/UI/GenericCard/styles";
 import { Avatar as CreatorAvatar } from "@/components/Feature/ExploreCreators/TopCreators/styles";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export default function Skeleton() {
   return <SkeletonBase />;
@@ -34,26 +36,64 @@ export default function Skeleton() {
 
 function TutorialCardSkeleton() {
   return (
-    <GenericCardWrapper $coverImage={true}>
-      <SkeletonImageWrapper $coverImage={true} $imageAspectRatio="1 / 1">
+    <GenericCardWrapper
+      $coverImage={true}
+      $minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
+    >
+      <SkeletonImageWrapper
+        $coverImage={true}
+        $imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+      >
         <SkeletonImage />
       </SkeletonImageWrapper>
       <GenericCardContent>
         <CardHeader>
-          <SkeletonCategory />
-          <SkeletonTitle />
-          <SkeletonSubtitle />
-        </CardHeader>
-        <CardChildren>
+          <CardTitleBlock>
+            <SkeletonTitle />
+            <SkeletonSubtitle />
+          </CardTitleBlock>
           <SkeletonDate />
-          <SkeletonVideoBox>
-            <SkeletonVideo />
-          </SkeletonVideoBox>
-        </CardChildren>
+        </CardHeader>
+        <CardActions>
+          <CardChildren>
+            <SkeletonVideoBox>
+              <SkeletonVideo />
+            </SkeletonVideoBox>
+          </CardChildren>
+          <SkeletonCardFooter>
+            <SkeletonButton />
+          </SkeletonCardFooter>
+        </CardActions>
       </GenericCardContent>
-      <SkeletonCardFooter>
-        <SkeletonButton />
-      </SkeletonCardFooter>
+    </GenericCardWrapper>
+  );
+}
+
+function ExploreCreatorCardSkeleton() {
+  return (
+    <GenericCardWrapper
+      $coverImage={true}
+      $minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
+    >
+      <SkeletonImageWrapper
+        $coverImage={true}
+        $imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+      >
+        <SkeletonImage />
+      </SkeletonImageWrapper>
+      <GenericCardContent>
+        <CardHeader>
+          <CardTitleBlock>
+            <SkeletonTitle />
+            <SkeletonSubtitle />
+          </CardTitleBlock>
+        </CardHeader>
+        <CardActions>
+          <SkeletonCardFooter>
+            <SkeletonButton />
+          </SkeletonCardFooter>
+        </CardActions>
+      </GenericCardContent>
     </GenericCardWrapper>
   );
 }
@@ -72,5 +112,6 @@ function CreatorCardSkeleton() {
 
 Skeleton.Card = TutorialCardSkeleton;
 Skeleton.Creator = CreatorCardSkeleton;
+Skeleton.ExploreCreator = ExploreCreatorCardSkeleton;
 Skeleton.Header = SkeletonSectionHeader;
 Skeleton.Tag = SkeletonSectionTag;

@@ -1,18 +1,6 @@
 "use client";
 
-import {
-  Grid,
-  LoadMoreRow,
-  PageWrapper,
-  EmptyState,
-  SkeletonCard,
-  SkeletonImage,
-  SkeletonTitleRow,
-  SkeletonAvatar,
-  SkeletonTextBlock,
-  SkeletonRow,
-  CreatorSkeletonFooter,
-} from "./styles";
+import { Grid, LoadMoreRow, PageWrapper, EmptyState } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -20,10 +8,12 @@ import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { EXPLORE_PAGE_SIZE, VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
+import Skeleton from "@/components/UI/Skeleton";
 import { getCreatorCardImage } from "@/hooks/creators/useExploreCreators";
 import type { ExploreCreator } from "@/types/exploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 type Props = {
   creators: ExploreCreator[];
@@ -89,7 +79,8 @@ export default function ExploreCreators({
             <GenericCard
               key={creator.id}
               coverImage
-              imageAspectRatio="1 / 1"
+              imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+              minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
               image={image ?? undefined}
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
@@ -104,7 +95,10 @@ export default function ExploreCreators({
               title={<MonoText $use="Body_Medium">{creator.name}</MonoText>}
               subtitle={
                 creator.uploadCount > 0 ? (
-                  <MonoText $use="Body_Small">
+                  <MonoText
+                    $use="Body_SemiMedium"
+                    color={COLORS.neutral.GRAY_400}
+                  >
                     {t(CREATORS.uploadsCount, { count: creator.uploadCount })}
                   </MonoText>
                 ) : undefined

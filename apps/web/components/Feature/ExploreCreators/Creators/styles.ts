@@ -1,5 +1,6 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css, keyframes } from "styled-components";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const PageWrapper = styled.div`
   width: 100%;
@@ -23,16 +24,16 @@ export const Grid = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH});
   justify-content: center;
-  gap: 20px;
+  gap: ${GENERIC_CARD_LAYOUT.GAP};
 
   ${media.desktop} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
   }
 
   ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
   }
 
   ${media.mobileLg} {
@@ -141,8 +142,8 @@ export const SkeletonCard = styled.div`
 
 export const SkeletonImage = styled.div`
   width: 100%;
-  border-radius: 12px 12px 0 0;
-  aspect-ratio: 1 / 1;
+  border-radius: ${({ theme }) => theme.radius.lg};
+  aspect-ratio: ${GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO};
   ${shimmer}
 `;
 
@@ -178,8 +179,8 @@ export const CreatorSkeletonFooter = styled.div`
   width: 100%;
   margin-top: auto;
   ${shimmer}
-  height: 40px;
-  border-radius: 8px;
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  border-radius: ${({ theme }) => theme.radius.md};
 `;
 
 export const SkeletonBadge = styled.div`

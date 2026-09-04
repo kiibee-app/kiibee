@@ -6,7 +6,13 @@ import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { ActionRow, CardLink, CardTitle, VideoBox } from "./styles";
+import {
+  ActionRow,
+  CardCreator,
+  CardLink,
+  CardTitle,
+  VideoBox,
+} from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -27,6 +33,7 @@ import {
   isBuyActionLabel,
   isRentActionLabel,
 } from "@/utils/contentPricingActions";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -183,32 +190,38 @@ function TutorialCard({
 
   const creatorSubtitle = tutorial.creatorId ? (
     isCardLinked ? (
-      <MonoText
-        $use="Body_Medium"
+      <CardCreator
+        $use="Body_SemiMedium"
         style={{ cursor: "pointer" }}
         onClick={openCreatorProfile}
       >
         {tutorial.creator}
-      </MonoText>
+      </CardCreator>
     ) : (
       <Link
         href={getPublicCreatorProfilePath(tutorial.creatorId)}
         onClick={openCreatorProfile}
-        style={{ textDecoration: "none", color: "inherit" }}
+        style={{
+          textDecoration: "none",
+          color: "inherit",
+          minWidth: 0,
+          display: "block",
+        }}
       >
-        <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
+        <CardCreator $use="Body_SemiMedium" style={{ cursor: "pointer" }}>
           {tutorial.creator}
-        </MonoText>
+        </CardCreator>
       </Link>
     )
   ) : (
-    <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
+    <CardCreator $use="Body_SemiMedium">{tutorial.creator}</CardCreator>
   );
 
   const card = (
     <GenericCard
       coverImage
-      imageAspectRatio="1 / 1"
+      imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+      minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
       image={image}
       imageFallback={imageFallback}
       imagePriority={imagePriority}
@@ -223,6 +236,20 @@ function TutorialCard({
       }
       title={<CardTitle $use="H5_Medium">{tutorial.title}</CardTitle>}
       subtitle={creatorSubtitle}
+      meta={
+        <>
+          {rentedItem?.expiryText ? (
+            <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+              {rentedItem.expiryText}
+            </MonoText>
+          ) : null}
+          {tutorial.published ? (
+            <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
+              {tutorial.published}
+            </MonoText>
+          ) : null}
+        </>
+      }
       footer={
         <ActionRow onClick={stopCardNavigation}>
           {buttons.map((button, index) => {
@@ -267,18 +294,6 @@ function TutorialCard({
         </ActionRow>
       }
     >
-      {rentedItem?.expiryText ? (
-        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-          {rentedItem.expiryText}
-        </MonoText>
-      ) : null}
-
-      {tutorial.published ? (
-        <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-          {tutorial.published}
-        </MonoText>
-      ) : null}
-
       <VideoBox>
         <FormatIcon width={22} height={22} color={COLORS.neutral.BLACK} />
         <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>

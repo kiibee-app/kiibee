@@ -35,6 +35,7 @@ import {
   SkeletonFooter,
 } from "../Creators/styles";
 import { RECENT_CONTENT_LIMIT, SKELETON_COUNT } from "@/utils/Constants";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export default function RecentlyAdded({ search }: { search?: string }) {
   const { t } = useTranslation();
@@ -74,7 +75,7 @@ export default function RecentlyAdded({ search }: { search?: string }) {
             </SectionTag>
           </SectionLabel>
         </SectionHeader>
-        <Grid $columnMax="300px">
+        <Grid $columnMax={GENERIC_CARD_LAYOUT.WIDTH}>
           {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
             <Skeleton.Card key={i} />
           ))}
@@ -128,7 +129,7 @@ export default function RecentlyAdded({ search }: { search?: string }) {
           )}
         </HeaderActions>
       </SectionHeader>
-      <Grid $columnMax="300px">
+      <Grid $columnMax={GENERIC_CARD_LAYOUT.WIDTH}>
         {isLoading
           ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
               <SkeletonCard key={i}>

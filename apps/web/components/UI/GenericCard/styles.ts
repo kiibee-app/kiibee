@@ -2,11 +2,13 @@ import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import { shimmer } from "@/utils/animations";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Card = styled.div<{
   $width?: string;
   $compact?: boolean;
   $coverImage?: boolean;
+  $minHeight?: string;
 }>`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   overflow: hidden;
@@ -16,8 +18,9 @@ export const Card = styled.div<{
   border-radius: ${({ theme }) => theme.radius.lg};
   gap: ${({ $compact }) => ($compact ? "6px" : "8px")};
   align-items: stretch;
-  height: 100%;
-  min-height: ${({ $compact, $coverImage }) => {
+  height: ${({ $minHeight }) => $minHeight || "100%"};
+  min-height: ${({ $compact, $coverImage, $minHeight }) => {
+    if ($minHeight) return $minHeight;
     if ($compact) return "0";
     if ($coverImage) return "0";
     return "315px";
@@ -50,6 +53,7 @@ export const ImageWrapper = styled.div<{
   width: 100%;
   overflow: hidden;
   display: flex;
+  flex-shrink: 0;
   min-height: ${({ $compact, $coverImage }) => {
     if ($coverImage) return "0";
     if ($compact) return "104px";
@@ -61,6 +65,7 @@ export const ImageWrapper = styled.div<{
   @supports not (aspect-ratio: 1 / 1) {
     padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
       if ($imageAspectRatio === "1 / 1") return "100%";
+      if ($imageAspectRatio === "25 / 18") return "72%";
       if ($imageAspectRatio) return undefined;
       return $coverImage ? "133.538%" : "56.25%";
     }};
@@ -100,7 +105,39 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-grow: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+`;
+
+export const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+`;
+
+export const CardTitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+`;
+
+export const CardChildren = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${GENERIC_CARD_LAYOUT.ACTIONS_GAP};
+  margin-top: auto;
+  flex-shrink: 0;
+  min-width: 0;
 `;
 
 export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
@@ -158,24 +195,22 @@ export const ImageInitials = styled(MonoText)`
 export const Footer = styled.div`
   width: 100%;
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 
   > * {
-    flex: 1;
+    flex: 1 0 auto;
     min-width: 0;
   }
-`;
 
-export const CardHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const CardChildren = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
+  button,
+  a {
+    height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+    min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+    padding: 0 12px;
+    font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+    font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+    line-height: 1;
+  }
 `;

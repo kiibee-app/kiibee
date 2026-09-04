@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+
 export const Grid = styled.div<{
   $maxWidth?: string;
   $columnMax?: string;
@@ -14,25 +16,25 @@ export const Grid = styled.div<{
   display: grid;
   grid-template-columns: ${({ $columnMax, $columns }) => {
     if ($columnMax) {
-      return `repeat(auto-fill, minmax(260px, ${$columnMax}))`;
+      return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
     }
     if ($columns) {
-      return `repeat(${$columns}, minmax(0, 1fr))`;
+      return `repeat(${$columns}, minmax(0, ${GENERIC_CARD_LAYOUT.WIDTH}))`;
     }
-    return "repeat(4, minmax(0, 1fr))";
+    return `repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH})`;
   }};
-  gap: ${({ $columnMax }) => ($columnMax ? "1.25rem" : "20px")};
+  gap: ${GENERIC_CARD_LAYOUT.GAP};
   justify-content: ${({ $alignStart }) => ($alignStart ? "start" : "center")};
 
   ${media.desktop} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
       if ($columnMax) {
-        return `repeat(auto-fill, minmax(260px, ${$columnMax}))`;
+        return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
       }
       if ($columns) {
-        return `repeat(${Math.min($columns, 3)}, minmax(0, 1fr))`;
+        return `repeat(${Math.min($columns, 3)}, minmax(0, ${GENERIC_CARD_LAYOUT.WIDTH}))`;
       }
-      return "repeat(3, minmax(0, 1fr))";
+      return `repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH})`;
     }};
   }
 

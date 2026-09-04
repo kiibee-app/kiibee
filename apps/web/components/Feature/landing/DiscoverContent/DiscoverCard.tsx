@@ -14,11 +14,13 @@ import {
   IconFrame,
   DiscoverContainer,
   CardTitle,
+  CardAuthor,
 } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_IMAGE_DIMENSIONS } from "@/utils/landingUtils";
 import GenericCard from "@/components/UI/GenericCard";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 function DiscoverCard({ item }: DiscoverCardProps) {
   const theme = useTheme();
@@ -46,7 +48,8 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   return (
     <GenericCard
       coverImage
-      imageAspectRatio="1 / 1"
+      imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+      minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
       image={item.image}
       alt={safeT(item.titleKey)}
       badge={
@@ -56,10 +59,15 @@ function DiscoverCard({ item }: DiscoverCardProps) {
           </MonoText>
         ) : undefined
       }
-      title={<CardTitle $use="Body_Medium">{safeT(item.titleKey)}</CardTitle>}
+      title={<CardTitle $use="H5_Medium">{safeT(item.titleKey)}</CardTitle>}
       subtitle={
-        <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
+        <CardAuthor $use="Body_SemiMedium" color={COLORS.primary.BLACK_90}>
           {safeT(item.authorKey)}
+        </CardAuthor>
+      }
+      meta={
+        <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
+          {safeT(item.dateKey)}
         </MonoText>
       }
       onClick={handleOpen}
@@ -78,10 +86,6 @@ function DiscoverCard({ item }: DiscoverCardProps) {
         </DiscoverContainer>
       }
     >
-      <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-        {safeT(item.dateKey)}
-      </MonoText>
-
       <MediaTypeBox>
         <IconFrame>
           {item.mediaType === MEDIA_TYPE.EPUB ? (

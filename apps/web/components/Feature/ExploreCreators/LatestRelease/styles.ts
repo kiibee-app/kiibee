@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Section = styled.section`
   width: min(100%, 1320px);
@@ -128,11 +129,12 @@ export const FiltersColumn = styled.aside`
 
 export const CardsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
+  gap: ${GENERIC_CARD_LAYOUT.GAP};
+  justify-content: start;
 
   ${media.desktop} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
   }
 
   ${media.tablet} {

@@ -5,6 +5,7 @@ import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
 import { PageContainer } from "@/app/styles";
 import { ColumnTitle } from "@/components/Layout/Navbar/styles";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const LocalPageContainer = styled(PageContainer)<{
   $navTextTone: string;
@@ -63,21 +64,22 @@ export const FiltersColumn = styled.aside`
 
 export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH});
+  gap: ${GENERIC_CARD_LAYOUT.GAP};
+  justify-content: center;
   opacity: ${({ $isFetching }) => ($isFetching ? 0.6 : 1)};
   transition: opacity 0.2s ease-in-out;
 
   ${media.desktopLg} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
   }
 
   ${media.desktop} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
   }
 
   ${media.mobileMd} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
     gap: 1rem;
   }
 

@@ -4,6 +4,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Section = styled.section`
   width: 100%;
@@ -102,12 +103,19 @@ export const CardTitle = styled(MonoText)`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 `;
 
-export const CardAuthor = styled.p`
-  margin: 0 0 0.25rem;
+export const CardAuthor = styled(MonoText)`
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
 `;
 
 export const CardDate = styled.p`
@@ -115,13 +123,21 @@ export const CardDate = styled.p`
 `;
 
 export const MediaTypeBox = styled.div`
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  border-radius: 8px;
-  padding: 0.625rem 0.75rem;
+  border-radius: ${({ theme }) => theme.radius.md};
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  padding: 0 12px;
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  margin-bottom: 1rem;
+  gap: 0.313rem;
+
+  span {
+    font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+    font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+    line-height: 1;
+  }
 `;
 
 export const MediaTypeText = styled.span`

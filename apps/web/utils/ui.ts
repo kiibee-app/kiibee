@@ -215,6 +215,20 @@ export const CONTENT_THUMBNAIL_PREVIEW = {
 
 export const CARD_IMAGE_RADIUS = "12px";
 
+export const GENERIC_CARD_LAYOUT = {
+  WIDTH: "290px",
+  GRID_MIN: "260px",
+  GAP: "20px",
+  CONTENT_MIN_HEIGHT: "400px",
+  CREATOR_MIN_HEIGHT: "315px",
+  IMAGE_ASPECT_RATIO: "25 / 18",
+  IMAGE_ASPECT_PADDING: "72%",
+  ACTIONS_GAP: "8px",
+  ACTION_HEIGHT: "33px",
+  ACTION_FONT_SIZE: "12px",
+  ACTION_FONT_WEIGHT: 700,
+} as const;
+
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
     width: 1200,
