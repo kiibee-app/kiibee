@@ -148,4 +148,6 @@ export const contentSettingsEnum = pgEnum('content_settings_access_type', [
   'free',
   'set_password',
   'request_email',
+  'payment',
+  'paid',
 ]);
