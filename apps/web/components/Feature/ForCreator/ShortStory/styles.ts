@@ -58,6 +58,8 @@ export const StoryImage = styled.img`
   aspect-ratio: 37.0625 / 32.4375;
   border-radius: 0.75rem;
   object-fit: cover;
+  will-change: transform;
+  transform: translateZ(0);
 `;
 
 export const TextSection = styled.div`
