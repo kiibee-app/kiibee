@@ -38,18 +38,7 @@ export default function ExploreCreators({
         <Grid>
           {Array.from({ length: Math.min(EXPLORE_PAGE_SIZE, 8) }).map(
             (_, i) => (
-              <SkeletonCard key={i}>
-                <SkeletonImage />
-                <SkeletonTitleRow>
-                  <SkeletonAvatar />
-                  <SkeletonTextBlock>
-                    <SkeletonRow $width="70%" $height="16px" />
-                    <SkeletonRow $width="100%" $height="12px" />
-                    <SkeletonRow $width="50%" $height="12px" />
-                  </SkeletonTextBlock>
-                </SkeletonTitleRow>
-                <CreatorSkeletonFooter />
-              </SkeletonCard>
+              <Skeleton.ExploreCreator key={i} />
             ),
           )}
         </Grid>

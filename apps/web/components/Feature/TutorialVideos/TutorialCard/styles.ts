@@ -17,8 +17,8 @@ export const CardTitle = styled(MonoText)`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   line-height: 1.2;
   overflow-wrap: anywhere;
 `;

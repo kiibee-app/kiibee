@@ -452,8 +452,8 @@ export const CollectionTitle = styled.h3`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   line-height: 1.2;
   overflow-wrap: anywhere;
   ${({ theme }) => theme.typography.H5_Medium}
