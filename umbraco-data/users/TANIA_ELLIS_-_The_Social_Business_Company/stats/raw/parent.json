@@ -1,0 +1,216 @@
+{
+  "publishDate": "2020-02-28 14:43:31",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": null,
+  "templateId": 0,
+  "allowedTemplates": {},
+  "documentType": {
+    "alias": "stats",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2020-02-27 19:21:40",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Stats",
+    "id": 2787,
+    "udi": "umb://document-type/6875071ba6474ad3b1257037060edab1",
+    "icon": "icon-pie-chart color-black",
+    "trashed": false,
+    "key": "6875071b-a647-4ad3-b125-7037060edab1",
+    "parentId": -1,
+    "path": "-1,2787",
+    "metaData": {}
+  },
+  "urls": [
+    "/tania-ellis-the-social-business-company/stats/"
+  ],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/916f2702e37f4be483c4d0c6e0044bea",
+  "contentTypeName": "Stats",
+  "isContainer": true,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 1,
+      "active": true,
+      "label": "Undersider",
+      "alias": "umbContainerView",
+      "properties": [
+        {
+          "label": "",
+          "description": null,
+          "view": "listview",
+          "config": {
+            "pageSize": "10",
+            "displayAtTabNumber": "1",
+            "orderBy": "name",
+            "orderDirection": "asc",
+            "includeProperties": [
+              {
+                "alias": "isPlay",
+                "isSystem": 0,
+                "header": "Is Play"
+              },
+              {
+                "alias": "uID",
+                "isSystem": 0,
+                "header": "User ID"
+              }
+            ],
+            "layouts": [
+              {
+                "name": "List",
+                "path": "views/propertyeditors/listview/layouts/list/list.html",
+                "icon": "icon-list",
+                "isSystem": 1,
+                "selected": true
+              },
+              {
+                "name": "Grid",
+                "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+                "icon": "icon-thumbnails-small",
+                "isSystem": 1,
+                "selected": true
+              }
+            ],
+            "bulkActionPermissions": {
+              "allowBulkPublish": true,
+              "allowBulkUnpublish": true,
+              "allowBulkCopy": true,
+              "allowBulkMove": false,
+              "allowBulkDelete": true
+            },
+            "tabName": null,
+            "entityType": "content"
+          },
+          "hideLabel": true,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": null,
+          "value": null,
+          "alias": "_umb_containerView",
+          "editor": null,
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "",
+      "description": null,
+      "view": "listview",
+      "config": {
+        "pageSize": "10",
+        "displayAtTabNumber": "1",
+        "orderBy": "name",
+        "orderDirection": "asc",
+        "includeProperties": [
+          {
+            "alias": "isPlay",
+            "isSystem": 0,
+            "header": "Is Play"
+          },
+          {
+            "alias": "uID",
+            "isSystem": 0,
+            "header": "User ID"
+          }
+        ],
+        "layouts": [
+          {
+            "name": "List",
+            "path": "views/propertyeditors/listview/layouts/list/list.html",
+            "icon": "icon-list",
+            "isSystem": 1,
+            "selected": true
+          },
+          {
+            "name": "Grid",
+            "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+            "icon": "icon-thumbnails-small",
+            "isSystem": 1,
+            "selected": true
+          }
+        ],
+        "bulkActionPermissions": {
+          "allowBulkPublish": true,
+          "allowBulkUnpublish": true,
+          "allowBulkCopy": true,
+          "allowBulkMove": false,
+          "allowBulkDelete": true
+        },
+        "tabName": null,
+        "entityType": "content"
+      },
+      "hideLabel": true,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": null,
+      "value": null,
+      "alias": "_umb_containerView",
+      "editor": null,
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2020-02-28 14:43:31",
+  "createDate": "2020-02-28 14:43:25",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "stats",
+  "sortOrder": 0,
+  "name": "Stats",
+  "id": 2831,
+  "udi": "umb://document/916f2702e37f4be483c4d0c6e0044bea",
+  "icon": "icon-pie-chart color-black",
+  "trashed": false,
+  "key": "916f2702-e37f-4be4-83c4-d0c6e0044bea",
+  "parentId": 1957,
+  "alias": null,
+  "path": "-1,1067,1957,2831",
+  "metaData": {}
+}

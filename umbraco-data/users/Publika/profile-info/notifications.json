@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Publika",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-07-18",
+  "frequency": "7",
+  "notificationsType": "1",
+  "emails": ""
+}

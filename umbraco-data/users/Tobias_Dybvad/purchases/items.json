@@ -1,0 +1,2757 @@
+[
+  {
+    "id": 123957,
+    "key": "c4763f55-4f66-4dff-98cf-08775035ab24",
+    "udi": "umb://document/c4763f554f664dff98cf08775035ab24",
+    "name": "1xry30052026122156",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-05-30 12:22:27",
+    "updateDate": "2026-05-30 12:22:27",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,123957",
+    "sortOrder": 28,
+    "urls": ["/tobias-dybvad/purchases/1xry30052026122156/"],
+    "fullName": "Bjørn Sæderup",
+    "email": "saederupb@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-06-13 12:22:25",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2026-05-30 12:22:27",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "saederupb@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2026-06-13 12:22:25",
+      "price": "39",
+      "fullName": "Bjørn Sæderup",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 120674,
+    "key": "3d6d41bb-bb9f-4418-aeea-0862ec5604eb",
+    "udi": "umb://document/3d6d41bbbb9f4418aeea0862ec5604eb",
+    "name": "663k04042026194632",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-04-04 19:46:55",
+    "updateDate": "2026-04-04 19:47:09",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,120674",
+    "sortOrder": 27,
+    "urls": ["/tobias-dybvad/purchases/663k04042026194632/"],
+    "fullName": "Morten Tygesen",
+    "email": "Tygesen1@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-04-18 19:46:53",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2026-04-04 19:46:55",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "Tygesen1@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2026-04-18 19:46:53",
+      "price": "39",
+      "fullName": "Morten Tygesen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 116540,
+    "key": "749cd560-1c67-4ee6-af7f-0d994a637886",
+    "udi": "umb://document/749cd5601c674ee6af7f0d994a637886",
+    "name": "jht817122025191524",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-12-17 19:16:00",
+    "updateDate": "2025-12-17 19:16:12",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,116540",
+    "sortOrder": 26,
+    "urls": ["/tobias-dybvad/purchases/jht817122025191524/"],
+    "fullName": "Thomas M",
+    "email": "pulven@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-12-31 19:15:58",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-12-17 19:16:00",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "pulven@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-12-31 19:15:58",
+      "price": "39",
+      "fullName": "Thomas M",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 115023,
+    "key": "32ce3f1c-0f07-46ee-a5f9-954bc99d7de6",
+    "udi": "umb://document/32ce3f1c0f0746eea5f9954bc99d7de6",
+    "name": "9ia604112025195854",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-11-04 19:59:31",
+    "updateDate": "2025-11-04 20:00:26",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,115023",
+    "sortOrder": 25,
+    "urls": ["/tobias-dybvad/purchases/9ia604112025195854/"],
+    "fullName": "Peter Schjødt",
+    "email": "peter@plead.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 1,
+    "price": "29",
+    "expireDate": "2025-11-06 19:59:30",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-11-04 19:59:31",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "peter@plead.dk",
+      "streams": "1",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2025-11-06 19:59:30",
+      "price": "29",
+      "fullName": "Peter Schjødt",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 111649,
+    "key": "86bf020d-d0ae-4fe9-8190-5cf548267f48",
+    "udi": "umb://document/86bf020dd0ae4fe981905cf548267f48",
+    "name": "e1e607082025195627",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-08-07 19:56:46",
+    "updateDate": "2025-08-07 19:57:12",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,111649",
+    "sortOrder": 24,
+    "urls": ["/tobias-dybvad/purchases/e1e607082025195627/"],
+    "fullName": "Jakob Krag",
+    "email": "jakobkuhne@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-08-21 19:56:42",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-08-07 19:56:46",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "jakobkuhne@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-08-21 19:56:42",
+      "price": "39",
+      "fullName": "Jakob Krag",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 110180,
+    "key": "677b5b07-a417-44f3-9299-6a89c468a1c7",
+    "udi": "umb://document/677b5b07a41744f392996a89c468a1c7",
+    "name": "3g9c03062025210910",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-06-03 21:09:30",
+    "updateDate": "2025-06-03 21:19:31",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,110180",
+    "sortOrder": 23,
+    "urls": ["/tobias-dybvad/purchases/3g9c03062025210910/"],
+    "fullName": "Nikolaj Nielsen ",
+    "email": "nn270496@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "29",
+    "expireDate": "2025-06-05 21:09:28",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-06-03 21:09:30",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "nn270496@gmail.com",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2025-06-05 21:09:28",
+      "price": "29",
+      "fullName": "Nikolaj Nielsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 108709,
+    "key": "63cda519-c012-4aa4-8b7f-7fb9aea092b2",
+    "udi": "umb://document/63cda519c0124aa48b7f7fb9aea092b2",
+    "name": "561821042025182816",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-21 18:28:56",
+    "updateDate": "2025-04-21 18:57:05",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,108709",
+    "sortOrder": 22,
+    "urls": ["/tobias-dybvad/purchases/561821042025182816/"],
+    "fullName": "Karina stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-05-05 18:28:52",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-04-21 18:28:56",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-05-05 18:28:52",
+      "price": "39",
+      "fullName": "Karina stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 108660,
+    "key": "e0d3a4bf-2076-48ce-9662-a45f0a2e64d4",
+    "udi": "umb://document/e0d3a4bf207648ce9662a45f0a2e64d4",
+    "name": "j1ex20042025165943",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-20 16:59:57",
+    "updateDate": "2025-04-20 17:06:42",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,108660",
+    "sortOrder": 21,
+    "urls": ["/tobias-dybvad/purchases/j1ex20042025165943/"],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-05-04 16:59:53",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-04-20 16:59:57",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-05-04 16:59:53",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 106642,
+    "key": "c2bff7bc-0502-400e-b972-00a7368c5759",
+    "udi": "umb://document/c2bff7bc0502400eb97200a7368c5759",
+    "name": "hu7p02032025093538",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-03-02 09:35:57",
+    "updateDate": "2025-03-02 09:36:23",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,106642",
+    "sortOrder": 20,
+    "urls": ["/tobias-dybvad/purchases/hu7p02032025093538/"],
+    "fullName": "Tim Fuglsang ",
+    "email": "tim_fuglsang@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-03-16 09:35:53",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-03-02 09:35:57",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "tim_fuglsang@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-03-16 09:35:53",
+      "price": "39",
+      "fullName": "Tim Fuglsang ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 105543,
+    "key": "3c289f73-c67d-4c98-b92b-b0149155bcac",
+    "udi": "umb://document/3c289f73c67d4c98b92bb0149155bcac",
+    "name": "k6mx02022025145617",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-02-02 14:56:59",
+    "updateDate": "2025-02-02 14:57:25",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,105543",
+    "sortOrder": 19,
+    "urls": ["/tobias-dybvad/purchases/k6mx02022025145617/"],
+    "fullName": "tim fuglsang",
+    "email": "tim_fuglsang@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-02-16 14:56:56",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2025-02-02 14:56:59",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "tim_fuglsang@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-02-16 14:56:56",
+      "price": "39",
+      "fullName": "tim fuglsang",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 102019,
+    "key": "b1003701-dfc6-4648-8b40-44abb3531267",
+    "udi": "umb://document/b1003701dfc646488b4044abb3531267",
+    "name": "35a103112024184416",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-11-03 18:45:15",
+    "updateDate": "2024-11-03 18:45:33",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,102019",
+    "sortOrder": 18,
+    "urls": ["/tobias-dybvad/purchases/35a103112024184416/"],
+    "fullName": "Jimmie Iversen",
+    "email": "jimmieiversen91@pm.me",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 1,
+    "price": "29",
+    "expireDate": "2024-11-05 18:45:13",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2024-11-03 18:45:15",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "jimmieiversen91@pm.me",
+      "streams": "1",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2024-11-05 18:45:13",
+      "price": "29",
+      "fullName": "Jimmie Iversen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 100681,
+    "key": "a5f07ce0-5faa-4cc6-80eb-53b236cee30d",
+    "udi": "umb://document/a5f07ce05faa4cc680eb53b236cee30d",
+    "name": "yfx326092024232900",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-09-26 23:31:13",
+    "updateDate": "2024-09-27 19:47:00",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,100681",
+    "sortOrder": 17,
+    "urls": ["/tobias-dybvad/purchases/yfx326092024232900/"],
+    "fullName": "Laura Bober",
+    "email": "laura.k.bober@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 6,
+    "price": "29",
+    "expireDate": "2024-09-28 23:31:09",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2024-09-26 23:31:13",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "laura.k.bober@gmail.com",
+      "streams": "6",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2024-09-28 23:31:09",
+      "price": "29",
+      "fullName": "Laura Bober",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 99781,
+    "key": "04a33bd6-6fab-464d-8dd6-2d8da9394021",
+    "udi": "umb://document/04a33bd66fab464d8dd62d8da9394021",
+    "name": "z2f619082024195755",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-08-19 19:59:58",
+    "updateDate": "2024-08-19 20:00:43",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,99781",
+    "sortOrder": 16,
+    "urls": ["/tobias-dybvad/purchases/z2f619082024195755/"],
+    "fullName": "torstein sørensen",
+    "email": "torstein268@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 1,
+    "price": "29",
+    "expireDate": "2024-08-21 19:59:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2024-08-19 19:59:58",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "torstein268@hotmail.com",
+      "streams": "1",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2024-08-21 19:59:55",
+      "price": "29",
+      "fullName": "torstein sørensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 97265,
+    "key": "90ae2d72-8b61-4628-be21-af1a2964b47b",
+    "udi": "umb://document/90ae2d728b614628be21af1a2964b47b",
+    "name": "6cxb21052024201331",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-05-21 20:14:53",
+    "updateDate": "2024-05-21 20:15:36",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,97265",
+    "sortOrder": 15,
+    "urls": ["/tobias-dybvad/purchases/6cxb21052024201331/"],
+    "fullName": "Kristoffer Lund Sørensen",
+    "email": "kristoffermarstrup@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2024-06-04 20:14:51",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2024-05-21 20:14:53",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "kristoffermarstrup@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-06-04 20:14:51",
+      "price": "39",
+      "fullName": "Kristoffer Lund Sørensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 80654,
+    "key": "f9cce4f7-54b0-4594-be5c-bba5da7ab920",
+    "udi": "umb://document/f9cce4f754b04594be5cbba5da7ab920",
+    "name": "h29b20042023221249",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-04-20 22:13:47",
+    "updateDate": "2023-04-20 22:18:27",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,80654",
+    "sortOrder": 14,
+    "urls": ["/tobias-dybvad/purchases/h29b20042023221249/"],
+    "fullName": "pernille hammerby",
+    "email": "p.hammerby.67@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-04-27 22:13:44",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2023-04-20 22:13:47",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "p.hammerby.67@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-04-27 22:13:44",
+      "price": "39",
+      "fullName": "pernille hammerby",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 79812,
+    "key": "f73e311d-60ea-4362-815c-31ab7de08a9c",
+    "udi": "umb://document/f73e311d60ea4362815c31ab7de08a9c",
+    "name": "836802042023181822",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-04-02 18:18:33",
+    "updateDate": "2023-04-02 18:20:31",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,79812",
+    "sortOrder": 13,
+    "urls": ["/tobias-dybvad/purchases/836802042023181822/"],
+    "fullName": "Marie Barfoed",
+    "email": "damenmb@gmaim.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "29",
+    "expireDate": "2023-04-04 18:18:31",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2023-04-02 18:18:33",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "damenmb@gmaim.com",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2023-04-04 18:18:31",
+      "price": "29",
+      "fullName": "Marie Barfoed",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 78604,
+    "key": "b94b8459-d2bf-4112-a7c1-63dff162dc66",
+    "udi": "umb://document/b94b8459d2bf4112a7c163dff162dc66",
+    "name": "27r401032023171138",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-03-01 17:12:18",
+    "updateDate": "2023-03-01 17:12:35",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,78604",
+    "sortOrder": 12,
+    "urls": ["/tobias-dybvad/purchases/27r401032023171138/"],
+    "fullName": "Thomas Madsen",
+    "email": "bmwmadsen@live.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-03-08 17:12:16",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2023-03-01 17:12:18",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "bmwmadsen@live.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-03-08 17:12:16",
+      "price": "39",
+      "fullName": "Thomas Madsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 75933,
+    "key": "59f870c7-1ad8-43f7-88bc-3b6ca8ab50e9",
+    "udi": "umb://document/59f870c71ad843f788bc3b6ca8ab50e9",
+    "name": "uj9914122022195408",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-14 19:54:55",
+    "updateDate": "2022-12-14 19:55:18",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,75933",
+    "sortOrder": 11,
+    "urls": ["/tobias-dybvad/purchases/uj9914122022195408/"],
+    "fullName": "Thomas Madsen",
+    "email": "bmwmadsen@live.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-12-21 19:54:53",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-12-14 19:54:55",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "bmwmadsen@live.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-12-21 19:54:53",
+      "price": "39",
+      "fullName": "Thomas Madsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 67408,
+    "key": "594e4410-b99f-4fb7-a389-8c77ba5f2bde",
+    "udi": "umb://document/594e4410b99f4fb7a3898c77ba5f2bde",
+    "name": "u9gc02072022000717",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-07-02 00:07:35",
+    "updateDate": "2022-07-02 00:07:47",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,67408",
+    "sortOrder": 10,
+    "urls": ["/tobias-dybvad/purchases/u9gc02072022000717/"],
+    "fullName": "Aske Runge Svendsen ",
+    "email": "aske.runge@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-07-09 00:07:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-07-02 00:07:35",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "aske.runge@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-07-09 00:07:32",
+      "price": "39",
+      "fullName": "Aske Runge Svendsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 66765,
+    "key": "adde0b13-f6f9-49a5-882f-d38f37dd09e8",
+    "udi": "umb://document/adde0b13f6f949a5882fd38f37dd09e8",
+    "name": "529521062022191554",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-21 19:16:09",
+    "updateDate": "2022-06-21 19:17:08",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,66765",
+    "sortOrder": 9,
+    "urls": ["/tobias-dybvad/purchases/529521062022191554/"],
+    "fullName": "Mads Stobbe",
+    "email": "madsstobbe@gmail.com",
+    "isPurchase": true,
+    "downloads": 3,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-06-28 19:16:08",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-06-21 19:16:09",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "madsstobbe@gmail.com",
+      "streams": "",
+      "downloads": "3",
+      "isPurchase": "1",
+      "expireDate": "2022-06-28 19:16:08",
+      "price": "39",
+      "fullName": "Mads Stobbe",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 65063,
+    "key": "0d3a6dbd-d812-445b-bc96-2dd209f6dfb9",
+    "udi": "umb://document/0d3a6dbdd812445bbc962dd209f6dfb9",
+    "name": "749704062022161115",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-04 16:11:27",
+    "updateDate": "2022-06-04 16:11:27",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,65063",
+    "sortOrder": 8,
+    "urls": ["/tobias-dybvad/purchases/749704062022161115/"],
+    "fullName": "Philip Lüders",
+    "email": "philip-lyders@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2022-06-06 16:11:25",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-06-04 16:11:27",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "philip-lyders@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-06-06 16:11:25",
+      "price": "29",
+      "fullName": "Philip Lüders",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 64172,
+    "key": "28e11308-b199-4b64-b88c-9df456d5a5a7",
+    "udi": "umb://document/28e11308b1994b64b88c9df456d5a5a7",
+    "name": "inr207052022031234",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-07 03:12:47",
+    "updateDate": "2022-05-07 03:12:47",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,64172",
+    "sortOrder": 7,
+    "urls": ["/tobias-dybvad/purchases/inr207052022031234/"],
+    "fullName": "Aske Runge Svendsen ",
+    "email": "aske.runge@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-06-06 03:12:45",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-05-07 03:12:47",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "aske.runge@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-06-06 03:12:45",
+      "price": "39",
+      "fullName": "Aske Runge Svendsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 61580,
+    "key": "3e7fb7d1-cb7e-472f-a70a-5590dffa3f21",
+    "udi": "umb://document/3e7fb7d1cb7e472fa70a5590dffa3f21",
+    "name": "123f14022022130014",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-02-14 13:00:31",
+    "updateDate": "2022-02-14 13:00:31",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,61580",
+    "sortOrder": 6,
+    "urls": ["/tobias-dybvad/purchases/123f14022022130014/"],
+    "fullName": "Christian Høfling",
+    "email": "christian.hofling@outlook.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-03-16 13:00:31",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-02-14 13:00:31",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "christian.hofling@outlook.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-03-16 13:00:31",
+      "price": "39",
+      "fullName": "Christian Høfling",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 57071,
+    "key": "61731ce6-c26c-4b71-9b5e-be58b70266b7",
+    "udi": "umb://document/61731ce6c26c4b719b5ebe58b70266b7",
+    "name": "l5fs21012022200901",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-01-21 20:09:23",
+    "updateDate": "2022-01-21 20:09:23",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,57071",
+    "sortOrder": 5,
+    "urls": ["/tobias-dybvad/purchases/l5fs21012022200901/"],
+    "fullName": "Peter Allin",
+    "email": "peter@peca.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2022-01-23 20:09:15",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2022-01-21 20:09:23",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "peter@peca.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-01-23 20:09:15",
+      "price": "29",
+      "fullName": "Peter Allin",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 48369,
+    "key": "dbd0e183-71e0-4410-a6b8-94e5db9f3017",
+    "udi": "umb://document/dbd0e18371e04410a6b894e5db9f3017",
+    "name": "2x9817072021212343",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-17 21:24:05",
+    "updateDate": "2021-07-17 21:24:05",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,48369",
+    "sortOrder": 4,
+    "urls": ["/tobias-dybvad/purchases/2x9817072021212343/"],
+    "fullName": "iben uhrenholt",
+    "email": "iben.uhrenholt@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2021-07-19 21:24:04",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2021-07-17 21:24:05",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "iben.uhrenholt@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-07-19 21:24:04",
+      "price": "29",
+      "fullName": "iben uhrenholt",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 46534,
+    "key": "207dd866-3c77-4b36-b714-5ab5e6786dfc",
+    "udi": "umb://document/207dd8663c774b36b7145ab5e6786dfc",
+    "name": "3t4v31052021161328",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-31 16:14:01",
+    "updateDate": "2021-05-31 16:14:01",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,46534",
+    "sortOrder": 3,
+    "urls": ["/tobias-dybvad/purchases/3t4v31052021161328/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-06-30 16:14:01",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2021-05-31 16:14:01",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-06-30 16:14:01",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 46531,
+    "key": "5e6b5516-9e89-4d1c-a270-424058b1b7b7",
+    "udi": "umb://document/5e6b55169e894d1ca270424058b1b7b7",
+    "name": "k22831052021160052",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-31 16:01:19",
+    "updateDate": "2021-05-31 16:01:19",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,46531",
+    "sortOrder": 2,
+    "urls": ["/tobias-dybvad/purchases/k22831052021160052/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-06-30 16:01:18",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2021-05-31 16:01:19",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-06-30 16:01:18",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  },
+  {
+    "id": 46304,
+    "key": "395ad83f-572e-43b8-9d13-00d33cb39146",
+    "udi": "umb://document/395ad83f572e43b89d1300d33cb39146",
+    "name": "31dm26052021174113",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-26 17:41:35",
+    "updateDate": "2021-05-26 17:41:35",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,46304",
+    "sortOrder": 1,
+    "urls": ["/tobias-dybvad/purchases/31dm26052021174113/"],
+    "fullName": "Pernille H. Petersen",
+    "email": "moonrider1984@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-06-25 17:41:35",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2021-05-26 17:41:35",
+    "mediaRelationUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/89f7320720c5462bb10ead3bf24998f3"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+        "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+        "resolved": true,
+        "id": 42304,
+        "name": "Er det ikke dig fra Dybvad?",
+        "title": "Er det ikke dig fra Dybvad?",
+        "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+        "contentTypeAlias": "media",
+        "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Er det ikke dig fra Dybvad?"],
+    "mediaUrls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+      "email": "moonrider1984@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-06-25 17:41:35",
+      "price": "39",
+      "fullName": "Pernille H. Petersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/89f7320720c5462bb10ead3bf24998f3"
+    }
+  },
+  {
+    "id": 45433,
+    "key": "4bf348d8-00cd-4487-87a7-9ae277998027",
+    "udi": "umb://document/4bf348d800cd448787a79ae277998027",
+    "name": "74gw12052021075014",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-12 07:51:26",
+    "updateDate": "2021-05-12 07:51:26",
+    "parentId": 42280,
+    "path": "-1,1067,42275,42280,45433",
+    "sortOrder": 0,
+    "urls": ["/tobias-dybvad/purchases/74gw12052021075014/"],
+    "fullName": "Emil Randløv",
+    "email": "patterimunden@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2021-05-14 07:51:25",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+    "orderCreateDate": "2021-05-12 07:51:26",
+    "mediaRelationUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/16382748f2bb41d58f33ca358cbbc7ee"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+        "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+        "resolved": true,
+        "id": 42305,
+        "name": "Sjov mand - Klam Personlighed",
+        "title": "Sjov mand - Klam Personlighed",
+        "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+        "contentTypeAlias": "media",
+        "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Sjov mand - Klam Personlighed"],
+    "mediaUrls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+      "email": "patterimunden@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-05-14 07:51:25",
+      "price": "29",
+      "fullName": "Emil Randløv",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. Tobias (-;",
+      "media": "umb://document/16382748f2bb41d58f33ca358cbbc7ee"
+    }
+  }
+]

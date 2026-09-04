@@ -195,20 +195,22 @@ export const allCreatorsService = async ({
       }
     }
 
-    const items = allCreators.map((creator) => ({
-      id: creator.id,
-      name: creator.name,
-      profileImageUrl: creator.profileImageUrl,
-      coverImageUrl: creator.coverImageUrl,
-      mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,
-      createdAt: creator.createdAt,
-      uploadCount: Number(creator.uploadCount ?? 0),
-      subscriberCount: Number(creator.subscriberCount ?? 0),
-      layout: creator.layout,
-      contentCategory: (creator.categoryIds || [])
-        .map((id) => categoryNameMap.get(id))
-        .filter((name): name is string => !!name),
-    }));
+    const items = allCreators
+      .map((creator) => ({
+        id: creator.id,
+        name: creator.name,
+        profileImageUrl: creator.profileImageUrl,
+        coverImageUrl: creator.coverImageUrl,
+        mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,
+        createdAt: creator.createdAt,
+        uploadCount: Number(creator.uploadCount ?? 0),
+        subscriberCount: Number(creator.subscriberCount ?? 0),
+        layout: creator.layout,
+        contentCategory: (creator.categoryIds || [])
+          .map((id) => categoryNameMap.get(id))
+          .filter((name): name is string => !!name),
+      }))
+      .filter((creator) => creator.name.trim().length > 0);
 
     return success(
       {

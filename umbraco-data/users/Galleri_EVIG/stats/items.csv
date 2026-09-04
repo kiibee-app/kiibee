@@ -1,0 +1,5 @@
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,isPlay,media,uID
+22850,6033578f-d3ca-499d-a943-5b7553d5951f,umb://document/6033578fd3ca499da9435b7553d5951f,99f20ac25175470cab2d1a20913ddfee,statsEntry,true,true,2020-11-30 13:57:11,2020-11-30 13:57:11,22585,3,,1,umb://document/b16d85b287b0471fa4605e1dacd90610,
+22636,bf85e8aa-acf5-4e42-be65-27d085c19c89,umb://document/bf85e8aaacf54e42be6527d085c19c89,42d24b1bf4694b2da01d22816462fd4a,statsEntry,true,true,2020-11-24 07:42:26,2020-11-24 07:42:26,22585,2,,1,umb://document/b16d85b287b0471fa4605e1dacd90610,
+22635,bbf007b6-7d8a-4448-8031-9313e5925ff3,umb://document/bbf007b67d8a444880319313e5925ff3,2bc3d59c5e8f4d7d85f35750c8715479,statsEntry,true,true,2020-11-24 07:38:33,2020-11-24 07:38:33,22585,1,,1,umb://document/b16d85b287b0471fa4605e1dacd90610,
+22601,50f9340a-429d-4e59-9f9c-74403388f8df,umb://document/50f9340a429d4e599f9c74403388f8df,4e925493531d47aa92d5b34f1ab966e0,statsEntry,true,true,2020-11-23 18:42:39,2020-11-23 18:42:39,22585,0,,1,umb://document/b16d85b287b0471fa4605e1dacd90610,

@@ -1,0 +1,5512 @@
+[
+  {
+    "id": 106096,
+    "key": "043ae8d7-d49c-449b-8a79-046d78d2f543",
+    "udi": "umb://document/043ae8d7d49c449b8a79046d78d2f543",
+    "name": "x6p219022025190929",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-02-19 19:09:45",
+    "updateDate": "2025-02-19 19:10:11",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,106096",
+    "sortOrder": 57,
+    "urls": ["/dan-andersen/purchases/x6p219022025190929/"],
+    "fullName": "Erland jensen",
+    "email": "Erland_1993_j@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2025-03-05 19:09:41",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2025-02-19 19:09:45",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Erland_1993_j@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-03-05 19:09:41",
+      "price": "49",
+      "fullName": "Erland jensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 105391,
+    "key": "e034dca5-9470-440a-9f90-741bd184910b",
+    "udi": "umb://document/e034dca59470440a9f90741bd184910b",
+    "name": "33p829012025214711",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-01-29 21:47:30",
+    "updateDate": "2025-01-29 21:50:00",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,105391",
+    "sortOrder": 56,
+    "urls": ["/dan-andersen/purchases/33p829012025214711/"],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 4,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2025-02-12 21:47:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2025-01-29 21:47:30",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "4",
+      "isPurchase": "1",
+      "expireDate": "2025-02-12 21:47:27",
+      "price": "49",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 105388,
+    "key": "9c37bb60-407c-4d7a-a389-e686ea781e15",
+    "udi": "umb://document/9c37bb60407c4d7aa389e686ea781e15",
+    "name": "zt5529012025214436",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-01-29 21:44:58",
+    "updateDate": "2025-01-29 21:45:26",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,105388",
+    "sortOrder": 55,
+    "urls": ["/dan-andersen/purchases/zt5529012025214436/"],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-02-12 21:44:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2025-01-29 21:44:58",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-02-12 21:44:55",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 104709,
+    "key": "cc9e9229-6f91-4e2d-b520-520a560be6ed",
+    "udi": "umb://document/cc9e92296f914e2db520520a560be6ed",
+    "name": "y1ut11012025192236",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-01-11 19:22:59",
+    "updateDate": "2025-01-11 19:46:54",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,104709",
+    "sortOrder": 54,
+    "urls": ["/dan-andersen/purchases/y1ut11012025192236/"],
+    "fullName": "Anders Ejdrup Mårup ",
+    "email": "and.maarup@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2025-01-25 19:22:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2025-01-11 19:22:59",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "and.maarup@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-01-25 19:22:55",
+      "price": "49",
+      "fullName": "Anders Ejdrup Mårup ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 99501,
+    "key": "b8f64514-5d7c-405a-986b-3c4d25920778",
+    "udi": "umb://document/b8f645145d7c405a986b3c4d25920778",
+    "name": "l57110082024015924",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-08-10 01:59:39",
+    "updateDate": "2024-08-10 09:25:03",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,99501",
+    "sortOrder": 53,
+    "urls": ["/dan-andersen/purchases/l57110082024015924/"],
+    "fullName": "Jonas Hansen ",
+    "email": "jobabz2@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 3,
+    "price": "39",
+    "expireDate": "2024-08-12 01:59:36",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2024-08-10 01:59:39",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "jobabz2@hotmail.com",
+      "streams": "3",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2024-08-12 01:59:36",
+      "price": "39",
+      "fullName": "Jonas Hansen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 98207,
+    "key": "c3b8b9bb-cc9e-4ca7-8eb4-e07ab4aa336b",
+    "udi": "umb://document/c3b8b9bbcc9e4ca78eb4e07ab4aa336b",
+    "name": "3ary28062024222558",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-06-28 22:26:42",
+    "updateDate": "2024-06-28 22:27:08",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,98207",
+    "sortOrder": 52,
+    "urls": ["/dan-andersen/purchases/3ary28062024222558/"],
+    "fullName": "Lau Gede Petersen",
+    "email": "lau.gede@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2024-07-12 22:26:39",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2024-06-28 22:26:42",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "lau.gede@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-07-12 22:26:39",
+      "price": "39",
+      "fullName": "Lau Gede Petersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 98101,
+    "key": "53e9cb18-43fb-4cc1-b5df-2e5f143c263d",
+    "udi": "umb://document/53e9cb1843fb4cc1b5df2e5f143c263d",
+    "name": "epx522062024181544",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-06-22 18:17:46",
+    "updateDate": "2024-06-22 18:18:08",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,98101",
+    "sortOrder": 51,
+    "urls": ["/dan-andersen/purchases/epx522062024181544/"],
+    "fullName": "Kasper Larsen",
+    "email": "kasperl2011@live.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2024-07-06 18:17:38",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2024-06-22 18:17:46",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kasperl2011@live.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-07-06 18:17:38",
+      "price": "49",
+      "fullName": "Kasper Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 93450,
+    "key": "954ba121-929c-49c4-b1f5-b930f69cc11f",
+    "udi": "umb://document/954ba121929c49c4b1f5b930f69cc11f",
+    "name": "948d27122023201621",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-12-27 20:16:37",
+    "updateDate": "2023-12-27 20:18:54",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,93450",
+    "sortOrder": 50,
+    "urls": ["/dan-andersen/purchases/948d27122023201621/"],
+    "fullName": "Nicolai Dahl Svendsen ",
+    "email": "nicolai_svendsen59@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2024-01-10 20:16:34",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2023-12-27 20:16:37",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "nicolai_svendsen59@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-01-10 20:16:34",
+      "price": "49",
+      "fullName": "Nicolai Dahl Svendsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 88056,
+    "key": "dcb29593-49a3-4b4b-b3dc-cad119148dde",
+    "udi": "umb://document/dcb2959349a34b4bb3dccad119148dde",
+    "name": "ix4712082023180130",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-08-12 18:03:08",
+    "updateDate": "2023-08-12 18:03:27",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,88056",
+    "sortOrder": 49,
+    "urls": ["/dan-andersen/purchases/ix4712082023180130/"],
+    "fullName": "Kasper Larsen",
+    "email": "kasperl2011@live.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2023-08-19 18:03:05",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2023-08-12 18:03:08",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kasperl2011@live.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-08-19 18:03:05",
+      "price": "49",
+      "fullName": "Kasper Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 85389,
+    "key": "b7e47169-ec46-41f6-9f24-a4f45643bf45",
+    "udi": "umb://document/b7e47169ec4641f69f24a4f45643bf45",
+    "name": "hgq903062023175437",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-06-03 17:56:34",
+    "updateDate": "2023-06-03 18:02:08",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,85389",
+    "sortOrder": 48,
+    "urls": ["/dan-andersen/purchases/hgq903062023175437/"],
+    "fullName": "Kasper Larsen",
+    "email": "kasperl2011@live.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 5,
+    "price": "39",
+    "expireDate": "2023-06-05 17:56:31",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2023-06-03 17:56:34",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kasperl2011@live.dk",
+      "streams": "5",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2023-06-05 17:56:31",
+      "price": "39",
+      "fullName": "Kasper Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 78598,
+    "key": "54e82f22-dd31-4877-9775-6877927b2708",
+    "udi": "umb://document/54e82f22dd31487797756877927b2708",
+    "name": "8g8701032023014319",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-03-01 01:43:40",
+    "updateDate": "2023-03-01 01:43:57",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,78598",
+    "sortOrder": 47,
+    "urls": ["/dan-andersen/purchases/8g8701032023014319/"],
+    "fullName": "Lasse",
+    "email": "las.kro.ski@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-03-08 01:43:36",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2023-03-01 01:43:40",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "las.kro.ski@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-03-08 01:43:36",
+      "price": "39",
+      "fullName": "Lasse",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 78103,
+    "key": "0e681030-4505-420f-b3bb-a239285b7eac",
+    "udi": "umb://document/0e6810304505420fb3bba239285b7eac",
+    "name": "9af813022023195041",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-02-13 19:52:30",
+    "updateDate": "2023-02-13 20:07:00",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,78103",
+    "sortOrder": 46,
+    "urls": ["/dan-andersen/purchases/9af813022023195041/"],
+    "fullName": "Casper Ottosen",
+    "email": "casper.o96@icloud.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 3,
+    "price": "39",
+    "expireDate": "2023-02-15 19:52:28",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2023-02-13 19:52:30",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "casper.o96@icloud.com",
+      "streams": "3",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2023-02-15 19:52:28",
+      "price": "39",
+      "fullName": "Casper Ottosen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 74419,
+    "key": "5475fb78-3191-44f5-89d4-e8073a299375",
+    "udi": "umb://document/5475fb78319144f589d4e8073a299375",
+    "name": "484629102022220742",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-29 22:07:57",
+    "updateDate": "2022-10-29 22:08:40",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,74419",
+    "sortOrder": 45,
+    "urls": ["/dan-andersen/purchases/484629102022220742/"],
+    "fullName": "Mikkel Leonhardt Rasmussen",
+    "email": "nasamutalisk@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-11-05 22:07:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-10-29 22:07:57",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "nasamutalisk@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2022-11-05 22:07:55",
+      "price": "49",
+      "fullName": "Mikkel Leonhardt Rasmussen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 73997,
+    "key": "202fcb34-1a14-45d2-a70e-6dbfbdffb384",
+    "udi": "umb://document/202fcb341a1445d2a70e6dbfbdffb384",
+    "name": "d41120102022015936",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-20 01:59:55",
+    "updateDate": "2022-10-20 02:00:18",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,73997",
+    "sortOrder": 44,
+    "urls": ["/dan-andersen/purchases/d41120102022015936/"],
+    "fullName": "Lasse krog",
+    "email": "las.kro.ski@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-10-27 01:59:52",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-10-20 01:59:55",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "las.kro.ski@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-10-27 01:59:52",
+      "price": "49",
+      "fullName": "Lasse krog",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 73386,
+    "key": "5b463c34-e5da-4009-86c0-1988eb7ac575",
+    "udi": "umb://document/5b463c34e5da400986c01988eb7ac575",
+    "name": "5neg04102022020915",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-04 02:09:34",
+    "updateDate": "2022-10-04 02:10:05",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,73386",
+    "sortOrder": 43,
+    "urls": ["/dan-andersen/purchases/5neg04102022020915/"],
+    "fullName": "Lasse ",
+    "email": "las.kro.ski@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-10-11 02:09:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-10-04 02:09:34",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "las.kro.ski@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-10-11 02:09:32",
+      "price": "49",
+      "fullName": "Lasse ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 71348,
+    "key": "737a2dc9-41a5-4dfb-93b5-f5d540150765",
+    "udi": "umb://document/737a2dc941a54dfb93b5f5d540150765",
+    "name": "9t2505092022201851",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-09-05 20:19:10",
+    "updateDate": "2022-09-05 20:19:29",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,71348",
+    "sortOrder": 42,
+    "urls": ["/dan-andersen/purchases/9t2505092022201851/"],
+    "fullName": "mikkel burkal",
+    "email": "Mikkelburkaler@live.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-09-12 20:19:08",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-09-05 20:19:10",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Mikkelburkaler@live.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-09-12 20:19:08",
+      "price": "49",
+      "fullName": "mikkel burkal",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 69442,
+    "key": "1ff09611-03a3-409c-a495-a081ed31e4ef",
+    "udi": "umb://document/1ff0961103a3409ca495a081ed31e4ef",
+    "name": "96c929082022203649",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-08-29 20:38:49",
+    "updateDate": "2022-08-29 20:39:16",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,69442",
+    "sortOrder": 41,
+    "urls": ["/dan-andersen/purchases/96c929082022203649/"],
+    "fullName": "Oliver Tobias Sloth Larsen",
+    "email": "gubbesbror@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-09-05 20:38:47",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-08-29 20:38:49",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "gubbesbror@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-09-05 20:38:47",
+      "price": "49",
+      "fullName": "Oliver Tobias Sloth Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 68906,
+    "key": "99f1fa06-4333-4f8e-aa3f-76ee04e70a73",
+    "udi": "umb://document/99f1fa0643334f8eaa3f76ee04e70a73",
+    "name": "n7xl22082022124914",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-08-22 12:49:33",
+    "updateDate": "2022-08-22 12:50:17",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,68906",
+    "sortOrder": 40,
+    "urls": ["/dan-andersen/purchases/n7xl22082022124914/"],
+    "fullName": "Kristoffer lund",
+    "email": "kris19@hotmail.dk",
+    "isPurchase": true,
+    "downloads": 3,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-08-29 12:49:31",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-08-22 12:49:33",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kris19@hotmail.dk",
+      "streams": "",
+      "downloads": "3",
+      "isPurchase": "1",
+      "expireDate": "2022-08-29 12:49:31",
+      "price": "49",
+      "fullName": "Kristoffer lund",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 68341,
+    "key": "a4cde729-a96f-4163-b30f-d3fd018d9961",
+    "udi": "umb://document/a4cde729a96f4163b30fd3fd018d9961",
+    "name": "p9t603082022222826",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-08-03 22:29:06",
+    "updateDate": "2022-08-03 23:53:56",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,68341",
+    "sortOrder": 39,
+    "urls": ["/dan-andersen/purchases/p9t603082022222826/"],
+    "fullName": "Casper Maul Lauritsen",
+    "email": "maul.lauritsen02@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "39",
+    "expireDate": "2022-08-05 22:29:03",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-08-03 22:29:06",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "maul.lauritsen02@gmail.com",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-08-05 22:29:03",
+      "price": "39",
+      "fullName": "Casper Maul Lauritsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 67243,
+    "key": "c1499966-d73f-4cf5-bba8-d75b0254455b",
+    "udi": "umb://document/c1499966d73f4cf5bba8d75b0254455b",
+    "name": "l19830062022165713",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-30 16:57:29",
+    "updateDate": "2022-07-02 00:19:36",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,67243",
+    "sortOrder": 38,
+    "urls": ["/dan-andersen/purchases/l19830062022165713/"],
+    "fullName": "Dennis Lippert",
+    "email": "Dennis.lippert83@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 4,
+    "price": "39",
+    "expireDate": "2022-07-02 16:57:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-06-30 16:57:29",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Dennis.lippert83@gmail.com",
+      "streams": "4",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-07-02 16:57:27",
+      "price": "39",
+      "fullName": "Dennis Lippert",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 67007,
+    "key": "e768213f-bad3-40a4-baf3-168a3839792c",
+    "udi": "umb://document/e768213fbad340a4baf3168a3839792c",
+    "name": "653f25062022095012",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-25 09:51:01",
+    "updateDate": "2022-06-25 09:55:57",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,67007",
+    "sortOrder": 37,
+    "urls": ["/dan-andersen/purchases/653f25062022095012/"],
+    "fullName": "Camilla Nielsen ",
+    "email": "CamillaNielsen701@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "39",
+    "expireDate": "2022-06-27 09:50:58",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-06-25 09:51:01",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "CamillaNielsen701@gmail.com",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-06-27 09:50:58",
+      "price": "39",
+      "fullName": "Camilla Nielsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 65846,
+    "key": "529a2c6d-34fc-4be2-907f-b99953f2ec47",
+    "udi": "umb://document/529a2c6d34fc4be2907fb99953f2ec47",
+    "name": "94z809062022233945",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-09 23:40:23",
+    "updateDate": "2022-06-09 23:40:23",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,65846",
+    "sortOrder": 36,
+    "urls": ["/dan-andersen/purchases/94z809062022233945/"],
+    "fullName": "Rasmus Hyllested",
+    "email": "rasmus.22@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-07-09 23:40:21",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-06-09 23:40:23",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "rasmus.22@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-07-09 23:40:21",
+      "price": "49",
+      "fullName": "Rasmus Hyllested",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 65127,
+    "key": "ea5d129c-a73c-4dd7-ae00-e5b7cd18f12e",
+    "udi": "umb://document/ea5d129ca73c4dd7ae00e5b7cd18f12e",
+    "name": "vman06062022013409",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-06 01:34:33",
+    "updateDate": "2022-06-06 01:34:33",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,65127",
+    "sortOrder": 35,
+    "urls": ["/dan-andersen/purchases/vman06062022013409/"],
+    "fullName": "Kurt Pederseb",
+    "email": "sizzler1972@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-07-06 01:34:30",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-06-06 01:34:33",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "sizzler1972@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-07-06 01:34:30",
+      "price": "49",
+      "fullName": "Kurt Pederseb",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 64966,
+    "key": "54eadd70-6a02-44f8-9be3-d5d09258eab5",
+    "udi": "umb://document/54eadd706a0244f89be3d5d09258eab5",
+    "name": "brzg02062022065549",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-02 06:56:52",
+    "updateDate": "2022-06-02 06:56:52",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,64966",
+    "sortOrder": 34,
+    "urls": ["/dan-andersen/purchases/brzg02062022065549/"],
+    "fullName": "Dennis Lippert",
+    "email": "Dennis.Lippert83@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-06-04 06:56:50",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-06-02 06:56:52",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Dennis.Lippert83@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-06-04 06:56:50",
+      "price": "39",
+      "fullName": "Dennis Lippert",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 64889,
+    "key": "cfeda6cd-383c-4766-a472-a6c37cc9528c",
+    "udi": "umb://document/cfeda6cd383c4766a472a6c37cc9528c",
+    "name": "22i331052022140057",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-31 14:02:50",
+    "updateDate": "2022-05-31 14:02:50",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,64889",
+    "sortOrder": 33,
+    "urls": ["/dan-andersen/purchases/22i331052022140057/"],
+    "fullName": "Dennis Lippert ",
+    "email": "Dennis.Lippert83@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2022-06-02 14:02:48",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-05-31 14:02:50",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "Dennis.Lippert83@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-06-02 14:02:48",
+      "price": "29",
+      "fullName": "Dennis Lippert ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 64684,
+    "key": "124fc1da-9345-48f5-b237-0c2625f991ce",
+    "udi": "umb://document/124fc1da934548f5b2370c2625f991ce",
+    "name": "8eu227052022105123",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-27 10:52:31",
+    "updateDate": "2022-05-27 10:52:31",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,64684",
+    "sortOrder": 32,
+    "urls": ["/dan-andersen/purchases/8eu227052022105123/"],
+    "fullName": "Mike Rehné",
+    "email": "mikz_9@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-06-26 10:52:29",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-05-27 10:52:31",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "mikz_9@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-06-26 10:52:29",
+      "price": "49",
+      "fullName": "Mike Rehné",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 64449,
+    "key": "c9354532-91fc-46f0-b136-6edfbe2582ed",
+    "udi": "umb://document/c935453291fc46f0b1366edfbe2582ed",
+    "name": "q87317052022220627",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-17 22:06:55",
+    "updateDate": "2022-05-17 22:06:55",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,64449",
+    "sortOrder": 31,
+    "urls": ["/dan-andersen/purchases/q87317052022220627/"],
+    "fullName": "Christian Caspersen",
+    "email": "ckc2000@live.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-05-19 22:06:54",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-05-17 22:06:55",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "ckc2000@live.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-05-19 22:06:54",
+      "price": "39",
+      "fullName": "Christian Caspersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 64179,
+    "key": "7f195a3a-f7a1-4121-8638-66e22ba24d18",
+    "udi": "umb://document/7f195a3af7a14121863866e22ba24d18",
+    "name": "919p07052022120104",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-07 12:01:29",
+    "updateDate": "2022-05-07 12:01:29",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,64179",
+    "sortOrder": 30,
+    "urls": ["/dan-andersen/purchases/919p07052022120104/"],
+    "fullName": "Danni Kobberholm",
+    "email": "omzigg@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-06-06 12:01:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-05-07 12:01:29",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "omzigg@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-06-06 12:01:27",
+      "price": "39",
+      "fullName": "Danni Kobberholm",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 63984,
+    "key": "8f2eda19-1d3e-4f7d-81a6-e086b2ba39fc",
+    "udi": "umb://document/8f2eda191d3e4f7d81a6e086b2ba39fc",
+    "name": "6ili30042022181308",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-04-30 18:15:05",
+    "updateDate": "2022-04-30 18:15:05",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,63984",
+    "sortOrder": 29,
+    "urls": ["/dan-andersen/purchases/6ili30042022181308/"],
+    "fullName": "Kasper Larsen",
+    "email": "kasperl2011@live.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-05-30 18:15:04",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-04-30 18:15:05",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kasperl2011@live.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-05-30 18:15:04",
+      "price": "49",
+      "fullName": "Kasper Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 63258,
+    "key": "a7a053d3-46f7-45ac-a804-e9a92244f763",
+    "udi": "umb://document/a7a053d346f745aca804e9a92244f763",
+    "name": "ein903042022205239",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-04-03 20:52:57",
+    "updateDate": "2022-04-03 20:52:57",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,63258",
+    "sortOrder": 28,
+    "urls": ["/dan-andersen/purchases/ein903042022205239/"],
+    "fullName": "Mads Eghjort Nissen",
+    "email": "nissen.mads@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-05-03 20:52:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-04-03 20:52:57",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "nissen.mads@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-05-03 20:52:55",
+      "price": "49",
+      "fullName": "Mads Eghjort Nissen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 63204,
+    "key": "282b6af0-3333-4cdf-9787-97dc1ee931af",
+    "udi": "umb://document/282b6af033334cdf978797dc1ee931af",
+    "name": "6u1f02042022135916",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-04-02 13:59:29",
+    "updateDate": "2022-04-02 13:59:29",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,63204",
+    "sortOrder": 27,
+    "urls": ["/dan-andersen/purchases/6u1f02042022135916/"],
+    "fullName": "Katrin haraldsen",
+    "email": "katrin_haraldsen@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-05-02 13:59:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-04-02 13:59:29",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "katrin_haraldsen@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-05-02 13:59:27",
+      "price": "49",
+      "fullName": "Katrin haraldsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 63070,
+    "key": "7175cf99-0a6c-453b-b7df-c07fa495d09f",
+    "udi": "umb://document/7175cf990a6c453bb7dfc07fa495d09f",
+    "name": "526329032022213011",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-29 21:30:25",
+    "updateDate": "2022-03-29 21:30:25",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,63070",
+    "sortOrder": 26,
+    "urls": ["/dan-andersen/purchases/526329032022213011/"],
+    "fullName": "Camilla Skou ",
+    "email": "camillaskouo@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-04-28 21:30:23",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-03-29 21:30:25",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "camillaskouo@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-28 21:30:23",
+      "price": "49",
+      "fullName": "Camilla Skou ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 62786,
+    "key": "9819e277-7e77-4f2b-9819-ca725ed12d6d",
+    "udi": "umb://document/9819e2777e774f2b9819ca725ed12d6d",
+    "name": "nt5621032022101832",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-21 10:19:20",
+    "updateDate": "2022-03-21 10:19:20",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,62786",
+    "sortOrder": 25,
+    "urls": ["/dan-andersen/purchases/nt5621032022101832/"],
+    "fullName": "Leif S. Jensen",
+    "email": "lsj.grejsdalen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-04-20 10:19:18",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-03-21 10:19:20",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "lsj.grejsdalen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-20 10:19:18",
+      "price": "49",
+      "fullName": "Leif S. Jensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 62736,
+    "key": "03fa3229-d710-476a-b715-c1e527a1af3a",
+    "udi": "umb://document/03fa3229d710476ab715c1e527a1af3a",
+    "name": "4pgu19032022193125",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-19 19:31:42",
+    "updateDate": "2022-03-19 19:31:42",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,62736",
+    "sortOrder": 24,
+    "urls": ["/dan-andersen/purchases/4pgu19032022193125/"],
+    "fullName": "Maria Olsen",
+    "email": "mariagolsen@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-04-18 19:31:40",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-03-19 19:31:42",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "mariagolsen@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-18 19:31:40",
+      "price": "49",
+      "fullName": "Maria Olsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 62720,
+    "key": "d5262479-32af-44e6-9719-576f9633c520",
+    "udi": "umb://document/d526247932af44e69719576f9633c520",
+    "name": "kf3919032022162329",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-19 16:24:10",
+    "updateDate": "2022-03-19 16:24:10",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,62720",
+    "sortOrder": 23,
+    "urls": ["/dan-andersen/purchases/kf3919032022162329/"],
+    "fullName": "Torben Ken Nielsen",
+    "email": "Torben@famnielsen.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-04-18 16:24:08",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-03-19 16:24:10",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Torben@famnielsen.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-18 16:24:08",
+      "price": "49",
+      "fullName": "Torben Ken Nielsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 62655,
+    "key": "ee5b20c6-0b45-45e4-b567-fe3aa2a01297",
+    "udi": "umb://document/ee5b20c60b4545e4b567fe3aa2a01297",
+    "name": "y24117032022161715",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-17 16:17:26",
+    "updateDate": "2022-03-17 16:17:26",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,62655",
+    "sortOrder": 22,
+    "urls": ["/dan-andersen/purchases/y24117032022161715/"],
+    "fullName": "Kasper Jensen",
+    "email": "kasper.jensen@kghcustoms.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-04-16 16:17:24",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-03-17 16:17:26",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kasper.jensen@kghcustoms.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-16 16:17:24",
+      "price": "49",
+      "fullName": "Kasper Jensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 61370,
+    "key": "5ab78c47-9c78-4191-acf7-af059d25b469",
+    "udi": "umb://document/5ab78c479c784191acf7af059d25b469",
+    "name": "3z1t09022022050207",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-02-09 05:02:56",
+    "updateDate": "2022-02-09 05:02:56",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,61370",
+    "sortOrder": 21,
+    "urls": ["/dan-andersen/purchases/3z1t09022022050207/"],
+    "fullName": "Mikkel Kiel",
+    "email": "mikkel.b.kiel@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-03-11 05:02:55",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-02-09 05:02:56",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "mikkel.b.kiel@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-03-11 05:02:55",
+      "price": "49",
+      "fullName": "Mikkel Kiel",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 60909,
+    "key": "dc3f9ebe-98ec-43e9-b7c7-7bebfa4cfec7",
+    "udi": "umb://document/dc3f9ebe98ec43e9b7c77bebfa4cfec7",
+    "name": "3gtz02022022231250",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-02-02 23:13:02",
+    "updateDate": "2022-02-02 23:13:02",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,60909",
+    "sortOrder": 20,
+    "urls": ["/dan-andersen/purchases/3gtz02022022231250/"],
+    "fullName": "Maria Frigaard",
+    "email": "mac_ria@me.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-03-04 23:13:01",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-02-02 23:13:02",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "mac_ria@me.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-03-04 23:13:01",
+      "price": "49",
+      "fullName": "Maria Frigaard",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 56709,
+    "key": "eccb8ffe-bb95-48f7-95d7-aa71c0a2beec",
+    "udi": "umb://document/eccb8ffebb9548f795d7aa71c0a2beec",
+    "name": "35t413012022234253",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-01-13 23:43:03",
+    "updateDate": "2022-01-13 23:43:03",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,56709",
+    "sortOrder": 19,
+    "urls": ["/dan-andersen/purchases/35t413012022234253/"],
+    "fullName": "Jacob Prytz Hansen",
+    "email": "jacobprytz@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-01-15 23:43:02",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-01-13 23:43:03",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "jacobprytz@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-01-15 23:43:02",
+      "price": "39",
+      "fullName": "Jacob Prytz Hansen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 56335,
+    "key": "d1db6956-b55d-4f7f-a661-aa7c6b95613f",
+    "udi": "umb://document/d1db6956b55d4f7fa661aa7c6b95613f",
+    "name": "q81708012022102305",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-01-08 10:25:33",
+    "updateDate": "2022-01-08 10:25:33",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,56335",
+    "sortOrder": 18,
+    "urls": ["/dan-andersen/purchases/q81708012022102305/"],
+    "fullName": "Ole benjamin Olsen",
+    "email": "Hoppeged28@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-02-07 10:25:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-01-08 10:25:33",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "Hoppeged28@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-02-07 10:25:32",
+      "price": "39",
+      "fullName": "Ole benjamin Olsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 55955,
+    "key": "22335457-1c57-45c4-a45f-5eb6bf33b53b",
+    "udi": "umb://document/223354571c5745c4a45f5eb6bf33b53b",
+    "name": "42v201012022210207",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-01-01 21:02:18",
+    "updateDate": "2022-01-01 21:02:18",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,55955",
+    "sortOrder": 17,
+    "urls": ["/dan-andersen/purchases/42v201012022210207/"],
+    "fullName": "Ciano Thorning",
+    "email": "Cianthorning1@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-01-31 21:02:18",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2022-01-01 21:02:18",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Cianthorning1@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-01-31 21:02:18",
+      "price": "49",
+      "fullName": "Ciano Thorning",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 55038,
+    "key": "4f7f9af3-c065-441b-b8f8-b529b7e235ab",
+    "udi": "umb://document/4f7f9af3c065441bb8f8b529b7e235ab",
+    "name": "h12b18122021005531",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-12-18 00:55:42",
+    "updateDate": "2021-12-18 00:55:42",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,55038",
+    "sortOrder": 16,
+    "urls": ["/dan-andersen/purchases/h12b18122021005531/"],
+    "fullName": "Kenneth Holm Pedersen",
+    "email": "kennethhp92@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-12-20 00:55:41",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-12-18 00:55:42",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "kennethhp92@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-12-20 00:55:41",
+      "price": "39",
+      "fullName": "Kenneth Holm Pedersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 54490,
+    "key": "e5a8a78d-7795-4fe5-b6b2-329964970ce2",
+    "udi": "umb://document/e5a8a78d77954fe5b6b2329964970ce2",
+    "name": "k69108122021094731",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-12-08 09:48:02",
+    "updateDate": "2021-12-08 09:48:02",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,54490",
+    "sortOrder": 15,
+    "urls": ["/dan-andersen/purchases/k69108122021094731/"],
+    "fullName": "michael n petersen",
+    "email": "michael@hawkeyes.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-01-07 09:48:01",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-12-08 09:48:02",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "michael@hawkeyes.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-01-07 09:48:01",
+      "price": "49",
+      "fullName": "michael n petersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 54487,
+    "key": "56afca54-752f-4c37-8745-44b265bc7405",
+    "udi": "umb://document/56afca54752f4c37874544b265bc7405",
+    "name": "s99a08122021094326",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-12-08 09:43:50",
+    "updateDate": "2021-12-08 09:43:50",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,54487",
+    "sortOrder": 14,
+    "urls": ["/dan-andersen/purchases/s99a08122021094326/"],
+    "fullName": "Michael N. Petersen",
+    "email": "michael@hawkeyes.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-01-07 09:43:49",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-12-08 09:43:50",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "michael@hawkeyes.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-01-07 09:43:49",
+      "price": "39",
+      "fullName": "Michael N. Petersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 52746,
+    "key": "c8775360-f30c-4313-84a8-9e24f8fb82e2",
+    "udi": "umb://document/c8775360f30c431384a89e24f8fb82e2",
+    "name": "fsgt22112021211204",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-22 21:12:28",
+    "updateDate": "2021-11-22 21:12:28",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,52746",
+    "sortOrder": 13,
+    "urls": ["/dan-andersen/purchases/fsgt22112021211204/"],
+    "fullName": "Torben Gro Holm-Lauritzen",
+    "email": "torbenholm83@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-12-22 21:12:28",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-11-22 21:12:28",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "torbenholm83@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-12-22 21:12:28",
+      "price": "49",
+      "fullName": "Torben Gro Holm-Lauritzen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 51621,
+    "key": "b132119d-6592-432b-8156-69e5e775ba2e",
+    "udi": "umb://document/b132119d6592432b815669e5e775ba2e",
+    "name": "839y18112021011413",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-18 01:14:50",
+    "updateDate": "2021-11-18 01:14:50",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,51621",
+    "sortOrder": 12,
+    "urls": ["/dan-andersen/purchases/839y18112021011413/"],
+    "fullName": "Christian Falkner",
+    "email": "christian@falkner.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-11-20 01:14:49",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-11-18 01:14:50",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "christian@falkner.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-11-20 01:14:49",
+      "price": "39",
+      "fullName": "Christian Falkner",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 51542,
+    "key": "5db83547-9224-4ace-bf89-917e4ca6becb",
+    "udi": "umb://document/5db8354792244acebf89917e4ca6becb",
+    "name": "119r14112021180356",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-14 18:04:11",
+    "updateDate": "2021-11-14 18:04:11",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,51542",
+    "sortOrder": 11,
+    "urls": ["/dan-andersen/purchases/119r14112021180356/"],
+    "fullName": "Elias ølsgaard",
+    "email": "eliasolsgaard@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-11-16 18:04:10",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-11-14 18:04:11",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "eliasolsgaard@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-11-16 18:04:10",
+      "price": "39",
+      "fullName": "Elias ølsgaard",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 51492,
+    "key": "67461bc0-64d4-470c-a61a-e890e8b5f1fd",
+    "udi": "umb://document/67461bc064d4470ca61ae890e8b5f1fd",
+    "name": "7k1912112021051309",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-12 05:13:33",
+    "updateDate": "2021-11-12 05:13:33",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,51492",
+    "sortOrder": 10,
+    "urls": ["/dan-andersen/purchases/7k1912112021051309/"],
+    "fullName": "Michael Magnus Ziegler",
+    "email": "magnus.ziegler@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-11-14 05:13:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-11-12 05:13:33",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "magnus.ziegler@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-11-14 05:13:32",
+      "price": "39",
+      "fullName": "Michael Magnus Ziegler",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 50933,
+    "key": "2dfc7767-6682-490f-bd79-2c6547028491",
+    "udi": "umb://document/2dfc77676682490fbd792c6547028491",
+    "name": "yw2g21102021154903",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-10-21 15:49:16",
+    "updateDate": "2021-10-21 15:49:16",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,50933",
+    "sortOrder": 9,
+    "urls": ["/dan-andersen/purchases/yw2g21102021154903/"],
+    "fullName": "Casper Raal",
+    "email": "casperr@cool.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-11-20 15:49:15",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-10-21 15:49:16",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "casperr@cool.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-11-20 15:49:15",
+      "price": "49",
+      "fullName": "Casper Raal",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 50521,
+    "key": "80bc2773-b96b-49c4-9a41-ce91118b8dfc",
+    "udi": "umb://document/80bc2773b96b49c49a41ce91118b8dfc",
+    "name": "18pa03102021101047",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-10-03 10:11:57",
+    "updateDate": "2021-10-03 10:11:57",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,50521",
+    "sortOrder": 8,
+    "urls": ["/dan-andersen/purchases/18pa03102021101047/"],
+    "fullName": "Irene Larsen",
+    "email": "irene_larsen1979@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-11-02 10:11:56",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-10-03 10:11:57",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "irene_larsen1979@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-11-02 10:11:56",
+      "price": "49",
+      "fullName": "Irene Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 50400,
+    "key": "a8cde97a-625f-42c9-8a55-5dfdf0aa814c",
+    "udi": "umb://document/a8cde97a625f42c98a555dfdf0aa814c",
+    "name": "h26d27092021185743",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-09-27 18:58:54",
+    "updateDate": "2021-09-27 18:58:54",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,50400",
+    "sortOrder": 7,
+    "urls": ["/dan-andersen/purchases/h26d27092021185743/"],
+    "fullName": "Louise S. Møller Leed",
+    "email": "lsun8525@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-09-29 18:58:54",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-09-27 18:58:54",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "lsun8525@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-09-29 18:58:54",
+      "price": "39",
+      "fullName": "Louise S. Møller Leed",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 49974,
+    "key": "b742f711-74ce-4c26-9e93-b5b3cc5cd432",
+    "udi": "umb://document/b742f71174ce4c269e93b5b3cc5cd432",
+    "name": "kg2113092021194511",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-09-13 19:45:34",
+    "updateDate": "2021-09-13 19:45:34",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,49974",
+    "sortOrder": 6,
+    "urls": ["/dan-andersen/purchases/kg2113092021194511/"],
+    "fullName": "Maiken Bredahl Carlsen",
+    "email": "maikenbredahl@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-10-13 19:45:33",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-09-13 19:45:34",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "maikenbredahl@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-10-13 19:45:33",
+      "price": "49",
+      "fullName": "Maiken Bredahl Carlsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 49550,
+    "key": "465177ea-e77b-42e6-993d-6f380a24c4b0",
+    "udi": "umb://document/465177eae77b42e6993d6f380a24c4b0",
+    "name": "izw527082021073104",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-27 07:31:58",
+    "updateDate": "2021-08-27 07:31:58",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,49550",
+    "sortOrder": 5,
+    "urls": ["/dan-andersen/purchases/izw527082021073104/"],
+    "fullName": "steffen dyreborg kristensen",
+    "email": "steffen66sdk@yahoo.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-09-26 07:31:57",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-08-27 07:31:58",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "steffen66sdk@yahoo.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-09-26 07:31:57",
+      "price": "49",
+      "fullName": "steffen dyreborg kristensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 49479,
+    "key": "6777b7cc-b1b3-4a55-a115-4bdd6846f31d",
+    "udi": "umb://document/6777b7ccb1b34a55a1154bdd6846f31d",
+    "name": "355523082021155040",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-23 15:51:13",
+    "updateDate": "2021-08-23 15:51:13",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,49479",
+    "sortOrder": 4,
+    "urls": ["/dan-andersen/purchases/355523082021155040/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-09-22 15:51:13",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-08-23 15:51:13",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-09-22 15:51:13",
+      "price": "49",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 49384,
+    "key": "f016f536-0fa1-4201-a3d6-4d4b4758c78f",
+    "udi": "umb://document/f016f5360fa14201a3d64d4b4758c78f",
+    "name": "8kl119082021220340",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-19 22:05:08",
+    "updateDate": "2021-08-19 22:05:08",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,49384",
+    "sortOrder": 3,
+    "urls": ["/dan-andersen/purchases/8kl119082021220340/"],
+    "fullName": "Martin Holden Thomsen",
+    "email": "pusle-215@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-08-21 22:05:07",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-08-19 22:05:08",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "pusle-215@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-08-21 22:05:07",
+      "price": "39",
+      "fullName": "Martin Holden Thomsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 49351,
+    "key": "9a33f51b-4188-43bd-9124-862aebc5ca39",
+    "udi": "umb://document/9a33f51b418843bd9124862aebc5ca39",
+    "name": "m91r19082021102929",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-19 10:29:42",
+    "updateDate": "2021-08-19 10:29:42",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,49351",
+    "sortOrder": 2,
+    "urls": ["/dan-andersen/purchases/m91r19082021102929/"],
+    "fullName": "Denis Meinertz Elnegaard",
+    "email": "benis.elnevild@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-09-18 10:29:41",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-08-19 10:29:42",
+    "mediaRelationUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/a9424114a8f24b6b8b99e8097c9d0348"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+        "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+        "resolved": true,
+        "id": 48899,
+        "name": "Dan Andersen På Vippen",
+        "title": "Dan Andersen På Vippen ",
+        "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+        "contentTypeAlias": "media",
+        "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": "39"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Dan Andersen På Vippen "],
+    "mediaUrls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "email": "benis.elnevild@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-09-18 10:29:41",
+      "price": "49",
+      "fullName": "Denis Meinertz Elnegaard",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/a9424114a8f24b6b8b99e8097c9d0348"
+    }
+  },
+  {
+    "id": 47220,
+    "key": "33b8098b-1690-422f-8326-b8d111ee9605",
+    "udi": "umb://document/33b8098b1690422f8326b8d111ee9605",
+    "name": "8k6313062021203234",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-13 20:33:28",
+    "updateDate": "2021-06-13 20:33:28",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,47220",
+    "sortOrder": 1,
+    "urls": ["/dan-andersen/purchases/8k6313062021203234/"],
+    "fullName": "Heidi Barington",
+    "email": "familie.finch@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2021-06-15 20:33:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-06-13 20:33:28",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "familie.finch@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-06-15 20:33:27",
+      "price": "29",
+      "fullName": "Heidi Barington",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  },
+  {
+    "id": 46805,
+    "key": "75dc7a88-96db-4801-92d0-cf9fc2095d05",
+    "udi": "umb://document/75dc7a8896db480192d0cf9fc2095d05",
+    "name": "555s05062021081807",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 08:18:52",
+    "updateDate": "2021-06-05 08:18:52",
+    "parentId": 42297,
+    "path": "-1,1067,42292,42297,46805",
+    "sortOrder": 0,
+    "urls": ["/dan-andersen/purchases/555s05062021081807/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 08:18:51",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+    "orderCreateDate": "2021-06-05 08:18:52",
+    "mediaRelationUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+        "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+        "resolved": true,
+        "id": 42310,
+        "name": "Extravaganza",
+        "title": "Extravaganza",
+        "urls": ["/dan-andersen/shows/extravaganza/"],
+        "contentTypeAlias": "media",
+        "videoID": "a11497f859e6505f7100d16e7df2b69d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Extravaganza"],
+    "mediaUrls": ["/dan-andersen/shows/extravaganza/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 08:18:51",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk.\r\n\r\nDbh. \r\nDan Andersen",
+      "media": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207"
+    }
+  }
+]

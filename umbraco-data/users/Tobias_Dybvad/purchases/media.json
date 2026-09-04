@@ -1,0 +1,92 @@
+[
+  {
+    "udi": "umb://document/89f7320720c5462bb10ead3bf24998f3",
+    "key": "89f73207-20c5-462b-b10e-ad3bf24998f3",
+    "resolved": true,
+    "id": 42304,
+    "name": "Er det ikke dig fra Dybvad?",
+    "title": "Er det ikke dig fra Dybvad?",
+    "urls": ["/tobias-dybvad/shows/er-det-ikke-dig-fra-dybvad/"],
+    "contentTypeAlias": "media",
+    "videoID": "a1a8a9216a29bb52a563da0c54ae715d",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/a1a8a9216a29bb52a563da0c54ae715d/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3132/dybvad_erdetikke_400x556.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 19,
+    "purchaseOrderCount": 12,
+    "nonPurchaseEntryCount": 7,
+    "totalDownloads": 8,
+    "totalStreams": 10,
+    "firstPurchaseAt": "2021-05-26 17:41:35",
+    "lastPurchaseAt": "2026-05-30 12:22:27",
+    "samplePurchaseIds": [123957, 120674, 116540, 115023, 111649]
+  },
+  {
+    "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
+    "key": "16382748-f2bb-41d5-8f33-ca358cbbc7ee",
+    "resolved": true,
+    "id": 42305,
+    "name": "Sjov mand - Klam Personlighed",
+    "title": "Sjov mand - Klam Personlighed",
+    "urls": ["/tobias-dybvad/shows/sjov-mand-klam-personlighed/"],
+    "contentTypeAlias": "media",
+    "videoID": "8eaafa3970510f3ade1ddc8c6abc930a",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/8eaafa3970510f3ade1ddc8c6abc930a/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3133/dybvad_sjov_klam_cover.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 10,
+    "purchaseOrderCount": 7,
+    "nonPurchaseEntryCount": 3,
+    "totalDownloads": 9,
+    "totalStreams": 3,
+    "firstPurchaseAt": "2021-05-12 07:51:26",
+    "lastPurchaseAt": "2025-06-03 21:09:30",
+    "samplePurchaseIds": [110180, 108660, 106642, 99781, 97265]
+  }
+]

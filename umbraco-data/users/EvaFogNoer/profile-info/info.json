@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "EvaFogNoer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 57261,
+  "key": "1328a0d8-fc52-4f38-9b23-56b0ba68e414",
+  "udi": "umb://document/1328a0d8fc524f389b2356b0ba68e414",
+  "path": "-1,1067,57261",
+  "url": "/evafognoer/",
+  "createDate": "2022-01-26 17:21:03",
+  "updateDate": "2023-01-20 09:48:27",
+  "publishDate": "2023-01-20 09:48:27",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

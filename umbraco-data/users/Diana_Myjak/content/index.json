@@ -1,0 +1,40 @@
+{
+  "requestedName": "Diana Myjak",
+  "liveName": "Diana Myjak",
+  "userId": 118984,
+  "status": "found",
+  "folderCount": 6,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Master starter kit ",
+      "id": 118992,
+      "status": "ok"
+    },
+    {
+      "name": "Glow up Prompt - Skincare & Makeup ",
+      "id": 118995,
+      "status": "ok"
+    },
+    {
+      "name": "Glow up Prompt - Farve analyse & Krops form ",
+      "id": 118996,
+      "status": "ok"
+    },
+    {
+      "name": "6. Min Get ready rutine ",
+      "id": 119000,
+      "status": "ok"
+    },
+    {
+      "name": "Morgen øvelser ",
+      "id": 119001,
+      "status": "ok"
+    },
+    {
+      "name": "Motion og Holdningsøvelser ",
+      "id": 119002,
+      "status": "ok"
+    }
+  ]
+}

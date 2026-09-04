@@ -1,0 +1,81 @@
+[
+  {
+    "id": 115919,
+    "key": "2a7faa21-8711-4000-8b6d-7d3bdf88a0e1",
+    "udi": "umb://document/2a7faa21871140008b6d7d3bdf88a0e1",
+    "name": "2a7h24112025174424",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-11-24 17:44:38",
+    "updateDate": "2025-11-24 17:44:38",
+    "parentId": 73344,
+    "path": "-1,1067,73339,73344,115919",
+    "sortOrder": 0,
+    "urls": ["/a5-forlag-aps/purchases/2a7h24112025174424/"],
+    "fullName": "Andreas Andersen",
+    "email": "moelgaardandersen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "99",
+    "expireDate": "2025-12-08 17:44:35",
+    "message": "Tak for dit køb.\r\n\r\nHar du spørgsmål er du velkommen til at skrive til os.",
+    "orderCreateDate": "2025-11-24 17:44:38",
+    "mediaRelationUdis": ["umb://document/e7317899114b4fda9782fe0a40b511a7"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/e7317899114b4fda9782fe0a40b511a7"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/e7317899114b4fda9782fe0a40b511a7",
+        "key": "e7317899-114b-4fda-9782-fe0a40b511a7",
+        "resolved": true,
+        "id": 74779,
+        "name": "DET' HELT VILDT - Fasan",
+        "title": "DET' HELT VILDT - Fasan",
+        "urls": [
+          "/a5-forlag-aps/det-helt-vildt-opskrifter/det-helt-vildt-fasan/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4204/fasan_opti.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4205/skaermbillede-2022-11-09-kl-103839.png",
+        "purchasePrice": "99",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["DET' HELT VILDT - Fasan"],
+    "mediaUrls": [
+      "/a5-forlag-aps/det-helt-vildt-opskrifter/det-helt-vildt-fasan/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "moelgaardandersen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2025-12-08 17:44:35",
+      "price": "99",
+      "fullName": "Andreas Andersen",
+      "message": "Tak for dit køb.\r\n\r\nHar du spørgsmål er du velkommen til at skrive til os.",
+      "media": "umb://document/e7317899114b4fda9782fe0a40b511a7"
+    }
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "udi": "umb://document/11a9595707de4c4cbbac96df4815daab",
+    "key": "11a95957-07de-4c4c-bbac-96df4815daab",
+    "resolved": true,
+    "id": 19086,
+    "name": "Stimulastik for baby 4-6 måneder",
+    "title": "Stimulastik for baby 4-6 måneder",
+    "urls": [
+      "/granli-velvaere/stimulastik/stimulastik-for-baby-4-6-maaneder/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "11db71ae1a8fbae708567431dfdd637f",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/11db71ae1a8fbae708567431dfdd637f/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/11db71ae1a8fbae708567431dfdd637f/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "/media/2235/til-stimulastik-video-4-6.png",
+    "purchasePrice": "98",
+    "rentalPrice": "50",
+    "purchaseEntryCount": 6,
+    "purchaseOrderCount": 5,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 5,
+    "totalStreams": 2,
+    "firstPurchaseAt": "2020-08-22 16:04:32",
+    "lastPurchaseAt": "2023-11-30 11:05:51",
+    "samplePurchaseIds": [
+      92701,
+      88094,
+      77520,
+      19288,
+      19235
+    ]
+  },
+  {
+    "udi": "umb://document/1678698880334798b3b5e615b6d979e6",
+    "key": "16786988-8033-4798-b3b5-e615b6d979e6",
+    "resolved": true,
+    "id": 19063,
+    "name": "Stimulastik for baby 2-4 måneder",
+    "title": "Stimulastik for baby 2-4 måneder",
+    "urls": [
+      "/granli-velvaere/stimulastik/stimulastik-for-baby-2-4-maaneder/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "eb0860cedbfa58a4e3a108826e9fca41",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/eb0860cedbfa58a4e3a108826e9fca41/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/eb0860cedbfa58a4e3a108826e9fca41/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "/media/2232/til-stimulastik-video-2-4.png",
+    "purchasePrice": "98",
+    "rentalPrice": "50",
+    "purchaseEntryCount": 1,
+    "purchaseOrderCount": 1,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 3,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2023-01-25 15:04:26",
+    "lastPurchaseAt": "2023-01-25 15:04:26",
+    "samplePurchaseIds": [
+      77518
+    ]
+  }
+]

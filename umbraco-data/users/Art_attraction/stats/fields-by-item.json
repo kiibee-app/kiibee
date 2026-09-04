@@ -1,0 +1,96 @@
+[
+  {
+    "id": 116606,
+    "key": "dc58a069-daf5-4673-a20e-6933ced92481",
+    "udi": "umb://document/dc58a069daf54673a20e6933ced92481",
+    "name": "4bf6fe84284f47729d75f362fbe552e1",
+    "fields": {
+      "isPlay": "0",
+      "uID": "",
+      "media": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+    },
+    "fieldDetails": {
+      "isPlay": {
+        "alias": "isPlay",
+        "label": "Is Play",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "uID": {
+        "alias": "uID",
+        "label": "UID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+      }
+    },
+    "fieldOrder": ["isPlay", "uID", "media"]
+  },
+  {
+    "id": 116603,
+    "key": "49dad26d-5ce9-4f2d-80bb-0799f81d4be3",
+    "udi": "umb://document/49dad26d5ce94f2d80bb0799f81d4be3",
+    "name": "9173b745c0764adaa6cf44274a514027",
+    "fields": {
+      "isPlay": "0",
+      "uID": "",
+      "media": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+    },
+    "fieldDetails": {
+      "isPlay": {
+        "alias": "isPlay",
+        "label": "Is Play",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "uID": {
+        "alias": "uID",
+        "label": "UID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+      }
+    },
+    "fieldOrder": ["isPlay", "uID", "media"]
+  }
+]

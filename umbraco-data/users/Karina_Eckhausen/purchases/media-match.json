@@ -1,0 +1,34 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/f0fc380b037a47e680556bb7a726a4be",
+      "key": "f0fc380b-037a-47e6-8055-6bb7a726a4be",
+      "resolved": true,
+      "id": 95585,
+      "name": "En dybdegående søvnhypnose + en HVORFOR skabelon indenfor temaet “SUND & AKTIV” ",
+      "title": "En dybdegående søvnhypnose + en HVORFOR skabelon indenfor temaet “SUND & AKTIV” ",
+      "urls": [
+        "/karina-eckhausen/en-dybdegaaende-soevnhypnose-plus-en-hvorfor-skabelon-indenfor-temaet-sund-aktiv/"
+      ],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "",
+      "purchaseEntryCount": 3,
+      "purchaseOrderCount": 1,
+      "nonPurchaseEntryCount": 2,
+      "totalDownloads": 1,
+      "totalStreams": 3,
+      "firstPurchaseAt": "2024-03-21 21:50:53",
+      "lastPurchaseAt": "2024-03-26 15:40:03",
+      "samplePurchaseIds": [95770, 95767, 95660]
+    }
+  ],
+  "unresolvedMedia": []
+}

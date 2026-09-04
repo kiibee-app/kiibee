@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "slank og wellness",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 2072,
+  "key": "62b793b4-db82-47f9-a318-0cfe9adb5b59",
+  "udi": "umb://document/62b793b4db8247f9a3180cfe9adb5b59",
+  "path": "-1,1067,2072",
+  "url": "/slank-og-wellness/",
+  "createDate": "2019-09-26 20:02:50",
+  "updateDate": "2026-08-21 00:00:03",
+  "publishDate": "2026-08-21 00:00:03",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

@@ -1,0 +1,928 @@
+{
+  "startedAt": "2026-06-02T11:04:39.893Z",
+  "finishedAt": null,
+  "rootId": 1067,
+  "tasks": ["stats", "shows", "purchases", "payouts"],
+  "skipExisting": true,
+  "counts": {
+    "ok": 38,
+    "skipped": 3,
+    "error": 0
+  },
+  "users": [
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483
+    },
+    {
+      "userDir": "Anders_Fjelsted",
+      "liveName": "Anders Fjelsted",
+      "userId": 42509
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462
+    }
+  ],
+  "results": [
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "stats",
+      "parentId": 42484,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:41.068Z",
+      "finishedAt": "2026-06-02T11:04:41.760Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Tingleff\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 10,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 10
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "shows",
+      "parentId": 42575,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:41.764Z",
+      "finishedAt": "2026-06-02T11:04:44.430Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Tingleff\\shows",
+        "shows": 3,
+        "statsEntriesRead": 10,
+        "showsMatchedToStats": 2,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "purchases",
+      "parentId": 42488,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:44.433Z",
+      "finishedAt": "2026-06-02T11:04:46.051Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Tingleff\\purchases",
+        "purchases": 11,
+        "purchaseEntries": 11,
+        "detailsFetched": 11,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 2,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "payouts",
+      "parentId": 42487,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:46.055Z",
+      "finishedAt": "2026-06-02T11:04:46.794Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Tingleff\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Anders_Fjelsted",
+      "liveName": "Anders Fjelsted",
+      "userId": 42509,
+      "task": "stats",
+      "parentId": 42510,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:47.032Z",
+      "finishedAt": "2026-06-02T11:04:47.715Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anders_Fjelsted\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 21,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 21
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Anders_Fjelsted",
+      "liveName": "Anders Fjelsted",
+      "userId": 42509,
+      "task": "shows",
+      "parentId": 42516,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:47.718Z",
+      "finishedAt": "2026-06-02T11:04:50.152Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anders_Fjelsted\\shows",
+        "shows": 2,
+        "statsEntriesRead": 21,
+        "showsMatchedToStats": 2,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Anders_Fjelsted",
+      "liveName": "Anders Fjelsted",
+      "userId": 42509,
+      "task": "purchases",
+      "parentId": 42514,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:50.155Z",
+      "finishedAt": "2026-06-02T11:04:51.625Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anders_Fjelsted\\purchases",
+        "purchases": 7,
+        "purchaseEntries": 7,
+        "detailsFetched": 7,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 2,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Anders_Fjelsted",
+      "liveName": "Anders Fjelsted",
+      "userId": 42509,
+      "task": "payouts",
+      "parentId": 42513,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:51.628Z",
+      "finishedAt": "2026-06-02T11:04:52.508Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anders_Fjelsted\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 108.2,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "stats",
+      "parentId": 42565,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:52.753Z",
+      "finishedAt": "2026-06-02T11:04:54.330Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Torben_Chris\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 371,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 371
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "shows",
+      "parentId": 42571,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:54.335Z",
+      "finishedAt": "2026-06-02T11:04:57.714Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Torben_Chris\\shows",
+        "shows": 6,
+        "statsEntriesRead": 371,
+        "showsMatchedToStats": 3,
+        "statsMediaWithoutShow": 1,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "purchases",
+      "parentId": 42569,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:57.718Z",
+      "finishedAt": "2026-06-02T11:05:07.306Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Torben_Chris\\purchases",
+        "purchases": 232,
+        "purchaseEntries": 176,
+        "detailsFetched": 232,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 3,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "payouts",
+      "parentId": 42568,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:07.309Z",
+      "finishedAt": "2026-06-02T11:05:08.314Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Torben_Chris\\payouts",
+        "payouts": 4,
+        "paidPayouts": 4,
+        "totalAmount": 3864.6,
+        "detailsFetched": 4,
+        "entriesWithInvoiceLink": 4,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "stats",
+      "parentId": 42705,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:08.557Z",
+      "finishedAt": "2026-06-02T11:05:09.595Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 147,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 147
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "shows",
+      "parentId": 42711,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:09.599Z",
+      "finishedAt": "2026-06-02T11:05:12.303Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\shows",
+        "shows": 3,
+        "statsEntriesRead": 147,
+        "showsMatchedToStats": 3,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "purchases",
+      "parentId": 42709,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:12.306Z",
+      "finishedAt": "2026-06-02T11:05:17.578Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\purchases",
+        "purchases": 112,
+        "purchaseEntries": 99,
+        "detailsFetched": 112,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 3,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "payouts",
+      "parentId": 42708,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:17.580Z",
+      "finishedAt": "2026-06-02T11:05:18.563Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 1537.55,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "stats",
+      "parentId": 42881,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:18.800Z",
+      "finishedAt": "2026-06-02T11:05:19.790Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kryptovaluta_for_kvinder\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 153,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 153
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "purchases",
+      "parentId": 42885,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:19.794Z",
+      "finishedAt": "2026-06-02T11:05:26.970Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kryptovaluta_for_kvinder\\purchases",
+        "purchases": 133,
+        "purchaseEntries": 133,
+        "detailsFetched": 133,
+        "uniqueMediaUdis": 5,
+        "mediaResolved": 2,
+        "mediaUnresolved": 3,
+        "mediaResolveErrors": 3
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "payouts",
+      "parentId": 42884,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:26.973Z",
+      "finishedAt": "2026-06-02T11:05:28.006Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kryptovaluta_for_kvinder\\payouts",
+        "payouts": 8,
+        "paidPayouts": 8,
+        "totalAmount": 40463.6,
+        "detailsFetched": 8,
+        "entriesWithInvoiceLink": 8,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "stats",
+      "parentId": 46213,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:28.241Z",
+      "finishedAt": "2026-06-02T11:05:28.912Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Wilson\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 9,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 9
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "shows",
+      "parentId": 46219,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:28.916Z",
+      "finishedAt": "2026-06-02T11:05:31.042Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Wilson\\shows",
+        "shows": 1,
+        "statsEntriesRead": 9,
+        "showsMatchedToStats": 1,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "purchases",
+      "parentId": 46217,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:31.044Z",
+      "finishedAt": "2026-06-02T11:05:32.573Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Wilson\\purchases",
+        "purchases": 7,
+        "purchaseEntries": 7,
+        "detailsFetched": 7,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "payouts",
+      "parentId": 46216,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:32.576Z",
+      "finishedAt": "2026-06-02T11:05:33.378Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Wilson\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "stats",
+      "parentId": 46714,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:33.632Z",
+      "finishedAt": "2026-06-02T11:05:34.928Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Red_Barnet\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 199,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 199
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "shows",
+      "parentId": 46934,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:34.932Z",
+      "finishedAt": "2026-06-02T11:05:39.396Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Red_Barnet\\shows",
+        "shows": 10,
+        "statsEntriesRead": 199,
+        "showsMatchedToStats": 10,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "purchases",
+      "parentId": 46718,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:39.401Z",
+      "finishedAt": "2026-06-02T11:05:45.626Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Red_Barnet\\purchases",
+        "purchases": 84,
+        "purchaseEntries": 76,
+        "detailsFetched": 84,
+        "uniqueMediaUdis": 11,
+        "mediaResolved": 11,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "payouts",
+      "parentId": 46717,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:45.628Z",
+      "finishedAt": "2026-06-02T11:05:46.481Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Red_Barnet\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 1082.55,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "stats",
+      "parentId": 46872,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:46.712Z",
+      "finishedAt": "2026-06-02T11:05:47.430Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Omar_Marzouk\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 8,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 8
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "shows",
+      "parentId": 46878,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:47.435Z",
+      "finishedAt": "2026-06-02T11:05:51.514Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Omar_Marzouk\\shows",
+        "shows": 6,
+        "statsEntriesRead": 8,
+        "showsMatchedToStats": 3,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "purchases",
+      "parentId": 46876,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:51.518Z",
+      "finishedAt": "2026-06-02T11:05:53.445Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Omar_Marzouk\\purchases",
+        "purchases": 6,
+        "purchaseEntries": 5,
+        "detailsFetched": 6,
+        "uniqueMediaUdis": 4,
+        "mediaResolved": 4,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "payouts",
+      "parentId": 46875,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:53.447Z",
+      "finishedAt": "2026-06-02T11:05:54.070Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Omar_Marzouk\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "stats",
+      "parentId": 47445,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:54.314Z",
+      "finishedAt": "2026-06-02T11:05:59.954Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gottleben\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1334,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "purchases",
+      "parentId": 47449,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:59.957Z",
+      "finishedAt": "2026-06-02T11:06:02.316Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gottleben\\purchases",
+        "purchases": 15,
+        "purchaseEntries": 0,
+        "detailsFetched": 15,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 1,
+        "mediaUnresolved": 1,
+        "mediaResolveErrors": 1
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "payouts",
+      "parentId": 47448,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:02.319Z",
+      "finishedAt": "2026-06-02T11:06:03.259Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gottleben\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 2703.55,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "stats",
+      "parentId": 50070,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:03.497Z",
+      "finishedAt": "2026-06-02T11:06:04.213Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\NSCCM_ApS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 54,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 54
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "purchases",
+      "parentId": 50074,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:04.218Z",
+      "finishedAt": "2026-06-02T11:06:07.261Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\NSCCM_ApS\\purchases",
+        "purchases": 25,
+        "purchaseEntries": 25,
+        "detailsFetched": 25,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 1,
+        "mediaUnresolved": 2,
+        "mediaResolveErrors": 2
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "payouts",
+      "parentId": 50073,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:07.264Z",
+      "finishedAt": "2026-06-02T11:06:08.221Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\NSCCM_ApS\\payouts",
+        "payouts": 4,
+        "paidPayouts": 4,
+        "totalAmount": 5844.25,
+        "detailsFetched": 4,
+        "entriesWithInvoiceLink": 4,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "task": "stats",
+      "parentId": 50463,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:08.459Z",
+      "finishedAt": "2026-06-02T11:06:28.790Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\TjelesVenner\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 3338,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 3338
+      },
+      "stderr": ""
+    }
+  ],
+  "liveUserCount": 61
+}

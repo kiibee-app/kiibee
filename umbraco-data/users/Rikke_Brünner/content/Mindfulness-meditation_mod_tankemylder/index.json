@@ -1,0 +1,269 @@
+{
+  "exportedAt": "2026-07-21T15:19:30.214Z",
+  "collectionName": "Mindfulness-meditation mod tankemylder",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/67767",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 67767,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 67767,
+    "key": "ba72e651-f03c-4f4f-872c-70e7348783ff",
+    "udi": "umb://document/ba72e651f03c4f4f872c70e7348783ff",
+    "name": "Mindfulness-meditation mod tankemylder",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/rikke-bruenner/mindfulness-meditation-mod-tankemylder/"],
+    "fields": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": ["57"],
+      "rentalPrice": "0",
+      "purchasePrice": "95",
+      "code": "",
+      "period": "12",
+      "headline": "",
+      "description": "Meditation er at finde tilbage til dig selv. Finde tilbage til dig selv, den du er inde bag masker og roller. Inde bag dine automatiserede bestræbelser på at harmonere med og leve op til den ydre verden, leve op til verden omkring dig. Meditation er at træde et skridt tilbage, tilbage til dig selv, at blive bevidst om dine tanker og følelser og stoppe med at identificere dig med dine tanker og følelser. Når du bliver mere bevidst om hvad der er for tanker og følelser der huserer i dit indre, kan du også nemmere undlade at reagere ubevidst og automatisk på tanker og følelser og i stedet begynde ikke at tage dine tanker og følelser så alvorligt, men i stedet have et mere distanceret forhold til dem. <br/>Meditation er nok noget af det sværeste du kan udsætte dig selv for. Du vil også møde sider af dig selv du ikke er stolt af. Mød hele dig med omsorg, accept og forståelse. Accept af nuet og den nuværende tilstand er en nødvendighed – vi kommer ingen vegne før vi tør se virkeligheden i øjnene og droppe ideen om hvordan det skal eller bør være. <br/>Denne meditation hjælper dig til at blive bevidst om de tanker og følelser der bevidst og ubevidst styrer dig - og til at frigøre dig af dem. ",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "3",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["57"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "0"
+      },
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "95"
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "period": {
+        "alias": "period",
+        "label": "Period",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "12"
+      },
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Meditation er at finde tilbage til dig selv. Finde tilbage til dig selv, den du er inde bag masker og roller. Inde bag dine automatiserede bestræbelser på at harmonere med og leve op til den ydre verden, leve op til verden omkring dig. Meditation er at træde et skridt tilbage, tilbage til dig selv, at blive bevidst om dine tanker og følelser og stoppe med at identificere dig med dine tanker og følelser. Når du bliver mere bevidst om hvad der er for tanker og følelser der huserer i dit indre, kan du også nemmere undlade at reagere ubevidst og automatisk på tanker og følelser og i stedet begynde ikke at tage dine tanker og følelser så alvorligt, men i stedet have et mere distanceret forhold til dem. <br/>Meditation er nok noget af det sværeste du kan udsætte dig selv for. Du vil også møde sider af dig selv du ikke er stolt af. Mød hele dig med omsorg, accept og forståelse. Accept af nuet og den nuværende tilstand er en nødvendighed – vi kommer ingen vegne før vi tør se virkeligheden i øjnene og droppe ideen om hvordan det skal eller bør være. <br/>Denne meditation hjælper dig til at blive bevidst om de tanker og følelser der bevidst og ubevidst styrer dig - og til at frigøre dig af dem. "
+      },
+      "coverImage": {
+        "alias": "coverImage",
+        "label": "Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": ""
+      },
+      "fadeCoverImage": {
+        "alias": "fadeCoverImage",
+        "label": "Fade Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "thumbnailWide": {
+        "alias": "thumbnailWide",
+        "label": "Thumbnail Wide",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "columnAmount": {
+        "alias": "columnAmount",
+        "label": "Column Amount",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "3"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView",
+      "orderID",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period",
+      "headline",
+      "description",
+      "coverImage",
+      "fadeCoverImage",
+      "thumbnailWide",
+      "columnAmount",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailIdsRequested": 1,
+    "detailsFetched": 1,
+    "errors": 0,
+    "fieldCount": 40
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "exportedAt": "2026-06-02T10:56:30.803Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/8905",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 8905,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 8905,
+    "key": "29c8117d-e7f5-43df-9781-88690dae69fc",
+    "udi": "umb://document/29c8117de7f543df978188690dae69fc",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/kort-dokumentar-filmskolen/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 7100,
+    "childrenFetched": 7100,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 15,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 16,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 17,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 18,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 19,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 20,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 21,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 22,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 23,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 24,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 25,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 26,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 27,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 28,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 29,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 30,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 31,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 32,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 33,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 34,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 35,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 36,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 37,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 38,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 39,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 40,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 41,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 42,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 43,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 44,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 45,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 46,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 47,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 48,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 49,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 50,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 51,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 52,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 53,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 54,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 55,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 56,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 57,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 58,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 59,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 60,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 61,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 62,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 63,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 64,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 65,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 66,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 67,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 68,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 69,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 70,
+      "itemCount": 100,
+      "totalItems": 7100
+    },
+    {
+      "pageNumber": 71,
+      "itemCount": 100,
+      "totalItems": 7100
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

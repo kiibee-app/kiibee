@@ -1,0 +1,49 @@
+[
+  {
+    "id": 70428,
+    "key": "09384ba5-2bf7-4394-8dcd-16d9dff8466a",
+    "udi": "umb://document/09384ba52bf743948dcd16d9dff8466a",
+    "name": "1435f42ab69f4ce1a95dc1e8fd3b4da1",
+    "fields": {
+      "isPlay": "0",
+      "uID": "",
+      "media": "umb://document/baae498eeae84cd09bd9dad4061b808a"
+    },
+    "fieldDetails": {
+      "isPlay": {
+        "alias": "isPlay",
+        "label": "Is Play",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "uID": {
+        "alias": "uID",
+        "label": "UID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/baae498eeae84cd09bd9dad4061b808a"
+      }
+    },
+    "fieldOrder": ["isPlay", "uID", "media"]
+  }
+]

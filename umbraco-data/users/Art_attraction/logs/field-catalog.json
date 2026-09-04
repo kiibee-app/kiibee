@@ -1,0 +1,65 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": ["Undersider"],
+    "editors": ["listview"],
+    "seenOn": ["parent"]
+  },
+  "acquirer": {
+    "alias": "acquirer",
+    "labels": ["Acquirer"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "email": {
+    "alias": "email",
+    "labels": ["Email"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "fullName": {
+    "alias": "fullName",
+    "labels": ["Name"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "isPurchase": {
+    "alias": "isPurchase",
+    "labels": ["Purchase"],
+    "tabs": ["General"],
+    "editors": ["boolean"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "media": {
+    "alias": "media",
+    "labels": ["Media"],
+    "tabs": ["General"],
+    "editors": ["contentpicker"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "paytype": {
+    "alias": "paytype",
+    "labels": ["Paytype"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "price": {
+    "alias": "price",
+    "labels": ["Price"],
+    "tabs": ["General"],
+    "editors": ["decimal"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  },
+  "transactionID": {
+    "alias": "transactionID",
+    "labels": ["Transaction ID"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:116601", "item:2094", "item:2092"]
+  }
+}

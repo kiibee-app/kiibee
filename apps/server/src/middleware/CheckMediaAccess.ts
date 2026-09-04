@@ -22,10 +22,6 @@ export class CheckMediaAccessGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const userId = request.user?.userId || request.user?.id;
 
-    if (!userId) {
-      throw new UnauthorizedException('Authentication required');
-    }
-
     const mediaId =
       request.params?.id ||
       request.params?.mediaId ||
@@ -65,6 +61,15 @@ export class CheckMediaAccessGuard implements CanActivate {
     if (String(request.user?.role || '').toLowerCase() === ROLE.ADMIN) {
       request.mediaFile = mediaFile;
       return true;
+    }
+
+    if (mediaFile.accessType === ACCESS_TYPE.FREE) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    if (!userId) {
+      throw new UnauthorizedException('Authentication required');
     }
 
     if (mediaFile.creatorId === userId) {
@@ -134,9 +139,8 @@ export class CheckMediaAccessGuard implements CanActivate {
     const hasEmailAccess = emailAccessRows.length > 0;
 
     const hasImmediateAccess =
-      mediaFile.accessType === ACCESS_TYPE.FREE ||
-      (mediaFile.isDeleted &&
-        (hasDirectAccess || hasCollectionAccess || hasEmailAccess));
+      mediaFile.isDeleted &&
+      (hasDirectAccess || hasCollectionAccess || hasEmailAccess);
 
     if (hasImmediateAccess) {
       request.mediaFile = mediaFile;

@@ -1,0 +1,159 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": [
+      "Undersider"
+    ],
+    "editors": [
+      "listview"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": [
+      "Is Play"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:51434",
+      "item:15475",
+      "item:15250",
+      "item:11209",
+      "item:11206",
+      "item:11201",
+      "item:11200",
+      "item:11199",
+      "item:2937",
+      "item:2936",
+      "item:2935",
+      "item:2934",
+      "item:2933",
+      "item:2932",
+      "item:2931",
+      "item:2930",
+      "item:2929",
+      "item:2928",
+      "item:2927",
+      "item:2926",
+      "item:2925",
+      "item:2923",
+      "item:2922",
+      "item:2921",
+      "item:2920",
+      "item:2919",
+      "item:2918",
+      "item:2917",
+      "item:2916",
+      "item:2915",
+      "item:2914",
+      "item:2913",
+      "item:2912",
+      "item:2911"
+    ]
+  },
+  "media": {
+    "alias": "media",
+    "labels": [
+      "Media"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "contentpicker"
+    ],
+    "seenOn": [
+      "item:51434",
+      "item:15475",
+      "item:15250",
+      "item:11209",
+      "item:11206",
+      "item:11201",
+      "item:11200",
+      "item:11199",
+      "item:2937",
+      "item:2936",
+      "item:2935",
+      "item:2934",
+      "item:2933",
+      "item:2932",
+      "item:2931",
+      "item:2930",
+      "item:2929",
+      "item:2928",
+      "item:2927",
+      "item:2926",
+      "item:2925",
+      "item:2923",
+      "item:2922",
+      "item:2921",
+      "item:2920",
+      "item:2919",
+      "item:2918",
+      "item:2917",
+      "item:2916",
+      "item:2915",
+      "item:2914",
+      "item:2913",
+      "item:2912",
+      "item:2911"
+    ]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": [
+      "UID"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:51434",
+      "item:15475",
+      "item:15250",
+      "item:11209",
+      "item:11206",
+      "item:11201",
+      "item:11200",
+      "item:11199",
+      "item:2937",
+      "item:2936",
+      "item:2935",
+      "item:2934",
+      "item:2933",
+      "item:2932",
+      "item:2931",
+      "item:2930",
+      "item:2929",
+      "item:2928",
+      "item:2927",
+      "item:2926",
+      "item:2925",
+      "item:2923",
+      "item:2922",
+      "item:2921",
+      "item:2920",
+      "item:2919",
+      "item:2918",
+      "item:2917",
+      "item:2916",
+      "item:2915",
+      "item:2914",
+      "item:2913",
+      "item:2912",
+      "item:2911"
+    ]
+  }
+}

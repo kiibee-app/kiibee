@@ -1,0 +1,272 @@
+[
+  {
+    "id": 42659,
+    "key": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "udi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+    "name": "Wivels Vaffelbar",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-11 19:01:17",
+    "updateDate": "2024-01-15 22:57:39",
+    "parentId": 42658,
+    "path": "-1,1067,42475,42658,42659",
+    "sortOrder": 0,
+    "urls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+      "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "717146580",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2003",
+      "description": "<h2>Stream Wivels Vaffelbar - lej eller køb online</h2>\nDer er dømt stand-up tilsat masser af horror og iskolde gys, når Thomas ”Godfather of Comedy” \nWivel i tredje runde tager hul på Vaffelbaren.\n \nDenne omgang af Wivels Vaffelbar har fået undertitlen: ”En vampyrs betændelser”.\n \nFløjlshanskerne er taget af og sammen med sine to medværter, MC og Brian Mørk, præsenteres et show, der byder på hardcore og kontant bidende komik - krydret med en lang række spændende indslag.\n \nDu kan opleve Thomas Wivel spille på guitar med frugt og møde en vaskeægte vegetarvampyr, der ikke har det helt let! På gæstelisten står også Kaspar Bang, der vil underholde med sit Multimediashow",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3151/vaffel1.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Wivels Vaffelbar",
+      "badge": "",
+      "length": "130",
+      "tags": "Wivels Vaffelbar,Thomas Wivel,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+    "videoStatus": "ready",
+    "videoSize": "717146580",
+    "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Wivels Vaffelbar",
+    "description": "<h2>Stream Wivels Vaffelbar - lej eller køb online</h2>\nDer er dømt stand-up tilsat masser af horror og iskolde gys, når Thomas ”Godfather of Comedy” \nWivel i tredje runde tager hul på Vaffelbaren.\n \nDenne omgang af Wivels Vaffelbar har fået undertitlen: ”En vampyrs betændelser”.\n \nFløjlshanskerne er taget af og sammen med sine to medværter, MC og Brian Mørk, præsenteres et show, der byder på hardcore og kontant bidende komik - krydret med en lang række spændende indslag.\n \nDu kan opleve Thomas Wivel spille på guitar med frugt og møde en vaskeægte vegetarvampyr, der ikke har det helt let! På gæstelisten står også Kaspar Bang, der vil underholde med sit Multimediashow",
+    "expandedDescription": "",
+    "year": "2003",
+    "length": "130",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "Wivels Vaffelbar,Thomas Wivel,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3151/vaffel1.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 4,
+    "statsPlayCount": 1,
+    "statsNonPlayCount": 3,
+    "firstStatAt": "2021-06-05 09:16:13",
+    "lastStatAt": "2023-01-13 15:05:37",
+    "stats": {
+      "mediaUdi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+      "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+      "entryCount": 4,
+      "playCount": 1,
+      "nonPlayCount": 3,
+      "firstEntryAt": "2021-06-05 09:16:13",
+      "lastEntryAt": "2023-01-13 15:05:37",
+      "sampleEntryIds": [76938, 76937, 73872, 46823]
+    }
+  },
+  {
+    "id": 42660,
+    "key": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "udi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+    "name": "Med Ryggen Mod Muren",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-11 19:10:27",
+    "updateDate": "2024-01-15 22:57:59",
+    "parentId": 42658,
+    "path": "-1,1067,42475,42658,42660",
+    "sortOrder": 1,
+    "urls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+      "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "1292311794",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2004",
+      "description": "<h2>Stream Thomas Wivels Med Ryggen Mod Muren - lej eller køb online</h2>\nStand-uppens Godfather – Thomas Wivel – er atter på banen med et nyt comedy bidrag. Denne gang kan de danske stand-up fans se frem til at forevige den danske komiker på reolhylden, når Thomas’ første DVD ”Med ryggen mod muren” kommer på gaden.\n\nHvordan er det at være far til fire i en stresset tid, hvor time manageren er Gud, hvor kvinder styrer jorden, og hvor børn styrer forældre? Hvordan er det at være kraftigt bygget i en tid, hvor ”Bogense kuren” opfattes som løsningen på Universets gåde? Det er nogle af de svar, som Thomas Wivel forsøger at give et bud på i ”Med ryggen mod muren”.\n\nThomas har især været kendt for sine ”Vaffelbar” shows I, II og III, som han har optrådt med på Comedy ZOO i København med stor succes . Mange så måske gerne, at der kom en ”Vaffelbar IV”, men ifølge Thomas er vaflerne nu lagt på hylden, og det er blevet tid til nye udfordringer.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3152/wivel-mrmm-poster.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Med Ryggen Mod Muren",
+      "badge": "",
+      "length": "123",
+      "tags": "Med Ryggen Mod Muren,Thomas Wivel,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+    "videoStatus": "ready",
+    "videoSize": "1292311794",
+    "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "Med Ryggen Mod Muren",
+    "description": "<h2>Stream Thomas Wivels Med Ryggen Mod Muren - lej eller køb online</h2>\nStand-uppens Godfather – Thomas Wivel – er atter på banen med et nyt comedy bidrag. Denne gang kan de danske stand-up fans se frem til at forevige den danske komiker på reolhylden, når Thomas’ første DVD ”Med ryggen mod muren” kommer på gaden.\n\nHvordan er det at være far til fire i en stresset tid, hvor time manageren er Gud, hvor kvinder styrer jorden, og hvor børn styrer forældre? Hvordan er det at være kraftigt bygget i en tid, hvor ”Bogense kuren” opfattes som løsningen på Universets gåde? Det er nogle af de svar, som Thomas Wivel forsøger at give et bud på i ”Med ryggen mod muren”.\n\nThomas har især været kendt for sine ”Vaffelbar” shows I, II og III, som han har optrådt med på Comedy ZOO i København med stor succes . Mange så måske gerne, at der kom en ”Vaffelbar IV”, men ifølge Thomas er vaflerne nu lagt på hylden, og det er blevet tid til nye udfordringer.",
+    "expandedDescription": "",
+    "year": "2004",
+    "length": "123",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "Med Ryggen Mod Muren,Thomas Wivel,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3152/wivel-mrmm-poster.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 5,
+    "statsPlayCount": 3,
+    "statsNonPlayCount": 2,
+    "firstStatAt": "2021-04-15 19:35:43",
+    "lastStatAt": "2025-09-26 18:45:23",
+    "stats": {
+      "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+      "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+      "entryCount": 5,
+      "playCount": 3,
+      "nonPlayCount": 2,
+      "firstEntryAt": "2021-04-15 19:35:43",
+      "lastEntryAt": "2025-09-26 18:45:23",
+      "sampleEntryIds": [113199, 113181, 76934, 46826, 43093]
+    }
+  }
+]

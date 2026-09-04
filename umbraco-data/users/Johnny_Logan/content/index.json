@@ -1,0 +1,15 @@
+{
+  "requestedName": "Johnny Logan",
+  "liveName": "Johnny Logan",
+  "userId": 42410,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "The Invincible Concert",
+      "id": 42417,
+      "status": "ok"
+    }
+  ]
+}

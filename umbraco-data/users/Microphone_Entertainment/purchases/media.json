@@ -1,0 +1,408 @@
+[
+  {
+    "udi": "umb://document/40d0bea8e74742439ed96fa953279278",
+    "key": "40d0bea8-e747-4243-9ed9-6fa953279278",
+    "resolved": true,
+    "id": 1909,
+    "name": "Mick Øgendahl - FEST",
+    "title": "Mick Øgendahl - FEST",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-fest/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "af1113a3069c77a38cd3011f21dce3ac",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/af1113a3069c77a38cd3011f21dce3ac/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/af1113a3069c77a38cd3011f21dce3ac/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1247/mick-fest.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 252,
+    "purchaseOrderCount": 137,
+    "nonPurchaseEntryCount": 115,
+    "totalDownloads": 132,
+    "totalStreams": 100,
+    "firstPurchaseAt": "2019-08-04 23:10:21",
+    "lastPurchaseAt": "2026-05-13 08:47:50",
+    "samplePurchaseIds": [
+      123168,
+      121467,
+      121065,
+      117958,
+      117823
+    ]
+  },
+  {
+    "udi": "umb://document/0321ff8aac3044919c964259a36ff09a",
+    "key": "0321ff8a-ac30-4491-9c96-4259a36ff09a",
+    "resolved": true,
+    "id": 1908,
+    "name": "Mick Øgendahl - SPAS",
+    "title": "Mick Øgendahl - SPAS",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-spas/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "30df23e22976e6bc24fa329c86286610",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/30df23e22976e6bc24fa329c86286610/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/30df23e22976e6bc24fa329c86286610/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1249/mick-spas.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 77,
+    "purchaseOrderCount": 45,
+    "nonPurchaseEntryCount": 32,
+    "totalDownloads": 50,
+    "totalStreams": 33,
+    "firstPurchaseAt": "2019-08-26 03:54:34",
+    "lastPurchaseAt": "2026-05-24 23:52:56",
+    "samplePurchaseIds": [
+      123461,
+      121032,
+      120828,
+      115908,
+      114670
+    ]
+  },
+  {
+    "udi": "umb://document/2fa33a61c70d45a9b62f07df8676de47",
+    "key": "2fa33a61-c70d-45a9-b62f-07df8676de47",
+    "resolved": true,
+    "id": 1921,
+    "name": "Mick Øgendahl - Propaganda",
+    "title": "Mick Øgendahl - Propaganda ",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-propaganda/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "bc31ed9dd119a1f98224c1cf765319c2",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/bc31ed9dd119a1f98224c1cf765319c2/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/bc31ed9dd119a1f98224c1cf765319c2/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1251/mick-propoganda.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 50,
+    "purchaseOrderCount": 22,
+    "nonPurchaseEntryCount": 28,
+    "totalDownloads": 18,
+    "totalStreams": 26,
+    "firstPurchaseAt": "2019-08-26 03:56:20",
+    "lastPurchaseAt": "2025-11-24 21:19:37",
+    "samplePurchaseIds": [
+      115923,
+      111610,
+      111032,
+      109511,
+      99318
+    ]
+  },
+  {
+    "udi": "umb://document/16ee44dc70d549a48dd973aea5b0544f",
+    "key": "16ee44dc-70d5-49a4-8dd9-73aea5b0544f",
+    "resolved": true,
+    "id": 1900,
+    "name": "Shows",
+    "title": "Shows",
+    "urls": [
+      "/microphone-entertainment/shows/"
+    ],
+    "contentTypeAlias": "collection",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "",
+    "purchasePrice": "199",
+    "rentalPrice": "99",
+    "purchaseEntryCount": 50,
+    "purchaseOrderCount": 44,
+    "nonPurchaseEntryCount": 6,
+    "totalDownloads": 248,
+    "totalStreams": 54,
+    "firstPurchaseAt": "2021-02-06 13:04:42",
+    "lastPurchaseAt": "2026-05-31 18:55:33",
+    "samplePurchaseIds": [
+      124043,
+      120106,
+      117007,
+      112448,
+      111715
+    ]
+  },
+  {
+    "udi": "umb://document/7f7c14f8482543b6aed4a6176b035c0e",
+    "key": "7f7c14f8-4825-43b6-aed4-a6176b035c0e",
+    "resolved": true,
+    "id": 1913,
+    "name": "Mick Øgendahl - Micktrix",
+    "title": "Mick Øgendahl - Micktrix",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-micktrix/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "1f548be541a95a8316e97d291165b8a4",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/1f548be541a95a8316e97d291165b8a4/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/1f548be541a95a8316e97d291165b8a4/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1250/mick-micktrix.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 34,
+    "purchaseOrderCount": 22,
+    "nonPurchaseEntryCount": 12,
+    "totalDownloads": 25,
+    "totalStreams": 19,
+    "firstPurchaseAt": "2020-06-14 19:39:43",
+    "lastPurchaseAt": "2026-05-16 08:28:18",
+    "samplePurchaseIds": [
+      123316,
+      120366,
+      119445,
+      118409,
+      118043
+    ]
+  },
+  {
+    "udi": "umb://document/381f35ca850e4b1eb13d81f54fbdcaf8",
+    "key": "381f35ca-850e-4b1e-b13d-81f54fbdcaf8",
+    "resolved": true,
+    "id": 1923,
+    "name": "Mick Øgendahl - Undskyld",
+    "title": "Mick Øgendahl - Undskyld ",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-undskyld/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "0a9ad8af74147e45ad7b5bac090745b3",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/0a9ad8af74147e45ad7b5bac090745b3/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/0a9ad8af74147e45ad7b5bac090745b3/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1253/mick-undskyld.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 29,
+    "purchaseOrderCount": 17,
+    "nonPurchaseEntryCount": 12,
+    "totalDownloads": 12,
+    "totalStreams": 19,
+    "firstPurchaseAt": "2020-04-05 17:22:51",
+    "lastPurchaseAt": "2025-11-04 00:25:55",
+    "samplePurchaseIds": [
+      115012,
+      114745,
+      111607,
+      109514,
+      104084
+    ]
+  },
+  {
+    "udi": "umb://document/109a767c9cfb478ba53d1b53678bb1b3",
+    "key": "109a767c-9cfb-478b-a53d-1b53678bb1b3",
+    "resolved": true,
+    "id": 1922,
+    "name": "Mick Øgendahl - Tåfræser",
+    "title": "Mick Øgendahl - Tåfræser ",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-taafraeser/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "b386d223a0fab0c0c931c81c99055ca1",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/b386d223a0fab0c0c931c81c99055ca1/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/b386d223a0fab0c0c931c81c99055ca1/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1252/mick-taafraeser.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 21,
+    "purchaseOrderCount": 14,
+    "nonPurchaseEntryCount": 7,
+    "totalDownloads": 11,
+    "totalStreams": 19,
+    "firstPurchaseAt": "2020-01-09 22:46:07",
+    "lastPurchaseAt": "2026-04-18 03:21:44",
+    "samplePurchaseIds": [
+      121315,
+      120723,
+      111601,
+      111596,
+      109935
+    ]
+  },
+  {
+    "udi": "umb://document/a14b96d4d64249da9ef100d2ad9d576f",
+    "key": "a14b96d4-d642-49da-9ef1-00d2ad9d576f",
+    "resolved": true,
+    "id": 1924,
+    "name": "Mick Øgendahl - FEST med undertekster",
+    "title": "Mick Øgendahl - FEST med undertekster",
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-fest-med-undertekster/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "aaa4751e577d0727184e087cd3849dad",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/aaa4751e577d0727184e087cd3849dad/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/aaa4751e577d0727184e087cd3849dad/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1248/mick-fest.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 8,
+    "purchaseOrderCount": 7,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 5,
+    "totalStreams": 3,
+    "firstPurchaseAt": "2020-05-14 15:45:32",
+    "lastPurchaseAt": "2025-08-29 23:01:12",
+    "samplePurchaseIds": [
+      112126,
+      106611,
+      77573,
+      72416,
+      61982
+    ]
+  }
+]

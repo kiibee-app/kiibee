@@ -1,0 +1,407 @@
+[
+  {
+    "id": 43001,
+    "key": "01353275-288d-4ea4-844c-db539054ef35",
+    "udi": "umb://document/01353275288d4ea4844cdb539054ef35",
+    "name": "Det dyste skæg",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-15 13:39:34",
+    "updateDate": "2025-06-17 11:37:31",
+    "parentId": 42711,
+    "path": "-1,1067,42704,42711,43001",
+    "sortOrder": 2,
+    "urls": ["/elias-ehlers/shows/det-dyste-skaeg/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/2b09c0001395f243073fe4490d12615c/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "1",
+      "videoThumbnailURL": "https://videodelivery.net/2b09c0001395f243073fe4490d12615c/thumbnails/thumbnail.jpg",
+      "videoID": "2b09c0001395f243073fe4490d12615c",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1805085683",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2016",
+      "description": "Stream Elias Ehlers Det Dystre Skæg - lej eller køb online\r\nI starten af 2016 tog Martin Nørgaard og Elias Ehlers rundt i landet og optrådte med deres stand-up show “Det Dystre Skæg”. Showet er opkaldt efter deres podcast af samme navn. Showet er to-delt, hvor Martin og Elias laver stand-up i ca. 50 minutter hver.\r\n\r\nI maj samme år optog de det på et propfyldt Bremen Teater i København, og du kan nu se det digitalt!",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3237/det-dystre-skaeg-_facing_.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Det dyste skæg",
+      "badge": "",
+      "length": "136",
+      "tags": "Det Dystre Skæg,Comedy,Stand-up,Elias Ehlers,Martin Nørgaard",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "2b09c0001395f243073fe4490d12615c",
+    "videoStatus": "ready",
+    "videoSize": "1805085683",
+    "videoThumbnailURL": "https://videodelivery.net/2b09c0001395f243073fe4490d12615c/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/2b09c0001395f243073fe4490d12615c/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": true,
+    "orderID": "0",
+    "title": "Det dyste skæg",
+    "description": "Stream Elias Ehlers Det Dystre Skæg - lej eller køb online\r\nI starten af 2016 tog Martin Nørgaard og Elias Ehlers rundt i landet og optrådte med deres stand-up show “Det Dystre Skæg”. Showet er opkaldt efter deres podcast af samme navn. Showet er to-delt, hvor Martin og Elias laver stand-up i ca. 50 minutter hver.\r\n\r\nI maj samme år optog de det på et propfyldt Bremen Teater i København, og du kan nu se det digitalt!",
+    "expandedDescription": "",
+    "year": "2016",
+    "length": "136",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "Det Dystre Skæg,Comedy,Stand-up,Elias Ehlers,Martin Nørgaard",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3237/det-dystre-skaeg-_facing_.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 53,
+    "statsPlayCount": 21,
+    "statsNonPlayCount": 32,
+    "firstStatAt": "2021-05-30 17:41:58",
+    "lastStatAt": "2025-04-06 00:26:49",
+    "stats": {
+      "mediaUdi": "umb://document/01353275288d4ea4844cdb539054ef35",
+      "mediaKey": "01353275-288d-4ea4-844c-db539054ef35",
+      "entryCount": 53,
+      "playCount": 21,
+      "nonPlayCount": 32,
+      "firstEntryAt": "2021-05-30 17:41:58",
+      "lastEntryAt": "2025-04-06 00:26:49",
+      "sampleEntryIds": [108300, 104652, 103824, 101299, 101205]
+    }
+  },
+  {
+    "id": 42713,
+    "key": "7bea8597-2eec-48ed-b86e-8629779cf6c0",
+    "udi": "umb://document/7bea85972eec48edb86e8629779cf6c0",
+    "name": "Helt Perfekt",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-12 13:45:04",
+    "updateDate": "2025-06-17 11:38:09",
+    "parentId": 42711,
+    "path": "-1,1067,42704,42711,42713",
+    "sortOrder": 1,
+    "urls": ["/elias-ehlers/shows/helt-perfekt/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/8b6a6ea382c2d55ff2cd9d852d33c529/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "1",
+      "videoThumbnailURL": "https://videodelivery.net/8b6a6ea382c2d55ff2cd9d852d33c529/thumbnails/thumbnail.jpg",
+      "videoID": "8b6a6ea382c2d55ff2cd9d852d33c529",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "1088700244",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2015",
+      "description": "Stream Elias Ehlers Helt Perfekt - lej eller køb online\r\nElias Ehlers præsenterer den perfekte udgave af sig selv i selvsatirisk nyt one man show.\r\n\r\nLivet er en balancegang mellem målet at være det perfekte menneske og hvile i sig selv som den man er. For Elias Ehlers hedder det balancepunkt voksen og det prøver han så at blive - på godt og ondt. Og sjovt! For det bliver Elias Ehlers andet one man show med garanti, når han i HELT PERFEKT leverer en guided stand-up-tour i sin egen identitetskrise. HELT PERFEKT byder på et gensyn med den eksistentialistiske satire, der efterhånden er blevet Elias Ehlers komiske varemærke.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3156/elias_helt_perfekt.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Helt Perfekt",
+      "badge": "",
+      "length": "115",
+      "tags": "Helt Perfekt,Elias Ehlers,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "8b6a6ea382c2d55ff2cd9d852d33c529",
+    "videoStatus": "ready",
+    "videoSize": "1088700244",
+    "videoThumbnailURL": "https://videodelivery.net/8b6a6ea382c2d55ff2cd9d852d33c529/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/8b6a6ea382c2d55ff2cd9d852d33c529/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": true,
+    "orderID": "1",
+    "title": "Helt Perfekt",
+    "description": "Stream Elias Ehlers Helt Perfekt - lej eller køb online\r\nElias Ehlers præsenterer den perfekte udgave af sig selv i selvsatirisk nyt one man show.\r\n\r\nLivet er en balancegang mellem målet at være det perfekte menneske og hvile i sig selv som den man er. For Elias Ehlers hedder det balancepunkt voksen og det prøver han så at blive - på godt og ondt. Og sjovt! For det bliver Elias Ehlers andet one man show med garanti, når han i HELT PERFEKT leverer en guided stand-up-tour i sin egen identitetskrise. HELT PERFEKT byder på et gensyn med den eksistentialistiske satire, der efterhånden er blevet Elias Ehlers komiske varemærke.",
+    "expandedDescription": "",
+    "year": "2015",
+    "length": "115",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "Helt Perfekt,Elias Ehlers,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3156/elias_helt_perfekt.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 43,
+    "statsPlayCount": 9,
+    "statsNonPlayCount": 34,
+    "firstStatAt": "2021-05-29 17:40:03",
+    "lastStatAt": "2025-05-01 18:31:49",
+    "stats": {
+      "mediaUdi": "umb://document/7bea85972eec48edb86e8629779cf6c0",
+      "mediaKey": "7bea8597-2eec-48ed-b86e-8629779cf6c0",
+      "entryCount": 43,
+      "playCount": 9,
+      "nonPlayCount": 34,
+      "firstEntryAt": "2021-05-29 17:40:03",
+      "lastEntryAt": "2025-05-01 18:31:49",
+      "sampleEntryIds": [109011, 108982, 108945, 108905, 108800]
+    }
+  },
+  {
+    "id": 42712,
+    "key": "7d6e1df3-caf2-4947-bb50-bbaf9a5f6b1b",
+    "udi": "umb://document/7d6e1df3caf24947bb50bbaf9a5f6b1b",
+    "name": "Fucking Glad",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-12 13:31:34",
+    "updateDate": "2025-06-17 11:38:40",
+    "parentId": 42711,
+    "path": "-1,1067,42704,42711,42712",
+    "sortOrder": 0,
+    "urls": ["/elias-ehlers/shows/fucking-glad/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/f68360d22fc152fac1ff8dd60db7ab82/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "1",
+      "videoThumbnailURL": "https://videodelivery.net/f68360d22fc152fac1ff8dd60db7ab82/thumbnails/thumbnail.jpg",
+      "videoID": "f68360d22fc152fac1ff8dd60db7ab82",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "2",
+      "videoSize": "798724547",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK ",
+      "year": "2012",
+      "description": "Stream Elias Ehlers Fucking Glad - lej eller køb online\r\nElias Ehlers har allerede leveret mange perler til den danske comedy-scene. Alene hans sæt til de sidste års Comedy Aid har vakt vild jubel med hans samfundssatiriske undren over verden omkring ham. I \"Fucking glad\" vender han blikket indad og præsenterer sit indre tragikomiske univers i et forrygende show. For livet er en lidelse, når man hedder Elias Ehlers, er sortseer og født med et ansigt fastfrosset i afmagtens folder, hvor bare det mindste smil føles som en mental fibersprængning. Især når verden er fyldt med jubeloptimister, der konstant forsøger at aftvinge ham en smule begejstring eller i det mindste bare en mimik ... Elias´verden er faktisk hysterisk sjov, set udefra. Og som showet byder på udleverende tilbageblik på livet som Elias og den tristesse han bærer som et åg på sine i forvejen spinkle skuldre, er det nærmest umuligt at holde tårerne tilbage.... for du kommer med garanti til at græde af grin.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3155/elias-fucking-glad-clean.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Fucking Glad",
+      "badge": "",
+      "length": "106",
+      "tags": "Fucking Glad,Elias Ehlers,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "f68360d22fc152fac1ff8dd60db7ab82",
+    "videoStatus": "ready",
+    "videoSize": "798724547",
+    "videoThumbnailURL": "https://videodelivery.net/f68360d22fc152fac1ff8dd60db7ab82/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/f68360d22fc152fac1ff8dd60db7ab82/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": true,
+    "orderID": "2",
+    "title": "Fucking Glad",
+    "description": "Stream Elias Ehlers Fucking Glad - lej eller køb online\r\nElias Ehlers har allerede leveret mange perler til den danske comedy-scene. Alene hans sæt til de sidste års Comedy Aid har vakt vild jubel med hans samfundssatiriske undren over verden omkring ham. I \"Fucking glad\" vender han blikket indad og præsenterer sit indre tragikomiske univers i et forrygende show. For livet er en lidelse, når man hedder Elias Ehlers, er sortseer og født med et ansigt fastfrosset i afmagtens folder, hvor bare det mindste smil føles som en mental fibersprængning. Især når verden er fyldt med jubeloptimister, der konstant forsøger at aftvinge ham en smule begejstring eller i det mindste bare en mimik ... Elias´verden er faktisk hysterisk sjov, set udefra. Og som showet byder på udleverende tilbageblik på livet som Elias og den tristesse han bærer som et åg på sine i forvejen spinkle skuldre, er det nærmest umuligt at holde tårerne tilbage.... for du kommer med garanti til at græde af grin.",
+    "expandedDescription": "",
+    "year": "2012",
+    "length": "106",
+    "badge": "",
+    "production": "FBI.DK ",
+    "productionLink": "",
+    "tags": "Fucking Glad,Elias Ehlers,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3155/elias-fucking-glad-clean.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 51,
+    "statsPlayCount": 4,
+    "statsNonPlayCount": 47,
+    "firstStatAt": "2021-05-30 19:37:15",
+    "lastStatAt": "2025-06-05 21:25:57",
+    "stats": {
+      "mediaUdi": "umb://document/7d6e1df3caf24947bb50bbaf9a5f6b1b",
+      "mediaKey": "7d6e1df3-caf2-4947-bb50-bbaf9a5f6b1b",
+      "entryCount": 51,
+      "playCount": 4,
+      "nonPlayCount": 47,
+      "firstEntryAt": "2021-05-30 19:37:15",
+      "lastEntryAt": "2025-06-05 21:25:57",
+      "sampleEntryIds": [110236, 110058, 109267, 109221, 108944]
+    }
+  }
+]

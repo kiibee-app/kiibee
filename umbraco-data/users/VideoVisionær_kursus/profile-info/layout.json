@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "VideoVisionær kursus",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "VideoVisionær kursus ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4760/black_horizontal.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4761/topbanner-kiibee-optimeret.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "Slip bekymringerne omkring din markedsføring",
+  "description": "Hvorfor er det, at vi på to sekunder med lethed kan afgøre om en reklame fra et andet firma er fængende? Når vi kæmper med bare at finde ud af, hvad vi selv skal sige i vores egen markedsføring?\r\n\r\nSvaret er simpelt. Du mangler et overblik, mål, en strategi og lavpraktiske værktøjer for at kunne lave budskaber, der mærkes og som sælger.\r\n\r\nAlt det lærer du på det her kursus, så selv bureauerne stopper måbende op.\r\n\r\nVi ses bag linsen,\r\n\r\nSimone",
+  "css": "",
+  "javaScript": ""
+}

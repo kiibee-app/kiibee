@@ -1,0 +1,20 @@
+{
+  "requestedName": "Granli Velvære",
+  "liveName": "Granli Velvære",
+  "userId": 18838,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Stimulastik",
+      "id": 18905,
+      "status": "ok"
+    },
+    {
+      "name": "Krop og Sind I Balance",
+      "id": 19152,
+      "status": "ok"
+    }
+  ]
+}

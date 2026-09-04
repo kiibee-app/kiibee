@@ -1,0 +1,34 @@
+{
+  "matchedShows": [
+    {
+      "id": 42576,
+      "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+      "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+      "name": "Guide til parforhold",
+      "title": "Guide til parforhold",
+      "statsEntryCount": 6,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 6
+    },
+    {
+      "id": 42577,
+      "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+      "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+      "name": "Tingleff, Tingleff Eller Tingleff",
+      "title": "Tingleff, Tingleff Eller Tingleff",
+      "statsEntryCount": 4,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 4
+    }
+  ],
+  "showsWithoutStats": [
+    {
+      "id": 43317,
+      "key": "4370b5f9-3cd6-403b-9948-21ec7fe59f84",
+      "udi": "umb://document/4370b5f93cd6403b994821ec7fe59f84",
+      "name": "Farvelagte-frustrationer",
+      "title": "Farvelagte-frustrationer"
+    }
+  ],
+  "statsMediaWithoutShow": []
+}

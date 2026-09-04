@@ -1,0 +1,35 @@
+{
+  "requestedName": "Songs Of Jacob Elk",
+  "liveName": "Songs Of Jacob Elk",
+  "userId": 14663,
+  "status": "found",
+  "folderCount": 5,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Film: Koncertforedrag - Fjæstad & Elk / Live fra Jelling Musikhus",
+      "id": 15030,
+      "status": "ok"
+    },
+    {
+      "name": "Udvalgte Musikvideoer fra tidligere albums (Gratis)",
+      "id": 18854,
+      "status": "ok"
+    },
+    {
+      "name": "NYT Album: Køb & download ALLE sangene her",
+      "id": 20912,
+      "status": "ok"
+    },
+    {
+      "name": "Se musikvideoer fra det nye album (Gratis)",
+      "id": 20930,
+      "status": "ok"
+    },
+    {
+      "name": "Film: Oplev Fjæstad synge singlen \"Et Øjeblik\" fra det nye album i studiet",
+      "id": 20938,
+      "status": "ok"
+    }
+  ]
+}

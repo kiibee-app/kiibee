@@ -1,0 +1,30 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": ["Undersider"],
+    "editors": ["listview"],
+    "seenOn": ["parent"]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": ["Is Play"],
+    "tabs": ["General"],
+    "editors": ["boolean"],
+    "seenOn": ["item:70428"]
+  },
+  "media": {
+    "alias": "media",
+    "labels": ["Media"],
+    "tabs": ["General"],
+    "editors": ["contentpicker"],
+    "seenOn": ["item:70428"]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": ["UID"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:70428"]
+  }
+}

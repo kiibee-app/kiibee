@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Lindhardt A/S",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Lindhardt A/S",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1514/logo_lindhardt-m-payoff-v2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1524/beslutningsmodellen.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Beslutningsmodellen",
+  "description": "I dette undervisningsforløb på 6 videoer præsenterer jeg de parametre, som du skal afsøge, når din kunde spørger om prisen. Du bliver klogere på din kundes beslutningsproces og øger dit salg ved at sælge den løsning, som giver din kunde den størst oplevede værdi.\r\n\r\n\r\nDu køber adgang nedenfor og får herefter en kode, der giver dig adgang til alle videoerne.\r\n\r\nNormalprisen er 2.995 DKK + moms - men lige nu kan du spare 1.999 DKK.\r\n\r\nLæs mere på www.lindhardt.dk",
+  "css": "",
+  "javaScript": ""
+}

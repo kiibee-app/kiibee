@@ -1,0 +1,3 @@
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,isPlay,media,uID
+116606,dc58a069-daf5-4673-a20e-6933ced92481,umb://document/dc58a069daf54673a20e6933ced92481,4bf6fe84284f47729d75f362fbe552e1,statsEntry,true,true,2025-12-20 16:18:44,2025-12-20 16:18:44,2830,1,/art-attraction/stats/4bf6fe84284f47729d75f362fbe552e1/,0,umb://document/e2d636e78e8b484595c63fa2256cbc9f,
+116603,49dad26d-5ce9-4f2d-80bb-0799f81d4be3,umb://document/49dad26d5ce94f2d80bb0799f81d4be3,9173b745c0764adaa6cf44274a514027,statsEntry,true,true,2025-12-20 15:58:25,2025-12-20 15:58:25,2830,0,/art-attraction/stats/9173b745c0764adaa6cf44274a514027/,0,umb://document/e2d636e78e8b484595c63fa2256cbc9f,

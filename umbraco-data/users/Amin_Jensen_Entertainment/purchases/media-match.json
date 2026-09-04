@@ -1,0 +1,241 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/f4e0c7f50f864b0095758a50ce8d4acc",
+      "key": "f4e0c7f5-0f86-4b00-9575-8a50ce8d4acc",
+      "resolved": true,
+      "id": 1915,
+      "name": "Showet STORT",
+      "title": "Showet STORT ",
+      "urls": ["/amin-jensen-entertainment/shows/showet-stort/"],
+      "contentTypeAlias": "media",
+      "videoID": "e3c82de4e0ed69df6ae400c4e13084d6",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/e3c82de4e0ed69df6ae400c4e13084d6/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/e3c82de4e0ed69df6ae400c4e13084d6/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1261/dvd_stort.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "30",
+      "rentalPrice": "30",
+      "purchaseEntryCount": 190,
+      "purchaseOrderCount": 158,
+      "nonPurchaseEntryCount": 32,
+      "totalDownloads": 200,
+      "totalStreams": 74,
+      "firstPurchaseAt": "2019-08-06 22:01:18",
+      "lastPurchaseAt": "2026-05-11 20:53:18",
+      "samplePurchaseIds": [123141, 122942, 119981, 119856, 116491]
+    },
+    {
+      "udi": "umb://document/b9e3af1c618940f493fce4443954d6e6",
+      "key": "b9e3af1c-6189-40f4-93fc-e4443954d6e6",
+      "resolved": true,
+      "id": 1911,
+      "name": "Shows",
+      "title": "Shows",
+      "urls": ["/amin-jensen-entertainment/shows/"],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "90",
+      "rentalPrice": "0",
+      "purchaseEntryCount": 91,
+      "purchaseOrderCount": 91,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 474,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-01-29 11:15:26",
+      "lastPurchaseAt": "2026-05-14 13:06:14",
+      "samplePurchaseIds": [123205, 121678, 119606, 119596, 115383]
+    },
+    {
+      "udi": "umb://document/52d214ffd9224217ba4f0d4f5200dd6b",
+      "key": "52d214ff-d922-4217-ba4f-0d4f5200dd6b",
+      "resolved": true,
+      "id": 1912,
+      "name": "150 kg over bæltestedet",
+      "title": "150 kg over bæltestedet",
+      "urls": ["/amin-jensen-entertainment/shows/150-kg-over-baeltestedet/"],
+      "contentTypeAlias": "media",
+      "videoID": "df5968839ec93af475d722b28c742c58",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/df5968839ec93af475d722b28c742c58/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/df5968839ec93af475d722b28c742c58/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1239/dvd_150kg_over.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "30",
+      "rentalPrice": "30",
+      "purchaseEntryCount": 75,
+      "purchaseOrderCount": 63,
+      "nonPurchaseEntryCount": 12,
+      "totalDownloads": 69,
+      "totalStreams": 30,
+      "firstPurchaseAt": "2019-08-07 21:47:20",
+      "lastPurchaseAt": "2026-05-19 16:40:36",
+      "samplePurchaseIds": [123393, 116367, 116212, 113135, 107762]
+    },
+    {
+      "udi": "umb://document/737fcb544c4a45e5bdc9f09bdedff6ec",
+      "key": "737fcb54-4c4a-45e5-bdc9-f09bdedff6ec",
+      "resolved": true,
+      "id": 1914,
+      "name": "Fyrre Fit & færdig",
+      "title": "Fyrre, Fit & Færdig ",
+      "urls": ["/amin-jensen-entertainment/shows/fyrre-fit-faerdig/"],
+      "contentTypeAlias": "media",
+      "videoID": "2feeb7dd083d9eb8e38fa92bb87cb4f6",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/2feeb7dd083d9eb8e38fa92bb87cb4f6/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/2feeb7dd083d9eb8e38fa92bb87cb4f6/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1258/dvd_fyrre_fitogfattig-1.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "30",
+      "rentalPrice": "30",
+      "purchaseEntryCount": 70,
+      "purchaseOrderCount": 57,
+      "nonPurchaseEntryCount": 13,
+      "totalDownloads": 59,
+      "totalStreams": 27,
+      "firstPurchaseAt": "2019-09-08 08:31:04",
+      "lastPurchaseAt": "2026-05-15 11:48:53",
+      "samplePurchaseIds": [123287, 122685, 121454, 112420, 104195]
+    },
+    {
+      "udi": "umb://document/e3c7801a6e264f588f67331ebbb89e31",
+      "key": "e3c7801a-6e26-4f58-8f67-331ebbb89e31",
+      "resolved": true,
+      "id": 1929,
+      "name": "Hit med Amin - 10 års jubilæmsshow",
+      "title": "Hit med Amin - 10 års jubilæmsshow",
+      "urls": [
+        "/amin-jensen-entertainment/shows/hit-med-amin-10-aars-jubilaemsshow/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "d480b1a33b4d96472e7db0d57e0139b6",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/d480b1a33b4d96472e7db0d57e0139b6/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/d480b1a33b4d96472e7db0d57e0139b6/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1263/dvd_hit_med_amin.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "30",
+      "rentalPrice": "30",
+      "purchaseEntryCount": 53,
+      "purchaseOrderCount": 45,
+      "nonPurchaseEntryCount": 8,
+      "totalDownloads": 37,
+      "totalStreams": 20,
+      "firstPurchaseAt": "2019-08-29 00:56:18",
+      "lastPurchaseAt": "2026-05-21 15:10:13",
+      "samplePurchaseIds": [123408, 119888, 117763, 108235, 103522]
+    },
+    {
+      "udi": "umb://document/0dfa01c1ca184d939c3252a9036df8e8",
+      "key": "0dfa01c1-ca18-4d93-9c32-52a9036df8e8",
+      "resolved": true,
+      "id": 1925,
+      "name": "Bag om",
+      "title": "Bag om",
+      "urls": ["/amin-jensen-entertainment/bag-om/"],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "45",
+      "purchaseEntryCount": 2,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 2,
+      "totalDownloads": 0,
+      "totalStreams": 8,
+      "firstPurchaseAt": "2023-06-23 20:16:09",
+      "lastPurchaseAt": "2025-07-24 13:24:59",
+      "samplePurchaseIds": [111327, 85839]
+    }
+  ],
+  "unresolvedMedia": []
+}

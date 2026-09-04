@@ -1,0 +1,32 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/92e51311166b4b19929f6f6f58ca019d",
+      "key": "92e51311-166b-4b19-929f-6f6f58ca019d",
+      "resolved": true,
+      "id": 112953,
+      "name": "Kom godt igang med køkkenhaven!",
+      "title": "Kom godt igang med køkkenhaven!",
+      "urls": ["/anne-brietzke/annes-have/kom-godt-igang-med-koekkenhaven/"],
+      "contentTypeAlias": "media",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "/media/4971/e-bog-start-din-koekkenhave-3.pdf",
+      "webContentURL": "",
+      "thumbnail": "/media/4972/e-bog-start-din-koekkenhave.png",
+      "purchasePrice": "35",
+      "rentalPrice": "",
+      "purchaseEntryCount": 28,
+      "purchaseOrderCount": 28,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2025-09-23 07:40:50",
+      "lastPurchaseAt": "2025-11-13 14:09:36",
+      "samplePurchaseIds": [115334, 115329, 115234, 114992, 114967]
+    }
+  ],
+  "unresolvedMedia": []
+}

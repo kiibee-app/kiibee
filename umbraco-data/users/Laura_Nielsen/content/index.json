@@ -1,0 +1,15 @@
+{
+  "requestedName": "Laura Nielsen",
+  "liveName": "Laura Nielsen",
+  "userId": 118111,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Samtalekort",
+      "id": 118118,
+      "status": "ok"
+    }
+  ]
+}

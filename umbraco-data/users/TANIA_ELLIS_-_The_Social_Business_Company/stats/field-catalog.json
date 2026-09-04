@@ -1,0 +1,183 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": [
+      "Undersider"
+    ],
+    "editors": [
+      "listview"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": [
+      "Is Play"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:123163",
+      "item:123162",
+      "item:119948",
+      "item:96392",
+      "item:91602",
+      "item:72528",
+      "item:67530",
+      "item:64122",
+      "item:64081",
+      "item:64080",
+      "item:64079",
+      "item:62998",
+      "item:61816",
+      "item:52922",
+      "item:52921",
+      "item:52920",
+      "item:52919",
+      "item:50435",
+      "item:41274",
+      "item:40434",
+      "item:40432",
+      "item:40420",
+      "item:39852",
+      "item:39835",
+      "item:39833",
+      "item:38526",
+      "item:38521",
+      "item:38513",
+      "item:37514",
+      "item:29260",
+      "item:27499",
+      "item:27498",
+      "item:27497",
+      "item:22994",
+      "item:22993",
+      "item:22992",
+      "item:21638",
+      "item:19044",
+      "item:19043",
+      "item:3593",
+      "item:3592",
+      "item:3591"
+    ]
+  },
+  "media": {
+    "alias": "media",
+    "labels": [
+      "Media"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "contentpicker"
+    ],
+    "seenOn": [
+      "item:123163",
+      "item:123162",
+      "item:119948",
+      "item:96392",
+      "item:91602",
+      "item:72528",
+      "item:67530",
+      "item:64122",
+      "item:64081",
+      "item:64080",
+      "item:64079",
+      "item:62998",
+      "item:61816",
+      "item:52922",
+      "item:52921",
+      "item:52920",
+      "item:52919",
+      "item:50435",
+      "item:41274",
+      "item:40434",
+      "item:40432",
+      "item:40420",
+      "item:39852",
+      "item:39835",
+      "item:39833",
+      "item:38526",
+      "item:38521",
+      "item:38513",
+      "item:37514",
+      "item:29260",
+      "item:27499",
+      "item:27498",
+      "item:27497",
+      "item:22994",
+      "item:22993",
+      "item:22992",
+      "item:21638",
+      "item:19044",
+      "item:19043",
+      "item:3593",
+      "item:3592",
+      "item:3591"
+    ]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": [
+      "UID"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:123163",
+      "item:123162",
+      "item:119948",
+      "item:96392",
+      "item:91602",
+      "item:72528",
+      "item:67530",
+      "item:64122",
+      "item:64081",
+      "item:64080",
+      "item:64079",
+      "item:62998",
+      "item:61816",
+      "item:52922",
+      "item:52921",
+      "item:52920",
+      "item:52919",
+      "item:50435",
+      "item:41274",
+      "item:40434",
+      "item:40432",
+      "item:40420",
+      "item:39852",
+      "item:39835",
+      "item:39833",
+      "item:38526",
+      "item:38521",
+      "item:38513",
+      "item:37514",
+      "item:29260",
+      "item:27499",
+      "item:27498",
+      "item:27497",
+      "item:22994",
+      "item:22993",
+      "item:22992",
+      "item:21638",
+      "item:19044",
+      "item:19043",
+      "item:3593",
+      "item:3592",
+      "item:3591"
+    ]
+  }
+}

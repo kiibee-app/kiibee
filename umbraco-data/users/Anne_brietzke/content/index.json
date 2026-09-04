@@ -1,0 +1,15 @@
+{
+  "requestedName": "Anne brietzke",
+  "liveName": "Anne brietzke",
+  "userId": 112870,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Annes Have",
+      "id": 112880,
+      "status": "ok"
+    }
+  ]
+}

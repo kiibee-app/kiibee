@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+72033,c8e39705-65d8-4e73-a53d-a467a0818d92,umb://document/c8e3970565d84e73a53da467a0818d92,KBF-1306,376.04,376.04,true,2022-09-11 12:04:48,2022-09-11 12:04:48,https://kiibee.dk/evafognoer/payouts/kbf-1306/,matched-public-payout-url,https://kiibee.dk/evafognoer/payouts/kbf-1306/,https://kiibee.dk/evafognoer/payouts/kbf-1306/,,

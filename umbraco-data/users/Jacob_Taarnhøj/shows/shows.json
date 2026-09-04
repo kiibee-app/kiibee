@@ -1,0 +1,304 @@
+[
+  {
+    "id": 75787,
+    "key": "d9b3d1d7-3982-4f58-ab75-6720f90091b1",
+    "udi": "umb://document/d9b3d1d739824f58ab756720f90091b1",
+    "name": "JACOB TAARNHØJ – KRØLLEHJERN’",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-09 11:45:32",
+    "updateDate": "2024-01-13 18:21:22",
+    "parentId": 75785,
+    "path": "-1,1067,75778,75785,75787",
+    "sortOrder": 1,
+    "urls": [
+      "/jacob-taarnhoej/shows/jacob-taarnhøj-krøllehjern/"
+    ],
+    "properties": {
+      "purchasePrice": "69",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "39",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": [
+        "73"
+      ],
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/211c938bfab1052d0e04142a08dc106d/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/211c938bfab1052d0e04142a08dc106d/thumbnails/thumbnail.jpg",
+      "videoID": "211c938bfab1052d0e04142a08dc106d",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1896871445",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "2022",
+      "description": "<h2>Stream Jacob Taarnhøj Krøllehjern' - lej eller køb online</h2>\nOnemanshowet Krøllehjern’ er Jacob Taarnhøjs andet onemanshow og hans første onemanshow siden hans seneste onemanshow, der samtidigt var hans første onemanshow, og på det tidspunkt eneste onemanshow, indtil hans nyeste onemanshow, onemanshowet Krøllehjern’.\nGør jer klar til en indsigtsfuld, transcenderende og livsbekræftende rejse gennem store tidløse og presserende emner, såsom, men ikke mindst, og i særdeleshed. Krøllehjern’ indeholder desuden praktiske og nemme-at-gå-til løsninger på Klimakrisen, Israel-Palæstinakonflikten og bølge/partikel-dualiteten.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/4254/jt_kroellehjern_650x1030.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "JACOB TAARNHØJ – KRØLLEHJERN’",
+      "badge": "PREMIERE TILBUD",
+      "length": "81",
+      "tags": "Onemanshowet Krøllehjern,Jacob Taarnhøj,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": [
+      "73"
+    ],
+    "rawFile": "",
+    "videoID": "211c938bfab1052d0e04142a08dc106d",
+    "videoStatus": "ready",
+    "videoSize": "1896871445",
+    "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/211c938bfab1052d0e04142a08dc106d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/211c938bfab1052d0e04142a08dc106d/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "JACOB TAARNHØJ – KRØLLEHJERN’",
+    "description": "<h2>Stream Jacob Taarnhøj Krøllehjern' - lej eller køb online</h2>\nOnemanshowet Krøllehjern’ er Jacob Taarnhøjs andet onemanshow og hans første onemanshow siden hans seneste onemanshow, der samtidigt var hans første onemanshow, og på det tidspunkt eneste onemanshow, indtil hans nyeste onemanshow, onemanshowet Krøllehjern’.\nGør jer klar til en indsigtsfuld, transcenderende og livsbekræftende rejse gennem store tidløse og presserende emner, såsom, men ikke mindst, og i særdeleshed. Krøllehjern’ indeholder desuden praktiske og nemme-at-gå-til løsninger på Klimakrisen, Israel-Palæstinakonflikten og bølge/partikel-dualiteten.",
+    "expandedDescription": "",
+    "year": "2022",
+    "length": "81",
+    "badge": "PREMIERE TILBUD",
+    "production": "",
+    "productionLink": "",
+    "tags": "Onemanshowet Krøllehjern,Jacob Taarnhøj,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/4254/jt_kroellehjern_650x1030.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": [
+      "58"
+    ],
+    "rentalPrice": "39",
+    "purchasePrice": "69",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 170,
+    "statsPlayCount": 105,
+    "statsNonPlayCount": 65,
+    "firstStatAt": "2022-12-21 18:50:43",
+    "lastStatAt": "2026-02-22 18:09:17",
+    "stats": {
+      "mediaUdi": "umb://document/d9b3d1d739824f58ab756720f90091b1",
+      "mediaKey": "d9b3d1d7-3982-4f58-ab75-6720f90091b1",
+      "entryCount": 170,
+      "playCount": 105,
+      "nonPlayCount": 65,
+      "firstEntryAt": "2022-12-21 18:50:43",
+      "lastEntryAt": "2026-02-22 18:09:17",
+      "sampleEntryIds": [
+        119080,
+        117909,
+        117603,
+        117602,
+        117565
+      ]
+    }
+  },
+  {
+    "id": 75786,
+    "key": "cc9df833-9717-4cfb-843b-3cd52e2684bb",
+    "udi": "umb://document/cc9df83397174cfb843b3cd52e2684bb",
+    "name": "JACOB TAARNHØJ – COMEDY SPECIAL",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-09 10:45:13",
+    "updateDate": "2024-01-13 18:32:32",
+    "parentId": 75785,
+    "path": "-1,1067,75778,75785,75786",
+    "sortOrder": 0,
+    "urls": [
+      "/jacob-taarnhoej/shows/jacob-taarnhøj-comedy-special/"
+    ],
+    "properties": {
+      "purchasePrice": "59",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "39",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": [
+        "73"
+      ],
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cd4c8a0cbd31c6490b799dd75e0e01f0/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cd4c8a0cbd31c6490b799dd75e0e01f0/thumbnails/thumbnail.jpg",
+      "videoID": "cd4c8a0cbd31c6490b799dd75e0e01f0",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "1472651785",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "2019",
+      "description": "<h2>Stream Jacob Tarnhøjs Comedy Special - lej eller køb online</h2>\nJacob Taarnhøjs allerførste Comedy Special blev filmet til TV2 på Comedy ZOO i december 2018.\nJacob Taarnhøj helt unikke fortællestil gør ham til en oplevelse på scenen. Han er en komiker, som det i dén grad er blevet værd at holde øje med, efter han i 2017 fik sit gennembrud med den eftertragte ”Talentprisen” i Zulu Comedy Galla. Tilbage i 2012 vandt han stand up konkurrencen 'De Nyeste Nye' #2. Jacobs Comedy Special blev vist på TV 2 i 2019.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/4252/jt_comedy_special_650x1030.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "JACOB TAARNHØJ – COMEDY SPECIAL",
+      "badge": "SE HER",
+      "length": "60",
+      "tags": "Jacob Taarnhøj,Comedy Special,Stand-up,Comedy",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": [
+      "73"
+    ],
+    "rawFile": "",
+    "videoID": "cd4c8a0cbd31c6490b799dd75e0e01f0",
+    "videoStatus": "ready",
+    "videoSize": "1472651785",
+    "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cd4c8a0cbd31c6490b799dd75e0e01f0/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cd4c8a0cbd31c6490b799dd75e0e01f0/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "JACOB TAARNHØJ – COMEDY SPECIAL",
+    "description": "<h2>Stream Jacob Tarnhøjs Comedy Special - lej eller køb online</h2>\nJacob Taarnhøjs allerførste Comedy Special blev filmet til TV2 på Comedy ZOO i december 2018.\nJacob Taarnhøj helt unikke fortællestil gør ham til en oplevelse på scenen. Han er en komiker, som det i dén grad er blevet værd at holde øje med, efter han i 2017 fik sit gennembrud med den eftertragte ”Talentprisen” i Zulu Comedy Galla. Tilbage i 2012 vandt han stand up konkurrencen 'De Nyeste Nye' #2. Jacobs Comedy Special blev vist på TV 2 i 2019.",
+    "expandedDescription": "",
+    "year": "2019",
+    "length": "60",
+    "badge": "SE HER",
+    "production": "",
+    "productionLink": "",
+    "tags": "Jacob Taarnhøj,Comedy Special,Stand-up,Comedy",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/4252/jt_comedy_special_650x1030.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": [
+      "58"
+    ],
+    "rentalPrice": "39",
+    "purchasePrice": "59",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 33,
+    "statsPlayCount": 10,
+    "statsNonPlayCount": 23,
+    "firstStatAt": "2023-01-09 18:03:48",
+    "lastStatAt": "2026-03-29 21:49:27",
+    "stats": {
+      "mediaUdi": "umb://document/cc9df83397174cfb843b3cd52e2684bb",
+      "mediaKey": "cc9df833-9717-4cfb-843b-3cd52e2684bb",
+      "entryCount": 33,
+      "playCount": 10,
+      "nonPlayCount": 23,
+      "firstEntryAt": "2023-01-09 18:03:48",
+      "lastEntryAt": "2026-03-29 21:49:27",
+      "sampleEntryIds": [
+        120388,
+        119079,
+        117623,
+        112214,
+        111657
+      ]
+    }
+  }
+]

@@ -1,0 +1,224 @@
+{
+  "publishDate": "2020-02-28 14:40:47",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": null,
+  "templateId": 0,
+  "allowedTemplates": {},
+  "documentType": {
+    "alias": "log",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-04 21:23:55",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Log",
+    "id": 1086,
+    "udi": "umb://document-type/a194ab009fa04a1581bbbb465247f2e3",
+    "icon": "icon-box-alt color-black",
+    "trashed": false,
+    "key": "a194ab00-9fa0-4a15-81bb-bb465247f2e3",
+    "parentId": -1,
+    "path": "-1,1086",
+    "metaData": {}
+  },
+  "urls": [
+    "/sundt-indtag/log/"
+  ],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/2a2cc86e4ec64dfb9142c469a4dbb215",
+  "contentTypeName": "Log",
+  "isContainer": true,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 1,
+      "active": true,
+      "label": "Undersider",
+      "alias": "umbContainerView",
+      "properties": [
+        {
+          "label": "",
+          "description": null,
+          "view": "listview",
+          "config": {
+            "pageSize": "10",
+            "displayAtTabNumber": "1",
+            "orderBy": "createDate",
+            "orderDirection": "desc",
+            "includeProperties": [
+              {
+                "alias": "isPurchase",
+                "isSystem": 0,
+                "header": "Purchase"
+              },
+              {
+                "alias": "price",
+                "isSystem": 0,
+                "header": "Price"
+              },
+              {
+                "alias": "createDate",
+                "isSystem": 1
+              }
+            ],
+            "layouts": [
+              {
+                "name": "List",
+                "path": "views/propertyeditors/listview/layouts/list/list.html",
+                "icon": "icon-list",
+                "isSystem": 1,
+                "selected": true
+              },
+              {
+                "name": "Grid",
+                "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+                "icon": "icon-thumbnails-small",
+                "isSystem": 1,
+                "selected": true
+              }
+            ],
+            "bulkActionPermissions": {
+              "allowBulkPublish": true,
+              "allowBulkUnpublish": true,
+              "allowBulkCopy": true,
+              "allowBulkMove": false,
+              "allowBulkDelete": true
+            },
+            "tabName": null,
+            "entityType": "content"
+          },
+          "hideLabel": true,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": null,
+          "value": null,
+          "alias": "_umb_containerView",
+          "editor": null,
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "",
+      "description": null,
+      "view": "listview",
+      "config": {
+        "pageSize": "10",
+        "displayAtTabNumber": "1",
+        "orderBy": "createDate",
+        "orderDirection": "desc",
+        "includeProperties": [
+          {
+            "alias": "isPurchase",
+            "isSystem": 0,
+            "header": "Purchase"
+          },
+          {
+            "alias": "price",
+            "isSystem": 0,
+            "header": "Price"
+          },
+          {
+            "alias": "createDate",
+            "isSystem": 1
+          }
+        ],
+        "layouts": [
+          {
+            "name": "List",
+            "path": "views/propertyeditors/listview/layouts/list/list.html",
+            "icon": "icon-list",
+            "isSystem": 1,
+            "selected": true
+          },
+          {
+            "name": "Grid",
+            "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+            "icon": "icon-thumbnails-small",
+            "isSystem": 1,
+            "selected": true
+          }
+        ],
+        "bulkActionPermissions": {
+          "allowBulkPublish": true,
+          "allowBulkUnpublish": true,
+          "allowBulkCopy": true,
+          "allowBulkMove": false,
+          "allowBulkDelete": true
+        },
+        "tabName": null,
+        "entityType": "content"
+      },
+      "hideLabel": true,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": null,
+      "value": null,
+      "alias": "_umb_containerView",
+      "editor": null,
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2020-02-28 14:40:47",
+  "createDate": "2020-02-12 13:20:17",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "log",
+  "sortOrder": 1,
+  "name": "Log",
+  "id": 2680,
+  "udi": "umb://document/2a2cc86e4ec64dfb9142c469a4dbb215",
+  "icon": "icon-box-alt color-black",
+  "trashed": false,
+  "key": "2a2cc86e-4ec6-4dfb-9142-c469a4dbb215",
+  "parentId": 2679,
+  "alias": null,
+  "path": "-1,1067,2679,2680",
+  "metaData": {}
+}

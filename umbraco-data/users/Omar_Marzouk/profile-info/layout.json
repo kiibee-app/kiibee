@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Omar Marzouk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Omar Marzouk ",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3542/omar-topgrafik.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3543/omar-grafik-mobil-top.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Omar Marzouk - Danmarks førende multikulturelle komiker</h1>\n<p>Med sin baggrund som nydansker formår Omar Marzouk at finde det sjove i selv de sværest tilgængelige emner. Han leverer altid skarp og selvironisk humor med varme og medfølelse.</p>",
+  "css": "",
+  "javaScript": ""
+}

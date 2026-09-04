@@ -1,0 +1,17 @@
+{
+  "exportedAt": "2026-07-21T17:18:35.133549+00:00",
+  "collectionName": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+  "parent": {
+    "id": 14230,
+    "name": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+    "key": "e9fb0a4c-7867-4540-8c46-532400d8aee1"
+  },
+  "status": "ok",
+  "source": "public-site-scrape+purchase-fallback",
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailsFetched": 1,
+    "errors": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Microphone Entertainment",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 1894,
+  "key": "bbb34a3b-3065-4932-917b-16405369487c",
+  "udi": "umb://document/bbb34a3b30654932917b16405369487c",
+  "path": "-1,1067,1894",
+  "url": "/microphone-entertainment/",
+  "createDate": "2019-07-23 10:03:01",
+  "updateDate": "2026-06-13 00:00:03",
+  "publishDate": "2026-06-13 00:00:03",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

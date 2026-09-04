@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Letsmove - Motion i Centrum",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Comedy-TV",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3028/nyt-comedy-tv.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3027/comedy-top-final.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3278/top-coemdy-cover-640x600-v2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Få dit yndlings comedy show fra Danmarks sjoveste komikere",
+  "description": "Du kan nemt og enkelt leje eller købe shows med alle dine favorit komikere & artister. Nem betaling med MobilePay og Dankort.  \r\nStream eller download og se film & shows hjemme på din skærm. God fornøjelse!",
+  "css": "",
+  "javaScript": ""
+}

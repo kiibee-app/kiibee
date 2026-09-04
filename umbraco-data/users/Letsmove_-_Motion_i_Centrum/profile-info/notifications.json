@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Letsmove - Motion i Centrum",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-05-19",
+  "frequency": 7,
+  "notificationsType": "2",
+  "emails": []
+}

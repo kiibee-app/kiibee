@@ -1,0 +1,92 @@
+[
+  {
+    "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+    "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+    "resolved": true,
+    "id": 48899,
+    "name": "Dan Andersen På Vippen",
+    "title": "Dan Andersen På Vippen ",
+    "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "contentTypeAlias": "media",
+    "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "49",
+    "rentalPrice": "39",
+    "purchaseEntryCount": 49,
+    "purchaseOrderCount": 34,
+    "nonPurchaseEntryCount": 15,
+    "totalDownloads": 19,
+    "totalStreams": 19,
+    "firstPurchaseAt": "2021-08-19 10:29:42",
+    "lastPurchaseAt": "2025-02-19 19:09:45",
+    "samplePurchaseIds": [106096, 105391, 104709, 99501, 98101]
+  },
+  {
+    "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+    "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+    "resolved": true,
+    "id": 42310,
+    "name": "Extravaganza",
+    "title": "Extravaganza",
+    "urls": ["/dan-andersen/shows/extravaganza/"],
+    "contentTypeAlias": "media",
+    "videoID": "a11497f859e6505f7100d16e7df2b69d",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 9,
+    "purchaseOrderCount": 7,
+    "nonPurchaseEntryCount": 2,
+    "totalDownloads": 3,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-06-05 08:18:52",
+    "lastPurchaseAt": "2025-01-29 21:44:58",
+    "samplePurchaseIds": [105388, 98207, 78598, 64889, 64179]
+  }
+]

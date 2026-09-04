@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Fysioteamet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/451eed683c8a42a28c4eef7970282aa1",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

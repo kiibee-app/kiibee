@@ -1,0 +1,146 @@
+{
+  "exportedAt": "2026-06-02T11:08:52.811Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/51016",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 51016,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 51016,
+    "key": "c06a9ff1-89be-4241-916d-6434b24229b4",
+    "udi": "umb://document/c06a9ff189be4241916d6434b24229b4",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/gymstream/purchases/"],
+    "path": "-1,1067,51011,51016",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 1382,
+    "childrenFetched": 1382,
+    "detailsFetched": 1382,
+    "detailErrors": 0,
+    "purchaseEntries": 1311,
+    "nonPurchaseEntries": 71,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 9,
+    "mediaResolvedFromCache": 3,
+    "mediaResolvedFromApi": 0,
+    "mediaResolved": 3,
+    "mediaUnresolved": 6,
+    "mediaResolveErrors": 6
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 1382
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 82,
+      "totalItems": 1382
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\gymstream\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\gymstream\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\gymstream\\purchases\\media.json",
+      "count": 9
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

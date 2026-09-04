@@ -1,0 +1,272 @@
+[
+  {
+    "id": 48899,
+    "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+    "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+    "name": "Dan Andersen På Vippen",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-03 18:43:48",
+    "updateDate": "2024-01-15 22:56:30",
+    "parentId": 42309,
+    "path": "-1,1067,42292,42309,48899",
+    "sortOrder": 1,
+    "urls": ["/dan-andersen/shows/dan-andersen-paa-vippen/"],
+    "properties": {
+      "purchasePrice": "49",
+      "access": ["58"],
+      "rentalPrice": "39",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+      "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1911652169",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "2019",
+      "description": "<h2>Stream Dan Andersen På Vippen - lej eller køb online</h2>\nDan Andersen På Vippen ramte landets scener i 2019 og blev optaget på Bremen i april.\n\nDet er et ret personligt show, hvor jeg kigger tilbage på nogle af de sværeste stunder og største vendepunkter i mit liv. Det handler både stress og depression, og da vi måtte slukke min fars respirator. Det handler også om at være en nørd og vælge kærligheden fra. Som du nok kan fornemme, handler det rigtig meget om mig. Men det lader til, at det faktisk handler om ting, de fleste af os kommer til at tumle med. Og så er der selvfølgelig også en masse sange.\n\nUtroligt nok endte det med at blive ret så sjovt, hvis jeg selv skal sige det.\n\nJeg håber, du også finder det både underholdende og vedkommende.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Dan Andersen På Vippen ",
+      "badge": "",
+      "length": "125",
+      "tags": "Comedy,Stand-up,Dan Andersen,Dan Andersen På Vippen",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "cf86065d2b3baefe71cef17b2eee418d",
+    "videoStatus": "ready",
+    "videoSize": "1911652169",
+    "videoThumbnailURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/cf86065d2b3baefe71cef17b2eee418d/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Dan Andersen På Vippen ",
+    "description": "<h2>Stream Dan Andersen På Vippen - lej eller køb online</h2>\nDan Andersen På Vippen ramte landets scener i 2019 og blev optaget på Bremen i april.\n\nDet er et ret personligt show, hvor jeg kigger tilbage på nogle af de sværeste stunder og største vendepunkter i mit liv. Det handler både stress og depression, og da vi måtte slukke min fars respirator. Det handler også om at være en nørd og vælge kærligheden fra. Som du nok kan fornemme, handler det rigtig meget om mig. Men det lader til, at det faktisk handler om ting, de fleste af os kommer til at tumle med. Og så er der selvfølgelig også en masse sange.\n\nUtroligt nok endte det med at blive ret så sjovt, hvis jeg selv skal sige det.\n\nJeg håber, du også finder det både underholdende og vedkommende.",
+    "expandedDescription": "",
+    "year": "2019",
+    "length": "125",
+    "badge": "",
+    "production": "",
+    "productionLink": "",
+    "tags": "Comedy,Stand-up,Dan Andersen,Dan Andersen På Vippen",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3637/dan_pa-_vippen_web-628x888.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "39",
+    "purchasePrice": "49",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 123,
+    "statsPlayCount": 52,
+    "statsNonPlayCount": 71,
+    "firstStatAt": "2021-08-19 10:30:09",
+    "lastStatAt": "2025-02-19 19:10:15",
+    "stats": {
+      "mediaUdi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+      "mediaKey": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+      "entryCount": 123,
+      "playCount": 52,
+      "nonPlayCount": 71,
+      "firstEntryAt": "2021-08-19 10:30:09",
+      "lastEntryAt": "2025-02-19 19:10:15",
+      "sampleEntryIds": [106097, 105395, 105394, 105393, 105392]
+    }
+  },
+  {
+    "id": 42310,
+    "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+    "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+    "name": "Extravaganza",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-07 15:01:37",
+    "updateDate": "2024-01-15 22:56:52",
+    "parentId": 42309,
+    "path": "-1,1067,42292,42309,42310",
+    "sortOrder": 0,
+    "urls": ["/dan-andersen/shows/extravaganza/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+      "videoID": "a11497f859e6505f7100d16e7df2b69d",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "710628304",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2008",
+      "description": "<h2>Stream Dan Andersens Extravaganza - lej eller køb online</h2>\nEfter utallige opfordringer fra den stadigt voksende fanskare, har fænomenet \"Dan Andersens guitarshow\" endelig samlet alle sine talenter i én ekstremt ekstravagant dobbelt DVD/CD box, spækket med stand-up, sang og underholdning på verdensplan.\n\"Extravaganza\" er ikke alene Dans første solo DVD, den indeholder også hans allerførste solo CD!\nDer er nemlig tale om en DVD med showet \"Holder 100\", som Dan har turneret Danmark tyndt med i 2007, samt CD'en \"Sange fra en verdensmand\", der indeholder alle de største Dan Andersen hits, som ingen endnu har opdaget.\nLad dig for eksempel forføre af velsmurte ørehængere som:\n \"Fuck dig, Claus\" og \"Mormors fødselsdagssang\".\n\nStand-up blandet med guitar og sang.Overraskende, pinligt og fuldkommen smittende vanvittigt.\n\nOptaget på Det Bruunske Pakhus 2007.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Extravaganza",
+      "badge": "",
+      "length": "5433",
+      "tags": "Extravaganza,Dan Andersen,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "a11497f859e6505f7100d16e7df2b69d",
+    "videoStatus": "ready",
+    "videoSize": "710628304",
+    "videoThumbnailURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/a11497f859e6505f7100d16e7df2b69d/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "Extravaganza",
+    "description": "<h2>Stream Dan Andersens Extravaganza - lej eller køb online</h2>\nEfter utallige opfordringer fra den stadigt voksende fanskare, har fænomenet \"Dan Andersens guitarshow\" endelig samlet alle sine talenter i én ekstremt ekstravagant dobbelt DVD/CD box, spækket med stand-up, sang og underholdning på verdensplan.\n\"Extravaganza\" er ikke alene Dans første solo DVD, den indeholder også hans allerførste solo CD!\nDer er nemlig tale om en DVD med showet \"Holder 100\", som Dan har turneret Danmark tyndt med i 2007, samt CD'en \"Sange fra en verdensmand\", der indeholder alle de største Dan Andersen hits, som ingen endnu har opdaget.\nLad dig for eksempel forføre af velsmurte ørehængere som:\n \"Fuck dig, Claus\" og \"Mormors fødselsdagssang\".\n\nStand-up blandet med guitar og sang.Overraskende, pinligt og fuldkommen smittende vanvittigt.\n\nOptaget på Det Bruunske Pakhus 2007.",
+    "expandedDescription": "",
+    "year": "2008",
+    "length": "5433",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "Extravaganza,Dan Andersen,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3136/dan-andersen-extravaganza.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 22,
+    "statsPlayCount": 15,
+    "statsNonPlayCount": 7,
+    "firstStatAt": "2021-06-05 08:18:57",
+    "lastStatAt": "2025-01-29 21:45:18",
+    "stats": {
+      "mediaUdi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+      "mediaKey": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+      "entryCount": 22,
+      "playCount": 15,
+      "nonPlayCount": 7,
+      "firstEntryAt": "2021-06-05 08:18:57",
+      "lastEntryAt": "2025-01-29 21:45:18",
+      "sampleEntryIds": [105389, 78599, 64928, 64900, 64899]
+    }
+  }
+]

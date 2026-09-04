@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-06-02T11:05:59.133Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/75316",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 75316,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 75316,
+    "key": "da1265d9-f76c-4ddf-9176-1174fcb5cd0a",
+    "udi": "umb://document/da1265d9f76c4ddf91761174fcb5cd0a",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/adhdfokus/purchases/"],
+    "path": "-1,1067,75311,75316",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 77,
+    "childrenFetched": 77,
+    "detailsFetched": 77,
+    "detailErrors": 0,
+    "purchaseEntries": 4,
+    "nonPurchaseEntries": 73,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 51,
+    "totalDownloads": 0,
+    "totalStreams": 643,
+    "uniqueMediaUdis": 4,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 3,
+    "mediaResolved": 3,
+    "mediaUnresolved": 1,
+    "mediaResolveErrors": 1
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 77,
+      "totalItems": 77
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\ADHDFOKUS\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ADHDFOKUS\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\ADHDFOKUS\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ADHDFOKUS\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Marner Analytics",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-06-23",
+  "frequency": "30",
+  "notificationsType": "0",
+  "emails": ""
+}

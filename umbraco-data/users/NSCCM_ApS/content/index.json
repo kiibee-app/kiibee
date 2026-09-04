@@ -1,0 +1,15 @@
+{
+  "requestedName": "NSCCM ApS",
+  "liveName": "NSCCM ApS",
+  "userId": 50069,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "LOG904-172 Contract and Commercial Management 2022 (1)",
+      "id": 72531,
+      "status": "ok"
+    }
+  ]
+}

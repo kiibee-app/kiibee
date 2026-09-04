@@ -1,0 +1,572 @@
+[
+  {
+    "id": 113180,
+    "key": "dd7525a5-a652-48f6-a1e0-623c08a48a89",
+    "udi": "umb://document/dd7525a5a65248f6a1e0623c08a48a89",
+    "name": "tr2g26092025161020",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-09-26 16:11:03",
+    "updateDate": "2025-09-26 18:45:27",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,113180",
+    "sortOrder": 5,
+    "urls": ["/thomas-wivel/purchases/tr2g26092025161020/"],
+    "fullName": "Ronnie Bisgaard Mortensen",
+    "email": "ronnie_mortensen@outlook.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "29",
+    "expireDate": "2025-09-28 16:11:00",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2025-09-26 16:11:03",
+    "mediaRelationUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+        "key": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+        "resolved": true,
+        "id": 42660,
+        "name": "Med Ryggen Mod Muren",
+        "title": "Med Ryggen Mod Muren",
+        "urls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+        "contentTypeAlias": "media",
+        "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3152/wivel-mrmm-poster.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Med Ryggen Mod Muren"],
+    "mediaUrls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+      "email": "ronnie_mortensen@outlook.dk",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2025-09-28 16:11:00",
+      "price": "29",
+      "fullName": "Ronnie Bisgaard Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/bf5ef2cbb34243c1927cdd502f812362"
+    }
+  },
+  {
+    "id": 76936,
+    "key": "ea410b7b-f0f9-4a52-a839-829be9e86f63",
+    "udi": "umb://document/ea410b7bf0f94a52a839829be9e86f63",
+    "name": "q6r913012023150241",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-01-13 15:03:17",
+    "updateDate": "2023-01-13 15:05:43",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,76936",
+    "sortOrder": 4,
+    "urls": ["/thomas-wivel/purchases/q6r913012023150241/"],
+    "fullName": "Karina stenberg ",
+    "email": "Karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-01-20 15:03:15",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2023-01-13 15:03:17",
+    "mediaRelationUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+        "key": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+        "resolved": true,
+        "id": 42659,
+        "name": "Wivels Vaffelbar",
+        "title": "Wivels Vaffelbar",
+        "urls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+        "contentTypeAlias": "media",
+        "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3151/vaffel1.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Wivels Vaffelbar"],
+    "mediaUrls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+      "email": "Karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-01-20 15:03:15",
+      "price": "39",
+      "fullName": "Karina stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"
+    }
+  },
+  {
+    "id": 76933,
+    "key": "4776b898-eae7-46c4-b1c9-a001ecdab250",
+    "udi": "umb://document/4776b898eae746c4b1c9a001ecdab250",
+    "name": "udjm13012023145239",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-01-13 14:53:11",
+    "updateDate": "2023-01-13 14:53:33",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,76933",
+    "sortOrder": 3,
+    "urls": ["/thomas-wivel/purchases/udjm13012023145239/"],
+    "fullName": "Karina stenberg",
+    "email": "Karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-01-20 14:53:07",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2023-01-13 14:53:11",
+    "mediaRelationUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+        "key": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+        "resolved": true,
+        "id": 42660,
+        "name": "Med Ryggen Mod Muren",
+        "title": "Med Ryggen Mod Muren",
+        "urls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+        "contentTypeAlias": "media",
+        "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3152/wivel-mrmm-poster.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Med Ryggen Mod Muren"],
+    "mediaUrls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+      "email": "Karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-01-20 14:53:07",
+      "price": "39",
+      "fullName": "Karina stenberg",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/bf5ef2cbb34243c1927cdd502f812362"
+    }
+  },
+  {
+    "id": 73871,
+    "key": "8fde4e27-f070-47f8-a6c4-4119bec90558",
+    "udi": "umb://document/8fde4e27f07047f8a6c44119bec90558",
+    "name": "6yx314102022232128",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-14 23:22:13",
+    "updateDate": "2022-10-14 23:22:55",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,73871",
+    "sortOrder": 2,
+    "urls": ["/thomas-wivel/purchases/6yx314102022232128/"],
+    "fullName": "torstein sørensen",
+    "email": "torstein268@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 1,
+    "price": "29",
+    "expireDate": "2022-10-16 23:22:11",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2022-10-14 23:22:13",
+    "mediaRelationUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+        "key": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+        "resolved": true,
+        "id": 42659,
+        "name": "Wivels Vaffelbar",
+        "title": "Wivels Vaffelbar",
+        "urls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+        "contentTypeAlias": "media",
+        "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3151/vaffel1.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Wivels Vaffelbar"],
+    "mediaUrls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+      "email": "torstein268@hotmail.com",
+      "streams": "1",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-10-16 23:22:11",
+      "price": "29",
+      "fullName": "torstein sørensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"
+    }
+  },
+  {
+    "id": 46825,
+    "key": "79065b8a-85ae-4ede-9609-c93316811874",
+    "udi": "umb://document/79065b8a85ae4ede9609c93316811874",
+    "name": "79n705062021093120",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 09:32:07",
+    "updateDate": "2021-06-05 09:32:07",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,46825",
+    "sortOrder": 1,
+    "urls": ["/thomas-wivel/purchases/79n705062021093120/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 09:32:06",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2021-06-05 09:32:07",
+    "mediaRelationUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/bf5ef2cbb34243c1927cdd502f812362"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+        "key": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+        "resolved": true,
+        "id": 42660,
+        "name": "Med Ryggen Mod Muren",
+        "title": "Med Ryggen Mod Muren",
+        "urls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+        "contentTypeAlias": "media",
+        "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3152/wivel-mrmm-poster.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Med Ryggen Mod Muren"],
+    "mediaUrls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 09:32:06",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/bf5ef2cbb34243c1927cdd502f812362"
+    }
+  },
+  {
+    "id": 46822,
+    "key": "1eeb29d5-ef7a-4259-ac95-4f42adb5b516",
+    "udi": "umb://document/1eeb29d5ef7a4259ac954f42adb5b516",
+    "name": "l8t505062021091451",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 09:15:48",
+    "updateDate": "2021-06-05 09:15:48",
+    "parentId": 42480,
+    "path": "-1,1067,42475,42480,46822",
+    "sortOrder": 0,
+    "urls": ["/thomas-wivel/purchases/l8t505062021091451/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 09:15:47",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+    "orderCreateDate": "2021-06-05 09:15:48",
+    "mediaRelationUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+        "key": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+        "resolved": true,
+        "id": 42659,
+        "name": "Wivels Vaffelbar",
+        "title": "Wivels Vaffelbar",
+        "urls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+        "contentTypeAlias": "media",
+        "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3151/vaffel1.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Wivels Vaffelbar"],
+    "mediaUrls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 09:15:47",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Thomas",
+      "media": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a"
+    }
+  }
+]

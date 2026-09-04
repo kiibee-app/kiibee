@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Elsebeth Fogh",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-08-06",
+  "frequency": "30",
+  "notificationsType": "1",
+  "emails": ""
+}

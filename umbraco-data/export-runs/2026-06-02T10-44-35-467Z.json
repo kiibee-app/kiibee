@@ -1,0 +1,349 @@
+{
+  "startedAt": "2026-06-02T10:44:35.467Z",
+  "finishedAt": "2026-06-02T10:49:07.537Z",
+  "rootId": 1067,
+  "tasks": ["stats", "shows", "purchases", "payouts"],
+  "skipExisting": true,
+  "counts": {
+    "ok": 9,
+    "skipped": 11,
+    "error": 1
+  },
+  "users": [
+    {
+      "userDir": "Settings",
+      "liveName": "Settings",
+      "userId": 1073
+    },
+    {
+      "userDir": "Admin",
+      "liveName": "Admin",
+      "userId": 1223
+    },
+    {
+      "userDir": "Fysioteamet",
+      "liveName": "Fysioteamet",
+      "userId": 1790
+    },
+    {
+      "userDir": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828
+    },
+    {
+      "userDir": "Cathrine_Guldberg",
+      "liveName": "Cathrine Guldberg",
+      "userId": 1841
+    }
+  ],
+  "results": [
+    {
+      "userDir": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Fysioteamet",
+      "liveName": "Fysioteamet",
+      "userId": 1790,
+      "task": "stats",
+      "parentId": 2839,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:44:38.646Z",
+      "finishedAt": "2026-06-02T10:48:35.939Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fysioteamet\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 5983,
+        "detailsFetched": 5983,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 5983
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Fysioteamet",
+      "liveName": "Fysioteamet",
+      "userId": 1790,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Fysioteamet",
+      "liveName": "Fysioteamet",
+      "userId": 1790,
+      "task": "purchases",
+      "parentId": 1794,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:48:35.942Z",
+      "finishedAt": "2026-06-02T10:48:36.562Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fysioteamet\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Fysioteamet",
+      "liveName": "Fysioteamet",
+      "userId": 1790,
+      "task": "payouts",
+      "parentId": 1793,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:48:36.566Z",
+      "finishedAt": "2026-06-02T10:48:37.209Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fysioteamet\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "task": "stats",
+      "parentId": 2837,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:48:37.471Z",
+      "finishedAt": "2026-06-02T10:48:51.041Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 384,
+        "detailsFetched": 384,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 384
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "task": "purchases",
+      "parentId": 1816,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:48:51.044Z",
+      "finishedAt": "2026-06-02T10:48:59.614Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee\\purchases",
+        "purchases": 139,
+        "purchaseEntries": 97,
+        "detailsFetched": 139,
+        "uniqueMediaUdis": 12,
+        "mediaResolved": 12,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "task": "payouts",
+      "parentId": 1815,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:48:59.617Z",
+      "finishedAt": "2026-06-02T10:49:00.513Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee\\payouts",
+        "payouts": 1,
+        "paidPayouts": 0,
+        "totalAmount": 14.51,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "stats",
+      "parentId": 2836,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:49:00.772Z",
+      "finishedAt": "2026-06-02T10:49:01.675Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\FliCFLAC\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1,
+        "detailsFetched": 1,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "purchases",
+      "parentId": 1832,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:49:01.677Z",
+      "finishedAt": "2026-06-02T10:49:03.104Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\FliCFLAC\\purchases",
+        "purchases": 4,
+        "purchaseEntries": 4,
+        "detailsFetched": 4,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 2,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "payouts",
+      "parentId": 1831,
+      "status": "ok",
+      "startedAt": "2026-06-02T10:49:03.106Z",
+      "finishedAt": "2026-06-02T10:49:03.741Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\FliCFLAC\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Cathrine_Guldberg",
+      "liveName": "Cathrine Guldberg",
+      "userId": 1841,
+      "task": "stats",
+      "parentId": 2835,
+      "status": "error",
+      "startedAt": "2026-06-02T10:49:03.986Z",
+      "finishedAt": "2026-06-02T10:49:07.535Z",
+      "output": null,
+      "after": null,
+      "stderr": "Error: HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}\n    at requestJson (file:///C:/Users/sera/Desktop/kiibee/scripts/export-umbraco-collection.mjs:105:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async fetchChildren (file:///C:/Users/sera/Desktop/kiibee/scripts/export-umbraco-collection.mjs:485:21)\n    at async main (file:///C:/Users/sera/Desktop/kiibee/scripts/export-umbraco-collection.mjs:628:53)"
+    }
+  ],
+  "liveUserCount": 116
+}

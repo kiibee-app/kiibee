@@ -1,0 +1,36 @@
+{
+  "matchedShows": [
+    {
+      "id": 43001,
+      "key": "01353275-288d-4ea4-844c-db539054ef35",
+      "udi": "umb://document/01353275288d4ea4844cdb539054ef35",
+      "name": "Det dyste skæg",
+      "title": "Det dyste skæg",
+      "statsEntryCount": 53,
+      "statsPlayCount": 21,
+      "statsNonPlayCount": 32
+    },
+    {
+      "id": 42713,
+      "key": "7bea8597-2eec-48ed-b86e-8629779cf6c0",
+      "udi": "umb://document/7bea85972eec48edb86e8629779cf6c0",
+      "name": "Helt Perfekt",
+      "title": "Helt Perfekt",
+      "statsEntryCount": 43,
+      "statsPlayCount": 9,
+      "statsNonPlayCount": 34
+    },
+    {
+      "id": 42712,
+      "key": "7d6e1df3-caf2-4947-bb50-bbaf9a5f6b1b",
+      "udi": "umb://document/7d6e1df3caf24947bb50bbaf9a5f6b1b",
+      "name": "Fucking Glad",
+      "title": "Fucking Glad",
+      "statsEntryCount": 51,
+      "statsPlayCount": 4,
+      "statsNonPlayCount": 47
+    }
+  ],
+  "showsWithoutStats": [],
+  "statsMediaWithoutShow": []
+}

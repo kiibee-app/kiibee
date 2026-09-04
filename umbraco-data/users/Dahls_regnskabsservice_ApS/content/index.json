@@ -1,0 +1,15 @@
+{
+  "requestedName": "Dahls regnskabsservice ApS",
+  "liveName": "Dahls regnskabsservice ApS",
+  "userId": 117534,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "E-bog",
+      "id": 117542,
+      "status": "ok"
+    }
+  ]
+}

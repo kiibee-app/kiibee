@@ -1,0 +1,51 @@
+[
+  {
+    "id": 76142,
+    "key": "c9a13a99-ac22-4241-b07e-784c39caccf9",
+    "udi": "umb://document/c9a13a99ac224241b07e784c39caccf9",
+    "name": "KBF-1358",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/76142",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-21 21:22:16",
+    "updateDate": "2022-12-22 13:21:01",
+    "parentId": 14221,
+    "path": "-1,1067,14217,14221,76142",
+    "sortOrder": 0,
+    "urls": [
+      "/stopsygefravaernu/payouts/kbf-1358/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/",
+    "amount": "182.05",
+    "amountNumber": 182.05,
+    "isPaid": true,
+    "payoutCreateDate": "2022-12-21 21:22:16",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "1",
+      "transactionFee": "5",
+      "kiibeeCut": "7",
+      "rentAmount": "0",
+      "from": "2020-05-11 13:34:44",
+      "rawEarnings": "199",
+      "amount": "182.05",
+      "isPaid": "1",
+      "to": "2022-12-21 21:21:35",
+      "transactionAmount": "9.95",
+      "kiibeeCutAmount": "7"
+    }
+  }
+]

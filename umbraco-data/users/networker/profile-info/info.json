@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "networker",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 41818,
+  "key": "a9fb0ad3-665a-4d8f-ace6-3446013832c9",
+  "udi": "umb://document/a9fb0ad3665a4d8face63446013832c9",
+  "path": "-1,1067,41818",
+  "url": "/networker/",
+  "createDate": "2021-04-01 12:12:59",
+  "updateDate": "2022-09-07 00:00:52",
+  "publishDate": "2022-09-07 00:00:52",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

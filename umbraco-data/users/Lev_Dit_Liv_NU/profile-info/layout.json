@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Lev Dit Liv NU",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Lev Dit Liv NU",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4656/picsart_24-04-26_14-31-26-387.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4657/picsart_24-06-07_12-19-42-102.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Lev Dit Liv NU",
+  "description": "Hej med dig og Velkommen, - hvor er det godt du er her.\r\n\r\n\r\nVores lille \"butik\" er stadig i opstartsfasen, men der vil snart komme flere gode ting på hylderne.\r\nKig dig lidt omkring og start eventuelt med at afprøve den gratis visualisering, der helt sikkert vil fylde dig med glæde og positiv energi.\r\n\r\nLev Dit Liv NU styrker din livsglæde, dit selvværd og din personlige udvikling. Her får du de redskaber du skal bruge for skabe det liv du ønsker dig.\r\n",
+  "css": "",
+  "javaScript": ""
+}

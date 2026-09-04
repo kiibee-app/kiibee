@@ -1,0 +1,101 @@
+[
+  {
+    "udi": "umb://document/a0be6cf2f79c413c89a80aca0f12ec20",
+    "key": "a0be6cf2-f79c-413c-89a8-0aca0f12ec20",
+    "resolved": true,
+    "id": 68936,
+    "name": "Kogekone",
+    "title": "Kogekone",
+    "urls": ["/b-entertained/johnni-gade-kogekone/kogekone/"],
+    "contentTypeAlias": "media",
+    "videoID": "1b1cdf19f63a41b0f8d29ab2e2d1e301",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "99",
+    "rentalPrice": "49",
+    "purchaseEntryCount": 1007,
+    "purchaseOrderCount": 205,
+    "nonPurchaseEntryCount": 802,
+    "totalDownloads": 343,
+    "totalStreams": 1721,
+    "firstPurchaseAt": "2022-08-28 08:04:21",
+    "lastPurchaseAt": "2026-05-01 21:57:32",
+    "samplePurchaseIds": [122856, 120261, 118904, 117653, 117072]
+  },
+  {
+    "udi": "umb://document/f9c87f9234b54f39a2b73d3249c4497a",
+    "key": "f9c87f92-34b5-4f39-a2b7-3d3249c4497a",
+    "resolved": false,
+    "id": null,
+    "name": "",
+    "title": "",
+    "urls": [],
+    "contentTypeAlias": "",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "",
+    "purchasePrice": "",
+    "rentalPrice": "",
+    "purchaseEntryCount": 34,
+    "purchaseOrderCount": 18,
+    "nonPurchaseEntryCount": 16,
+    "totalDownloads": 10,
+    "totalStreams": 31,
+    "firstPurchaseAt": "2021-12-26 18:56:56",
+    "lastPurchaseAt": "2023-12-30 21:54:46",
+    "samplePurchaseIds": [93515, 90674, 83363, 79739, 77532]
+  },
+  {
+    "udi": "umb://document/281f773b5eae4a23b49868240e6b8e89",
+    "key": "281f773b-5eae-4a23-b498-68240e6b8e89",
+    "resolved": true,
+    "id": 100137,
+    "name": "Conrad Molden - ÆØÅ",
+    "title": "Conrad Molden - ÆØÅ",
+    "urls": ["/b-entertained/conrad-molden-æøå/conrad-molden-æøå/"],
+    "contentTypeAlias": "media",
+    "videoID": "f4cb977c0521132f7b62406a552ab93c",
+    "videoStatus": "encoding",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "/media/4770/aeoeaa-2024_3.mp4",
+    "webContentURL": "",
+    "thumbnail": "/media/4771/skaermbillede-2024-09-02-kl-125828.png",
+    "purchasePrice": "89",
+    "rentalPrice": "49",
+    "purchaseEntryCount": 2,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 8,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2025-02-08 23:10:10",
+    "lastPurchaseAt": "2026-05-25 19:19:42",
+    "samplePurchaseIds": [123493, 105737]
+  }
+]

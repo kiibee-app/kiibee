@@ -1,0 +1,78 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+      "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+      "resolved": true,
+      "id": 24582,
+      "name": "Chief1 Portræt & Koncertfilm",
+      "title": "Chief1 Portræt & Koncertfilm ",
+      "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+      "contentTypeAlias": "media",
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/2709/cover2.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "150",
+      "rentalPrice": "50",
+      "purchaseEntryCount": 10,
+      "purchaseOrderCount": 8,
+      "nonPurchaseEntryCount": 2,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2020-12-17 20:06:44",
+      "lastPurchaseAt": "2021-06-12 22:37:48",
+      "samplePurchaseIds": [47167, 39498, 39350, 26743, 26740]
+    }
+  ],
+  "unresolvedMedia": [
+    {
+      "udi": "umb://document/d8598d013ea14062ad595bf4623586ff",
+      "key": "d8598d01-3ea1-4062-ad59-5bf4623586ff",
+      "resolved": false,
+      "id": null,
+      "name": "",
+      "title": "",
+      "urls": [],
+      "contentTypeAlias": "",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "",
+      "purchaseEntryCount": 1,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 1,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2020-12-15 14:29:41",
+      "lastPurchaseAt": "2020-12-15 14:29:41",
+      "samplePurchaseIds": [24442]
+    }
+  ]
+}

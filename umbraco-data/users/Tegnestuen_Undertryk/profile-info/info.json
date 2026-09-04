@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Tegnestuen Undertryk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 18467,
+  "key": "fc510bbc-5e0a-468f-b2a4-aed338f5e86b",
+  "udi": "umb://document/fc510bbc5e0a468fb2a4aed338f5e86b",
+  "path": "-1,1067,18467",
+  "url": "/tegnestuen-undertryk/",
+  "createDate": "2020-07-29 12:54:05",
+  "updateDate": "2022-09-07 00:00:15",
+  "publishDate": "2022-09-07 00:00:15",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

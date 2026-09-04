@@ -1,0 +1,52 @@
+{
+  "matched": [
+    {
+      "id": 75697,
+      "key": "5004c5b5-76a0-4d5a-aa18-c4d7b04d57d9",
+      "udi": "umb://document/5004c5b576a04d5aaa18c4d7b04d57d9",
+      "name": "KBF-1351",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/75697",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-12-07 10:06:04",
+      "updateDate": "2022-12-16 12:52:24",
+      "parentId": 42513,
+      "path": "-1,1067,42509,42513,75697",
+      "sortOrder": 0,
+      "urls": ["/anders-fjelsted/payouts/kbf-1351/"],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/anders-fjelsted/payouts/kbf-1351/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/anders-fjelsted/payouts/kbf-1351/",
+      "amount": "108.2",
+      "amountNumber": 108.2,
+      "isPaid": true,
+      "payoutCreateDate": "2022-12-07 10:06:04",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": ["https://kiibee.dk/anders-fjelsted/payouts/kbf-1351/"],
+      "invoiceUrl": "https://kiibee.dk/anders-fjelsted/payouts/kbf-1351/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "4",
+        "transactionFee": "5",
+        "kiibeeCut": "10",
+        "rentAmount": "0",
+        "from": "2021-04-09 18:41:08",
+        "rawEarnings": "156",
+        "amount": "108.2",
+        "isPaid": "1",
+        "to": "2022-12-07 10:05:47",
+        "transactionAmount": "7.8",
+        "kiibeeCutAmount": "40"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

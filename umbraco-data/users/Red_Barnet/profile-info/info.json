@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Red Barnet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 46713,
+  "key": "bad7814b-39c3-4b59-a7de-53d767bd1ead",
+  "udi": "umb://document/bad7814b39c34b59a7de53d767bd1ead",
+  "path": "-1,1067,46713",
+  "url": "/red-barnet/",
+  "createDate": "2021-06-03 12:00:48",
+  "updateDate": "2023-12-20 13:54:11",
+  "publishDate": "2023-12-20 13:54:11",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

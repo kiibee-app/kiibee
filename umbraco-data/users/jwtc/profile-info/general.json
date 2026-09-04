@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "jwtc",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "114462",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

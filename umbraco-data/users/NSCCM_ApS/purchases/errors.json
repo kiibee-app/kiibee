@@ -1,0 +1,21 @@
+{
+  "mediaResolveErrors": {
+    "count": 2,
+    "sample": [
+      {
+        "udi": "umb://document/6def57e4481443d7bcc3ea5eebbb3b7a",
+        "key": "6def57e4-4814-43d7-bcc3-ea5eebbb3b7a",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/7d6b00b788a44a0c91fc81ad655667e6",
+        "key": "7d6b00b7-88a4-4a0c-91fc-81ad655667e6",
+        "error": "HTTP 404: "
+      }
+    ]
+  },
+  "otherErrors": {
+    "count": 0,
+    "sample": []
+  }
+}

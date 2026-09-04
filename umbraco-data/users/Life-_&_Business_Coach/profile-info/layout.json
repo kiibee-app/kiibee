@@ -1,0 +1,59 @@
+{
+  "tab": "Layout",
+  "name": "Life- & Business Coach",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Life- & Business Coach Sanne M. Pedersen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1655/sanne-pedersen-6-2-1.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1656/dsc_0368.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      },
+      {
+        "alias": "Cover",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "noblock",
+  "headline": "Kurser i personlig udvikling",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

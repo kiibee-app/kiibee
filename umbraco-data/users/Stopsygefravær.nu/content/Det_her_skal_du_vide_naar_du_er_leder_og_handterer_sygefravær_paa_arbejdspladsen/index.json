@@ -1,0 +1,17 @@
+{
+  "exportedAt": "2026-07-21T17:18:35.133549+00:00",
+  "collectionName": "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!",
+  "parent": {
+    "id": 39091,
+    "name": "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!",
+    "key": "9ec59a74-b017-4f09-8f8f-4818dbd0f7f6"
+  },
+  "status": "ok",
+  "source": "public-site-scrape+purchase-fallback",
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailsFetched": 1,
+    "errors": 0
+  }
+}

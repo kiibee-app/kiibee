@@ -1,0 +1,272 @@
+[
+  {
+    "id": 42518,
+    "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+    "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+    "name": "Lige ved og voksen",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-09 19:08:30",
+    "updateDate": "2024-01-15 22:59:35",
+    "parentId": 42516,
+    "path": "-1,1067,42509,42516,42518",
+    "sortOrder": 1,
+    "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+      "videoID": "1f333c5332a2582c07245c39905a67bd",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1051319172",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "2014",
+      "description": "<h2>Stream Anders Fjelsteds Lige ved og voksen - lej eller køb online</h2>\nAnders Fjelsted har lavet stand-up siden han var 19 år gammel. Nu er han snart 38. Ergo har han… Øh, en del års erfaring. Dengang i ’95 handlede det meget om kæresteproblemer, dumme forældre og besværet ved at være flyttet hjemmefra til en lille lejlighed. I 2014 er kæresten blevet til konen, forældrene er blevet bedsteforældre og lejligheden er blevet hus med have. I ’95 handlede det hele om øl, fisse og hornmusik. I dag giver øllet tømmermænd, fissen har født to børn og hornmusikken forstyrrer nattesøvnen. Er Anders mon blevet voksen? Det er vist lige ved. Derfor handler Anders’ nyeste show primært om voksenting. Naturligvis leveret med Fjelles sædvanlige sans for observans og barnlige tilgang til livet. For du kan muligvis tage Fjelsted ud af barnet, men du kan ikke tage barnet ud af Fjelsted… Eller noget i den stil.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3140/fjelle_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Lige ved og voksen ",
+      "badge": "",
+      "length": "113",
+      "tags": "Lige ved og voksen,Anders Fjelsted,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "1f333c5332a2582c07245c39905a67bd",
+    "videoStatus": "ready",
+    "videoSize": "1051319172",
+    "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Lige ved og voksen ",
+    "description": "<h2>Stream Anders Fjelsteds Lige ved og voksen - lej eller køb online</h2>\nAnders Fjelsted har lavet stand-up siden han var 19 år gammel. Nu er han snart 38. Ergo har han… Øh, en del års erfaring. Dengang i ’95 handlede det meget om kæresteproblemer, dumme forældre og besværet ved at være flyttet hjemmefra til en lille lejlighed. I 2014 er kæresten blevet til konen, forældrene er blevet bedsteforældre og lejligheden er blevet hus med have. I ’95 handlede det hele om øl, fisse og hornmusik. I dag giver øllet tømmermænd, fissen har født to børn og hornmusikken forstyrrer nattesøvnen. Er Anders mon blevet voksen? Det er vist lige ved. Derfor handler Anders’ nyeste show primært om voksenting. Naturligvis leveret med Fjelles sædvanlige sans for observans og barnlige tilgang til livet. For du kan muligvis tage Fjelsted ud af barnet, men du kan ikke tage barnet ud af Fjelsted… Eller noget i den stil.",
+    "expandedDescription": "",
+    "year": "2014",
+    "length": "113",
+    "badge": "",
+    "production": "",
+    "productionLink": "",
+    "tags": "Lige ved og voksen,Anders Fjelsted,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3140/fjelle_400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 17,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 17,
+    "firstStatAt": "2021-06-05 08:31:40",
+    "lastStatAt": "2025-03-25 17:43:50",
+    "stats": {
+      "mediaUdi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+      "mediaKey": "0eddf83f-560f-4d70-829e-4461764e66af",
+      "entryCount": 17,
+      "playCount": 0,
+      "nonPlayCount": 17,
+      "firstEntryAt": "2021-06-05 08:31:40",
+      "lastEntryAt": "2025-03-25 17:43:50",
+      "sampleEntryIds": [107851, 107850, 107849, 107773, 107772]
+    }
+  },
+  {
+    "id": 42517,
+    "key": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+    "udi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+    "name": "Barnligt Voksen",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-09 18:57:19",
+    "updateDate": "2024-01-15 22:59:54",
+    "parentId": 42516,
+    "path": "-1,1067,42509,42516,42517",
+    "sortOrder": 0,
+    "urls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+      "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "1294969743",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "2010",
+      "description": "<h2>Stream Anders Fjelsteds Barnligt Voksen - lej eller køb online</h2>\nI showet balancerer Anders Fjelsted på kanten mellem det indre barn, der bare vil ud, og den voksne mand han er. Det kan ikke andet end give en skæv indgang til tilværelsen, men han leverer samtidig materiale til en forrygende omgang stand-up hvor \"Fjelle\" med sin sædvanlige drengede charme joker sig igennem emner som politik, handicap-toiletter, mænd, kvinder og parforhold.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Barnligt Voksen ",
+      "badge": "",
+      "length": "134",
+      "tags": "Barnligt Voksen,Anders Fjelsted,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+    "videoStatus": "ready",
+    "videoSize": "1294969743",
+    "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "Barnligt Voksen ",
+    "description": "<h2>Stream Anders Fjelsteds Barnligt Voksen - lej eller køb online</h2>\nI showet balancerer Anders Fjelsted på kanten mellem det indre barn, der bare vil ud, og den voksne mand han er. Det kan ikke andet end give en skæv indgang til tilværelsen, men han leverer samtidig materiale til en forrygende omgang stand-up hvor \"Fjelle\" med sin sædvanlige drengede charme joker sig igennem emner som politik, handicap-toiletter, mænd, kvinder og parforhold.",
+    "expandedDescription": "",
+    "year": "2010",
+    "length": "134",
+    "badge": "",
+    "production": "",
+    "productionLink": "",
+    "tags": "Barnligt Voksen,Anders Fjelsted,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 4,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 4,
+    "firstStatAt": "2021-06-05 08:51:39",
+    "lastStatAt": "2025-03-25 17:41:06",
+    "stats": {
+      "mediaUdi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+      "mediaKey": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+      "entryCount": 4,
+      "playCount": 0,
+      "nonPlayCount": 4,
+      "firstEntryAt": "2021-06-05 08:51:39",
+      "lastEntryAt": "2025-03-25 17:41:06",
+      "sampleEntryIds": [107848, 107774, 64177, 46812]
+    }
+  }
+]

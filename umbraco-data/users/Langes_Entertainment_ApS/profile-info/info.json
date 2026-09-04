@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Langes Entertainment ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 31200,
+  "key": "67ca78a4-b4c3-43d2-b6f8-7734bb77ec51",
+  "udi": "umb://document/67ca78a4b4c343d2b6f87734bb77ec51",
+  "path": "-1,1067,31200",
+  "url": "/langes-entertainment-aps/",
+  "createDate": "2021-02-01 08:49:06",
+  "updateDate": "2026-08-24 00:00:13",
+  "publishDate": "2026-08-24 00:00:13",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}
