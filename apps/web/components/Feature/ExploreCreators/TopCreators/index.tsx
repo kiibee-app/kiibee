@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
-import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
+import {
+  Wrapper,
+  Header,
+  SeeAll,
+  List,
+  Card,
+  Avatar,
+  CreatorName,
+  CreatorMeta,
+} from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
@@ -11,20 +20,12 @@ import { PATHS } from "@/utils/path";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import {
   CREATOR_CHANNEL_AVATAR_TEXT,
-  SKELETON_COUNT,
   TOP_CREATORS_LIMIT,
-  TOP_CREATORS_NAME_LIMIT,
-  TOP_CREATORS_NAME_START,
-  ELLIPSIS_FOUR_DOTS,
+  TOP_CREATORS_VISIBLE,
 } from "@/utils/Constants";
 import { formatUploadCount } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
-import {
-  LargeSkeletonAvatar,
-  SkeletonAvatarName,
-  SkeletonAvatarSubscribers,
-} from "../Creators/styles";
 import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators({ search }: { search?: string }) {
@@ -41,7 +42,7 @@ export default function TopCreators({ search }: { search?: string }) {
           <Skeleton.Header />
         </Header>
         <List>
-          {Array.from({ length: TOP_CREATORS_LIMIT }).map((_, i) => (
+          {Array.from({ length: TOP_CREATORS_VISIBLE }).map((_, i) => (
             <Skeleton.Creator key={i} />
           ))}
         </List>
@@ -63,45 +64,31 @@ export default function TopCreators({ search }: { search?: string }) {
       </Header>
 
       <List>
-        {isLoading
-          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-              <Card key={i}>
-                <Avatar>
-                  <LargeSkeletonAvatar />
-                </Avatar>
-                <SkeletonAvatarName />
-                <SkeletonAvatarSubscribers />
-              </Card>
-            ))
-          : creators.map((creator) => (
-              <Card
-                key={creator.id}
-                as={Link}
-                href={getPublicCreatorProfilePath(creator.id)}
-              >
-                <Avatar>
-                  <CreatorChannelAvatar
-                    avatarUrl={creator.profileImageUrl}
-                    initial={getNameInitials(creator.name)}
-                    alt={creator.name}
-                    sizes="150px"
-                    initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
-                  />
-                </Avatar>
+        {creators.map((creator) => (
+          <Card
+            key={creator.id}
+            as={Link}
+            href={getPublicCreatorProfilePath(creator.id)}
+          >
+            <Avatar>
+              <CreatorChannelAvatar
+                avatarUrl={creator.profileImageUrl}
+                initial={getNameInitials(creator.name)}
+                alt={creator.name}
+                sizes="(max-width: 768px) 100px, 150px"
+                initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
+              />
+            </Avatar>
 
-                <MonoText $use="Body_Medium">
-                  {creator.name.length > TOP_CREATORS_NAME_LIMIT
-                    ? `${creator.name.substring(TOP_CREATORS_NAME_START, TOP_CREATORS_NAME_LIMIT)}${ELLIPSIS_FOUR_DOTS}`
-                    : creator.name}
-                </MonoText>
-                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                  {t(CREATORS.topCreatorUploads, {
-                    count: creator.uploadCount,
-                    formattedCount: formatUploadCount(creator.uploadCount),
-                  })}
-                </MonoText>
-              </Card>
-            ))}
+            <CreatorName $use="Body_Medium">{creator.name}</CreatorName>
+            <CreatorMeta $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+              {t(CREATORS.topCreatorUploads, {
+                count: creator.uploadCount,
+                formattedCount: formatUploadCount(creator.uploadCount),
+              })}
+            </CreatorMeta>
+          </Card>
+        ))}
       </List>
     </Wrapper>
   );

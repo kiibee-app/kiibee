@@ -171,7 +171,7 @@ function TutorialSectionRow({
             <MonoText $use="H4_Medium">{section.title}</MonoText>
           </SectionTag>
         </SectionHeader>
-        <Grid $columnMax="350px" $alignStart>
+        <Grid $columnMax="350px">
           {quickguideItems.map((guide) => (
             <QuickguideItemCard
               key={guide.id}

@@ -117,4 +117,10 @@ export const SkeletonCardFooter = styled(BaseCardFooter)`
 
 export const SkeletonCreatorCardWrapper = styled(BaseCreatorCardWrapper)`
   cursor: default;
+  pointer-events: none;
+
+  &:hover {
+    transform: none;
+    opacity: 1;
+  }
 `;

@@ -1,9 +1,10 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
-import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import { MonoText } from "@/components/UI/Monotext";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Wrapper = styled.section`
+  container-type: inline-size;
   width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
   margin: 0 auto;
   padding: 40px 0;
@@ -48,6 +49,7 @@ export const List = styled.div`
   align-items: flex-start;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -60,13 +62,25 @@ export const List = styled.div`
     display: none;
   }
 
-  ${media.desktopSm} {
+  @container (max-width: 899px) {
     --creator-visible: 5;
+  }
+
+  @container (max-width: 749px) {
+    --creator-visible: 4;
+  }
+
+  @container (max-width: 599px) {
+    --creator-visible: 3;
   }
 
   ${media.tablet} {
     --creator-size: 100px;
     --creator-visible: 4;
+  }
+
+  ${media.mobileLg} {
+    --creator-visible: 3;
   }
 `;
 

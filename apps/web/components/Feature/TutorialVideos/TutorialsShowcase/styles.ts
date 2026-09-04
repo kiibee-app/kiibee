@@ -7,10 +7,9 @@ export const Grid = styled.div<{
   $maxWidth?: string;
   $columnMax?: string;
   $columns?: number;
-  $alignStart?: boolean;
 }>`
   width: 100%;
-  max-width: ${({ $maxWidth, $columnMax, $columns }) =>
+  max-width: ${({ $maxWidth }) =>
     $maxWidth ?? GENERIC_CARD_LAYOUT.CONTENT_WIDTH};
   margin: 0 auto;
   display: grid;
