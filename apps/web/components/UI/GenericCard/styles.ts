@@ -65,14 +65,13 @@ export const ImageWrapper = styled.div<{
   @supports not (aspect-ratio: 1 / 1) {
     padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
       if ($imageAspectRatio === "1 / 1") return "100%";
-      if ($imageAspectRatio === "25 / 18") return "72%";
+      if ($imageAspectRatio === "25 / 19") return "76%";
       if ($imageAspectRatio) return undefined;
       return $coverImage ? "133.538%" : "56.25%";
     }};
   }
 
-  padding: ${({ $compact, $coverImage }) =>
-    $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
+  padding: 0;
   align-items: center;
   align-self: stretch;
   border-radius: ${({ theme }) => theme.radius.lg};
