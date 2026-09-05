@@ -7,6 +7,7 @@ export const PageContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: clip;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
 `;
@@ -15,6 +16,7 @@ export const Main = styled.main`
   display: flex;
   flex: 1;
   width: 100%;
+  min-width: 0;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
@@ -46,8 +48,9 @@ export const Section = styled.section<{ $embedded?: boolean }>`
 
 export const ExploreSection = styled.section`
   width: 100%;
+  max-width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  overflow: visible;
+  overflow-x: clip;
 `;
 
 export const ExploreContentWrapper = styled.div`

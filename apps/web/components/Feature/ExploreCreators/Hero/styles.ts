@@ -29,6 +29,7 @@ export const Inner = styled.div`
   padding: 90px 20px 30px 20px;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 `;
 
 export const Content = styled.div`
@@ -64,6 +65,11 @@ export const Controls = styled.div`
   gap: 16px;
   flex-wrap: wrap;
   width: 100%;
+
+  ${media.desktopSm} {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   ${media.tablet} {
     flex-direction: column;

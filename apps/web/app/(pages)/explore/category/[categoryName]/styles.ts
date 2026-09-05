@@ -5,7 +5,7 @@ import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
 import { PageContainer } from "@/app/styles";
 import { ColumnTitle } from "@/components/Layout/Navbar/styles";
-import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { exploreCardsGrid } from "@/styles/exploreCardGrid";
 
 export const LocalPageContainer = styled(PageContainer)<{
   $navTextTone: string;
@@ -26,7 +26,9 @@ export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
   min-height: 70vh;
+  box-sizing: border-box;
 
   ${media.tablet} {
     padding: 2rem 1rem 3rem;
@@ -63,30 +65,9 @@ export const FiltersColumn = styled.aside`
 `;
 
 export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
-  display: grid;
-  grid-template-columns: repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH});
-  gap: ${GENERIC_CARD_LAYOUT.GAP};
-  justify-content: center;
+  ${exploreCardsGrid(4)}
   opacity: ${({ $isFetching }) => ($isFetching ? 0.6 : 1)};
   transition: opacity 0.2s ease-in-out;
-
-  ${media.desktopLg} {
-    grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
-  }
-
-  ${media.desktop} {
-    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
-  }
-
-  ${media.mobileMd} {
-    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
-    gap: 1rem;
-  }
-
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-  }
 `;
 
 export const ResultsState = styled.div`

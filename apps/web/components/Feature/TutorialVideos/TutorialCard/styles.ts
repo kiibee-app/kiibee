@@ -6,8 +6,10 @@ import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 export const CardLink = styled(Link)<{ $clickable?: boolean }>`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   width: 100%;
+  min-width: 0;
   text-decoration: none;
   color: inherit;
   cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};

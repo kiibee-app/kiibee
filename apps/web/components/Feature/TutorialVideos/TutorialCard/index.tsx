@@ -221,7 +221,6 @@ function TutorialCard({
     <GenericCard
       coverImage
       imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
-      minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
       image={image}
       imageFallback={imageFallback}
       imagePriority={imagePriority}

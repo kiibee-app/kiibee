@@ -1,27 +1,17 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
-import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { exploreSectionFrame } from "@/styles/exploreCardGrid";
 
 export const Wrapper = styled.section`
+  ${exploreSectionFrame}
   container-type: inline-size;
-  width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
-  margin: 0 auto;
-  padding: 40px 0;
-
-  ${media.desktopMd} {
-    width: 100%;
-    padding: 40px 25px;
-  }
-
-  ${media.desktop} {
-    width: 100%;
-    padding: 40px 25px;
-  }
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   ${media.tablet} {
-    width: 100%;
-    padding: 2rem 1.75rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 `;
 

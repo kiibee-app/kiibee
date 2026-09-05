@@ -18,14 +18,17 @@ export const Card = styled.div<{
   border-radius: ${({ theme }) => theme.radius.lg};
   gap: ${({ $compact }) => ($compact ? "6px" : "8px")};
   align-items: stretch;
-  height: ${({ $minHeight }) => $minHeight || "100%"};
-  min-height: ${({ $compact, $coverImage, $minHeight }) => {
-    if ($minHeight) return $minHeight;
+  flex: 1 1 auto;
+  height: auto;
+  min-height: ${({ $compact, $minHeight }) => {
     if ($compact) return "0";
-    if ($coverImage) return "0";
-    return "315px";
+    if ($minHeight) return $minHeight;
+    return "0";
   }};
   width: ${({ $width }) => $width || "100%"};
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   box-shadow: ${({ theme }) => theme.shadows.xl};
   transition:
     transform ${({ theme }) => theme.animations.normal}
@@ -105,7 +108,6 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 8px;
   flex: 1 1 auto;
-  min-height: 0;
   min-width: 0;
 `;
 

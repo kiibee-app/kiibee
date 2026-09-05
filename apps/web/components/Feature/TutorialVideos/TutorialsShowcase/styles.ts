@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { fluidCardColumns } from "@/styles/exploreCardGrid";
 
 export const Grid = styled.div<{
   $maxWidth?: string;
@@ -13,35 +14,40 @@ export const Grid = styled.div<{
     $maxWidth ?? GENERIC_CARD_LAYOUT.CONTENT_WIDTH};
   margin: 0 auto;
   display: grid;
+  min-width: 0;
   grid-template-columns: ${({ $columnMax, $columns }) => {
     if ($columnMax) {
-      return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
+      return `repeat(auto-fill, minmax(min(100%, ${GENERIC_CARD_LAYOUT.GRID_MIN}), ${$columnMax}))`;
     }
     if ($columns) {
-      return `repeat(${$columns}, ${GENERIC_CARD_LAYOUT.WIDTH})`;
+      return fluidCardColumns($columns);
     }
-    return `repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH})`;
+    return fluidCardColumns(4);
   }};
   gap: ${GENERIC_CARD_LAYOUT.GAP};
-  justify-content: start;
+  justify-content: stretch;
+
+  > * {
+    min-width: 0;
+  }
 
   ${media.desktop} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
       if ($columnMax) {
-        return `repeat(auto-fill, minmax(${GENERIC_CARD_LAYOUT.GRID_MIN}, ${$columnMax}))`;
+        return `repeat(auto-fill, minmax(min(100%, ${GENERIC_CARD_LAYOUT.GRID_MIN}), ${$columnMax}))`;
       }
       if ($columns) {
-        return `repeat(${Math.min($columns, 3)}, ${GENERIC_CARD_LAYOUT.WIDTH})`;
+        return fluidCardColumns(Math.min($columns, 3));
       }
-      return `repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH})`;
+      return fluidCardColumns(3);
     }};
   }
 
   ${media.tablet} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
       if ($columnMax) return "1fr";
-      if ($columns) return "repeat(2, minmax(0, 1fr))";
-      return "repeat(2, minmax(0, 1fr))";
+      if ($columns) return fluidCardColumns(Math.min($columns, 2));
+      return fluidCardColumns(2);
     }};
   }
 

@@ -2,6 +2,7 @@ import { media } from "@repo/ui/breakpoints";
 import styled, { css, keyframes } from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { exploreCardsGrid } from "@/styles/exploreCardGrid";
 
 export const CreatorTitle = styled(MonoText)`
   display: block;
@@ -13,14 +14,18 @@ export const CreatorTitle = styled(MonoText)`
 
 export const PageWrapper = styled.div`
   width: 100%;
-  padding: 85px 112px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 48px clamp(16px, 4vw, 112px);
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 100px;
+
   ${media.tablet} {
     padding: 40px 24px;
+    gap: 48px;
   }
 `;
 
@@ -29,26 +34,9 @@ export const LoadMoreRow = styled.div`
 `;
 
 export const Grid = styled.div`
-  width: 100%;
+  ${exploreCardsGrid(4)}
   max-width: 1300px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, ${GENERIC_CARD_LAYOUT.WIDTH});
-  justify-content: center;
-  gap: ${GENERIC_CARD_LAYOUT.GAP};
-
-  ${media.desktop} {
-    grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
-  }
-
-  ${media.tablet} {
-    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
-  }
-
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
 `;
 
 export const Card = styled.div`

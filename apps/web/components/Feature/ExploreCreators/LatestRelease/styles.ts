@@ -2,15 +2,19 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import {
+  exploreCardsGrid,
+  exploreSectionFrame,
+} from "@/styles/exploreCardGrid";
 
 export const Section = styled.section`
-  width: min(100%, ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH});
-  margin: 0 auto;
-  padding: 2.5rem 0 3rem;
+  ${exploreSectionFrame}
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
 
   ${media.tablet} {
-    width: 100%;
-    padding: 2rem 1.25rem 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
   }
 `;
 
@@ -80,8 +84,9 @@ export const ContentGrid = styled.div`
   column-gap: ${GENERIC_CARD_LAYOUT.FILTERS_GAP};
   row-gap: 1rem;
   align-items: start;
+  min-width: 0;
 
-  ${media.tablet} {
+  ${media.desktopSm} {
     grid-template-columns: 1fr;
     row-gap: 1.5rem;
   }
@@ -99,25 +104,14 @@ export const FiltersColumn = styled.aside`
   z-index: 10;
   height: max-content;
 
-  ${media.tablet} {
+  ${media.desktopSm} {
     position: static;
     max-width: 100%;
   }
 `;
 
 export const CardsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, ${GENERIC_CARD_LAYOUT.WIDTH});
-  gap: ${GENERIC_CARD_LAYOUT.GAP};
-  justify-content: start;
-
-  ${media.desktop} {
-    grid-template-columns: repeat(2, ${GENERIC_CARD_LAYOUT.WIDTH});
-  }
-
-  ${media.tablet} {
-    grid-template-columns: 1fr;
-  }
+  ${exploreCardsGrid(3, { collapseAtDesktopLg: false })}
 `;
 
 export const CardsColumn = styled.div`
