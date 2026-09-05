@@ -2,12 +2,14 @@ import { Grid } from "@/components/Feature/TutorialVideos/TutorialsShowcase/styl
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { ProfileLayoutVariant } from "../../config";
+import { fluidCardColumns } from "@/styles/exploreCardGrid";
 
 export const CollectionSection = styled.section<{
   $variant?: ProfileLayoutVariant;
 }>`
-  width: min(100%, 1300px);
-  margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding: 10px 0;
 
   ${media.tablet} {
@@ -17,15 +19,22 @@ export const CollectionSection = styled.section<{
 `;
 
 export const CollectionSectionTag = styled.span`
-  padding: 0.35rem 0.75rem;
-  border-radius: ${({ theme }) => theme.radius.sm};
+  padding: 0;
 `;
 
 export const FourColumnGrid = styled(Grid)`
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  justify-content: start;
+  grid-template-columns: ${fluidCardColumns(4)};
+
+  ${media.desktop} {
+    grid-template-columns: ${fluidCardColumns(3)};
+  }
 
   ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: ${fluidCardColumns(2)};
   }
 
   ${media.mobileXl} {

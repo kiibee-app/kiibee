@@ -91,6 +91,7 @@ export const ImageWrapper = styled.div<{
     transition:
       opacity 0.3s ease,
       transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    z-index: 0;
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
       $coverImage ? "center top" : "center"};
@@ -141,29 +142,48 @@ export const CardActions = styled.div`
   min-width: 0;
 `;
 
-export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
+export const Badge = styled.span<{
+  $variant?: "default" | "owned" | "overlay";
+}>`
   position: absolute;
   top: 10px;
   left: 10px;
-  background: ${({ $variant = "default", theme }) =>
-    $variant === "owned"
-      ? theme.colors.primary.GREEN
-      : theme.colors.primary.WHITE};
+  background: ${({ $variant = "default", theme }) => {
+    if ($variant === "owned") return theme.colors.primary.GREEN;
+    if ($variant === "overlay") return theme.colors.neutral.OVERLAY;
+    return theme.colors.primary.WHITE;
+  }};
   padding: 5px 8px;
-  border-radius: 5px;
-  z-index: 2;
+  border-radius: ${({ $variant, theme }) =>
+    $variant === "overlay" ? theme.radius.md : "5px"};
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+  color: ${({ $variant, theme }) =>
+    $variant === "overlay"
+      ? theme.colors.neutral.WHITE
+      : theme.colors.primary.BLACK};
   transition: background ${({ theme }) => theme.animations.normal}
     ${({ theme }) => theme.animations.easing};
 
+  ${({ $variant, theme }) =>
+    $variant === "overlay"
+      ? `
+    & * {
+      color: ${theme.colors.neutral.WHITE};
+    }
+  `
+      : ""}
+
   &:hover,
   ${Card}:has(:is(button, a):hover) & {
-    background: ${({ $variant = "default", theme }) =>
-      $variant === "owned"
-        ? theme.colors.primary.GREEN
-        : theme.colors.primary.GREEN_50};
+    background: ${({ $variant = "default", theme }) => {
+      if ($variant === "owned") return theme.colors.primary.GREEN;
+      if ($variant === "overlay") return theme.colors.neutral.OVERLAY;
+      return theme.colors.primary.GREEN_50;
+    }};
   }
 `;
 

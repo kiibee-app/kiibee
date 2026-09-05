@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
+import { layoutAlignCss } from "@/components/Feature/ProfileLayout/Hero/styles";
 
 export const Container = styled.footer`
   width: 100%;
@@ -9,17 +10,24 @@ export const Container = styled.footer`
 `;
 
 export const Inner = styled.div`
-  max-width: 1400px;
-  margin: 35px auto 0 auto;
-  padding: 10px;
+  ${layoutAlignCss}
+  margin-top: 35px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   min-height: 98px;
 
-  ${media.tablet} {
-    padding: 10px;
+  ${media.desktop} {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  ${media.mobileXl} {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   ${media.mobileLg} {
@@ -28,7 +36,6 @@ export const Inner = styled.div`
     justify-content: center;
     gap: 14px;
     min-height: unset;
-    padding: 10px;
   }
 `;
 

@@ -35,7 +35,7 @@ type GenericCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   badge?: ReactNode;
-  badgeVariant?: "default" | "owned";
+  badgeVariant?: "default" | "owned" | "overlay";
   compact?: boolean;
   footer?: ReactNode;
   meta?: ReactNode;
@@ -162,7 +162,6 @@ export default function GenericCard({
           $isLoading={isCurrentlyLoading}
         >
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
-          {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
             <Image
               ref={handleImageRef}
@@ -192,6 +191,7 @@ export default function GenericCard({
           ) : showInitials ? (
             <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>
           ) : null}
+          {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
         </ImageWrapper>
       )}
       <Content>

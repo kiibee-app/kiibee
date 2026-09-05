@@ -67,6 +67,20 @@ export function sortExploreCreators(
   }
 }
 
+export function getExploreCreatorCategoryLabel(
+  creator: ExploreCreator,
+): string | null {
+  if (creator.category?.trim()) return creator.category.trim();
+  if (creator.categoryName?.trim()) return creator.categoryName.trim();
+
+  const [firstContentCategory] = creator.contentCategory ?? [];
+  if (typeof firstContentCategory === "string") {
+    return firstContentCategory.trim() || null;
+  }
+
+  return firstContentCategory?.name?.trim() || null;
+}
+
 export function getCreatorCardImage(creator: ExploreCreator): string | null {
   return (
     resolvePublicMediaUrl(creator.mobileCoverImageUrl) ??
@@ -76,16 +90,9 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 }
 
 function normalizeExploreCreator(creator: ExploreCreator): ExploreCreator {
-  const [firstContentCategory] = creator.contentCategory ?? [];
-  const contentCategory =
-    typeof firstContentCategory === "string"
-      ? firstContentCategory
-      : firstContentCategory?.name;
-
   return {
     ...creator,
-    category:
-      creator.category ?? creator.categoryName ?? contentCategory ?? null,
+    category: getExploreCreatorCategoryLabel(creator),
   };
 }
 

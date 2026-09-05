@@ -11,7 +11,7 @@ const imageContainStyles = css`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
-const layoutAlignCss = css`
+export const layoutAlignCss = css`
   width: 100%;
   max-width: ${profileNavShellProps.innerMaxWidth};
   margin: 0 auto;

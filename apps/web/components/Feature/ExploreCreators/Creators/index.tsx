@@ -15,7 +15,10 @@ import { CREATORS } from "@/utils/translationKeys";
 import { EXPLORE_PAGE_SIZE, VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
 import Skeleton from "@/components/UI/Skeleton";
-import { getCreatorCardImage } from "@/hooks/creators/useExploreCreators";
+import {
+  getCreatorCardImage,
+  getExploreCreatorCategoryLabel,
+} from "@/hooks/creators/useExploreCreators";
 import type { ExploreCreator } from "@/types/exploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
@@ -69,6 +72,7 @@ export default function ExploreCreators({
       <Grid>
         {creators.map((creator, index) => {
           const image = getCreatorCardImage(creator);
+          const categoryLabel = getExploreCreatorCategoryLabel(creator);
 
           return (
             <GenericCard
@@ -80,10 +84,11 @@ export default function ExploreCreators({
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
               imagePriority={index < 4}
+              badgeVariant="overlay"
               badge={
-                creator.category ? (
-                  <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-                    {creator.category}
+                categoryLabel ? (
+                  <MonoText $use="Body_Bold" color={COLORS.neutral.WHITE}>
+                    {categoryLabel}
                   </MonoText>
                 ) : undefined
               }
