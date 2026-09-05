@@ -306,6 +306,7 @@ function CategoryExplorePageContent() {
                     label={t("creators.sort")}
                     width="auto"
                     maxWidth="280px"
+                    expandLayoutOnOpen={false}
                   />
                 </Controls>
               </Content>

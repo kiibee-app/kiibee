@@ -136,8 +136,9 @@ export const CardChildren = styled.div`
 export const CardActions = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${GENERIC_CARD_LAYOUT.ACTIONS_GAP};
+  gap: 18px;
   margin-top: auto;
+  padding-top: 16px;
   flex-shrink: 0;
   min-width: 0;
 `;

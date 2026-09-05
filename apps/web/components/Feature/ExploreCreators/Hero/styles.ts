@@ -7,6 +7,7 @@ export const Hero = styled.section`
   position: relative;
   z-index: 20;
   isolation: isolate;
+  overflow: visible;
   min-height: 40vh;
   display: flex;
   align-items: center;
@@ -30,6 +31,7 @@ export const Inner = styled.div`
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+  overflow: visible;
 `;
 
 export const Content = styled.div`
@@ -60,16 +62,11 @@ export const FilterControlWrap = styled.div`
 
 export const Controls = styled.div`
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
   width: 100%;
-
-  ${media.desktopSm} {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
   ${media.tablet} {
     flex-direction: column;
@@ -81,17 +78,26 @@ export const Controls = styled.div`
 export const SearchBarContainer = styled.div`
   width: 100%;
   max-width: 31.6875rem;
+  flex: 1 1 18rem;
+  min-width: 0;
 
   ${media.tablet} {
     max-width: 100%;
+    flex: 1 1 auto;
   }
 `;
 
 export const SortDropdownContainer = styled.div`
-  width: 100%;
-  max-width: 200px;
+  position: relative;
+  z-index: 5;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 13.5rem;
+  max-width: 18rem;
 
   ${media.tablet} {
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
   }
 `;

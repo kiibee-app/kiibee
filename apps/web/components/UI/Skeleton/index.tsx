@@ -18,6 +18,7 @@ import {
   SkeletonVideoBox,
   SkeletonCardFooter,
   SkeletonCreatorCardWrapper,
+  SkeletonCardActions,
 } from "./styles";
 import {
   Card as GenericCardWrapper,
@@ -25,7 +26,6 @@ import {
   CardHeader,
   CardTitleBlock,
   CardChildren,
-  CardActions,
 } from "@/components/UI/GenericCard/styles";
 import { Avatar as CreatorAvatar } from "@/components/Feature/ExploreCreators/TopCreators/styles";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
@@ -54,7 +54,7 @@ function TutorialCardSkeleton() {
           </CardTitleBlock>
           <SkeletonDate />
         </CardHeader>
-        <CardActions>
+        <SkeletonCardActions>
           <CardChildren>
             <SkeletonVideoBox>
               <SkeletonVideo />
@@ -63,7 +63,7 @@ function TutorialCardSkeleton() {
           <SkeletonCardFooter>
             <SkeletonButton />
           </SkeletonCardFooter>
-        </CardActions>
+        </SkeletonCardActions>
       </GenericCardContent>
     </GenericCardWrapper>
   );
@@ -88,11 +88,11 @@ function ExploreCreatorCardSkeleton() {
             <SkeletonSubtitle />
           </CardTitleBlock>
         </CardHeader>
-        <CardActions>
+        <SkeletonCardActions>
           <SkeletonCardFooter>
             <SkeletonButton />
           </SkeletonCardFooter>
-        </CardActions>
+        </SkeletonCardActions>
       </GenericCardContent>
     </GenericCardWrapper>
   );
