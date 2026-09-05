@@ -20,6 +20,7 @@ import { useTutorialVideos } from "@/hooks/useTutorialVideos";
 import Skeleton from "@/components/UI/Skeleton";
 import GenericCard from "@/components/UI/GenericCard";
 import COLORS from "@repo/ui/colors";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import ContentPreviewModal from "@/components/Feature/SingleContentPage/ContentPreviewModal";
 import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
 import { Grid } from "../TutorialsShowcase/styles";
@@ -85,7 +86,8 @@ function QuickguideItemCard({
     <>
       <GenericCard
         coverImage
-        imageAspectRatio="1 / 1"
+        imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+        minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
         image={guide.thumbnailUrl ?? undefined}
         imageInitials={guide.thumbnailUrl ? undefined : "PDF"}
         alt={guide.title}
@@ -169,7 +171,7 @@ function TutorialSectionRow({
             <MonoText $use="H4_Medium">{section.title}</MonoText>
           </SectionTag>
         </SectionHeader>
-        <Grid $columnMax="350px" $alignStart>
+        <Grid $columnMax="350px">
           {quickguideItems.map((guide) => (
             <QuickguideItemCard
               key={guide.id}

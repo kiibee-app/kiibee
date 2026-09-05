@@ -1,16 +1,31 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css, keyframes } from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { exploreCardsGrid } from "@/styles/exploreCardGrid";
+
+export const CreatorTitle = styled(MonoText)`
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+`;
 
 export const PageWrapper = styled.div`
   width: 100%;
-  padding: 85px 112px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 48px clamp(16px, 4vw, 112px);
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 100px;
+
   ${media.tablet} {
     padding: 40px 24px;
+    gap: 48px;
   }
 `;
 
@@ -19,26 +34,9 @@ export const LoadMoreRow = styled.div`
 `;
 
 export const Grid = styled.div`
-  width: 100%;
+  ${exploreCardsGrid(4)}
   max-width: 1300px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  justify-content: center;
-  gap: 20px;
-
-  ${media.desktop} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
 `;
 
 export const Card = styled.div`
@@ -141,8 +139,8 @@ export const SkeletonCard = styled.div`
 
 export const SkeletonImage = styled.div`
   width: 100%;
-  border-radius: 12px 12px 0 0;
-  aspect-ratio: 1 / 1;
+  border-radius: ${({ theme }) => theme.radius.lg};
+  aspect-ratio: ${GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO};
   ${shimmer}
 `;
 
@@ -178,8 +176,8 @@ export const CreatorSkeletonFooter = styled.div`
   width: 100%;
   margin-top: auto;
   ${shimmer}
-  height: 40px;
-  border-radius: 8px;
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  border-radius: ${({ theme }) => theme.radius.md};
 `;
 
 export const SkeletonBadge = styled.div`

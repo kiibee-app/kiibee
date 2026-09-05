@@ -16,6 +16,7 @@ import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import type { OptionItem } from "@/types/exportCreators";
 import { TRENDING, TRENDING_LIMIT } from "@/utils/common";
+import { TOP_CREATORS_LIMIT } from "@/utils/Constants";
 
 export const ALL_FILTER_OPTION_KEY = "all";
 
@@ -252,7 +253,10 @@ export const useExploreTrendingContent = (params?: {
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
   useExploreTutorialSection("recent", params);
 
-export const useExploreTopCreators = (limit = 6, search?: string) => {
+export const useExploreTopCreators = (
+  limit = TOP_CREATORS_LIMIT,
+  search?: string,
+) => {
   const query = useExploreFeed({ limit, search });
 
   const creators = useMemo((): ExploreTopCreator[] => {

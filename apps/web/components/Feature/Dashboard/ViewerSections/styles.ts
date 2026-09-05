@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const PageHeader = styled.div<{ $compact?: boolean }>`
   display: flex;
@@ -426,10 +427,6 @@ export const MediaGrid = styled.div`
     height: 100%;
   }
 
-  > * > div:last-child {
-    margin-top: auto;
-  }
-
   ${media.desktopMd} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -467,14 +464,22 @@ export const TwoButtonRow = styled.div`
 `;
 
 export const MediaTypePill = styled.div`
-  margin-top: 8px;
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  border-radius: 8px;
-  padding: 6px 10px;
+  border-radius: ${({ theme }) => theme.radius.md};
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  padding: 0 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   width: 100%;
+
+  span {
+    font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+    font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+    line-height: 1;
+  }
 `;
 
 export const HeaderSearchArea = styled.div<{ $open: boolean }>`

@@ -62,16 +62,18 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <ThemeProvider>
-          <QueryProvider>
-            <LanguageProvider initialLang={initialLang}>
-              <SmoothScrollProvider>
-                <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-                <ToastProvider />
-              </SmoothScrollProvider>
-            </LanguageProvider>
-          </QueryProvider>
-        </ThemeProvider>
+        <StyledComponentsRegistry>
+          <ThemeProvider>
+            <QueryProvider>
+              <LanguageProvider initialLang={initialLang}>
+                <SmoothScrollProvider>
+                  {children}
+                  <ToastProvider />
+                </SmoothScrollProvider>
+              </LanguageProvider>
+            </QueryProvider>
+          </ThemeProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

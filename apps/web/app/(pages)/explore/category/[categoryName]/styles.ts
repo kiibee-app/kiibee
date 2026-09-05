@@ -5,6 +5,7 @@ import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
 import { PageContainer } from "@/app/styles";
 import { ColumnTitle } from "@/components/Layout/Navbar/styles";
+import { exploreCardsGrid } from "@/styles/exploreCardGrid";
 
 export const LocalPageContainer = styled(PageContainer)<{
   $navTextTone: string;
@@ -25,7 +26,9 @@ export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
   min-height: 70vh;
+  box-sizing: border-box;
 
   ${media.tablet} {
     padding: 2rem 1rem 3rem;
@@ -62,29 +65,9 @@ export const FiltersColumn = styled.aside`
 `;
 
 export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
+  ${exploreCardsGrid(4)}
   opacity: ${({ $isFetching }) => ($isFetching ? 0.6 : 1)};
   transition: opacity 0.2s ease-in-out;
-
-  ${media.desktopLg} {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  ${media.desktop} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  ${media.mobileMd} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-  }
 `;
 
 export const ResultsState = styled.div`
@@ -98,7 +81,6 @@ export const LoadMoreContainer = styled.div`
   margin-top: 2rem;
   padding-top: 1rem;
   width: 100%;
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const LoadMoreButton = styled(GenericButton)`

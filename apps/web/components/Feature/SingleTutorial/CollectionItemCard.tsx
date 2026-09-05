@@ -11,6 +11,7 @@ import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
@@ -202,10 +203,12 @@ export default function CollectionItemCard({
           image={video.image}
           imageFallback={FALLBACK_THUMBNAIL_SRC}
           coverImage
-          imageAspectRatio="1 / 1"
+          imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+          minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
           alt={video.title}
           title={title}
           subtitle={subtitle}
+          meta={<CollectionTime>{video.published}</CollectionTime>}
           badge={
             video.category?.trim() ? (
               <CollectionBadgeText>{video.category}</CollectionBadgeText>
@@ -213,8 +216,6 @@ export default function CollectionItemCard({
           }
           footer={footer}
         >
-          <CollectionTime>{video.published}</CollectionTime>
-
           <CollectionVideoPill>
             <CollectionVideoIconBox>
               <FormatIcon width={10} height={10} />

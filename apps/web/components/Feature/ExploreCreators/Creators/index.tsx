@@ -1,17 +1,11 @@
 "use client";
 
 import {
+  CreatorTitle,
   Grid,
   LoadMoreRow,
   PageWrapper,
   EmptyState,
-  SkeletonCard,
-  SkeletonImage,
-  SkeletonTitleRow,
-  SkeletonAvatar,
-  SkeletonTextBlock,
-  SkeletonRow,
-  CreatorSkeletonFooter,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -20,10 +14,15 @@ import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { EXPLORE_PAGE_SIZE, VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
-import { getCreatorCardImage } from "@/hooks/creators/useExploreCreators";
+import Skeleton from "@/components/UI/Skeleton";
+import {
+  getCreatorCardImage,
+  getExploreCreatorCategoryLabel,
+} from "@/hooks/creators/useExploreCreators";
 import type { ExploreCreator } from "@/types/exploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 type Props = {
   creators: ExploreCreator[];
@@ -48,18 +47,7 @@ export default function ExploreCreators({
         <Grid>
           {Array.from({ length: Math.min(EXPLORE_PAGE_SIZE, 8) }).map(
             (_, i) => (
-              <SkeletonCard key={i}>
-                <SkeletonImage />
-                <SkeletonTitleRow>
-                  <SkeletonAvatar />
-                  <SkeletonTextBlock>
-                    <SkeletonRow $width="70%" $height="16px" />
-                    <SkeletonRow $width="100%" $height="12px" />
-                    <SkeletonRow $width="50%" $height="12px" />
-                  </SkeletonTextBlock>
-                </SkeletonTitleRow>
-                <CreatorSkeletonFooter />
-              </SkeletonCard>
+              <Skeleton.ExploreCreator key={i} />
             ),
           )}
         </Grid>
@@ -84,27 +72,35 @@ export default function ExploreCreators({
       <Grid>
         {creators.map((creator, index) => {
           const image = getCreatorCardImage(creator);
+          const categoryLabel = getExploreCreatorCategoryLabel(creator);
 
           return (
             <GenericCard
               key={creator.id}
               coverImage
-              imageAspectRatio="1 / 1"
+              imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+              minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
               image={image ?? undefined}
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
               imagePriority={index < 4}
+              badgeVariant="overlay"
               badge={
-                creator.category ? (
-                  <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-                    {creator.category}
+                categoryLabel ? (
+                  <MonoText $use="Body_Bold" color={COLORS.neutral.WHITE}>
+                    {categoryLabel}
                   </MonoText>
                 ) : undefined
               }
-              title={<MonoText $use="Body_Medium">{creator.name}</MonoText>}
+              title={
+                <CreatorTitle $use="Body_Medium">{creator.name}</CreatorTitle>
+              }
               subtitle={
                 creator.uploadCount > 0 ? (
-                  <MonoText $use="Body_Small">
+                  <MonoText
+                    $use="Body_SemiMedium"
+                    color={COLORS.neutral.GRAY_400}
+                  >
                     {t(CREATORS.uploadsCount, { count: creator.uploadCount })}
                   </MonoText>
                 ) : undefined

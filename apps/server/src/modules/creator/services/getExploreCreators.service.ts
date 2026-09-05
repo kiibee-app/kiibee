@@ -14,6 +14,7 @@ import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE, STATUS } from 'src/utils/constant';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { success } from 'src/utils/sendResponse';
+import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
 export type ExploreCreatorItem = {
   id: string;
@@ -219,7 +220,20 @@ export const getExploreCreatorsService = async (
       .filter((row) => row.name.length > 0)
       .map(mapCreatorRow);
 
-    return success(creators, 'Creators fetched successfully', HttpStatus.OK);
+    const categoryByCreatorId = await getCreatorCategoryMap(
+      creators.map((creator) => creator.id),
+    );
+
+    const creatorsWithCategory = creators.map((creator) => ({
+      ...creator,
+      category: creator.category ?? categoryByCreatorId.get(creator.id) ?? null,
+    }));
+
+    return success(
+      creatorsWithCategory,
+      'Creators fetched successfully',
+      HttpStatus.OK,
+    );
   } catch (error) {
     logger.error('Error fetching explore creators:', error);
 
@@ -243,8 +257,15 @@ export const getCreatorPublicProfileService = async (creatorId: string) => {
       throw new HttpException('Creator not found', HttpStatus.NOT_FOUND);
     }
 
+    const creator = mapCreatorRow(row);
+    const categoryByCreatorId = await getCreatorCategoryMap([creator.id]);
+
     return success(
-      mapCreatorRow(row),
+      {
+        ...creator,
+        category:
+          creator.category ?? categoryByCreatorId.get(creator.id) ?? null,
+      },
       'Creator profile fetched successfully',
       HttpStatus.OK,
     );
