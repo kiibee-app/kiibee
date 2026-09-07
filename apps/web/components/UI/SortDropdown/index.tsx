@@ -55,7 +55,7 @@ function SortDropdown<T extends string = string>({
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
   allowNoSelection = false,
-  expandLayoutOnOpen = !trigger,
+  expandLayoutOnOpen = false,
   alignRight,
   topOffset,
 }: Props<T>) {

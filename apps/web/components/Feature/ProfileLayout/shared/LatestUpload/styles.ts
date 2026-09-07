@@ -11,8 +11,9 @@ import { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config"
 export const Section = styled.section<{
   $variant?: ProfileLayoutVariant;
 }>`
-  width: min(100%, 1300px);
-  margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;

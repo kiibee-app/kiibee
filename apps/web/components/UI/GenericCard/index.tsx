@@ -20,7 +20,9 @@ import {
   ImageInitials,
   ImageSkeleton,
   CardHeader,
+  CardTitleBlock,
   CardChildren,
+  CardActions,
 } from "./styles";
 
 type GenericCardProps = {
@@ -33,11 +35,13 @@ type GenericCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   badge?: ReactNode;
-  badgeVariant?: "default" | "owned";
+  badgeVariant?: "default" | "owned" | "overlay";
   compact?: boolean;
   footer?: ReactNode;
+  meta?: ReactNode;
   children?: ReactNode;
   width?: string;
+  minHeight?: string;
   imagePriority?: boolean;
   onClick?: () => void;
   onImageError?: () => void;
@@ -52,6 +56,7 @@ function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
     return React.cloneElement(element, {
       ...element.props,
       variant: VARIANT.SOFT_OUTLINE,
+      size: "sm",
     });
   }
 
@@ -78,8 +83,10 @@ export default function GenericCard({
   badgeVariant = "default",
   compact = false,
   footer,
+  meta,
   children,
   width,
+  minHeight,
   imagePriority = false,
   onClick,
   onImageError,
@@ -143,6 +150,7 @@ export default function GenericCard({
       $width={width}
       $compact={compact}
       $coverImage={coverImage}
+      $minHeight={minHeight}
       onClick={onClick}
       style={onClick ? { cursor: "pointer" } : undefined}
     >
@@ -154,7 +162,6 @@ export default function GenericCard({
           $isLoading={isCurrentlyLoading}
         >
           {isCurrentlyLoading && <ImageSkeleton aria-hidden />}
-          {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
             <Image
               ref={handleImageRef}
@@ -184,17 +191,26 @@ export default function GenericCard({
           ) : showInitials ? (
             <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>
           ) : null}
+          {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
         </ImageWrapper>
       )}
       <Content>
         <CardHeader>
-          {title}
-          {subtitle}
+          <CardTitleBlock>
+            {title}
+            {subtitle}
+          </CardTitleBlock>
+          {meta}
         </CardHeader>
-        {children && <CardChildren>{children}</CardChildren>}
+        {(children || footer) && (
+          <CardActions>
+            {children && <CardChildren>{children}</CardChildren>}
+            {footer && (
+              <Footer>{applySoftOutlineToFooterButtons(footer)}</Footer>
+            )}
+          </CardActions>
+        )}
       </Content>
-
-      {footer && <Footer>{applySoftOutlineToFooterButtons(footer)}</Footer>}
     </Card>
   );
 }

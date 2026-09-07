@@ -32,6 +32,8 @@ import {
   Content,
   Title,
   Controls,
+  SearchBarContainer,
+  SortDropdownContainer,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 
@@ -65,25 +67,30 @@ function FormatPageContent() {
                     <HeroTitleText>{formatTitle}</HeroTitleText>
                   </Title>
                   <Controls>
-                    <SearchBar
-                      placeholder={t("creators.search")}
-                      value={searchQuery}
-                      onChange={setSearchQuery}
-                    />
-                    <SortDropdown
-                      options={SORT_OPTIONS}
-                      value={sortBy}
-                      onChange={setSortBy}
-                      label={t(CREATORS.sort)}
-                      renderSelectedLabel={(value) =>
-                        t(CREATORS.value(value as SortValue)).toLowerCase()
-                      }
-                      renderOptionLabel={(option) =>
-                        t(
-                          CREATORS.value(option.value as SortValue),
-                        ).toLowerCase()
-                      }
-                    />
+                    <SearchBarContainer>
+                      <SearchBar
+                        placeholder={t("creators.search")}
+                        value={searchQuery}
+                        onChange={setSearchQuery}
+                      />
+                    </SearchBarContainer>
+                    <SortDropdownContainer>
+                      <SortDropdown
+                        options={SORT_OPTIONS}
+                        value={sortBy}
+                        onChange={setSortBy}
+                        label={t(CREATORS.sort)}
+                        renderSelectedLabel={(value) =>
+                          t(CREATORS.value(value as SortValue)).toLowerCase()
+                        }
+                        renderOptionLabel={(option) =>
+                          t(
+                            CREATORS.value(option.value as SortValue),
+                          ).toLowerCase()
+                        }
+                        expandLayoutOnOpen={false}
+                      />
+                    </SortDropdownContainer>
                   </Controls>
                 </Content>
               </Inner>

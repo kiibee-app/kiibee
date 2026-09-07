@@ -5,7 +5,12 @@ const SITE_URL = getSiteUrl(SEO_HEADERS_CONTEXT);
 
 const nextConfig: NextConfig = {
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      ssr: true,
+      displayName: true,
+      fileName: true,
+      meaninglessFileNames: ["index", "styles"],
+    },
   },
   async headers() {
     return [

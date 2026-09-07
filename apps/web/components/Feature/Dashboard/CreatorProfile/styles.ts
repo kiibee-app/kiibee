@@ -12,11 +12,34 @@ export const Container = styled.div`
 `;
 
 export const HeaderRow = styled.div`
+  position: sticky;
+  top: -10px;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
+  margin: -40px -30px 16px -30px;
+  padding: 40px 30px 16px 30px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+
+  ${media.desktop} {
+    top: -8px;
+    margin: -38px -30px 16px -30px;
+    padding: 38px 30px 16px 30px;
+  }
+
+  ${media.tablet} {
+    top: -8px;
+    margin: -32px -20px 16px -20px;
+    padding: 32px 20px 16px 20px;
+  }
+
+  ${media.mobileLg} {
+    top: -8px;
+    margin: -28px -16px 16px -16px;
+    padding: 28px 16px 16px 16px;
+  }
 
   ${media.mobile} {
     align-items: flex-start;
