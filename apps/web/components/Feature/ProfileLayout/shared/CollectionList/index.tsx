@@ -42,6 +42,7 @@ import {
   getPricingLabels,
   isRentActionLabel,
   isBuyActionLabel,
+  resolveCollectionPricing,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -151,17 +152,15 @@ export default function CollectionList() {
     return rows.map((row) => {
       const collectionHref = pathPublicCollection(row.id);
 
-      let actions: CollectionAction[] | undefined = undefined;
-
       const hasCollectionAccess = accessibleCollectionIds.has(row.id);
 
+      let actions: CollectionAction[] | undefined = undefined;
+
       if (isPublicView && !hasCollectionAccess) {
+        const resolvedPricing = resolveCollectionPricing(row);
+
         const pricingActions = getContentPricingActions(
-          {
-            accessType: row.accessType,
-            buyPrice: row.buyPrice,
-            rentPrice: row.rentPrice,
-          },
+          resolvedPricing,
           t("pricingLabels.free"),
           { inCollection: true, labels: getPricingLabels(t) },
         );

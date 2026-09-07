@@ -76,6 +76,9 @@ export const AUTH_FORM = {
   title: "authForm.title",
   emailLabel: "authForm.emailLabel",
   passwordLabel: "authForm.passwordLabel",
+  errors: {
+    required: "authForm.errors.required",
+  },
 };
 
 export const AUTH_CREATOR = {
@@ -559,6 +562,13 @@ export const CONTENTS = {
     common: {
       invalidNumber: "contents.payment.common.invalidNumber",
       minAmount: "contents.payment.common.minAmount",
+    },
+  },
+  admissionRequirements: {
+    password: {
+      error: {
+        minLength: "contents.admissionRequirements.password.error.minLength",
+      },
     },
   },
   deleteModal: {

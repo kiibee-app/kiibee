@@ -22,6 +22,19 @@ export const ACCESS_TYPE = {
   EMAIL_GATED: 'email_gated',
 } as const;
 
+export const CONTENT_SETTING_ACCESS_TYPE = {
+  PAYMENT: 'payment',
+  PAID: 'paid',
+  SET_PASSWORD: 'set_password',
+  REQUEST_EMAIL: 'request_email',
+} as const;
+
+export const COLLECTION_MESSAGES = {
+  ALREADY_EXISTS: 'Collection with the same name already exists',
+  CREATE_SUCCESS: 'Collection created successfully',
+  CREATE_FAILED: 'Failed to create collection',
+} as const;
+
 export const EMAIL_SUBSCRIBER_SOURCE = {
   CONTENT: 'content',
   EMAIL_GATE: 'email_gate',

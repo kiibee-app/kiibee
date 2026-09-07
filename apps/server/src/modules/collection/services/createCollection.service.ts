@@ -2,10 +2,15 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { collections } from 'src/database/schema';
+import { collections, contentSettings } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import {
+  ACCESS_TYPE,
+  CONTENT_SETTING_ACCESS_TYPE,
+  COLLECTION_MESSAGES,
+} from 'src/utils/constant';
 
 import { CreateCollectionDto } from '../dto/createCollection.dto';
 import { slugGenerator } from '../collection.helper';
@@ -30,11 +35,25 @@ export const createCollection = async (
       .limit(1);
 
     if (existingCollection.length > 0) {
-      return fail(
-        'Collection with the same name already exists',
-        HttpStatus.BAD_REQUEST,
-      );
+      return fail(COLLECTION_MESSAGES.ALREADY_EXISTS, HttpStatus.BAD_REQUEST);
     }
+
+    const [userSetting] = await db
+      .select({ accessType: contentSettings.accessType })
+      .from(contentSettings)
+      .where(eq(contentSettings.userId, creatorId))
+      .limit(1);
+
+    const defaultAccessType =
+      userSetting?.accessType === CONTENT_SETTING_ACCESS_TYPE.PAYMENT ||
+      userSetting?.accessType === ACCESS_TYPE.PAID
+        ? ACCESS_TYPE.PAID
+        : userSetting?.accessType === CONTENT_SETTING_ACCESS_TYPE.SET_PASSWORD
+          ? ACCESS_TYPE.PASSWORD
+          : userSetting?.accessType ===
+              CONTENT_SETTING_ACCESS_TYPE.REQUEST_EMAIL
+            ? ACCESS_TYPE.EMAIL_GATED
+            : ACCESS_TYPE.FREE;
 
     const slug = await slugGenerator(normalizedName);
 
@@ -47,6 +66,7 @@ export const createCollection = async (
         name: normalizedName,
         creatorId,
         slug,
+        accessType: defaultAccessType,
         sortOrder: sql`(SELECT COALESCE(MAX(sort_order), 0) + 1 FROM ${collections} WHERE creator_id = ${creatorId})`,
       })
       .returning({
@@ -54,12 +74,13 @@ export const createCollection = async (
         name: collections.name,
         slug: collections.slug,
         creatorId: collections.creatorId,
+        accessType: collections.accessType,
         sortOrder: collections.sortOrder,
       });
 
     return success(
       createdCollection,
-      'Collection created successfully',
+      COLLECTION_MESSAGES.CREATE_SUCCESS,
       HttpStatus.CREATED,
     );
   } catch (error) {
@@ -70,7 +91,7 @@ export const createCollection = async (
     }
 
     return fail(
-      'Failed to create collection',
+      COLLECTION_MESSAGES.CREATE_FAILED,
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }
