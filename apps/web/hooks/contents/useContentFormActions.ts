@@ -161,6 +161,8 @@ export function useContentFormActions({
     free: ADMISSION_REQUIREMENT_VALUES.free,
     set_password: ADMISSION_REQUIREMENT_VALUES.password,
     request_email: ADMISSION_REQUIREMENT_VALUES.email,
+    paid: ADMISSION_REQUIREMENT_VALUES.payment,
+    payment: ADMISSION_REQUIREMENT_VALUES.payment,
   };
 
   const buildSettingsSnapshot = (
@@ -752,6 +754,7 @@ export function useContentFormActions({
     [ADMISSION_REQUIREMENT_VALUES.free]: ADMISSION_TYPE.FREE,
     [ADMISSION_REQUIREMENT_VALUES.password]: ADMISSION_TYPE.SET_PASSWORD,
     [ADMISSION_REQUIREMENT_VALUES.email]: ADMISSION_TYPE.REQUEST_EMAIL,
+    [ADMISSION_REQUIREMENT_VALUES.payment]: ADMISSION_TYPE.PAYMENT,
   };
 
   const saveContentSettings = async () => {
