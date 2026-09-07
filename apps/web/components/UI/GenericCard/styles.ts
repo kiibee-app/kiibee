@@ -2,11 +2,13 @@ import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import { shimmer } from "@/utils/animations";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Card = styled.div<{
   $width?: string;
   $compact?: boolean;
   $coverImage?: boolean;
+  $minHeight?: string;
 }>`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   overflow: hidden;
@@ -16,13 +18,17 @@ export const Card = styled.div<{
   border-radius: ${({ theme }) => theme.radius.lg};
   gap: ${({ $compact }) => ($compact ? "6px" : "8px")};
   align-items: stretch;
-  height: 100%;
-  min-height: ${({ $compact, $coverImage }) => {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: ${({ $compact, $minHeight }) => {
     if ($compact) return "0";
-    if ($coverImage) return "0";
-    return "315px";
+    if ($minHeight) return $minHeight;
+    return "0";
   }};
   width: ${({ $width }) => $width || "100%"};
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   box-shadow: ${({ theme }) => theme.shadows.xl};
   transition:
     transform ${({ theme }) => theme.animations.normal}
@@ -50,6 +56,7 @@ export const ImageWrapper = styled.div<{
   width: 100%;
   overflow: hidden;
   display: flex;
+  flex-shrink: 0;
   min-height: ${({ $compact, $coverImage }) => {
     if ($coverImage) return "0";
     if ($compact) return "104px";
@@ -61,13 +68,13 @@ export const ImageWrapper = styled.div<{
   @supports not (aspect-ratio: 1 / 1) {
     padding-bottom: ${({ $coverImage, $imageAspectRatio }) => {
       if ($imageAspectRatio === "1 / 1") return "100%";
+      if ($imageAspectRatio === "25 / 19") return "76%";
       if ($imageAspectRatio) return undefined;
       return $coverImage ? "133.538%" : "56.25%";
     }};
   }
 
-  padding: ${({ $compact, $coverImage }) =>
-    $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
+  padding: 0;
   align-items: center;
   align-self: stretch;
   border-radius: ${({ theme }) => theme.radius.lg};
@@ -84,6 +91,7 @@ export const ImageWrapper = styled.div<{
     transition:
       opacity 0.3s ease,
       transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    z-index: 0;
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
       $coverImage ? "center top" : "center"};
@@ -100,32 +108,83 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-grow: 1;
+  flex: 1 1 auto;
+  min-width: 0;
 `;
 
-export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
+export const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+`;
+
+export const CardTitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+`;
+
+export const CardChildren = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+`;
+
+export const CardActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: auto;
+  padding-top: 16px;
+  flex-shrink: 0;
+  min-width: 0;
+`;
+
+export const Badge = styled.span<{
+  $variant?: "default" | "owned" | "overlay";
+}>`
   position: absolute;
   top: 10px;
   left: 10px;
-  background: ${({ $variant = "default", theme }) =>
-    $variant === "owned"
-      ? theme.colors.primary.GREEN
-      : theme.colors.primary.WHITE};
+  background: ${({ $variant = "default", theme }) => {
+    if ($variant === "owned") return theme.colors.primary.GREEN;
+    if ($variant === "overlay") return theme.colors.neutral.OVERLAY;
+    return theme.colors.primary.WHITE;
+  }};
   padding: 5px 8px;
-  border-radius: 5px;
-  z-index: 2;
+  border-radius: ${({ $variant, theme }) =>
+    $variant === "overlay" ? theme.radius.md : "5px"};
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+  color: ${({ $variant, theme }) =>
+    $variant === "overlay"
+      ? theme.colors.neutral.WHITE
+      : theme.colors.primary.BLACK};
   transition: background ${({ theme }) => theme.animations.normal}
     ${({ theme }) => theme.animations.easing};
 
+  ${({ $variant, theme }) =>
+    $variant === "overlay"
+      ? `
+    & * {
+      color: ${theme.colors.neutral.WHITE};
+    }
+  `
+      : ""}
+
   &:hover,
   ${Card}:has(:is(button, a):hover) & {
-    background: ${({ $variant = "default", theme }) =>
-      $variant === "owned"
-        ? theme.colors.primary.GREEN
-        : theme.colors.primary.GREEN_50};
+    background: ${({ $variant = "default", theme }) => {
+      if ($variant === "owned") return theme.colors.primary.GREEN;
+      if ($variant === "overlay") return theme.colors.neutral.OVERLAY;
+      return theme.colors.primary.GREEN_50;
+    }};
   }
 `;
 
@@ -158,24 +217,22 @@ export const ImageInitials = styled(MonoText)`
 export const Footer = styled.div`
   width: 100%;
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 
   > * {
-    flex: 1;
+    flex: 1 0 auto;
     min-width: 0;
   }
-`;
 
-export const CardHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-export const CardChildren = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
+  button,
+  a {
+    height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+    min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+    padding: 0 12px;
+    font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+    font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+    line-height: 1;
+  }
 `;

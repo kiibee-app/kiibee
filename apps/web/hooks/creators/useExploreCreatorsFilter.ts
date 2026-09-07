@@ -10,7 +10,7 @@ import {
 } from "@/utils/sortOptions";
 import { usePaginatedExploreCreators } from "./useExploreCreators";
 import { useDebounce } from "@/hooks/useDebounce";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { EXPLORE_INITIAL_PAGE_SIZE } from "@/utils/Constants";
 
 export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
   const [sortBy, setSortBy] = useState<SortValue>(() =>
@@ -35,7 +35,7 @@ export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
     hasNextPage,
     fetchNextPage,
   } = usePaginatedExploreCreators({
-    limit: EXPLORE_PAGE_SIZE,
+    limit: EXPLORE_INITIAL_PAGE_SIZE,
     search: debouncedSearchQuery,
     filter: mapCreatorSortToExploreFilter(filter, sortBy),
   });

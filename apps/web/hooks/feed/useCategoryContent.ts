@@ -16,6 +16,7 @@ import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import {
+  EXPLORE_INITIAL_PAGE_SIZE,
   EXPLORE_PAGE_SIZE,
   SORT_OPTION_AZ,
   SORT_OPTION_NEW,
@@ -62,7 +63,7 @@ export function useCategoryContent(categoryName: string) {
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [sortOption, setSortOption] = useState<string>(SORT_OPTION_NEW);
-  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
+  const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
 
   useEffect(() => {
     const handler = setTimeout(() => {
