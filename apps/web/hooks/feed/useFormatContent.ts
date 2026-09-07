@@ -8,13 +8,16 @@ import {
   SortValue,
   mapSortValueToExploreSort,
 } from "@/utils/sortOptions";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import {
+  EXPLORE_INITIAL_PAGE_SIZE,
+  EXPLORE_PAGE_SIZE,
+} from "@/utils/Constants";
 
 export function useFormatContent(formatId: string) {
   const { t } = useTranslation();
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
   const [searchQuery, setSearchQuery] = useState("");
-  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
+  const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
 
   const exploreSort = useMemo(() => {
     return mapSortValueToExploreSort(sortBy);

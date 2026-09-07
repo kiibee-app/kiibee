@@ -41,6 +41,7 @@ export const sendReceiptService = async (orderId: string) => {
           cardType: sql<string>`coalesce(${payments.cardType}, 'Not found')`,
           cardNo: sql<string>`coalesce(${payments.cardNo}, 'XXXX-XXXX-XXXX-XXXX')`,
           paidAt: payments.paidAt,
+          amount: payments.amount,
         },
       })
       .from(orders)
@@ -75,7 +76,7 @@ export const sendReceiptService = async (orderId: string) => {
             ? 'Your rental is confirmed'
             : 'Your purchase is confirmed',
           createdAt: formatDate(orderInfo.createdAt),
-          price: orderInfo.price,
+          price: orderInfo.payment.amount ?? orderInfo.price,
           currency: orderInfo.currency,
           status: orderInfo.status,
           paymentMethod: orderInfo.payment.paymentMethod,

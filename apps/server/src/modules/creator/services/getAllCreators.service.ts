@@ -22,6 +22,7 @@ import {
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
+import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
 type SortBy = 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
 
@@ -195,20 +196,39 @@ export const allCreatorsService = async ({
       }
     }
 
-    const items = allCreators.map((creator) => ({
-      id: creator.id,
-      name: creator.name,
-      profileImageUrl: creator.profileImageUrl,
-      coverImageUrl: creator.coverImageUrl,
-      mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,
-      createdAt: creator.createdAt,
-      uploadCount: Number(creator.uploadCount ?? 0),
-      subscriberCount: Number(creator.subscriberCount ?? 0),
-      layout: creator.layout,
-      contentCategory: (creator.categoryIds || [])
+    const items = allCreators.map((creator) => {
+      const contentCategory = (creator.categoryIds || [])
         .map((id) => categoryNameMap.get(id))
-        .filter((name): name is string => !!name),
-    }));
+        .filter((name): name is string => !!name);
+
+      return {
+        id: creator.id,
+        name: creator.name,
+        profileImageUrl: creator.profileImageUrl,
+        coverImageUrl: creator.coverImageUrl,
+        mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,
+        createdAt: creator.createdAt,
+        uploadCount: Number(creator.uploadCount ?? 0),
+        subscriberCount: Number(creator.subscriberCount ?? 0),
+        layout: creator.layout,
+        contentCategory,
+        category: contentCategory[0] ?? null,
+      };
+    });
+
+    const missingCategoryIds = items
+      .filter((creator) => !creator.category)
+      .map((creator) => creator.id);
+
+    if (missingCategoryIds.length > 0) {
+      const fallbackCategories =
+        await getCreatorCategoryMap(missingCategoryIds);
+      for (const creator of items) {
+        if (!creator.category) {
+          creator.category = fallbackCategories.get(creator.id) ?? null;
+        }
+      }
+    }
 
     return success(
       {

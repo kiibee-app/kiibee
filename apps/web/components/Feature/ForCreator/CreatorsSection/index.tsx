@@ -119,6 +119,8 @@ export default function CreatorsSection() {
                   src={resolveImageUrl(card.image)}
                   alt={card.alt}
                   draggable={false}
+                  decoding="async"
+                  loading="eager"
                 />
                 <CardContent>
                   <CardTitle>{card.title}</CardTitle>

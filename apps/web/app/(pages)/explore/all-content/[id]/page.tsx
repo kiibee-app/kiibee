@@ -193,6 +193,7 @@ function AllContentExplorePageContent() {
                       value={sortOption}
                       onChange={setSortOption}
                       label={t("creators.sort")}
+                      expandLayoutOnOpen={false}
                     />
                   </SortDropdownWrapper>
                 </LocalControls>

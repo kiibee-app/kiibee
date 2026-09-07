@@ -46,22 +46,13 @@ export default function ContentPerform() {
             </ListIntro>
           </ScrollReveal>
 
-          <PointsList>
-            {points.map((point, index) => (
-              <PointItem key={point}>
-                <ScrollReveal
-                  sequence={false}
-                  delay={
-                    LANDING_REVEAL.mediumDelay +
-                    LANDING_REVEAL.ctaCardStaggerDelay +
-                    index * LANDING_REVEAL.ctaCardStaggerDelay
-                  }
-                >
-                  {point}
-                </ScrollReveal>
-              </PointItem>
-            ))}
-          </PointsList>
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
+            <PointsList>
+              {points.map((point) => (
+                <PointItem key={point}>{point}</PointItem>
+              ))}
+            </PointsList>
+          </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.shortDelay * 4}>
             <Outro as="p">{t("creators.contentPerform.outro")}</Outro>
