@@ -35,6 +35,10 @@ import {
 import { AccessDurationValue } from "@/utils/common";
 import {
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_PAID,
+  ACCESS_TYPE_PASSWORD,
+  SET_PASSWORD_ACCESS,
+  GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
   CONTENT_FORM_FIELDS,
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
@@ -55,6 +59,7 @@ import {
   NUMERIC_ONLY_REGEX,
   IS_FALLBACK_SIZE,
 } from "@/utils/Constants";
+import { AUTH_FORM, CONTENTS } from "@/utils/translationKeys";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import {
@@ -85,6 +90,7 @@ type Params = {
   selectedCollection: CollectionRow | null;
   setSelectedCollection: Dispatch<SetStateAction<CollectionRow | null>>;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
+  collections?: CollectionRow[];
   collectionContents: CollectionContentRow[];
   setActiveTabAndQuery: (tab: ContentTab) => void;
   openDiscardModal: () => void;
@@ -104,6 +110,7 @@ export function useContentFormActions({
   selectedCollection,
   setSelectedCollection,
   setCollections,
+  collections,
   collectionContents,
   setActiveTabAndQuery,
   openDiscardModal,
@@ -227,7 +234,31 @@ export function useContentFormActions({
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType] ||
       ADMISSION_REQUIREMENT_VALUES.free;
-    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
+
+    let storedRental = "";
+    let storedPurchase = "";
+    let storedDuration = PAYMENT_DEFAULT_ACCESS_DURATION;
+
+    try {
+      const rawStored = storage.get(
+        GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
+      );
+      if (rawStored) {
+        const parsed = JSON.parse(rawStored);
+        storedRental = parsed.rentalAmount ?? "";
+        storedPurchase = parsed.purchaseAmount ?? "";
+        storedDuration =
+          parsed.accessDuration ?? PAYMENT_DEFAULT_ACCESS_DURATION;
+      }
+    } catch {}
+
+    applySettingsSnapshot(
+      buildSettingsSnapshot(uiAccessType, {
+        rentalAmount: storedRental,
+        purchaseAmount: storedPurchase,
+        accessDuration: storedDuration,
+      }),
+    );
     setContentSettingLoaded(true);
   }
   const collectionId = selectedCollection?.id ?? null;
@@ -759,6 +790,27 @@ export function useContentFormActions({
 
   const saveContentSettings = async () => {
     if (!saveContentSetting) return;
+
+    if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+      const hasExistingPassword = Boolean(
+        contentSettingAccessType === SET_PASSWORD_ACCESS ||
+        contentSettingAccessType === ACCESS_TYPE_PASSWORD,
+      );
+      if (!collectionPasswords.trim() && !hasExistingPassword) {
+        toast.error(t(AUTH_FORM.errors.required));
+        return;
+      }
+      if (
+        collectionPasswords.trim() &&
+        validatePasswordInput(collectionPasswords)
+      ) {
+        toast.error(t(CONTENTS.admissionRequirements.password.error.minLength));
+        return;
+      }
+    }
+
+    if (!validateCollectionPaymentAmounts()) return;
+
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
@@ -773,13 +825,81 @@ export function useContentFormActions({
 
       await saveContentSetting(payload);
 
+      const hasRental =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionRentalAmount.trim() !== "";
+      const hasPurchase =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionPurchaseAmount.trim() !== "";
+      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
+      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
+
+      if (
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collections &&
+        collections.length > 0
+      ) {
+        const unsetCollections = collections.filter(
+          (c) =>
+            c.accessType !== ACCESS_TYPE_PAID ||
+            (c.rentPrice == null && c.buyPrice == null),
+        );
+
+        if (unsetCollections.length > 0) {
+          const updatePromises = unsetCollections.map((c) =>
+            axiosClient.patch(API.collection.update(c.id), {
+              accessType: ACCESS_TYPE_PAID,
+              rentPrice: hasRental ? parsedRentalAmount : null,
+              buyPrice: hasPurchase ? parsedPurchaseAmount : null,
+              rentDuration: hasRental ? collectionAccessDuration : null,
+            }),
+          );
+
+          await Promise.allSettled(updatePromises);
+
+          const unsetIds = new Set(unsetCollections.map((c) => c.id));
+          setCollections((prev) =>
+            prev.map((c) =>
+              unsetIds.has(c.id)
+                ? {
+                    ...c,
+                    accessType: ACCESS_TYPE_PAID,
+                    rentPrice: hasRental ? parsedRentalAmount : null,
+                    buyPrice: hasPurchase ? parsedPurchaseAmount : null,
+                    rentDuration: hasRental ? collectionAccessDuration : null,
+                  }
+                : c,
+            ),
+          );
+        }
+      }
+
+      try {
+        storage.set(
+          GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
+          JSON.stringify({
+            rentalAmount: hasRental ? collectionRentalAmount : "",
+            purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+            accessDuration: hasRental
+              ? collectionAccessDuration
+              : PAYMENT_DEFAULT_ACCESS_DURATION,
+          }),
+        );
+      } catch {}
+
       applySettingsSnapshot({
         accessType: collectionAccessType,
         passwords: "",
-        description: "",
-        rentalAmount: "",
-        purchaseAmount: "",
-        accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+        description: collectionDescription.trim(),
+        rentalAmount: hasRental ? collectionRentalAmount : "",
+        purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+        accessDuration: hasRental
+          ? collectionAccessDuration
+          : PAYMENT_DEFAULT_ACCESS_DURATION,
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [API.collection.getAll],
       });
 
       setShowSaveSuccessModal(true);
