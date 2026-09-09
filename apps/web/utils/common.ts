@@ -174,6 +174,8 @@ export function toCamelCaseKey(value: string): string {
     .join("");
 }
 
+export { getCategoryLabel } from "./category";
+
 export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
 
 export const URL_REGEX = /(https?:\/\/[^\s<>"]+|www\.[^\s<>"]+)/g;
