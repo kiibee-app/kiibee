@@ -99,7 +99,7 @@ export default function CreatorsSection() {
 
             return (
               <AnimatedCard
-                key={card.title}
+                key={`creator-card-${index}`}
                 ref={(node) => {
                   cardRefs.current[index] = node;
                 }}
