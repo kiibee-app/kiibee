@@ -1,5 +1,5 @@
 import { toCamelCaseKey } from "./common";
-import { CATEGORY_ALL } from "./Constants";
+const CATEGORY_ALL = "all";
 
 export function getCategoryLabel(
   category: string | null | undefined,
