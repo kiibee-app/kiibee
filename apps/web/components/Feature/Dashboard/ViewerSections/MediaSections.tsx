@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
+import { getCategoryLabel } from "@/utils/category";
 import GenericButton from "@/components/UI/GenericButton";
 import {
   CardCreator,
@@ -281,7 +282,9 @@ export default function MediaSections({
                       </MonoText>
                     }
                     badge={
-                      <MonoText $use="Body_Bold">{item.category}</MonoText>
+                      <MonoText $use="Body_Bold">
+                        {getCategoryLabel(item.category, t)}
+                      </MonoText>
                     }
                     onClick={onCardClick ? () => onCardClick(item) : undefined}
                     footer={

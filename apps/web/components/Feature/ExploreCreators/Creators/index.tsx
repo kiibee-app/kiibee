@@ -23,6 +23,7 @@ import type { ExploreCreator } from "@/types/exploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { getCategoryLabel } from "@/utils/category";
 
 type Props = {
   creators: ExploreCreator[];
@@ -88,7 +89,7 @@ export default function ExploreCreators({
               badge={
                 categoryLabel ? (
                   <MonoText $use="Body_Bold" color={COLORS.neutral.WHITE}>
-                    {categoryLabel}
+                    {getCategoryLabel(categoryLabel, t)}
                   </MonoText>
                 ) : undefined
               }

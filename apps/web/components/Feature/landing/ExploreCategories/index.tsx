@@ -10,7 +10,7 @@ import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
-import { toCamelCaseKey } from "@/utils/common";
+import { getCategoryLabel } from "@/utils/category";
 import type { TFunction } from "i18next";
 import {
   Section,
@@ -23,27 +23,6 @@ import {
   BottomCtaSection,
   BrowseAllButton,
 } from "./styles";
-
-const getCategoryLabel = (category: string, t: TFunction) => {
-  if (category === CATEGORY_ALL) {
-    return t("exploreCategories.categories.all");
-  }
-  const key = toCamelCaseKey(category);
-
-  const paths = [
-    `viewerSignup.preference.content.options.${key}`,
-    `exploreCategories.categories.${key}`,
-    `creators.filters.options.categories.${key}`,
-  ];
-
-  for (const path of paths) {
-    const translation = t(path);
-    if (translation && translation !== path) {
-      return translation;
-    }
-  }
-  return category;
-};
 
 export default function ExploreCategories() {
   const { t } = useTranslation();
