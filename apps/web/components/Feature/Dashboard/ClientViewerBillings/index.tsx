@@ -431,6 +431,7 @@ export default function ClientViewerBillings({
                     <SortDropdown<string>
                       options={getMethodActions()}
                       compact
+                      alignRight
                       dropdownWidth="196px"
                       maxWidth="196px"
                       variant={SORT_DROPDOWN_VARIANT.SURFACE}
