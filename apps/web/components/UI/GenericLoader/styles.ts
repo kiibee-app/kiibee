@@ -87,7 +87,7 @@ export const ContainerWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 200px;
+  min-height: clamp(360px, 60vh, 600px);
   padding: 40px 0;
 
   ${Label} {
