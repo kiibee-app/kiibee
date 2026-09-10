@@ -41,6 +41,7 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
+import { resolveCollectionPricing } from "@/utils/contentPricingActions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
@@ -185,13 +186,14 @@ export default function SingleCollectionDetail({
 
   const resolvedPricing = useMemo(() => {
     if (!selectedCollection) return undefined;
+
+    const pricingInfo = resolveCollectionPricing(selectedCollection);
+
     return {
-      accessType: selectedCollection.accessType,
-      buyPrice: selectedCollection.buyPrice,
-      rentPrice: selectedCollection.rentPrice,
-      rentDurationHours: convertRentDurationToHours(
-        selectedCollection.rentDuration,
-      ),
+      accessType: pricingInfo.accessType,
+      buyPrice: pricingInfo.buyPrice,
+      rentPrice: pricingInfo.rentPrice,
+      rentDurationHours: convertRentDurationToHours(pricingInfo.rentDuration),
     };
   }, [selectedCollection]);
 

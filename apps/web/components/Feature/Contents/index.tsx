@@ -332,6 +332,7 @@ function CreatorsContentsInner() {
     selectedCollection,
     setSelectedCollection,
     setCollections,
+    collections,
     collectionContents,
     setActiveTabAndQuery,
     openDiscardModal,
@@ -484,6 +485,10 @@ function CreatorsContentsInner() {
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
 
+  const hasExistingPassword = selectedCollection
+    ? Boolean(selectedCollection.hasPassword)
+    : Boolean(contentSettings.data?.data?.hasPassword);
+
   return (
     <PageShell>
       <PageHeader>
@@ -519,7 +524,7 @@ function CreatorsContentsInner() {
             (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-              !selectedCollection?.hasPassword &&
+              !hasExistingPassword &&
               (!collectionPasswords.trim() ||
                 validatePasswordInput(collectionPasswords))) ||
             (activeTab === SETTINGS &&
@@ -603,7 +608,7 @@ function CreatorsContentsInner() {
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
             onPasswordValidationChange={setHasPasswordError}
-            collectionHasPassword={selectedCollection?.hasPassword}
+            collectionHasPassword={hasExistingPassword}
           />
         </ContentPanel>
       </ContentsScrollArea>

@@ -36,7 +36,7 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ImageColumn = styled.div`
-  flex: 1.2 1 0;
+  flex: 1.5 1 0;
   min-width: 0;
   width: 100%;
   display: flex;
@@ -55,13 +55,17 @@ export const ImageColumn = styled.div`
 export const ImageFrame = styled.div`
   position: relative;
   width: 100%;
-  border-radius: 0.75rem;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.primary.BLACK_20};
+  box-shadow: 0 4.57px 18.279px 0
+    ${({ theme }) => theme.colors.primary.BLACK_20};
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
-  box-shadow: ${({ theme }) => theme.shadows.lg};
 
   ${media.tablet} {
-    border-radius: 0.5rem;
+    padding: 6px;
+    border-radius: 10px;
   }
 `;
 
@@ -69,8 +73,8 @@ export const DashboardImage = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  border-radius: inherit;
-  object-fit: cover;
+  border-radius: 6px;
+  object-fit: contain;
 `;
 
 export const TextColumn = styled.div`

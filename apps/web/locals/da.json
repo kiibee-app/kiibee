@@ -9,7 +9,7 @@
     "exploreCreators": "Udforsk",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Dashboard",
+    "dashboard": "Kontrolpanel",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Profil",
@@ -337,21 +337,21 @@
   },
   "creators": {
     "marquee": {
-      "title": "Udforsk Kiibee og find din favorit kratør",
+      "title": "Udforsk Kiibee og find din favorit kreatør",
       "defaultDescription": "Online kurserne hos Kammas Kantine er for dig, der vil lære at tage bedre vare på din krop. Du får viden om sundhed, praktiske tips og tricks samt adgang til fantastiske opskrifter, der er enkle at tilberede i dit eget køkken."
     },
     "trendingContent": "Populært indhold",
     "heading": {
       "title": "Fra indhold til omsætning – Kiibee hjælper dig hele vejen.",
       "lineOne": "Upload.",
-      "lineTwo": "Market.",
-      "lineThree": "Earn."
+      "lineTwo": "Markedsfør.",
+      "lineThree": "Tjen."
     },
     "cta": "Tilmeld dig Kiibee i dag",
     "heroCards": {
       "payments": {
         "alt": "Smartphone med Apple Pay på en laptop",
-        "title": "Payments",
+        "title": "Betalinger",
         "subtitle": "Hurtig og sikker betaling."
       },
       "streaming": {
@@ -366,12 +366,12 @@
       },
       "marketing": {
         "alt": "Hænder med notesbog og laptop til marketing",
-        "title": "Marketing",
+        "title": "Markedsføring",
         "subtitle": "Bliv opdaget hurtigere."
       },
       "customerAccess": {
         "alt": "Laptopskærm med kunde-adgang og downloads",
-        "title": "Customer Access",
+        "title": "Kundeadgang",
         "subtitle": "Sikker adgang, når som helst."
       }
     },
@@ -422,7 +422,7 @@
       }
     },
     "shortStory": {
-      "imageAlt": "Person working at a desk with monitors and a microphone",
+      "imageAlt": "Person der arbejder ved et skrivebord med skærme og en mikrofon",
       "title": "En kort historie om Kiibee",
       "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
       "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
@@ -511,7 +511,7 @@
         }
       }
     },
-    "title": "Alle kratør",
+    "title": "Alle kreatører",
     "filter": "Filter",
     "filters": {
       "title": "Filtre",
@@ -532,15 +532,15 @@
       "options": {
         "categories": {
           "all": "Alle kategorier",
-          "business": "Business",
-          "comedyShows": "Comedy shows",
+          "business": "Forretning",
+          "comedyShows": "Comedy show",
           "musicAndAudio": "Musik og lyd",
           "educational": "Uddannelse",
           "fitnessAndHealth": "Fitness og sundhed",
           "food": "Mad",
           "podcasts": "Podcasts",
           "theater": "Teater",
-          "tutorials": "Tutorials",
+          "tutorials": "Vejledninger",
           "publications": "Publikationer"
         },
         "formats": {
@@ -571,8 +571,8 @@
     "topCreators": "Top udgivere",
     "seeAll": "Se alle udgivere",
     "subscribersCount": "{{count}}K abonnenter",
-    "topCreatorUploads_one": "{{formattedCount}} content upload",
-    "topCreatorUploads_other": "{{formattedCount}} content uploads",
+    "topCreatorUploads_one": "{{formattedCount}} udgivelse",
+    "topCreatorUploads_other": "{{formattedCount}} udgivelser",
     "creators": "Udgivere",
     "contents": "Indhold"
   },

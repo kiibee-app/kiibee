@@ -7,12 +7,16 @@ import {
   BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
+  GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
   RENT_KEYWORDS,
   RENT_PREFIX,
   REQUEST_EMAIL_ACCESS,
   SET_PASSWORD_ACCESS,
   VARIANT,
+  type CollectionAccessType,
 } from "./Constants";
+import { ADMISSION_REQUIREMENT_VALUES } from "./admissionRequirements";
+import { storage } from "./storage";
 import { pathPublishedContent } from "./path";
 import type { FeedContentItem } from "./feedContentToTutorial";
 import type { TutorialButton } from "./types";
@@ -38,6 +42,100 @@ export function getPricingLabels(t: TFunction): PricingLabels {
     free: t("pricingLabels.free"),
     accessCodeRequired: t("pricingLabels.accessCodeRequired"),
     emailRequired: t("pricingLabels.emailRequired"),
+  };
+}
+
+export type GlobalPaymentSettingInput = {
+  accessType?: string | null;
+  rentalAmount?: string | number | null;
+  purchaseAmount?: string | number | null;
+  accessDuration?: string | null;
+};
+
+export function getStoredGlobalPaymentSettings():
+  | GlobalPaymentSettingInput
+  | undefined {
+  try {
+    const raw = storage.get(GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        accessType: ADMISSION_REQUIREMENT_VALUES.payment,
+        rentalAmount: parsed.rentalAmount || null,
+        purchaseAmount: parsed.purchaseAmount || null,
+        accessDuration: parsed.accessDuration || null,
+      };
+    }
+  } catch {}
+  return undefined;
+}
+
+export function resolveCollectionPricing(
+  collection: {
+    accessType?: string | null;
+    buyPrice?: number | string | null;
+    rentPrice?: number | string | null;
+    rentDuration?: string | null;
+  },
+  globalSetting:
+    | GlobalPaymentSettingInput
+    | undefined = getStoredGlobalPaymentSettings(),
+) {
+  const isGlobalPayment =
+    globalSetting?.accessType === ADMISSION_REQUIREMENT_VALUES.payment ||
+    globalSetting?.accessType === ACCESS_TYPE_PAID ||
+    Boolean(globalSetting?.rentalAmount || globalSetting?.purchaseAmount);
+
+  const hasCustomPricing =
+    collection.rentPrice != null || collection.buyPrice != null;
+
+  const rawAccessType =
+    collection.accessType === ACCESS_TYPE_PAID ||
+    (!hasCustomPricing &&
+      isGlobalPayment &&
+      (collection.accessType === ACCESS_TYPE_FREE || !collection.accessType))
+      ? ACCESS_TYPE_PAID
+      : (collection.accessType ??
+        (isGlobalPayment ? ACCESS_TYPE_PAID : ACCESS_TYPE_FREE));
+
+  const accessType: CollectionAccessType =
+    rawAccessType === ACCESS_TYPE_PAID ||
+    rawAccessType === ADMISSION_REQUIREMENT_VALUES.payment
+      ? ACCESS_TYPE_PAID
+      : rawAccessType === SET_PASSWORD_ACCESS ||
+          rawAccessType === ACCESS_TYPE_PASSWORD
+        ? ACCESS_TYPE_PASSWORD
+        : rawAccessType === REQUEST_EMAIL_ACCESS ||
+            rawAccessType === ACCESS_TYPE_EMAIL_GATED
+          ? ACCESS_TYPE_EMAIL_GATED
+          : ACCESS_TYPE_FREE;
+
+  const rawRent =
+    collection.rentPrice != null
+      ? collection.rentPrice
+      : isGlobalPayment && globalSetting?.rentalAmount != null
+        ? globalSetting.rentalAmount
+        : null;
+
+  const rawBuy =
+    collection.buyPrice != null
+      ? collection.buyPrice
+      : isGlobalPayment && globalSetting?.purchaseAmount != null
+        ? globalSetting.purchaseAmount
+        : null;
+
+  const rentPrice = rawRent != null ? Number(rawRent) : null;
+  const buyPrice = rawBuy != null ? Number(rawBuy) : null;
+
+  const rentDuration =
+    collection.rentDuration ??
+    (isGlobalPayment ? (globalSetting?.accessDuration ?? null) : null);
+
+  return {
+    accessType,
+    rentPrice,
+    buyPrice,
+    rentDuration,
   };
 }
 

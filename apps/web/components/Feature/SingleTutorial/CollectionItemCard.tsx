@@ -10,6 +10,7 @@ import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericCard from "@/components/UI/GenericCard";
+import { getCategoryLabel } from "@/utils/category";
 import GenericButton from "@/components/UI/GenericButton";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import { LoginRequiredModal } from "@/components/UI/Modals";
@@ -211,7 +212,9 @@ export default function CollectionItemCard({
           meta={<CollectionTime>{video.published}</CollectionTime>}
           badge={
             video.category?.trim() ? (
-              <CollectionBadgeText>{video.category}</CollectionBadgeText>
+              <CollectionBadgeText>
+                {getCategoryLabel(video.category, t)}
+              </CollectionBadgeText>
             ) : null
           }
           footer={footer}
