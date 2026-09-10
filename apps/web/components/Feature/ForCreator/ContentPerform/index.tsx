@@ -1,7 +1,10 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creatorDashboardImage from "@/assets/images/creators/creator_dashboard.webp";
+import dashboardEnglishImage from "@/assets/images/dashboard-english.png";
+import dashboardDanishImage from "@/assets/images/dashboard-danish.png";
+import { DA } from "@/utils/common";
+import { normalizeAppLanguage } from "@/utils/language";
 import {
   Section,
   ContentWrapper,
@@ -25,7 +28,13 @@ const DASHBOARD_REVEAL_STYLE = {
 } as const;
 
 export default function ContentPerform() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = normalizeAppLanguage(
+    i18n.resolvedLanguage || i18n.language,
+  );
+  const dashboardImage =
+    currentLang === DA ? dashboardDanishImage : dashboardEnglishImage;
+
   const points = t("creators.contentPerform.points", {
     returnObjects: true,
   }) as string[];
@@ -68,7 +77,8 @@ export default function ContentPerform() {
           >
             <ImageFrame>
               <DashboardImage
-                src={creatorDashboardImage.src}
+                key={currentLang}
+                src={dashboardImage.src}
                 alt={t("creators.contentPerform.imageAlt")}
               />
             </ImageFrame>

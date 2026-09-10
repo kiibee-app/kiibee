@@ -24,6 +24,7 @@ import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
@@ -229,7 +230,7 @@ function TutorialCard({
       badge={
         tutorial.category ? (
           <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-            {tutorial.category}
+            {getCategoryLabel(tutorial.category, t)}
           </MonoText>
         ) : undefined
       }

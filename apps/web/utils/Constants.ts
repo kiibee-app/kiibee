@@ -56,6 +56,8 @@ export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
 export const CONTENT_ITEM_QUERY_KEY = "contentId";
 export const QUERY_KEY_FORMAT = "format";
 export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
+export const GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY =
+  "global_content_payment_settings";
 export const BILLING_TAB = "billingTab";
 export const DUMMY_TAB = "dummy-tab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [

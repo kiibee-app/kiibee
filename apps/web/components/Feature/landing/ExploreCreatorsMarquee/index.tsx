@@ -9,6 +9,7 @@ import {
 import SafeImage from "@/components/UI/SafeImage";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
+import { getCategoryLabel } from "@/utils/category";
 import { CREATORS } from "@/utils/translationKeys";
 import {
   Section,
@@ -58,7 +59,9 @@ export default function ExploreCreatorsMarquee() {
             </CardTitle>
             {creator.category && (
               <CategoryBadge>
-                <MonoText $use="Body_SemiMedium">{creator.category}</MonoText>
+                <MonoText $use="Body_SemiMedium">
+                  {getCategoryLabel(creator.category, t)}
+                </MonoText>
               </CategoryBadge>
             )}
           </CardHeader>
