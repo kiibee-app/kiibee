@@ -5,6 +5,14 @@ export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   padding: 4rem 0 6rem;
+
+  ${media.tablet} {
+    padding: 3rem 0 4rem;
+  }
+
+  ${media.mobileLg} {
+    padding: 2.5rem 0 3rem;
+  }
 `;
 
 export const Inner = styled.div`
@@ -14,6 +22,11 @@ export const Inner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  ${media.tablet} {
+    padding: 0 1.25rem;
+    gap: 1.5rem;
+  }
 `;
 
 export const HeadingWrap = styled.div`
@@ -37,6 +50,12 @@ export const FeaturesRow = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
+  }
+
+  ${media.mobileMd} {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 `;
 
@@ -47,17 +66,17 @@ export const Index = styled.span`
 
 export const TopBar = styled.div`
   position: absolute;
-  top: 6px;
+  top: 0;
   left: 0;
-  width: 135px;
-  height: 0.7px;
+  width: 100%;
+  height: 2px;
   background: ${({ theme }) => theme.colors.neutral.GRAY};
   margin: 0;
   transition:
     transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
     background 220ms ease,
     opacity 220ms ease;
-  transform: translateY(6px) scaleX(0.9);
+  transform: translateY(0) scaleX(0.9);
   opacity: 0;
   transform-origin: left center;
 `;
@@ -92,7 +111,7 @@ export const FeatureItem = styled.div<{ $active?: boolean }>`
       ${TopBar} {
         background: ${p.theme.colors.neutral.GRAY};
         opacity: 1;
-        transform: translateY(-6px) scaleX(1);
+        transform: translateY(0) scaleX(1);
       }
     `}
 `;
@@ -100,23 +119,40 @@ export const FeatureItem = styled.div<{ $active?: boolean }>`
 export const MockRow = styled.div<{ $imageRight?: boolean }>`
   display: grid;
   grid-template-columns: ${(p) => (p.$imageRight ? "35% 65%" : "65% 35%")};
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
   margin-top: 2.5rem;
 
   ${media.tablet} {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
     text-align: center;
   }
 `;
 
-export const MockImageWrap = styled.div<{ $active?: boolean }>`
+export const MockImageWrap = styled.div<{
+  $active?: boolean;
+  $imageRight?: boolean;
+}>`
   position: relative;
   width: 100%;
-  height: 425px;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  max-height: 480px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  order: ${(p) => (p.$imageRight ? 2 : 1)};
+
+  ${media.tablet} {
+    order: 1;
+    max-height: 400px;
+  }
+
+  ${media.mobileLg} {
+    max-height: 300px;
+  }
 
   & > div {
     position: absolute;
@@ -127,6 +163,7 @@ export const MockImageWrap = styled.div<{ $active?: boolean }>`
 
   img {
     object-fit: cover;
+    object-position: top center;
   }
 
   ${(p) =>
@@ -137,12 +174,17 @@ export const MockImageWrap = styled.div<{ $active?: boolean }>`
     `}
 `;
 
-export const MockText = styled.div`
+export const MockText = styled.div<{ $imageRight?: boolean }>`
   ${({ theme }) => theme.typography.Body_Regular};
   max-width: 415px;
   padding: 0 1rem;
+  order: ${(p) => (p.$imageRight ? 1 : 2)};
 
   ${media.tablet} {
+    order: 2;
     padding: 0;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
   }
 `;
