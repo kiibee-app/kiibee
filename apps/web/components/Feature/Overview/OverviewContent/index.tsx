@@ -89,7 +89,7 @@ export default function OverviewContent() {
 
       {isOverviewAnalyticsLoading ? (
         <GenericLoader
-          variant={LOADER_VARIANT.INLINE}
+          variant={LOADER_VARIANT.CONTAINER}
           isOpen
           label={undefined}
         />
@@ -102,7 +102,7 @@ export default function OverviewContent() {
         <TableCard>
           {isContentPerformanceLoading ? (
             <GenericLoader
-              variant={LOADER_VARIANT.INLINE}
+              variant={LOADER_VARIANT.CONTAINER}
               isOpen
               label={undefined}
             />

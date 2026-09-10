@@ -81,3 +81,16 @@ export const FullPageWrapper = styled.div`
     color: ${({ theme }) => theme.colors.primary.BLACK};
   }
 `;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  padding: 40px 0;
+
+  ${Label} {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+`;
