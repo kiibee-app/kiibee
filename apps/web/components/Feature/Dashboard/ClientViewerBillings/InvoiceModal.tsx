@@ -79,7 +79,7 @@ export default function InvoiceModal({
       contentMarginBottom="0"
     >
       {isLoading || !invoice ? (
-        <GenericLoader variant={LOADER_VARIANT.INLINE} />
+        <GenericLoader variant={LOADER_VARIANT.CONTAINER} />
       ) : (
         <InvoiceCard>
           <InvoiceGrid>
