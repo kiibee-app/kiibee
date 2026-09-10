@@ -161,7 +161,7 @@ export const PAYMENT_DEFAULT_ACCESS_DURATION = "1_month" as const;
 
 export function toCamelCaseKey(value: string): string {
   return value
-    .replace(/&|\/|and/gi, " and ")
+    .replace(/&|\/|and/gi, "and")
     .replace(/[^a-zA-Z0-9]+/g, " ")
     .trim()
     .split(/\s+/)
