@@ -29,7 +29,7 @@ import { COUPON_STATUS, CouponRow, CouponStatus } from "@/types/couponType";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import {
   COUPON_SEARCH_KEYS,
-  COUPON_TABLE_COLUMNS,
+  getCouponTableColumns,
   CouponSearchKey,
   SEARCH_FILTERS,
 } from "@/utils/tableHeader";
@@ -59,6 +59,7 @@ export default function CouponTable({
   onRowClick,
 }: CouponTableProps) {
   const { t } = useTranslation();
+  const couponColumns = getCouponTableColumns(t);
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
   const [search, setSearch] = useState<Record<CouponSearchKey, string>>({
@@ -68,7 +69,7 @@ export default function CouponTable({
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const resolveHeaderToKey = (header: string) => {
-    const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
+    const col = couponColumns.find((c) => c.label === header);
     return col?.key as keyof CouponRow;
   };
 
@@ -107,7 +108,8 @@ export default function CouponTable({
     header: string,
     setSort: React.Dispatch<React.SetStateAction<SortDirectionWithNone>>,
   ) => {
-    if (header !== COUPON_TABLE_COLUMNS[0].label) return;
+    const col = couponColumns.find((c) => c.label === header);
+    if (col?.key !== couponColumns[0].key) return;
 
     setSort((prev) => {
       if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
@@ -172,32 +174,32 @@ export default function CouponTable({
           </EmptyCollectionCard>
         ) : (
           <Table<CouponRow>
-            headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
+            headers={[...couponColumns.map((c) => c.label)]}
             data={sortedRows}
             rowsPerPage={10}
             headerToKey={resolveHeaderToKey}
             onHeaderClick={(header) =>
               handleHeaderClick(header, setNameSortDirection)
             }
-            isHeaderSortable={(header) =>
-              header === COUPON_TABLE_COLUMNS[0].label
-            }
-            getHeaderSortDirection={(header) =>
-              header === COUPON_TABLE_COLUMNS[0].label &&
-              nameSortDirection !== SORT_DIRECTIONS.NONE
+            isHeaderSortable={(header) => {
+              const col = couponColumns.find((c) => c.label === header);
+              return col?.key === couponColumns[0].key;
+            }}
+            getHeaderSortDirection={(header) => {
+              const col = couponColumns.find((c) => c.label === header);
+              return col?.key === couponColumns[0].key &&
+                nameSortDirection !== SORT_DIRECTIONS.NONE
                 ? nameSortDirection
-                : null
-            }
+                : null;
+            }}
             getRowKey={(row, index) => `${row.title}-${index}`}
             getMobileTitle={(row) => String(row.title)}
             getColumnAlignment={(_header, index) =>
               index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
             }
             renderCell={({ header, row }) => {
-              const typedHeader = COUPON_TABLE_COLUMNS.find(
-                (c) => c.label === header,
-              );
-              if (typedHeader === COUPON_TABLE_COLUMNS[1]) {
+              const typedHeader = couponColumns.find((c) => c.label === header);
+              if (typedHeader?.key === couponColumns[1].key) {
                 return (
                   <CodesWrapper>
                     {row.codes.map((code) => (
@@ -221,7 +223,7 @@ export default function CouponTable({
                 );
               }
 
-              if (typedHeader === COUPON_TABLE_COLUMNS[2]) {
+              if (typedHeader?.key === couponColumns[2].key) {
                 return (
                   <StatusBadge $status={row.status}>
                     <MonoText $use="Body_Bold">{row.status}</MonoText>
@@ -229,7 +231,7 @@ export default function CouponTable({
                 );
               }
 
-              if (typedHeader === COUPON_TABLE_COLUMNS[4]) {
+              if (typedHeader?.key === couponColumns[4].key) {
                 return (
                   <ActionWrapper onClick={stopPropagation}>
                     <SortDropdown<CouponAction>
@@ -258,7 +260,7 @@ export default function CouponTable({
                 <MonoText
                   $use="Body_SemiBold"
                   color={
-                    typedHeader === COUPON_TABLE_COLUMNS[0]
+                    typedHeader?.key === couponColumns[0].key
                       ? COLORS.primary.BLACK
                       : COLORS.neutral.GRAY
                   }

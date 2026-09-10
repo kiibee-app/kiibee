@@ -14,6 +14,7 @@ import {
 import { TABLE_ALIGN } from "@/utils/ui";
 import { BUTTON } from "@/utils/Constants";
 import { ActionWrapper, IconButton, NameWrapper } from "./styles";
+import { useTranslation } from "react-i18next";
 import {
   CollectionRow,
   CollectionContentRow,
@@ -25,8 +26,8 @@ import {
   getCollectionContentIcon,
 } from "@/utils/collection";
 import {
-  COLLECTION_COLUMNS,
-  COLLECTION_CONTENT_COLUMNS,
+  getCollectionColumns,
+  getCollectionContentColumns,
 } from "@/utils/tableHeader";
 import { SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
 import {
@@ -34,18 +35,19 @@ import {
   MOVE_DOWN,
   MOVE_SETTINGS,
   RowAction,
-  actionOptions,
+  getActionOptions,
   MOVE_TO_ANOTHER_COLLECTION,
-  contentActionOptions,
+  getContentActionOptions,
 } from "@/utils/sortOptions";
 
 type TableRow = CollectionRow | CollectionContentRow;
 
 export default function CollectionTable(props: CollectionTableProps) {
+  const { t } = useTranslation();
   const isCollections = props.type === COLLECTION_TABLE_TYPE.COLLECTIONS;
   const columns = isCollections
-    ? COLLECTION_COLUMNS
-    : COLLECTION_CONTENT_COLUMNS;
+    ? getCollectionColumns(t)
+    : getCollectionContentColumns(t);
   const searchQuery = props.searchValue?.trim().toLowerCase() ?? "";
   const filteredData =
     searchQuery.length < 2
@@ -110,7 +112,9 @@ export default function CollectionTable(props: CollectionTableProps) {
 
         {showDropdown ? (
           <SortDropdown<RowAction>
-            options={isCollections ? actionOptions : contentActionOptions}
+            options={
+              isCollections ? getActionOptions(t) : getContentActionOptions(t)
+            }
             allowNoSelection
             compact
             alignRight
@@ -165,7 +169,7 @@ export default function CollectionTable(props: CollectionTableProps) {
           );
         }
 
-        if (col?.key === COLLECTION_COLUMNS[3].key) {
+        if (col?.key === columns[3].key) {
           return renderActions(
             row.id,
             isCollections || props.type === COLLECTION_TABLE_TYPE.CONTENTS,
