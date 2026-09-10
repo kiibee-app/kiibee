@@ -126,6 +126,14 @@ export const moveItemInArray = <T extends { id: string }>(
   return next;
 };
 
+export const getActionOptions = (
+  t: (key: string) => string,
+): DropdownOption<RowAction>[] => [
+  { label: t("contents.rowActions.moveUp"), value: MOVE_UP },
+  { label: t("contents.rowActions.moveDown"), value: MOVE_DOWN },
+  { label: t("contents.rowActions.settings"), value: MOVE_SETTINGS },
+];
+
 export const actionOptions: DropdownOption<RowAction>[] = [
   { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
   { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
@@ -155,6 +163,17 @@ export function mapCreatorSortToExploreFilter(
     ? SORT_FEATURED
     : mapSortValueToExploreSort(sortBy);
 }
+
+export const getContentActionOptions = (
+  t: (key: string) => string,
+): DropdownOption<RowAction>[] => [
+  { label: t("contents.rowActions.moveUp"), value: MOVE_UP },
+  { label: t("contents.rowActions.moveDown"), value: MOVE_DOWN },
+  {
+    label: t("contents.rowActions.moveToAnotherCollection"),
+    value: MOVE_TO_ANOTHER_COLLECTION,
+  },
+];
 
 export const contentActionOptions: DropdownOption<RowAction>[] = [
   { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },

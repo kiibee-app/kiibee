@@ -1494,6 +1494,7 @@
     }
   },
   "users": {
+    "title": "Users",
     "search": "Search by name",
     "tabs": {
       "registrations": "Registrations",
@@ -1827,6 +1828,24 @@
       "save": "Save",
       "deleteContent": "Delete content",
       "addContent": "Add content"
+    },
+    "tableHeaders": {
+      "collectionName": "Collection Name",
+      "numberOfContents": "Number of Contents",
+      "created": "Created",
+      "contentName": "Content name",
+      "visibility": "Visibility",
+      "title": "Title",
+      "codes": "Codes",
+      "status": "Status",
+      "createdDate": "Created date",
+      "actions": "Actions"
+    },
+    "rowActions": {
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "settings": "Settings",
+      "moveToAnotherCollection": "Move to another collection"
     },
     "couponDetails": {
       "title": "Coupon details",

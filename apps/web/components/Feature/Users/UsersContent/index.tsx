@@ -67,7 +67,7 @@ export default function UsersContent() {
 
   return (
     <Wrapper>
-      <Title>Users</Title>
+      <Title>{t(DASHBOARD_USERS.title)}</Title>
 
       <GenericTabs
         tabs={tabs}
