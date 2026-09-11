@@ -45,6 +45,7 @@ import {
   useViewerBillingHistory,
   type ViewerBillingHistoryItem,
 } from "@/hooks/useViewerBillingHistory";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import { useViewerPaymentMethods } from "@/hooks/useViewerPaymentMethods";
 import { useAddPaymentCard } from "@/hooks/useAddPaymentCard";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
@@ -109,6 +110,7 @@ export default function ClientViewerBillings({
       searchContent: debouncedSearchContent || undefined,
       searchCreator: debouncedSearchCreator || undefined,
     });
+  const { data: purchasedData } = useViewerPurchased();
   const viewerPaymentMethods = useViewerPaymentMethods();
   const { addHostedCard, isPending: isAddHostedCardPending } =
     useAddPaymentCard();
@@ -294,12 +296,21 @@ export default function ClientViewerBillings({
                 const key = billingHistoryHeaderMap[header];
 
                 if (key === BILLING_HISTORY_KEY_MAP.CONTENT_TITLE) {
+                  const contentImage =
+                    row.contentImage ||
+                    purchasedData?.collections?.find(
+                      (c) =>
+                        c.title.toLowerCase().trim() ===
+                        row.contentTitle.toLowerCase().trim(),
+                    )?.coverSrc ||
+                    "";
+
                   return (
                     <ContentTitleCell>
                       <RowNumber>{rowIndex + 1}</RowNumber>
                       <ContentThumb>
                         <SafeImage
-                          src={row.contentImage}
+                          src={contentImage}
                           alt=""
                           fill
                           sizes="34px"
