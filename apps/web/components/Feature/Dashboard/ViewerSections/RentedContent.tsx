@@ -100,21 +100,30 @@ export default function RentedContent({
     sources: previouslyRentedSources,
     isLoading: isPreviouslyRentedLoading,
     isFetching: isPreviouslyRentedFetching,
-  } = useViewerRentedData(
-    RENTED_MODES.PREVIOUSLY,
-    mode === RENTED_MODES.PURCHASED,
-  );
+  } = useViewerRentedData(RENTED_MODES.PREVIOUSLY, true);
   const {
     data: purchasedData,
     isLoading: isPurchasedLoading,
     isFetching: isPurchasedFetching,
-  } = useViewerPurchased(mode === RENTED_MODES.PURCHASED);
+  } = useViewerPurchased(true);
 
   const sources = useMemo(() => {
+    const purchasedAndPreviousMerged = mergeRentedContentSources(
+      purchasedData,
+      previouslyRentedSources,
+    );
     if (mode === RENTED_MODES.PURCHASED) {
-      return mergeRentedContentSources(purchasedData, previouslyRentedSources);
+      return purchasedAndPreviousMerged;
     }
-    return rentedSources;
+    const hasRentedData =
+      rentedSources.collections.length > 0 ||
+      rentedSources.videos.length > 0 ||
+      rentedSources.audios.length > 0 ||
+      rentedSources.pdfs.length > 0 ||
+      rentedSources.epubs.length > 0 ||
+      rentedSources.webs.length > 0;
+
+    return hasRentedData ? rentedSources : purchasedAndPreviousMerged;
   }, [mode, purchasedData, previouslyRentedSources, rentedSources]);
 
   const isHistoryLoading =
