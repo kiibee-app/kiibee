@@ -9,6 +9,7 @@ import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getCategoryLabel } from "@/utils/category";
 import {
   MediaTypeBox,
   IconFrame,
@@ -45,6 +46,8 @@ function DiscoverCard({ item }: DiscoverCardProps) {
     event.stopPropagation();
   };
 
+  const categoryLabel = getCategoryLabel(item.categoryKey, t);
+
   return (
     <GenericCard
       coverImage
@@ -53,9 +56,9 @@ function DiscoverCard({ item }: DiscoverCardProps) {
       image={item.image}
       alt={safeT(item.titleKey)}
       badge={
-        safeT(item.categoryKey) ? (
+        categoryLabel ? (
           <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-            {safeT(item.categoryKey)}
+            {categoryLabel}
           </MonoText>
         ) : undefined
       }
