@@ -7,8 +7,12 @@ export const StepsSection = styled.section`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
 
-  ${media.mobileXl} {
+  ${media.tablet} {
     padding: 80px 24px;
+  }
+
+  ${media.mobileXl} {
+    padding: 60px 24px;
   }
 `;
 
@@ -20,6 +24,10 @@ export const Inner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 71px;
+
+  ${media.tablet} {
+    gap: 48px;
+  }
 `;
 
 export const HeaderGroup = styled.div`
@@ -43,22 +51,26 @@ export const Subtitle = styled.p`
 `;
 
 export const Grid = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  align-items: flex-end;
   width: 100%;
 
   ${media.tablet} {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+    align-items: stretch;
+  }
+
+  ${media.mobileMd} {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 `;
 
 export const GridItem = styled.div`
-  flex: 1 1 0;
   min-width: 0;
-  max-width: 392px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -66,10 +78,22 @@ export const GridItem = styled.div`
   backface-visibility: hidden;
 
   ${media.tablet} {
-    flex: none;
-    max-width: 500px;
     align-items: stretch;
     will-change: auto;
+
+    &:nth-child(3) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 100%;
+      max-width: calc(50% - 10px);
+    }
+  }
+
+  ${media.mobileMd} {
+    &:nth-child(3) {
+      grid-column: auto;
+      max-width: 100%;
+    }
   }
 `;
 
@@ -86,6 +110,10 @@ export const ImgWrap = styled.div<{
   transition:
     transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  ${media.tablet} {
+    padding-top: 80%;
+  }
 
   img {
     object-fit: cover;
