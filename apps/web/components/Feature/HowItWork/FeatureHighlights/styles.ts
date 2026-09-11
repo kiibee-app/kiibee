@@ -137,41 +137,34 @@ export const MockImageWrap = styled.div<{
 }>`
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  height: auto;
-  max-height: 480px;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
+  border: none;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: ${({ theme }) => theme.shadows.lg};
   order: ${(p) => (p.$imageRight ? 2 : 1)};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 
   ${media.tablet} {
     order: 1;
-    max-height: 400px;
-  }
-
-  ${media.mobileLg} {
-    max-height: 300px;
   }
 
   & > div {
-    position: absolute;
-    inset: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: flex;
   }
 
   img {
-    object-fit: cover;
-    object-position: top center;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    object-fit: contain !important;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
-
-  ${(p) =>
-    p.$active &&
-    css`
-      outline: 2px solid ${p.theme.colors.secondary.border};
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-    `}
 `;
 
 export const MockText = styled.div<{ $imageRight?: boolean }>`

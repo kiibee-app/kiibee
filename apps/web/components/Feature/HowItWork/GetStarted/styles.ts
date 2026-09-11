@@ -15,14 +15,15 @@ export const Section = styled.section<SectionProps>`
     $bgVariant === BG_WHITE
       ? theme.colors.neutral.WHITE
       : theme.colors.secondary.MEDIUM_GREEN};
-  padding: ${({ $alignWide }) =>
-    $alignWide
-      ? `3.5rem ${FOR_CREATORS_LAYOUT.sectionPaddingX} 1rem`
-      : "3.5rem 0 1rem"};
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
 
   ${media.tablet} {
-    padding: ${({ $alignWide }) =>
-      $alignWide ? "2.5rem 1.25rem 1rem" : "3.5rem 0 1rem"};
+    min-height: 300px;
+    padding: 60px 0;
   }
 `;
 
@@ -31,23 +32,26 @@ export const Inner = styled.div<{ $alignWide?: boolean }>`
   max-width: ${({ $alignWide }) =>
     $alignWide ? FOR_CREATORS_LAYOUT.contentMaxWidth : "1440px"};
   margin: 0 auto;
-  padding: ${({ $alignWide }) => ($alignWide ? "3rem 0" : "3rem 2rem")};
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   box-sizing: border-box;
+
+  ${media.tablet} {
+    padding: 0 1.25rem;
+  }
 `;
 
 export const Heading = styled.h2`
   ${({ theme }) => theme.typography.Heading2};
-  margin: 0 0 1rem 0;
+  margin: 0;
 `;
 
 export const Sub = styled.p`
   ${({ theme }) => theme.typography.H5_Regular};
-  margin: 0 0 1.75rem 0;
-  padding: 1rem 0;
+  margin: 0.75rem 0 1.75rem 0;
   max-width: 1100px;
 `;
 
