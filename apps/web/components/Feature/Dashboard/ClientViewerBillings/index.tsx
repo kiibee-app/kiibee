@@ -246,7 +246,7 @@ export default function ClientViewerBillings({
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
         isBillingHistoryLoading ? (
-          <GenericLoader variant={LOADER_VARIANT.INLINE} />
+          <GenericLoader variant={LOADER_VARIANT.CONTAINER} />
         ) : (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
@@ -367,7 +367,7 @@ export default function ClientViewerBillings({
           </PaymentHeader>
 
           {isPaymentMethodsLoading ? (
-            <GenericLoader variant={LOADER_VARIANT.INLINE} />
+            <GenericLoader variant={LOADER_VARIANT.CONTAINER} />
           ) : paymentMethods.length === 0 ? (
             <EmptyStateBox>
               <EmptyStateIconWrap>
@@ -431,6 +431,7 @@ export default function ClientViewerBillings({
                     <SortDropdown<string>
                       options={getMethodActions()}
                       compact
+                      alignRight
                       dropdownWidth="196px"
                       maxWidth="196px"
                       variant={SORT_DROPDOWN_VARIANT.SURFACE}

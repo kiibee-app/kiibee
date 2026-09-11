@@ -57,6 +57,7 @@ export const LOADER_VARIANT = {
   OVERLAY: "overlay",
   INLINE: "inline",
   FULLPAGE: "fullpage",
+  CONTAINER: "container",
 } as const;
 export const LOADER_SIZE = {
   SM: "sm",

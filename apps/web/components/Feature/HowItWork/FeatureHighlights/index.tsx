@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   Section,
@@ -18,7 +18,6 @@ import {
   Label,
 } from "./styles";
 import featureData from "@/utils/featureHighlights";
-import { useState } from "react";
 import { KEY_ENTER } from "@/utils/Constants";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
@@ -26,11 +25,15 @@ import COLORS from "@repo/ui/colors";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
+import { DA } from "@/utils/common";
 
 export default function FeatureHighlights() {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
   const [active, setActive] = useState(0);
+
+  const isDanish = i18n.language === DA;
+  const currentFeature = featureData[active] || featureData[0];
+  const activeImage = isDanish ? currentFeature.imageDa : currentFeature.image;
 
   const features = featureData.map((f) => ({ title: t(f.titleKey) || "" }));
 
@@ -79,58 +82,34 @@ export default function FeatureHighlights() {
         </FeaturesRow>
 
         <MockRow $imageRight={active % 2 !== 0}>
-          {active % 2 === 0 ? (
-            <>
-              <MockImageWrap $active={true}>
-                <ImageReveal
-                  variant={LANDING_REVEAL_VARIANTS.fadeScale}
-                  duration={LANDING_REVEAL.revealDuration}
-                >
-                  <Image
-                    src={featureData[active]?.image || featureData[0].image}
-                    alt={t(`features.items.${active}.imageAlt`)}
-                    fill
-                    sizes="(max-width: 767px) 100vw, 60vw"
-                    loading="eager"
-                    priority
-                  />
-                </ImageReveal>
-              </MockImageWrap>
+          <MockImageWrap $active={true} $imageRight={active % 2 !== 0}>
+            <ImageReveal
+              key={`${active}-${i18n.language}`}
+              variant={LANDING_REVEAL_VARIANTS.fadeScale}
+              duration={LANDING_REVEAL.revealDuration}
+            >
+              <Image
+                src={activeImage}
+                alt={t(`features.items.${active}.imageAlt`)}
+                width={746}
+                height={422}
+                sizes="(max-width: 767px) 100vw, 65vw"
+                loading="eager"
+                priority={true}
+                fetchPriority="high"
+                quality={100}
+                unoptimized
+              />
+            </ImageReveal>
+          </MockImageWrap>
 
-              <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-                <MockText>
-                  <MonoText $use="Heading3" color={COLORS.neutral.GRAY}>
-                    {t(featureData[active]?.textKey)}
-                  </MonoText>
-                </MockText>
-              </ScrollReveal>
-            </>
-          ) : (
-            <>
-              <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-                <MockText>
-                  <MonoText $use="Heading3" color={COLORS.neutral.GRAY}>
-                    {t(featureData[active]?.textKey)}
-                  </MonoText>
-                </MockText>
-              </ScrollReveal>
-
-              <MockImageWrap $active={true}>
-                <ImageReveal
-                  variant={LANDING_REVEAL_VARIANTS.fadeScale}
-                  duration={LANDING_REVEAL.revealDuration}
-                >
-                  <Image
-                    src={featureData[active]?.image || featureData[0].image}
-                    alt={t(`features.items.${active}.imageAlt`)}
-                    fill
-                    sizes="(max-width: 767px) 100vw, 60vw"
-                    loading="eager"
-                  />
-                </ImageReveal>
-              </MockImageWrap>
-            </>
-          )}
+          <MockText $imageRight={active % 2 !== 0}>
+            <ScrollReveal key={active} delay={LANDING_REVEAL.shortDelay}>
+              <MonoText $use="Heading3" color={COLORS.neutral.GRAY}>
+                {t(featureData[active]?.textKey)}
+              </MonoText>
+            </ScrollReveal>
+          </MockText>
         </MockRow>
       </Inner>
     </Section>

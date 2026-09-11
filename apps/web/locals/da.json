@@ -1494,6 +1494,7 @@
     }
   },
   "users": {
+    "title": "Brugere",
     "search": "Søg efter navn",
     "tabs": {
       "registrations": "Registreringer",
@@ -1820,13 +1821,31 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
-      "upload": "Upload",
+      "upload": "Uploade",
       "createCoupon": "Opret kupon",
-      "search": "Sog indhold",
+      "search": "Søg indhold",
       "cancel": "Annuller",
       "save": "Gem",
       "deleteContent": "Slet indhold",
       "addContent": "Tilføj indhold"
+    },
+    "tableHeaders": {
+      "collectionName": "Samlingsnavn",
+      "numberOfContents": "Antal indhold",
+      "created": "Oprettet",
+      "contentName": "Indholdsnavn",
+      "visibility": "Synlighed",
+      "title": "Titel",
+      "codes": "Koder",
+      "status": "Status",
+      "createdDate": "Oprettelsesdato",
+      "actions": "Handlinger"
+    },
+    "rowActions": {
+      "moveUp": "Flyt op",
+      "moveDown": "Flyt ned",
+      "settings": "Indstillinger",
+      "moveToAnotherCollection": "Flyt til en anden samling"
     },
     "couponDetails": {
       "title": "Kupondetaljer",

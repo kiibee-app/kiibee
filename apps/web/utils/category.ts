@@ -23,5 +23,23 @@ export function getCategoryLabel(
       return translation;
     }
   }
+
+  const normalized = category.toLowerCase().trim();
+  if (
+    normalized.includes("education") ||
+    normalized.includes("learning") ||
+    normalized.includes("uddannelse")
+  ) {
+    const res = t(
+      "viewerSignup.preference.content.options.educationAndLearning",
+    );
+    if (
+      res &&
+      res !== "viewerSignup.preference.content.options.educationAndLearning"
+    ) {
+      return res;
+    }
+  }
+
   return category;
 }

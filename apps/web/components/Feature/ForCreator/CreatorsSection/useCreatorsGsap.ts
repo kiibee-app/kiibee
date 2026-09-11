@@ -1,7 +1,12 @@
 import { useEffect, RefObject, MutableRefObject } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HERO_MOTION } from "@/utils/creatorAnimations";
 import { LANDING_MOTION } from "@/utils/landingUtils";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export const getLiveCards = (cards: Array<HTMLDivElement | null>) =>
   cards.filter((card): card is HTMLDivElement => Boolean(card));
@@ -58,6 +63,11 @@ export function useCreatorsGsap({
 
       gsap
         .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
           defaults: {
             ease: LANDING_MOTION.easePower3Out,
             force3D: true,

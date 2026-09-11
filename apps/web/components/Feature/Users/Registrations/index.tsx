@@ -87,7 +87,11 @@ export default function RegistrationsTabContent({
 
   if (isLoading) {
     return (
-      <GenericLoader variant={LOADER_VARIANT.INLINE} isOpen label={undefined} />
+      <GenericLoader
+        variant={LOADER_VARIANT.CONTAINER}
+        isOpen
+        label={undefined}
+      />
     );
   }
 
