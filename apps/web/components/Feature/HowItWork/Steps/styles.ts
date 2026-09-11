@@ -7,6 +7,7 @@ export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
+  box-sizing: border-box;
 
   [data-creator-hero-line],
   [data-creator-hero-animate],
@@ -59,14 +60,16 @@ export const Subtitle = styled.p`
 `;
 
 export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
   align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
   width: 100%;
-  min-height: 410px;
+  min-height: 580px;
+  box-sizing: border-box;
 
   ${media.tablet} {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 20px;
     align-items: stretch;
@@ -80,7 +83,8 @@ export const Grid = styled.div`
 `;
 
 export const GridItem = styled.div`
-  min-width: 0;
+  flex: 1 1 0px;
+  max-width: 392px;
   width: 100%;
   display: flex;
   align-items: flex-end;
@@ -114,7 +118,7 @@ export const ImgWrap = styled.div<{
   position: relative;
   width: 100%;
   height: ${({ $heightState }) =>
-    $heightState === 3 ? "300px" : $heightState === 2 ? "270px" : "240px"};
+    $heightState === 3 ? "471px" : $heightState === 2 ? "393px" : "314px"};
   border-radius: 14px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
