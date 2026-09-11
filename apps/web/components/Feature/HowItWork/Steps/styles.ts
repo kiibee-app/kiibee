@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { CARD_IMAGE_RATIOS } from "@/utils/landingUtils";
+import { type CardHeightState } from "@/utils/creatorAnimations";
 
 export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
+
+  [data-creator-hero-line],
+  [data-creator-hero-animate],
+  [data-creator-card] {
+    opacity: 0;
+    visibility: hidden;
+  }
 
   ${media.tablet} {
     padding: 80px 24px;
@@ -56,11 +64,13 @@ export const Grid = styled.div`
   gap: 20px;
   align-items: flex-end;
   width: 100%;
+  min-height: 410px;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px 20px;
     align-items: stretch;
+    min-height: auto;
   }
 
   ${media.mobileMd} {
@@ -76,6 +86,7 @@ export const GridItem = styled.div`
   align-items: flex-end;
   will-change: transform;
   backface-visibility: hidden;
+  transform: translateZ(0);
 
   ${media.tablet} {
     align-items: stretch;
@@ -98,44 +109,50 @@ export const GridItem = styled.div`
 `;
 
 export const ImgWrap = styled.div<{
-  $ratio: (typeof CARD_IMAGE_RATIOS)[number];
+  $heightState: CardHeightState;
 }>`
   position: relative;
   width: 100%;
+  height: ${({ $heightState }) =>
+    $heightState === 3 ? "300px" : $heightState === 2 ? "270px" : "240px"};
   border-radius: 14px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  padding-top: ${({ $ratio }) => $ratio}%;
+  will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   transition:
-    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
 
   ${media.tablet} {
-    padding-top: 80%;
+    height: 220px;
   }
 
   img {
     object-fit: cover;
-    transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 `;
 
-export const Card = styled.div<{ $index: number }>`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  cursor: pointer;
+  touch-action: manipulation;
+  transform: translateZ(0);
 
   @media (hover: hover) {
     &:hover {
       ${ImgWrap} {
         box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-        transform: translateY(-8px);
       }
 
       img {
-        transform: scale(1.04) !important;
+        transform: scale(1.05) !important;
       }
     }
   }
