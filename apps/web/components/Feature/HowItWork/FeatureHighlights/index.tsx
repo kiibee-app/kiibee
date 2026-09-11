@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   Section,
@@ -18,7 +18,6 @@ import {
   Label,
 } from "./styles";
 import featureData from "@/utils/featureHighlights";
-import { useState } from "react";
 import { KEY_ENTER } from "@/utils/Constants";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
@@ -26,11 +25,15 @@ import COLORS from "@repo/ui/colors";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
+import { DA } from "@/utils/common";
 
 export default function FeatureHighlights() {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
   const [active, setActive] = useState(0);
+
+  const isDanish = i18n.language === DA;
+  const currentFeature = featureData[active] || featureData[0];
+  const activeImage = isDanish ? currentFeature.imageDa : currentFeature.image;
 
   const features = featureData.map((f) => ({ title: t(f.titleKey) || "" }));
 
@@ -81,17 +84,21 @@ export default function FeatureHighlights() {
         <MockRow $imageRight={active % 2 !== 0}>
           <MockImageWrap $active={true} $imageRight={active % 2 !== 0}>
             <ImageReveal
-              key={active}
+              key={`${active}-${i18n.language}`}
               variant={LANDING_REVEAL_VARIANTS.fadeScale}
               duration={LANDING_REVEAL.revealDuration}
             >
               <Image
-                src={featureData[active]?.image || featureData[0].image}
+                src={activeImage}
                 alt={t(`features.items.${active}.imageAlt`)}
-                fill
+                width={746}
+                height={422}
                 sizes="(max-width: 767px) 100vw, 65vw"
                 loading="eager"
-                priority
+                priority={true}
+                fetchPriority="high"
+                quality={100}
+                unoptimized
               />
             </ImageReveal>
           </MockImageWrap>
