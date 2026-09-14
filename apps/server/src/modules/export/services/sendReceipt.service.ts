@@ -71,10 +71,10 @@ export const sendReceiptService = async (orderId: string) => {
           orderId: orderInfo.orderId,
           mediaTitle: orderInfo.content.mediaTitle,
           creatorName: orderInfo.content.creatorName,
-          orderTypeLabel: isRental ? ORDER_TYPES.RENTAL : ORDER_TYPES.PURCHASE,
+          orderTypeLabel: isRental ? 'leje' : 'køb',
           headerTitle: isRental
-            ? 'Your rental is confirmed'
-            : 'Your purchase is confirmed',
+            ? 'Din leje er bekræftet'
+            : 'Dit køb er bekræftet',
           createdAt: formatDate(orderInfo.createdAt),
           price: orderInfo.payment.amount ?? orderInfo.price,
           currency: orderInfo.currency,

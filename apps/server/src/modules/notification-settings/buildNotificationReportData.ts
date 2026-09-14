@@ -92,7 +92,7 @@ export const getNotificationMailSubject = (
   periodLabel: string,
 ) => {
   const label = getReportTypeLabel(type);
-  return `${NOTIFICATION_MAIL_SUBJECT_PREFIX} ${label} Report — ${periodLabel}`;
+  return `${NOTIFICATION_MAIL_SUBJECT_PREFIX} ${label}-rapport — ${periodLabel}`;
 };
 
 export type NotificationSettingsRow = typeof notificationSettings.$inferSelect;
