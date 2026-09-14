@@ -10,6 +10,7 @@ import {
   Sub,
   FeaturesRow,
   FeatureItem,
+  FeatureTab,
   MockRow,
   MockImageWrap,
   MockText,
@@ -65,17 +66,19 @@ export default function FeatureHighlights() {
                 onKeyDown={(e) => (e.key === KEY_ENTER ? setActive(i) : null)}
                 $active={active === i}
               >
-                <Index>
-                  <MonoText $use="H5_Medium" color={COLORS.neutral.GRAY}>
-                    {i + 1}.
-                  </MonoText>
-                </Index>
-                <TopBar />
-                <Label>
-                  <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
-                    {f.title}
-                  </MonoText>
-                </Label>
+                <FeatureTab>
+                  <TopBar />
+                  <Index>
+                    <MonoText $use="H5_Medium" color={COLORS.neutral.GRAY}>
+                      {i + 1}.
+                    </MonoText>
+                  </Index>
+                  <Label>
+                    <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
+                      {f.title}
+                    </MonoText>
+                  </Label>
+                </FeatureTab>
               </FeatureItem>
             </ScrollReveal>
           ))}
