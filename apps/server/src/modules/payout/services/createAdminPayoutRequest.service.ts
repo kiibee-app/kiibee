@@ -11,9 +11,10 @@ import {
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { STATUS } from 'src/utils/constant';
+import { ORDER_STATUS, STATUS } from 'src/utils/constant';
 import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
+import { approvePayoutRequestService } from './approvePayoutRequest.service';
 
 export const createAdminPayoutRequestService = async (
   creatorId: string,
@@ -127,76 +128,13 @@ export const createAdminPayoutRequestService = async (
       payableAmount,
     };
 
-    if (!processImmediately) {
-      return success(
-        { ...baseResponseData, status: STATUS.PENDING },
-        'Payout request created successfully',
-        HttpStatus.CREATED,
-      );
-    }
-
-    const payload = {
-      amount: Math.round(payableAmount * 100),
-      currency: wallet.currency,
-      pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID!,
-      paymentMethodId,
-      reference: payoutId,
-      notificationUrl: process.env.EPAY_PAYOUT_NOTIFICATION_URL!,
-      attributes: {
-        creatorId,
-        payoutId,
-      },
-      customer: {
-        firstName: creator.firstName,
-        lastName: creator.lastName,
-        ip: '127.0.0.1',
-      },
-    };
-
-    logger.info('Admin creating payout', payload);
-
-    let response: Response;
-
-    try {
-      response = await fetch(
-        `${process.env.EPAY_BASE_URL}/public/api/v1/payout`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${process.env.EPAY_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        },
-      );
-    } catch (err) {
-      logger.error('ePay request failed to send', err);
-      return fail('Failed to reach payment provider', HttpStatus.BAD_GATEWAY);
-    }
-
-    let data: any = {};
-
-    try {
-      data = await response.json();
-    } catch (err) {
-      logger.error('Unable to parse ePay response', err);
-    }
-
-    if (!response.ok) {
-      logger.error('ePay payout failed', {
-        status: response.status,
-        data,
-      });
-      return fail(data?.message ?? 'Failed to create payout', response.status);
-    }
-
     await db.transaction(async (trx) => {
       await trx.insert(creatorPayouts).values({
         id: payoutId,
         creatorId,
         rawAmount: requestedAmount.toString(),
         amount: payableAmount.toString(),
-        currency: 'DKK',
+        currency: wallet.currency ?? 'DKK',
         status: STATUS.PENDING,
       });
 
@@ -209,15 +147,38 @@ export const createAdminPayoutRequestService = async (
         processingFee: processingFee.toString(),
         platformFee: platformFee.toString(),
         payableAmount: payableAmount.toString(),
-        currency: 'DKK',
+        currency: wallet.currency ?? 'DKK',
         status: STATUS.PENDING,
       });
     });
-    logger.info(`Admin payout created successfully: ${data.id}`);
+
+    if (!processImmediately) {
+      logger.info(`Admin payout request created: ${payoutRequestId}`);
+      return success(
+        {
+          ...baseResponseData,
+          requestCreated: true,
+          processed: false,
+          status: STATUS.PENDING,
+        },
+        'Payout request created successfully',
+        HttpStatus.CREATED,
+      );
+    }
+
+    const approval = await approvePayoutRequestService(payoutRequestId);
+
+    if (!approval.success) {
+      return approval;
+    }
+
+    logger.info(`Admin payout completed: ${payoutRequestId}`);
     return success(
       {
         ...baseResponseData,
-        epay: data,
+        requestCreated: true,
+        processed: true,
+        status: ORDER_STATUS.COMPLETED,
       },
       'Payout created successfully',
       HttpStatus.CREATED,

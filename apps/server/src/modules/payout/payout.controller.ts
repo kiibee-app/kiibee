@@ -99,6 +99,12 @@ export class PayoutController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Put('requests/:id/approve')
+  async approvePayoutRequest(@Param('id') id: string) {
+    return this.payoutService.approvePayoutRequestService(id);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Put('requests/:id/reject')
   async rejectPayoutRequest(@Param('id') id: string) {
     return this.payoutService.rejectPayoutRequestService(id);
