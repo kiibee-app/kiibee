@@ -1766,8 +1766,8 @@
       }
     },
     "payout": {
-      "title": "Payout",
-      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
+      "title": "Udbetaling",
+      "description": "Når du klikker på knappen, oprettes der en afregning, som du kan udbetale, klik på udbetal for at se din kreditnota. Overførsel af din saldo kan tage op til 5 hverdage.",
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
