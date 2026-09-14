@@ -21,8 +21,8 @@ export const buildSalesRowsHtml = (sales: SalesRow[]) => {
 
   return `<tr>
                   <td colspan="4" style="padding: 28px 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                    <p style="margin: 0 0 6px; font-size: 15px; font-weight: 600; color: #444444;">No sales yet</p>
-                    <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #888888;">No completed sales were recorded for this period.</p>
+                    <p style="margin: 0 0 6px; font-size: 15px; font-weight: 600; color: #444444;">Ingen salg endnu</p>
+                    <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #888888;">Ingen gennemførte salg blev registreret i denne periode.</p>
                   </td>
                 </tr>`;
 };

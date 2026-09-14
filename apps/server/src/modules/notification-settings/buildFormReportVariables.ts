@@ -57,6 +57,6 @@ export const buildFormReportVariables = async (
     registrationsMessage:
       registrations.length > 0
         ? ''
-        : 'No email signups were recorded for this period.',
+        : 'Ingen e-mailtilmeldinger blev registreret i denne periode.',
   };
 };

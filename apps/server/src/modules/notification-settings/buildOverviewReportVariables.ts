@@ -135,6 +135,6 @@ export const buildOverviewReportVariables = async (
     topContentMessage:
       topContent.length > 0
         ? ''
-        : 'No content activity recorded for this period yet.',
+        : 'Ingen indholdsaktivitet blev registreret i denne periode endnu.',
   };
 };

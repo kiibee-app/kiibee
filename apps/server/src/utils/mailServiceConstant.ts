@@ -16,27 +16,28 @@ export const templateName = {
 };
 
 export const mailSubject = {
-  APPROVED_CREATOR: 'Your Kiibee Creator Request Has Been Approved 🎉',
-  APPROVED_CREATOR_DELETION: 'Your Kiibee Account Deletion Was Approved',
-  REJECTED_CREATOR: 'Update on Your Kiibee Creator Application',
-  REJECTED_CREATOR_DELETION: 'Update on Your Kiibee Account Deletion Request',
-  REJECTED_CONTENT: 'Your Kiibee Content Was Removed',
-  RESET_PASSWORD: 'Reset Your Kiibee Password',
-  APPROVED_PAYOUT: 'Your Payout Has Been Approved',
-  REJECTED_PAYOUT: 'Your Payout Has Been Rejected',
-  CONTENT_ACCESS_APPROVAL: 'A viewer requested access to your content',
-  CONTENT_ACCESS_GRANTED: 'Your content access request was approved',
-  RENTAL_RECEIPT: 'Your Kiibee Rental Receipt',
-  PURCHASE_RECEIPT: 'Your Kiibee Purchase Receipt',
+  APPROVED_CREATOR: 'Din Kiibee-creatoransøgning er godkendt 🎉',
+  APPROVED_CREATOR_DELETION: 'Din Kiibee-konto er slettet',
+  REJECTED_CREATOR: 'Opdatering om din Kiibee-creatoransøgning',
+  REJECTED_CREATOR_DELETION:
+    'Opdatering om din anmodning om at slette din Kiibee-konto',
+  REJECTED_CONTENT: 'Dit Kiibee-indhold er blevet fjernet',
+  RESET_PASSWORD: 'Nulstil din Kiibee-adgangskode',
+  APPROVED_PAYOUT: 'Din udbetaling er godkendt',
+  REJECTED_PAYOUT: 'Din udbetaling er blevet afvist',
+  CONTENT_ACCESS_APPROVAL: 'En seer har anmodet om adgang til dit indhold',
+  CONTENT_ACCESS_GRANTED: 'Din anmodning om indholdsadgang er godkendt',
+  RENTAL_RECEIPT: 'Din Kiibee-lejekvittering',
+  PURCHASE_RECEIPT: 'Din Kiibee-købskvittering',
   SUBSCRIPTION_PAYMENT_FAILED:
-    'Your Kiibee Subscription Payment Could Not Be Processed',
+    'Din Kiibee-abonnementbetaling kunne ikke gennemføres',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
-    'Creator Subscription Payment Failed – Kiibee',
+    'Creator-abonnementbetaling mislykkedes – Kiibee',
 };
 
 export const mailNote = {
   RENTAL_RECEIPT:
-    'You can access your rented content from your Kiibee library for the duration of your rental period.',
+    'Du kan tilgå dit lejede indhold fra dit Kiibee-bibliotek i hele lejeperioden.',
   PURCHASE_RECEIPT:
-    'You now have permanent access to this content from your Kiibee library.',
+    'Du har nu permanent adgang til dette indhold fra dit Kiibee-bibliotek.',
 };

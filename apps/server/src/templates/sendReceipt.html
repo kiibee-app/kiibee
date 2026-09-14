@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kiibee — Receipt</title>
+    <title>Kiibee — Kvittering</title>
     <!--[if mso]>
       <noscript>
         <xml>
@@ -25,7 +25,7 @@
     "
   >
     <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all">
-      Your receipt for {{mediaTitle}} is ready.
+      Din kvittering for {{mediaTitle}} er klar.
     </div>
 
     <table
@@ -91,7 +91,7 @@
                           color: rgba(255, 255, 255, 0.92);
                         "
                       >
-                        Here's your receipt for this order.
+                        Her er din kvittering for denne ordre.
                       </p>
                     </td>
                   </tr>
@@ -116,23 +116,20 @@
                         color: #1a1a1a;
                       "
                     >
-                      <p style="margin: 0 0 16px">Hi {{userName}},</p>
+                      <p style="margin: 0 0 16px">Hej {{userName}},</p>
 
                       <p style="margin: 0 0 16px">
-                        Thanks for your {{orderTypeLabel}} of
-                        <strong>{{mediaTitle}}</strong> by {{creatorName}}. Your
-                        payment has been <strong>completed</strong>.
+                        Tak for din {{orderTypeLabel}} af <strong>{{mediaTitle}}</strong> af {{creatorName}}. Din betaling er <strong>gennemført</strong>.
                       </p>
 
                       <p style="margin: 0; color: #444444">
-                        You can find the full order and payment details below
-                        for your records.
+                        Du finder de fulde ordre- og betalingsoplysninger nedenfor til dine egne optegnelser.
                       </p>
                     </td>
                   </tr>
                 </table>
 
-                <!-- Order Details -->
+                <!-- Ordreoplysninger -->
                 <table
                   role="presentation"
                   width="100%"
@@ -166,7 +163,7 @@
                               border-bottom: 1px solid #e6e8eb;
                             "
                           >
-                            Order Details
+                            Ordreoplysninger
                           </td>
                         </tr>
 
@@ -178,7 +175,7 @@
                               font-size: 14px;
                             "
                           >
-                            Order ID
+                            Ordre-ID
                           </td>
                           <td
                             align="right"
@@ -201,7 +198,7 @@
                               font-size: 14px;
                             "
                           >
-                            Content
+                            Indhold
                           </td>
                           <td
                             align="right"
@@ -245,7 +242,7 @@
                               font-size: 14px;
                             "
                           >
-                            Order Type
+                            Ordretype
                           </td>
                           <td
                             align="right"
@@ -268,7 +265,7 @@
                               font-size: 14px;
                             "
                           >
-                            Date
+                            Dato
                           </td>
                           <td
                             align="right"
@@ -291,7 +288,7 @@
                               font-weight: 700;
                             "
                           >
-                            Amount Paid
+                            Betalt beløb
                           </td>
                           <td
                             align="right"
@@ -334,7 +331,7 @@
                   </tr>
                 </table>
 
-                <!-- Payment Details -->
+                <!-- Betalingsoplysninger -->
                 <table
                   role="presentation"
                   width="100%"
@@ -368,7 +365,7 @@
                               border-bottom: 1px solid #e6e8eb;
                             "
                           >
-                            Payment Method
+                            Betalingsmetode
                           </td>
                         </tr>
 
@@ -380,7 +377,7 @@
                               font-size: 14px;
                             "
                           >
-                            Method
+                            Metode
                           </td>
                           <td
                             align="right"
@@ -402,7 +399,7 @@
                               font-size: 14px;
                             "
                           >
-                            Card
+                            Kort
                           </td>
                           <td
                             align="right"
@@ -424,7 +421,7 @@
                               font-size: 14px;
                             "
                           >
-                            Paid At
+                            Betalt
                           </td>
                           <td
                             align="right"
@@ -464,10 +461,10 @@
                       <p style="margin: 0 0 12px">{{accessNote}}</p>
 
                       <p style="margin: 0">
-                        Thank you for being part of Kiibee.<br /><br />
+                        Tak fordi du er en del af Kiibee.<br /><br />
 
-                        Best regards,<br />
-                        <strong style="color: #1a1a1a">The Kiibee Team</strong>
+                        Venlig hilsen,<br />
+                        <strong style="color: #1a1a1a">Kiibee-teamet</strong>
                       </p>
                     </td>
                   </tr>
@@ -495,8 +492,7 @@
                         color: #888888;
                       "
                     >
-                      You received this email because you completed an order on
-                      Kiibee. This is your receipt — no action is needed.
+                      Du har modtaget denne e-mail, fordi du har gennemført en ordre på Kiibee. Dette er din kvittering — du behøver ikke at foretage dig noget.
                     </td>
                   </tr>
                 </table>
