@@ -13,7 +13,13 @@ import {
 } from 'src/utils/mailServiceConstant';
 import { formatDate } from 'src/utils/formatDate';
 import { success } from 'src/utils/sendResponse';
-import { ORDER_TYPES } from 'src/utils/constant';
+import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+
+const RECEIPT_STATUS_LABEL: Record<string, string> = {
+  [ORDER_STATUS.COMPLETED]: 'Gennemført',
+  [ORDER_STATUS.PENDING]: 'Afventer',
+  [ORDER_STATUS.FAILED]: 'Mislykkedes',
+};
 
 export const sendReceiptService = async (orderId: string) => {
   try {
@@ -78,7 +84,7 @@ export const sendReceiptService = async (orderId: string) => {
           createdAt: formatDate(orderInfo.createdAt),
           price: orderInfo.payment.amount ?? orderInfo.price,
           currency: orderInfo.currency,
-          status: orderInfo.status,
+          status: RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status,
           paymentMethod: orderInfo.payment.paymentMethod,
           cardType: orderInfo.payment.cardType,
           cardNoLast4: orderInfo.payment.cardNo.slice(-4),

@@ -40,11 +40,11 @@
       },
       "categoryTitle": "Kategori",
       "category": {
-        "comedy": "Comedy",
+        "comedy": "Komedie",
         "education": "Uddannelse & Kurser",
-        "business": "Business & Marketing",
+        "business": "Forretning & Marketing",
         "arts": "Kunst & Kultur",
-        "tech": "Tech"
+        "tech": "Teknologi"
       },
       "creatorTitle": "Udgiver",
       "creator": {
@@ -57,7 +57,7 @@
   },
   "createProfileHome": {
     "brandName": "Nana Jacobson",
-    "uploads": "{{count}} uploads",
+    "uploads": "{{count}} udgivelser",
     "title": "Nana Jacobson",
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
     "more": "...mere",
@@ -77,7 +77,7 @@
       "links": "Links"
     },
     "latestUpload": {
-      "title": "Seneste upload",
+      "title": "Seneste udgivelse",
       "badge": "Design",
       "video": "Video",
       "playTrailer": "Afspil trailer",
@@ -85,12 +85,12 @@
       "description": "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrifter på fasan og viser med flotte billeder og gode beskrivelser, hvordan du får det bedste resultat til både hverdag og festmiddag.",
       "readMore": "Leje 50 kr",
       "access": "Adgang i 3 måneder",
-      "imageAlt": "Seneste upload-billede",
+      "imageAlt": "Seneste udgiver billede",
       "loginModal": {
         "title": "Login påkrævet",
         "cancelLabel": "Log ind",
         "confirmLabel": "Opret konto",
-        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik.",
+        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik.",
         "viewMessage": "For at se dette indhold, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
       },
       "purchaseConfirmationModal": {
@@ -199,7 +199,7 @@
       },
       "ready": {
         "title": "Din profil er klar!",
-        "subtitle": "Nyd at udforske skabere og indhold, der er skræddersyet til dig.",
+        "subtitle": "Nyd at udforske udgivere og indhold, der er skræddersyet til dig.",
         "submit": "Gå til profil"
       }
     },
@@ -230,7 +230,7 @@
       },
       {
         "title": "Bliv inspireret",
-        "description": "Opdag historier og idéer fra Kiibee-fællesskabet."
+        "description": "Opdag historier og idéer fra Kiibee fællesskabet."
       }
     ],
     "imageAlt": "{{title}} dias",
@@ -297,7 +297,7 @@
     "stepsSubtitle": "Tre trin for at få adgang til kurser, tutorials og ressourcer på tværs af 50+ kategorier",
     "steps": {
       "browseTitle": "Gennemse & opdag",
-      "browseText": "Udforsk 50+ kategorier og 500+ skabere",
+      "browseText": "Udforsk 50+ kategorier og 100+ udgivere",
       "chooseTitle": "Vælg & køb",
       "chooseText": "Køb eller lej enkelt indhold eller samlinger",
       "accessTitle": "Få øjeblikkelig adgang",
@@ -322,7 +322,7 @@
     "steps": {
       "browse": {
         "label": "Gennemse",
-        "description": "Opdag skabere og samlinger, der matcher dine interesser."
+        "description": "Opdag udgivere og samlinger, der matcher dine interesser."
       },
       "choose": {
         "label": "Vælg",
@@ -343,7 +343,7 @@
     "trendingContent": "Populært indhold",
     "heading": {
       "title": "Fra indhold til omsætning – Kiibee hjælper dig hele vejen.",
-      "lineOne": "Upload.",
+      "lineOne": "Udgiv.",
       "lineTwo": "Markedsfør.",
       "lineThree": "Tjen."
     },
@@ -355,8 +355,8 @@
         "subtitle": "Hurtig og sikker betaling."
       },
       "streaming": {
-        "alt": "Hånd der holder en telefon med streamingindhold",
-        "title": "Streaming",
+        "alt": "Hånd der holder en telefon med indhold",
+        "title": "Udgivelser",
         "subtitle": "Lever indhold med det samme."
       },
       "distribution": {
@@ -408,7 +408,7 @@
       },
       "stats": {
         "products": {
-          "value": "50.000+",
+          "value": "10.000+",
           "label": "produkter solgt af vores kreatør og udgivere"
         },
         "downloads": {
@@ -430,7 +430,7 @@
       "cta": "Læs mere om Kiibee"
     },
     "contentPerform": {
-      "imageAlt": "Forhåndsvisning af creator-dashboard",
+      "imageAlt": "Forhåndsvisning af udgiver-dashboard",
       "title": "Se, hvordan dit indhold klarer sig",
       "intro": "Med Kiibee får du klare indsigter i, hvordan dit indhold klarer sig.",
       "listIntro": "I dit dashboard kan du:",
@@ -533,7 +533,7 @@
         "categories": {
           "all": "Alle kategorier",
           "business": "Forretning",
-          "comedyShows": "Comedy show",
+          "comedyShows": "Komedie show",
           "musicAndAudio": "Musik og lyd",
           "educational": "Uddannelse",
           "fitnessAndHealth": "Fitness og sundhed",
@@ -714,18 +714,18 @@
     "backgroundAlt": "Baggrund til udtalelser",
     "prevAriaLabel": "Forrige udtalelse",
     "nextAriaLabel": "Næste udtalelse",
-    "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibee har været en game changer for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
+    "quote": "Kiibee hjælper kreative skabere med nemt at udgive, dele og sælge deres digitale indhold. Uanset om det er video, design, undervisning, musik eller andre kreative projekter, gør platformen det enkelt at nå ud til et publikum og skabe værdi af sit arbejde. Fokus er på at give skabere de værktøjer, de har brug for, så de kan koncentrere sig om kreativiteten frem for teknikken.",
     "author": "Kamma, freelance grafisk designer",
-    "quote2": "Kiibee har gjort det utroligt nemt at pakke mine online tutorials og sælge dem direkte til mit publikum. Jeg behøver ikke bekymre mig om at administrere abonnementsplatforme eller betalingssystemer; det virker bare. Jeg gik fra nul indtjening til en stabil sideindkomst på få uger!",
+    "quote2": "Kiibee gør det enkelt for undervisere, coaches og indholdsskabere at samle deres online kurser, tutorials og digitale produkter ét sted. Platformen håndterer betalinger, tids og adgangsstyring, så skaberen kan fokusere på indholdet og relationen til sit publikum. Det gør det lettere at omsætte viden og kreativitet til en stabil digital indtægt.",
     "author2": "Sarah, online indholdsskaber",
-    "quote3": "Som underviser ønskede jeg en simpel måde at distribuere mine kodningskurser på uden at tvinge mine studerende ind i et månedligt abonnement. Kiibees udlejningsmodel er præcis, hvad vi havde brug for. Afspilningen er glat, og opsætningen var problemfri.",
+    "quote3": "Kiibee giver forlæggere, bogudgivere og undervisere en enkel måde at distribuere digitale bøger, kurser og andet indhold uden at være afhængig af komplekse abonnementsplatforme. Med fleksible modeller for salg, leje og adgangsstyring bliver det nemt at nå læsere og studerende, mens platformen sørger for en stabil og brugervenlig oplevelse fra opsætning til afspilning og levering.",
     "author3": "Marcus, teknologi-underviser"
   },
   "securePayment": {
     "title": "Sikker og øjeblikkelig betaling med MobilePay",
-    "description": "Ingen komplicerede checkouts eller udenlandske betalingsløsninger. Betal sikkert med MobilePay på få sekunder, eller brug Dankort og kreditkort. Det har aldrig været nemmere at støtte skabere.",
+    "description": "Ingen komplicerede checkouts eller udenlandske betalingsløsninger. Betal sikkert med MobilePay på få sekunder, eller brug Dankort og kreditkort. Det har aldrig været nemmere at støtte udgivere.",
     "heroImageAlt": "Mobil betalingsvisning",
-    "creatorImageAlt": "Skaber, der arbejder på bærbar"
+    "creatorImageAlt": "udgiver, der arbejder på bærbar"
   },
   "about": {
     "hero": {
@@ -932,7 +932,7 @@
     "success": {
       "title": "Betaling gennemført",
       "checking": "Tjekker din betalingsstatus...",
-      "unlocking": "Låser dit abonnement op nu. Du viderestilles om et øjeblik.",
+      "unlocking": "Aktivere dit abonnement nu. Du viderestilles om et øjeblik.",
       "hint": "Dette tager normalt et par sekunder. Behold denne side åben.",
       "goToDashboard": "Gå til dashboard",
       "verifyErrorTitle": "Kan ikke bekræfte abonnement",
@@ -1006,7 +1006,7 @@
     "helpOptions": "Hjælpe muligheder",
     "viewerProfile": "Seer profil",
     "creatorProfile": "Udgiver profil",
-    "createProfileFooterAria": "Opret profilefooter",
+    "createProfileFooterAria": "Opret profil footer",
     "creatorActivityChart": "Skaberaktivitet stablet søjlediagram",
     "previous": "Forrige",
     "next": "Næste",
@@ -1198,8 +1198,8 @@
     "notFound": "Samling ikke fundet",
     "noContent": "Ingen indhold i denne samling",
     "inCollection": "I denne samling",
-    "uploads": "uploads",
-    "noResults": "Ingen uploads matcher din søgning."
+    "uploads": "Udgivelser",
+    "noResults": "Ingen udgivelser matcher din søgning."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & side",
@@ -1252,7 +1252,7 @@
         },
         "use": {
           "title": "Anvendelse af personlige oplysninger",
-          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\n\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\n\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\n\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\n\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\n\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\n\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
+          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov. Relevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os. Oprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser. Administration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende. Videreudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger. Kampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie. Brug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
         },
         "share": {
           "title": "Beskyttelse af din personoplysninger",
@@ -1272,7 +1272,7 @@
         },
         "publisherGdpr": {
           "title": "Persondata for udgivere (GDPR)",
-          "body": "Behandling af personoplysninger sker i henhold til gældende databeskyttelseslovgivning, herunder EU's generelle databeskyttelsesforordning (GDPR).\nKIIBEE indsamler og behandler personoplysninger med det formål at:\n- Drifte og vedligeholde Platformen\n- Behandle betalinger og udbetalinger til udgivere\n- Overholde juridiske forpligtelser\n- Kommunikere med udgivere vedrørende deres konto og indhold\nUdgivere har ret til at:\n- Få adgang til deres personoplysninger\n- Anmode om rettelse af unøjagtige oplysninger\n- Anmode om sletning af deres data\n- Gøre indsigelse mod behandling af deres oplysninger\nHvis du har spørgsmål til behandlingen af dine personoplysninger, bedes du kontakte os på info@kiibee.dk."
+          "body": "Behandling af personoplysninger sker i henhold til gældende databeskyttelseslovgivning, herunder EU's generelle databeskyttelsesforordning (GDPR). KIIBEE indsamler og behandler personoplysninger med det formål at: Drifte og vedligeholde Platformen, behandle betalinger og udbetalinger til udgivere, overholde juridiske forpligtelser, kommunikere med udgivere vedrørende deres konto og indhold. Udgivere har ret til at: Få adgang til deres personoplysninger, anmode om rettelse af unøjagtige oplysninger, Anmode om sletning af deres data, gøre indsigelse mod behandling af deres oplysninger. Hvis du har spørgsmål til behandlingen af dine personoplysninger, bedes du kontakte os på info@kiibee.dk."
         },
         "contact": {
           "title": "Kontakt os",
@@ -1411,7 +1411,7 @@
       }
     },
     "creatorTerms": {
-      "pageTitle": "KIIBEE – Betingelser for skabere",
+      "pageTitle": "KIIBEE – Betingelser for udgivere",
       "updatedAt": "Sidst opdateret: 26. juni 2026",
       "sections": {
         "general": {
@@ -1420,11 +1420,11 @@
         },
         "account": {
           "title": "Konto og brugeransvar",
-          "body": "For at anvende Platformen skal du oprette en konto (\"Konto\").\nDu er ansvarlig for:\n- at holde dine loginoplysninger fortrolige\n- alle aktiviteter, der sker via din Konto\n- at afgive korrekte og opdaterede oplysninger\nKIIBEE er ikke ansvarlig for tab som følge af uautoriseret brug af din Konto. Du skal straks kontakte KIIBEE ved mistanke om misbrug."
+          "body": "For at anvende Platformen skal du oprette en konto (\"Konto\").\nDu er ansvarlig for:\n- at holde dine loginoplysninger fortrolige\n- alle aktiviteter, der sker via din Konto\n- at afgive korrekte og opdaterede oplysninger KIIBEE er ikke ansvarlig for tab som følge af uautoriseret brug af din Konto. Du skal straks kontakte KIIBEE ved mistanke om misbrug."
         },
         "useOfService": {
           "title": "Brug af tjenesten",
-          "body": "Du må ikke:\n- forsøge at omgå eller bryde sikkerheden\n- foretage reverse engineering, dekompilering eller lignende\n- anvende Platformen i strid med gældende lovgivning\nKIIBEE forbeholder sig ret til at overvåge brugen og håndhæve disse regler uden varsel."
+          "body": "Du må ikke: Forsøge at omgå eller bryde sikkerheden eller foretage reverse engineering, dekompilering eller lignende, anvende Platformen i strid med gældende lovgivning\nKIIBEE forbeholder sig ret til at overvåge brugen og håndhæve disse regler uden varsel."
         },
         "content": {
           "title": "Indhold og brugergenereret materiale",
@@ -1480,15 +1480,15 @@
         },
         "subscriptionCancellation": {
           "title": "Abonnementsbetingelser – Opsigelse",
-          "body": "Abonnementet kan opsiges med 31 dages varsel til udgangen af en abonnementsperiode.\nOpsigelse kan foretages via din konto i KIIBEE's kundeportal eller ved henvendelse til kundeservice.\nAllerede betalte abonnementsperioder refunderes hverken helt eller delvist."
+          "body": "Abonnementet kan opsiges med 31 dages varsel til udgangen af en abonnementsperiode.\nOpsigelse kan foretages via din konto i KIIBEE's kundeportal eller ved henvendelse til kundeservice. Allerede betalte abonnementsperioder refunderes hverken helt eller delvist."
         },
         "subscriptionNonPayment": {
           "title": "Abonnementsbetingelser – Manglende betaling",
-          "body": "Ved manglende betaling forbeholder KIIBEE sig retten til at:\n- Suspendere din adgang til abonnementet\n- Lukke abonnementet helt\nDette kan ske uden yderligere varsel, indtil betaling er modtaget."
+          "body": "Ved manglende betaling forbeholder KIIBEE sig retten til at:\n- Suspendere din adgang til abonnementet\n- Lukke abonnementet helt. Dette kan ske uden yderligere varsel, indtil betaling er modtaget."
         },
         "contact": {
           "title": "Kontakt",
-          "body": "KIIBEE ApS\nCVR: 34898634\nE-mail: info@kiibee.dk"
+          "body": "KIIBEE ApS CVR: 34898634 E-mail: info@kiibee.dk"
         }
       }
     }
@@ -1544,7 +1544,7 @@
     },
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
-    "contentPerformance": "Indholdsydelse",
+    "contentPerformance": "Statistik",
     "viewerPurchased": {
       "title": "Købt",
       "sections": {
@@ -1584,7 +1584,7 @@
         },
         "tableHeaders": {
           "contentTitle": "Indholdstitel",
-          "creatorName": "Skabernavn",
+          "creatorName": "Udgiver navn",
           "type": "Type",
           "paymentDate": "Betalingsdato",
           "amount": "Beløb",
@@ -1627,16 +1627,16 @@
         "editCardModal": {
           "title": "Rediger kort",
           "cardNumber": "Kortnummer",
-          "expiryDate": "Udlobsdato",
+          "expiryDate": "Udløbsdato",
           "cvv": "Sikkerhedskode",
           "cardPlaceholder": "XXXX XXXX XXXX XXXX",
           "expiryPlaceholder": "MM/AA",
           "cvvPlaceholder": "CVV"
         },
         "editSuccessModal": {
-          "title": "Aendringer gemt",
+          "title": "Ændringer gemt",
           "message": "Dine opdateringer er blevet gemt.",
-          "confirm": "Faerdig"
+          "confirm": "Færdig"
         }
       }
     },
@@ -1782,7 +1782,7 @@
       "modal": {
         "title": "Betalingsdetaljer",
         "loading": "Beregner udbetaling…",
-        "earnings": "Indtjening\n(Baseret på {{purchases}} køb og {{rentals}} leje)",
+        "earnings": "Indtjening:(Baseret på {{purchases}} køb og {{rentals}} leje)",
         "processingFee": "Transaktionsgebyr ({{percent}})",
         "platformFee": "Kiibee-betaling ({{percent}})",
         "total": "Samlet udbetalingsbeløb",
@@ -1821,7 +1821,7 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
-      "upload": "Uploade",
+      "upload": "Udgiv",
       "createCoupon": "Opret kupon",
       "search": "Søg indhold",
       "cancel": "Annuller",
@@ -1882,7 +1882,7 @@
     },
     "couponApplicableProducts": {
       "title": "Gældende produkter",
-      "description": "Du kan vælge specifikke samlinger eller indhold, eller lade feltet være tomt for at gore rabatten tilgængelig for alt.",
+      "description": "Du kan vælge specifikke samlinger eller indhold, eller lade feltet være tomt for at gøre rabatten tilgængelig for alt.",
       "fields": {
         "collections": "Vælg samling",
         "contents": "Vælg enkelt indhold"
@@ -1959,7 +1959,7 @@
       "textColor": "Tekstfarve",
       "textColorHint": "Vælg den tekstfarve, der bruges i coverbilledet",
       "followTheme": "Følg temaet (Standard)",
-      "darkText": "Mork tekst",
+      "darkText": "Mørk tekst",
       "whiteText": "Hvid tekst",
       "buttonColor": "Knapfarve",
       "buttonColorHint": "Vælg den knapfarve, der bruges på din hjemmeside",
@@ -1969,7 +1969,7 @@
       "selectColor": "Vælg",
       "cancelColorPicker": "Annuller",
       "receipt": "Kvittering",
-      "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
+      "receiptHint": "Skriv en besked til din kunde, når de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",
       "maximumCharacter": "Maksimalt antal tegn",
       "supportEmail": "Kundeservice-e-mail",
@@ -1978,12 +1978,12 @@
       "validation": {
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
-        "fixErrors": "Ret fejlene i appearance-sektionen, før du gemmer.",
+        "fixErrors": "Ret fejlene i sektionen, før du gemmer.",
         "descriptionMax": "Beskrivelsen skal være kortere end eller lig med {{max}} tegn.",
         "descriptionRequired": "Beskrivelse er påkrævet.",
         "logoNameRequired": "Logotekst er påkrævet.",
         "logoImageRequired": "Upload venligst et logobillede.",
-        "desktopCoverRequired": "Upload venligst et desktop-forsidebillede.",
+        "desktopCoverRequired": "Upload venligst et skrivebordsbillede.",
         "mobileCoverRequired": "Upload venligst et mobil-forsidebillede.",
         "layoutRequired": "Vælg venligst et layout."
       },
@@ -2083,7 +2083,7 @@
       "or": "eller",
       "chooseFile": "Vælg til upload",
       "selectedFile": "Valgt fil",
-      "upload": "Upload",
+      "upload": "Udgiv",
       "next": "Næste",
       "invalidFile": "Vælg en understøttet fil under 2 GB.",
       "uploadError": "Filen kunne ikke uploades. Prøv igen.",
@@ -2120,8 +2120,8 @@
         "label": "Webindhold-link",
         "placeholder": "https://"
       },
-      "uploading": "Uploader",
-      "uploaded": "Uploaded",
+      "uploading": "Udgiver",
+      "uploaded": "Udgivet",
       "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
@@ -2355,7 +2355,7 @@
     "addPaymentMethod": "Tilføj venligst dine betalingsoplysninger, før du får adgang til dette afsnit."
   },
   "sidebar": {
-    "users": "Brugere",
+    "users": "Seer",
     "help": "Hjælp",
     "currentlyRented": "I øjeblikket lejet",
     "purchasedAndRented": "Købt og Lejet",
@@ -2385,8 +2385,8 @@
     "cancel": "Annuller",
     "tryAgain": "Prøv igen",
     "requestSentTitle": "Anmodning sendt",
-    "requestSentMessage": "Skaberen har modtaget din anmodning. Hvis den godkendes, sender vi dig et link til indholdet via e-mail.",
-    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
+    "requestSentMessage": "Udgiveren har modtaget din anmodning. Hvis den godkendes, sender vi dig et link til indholdet via e-mail.",
+    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee's kundeservice."
   },
   "pricingLabels": {
     "rent": "Lej",
@@ -2447,14 +2447,14 @@
   },
   "explore": {
     "sortNew": "Ny",
-    "sortTrending": "Trendende",
+    "sortTrending": "Populært",
     "sortCreatedForYou": "Oprettet til dig"
   },
   "collections": {
     "sectionTitle": "Samlinger",
     "elementsCount": "{{count}} elementer",
     "sort": {
-      "creator": "Skabernavn",
+      "creator": "Udgiver navn",
       "title": "Titel",
       "elements": "Elementer"
     }
