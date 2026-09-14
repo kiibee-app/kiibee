@@ -563,7 +563,7 @@
     },
     "viewProfile": "Se profil",
     "noCreatorsFound": "Ingen udgiver fundet",
-    "uploadsCount": "{{count}} uploads",
+    "uploadsCount": "{{count}} udgivelser",
     "loadMore": "Indlæs mere",
     "a-z": "A-Å",
     "subscribers": "Abonnenter",
@@ -1204,7 +1204,7 @@
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & side",
     "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
-    "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
+    "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du kan forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
     "playTrailer": "Se trailer",
     "seeContent": "Se indhold",
     "notFound": "Tutorial blev ikke fundet",
@@ -1231,7 +1231,7 @@
   },
   "legalPages": {
     "common": {
-      "email": "Email",
+      "email": "E-mail",
       "cvr": "CVR"
     },
     "privacyPolicy": {
@@ -1655,7 +1655,7 @@
       "passwordMinLength": "Den nye adgangskode skal være mindst 6 tegn",
       "passwordChangeError": "Adgangskoden kunne ikke opdateres",
       "forgotPasswordNoEmail": "Vi har brug for din e-mail for at sende et nulstillingslink.",
-      "forgotPasswordModalMessage": "Vi har sendt et link til nulstilling af adgangskode til {{email}}. Hvis det ikke ankommer inden for et par minutter, sa tjek din spam-mappe.",
+      "forgotPasswordModalMessage": "Vi har sendt et link til nulstilling af adgangskode til {{email}}. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
       "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
     "toggleSidebar": "Skift sidepanel",
@@ -2139,7 +2139,7 @@
       "delete": "Slet"
     },
     "couponDeleteModal": {
-      "title": "Delete coupon?",
+      "title": "Slet kupon?",
       "message": "Er du sikker på, at du vil slette denne kupon? Denne handling kan ikke fortrydes."
     },
     "deleteSuccessModal": {
@@ -2350,7 +2350,7 @@
     "saveCollectionFailed": "Kunne ikke gemme samling",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
-    "imageUploadFailed": "Billed upload mislykkedet",
+    "imageUploadFailed": "Billedupload mislykkedes",
     "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen.",
     "addPaymentMethod": "Tilføj venligst dine betalingsoplysninger, før du får adgang til dette afsnit."
   },

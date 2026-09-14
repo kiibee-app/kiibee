@@ -1202,9 +1202,9 @@
     "noResults": "No uploads match your search."
   },
   "singleTutorial": {
-    "title": "Del 1. Oprettelse af profil og kanal & site",
-    "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
-    "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
+    "title": "Part 1. Creating a profile and channel & site",
+    "descriptionPrimary": "In this video we show how to get started after setup and customize your site or channel.",
+    "descriptionSecondary": "If the video quality looks blurry, it may be because your internet connection is poor. You can improve the quality by pressing the gear icon in the player and setting the resolution to 1080p in Chrome, Firefox and Microsoft Edge / Explorer browsers.",
     "playTrailer": "Play trailer",
     "seeContent": "See content",
     "notFound": "Tutorial not found",
@@ -2231,6 +2231,14 @@
       "webRental": {
         "title": "Web content rental (Streaming)",
         "description": "When web content is rented, it will be available for 48 hours."
+      },
+      "webPurchase": {
+        "title": "Web content purchase (lifetime access)",
+        "description": "Users get permanent access to the web content."
+      },
+      "epubRental": {
+        "title": "E-publication rental",
+        "description": "Readers can get temporary access to the publication."
       },
       "epubPurchase": {
         "title": "E-publication purchase / download",
