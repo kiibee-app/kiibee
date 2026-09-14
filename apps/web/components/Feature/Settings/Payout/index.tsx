@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import {
@@ -19,13 +19,9 @@ import PayoutDetailsModal from "./PayoutDetailsModal";
 import SettlementInvoiceModal from "./SettlementInvoiceModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
-import { settlementHeaders } from "@/utils/dummyData/payout";
-import {
-  CENTER_ALIGNED_HEADERS,
-  MIN_PAYOUT_AMOUNT,
-  parsePayoutBalance,
-} from "@/utils/payout";
+import { MIN_PAYOUT_AMOUNT, parsePayoutBalance } from "@/utils/payout";
 import { Settlement } from "../styles";
+import { toCamelCaseKey } from "@/utils/common";
 import { Directions, MODAL_ALIGN } from "@/utils/ui";
 import { useSettlementHistory } from "@/hooks/useSettlementHistory";
 import { usePayoutStats } from "@/hooks/usePayoutStats";
@@ -45,6 +41,17 @@ export default function PayoutContent() {
   const balanceAmount = parsePayoutBalance(balanceValue);
   const purchasesValue = stats?.purchases ?? 0;
   const rentalsValue = stats?.rentals ?? 0;
+
+  const settlementTableHeaders = useMemo(
+    () => [
+      t("settings.payout.tableHeaders.amount"),
+      t("settings.payout.tableHeaders.status"),
+      t("settings.payout.tableHeaders.creditNo"),
+      t("settings.payout.tableHeaders.bank"),
+      t("settings.payout.tableHeaders.date"),
+    ],
+    [t],
+  );
 
   const handlePayoutClick = () => {
     if (balanceAmount <= MIN_PAYOUT_AMOUNT) {
@@ -106,23 +113,26 @@ export default function PayoutContent() {
           {t("settings.payout.settlementHistory")}
         </MonoText>
         <Table<SettlementRow>
-          headers={settlementHeaders}
+          headers={settlementTableHeaders}
           data={settlements}
           rowsPerPage={10}
-          getColumnAlignment={(header, index) =>
-            index === 0 || !CENTER_ALIGNED_HEADERS.includes(header)
-              ? Directions.LEFT
-              : MODAL_ALIGN.CENTER
+          getColumnAlignment={(_, index) =>
+            index === 0 ? Directions.LEFT : MODAL_ALIGN.CENTER
           }
           headerToKey={(h) => {
             const map: Record<string, keyof SettlementRow> = {
+              [t("settings.payout.tableHeaders.amount")]: "amount",
+              [t("settings.payout.tableHeaders.status")]: "status",
+              [t("settings.payout.tableHeaders.creditNo")]: "creditNo",
+              [t("settings.payout.tableHeaders.bank")]: "bank",
+              [t("settings.payout.tableHeaders.date")]: "date",
               Amount: "amount",
               Status: "status",
               "Credit No": "creditNo",
               Bank: "bank",
               Date: "date",
             };
-            return map[h];
+            return map[h] ?? (toCamelCaseKey(h) as keyof SettlementRow);
           }}
           getRowKey={(row, index) => `${row.creditNo}-${index}`}
           getMobileTitle={(row) => row.amount}
