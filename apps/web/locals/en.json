@@ -1184,6 +1184,7 @@
     "meta": {
       "category": "Category:",
       "publishedYear": "Published:",
+      "publishedBy": "Published by:",
       "createdAt": "Created:",
       "accessType": "Access:",
       "visibility": "Visibility:",
