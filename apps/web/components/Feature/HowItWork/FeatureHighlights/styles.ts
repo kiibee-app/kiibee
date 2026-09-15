@@ -59,26 +59,30 @@ export const FeaturesRow = styled.div`
   }
 `;
 
+export const FeatureTab = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: max-content;
+  max-width: 100%;
+`;
+
 export const Index = styled.span`
   display: inline-block;
   margin-bottom: 8px;
 `;
 
 export const TopBar = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 2px;
-  background: ${({ theme }) => theme.colors.neutral.GRAY};
-  margin: 0;
-  transition:
-    transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
-    background 220ms ease,
-    opacity 220ms ease;
-  transform: translateY(0) scaleX(0.9);
+  height: 1px;
+  background: ${({ theme }) => theme.colors.secondary.main};
+  margin: 0 0 0.5rem;
+  transform: scaleX(0);
   opacity: 0;
   transform-origin: left center;
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 220ms ease;
 `;
 
 export const Label = styled.div`
@@ -92,10 +96,10 @@ export const Label = styled.div`
 export const FeatureItem = styled.div<{ $active?: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  align-items: flex-start;
   cursor: pointer;
   position: relative;
-  padding-top: 0.75rem;
+  width: 100%;
 
   ${(p) =>
     p.$active &&
@@ -109,9 +113,8 @@ export const FeatureItem = styled.div<{ $active?: boolean }>`
       }
 
       ${TopBar} {
-        background: ${p.theme.colors.neutral.GRAY};
         opacity: 1;
-        transform: translateY(0) scaleX(1);
+        transform: scaleX(1);
       }
     `}
 `;

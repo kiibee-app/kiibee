@@ -29,6 +29,7 @@ export const profileHomeConfigByVariant: Record<
   },
   "2": {
     latestUpload: latestUploadDataLayout2,
+    wrapLatestUpload: true,
     sections: [
       PROFILE_HOME_SECTION.LATEST_UPLOAD,
       PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
@@ -36,6 +37,7 @@ export const profileHomeConfigByVariant: Record<
   },
   "3": {
     latestUpload: latestUploadDataLayout3,
+    wrapLatestUpload: true,
     sections: [
       PROFILE_HOME_SECTION.LATEST_UPLOAD,
       PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,

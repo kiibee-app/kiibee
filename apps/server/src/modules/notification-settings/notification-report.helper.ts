@@ -25,7 +25,7 @@ const addDays = (date: Date, amount: number) => {
 };
 
 const formatPeriodDate = (date: Date) =>
-  date.toLocaleDateString('en-GB', {
+  date.toLocaleDateString('da-DK', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -71,7 +71,7 @@ export const getReportDateRange = (
     end,
     startDate: start.toISOString().slice(0, 10),
     endDate: end.toISOString().slice(0, 10),
-    periodLabel: start.toLocaleDateString('en-GB', {
+    periodLabel: start.toLocaleDateString('da-DK', {
       month: 'long',
       year: 'numeric',
     }),

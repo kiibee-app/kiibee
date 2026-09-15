@@ -167,7 +167,7 @@ describe('forgetPasswordService', () => {
 
     expect(mockSendTemplateEmail).toHaveBeenCalledWith({
       to: 'test@example.com',
-      subject: 'Reset Your Kiibee Password',
+      subject: 'Nulstil din Kiibee-adgangskode',
       templateName: 'resetPassword',
       variables: {
         name: 'John',
