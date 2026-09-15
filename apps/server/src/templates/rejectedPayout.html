@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kiibee — Payout Request Rejected</title>
+    <title>Kiibee — Udbetalingsanmodning afvist</title>
     <!--[if mso]>
       <noscript>
         <xml>
@@ -26,7 +26,7 @@
     "
   >
     <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all">
-      Your Kiibee payout request could not be approved.
+      Din Kiibee-udbetalingsanmodning kunne ikke godkendes.
     </div>
 
     <table
@@ -78,7 +78,7 @@
                           color: #ffffff;
                         "
                       >
-                        Payout request rejected
+                        Udbetalingsanmodning afvist
                       </p>
 
                       <p
@@ -92,7 +92,7 @@
                           color: rgba(255, 255, 255, 0.92);
                         "
                       >
-                        Your payout request could not be processed.
+                        Din udbetalingsanmodning kunne ikke behandles.
                       </p>
                     </td>
                   </tr>
@@ -117,23 +117,20 @@
                         color: #1a1a1a;
                       "
                     >
-                      <p style="margin: 0 0 16px">Hi {{creator.fullName}},</p>
+                      <p style="margin: 0 0 16px">Hej {{creator.fullName}},</p>
 
                       <p style="margin: 0 0 16px">
-                        We’re sorry, but your recent payout request has been
-                        <strong>rejected</strong>.
+                        Vi beklager, men din seneste udbetalingsanmodning er blevet <strong>afvist</strong>.
                       </p>
 
                       <p style="margin: 0; color: #444444">
-                        This may happen due to an issue with the selected
-                        payment method, verification requirements, or other
-                        payout processing checks.
+                        Dette kan ske på grund af et problem med den valgte betalingsmetode, verificeringskrav eller andre kontroller i udbetalingsprocessen.
                       </p>
                     </td>
                   </tr>
                 </table>
 
-                <!-- Payout Details -->
+                <!-- Udbetalingsoplysninger -->
                 <table
                   role="presentation"
                   width="100%"
@@ -167,7 +164,7 @@
                               border-bottom: 1px solid #e6e8eb;
                             "
                           >
-                            Payout Details
+                            Udbetalingsoplysninger
                           </td>
                         </tr>
 
@@ -179,7 +176,7 @@
                               font-size: 14px;
                             "
                           >
-                            Payout ID
+                            Udbetalings-ID
                           </td>
                           <td
                             align="right"
@@ -202,7 +199,7 @@
                               font-size: 14px;
                             "
                           >
-                            Requested Amount
+                            Anmodet beløb
                           </td>
                           <td
                             align="right"
@@ -212,7 +209,7 @@
                               font-size: 14px;
                             "
                           >
-                            {{rawAmount}} {{currency}}
+                            {{rawBeløb}} {{currency}}
                           </td>
                         </tr>
 
@@ -224,7 +221,7 @@
                               font-size: 14px;
                             "
                           >
-                            Processing Fee
+                            Behandlingsgebyr
                           </td>
                           <td
                             align="right"
@@ -246,7 +243,7 @@
                               font-size: 14px;
                             "
                           >
-                            Platform Fee
+                            Platformgebyr
                           </td>
                           <td
                             align="right"
@@ -269,7 +266,7 @@
                               font-weight: 700;
                             "
                           >
-                            Payable Amount
+                            Udbetalt beløb
                           </td>
                           <td
                             align="right"
@@ -280,7 +277,7 @@
                               font-weight: 700;
                             "
                           >
-                            {{payableAmount}} {{currency}}
+                            {{payableBeløb}} {{currency}}
                           </td>
                         </tr>
 
@@ -305,7 +302,7 @@
                               text-transform: uppercase;
                             "
                           >
-                            Rejected
+                            Afvist
                           </td>
                         </tr>
                       </table>
@@ -333,16 +330,14 @@
                       "
                     >
                       <p style="margin: 0 0 12px">
-                        If you believe this was a mistake or need assistance,
-                        please contact the Kiibee support team. After resolving
-                        the issue, you can submit a new payout request.
+                        Hvis du mener, at der er tale om en fejl, eller hvis du har brug for hjælp, kan du kontakte Kiibee support. Når problemet er løst, kan du sende en ny udbetalingsanmodning.
                       </p>
 
                       <p style="margin: 0">
-                        Thank you for your understanding.<br /><br />
+                        Tak for din forståelse.<br /><br />
 
-                        Best regards,<br />
-                        <strong style="color: #1a1a1a">The Kiibee Team</strong>
+                        Venlig hilsen,<br />
+                        <strong style="color: #1a1a1a">Kiibee-teamet</strong>
                       </p>
                     </td>
                   </tr>
@@ -370,8 +365,8 @@
                         color: #888888;
                       "
                     >
-                      You received this email because your payout request on
-                      Kiibee has been rejected.
+                      Du har modtaget denne e-mail, fordi din udbetalingsanmodning på
+                      Kiibee er blevet afvist.
                     </td>
                   </tr>
                 </table>

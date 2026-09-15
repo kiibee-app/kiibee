@@ -195,12 +195,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal(
-              t("createProfileHome.latestUpload.loginModal.message"),
-            );
-            return;
-          }
           if (user?.role === ROLE_CREATOR) {
             setShowCreatorModal1(true);
             return;
