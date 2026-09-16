@@ -57,7 +57,7 @@
   },
   "createProfileHome": {
     "brandName": "Nana Jacobson",
-    "uploads": "{{count}} uploads",
+    "uploads": "{{count}} upload",
     "title": "Nana Jacobson",
     "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete.",
     "more": "...more",
@@ -563,7 +563,7 @@
     },
     "viewProfile": "View profile",
     "noCreatorsFound": "No creators found",
-    "uploadsCount": "{{count}} uploads",
+    "uploadsCount": "{{count}} upload",
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",
@@ -1184,6 +1184,7 @@
     "meta": {
       "category": "Category:",
       "publishedYear": "Published:",
+      "publishedBy": "Published by:",
       "createdAt": "Created:",
       "accessType": "Access:",
       "visibility": "Visibility:",

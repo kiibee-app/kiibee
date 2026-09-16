@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   Section,
@@ -31,6 +31,14 @@ import { DA } from "@/utils/common";
 export default function FeatureHighlights() {
   const { t, i18n } = useTranslation();
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % featureData.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [active]);
 
   const isDanish = i18n.language === DA;
   const currentFeature = featureData[active] || featureData[0];

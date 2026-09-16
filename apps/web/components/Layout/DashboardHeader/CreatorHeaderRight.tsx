@@ -17,13 +17,13 @@ import {
 
 type CreatorHeaderRightProps = {
   initial: string;
-  email: string;
+  displayName: string;
   avatarUrl: string | null;
 };
 
 const CreatorHeaderRight = ({
   initial,
-  email,
+  displayName,
   avatarUrl,
 }: CreatorHeaderRightProps) => {
   const { t } = useTranslation();
@@ -52,7 +52,7 @@ const CreatorHeaderRight = ({
           />
         </ProfileCircle>
         <EmailWrapper>
-          <MonoText $use="Body_Medium">{email}</MonoText>
+          <MonoText $use="Body_Medium">{displayName}</MonoText>
         </EmailWrapper>
       </RightProfileWrapper>
     </>
