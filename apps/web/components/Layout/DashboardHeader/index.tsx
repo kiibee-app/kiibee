@@ -17,8 +17,7 @@ import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
 import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 import {
-  getLoginUserEmail,
-  getLoginUserFirstLetter,
+  getDisplayFirstLetter,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -39,9 +38,9 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const user = useStoredLoginUser();
   const isCreator = role === ROLE_CREATOR;
   const router = useRouter();
-  const { avatarUrl: profileAvatarUrl } = useCreatorChannelProfile(isCreator);
-  const email = getLoginUserEmail(user);
-  const initial = getLoginUserFirstLetter(user);
+  const { avatarUrl: profileAvatarUrl, displayName } =
+    useCreatorChannelProfile(isCreator);
+  const initial = getDisplayFirstLetter(displayName, user);
   const avatarUrl =
     profileAvatarUrl ??
     getAvatarUrl(user?.avatarUrl as string | null | undefined);
@@ -86,7 +85,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
         {role === ROLE_CREATOR ? (
           <CreatorHeaderRight
             initial={initial}
-            email={email}
+            displayName={displayName}
             avatarUrl={avatarUrl}
           />
         ) : (
