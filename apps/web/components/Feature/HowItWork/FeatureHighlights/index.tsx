@@ -108,7 +108,7 @@ export default function FeatureHighlights() {
                 loading="eager"
                 priority={true}
                 fetchPriority="high"
-                quality={100}
+                quality={95}
                 unoptimized
               />
             </ImageReveal>
