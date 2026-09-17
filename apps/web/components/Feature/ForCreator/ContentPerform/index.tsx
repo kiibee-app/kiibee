@@ -74,6 +74,7 @@ export default function ContentPerform() {
             variant={LANDING_REVEAL_VARIANTS.slideUp}
             duration={LANDING_REVEAL.longRevealDuration}
             style={DASHBOARD_REVEAL_STYLE}
+            noClip
           >
             <ImageFrame>
               <DashboardImage

@@ -41,9 +41,12 @@ export const ImageColumn = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  overflow: visible;
 
   > #cp-image-reveal {
     width: 100%;
+    max-width: 41.375rem;
+    overflow: visible;
   }
 
   ${media.desktop} {
@@ -55,12 +58,20 @@ export const ImageColumn = styled.div`
 export const ImageFrame = styled.div`
   position: relative;
   width: 100%;
+  padding: 8px;
   box-sizing: border-box;
   border-radius: 12px;
-  background: ${({ theme }) => theme.colors.primary.BLACK_20};
-  box-shadow: 0 4.57px 18.279px 0
-    ${({ theme }) => theme.colors.primary.BLACK_20};
-  overflow: hidden;
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.gradient.NEAR_BLACK} 15%,
+    transparent
+  );
+  box-shadow: 0 4.57px 18.28px 0
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.BLACK} 15%,
+      transparent
+    );
 
   ${media.tablet} {
     border-radius: 10px;
@@ -71,6 +82,7 @@ export const DashboardImage = styled.img`
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 6px;
   object-fit: cover;
   object-position: center;
 `;
