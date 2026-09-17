@@ -194,6 +194,7 @@ export default function PublishedContentDetail({
         <SingleContentPage
           {...getSingleContentProps(content, t, {
             viewerId: resolvedUserId,
+            creatorName: publicCreator?.name,
           })}
           content={content}
           collectionId={relatedCollectionQuery.data?.collectionId}
