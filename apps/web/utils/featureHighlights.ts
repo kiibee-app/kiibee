@@ -1,18 +1,18 @@
-import profileEn from "../assets/images/profile-en.png";
-import profileDa from "../assets/images/profile-da.png";
-import personalizedEn from "../assets/images/personalized-en.png";
-import personalizedDa from "../assets/images/personalized-da.png";
-import purchaseEn from "../assets/images/purchase-en.png";
-import purchaseDa from "../assets/images/purchase-da.png";
-import contentEn from "../assets/images/content-en.png";
-import contentDa from "../assets/images/content-da.png";
+import freeUserEn from "../assets/images/free-user-en.webp";
+import freeUserDa from "../assets/images/free-user-da.webp";
+import personalizedEn from "../assets/images/personalized-en.webp";
+import personalizedDa from "../assets/images/personalized-da.webp";
+import purchaseEn from "../assets/images/purchase-en.webp";
+import purchaseDa from "../assets/images/purchase-da.webp";
+import contentEn from "../assets/images/content-en.webp";
+import contentDa from "../assets/images/content-da.webp";
 
 export const featureData = [
   {
     titleKey: "features.items.0.title",
     textKey: "features.items.0.text",
-    image: profileEn,
-    imageDa: profileDa,
+    image: freeUserEn,
+    imageDa: freeUserDa,
   },
   {
     titleKey: "features.items.1.title",
