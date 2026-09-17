@@ -102,8 +102,8 @@ export default function FeatureHighlights() {
               <Image
                 src={activeImage}
                 alt={t(`features.items.${active}.imageAlt`)}
-                width={746}
-                height={422}
+                width={1492}
+                height={844}
                 sizes="(max-width: 767px) 100vw, 65vw"
                 loading="eager"
                 priority={true}
