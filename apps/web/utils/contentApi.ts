@@ -91,6 +91,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   share: "common.share",
   meta: {
     publishedYear: "singleContent.meta.publishedYear",
+    publishedBy: "singleContent.meta.publishedBy",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
@@ -259,7 +260,11 @@ const getTagNames = (content: ContentDetailItem) =>
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
-  options?: { inCollection?: boolean; viewerId?: string },
+  options?: {
+    inCollection?: boolean;
+    viewerId?: string;
+    creatorName?: string;
+  },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -318,10 +323,16 @@ export const getSingleContentProps = (
   const showTrailerInHero = Boolean(trailerUrl);
 
   const productionCompany = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
+    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY] ??
+      (content as Record<string, unknown>).productionCompany ??
+      (content as Record<string, unknown>).publisher,
   );
+  const publishedByValue = productionCompany || options?.creatorName;
   const manufacturerLink = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
+    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK] ??
+      (content as Record<string, unknown>).manufacturerLink ??
+      (content as Record<string, unknown>).physicalProductLink ??
+      (content as Record<string, unknown>).physical_product_link,
   );
 
   return {
@@ -382,16 +393,22 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
-      mainCategory
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
-            value: mainCategory,
-          }
-        : undefined,
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
             value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
+      publishedByValue
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedBy),
+            value: React.createElement("strong", null, publishedByValue),
+          }
+        : undefined,
+      mainCategory
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
+            value: mainCategory,
           }
         : undefined,
       createdAt
@@ -404,12 +421,6 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
             value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
-          }
-        : undefined,
-      productionCompany
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.productionCompany),
-            value: productionCompany,
           }
         : undefined,
       isValidUrl(manufacturerLink)
