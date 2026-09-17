@@ -55,7 +55,6 @@ export const ImageColumn = styled.div`
 export const ImageFrame = styled.div`
   position: relative;
   width: 100%;
-  padding: 8px;
   box-sizing: border-box;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.primary.BLACK_20};
@@ -64,7 +63,6 @@ export const ImageFrame = styled.div`
   overflow: hidden;
 
   ${media.tablet} {
-    padding: 6px;
     border-radius: 10px;
   }
 `;
@@ -73,8 +71,8 @@ export const DashboardImage = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 6px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const TextColumn = styled.div`

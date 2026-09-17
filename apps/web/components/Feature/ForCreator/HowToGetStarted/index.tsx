@@ -125,6 +125,7 @@ export default function HowToGetStarted() {
                     alt={t(step.titleKey)}
                     fill
                     sizes={STEP_IMAGE_SIZES.desktop}
+                    quality={95}
                     style={stepImageStyle}
                     priority={index === 0}
                   />
@@ -156,6 +157,7 @@ export default function HowToGetStarted() {
                       alt={t(step.titleKey)}
                       fill
                       sizes={STEP_IMAGE_SIZES.mobile}
+                      quality={95}
                       style={stepImageStyle}
                     />
                   </MobileStepImage>

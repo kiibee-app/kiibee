@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import dashboardEnglishImage from "@/assets/images/dashboard-english.png";
-import dashboardDanishImage from "@/assets/images/dashboard-danish.png";
+import dashboardEnglishImage from "@/assets/images/dashboard-english.webp";
+import dashboardDanishImage from "@/assets/images/dashboard-danish.webp";
 import { DA } from "@/utils/common";
 import { normalizeAppLanguage } from "@/utils/language";
 import {
@@ -80,6 +80,8 @@ export default function ContentPerform() {
                 key={currentLang}
                 src={dashboardImage.src}
                 alt={t("creators.contentPerform.imageAlt")}
+                width={dashboardImage.width}
+                height={dashboardImage.height}
               />
             </ImageFrame>
           </ImageReveal>
