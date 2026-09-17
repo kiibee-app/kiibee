@@ -256,6 +256,6 @@ export const stepImageStyle: CSSProperties = {
 };
 
 export const STEP_IMAGE_SIZES = {
-  desktop: "(max-width: 767px) 0px, (max-width: 1200px) 48vw, 550px",
+  desktop: "(max-width: 767px) 0px, (max-width: 1200px) 48vw, 720px",
   mobile: "(max-width: 767px) 100vw, 0px",
 } as const;
