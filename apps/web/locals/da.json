@@ -57,7 +57,8 @@
   },
   "createProfileHome": {
     "brandName": "Nana Jacobson",
-    "uploads": "{{count}} udgivelse",
+    "uploads_one": "{{count}} udgivelse",
+    "uploads_other": "{{count}} udgivelser",
     "title": "Nana Jacobson",
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
     "more": "...mere",
@@ -563,7 +564,8 @@
     },
     "viewProfile": "Se profil",
     "noCreatorsFound": "Ingen udgiver fundet",
-    "uploadsCount": "{{count}} udgivelse",
+    "uploadsCount_one": "{{count}} udgivelse",
+    "uploadsCount_other": "{{count}} udgivelser",
     "loadMore": "Indlæs mere",
     "a-z": "A-Å",
     "subscribers": "Abonnenter",
@@ -776,7 +778,7 @@
     }
   },
   "features": {
-    "heading": "Mere end bare indhold",
+    "heading": "Din personlige oplevelse",
     "sub": "Udforsk vores funktioner",
     "items": [
       {
@@ -1199,7 +1201,8 @@
     "notFound": "Samling ikke fundet",
     "noContent": "Ingen indhold i denne samling",
     "inCollection": "I denne samling",
-    "uploads": "Udgivelser",
+    "uploads_one": "{{count}} udgivelse",
+    "uploads_other": "{{count}} udgivelser",
     "noResults": "Ingen udgivelser matcher din søgning."
   },
   "singleTutorial": {
