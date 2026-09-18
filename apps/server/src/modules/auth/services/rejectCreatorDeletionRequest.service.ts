@@ -5,9 +5,6 @@ import { creatorDeletionRequests, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { success } from 'src/utils/sendResponse';
 import { STATUS } from 'src/utils/constant';
-import { runInBackground } from 'src/utils/backgroundTask';
-import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
-import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const rejectCreatorDeletionRequestService = async (
   requestId: string,
@@ -67,22 +64,6 @@ export const rejectCreatorDeletionRequestService = async (
       throw new HttpException(
         'Creator deletion request not found or already processed',
         HttpStatus.NOT_FOUND,
-      );
-    }
-
-    if (pendingRequest.userEmail) {
-      runInBackground(
-        sendTemplateEmail({
-          to: pendingRequest.userEmail,
-          subject: mailSubject.REJECTED_CREATOR_DELETION,
-          templateName: templateName.REJECTED_CREATOR_DELETION,
-          variables: {
-            name:
-              pendingRequest.userFirstName ||
-              pendingRequest.userFullName ||
-              'there',
-          },
-        }),
       );
     }
 
