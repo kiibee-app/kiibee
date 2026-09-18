@@ -64,7 +64,7 @@ export default function CollectionContent({
             {t("singleCollection.inCollection")}
           </MonoText>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {filteredVideos.length} {t("singleCollection.uploads")}
+            {t("singleCollection.uploads", { count: filteredVideos.length })}
           </MonoText>
         </TitleGroup>
 
