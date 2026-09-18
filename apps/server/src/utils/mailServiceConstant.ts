@@ -16,9 +16,9 @@ export const templateName = {
 };
 
 export const mailSubject = {
-  APPROVED_CREATOR: 'Din Kiibee-creatoransøgning er godkendt 🎉',
+  APPROVED_CREATOR: 'Din Kiibee-udgiveransøgning er godkendt 🎉',
   APPROVED_CREATOR_DELETION: 'Din Kiibee-konto er slettet',
-  REJECTED_CREATOR: 'Opdatering om din Kiibee-creatoransøgning',
+  REJECTED_CREATOR: 'Opdatering om din Kiibee-udgiveransøgning',
   REJECTED_CREATOR_DELETION:
     'Opdatering om din anmodning om at slette din Kiibee-konto',
   REJECTED_CONTENT: 'Dit Kiibee-indhold er blevet fjernet',
