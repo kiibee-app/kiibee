@@ -104,10 +104,6 @@ export const FeatureItem = styled.div<{ $active?: boolean }>`
   ${(p) =>
     p.$active &&
     css`
-      ${Index} {
-        color: ${p.theme.colors.neutral.BLACK};
-      }
-
       ${Label} {
         color: ${p.theme.colors.neutral.BLACK};
       }
