@@ -188,3 +188,58 @@ export function calculateRentalExpiryDate(
   if (!durationHours) return undefined;
   return new Date(Date.now() + durationHours * 3_600_000).toISOString();
 }
+
+const TIME_AGO_DA_UNITS: Record<string, [string, string]> = {
+  second: ["sekund", "sekunder"],
+  minute: ["minut", "minutter"],
+  hour: ["time", "timer"],
+  day: ["dag", "dage"],
+  month: ["måned", "måneder"],
+  year: ["år", "år"],
+};
+
+const TIME_AGO_EN_UNITS: Record<string, [string, string]> = {
+  sekund: ["second", "seconds"],
+  minut: ["minute", "minutes"],
+  time: ["hour", "hours"],
+  dag: ["day", "days"],
+  måned: ["month", "months"],
+  år: ["year", "years"],
+};
+
+export function formatTimeAgoByLang(
+  timeString?: string | null,
+  language?: string,
+): string {
+  if (!timeString) return "";
+  const trimmed = timeString.trim();
+  const isEn =
+    language === "en" ||
+    (typeof document !== "undefined" && document.documentElement.lang === "en");
+
+  if (isEn) {
+    const match = trimmed.match(
+      /^For\s+(\d+)\s+(sekund|sekunder|minut|minutter|time|timer|dag|dage|måned|måneder|år)\s+siden$/i,
+    );
+    if (!match) return trimmed;
+    const count = parseInt(match[1], 10);
+    const rawUnit = match[2].toLowerCase();
+    const key = Object.keys(TIME_AGO_EN_UNITS).find((k) =>
+      rawUnit.startsWith(k),
+    );
+    if (!key) return trimmed;
+    const forms = TIME_AGO_EN_UNITS[key];
+    return `${count} ${count === 1 ? forms[0] : forms[1]} ago`;
+  }
+
+  const match = trimmed.match(
+    /^(\d+)\s+(second|minute|hour|day|month|year)s?\s+ago$/i,
+  );
+  if (!match) return trimmed;
+
+  const count = parseInt(match[1], 10);
+  const forms = TIME_AGO_DA_UNITS[match[2].toLowerCase()];
+  if (!forms) return trimmed;
+
+  return `For ${count} ${count === 1 ? forms[0] : forms[1]} siden`;
+}
