@@ -14,7 +14,6 @@ import {
   MockRow,
   MockImageWrap,
   MockText,
-  Index,
   TopBar,
   Label,
 } from "./styles";
@@ -76,13 +75,15 @@ export default function FeatureHighlights() {
               >
                 <FeatureTab>
                   <TopBar />
-                  <Index>
-                    <MonoText $use="H5_Medium" color={COLORS.neutral.GRAY}>
-                      {i + 1}.
-                    </MonoText>
-                  </Index>
                   <Label>
-                    <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
+                    <MonoText
+                      $use="Body_Regular"
+                      color={
+                        active === i
+                          ? COLORS.neutral.BLACK
+                          : COLORS.neutral.GRAY
+                      }
+                    >
                       {f.title}
                     </MonoText>
                   </Label>
