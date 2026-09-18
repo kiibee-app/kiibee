@@ -188,3 +188,62 @@ export function calculateRentalExpiryDate(
   if (!durationHours) return undefined;
   return new Date(Date.now() + durationHours * 3_600_000).toISOString();
 }
+
+export function formatTimeAgoByLang(
+  timeString?: string | null,
+  language?: string,
+): string {
+  if (!timeString) return "";
+  const trimmed = timeString.trim();
+  if (!trimmed) return "";
+
+  const isEn =
+    language === "en" ||
+    (typeof document !== "undefined" && document.documentElement.lang === "en");
+
+  const danishMatch = trimmed.match(
+    /^For\s+(\d+)\s+(sekund|sekunder|minut|minutter|time|timer|dag|dage|måned|måneder|år)\s+siden$/i,
+  );
+  if (danishMatch) {
+    if (!isEn) return trimmed;
+    const count = parseInt(danishMatch[1], 10);
+    const unit = danishMatch[2].toLowerCase();
+    if (unit.startsWith("sekund"))
+      return `${count} second${count !== 1 ? "s" : ""} ago`;
+    if (unit.startsWith("minut"))
+      return `${count} minute${count !== 1 ? "s" : ""} ago`;
+    if (unit.startsWith("time"))
+      return `${count} hour${count !== 1 ? "s" : ""} ago`;
+    if (unit.startsWith("dag"))
+      return `${count} day${count !== 1 ? "s" : ""} ago`;
+    if (unit.startsWith("måned"))
+      return `${count} month${count !== 1 ? "s" : ""} ago`;
+    if (unit.startsWith("år"))
+      return `${count} year${count !== 1 ? "s" : ""} ago`;
+  }
+
+  const englishMatch = trimmed.match(
+    /^(\d+)\s+(second|minute|hour|day|month|year)s?\s+ago$/i,
+  );
+  if (englishMatch) {
+    if (isEn) return trimmed;
+    const count = parseInt(englishMatch[1], 10);
+    const unit = englishMatch[2].toLowerCase();
+    if (unit === "second")
+      return count <= 1 ? "For 1 sekund siden" : `For ${count} sekunder siden`;
+    if (unit === "minute")
+      return count === 1 ? "For 1 minut siden" : `For ${count} minutter siden`;
+    if (unit === "hour")
+      return count === 1 ? "For 1 time siden" : `For ${count} timer siden`;
+    if (unit === "day")
+      return count === 1 ? "For 1 dag siden" : `For ${count} dage siden`;
+    if (unit === "month")
+      return count === 1 ? "For 1 måned siden" : `For ${count} måneder siden`;
+    if (unit === "year")
+      return count === 1 ? "For 1 år siden" : `For ${count} år siden`;
+  }
+
+  return trimmed;
+}
+
+export const localizeTimeAgo = formatTimeAgoByLang;
