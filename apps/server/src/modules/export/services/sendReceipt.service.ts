@@ -16,7 +16,7 @@ import { success } from 'src/utils/sendResponse';
 import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
 
 const RECEIPT_STATUS_LABEL: Record<string, string> = {
-  [ORDER_STATUS.COMPLETED]: 'Gennemført',
+  [ORDER_STATUS.COMPLETED]: 'Købt',
   [ORDER_STATUS.PENDING]: 'Afventer',
   [ORDER_STATUS.FAILED]: 'Mislykkedes',
 };
@@ -84,7 +84,11 @@ export const sendReceiptService = async (orderId: string) => {
           createdAt: formatDate(orderInfo.createdAt),
           price: orderInfo.payment.amount ?? orderInfo.price,
           currency: orderInfo.currency,
-          status: RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status,
+          status: isRental
+            ? orderInfo.status === ORDER_STATUS.COMPLETED
+              ? 'Lejet'
+              : (RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status)
+            : (RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status),
           paymentMethod: orderInfo.payment.paymentMethod,
           cardType: orderInfo.payment.cardType,
           cardNoLast4: orderInfo.payment.cardNo.slice(-4),
