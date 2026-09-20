@@ -28,6 +28,7 @@ import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import {
@@ -67,7 +68,7 @@ function TutorialCard({
   imagePriority = false,
 }: TutorialCardProps) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
@@ -245,7 +246,7 @@ function TutorialCard({
           ) : null}
           {tutorial.published ? (
             <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
-              {tutorial.published}
+              {formatTimeAgoByLang(tutorial.published, i18n.language)}
             </MonoText>
           ) : null}
         </>

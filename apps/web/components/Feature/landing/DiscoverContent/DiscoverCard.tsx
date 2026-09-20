@@ -22,10 +22,11 @@ import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_IMAGE_DIMENSIONS } from "@/utils/landingUtils";
 import GenericCard from "@/components/UI/GenericCard";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 
-function DiscoverCard({ item }: DiscoverCardProps) {
+function DiscoverCard({ item, lng }: DiscoverCardProps) {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
 
@@ -70,7 +71,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
       }
       meta={
         <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
-          {safeT(item.dateKey)}
+          {formatTimeAgoByLang(item.dateKey, lng || i18n.language)}
         </MonoText>
       }
       onClick={handleOpen}

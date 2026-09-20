@@ -10,6 +10,7 @@ import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -23,7 +24,7 @@ export default function SingleTutorial({
   relatedVideos = [],
   collectionId,
 }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const playbackUrl = useMemo(
     () => resolveCloudflareStreamPlaybackUrl(null, tutorial.videoUrl),
@@ -65,7 +66,11 @@ export default function SingleTutorial({
   }, [t, tutorial.category, tutorial.tags]);
 
   const publisherName = tutorial.publisher ?? tutorial.creator;
-  const publishedValue = tutorial.publishedYear ?? tutorial.published;
+  const publishedValue =
+    tutorial.publishedYear ??
+    (tutorial.published
+      ? formatTimeAgoByLang(tutorial.published, i18n.language)
+      : "");
   const durationValue =
     tutorial.duration ?? t("singleTutorial.meta.durationValue");
 
