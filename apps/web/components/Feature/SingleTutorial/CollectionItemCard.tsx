@@ -40,6 +40,7 @@ import {
   CollectionVideoLabelText,
   CollectionVideoPill,
 } from "./styles";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 
 type IconComponent = ComponentType<{
   width?: number;
@@ -85,7 +86,7 @@ export default function CollectionItemCard({
   collectionId = null,
 }: Props) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
@@ -209,7 +210,13 @@ export default function CollectionItemCard({
           alt={video.title}
           title={title}
           subtitle={subtitle}
-          meta={<CollectionTime>{video.published}</CollectionTime>}
+          meta={
+            <CollectionTime>
+              {video.published
+                ? formatTimeAgoByLang(video.published, i18n.language)
+                : ""}
+            </CollectionTime>
+          }
           badge={
             video.category?.trim() ? (
               <CollectionBadgeText>

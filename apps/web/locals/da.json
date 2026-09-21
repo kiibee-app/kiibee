@@ -36,7 +36,7 @@
         "audio": "Lyd fil",
         "pdf": "PDF",
         "epub": "Epub",
-        "web": "Web fil"
+        "web": "Web indhold"
       },
       "categoryTitle": "Kategori",
       "category": {
@@ -550,7 +550,7 @@
           "ePublication": "E-publikation",
           "pdf": "PDF",
           "audioFile": "Lydfil",
-          "webContent": "Webindhold"
+          "webContent": "Web indhold"
         }
       }
     },
@@ -562,7 +562,7 @@
       "heading": "Senest tilføjet indhold",
       "tag": "Senest tilføjet"
     },
-    "viewProfile": "Se profil",
+    "viewProfile": "Se udgiver",
     "noCreatorsFound": "Ingen udgiver fundet",
     "uploadsCount_one": "{{count}} udgivelse",
     "uploadsCount_other": "{{count}} udgivelser",
