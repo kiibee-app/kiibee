@@ -10,7 +10,6 @@ import GenericButton from "@/components/UI/GenericButton";
 import FormField from "@/components/UI/FormField";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
-import { PATHS } from "@/utils/path";
 import { AGREED, INPUT_TYPE } from "@/utils/ui";
 import {
   PASSWORD_FIELD_KEYS,
@@ -34,6 +33,7 @@ import {
   Wrapper,
 } from "./styles";
 import { useViewerSignUpForm } from "@/hooks/auth/useViewerSignUpForm";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 
 type PasswordFieldKey = keyof PasswordVisibility;
 
@@ -50,6 +50,7 @@ export default function SignUpViewer({
   onSwitchMode?: () => void;
 } = {}) {
   const { t } = useTranslation();
+  const paths = useLocalizedPaths();
 
   const {
     methods,
@@ -111,7 +112,7 @@ export default function SignUpViewer({
 
   return (
     <ContentWrap $isModal={isModal}>
-      {!isModal && <AuthBackButton href="/auth/signup" />}
+      {!isModal && <AuthBackButton href={paths.AUTH_SIGNUP} />}
       <Wrapper $isModal={isModal}>
         <Card>
           <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
@@ -135,11 +136,11 @@ export default function SignUpViewer({
                 <ConsentText htmlFor="viewer-consent">
                   <MonoText $use="Body_Small">
                     {t("viewerSignup.form.consentPrefix")}
-                    <TermsLink href={PATHS.TERMS}>
+                    <TermsLink href={paths.TERMS}>
                       {t("viewerSignup.form.terms")}
                     </TermsLink>
                     {t("viewerSignup.form.and")}
-                    <TermsLink href={PATHS.PRIVACY_POLICY}>
+                    <TermsLink href={paths.PRIVACY_POLICY}>
                       {t("viewerSignup.form.privacy")}
                     </TermsLink>
                   </MonoText>
@@ -168,7 +169,7 @@ export default function SignUpViewer({
               {t("viewerSignup.haveAccount")}
             </MonoText>
             <LoginLink
-              href={PATHS.AUTH_LOGIN}
+              href={paths.AUTH_LOGIN}
               onClick={(e) => {
                 if (onSwitchMode) {
                   e.preventDefault();

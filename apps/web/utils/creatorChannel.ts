@@ -1,5 +1,6 @@
 import type { ProfileTabKey } from "@/utils/common";
 import { PATHS } from "@/utils/path";
+import { toCanonicalPathname } from "./localizedRoutes";
 export const CREATOR_LAYOUT_STORAGE_KEY = "kiibee.creatorChannelLayout";
 export const CREATOR_LAYOUT_UPDATED = "kiibee:creator-channel-layout-updated";
 export const CREATOR_ID_PARAM = "creatorId";
@@ -151,13 +152,16 @@ export function matchesProfileSearch(
 }
 
 function normalizeNavPath(href: string): string {
-  return href.split("?")[0].split("#")[0];
+  return toCanonicalPathname(href.split("?")[0].split("#")[0]);
 }
 
 export function findActiveNavItemKey(
   pathname: string,
   items: ReadonlyArray<{ key: string; href?: string }>,
 ): string | null {
+  const canonicalPathname = toCanonicalPathname(
+    pathname.split("?")[0].split("#")[0],
+  );
   const withHref = items
     .filter((item): item is { key: string; href: string } => Boolean(item.href))
     .map((item) => ({
@@ -167,7 +171,10 @@ export function findActiveNavItemKey(
     .sort((a, b) => b.path.length - a.path.length);
 
   for (const { key, path } of withHref) {
-    if (pathname === path || pathname.startsWith(`${path}/`)) {
+    if (
+      canonicalPathname === path ||
+      canonicalPathname.startsWith(`${path}/`)
+    ) {
       return key;
     }
   }

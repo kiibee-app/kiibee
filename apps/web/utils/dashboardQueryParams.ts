@@ -5,11 +5,13 @@ import {
   CONTENT_LAST_EDITED_STORAGE_KEY,
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  VIEW,
 } from "@/utils/Constants";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { TAB_KEYS } from "@/utils/settingsTabs";
 import { storage } from "@/utils/storage";
 import { USER_TABS } from "@/utils/usersTabs";
+import { toCanonicalSearchParams } from "@/utils/localizedQueryParams";
 
 export const CONTENTS_VIEW_QUERY_KEYS = [
   CONTENT_COLLECTION_QUERY_KEY,
@@ -63,8 +65,11 @@ export function sanitizeDashboardQueryParams(
   view: string,
 ): boolean {
   let changed = false;
+  const canonicalView =
+    toCanonicalSearchParams(new URLSearchParams({ [VIEW]: view })).get(VIEW) ??
+    view;
 
-  if (view !== CREATORS_LABELS.CONTENTS) {
+  if (canonicalView !== CREATORS_LABELS.CONTENTS) {
     changed = stripContentsViewQueryParams(params);
   }
 
@@ -75,7 +80,7 @@ export function sanitizeDashboardQueryParams(
     }
   }
 
-  const validTabs = getValidTabsForView(view);
+  const validTabs = getValidTabsForView(canonicalView);
   const tab = params.get(CONTENT_TAB);
 
   if (validTabs === null) {
