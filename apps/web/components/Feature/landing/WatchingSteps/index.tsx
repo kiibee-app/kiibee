@@ -80,15 +80,13 @@ export default function WatchingSteps() {
                     {t(`watchingSteps.steps.${step.translationKey}.label`)}
                   </MonoText>
                 </NumberPart>
-                <div>
-                  <StepDescription>
-                    <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
-                      {t(
-                        `watchingSteps.steps.${step.translationKey}.description`,
-                      )}
-                    </MonoText>
-                  </StepDescription>
-                </div>
+                <StepDescription>
+                  <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
+                    {t(
+                      `watchingSteps.steps.${step.translationKey}.description`,
+                    )}
+                  </MonoText>
+                </StepDescription>
               </StepCard>
             ))}
             <CTAWrapper>
