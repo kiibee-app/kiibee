@@ -61,9 +61,18 @@ function resolveFormatType(contentType?: string | null): FormatType {
   return FORMAT_TYPE.VIDEO;
 }
 
-function formatFormatLabel(contentType?: string | null): string {
+function formatFormatLabel(
+  contentType?: string | null,
+  language?: string,
+): string {
   const key = normalizeContentTypeKey(contentType);
-  if (key === "web" || key === "web link") return "Web content";
+  if (key === "web" || key === "web link") {
+    const isEn =
+      language === "en" ||
+      (typeof document !== "undefined" &&
+        document.documentElement.lang === "en");
+    return isEn ? "Web content" : "Web indhold";
+  }
   if (key === "epub") return "E-pub";
   if (!contentType) return "Video";
   return contentType;
@@ -107,7 +116,11 @@ function buildPricingButtons(
 export function feedContentToTutorial(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    labels?: PricingLabels;
+    language?: string;
+  },
 ): TutorialVideo {
   const thumbnailCandidates = resolveContentThumbnailCandidates(
     item.thumbnailUrl,
@@ -125,7 +138,7 @@ export function feedContentToTutorial(
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
     isFree: isFreeContentItem(item),
-    formatLabel: formatFormatLabel(item.contentType),
+    formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
     image: thumbnailCandidates[0] ?? recentCreator,
     ...(thumbnailCandidates[1]

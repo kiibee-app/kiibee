@@ -5,13 +5,14 @@ import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bo
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import type { DiscoverContentItem } from "@/utils/discoverContent";
 import { MEDIA_TYPE } from "@/utils/Constants";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 
 type Props = {
   item: DiscoverContentItem;
 };
 
 export default function SingleDiscoverContent({ item }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isVideo = item.mediaType === MEDIA_TYPE.VIDEO;
   const actionLabels = item.actions.map((a) => t(a.labelKey));
 
@@ -42,7 +43,7 @@ export default function SingleDiscoverContent({ item }: Props) {
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),
-          value: t(item.dateKey),
+          value: formatTimeAgoByLang(item.dateKey, i18n.language),
         },
         {
           label: t("discoverContent.detail.formatLabel"),
