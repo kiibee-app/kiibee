@@ -24,7 +24,7 @@ const NAV_ITEMS: NavItem[] = [
 
   {
     key: "nav.exploreCreators",
-    href: PATHS.EXPLORE,
+    href: PATHS.EXPLORE_CREATORS,
     children: [
       {
         titleKey: "nav.explore.allContentTitle",

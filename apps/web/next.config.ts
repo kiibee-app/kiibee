@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
       meaninglessFileNames: ["index", "styles"],
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/explore",
+        destination: "/creators/all",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [
       ...INDEXABLE_ROUTES.map((pathname) => ({

@@ -94,6 +94,9 @@ export function isSafePostLoginPath(
     path.startsWith(`${PATHS.CONTENT}/`) ||
     path === PATHS.EXPLORE ||
     path.startsWith(`${PATHS.EXPLORE}/`) ||
+    path === PATHS.CREATORS ||
+    path.startsWith(`${PATHS.CREATORS}/`) ||
+    path.startsWith("/creators/") ||
     path === PATHS.DASHBOARD_CREATOR ||
     path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     path === PATHS.DASHBOARD_VIEWER ||
