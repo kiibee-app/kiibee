@@ -22,7 +22,7 @@ import {
   LinkGroup,
 } from "./styles";
 import logo from "../../../assets/images/kiibee-logo.svg";
-import card from "../../../assets/images/card.webp";
+import card from "../../../assets/icons/payment-icons.svg";
 import { FacebookIcon, InstagramIcon } from "@/assets/icons";
 import { footerConfig, footerLinks } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
