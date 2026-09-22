@@ -11,7 +11,7 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import { getCategoryLabel } from "@/utils/category";
-import type { TFunction } from "i18next";
+import { pickUniqueCreatorItems } from "@/utils/feedContentToTutorial";
 import {
   Section,
   HeaderSection,
@@ -48,10 +48,17 @@ export default function ExploreCategories() {
   }, [categoriesList, activeCategory]);
 
   const filteredItems = useMemo(() => {
-    if (resolvedActiveCategory === CATEGORY_ALL) {
-      return tutorials;
-    }
-    return tutorials.filter((item) => item.category === resolvedActiveCategory);
+    const byCategory =
+      resolvedActiveCategory === CATEGORY_ALL
+        ? tutorials
+        : tutorials.filter((item) => item.category === resolvedActiveCategory);
+
+    return pickUniqueCreatorItems(
+      byCategory,
+      EXPLORE_PAGE_SIZE,
+      (item) =>
+        item.creatorId?.trim() || item.creator?.trim().toLowerCase() || null,
+    );
   }, [tutorials, resolvedActiveCategory]);
 
   if (isLoading) {
@@ -126,7 +133,7 @@ export default function ExploreCategories() {
         <BrowseAllButton
           id="browse-all-creators-btn"
           asAnchor
-          href={PATHS.EXPLORE}
+          href={PATHS.EXPLORE_EVERYTHING}
         >
           <MonoText $use="Body_Medium">
             {t("exploreCategories.browseAll")}

@@ -90,6 +90,42 @@ export function dedupeFeedContentItems(
   });
 }
 
+export function pickUniqueCreatorItems<T>(
+  items: T[],
+  limit: number,
+  getCreatorKey: (item: T) => string | null | undefined,
+): T[] {
+  const selected: T[] = [];
+  const seen = new Set<string>();
+
+  for (const item of items) {
+    const rawKey = getCreatorKey(item);
+    const creatorKey = rawKey?.trim() || null;
+
+    if (creatorKey) {
+      if (seen.has(creatorKey)) continue;
+      seen.add(creatorKey);
+    }
+
+    selected.push(item);
+    if (selected.length >= limit) break;
+  }
+
+  return selected;
+}
+
+export function pickUniqueCreatorFeedItems(
+  items: FeedContentItem[],
+  limit: number,
+): FeedContentItem[] {
+  return pickUniqueCreatorItems(
+    items,
+    limit,
+    (item) =>
+      item.creatorId?.trim() || item.creatorName?.trim().toLowerCase() || null,
+  );
+}
+
 function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,

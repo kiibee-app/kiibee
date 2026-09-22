@@ -11,9 +11,17 @@ import { logger } from 'src/logger/logger';
 import { success, fail } from 'src/utils/sendResponse';
 import { HttpStatus } from '@nestjs/common';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
-import { CONTENT_VISIBILITY } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  RECENT_CANDIDATE_MULTIPLIER,
+  RECENT_MIN_CANDIDATE_LIMIT,
+} from 'src/utils/constant';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
-import { dedupeFeedMediaById, orderFeedMediaByIds } from '../feed.helper';
+import {
+  dedupeFeedMediaByCreator,
+  dedupeFeedMediaById,
+  orderFeedMediaByIds,
+} from '../feed.helper';
 
 const recentSelect = {
   id: mediaFiles.id,
@@ -44,13 +52,18 @@ const activeCreatorJoin = and(
 
 export const getRecentContentService = async (limit = 10) => {
   try {
+    const candidateLimit = Math.max(
+      limit * RECENT_CANDIDATE_MULTIPLIER,
+      RECENT_MIN_CANDIDATE_LIMIT,
+    );
+
     const recentIds = await db
       .select({ id: mediaFiles.id })
       .from(mediaFiles)
       .innerJoin(users, activeCreatorJoin)
       .where(publishedPublicWhere)
       .orderBy(desc(mediaFiles.createdAt))
-      .limit(limit);
+      .limit(candidateLimit);
 
     if (recentIds.length === 0) {
       return success([], 'Recent content fetched successfully', HttpStatus.OK);
@@ -73,7 +86,10 @@ export const getRecentContentService = async (limit = 10) => {
       )
       .where(and(inArray(mediaFiles.id, ids), publishedPublicWhere));
 
-    const recentContent = orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
+    const recentContent = dedupeFeedMediaByCreator(
+      orderFeedMediaByIds(dedupeFeedMediaById(rows), ids),
+      limit,
+    );
 
     const formatted = recentContent.map((item) => ({
       ...item,
