@@ -14,7 +14,6 @@ import {
   NavItem,
 } from "./styles";
 import { useTranslation } from "react-i18next";
-import { PATHS } from "@/utils/path";
 import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 import {
   getDisplayFirstLetter,
@@ -26,6 +25,7 @@ import { useRouter } from "next/navigation";
 import CreatorHeaderRight from "./CreatorHeaderRight";
 import ViewerHeaderRight from "./ViewerHeaderRight";
 import LanguageToggle from "@/components/UI/LanguageToggle";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 
 type Props = {
   role: typeof ROLE_CREATOR | typeof ROLE_VIEWER;
@@ -38,6 +38,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const user = useStoredLoginUser();
   const isCreator = role === ROLE_CREATOR;
   const router = useRouter();
+  const paths = useLocalizedPaths();
   const { avatarUrl: profileAvatarUrl, displayName } =
     useCreatorChannelProfile(isCreator);
   const initial = getDisplayFirstLetter(displayName, user);
@@ -60,7 +61,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
         <LogoButton
           type="button"
           aria-label={t("nav.logoAlt")}
-          onClick={() => router.push(PATHS.HOME)}
+          onClick={() => router.push(paths.HOME)}
         >
           <Image
             src={logo}
@@ -74,9 +75,9 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
 
       {role === ROLE_VIEWER && (
         <Nav>
-          <NavItem href={PATHS.HOW_IT_WORKS}>{t("nav.howItWorks")}</NavItem>
-          <NavItem href={PATHS.EXPLORE}>{t("nav.exploreCreators")}</NavItem>
-          <NavItem href={PATHS.ABOUT}>{t("nav.about")}</NavItem>
+          <NavItem href={paths.HOW_IT_WORKS}>{t("nav.howItWorks")}</NavItem>
+          <NavItem href={paths.EXPLORE}>{t("nav.exploreCreators")}</NavItem>
+          <NavItem href={paths.ABOUT}>{t("nav.about")}</NavItem>
         </Nav>
       )}
 

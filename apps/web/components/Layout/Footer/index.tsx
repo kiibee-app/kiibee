@@ -28,9 +28,11 @@ import { footerConfig, footerLinks } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
+import { useLocalizedHref } from "@/hooks/useLocalizedPaths";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const localize = useLocalizedHref();
   const year = new Date().getFullYear();
 
   return (
@@ -66,7 +68,10 @@ const Footer = () => {
               </MonoText>
             </Title>
             {col.items.map((item, idx) => (
-              <LinkItem key={`${col.title}-${idx}`} href={item.href ?? "#"}>
+              <LinkItem
+                key={`${col.title}-${idx}`}
+                href={item.href ? localize(item.href) : "#"}
+              >
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
                   {t(item.label)}
                 </MonoText>
@@ -84,7 +89,11 @@ const Footer = () => {
             {footerLinks.map((group, groupIndex) => (
               <LinkGroup key={groupIndex}>
                 {group.map(({ href, label }) => (
-                  <BottomLink key={href} href={href} rel="noopener noreferrer">
+                  <BottomLink
+                    key={href}
+                    href={localize(href)}
+                    rel="noopener noreferrer"
+                  >
                     <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
                       {t(label)}
                     </MonoText>
