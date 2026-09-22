@@ -99,6 +99,9 @@ export function isSafePostLoginPath(
     canonical.startsWith(`${PATHS.CONTENT}/`) ||
     canonical === PATHS.EXPLORE ||
     canonical.startsWith(`${PATHS.EXPLORE}/`) ||
+    canonical === PATHS.CREATORS ||
+    canonical.startsWith(`${PATHS.CREATORS}/`) ||
+    canonical.startsWith("/creators/") ||
     canonical === PATHS.DASHBOARD_CREATOR ||
     canonical.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     canonical === PATHS.DASHBOARD_VIEWER ||
