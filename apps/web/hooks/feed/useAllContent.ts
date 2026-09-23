@@ -23,6 +23,7 @@ import {
   ACCESS_TYPE_FREE,
   EXPLORE_SUBSECTION_EVERYTHING,
   QUERY_KEY_FORMAT,
+  QUERY_KEY_SORT,
   QUERY_KEYS,
 } from "@/utils/Constants";
 import { fetchAllContent, type ApiResponse } from "./useAllContentHelper";
@@ -33,7 +34,7 @@ export function useAllContent(allContentId: string) {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue);
 
-  const urlSort = searchParams.get("sort");
+  const urlSort = searchParams.get(QUERY_KEY_SORT);
   const initialSortOption = urlSort || SORT_OPTION_POPULAR;
 
   const [sortOption, setSortOption] = useState<string>(initialSortOption);

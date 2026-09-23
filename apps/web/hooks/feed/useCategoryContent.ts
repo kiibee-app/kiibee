@@ -21,6 +21,8 @@ import {
   SORT_OPTION_AZ,
   SORT_OPTION_POPULAR,
   CATEGORY_ALL,
+  QUERY_KEY_FORMAT,
+  QUERY_KEY_SORT,
 } from "@/utils/Constants";
 
 type ApiResponse<T> = {
@@ -62,7 +64,7 @@ export function useCategoryContent(categoryName: string) {
   );
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const urlSort = searchParams.get("sort");
+  const urlSort = searchParams.get(QUERY_KEY_SORT);
   const initialSortOption = urlSort || SORT_OPTION_POPULAR;
   const [sortOption, setSortOption] = useState<string>(initialSortOption);
   const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
@@ -121,7 +123,7 @@ export function useCategoryContent(categoryName: string) {
     formatOptions,
   } = useExploreFilterOptions();
 
-  const urlFormat = searchParams.get("format");
+  const urlFormat = searchParams.get(QUERY_KEY_FORMAT);
   const initialSelectedOptions = useMemo(
     () => ({
       formats: urlFormat ? [urlFormat] : [],
