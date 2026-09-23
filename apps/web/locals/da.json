@@ -63,7 +63,7 @@
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
     "more": "...mere",
     "searchPlaceholder": "Søg indhold",
-    "searchOpenPlaceholder": "Søg efter opslag",
+    "searchOpenPlaceholder": "Søg efter indhold",
     "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
     "noContentTitle": "Indhold på vej",
@@ -554,8 +554,8 @@
         }
       }
     },
-    "search": "Søg efter opslag",
-    "searchCreators": "Søg efter udgiver",
+    "search": "Søg efter indhold",
+    "searchCreators": "Søg efter indhold",
     "sort": "Sorter efter:",
     "recentlyAdded": {
       "badge": "Senest tilføjet",
