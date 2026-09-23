@@ -199,11 +199,11 @@ export const contentActionOptions: DropdownOption<RowAction>[] = [
 export const getCategorySortOptions = (
   t: (key: string) => string,
 ): DropdownOption<string>[] => [
-  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.popular").toLowerCase(),
     value: SORT_OPTION_POPULAR,
   },
+  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.freeContent").toLowerCase(),
     value: ACCESS_TYPE_FREE,

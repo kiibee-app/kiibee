@@ -19,8 +19,10 @@ import {
   EXPLORE_INITIAL_PAGE_SIZE,
   EXPLORE_PAGE_SIZE,
   SORT_OPTION_AZ,
-  SORT_OPTION_NEW,
+  SORT_OPTION_POPULAR,
   CATEGORY_ALL,
+  QUERY_KEY_FORMAT,
+  QUERY_KEY_SORT,
 } from "@/utils/Constants";
 
 type ApiResponse<T> = {
@@ -62,8 +64,20 @@ export function useCategoryContent(categoryName: string) {
   );
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [sortOption, setSortOption] = useState<string>(SORT_OPTION_NEW);
+  const urlSort = searchParams.get(QUERY_KEY_SORT);
+  const initialSortOption = urlSort || SORT_OPTION_POPULAR;
+  const [sortOption, setSortOption] = useState<string>(initialSortOption);
   const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
+  const [prevSyncKey, setPrevSyncKey] = useState(
+    `${categoryName}_${urlSort || ""}`,
+  );
+
+  const currentSyncKey = `${categoryName}_${urlSort || ""}`;
+  if (currentSyncKey !== prevSyncKey) {
+    setPrevSyncKey(currentSyncKey);
+    setSortOption(initialSortOption);
+    setLimit(EXPLORE_INITIAL_PAGE_SIZE);
+  }
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -109,7 +123,7 @@ export function useCategoryContent(categoryName: string) {
     formatOptions,
   } = useExploreFilterOptions();
 
-  const urlFormat = searchParams.get("format");
+  const urlFormat = searchParams.get(QUERY_KEY_FORMAT);
   const initialSelectedOptions = useMemo(
     () => ({
       formats: urlFormat ? [urlFormat] : [],
