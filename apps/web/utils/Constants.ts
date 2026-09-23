@@ -444,6 +444,7 @@ export const BUY_KEYWORDS = ["buy", "køb"];
 export const RENT_KEYWORDS = ["rent", "lej"];
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
+export const DISCOVER_CONTENT_LIMIT = 4;
 export const EXPLORE_PAGE_SIZE = 12;
 export const EXPLORE_INITIAL_PAGE_SIZE = 24;
 export const TOP_CREATORS_LIMIT = 20;

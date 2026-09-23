@@ -8,9 +8,18 @@ import {
   emailSubscribers,
 } from 'src/database/schema';
 import { eq, desc, and, sql, inArray } from 'drizzle-orm';
-import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  RECENT_CANDIDATE_MULTIPLIER,
+  RECENT_MIN_CANDIDATE_LIMIT,
+  ROLE,
+} from 'src/utils/constant';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
-import { dedupeFeedMediaById, orderFeedMediaByIds } from './feed.helper';
+import {
+  dedupeFeedMediaByCreator,
+  dedupeFeedMediaById,
+  orderFeedMediaByIds,
+} from './feed.helper';
 
 const baseSelect = {
   id: mediaFiles.id,
@@ -99,6 +108,11 @@ export const getLatestQuery = async (
 };
 
 export const getRecentQuery = async (where: any, limit: number) => {
+  const candidateLimit = Math.max(
+    limit * RECENT_CANDIDATE_MULTIPLIER,
+    RECENT_MIN_CANDIDATE_LIMIT,
+  );
+
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
@@ -112,9 +126,11 @@ export const getRecentQuery = async (where: any, limit: number) => {
     )
     .where(where)
     .orderBy(desc(mediaFiles.createdAt))
-    .limit(limit);
+    .limit(candidateLimit);
 
-  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+
+  return dedupeFeedMediaByCreator(candidates, limit);
 };
 
 export const getTopCreatorsQuery = (limit = 10) =>
