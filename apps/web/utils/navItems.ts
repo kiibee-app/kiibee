@@ -67,7 +67,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         titleKey: "nav.explore.creatorTitle",
         items: [
-          { key: "nav.explore.creator.allCreators", href: PATHS.EXPLORE },
+          { key: "nav.explore.creator.allCreators", href: PATHS.CREATORS },
           {
             key: "nav.explore.creator.featured",
             href: PATHS.CREATORS_FEATURED,

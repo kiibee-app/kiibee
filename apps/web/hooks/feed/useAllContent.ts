@@ -33,18 +33,18 @@ export function useAllContent(allContentId: string) {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue);
 
-  const initialSortOption = useMemo(() => {
-    if (allContentId === SORT_OPTION_POPULAR) return SORT_OPTION_POPULAR;
-    if (allContentId === ACCESS_TYPE_FREE) return ACCESS_TYPE_FREE;
-    return SORT_OPTION_NEW;
-  }, [allContentId]);
+  const urlSort = searchParams.get("sort");
+  const initialSortOption = urlSort || SORT_OPTION_POPULAR;
 
   const [sortOption, setSortOption] = useState<string>(initialSortOption);
   const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
-  const [prevAllContentId, setPrevAllContentId] = useState(allContentId);
+  const [prevSyncKey, setPrevSyncKey] = useState(
+    `${allContentId}_${urlSort || ""}`,
+  );
 
-  if (allContentId !== prevAllContentId) {
-    setPrevAllContentId(allContentId);
+  const currentSyncKey = `${allContentId}_${urlSort || ""}`;
+  if (currentSyncKey !== prevSyncKey) {
+    setPrevSyncKey(currentSyncKey);
     setSortOption(initialSortOption);
     setLimit(EXPLORE_INITIAL_PAGE_SIZE);
   }
