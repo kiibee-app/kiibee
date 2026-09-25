@@ -68,10 +68,22 @@ export function isExploreCreatorFilter(
   return EXPLORE_CREATOR_FILTERS.includes(value as ExploreCreatorFilter);
 }
 
+const CREATOR_FILTER_ALIASES: Record<string, ExploreCreatorFilter> = {
+  alle: SORT_ALL,
+  udvalgte: SORT_FEATURED,
+  nye: SORT_NEW,
+  populaere: SORT_POPULAR,
+};
+
 export function resolveExploreCreatorFilter(
   value: unknown,
 ): ExploreCreatorFilter {
-  return isExploreCreatorFilter(value) ? value : SORT_ALL;
+  if (isExploreCreatorFilter(value)) return value;
+  if (typeof value === "string") {
+    const alias = CREATOR_FILTER_ALIASES[value.toLowerCase()];
+    if (alias) return alias;
+  }
+  return SORT_ALL;
 }
 
 export function getExploreCreatorInitialSort(
@@ -187,11 +199,11 @@ export const contentActionOptions: DropdownOption<RowAction>[] = [
 export const getCategorySortOptions = (
   t: (key: string) => string,
 ): DropdownOption<string>[] => [
-  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.popular").toLowerCase(),
     value: SORT_OPTION_POPULAR,
   },
+  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.freeContent").toLowerCase(),
     value: ACCESS_TYPE_FREE,

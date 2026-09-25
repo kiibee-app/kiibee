@@ -12,6 +12,12 @@ import {
 import { isBrowser } from "@/utils/ui";
 import { storage } from "@/utils/storage";
 import { ADD_CONTENT_TABS, type AddContentTab } from "@/utils/common";
+import { useAppLanguage } from "@/hooks/useLocalizedPaths";
+import {
+  formatSearch,
+  localizeSearchParams,
+  toCanonicalSearchParams,
+} from "@/utils/localizedQueryParams";
 
 type Params = {
   collections: CollectionRow[];
@@ -36,10 +42,12 @@ export function useContentsUrlState({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const language = useAppLanguage();
   const searchParamsString = searchParams?.toString() ?? "";
 
-  const queryCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
-  const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
+  const canonicalParams = toCanonicalSearchParams(searchParamsString);
+  const queryCollectionId = canonicalParams.get(CONTENT_COLLECTION_QUERY_KEY);
+  const queryContentId = canonicalParams.get(CONTENT_ITEM_QUERY_KEY);
 
   const isClearingParamsRef = useRef(false);
   const hasRestoredCollectionRef = useRef(false);
@@ -59,7 +67,7 @@ export function useContentsUrlState({
       collectionId?: string | null;
       contentId?: string | null;
     }) => {
-      const params = new URLSearchParams(getLiveSearch(searchParamsString));
+      const params = toCanonicalSearchParams(getLiveSearch(searchParamsString));
 
       const apply = (key: string, value: string | null | undefined) =>
         value === undefined
@@ -72,13 +80,14 @@ export function useContentsUrlState({
       apply(CONTENT_COLLECTION_QUERY_KEY, updates.collectionId);
       apply(CONTENT_ITEM_QUERY_KEY, updates.contentId);
 
-      const query = params.toString();
-
-      router.replace(query ? `${pathname}?${query}` : pathname, {
-        scroll: false,
-      });
+      router.replace(
+        `${pathname}${formatSearch(localizeSearchParams(params, language))}`,
+        {
+          scroll: false,
+        },
+      );
     },
-    [pathname, router, searchParamsString],
+    [pathname, router, searchParamsString, language],
   );
 
   useEffect(() => {

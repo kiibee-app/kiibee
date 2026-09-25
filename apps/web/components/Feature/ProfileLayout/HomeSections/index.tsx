@@ -33,6 +33,7 @@ import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
 } from "@/utils/media";
+import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -91,7 +92,7 @@ export default function ProfileHomeSections({
         ];
 
         return {
-          sectionTitle: latestConfig.sectionTitle,
+          sectionTitle: t(CREATE_PROFILE_HOME.latestUpload.title),
           badge:
             (latest as { category?: string | null }).category ??
             latestConfig.badge ??

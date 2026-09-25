@@ -40,6 +40,9 @@ export const CREATE_PROFILE_HOME = {
     joined: "createProfileHome.aboutModal.joined",
     links: "createProfileHome.aboutModal.links",
   },
+  latestUpload: {
+    title: "createProfileHome.latestUpload.title",
+  },
 };
 
 export const CREATE_PROFILE_ROUTES = {

@@ -140,10 +140,10 @@ export const CardWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
-  width: min(45vw, 14rem);
+  width: min(75vw, 21rem);
 
   ${media.tablet} {
-    width: min(60vw, 12rem);
+    width: min(85vw, 17rem);
   }
 `;
 

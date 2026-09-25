@@ -41,10 +41,11 @@ import {
   useCreatorRequestForm,
 } from "@/hooks/auth/useCreatorRequestForm";
 import { AGREED } from "@/utils/ui";
-import { PATHS } from "@/utils/path";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
+  const paths = useLocalizedPaths();
 
   const {
     methods,
@@ -85,7 +86,7 @@ export default function SignUpCreatorSection() {
 
   return (
     <ContentWrap>
-      <AuthBackButton href="/auth/signup" />
+      <AuthBackButton href={paths.AUTH_SIGNUP} />
       <LogoWrap>
         <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
       </LogoWrap>
@@ -136,11 +137,11 @@ export default function SignUpCreatorSection() {
             <ConsentText htmlFor="creator-consent">
               <MonoText $use="Body_Small">
                 {t("authCreator.form.consentPrefix")}
-                <TermsLink href={PATHS.CREATOR_TERMS}>
+                <TermsLink href={paths.CREATOR_TERMS}>
                   {t("authCreator.form.terms")}
                 </TermsLink>
                 {t("authCreator.form.and")}
-                <TermsLink href={PATHS.PRIVACY_POLICY}>
+                <TermsLink href={paths.PRIVACY_POLICY}>
                   {t("authCreator.form.privacy")}
                 </TermsLink>
               </MonoText>
@@ -165,7 +166,7 @@ export default function SignUpCreatorSection() {
 
       <LinkRow>
         <MonoText $use="Body_Medium">{t("authCreator.haveAccount")}</MonoText>
-        <LoginLink href="/auth/login">
+        <LoginLink href={paths.AUTH_LOGIN}>
           <MonoText $use="Body_Medium">{t("authCreator.login")}</MonoText>
         </LoginLink>
       </LinkRow>

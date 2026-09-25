@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { getDashboardPathForRole, PATHS } from "@/utils/path";
 import { ROLE_ADMIN, ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
+import {
+  localizePathname,
+  readLanguageFromCookieHeader,
+  toCanonicalPathname,
+  formatSearch,
+  localizeSearchParams,
+  searchParamsPreferEqual,
+} from "@/utils/localizedRoutes";
 import { logger } from "./lib/logger";
 
 const PROTECTED_PATHS = [PATHS.DASHBOARD_CREATOR, PATHS.DASHBOARD_VIEWER];
@@ -69,18 +77,23 @@ function getSessionRole(request: NextRequest) {
 
 function getDashboardPath(request: NextRequest) {
   const role = getSessionRole(request);
-  return role ? getDashboardPathForRole(role) : PATHS.DASHBOARD_CREATOR;
+  const language = readLanguageFromCookieHeader(request.headers.get("cookie"));
+  const dashboard = role
+    ? getDashboardPathForRole(role)
+    : PATHS.DASHBOARD_CREATOR;
+  return localizePathname(dashboard, language);
 }
 
-function isProtectedPath(pathname: string) {
+function isProtectedPath(canonicalPathname: string) {
   return PROTECTED_PATHS.some(
-    (path) => pathname === path || pathname.startsWith(`${path}/`),
+    (path) =>
+      canonicalPathname === path || canonicalPathname.startsWith(`${path}/`),
   );
 }
 
-function isAuthRedirectPath(pathname: string) {
+function isAuthRedirectPath(canonicalPathname: string) {
   return AUTH_REDIRECT_PATHS.includes(
-    pathname as (typeof AUTH_REDIRECT_PATHS)[number],
+    canonicalPathname as (typeof AUTH_REDIRECT_PATHS)[number],
   );
 }
 
@@ -92,17 +105,17 @@ function canAccessDashboard(requiredRole: string, sessionRole: string) {
   return false;
 }
 
-function getRequiredRole(pathname: string) {
+function getRequiredRole(canonicalPathname: string) {
   if (
-    pathname === PATHS.DASHBOARD_VIEWER ||
-    pathname.startsWith(`${PATHS.DASHBOARD_VIEWER}/`)
+    canonicalPathname === PATHS.DASHBOARD_VIEWER ||
+    canonicalPathname.startsWith(`${PATHS.DASHBOARD_VIEWER}/`)
   ) {
     return ROLE_VIEWER;
   }
 
   if (
-    pathname === PATHS.DASHBOARD_CREATOR ||
-    pathname.startsWith(`${PATHS.DASHBOARD_CREATOR}/`)
+    canonicalPathname === PATHS.DASHBOARD_CREATOR ||
+    canonicalPathname.startsWith(`${PATHS.DASHBOARD_CREATOR}/`)
   ) {
     return ROLE_CREATOR;
   }
@@ -110,27 +123,73 @@ function getRequiredRole(pathname: string) {
   return null;
 }
 
+function applyLocaleRouting(request: NextRequest, pathname: string) {
+  const language = readLanguageFromCookieHeader(request.headers.get("cookie"));
+  const canonicalPathname = toCanonicalPathname(pathname);
+  const preferredPathname = localizePathname(canonicalPathname, language);
+  const preferredSearch = localizeSearchParams(
+    request.nextUrl.searchParams,
+    language,
+  );
+  const searchMatches = searchParamsPreferEqual(
+    request.nextUrl.searchParams,
+    preferredSearch,
+  );
+
+  if (pathname !== preferredPathname || !searchMatches) {
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = preferredPathname;
+    redirectUrl.search = formatSearch(preferredSearch);
+    return {
+      canonicalPathname,
+      redirect: NextResponse.redirect(redirectUrl),
+      rewrite: null,
+    };
+  }
+
+  if (canonicalPathname !== pathname) {
+    const rewriteUrl = request.nextUrl.clone();
+    rewriteUrl.pathname = canonicalPathname;
+    return {
+      canonicalPathname,
+      redirect: null,
+      rewrite: NextResponse.rewrite(rewriteUrl),
+    };
+  }
+
+  return { canonicalPathname, redirect: null, rewrite: null };
+}
+
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
-  const isLoggedIn = hasAuthSession(request);
+  const localeResult = applyLocaleRouting(request, pathname);
 
-  if (isAuthRedirectPath(pathname) && isLoggedIn) {
+  if (localeResult.redirect) {
+    return localeResult.redirect;
+  }
+
+  const canonicalPathname = localeResult.canonicalPathname;
+  const isLoggedIn = hasAuthSession(request);
+  const language = readLanguageFromCookieHeader(request.headers.get("cookie"));
+
+  if (isAuthRedirectPath(canonicalPathname) && isLoggedIn) {
     return NextResponse.redirect(
       new URL(getDashboardPath(request), request.url),
     );
   }
 
-  if (!isProtectedPath(pathname)) {
-    return NextResponse.next();
+  if (!isProtectedPath(canonicalPathname)) {
+    return localeResult.rewrite ?? NextResponse.next();
   }
 
   if (!isLoggedIn) {
-    const loginUrl = new URL(PATHS.AUTH_LOGIN, request.url);
+    const loginPath = localizePathname(PATHS.AUTH_LOGIN, language);
+    const loginUrl = new URL(loginPath, request.url);
     loginUrl.searchParams.set("next", `${pathname}${search}`);
     return NextResponse.redirect(loginUrl);
   }
 
-  const requiredRole = getRequiredRole(pathname);
+  const requiredRole = getRequiredRole(canonicalPathname);
   const sessionRole = getSessionRole(request);
 
   if (
@@ -143,7 +202,7 @@ export function proxy(request: NextRequest) {
     );
   }
 
-  return NextResponse.next();
+  return localeResult.rewrite ?? NextResponse.next();
 }
 
 export const config = {

@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
-import { getSiteUrl, INDEXABLE_ROUTES, SEO_HEADERS_CONTEXT } from "./utils/seo";
+import {
+  getLocalizedIndexableRoutes,
+  getSiteUrl,
+  SEO_HEADERS_CONTEXT,
+} from "./utils/seo";
 
 const SITE_URL = getSiteUrl(SEO_HEADERS_CONTEXT);
+const INDEXABLE_PATHS = getLocalizedIndexableRoutes();
 
 const nextConfig: NextConfig = {
   compiler: {
@@ -14,7 +19,7 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      ...INDEXABLE_ROUTES.map((pathname) => ({
+      ...INDEXABLE_PATHS.map((pathname) => ({
         source: pathname,
         headers: [
           {
