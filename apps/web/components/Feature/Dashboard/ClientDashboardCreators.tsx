@@ -35,6 +35,13 @@ import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
 import { requestCreatorPaymentInfoFocus } from "@/utils/creatorPaymentInfoFocus";
+import { useAppLanguage } from "@/hooks/useLocalizedPaths";
+import {
+  formatSearch,
+  getCanonicalParam,
+  localizeSearchParams,
+  toCanonicalSearchParams,
+} from "@/utils/localizedQueryParams";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -49,6 +56,7 @@ const ADD_PAYMENT_TOAST_ID = "creator-add-payment-info";
 
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
+  const language = useAppLanguage();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
     useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -91,7 +99,7 @@ export default function ClientDashboardCreators() {
       <DashboardHeader role={ROLE_CREATOR} onToggleSidebar={toggleSidebar} />
     );
   };
-  const viewParam = searchParams?.get(VIEW);
+  const viewParam = getCanonicalParam(searchParams ?? undefined, VIEW);
   const view =
     viewParam && ROUTABLE_DASHBOARD_VIEWS.has(viewParam)
       ? viewParam
@@ -101,7 +109,7 @@ export default function ClientDashboardCreators() {
 
   const getHrefForView = useCallback(
     (label: string) => {
-      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      const params = toCanonicalSearchParams(searchParams?.toString() ?? "");
       const targetView =
         label === CREATORS_LABELS.OVERVIEW ? CREATORS_LABELS.OVERVIEW : label;
 
@@ -113,30 +121,33 @@ export default function ClientDashboardCreators() {
 
       sanitizeDashboardQueryParams(params, targetView);
 
-      const qs = params.toString();
-      return qs ? `${pathname}?${qs}` : pathname;
+      return `${pathname}${formatSearch(localizeSearchParams(params, language))}`;
     },
-    [pathname, searchParams],
+    [pathname, searchParams, language],
   );
 
   useEffect(() => {
-    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    const params = toCanonicalSearchParams(searchParams?.toString() ?? "");
     if (!sanitizeDashboardQueryParams(params, view)) return;
 
-    const qs = params.toString();
-    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-  }, [pathname, router, searchParams, view]);
+    router.replace(
+      `${pathname}${formatSearch(localizeSearchParams(params, language))}`,
+      { scroll: false },
+    );
+  }, [pathname, router, searchParams, view, language]);
 
   const isCreatorMissingPaymentInfo =
     getRole() === ROLE_CREATOR && !isPaymentInfoLoading && !hasPaymentInfo;
 
   const redirectToPaymentInfo = useCallback(() => {
-    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    const params = toCanonicalSearchParams(searchParams?.toString() ?? "");
     params.set(VIEW, CREATORS_LABELS.PROFILE);
     sanitizeDashboardQueryParams(params, CREATORS_LABELS.PROFILE);
-    const qs = params.toString();
-    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-  }, [pathname, router, searchParams]);
+    router.replace(
+      `${pathname}${formatSearch(localizeSearchParams(params, language))}`,
+      { scroll: false },
+    );
+  }, [pathname, router, searchParams, language]);
 
   useEffect(() => {
     if (!isCreatorMissingPaymentInfo) {
@@ -144,7 +155,7 @@ export default function ClientDashboardCreators() {
       return;
     }
 
-    const currentView = searchParams?.get(VIEW);
+    const currentView = getCanonicalParam(searchParams ?? undefined, VIEW);
     const onPaymentInfo = currentView === CREATORS_LABELS.PROFILE;
 
     if (onPaymentInfo) {

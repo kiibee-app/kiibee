@@ -104,6 +104,8 @@ export const isValidAvatarUrl = (value: string): boolean => {
   return isDataUrl || isHttpUrl;
 };
 export const FIXED_LIMIT = 10;
+export const RECENT_CANDIDATE_MULTIPLIER = 25;
+export const RECENT_MIN_CANDIDATE_LIMIT = 50;
 export const DEFAULT_ALL_CREATORS_LIMIT = 12;
 
 export const SORT_DIRECTIONS = {

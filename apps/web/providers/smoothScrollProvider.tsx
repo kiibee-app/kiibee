@@ -7,24 +7,25 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/utils/landingShared";
 import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
+import { toCanonicalPathname } from "@/utils/localizedRoutes";
 import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/** Same allow-list as before: Lenis only outside app/grid routes. */
 function shouldUseSmoothScroll(pathname: string) {
+  const canonical = toCanonicalPathname(pathname);
   return !(
-    pathname.startsWith("/dashboard") ||
-    pathname.startsWith("/creator/") ||
-    pathname.startsWith("/creators") ||
-    pathname.startsWith("/auth") ||
-    pathname.startsWith("/explore") ||
-    pathname.startsWith("/formats") ||
-    pathname.startsWith("/content/") ||
-    pathname.startsWith("/subscription") ||
-    pathname.startsWith("/payment")
+    canonical.startsWith("/dashboard") ||
+    canonical.startsWith("/creator/") ||
+    canonical.startsWith("/creators") ||
+    canonical.startsWith("/auth") ||
+    canonical.startsWith("/explore") ||
+    canonical.startsWith("/formats") ||
+    canonical.startsWith("/content/") ||
+    canonical.startsWith("/subscription") ||
+    canonical.startsWith("/payment")
   );
 }
 

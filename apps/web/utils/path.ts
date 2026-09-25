@@ -1,4 +1,5 @@
 import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
+import { toCanonicalPathname } from "./localizedRoutes";
 
 export const PATHS = {
   HOME: "/",
@@ -44,6 +45,7 @@ export const PATHS = {
   TERMS: "/terms-of-service",
   CREATOR_TERMS: "/creator-terms",
   PRIVACY_POLICY: "/privacy-policy",
+  COOKIE_SETTINGS: "/cookie-settings",
   CREATOR_PROFILE: "/creator",
   CREATOR_PLANS: "/creator-plans",
 } as const;
@@ -89,16 +91,22 @@ export function isSafePostLoginPath(
     return false;
   }
 
+  const pathname = path.split("?")[0] ?? path;
+  const canonical = toCanonicalPathname(pathname);
+
   return (
-    path === PATHS.CONTENT ||
-    path.startsWith(`${PATHS.CONTENT}/`) ||
-    path === PATHS.EXPLORE ||
-    path.startsWith(`${PATHS.EXPLORE}/`) ||
-    path === PATHS.DASHBOARD_CREATOR ||
-    path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
-    path === PATHS.DASHBOARD_VIEWER ||
-    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
-    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
+    canonical === PATHS.CONTENT ||
+    canonical.startsWith(`${PATHS.CONTENT}/`) ||
+    canonical === PATHS.EXPLORE ||
+    canonical.startsWith(`${PATHS.EXPLORE}/`) ||
+    canonical === PATHS.CREATORS ||
+    canonical.startsWith(`${PATHS.CREATORS}/`) ||
+    canonical.startsWith("/creators/") ||
+    canonical === PATHS.DASHBOARD_CREATOR ||
+    canonical.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
+    canonical === PATHS.DASHBOARD_VIEWER ||
+    canonical.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
+    canonical.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
 }
 
@@ -125,5 +133,7 @@ export function pathLoginWithNext(returnTo: string): string {
 }
 
 export function isDashboardPath(path: string | null | undefined): boolean {
-  return Boolean(path?.startsWith(PATHS.DASHBOARD));
+  if (!path) return false;
+  const pathname = path.split("?")[0] ?? path;
+  return toCanonicalPathname(pathname).startsWith(PATHS.DASHBOARD);
 }

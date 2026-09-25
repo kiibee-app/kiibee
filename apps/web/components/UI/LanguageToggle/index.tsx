@@ -2,16 +2,20 @@
 
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { usePathname, useRouter } from "next/navigation";
 import { DA, EN } from "@/utils/common";
 import {
   normalizeAppLanguage,
   persistAppLanguage,
   type AppLanguage,
 } from "@/utils/language";
+import { localizePathname } from "@/utils/localizedRoutes";
 import { Wrapper, Slider, LangButton } from "./styles";
 
 const LanguageToggle = () => {
   const { i18n } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
   const currentLang = normalizeAppLanguage(
     i18n.resolvedLanguage || i18n.language,
   );
@@ -21,8 +25,18 @@ const LanguageToggle = () => {
       if (lng === currentLang) return;
       persistAppLanguage(lng);
       void i18n.changeLanguage(lng);
+
+      const nextPath = localizePathname(pathname || "/", lng);
+      const search = window.location.search;
+      const hash = window.location.hash;
+      const href = `${nextPath}${search}${hash}`;
+      const currentHref = `${pathname}${search}${hash}`;
+
+      if (href !== currentHref) {
+        router.replace(href);
+      }
     },
-    [currentLang, i18n],
+    [currentLang, i18n, pathname, router],
   );
 
   return (
