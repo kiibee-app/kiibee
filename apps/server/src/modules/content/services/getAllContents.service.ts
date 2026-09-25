@@ -171,6 +171,9 @@ export const getAllContentsService = async (
 
       case SORT_DIRECTIONS.POPULAR:
         orderBy = [
+          desc(
+            sql`(SELECT COUNT(*) FROM orders WHERE orders.media_file_id = media_files.id AND orders.status = 'completed')`,
+          ),
           desc(sql`CAST(COALESCE(${mediaFiles.rating}, '0') AS NUMERIC)`),
           desc(mediaFiles.sortOrder),
           desc(mediaFiles.publishedAt),
