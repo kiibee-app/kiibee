@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3191/156147_mr1_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3191/156147_mr1_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3191/156147_mr1_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3191/156147_mr1_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-15 14:09:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3191/156147_mr1_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3191/156147_mr1_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3191/156147_mr1_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3191/156147_mr1_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3191/156147_mr1_facing_400x556.jpg?crop=High"
   },
   {
     "id": 43004,
@@ -496,7 +544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3192/digitalt-coverartwork-v1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3192/digitalt-coverartwork-v1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3192/digitalt-coverartwork-v1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3192/digitalt-coverartwork-v1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-15 14:09:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3192/digitalt-coverartwork-v1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3192/digitalt-coverartwork-v1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3192/digitalt-coverartwork-v1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3192/digitalt-coverartwork-v1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3192/digitalt-coverartwork-v1.jpg?crop=High"
   },
   {
     "id": 43005,
@@ -939,32 +1035,30 @@
       "year": "0",
       "description": "tekst ",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3193/mens-room-3-400.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3193/mens-room-3-400.jpg",
       "title": "Men`s Room 3",
       "badge": "",
       "length": "0",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3193/mens-room-3-400.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3193/mens-room-3-400.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3193/mens-room-3-400.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3193/mens-room-3-400.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1383,6 +1477,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-16 18:36:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "updaterName": "Anders Halfter",
+    "updaterId": 1,
+    "thumbnail": "/media/3193/mens-room-3-400.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3193/mens-room-3-400.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3193/mens-room-3-400.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3193/mens-room-3-400.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3193/mens-room-3-400.jpg?crop=High"
   }
 ]

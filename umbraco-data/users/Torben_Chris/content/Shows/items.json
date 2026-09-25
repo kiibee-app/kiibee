@@ -39,32 +39,30 @@
       "year": "2019",
       "description": "<h2>Stream Torben Chris' ABC - lej eller køb online</h2>\nI showet kaster Torben Chris sit altid kritiske blik på hverdagens finurlige observationer og betragter dem gennem sine logiske briller. For som man også har kunnet se i tv, er Torben Chris meget optaget af, om ting giver mening. Gør de ikke det, kommer de en tur igennem Chris-maskinen og kommer ud i den anden ende som jokes med kant og skarpe holdninger.\nHer kan du blandt andet se, hvad han mener om \"mobningen\" af Lars Løkke.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3209/tc_abc_web_ikon-628x890.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3209/tc_abc_web_ikon-628x890.jpeg",
       "title": "ABC",
       "badge": "",
       "length": "150",
       "tags": "ABC,Torben Chris,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -483,7 +481,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-15 23:02:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3209/tc_abc_web_ikon-628x890.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3209/tc_abc_web_ikon-628x890.jpeg?crop=High"
   },
   {
     "id": 44290,
@@ -525,32 +555,30 @@
       "year": "2018",
       "description": "<h2>Stream Torben Chris' Rage Against the Mainstream - lej eller køb online</h2>\nI 2018 slår nogle af tidens mest toneangivende komikere sig sammen og begiver sig ud i landet med et stand-up-show der ikke kan beskrives som andet et frontalangreb på det danske samfund. \nTorben Chris, Martin Nørgaard, Morten Wichmann og Michael Schøt har hver især gjort satiren til deres spidskompetence, så hvis du bare synes at alt i Danmark er helt perfekt, så skal du nok holde dig væk, når Rage Against.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3302/ratm-facing.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3302/ratm-facing.jpg",
       "title": "Rage Against The Mainstream",
       "badge": "",
       "length": "210",
       "tags": "Martin Nørgaard,Torben Chris,Rage Against The Mainstream,Michael Schøt,Morten Wichmann,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3302/ratm-facing.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3302/ratm-facing.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3302/ratm-facing.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3302/ratm-facing.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -969,7 +997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-15 23:02:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3302/ratm-facing.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3302/ratm-facing.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3302/ratm-facing.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3302/ratm-facing.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3302/ratm-facing.jpg?crop=High"
   },
   {
     "id": 42574,
@@ -1011,32 +1071,30 @@
       "year": "2015",
       "description": "<h2>Stream Torben Chris' Jydelogik - lej eller køb online</h2>\nI vores velfærdssamfund har vi ”opfundet” en lang række farer, trends og problemer, som vi accepterer som sandheder, skønt de går stik imod al sund fornuft. Det er “socialt accepteret idioti”, mener Torben Chris og trækker bukserne af samfundet i sit første og forrygende morsomme one-man show JYDELOGIK. I kan godt forberede jer på at grine igennem et show i høj fart, mens I hele tiden vil tænke: ”Men han har jo ret”, og når I forlader salen vil den eneste grund til, at I ikke ønsker Torben Chris som statsminister være, at I allerede glæder jer til hans næste show.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3145/141364_tc_facing_400x556.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3145/141364_tc_facing_400x556.jpg",
       "title": "Jydelogik ",
       "badge": "",
       "length": "138",
       "tags": "Jydelogik,Comedy,Stand-up,Torben Chris",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3145/141364_tc_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3145/141364_tc_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3145/141364_tc_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3145/141364_tc_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1455,7 +1513,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-15 23:02:47",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3145/141364_tc_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3145/141364_tc_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3145/141364_tc_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3145/141364_tc_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3145/141364_tc_facing_400x556.jpg?crop=High"
   },
   {
     "id": 43014,
@@ -1504,7 +1594,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3198/156147_mr1_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3198/156147_mr1_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3198/156147_mr1_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3198/156147_mr1_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1905,7 +2011,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-28 11:03:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3198/156147_mr1_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3198/156147_mr1_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3198/156147_mr1_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3198/156147_mr1_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3198/156147_mr1_facing_400x556.jpg?crop=High"
   },
   {
     "id": 43013,
@@ -1954,7 +2092,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3197/digitalt-coverartwork-v1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3197/digitalt-coverartwork-v1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3197/digitalt-coverartwork-v1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3197/digitalt-coverartwork-v1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2355,7 +2509,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-28 11:03:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3197/digitalt-coverartwork-v1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3197/digitalt-coverartwork-v1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3197/digitalt-coverartwork-v1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3197/digitalt-coverartwork-v1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3197/digitalt-coverartwork-v1.jpg?crop=High"
   },
   {
     "id": 43012,
@@ -2404,7 +2590,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3196/mens-room-3-400.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3196/mens-room-3-400.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3196/mens-room-3-400.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3196/mens-room-3-400.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2805,6 +3007,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-28 11:03:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3196/mens-room-3-400.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3196/mens-room-3-400.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3196/mens-room-3-400.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3196/mens-room-3-400.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3196/mens-room-3-400.jpg?crop=High"
   }
 ]

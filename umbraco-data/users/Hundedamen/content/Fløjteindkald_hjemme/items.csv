@@ -1,5 +1,5 @@
-id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,orderID,title,access,badge,code,description,expandedDescription,hidden,hideDownload,hidePlay,length,metaDescription,metaTitle,openWebContentFromList,openWebContentInNewWindows,production,productionLink,productLink,purchasePrice,rawFile,rentalPrice,siteMapOption,tags,thumbnail,trailer,type,videoDownloadURL,videoID,videoSize,videoStatus,videoThumbnailURL,webContentURL,year
-60690,645c284a-f6f1-49dc-b06a-d85f6f49cdf4,umb://document/645c284af6f149dcb06ad85f6f49cdf4,Fløjteindkald - Begynder,media,true,true,2022-02-01 14:23:54,2022-02-11 14:21:41,60689,0,/hundedamen/floejteindkald-hjemme/floejteindkald-begynder/,0,Fløjteindkald - Begynder,57,,,"Sådan lærer du din hund fløjte-indkald.
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,publishDate,releaseDate,removeDate,ownerName,ownerId,updaterName,updaterId,parentId,sortOrder,urls,purchasePrice,access,rentalPrice,code,metaDescription,metaTitle,type,videoDownloadURL,rawFile,videoStatus,hidden,videoThumbnailURL,videoID,openWebContentInNewWindows,trailer,openWebContentFromList,webContentURL,orderID,videoSize,productLink,expandedDescription,production,year,description,productionLink,thumbnail,title,badge,length,tags,hidePlay,hideDownload,siteMapOption,thumbnailCrops,thumbnailWide,thumbnailHigh
+"60690","645c284a-f6f1-49dc-b06a-d85f6f49cdf4","umb://document/645c284af6f149dcb06ad85f6f49cdf4","Fløjteindkald - Begynder","media","true","true","2022-02-01 14:23:54","2022-02-11 14:21:41","2022-02-11 14:21:41","","","Martin H. Schläger","0","Martin H. Schläger","0","60689","0","[""/hundedamen/floejteindkald-hjemme/floejteindkald-begynder/""]","","[""57""]","","","","","[""264""]","","","","0","","","0","","0","https://youtu.be/XUpeg99z_fg","0","","","","","2021","Sådan lærer du din hund fløjte-indkald.
 
 Der er så meget, der forstyrrer de små hvalpehjerner eller på vores teenager-hunde og det er derfor vigtigt, at vi får indlært fløjteindkald på den helt rigtige måde fra starten af.
 
@@ -15,8 +15,8 @@ NB: Husk at belønne hunden hver gang og gerne til hjernen er færdigudviklet ca
 
 Husk trinvis indlæring og positiv indlæring.
 
-Rigtig god fornøjelse!",,0,0,0,2,,,0,0,,,,,,,,,/media/3964/floejte1.png,,264,,,,,,https://youtu.be/XUpeg99z_fg,2021
-60815,bb8a70cb-8dce-44fe-a03b-6388ee9c55e5,umb://document/bb8a70cb8dce44fea03b6388ee9c55e5,Fløjteindkald - Let øvede,media,true,true,2022-02-02 11:27:49,2022-02-11 14:24:33,60689,1,/hundedamen/floejteindkald-hjemme/floejteindkald-let-oevede/,1,Fløjteindkald - Let øvede,57,,,"Indkald med fløjte
+Rigtig god fornøjelse!","","/media/3964/floejte1.png","Fløjteindkald - Begynder","","2","","0","0","","[{""alias"":""Wide"",""width"":1920,""height"":1080,""url"":""/media/3964/floejte1.png?crop=Wide""},{""alias"":""High"",""width"":650,""height"":920,""url"":""/media/3964/floejte1.png?crop=High""}]","/media/3964/floejte1.png?crop=Wide","/media/3964/floejte1.png?crop=High"
+"60815","bb8a70cb-8dce-44fe-a03b-6388ee9c55e5","umb://document/bb8a70cb8dce44fea03b6388ee9c55e5","Fløjteindkald - Let øvede","media","true","true","2022-02-02 11:27:49","2022-02-11 14:24:33","2022-02-11 14:24:33","","","Martin H. Schläger","0","Martin H. Schläger","0","60689","1","[""/hundedamen/floejteindkald-hjemme/floejteindkald-let-oevede/""]","","[""57""]","","","","","[""264""]","","","","0","","","0","","0","https://youtu.be/rmxyjGlJo7Q","1","","","","","2021","Indkald med fløjte
 Indkald med fløjte
 Det er vigtigt, at vi her ikke kommer til at bruge fløjten forkert. Med forkert mener jeg, at vi skal øve den rigtigt for start af og det er IKKE hele familien skal gå og fløjte og lege med.
 
@@ -30,4 +30,4 @@ Trin 4: Når ens hund er betinget af fløjten kan den bruges udenfor matriklen.
 
 NB: Husk at belønne hver gang og gerne til hjernen er færdig udviklet ca. mellem 2,5- 3 år gammel, kommer her an på både racen og hundens personlighed/udvikling.
 
-Husk trinvis indlæring og positiv indlæring.",,0,0,0,2,,,0,0,,,,,,,,,/media/3965/floejte2.png,,264,,,,,,https://youtu.be/rmxyjGlJo7Q,2021
+Husk trinvis indlæring og positiv indlæring.","","/media/3965/floejte2.png","Fløjteindkald - Let øvede","","2","","0","0","","[{""alias"":""Wide"",""width"":1920,""height"":1080,""url"":""/media/3965/floejte2.png?crop=Wide""},{""alias"":""High"",""width"":650,""height"":920,""url"":""/media/3965/floejte2.png?crop=High""}]","/media/3965/floejte2.png?crop=Wide","/media/3965/floejte2.png?crop=High"

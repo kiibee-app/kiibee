@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1805/img_6354.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1805/img_6354.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1805/img_6354.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1805/img_6354.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-12 11:44:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1805/img_6354.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1805/img_6354.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1805/img_6354.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1805/img_6354.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1805/img_6354.jpg?crop=High"
   },
   {
     "id": 20417,
@@ -498,7 +546,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2421/img_6389.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2421/img_6389.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2421/img_6389.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2421/img_6389.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -899,7 +963,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-12 11:44:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2421/img_6389.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2421/img_6389.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2421/img_6389.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2421/img_6389.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2421/img_6389.jpg?crop=High"
   },
   {
     "id": 26816,
@@ -948,7 +1044,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2771/img_0724.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2771/img_0724.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2771/img_0724.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2771/img_0724.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,7 +1461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-12 11:44:47",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2771/img_0724.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2771/img_0724.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2771/img_0724.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2771/img_0724.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2771/img_0724.jpg?crop=High"
   },
   {
     "id": 26822,
@@ -1400,7 +1544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2772/img_0726-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2772/img_0726-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2772/img_0726-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2772/img_0726-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1801,7 +1961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-12 11:44:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2772/img_0726-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2772/img_0726-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2772/img_0726-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2772/img_0726-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2772/img_0726-1.jpg?crop=High"
   },
   {
     "id": 57098,
@@ -1852,7 +2044,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3959/img_4099.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3959/img_4099.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3959/img_4099.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3959/img_4099.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2253,6 +2461,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-12 11:44:05",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3959/img_4099.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3959/img_4099.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3959/img_4099.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3959/img_4099.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3959/img_4099.jpg?crop=High"
   }
 ]

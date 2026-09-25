@@ -40,7 +40,16 @@
       "to": "2025-12-09 20:09:05",
       "transactionAmount": "53.82",
       "kiibeeCutAmount": "45"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111776,
@@ -83,7 +92,16 @@
       "to": "2025-08-12 08:08:34",
       "transactionAmount": "35.88",
       "kiibeeCutAmount": "30"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 110709,
@@ -126,7 +144,16 @@
       "to": "2025-06-19 23:39:21",
       "transactionAmount": "23.82",
       "kiibeeCutAmount": "45"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108199,
@@ -169,7 +196,16 @@
       "to": "2025-04-01 12:02:32",
       "transactionAmount": "167.34",
       "kiibeeCutAmount": "99"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102695,
@@ -212,7 +248,16 @@
       "to": "2024-11-14 07:34:38",
       "transactionAmount": "54",
       "kiibeeCutAmount": "27"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99864,
@@ -255,7 +300,16 @@
       "to": "2024-08-21 21:26:14",
       "transactionAmount": "18",
       "kiibeeCutAmount": "9"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97616,
@@ -298,7 +352,16 @@
       "to": "2024-06-04 17:40:38",
       "transactionAmount": "72",
       "kiibeeCutAmount": "36"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93195,
@@ -341,7 +404,16 @@
       "to": "2023-12-15 18:15:42",
       "transactionAmount": "126",
       "kiibeeCutAmount": "63"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91086,
@@ -384,7 +456,16 @@
       "to": "2023-10-10 19:27:24",
       "transactionAmount": "144",
       "kiibeeCutAmount": "72"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88373,
@@ -427,7 +508,16 @@
       "to": "2023-08-22 19:24:15",
       "transactionAmount": "486.48",
       "kiibeeCutAmount": "252"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81712,
@@ -470,6 +560,15 @@
       "to": "2023-05-11 11:06:20",
       "transactionAmount": "54.96",
       "kiibeeCutAmount": "45"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

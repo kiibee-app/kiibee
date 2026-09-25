@@ -41,32 +41,30 @@
       "year": "2020",
       "description": "OM AT SE MULIGHEDER FREM FOR BEGRÆNSNINGER \r\n\r\nI sin tankevækkende og humoristiske historie deler Morten Bonde hvordan du kan udvikle din evne til at håndtere uforudsete, personlige eller professionelle udfordringer, og hvordan du kan BESLUTTE dig for at ville fokusere på DET DU ØNSKER, frem for DET DU IKKE ØNSKER. \r\n\r\nMorten Bonde – Senior Art Director og historiefortæller hos LEGO Gruppen – har selv måtte håndtere uforudsete udfordringer, da han i 2002 fik konstateret en uhelbredelig øjensygdom, der langsomt gør ham blind. \r\n\r\nOg da hans syn i 2016 efterhånden var så kraftigt reduceret, at begrænsningerne var uoverskuelige, ramlede hele hans verden sammen. Morten måttet lære sig selv at håndtere det uhåndterbare, og ændre sine begrænsende overbevisninger, og han besluttede sig for at ville SE muligheder frem for begrænsninger. \r\n\r\nLAD DIG BLIVE INSPIRERET AF POSITIVITET \r\nMorten deler hvordan hans intensive research i menneskesindet og fire personlige udfordringer flyttede ham fra depression og stress til igen at fungere som Senior Art Director på LEGO, og at nøglen til sådan en transformation ligger i evnen at kunne omprogrammere de begrænsende overbevisninger, som vi gemmer i underbevidstheden. ",
       "productionLink": "https://mortenbonde.dk/",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1863/forside-til-videoforedrag-youtube.jpg",
       "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
       "badge": "",
       "length": "103",
       "tags": "Morten Bonde,Dømt blind - hva' så?,Selvudvikling,LEGO,Foredrag,blind",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -485,7 +483,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-08-28 13:17:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "updaterName": "Anders Halfter",
+    "updaterId": 1,
+    "thumbnail": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1863/forside-til-videoforedrag-youtube.jpg?crop=High"
   },
   {
     "id": 18832,
@@ -536,7 +566,23 @@
       "tags": "Dømt blind - hva' så? Morten Bonde,Morten Bonde,Blind,LEGO,Retinitis Pigmentosa,Selvudvikling,Selvledelse",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2210/trailer-thumbnail.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2210/trailer-thumbnail.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2210/trailer-thumbnail.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2210/trailer-thumbnail.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -937,7 +983,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-13 16:26:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2210/trailer-thumbnail.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2210/trailer-thumbnail.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2210/trailer-thumbnail.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2210/trailer-thumbnail.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2210/trailer-thumbnail.jpg?crop=High"
   },
   {
     "id": 18833,
@@ -988,7 +1066,23 @@
       "tags": "Morten Bonde,Dømt blind - hva' så?,LEGO,Retinitis Pigmentosa,Blind,Selvledelse,Selvudvikling",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2211/trailer-thumbnail_2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2211/trailer-thumbnail_2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2211/trailer-thumbnail_2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2211/trailer-thumbnail_2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1389,7 +1483,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-13 16:30:07",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2211/trailer-thumbnail_2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2211/trailer-thumbnail_2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2211/trailer-thumbnail_2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2211/trailer-thumbnail_2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2211/trailer-thumbnail_2.jpg?crop=High"
   },
   {
     "id": 18834,
@@ -1440,7 +1566,23 @@
       "tags": "Dømt blind - hva' så?,Morten Bonde,Retinitis Pigmentosa,Online foredrag,Selvudvikling,Selvledelse,LEGO",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2212/trailer-thumbnail_3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2212/trailer-thumbnail_3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2212/trailer-thumbnail_3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2212/trailer-thumbnail_3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1841,7 +1983,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-13 16:34:50",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2212/trailer-thumbnail_3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2212/trailer-thumbnail_3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2212/trailer-thumbnail_3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2212/trailer-thumbnail_3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2212/trailer-thumbnail_3.jpg?crop=High"
   },
   {
     "id": 18835,
@@ -1892,7 +2066,23 @@
       "tags": "Guided meditation,Meditation,Morten Bonde,Dømt blind - hva' så?,Underbevidshed,Selvhypnose,Bekræftelser,Selvledelse,Selvudvikling",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2293,7 +2483,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-13 16:40:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2213/guidet-meditation-til-indre-glaede-og-selvvaerd-hd.jpg?crop=High"
   },
   {
     "id": 18881,
@@ -2344,7 +2566,23 @@
       "tags": "Dømt blind - hva’ så?,Morten Bonde,Foredragsholder,Retinitis Pigmentosa,Selvudvikling,Selvledelse,LEGO,Blind",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2745,7 +2983,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-14 18:57:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/2216/90545b1b-f203-420a-a749-98439961da9a.jpeg?crop=High"
   },
   {
     "id": 18882,
@@ -2796,7 +3066,23 @@
       "tags": "Morten Bonde,Dømt blind - hva’ så?,Foredrag,Retinitis Pigmentosa,Blind,Selvudvikling,Selvledelse",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3197,7 +3483,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-14 19:07:08",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/2217/138575c8-bf46-4812-afa7-a7f0effd2e92.jpeg?crop=High"
   },
   {
     "id": 18883,
@@ -3248,7 +3566,23 @@
       "tags": "Morten Bonde,At leve med RP,Blind,Dømt blind - hva’ så?",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3649,7 +3983,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-14 19:11:54",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/2218/e0cb6ddb-f87e-4ffa-ad85-b9de4e090182.jpeg?crop=High"
   },
   {
     "id": 18885,
@@ -3700,7 +4066,23 @@
       "tags": "Morten Bonde,Foredragsholder,Dømt blind - hva’ så?,Selvudvikling,Selvledelse,Retinitis pigmentosa,Blind",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4101,6 +4483,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-08-14 19:21:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/2219/af4e25c2-7abf-46f9-95c1-e84b5463155c.jpeg?crop=High"
   }
 ]

@@ -52,7 +52,23 @@
       "tags": "Standup.dk,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3076/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3076/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3076/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3076/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:29:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3076/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3076/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3076/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3076/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3076/400x600-3.jpg?crop=High"
   },
   {
     "id": 41922,
@@ -512,7 +560,23 @@
       "tags": "FBI.DK,Standup.dk,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3078/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3078/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3078/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3078/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:29:54",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3078/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3078/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3078/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3078/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3078/400x600-3.jpg?crop=High"
   },
   {
     "id": 41923,
@@ -972,7 +1068,23 @@
       "tags": "Standup.dk,FBI.DK,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3080/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3080/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3080/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3080/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:30:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3080/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3080/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3080/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3080/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3080/400x600-3.jpg?crop=High"
   },
   {
     "id": 41925,
@@ -1432,7 +1576,23 @@
       "tags": "Standup.dk,FBI.DK,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3082/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3082/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3082/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3082/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:30:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3082/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3082/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3082/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3082/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3082/400x600-3.jpg?crop=High"
   },
   {
     "id": 41926,
@@ -1892,7 +2084,23 @@
       "tags": "Standup.dk,Comedy,FBI.DK",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3086/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3086/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3086/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3086/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:31:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3086/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3086/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3086/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3086/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3086/400x600-3.jpg?crop=High"
   },
   {
     "id": 41927,
@@ -2352,7 +2592,23 @@
       "tags": "Comedy,Standup.dk,FBI.DK",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3087/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3087/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3087/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3087/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:31:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3087/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3087/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3087/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3087/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3087/400x600-3.jpg?crop=High"
   },
   {
     "id": 41928,
@@ -2812,7 +3100,23 @@
       "tags": "Comedy,Standup.dk,FBI.DK",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3088/400x600-3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3088/400x600-3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3088/400x600-3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3088/400x600-3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,6 +3521,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:32:00",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3088/400x600-3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3088/400x600-3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3088/400x600-3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3088/400x600-3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3088/400x600-3.jpg?crop=High"
   }
 ]

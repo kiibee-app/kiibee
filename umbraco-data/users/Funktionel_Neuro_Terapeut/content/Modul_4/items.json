@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4920/billede1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4920/billede1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4920/billede1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4920/billede1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:16",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4920/billede1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4920/billede1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4920/billede1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4920/billede1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4920/billede1.jpg?crop=High"
   },
   {
     "id": 106879,
@@ -496,7 +544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4896/billede1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4896/billede1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4896/billede1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4896/billede1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4896/billede1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4896/billede1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4896/billede1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4896/billede1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4896/billede1.jpg?crop=High"
   },
   {
     "id": 106881,
@@ -946,7 +1042,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4901/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4901/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4901/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4901/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4901/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4901/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4901/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4901/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4901/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 106880,
@@ -1396,7 +1540,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4899/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4899/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4899/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4899/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,7 +1957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4899/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4899/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4899/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4899/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4899/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 106604,
@@ -1848,7 +2040,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4902/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4902/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4902/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4902/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2249,7 +2457,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4902/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4902/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4902/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4902/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4902/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 106876,
@@ -2298,7 +2538,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4900/biopsykosocial.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4900/biopsykosocial.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4900/biopsykosocial.png?crop=Wide",
+      "thumbnailHigh": "/media/4900/biopsykosocial.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2699,7 +2955,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4900/biopsykosocial.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4900/biopsykosocial.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4900/biopsykosocial.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4900/biopsykosocial.png?crop=Wide",
+    "thumbnailHigh": "/media/4900/biopsykosocial.png?crop=High"
   },
   {
     "id": 107070,
@@ -2750,7 +3038,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4915/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4915/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4915/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/4915/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3151,7 +3455,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4915/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4915/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4915/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4915/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/4915/exercises-kopi.png?crop=High"
   },
   {
     "id": 107073,
@@ -3200,7 +3536,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4916/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4916/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4916/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/4916/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3601,7 +3953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4916/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4916/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4916/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4916/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/4916/exercises-kopi.png?crop=High"
   },
   {
     "id": 107074,
@@ -3652,7 +4036,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4917/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4917/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4917/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/4917/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4053,7 +4453,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4917/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4917/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4917/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4917/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/4917/exercises-kopi.png?crop=High"
   },
   {
     "id": 107075,
@@ -4104,7 +4536,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4918/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4918/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4918/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/4918/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4505,6 +4953,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-03-11 11:59:46",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4918/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4918/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4918/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4918/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/4918/exercises-kopi.png?crop=High"
   }
 ]

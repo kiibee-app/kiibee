@@ -41,32 +41,30 @@
       "year": "2023",
       "description": "Her giver jeg dig 3 måder hvor på du kan arbejde med Orakelkort som selvstændig eller som kommende selvstændig.\r\n\r\nVi tager udgangpunkt i din arbejdsdag, hvor der er fokus på:\r\n- At lave Content\r\n- Udarbejdelse af projekter og ideudvikling\r\n- Hvordan du får det mest optimale ud af dine møder\r\n\r\nVed brug af Orakelkort i din virksomhed opnår du:\r\n- At sparre tid\r\n- Inspiration på et dybere plan\r\n- Connecte og gøre brug af din intuition i din virksomhed\r\n\r\nJeg håber du finder det nyttigt og sender al god energi din vej :)\r\n\r\nDe bedste hilsner\r\nYou Do You - Jannie",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
       "title": "3 måder du kan bruge Orakelkort på som selvstændig",
       "badge": "",
       "length": "13",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -485,6 +483,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2023-05-26 12:39:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg?crop=High"
   }
 ]

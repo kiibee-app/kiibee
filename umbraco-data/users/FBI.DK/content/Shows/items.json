@@ -46,7 +46,23 @@
       "tags": "Farvelagte Frustrationer,Thomas Hartmann,Comedy,Stand-up,Jacob Tingleff",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3239/farvelagte-frustrationer.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3239/farvelagte-frustrationer.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3239/farvelagte-frustrationer.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3239/farvelagte-frustrationer.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:42",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3239/farvelagte-frustrationer.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3239/farvelagte-frustrationer.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3239/farvelagte-frustrationer.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3239/farvelagte-frustrationer.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3239/farvelagte-frustrationer.jpeg?crop=High"
   },
   {
     "id": 46979,
@@ -496,7 +544,23 @@
       "tags": "Comedy,Stand-up,Lasse Rimmer,Carsten Bang,Mikael Wulff,Sebastian Dorset",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3540/fpf-dvdvhs.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3540/fpf-dvdvhs.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3540/fpf-dvdvhs.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3540/fpf-dvdvhs.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3540/fpf-dvdvhs.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3540/fpf-dvdvhs.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3540/fpf-dvdvhs.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3540/fpf-dvdvhs.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3540/fpf-dvdvhs.jpg?crop=High"
   },
   {
     "id": 46980,
@@ -946,7 +1042,23 @@
       "tags": "Comedy,Stand-up,Omar Marzouk,Carsten Bang,Thomas Hartmann",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3541/a2-danish-final.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3541/a2-danish-final.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3541/a2-danish-final.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3541/a2-danish-final.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:47",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3541/a2-danish-final.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3541/a2-danish-final.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3541/a2-danish-final.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3541/a2-danish-final.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3541/a2-danish-final.jpg?crop=High"
   },
   {
     "id": 62895,
@@ -1396,7 +1540,23 @@
       "tags": "Comedy,Stand-up,Det' jo løgn",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4050/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4050/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4050/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4050/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,6 +1957,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-28 10:27:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4050/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4050/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4050/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4050/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4050/400x600.jpg?crop=High"
   }
 ]

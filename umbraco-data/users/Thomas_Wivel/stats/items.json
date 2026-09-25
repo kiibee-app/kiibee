@@ -57,7 +57,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
-    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362"
+    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113181,
@@ -117,7 +126,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
-    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362"
+    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76938,
@@ -177,7 +195,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
-    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a"
+    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76937,
@@ -237,7 +264,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
-    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a"
+    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76934,
@@ -297,7 +333,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
-    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362"
+    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73872,
@@ -357,7 +402,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
-    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a"
+    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 46826,
@@ -417,7 +471,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
-    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362"
+    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 46823,
@@ -477,7 +540,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
-    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a"
+    "mediaKey": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43093,
@@ -537,6 +609,15 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
-    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362"
+    "mediaKey": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

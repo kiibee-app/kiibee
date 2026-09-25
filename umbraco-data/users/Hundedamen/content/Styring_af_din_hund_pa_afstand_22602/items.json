@@ -46,7 +46,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2623/sit-paa-afstand.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2623/sit-paa-afstand.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2623/sit-paa-afstand.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2623/sit-paa-afstand.jpg?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -447,7 +463,33 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2623/sit-paa-afstand.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2623/sit-paa-afstand.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2623/sit-paa-afstand.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2623/sit-paa-afstand.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2623/sit-paa-afstand.jpg?crop=High"
   },
   {
     "id": 22644,
@@ -496,7 +538,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2624/daek-paa-afstand-44.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2624/daek-paa-afstand-44.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2624/daek-paa-afstand-44.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2624/daek-paa-afstand-44.jpg?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -897,6 +955,32 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2624/daek-paa-afstand-44.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2624/daek-paa-afstand-44.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2624/daek-paa-afstand-44.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2624/daek-paa-afstand-44.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2624/daek-paa-afstand-44.jpg?crop=High"
   }
 ]

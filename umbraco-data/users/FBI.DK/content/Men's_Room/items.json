@@ -39,25 +39,7 @@
       "year": "2022",
       "description": "Men’s Room består af to af Danmarks allerbedste komikere: Thomas Hartmann og Torben Chris. \r\n\r\nIgennem de tre første shows med Men’s Room har man kunnet opleve de to komikere vende og dreje den lille forskel - som faktisk ikke er i ental, og sjældent lille. Der er, nu som før, ingenlunde tale om de store, tunge ligestillingsemner, men derimod bare jokes! Jokes om de hverdagsproblematikker, vi alle kan genkende, og som vi er bedst tjent med blot at grine af. De er her for at blive. \r\n \r\nDet hele er naturligvis en stærkt subjektiv version, set fra den efterhånden knapt så moderne mands synsvinkel, men man skal ikke tro, at showet kun er for mænd. Én af de tilbagemeldinger, de ofte har fået er, at “Men’s Room” er bedre end parterapi. Par kan se det sammen, og derved få taget hul på nogle samtaler, og nok så vigtigt… grine sammen. \r\n \r\nDe fire Men’s Room shows kan sagtens ses uafhængigt, men ser man dem alle, vil man samtidig få indblik i den udvikling, der undervejs har været i Thomas og Torbens privatliv. Fra at have været to ungkarle - i faste forhold, men ugifte - er de begge i mellemtiden blevet gift og er sammenlagt indehavere af to huse på veje med stillebump, to stationcars, to børn og en hund. Dette bevidner naturligvis, at livet med kvinderne slet ikke er så slemt - men morsomt er det stadig! ",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4089/mens-room-4_streaming_320x445.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4089/mens-room-4_streaming_320x445.jpg",
       "title": "Men`s Room 4 : Mega Men",
       "badge": "",
       "length": "136",
@@ -68,7 +50,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -491,7 +489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-12-29 10:35:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4089/mens-room-4_streaming_320x445.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4089/mens-room-4_streaming_320x445.jpg?crop=High"
   },
   {
     "id": 42892,
@@ -540,7 +570,23 @@
       "tags": "Men’s Room 3,Thomas Hartmann,Torben Chris,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3181/mens-room-3-400.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3181/mens-room-3-400.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3181/mens-room-3-400.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3181/mens-room-3-400.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -941,7 +987,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-05-30 10:54:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3181/mens-room-3-400.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3181/mens-room-3-400.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3181/mens-room-3-400.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3181/mens-room-3-400.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3181/mens-room-3-400.jpg?crop=High"
   },
   {
     "id": 42894,
@@ -990,7 +1068,23 @@
       "tags": "Men's Room 2,Tgomas Hartmann,Torben Chris,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3180/digitalt-coverartwork-v1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3180/digitalt-coverartwork-v1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3180/digitalt-coverartwork-v1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3180/digitalt-coverartwork-v1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1391,7 +1485,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-05-30 10:54:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3180/digitalt-coverartwork-v1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3180/digitalt-coverartwork-v1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3180/digitalt-coverartwork-v1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3180/digitalt-coverartwork-v1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3180/digitalt-coverartwork-v1.jpg?crop=High"
   },
   {
     "id": 42893,
@@ -1440,7 +1566,23 @@
       "tags": "Mens`s Room,Torben Chris,Thomas Hartmann,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3179/156147_mr1_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3179/156147_mr1_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3179/156147_mr1_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3179/156147_mr1_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1841,6 +1983,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-05-30 10:54:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3179/156147_mr1_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3179/156147_mr1_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3179/156147_mr1_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3179/156147_mr1_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3179/156147_mr1_facing_400x556.jpg?crop=High"
   }
 ]

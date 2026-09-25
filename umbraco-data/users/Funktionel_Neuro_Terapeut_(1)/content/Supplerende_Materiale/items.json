@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4984/faellesfoto-jpg.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4984/faellesfoto-jpg.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4984/faellesfoto-jpg.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/4984/faellesfoto-jpg.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-11-25 10:22:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4984/faellesfoto-jpg.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4984/faellesfoto-jpg.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4984/faellesfoto-jpg.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4984/faellesfoto-jpg.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/4984/faellesfoto-jpg.jpeg?crop=High"
   },
   {
     "id": 114173,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5002/boeger.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5002/boeger.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5002/boeger.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/5002/boeger.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-11-25 10:22:07",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5002/boeger.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5002/boeger.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5002/boeger.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5002/boeger.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/5002/boeger.jpeg?crop=High"
   },
   {
     "id": 117139,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5083/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5083/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5083/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5083/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 13:52:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5083/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5083/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5083/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5083/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5083/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 118159,
@@ -1404,7 +1548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5111/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5111/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5111/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5111/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,7 +1965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-02 09:31:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5111/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5111/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5111/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5111/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5111/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 118160,
@@ -1856,7 +2048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5113/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5113/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5113/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5113/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2257,7 +2465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-02 09:33:50",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5113/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5113/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5113/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5113/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5113/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 119505,
@@ -2709,6 +2949,21 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-27 09:56:54",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

@@ -48,7 +48,23 @@
       "tags": "musical,teater,eventyrteatret,et juleeventyr,børn,jul",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5069/800x1040.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5069/800x1040.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5069/800x1040.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5069/800x1040.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-03-30 09:27:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5069/800x1040.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5069/800x1040.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5069/800x1040.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5069/800x1040.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5069/800x1040.jpg?crop=High"
   },
   {
     "id": 115437,
@@ -500,7 +548,23 @@
       "tags": "eventyr,eventyrteatret,teater,alice i eventyrland,musical,børn",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5033/kiibee.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5033/kiibee.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5033/kiibee.png?crop=Wide",
+      "thumbnailHigh": "/media/5033/kiibee.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5033/kiibee.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5033/kiibee.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5033/kiibee.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5033/kiibee.png?crop=Wide",
+    "thumbnailHigh": "/media/5033/kiibee.png?crop=High"
   },
   {
     "id": 102100,
@@ -950,7 +1046,23 @@
       "tags": "Musical,børn,teater,eventyr,eventyrteatret",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4820/pinocchio-plakat-web.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4820/pinocchio-plakat-web.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4820/pinocchio-plakat-web.png?crop=Wide",
+      "thumbnailHigh": "/media/4820/pinocchio-plakat-web.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1351,7 +1463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4820/pinocchio-plakat-web.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4820/pinocchio-plakat-web.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4820/pinocchio-plakat-web.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4820/pinocchio-plakat-web.png?crop=Wide",
+    "thumbnailHigh": "/media/4820/pinocchio-plakat-web.png?crop=High"
   },
   {
     "id": 96129,
@@ -1400,7 +1544,23 @@
       "tags": "eventyr,musical,teater,eventyrteatret",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1801,7 +1961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4618/1200x1561-hoejoploeselig.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4618/1200x1561-hoejoploeselig.jpg?crop=High"
   },
   {
     "id": 96069,
@@ -1850,7 +2042,23 @@
       "tags": "eventyr,eventyrteatret,teater,musical",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2251,7 +2459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg?crop=High"
   },
   {
     "id": 96424,
@@ -2300,7 +2540,23 @@
       "tags": "eventyrteatret,eventyr,musical,teater,børn og unge",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2701,7 +2957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4634/robinhood_300x400px_srgb_72dpi.jpg?crop=High"
   },
   {
     "id": 96170,
@@ -2752,7 +3040,23 @@
       "tags": "eventyrteatret,eventyr,musical,teater",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3153,7 +3457,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4625/skovensdronning_2019_300x400px_72dpi_srgb.jpg?crop=High"
   },
   {
     "id": 117779,
@@ -3202,7 +3538,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3603,7 +3955,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5105/herkulesplakat_medtitel_1000x1250_rgb_72dpi.jpg?crop=High"
   },
   {
     "id": 96032,
@@ -3654,7 +4038,23 @@
       "tags": "teater,musical,eventyr,eventyrteatret",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4055,6 +4455,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-20 11:53:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4605/svaerdet-i-stenen_med-tekst_457x560px_web.jpg?crop=High"
   }
 ]

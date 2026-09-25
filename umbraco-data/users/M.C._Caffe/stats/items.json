@@ -57,7 +57,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/396db99b961149e9be03bcefe1ad5d1f",
-    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f"
+    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 54886,
@@ -117,7 +126,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/396db99b961149e9be03bcefe1ad5d1f",
-    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f"
+    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50927,
@@ -177,7 +195,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/f8ba04a41fe1457fb58268d3e3753e76",
-    "mediaKey": "f8ba04a4-1fe1-457f-b582-68d3e3753e76"
+    "mediaKey": "f8ba04a4-1fe1-457f-b582-68d3e3753e76",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50926,
@@ -237,6 +264,15 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/396db99b961149e9be03bcefe1ad5d1f",
-    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f"
+    "mediaKey": "396db99b-9611-49e9-be03-bcefe1ad5d1f",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

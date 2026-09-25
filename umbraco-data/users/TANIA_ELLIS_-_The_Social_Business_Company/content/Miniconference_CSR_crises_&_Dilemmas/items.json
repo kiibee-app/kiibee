@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1443/csr-crises.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1443/csr-crises.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1443/csr-crises.png?crop=Wide",
+      "thumbnailHigh": "/media/1443/csr-crises.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-04 11:33:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1443/csr-crises.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1443/csr-crises.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1443/csr-crises.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1443/csr-crises.png?crop=Wide",
+    "thumbnailHigh": "/media/1443/csr-crises.png?crop=High"
   },
   {
     "id": 2385,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1416/csr-crises-dilemmas.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1416/csr-crises-dilemmas.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1416/csr-crises-dilemmas.png?crop=Wide",
+      "thumbnailHigh": "/media/1416/csr-crises-dilemmas.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-03-24 10:07:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1416/csr-crises-dilemmas.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1416/csr-crises-dilemmas.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1416/csr-crises-dilemmas.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1416/csr-crises-dilemmas.png?crop=Wide",
+    "thumbnailHigh": "/media/1416/csr-crises-dilemmas.png?crop=High"
   },
   {
     "id": 3581,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=Wide",
+      "thumbnailHigh": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:23:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=Wide",
+    "thumbnailHigh": "/media/1629/kiibee-resized-thumbnail-presentation-1-tania.png?crop=High"
   },
   {
     "id": 3431,
@@ -1404,7 +1548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=Wide",
+      "thumbnailHigh": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,7 +1965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:23:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=Wide",
+    "thumbnailHigh": "/media/1625/kiibee-resized-thumbnail-presentation-2-pelle-pka.png?crop=High"
   },
   {
     "id": 3451,
@@ -1856,7 +2048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=Wide",
+      "thumbnailHigh": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2257,7 +2465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:23:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=Wide",
+    "thumbnailHigh": "/media/1626/kiibee-resized-thumbnail-presentation-3-louise-dell.png?crop=High"
   },
   {
     "id": 3575,
@@ -2308,7 +2548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=Wide",
+      "thumbnailHigh": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2709,6 +2965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:23:49",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=Wide",
+    "thumbnailHigh": "/media/1630/kiibee-resized-thumbnail-presentation-4-stine-danske-spil.png?crop=High"
   }
 ]

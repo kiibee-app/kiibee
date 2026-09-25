@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4755/design-uden-navn-6.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4755/design-uden-navn-6.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4755/design-uden-navn-6.png?crop=Wide",
+      "thumbnailHigh": "/media/4755/design-uden-navn-6.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-09-12 09:09:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4755/design-uden-navn-6.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4755/design-uden-navn-6.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4755/design-uden-navn-6.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4755/design-uden-navn-6.png?crop=Wide",
+    "thumbnailHigh": "/media/4755/design-uden-navn-6.png?crop=High"
   },
   {
     "id": 99928,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=Wide",
+      "thumbnailHigh": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,6 +981,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-08-23 12:18:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=Wide",
+    "thumbnailHigh": "/media/4759/workbook-opnaa-dine-maal-og-laer-at-holde-aftaler-med-dig-selv.png?crop=High"
   }
 ]

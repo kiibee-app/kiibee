@@ -46,7 +46,23 @@
       "tags": "Comedy,Amin jensen,Stand-up",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -96,7 +112,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:23:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg?crop=High"
   },
   {
     "id": 1927,
@@ -145,7 +192,23 @@
       "tags": "Amin Jensen,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -195,7 +258,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:23:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1259/dvd_bag-om_hit-med-amin.jpg?crop=High"
   },
   {
     "id": 1928,
@@ -244,7 +338,23 @@
       "tags": "Amin Jensen,Stand-up,Comedy",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1260/dvd_bag-om_stort.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1260/dvd_bag-om_stort.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1260/dvd_bag-om_stort.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1260/dvd_bag-om_stort.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -294,6 +404,37 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:23:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1260/dvd_bag-om_stort.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1260/dvd_bag-om_stort.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1260/dvd_bag-om_stort.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1260/dvd_bag-om_stort.jpg?crop=High"
   }
 ]

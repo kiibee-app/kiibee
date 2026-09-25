@@ -48,7 +48,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=Wide",
+      "thumbnailHigh": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -449,7 +465,33 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/5207/skaermbillede-2019-11-21-kl-113408.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=Wide",
+    "thumbnailHigh": "/media/5207/skaermbillede-2019-11-21-kl-113408.png?crop=High"
   },
   {
     "id": 128110,
@@ -500,7 +542,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=Wide",
+      "thumbnailHigh": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -901,7 +959,33 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/5209/skaermbillede-2019-11-21-kl-111805.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=Wide",
+    "thumbnailHigh": "/media/5209/skaermbillede-2019-11-21-kl-111805.png?crop=High"
   },
   {
     "id": 128112,
@@ -952,7 +1036,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=Wide",
+      "thumbnailHigh": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -1353,6 +1453,32 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/5208/skaermbillede-2019-11-21-kl-111353.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=Wide",
+    "thumbnailHigh": "/media/5208/skaermbillede-2019-11-21-kl-111353.png?crop=High"
   }
 ]

@@ -46,6 +46,15 @@
       "to": "2023-03-09 09:21:49",
       "transactionAmount": "39.65",
       "kiibeeCutAmount": "75"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

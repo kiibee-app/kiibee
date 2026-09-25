@@ -48,7 +48,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5194/rygmarven.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5194/rygmarven.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5194/rygmarven.png?crop=Wide",
+      "thumbnailHigh": "/media/5194/rygmarven.png?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -449,7 +465,39 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "2026-08-16 09:26:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5194/rygmarven.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5194/rygmarven.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5194/rygmarven.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5194/rygmarven.png?crop=Wide",
+    "thumbnailHigh": "/media/5194/rygmarven.png?crop=High"
   },
   {
     "id": 128118,
@@ -500,7 +548,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5206/flueben-afkrydsning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5206/flueben-afkrydsning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5206/flueben-afkrydsning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5206/flueben-afkrydsning.jpg?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -901,7 +965,33 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/5206/flueben-afkrydsning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5206/flueben-afkrydsning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5206/flueben-afkrydsning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5206/flueben-afkrydsning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5206/flueben-afkrydsning.jpg?crop=High"
   },
   {
     "id": 128172,
@@ -952,7 +1042,23 @@
       "hideDownload": "0",
       "siteMapOption": "",
       "metaTitle": "",
-      "metaDescription": ""
+      "metaDescription": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5205/gruppefoto-med-navne.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5205/gruppefoto-med-navne.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5205/gruppefoto-med-navne.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5205/gruppefoto-med-navne.jpg?crop=High"
     },
     "fieldDetails": {
       "type": {
@@ -1353,6 +1459,32 @@
       "siteMapOption",
       "metaTitle",
       "metaDescription"
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/5205/gruppefoto-med-navne.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5205/gruppefoto-med-navne.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5205/gruppefoto-med-navne.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5205/gruppefoto-med-navne.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5205/gruppefoto-med-navne.jpg?crop=High"
   }
 ]

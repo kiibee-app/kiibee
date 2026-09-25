@@ -41,32 +41,30 @@
       "year": "0",
       "description": "Se, hvad du kan bruge Beslutningsmodellen til.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1552/beslutningsmodellen01.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1552/beslutningsmodellen01.jpg",
       "title": "Forsmag på Beslutningsmodellen.",
       "badge": "",
       "length": "0",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1552/beslutningsmodellen01.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1552/beslutningsmodellen01.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1552/beslutningsmodellen01.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1552/beslutningsmodellen01.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -90,25 +88,7 @@
     "production": "",
     "productionLink": "",
     "tags": "",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1552/beslutningsmodellen01.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1552/beslutningsmodellen01.jpg",
     "productLink": "",
     "access": ["57"],
     "rentalPrice": "",
@@ -134,7 +114,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1552/beslutningsmodellen01.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1552/beslutningsmodellen01.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1552/beslutningsmodellen01.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1552/beslutningsmodellen01.jpg?crop=High"
   },
   {
     "id": 2694,
@@ -178,32 +183,30 @@
       "year": "0",
       "description": "Se, hvad du kan få ud af en tredages uddannelse med Søren Lindhardt.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1556/lindhardt.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1556/lindhardt.jpg",
       "title": "Hør mere om Søren.",
       "badge": "",
       "length": "0",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1556/lindhardt.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1556/lindhardt.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1556/lindhardt.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1556/lindhardt.jpg?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -227,25 +230,7 @@
     "production": "",
     "productionLink": "",
     "tags": "",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1556/lindhardt.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1556/lindhardt.jpg",
     "productLink": "",
     "access": ["57"],
     "rentalPrice": "",
@@ -271,6 +256,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1556/lindhardt.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1556/lindhardt.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1556/lindhardt.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1556/lindhardt.jpg?crop=High"
   }
 ]

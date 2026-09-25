@@ -57,7 +57,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117658,
@@ -117,7 +126,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117596,
@@ -177,7 +195,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117571,
@@ -237,7 +264,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117570,
@@ -297,7 +333,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117522,
@@ -357,6 +402,15 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
-    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5"
+    "mediaKey": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

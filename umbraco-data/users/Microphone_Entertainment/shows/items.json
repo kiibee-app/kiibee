@@ -12,21 +12,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1909",
     "sortOrder": 1,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-fest/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-fest/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls FEST - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/af1113a3069c77a38cd3011f21dce3ac/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -45,25 +39,7 @@
       "year": "2016",
       "description": "<h2>Stream Mick Øgendahls FEST - lej eller køb online</h2>\nI 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. Stream Mick Øgendahls FEST lige her.\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\nDu kan se Mick Øgendahls show FEST fra 2017 lige her ved enten at leje showet i 48 timer eller købe adgang til download. Uanset så står der et klasseshow og -fest klar til dig!",
       "productionLink": "https://microphone.dk",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1247/mick-fest.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1247/mick-fest.png",
       "title": "Mick Øgendahl - FEST",
       "badge": "",
       "length": "96",
@@ -74,11 +50,25 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1247/mick-fest.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1247/mick-fest.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1247/mick-fest.png?crop=Wide",
+      "thumbnailHigh": "/media/1247/mick-fest.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "af1113a3069c77a38cd3011f21dce3ac",
     "videoStatus": "ready",
@@ -100,29 +90,9 @@
     "production": "Microphone ApS",
     "productionLink": "https://microphone.dk",
     "tags": "Mick Øgendahl,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1247/mick-fest.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1247/mick-fest.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -150,7 +120,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1247/mick-fest.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1247/mick-fest.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1247/mick-fest.png?crop=Wide",
+    "thumbnailHigh": "/media/1247/mick-fest.png?crop=High"
   },
   {
     "id": 1908,
@@ -165,21 +160,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1908",
     "sortOrder": 0,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-spas/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-spas/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls SPAS - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/30df23e22976e6bc24fa329c86286610/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -198,36 +187,32 @@
       "year": "2012",
       "description": "<h2>Stream Mick Øgendahls SPAS - lej eller køb online</h2>\nEr du til revsende satire, klare politiske kommentarer og indlæg, som sætter dagsordenen i samfundsdebatten? Ja, så er det her nok ikke showet for dig – for det er bare en stor vidunderlig og beskidt gang SPAS. SPAS er showet, hvor Mick Øgendahl skider på alle fine fornemmelser og indholdsmæssige overvejelser - og bare er sig selv. Helt anarkistisk dyrker han det grimme og præsterer ren guerilla-komik fra start til slut. Det er Mick Øgendahl, når han er allerbedst. Mick Øgendahls femte solo stand-up show SPAS blev så populært, at der hurtigt blev oprettet ekstra shows, og det er set af mere end 80.000 live publikummer. Mick Øgendahl fik også, helt velfortjent, prisen som ”Årets komiker 2012” for SPAS ved TV2’s Comedy Galla.",
       "productionLink": "https://microphone.dk",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1249/mick-spas.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1249/mick-spas.png",
       "title": "Mick Øgendahl - SPAS",
       "badge": "",
       "length": "98",
       "tags": "Mick Øgendahl,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1249/mick-spas.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1249/mick-spas.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1249/mick-spas.png?crop=Wide",
+      "thumbnailHigh": "/media/1249/mick-spas.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "30df23e22976e6bc24fa329c86286610",
     "videoStatus": "ready",
@@ -249,29 +234,9 @@
     "production": "Microphone ApS",
     "productionLink": "https://microphone.dk",
     "tags": "Mick Øgendahl,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1249/mick-spas.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1249/mick-spas.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -295,7 +260,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1249/mick-spas.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1249/mick-spas.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1249/mick-spas.png?crop=Wide",
+    "thumbnailHigh": "/media/1249/mick-spas.png?crop=High"
   },
   {
     "id": 1921,
@@ -310,21 +300,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1921",
     "sortOrder": 4,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-propaganda/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-propaganda/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls Propaganda - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/bc31ed9dd119a1f98224c1cf765319c2/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -343,25 +327,7 @@
       "year": "2010",
       "description": "<h2>Stream Mick Øgendahls Propaganda - lej eller køb online</h2>\nMed showet ‘Propaganda’ vendte Mick Øgendahl i 2010 tilbage til sine foretrukne omgivelser – en scene, en mikrofon og et publikum.Mere end 100 udsolgte shows taler deres eget sprog! Med Mick Øgendahl i absolut storform er der garanti for fantastisk under- holdning. Også selv om emnerne er så forskellige som rengøringsprodukter, parforhold, Karen Blixen, gratisaviser, biler, teenage-ekspedienter og meget, meget mere … Mick Øgendahl er en af landets absolut mest populære komikere og med dette show beviser han ig en hvorfor. For Mick er der ingen emner der er for små til at blive taget under behandling – og ingen der er for store.",
       "productionLink": "https://microphone.dk",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1251/mick-propoganda.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1251/mick-propoganda.png",
       "title": "Mick Øgendahl - Propaganda ",
       "badge": "",
       "length": "85",
@@ -372,11 +338,25 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1251/mick-propoganda.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1251/mick-propoganda.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1251/mick-propoganda.png?crop=Wide",
+      "thumbnailHigh": "/media/1251/mick-propoganda.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "bc31ed9dd119a1f98224c1cf765319c2",
     "videoStatus": "ready",
@@ -398,29 +378,9 @@
     "production": "Microphone ApS",
     "productionLink": "https://microphone.dk",
     "tags": "Comedy,Stand-up,Mick Øgendahl",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1251/mick-propoganda.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1251/mick-propoganda.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -448,7 +408,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1251/mick-propoganda.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1251/mick-propoganda.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1251/mick-propoganda.png?crop=Wide",
+    "thumbnailHigh": "/media/1251/mick-propoganda.png?crop=High"
   },
   {
     "id": 1923,
@@ -463,21 +448,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1923",
     "sortOrder": 6,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-undskyld/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-undskyld/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls Undskyld - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/0a9ad8af74147e45ad7b5bac090745b3/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -496,25 +475,7 @@
       "year": "2006",
       "description": "<h2>Stream Mick Øgendahls Undskyld - lej eller køb online</h2>\nI februar 2006 havde Mick Øgendahl premiere på one-man showet ”UNDSKYLD!”. Med film og live stand-up på plakaten tog publikum og anmelderne varmt imod Mick og kvitterede med aftenens dom: Undskyldningen er godtaget Dette show er unikt. For første gang nogensinde tager et live stand-up show og film hinanden i hånden og danner rammen om en enestående oplevelse hvor fiktion og virkelighed glider sammen i en skøn harmoni. Mick Øgendahl har med dette show skabt en ny for form genre: CinemaComedy. Selve filmen handler om to brødre, spillet af Kim Bodnia og Mick Øgendahl, som under stort besvær tager til Sverige for at hente en hundehvalp. Stand-up showet er klassisk stand-up som kun Øgendahl kan levere det. Mick tager udgangspunkt i filmens pludselige dilemmaer og danner dermed en hybrid mellem oplevelsen af biograf og liveshow. En sand fornøjelse og en forfriskende progressiv nyskabelse – tilsammen hedder det UNDSKYLD!",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1253/mick-undskyld.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1253/mick-undskyld.png",
       "title": "Mick Øgendahl - Undskyld ",
       "badge": "",
       "length": "97",
@@ -525,11 +486,25 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1253/mick-undskyld.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1253/mick-undskyld.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1253/mick-undskyld.png?crop=Wide",
+      "thumbnailHigh": "/media/1253/mick-undskyld.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "0a9ad8af74147e45ad7b5bac090745b3",
     "videoStatus": "ready",
@@ -551,29 +526,9 @@
     "production": "Microphone ApS",
     "productionLink": "",
     "tags": "Comedy,Stand-up,Mick Øgendahl",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1253/mick-undskyld.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1253/mick-undskyld.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -601,7 +556,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1253/mick-undskyld.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1253/mick-undskyld.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1253/mick-undskyld.png?crop=Wide",
+    "thumbnailHigh": "/media/1253/mick-undskyld.png?crop=High"
   },
   {
     "id": 1922,
@@ -616,21 +596,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1922",
     "sortOrder": 5,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-taafraeser/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-taafraeser/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls Tåfræser - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/b386d223a0fab0c0c931c81c99055ca1/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -649,25 +623,7 @@
       "year": "2004",
       "description": "<h2>Stream Mick Øgendahls Tåfræser - lej eller køb online</h2>\nSe eller gense Mick`s one man show, der har titlen ”Tåfræser” – og her kan ingen føle sig sikker, når Mick med iskold præcision sparker verbale øretæver både til højre og venstre. Emnerne, som Mick blandt andet vil berøre, er arv og miljø, og publikum vil for første gang kunne opleve en mere voksen og ærlig Mick Øgendahl.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1252/mick-taafraeser.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1252/mick-taafraeser.png",
       "title": "Mick Øgendahl - Tåfræser ",
       "badge": "",
       "length": "120",
@@ -678,11 +634,25 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1252/mick-taafraeser.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1252/mick-taafraeser.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1252/mick-taafraeser.png?crop=Wide",
+      "thumbnailHigh": "/media/1252/mick-taafraeser.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "b386d223a0fab0c0c931c81c99055ca1",
     "videoStatus": "ready",
@@ -704,29 +674,9 @@
     "production": "Microphone ApS",
     "productionLink": "",
     "tags": "Comedy,Mick Øgendahl,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1252/mick-taafraeser.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1252/mick-taafraeser.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -754,7 +704,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1252/mick-taafraeser.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1252/mick-taafraeser.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1252/mick-taafraeser.png?crop=Wide",
+    "thumbnailHigh": "/media/1252/mick-taafraeser.png?crop=High"
   },
   {
     "id": 1913,
@@ -769,21 +744,15 @@
     "parentId": 1900,
     "path": "-1,1067,1894,1900,1913",
     "sortOrder": 3,
-    "urls": [
-      "/microphone-entertainment/shows/mick-øgendahl-micktrix/"
-    ],
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-micktrix/"],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "Stream Mick Øgendahls Micktrix - Køb eller lej online",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/1f548be541a95a8316e97d291165b8a4/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -802,25 +771,7 @@
       "year": "2000",
       "description": "<h2>Stream Mick Øgendahls Micktrix - lej eller køb online</h2>\nMicktrix - One man showet her er resultatet af en klubturné rundt i landet i 2000. Ca. 20 små spillesteder i DK blev gæstet. At kalde det et one man show er dog en sandhed med ret mange modifikationer. Ud over Mick Øgendahl selv gæsteoptræder nemlig Grønlands eneste stand-up komiker Jonathan Klaksvig og Dr. Med. J. P Bjæverskov. Så helt ensomt har det ikke været. Det er blevet til et show om divergenserne i kultur og levevis verden over. En kronologisk gennemgang af livet som det udspiller sig fra vugge til grav, og sidst men ikke mindst en refleksion over det uomgængelige faktum, at kvinden har overtaget styringen fra primaten - nemlig manden.",
       "productionLink": "https://microphone.dk",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1250/mick-micktrix.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1250/mick-micktrix.png",
       "title": "Mick Øgendahl - Micktrix",
       "badge": "",
       "length": "75",
@@ -831,11 +782,25 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1250/mick-micktrix.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1250/mick-micktrix.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1250/mick-micktrix.png?crop=Wide",
+      "thumbnailHigh": "/media/1250/mick-micktrix.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "1f548be541a95a8316e97d291165b8a4",
     "videoStatus": "ready",
@@ -857,29 +822,9 @@
     "production": "Microphone ApS",
     "productionLink": "https://microphone.dk",
     "tags": "Mick Øgendahl,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1250/mick-micktrix.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1250/mick-micktrix.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -907,7 +852,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1250/mick-micktrix.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1250/mick-micktrix.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1250/mick-micktrix.png?crop=Wide",
+    "thumbnailHigh": "/media/1250/mick-micktrix.png?crop=High"
   },
   {
     "id": 1924,
@@ -927,16 +897,12 @@
     ],
     "properties": {
       "purchasePrice": "39",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "29",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/aaa4751e577d0727184e087cd3849dad/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -955,36 +921,32 @@
       "year": "2016",
       "description": "I 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. \r\n\r\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\r\n\r\n\r\nShowet her er med undertekster.",
       "productionLink": "https://microphone.dk",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1248/mick-fest.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1248/mick-fest.png",
       "title": "Mick Øgendahl - FEST med undertekster",
       "badge": "",
       "length": "96",
       "tags": "Comedy,Mick Øgendahl,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1248/mick-fest.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1248/mick-fest.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1248/mick-fest.png?crop=Wide",
+      "thumbnailHigh": "/media/1248/mick-fest.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "aaa4751e577d0727184e087cd3849dad",
     "videoStatus": "ready",
@@ -1006,29 +968,9 @@
     "production": "Microphone ApS",
     "productionLink": "https://microphone.dk",
     "tags": "Comedy,Mick Øgendahl,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/1248/mick-fest.png",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/1248/mick-fest.png",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "29",
     "purchasePrice": "39",
     "code": "",
@@ -1052,6 +994,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1248/mick-fest.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1248/mick-fest.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1248/mick-fest.png?crop=Wide",
+    "thumbnailHigh": "/media/1248/mick-fest.png?crop=High"
   }
 ]

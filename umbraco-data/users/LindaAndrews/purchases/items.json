@@ -94,7 +94,16 @@
       "fullName": "Terje Eli Dam",
       "message": "",
       "media": "umb://document/849e1c83f8554ccf813fd338f4750ea7"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 25443,
@@ -191,6 +200,15 @@
       "fullName": "Linda Andrews",
       "message": "",
       "media": "umb://document/849e1c83f8554ccf813fd338f4750ea7"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

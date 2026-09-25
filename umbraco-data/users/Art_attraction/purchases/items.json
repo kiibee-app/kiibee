@@ -76,7 +76,16 @@
       "fullName": "Frank Thomsen",
       "message": "Hejsa\r\n\r\nTak for det. Har du nogen spørgsmål er du velkommen til at kontakte mig.\r\n\r\nMed venlig hilsen\r\n\r\nHelle",
       "media": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2095,
@@ -157,7 +166,16 @@
       "fullName": "Helle Buttrup",
       "message": "Hejsa\r\n\r\nTak for det. Har du nogen spørgsmål er du velkommen til at kontakte mig.\r\n\r\nMed venlig hilsen\r\n\r\nHelle",
       "media": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2093,
@@ -238,6 +256,15 @@
       "fullName": "anders halfter ",
       "message": "Hejsa\r\n\r\nTak for det. Har du nogen spørgsmål er du velkommen til at kontakte mig.\r\n\r\nMed venlig hilsen\r\n\r\nHelle",
       "media": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

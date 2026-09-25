@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3929/dm-i-standup-2021-poster.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3929/dm-i-standup-2021-poster.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3929/dm-i-standup-2021-poster.png?crop=Wide",
+      "thumbnailHigh": "/media/3929/dm-i-standup-2021-poster.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3929/dm-i-standup-2021-poster.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3929/dm-i-standup-2021-poster.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3929/dm-i-standup-2021-poster.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3929/dm-i-standup-2021-poster.png?crop=Wide",
+    "thumbnailHigh": "/media/3929/dm-i-standup-2021-poster.png?crop=High"
   },
   {
     "id": 55742,
@@ -496,7 +544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3936/dm-standup-2019.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3936/dm-standup-2019.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3936/dm-standup-2019.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3936/dm-standup-2019.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:37:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3936/dm-standup-2019.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3936/dm-standup-2019.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3936/dm-standup-2019.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3936/dm-standup-2019.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3936/dm-standup-2019.jpeg?crop=High"
   },
   {
     "id": 45171,
@@ -946,7 +1042,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3486/570x798.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3486/570x798.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3486/570x798.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3486/570x798.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3486/570x798.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3486/570x798.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3486/570x798.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3486/570x798.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3486/570x798.jpg?crop=High"
   },
   {
     "id": 45170,
@@ -1396,7 +1540,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3485/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3485/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3485/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3485/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,7 +1957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3485/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3485/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3485/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3485/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3485/400x600.jpg?crop=High"
   },
   {
     "id": 45169,
@@ -1846,7 +2038,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3484/dm15-profile.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3484/dm15-profile.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3484/dm15-profile.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3484/dm15-profile.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2247,7 +2455,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3484/dm15-profile.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3484/dm15-profile.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3484/dm15-profile.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3484/dm15-profile.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3484/dm15-profile.jpg?crop=High"
   },
   {
     "id": 45168,
@@ -2296,7 +2536,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3483/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3483/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3483/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3483/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2697,7 +2953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3483/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3483/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3483/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3483/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3483/400x600.jpg?crop=High"
   },
   {
     "id": 45167,
@@ -2746,7 +3034,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3147,7 +3451,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3482/dm-i-stand-up-10-_facing_.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3482/dm-i-stand-up-10-_facing_.jpg?crop=High"
   },
   {
     "id": 45165,
@@ -3196,7 +3532,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3597,7 +3949,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3480/dm-i-stand-up-2006_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3480/dm-i-stand-up-2006_400x600.jpg?crop=High"
   },
   {
     "id": 45163,
@@ -3646,7 +4030,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3479/dm-logo2004.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3479/dm-logo2004.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3479/dm-logo2004.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3479/dm-logo2004.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4047,7 +4447,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3479/dm-logo2004.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3479/dm-logo2004.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3479/dm-logo2004.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3479/dm-logo2004.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3479/dm-logo2004.jpg?crop=High"
   },
   {
     "id": 45166,
@@ -4096,7 +4528,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4497,7 +4945,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3481/dm-i-stand-up-2008_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3481/dm-i-stand-up-2008_400x600.jpg?crop=High"
   },
   {
     "id": 45162,
@@ -4546,7 +5026,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4947,6 +5443,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-12-29 18:32:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3478/dm-i-stand-up-2003_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3478/dm-i-stand-up-2003_400x600.jpg?crop=High"
   }
 ]

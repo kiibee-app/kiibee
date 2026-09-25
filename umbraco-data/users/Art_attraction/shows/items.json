@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1294/demoer.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1294/demoer.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1294/demoer.png?crop=Wide",
+      "thumbnailHigh": "/media/1294/demoer.png?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -96,7 +112,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1294/demoer.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1294/demoer.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1294/demoer.png?crop=Wide",
+    "thumbnailHigh": "/media/1294/demoer.png?crop=High"
   },
   {
     "id": 1999,
@@ -145,7 +186,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1296/kopi-af-zone-boernebehandling.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1296/kopi-af-zone-boernebehandling.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1296/kopi-af-zone-boernebehandling.png?crop=Wide",
+      "thumbnailHigh": "/media/1296/kopi-af-zone-boernebehandling.png?crop=High"
     },
     "type": ["76"],
     "rawFile": "/media/1295/zone-terapi-demo.mp3",
@@ -195,6 +252,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1296/kopi-af-zone-boernebehandling.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1296/kopi-af-zone-boernebehandling.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1296/kopi-af-zone-boernebehandling.png?crop=Wide",
+    "thumbnailHigh": "/media/1296/kopi-af-zone-boernebehandling.png?crop=High"
   }
 ]

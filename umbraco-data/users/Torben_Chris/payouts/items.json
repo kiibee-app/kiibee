@@ -40,7 +40,16 @@
       "to": "2025-12-16 15:08:29",
       "transactionAmount": "137.75",
       "kiibeeCutAmount": "1500"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 103062,
@@ -83,7 +92,16 @@
       "to": "2024-11-24 11:45:08",
       "transactionAmount": "69.05",
       "kiibeeCutAmount": "780"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93107,
@@ -126,7 +144,16 @@
       "to": "2023-12-11 13:57:12",
       "transactionAmount": "92.95",
       "kiibeeCutAmount": "765"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 71289,
@@ -169,6 +196,15 @@
       "to": "2022-09-05 12:40:56",
       "transactionAmount": "88.65",
       "kiibeeCutAmount": "470"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

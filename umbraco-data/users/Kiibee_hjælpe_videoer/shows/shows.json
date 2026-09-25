@@ -52,7 +52,23 @@
       "tags": "Online kurser,Hjælpe videoer,Opsætning af kurser",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=Wide",
+      "thumbnailHigh": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=High"
     },
     "type": [
       "73"
@@ -106,7 +122,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=Wide",
+    "thumbnailHigh": "/media/3760/skaermbillede-2021-11-25-kl-201940.png?crop=High"
   },
   {
     "id": 2585,
@@ -161,7 +202,23 @@
       "tags": "Intro video",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=Wide",
+      "thumbnailHigh": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=High"
     },
     "type": [
       "73"
@@ -215,7 +272,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=Wide",
+    "thumbnailHigh": "/media/1511/kom-igang-pa-3-minutter-billede.png?crop=High"
   },
   {
     "id": 27205,
@@ -270,7 +352,23 @@
       "tags": "film og video produktion",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=Wide",
+      "thumbnailHigh": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=High"
     },
     "type": [
       "73"
@@ -324,7 +422,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=Wide",
+    "thumbnailHigh": "/media/2785/skaermbillede-2021-01-05-kl-130100.png?crop=High"
   },
   {
     "id": 51223,
@@ -379,7 +502,23 @@
       "tags": "Hjælpe Video,Opsætning af online kurser,Online kurser",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=Wide",
+      "thumbnailHigh": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=High"
     },
     "type": [
       "73"
@@ -433,6 +572,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=Wide",
+    "thumbnailHigh": "/media/3721/skaermbillede-2021-11-03-kl-175047.png?crop=High"
   }
 ]

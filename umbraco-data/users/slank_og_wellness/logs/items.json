@@ -12,9 +12,7 @@
     "parentId": 2073,
     "path": "-1,1067,2072,2073,2082",
     "sortOrder": 0,
-    "urls": [
-      "/slank-og-wellness/log/bq7828092019210918/"
-    ],
+    "urls": ["/slank-og-wellness/log/bq7828092019210918/"],
     "fields": {
       "fullName": "Tina Kristensen",
       "price": "19",
@@ -288,6 +286,21 @@
         "displayValue": "tina.gistrup@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2019-10-05 20:51:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

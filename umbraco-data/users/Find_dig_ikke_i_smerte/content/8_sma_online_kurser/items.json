@@ -48,7 +48,23 @@
       "tags": "Ansigt og hoved massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1933/angigst-og-hovedbund.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1933/angigst-og-hovedbund.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1933/angigst-og-hovedbund.png?crop=Wide",
+      "thumbnailHigh": "/media/1933/angigst-og-hovedbund.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:27:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1933/angigst-og-hovedbund.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1933/angigst-og-hovedbund.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1933/angigst-og-hovedbund.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1933/angigst-og-hovedbund.png?crop=Wide",
+    "thumbnailHigh": "/media/1933/angigst-og-hovedbund.png?crop=High"
   },
   {
     "id": 16816,
@@ -498,7 +546,23 @@
       "tags": "Arme massage,online kurser",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1934/arm.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1934/arm.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1934/arm.png?crop=Wide",
+      "thumbnailHigh": "/media/1934/arm.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -899,7 +963,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:27:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1934/arm.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1934/arm.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1934/arm.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1934/arm.png?crop=Wide",
+    "thumbnailHigh": "/media/1934/arm.png?crop=High"
   },
   {
     "id": 16817,
@@ -948,7 +1044,23 @@
       "tags": "Ben massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1936/ben.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1936/ben.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1936/ben.png?crop=Wide",
+      "thumbnailHigh": "/media/1936/ben.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,7 +1461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:27:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1936/ben.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1936/ben.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1936/ben.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1936/ben.png?crop=Wide",
+    "thumbnailHigh": "/media/1936/ben.png?crop=High"
   },
   {
     "id": 16822,
@@ -1400,7 +1544,23 @@
       "tags": "Brystkasse massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1939/brystkasse.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1939/brystkasse.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1939/brystkasse.png?crop=Wide",
+      "thumbnailHigh": "/media/1939/brystkasse.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1801,7 +1961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:02",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1939/brystkasse.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1939/brystkasse.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1939/brystkasse.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1939/brystkasse.png?crop=Wide",
+    "thumbnailHigh": "/media/1939/brystkasse.png?crop=High"
   },
   {
     "id": 16824,
@@ -1852,7 +2044,23 @@
       "tags": "Lænd og ballemuskler - massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1944/lend-og-balle.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1944/lend-og-balle.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1944/lend-og-balle.png?crop=Wide",
+      "thumbnailHigh": "/media/1944/lend-og-balle.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2253,7 +2461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:07",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1944/lend-og-balle.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1944/lend-og-balle.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1944/lend-og-balle.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1944/lend-og-balle.png?crop=Wide",
+    "thumbnailHigh": "/media/1944/lend-og-balle.png?crop=High"
   },
   {
     "id": 16825,
@@ -2302,7 +2542,23 @@
       "tags": "mave massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1943/mave.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1943/mave.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1943/mave.png?crop=Wide",
+      "thumbnailHigh": "/media/1943/mave.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2703,7 +2959,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1943/mave.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1943/mave.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1943/mave.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1943/mave.png?crop=Wide",
+    "thumbnailHigh": "/media/1943/mave.png?crop=High"
   },
   {
     "id": 16826,
@@ -2752,7 +3040,23 @@
       "tags": "Nakke massage,Online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1945/nakke-kraniekant.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1945/nakke-kraniekant.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1945/nakke-kraniekant.png?crop=Wide",
+      "thumbnailHigh": "/media/1945/nakke-kraniekant.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3153,7 +3457,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1945/nakke-kraniekant.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1945/nakke-kraniekant.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1945/nakke-kraniekant.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1945/nakke-kraniekant.png?crop=Wide",
+    "thumbnailHigh": "/media/1945/nakke-kraniekant.png?crop=High"
   },
   {
     "id": 16827,
@@ -3202,7 +3538,23 @@
       "tags": "Ryg massage,online kursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1946/ryg.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1946/ryg.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1946/ryg.png?crop=Wide",
+      "thumbnailHigh": "/media/1946/ryg.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3603,6 +3955,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1946/ryg.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1946/ryg.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1946/ryg.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1946/ryg.png?crop=Wide",
+    "thumbnailHigh": "/media/1946/ryg.png?crop=High"
   }
 ]

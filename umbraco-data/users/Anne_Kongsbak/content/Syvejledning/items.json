@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2476/boellehat-02.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2476/boellehat-02.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2476/boellehat-02.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2476/boellehat-02.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,6 +465,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-19 22:53:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2476/boellehat-02.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2476/boellehat-02.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2476/boellehat-02.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2476/boellehat-02.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2476/boellehat-02.jpg?crop=High"
   }
 ]

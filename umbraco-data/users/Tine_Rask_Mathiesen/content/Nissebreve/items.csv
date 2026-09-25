@@ -1,5 +1,5 @@
-id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,orderID,title,access,badge,code,description,expandedDescription,hidden,hideDownload,hidePlay,length,metaDescription,metaTitle,openWebContentFromList,openWebContentInNewWindows,production,productionLink,productLink,purchasePrice,rawFile,rentalPrice,siteMapOption,tags,thumbnail,trailer,type,videoDownloadURL,videoID,videoSize,videoStatus,videoThumbnailURL,webContentURL,year
-115447,28f2cafc-7a33-444e-9967-7a9837489dcc,umb://document/28f2cafc7a33444e99677a9837489dcc,Nissebreve ,media,true,true,2025-11-17 10:36:18,2025-11-17 10:36:53,115446,0,/tine-rask-mathiesen/nissebreve/nissebreve/,0,Nissebreve ,57,,,"Nissebreve ""rim og løjer"" 50kr
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,publishDate,releaseDate,removeDate,ownerName,ownerId,updaterName,updaterId,parentId,sortOrder,urls,purchasePrice,access,rentalPrice,code,metaDescription,metaTitle,type,videoDownloadURL,rawFile,videoStatus,hidden,videoThumbnailURL,videoID,openWebContentInNewWindows,trailer,openWebContentFromList,webContentURL,orderID,videoSize,productLink,expandedDescription,production,year,description,productionLink,thumbnail,title,badge,length,tags,hidePlay,hideDownload,siteMapOption
+"115447","28f2cafc-7a33-444e-9967-7a9837489dcc","umb://document/28f2cafc7a33444e99677a9837489dcc","Nissebreve ","media","true","true","2025-11-17 10:36:18","2025-11-17 10:36:53","2025-11-17 10:36:53","","","Martin H. Schläger","0","Martin H. Schläger","0","115446","0","[""/tine-rask-mathiesen/nissebreve/nissebreve/""]","","[""57""]","","","","","[""75""]","","/media/5036/nissebrevenymperlebamse.pdf","","1","","","0","","0","","0","","","","","0","Nissebreve ""rim og løjer"" 50kr
 17 sider til udprint:
 - Intro
 - Guide til løjer 
@@ -10,4 +10,4 @@ Der er ikke tal på brevene, så man tilrettelægger selv hvornår man laver hvi
 
 Løjerne er simple og overkommelige og brevene er hurtigt læst og man får et hint til de løjer Nissen har lavet over natten.. 
 Glædelig jul 😜
-Hilsen fra Tine",,1,0,0,0,,,0,0,,,,,/media/5036/nissebrevenymperlebamse.pdf,,,,,,75,,,,,,,0
+Hilsen fra Tine","","","Nissebreve ","","0","","0","0",""

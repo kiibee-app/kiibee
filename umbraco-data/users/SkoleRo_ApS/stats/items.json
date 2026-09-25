@@ -57,6 +57,15 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/a53a183db8154914ac0371145202f7ab",
-    "mediaKey": "a53a183d-b815-4914-ac03-71145202f7ab"
+    "mediaKey": "a53a183d-b815-4914-ac03-71145202f7ab",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

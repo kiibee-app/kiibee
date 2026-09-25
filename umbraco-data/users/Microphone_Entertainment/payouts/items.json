@@ -13,9 +13,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,123417",
     "sortOrder": 16,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1753/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1753/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1753/"
     ],
@@ -46,7 +44,16 @@
       "to": "2026-05-22 10:06:56",
       "transactionAmount": "43.44",
       "kiibeeCutAmount": "306"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116358,
@@ -62,9 +69,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,116358",
     "sortOrder": 15,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1693/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1693/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1693/"
     ],
@@ -95,7 +100,16 @@
       "to": "2025-12-09 10:13:24",
       "transactionAmount": "118.14",
       "kiibeeCutAmount": "738"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 110529,
@@ -111,9 +125,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,110529",
     "sortOrder": 14,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1643/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1643/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1643/"
     ],
@@ -144,7 +156,16 @@
       "to": "2025-06-14 10:24:45",
       "transactionAmount": "52.26",
       "kiibeeCutAmount": "342"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108200,
@@ -160,9 +181,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,108200",
     "sortOrder": 13,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1618/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1618/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1618/"
     ],
@@ -193,7 +212,16 @@
       "to": "2025-04-01 12:52:37",
       "transactionAmount": "172.44",
       "kiibeeCutAmount": "1008"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97850,
@@ -209,9 +237,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,97850",
     "sortOrder": 12,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1538/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1538/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1538/"
     ],
@@ -242,7 +268,16 @@
       "to": "2024-06-14 09:57:09",
       "transactionAmount": "45.12",
       "kiibeeCutAmount": "160"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96737,
@@ -258,9 +293,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,96737",
     "sortOrder": 11,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1512/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1512/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1512/"
     ],
@@ -291,7 +324,16 @@
       "to": "2024-04-30 08:23:38",
       "transactionAmount": "111.3",
       "kiibeeCutAmount": "700"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92941,
@@ -307,9 +349,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,92941",
     "sortOrder": 10,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1469/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1469/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1469/"
     ],
@@ -340,7 +380,16 @@
       "to": "2023-12-08 10:11:35",
       "transactionAmount": "102.65",
       "kiibeeCutAmount": "555"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81879,
@@ -356,9 +405,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,81879",
     "sortOrder": 9,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1410/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1410/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1410/"
     ],
@@ -389,7 +436,16 @@
       "to": "2023-05-16 08:40:41",
       "transactionAmount": "50.15",
       "kiibeeCutAmount": "255"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78694,
@@ -405,9 +461,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,78694",
     "sortOrder": 8,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1381/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1381/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1381/"
     ],
@@ -438,7 +492,16 @@
       "to": "2023-03-07 10:13:41",
       "transactionAmount": "49.15",
       "kiibeeCutAmount": "285"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75528,
@@ -454,9 +517,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,75528",
     "sortOrder": 7,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1348/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1348/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1348/"
     ],
@@ -487,7 +548,16 @@
       "to": "2022-12-02 09:03:34",
       "transactionAmount": "89.35",
       "kiibeeCutAmount": "330"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 64608,
@@ -503,9 +573,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,64608",
     "sortOrder": 6,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1275/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1275/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1275/"
     ],
@@ -536,7 +604,16 @@
       "to": "2022-05-23 13:04:53",
       "transactionAmount": "77.97",
       "kiibeeCutAmount": "510"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 51472,
@@ -552,9 +629,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,51472",
     "sortOrder": 5,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1216/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1216/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1216/"
     ],
@@ -585,7 +660,16 @@
       "to": "2021-11-11 10:28:04",
       "transactionAmount": "62.76",
       "kiibeeCutAmount": "380"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49710,
@@ -601,9 +685,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,49710",
     "sortOrder": 4,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1185/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1185/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1185/"
     ],
@@ -634,7 +716,16 @@
       "to": "2021-09-02 09:38:04",
       "transactionAmount": "46.41",
       "kiibeeCutAmount": "231"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 44324,
@@ -650,9 +741,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,44324",
     "sortOrder": 3,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1148/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1148/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1148/"
     ],
@@ -683,7 +772,16 @@
       "to": "2021-04-28 13:02:28",
       "transactionAmount": "41.37",
       "kiibeeCutAmount": "217"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 26015,
@@ -699,9 +797,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,26015",
     "sortOrder": 2,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1106/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1106/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1106/"
     ],
@@ -732,7 +828,16 @@
       "to": "2020-12-28 11:28:40",
       "transactionAmount": "",
       "kiibeeCutAmount": ""
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 16222,
@@ -748,9 +853,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,16222",
     "sortOrder": 1,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1039/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1039/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1039/"
     ],
@@ -781,7 +884,16 @@
       "to": "2020-05-25 12:25:42",
       "transactionAmount": "",
       "kiibeeCutAmount": ""
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2541,
@@ -797,9 +909,7 @@
     "parentId": 1897,
     "path": "-1,1067,1894,1897,2541",
     "sortOrder": 0,
-    "urls": [
-      "/microphone-entertainment/payouts/kbf-1015/"
-    ],
+    "urls": ["/microphone-entertainment/payouts/kbf-1015/"],
     "publicPayoutUrls": [
       "https://kiibee.dk/microphone-entertainment/payouts/kbf-1015/"
     ],
@@ -830,6 +940,15 @@
       "to": "2020-01-12 10:43:39",
       "transactionAmount": "",
       "kiibeeCutAmount": ""
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

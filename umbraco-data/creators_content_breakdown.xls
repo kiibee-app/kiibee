@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Styles>
+  <Style ss:ID="Header">
+   <Font ss:Bold="1" ss:Color="#FFFFFF"/>
+   <Interior ss:Color="#1F2937" ss:Pattern="Solid"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="Data">
+   <Alignment ss:Vertical="Center"/>
+  </Style>
+  <Style ss:ID="Number">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Creators Content Breakdown">
+  <Table>
+   <Column ss:Width="250"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="130"/>
+   <Column ss:Width="100"/>
+   <Column ss:Width="160"/>
+   <Column ss:Width="130"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="150"/>
+   <Column ss:Width="180"/>
+   <Row ss:Height="25">
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Name</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Content</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Content</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Content</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Content</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Links</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Content</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Files</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Images</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">PDFs</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Audio/Video</Data></Cell>
+    <Cell ss:StyleID="Header"><Data ss:Type="String">Range</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Pædagogisk_Psykologisk_Tidsskrift</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">236</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">236</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">949</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">476</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">472</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-06-05 to 2024-01-30</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Comedy-TV</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">137</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">137</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">287</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">286</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-03-10 to 2025-09-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">FBI.DK</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">239</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">238</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-02 to 2025-12-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Funktionel_Neuro_Terapeut</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">50</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">34</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">138</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">106</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-10-29 to 2025-03-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Fysioteamet</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-01-14 to 2024-10-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Funktionel_Neuro_Terapeut_(1)</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">42</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">188</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">114</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">74</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2025-09-11 to 2026-04-16</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Kammas_Kantine</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">110</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">98</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-14 to 2022-04-12</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">TANIA_ELLIS_-_The_Social_Business_Company</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">58</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">48</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-10-25 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Thomas_Hartmann</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">30</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">38</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-03-31 to 2024-01-23</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Hundedamen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">57</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">54</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-10-23 to 2025-01-24</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Songs_Of_Jacob_Elk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">140</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">96</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">44</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-05-13 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Red_Barnet</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-06-07 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Cathrine_Guldberg</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-02-23 to 2024-04-09</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Torben_Chris</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-10 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Amin_Jensen_Entertainment</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-07-23 to 2024-12-16</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Adal_Faragalla</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">66</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">62</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-01-09 to 2023-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Fonden_Eventyrteatret</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">33</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-04-04 to 2026-03-30</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Microphone_Entertainment</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-07-23 to 2024-01-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Mit_test_site</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">37</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-01-16 to 2026-06-09</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Omar_Marzouk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-06-06 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Uffe_Holm</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-07-22 to 2024-01-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Damkjær_Medier</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">28</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-02-13 to 2024-04-30</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Funktionel_Neuroterapeut_2026</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">51</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">32</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-08-16 to 2026-08-28</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Carsten_Bang</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-05 to 2024-01-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Find_dig_ikke_i_smerte</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-06-05 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Stopsygefravær.nu</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">29</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-05-13 to 2020-05-14</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Chief1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-12-16 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Elias_Ehlers</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">15</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-12 to 2025-06-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Elsebeth_Fogh</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">63</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">36</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">26</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-02-20 to 2020-02-24</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Jacob_Tingleff</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-10 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Morten_Bonde_Development</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">22</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-05-13 to 2022-08-28</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">SigneNeslein.dk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">31</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-01-11 to 2026-02-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">A5_Forlag_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">27</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-10-03 to 2022-11-09</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Anders_Fjelsted</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-09 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Art_attraction</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-08-17 to 2019-08-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Dan_Andersen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-07 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">ElStudio</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-05-29 to 2020-05-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Forlaget_AKKA</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">23</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-04-22 to 2024-04-28</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Jacob_Taarnhøj</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-12-09 to 2024-01-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Lindhardt_A-S</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-02-07 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Thomas_Wivel</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-11 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Tobias_Dybvad</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-07 to 2024-01-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Brian_Mørk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-10 to 2024-01-15</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Langes_Entertainment_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-02-01 to 2025-09-09</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Sundt_indtag</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-02-19 to 2021-02-19</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Vital_New_Software_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-06-10 to 2024-12-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">slank_og_wellness</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-09-30 to 2020-03-19</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Akupunktør_Stine_Vogel</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">24</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-07-17 to 2026-07-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">B_Entertained</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-08-23 to 2024-09-02</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">FliCFLAC</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2019-07-12 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Granli_Velvære</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-08-20 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Jacob_Wilson</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-05-25 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Janni_-_Køreskole_og_Terapi</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-05-09 to 2026-05-09</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Karina_Eckhausen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-03-20 to 2024-05-30</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Kitnoergaard.dk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">21</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-03-07 to 2025-02-26</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Lev_Dit_Liv_NU</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-05-29 to 2024-07-01</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Line_JL_Feel_the_Heal</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-10-17 to 2023-11-14</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">M.C._Caffe</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-10-19 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Nethe_Nomonde_Dalgaard</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">18</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-01-12 to 2026-08-22</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Peter_Peitersen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-06-16 to 2026-08-06</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">RauJensen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">19</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2024-08-18 to 2024-09-12</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Selvvær(dk)stedet</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-06-23 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Simon_Talbot</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-01-30 to 2024-01-30</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">SkoleRo_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2025-07-21 to 2025-09-05</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">You_Consulting</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">17</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-02-13 to 2023-05-26</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">@lawn.dk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-04-07 to 2023-04-07</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Anne_Kongsbak</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-10-19 to 2020-10-19</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Anne_brietzke</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2025-09-23 to 2025-09-23</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Britta_Koch_-_Qigong</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">7</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-09-01 to 2022-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Dahls_regnskabsservice_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-01-12 to 2026-02-10</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Diana_Myjak</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-02-21 to 2026-02-21</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">EvaFogNoer</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-03-17 to 2022-03-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-10-17 to 2023-10-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Ilona_Margibell</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-12-22 to 2020-12-22</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Jesper_Jensen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-06-29 to 2026-06-29</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Johnny_Logan</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-08 to 2021-04-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Kristian_Kjaer</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-07-13 to 2026-07-13</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Kryptovaluta_for_kvinder</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">13</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-11-02 to 2021-11-02</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Laura_Nielsen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-01-31 to 2026-03-08</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Life-_&amp;_Business_Coach</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">16</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">12</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2020-07-24 to 2020-09-18</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Lisathe_Møller</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-08-16 to 2026-08-16</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Mirna_Barbar</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2026-03-14 to 2026-05-05</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">NSCCM_ApS</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-09-16 to 2022-09-16</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Olivia_Hvoslef_Mejer_Madsen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">14</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2025-02-25 to 2025-02-25</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Per_Vers</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2023-11-01 to 2023-11-01</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Rikke_Brünner</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">10</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2022-07-11 to 2022-07-12</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Tine_Rask_Mathiesen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">11</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2025-11-17 to 2025-11-17</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">networker</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">2021-04-04 to 2023-04-07</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Ali_El-Atbi</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Ana_Castellanos</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Bettina_Ramsing</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">6</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Gottleben</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Heidi_Stjerne</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Johanne_Kubert</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Lea_Nielsen</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Marner_Analytics</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Settings</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">Tegnestuen_Undertryk</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">4</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+   <Row ss:Height="20">
+    <Cell ss:StyleID="Data"><Data ss:Type="String">VideoVisionær_kursus</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">9</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">8</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Number"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="Data"><Data ss:Type="String">N/A</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>

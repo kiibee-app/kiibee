@@ -19,6 +19,13 @@ const BASE_CSV_COLUMNS = [
   "hasPublishedVersion",
   "createDate",
   "updateDate",
+  "publishDate",
+  "releaseDate",
+  "removeDate",
+  "ownerName",
+  "ownerId",
+  "updaterName",
+  "updaterId",
   "parentId",
   "sortOrder",
   "urls",
@@ -94,6 +101,8 @@ async function requestJson(url, config) {
       cookie: config.cookie,
       pragma: "no-cache",
       referer: `${BASE_URL}/umbraco`,
+      origin: BASE_URL,
+      "x-requested-with": "XMLHttpRequest",
       "cache-control": "no-cache",
       "x-umb-xsrf-token": config.xsrfToken,
       "user-agent":
@@ -267,6 +276,37 @@ function addProperty(fields, fieldDetails, fieldOrder, property, context) {
 
   const value = normalizeInnerValue(rawPropertyValue(property));
   fields[alias] = value;
+
+  const configCrops =
+    property?.config?.crops ||
+    property?.config?.Crops ||
+    property?.Config?.crops ||
+    property?.Config?.Crops ||
+    [];
+  let cropsInfo = null;
+  let wideCropUrl = "";
+  let highCropUrl = "";
+
+  const srcUrl = typeof value === "string" ? value : value?.src || value?.Src || "";
+  if (configCrops.length > 0 && srcUrl) {
+    cropsInfo = configCrops.map((crop) => ({
+      alias: crop.alias,
+      width: crop.width,
+      height: crop.height,
+      url: `${srcUrl}?crop=${crop.alias}`,
+    }));
+    const wideCrop = configCrops.find((c) => c.alias === "Wide");
+    if (wideCrop) wideCropUrl = `${srcUrl}?crop=Wide`;
+    const highCrop = configCrops.find((c) => c.alias === "High");
+    if (highCrop) highCropUrl = `${srcUrl}?crop=High`;
+  }
+
+  if (cropsInfo && alias === "thumbnail") {
+    if (!fields.thumbnailCrops) fields.thumbnailCrops = cropsInfo;
+    if (!fields.thumbnailWide && wideCropUrl) fields.thumbnailWide = wideCropUrl;
+    if (!fields.thumbnailHigh && highCropUrl) fields.thumbnailHigh = highCropUrl;
+  }
+
   fieldDetails[alias] = {
     alias,
     label: propertyLabel(property),
@@ -276,6 +316,8 @@ function addProperty(fields, fieldDetails, fieldOrder, property, context) {
     culture: context.culture || null,
     source: context.source,
     editor: propertyEditor(property),
+    config: property?.config || property?.Config || null,
+    crops: cropsInfo,
     value,
   };
 
@@ -398,6 +440,18 @@ function normalizeContent(child, detail) {
     detail ? extractFields(detail, "detail") : { fields: {}, fieldDetails: {}, fieldOrder: [] },
   );
 
+  const ownerObj = firstDefined(source?.owner, source?.Owner, child?.owner, child?.Owner, null);
+  const ownerName = firstDefined(ownerObj?.name, ownerObj?.Name, "");
+  const ownerId = firstDefined(ownerObj?.id, ownerObj?.Id, null);
+
+  const updaterObj = firstDefined(source?.updater, source?.Updater, child?.updater, child?.Updater, null);
+  const updaterName = firstDefined(updaterObj?.name, updaterObj?.Name, "");
+  const updaterId = firstDefined(updaterObj?.id, updaterObj?.Id, null);
+
+  const publishDate = firstDefined(source?.publishDate, source?.PublishDate, child?.publishDate, child?.PublishDate, "");
+  const releaseDate = firstDefined(source?.releaseDate, source?.ReleaseDate, child?.releaseDate, child?.ReleaseDate, null);
+  const removeDate = firstDefined(source?.removeDate, source?.RemoveDate, child?.removeDate, child?.RemoveDate, null);
+
   return {
     id: contentId(source) ?? contentId(child),
     key,
@@ -417,6 +471,15 @@ function normalizeContent(child, detail) {
     ),
     createDate: firstDefined(createDate(source), createDate(child), ""),
     updateDate: firstDefined(updateDate(source), updateDate(child), ""),
+    publishDate,
+    releaseDate,
+    removeDate,
+    owner: ownerObj,
+    ownerName,
+    ownerId,
+    updater: updaterObj,
+    updaterName,
+    updaterId,
     parentId: firstDefined(source?.parentId, source?.ParentId, child?.parentId, child?.ParentId, null),
     path: firstDefined(source?.path, source?.Path, child?.path, child?.Path, ""),
     sortOrder: firstDefined(source?.sortOrder, source?.SortOrder, child?.sortOrder, child?.SortOrder, null),

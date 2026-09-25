@@ -17,16 +17,12 @@
     ],
     "properties": {
       "purchasePrice": "89",
-      "access": [
-        "58"
-      ],
+      "access": ["58"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "75"
-      ],
+      "type": ["75"],
       "videoDownloadURL": "",
       "rawFile": "/media/2993/5-seje-tips-til-at-blive-fri-af-kopi.pdf",
       "videoStatus": "",
@@ -54,9 +50,7 @@
       "hideDownload": "0",
       "siteMapOption": ""
     },
-    "type": [
-      "75"
-    ],
+    "type": ["75"],
     "rawFile": "/media/2993/5-seje-tips-til-at-blive-fri-af-kopi.pdf",
     "videoID": "",
     "videoStatus": "",
@@ -80,9 +74,7 @@
     "tags": "",
     "thumbnail": "",
     "productLink": "",
-    "access": [
-      "58"
-    ],
+    "access": ["58"],
     "rentalPrice": "",
     "purchasePrice": "89",
     "code": "",
@@ -106,6 +98,21 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2021-02-19 21:17:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

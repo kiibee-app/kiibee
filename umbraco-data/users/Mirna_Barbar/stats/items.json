@@ -57,7 +57,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/6b5cba89ecac47fcbf86a46039572c28",
-    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28"
+    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 120069,
@@ -117,7 +126,16 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/6b5cba89ecac47fcbf86a46039572c28",
-    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28"
+    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 120036,
@@ -177,6 +195,15 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/6b5cba89ecac47fcbf86a46039572c28",
-    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28"
+    "mediaKey": "6b5cba89-ecac-47fc-bf86-a46039572c28",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

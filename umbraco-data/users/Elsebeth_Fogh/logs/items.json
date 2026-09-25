@@ -322,7 +322,22 @@
         "displayValue": "henriklundrasmussen@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2021-09-22 20:22:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 23078,
@@ -647,7 +662,22 @@
         "displayValue": "heidi@goch.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2020-12-04 13:24:54",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 3388,
@@ -972,7 +1002,22 @@
         "displayValue": "annestadager1@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2020-03-23 09:30:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2768,
@@ -1297,7 +1342,22 @@
         "displayValue": "annadorethe@yahoo.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2020-02-25 12:49:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2758,
@@ -1622,6 +1682,21 @@
         "displayValue": "mail@klinik-unik.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2020-02-24 17:32:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

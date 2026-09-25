@@ -17,12 +17,16 @@
     ],
     "fields": {
       "purchasePrice": "95",
-      "access": ["58"],
+      "access": [
+        "58"
+      ],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": ["76"],
+      "type": [
+        "76"
+      ],
       "videoDownloadURL": "",
       "rawFile": "/media/4124/mindfulnessmeditaiton-mod-tankemylder.m4a",
       "videoStatus": "",
@@ -48,7 +52,23 @@
       "tags": "meditation,tankemylder,mindfulness",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4125/rikke_151-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4125/rikke_151-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4125/rikke_151-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4125/rikke_151-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -71,7 +91,9 @@
         "culture": null,
         "source": "detail",
         "editor": "dropdownFlexible",
-        "value": ["58"]
+        "value": [
+          "58"
+        ]
       },
       "rentalPrice": {
         "alias": "rentalPrice",
@@ -126,7 +148,9 @@
         "culture": null,
         "source": "detail",
         "editor": "dropdownFlexible",
-        "value": ["76"]
+        "value": [
+          "76"
+        ]
       },
       "videoDownloadURL": {
         "alias": "videoDownloadURL",
@@ -449,6 +473,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-07-12 15:59:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4125/rikke_151-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4125/rikke_151-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4125/rikke_151-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4125/rikke_151-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4125/rikke_151-1.jpg?crop=High"
   }
 ]

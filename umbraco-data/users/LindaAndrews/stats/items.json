@@ -57,7 +57,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
-    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7"
+    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 25608,
@@ -117,7 +126,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
-    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7"
+    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 25607,
@@ -177,7 +195,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
-    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7"
+    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 25606,
@@ -237,7 +264,16 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
-    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7"
+    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 25445,
@@ -297,6 +333,15 @@
     "isPlay": "1",
     "uID": "",
     "mediaUdi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
-    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7"
+    "mediaKey": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

@@ -12,9 +12,7 @@
     "parentId": 2076,
     "path": "-1,1067,2072,2076,2083",
     "sortOrder": 0,
-    "urls": [
-      "Dette punkt er endnu ikke udgivet"
-    ],
+    "urls": ["Dette punkt er endnu ikke udgivet"],
     "fullName": "Tina Kristensen",
     "email": "tina.gistrup@hotmail.com",
     "isPurchase": true,
@@ -24,14 +22,10 @@
     "expireDate": "",
     "message": "Tak for købet og du har som loven siger altid 14 dages returret, hvis det du har købt ikke lever op til dine forventninger. Du tilmelder dig samtidig til mit nyhedsbrev, men dette kan naturligvis til enhver tid afmeldes igen.",
     "orderCreateDate": "2019-09-28 21:10:17",
-    "mediaRelationUdis": [
-      "umb://document/3c2a45e59e9244928981af366547730a"
-    ],
+    "mediaRelationUdis": ["umb://document/3c2a45e59e9244928981af366547730a"],
     "downloadUdis": [],
     "streamUdis": [],
-    "mediaUdis": [
-      "umb://document/3c2a45e59e9244928981af366547730a"
-    ],
+    "mediaUdis": ["umb://document/3c2a45e59e9244928981af366547730a"],
     "downloadMediaCount": 0,
     "streamMediaCount": 0,
     "mediaCount": 1,
@@ -78,6 +72,15 @@
       "fullName": "Tina Kristensen",
       "message": "Tak for købet og du har som loven siger altid 14 dages returret, hvis det du har købt ikke lever op til dine forventninger. Du tilmelder dig samtidig til mit nyhedsbrev, men dette kan naturligvis til enhver tid afmeldes igen.",
       "media": "umb://document/3c2a45e59e9244928981af366547730a"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

@@ -48,7 +48,23 @@
       "tags": "Kommunikation,konflikthåndtering,Girafsprog,Aktiv lytning,Assertionstræning,Konflikttrappen,IkkeVoldelig kommunikation,Marshall Rosenberg,Sjakalsprog,Elsebeth Fogh,Følelsesmæssig intelligens,Empati,Emotionel intelligens,Coach,Online kursus,Personlig udvikling,Selvuvikling,Parterapi,konflikter i parforhold,konflikter på arbejde,Styrk din indre power",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1564/5-enkle-steps-200x230.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1564/5-enkle-steps-200x230.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1564/5-enkle-steps-200x230.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1564/5-enkle-steps-200x230.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,6 +465,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-02-24 13:02:46",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1564/5-enkle-steps-200x230.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1564/5-enkle-steps-200x230.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1564/5-enkle-steps-200x230.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1564/5-enkle-steps-200x230.jpg?crop=High"
   }
 ]

@@ -41,25 +41,7 @@
       "year": "0",
       "description": "Min bog Molly og \"Cykelstiens Hemmeligheder\" er baseret på mine egne erfaringer i trafikken som aktiv cyklist. Jeg oplever dagligt at alt for mange børn og voksne ikke kender de 10 vigtigste færdselsregler for cyklister og derfor har jeg skrevet bogen i håb om at undgå ulykker og at den vil give jer som familie en masse gode snakke om at færdes sikkert i trafikken. \r\n\r\nJeg ønsker jer masser af god og sjov læsning og læring.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/5099/molly.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/5099/molly.png",
       "title": "Molly og \"Cykelstiens Hemmeligheder\"",
       "badge": "",
       "length": "0",
@@ -70,7 +52,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5099/molly.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5099/molly.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5099/molly.png?crop=Wide",
+      "thumbnailHigh": "/media/5099/molly.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -493,6 +491,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-13 18:33:49",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5099/molly.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5099/molly.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5099/molly.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5099/molly.png?crop=Wide",
+    "thumbnailHigh": "/media/5099/molly.png?crop=High"
   }
 ]

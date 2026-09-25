@@ -46,7 +46,23 @@
       "tags": "Knive,vildt,jagt",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4188/forside.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4188/forside.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4188/forside.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4188/forside.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-10-03 14:47:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4188/forside.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4188/forside.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4188/forside.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4188/forside.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4188/forside.jpg?crop=High"
   },
   {
     "id": 73358,
@@ -498,7 +546,23 @@
       "tags": "vildtspegepølse,vildt,jagt",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4189/forside.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4189/forside.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4189/forside.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4189/forside.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -899,7 +963,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-10-03 14:47:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4189/forside.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4189/forside.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4189/forside.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4189/forside.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4189/forside.jpg?crop=High"
   },
   {
     "id": 73359,
@@ -948,7 +1044,23 @@
       "tags": "vildsvin,vildt,vildsvinejagt",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4190/forside.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4190/forside.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4190/forside.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4190/forside.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,6 +1461,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-10-03 14:48:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4190/forside.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4190/forside.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4190/forside.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4190/forside.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4190/forside.jpg?crop=High"
   }
 ]

@@ -72,7 +72,16 @@
       "fullName": "Stefan Frederiksen",
       "message": "",
       "media": "umb://document/381afb43e9e346d7aaaa041314a2e0fc"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 18788,
@@ -147,6 +156,15 @@
       "fullName": "Stefan Frederiksen",
       "message": "",
       "media": "umb://document/381afb43e9e346d7aaaa041314a2e0fc"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

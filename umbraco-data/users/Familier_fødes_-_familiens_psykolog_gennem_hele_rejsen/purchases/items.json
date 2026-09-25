@@ -84,7 +84,16 @@
       "fullName": "Thea Bundgaard christensen",
       "message": "",
       "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93149,
@@ -171,7 +180,16 @@
       "fullName": "Maria Jensen ",
       "message": "",
       "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91496,
@@ -258,7 +276,16 @@
       "fullName": "Hanna Thygesen Schmidt",
       "message": "",
       "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91276,
@@ -345,6 +372,15 @@
       "fullName": "Camilla Maria Hentze Lindstrøm",
       "message": "",
       "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

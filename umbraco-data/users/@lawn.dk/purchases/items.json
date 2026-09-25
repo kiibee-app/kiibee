@@ -72,7 +72,16 @@
       "fullName": "Kim Godtfredsen ",
       "message": "",
       "media": "umb://document/acd236a579f54309a4b660d23c3ba8a5"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80125,
@@ -147,6 +156,15 @@
       "fullName": "Christian andersen",
       "message": "",
       "media": "umb://document/acd236a579f54309a4b660d23c3ba8a5"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

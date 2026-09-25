@@ -46,7 +46,23 @@
       "tags": "Comedy,Stand-up,Nicolaj Lange,Halvvejs",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-09 12:18:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4954/lange_halvvejs_04-2024-some4.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4954/lange_halvvejs_04-2024-some4.jpg?crop=High"
   },
   {
     "id": 88595,
@@ -491,32 +539,30 @@
       "year": "2023",
       "description": "Stream Nicolaj Langes Tættere På End Nogensinde - køb online\r\nDenne gang kommer vi helt tæt på Nicolaj Lange. Den lange nordjyde har siden sidste show gennemgået en pandemi og endnu en skilsmisse. Derudover tager Nicolaj Lange fat i egen opvækst som skilsmissebarn samt opvæksten med en far med et massivt alkoholmisbrug. Der er masser af historier at dele, og det bliver langt fra kedeligt når Nicolaj Lange deler ud af sin, til tider, vanvittige livshistorie.\r\nShowet leveres i vanlig Nicolaj Lange-stil i højt tempo, hvor der ikke er langt mellem punchlines.\r\nNicolaj Lange leverer her sit bedste stand-up show til dato.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4478/lange-plakat.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4478/lange-plakat.jpeg",
       "title": "Nicolaj Lange - Tættere På End Nogensinde",
       "badge": "",
       "length": "56",
       "tags": "Nicolaj Lange,Comedy,Stand-up,Tættere på end nogensinde",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4478/lange-plakat.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4478/lange-plakat.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4478/lange-plakat.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/4478/lange-plakat.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -935,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-08-23 10:55:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4478/lange-plakat.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4478/lange-plakat.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4478/lange-plakat.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4478/lange-plakat.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/4478/lange-plakat.jpeg?crop=High"
   },
   {
     "id": 31311,
@@ -979,32 +1057,30 @@
       "year": "2021",
       "description": "Stream Nicolaj Langes Større End Nogensinde - lej eller køb online\r\nNicolaj Lange er klar med sit 2 onemanshow som opfølgning på succes touren Mere skæg end nogensinde.\r\n\r\n“Magasinet Appetize skrev bl.a. \r\nPublikum var i gear til det hele, og der var ikke lange pauser mellem både småfnisen og latterbrøl. For Nicolaj Lange skød sine fortællinger og punchlines afsted som en anden maskinpistol.”\r\n\r\nDet nye show Større end nogensinde er også en times stand up, denne gang gør den store nordjyde sig tanker om hvornår man er voksen, og hvordan det er at være midt i fyrrene og alle livets spilleregler pludselig bliver kastet op i luften. Krænkelseskultur, kønsroller og ja selv madpyramiden bliver budt op til dans.",
       "productionLink": "https://www.nicolajlange.dk/",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/2908/lange_a3-12-2019.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/2908/lange_a3-12-2019.jpeg",
       "title": "Nicolaj Lange - Større End Nogensinde",
       "badge": "",
       "length": "50",
       "tags": "Comedy,Stand-up,Nicolaj Lange,Større End Nogensinde",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2908/lange_a3-12-2019.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2908/lange_a3-12-2019.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2908/lange_a3-12-2019.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/2908/lange_a3-12-2019.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1423,6 +1499,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-08-23 10:55:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2908/lange_a3-12-2019.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2908/lange_a3-12-2019.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2908/lange_a3-12-2019.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2908/lange_a3-12-2019.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/2908/lange_a3-12-2019.jpeg?crop=High"
   }
 ]

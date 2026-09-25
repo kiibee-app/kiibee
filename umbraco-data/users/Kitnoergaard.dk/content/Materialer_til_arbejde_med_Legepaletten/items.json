@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4887/foraeldreplakater-sample.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4887/foraeldreplakater-sample.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4887/foraeldreplakater-sample.png?crop=Wide",
+      "thumbnailHigh": "/media/4887/foraeldreplakater-sample.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-02-26 15:31:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4887/foraeldreplakater-sample.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4887/foraeldreplakater-sample.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4887/foraeldreplakater-sample.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4887/foraeldreplakater-sample.png?crop=Wide",
+    "thumbnailHigh": "/media/4887/foraeldreplakater-sample.png?crop=High"
   },
   {
     "id": 95248,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4557/evaluering-med-legepaletten.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4557/evaluering-med-legepaletten.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4557/evaluering-med-legepaletten.png?crop=Wide",
+      "thumbnailHigh": "/media/4557/evaluering-med-legepaletten.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,6 +965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-03-07 18:47:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4557/evaluering-med-legepaletten.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4557/evaluering-med-legepaletten.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4557/evaluering-med-legepaletten.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4557/evaluering-med-legepaletten.png?crop=Wide",
+    "thumbnailHigh": "/media/4557/evaluering-med-legepaletten.png?crop=High"
   }
 ]

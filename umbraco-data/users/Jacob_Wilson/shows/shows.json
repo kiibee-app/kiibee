@@ -46,7 +46,23 @@
       "tags": "Jacob Wilson,Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -96,6 +112,31 @@
       "firstEntryAt": "2021-05-30 19:47:11",
       "lastEntryAt": "2025-01-23 19:16:19",
       "sampleEntryIds": [105192, 105191, 105190, 95665, 90703]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
   }
 ]

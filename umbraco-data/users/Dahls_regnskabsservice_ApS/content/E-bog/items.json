@@ -41,25 +41,7 @@
       "year": "2026",
       "description": "En praktisk e-bog til enkeltmandsvirksomheder, der gerne vil have styr på bogføringen.\r\n\r\nBogen forklarer bogføring i praksis og hjælper dig med overblik over bilag, moms og økonomi – uden regnskabssprog og uden panik.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/5101/skaermbillede-2026-01-12-232915.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/5101/skaermbillede-2026-01-12-232915.png",
       "title": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
       "badge": "",
       "length": "0",
@@ -70,7 +52,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=Wide",
+      "thumbnailHigh": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -493,6 +491,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-10 13:26:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "updaterName": "Anders Halfter",
+    "updaterId": 1,
+    "thumbnail": "/media/5101/skaermbillede-2026-01-12-232915.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=Wide",
+    "thumbnailHigh": "/media/5101/skaermbillede-2026-01-12-232915.png?crop=High"
   }
 ]

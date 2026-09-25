@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3263/farvelagte-frustrationer_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3263/farvelagte-frustrationer_400x600.jpg?crop=High"
   },
   {
     "id": 43463,
@@ -498,7 +546,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -899,7 +963,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3270/det-dystre-skaeg-_facing_.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3270/det-dystre-skaeg-_facing_.jpg?crop=High"
   },
   {
     "id": 47410,
@@ -948,7 +1044,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3562/a2-danish-final.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3562/a2-danish-final.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3562/a2-danish-final.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3562/a2-danish-final.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,7 +1461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3562/a2-danish-final.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3562/a2-danish-final.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3562/a2-danish-final.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3562/a2-danish-final.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3562/a2-danish-final.jpg?crop=High"
   },
   {
     "id": 43451,
@@ -1398,7 +1542,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3261/vaffel1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3261/vaffel1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3261/vaffel1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3261/vaffel1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1799,7 +1959,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3261/vaffel1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3261/vaffel1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3261/vaffel1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3261/vaffel1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3261/vaffel1.jpg?crop=High"
   },
   {
     "id": 44318,
@@ -1850,7 +2042,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3303/ratm-facing.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3303/ratm-facing.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3303/ratm-facing.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3303/ratm-facing.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2251,7 +2459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3303/ratm-facing.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3303/ratm-facing.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3303/ratm-facing.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3303/ratm-facing.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3303/ratm-facing.jpg?crop=High"
   },
   {
     "id": 47409,
@@ -2300,7 +2540,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3561/fem.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3561/fem.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3561/fem.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3561/fem.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2701,7 +2957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3561/fem.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3561/fem.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3561/fem.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3561/fem.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3561/fem.jpg?crop=High"
   },
   {
     "id": 43422,
@@ -2750,7 +3038,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3243/156147_mr1_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3243/156147_mr1_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3243/156147_mr1_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3243/156147_mr1_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3151,7 +3455,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3243/156147_mr1_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3243/156147_mr1_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3243/156147_mr1_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3243/156147_mr1_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3243/156147_mr1_facing_400x556.jpg?crop=High"
   },
   {
     "id": 43423,
@@ -3200,7 +3536,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3244/156144_mr2_facing_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3244/156144_mr2_facing_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3244/156144_mr2_facing_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3244/156144_mr2_facing_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3601,7 +3953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3244/156144_mr2_facing_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3244/156144_mr2_facing_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3244/156144_mr2_facing_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3244/156144_mr2_facing_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3244/156144_mr2_facing_400x556.jpg?crop=High"
   },
   {
     "id": 43424,
@@ -3650,7 +4034,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3245/mens-room-3-400.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3245/mens-room-3-400.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3245/mens-room-3-400.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3245/mens-room-3-400.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4051,7 +4451,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:41:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3245/mens-room-3-400.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3245/mens-room-3-400.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3245/mens-room-3-400.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3245/mens-room-3-400.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3245/mens-room-3-400.jpg?crop=High"
   },
   {
     "id": 76535,
@@ -4100,7 +4532,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4501,6 +4949,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2023-01-04 13:56:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4261/mens-room-4_streaming_320x445-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4261/mens-room-4_streaming_320x445-1.jpg?crop=High"
   }
 ]

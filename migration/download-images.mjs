@@ -30,20 +30,18 @@ const safe = (value) =>
     .replace(/^_|_$/g, '')
     .slice(0, 120);
 
-function mediaSrc(value) {
-  const trimmed = String(value || '').trim();
-  if (!trimmed) return '';
-  const pathOnly = trimmed.split('?')[0];
-  if (!pathOnly.includes('/media/')) return '';
-  if (!IMAGE_EXT.test(pathOnly) && !/\/media\/\d+\//.test(pathOnly)) return '';
-  return pathOnly.replace(/^https?:\/\/(?:www\.)?kiibee\.dk/i, '');
-}
-
 function collectSrcs(value, out) {
   if (!value) return;
   if (typeof value === 'string') {
-    const src = mediaSrc(value);
-    if (src) out.add(src);
+    const matches = value.match(/\/media\/[^\s"',()<>]*/gi);
+    if (matches) {
+      for (const m of matches) {
+        const cleanPath = m.split('?')[0].split('#')[0];
+        if (cleanPath.startsWith('/media/')) {
+          out.add(cleanPath.replace(/^https?:\/\/(?:www\.)?kiibee\.dk/i, ''));
+        }
+      }
+    }
     return;
   }
   if (Array.isArray(value)) {
@@ -56,7 +54,6 @@ function collectSrcs(value, out) {
 }
 
 const SKIP_DIRS = new Set(['media', 'raw', 'stats', 'purchases', 'payouts', 'logs']);
-const KEEP_FILES = new Set(['layout.json', 'items.json', 'shows.json']);
 
 async function walkJsonFiles(dir, files = []) {
   let entries;
@@ -70,7 +67,7 @@ async function walkJsonFiles(dir, files = []) {
     if (entry.isDirectory()) {
       if (SKIP_DIRS.has(entry.name)) continue;
       await walkJsonFiles(full, files);
-    } else if (KEEP_FILES.has(entry.name)) {
+    } else if (entry.name.endsWith('.json')) {
       files.push(full);
     }
   }

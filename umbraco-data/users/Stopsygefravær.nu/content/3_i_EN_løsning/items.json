@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "1",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1856/3-i-e-n.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1856/3-i-e-n.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1856/3-i-e-n.png?crop=Wide",
+      "thumbnailHigh": "/media/1856/3-i-e-n.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,6 +473,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-05-14 17:32:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1856/3-i-e-n.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1856/3-i-e-n.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1856/3-i-e-n.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1856/3-i-e-n.png?crop=Wide",
+    "thumbnailHigh": "/media/1856/3-i-e-n.png?crop=High"
   }
 ]

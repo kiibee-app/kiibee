@@ -39,25 +39,7 @@
       "year": "2026",
       "description": "Det vi sjældent siger er et sæt digitale refleksions- og samtalekort, der inviterer til ærlige dialoger om krop, lyst, skam og nærhed.\r\nKortene kan bruges alene eller sammen med en anden – uden krav, uden facit og i dit eget tempo.\r\n\r\nDu modtager en PDF-fil med 100 samtalekort.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/5109/forside.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/5109/forside.png",
       "title": "Det vi sjældent siger",
       "badge": "INTROPRIS",
       "length": "0",
@@ -68,7 +50,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5109/forside.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5109/forside.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5109/forside.png?crop=Wide",
+      "thumbnailHigh": "/media/5109/forside.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -491,6 +489,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-03-08 21:17:01",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5109/forside.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5109/forside.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5109/forside.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5109/forside.png?crop=Wide",
+    "thumbnailHigh": "/media/5109/forside.png?crop=High"
   }
 ]

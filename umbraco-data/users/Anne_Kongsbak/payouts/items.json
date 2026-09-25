@@ -40,6 +40,15 @@
       "to": "2022-12-05 19:57:57",
       "transactionAmount": "15.05",
       "kiibeeCutAmount": "70"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

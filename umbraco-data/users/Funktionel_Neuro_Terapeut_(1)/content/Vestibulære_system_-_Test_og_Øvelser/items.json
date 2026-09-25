@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5025/indre-oere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5025/indre-oere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5025/indre-oere.png?crop=Wide",
+      "thumbnailHigh": "/media/5025/indre-oere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:05",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5025/indre-oere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5025/indre-oere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5025/indre-oere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5025/indre-oere.png?crop=Wide",
+    "thumbnailHigh": "/media/5025/indre-oere.png?crop=High"
   },
   {
     "id": 115631,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5050/indre-oere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5050/indre-oere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5050/indre-oere.png?crop=Wide",
+      "thumbnailHigh": "/media/5050/indre-oere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5050/indre-oere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5050/indre-oere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5050/indre-oere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5050/indre-oere.png?crop=Wide",
+    "thumbnailHigh": "/media/5050/indre-oere.png?crop=High"
   },
   {
     "id": 117079,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5077/indre-oere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5077/indre-oere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5077/indre-oere.png?crop=Wide",
+      "thumbnailHigh": "/media/5077/indre-oere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5077/indre-oere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5077/indre-oere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5077/indre-oere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5077/indre-oere.png?crop=Wide",
+    "thumbnailHigh": "/media/5077/indre-oere.png?crop=High"
   },
   {
     "id": 117029,
@@ -1432,7 +1576,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5072/test.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5072/test.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5072/test.png?crop=Wide",
+      "thumbnailHigh": "/media/5072/test.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-09 17:15:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5072/test.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5072/test.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5072/test.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5072/test.png?crop=Wide",
+    "thumbnailHigh": "/media/5072/test.png?crop=High"
   },
   {
     "id": 117030,
@@ -1892,7 +2084,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5073/test.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5073/test.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5073/test.png?crop=Wide",
+      "thumbnailHigh": "/media/5073/test.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-09 14:28:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5073/test.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5073/test.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5073/test.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5073/test.png?crop=Wide",
+    "thumbnailHigh": "/media/5073/test.png?crop=High"
   },
   {
     "id": 117140,
@@ -2352,7 +2592,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5084/test.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5084/test.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5084/test.png?crop=Wide",
+      "thumbnailHigh": "/media/5084/test.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5084/test.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5084/test.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5084/test.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5084/test.png?crop=Wide",
+    "thumbnailHigh": "/media/5084/test.png?crop=High"
   },
   {
     "id": 117031,
@@ -2812,7 +3100,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5074/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5074/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5074/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/5074/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5074/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5074/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5074/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5074/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/5074/exercises-kopi.png?crop=High"
   },
   {
     "id": 117032,
@@ -3272,7 +3608,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5075/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5075/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5075/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/5075/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:16",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5075/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5075/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5075/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5075/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/5075/exercises-kopi.png?crop=High"
   },
   {
     "id": 117034,
@@ -3732,7 +4116,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5076/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5076/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5076/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/5076/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,7 +4537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:05:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5076/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5076/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5076/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5076/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/5076/exercises-kopi.png?crop=High"
   },
   {
     "id": 117141,
@@ -4192,7 +4624,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5085/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5085/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5085/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/5085/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4597,7 +5045,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-05 14:08:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5085/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5085/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5085/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5085/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/5085/exercises-kopi.png?crop=High"
   },
   {
     "id": 117857,
@@ -4652,7 +5132,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5107/exercises-kopi.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5107/exercises-kopi.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5107/exercises-kopi.png?crop=Wide",
+      "thumbnailHigh": "/media/5107/exercises-kopi.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5057,6 +5553,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-01-22 16:54:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5107/exercises-kopi.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5107/exercises-kopi.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5107/exercises-kopi.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5107/exercises-kopi.png?crop=Wide",
+    "thumbnailHigh": "/media/5107/exercises-kopi.png?crop=High"
   }
 ]

@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1441/sust-tech.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1441/sust-tech.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1441/sust-tech.png?crop=Wide",
+      "thumbnailHigh": "/media/1441/sust-tech.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-04 11:32:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1441/sust-tech.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1441/sust-tech.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1441/sust-tech.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1441/sust-tech.png?crop=Wide",
+    "thumbnailHigh": "/media/1441/sust-tech.png?crop=High"
   },
   {
     "id": 2425,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1428/marie-intro.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1428/marie-intro.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1428/marie-intro.png?crop=Wide",
+      "thumbnailHigh": "/media/1428/marie-intro.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2019-11-20 14:09:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1428/marie-intro.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1428/marie-intro.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1428/marie-intro.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1428/marie-intro.png?crop=Wide",
+    "thumbnailHigh": "/media/1428/marie-intro.png?crop=High"
   },
   {
     "id": 2426,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1427/tobias-intro.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1427/tobias-intro.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1427/tobias-intro.png?crop=Wide",
+      "thumbnailHigh": "/media/1427/tobias-intro.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2019-11-20 14:09:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1427/tobias-intro.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1427/tobias-intro.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1427/tobias-intro.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1427/tobias-intro.png?crop=Wide",
+    "thumbnailHigh": "/media/1427/tobias-intro.png?crop=High"
   },
   {
     "id": 2427,
@@ -1404,7 +1548,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1429/marianne-intro.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1429/marianne-intro.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1429/marianne-intro.png?crop=Wide",
+      "thumbnailHigh": "/media/1429/marianne-intro.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,6 +1965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2019-11-20 14:09:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1429/marianne-intro.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1429/marianne-intro.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1429/marianne-intro.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1429/marianne-intro.png?crop=Wide",
+    "thumbnailHigh": "/media/1429/marianne-intro.png?crop=High"
   }
 ]

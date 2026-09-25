@@ -354,7 +354,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 1954,
@@ -715,7 +724,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 1973,
@@ -1072,7 +1090,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2004,
@@ -1429,7 +1456,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2016,
@@ -1790,7 +1826,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2022,
@@ -2147,7 +2192,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2035,
@@ -2508,7 +2562,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2052,
@@ -2865,7 +2928,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2057,
@@ -3222,7 +3294,16 @@
         "displayValue": "",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2265,
@@ -3583,7 +3664,16 @@
         "displayValue": "henrikbastrup@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2267,
@@ -3940,7 +4030,16 @@
         "displayValue": "henrikbastrup@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2269,
@@ -4301,7 +4400,16 @@
         "displayValue": "henrikbastrup@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2271,
@@ -4658,7 +4766,16 @@
         "displayValue": "henrikbastrup@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2408,
@@ -5015,7 +5132,16 @@
         "displayValue": "Mikkel_noergaard@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2422,
@@ -5372,7 +5498,16 @@
         "displayValue": "mille-oh@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2581,
@@ -5733,7 +5868,16 @@
         "displayValue": "kasperingvorsen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2625,
@@ -6090,7 +6234,16 @@
         "displayValue": "kasperingvorsen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 2627,
@@ -6447,7 +6600,16 @@
         "displayValue": "kasperingvorsen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 9716,
@@ -6804,7 +6966,16 @@
         "displayValue": "Tousgaard95@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 14970,
@@ -7161,7 +7332,16 @@
         "displayValue": "nilaus87@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 16532,
@@ -7518,7 +7698,16 @@
         "displayValue": "oliver.b.madsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 16577,
@@ -7875,7 +8064,16 @@
         "displayValue": "oliver.b.madsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 16580,
@@ -8236,7 +8434,16 @@
         "displayValue": "oliver.b.madsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 18276,
@@ -8597,7 +8804,16 @@
         "displayValue": "klfirmaservice@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 18926,
@@ -8954,7 +9170,16 @@
         "displayValue": "m.assing@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 19430,
@@ -9311,7 +9536,16 @@
         "displayValue": "simon011201@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 19495,
@@ -9672,7 +9906,16 @@
         "displayValue": "rasmusronnebech@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 20613,
@@ -10029,7 +10272,16 @@
         "displayValue": "thomasgrimm91@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 20730,
@@ -10386,7 +10638,16 @@
         "displayValue": "nicklashvam1998@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 20734,
@@ -10743,7 +11004,16 @@
         "displayValue": "nadiabjesenpetersen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 20787,
@@ -11100,7 +11370,16 @@
         "displayValue": "Nicklashvam1998@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 20812,
@@ -11461,7 +11740,16 @@
         "displayValue": "Nicklashvam1998@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21422,
@@ -11818,7 +12106,16 @@
         "displayValue": "nicholasringsted@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21433,
@@ -12179,7 +12476,16 @@
         "displayValue": "mathiasudby@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21435,
@@ -12540,7 +12846,16 @@
         "displayValue": "mathiasudby@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21751,
@@ -12897,7 +13212,16 @@
         "displayValue": "victoremil12@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21754,
@@ -13254,7 +13578,16 @@
         "displayValue": "tuchalot@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21887,
@@ -13611,7 +13944,16 @@
         "displayValue": "handel07101985@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 21917,
@@ -13972,7 +14314,16 @@
         "displayValue": "dsc1996@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 22019,
@@ -14329,7 +14680,16 @@
         "displayValue": "victoremil12@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 22034,
@@ -14686,7 +15046,16 @@
         "displayValue": "sipe-9@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 22247,
@@ -15043,7 +15412,16 @@
         "displayValue": "kasperl2011@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 23988,
@@ -15400,7 +15778,16 @@
         "displayValue": "niels.villadsen@mail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 30950,
@@ -15721,7 +16108,16 @@
         "displayValue": "ingermariean@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 35778,
@@ -16082,7 +16478,16 @@
         "displayValue": "handel07101985@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 38218,
@@ -16403,7 +16808,16 @@
         "displayValue": "Theisgandrup@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 39641,
@@ -16724,7 +17138,16 @@
         "displayValue": "drachmann2@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40467,
@@ -17081,7 +17504,16 @@
         "displayValue": "markush0195@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40471,
@@ -17402,7 +17834,16 @@
         "displayValue": "aarslev.1988@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40533,
@@ -17763,7 +18204,16 @@
         "displayValue": "supermortensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40535,
@@ -18124,7 +18574,16 @@
         "displayValue": "supermortensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40673,
@@ -18481,7 +18940,16 @@
         "displayValue": "rasmussvold@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 40842,
@@ -18842,7 +19310,16 @@
         "displayValue": "Emilmeddild@Gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 42664,
@@ -19203,7 +19680,16 @@
         "displayValue": "anderschristiansen4000@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43200,
@@ -19560,7 +20046,16 @@
         "displayValue": "larssoenderstgaard@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43207,
@@ -19917,7 +20412,16 @@
         "displayValue": "johannessampson.kontakt@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43212,
@@ -20278,7 +20782,16 @@
         "displayValue": "imgritstyle@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43307,
@@ -20635,7 +21148,16 @@
         "displayValue": "dreamydawnmusic@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 43666,
@@ -20992,7 +21514,16 @@
         "displayValue": "thomascontador1@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 44538,
@@ -21349,7 +21880,16 @@
         "displayValue": "katrine@valla.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 44825,
@@ -21706,7 +22246,16 @@
         "displayValue": "douglasbhansen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 45021,
@@ -22067,7 +22616,16 @@
         "displayValue": "schubert_nyby@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 45487,
@@ -22428,7 +22986,16 @@
         "displayValue": "jacobskjoedt90@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 45504,
@@ -22749,7 +23316,16 @@
         "displayValue": "mads.s.hermansen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 46192,
@@ -23070,7 +23646,16 @@
         "displayValue": "janick-jensen@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 46524,
@@ -23391,7 +23976,16 @@
         "displayValue": "Enik6@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 47279,
@@ -23748,7 +24342,16 @@
         "displayValue": "danni_andresen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 47295,
@@ -24109,7 +24712,16 @@
         "displayValue": "danni_andresen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 47324,
@@ -24470,7 +25082,16 @@
         "displayValue": "danni_andresen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 48735,
@@ -24827,7 +25448,16 @@
         "displayValue": "Fever2636@xn--gmail-yr1c.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 48816,
@@ -25188,7 +25818,16 @@
         "displayValue": "karlsen797@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 48896,
@@ -25545,7 +26184,16 @@
         "displayValue": "maikenbredahl@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49027,
@@ -25902,7 +26550,16 @@
         "displayValue": "thomasgrimm91@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49067,
@@ -26223,7 +26880,16 @@
         "displayValue": "p_thiessen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49126,
@@ -26584,7 +27250,16 @@
         "displayValue": "mejbornrasmus@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49129,
@@ -26945,7 +27620,16 @@
         "displayValue": "aeseldyr300@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49247,
@@ -27306,7 +27990,16 @@
         "displayValue": "rasmusa@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49441,
@@ -27663,7 +28356,16 @@
         "displayValue": "sorensen-smed@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49445,
@@ -28020,7 +28722,16 @@
         "displayValue": "sorensen-smed@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49491,
@@ -28381,7 +29092,16 @@
         "displayValue": "thomasgrimm91@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49810,
@@ -28738,7 +29458,16 @@
         "displayValue": "sbrj96@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 49830,
@@ -29095,7 +29824,16 @@
         "displayValue": "lasseboldt98@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50007,
@@ -29456,7 +30194,16 @@
         "displayValue": "lasseboldt98@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50108,
@@ -29813,7 +30560,16 @@
         "displayValue": "lasseboldt98@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50142,
@@ -30134,7 +30890,16 @@
         "displayValue": "dennis99@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50167,
@@ -30491,7 +31256,16 @@
         "displayValue": "lasse1604@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50279,
@@ -30812,7 +31586,16 @@
         "displayValue": "rune.hede@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50502,
@@ -31169,7 +31952,16 @@
         "displayValue": "escortsauber@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50530,
@@ -31526,7 +32318,16 @@
         "displayValue": "irene_larsen1979@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 50638,
@@ -31883,7 +32684,16 @@
         "displayValue": "nilaus87@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 51265,
@@ -32240,7 +33050,16 @@
         "displayValue": "rasmusa@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 51520,
@@ -32601,7 +33420,16 @@
         "displayValue": "rohde-rohde@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 51648,
@@ -32922,7 +33750,16 @@
         "displayValue": "henrik@ottosen.org",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 52667,
@@ -33279,7 +34116,16 @@
         "displayValue": "michael.novak5@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 54903,
@@ -33636,7 +34482,16 @@
         "displayValue": "simon.karma65@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 54939,
@@ -33997,7 +34852,16 @@
         "displayValue": "simon.karma65@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 55342,
@@ -34358,7 +35222,16 @@
         "displayValue": "d.skov@mvb.net",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 55345,
@@ -34715,7 +35588,16 @@
         "displayValue": "d.skov@mvb.net",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 56481,
@@ -35036,7 +35918,16 @@
         "displayValue": "jeppeilver@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 56696,
@@ -35393,7 +36284,16 @@
         "displayValue": "m4tti92@gmai.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 57339,
@@ -35754,7 +36654,16 @@
         "displayValue": "linda.lykkenielsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 57345,
@@ -36111,7 +37020,16 @@
         "displayValue": "linda.lykkenielsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 61366,
@@ -36472,7 +37390,16 @@
         "displayValue": "henningsenfrederikbager@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 61377,
@@ -36829,7 +37756,16 @@
         "displayValue": "henningsenfrederikbager@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 61465,
@@ -37186,7 +38122,16 @@
         "displayValue": "henningsenfrederikbager@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 61689,
@@ -37507,7 +38452,16 @@
         "displayValue": "dj_kluk@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 61949,
@@ -37828,7 +38782,16 @@
         "displayValue": "michael.barslund.lind@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 62025,
@@ -38185,7 +39148,16 @@
         "displayValue": "Taniariis20@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 62028,
@@ -38546,7 +39518,16 @@
         "displayValue": "Taniariis20@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 62322,
@@ -38903,7 +39884,16 @@
         "displayValue": "randi-muz@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 62898,
@@ -39264,7 +40254,16 @@
         "displayValue": "hitktennis@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 63377,
@@ -39621,7 +40620,16 @@
         "displayValue": "kasperl2011@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 63541,
@@ -39978,7 +40986,16 @@
         "displayValue": "andreas205.chr@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 63853,
@@ -40299,7 +41316,16 @@
         "displayValue": "andersburonhenriksen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 63941,
@@ -40656,7 +41682,16 @@
         "displayValue": "perlefar@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 65050,
@@ -41017,7 +42052,16 @@
         "displayValue": "dayhdk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 65118,
@@ -41338,7 +42382,16 @@
         "displayValue": "lrkv89@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 65485,
@@ -41699,7 +42752,16 @@
         "displayValue": "achorsens28@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 65926,
@@ -42056,7 +43118,16 @@
         "displayValue": "slundgaard7212@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 66439,
@@ -42413,7 +43484,16 @@
         "displayValue": "christoffer.feldtmann@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 66654,
@@ -42774,7 +43854,16 @@
         "displayValue": "cypermouse221@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 66657,
@@ -43131,7 +44220,16 @@
         "displayValue": "cypermouse221@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 66847,
@@ -43452,7 +44550,16 @@
         "displayValue": "jacob.christ24@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67412,
@@ -43813,7 +44920,16 @@
         "displayValue": "kristianharderkristensen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67415,
@@ -44170,7 +45286,16 @@
         "displayValue": "kristianharderkristensen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67417,
@@ -44527,7 +45652,16 @@
         "displayValue": "kristianharderkristensen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67420,
@@ -44888,7 +46022,16 @@
         "displayValue": "kristianharderkristensen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67614,
@@ -45245,7 +46388,16 @@
         "displayValue": "pederfries32@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67662,
@@ -45566,7 +46718,16 @@
         "displayValue": "thomasg3650@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 67901,
@@ -45887,7 +47048,16 @@
         "displayValue": "toaow@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68093,
@@ -46244,7 +47414,16 @@
         "displayValue": "fie.schmidt@yahoo.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68240,
@@ -46601,7 +47780,16 @@
         "displayValue": "keep2502@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68402,
@@ -46922,7 +48110,16 @@
         "displayValue": "thomsen-4660@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68406,
@@ -47279,7 +48476,16 @@
         "displayValue": "kasperl2011@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68577,
@@ -47640,7 +48846,16 @@
         "displayValue": "Emilmeddild@Gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68788,
@@ -47961,7 +49176,16 @@
         "displayValue": "simonborre@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 68937,
@@ -48318,7 +49542,16 @@
         "displayValue": "christiansaboesimonsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 71446,
@@ -48675,7 +49908,16 @@
         "displayValue": "benassi112@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 71639,
@@ -49036,7 +50278,16 @@
         "displayValue": "benassi112@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72107,
@@ -49393,7 +50644,16 @@
         "displayValue": "staun@michaelstaun.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72206,
@@ -49754,7 +51014,16 @@
         "displayValue": "alexanderchristensen@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72236,
@@ -50115,7 +51384,16 @@
         "displayValue": "alexanderchristensen@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72678,
@@ -50436,7 +51714,16 @@
         "displayValue": "saf@hyperbar.net",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72852,
@@ -50793,7 +52080,16 @@
         "displayValue": "nesnah_peter@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72900,
@@ -51154,7 +52450,16 @@
         "displayValue": "fuglesport@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72902,
@@ -51511,7 +52816,16 @@
         "displayValue": "fuglesport@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72905,
@@ -51868,7 +53182,16 @@
         "displayValue": "fuglesport@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 72908,
@@ -52229,7 +53552,16 @@
         "displayValue": "fuglesport@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73248,
@@ -52586,7 +53918,16 @@
         "displayValue": "Zeymer.mt@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73424,
@@ -52943,7 +54284,16 @@
         "displayValue": "dayhdk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73472,
@@ -53304,7 +54654,16 @@
         "displayValue": "daniel_jensendk@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73604,
@@ -53625,7 +54984,16 @@
         "displayValue": "kolbyrocker@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73651,
@@ -53982,7 +55350,16 @@
         "displayValue": "Mikk_pet@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73811,
@@ -54339,7 +55716,16 @@
         "displayValue": "ricibsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73918,
@@ -54700,7 +56086,16 @@
         "displayValue": "jeppebechwillumsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73945,
@@ -55061,7 +56456,16 @@
         "displayValue": "jeppebechwillumsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73960,
@@ -55418,7 +56822,16 @@
         "displayValue": "jeppebechwillumsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 73980,
@@ -55775,7 +57188,16 @@
         "displayValue": "jeppebechwillumsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74013,
@@ -56136,7 +57558,16 @@
         "displayValue": "dahl.h@icloud.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74066,
@@ -56493,7 +57924,16 @@
         "displayValue": "stinebehnk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74134,
@@ -56850,7 +58290,16 @@
         "displayValue": "hoxer0606@altiboxmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74143,
@@ -57171,7 +58620,16 @@
         "displayValue": "missanineinflame@mail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74207,
@@ -57528,7 +58986,16 @@
         "displayValue": "nicki87-@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74211,
@@ -57849,7 +59316,16 @@
         "displayValue": "anettejohannesen9@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74255,
@@ -58206,7 +59682,16 @@
         "displayValue": "Patrick200595@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74329,
@@ -58563,7 +60048,16 @@
         "displayValue": "caspermhjemme@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74359,
@@ -58920,7 +60414,16 @@
         "displayValue": "chyldgaard9@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74374,
@@ -59277,7 +60780,16 @@
         "displayValue": "jantha.pallesen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74386,
@@ -59634,7 +61146,16 @@
         "displayValue": "gamingdk39@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74390,
@@ -59995,7 +61516,16 @@
         "displayValue": "gamingdk39@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74392,
@@ -60356,7 +61886,16 @@
         "displayValue": "chyldgaard9@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74407,
@@ -60713,7 +62252,16 @@
         "displayValue": "Mortensejrup18@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74441,
@@ -61070,7 +62618,16 @@
         "displayValue": "thomsen05@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74449,
@@ -61427,7 +62984,16 @@
         "displayValue": "thomsen05@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74473,
@@ -61784,7 +63350,16 @@
         "displayValue": "majkenn51@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74504,
@@ -62145,7 +63720,16 @@
         "displayValue": "majkenn51@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74509,
@@ -62502,7 +64086,16 @@
         "displayValue": "alexnielsen_puch@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74541,
@@ -62823,7 +64416,16 @@
         "displayValue": "mr@bolighimmerland.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74569,
@@ -63184,7 +64786,16 @@
         "displayValue": "simon011201@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74572,
@@ -63545,7 +65156,16 @@
         "displayValue": "magnus.aegidius@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74623,
@@ -63902,7 +65522,16 @@
         "displayValue": "jantha.pallesen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74644,
@@ -64263,7 +65892,16 @@
         "displayValue": "infooghandel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74653,
@@ -64624,7 +66262,16 @@
         "displayValue": "steffenvikmann@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74655,
@@ -64981,7 +66628,16 @@
         "displayValue": "dokki87@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74660,
@@ -65338,7 +66994,16 @@
         "displayValue": "dokki87@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74663,
@@ -65659,7 +67324,16 @@
         "displayValue": "dreamydawnmusic@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74679,
@@ -65980,7 +67654,16 @@
         "displayValue": "jimmiandersen11@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74691,
@@ -66337,7 +68020,16 @@
         "displayValue": "jensmjensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74824,
@@ -66694,7 +68386,16 @@
         "displayValue": "steffenvikmann@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74827,
@@ -67051,7 +68752,16 @@
         "displayValue": "jacob.pedersen1995@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74869,
@@ -67372,7 +69082,16 @@
         "displayValue": "m.ilievski89@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74886,
@@ -67693,7 +69412,16 @@
         "displayValue": "peterjensen96@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74933,
@@ -68050,7 +69778,16 @@
         "displayValue": "betteask@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74943,
@@ -68411,7 +70148,16 @@
         "displayValue": "anders070491@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74957,
@@ -68772,7 +70518,16 @@
         "displayValue": "betteask@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74960,
@@ -69129,7 +70884,16 @@
         "displayValue": "betteask@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74963,
@@ -69486,7 +71250,16 @@
         "displayValue": "Kristian.weichel62@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74966,
@@ -69847,7 +71620,16 @@
         "displayValue": "anders070491@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74969,
@@ -70204,7 +71986,16 @@
         "displayValue": "michaelandersen31@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74974,
@@ -70565,7 +72356,16 @@
         "displayValue": "michaelandersen31@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74978,
@@ -70922,7 +72722,16 @@
         "displayValue": "michaelandersen31@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74981,
@@ -71283,7 +73092,16 @@
         "displayValue": "michaelandersen31@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 74989,
@@ -71644,7 +73462,16 @@
         "displayValue": "renejen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75011,
@@ -71965,7 +73792,16 @@
         "displayValue": "jesperkalmar@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75038,
@@ -72322,7 +74158,16 @@
         "displayValue": "renejen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75041,
@@ -72683,7 +74528,16 @@
         "displayValue": "renejen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75122,
@@ -73040,7 +74894,16 @@
         "displayValue": "charliebravoalpha@icloud.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75146,
@@ -73397,7 +75260,16 @@
         "displayValue": "renejen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75158,
@@ -73754,7 +75626,16 @@
         "displayValue": "jlln@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75364,
@@ -74111,7 +75992,16 @@
         "displayValue": "doomwashere@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75413,
@@ -74472,7 +76362,16 @@
         "displayValue": "mart8552@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75451,
@@ -74829,7 +76728,16 @@
         "displayValue": "anders070491@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75454,
@@ -75186,7 +77094,16 @@
         "displayValue": "anders070491@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75490,
@@ -75543,7 +77460,16 @@
         "displayValue": "nexopeter27@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75494,
@@ -75904,7 +77830,16 @@
         "displayValue": "nexopeter27@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75546,
@@ -76261,7 +78196,16 @@
         "displayValue": "madsnordberghansen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75603,
@@ -76582,7 +78526,16 @@
         "displayValue": "rune.boetker.andersen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75688,
@@ -76939,7 +78892,16 @@
         "displayValue": "martinungstrup@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75706,
@@ -77296,7 +79258,16 @@
         "displayValue": "simon011201@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75733,
@@ -77657,7 +79628,16 @@
         "displayValue": "martinungstrup@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75746,
@@ -78018,7 +79998,16 @@
         "displayValue": "mdbryndal@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 75749,
@@ -78339,7 +80328,16 @@
         "displayValue": "mdbryndal@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76101,
@@ -78700,7 +80698,16 @@
         "displayValue": "jonasbaunmadsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76143,
@@ -79061,7 +81068,16 @@
         "displayValue": "jesper@lejdj.nu",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76192,
@@ -79422,7 +81438,16 @@
         "displayValue": "jesper@lejdj.nu",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76200,
@@ -79743,7 +81768,16 @@
         "displayValue": "anderswols@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76230,
@@ -80100,7 +82134,16 @@
         "displayValue": "jesperkissow@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76353,
@@ -80457,7 +82500,16 @@
         "displayValue": "martinb_3@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76513,
@@ -80814,7 +82866,16 @@
         "displayValue": "rhj1974@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76518,
@@ -81135,7 +83196,16 @@
         "displayValue": "mickey4700@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76530,
@@ -81492,7 +83562,16 @@
         "displayValue": "freakerz.spam@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76621,
@@ -81849,7 +83928,16 @@
         "displayValue": "escortsauber@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76700,
@@ -82170,7 +84258,16 @@
         "displayValue": "vindebyauto@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 76810,
@@ -82531,7 +84628,16 @@
         "displayValue": "michael.novak5@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77059,
@@ -82888,7 +84994,16 @@
         "displayValue": "ian.erik.peters@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77247,
@@ -83245,7 +85360,16 @@
         "displayValue": "jones_palsgaard@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77328,
@@ -83606,7 +85730,16 @@
         "displayValue": "jones_palsgaard@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77337,
@@ -83963,7 +86096,16 @@
         "displayValue": "jones_palsgaard@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77385,
@@ -84320,7 +86462,16 @@
         "displayValue": "west@home.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77708,
@@ -84677,7 +86828,16 @@
         "displayValue": "omzigg@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77711,
@@ -85038,7 +87198,16 @@
         "displayValue": "omzigg@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77798,
@@ -85399,7 +87568,16 @@
         "displayValue": "karolinekristensen1@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77809,
@@ -85720,7 +87898,16 @@
         "displayValue": "thomasbif@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77833,
@@ -86077,7 +88264,16 @@
         "displayValue": "helle_lasse@yahoo.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77914,
@@ -86434,7 +88630,16 @@
         "displayValue": "andersdsvendsen@me.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 77970,
@@ -86791,7 +88996,16 @@
         "displayValue": "mfrier94@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78250,
@@ -87148,7 +89362,16 @@
         "displayValue": "gabriel.lunakind@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78373,
@@ -87505,7 +89728,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78393,
@@ -87862,7 +90094,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78431,
@@ -88183,7 +90424,16 @@
         "displayValue": "jakob_asmussen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78446,
@@ -88540,7 +90790,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78592,
@@ -88897,7 +91156,16 @@
         "displayValue": "bo.jensen@giganten.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78756,
@@ -89218,7 +91486,16 @@
         "displayValue": "mullepigen2750@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78758,
@@ -89575,7 +91852,16 @@
         "displayValue": "Bumle1992@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78796,
@@ -89932,7 +92218,16 @@
         "displayValue": "Damgaard95.dk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78833,
@@ -90289,7 +92584,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78894,
@@ -90646,7 +92950,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79034,
@@ -91003,7 +93316,16 @@
         "displayValue": "aslami17@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79116,
@@ -91360,7 +93682,16 @@
         "displayValue": "mariajohanne@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79129,
@@ -91721,7 +94052,16 @@
         "displayValue": "milverts1995@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79188,
@@ -92082,7 +94422,16 @@
         "displayValue": "Bahnsen2010@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79281,
@@ -92439,7 +94788,16 @@
         "displayValue": "mikkel.kristensen3400@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79284,
@@ -92796,7 +95154,16 @@
         "displayValue": "gottsche@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79353,
@@ -93153,7 +95520,16 @@
         "displayValue": "gottsche@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 79447,
@@ -93514,7 +95890,16 @@
         "displayValue": "gottsche@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80350,
@@ -93871,7 +96256,16 @@
         "displayValue": "dehjortsberg@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80400,
@@ -94228,7 +96622,16 @@
         "displayValue": "kolmorgen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80476,
@@ -94589,7 +96992,16 @@
         "displayValue": "jespersp@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80488,
@@ -94946,7 +97358,16 @@
         "displayValue": "jespersp@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 80646,
@@ -95303,7 +97724,16 @@
         "displayValue": "chandler.rasmussen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81363,
@@ -95624,7 +98054,16 @@
         "displayValue": "asgerlysebjerg@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81428,
@@ -95945,7 +98384,16 @@
         "displayValue": "rasmusbbk@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81467,
@@ -96306,7 +98754,16 @@
         "displayValue": "d.skov@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81485,
@@ -96627,7 +99084,16 @@
         "displayValue": "Martin.bjarndahl@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81840,
@@ -96948,7 +99414,16 @@
         "displayValue": "jakob_asmussen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81923,
@@ -97305,7 +99780,16 @@
         "displayValue": "steruptorben@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81947,
@@ -97662,7 +100146,16 @@
         "displayValue": "simo952m@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 81991,
@@ -97983,7 +100476,16 @@
         "displayValue": "victor.christiansenn@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85130,
@@ -98340,7 +100842,16 @@
         "displayValue": "joker97dk@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85139,
@@ -98697,7 +101208,16 @@
         "displayValue": "mcp@edbdoktor.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85142,
@@ -99018,7 +101538,16 @@
         "displayValue": "mcp@edbdoktor.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85149,
@@ -99375,7 +101904,16 @@
         "displayValue": "johnlu1694@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85196,
@@ -99696,7 +102234,16 @@
         "displayValue": "sp3ctrum25@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85475,
@@ -100017,7 +102564,16 @@
         "displayValue": "kay.pedersen88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85712,
@@ -100374,7 +102930,16 @@
         "displayValue": "Nilaus87@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85749,
@@ -100735,7 +103300,16 @@
         "displayValue": "madssdjensen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 85838,
@@ -101056,7 +103630,16 @@
         "displayValue": "dreamydawnmusic@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86130,
@@ -101413,7 +103996,16 @@
         "displayValue": "mlh@noclue.biz",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86193,
@@ -101734,7 +104326,16 @@
         "displayValue": "kay.pedersen88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86298,
@@ -102091,7 +104692,16 @@
         "displayValue": "casperpe01@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86371,
@@ -102448,7 +105058,16 @@
         "displayValue": "Jesperteddy@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86408,
@@ -102809,7 +105428,16 @@
         "displayValue": "lindchristensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86429,
@@ -103130,7 +105758,16 @@
         "displayValue": "lindchristensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86602,
@@ -103487,7 +106124,16 @@
         "displayValue": "Bumle1992@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86631,
@@ -103844,7 +106490,16 @@
         "displayValue": "lene-fauske@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86642,
@@ -104201,7 +106856,16 @@
         "displayValue": "lene-fauske@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86650,
@@ -104522,7 +107186,16 @@
         "displayValue": "victora@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 86705,
@@ -104883,7 +107556,16 @@
         "displayValue": "lene-fauske@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 87735,
@@ -105244,7 +107926,16 @@
         "displayValue": "niklashartvig@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 87742,
@@ -105605,7 +108296,16 @@
         "displayValue": "niklashartvig@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 87759,
@@ -105962,7 +108662,16 @@
         "displayValue": "mariasimc@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 87809,
@@ -106319,7 +109028,16 @@
         "displayValue": "markthornson@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 87917,
@@ -106640,7 +109358,16 @@
         "displayValue": "lykkenussi@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88173,
@@ -106997,7 +109724,16 @@
         "displayValue": "jesperfetter@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88284,
@@ -107354,7 +110090,16 @@
         "displayValue": "annebengtson514@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88340,
@@ -107715,7 +110460,16 @@
         "displayValue": "tegenkrog@icloud.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88343,
@@ -108076,7 +110830,16 @@
         "displayValue": "maria.tegen.krog@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88527,
@@ -108433,7 +111196,16 @@
         "displayValue": "jimmypetersen77@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 88575,
@@ -108790,7 +111562,16 @@
         "displayValue": "nickolaskyhn@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 89576,
@@ -109147,7 +111928,16 @@
         "displayValue": "henrikege@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 89626,
@@ -109468,7 +112258,16 @@
         "displayValue": "lindchristensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 89915,
@@ -109789,7 +112588,16 @@
         "displayValue": "Andresen.mkl@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 90135,
@@ -110146,7 +112954,16 @@
         "displayValue": "aarslev.1988@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 90776,
@@ -110503,7 +113320,16 @@
         "displayValue": "markush0195@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 90960,
@@ -110860,7 +113686,16 @@
         "displayValue": "schirakowtom@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91106,
@@ -111221,7 +114056,16 @@
         "displayValue": "philip.lomholt@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91233,
@@ -111578,7 +114422,16 @@
         "displayValue": "henrikfrejlev@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91236,
@@ -111935,7 +114788,16 @@
         "displayValue": "bettinadenglade@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91292,
@@ -112296,7 +115158,16 @@
         "displayValue": "mejbornrasmus@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91332,
@@ -112653,7 +115524,16 @@
         "displayValue": "korreborg_@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91365,
@@ -113014,7 +115894,16 @@
         "displayValue": "henrikfrejlev@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91369,
@@ -113335,7 +116224,16 @@
         "displayValue": "emilhjensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91566,
@@ -113692,7 +116590,16 @@
         "displayValue": "Karlsen-97@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 91943,
@@ -114013,7 +116920,16 @@
         "displayValue": "isnogood4u96@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92241,
@@ -114370,7 +117286,16 @@
         "displayValue": "farmerbroseph@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92313,
@@ -114727,7 +117652,16 @@
         "displayValue": "Emilmeddild@Gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92349,
@@ -115084,7 +118018,16 @@
         "displayValue": "d.skov@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92352,
@@ -115445,7 +118388,16 @@
         "displayValue": "d.skov@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92415,
@@ -115806,7 +118758,16 @@
         "displayValue": "Christensen717@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92424,
@@ -116163,7 +119124,16 @@
         "displayValue": "mikkel_500@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92427,
@@ -116520,7 +119490,16 @@
         "displayValue": "Jesperteddy@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92525,
@@ -116877,7 +119856,16 @@
         "displayValue": "Hoau@msn.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92791,
@@ -117198,7 +120186,16 @@
         "displayValue": "martinmarknielsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92863,
@@ -117519,7 +120516,16 @@
         "displayValue": "Sigaard_7@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92902,
@@ -117880,7 +120886,16 @@
         "displayValue": "Tagem89@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92906,
@@ -118237,7 +121252,16 @@
         "displayValue": "Tagem89@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93122,
@@ -118594,7 +121618,16 @@
         "displayValue": "nicolaisorensen98@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93325,
@@ -118951,7 +121984,16 @@
         "displayValue": "super_frederik@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93389,
@@ -119312,7 +122354,16 @@
         "displayValue": "majasaunte1@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93607,
@@ -119633,7 +122684,16 @@
         "displayValue": "cdaugbjerg@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93684,
@@ -119990,7 +123050,16 @@
         "displayValue": "claus1117@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93688,
@@ -120347,7 +123416,16 @@
         "displayValue": "claus1117@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93890,
@@ -120704,7 +123782,16 @@
         "displayValue": "jeppe3808@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93908,
@@ -121061,7 +124148,16 @@
         "displayValue": "krisfjoergensen@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93935,
@@ -121382,7 +124478,16 @@
         "displayValue": "emilheise@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93950,
@@ -121703,7 +124808,16 @@
         "displayValue": "rasmus@xn--rundstrm-c5a.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93983,
@@ -122024,7 +125138,16 @@
         "displayValue": "Kristianvindk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94119,
@@ -122345,7 +125468,16 @@
         "displayValue": "kasperholst@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94200,
@@ -122666,7 +125798,16 @@
         "displayValue": "martin-ernsholt@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94215,
@@ -123023,7 +126164,16 @@
         "displayValue": "mariakkristensen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94502,
@@ -123380,7 +126530,16 @@
         "displayValue": "stenmodler@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94548,
@@ -123737,7 +126896,16 @@
         "displayValue": "jonasmoerch@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94592,
@@ -124094,7 +127262,16 @@
         "displayValue": "hendederduved@icloud.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94656,
@@ -124415,7 +127592,16 @@
         "displayValue": "unagi1987@email.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94793,
@@ -124772,7 +127958,16 @@
         "displayValue": "kasperl2011@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94840,
@@ -125093,7 +128288,16 @@
         "displayValue": "martinheldam@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95008,
@@ -125454,7 +128658,16 @@
         "displayValue": "jeppe@skaftejohansen.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95568,
@@ -125811,7 +129024,16 @@
         "displayValue": "kjeldgaard.math@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95649,
@@ -126168,7 +129390,16 @@
         "displayValue": "steffen.nielsen@mail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95651,
@@ -126525,7 +129756,16 @@
         "displayValue": "steffen.nielsen@mail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95755,
@@ -126886,7 +130126,16 @@
         "displayValue": "heino@heinoracing.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95758,
@@ -127243,7 +130492,16 @@
         "displayValue": "heino@heinoracing.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 95789,
@@ -127604,7 +130862,16 @@
         "displayValue": "kjeldgaard.math@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96142,
@@ -127961,7 +131228,16 @@
         "displayValue": "arbild9000@outlook.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96153,
@@ -128322,7 +131598,16 @@
         "displayValue": "ronnie_mortensen@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96267,
@@ -128679,7 +131964,16 @@
         "displayValue": "mikkel.kristensen3400@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96356,
@@ -129040,7 +132334,16 @@
         "displayValue": "larskbau@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96375,
@@ -129397,7 +132700,16 @@
         "displayValue": "seba6954@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96380,
@@ -129718,7 +133030,16 @@
         "displayValue": "madsbechlarsen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96383,
@@ -130079,7 +133400,16 @@
         "displayValue": "marcfwinum@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96468,
@@ -130436,7 +133766,16 @@
         "displayValue": "barney.nielsen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96545,
@@ -130793,7 +134132,16 @@
         "displayValue": "line.zenas@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96584,
@@ -131150,7 +134498,16 @@
         "displayValue": "morten.181292@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96673,
@@ -131507,7 +134864,16 @@
         "displayValue": "MartinP2402@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96751,
@@ -131864,7 +135230,16 @@
         "displayValue": "bjarneclemmensen84@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96770,
@@ -132221,7 +135596,16 @@
         "displayValue": "nemati@outlook.sk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96969,
@@ -132578,7 +135962,16 @@
         "displayValue": "mortenschulz900@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 96996,
@@ -132935,7 +136328,16 @@
         "displayValue": "sorensen.anders@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97024,
@@ -133256,7 +136658,16 @@
         "displayValue": "sorensen.anders@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97082,
@@ -133617,7 +137028,16 @@
         "displayValue": "norrevangs@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97244,
@@ -133938,7 +137358,16 @@
         "displayValue": "David.lc@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97358,
@@ -134295,7 +137724,16 @@
         "displayValue": "lillelarsen100@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97400,
@@ -134652,7 +138090,16 @@
         "displayValue": "ronnie_mortensen@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97572,
@@ -134973,7 +138420,16 @@
         "displayValue": "larskbau@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97756,
@@ -135330,7 +138786,16 @@
         "displayValue": "livjohansen@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97953,
@@ -135687,7 +139152,16 @@
         "displayValue": "olsenjacob100@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 97957,
@@ -136048,7 +139522,16 @@
         "displayValue": "olsenjacob100@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98015,
@@ -136369,7 +139852,16 @@
         "displayValue": "hawk2901@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98150,
@@ -136730,7 +140222,16 @@
         "displayValue": "smriel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98645,
@@ -137087,7 +140588,16 @@
         "displayValue": "mdbryndal@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98805,
@@ -137448,7 +140958,16 @@
         "displayValue": "smriel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98878,
@@ -137809,7 +141328,16 @@
         "displayValue": "jollea95@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98882,
@@ -138170,7 +141698,16 @@
         "displayValue": "jollea95@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 98963,
@@ -138531,7 +142068,16 @@
         "displayValue": "frederikkecjeppesen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99308,
@@ -138888,7 +142434,16 @@
         "displayValue": "AlekSandraHolst88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99323,
@@ -139249,7 +142804,16 @@
         "displayValue": "AlekSandraHolst88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99340,
@@ -139606,7 +143170,16 @@
         "displayValue": "AlekSandraHolst88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99651,
@@ -139963,7 +143536,16 @@
         "displayValue": "erlebenj@gnail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99728,
@@ -140320,7 +143902,16 @@
         "displayValue": "danielfausing@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 99940,
@@ -140681,7 +144272,16 @@
         "displayValue": "sorenhubertz@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 100116,
@@ -141038,7 +144638,16 @@
         "displayValue": "pipfawl@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 100147,
@@ -141359,7 +144968,16 @@
         "displayValue": "vipisa@dbs.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 100353,
@@ -141716,7 +145334,16 @@
         "displayValue": "ewj3003@hotmail.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 100521,
@@ -142037,7 +145664,16 @@
         "displayValue": "faxeanders@yahoo.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101060,
@@ -142398,7 +146034,16 @@
         "displayValue": "henrikbjerregaard@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101267,
@@ -142755,7 +146400,16 @@
         "displayValue": "sergiulindenskov@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101350,
@@ -143116,7 +146770,16 @@
         "displayValue": "anders-122@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101371,
@@ -143477,7 +147140,16 @@
         "displayValue": "anders-122@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101425,
@@ -143834,7 +147506,16 @@
         "displayValue": "anders-122@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101438,
@@ -144191,7 +147872,16 @@
         "displayValue": "anders-122@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101448,
@@ -144552,7 +148242,16 @@
         "displayValue": "ecmartiny@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101716,
@@ -144913,7 +148612,16 @@
         "displayValue": "sergiulindenskov@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 101734,
@@ -145274,7 +148982,16 @@
         "displayValue": "mike0402@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102025,
@@ -145631,7 +149348,16 @@
         "displayValue": "taniariis20@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102030,
@@ -145952,7 +149678,16 @@
         "displayValue": "lange.94@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102046,
@@ -146309,7 +150044,16 @@
         "displayValue": "mike0402@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102571,
@@ -146630,7 +150374,16 @@
         "displayValue": "ebbe.jensen97@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 102789,
@@ -146987,7 +150740,16 @@
         "displayValue": "ECMARTINY@GMAIL.COM",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 103483,
@@ -147344,7 +151106,16 @@
         "displayValue": "unagi1987@email.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 103519,
@@ -147705,7 +151476,16 @@
         "displayValue": "stewen.e@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 103521,
@@ -148066,7 +151846,16 @@
         "displayValue": "stewen.e@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 104191,
@@ -148427,7 +152216,16 @@
         "displayValue": "Bahnsen2010@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 104194,
@@ -148784,7 +152582,16 @@
         "displayValue": "Bahnsen2010@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 104197,
@@ -149141,7 +152948,16 @@
         "displayValue": "Bahnsen2010@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 104263,
@@ -149498,7 +153314,16 @@
         "displayValue": "dj-berg@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 104383,
@@ -149855,7 +153680,16 @@
         "displayValue": "rasmuskl050@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 105249,
@@ -150212,7 +154046,16 @@
         "displayValue": "dorthe-wiil@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 105331,
@@ -150569,7 +154412,16 @@
         "displayValue": "fair.square@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 105372,
@@ -150926,7 +154778,16 @@
         "displayValue": "Jensen1991@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 105632,
@@ -151247,7 +155108,16 @@
         "displayValue": "mads97baltsersen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 107622,
@@ -151568,7 +155438,16 @@
         "displayValue": "j.throen@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 107662,
@@ -151925,7 +155804,16 @@
         "displayValue": "adrianlyd@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 107665,
@@ -152246,7 +156134,16 @@
         "displayValue": "adrianlyd@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 107761,
@@ -152607,7 +156504,16 @@
         "displayValue": "nicolai8844@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 107991,
@@ -152964,7 +156870,16 @@
         "displayValue": "nicolai8844@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108234,
@@ -153325,7 +157240,16 @@
         "displayValue": "ronnie_mortensen@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108349,
@@ -153682,7 +157606,16 @@
         "displayValue": "nicolai8844@gmai.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108833,
@@ -154003,7 +157936,16 @@
         "displayValue": "kristian.vingborg@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 109332,
@@ -154360,7 +158302,16 @@
         "displayValue": "mariakristiansen1249@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 109366,
@@ -154717,7 +158668,16 @@
         "displayValue": "sebastiankromann@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 110077,
@@ -155038,7 +158998,16 @@
         "displayValue": "casper@seve.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 110737,
@@ -155359,7 +159328,16 @@
         "displayValue": "jesperfrie@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111308,
@@ -155716,7 +159694,16 @@
         "displayValue": "nathalieaaby@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111318,
@@ -156037,7 +160024,16 @@
         "displayValue": "paw_16@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111326,
@@ -156358,7 +160354,16 @@
         "displayValue": "paw_16@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111835,
@@ -156679,7 +160684,16 @@
         "displayValue": "webergrillen@stofanet.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111865,
@@ -157000,7 +161014,16 @@
         "displayValue": "holstebro31@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111913,
@@ -157321,7 +161344,16 @@
         "displayValue": "daniel.fjendbo@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 111990,
@@ -157678,7 +161710,16 @@
         "displayValue": "jakob_asmussen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112166,
@@ -158035,7 +162076,16 @@
         "displayValue": "kevindyg@live.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112379,
@@ -158392,7 +162442,16 @@
         "displayValue": "smriel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112408,
@@ -158713,7 +162772,16 @@
         "displayValue": "rh90dk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112419,
@@ -159070,7 +163138,16 @@
         "displayValue": "m.ilievski89@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112688,
@@ -159427,7 +163504,16 @@
         "displayValue": "newepixdk@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113134,
@@ -159788,7 +163874,16 @@
         "displayValue": "lasseboldt98@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113182,
@@ -160109,7 +164204,16 @@
         "displayValue": "dan@ungermand.net",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113311,
@@ -160466,7 +164570,16 @@
         "displayValue": "simonraun02@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113763,
@@ -160823,7 +164936,16 @@
         "displayValue": "det3hjul@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 114666,
@@ -161180,7 +165302,16 @@
         "displayValue": "lasseboldt98@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 115365,
@@ -161537,7 +165668,16 @@
         "displayValue": "henke_madsen@icloud.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 115382,
@@ -161858,7 +165998,16 @@
         "displayValue": "td_cm@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116211,
@@ -162219,7 +166368,16 @@
         "displayValue": "sipe-9@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116237,
@@ -162576,7 +166734,16 @@
         "displayValue": "nikkiolsen55@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116240,
@@ -162933,7 +167100,16 @@
         "displayValue": "nikkiolsen55@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116366,
@@ -163294,7 +167470,16 @@
         "displayValue": "rikk4516@skoledrev.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116490,
@@ -163651,7 +167836,16 @@
         "displayValue": "hej.simon@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 117762,
@@ -164012,7 +168206,16 @@
         "displayValue": "olsenjacob100@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 119595,
@@ -164333,7 +168536,16 @@
         "displayValue": "johanseir@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 119605,
@@ -164654,7 +168866,16 @@
         "displayValue": "hellbithz@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 119855,
@@ -165011,7 +169232,16 @@
         "displayValue": "martinrosenkvist88@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 119887,
@@ -165372,7 +169602,16 @@
         "displayValue": "mingin1984@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 119980,
@@ -165729,7 +169968,16 @@
         "displayValue": "tappemesteren@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 121453,
@@ -166086,7 +170334,16 @@
         "displayValue": "victor.f.roloff@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 121677,
@@ -166407,7 +170664,16 @@
         "displayValue": "privat@emb-production.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 122684,
@@ -166764,7 +171030,16 @@
         "displayValue": "arendorfdistribution@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 122941,
@@ -167121,7 +171396,16 @@
         "displayValue": "lochr@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 123140,
@@ -167478,7 +171762,16 @@
         "displayValue": "jantha.pallesen@hotmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 123204,
@@ -167799,7 +172092,16 @@
         "displayValue": "christoffer.feldtmann@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 123286,
@@ -168156,7 +172458,16 @@
         "displayValue": "infooghandel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 123392,
@@ -168517,7 +172828,16 @@
         "displayValue": "infooghandel@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 123407,
@@ -168878,6 +173198,15 @@
         "displayValue": "Patrickwestlin1998@outlook.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

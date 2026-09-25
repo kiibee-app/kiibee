@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=High"
     },
     "type": ["75"],
     "rawFile": "/media/1577/gratis-e-bog-bliv-hoert-forstaaet-og-respekteret.pdf",
@@ -98,6 +114,37 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2020-02-24 13:09:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1578/hjaelp-jeg-er-saa-traet-af-at-ingen-forstaar-mig-med-skygge.jpg?crop=High"
   }
 ]

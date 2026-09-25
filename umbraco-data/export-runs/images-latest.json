@@ -1,64 +1,248 @@
 {
-  "startedAt": "2026-08-25T14:24:36.534Z",
+  "startedAt": "2026-09-25T14:14:38.947Z",
   "users": [
     {
-      "name": "Elias Ehlers",
-      "userDir": "Elias_Ehlers",
-      "srcs": 5,
-      "ok": 5,
-      "failed": []
-    },
-    {
-      "name": "Funktionel Neuro Terapeut",
-      "userDir": "Funktionel_Neuro_Terapeut",
-      "srcs": 67,
-      "ok": 61,
-      "failed": [
-        {
-          "src": "/media/4909/modul-3-dag-1.pdf",
-          "fileName": "4909_modul-3-dag-1.pdf",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4798/nervesystem_kvindeloeber.jpg",
-          "fileName": "4798_nervesystem_kvindeloeber.jpg",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4823/nervesystem_kvindeloeber.jpg",
-          "fileName": "4823_nervesystem_kvindeloeber.jpg",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4849/nervesystem_kvindeloeber.jpg",
-          "fileName": "4849_nervesystem_kvindeloeber.jpg",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4850/nervesystem_kvindeloeber.jpg",
-          "fileName": "4850_nervesystem_kvindeloeber.jpg",
-          "error": "The operation was aborted due to timeout"
-        },
-        {
-          "src": "/media/4795/skaermbillede-2019-11-21-kl-113408.png",
-          "fileName": "4795_skaermbillede-2019-11-21-kl-113408.png",
-          "error": "The operation was aborted due to timeout"
-        }
-      ]
-    },
-    {
-      "name": "Tine Rask Mathiesen",
-      "userDir": "Tine_Rask_Mathiesen",
+      "name": "@lawn.dk",
+      "userDir": "@lawn.dk",
       "srcs": 3,
       "ok": 3,
       "failed": []
     },
     {
-      "name": "Vital New Software ApS",
-      "userDir": "Vital_New_Software_ApS",
-      "srcs": 1,
-      "ok": 1,
+      "name": "A5_Forlag_ApS",
+      "userDir": "A5_Forlag_ApS",
+      "srcs": 12,
+      "ok": 10,
+      "failed": [
+        {
+          "src": "/media/4200/vildsvin_131022_online.epub",
+          "fileName": "4200_vildsvin_131022_online.epub",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/4206/ra-dyr_opti.pdf",
+          "fileName": "4206_ra-dyr_opti.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "ADHDFOKUS",
+      "userDir": "ADHDFOKUS",
+      "srcs": 2,
+      "ok": 2,
       "failed": []
+    },
+    {
+      "name": "APHypnose",
+      "userDir": "APHypnose",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Adal_Faragalla",
+      "userDir": "Adal_Faragalla",
+      "srcs": 19,
+      "ok": 19,
+      "failed": []
+    },
+    {
+      "name": "Admin",
+      "userDir": "Admin",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Ahmed_Mittani",
+      "userDir": "Ahmed_Mittani",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Akupunktør_Stine_Vogel",
+      "userDir": "Akupunktør_Stine_Vogel",
+      "srcs": 6,
+      "ok": 6,
+      "failed": []
+    },
+    {
+      "name": "Ali_El-Atbi",
+      "userDir": "Ali_El-Atbi",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Amin_Jensen_Entertainment",
+      "userDir": "Amin_Jensen_Entertainment",
+      "srcs": 13,
+      "ok": 10,
+      "failed": [
+        {
+          "src": "/media/1257/dvd_bag-om_blaes-pa-dk.jpg",
+          "fileName": "1257_dvd_bag-om_blaes-pa-dk.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4837/carsten-bang.png",
+          "fileName": "4837_carsten-bang.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1231/top.jpg",
+          "fileName": "1231_top.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Ana_Castellanos",
+      "userDir": "Ana_Castellanos",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Anders_Fjelsted",
+      "userDir": "Anders_Fjelsted",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Anne_Kongsbak",
+      "userDir": "Anne_Kongsbak",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Anne_brietzke",
+      "userDir": "Anne_brietzke",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Art_attraction",
+      "userDir": "Art_attraction",
+      "srcs": 3,
+      "ok": 2,
+      "failed": [
+        {
+          "src": "/media/1295/zone-terapi-demo.mp3",
+          "fileName": "1295_zone-terapi-demo.mp3",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "B_Entertained",
+      "userDir": "B_Entertained",
+      "srcs": 5,
+      "ok": 4,
+      "failed": [
+        {
+          "src": "/media/4770/aeoeaa-2024_3.mp4",
+          "fileName": "4770_aeoeaa-2024_3.mp4",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Bettina_Ramsing",
+      "userDir": "Bettina_Ramsing",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Brian_Mørk",
+      "userDir": "Brian_Mørk",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Britta_Koch_-_Qigong",
+      "userDir": "Britta_Koch_-_Qigong",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "CamComm",
+      "userDir": "CamComm",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Carsten_Bang",
+      "userDir": "Carsten_Bang",
+      "srcs": 7,
+      "ok": 6,
+      "failed": [
+        {
+          "src": "/media/3119/cb_hsef04_2006.jpg",
+          "fileName": "3119_cb_hsef04_2006.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Cathrine_Guldberg",
+      "userDir": "Cathrine_Guldberg",
+      "srcs": 21,
+      "ok": 16,
+      "failed": [
+        {
+          "src": "/media/1724/splitropes-icon-1920x1080.jpg",
+          "fileName": "1724_splitropes-icon-1920x1080.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2423/favicon-228x228-kopy.jpg",
+          "fileName": "2423_favicon-228x228-kopy.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4435/skaermbillede-2023-05-28-171331.png",
+          "fileName": "4435_skaermbillede-2023-05-28-171331.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4431/skaermbillede-2023-05-28-160925.png",
+          "fileName": "4431_skaermbillede-2023-05-28-160925.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2771/img_0724.jpg",
+          "fileName": "2771_img_0724.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Chief1",
+      "userDir": "Chief1",
+      "srcs": 11,
+      "ok": 9,
+      "failed": [
+        {
+          "src": "/media/3167/chief-1-album-release-film-billede.png",
+          "fileName": "3167_chief-1-album-release-film-billede.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2709/cover2.png",
+          "fileName": "2709_cover2.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
     },
     {
       "name": "Comedy-TV",
@@ -68,26 +252,1054 @@
       "failed": []
     },
     {
-      "name": "Thomas Hartmann",
+      "name": "Dahls_regnskabsservice_ApS",
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Damkjær_Medier",
+      "userDir": "Damkjær_Medier",
+      "srcs": 15,
+      "ok": 12,
+      "failed": [
+        {
+          "src": "/media/4616/videoproduktion-i-capcut.jpg",
+          "fileName": "4616_videoproduktion-i-capcut.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4638/thumbnail_modul-8_videovisionaer.jpg",
+          "fileName": "4638_thumbnail_modul-8_videovisionaer.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4653/modul-9-virale-videoer-thumbnail.jpg",
+          "fileName": "4653_modul-9-virale-videoer-thumbnail.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Dan_Andersen",
+      "userDir": "Dan_Andersen",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Diana_Myjak",
+      "userDir": "Diana_Myjak",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Diy_for_børn",
+      "userDir": "Diy_for_børn",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "ElStudio",
+      "userDir": "ElStudio",
+      "srcs": 4,
+      "ok": 2,
+      "failed": [
+        {
+          "src": "/media/1614/elstudio.png",
+          "fileName": "1614_elstudio.png",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1613/elstudio.jpg",
+          "fileName": "1613_elstudio.jpg",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Elias_Ehlers",
+      "userDir": "Elias_Ehlers",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Elsebeth_Fogh",
+      "userDir": "Elsebeth_Fogh",
+      "srcs": 16,
+      "ok": 16,
+      "failed": []
+    },
+    {
+      "name": "EvaFogNoer",
+      "userDir": "EvaFogNoer",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "FBI.DK",
+      "userDir": "FBI.DK",
+      "srcs": 92,
+      "ok": 92,
+      "failed": []
+    },
+    {
+      "name": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "srcs": 4,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/4485/visualisering-til-gravide-v7.wav",
+          "fileName": "4485_visualisering-til-gravide-v7.wav",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Find_dig_ikke_i_smerte",
+      "userDir": "Find_dig_ikke_i_smerte",
+      "srcs": 13,
+      "ok": 8,
+      "failed": [
+        {
+          "src": "/media/1933/angigst-og-hovedbund.png",
+          "fileName": "1933_angigst-og-hovedbund.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1936/ben.png",
+          "fileName": "1936_ben.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1944/lend-og-balle.png",
+          "fileName": "1944_lend-og-balle.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1945/nakke-kraniekant.png",
+          "fileName": "1945_nakke-kraniekant.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1946/ryg.png",
+          "fileName": "1946_ryg.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "FliCFLAC",
+      "userDir": "FliCFLAC",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Fonden_Eventyrteatret",
+      "userDir": "Fonden_Eventyrteatret",
+      "srcs": 17,
+      "ok": 13,
+      "failed": [
+        {
+          "src": "/media/5071/800x1040.jpg",
+          "fileName": "5071_800x1040.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4820/pinocchio-plakat-web.png",
+          "fileName": "4820_pinocchio-plakat-web.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4611/rapunzel_300x400px_srgb_72dpi.jpg",
+          "fileName": "4611_rapunzel_300x400px_srgb_72dpi.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4595/640x600.jpg",
+          "fileName": "4595_640x600.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Foreningen_Danske_Revisorer",
+      "userDir": "Foreningen_Danske_Revisorer",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Forlaget_AKKA",
+      "userDir": "Forlaget_AKKA",
+      "srcs": 10,
+      "ok": 8,
+      "failed": [
+        {
+          "src": "/media/4646/ffhk1.pdf",
+          "fileName": "4646_ffhk1.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4647/ffhk2.pdf",
+          "fileName": "4647_ffhk2.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Fredensborg_Sundhedscenter",
+      "userDir": "Fredensborg_Sundhedscenter",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Funktionel_Neuro_Terapeut",
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "srcs": 67,
+      "ok": 67,
+      "failed": []
+    },
+    {
+      "name": "Funktionel_Neuro_Terapeut_(1)",
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "srcs": 61,
+      "ok": 61,
+      "failed": []
+    },
+    {
+      "name": "Funktionel_Neuroterapeut_2026",
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "srcs": 18,
+      "ok": 15,
+      "failed": [
+        {
+          "src": "/media/5204/gruppefoto-med-navne.pdf",
+          "fileName": "5204_gruppefoto-med-navne.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5207/skaermbillede-2019-11-21-kl-113408.png",
+          "fileName": "5207_skaermbillede-2019-11-21-kl-113408.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5208/skaermbillede-2019-11-21-kl-111353.png",
+          "fileName": "5208_skaermbillede-2019-11-21-kl-111353.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Fysioteamet",
+      "userDir": "Fysioteamet",
+      "srcs": 12,
+      "ok": 12,
+      "failed": []
+    },
+    {
+      "name": "Galleri_EVIG",
+      "userDir": "Galleri_EVIG",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed",
+      "userDir": "Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Go_Video",
+      "userDir": "Go_Video",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Gottleben",
+      "userDir": "Gottleben",
+      "srcs": 3,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/3565/img_3579.jpeg",
+          "fileName": "3565_img_3579.jpeg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3566/img_3724.jpeg",
+          "fileName": "3566_img_3724.jpeg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3736/img_3724.jpeg",
+          "fileName": "3736_img_3724.jpeg",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Granli_Velvære",
+      "userDir": "Granli_Velvære",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Heidi_Stjerne",
+      "userDir": "Heidi_Stjerne",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Hundedamen",
+      "userDir": "Hundedamen",
+      "srcs": 31,
+      "ok": 25,
+      "failed": [
+        {
+          "src": "/media/3583/gu-pe-nt-i-snor.jpg",
+          "fileName": "3583_gu-pe-nt-i-snor.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2559/de-k-o-velse-10.jpg",
+          "fileName": "2559_de-k-o-velse-10.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2600/slip-oevelse-ikke-lagt-op-endnu.jpg",
+          "fileName": "2600_slip-oevelse-ikke-lagt-op-endnu.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4122/daek.jpg",
+          "fileName": "4122_daek.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3962/skaermbillede-2022-02-01-kl-141449.png",
+          "fileName": "3962_skaermbillede-2022-02-01-kl-141449.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3607/hundedamen3.png",
+          "fileName": "3607_hundedamen3.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Ilona_Margibell",
+      "userDir": "Ilona_Margibell",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Jacob_Taarnhøj",
+      "userDir": "Jacob_Taarnhøj",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Jacob_Tingleff",
+      "userDir": "Jacob_Tingleff",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Jacob_Wilson",
+      "userDir": "Jacob_Wilson",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Janni_-_Køreskole_og_Terapi",
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Jesper_Jensen",
+      "userDir": "Jesper_Jensen",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Johanne_Kubert",
+      "userDir": "Johanne_Kubert",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Johnny_Logan",
+      "userDir": "Johnny_Logan",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Kammas_Kantine",
+      "userDir": "Kammas_Kantine",
+      "srcs": 44,
+      "ok": 38,
+      "failed": [
+        {
+          "src": "/media/3228/opskrifterne-pdf.pdf",
+          "fileName": "3228_opskrifterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3231/indkoebslisterne-pdf.pdf",
+          "fileName": "3231_indkoebslisterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3222/opskrifterne-pdf.pdf",
+          "fileName": "3222_opskrifterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3224/indkoebslisterne-pdf.pdf",
+          "fileName": "3224_indkoebslisterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3216/opskrifterne-pdf.pdf",
+          "fileName": "3216_opskrifterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3218/indkoebslisterne-pdf.pdf",
+          "fileName": "3218_indkoebslisterne-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Karina_Eckhausen",
+      "userDir": "Karina_Eckhausen",
+      "srcs": 4,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/4563/green-watercolor-blank-paper-a4-document-2.pdf",
+          "fileName": "4563_green-watercolor-blank-paper-a4-document-2.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Kiibee",
+      "userDir": "Kiibee",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Kiibee_(1)",
+      "userDir": "Kiibee_(1)",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Kiibee_Comedy",
+      "userDir": "Kiibee_Comedy",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Kiibee_hjælpe_videoer",
+      "userDir": "Kiibee_hjælpe_videoer",
+      "srcs": 5,
+      "ok": 4,
+      "failed": [
+        {
+          "src": "/media/1511/kom-igang-pa-3-minutter-billede.png",
+          "fileName": "1511_kom-igang-pa-3-minutter-billede.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Kitnoergaard.dk",
+      "userDir": "Kitnoergaard.dk",
+      "srcs": 7,
+      "ok": 7,
+      "failed": []
+    },
+    {
+      "name": "Kort_&_Dokumentar_Filmskolen",
+      "userDir": "Kort_&_Dokumentar_Filmskolen",
+      "srcs": 2,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/1705/kdf_logo_2019_308x80.png",
+          "fileName": "1705_kdf_logo_2019_308x80.png",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1704/tutorials_banner-tonet-varm-graa.jpg",
+          "fileName": "1704_tutorials_banner-tonet-varm-graa.jpg",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Kristian_Kjaer",
+      "userDir": "Kristian_Kjaer",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Kryptovaluta_for_kvinder",
+      "userDir": "Kryptovaluta_for_kvinder",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Langes_Entertainment_ApS",
+      "userDir": "Langes_Entertainment_ApS",
+      "srcs": 6,
+      "ok": 6,
+      "failed": []
+    },
+    {
+      "name": "Laura_Nielsen",
+      "userDir": "Laura_Nielsen",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Lea_Nielsen",
+      "userDir": "Lea_Nielsen",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Letsmove_-_Motion_i_Centrum",
+      "userDir": "Letsmove_-_Motion_i_Centrum",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Lev_Dit_Liv_NU",
+      "userDir": "Lev_Dit_Liv_NU",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Life-_&_Business_Coach",
+      "userDir": "Life-_&_Business_Coach",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "LindaAndrews",
+      "userDir": "LindaAndrews",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Lindhardt_A-S",
+      "userDir": "Lindhardt_A-S",
+      "srcs": 4,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/1514/logo_lindhardt-m-payoff-v2.png",
+          "fileName": "1514_logo_lindhardt-m-payoff-v2.png",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1524/beslutningsmodellen.jpg",
+          "fileName": "1524_beslutningsmodellen.jpg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1552/beslutningsmodellen01.jpg",
+          "fileName": "1552_beslutningsmodellen01.jpg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1556/lindhardt.jpg",
+          "fileName": "1556_lindhardt.jpg",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Line_JL_Feel_the_Heal",
+      "userDir": "Line_JL_Feel_the_Heal",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Lisathe_Møller",
+      "userDir": "Lisathe_Møller",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "M.C._Caffe",
+      "userDir": "M.C._Caffe",
+      "srcs": 4,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/3710/caffe-1.jpg",
+          "fileName": "3710_caffe-1.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Maria_Birch_Rasmussen",
+      "userDir": "Maria_Birch_Rasmussen",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Marner_Analytics",
+      "userDir": "Marner_Analytics",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Maximilian_Nielsen",
+      "userDir": "Maximilian_Nielsen",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Microphone_Entertainment",
+      "userDir": "Microphone_Entertainment",
+      "srcs": 10,
+      "ok": 10,
+      "failed": []
+    },
+    {
+      "name": "Mirna_Barbar",
+      "userDir": "Mirna_Barbar",
+      "srcs": 3,
+      "ok": 1,
+      "failed": [
+        {
+          "src": "/media/5168/skab-dig-selv-en-guide-til-at-shifte-dit-selvkoncept-og-din-identitet.pdf",
+          "fileName": "5168_skab-dig-selv-en-guide-til-at-shifte-dit-selvkoncept-og-din-identitet.pdf",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/5169/til-ebog.png",
+          "fileName": "5169_til-ebog.png",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Mit_test_site",
+      "userDir": "Mit_test_site",
+      "srcs": 9,
+      "ok": 9,
+      "failed": []
+    },
+    {
+      "name": "Morten_Bonde_Development",
+      "userDir": "Morten_Bonde_Development",
+      "srcs": 10,
+      "ok": 10,
+      "failed": []
+    },
+    {
+      "name": "NSCCM_ApS",
+      "userDir": "NSCCM_ApS",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Nethe_Nomonde_Dalgaard",
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "NuVenue",
+      "userDir": "NuVenue",
+      "srcs": 3,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/3565/img_3579.jpeg",
+          "fileName": "3565_img_3579.jpeg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3566/img_3724.jpeg",
+          "fileName": "3566_img_3724.jpeg",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3736/img_3724.jpeg",
+          "fileName": "3736_img_3724.jpeg",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "Olivia_Hvoslef_Mejer_Madsen",
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Omar_Marzouk",
+      "userDir": "Omar_Marzouk",
+      "srcs": 8,
+      "ok": 8,
+      "failed": []
+    },
+    {
+      "name": "Per_Vers",
+      "userDir": "Per_Vers",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Peter_Peitersen",
+      "userDir": "Peter_Peitersen",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Publika",
+      "userDir": "Publika",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Pædagogisk_Psykologisk_Tidsskrift",
+      "userDir": "Pædagogisk_Psykologisk_Tidsskrift",
+      "srcs": 472,
+      "ok": 472,
+      "failed": []
+    },
+    {
+      "name": "RauJensen",
+      "userDir": "RauJensen",
+      "srcs": 6,
+      "ok": 6,
+      "failed": []
+    },
+    {
+      "name": "Red_Barnet",
+      "userDir": "Red_Barnet",
+      "srcs": 11,
+      "ok": 9,
+      "failed": [
+        {
+          "src": "/media/3525/ca_poster_2014.jpg",
+          "fileName": "3525_ca_poster_2014.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3519/ca_2015_digiposter_v2.jpg",
+          "fileName": "3519_ca_2015_digiposter_v2.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Rikke_Brünner",
+      "userDir": "Rikke_Brünner",
+      "srcs": 4,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/4124/mindfulnessmeditaiton-mod-tankemylder.m4a",
+          "fileName": "4124_mindfulnessmeditaiton-mod-tankemylder.m4a",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Rumhed",
+      "userDir": "Rumhed",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Selvvær(dk)stedet",
+      "userDir": "Selvvær(dk)stedet",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Settings",
+      "userDir": "Settings",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "SigneNeslein.dk",
+      "userDir": "SigneNeslein.dk",
+      "srcs": 15,
+      "ok": 13,
+      "failed": [
+        {
+          "src": "/media/4749/campingferie-rejseplan-nordkap-pdf.pdf",
+          "fileName": "4749_campingferie-rejseplan-nordkap-pdf.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4660/e-guide-saadan-saetter-du-graenser.pdf",
+          "fileName": "4660_e-guide-saadan-saetter-du-graenser.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Simon_Talbot",
+      "userDir": "Simon_Talbot",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "SkoleRo_ApS",
+      "userDir": "SkoleRo_ApS",
+      "srcs": 5,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/4955/mariehoenen-plet-der-mistede-alle-sine-pletter-e-bog.pdf",
+          "fileName": "4955_mariehoenen-plet-der-mistede-alle-sine-pletter-e-bog.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4948/rolighedspausesaettet.pdf",
+          "fileName": "4948_rolighedspausesaettet.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Songs_Of_Jacob_Elk",
+      "userDir": "Songs_Of_Jacob_Elk",
+      "srcs": 36,
+      "ok": 36,
+      "failed": []
+    },
+    {
+      "name": "Stopsygefravær.nu",
+      "userDir": "Stopsygefravær.nu",
+      "srcs": 14,
+      "ok": 12,
+      "failed": [
+        {
+          "src": "/media/3000/portraet-kirsten-farve-juni-2020.jpg",
+          "fileName": "3000_portraet-kirsten-farve-juni-2020.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg",
+          "fileName": "2245_sygefravaer-pa-formel-kirsten-loevschall.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Sundt_indtag",
+      "userDir": "Sundt_indtag",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "TANIA_ELLIS_-_The_Social_Business_Company",
+      "userDir": "TANIA_ELLIS_-_The_Social_Business_Company",
+      "srcs": 26,
+      "ok": 26,
+      "failed": []
+    },
+    {
+      "name": "Tegnestuen_Undertryk",
+      "userDir": "Tegnestuen_Undertryk",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Thomas_Hartmann",
       "userDir": "Thomas_Hartmann",
       "srcs": 15,
       "ok": 15,
       "failed": []
     },
     {
-      "name": "slank og wellness",
-      "userDir": "slank_og_wellness",
+      "name": "Thomas_Wivel",
+      "userDir": "Thomas_Wivel",
       "srcs": 4,
       "ok": 4,
       "failed": []
     },
     {
-      "name": "Sundt indtag",
-      "userDir": "Sundt_indtag",
+      "name": "Tine_Rask_Mathiesen",
+      "userDir": "Tine_Rask_Mathiesen",
       "srcs": 3,
       "ok": 3,
       "failed": []
+    },
+    {
+      "name": "TjelesVenner",
+      "userDir": "TjelesVenner",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Tobias_Dybvad",
+      "userDir": "Tobias_Dybvad",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Torben_Chris",
+      "userDir": "Torben_Chris",
+      "srcs": 8,
+      "ok": 8,
+      "failed": []
+    },
+    {
+      "name": "Uffe_Holm",
+      "userDir": "Uffe_Holm",
+      "srcs": 9,
+      "ok": 9,
+      "failed": []
+    },
+    {
+      "name": "VideoVisionær_kursus",
+      "userDir": "VideoVisionær_kursus",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Vital_New_Software_ApS",
+      "userDir": "Vital_New_Software_ApS",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Vocal_Line",
+      "userDir": "Vocal_Line",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "You_Consulting",
+      "userDir": "You_Consulting",
+      "srcs": 6,
+      "ok": 6,
+      "failed": []
+    },
+    {
+      "name": "gymstream",
+      "userDir": "gymstream",
+      "srcs": 3,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/3713/gymstream-logo-basis.png",
+          "fileName": "3713_gymstream-logo-basis.png",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3714/gym-arena-1-2000-x-800.png",
+          "fileName": "3714_gym-arena-1-2000-x-800.png",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3717/gym-arena-1-640-x-600.png",
+          "fileName": "3717_gym-arena-1-640-x-600.png",
+          "error": "HTTP 404"
+        }
+      ]
+    },
+    {
+      "name": "jwtc",
+      "userDir": "jwtc",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "mariebrixtofte",
+      "userDir": "mariebrixtofte",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "networker",
+      "userDir": "networker",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "slank_og_wellness",
+      "userDir": "slank_og_wellness",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
     }
   ],
-  "finishedAt": "2026-08-25T14:25:39.941Z"
+  "finishedAt": "2026-09-25T14:23:16.190Z"
 }

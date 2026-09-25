@@ -52,7 +52,23 @@
       "tags": "Video,videokursus,capcut,videostrategi,videokampagne,videocontent,videoideer,viralevideoer,videomateriale,videobudskaber,målgruppe,modtager",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4533/velkommen-til-videovisionaer.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4533/velkommen-til-videovisionaer.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4533/velkommen-til-videovisionaer.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4533/velkommen-til-videovisionaer.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:01",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4533/velkommen-til-videovisionaer.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4533/velkommen-til-videovisionaer.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4533/velkommen-til-videovisionaer.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4533/velkommen-til-videovisionaer.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4533/velkommen-til-videovisionaer.jpg?crop=High"
   },
   {
     "id": 95051,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:07",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4555/modul-1-maal-og-motivation-thumbnail.jpg?crop=High"
   },
   {
     "id": 95281,
@@ -972,7 +1068,23 @@
       "tags": "Videokursus,budskaber,kommunikation,videoideer,strategi,why",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:31:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4559/velkommen-til-videovisionaer-modul-2-thumbnail.jpg?crop=High"
   },
   {
     "id": 95452,
@@ -1432,7 +1576,23 @@
       "tags": "videokursus,målgruppe,modtager,platforme,adfærd,data,statistikker",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=Wide",
+      "thumbnailHigh": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:31:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4562/velkommen-til-videovisionaer_thumbnail.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=Wide",
+    "thumbnailHigh": "/media/4562/velkommen-til-videovisionaer_thumbnail.png?crop=High"
   },
   {
     "id": 95666,
@@ -1892,7 +2084,23 @@
       "tags": "contentplan,videoproduktion,skabeloner,contentmarketing,marketing strategi,video strategi,kampagne",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:31:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4580/modul-4_kampagne-og-contentplan-thumbnail-videovisionaer.jpg?crop=High"
   },
   {
     "id": 95873,
@@ -2352,7 +2592,23 @@
       "tags": "video,videoformater,teknik,videoudstyr,skudplan,story board,visuel kommunikation,videokursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4582/modul-5-videovisionaer_thumbnail.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4582/modul-5-videovisionaer_thumbnail.jpg?crop=High"
   },
   {
     "id": 96101,
@@ -2812,7 +3100,23 @@
       "tags": "video,capcut,videoproduktion,visuel kommunikation,kommunikation,baggrundsmusik,videoredigeringsprogram",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4616/videoproduktion-i-capcut.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4616/videoproduktion-i-capcut.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4616/videoproduktion-i-capcut.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4616/videoproduktion-i-capcut.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4616/videoproduktion-i-capcut.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4616/videoproduktion-i-capcut.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4616/videoproduktion-i-capcut.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4616/videoproduktion-i-capcut.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4616/videoproduktion-i-capcut.jpg?crop=High"
   },
   {
     "id": 96274,
@@ -3272,7 +3608,23 @@
       "tags": "video,annoncering,splittests,organisk indhold,tovejskommunikation,rækkevidde,videostrategi,marketingstrategi,reklamer",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4631/modul-7-thumbnail-videovisionaer.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4631/modul-7-thumbnail-videovisionaer.jpg?crop=High"
   },
   {
     "id": 96450,
@@ -3732,7 +4116,23 @@
       "tags": "video,videoproduktion,contentplanlægning,planlægningafindhold,planlægning,overblik,content,indhold,automatisering,effektivitet,strategi,markedsføring,socialemedier",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,7 +4537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:32:48",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4638/thumbnail_modul-8_videovisionaer.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4638/thumbnail_modul-8_videovisionaer.jpg?crop=High"
   },
   {
     "id": 96655,
@@ -4192,7 +4624,23 @@
       "tags": "viralevideoer,sociale medier,viralt content,sådan laver du en viral video,videostrategi,videoideer,content management",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4597,6 +5045,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-30 11:26:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4653/modul-9-virale-videoer-thumbnail.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4653/modul-9-virale-videoer-thumbnail.jpg?crop=High"
   }
 ]

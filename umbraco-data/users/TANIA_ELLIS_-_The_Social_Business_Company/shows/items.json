@@ -17,16 +17,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "57"
-      ],
+      "access": ["57"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "75"
-      ],
+      "type": ["75"],
       "videoDownloadURL": "",
       "rawFile": "/media/1438/sustainable-disruption_02052017.pdf",
       "videoStatus": "",
@@ -52,11 +48,25 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1439/sust-disruption.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1439/sust-disruption.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1439/sust-disruption.png?crop=Wide",
+      "thumbnailHigh": "/media/1439/sust-disruption.png?crop=High"
     },
-    "type": [
-      "75"
-    ],
+    "type": ["75"],
     "rawFile": "/media/1438/sustainable-disruption_02052017.pdf",
     "videoID": "",
     "videoStatus": "",
@@ -80,9 +90,7 @@
     "tags": "",
     "thumbnail": "/media/1439/sust-disruption.png",
     "productLink": "",
-    "access": [
-      "57"
-    ],
+    "access": ["57"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -106,7 +114,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2021-06-04 11:33:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1439/sust-disruption.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1439/sust-disruption.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1439/sust-disruption.png?crop=Wide",
+    "thumbnailHigh": "/media/1439/sust-disruption.png?crop=High"
   },
   {
     "id": 2435,
@@ -126,16 +165,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "60"
-      ],
+      "access": ["60"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "264"
-      ],
+      "type": ["264"],
       "videoDownloadURL": "",
       "rawFile": "",
       "videoStatus": "",
@@ -161,11 +196,25 @@
       "tags": "",
       "hidePlay": "",
       "hideDownload": "",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1437/intro.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1437/intro.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1437/intro.png?crop=Wide",
+      "thumbnailHigh": "/media/1437/intro.png?crop=High"
     },
-    "type": [
-      "264"
-    ],
+    "type": ["264"],
     "rawFile": "",
     "videoID": "",
     "videoStatus": "",
@@ -189,9 +238,7 @@
     "tags": "",
     "thumbnail": "/media/1437/intro.png",
     "productLink": "",
-    "access": [
-      "60"
-    ],
+    "access": ["60"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -215,7 +262,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2019-11-28 10:26:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1437/intro.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1437/intro.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1437/intro.png?crop=Wide",
+    "thumbnailHigh": "/media/1437/intro.png?crop=High"
   },
   {
     "id": 2482,
@@ -235,16 +313,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "60"
-      ],
+      "access": ["60"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/76367e57f2caacda1c057742cc603630/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -270,11 +344,25 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1476/tania.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1476/tania.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1476/tania.png?crop=Wide",
+      "thumbnailHigh": "/media/1476/tania.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "76367e57f2caacda1c057742cc603630",
     "videoStatus": "ready",
@@ -298,9 +386,7 @@
     "tags": "",
     "thumbnail": "/media/1476/tania.png",
     "productLink": "",
-    "access": [
-      "60"
-    ],
+    "access": ["60"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -324,7 +410,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:24:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1476/tania.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1476/tania.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1476/tania.png?crop=Wide",
+    "thumbnailHigh": "/media/1476/tania.png?crop=High"
   },
   {
     "id": 2480,
@@ -344,16 +461,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "60"
-      ],
+      "access": ["60"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/a17b58731b94aec82911a0663cd58808/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -379,11 +492,25 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1473/christian.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1473/christian.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1473/christian.png?crop=Wide",
+      "thumbnailHigh": "/media/1473/christian.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "a17b58731b94aec82911a0663cd58808",
     "videoStatus": "ready",
@@ -407,9 +534,7 @@
     "tags": "",
     "thumbnail": "/media/1473/christian.png",
     "productLink": "",
-    "access": [
-      "60"
-    ],
+    "access": ["60"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -433,7 +558,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:23:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1473/christian.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1473/christian.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1473/christian.png?crop=Wide",
+    "thumbnailHigh": "/media/1473/christian.png?crop=High"
   },
   {
     "id": 2483,
@@ -453,16 +609,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "60"
-      ],
+      "access": ["60"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/bd919832c700c78f93644410d90f7100/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -488,11 +640,25 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1475/sofia.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1475/sofia.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1475/sofia.png?crop=Wide",
+      "thumbnailHigh": "/media/1475/sofia.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "bd919832c700c78f93644410d90f7100",
     "videoStatus": "ready",
@@ -516,9 +682,7 @@
     "tags": "",
     "thumbnail": "/media/1475/sofia.png",
     "productLink": "",
-    "access": [
-      "60"
-    ],
+    "access": ["60"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -542,7 +706,38 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:24:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1475/sofia.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1475/sofia.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1475/sofia.png?crop=Wide",
+    "thumbnailHigh": "/media/1475/sofia.png?crop=High"
   },
   {
     "id": 2481,
@@ -562,16 +757,12 @@
     ],
     "properties": {
       "purchasePrice": "",
-      "access": [
-        "60"
-      ],
+      "access": ["60"],
       "rentalPrice": "",
       "code": "",
       "metaDescription": "",
       "metaTitle": "",
-      "type": [
-        "73"
-      ],
+      "type": ["73"],
       "videoDownloadURL": "https://videodelivery.net/71ed9460e0452b55cbde24ba121d2d25/downloads/default.mp4",
       "rawFile": "",
       "videoStatus": "ready",
@@ -597,11 +788,25 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1474/jonas.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1474/jonas.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1474/jonas.png?crop=Wide",
+      "thumbnailHigh": "/media/1474/jonas.png?crop=High"
     },
-    "type": [
-      "73"
-    ],
+    "type": ["73"],
     "rawFile": "",
     "videoID": "71ed9460e0452b55cbde24ba121d2d25",
     "videoStatus": "ready",
@@ -625,9 +830,7 @@
     "tags": "",
     "thumbnail": "/media/1474/jonas.png",
     "productLink": "",
-    "access": [
-      "60"
-    ],
+    "access": ["60"],
     "rentalPrice": "",
     "purchasePrice": "",
     "code": "",
@@ -651,6 +854,37 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2022-03-08 22:24:02",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1474/jonas.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1474/jonas.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1474/jonas.png?crop=Wide",
+    "thumbnailHigh": "/media/1474/jonas.png?crop=High"
   }
 ]

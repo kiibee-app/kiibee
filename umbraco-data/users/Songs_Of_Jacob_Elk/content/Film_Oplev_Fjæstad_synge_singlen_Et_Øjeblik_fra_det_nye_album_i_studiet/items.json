@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2514/et-oeje.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2514/et-oeje.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2514/et-oeje.png?crop=Wide",
+      "thumbnailHigh": "/media/2514/et-oeje.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,6 +473,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:29:02",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2514/et-oeje.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2514/et-oeje.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2514/et-oeje.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2514/et-oeje.png?crop=Wide",
+    "thumbnailHigh": "/media/2514/et-oeje.png?crop=High"
   }
 ]

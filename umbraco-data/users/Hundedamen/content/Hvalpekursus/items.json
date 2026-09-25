@@ -46,7 +46,23 @@
       "tags": "Onlinekursus,Hundedamen,Hvalpekursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3580/kontakto-velse-06.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3580/kontakto-velse-06.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3580/kontakto-velse-06.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3580/kontakto-velse-06.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:31:48",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3580/kontakto-velse-06.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3580/kontakto-velse-06.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3580/kontakto-velse-06.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3580/kontakto-velse-06.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3580/kontakto-velse-06.jpg?crop=High"
   },
   {
     "id": 47655,
@@ -496,7 +544,23 @@
       "tags": "Hundetræning,Hvalpekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3581/blivsit-oevelse.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3581/blivsit-oevelse.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3581/blivsit-oevelse.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3581/blivsit-oevelse.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:31:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3581/blivsit-oevelse.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3581/blivsit-oevelse.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3581/blivsit-oevelse.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3581/blivsit-oevelse.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3581/blivsit-oevelse.jpg?crop=High"
   },
   {
     "id": 47658,
@@ -946,7 +1042,23 @@
       "tags": "Onlinekursus,Hvalpekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3582/de-k-o-velse-10.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3582/de-k-o-velse-10.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3582/de-k-o-velse-10.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3582/de-k-o-velse-10.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:32:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3582/de-k-o-velse-10.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3582/de-k-o-velse-10.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3582/de-k-o-velse-10.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3582/de-k-o-velse-10.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3582/de-k-o-velse-10.jpg?crop=High"
   },
   {
     "id": 47659,
@@ -1396,7 +1540,23 @@
       "tags": "Hundetræning,Hvalpekursus,Onlinekursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3583/gu-pe-nt-i-snor.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3583/gu-pe-nt-i-snor.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3583/gu-pe-nt-i-snor.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3583/gu-pe-nt-i-snor.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,7 +1957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:32:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3583/gu-pe-nt-i-snor.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3583/gu-pe-nt-i-snor.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3583/gu-pe-nt-i-snor.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3583/gu-pe-nt-i-snor.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3583/gu-pe-nt-i-snor.jpg?crop=High"
   },
   {
     "id": 47660,
@@ -1846,7 +2038,23 @@
       "tags": "Hundekursus,Hvalpekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3584/paa-plads-o-velse.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3584/paa-plads-o-velse.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3584/paa-plads-o-velse.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3584/paa-plads-o-velse.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2247,7 +2455,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:32:49",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3584/paa-plads-o-velse.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3584/paa-plads-o-velse.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3584/paa-plads-o-velse.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3584/paa-plads-o-velse.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3584/paa-plads-o-velse.jpg?crop=High"
   },
   {
     "id": 47661,
@@ -2296,7 +2536,23 @@
       "tags": "Hundekursus,Onlinekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2697,7 +2953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:33:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3585/kom-nu-r-du-kalder-14-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3585/kom-nu-r-du-kalder-14-1.jpg?crop=High"
   },
   {
     "id": 47662,
@@ -2746,7 +3034,23 @@
       "tags": "Hundetræning,Onlinekursus,Hundedamen,Hvalpekursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3147,6 +3451,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-07-06 11:33:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3586/slip-oevelse-ikke-lagt-op-endnu.jpg?crop=High"
   }
 ]

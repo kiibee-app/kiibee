@@ -48,7 +48,23 @@
       "tags": "Wellness massage uddannelse,PDF",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1951/udenskygge.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1951/udenskygge.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1951/udenskygge.png?crop=Wide",
+      "thumbnailHigh": "/media/1951/udenskygge.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-06-15 12:25:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1951/udenskygge.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1951/udenskygge.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1951/udenskygge.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1951/udenskygge.png?crop=Wide",
+    "thumbnailHigh": "/media/1951/udenskygge.png?crop=High"
   },
   {
     "id": 16694,
@@ -500,7 +548,23 @@
       "tags": "Uddannelse,Wellness massage,Massage,Onlinekursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=Wide",
+      "thumbnailHigh": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,6 +965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-06-15 15:50:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1906/skaermbillede-2020-06-07-kl-110241.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=Wide",
+    "thumbnailHigh": "/media/1906/skaermbillede-2020-06-07-kl-110241.png?crop=High"
   }
 ]

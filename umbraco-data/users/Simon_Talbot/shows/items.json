@@ -39,25 +39,7 @@
       "year": "2022",
       "description": "<h2>Stream Simon Talbots Optur - lej eller køb online</h2>\n\"Optur” er Simon Talbots største og mest personlige show nogensinde. Her fortæller han om opvæksten i Jehovas Vidner - historien bliver fortalt, imens han forvandler tematikker fra eget liv, såsom sociale medier, katte, næsehår, danske love, kvinders alt for varme bade, og meget meget mere, til jokes, vi alle sammen kan grine af. Gør dig klar til mavekrampende grin og oplev Simons karismatiske energi i et show som garanterer en kæmpe optur.\nSimon gav for alvor over 50.000 danskere noget at grine af, da showet rullede ud over landet. Nu er turen kommet til dig derhjemme! Optur kan streames både som køb og leje direkte her på siden. Se den i dag og få dig et fabelagtigt grin med hele Danmarks Simon Talbot. Han transformerer temaer og emner fra sit eget liv til komedie, som vi alle kan grine ad - sociale medier, katte, næsehår, danske love, kvinders varme bade og mere. Gør dig klar til højlydt latter og oplev Simons karismatiske energi i et show, der garanterer en kæmpe \"optur\".",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4341/st_optur_650x1030_v2.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4341/st_optur_650x1030_v2.jpg",
       "title": "Simon Talbot - Optur",
       "badge": "Nyhed",
       "length": "71",
@@ -68,7 +50,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4341/st_optur_650x1030_v2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4341/st_optur_650x1030_v2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4341/st_optur_650x1030_v2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4341/st_optur_650x1030_v2.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -92,25 +90,7 @@
     "production": "",
     "productionLink": "",
     "tags": "Simon Talbot,Stand-up show,Comedy,Optur",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/4341/st_optur_650x1030_v2.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/4341/st_optur_650x1030_v2.jpg",
     "productLink": "",
     "access": ["58"],
     "rentalPrice": "39",
@@ -140,6 +120,31 @@
       "firstEntryAt": "2023-01-31 14:45:20",
       "lastEntryAt": "2026-04-02 20:42:56",
       "sampleEntryIds": [120571, 112894, 111260, 111205, 109157]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4341/st_optur_650x1030_v2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4341/st_optur_650x1030_v2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4341/st_optur_650x1030_v2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4341/st_optur_650x1030_v2.jpg?crop=High"
   }
 ]

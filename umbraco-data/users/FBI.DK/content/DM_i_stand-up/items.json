@@ -46,7 +46,23 @@
       "tags": "Comedy,Stand-up,DM i stand-up,Finalen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3919/dm-i-standup-2021-poster.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3919/dm-i-standup-2021-poster.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3919/dm-i-standup-2021-poster.png?crop=Wide",
+      "thumbnailHigh": "/media/3919/dm-i-standup-2021-poster.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-11-08 13:03:48",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3919/dm-i-standup-2021-poster.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3919/dm-i-standup-2021-poster.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3919/dm-i-standup-2021-poster.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3919/dm-i-standup-2021-poster.png?crop=Wide",
+    "thumbnailHigh": "/media/3919/dm-i-standup-2021-poster.png?crop=High"
   },
   {
     "id": 54583,
@@ -496,7 +544,23 @@
       "tags": "DM i stand-up 2019,Stand-up,Comedy,Finalen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3918/poster-lowres.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3918/poster-lowres.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3918/poster-lowres.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3918/poster-lowres.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:38:08",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3918/poster-lowres.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3918/poster-lowres.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3918/poster-lowres.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3918/poster-lowres.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3918/poster-lowres.jpg?crop=High"
   },
   {
     "id": 45143,
@@ -946,7 +1042,23 @@
       "tags": "Comedy,DM i standup,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3476/570x798.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3476/570x798.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3476/570x798.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3476/570x798.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:38:05",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3476/570x798.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3476/570x798.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3476/570x798.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3476/570x798.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3476/570x798.jpg?crop=High"
   },
   {
     "id": 45142,
@@ -1396,7 +1540,23 @@
       "tags": "Comedy,DMi standup,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3466/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3466/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3466/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3466/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,7 +1957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:38:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3466/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3466/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3466/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3466/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3466/400x600.jpg?crop=High"
   },
   {
     "id": 45081,
@@ -1846,7 +2038,23 @@
       "tags": "Comedy,Standup,DM i stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2247,7 +2455,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:49",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3456/dm-i-stand-up-2003_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3456/dm-i-stand-up-2003_400x600.jpg?crop=High"
   },
   {
     "id": 45105,
@@ -2296,7 +2536,23 @@
       "tags": "Comedy,Standup,DM i standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2697,7 +2953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3457/dm-i-stand-up-2004_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3457/dm-i-stand-up-2004_400x600.jpg?crop=High"
   },
   {
     "id": 45106,
@@ -2746,7 +3034,23 @@
       "tags": "Comedy,DM i standup,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3147,7 +3451,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3458/dm-i-stand-up-2006_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3458/dm-i-stand-up-2006_400x600.jpg?crop=High"
   },
   {
     "id": 45114,
@@ -3196,7 +3532,23 @@
       "tags": "Comedy,Standup,DM i standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3459/dm-logo2008.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3459/dm-logo2008.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3459/dm-logo2008.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3459/dm-logo2008.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3597,7 +3949,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3459/dm-logo2008.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3459/dm-logo2008.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3459/dm-logo2008.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3459/dm-logo2008.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3459/dm-logo2008.jpg?crop=High"
   },
   {
     "id": 45128,
@@ -3646,7 +4030,23 @@
       "tags": "Comedy,Standup,DM i standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4047,7 +4447,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3461/dm-i-stand-up-10-_facing_.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3461/dm-i-stand-up-10-_facing_.jpg?crop=High"
   },
   {
     "id": 45129,
@@ -4096,7 +4528,23 @@
       "tags": "DM i Standup,Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3462/dm13_cover_highres.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3462/dm13_cover_highres.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3462/dm13_cover_highres.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3462/dm13_cover_highres.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4497,7 +4945,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:37:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3462/dm13_cover_highres.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3462/dm13_cover_highres.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3462/dm13_cover_highres.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3462/dm13_cover_highres.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3462/dm13_cover_highres.jpg?crop=High"
   },
   {
     "id": 45139,
@@ -4546,7 +5026,23 @@
       "tags": "Comedy,Standup,DMi standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3465/dm15-profile.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3465/dm15-profile.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3465/dm15-profile.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3465/dm15-profile.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4947,6 +5443,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:38:01",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3465/dm15-profile.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3465/dm15-profile.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3465/dm15-profile.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3465/dm15-profile.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3465/dm15-profile.jpg?crop=High"
   }
 ]

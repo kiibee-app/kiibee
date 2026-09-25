@@ -52,7 +52,23 @@
       "tags": "Stand-up,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3338/saeson-2_400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3338/saeson-2_400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3338/saeson-2_400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3338/saeson-2_400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:35:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3338/saeson-2_400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3338/saeson-2_400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3338/saeson-2_400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3338/saeson-2_400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3338/saeson-2_400x600-2.jpg?crop=High"
   },
   {
     "id": 44327,
@@ -512,7 +560,23 @@
       "tags": "Stand-up,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3371/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3371/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3371/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3371/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:35:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3371/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3371/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3371/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3371/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3371/400x600-2.jpg?crop=High"
   },
   {
     "id": 44329,
@@ -972,7 +1068,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3372/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3372/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3372/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3372/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:35:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3372/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3372/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3372/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3372/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3372/400x600-2.jpg?crop=High"
   },
   {
     "id": 44330,
@@ -1432,7 +1576,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3373/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3373/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3373/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3373/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:35:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3373/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3373/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3373/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3373/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3373/400x600-2.jpg?crop=High"
   },
   {
     "id": 44331,
@@ -1892,7 +2084,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3374/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3374/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3374/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3374/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:36:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3374/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3374/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3374/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3374/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3374/400x600-2.jpg?crop=High"
   },
   {
     "id": 44332,
@@ -2352,7 +2592,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3375/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3375/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3375/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3375/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:36:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3375/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3375/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3375/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3375/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3375/400x600-2.jpg?crop=High"
   },
   {
     "id": 44339,
@@ -2812,7 +3100,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3376/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3376/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3376/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3376/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:36:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3376/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3376/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3376/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3376/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3376/400x600-2.jpg?crop=High"
   },
   {
     "id": 44341,
@@ -3272,7 +3608,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3377/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3377/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3377/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3377/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:37:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3377/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3377/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3377/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3377/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3377/400x600-2.jpg?crop=High"
   },
   {
     "id": 44342,
@@ -3732,7 +4116,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3378/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3378/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3378/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3378/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,7 +4537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:37:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3378/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3378/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3378/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3378/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3378/400x600-2.jpg?crop=High"
   },
   {
     "id": 44343,
@@ -4192,7 +4624,23 @@
       "tags": "Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3379/400x600-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3379/400x600-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3379/400x600-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3379/400x600-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4597,6 +5045,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-17 17:37:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3379/400x600-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3379/400x600-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3379/400x600-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3379/400x600-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3379/400x600-2.jpg?crop=High"
   }
 ]

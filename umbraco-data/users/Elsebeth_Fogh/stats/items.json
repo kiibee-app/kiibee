@@ -53,7 +53,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-09-28 15:49:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 50421,
@@ -109,7 +124,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-09-28 15:41:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 50232,
@@ -165,7 +195,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-09-23 11:40:50",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 23451,
@@ -221,7 +266,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-12-09 08:03:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 23083,
@@ -277,7 +337,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-12-04 13:34:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 23081,
@@ -333,7 +408,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-12-04 13:31:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 23080,
@@ -389,7 +479,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-12-04 13:25:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 22252,
@@ -445,7 +550,22 @@
         "value": "umb://document/7a4ac20dde4f4d84a1ac2f29de45c9a1"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-11-14 16:04:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 3393,
@@ -501,7 +621,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-23 09:36:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 3392,
@@ -557,7 +692,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-23 09:35:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 3391,
@@ -613,7 +763,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-23 09:34:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 3390,
@@ -669,7 +834,22 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-23 09:31:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2946,
@@ -725,6 +905,21 @@
         "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
       }
     },
-    "fieldOrder": ["isPlay", "uID", "media"]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-04 19:35:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

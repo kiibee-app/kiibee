@@ -45,32 +45,30 @@
       "year": "2022",
       "description": "<h2>Stream Jacob Taarnhøj Krøllehjern' - lej eller køb online</h2>\nOnemanshowet Krøllehjern’ er Jacob Taarnhøjs andet onemanshow og hans første onemanshow siden hans seneste onemanshow, der samtidigt var hans første onemanshow, og på det tidspunkt eneste onemanshow, indtil hans nyeste onemanshow, onemanshowet Krøllehjern’.\nGør jer klar til en indsigtsfuld, transcenderende og livsbekræftende rejse gennem store tidløse og presserende emner, såsom, men ikke mindst, og i særdeleshed. Krøllehjern’ indeholder desuden praktiske og nemme-at-gå-til løsninger på Klimakrisen, Israel-Palæstinakonflikten og bølge/partikel-dualiteten.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4254/jt_kroellehjern_650x1030.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4254/jt_kroellehjern_650x1030.jpg",
       "title": "JACOB TAARNHØJ – KRØLLEHJERN’",
       "badge": "PREMIERE TILBUD",
       "length": "81",
       "tags": "Onemanshowet Krøllehjern,Jacob Taarnhøj,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=High"
     },
     "type": [
       "73"
@@ -96,25 +94,7 @@
     "production": "",
     "productionLink": "",
     "tags": "Onemanshowet Krøllehjern,Jacob Taarnhøj,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/4254/jt_kroellehjern_650x1030.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/4254/jt_kroellehjern_650x1030.jpg",
     "productLink": "",
     "access": [
       "58"
@@ -148,7 +128,32 @@
         117602,
         117565
       ]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4254/jt_kroellehjern_650x1030.jpg?crop=High"
   },
   {
     "id": 75786,
@@ -196,32 +201,30 @@
       "year": "2019",
       "description": "<h2>Stream Jacob Tarnhøjs Comedy Special - lej eller køb online</h2>\nJacob Taarnhøjs allerførste Comedy Special blev filmet til TV2 på Comedy ZOO i december 2018.\nJacob Taarnhøj helt unikke fortællestil gør ham til en oplevelse på scenen. Han er en komiker, som det i dén grad er blevet værd at holde øje med, efter han i 2017 fik sit gennembrud med den eftertragte ”Talentprisen” i Zulu Comedy Galla. Tilbage i 2012 vandt han stand up konkurrencen 'De Nyeste Nye' #2. Jacobs Comedy Special blev vist på TV 2 i 2019.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4252/jt_comedy_special_650x1030.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4252/jt_comedy_special_650x1030.jpg",
       "title": "JACOB TAARNHØJ – COMEDY SPECIAL",
       "badge": "SE HER",
       "length": "60",
       "tags": "Jacob Taarnhøj,Comedy Special,Stand-up,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4252/jt_comedy_special_650x1030.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4252/jt_comedy_special_650x1030.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4252/jt_comedy_special_650x1030.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4252/jt_comedy_special_650x1030.jpg?crop=High"
     },
     "type": [
       "73"
@@ -247,25 +250,7 @@
     "production": "",
     "productionLink": "",
     "tags": "Jacob Taarnhøj,Comedy Special,Stand-up,Comedy",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/4252/jt_comedy_special_650x1030.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/4252/jt_comedy_special_650x1030.jpg",
     "productLink": "",
     "access": [
       "58"
@@ -299,6 +284,31 @@
         112214,
         111657
       ]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4252/jt_comedy_special_650x1030.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4252/jt_comedy_special_650x1030.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4252/jt_comedy_special_650x1030.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4252/jt_comedy_special_650x1030.jpg?crop=High"
   }
 ]

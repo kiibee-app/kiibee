@@ -1,6 +1,76 @@
-id,key,udi,name,fullName,email,isPurchase,createDate,orderCreateDate,downloads,streams,downloadMediaCount,streamMediaCount,mediaCount,mediaNames,mediaUrls,videoDownloadURLs
-50208,123a6e91-298b-4476-b6b3-28c2eb199e7f,umb://document/123a6e91298b4476b6b328c2eb199e7f,3b9c22092021202031,Henrik Lund Rasmussen,henriklundrasmussen@outlook.dk,true,2021-09-22 20:22:30,2021-09-22 20:22:30,0,0,0,0,1,Styrk din indre power med Girafsprog,/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/,
-23079,d85886ee-7d08-40b5-ba97-f2631fe8bef3,umb://document/d85886ee7d0840b5ba97f2631fe8bef3,278j04122020132433,Heidi Bonsvig,heidi@goch.dk,true,2020-12-04 13:24:54,2020-12-04 13:24:54,0,0,0,0,1,Styrk din indre power med Girafsprog,/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/,
-3389,cc11a49c-0eac-423b-b619-9d06bb5fcaa6,umb://document/cc11a49c0eac423bb6199d06bb5fcaa6,8x4723032020092923,Anne Stadager,annestadager1@gmail.com,true,2020-03-23 09:30:17,2020-03-23 09:30:17,0,0,0,0,1,Styrk din indre power med Girafsprog,/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/,
-2769,77a5ef1f-30f9-4f9c-a988-3e1744dd5043,umb://document/77a5ef1f30f94f9ca9883e1744dd5043,k3m525022020124916,Anna Nielsen,annadorethe@yahoo.dk,true,2020-02-25 12:49:44,2020-02-25 12:49:44,0,0,0,0,1,Styrk din indre power med Girafsprog,/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/,
-2759,89f18f21-7e0f-4ca6-ae7c-e8a0d5363b1d,umb://document/89f18f217e0f4ca6ae7ce8a0d5363b1d,4ut424022020173212,Jenet Helvig,mail@klinik-unik.dk,true,2020-02-24 17:32:35,2020-02-24 17:32:35,0,0,0,0,1,Styrk din indre power med Girafsprog,/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/,
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,publishDate,releaseDate,removeDate,ownerName,ownerId,updaterName,updaterId,parentId,sortOrder,urls,videoID,email,streams,downloads,isPurchase,expireDate,price,fullName,message,media
+"50208","123a6e91-298b-4476-b6b3-28c2eb199e7f","umb://document/123a6e91298b4476b6b328c2eb199e7f","3b9c22092021202031","purchase","true","true","2021-09-22 20:22:30","2021-09-22 20:22:30","","","","","","","","2721","4","[""/elsebeth-fogh/purchases/3b9c22092021202031/""]","","henriklundrasmussen@outlook.dk","0","0","true","2021-10-22 20:22:30","279","Henrik Lund Rasmussen","Tak for dit køb af et eller flere moduler af kurset Styrk din indre power med Girafsprog
+
+5 enkle trin til at udvikle din følelsesmæssige intelligens og forbedre dine relationer straks
+
+Du vil modtage en velkomst hilsen med links til kurset 
+
+Du kan læse mere på min hjemmeside 
+www.elsebethfogh.dk og/eller
+
+På de sociale medier, hvor jeg er aktiv både på Linkedin, Instagram, You tube & Facebook
+
+Facebook side:
+Træd ud af skyggen og lad dit lys skinne
+
+Jeg vil elske at høre om dine oplevelser","[{""udi"":""umb://document/43931aa8966e4ee79f997c435f9c1f62"",""key"":""43931aa8-966e-4ee7-9f99-7c435f9c1f62"",""resolved"":true,""id"":2724,""name"":""Styrk din indre power med Girafsprog"",""title"":""Styrk din indre power med Girafsprog"",""urls"":[""/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/1561/velkommen-5-moduler.pdf"",""webContentURL"":"""",""thumbnail"":""/media/1564/5-enkle-steps-200x230.jpg"",""purchasePrice"":""279"",""rentalPrice"":""""}]"
+"23079","d85886ee-7d08-40b5-ba97-f2631fe8bef3","umb://document/d85886ee7d0840b5ba97f2631fe8bef3","278j04122020132433","purchase","true","true","2020-12-04 13:24:54","2020-12-04 13:24:54","","","","","","","","2721","3","[""/elsebeth-fogh/purchases/278j04122020132433/""]","","heidi@goch.dk","0","0","true","2021-01-03 13:24:54","279","Heidi Bonsvig","Tak for dit køb af et eller flere moduler af kurset Styrk din indre power med Girafsprog
+
+5 enkle trin til at udvikle din følelsesmæssige intelligens og forbedre dine relationer straks
+
+Du vil modtage en velkomst hilsen med links til kurset 
+
+Du kan læse mere på min hjemmeside 
+www.elsebethfogh.dk og/eller
+
+På de sociale medier, hvor jeg er aktiv både på Linkedin, Instagram, You tube & Facebook
+
+Facebook side:
+Træd ud af skyggen og lad dit lys skinne
+
+Jeg vil elske at høre om dine oplevelser","[{""udi"":""umb://document/43931aa8966e4ee79f997c435f9c1f62"",""key"":""43931aa8-966e-4ee7-9f99-7c435f9c1f62"",""resolved"":true,""id"":2724,""name"":""Styrk din indre power med Girafsprog"",""title"":""Styrk din indre power med Girafsprog"",""urls"":[""/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/1561/velkommen-5-moduler.pdf"",""webContentURL"":"""",""thumbnail"":""/media/1564/5-enkle-steps-200x230.jpg"",""purchasePrice"":""279"",""rentalPrice"":""""}]"
+"3389","cc11a49c-0eac-423b-b619-9d06bb5fcaa6","umb://document/cc11a49c0eac423bb6199d06bb5fcaa6","8x4723032020092923","purchase","false","false","2020-03-23 09:30:17","2020-04-22 09:31:17","","","","","","","","2721","2","[""Dette punkt er endnu ikke udgivet""]","","annestadager1@gmail.com","0","0","true","","279","Anne Stadager","Tak for dit køb af et eller flere moduler af kurset Styrk din indre power med Girafsprog
+
+5 enkle trin til at udvikle din følelsesmæssige intelligens og forbedre dine relationer straks
+
+Du vil modtage en velkomst hilsen med links til kurset 
+
+Du kan læse mere på min hjemmeside 
+www.elsebethfogh.dk og/eller
+
+På de sociale medier, hvor jeg er aktiv både på Linkedin, Instagram, You tube & Facebook
+
+Facebook side:
+Træd ud af skyggen og lad dit lys skinne
+
+Jeg vil elske at høre om dine oplevelser","[{""udi"":""umb://document/43931aa8966e4ee79f997c435f9c1f62"",""key"":""43931aa8-966e-4ee7-9f99-7c435f9c1f62"",""resolved"":true,""id"":2724,""name"":""Styrk din indre power med Girafsprog"",""title"":""Styrk din indre power med Girafsprog"",""urls"":[""/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/1561/velkommen-5-moduler.pdf"",""webContentURL"":"""",""thumbnail"":""/media/1564/5-enkle-steps-200x230.jpg"",""purchasePrice"":""279"",""rentalPrice"":""""}]"
+"2769","77a5ef1f-30f9-4f9c-a988-3e1744dd5043","umb://document/77a5ef1f30f94f9ca9883e1744dd5043","k3m525022020124916","purchase","false","false","2020-02-25 12:49:44","2020-03-26 12:49:47","","","","","","","","2721","1","[""Dette punkt er endnu ikke udgivet""]","","annadorethe@yahoo.dk","0","0","true","","279","Anna Nielsen","Tak for dit køb af et eller flere moduler af kurset Styrk din indre power med Girafsprog
+
+5 enkle trin til at udvikle din følelsesmæssige intelligens og forbedre dine relationer straks
+
+Du vil modtage en velkomst hilsen med links til kurset 
+
+Du kan læse mere på min hjemmeside 
+www.elsebethfogh.dk og/eller
+
+På de sociale medier, hvor jeg er aktiv både på Linkedin, Instagram, You tube & Facebook
+
+Facebook side:
+Træd ud af skyggen og lad dit lys skinne
+
+Jeg vil elske at høre om dine oplevelser","[{""udi"":""umb://document/43931aa8966e4ee79f997c435f9c1f62"",""key"":""43931aa8-966e-4ee7-9f99-7c435f9c1f62"",""resolved"":true,""id"":2724,""name"":""Styrk din indre power med Girafsprog"",""title"":""Styrk din indre power med Girafsprog"",""urls"":[""/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/1561/velkommen-5-moduler.pdf"",""webContentURL"":"""",""thumbnail"":""/media/1564/5-enkle-steps-200x230.jpg"",""purchasePrice"":""279"",""rentalPrice"":""""}]"
+"2759","89f18f21-7e0f-4ca6-ae7c-e8a0d5363b1d","umb://document/89f18f217e0f4ca6ae7ce8a0d5363b1d","4ut424022020173212","purchase","false","false","2020-02-24 17:32:35","2020-03-25 17:33:33","","","","","","","","2721","0","[""Dette punkt er endnu ikke udgivet""]","","mail@klinik-unik.dk","0","0","true","","279","Jenet Helvig","Tak for dit køb af et eller flere moduler af kurset Styrk din indre power med Girafsprog
+
+5 enkle trin til at udvikle din følelsesmæssige intelligens og forbedre dine relationer straks
+
+Du vil modtage en velkomst hilsen med links til kurset 
+
+Du kan læse mere på min hjemmeside 
+www.elsebethfogh.dk og/eller
+
+På de sociale medier, hvor jeg er aktiv både på Linkedin, Instagram, You tube & Facebook
+
+Facebook side:
+Træd ud af skyggen og lad dit lys skinne
+
+Jeg vil elske at høre om dine oplevelser","[{""udi"":""umb://document/43931aa8966e4ee79f997c435f9c1f62"",""key"":""43931aa8-966e-4ee7-9f99-7c435f9c1f62"",""resolved"":true,""id"":2724,""name"":""Styrk din indre power med Girafsprog"",""title"":""Styrk din indre power med Girafsprog"",""urls"":[""/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/1561/velkommen-5-moduler.pdf"",""webContentURL"":"""",""thumbnail"":""/media/1564/5-enkle-steps-200x230.jpg"",""purchasePrice"":""279"",""rentalPrice"":""""}]"

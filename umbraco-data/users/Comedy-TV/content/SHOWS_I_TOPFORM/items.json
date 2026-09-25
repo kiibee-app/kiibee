@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3250/dybvad_erdetikke_400x556.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3250/dybvad_erdetikke_400x556.jpg?crop=High"
   },
   {
     "id": 41898,
@@ -498,7 +546,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3068/jokebox-vod-artwork.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3068/jokebox-vod-artwork.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3068/jokebox-vod-artwork.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3068/jokebox-vod-artwork.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -899,7 +963,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3068/jokebox-vod-artwork.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3068/jokebox-vod-artwork.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3068/jokebox-vod-artwork.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3068/jokebox-vod-artwork.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3068/jokebox-vod-artwork.jpg?crop=High"
   },
   {
     "id": 43465,
@@ -948,7 +1044,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3272/elias-fucking-glad-clean.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3272/elias-fucking-glad-clean.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3272/elias-fucking-glad-clean.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3272/elias-fucking-glad-clean.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,7 +1461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3272/elias-fucking-glad-clean.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3272/elias-fucking-glad-clean.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3272/elias-fucking-glad-clean.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3272/elias-fucking-glad-clean.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3272/elias-fucking-glad-clean.jpg?crop=High"
   },
   {
     "id": 43462,
@@ -1398,7 +1542,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3269/tc_digital_vod.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3269/tc_digital_vod.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3269/tc_digital_vod.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3269/tc_digital_vod.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1799,7 +1959,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3269/tc_digital_vod.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3269/tc_digital_vod.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3269/tc_digital_vod.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3269/tc_digital_vod.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3269/tc_digital_vod.jpg?crop=High"
   },
   {
     "id": 43432,
@@ -1848,7 +2040,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3247/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3247/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3247/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3247/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2249,7 +2457,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3247/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3247/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3247/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3247/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3247/400x600.jpg?crop=High"
   },
   {
     "id": 43446,
@@ -2298,7 +2538,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3257/uffe-show4.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3257/uffe-show4.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3257/uffe-show4.png?crop=Wide",
+      "thumbnailHigh": "/media/3257/uffe-show4.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2699,7 +2955,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3257/uffe-show4.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3257/uffe-show4.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3257/uffe-show4.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3257/uffe-show4.png?crop=Wide",
+    "thumbnailHigh": "/media/3257/uffe-show4.png?crop=High"
   },
   {
     "id": 39856,
@@ -2748,7 +3036,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3040/mick-spas.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3040/mick-spas.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3040/mick-spas.png?crop=Wide",
+      "thumbnailHigh": "/media/3040/mick-spas.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3149,7 +3453,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3040/mick-spas.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3040/mick-spas.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3040/mick-spas.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3040/mick-spas.png?crop=Wide",
+    "thumbnailHigh": "/media/3040/mick-spas.png?crop=High"
   },
   {
     "id": 39848,
@@ -3200,7 +3536,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3036/nico.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3036/nico.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3036/nico.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3036/nico.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3601,7 +3953,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3036/nico.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3036/nico.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3036/nico.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3036/nico.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3036/nico.jpeg?crop=High"
   },
   {
     "id": 42464,
@@ -3652,7 +4036,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3131/krlighed.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3131/krlighed.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3131/krlighed.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3131/krlighed.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4053,7 +4453,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3131/krlighed.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3131/krlighed.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3131/krlighed.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3131/krlighed.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3131/krlighed.jpg?crop=High"
   },
   {
     "id": 43441,
@@ -4102,7 +4534,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3252/amin-jensen-stort.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3252/amin-jensen-stort.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3252/amin-jensen-stort.png?crop=Wide",
+      "thumbnailHigh": "/media/3252/amin-jensen-stort.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4503,7 +4951,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3252/amin-jensen-stort.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3252/amin-jensen-stort.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3252/amin-jensen-stort.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3252/amin-jensen-stort.png?crop=Wide",
+    "thumbnailHigh": "/media/3252/amin-jensen-stort.png?crop=High"
   },
   {
     "id": 41906,
@@ -4552,7 +5032,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4953,7 +5449,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3072/thomas-hartmann-hartmann-3.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3072/thomas-hartmann-hartmann-3.jpeg?crop=High"
   },
   {
     "id": 43444,
@@ -5002,7 +5530,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3255/mick-undskyld.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3255/mick-undskyld.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3255/mick-undskyld.png?crop=Wide",
+      "thumbnailHigh": "/media/3255/mick-undskyld.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5403,7 +5947,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3255/mick-undskyld.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3255/mick-undskyld.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3255/mick-undskyld.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3255/mick-undskyld.png?crop=Wide",
+    "thumbnailHigh": "/media/3255/mick-undskyld.png?crop=High"
   },
   {
     "id": 46222,
@@ -5454,7 +6030,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5855,7 +6447,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-25 09:57:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3504/jacob-wilson_live-fra-comedy-zoo_400x600.jpg?crop=High"
   },
   {
     "id": 43754,
@@ -5904,7 +6528,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3280/hartmann-x-ii.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3280/hartmann-x-ii.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3280/hartmann-x-ii.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3280/hartmann-x-ii.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6305,7 +6945,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-07 13:04:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3280/hartmann-x-ii.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3280/hartmann-x-ii.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3280/hartmann-x-ii.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3280/hartmann-x-ii.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3280/hartmann-x-ii.jpeg?crop=High"
   },
   {
     "id": 47404,
@@ -6354,7 +7026,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6755,6 +7443,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-06-18 09:29:50",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3557/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
   }
 ]

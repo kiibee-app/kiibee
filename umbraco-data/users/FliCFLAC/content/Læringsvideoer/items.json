@@ -45,32 +45,30 @@
       "year": "2017",
       "description": "Børnekiropraktor Kari Skovmand gennemgår på 60 minutter nogle af de væsentligste parametre i den motoriske udvikling hos børn i alderen 0-12 måneder. Materialet henvender sig til mennesker der, privat som professionelt, har med babyer at gøre i deres hverdag.\n\nVed køb får du et link i din kvitteringsmail, så du kan downloade videoen til din egen computer indenfor 48 timer - god fornøjelse.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1212/flicflac-thumb.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1212/flicflac-thumb.jpg",
       "title": "Motorisk udvikling hos babyer",
       "badge": "",
       "length": "60",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1212/flicflac-thumb.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1212/flicflac-thumb.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1212/flicflac-thumb.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1212/flicflac-thumb.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -493,7 +491,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:42:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "ownerName": "Anders Halfter",
+    "ownerId": 1,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1212/flicflac-thumb.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1212/flicflac-thumb.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1212/flicflac-thumb.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1212/flicflac-thumb.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1212/flicflac-thumb.jpg?crop=High"
   },
   {
     "id": 1874,
@@ -548,7 +578,23 @@
       "tags": "LÆRING",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -953,6 +999,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:42:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "ownerName": "Anders Halfter",
+    "ownerId": 1,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg?crop=High"
   }
 ]

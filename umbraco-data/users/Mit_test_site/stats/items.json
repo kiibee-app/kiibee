@@ -12,9 +12,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,51434",
     "sortOrder": 33,
-    "urls": [
-      "/mit-test-site/stats/a296bfd38de74f31997170ac2cd6dbe8/"
-    ],
+    "urls": ["/mit-test-site/stats/a296bfd38de74f31997170ac2cd6dbe8/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -55,11 +53,22 @@
         "value": "umb://document/eccd26979a724ea6bf952f11993e127f"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-11-10 15:06:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 15475,
@@ -74,9 +83,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,15475",
     "sortOrder": 32,
-    "urls": [
-      "/mit-test-site/stats/3279a2009f3341b4b10bc9c55f0167de/"
-    ],
+    "urls": ["/mit-test-site/stats/3279a2009f3341b4b10bc9c55f0167de/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -117,11 +124,22 @@
         "value": "umb://document/eccd26979a724ea6bf952f11993e127f"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-05-15 19:18:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 15250,
@@ -136,9 +154,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,15250",
     "sortOrder": 31,
-    "urls": [
-      "/mit-test-site/stats/befce2a9ebf049f7b5c59ab93fb32244/"
-    ],
+    "urls": ["/mit-test-site/stats/befce2a9ebf049f7b5c59ab93fb32244/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -179,11 +195,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-05-14 14:07:48",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 11209,
@@ -198,9 +225,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,11209",
     "sortOrder": 30,
-    "urls": [
-      "/mit-test-site/stats/e22ab96cb8fb4f8884d7a47090271185/"
-    ],
+    "urls": ["/mit-test-site/stats/e22ab96cb8fb4f8884d7a47090271185/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -241,11 +266,22 @@
         "value": "umb://document/eccd26979a724ea6bf952f11993e127f"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-04-23 18:47:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 11206,
@@ -260,9 +296,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,11206",
     "sortOrder": 29,
-    "urls": [
-      "/mit-test-site/stats/9d6c1a36e2bd46699fe4fbfca91741b9/"
-    ],
+    "urls": ["/mit-test-site/stats/9d6c1a36e2bd46699fe4fbfca91741b9/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -303,11 +337,22 @@
         "value": "umb://document/014fdd10a855441ba7cb23f118a36de4"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-11-22 13:19:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 11201,
@@ -322,9 +367,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,11201",
     "sortOrder": 28,
-    "urls": [
-      "/mit-test-site/stats/c642a4717a80473fa1747893ae4a71ee/"
-    ],
+    "urls": ["/mit-test-site/stats/c642a4717a80473fa1747893ae4a71ee/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -365,11 +408,22 @@
         "value": "umb://document/eccd26979a724ea6bf952f11993e127f"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-04-23 18:26:46",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 11200,
@@ -384,9 +438,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,11200",
     "sortOrder": 27,
-    "urls": [
-      "/mit-test-site/stats/4bd73c7751c14d76b4148a34fbae8ad6/"
-    ],
+    "urls": ["/mit-test-site/stats/4bd73c7751c14d76b4148a34fbae8ad6/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -427,11 +479,22 @@
         "value": "umb://document/014fdd10a855441ba7cb23f118a36de4"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-11-22 13:19:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 11199,
@@ -446,9 +509,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,11199",
     "sortOrder": 26,
-    "urls": [
-      "/mit-test-site/stats/b372cd27f5624fd3a1f630d13f5c4ed9/"
-    ],
+    "urls": ["/mit-test-site/stats/b372cd27f5624fd3a1f630d13f5c4ed9/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -489,11 +550,22 @@
         "value": "umb://document/014fdd10a855441ba7cb23f118a36de4"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2021-11-22 13:19:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2937,
@@ -508,9 +580,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2937",
     "sortOrder": 25,
-    "urls": [
-      "/mit-test-site/stats/6acbb858551a4354b0d1c4e6fb8a91d2/"
-    ],
+    "urls": ["/mit-test-site/stats/6acbb858551a4354b0d1c4e6fb8a91d2/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -551,11 +621,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 20:10:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2936,
@@ -570,9 +651,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2936",
     "sortOrder": 24,
-    "urls": [
-      "/mit-test-site/stats/98655796329840f88e399ab6019f04cf/"
-    ],
+    "urls": ["/mit-test-site/stats/98655796329840f88e399ab6019f04cf/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -613,11 +692,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:08:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2935,
@@ -632,9 +722,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2935",
     "sortOrder": 23,
-    "urls": [
-      "/mit-test-site/stats/49883b38624c464b9647d74b7533ca41/"
-    ],
+    "urls": ["/mit-test-site/stats/49883b38624c464b9647d74b7533ca41/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -675,11 +763,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:08:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2934,
@@ -694,9 +793,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2934",
     "sortOrder": 22,
-    "urls": [
-      "/mit-test-site/stats/f7437cd109a54e27b26ed82d80f2dcbc/"
-    ],
+    "urls": ["/mit-test-site/stats/f7437cd109a54e27b26ed82d80f2dcbc/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -737,11 +834,22 @@
         "value": "umb://document/1352d15eb74b424cbd7ea62dfe4ba648"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:08:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2933,
@@ -756,9 +864,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2933",
     "sortOrder": 21,
-    "urls": [
-      "/mit-test-site/stats/7616a95e0b8f48069045978890145190/"
-    ],
+    "urls": ["/mit-test-site/stats/7616a95e0b8f48069045978890145190/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -799,11 +905,22 @@
         "value": "umb://document/1352d15eb74b424cbd7ea62dfe4ba648"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:07:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2932,
@@ -818,9 +935,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2932",
     "sortOrder": 20,
-    "urls": [
-      "/mit-test-site/stats/608894f234e94ef19ce3c6176f2f733e/"
-    ],
+    "urls": ["/mit-test-site/stats/608894f234e94ef19ce3c6176f2f733e/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -861,11 +976,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:07:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2931,
@@ -880,9 +1006,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2931",
     "sortOrder": 19,
-    "urls": [
-      "/mit-test-site/stats/eb68654172a94783bf6f1ef26a6156f4/"
-    ],
+    "urls": ["/mit-test-site/stats/eb68654172a94783bf6f1ef26a6156f4/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -923,11 +1047,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:07:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2930,
@@ -942,9 +1077,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2930",
     "sortOrder": 18,
-    "urls": [
-      "/mit-test-site/stats/d367c99e9a8441dcb81d2c4be828ba29/"
-    ],
+    "urls": ["/mit-test-site/stats/d367c99e9a8441dcb81d2c4be828ba29/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -985,11 +1118,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 18:06:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2929,
@@ -1004,9 +1148,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2929",
     "sortOrder": 17,
-    "urls": [
-      "/mit-test-site/stats/be4845a95acc4b9ebc9ab01965eadedf/"
-    ],
+    "urls": ["/mit-test-site/stats/be4845a95acc4b9ebc9ab01965eadedf/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1047,11 +1189,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:59:43",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2928,
@@ -1066,9 +1219,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2928",
     "sortOrder": 16,
-    "urls": [
-      "/mit-test-site/stats/7cb7e66d32f44fd39e195f3a0cfb5013/"
-    ],
+    "urls": ["/mit-test-site/stats/7cb7e66d32f44fd39e195f3a0cfb5013/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1109,11 +1260,22 @@
         "value": "umb://document/1352d15eb74b424cbd7ea62dfe4ba648"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:59:08",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2927,
@@ -1128,9 +1290,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2927",
     "sortOrder": 15,
-    "urls": [
-      "/mit-test-site/stats/6d1e753b290047c7a6de399e93f2ce8d/"
-    ],
+    "urls": ["/mit-test-site/stats/6d1e753b290047c7a6de399e93f2ce8d/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1171,11 +1331,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:57:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2926,
@@ -1190,9 +1361,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2926",
     "sortOrder": 14,
-    "urls": [
-      "/mit-test-site/stats/4c6d7e9ade104ffe88d3e6dc39554861/"
-    ],
+    "urls": ["/mit-test-site/stats/4c6d7e9ade104ffe88d3e6dc39554861/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1233,11 +1402,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:57:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2925,
@@ -1252,9 +1432,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2925",
     "sortOrder": 13,
-    "urls": [
-      "/mit-test-site/stats/bcd5e12fde5a4e938d114daf54e505d9/"
-    ],
+    "urls": ["/mit-test-site/stats/bcd5e12fde5a4e938d114daf54e505d9/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1295,11 +1473,22 @@
         "value": "umb://document/1352d15eb74b424cbd7ea62dfe4ba648"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:57:02",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2923,
@@ -1314,9 +1503,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2923",
     "sortOrder": 12,
-    "urls": [
-      "/mit-test-site/stats/a0a50386151646d39143278387e2273d/"
-    ],
+    "urls": ["/mit-test-site/stats/a0a50386151646d39143278387e2273d/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1357,11 +1544,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:52:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2922,
@@ -1376,9 +1574,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2922",
     "sortOrder": 11,
-    "urls": [
-      "/mit-test-site/stats/e04892d06d2d423ba2051cb75f3830c5/"
-    ],
+    "urls": ["/mit-test-site/stats/e04892d06d2d423ba2051cb75f3830c5/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1419,11 +1615,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:50:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2921,
@@ -1438,9 +1645,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2921",
     "sortOrder": 10,
-    "urls": [
-      "/mit-test-site/stats/5f7814eb70ba4842b8428d18064269de/"
-    ],
+    "urls": ["/mit-test-site/stats/5f7814eb70ba4842b8428d18064269de/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1481,11 +1686,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:50:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2920,
@@ -1500,9 +1716,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2920",
     "sortOrder": 9,
-    "urls": [
-      "/mit-test-site/stats/b48c68e37ca94286bece17d1f5f88b62/"
-    ],
+    "urls": ["/mit-test-site/stats/b48c68e37ca94286bece17d1f5f88b62/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1543,11 +1757,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:50:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2919,
@@ -1562,9 +1787,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2919",
     "sortOrder": 8,
-    "urls": [
-      "/mit-test-site/stats/cf22af6dfa1b467084797de797ea5508/"
-    ],
+    "urls": ["/mit-test-site/stats/cf22af6dfa1b467084797de797ea5508/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1605,11 +1828,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:50:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2918,
@@ -1624,9 +1858,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2918",
     "sortOrder": 7,
-    "urls": [
-      "/mit-test-site/stats/978df8bafd954a108dbf8f0fbc121d75/"
-    ],
+    "urls": ["/mit-test-site/stats/978df8bafd954a108dbf8f0fbc121d75/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1667,11 +1899,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2917,
@@ -1686,9 +1929,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2917",
     "sortOrder": 6,
-    "urls": [
-      "/mit-test-site/stats/6b19de08d60a4f20a8e3697174658ca8/"
-    ],
+    "urls": ["/mit-test-site/stats/6b19de08d60a4f20a8e3697174658ca8/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1729,11 +1970,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2916,
@@ -1748,9 +2000,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2916",
     "sortOrder": 5,
-    "urls": [
-      "/mit-test-site/stats/e0b2e0f8055b45a5a2eabb5f97470440/"
-    ],
+    "urls": ["/mit-test-site/stats/e0b2e0f8055b45a5a2eabb5f97470440/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1791,11 +2041,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2915,
@@ -1810,9 +2071,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2915",
     "sortOrder": 4,
-    "urls": [
-      "/mit-test-site/stats/8ddcf40f48ff4655803637f9cb02e4de/"
-    ],
+    "urls": ["/mit-test-site/stats/8ddcf40f48ff4655803637f9cb02e4de/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1853,11 +2112,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2914,
@@ -1872,9 +2142,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2914",
     "sortOrder": 3,
-    "urls": [
-      "/mit-test-site/stats/6a8b3f7cc9bf49e693b6f80a0dfe7f7a/"
-    ],
+    "urls": ["/mit-test-site/stats/6a8b3f7cc9bf49e693b6f80a0dfe7f7a/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1915,11 +2183,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2913,
@@ -1934,9 +2213,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2913",
     "sortOrder": 2,
-    "urls": [
-      "/mit-test-site/stats/e4f37c75997e4b6783a31e2b83fd780c/"
-    ],
+    "urls": ["/mit-test-site/stats/e4f37c75997e4b6783a31e2b83fd780c/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -1977,11 +2254,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2912,
@@ -1996,9 +2284,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2912",
     "sortOrder": 1,
-    "urls": [
-      "/mit-test-site/stats/eb97d39ff9ce4296b97d695fc4a2dc97/"
-    ],
+    "urls": ["/mit-test-site/stats/eb97d39ff9ce4296b97d695fc4a2dc97/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -2039,11 +2325,22 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2911,
@@ -2058,9 +2355,7 @@
     "parentId": 2822,
     "path": "-1,1067,2550,2822,2911",
     "sortOrder": 0,
-    "urls": [
-      "/mit-test-site/stats/eeb78152c4ef4aa493cfc94070866a60/"
-    ],
+    "urls": ["/mit-test-site/stats/eeb78152c4ef4aa493cfc94070866a60/"],
     "fields": {
       "isPlay": "1",
       "uID": "",
@@ -2101,10 +2396,21 @@
         "value": "umb://document/c91f2ae3664542cb8c794d5531cd4006"
       }
     },
-    "fieldOrder": [
-      "isPlay",
-      "uID",
-      "media"
-    ]
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "publishDate": "2020-03-03 17:46:04",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

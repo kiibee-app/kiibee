@@ -46,7 +46,23 @@
       "tags": "Slip,Cheif1",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=Wide",
+      "thumbnailHigh": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2703/skaermbillede-2020-12-16-kl-115345.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=Wide",
+    "thumbnailHigh": "/media/2703/skaermbillede-2020-12-16-kl-115345.png?crop=High"
   },
   {
     "id": 24546,
@@ -496,7 +544,23 @@
       "tags": "Cheif1",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=Wide",
+      "thumbnailHigh": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2707/skaermbillede-2020-12-16-kl-120955.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=Wide",
+    "thumbnailHigh": "/media/2707/skaermbillede-2020-12-16-kl-120955.png?crop=High"
   },
   {
     "id": 24543,
@@ -948,7 +1044,23 @@
       "tags": "Cheif1,Albummet Slip",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=Wide",
+      "thumbnailHigh": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1349,7 +1461,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2705/skaermbillede-2020-12-16-kl-120528.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=Wide",
+    "thumbnailHigh": "/media/2705/skaermbillede-2020-12-16-kl-120528.png?crop=High"
   },
   {
     "id": 24545,
@@ -1398,7 +1542,23 @@
       "tags": "Cheif1,Alummet Slip",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=Wide",
+      "thumbnailHigh": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1799,7 +1959,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2706/skaermbillede-2020-12-16-kl-120808.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=Wide",
+    "thumbnailHigh": "/media/2706/skaermbillede-2020-12-16-kl-120808.png?crop=High"
   },
   {
     "id": 24542,
@@ -1848,7 +2040,23 @@
       "tags": "Cheif1,Mesterværk,Albummet Slip",
       "hidePlay": "0",
       "hideDownload": "1",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=Wide",
+      "thumbnailHigh": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2249,6 +2457,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:16",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2704/skaermbillede-2020-12-16-kl-115844.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=Wide",
+    "thumbnailHigh": "/media/2704/skaermbillede-2020-12-16-kl-115844.png?crop=High"
   }
 ]

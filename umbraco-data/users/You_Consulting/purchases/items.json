@@ -96,7 +96,16 @@
       "fullName": "Line Juncher Lysdahlgaard",
       "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
       "media": "umb://document/18557172088b49019013ac25fe5d1234"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78240,
@@ -195,6 +204,15 @@
       "fullName": "Stine Roel",
       "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
       "media": "umb://document/18557172088b49019013ac25fe5d1234"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

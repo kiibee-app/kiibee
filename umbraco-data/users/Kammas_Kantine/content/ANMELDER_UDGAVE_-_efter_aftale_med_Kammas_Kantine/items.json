@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3275/kamma-ka-lgriner.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3275/kamma-ka-lgriner.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3275/kamma-ka-lgriner.png?crop=Wide",
+      "thumbnailHigh": "/media/3275/kamma-ka-lgriner.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 20:06:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3275/kamma-ka-lgriner.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3275/kamma-ka-lgriner.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3275/kamma-ka-lgriner.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3275/kamma-ka-lgriner.png?crop=Wide",
+    "thumbnailHigh": "/media/3275/kamma-ka-lgriner.png?crop=High"
   },
   {
     "id": 43020,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide",
+      "thumbnailHigh": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide",
+    "thumbnailHigh": "/media/3203/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
   },
   {
     "id": 43029,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3204/den-ra-ka-l00_01_14_20still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3204/den-ra-ka-l00_01_14_20still001.png?crop=High"
   },
   {
     "id": 43157,
@@ -1404,7 +1548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,7 +1965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3210/ka-lkoed-00_01_15_16still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3210/ka-lkoed-00_01_15_16still001.png?crop=High"
   },
   {
     "id": 43158,
@@ -1856,7 +2048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3211/cremede-ka-l.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3211/cremede-ka-l.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3211/cremede-ka-l.png?crop=Wide",
+      "thumbnailHigh": "/media/3211/cremede-ka-l.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2257,7 +2465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3211/cremede-ka-l.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3211/cremede-ka-l.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3211/cremede-ka-l.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3211/cremede-ka-l.png?crop=Wide",
+    "thumbnailHigh": "/media/3211/cremede-ka-l.png?crop=High"
   },
   {
     "id": 43159,
@@ -2308,7 +2548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3212/kamma-grin-med-ka-l.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3212/kamma-grin-med-ka-l.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3212/kamma-grin-med-ka-l.png?crop=Wide",
+      "thumbnailHigh": "/media/3212/kamma-grin-med-ka-l.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2709,7 +2965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3212/kamma-grin-med-ka-l.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3212/kamma-grin-med-ka-l.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3212/kamma-grin-med-ka-l.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3212/kamma-grin-med-ka-l.png?crop=Wide",
+    "thumbnailHigh": "/media/3212/kamma-grin-med-ka-l.png?crop=High"
   },
   {
     "id": 43162,
@@ -2760,7 +3048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=Wide",
+      "thumbnailHigh": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3161,7 +3465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3213/den-stegte-ka-l00_01_42_16still004.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=Wide",
+    "thumbnailHigh": "/media/3213/den-stegte-ka-l00_01_42_16still004.png?crop=High"
   },
   {
     "id": 43163,
@@ -3212,7 +3548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3613,7 +3965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3214/den-bagte-ka-l00_07_51_17still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3214/den-bagte-ka-l00_07_51_17still001.png?crop=High"
   },
   {
     "id": 43164,
@@ -3664,7 +4048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3215/ka-l-hacks-sug.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3215/ka-l-hacks-sug.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3215/ka-l-hacks-sug.png?crop=Wide",
+      "thumbnailHigh": "/media/3215/ka-l-hacks-sug.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4065,7 +4465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3215/ka-l-hacks-sug.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3215/ka-l-hacks-sug.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3215/ka-l-hacks-sug.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3215/ka-l-hacks-sug.png?crop=Wide",
+    "thumbnailHigh": "/media/3215/ka-l-hacks-sug.png?crop=High"
   },
   {
     "id": 43178,
@@ -4116,7 +4548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3229/kammas-online-kursus.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3229/kammas-online-kursus.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3229/kammas-online-kursus.png?crop=Wide",
+      "thumbnailHigh": "/media/3229/kammas-online-kursus.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4517,7 +4965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3229/kammas-online-kursus.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3229/kammas-online-kursus.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3229/kammas-online-kursus.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3229/kammas-online-kursus.png?crop=Wide",
+    "thumbnailHigh": "/media/3229/kammas-online-kursus.png?crop=High"
   },
   {
     "id": 43224,
@@ -4568,7 +5048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3232/masser-af-groent.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3232/masser-af-groent.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3232/masser-af-groent.png?crop=Wide",
+      "thumbnailHigh": "/media/3232/masser-af-groent.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4969,7 +5465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3232/masser-af-groent.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3232/masser-af-groent.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3232/masser-af-groent.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3232/masser-af-groent.png?crop=Wide",
+    "thumbnailHigh": "/media/3232/masser-af-groent.png?crop=High"
   },
   {
     "id": 43225,
@@ -5020,7 +5548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3234/ka-l-superhelt.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3234/ka-l-superhelt.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3234/ka-l-superhelt.png?crop=Wide",
+      "thumbnailHigh": "/media/3234/ka-l-superhelt.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5421,6 +5965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 19:59:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3234/ka-l-superhelt.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3234/ka-l-superhelt.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3234/ka-l-superhelt.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3234/ka-l-superhelt.png?crop=Wide",
+    "thumbnailHigh": "/media/3234/ka-l-superhelt.png?crop=High"
   }
 ]

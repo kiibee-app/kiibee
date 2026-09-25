@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4798/nervesystem_kvindeloeber.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4798/nervesystem_kvindeloeber.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4798/nervesystem_kvindeloeber.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4798/nervesystem_kvindeloeber.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 20:17:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4798/nervesystem_kvindeloeber.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4798/nervesystem_kvindeloeber.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4798/nervesystem_kvindeloeber.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4798/nervesystem_kvindeloeber.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4798/nervesystem_kvindeloeber.jpg?crop=High"
   },
   {
     "id": 103210,
@@ -496,7 +544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4823/nervesystem_kvindeloeber.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4823/nervesystem_kvindeloeber.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4823/nervesystem_kvindeloeber.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4823/nervesystem_kvindeloeber.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-11-29 06:01:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4823/nervesystem_kvindeloeber.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4823/nervesystem_kvindeloeber.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4823/nervesystem_kvindeloeber.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4823/nervesystem_kvindeloeber.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4823/nervesystem_kvindeloeber.jpg?crop=High"
   },
   {
     "id": 104455,
@@ -946,7 +1042,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4849/nervesystem_kvindeloeber.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4849/nervesystem_kvindeloeber.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4849/nervesystem_kvindeloeber.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4849/nervesystem_kvindeloeber.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-07 13:49:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4849/nervesystem_kvindeloeber.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4849/nervesystem_kvindeloeber.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4849/nervesystem_kvindeloeber.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4849/nervesystem_kvindeloeber.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4849/nervesystem_kvindeloeber.jpg?crop=High"
   },
   {
     "id": 104456,
@@ -1396,7 +1540,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4850/nervesystem_kvindeloeber.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4850/nervesystem_kvindeloeber.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4850/nervesystem_kvindeloeber.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4850/nervesystem_kvindeloeber.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,6 +1957,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-07 13:51:52",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4850/nervesystem_kvindeloeber.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4850/nervesystem_kvindeloeber.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4850/nervesystem_kvindeloeber.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4850/nervesystem_kvindeloeber.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4850/nervesystem_kvindeloeber.jpg?crop=High"
   }
 ]

@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4484/colorful-kids-playground-logo.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4484/colorful-kids-playground-logo.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4484/colorful-kids-playground-logo.png?crop=Wide",
+      "thumbnailHigh": "/media/4484/colorful-kids-playground-logo.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,6 +465,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2023-10-17 07:30:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4484/colorful-kids-playground-logo.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4484/colorful-kids-playground-logo.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4484/colorful-kids-playground-logo.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4484/colorful-kids-playground-logo.png?crop=Wide",
+    "thumbnailHigh": "/media/4484/colorful-kids-playground-logo.png?crop=High"
   }
 ]

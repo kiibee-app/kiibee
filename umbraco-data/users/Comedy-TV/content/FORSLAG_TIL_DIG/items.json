@@ -39,25 +39,7 @@
       "year": "0",
       "description": "tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3241/th4-dvd-slipcase5.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3241/th4-dvd-slipcase5.jpg",
       "title": "Extrospekt",
       "badge": "",
       "length": "0",
@@ -68,7 +50,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3241/th4-dvd-slipcase5.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3241/th4-dvd-slipcase5.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3241/th4-dvd-slipcase5.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3241/th4-dvd-slipcase5.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -491,7 +489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:19:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3241/th4-dvd-slipcase5.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3241/th4-dvd-slipcase5.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3241/th4-dvd-slipcase5.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3241/th4-dvd-slipcase5.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3241/th4-dvd-slipcase5.jpg?crop=High"
   },
   {
     "id": 43443,
@@ -533,25 +563,7 @@
       "year": "0",
       "description": "Test ",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3254/400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3254/400x600.jpg",
       "title": "SPAS",
       "badge": "",
       "length": "0",
@@ -562,7 +574,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3254/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3254/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3254/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3254/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -985,7 +1013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:19:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3254/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3254/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3254/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3254/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3254/400x600.jpg?crop=High"
   },
   {
     "id": 41879,
@@ -1027,25 +1087,7 @@
       "year": "0",
       "description": "Tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3065/kaerlighed-facing.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3065/kaerlighed-facing.jpg",
       "title": "Kærlighed ",
       "badge": "",
       "length": "0",
@@ -1056,7 +1098,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3065/kaerlighed-facing.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3065/kaerlighed-facing.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3065/kaerlighed-facing.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3065/kaerlighed-facing.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1479,7 +1537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3065/kaerlighed-facing.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3065/kaerlighed-facing.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3065/kaerlighed-facing.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3065/kaerlighed-facing.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3065/kaerlighed-facing.jpg?crop=High"
   },
   {
     "id": 43464,
@@ -1521,25 +1611,7 @@
       "year": "0",
       "description": "tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg",
       "title": "Helt Perfekt",
       "badge": "",
       "length": "0",
@@ -1550,7 +1622,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1973,7 +2061,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg?crop=High"
   },
   {
     "id": 45043,
@@ -2015,25 +2135,7 @@
       "year": "0",
       "description": "test",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3412/mens-room-3-400.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3412/mens-room-3-400.jpeg",
       "title": "Men’s Room 3",
       "badge": "",
       "length": "0",
@@ -2044,7 +2146,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3412/mens-room-3-400.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3412/mens-room-3-400.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3412/mens-room-3-400.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3412/mens-room-3-400.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2467,7 +2585,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3412/mens-room-3-400.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3412/mens-room-3-400.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3412/mens-room-3-400.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3412/mens-room-3-400.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3412/mens-room-3-400.jpeg?crop=High"
   },
   {
     "id": 43431,
@@ -2509,25 +2659,7 @@
       "year": "0",
       "description": "tekst ",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3246/400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3246/400x600.jpg",
       "title": "Dyret!",
       "badge": "",
       "length": "0",
@@ -2538,7 +2670,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3246/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3246/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3246/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3246/400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2961,7 +3109,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3246/400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3246/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3246/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3246/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3246/400x600.jpg?crop=High"
   },
   {
     "id": 43461,
@@ -3003,25 +3183,7 @@
       "year": "0",
       "description": "tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3268/tc_abc_web_ikon-628x890.jpeg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3268/tc_abc_web_ikon-628x890.jpeg",
       "title": "ABC",
       "badge": "",
       "length": "0",
@@ -3032,7 +3194,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3455,7 +3633,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3268/tc_abc_web_ikon-628x890.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3268/tc_abc_web_ikon-628x890.jpeg?crop=High"
   },
   {
     "id": 43460,
@@ -3497,25 +3707,7 @@
       "year": "0",
       "description": "tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3267/fjelle_400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3267/fjelle_400x600.jpg",
       "title": "Lige ved og voksen",
       "badge": "",
       "length": "0",
@@ -3526,7 +3718,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3267/fjelle_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3267/fjelle_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3267/fjelle_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3267/fjelle_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3949,7 +4157,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:20:54",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3267/fjelle_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3267/fjelle_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3267/fjelle_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3267/fjelle_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3267/fjelle_400x600.jpg?crop=High"
   },
   {
     "id": 43450,
@@ -3991,25 +4231,7 @@
       "year": "0",
       "description": "tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3260/mork_400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3260/mork_400x600.jpg",
       "title": "MØRK",
       "badge": "",
       "length": "0",
@@ -4020,7 +4242,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3260/mork_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3260/mork_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3260/mork_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3260/mork_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4443,7 +4681,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:21:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3260/mork_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3260/mork_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3260/mork_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3260/mork_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3260/mork_400x600.jpg?crop=High"
   },
   {
     "id": 43455,
@@ -4485,25 +4755,7 @@
       "year": "0",
       "description": "Tekst",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg",
       "title": "Guide til parforhold",
       "badge": "",
       "length": "0",
@@ -4514,7 +4766,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4937,7 +5205,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:24:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg?crop=High"
   },
   {
     "id": 42463,
@@ -4979,25 +5279,7 @@
       "year": "0",
       "description": "Alter Ego",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3130/alter-ego.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3130/alter-ego.jpg",
       "title": "Carsten Bang - Alter Ego",
       "badge": "",
       "length": "0",
@@ -5008,7 +5290,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": true
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3130/alter-ego.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3130/alter-ego.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3130/alter-ego.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3130/alter-ego.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5431,6 +5729,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-29 22:24:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3130/alter-ego.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3130/alter-ego.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3130/alter-ego.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3130/alter-ego.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3130/alter-ego.jpg?crop=High"
   }
 ]

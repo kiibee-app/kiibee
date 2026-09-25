@@ -322,7 +322,22 @@
         "displayValue": "frankabild@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2025-12-20 15:58:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2094,
@@ -647,7 +662,22 @@
         "displayValue": "helle@praktiskpraksis.dk",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2019-10-05 20:52:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   },
   {
     "id": 2092,
@@ -972,6 +1002,21 @@
         "displayValue": "a.halfter@gmail.com",
         "resolvedReference": null
       }
-    ]
+    ],
+    "publishDate": "2019-10-05 20:52:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

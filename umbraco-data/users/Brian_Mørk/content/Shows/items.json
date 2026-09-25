@@ -45,32 +45,30 @@
       "year": "2010",
       "description": "<h2>Stream Brian Mørks MØRK - lej eller køb online</h2>\nHans første one man show ”MØRK” imponerede både anmeldere og fans ved at handle om så store emner som økonomi, religion, videnskab og demokrati. Brian Mørk formåede over måde at gøre disse voksne emner både alvorlige og dybt morsomme.\n\nGlæd dig til begavet og vanvittig morsom stand-up fra en af Danmarks bedste komikere.\n\nPolitiken gav fire hjerter og skrev \"fornem komik\".\nJyllands-Posten bakkede op med \"begavet og underholdende",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3142/mork_400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3142/mork_400x600.jpg",
       "title": "MØRK ",
       "badge": "",
       "length": "124",
       "tags": "MØRK,Comedy,Brian Mørk,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3142/mork_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3142/mork_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3142/mork_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3142/mork_400x600.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -493,6 +491,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-15 22:57:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/3142/mork_400x600.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3142/mork_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3142/mork_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3142/mork_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3142/mork_400x600.jpg?crop=High"
   }
 ]

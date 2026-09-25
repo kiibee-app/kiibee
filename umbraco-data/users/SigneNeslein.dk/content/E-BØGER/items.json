@@ -52,7 +52,23 @@
       "tags": "selvkærlighed,grænsesætning,mønstre,adfærd",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4661/saadan-saetter-du.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4661/saadan-saetter-du.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4661/saadan-saetter-du.png?crop=Wide",
+      "thumbnailHigh": "/media/4661/saadan-saetter-du.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-02-19 12:47:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4661/saadan-saetter-du.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4661/saadan-saetter-du.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4661/saadan-saetter-du.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4661/saadan-saetter-du.png?crop=Wide",
+    "thumbnailHigh": "/media/4661/saadan-saetter-du.png?crop=High"
   },
   {
     "id": 76851,
@@ -512,7 +560,23 @@
       "tags": "vaner,adfærd,Psykologi,vaneændring,livsstil,livsstilsændring,mindset,følelsesmæssig intelligens",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=Wide",
+      "thumbnailHigh": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-04-13 15:44:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=Wide",
+    "thumbnailHigh": "/media/4293/e-bog2022-hvorfor-det-der-er-bedst-for-dig-er-det-svaereste-at-goere.png?crop=High"
   },
   {
     "id": 100514,
@@ -972,7 +1068,23 @@
       "tags": "mindset,morgenritual,tanker,sindet",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=Wide",
+      "thumbnailHigh": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,6 +1489,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-09-19 13:36:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4776/detox-dit-mindset-praktisk-guide.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=Wide",
+    "thumbnailHigh": "/media/4776/detox-dit-mindset-praktisk-guide.png?crop=High"
   }
 ]

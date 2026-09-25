@@ -30,13 +30,57 @@
       "webContentURL": "https://vimeo.com/518555839",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=High"
     },
     "sourceFolder": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
     "videoDownloadURL": "https://vimeo.com/518555839",
     "webContentURL": "https://vimeo.com/518555839",
     "rawFile": "",
-    "title": "Sygefravær koster virksomher 32 mia. kroner om året!"
+    "title": "Sygefravær koster virksomher 32 mia. kroner om året!",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/3000/portraet-kirsten-farve-juni-2020.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3000/portraet-kirsten-farve-juni-2020.jpg?crop=High"
   },
   {
     "id": 19365,
@@ -69,13 +113,57 @@
       "webContentURL": "https://vimeo.com/453955902",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
     },
     "sourceFolder": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
     "videoDownloadURL": "https://vimeo.com/453955902",
     "webContentURL": "https://vimeo.com/453955902",
     "rawFile": "",
-    "title": "Det her er vigtigt at vide om sygefravær"
+    "title": "Det her er vigtigt at vide om sygefravær",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2243/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
   },
   {
     "id": 19370,
@@ -108,13 +196,57 @@
       "webContentURL": "https://vimeo.com/453958597",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
     },
     "sourceFolder": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
     "videoDownloadURL": "https://vimeo.com/453958597",
     "webContentURL": "https://vimeo.com/453958597",
     "rawFile": "",
-    "title": "Hvilken lægeerklæring skal du bruge - ultrakort:"
+    "title": "Hvilken lægeerklæring skal du bruge - ultrakort:",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
   },
   {
     "id": 19367,
@@ -147,13 +279,57 @@
       "webContentURL": "https://vimeo.com/453957141",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
     },
     "sourceFolder": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
     "videoDownloadURL": "https://vimeo.com/453957141",
     "webContentURL": "https://vimeo.com/453957141",
     "rawFile": "",
-    "title": "Få strategi og praksis til at hænge sammen."
+    "title": "Få strategi og praksis til at hænge sammen.",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2244/sygefravaer-pa-formel-kirsten-loevschall.jpg?crop=High"
   },
   {
     "id": 19368,
@@ -186,12 +362,56 @@
       "webContentURL": "https://vimeo.com/453957869",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=High"
     },
     "sourceFolder": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
     "videoDownloadURL": "https://vimeo.com/453957869",
     "webContentURL": "https://vimeo.com/453957869",
     "rawFile": "",
-    "title": "Ja, Du må gerne ringe..."
+    "title": "Ja, Du må gerne ringe...",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2242/kirsten-loevschall-sygefravaer-pa-formel.jpg?crop=High"
   }
 ]

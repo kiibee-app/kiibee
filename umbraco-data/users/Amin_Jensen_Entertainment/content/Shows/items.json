@@ -39,32 +39,30 @@
       "year": "1999",
       "description": "<h2>Stream Amin Jensens \"150 kg over bæltestedet\" - lej eller køb online</h2>\nAmin's forrygende show ”150kg over bæltestedet”. Gik du glip af Amin's anmelderroste show ”150 kg. over bæltestedet”, så har du nu ENDELIG chancen for at opleve Amin's første one man show fra foråret 1999. Med sin vanlige elegance formår Amin med sit skæve hjernevrid at vende dagligdags oplevelser på hovedet og sætte gang i såvel latter som eftertænksomhed. Intet er urørligt men (næsten) alt er sobert i dette show, som kommer langt omkring i emner som graviditet, børneopdragelse, pasfoto, symaskinekørekort og begravelser. Amin rammer plet, når han stiller sine helt uskyldige spørgsmål som: Hvorfor skal hospitalspatienter vækkes tidligt, når de alligevel ikke skal stå op, hvorfor hedder det chocktilbud, når man aldrig ser nogen gå i chok og hvorfor er det altid kun mødre, der kan forstå, hvad deres baby siger? Med Morten Wittrock ved klaveret får du bevis for Amins store musikalitet i sange som ”A ble C”, \"Fødselsdagssagen\" og \"Bøssesangen\". Glæd dig til 88 forrygende minutter med masser af humor, musik, sang og sjove parodier. Noder og tekster kan findes under sangbog",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1239/dvd_150kg_over.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1239/dvd_150kg_over.jpg",
       "title": "150 kg over bæltestedet",
       "badge": "",
       "length": "88",
       "tags": "Comedy,Stand-up,Amin Jensen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1239/dvd_150kg_over.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1239/dvd_150kg_over.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1239/dvd_150kg_over.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1239/dvd_150kg_over.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -483,7 +481,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-13 18:48:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/1239/dvd_150kg_over.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1239/dvd_150kg_over.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1239/dvd_150kg_over.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1239/dvd_150kg_over.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1239/dvd_150kg_over.jpg?crop=High"
   },
   {
     "id": 1914,
@@ -525,32 +555,30 @@
       "year": "2010",
       "description": "<h2>Stream Amin Jensens Fyrre, Fit og Færdig- lej eller køb online</h2>\nI 2010 fejrede komikeren Amin Jensen sin 40-års-fødselsdag med et helt nyt solo-show, hvor han vendte tilbage til der, hvor det hele begyndte: en mand og en mikrofon. Showet byder på stand-up, parodier, komik og musik, og Amin Jensen serverer det hele skarpt og præcist - og med den velkendte varme og selvironi. Køb hele showet her til download.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1258/dvd_fyrre_fitogfattig-1.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1258/dvd_fyrre_fitogfattig-1.jpg",
       "title": "Fyrre, Fit & Færdig ",
       "badge": "",
       "length": "100",
       "tags": "Amin Jensen,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -969,7 +997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-13 18:48:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/1258/dvd_fyrre_fitogfattig-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1258/dvd_fyrre_fitogfattig-1.jpg?crop=High"
   },
   {
     "id": 1915,
@@ -1011,32 +1071,30 @@
       "year": "2008",
       "description": "<h2>Stream Amin Jensens STORT - lej eller køb online</h2>\nOplev den populærer og musikalske tv-vært, stand-up komiker og entertainer i et forrygende comedyshows optaget i Cirkusbygningen. Nyd halvanden times hylende morsom underholdning i selskab med en af de dygtigste og mest populære komikere og entertainer herhjemme. Du kan downloade showet her til højre.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1261/dvd_stort.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1261/dvd_stort.jpg",
       "title": "Showet STORT ",
       "badge": "",
       "length": "95",
       "tags": "Comedy,Stand-up,Amin Jensen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1261/dvd_stort.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1261/dvd_stort.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1261/dvd_stort.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1261/dvd_stort.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1455,7 +1513,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-20 00:11:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/1261/dvd_stort.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1261/dvd_stort.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1261/dvd_stort.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1261/dvd_stort.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1261/dvd_stort.jpg?crop=High"
   },
   {
     "id": 1929,
@@ -1499,32 +1589,30 @@
       "year": "2003",
       "description": "<h2>Stream Hit med Amin - 10 års jubilæumsshow - lej eller køb online</h2>\nSiden januar 2003 har Amin Jensen væltet det ene teater og koncerthus efter det andet. Mere end 35.000 danskere har moret sig over Amin og de tre musikere Jens Krøyer, Dan Rasmussen og Niels Ratzer i Amins forrygende jubilæumssshow \"HIT MED AMIN\" Nu har du chancen for at se eller gense det vildt sjove show, du kan downloade det til din computer eller tablet her til højre",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1263/dvd_hit_med_amin.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1263/dvd_hit_med_amin.jpg",
       "title": "Hit med Amin - 10 års jubilæmsshow",
       "badge": "",
       "length": "93",
       "tags": "Comedy,Amin Jensen,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1263/dvd_hit_med_amin.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1263/dvd_hit_med_amin.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1263/dvd_hit_med_amin.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1263/dvd_hit_med_amin.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1943,6 +2031,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-13 18:50:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/1263/dvd_hit_med_amin.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1263/dvd_hit_med_amin.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1263/dvd_hit_med_amin.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1263/dvd_hit_med_amin.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1263/dvd_hit_med_amin.jpg?crop=High"
   }
 ]

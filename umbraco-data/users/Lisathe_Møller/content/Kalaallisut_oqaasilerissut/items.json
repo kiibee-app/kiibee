@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=Wide",
+      "thumbnailHigh": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,6 +473,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-08-16 16:24:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=Wide",
+    "thumbnailHigh": "/media/5200/omslag_kalaallisut-oqaasilerissut.pdf?crop=High"
   }
 ]

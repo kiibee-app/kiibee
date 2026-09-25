@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1921/naar-skole-vaelges-fra-indledning.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1921/naar-skole-vaelges-fra-indledning.jpg?crop=High"
   },
   {
     "id": 16716,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1922/skolefravaer-kalder.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1922/skolefravaer-kalder.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1922/skolefravaer-kalder.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1922/skolefravaer-kalder.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1922/skolefravaer-kalder.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1922/skolefravaer-kalder.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1922/skolefravaer-kalder.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1922/skolefravaer-kalder.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1922/skolefravaer-kalder.jpg?crop=High"
   },
   {
     "id": 16717,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1923/ligegyldighedens-mellemsted.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1923/ligegyldighedens-mellemsted.jpg?crop=High"
   },
   {
     "id": 16718,
@@ -1425,25 +1569,7 @@
       "year": "2020",
       "description": "Som tidligere psykolog i PPR og nu som ph.d.-studerende ved DPU, er det mit indtryk, at skolevægring er et fænomen, som de fleste skolepraktikere inden for de sidste par år er blevet bekendte med. Dette skyldes dels, at skolevægring faktisk er en stigende tendens i folkeskolen (jf. indledningen til dette temanummer), men det skyldes sandsynligvis også, at en række frem- trædende danske forskere inden for både pædagogik og psykologi har været med til at sætte fokus på de udfordringer, der kan være for både barnet og de voksne omkring barnet i sager om skolevægring. Bl.a. har forskere som Helle Rabøl-Hansen, Laila Colding Lagerman og Gro Emmertsen Lund været med til at sætte skolevægring på dagsordenen i den offentlige debat, og på Aarhus Universitet har f.eks. forskerne bag projektet “Back2School” lavet et stort stykke arbejde for at undersøge skolevægring i en dansk folkeskolekontekst. Trods disse indsatser kommer langt størstedelen af vores viden om skolevægring stadig fra internationale undersøgelser, og det er ikke altid tilstrækkeligt. Vi har et unikt folkeskolesystem, der bygger på særlige pædagogiske idealer om børn og undervisning, og derfor har vi også brug for endnu mere forskning i skolevægring, der har udgangspunkt i denne danske kontekst.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/1924/skolevaegring-sammenviklinger.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/1924/skolevaegring-sammenviklinger.jpg",
       "title": "PPT nr. 1-2020 Skolevægring: sammenviklinger og subjektpositioner Af Frederikke Skaaning Knage",
       "badge": "",
       "length": "0",
@@ -1454,7 +1580,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1881,7 +2023,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-30 12:36:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/1924/skolevaegring-sammenviklinger.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1924/skolevaegring-sammenviklinger.jpg?crop=High"
   },
   {
     "id": 16720,
@@ -1936,7 +2110,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1926/skole-skal-give-mening.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1926/skole-skal-give-mening.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1926/skole-skal-give-mening.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1926/skole-skal-give-mening.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2341,7 +2531,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1926/skole-skal-give-mening.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1926/skole-skal-give-mening.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1926/skole-skal-give-mening.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1926/skole-skal-give-mening.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1926/skole-skal-give-mening.jpg?crop=High"
   },
   {
     "id": 16721,
@@ -2396,7 +2618,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2801,7 +3039,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1927/en-praktikkers-dilemmaer.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1927/en-praktikkers-dilemmaer.jpg?crop=High"
   },
   {
     "id": 16722,
@@ -2856,7 +3126,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3261,7 +3547,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1928/fra-boern-og-fulde-folk.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1928/fra-boern-og-fulde-folk.jpg?crop=High"
   },
   {
     "id": 16765,
@@ -3316,7 +3634,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3721,7 +4055,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1930/hvorfor-er-det-saa-svaert-at-udvikle.jpg?crop=High"
   },
   {
     "id": 17925,
@@ -3776,7 +4142,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1965/image4.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1965/image4.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1965/image4.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1965/image4.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4181,7 +4563,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1965/image4.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1965/image4.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1965/image4.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1965/image4.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1965/image4.jpg?crop=High"
   },
   {
     "id": 17926,
@@ -4236,7 +4650,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1967/kunsten-at-faa-teori.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1967/kunsten-at-faa-teori.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1967/kunsten-at-faa-teori.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1967/kunsten-at-faa-teori.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4641,7 +5071,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1967/kunsten-at-faa-teori.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1967/kunsten-at-faa-teori.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1967/kunsten-at-faa-teori.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1967/kunsten-at-faa-teori.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1967/kunsten-at-faa-teori.jpg?crop=High"
   },
   {
     "id": 17927,
@@ -4696,7 +5158,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5101,7 +5579,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1969/spaedgruppen-i-ballerup.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1969/spaedgruppen-i-ballerup.jpg?crop=High"
   },
   {
     "id": 17928,
@@ -5156,7 +5666,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1971/paedagogperspektiver.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1971/paedagogperspektiver.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1971/paedagogperspektiver.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1971/paedagogperspektiver.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5561,7 +6087,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1971/paedagogperspektiver.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1971/paedagogperspektiver.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1971/paedagogperspektiver.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1971/paedagogperspektiver.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1971/paedagogperspektiver.jpg?crop=High"
   },
   {
     "id": 17929,
@@ -5616,7 +6174,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1973/brug-af-data.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1973/brug-af-data.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1973/brug-af-data.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1973/brug-af-data.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6021,7 +6595,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1973/brug-af-data.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1973/brug-af-data.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1973/brug-af-data.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1973/brug-af-data.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1973/brug-af-data.jpg?crop=High"
   },
   {
     "id": 17930,
@@ -6076,7 +6682,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6481,7 +7103,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1975/daginstitutioner-er-forskellige.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1975/daginstitutioner-er-forskellige.jpg?crop=High"
   },
   {
     "id": 17931,
@@ -6536,7 +7190,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6941,7 +7611,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1977/smaa-barn-med-lange-dager.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1977/smaa-barn-med-lange-dager.jpg?crop=High"
   },
   {
     "id": 17932,
@@ -6996,7 +7698,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1979/foraeldresamarbejde.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1979/foraeldresamarbejde.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1979/foraeldresamarbejde.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1979/foraeldresamarbejde.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -7401,7 +8119,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1979/foraeldresamarbejde.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1979/foraeldresamarbejde.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1979/foraeldresamarbejde.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1979/foraeldresamarbejde.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1979/foraeldresamarbejde.jpg?crop=High"
   },
   {
     "id": 17933,
@@ -7456,7 +8206,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1981/psykologens-konsultative.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1981/psykologens-konsultative.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1981/psykologens-konsultative.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1981/psykologens-konsultative.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -7861,7 +8627,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1981/psykologens-konsultative.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1981/psykologens-konsultative.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1981/psykologens-konsultative.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1981/psykologens-konsultative.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1981/psykologens-konsultative.jpg?crop=High"
   },
   {
     "id": 17924,
@@ -7916,7 +8714,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -8321,7 +9135,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1963/ppt2-2020-barnets-perspektivt.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1963/ppt2-2020-barnets-perspektivt.jpg?crop=High"
   },
   {
     "id": 19787,
@@ -8369,25 +9215,7 @@
       "year": "2020",
       "description": "Der rapporteres i disse år om en stigende tendens til skolefravær blandt folkeskolens elever. Således viser tal fra Undervisningsministeriet, at der i løbet af de seneste skoleår er sket en stigning i skolefravær blandt folkeskoleelever i Danmark, der nu i gennemsnit har 12 fraværsdage om året, hvilket er en stigning på én dag om året sammenlignet med tal fra 2015 (Undervisningsministeriet, 2018). I samme periode er andelen af elever med over 10 procents fravær steget med over 1,6 procentpoint (ibid.). Stigningen gælder således både for enkelte elever med massivt fravær og det almindelige fravær for alle elever.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/2263/forside-laila-colding-ny.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/2263/forside-laila-colding-ny.jpg",
       "title": "PPT nr. 1-2020: Laila Colding Lagermann: Fraværets fornuft. En forståelig modstand på et ubærligt skoleliv?  ",
       "badge": "",
       "length": "0",
@@ -8398,7 +9226,23 @@
         "priority": 0.5,
         "frequency": 2,
         "exclude": false
-      }
+      },
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2263/forside-laila-colding-ny.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2263/forside-laila-colding-ny.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2263/forside-laila-colding-ny.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2263/forside-laila-colding-ny.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -8825,7 +9669,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-01-30 12:46:00",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 4,
+      "name": "Magnus Løv Schmidt"
+    },
+    "updaterName": "Magnus Løv Schmidt",
+    "updaterId": 4,
+    "thumbnail": "/media/2263/forside-laila-colding-ny.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2263/forside-laila-colding-ny.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2263/forside-laila-colding-ny.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2263/forside-laila-colding-ny.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2263/forside-laila-colding-ny.jpg?crop=High"
   },
   {
     "id": 21393,
@@ -8880,7 +9756,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -9285,7 +10177,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2573/ppt_3_2020_art01_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2573/ppt_3_2020_art01_525px.jpg?crop=High"
   },
   {
     "id": 21394,
@@ -9340,7 +10264,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -9745,7 +10685,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2575/ppt_3_2020_art02_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2575/ppt_3_2020_art02_525px.jpg?crop=High"
   },
   {
     "id": 21395,
@@ -9800,7 +10772,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -10205,7 +11193,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2577/ppt_3_2020_art03_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2577/ppt_3_2020_art03_525px.jpg?crop=High"
   },
   {
     "id": 21396,
@@ -10260,7 +11280,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -10665,7 +11701,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2579/ppt_3_2020_art04_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2579/ppt_3_2020_art04_525px.jpg?crop=High"
   },
   {
     "id": 21397,
@@ -10720,7 +11788,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -11125,7 +12209,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2581/ppt_3_2020_art05_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2581/ppt_3_2020_art05_525px.jpg?crop=High"
   },
   {
     "id": 21398,
@@ -11180,7 +12296,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -11585,7 +12717,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2583/ppt_3_2020_art06_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2583/ppt_3_2020_art06_525px.jpg?crop=High"
   },
   {
     "id": 21400,
@@ -11640,7 +12804,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -12045,7 +13225,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 15:13:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2587/ppt_3_2020_art08_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2587/ppt_3_2020_art08_525px.jpg?crop=High"
   },
   {
     "id": 21405,
@@ -12093,32 +13305,30 @@
       "year": "2020",
       "description": "I PIRLS 2016 var kjønnsforskjellene i lesing blant 10-åringer 1,6 ganger større i Norge enn i Danmark. I Norge ble det også funnet en sterk sammenheng mellom fødselsmåned og leseferdighet. Med utgangspunkt i at nær halvparten av danske gutter som er født i desember utsetter skolestarten, mens dette kun gjelder en marginal gruppe i Norge, undersøkes det i den- ne artikkelen i hvilken grad ulik praktisering av reglene for skolestart kan forklare ulikhetene i kjønnsforskjeller i lesing i PIRLS 2016. En stegvis line- ær regresjonsanalyse viser at utsatt skolestart for danske gutter som er født seint på året ikke bidrar til å forklare ulikhetene i kjønnsforskjeller mellom Danmark og Norge, og at utsatt skolestart er forbundet med svakere leseferdighet i begge landene. Resultatene viser også at det er en sterkere sammen- heng mellom fødselsmåned og leseferdighet i Norge enn i Danmark når det kontrolleres for fødselsår. Videre tyder særlig resultatene fra Danmark på at å utsette skolestarten med ett år ikke alene ser ut til å bidra til å løfte elevene opp på det samme nivået som skolekameratene. Utsatt skolestart bør derfor følges opp med en planlagt pedagogisk innsats for å styrke elevenes språkforståelse og leserelaterte ferdigheter.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/2591/ppt_3_2020_art07_525px.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/2591/ppt_3_2020_art07_525px.jpg",
       "title": "PPT nr. 3-2020: Egil Gabrielsen, Kjersti Lundetræ og Jan Mejding: Kan ulik praktisering av reglene ",
       "badge": "",
       "length": "0",
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -12541,7 +13751,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-10-28 18:18:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2591/ppt_3_2020_art07_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2591/ppt_3_2020_art07_525px.jpg?crop=High"
   },
   {
     "id": 23818,
@@ -12596,7 +13838,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -13001,7 +14259,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:26:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2663/ppt_4_2020_art01_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2663/ppt_4_2020_art01_525px.jpg?crop=High"
   },
   {
     "id": 23820,
@@ -13056,7 +14346,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -13461,7 +14767,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:31:08",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2665/ppt_4_2020_art02_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2665/ppt_4_2020_art02_525px.jpg?crop=High"
   },
   {
     "id": 23821,
@@ -13516,7 +14854,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -13921,7 +15275,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:35:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2667/ppt_4_2020_art03_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2667/ppt_4_2020_art03_525px.jpg?crop=High"
   },
   {
     "id": 23822,
@@ -13976,7 +15362,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -14381,7 +15783,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:39:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2669/ppt_4_2020_art04_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2669/ppt_4_2020_art04_525px.jpg?crop=High"
   },
   {
     "id": 23824,
@@ -14436,7 +15870,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -14841,7 +16291,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:42:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2671/ppt_4_2020_art05_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2671/ppt_4_2020_art05_525px.jpg?crop=High"
   },
   {
     "id": 23825,
@@ -14896,7 +16378,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -15301,7 +16799,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:46:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2673/ppt_4_2020_art06_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2673/ppt_4_2020_art06_525px.jpg?crop=High"
   },
   {
     "id": 23827,
@@ -15356,7 +16886,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -15761,7 +17307,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:49:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2675/ppt_4_2020_art07_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2675/ppt_4_2020_art07_525px.jpg?crop=High"
   },
   {
     "id": 23828,
@@ -15816,7 +17394,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -16221,7 +17815,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:52:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2677/ppt_4_2020_art08_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2677/ppt_4_2020_art08_525px.jpg?crop=High"
   },
   {
     "id": 23829,
@@ -16276,7 +17902,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -16681,6 +18323,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-12-11 11:58:52",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2679/ppt_4_2020_art09_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2679/ppt_4_2020_art09_525px.jpg?crop=High"
   }
 ]

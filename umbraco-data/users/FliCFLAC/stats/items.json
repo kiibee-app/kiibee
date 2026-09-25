@@ -57,6 +57,21 @@
     "isPlay": "0",
     "uID": "",
     "mediaUdi": "umb://document/baae498eeae84cd09bd9dad4061b808a",
-    "mediaKey": "baae498e-eae8-4cd0-9bd9-dad4061b808a"
+    "mediaKey": "baae498e-eae8-4cd0-9bd9-dad4061b808a",
+    "publishDate": "2022-09-02 11:18:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0
   }
 ]

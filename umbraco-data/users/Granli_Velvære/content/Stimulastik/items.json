@@ -52,7 +52,23 @@
       "tags": "Stimulastik,Baby,Sansestimulation,babytræning,mor barn gymnastik,Sansemotorik,Sansemotorisk træning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2232/til-stimulastik-video-2-4.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2232/til-stimulastik-video-2-4.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2232/til-stimulastik-video-2-4.png?crop=Wide",
+      "thumbnailHigh": "/media/2232/til-stimulastik-video-2-4.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:29:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2232/til-stimulastik-video-2-4.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2232/til-stimulastik-video-2-4.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2232/til-stimulastik-video-2-4.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2232/til-stimulastik-video-2-4.png?crop=Wide",
+    "thumbnailHigh": "/media/2232/til-stimulastik-video-2-4.png?crop=High"
   },
   {
     "id": 19086,
@@ -512,7 +560,23 @@
       "tags": "Stimulastik,Sansestimulation,babygymnastik",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2235/til-stimulastik-video-4-6.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2235/til-stimulastik-video-4-6.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2235/til-stimulastik-video-4-6.png?crop=Wide",
+      "thumbnailHigh": "/media/2235/til-stimulastik-video-4-6.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,6 +981,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:29:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2235/til-stimulastik-video-4-6.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2235/til-stimulastik-video-4-6.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2235/til-stimulastik-video-4-6.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2235/til-stimulastik-video-4-6.png?crop=Wide",
+    "thumbnailHigh": "/media/2235/til-stimulastik-video-4-6.png?crop=High"
   }
 ]

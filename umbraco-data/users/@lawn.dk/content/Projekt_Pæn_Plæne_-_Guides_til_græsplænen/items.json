@@ -52,7 +52,23 @@
       "tags": "Online PDF",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4381/den-store-graes-guide-tablet_small.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4381/den-store-graes-guide-tablet_small.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4381/den-store-graes-guide-tablet_small.png?crop=Wide",
+      "thumbnailHigh": "/media/4381/den-store-graes-guide-tablet_small.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,6 +473,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2023-04-08 00:55:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4381/den-store-graes-guide-tablet_small.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4381/den-store-graes-guide-tablet_small.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4381/den-store-graes-guide-tablet_small.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4381/den-store-graes-guide-tablet_small.png?crop=Wide",
+    "thumbnailHigh": "/media/4381/den-store-graes-guide-tablet_small.png?crop=High"
   }
 ]

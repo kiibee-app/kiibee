@@ -46,7 +46,23 @@
       "tags": "Twerk,Danseundervisning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1895/twerk2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1895/twerk2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1895/twerk2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1895/twerk2.jpg?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -96,7 +112,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1895/twerk2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1895/twerk2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1895/twerk2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1895/twerk2.jpg?crop=High"
   },
   {
     "id": 16388,
@@ -145,7 +186,23 @@
       "tags": "Twerk,Danseundervisning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1894/tverk.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1894/tverk.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1894/tverk.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1894/tverk.jpg?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -195,6 +252,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1894/tverk.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1894/tverk.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1894/tverk.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1894/tverk.jpg?crop=High"
   }
 ]

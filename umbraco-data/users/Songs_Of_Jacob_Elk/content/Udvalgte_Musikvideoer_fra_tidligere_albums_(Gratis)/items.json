@@ -48,7 +48,23 @@
       "tags": "Elk,Musikvideo,Fjæstad,Hellemann",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2215/img_20171105_165539-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2215/img_20171105_165539-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2215/img_20171105_165539-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2215/img_20171105_165539-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2215/img_20171105_165539-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2215/img_20171105_165539-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2215/img_20171105_165539-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2215/img_20171105_165539-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2215/img_20171105_165539-1.jpg?crop=High"
   },
   {
     "id": 18912,
@@ -500,7 +548,23 @@
       "tags": "Elk,Fjæstad,Hellemann,Songs Of Jacob Elk,The Clown",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2224/cl7.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2224/cl7.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2224/cl7.png?crop=Wide",
+      "thumbnailHigh": "/media/2224/cl7.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2224/cl7.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2224/cl7.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2224/cl7.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2224/cl7.png?crop=Wide",
+    "thumbnailHigh": "/media/2224/cl7.png?crop=High"
   },
   {
     "id": 20937,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2512/caveman-final.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2512/caveman-final.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2512/caveman-final.png?crop=Wide",
+      "thumbnailHigh": "/media/2512/caveman-final.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2512/caveman-final.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2512/caveman-final.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2512/caveman-final.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2512/caveman-final.png?crop=Wide",
+    "thumbnailHigh": "/media/2512/caveman-final.png?crop=High"
   },
   {
     "id": 19011,
@@ -1404,7 +1548,23 @@
       "tags": "Elk,Jacob Elk,Songs Of Jacob Elk,Fjæstad,Hellemann",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2230/img_20170923_083055-0-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2230/img_20170923_083055-0-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2230/img_20170923_083055-0-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2230/img_20170923_083055-0-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,6 +1965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:28:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2230/img_20170923_083055-0-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2230/img_20170923_083055-0-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2230/img_20170923_083055-0-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2230/img_20170923_083055-0-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2230/img_20170923_083055-0-1.jpg?crop=High"
   }
 ]

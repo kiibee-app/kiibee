@@ -40,7 +40,16 @@
       "to": "2024-11-24 11:41:35",
       "transactionAmount": "47.75",
       "kiibeeCutAmount": "500"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78816,
@@ -83,6 +92,15 @@
       "to": "2023-03-10 11:09:48",
       "transactionAmount": "103.7",
       "kiibeeCutAmount": "840"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

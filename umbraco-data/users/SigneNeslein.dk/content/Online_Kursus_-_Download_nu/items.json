@@ -48,7 +48,23 @@
       "tags": "online kursus,FølelsesPsykologi,Usund kærlighed,narcissister",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4941/minikursus-selflove.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4941/minikursus-selflove.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4941/minikursus-selflove.png?crop=Wide",
+      "thumbnailHigh": "/media/4941/minikursus-selflove.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 19:24:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4941/minikursus-selflove.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4941/minikursus-selflove.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4941/minikursus-selflove.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4941/minikursus-selflove.png?crop=Wide",
+    "thumbnailHigh": "/media/4941/minikursus-selflove.png?crop=High"
   },
   {
     "id": 111136,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4943/minikursus-selflove.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4943/minikursus-selflove.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4943/minikursus-selflove.png?crop=Wide",
+      "thumbnailHigh": "/media/4943/minikursus-selflove.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 19:25:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4943/minikursus-selflove.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4943/minikursus-selflove.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4943/minikursus-selflove.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4943/minikursus-selflove.png?crop=Wide",
+    "thumbnailHigh": "/media/4943/minikursus-selflove.png?crop=High"
   },
   {
     "id": 111137,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4945/minikursus-selflove.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4945/minikursus-selflove.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4945/minikursus-selflove.png?crop=Wide",
+      "thumbnailHigh": "/media/4945/minikursus-selflove.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 19:25:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4945/minikursus-selflove.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4945/minikursus-selflove.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4945/minikursus-selflove.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4945/minikursus-selflove.png?crop=Wide",
+    "thumbnailHigh": "/media/4945/minikursus-selflove.png?crop=High"
   },
   {
     "id": 113389,
@@ -1404,7 +1548,23 @@
       "tags": "parforhold,selvværd,toxic",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4982/untitled-design-13.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4982/untitled-design-13.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4982/untitled-design-13.png?crop=Wide",
+      "thumbnailHigh": "/media/4982/untitled-design-13.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,6 +1965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 19:24:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4982/untitled-design-13.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4982/untitled-design-13.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4982/untitled-design-13.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4982/untitled-design-13.png?crop=Wide",
+    "thumbnailHigh": "/media/4982/untitled-design-13.png?crop=High"
   }
 ]

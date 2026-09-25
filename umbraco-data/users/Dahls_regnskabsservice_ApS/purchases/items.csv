@@ -1,3 +1,23 @@
-id,key,udi,name,fullName,email,isPurchase,createDate,orderCreateDate,downloads,streams,downloadMediaCount,streamMediaCount,mediaCount,mediaNames,mediaUrls,videoDownloadURLs
-122781,cc7c7bd0-6ac5-497c-96e6-ceec1b63c6e2,umb://document/cc7c7bd06ac5497c96e6ceec1b63c6e2,9dp729042026234208,Charlotte Madsen,okopartner@gmail.com,true,2026-04-29 23:42:46,2026-04-29 23:42:46,0,0,0,0,1,Bogføring for begyndere – e-bog til enkeltmandsvirksomheder,/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/,
-117972,eeae7d32-2975-4a4a-8011-8adec1dcf18e,umb://document/eeae7d3229754a4a80118adec1dcf18e,s36527012026133137,Malene Rosgaard ,kontakt@malenerosgaard.dk,true,2026-01-27 13:32:01,2026-01-27 13:32:01,0,0,0,0,1,Bogføring for begyndere – e-bog til enkeltmandsvirksomheder,/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/,
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,publishDate,releaseDate,removeDate,ownerName,ownerId,updaterName,updaterId,parentId,sortOrder,urls,videoID,email,streams,downloads,isPurchase,expireDate,price,fullName,message,media
+"122781","cc7c7bd0-6ac5-497c-96e6-ceec1b63c6e2","umb://document/cc7c7bd06ac5497c96e6ceec1b63c6e2","9dp729042026234208","purchase","true","true","2026-04-29 23:42:46","2026-04-29 23:42:46","","","","","","","","117539","1","[""/dahls-regnskabsservice-aps/purchases/9dp729042026234208/""]","","okopartner@gmail.com","0","0","true","2026-05-13 23:42:44","199","Charlotte Madsen","Tak for dit køb af Bogføring for begyndere.
+
+Du kan downloade e-bogen via linket i denne mail.
+
+Jeg håber, bogen giver dig mere overblik og ro omkring din bogføring.
+Har du spørgsmål undervejs, er du altid velkommen til at kontakte mig.
+
+Venlig hilsen
+
+Dahls regnskabsservice ApS
+Kontakt@dahl-grp.dk","[{""udi"":""umb://document/5cb217d5684349049196134742f875f7"",""key"":""5cb217d5-6843-4904-9196-134742f875f7"",""resolved"":true,""id"":117543,""name"":""Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"",""title"":""Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"",""urls"":[""/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/5100/bogfoering-for-nybegyndere-pdf.pdf"",""webContentURL"":"""",""thumbnail"":{""focalPoint"":{""left"":0.5,""top"":0.5},""src"":""/media/5101/skaermbillede-2026-01-12-232915.png"",""crops"":[{""alias"":""Wide"",""width"":1920,""height"":1080},{""alias"":""High"",""width"":650,""height"":920}]},""purchasePrice"":""199"",""rentalPrice"":""""}]"
+"117972","eeae7d32-2975-4a4a-8011-8adec1dcf18e","umb://document/eeae7d3229754a4a80118adec1dcf18e","s36527012026133137","purchase","true","true","2026-01-27 13:32:01","2026-01-27 13:32:01","","","","","","","","117539","0","[""/dahls-regnskabsservice-aps/purchases/s36527012026133137/""]","","kontakt@malenerosgaard.dk","0","0","true","2026-02-10 13:32:00","199","Malene Rosgaard ","Tak for dit køb af Bogføring for begyndere.
+
+Du kan downloade e-bogen via linket i denne mail.
+
+Jeg håber, bogen giver dig mere overblik og ro omkring din bogføring.
+Har du spørgsmål undervejs, er du altid velkommen til at kontakte mig.
+
+Venlig hilsen
+
+Dahls regnskabsservice ApS
+Kontakt@dahl-grp.dk","[{""udi"":""umb://document/5cb217d5684349049196134742f875f7"",""key"":""5cb217d5-6843-4904-9196-134742f875f7"",""resolved"":true,""id"":117543,""name"":""Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"",""title"":""Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"",""urls"":[""/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/""],""contentTypeAlias"":""media"",""videoID"":"""",""videoStatus"":"""",""videoThumbnailURL"":"""",""videoDownloadURL"":"""",""rawFile"":""/media/5100/bogfoering-for-nybegyndere-pdf.pdf"",""webContentURL"":"""",""thumbnail"":{""focalPoint"":{""left"":0.5,""top"":0.5},""src"":""/media/5101/skaermbillede-2026-01-12-232915.png"",""crops"":[{""alias"":""Wide"",""width"":1920,""height"":1080},{""alias"":""High"",""width"":650,""height"":920}]},""purchasePrice"":""199"",""rentalPrice"":""""}]"

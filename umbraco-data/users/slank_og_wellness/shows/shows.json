@@ -46,7 +46,23 @@
       "tags": "sundhed,let liv,vejledning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1353/1_1-vejledning.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1353/1_1-vejledning.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1353/1_1-vejledning.png?crop=Wide",
+      "thumbnailHigh": "/media/1353/1_1-vejledning.png?crop=High"
     },
     "type": ["75"],
     "rawFile": "/media/1352/vejledning.pdf",
@@ -96,6 +112,37 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "2020-03-19 22:48:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1353/1_1-vejledning.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1353/1_1-vejledning.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1353/1_1-vejledning.png?crop=Wide",
+    "thumbnailHigh": "/media/1353/1_1-vejledning.png?crop=High"
   }
 ]

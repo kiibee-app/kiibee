@@ -46,7 +46,23 @@
       "tags": "Online koncert,Cheif1",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3167/chief-1-album-release-film-billede.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3167/chief-1-album-release-film-billede.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3167/chief-1-album-release-film-billede.png?crop=Wide",
+      "thumbnailHigh": "/media/3167/chief-1-album-release-film-billede.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-05-04 19:41:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3167/chief-1-album-release-film-billede.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3167/chief-1-album-release-film-billede.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3167/chief-1-album-release-film-billede.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3167/chief-1-album-release-film-billede.png?crop=Wide",
+    "thumbnailHigh": "/media/3167/chief-1-album-release-film-billede.png?crop=High"
   },
   {
     "id": 24582,
@@ -489,32 +537,30 @@
       "year": "2020",
       "description": "Kære venner, skal vi give hinanden en gave? Støt mine musikprojekter her - og se/få min helt nye portræt & koncertfilm! Se filmen for kun 50 kr eller 150 kr. - du vælger selv! På forhånd TUSIND tak for Jeres støtte. \nKh Chief :-)",
       "productionLink": "http://chief1.dk/",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/2709/cover2.png",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/2709/cover2.png",
       "title": "Chief1 Portræt & Koncertfilm ",
       "badge": "Støt os",
       "length": "60",
       "tags": "Stream,Download,Julegave,Chief1,Portræt & Koncertfilm",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2709/cover2.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2709/cover2.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2709/cover2.png?crop=Wide",
+      "thumbnailHigh": "/media/2709/cover2.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -933,6 +979,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-08 22:30:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2709/cover2.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2709/cover2.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2709/cover2.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2709/cover2.png?crop=Wide",
+    "thumbnailHigh": "/media/2709/cover2.png?crop=High"
   }
 ]

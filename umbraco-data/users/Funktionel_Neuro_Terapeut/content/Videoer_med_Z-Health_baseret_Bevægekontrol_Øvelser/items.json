@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=Wide",
+      "thumbnailHigh": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 15:42:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4795/skaermbillede-2019-11-21-kl-113408.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=Wide",
+    "thumbnailHigh": "/media/4795/skaermbillede-2019-11-21-kl-113408.png?crop=High"
   },
   {
     "id": 101713,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=Wide",
+      "thumbnailHigh": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 15:48:07",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4796/skaermbillede-2019-11-21-kl-111805.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=Wide",
+    "thumbnailHigh": "/media/4796/skaermbillede-2019-11-21-kl-111805.png?crop=High"
   },
   {
     "id": 101715,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=Wide",
+      "thumbnailHigh": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 15:50:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4797/skaermbillede-2019-11-21-kl-111353.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=Wide",
+    "thumbnailHigh": "/media/4797/skaermbillede-2019-11-21-kl-111353.png?crop=High"
   },
   {
     "id": 101725,
@@ -1432,7 +1576,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=Wide",
+      "thumbnailHigh": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 21:34:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4803/skaermbillede-2019-11-21-kl-111059.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=Wide",
+    "thumbnailHigh": "/media/4803/skaermbillede-2019-11-21-kl-111059.png?crop=High"
   },
   {
     "id": 101726,
@@ -1892,7 +2084,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=Wide",
+      "thumbnailHigh": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 21:56:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4804/skaermbillede-2019-11-21-kl-110735.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=Wide",
+    "thumbnailHigh": "/media/4804/skaermbillede-2019-11-21-kl-110735.png?crop=High"
   },
   {
     "id": 101727,
@@ -2352,7 +2592,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=Wide",
+      "thumbnailHigh": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 21:58:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4805/skaermbillede-2019-11-24-kl-115603.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=Wide",
+    "thumbnailHigh": "/media/4805/skaermbillede-2019-11-24-kl-115603.png?crop=High"
   },
   {
     "id": 101728,
@@ -2812,7 +3100,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=Wide",
+      "thumbnailHigh": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 22:00:52",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4806/skaermbillede-2019-11-26-kl-092842.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=Wide",
+    "thumbnailHigh": "/media/4806/skaermbillede-2019-11-26-kl-092842.png?crop=High"
   },
   {
     "id": 101729,
@@ -3272,7 +3608,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=Wide",
+      "thumbnailHigh": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-11-10 16:59:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4807/skaermbillede-2019-12-16-kl-171241.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=Wide",
+    "thumbnailHigh": "/media/4807/skaermbillede-2019-12-16-kl-171241.png?crop=High"
   },
   {
     "id": 101730,
@@ -3732,7 +4116,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=Wide",
+      "thumbnailHigh": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,6 +4537,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-10-29 22:05:19",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4808/albue-haandl-fingr-thumbnail.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=Wide",
+    "thumbnailHigh": "/media/4808/albue-haandl-fingr-thumbnail.png?crop=High"
   }
 ]

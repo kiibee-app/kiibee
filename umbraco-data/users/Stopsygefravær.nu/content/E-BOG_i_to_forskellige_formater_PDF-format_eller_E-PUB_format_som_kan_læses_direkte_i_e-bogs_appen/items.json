@@ -30,13 +30,57 @@
       "webContentURL": "",
       "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1844/konkret-viden.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1844/konkret-viden.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1844/konkret-viden.png?crop=Wide",
+      "thumbnailHigh": "/media/1844/konkret-viden.png?crop=High"
     },
     "sourceFolder": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
     "videoDownloadURL": "",
     "webContentURL": "",
     "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
-    "title": "PDF: Succes med at håndtere sygefravær i din forretning."
+    "title": "PDF: Succes med at håndtere sygefravær i din forretning.",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/1844/konkret-viden.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1844/konkret-viden.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1844/konkret-viden.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1844/konkret-viden.png?crop=Wide",
+    "thumbnailHigh": "/media/1844/konkret-viden.png?crop=High"
   },
   {
     "id": 14441,
@@ -70,10 +114,54 @@
       "webContentURL": "https://kiibee.dk/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/e-pub-succes-med-at-haandtere-sygefravaer-i-din-forretning/",
       "rawFile": "",
       "hideDownload": "0",
-      "hidePlay": "0"
+      "hidePlay": "0",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1845/konkret-viden.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1845/konkret-viden.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1845/konkret-viden.png?crop=Wide",
+      "thumbnailHigh": "/media/1845/konkret-viden.png?crop=High"
     },
     "sourceFolder": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
     "webContentURL": "https://kiibee.dk/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/e-pub-succes-med-at-haandtere-sygefravaer-i-din-forretning/",
-    "rawFile": ""
+    "rawFile": "",
+    "createDate": "",
+    "updateDate": "",
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnail": "/media/1845/konkret-viden.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1845/konkret-viden.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1845/konkret-viden.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1845/konkret-viden.png?crop=Wide",
+    "thumbnailHigh": "/media/1845/konkret-viden.png?crop=High"
   }
 ]

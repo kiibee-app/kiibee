@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 20:33:52",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1984/ppt_1_2019_art01_jensen_525px.jpg?crop=High"
   },
   {
     "id": 17936,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 20:32:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1986/ppt_1_2019_art02_s-nnichsen_525px.jpg?crop=High"
   },
   {
     "id": 17937,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 20:38:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1988/ppt_1_2019_art03_str-nen_525px.jpg?crop=High"
   },
   {
     "id": 17938,
@@ -1432,7 +1576,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 20:41:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1990/ppt_1_2019_art04_strand_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1990/ppt_1_2019_art04_strand_525px.jpg?crop=High"
   },
   {
     "id": 17939,
@@ -1892,7 +2084,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 20:44:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1992/ppt_1_2019_art05_nyrup_525px.jpg?crop=High"
   },
   {
     "id": 17941,
@@ -2352,7 +2592,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 19:06:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1996/ppt_1_2019_art06_n-rga-èrd_525px.jpg?crop=High"
   },
   {
     "id": 17942,
@@ -2812,7 +3100,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 21:05:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/1998/ppt_1_2019_art07_boone_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/1998/ppt_1_2019_art07_boone_525px.jpg?crop=High"
   },
   {
     "id": 17943,
@@ -3272,7 +3608,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-10 21:09:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2000/ppt_1_2019_art08_hejgaard_525px.jpg?crop=High"
   },
   {
     "id": 17953,
@@ -3732,7 +4116,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,7 +4537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 15:59:06",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2002/ppt_2_2019_art01_h-jholt_525px.jpg?crop=High"
   },
   {
     "id": 17955,
@@ -4192,7 +4624,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4597,7 +5045,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:05:03",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2004/ppt_2_2019_art02_r-n-larsen_525px.jpg?crop=High"
   },
   {
     "id": 17957,
@@ -4652,7 +5132,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5057,7 +5553,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:07:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2006/ppt_2_2019_art03_busch-jensen_525px.jpg?crop=High"
   },
   {
     "id": 17958,
@@ -5112,7 +5640,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5517,7 +6061,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-01-26 11:45:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2008/ppt_2_2019_art04_mardahl-hansen_525px.jpg?crop=High"
   },
   {
     "id": 17959,
@@ -5572,7 +6148,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5977,7 +6569,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:12:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2010/ppt_2_2019_art05_kousholt_525px.jpg?crop=High"
   },
   {
     "id": 17960,
@@ -6032,7 +6656,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6437,7 +7077,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:15:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2012/ppt_2_2019_art06_schwartz_525px.jpg?crop=High"
   },
   {
     "id": 17961,
@@ -6492,7 +7164,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -6897,7 +7585,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:19:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2014/ppt_3_2019_art01_mei-ƒner_525px.jpg?crop=High"
   },
   {
     "id": 17962,
@@ -6952,7 +7672,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -7357,7 +8093,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-02-01 12:58:17",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2016/ppt_3_2019_art02_wolff_525px.jpg?crop=High"
   },
   {
     "id": 17963,
@@ -7412,7 +8180,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -7817,7 +8601,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:24:00",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2018/ppt_3_2019_art03_buchman_525px.jpg?crop=High"
   },
   {
     "id": 17964,
@@ -7872,7 +8688,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -8277,7 +9109,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:26:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2020/ppt_3_2019_art04_reinholdt_525px.jpg?crop=High"
   },
   {
     "id": 17965,
@@ -8332,7 +9196,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -8737,7 +9617,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:29:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2022/ppt_3_2019_art05_h-gsted_525px.jpg?crop=High"
   },
   {
     "id": 17966,
@@ -8792,7 +9704,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -9197,7 +10125,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:32:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2024/ppt_3_2019_art06_dyregrov_525px.jpg?crop=High"
   },
   {
     "id": 17967,
@@ -9252,7 +10212,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -9657,7 +10633,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:34:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2026/ppt_3_2019_art07_z-llner_525px.jpg?crop=High"
   },
   {
     "id": 17968,
@@ -9712,7 +10720,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -10117,7 +11141,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:36:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2028/ppt_3_2019_art08_jonasen_525px.jpg?crop=High"
   },
   {
     "id": 17969,
@@ -10172,7 +11228,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -10577,7 +11649,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 16:57:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2030/ppt_4_2019_art01_ringsmose_525px.jpg?crop=High"
   },
   {
     "id": 17970,
@@ -10632,7 +11736,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -11037,7 +12157,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 17:02:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2032/ppt_4_2019_art02_ringsmose_525px.jpg?crop=High"
   },
   {
     "id": 17971,
@@ -11092,7 +12244,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -11497,7 +12665,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 17:06:05",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2034/ppt_4_2019_art03_svinth_525px.jpg?crop=High"
   },
   {
     "id": 17972,
@@ -11552,7 +12752,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -11957,7 +13173,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 17:09:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2036/ppt_4_2019_art04_svinth_525px.jpg?crop=High"
   },
   {
     "id": 17973,
@@ -12012,7 +13260,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -12417,7 +13681,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-12 11:47:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2038/ppt_5-6_2019_art01_kromann_525px.jpg?crop=High"
   },
   {
     "id": 17974,
@@ -12472,7 +13768,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -12877,7 +14189,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-12 11:46:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2040/ppt_5-6_2019_art02_st-ªrk_525px.jpg?crop=High"
   },
   {
     "id": 17975,
@@ -12932,7 +14276,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -13337,7 +14697,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 17:25:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2042/ppt_5-6_2019_art03_ma-ènsson_525px.jpg?crop=High"
   },
   {
     "id": 17976,
@@ -13392,7 +14784,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -13797,7 +15205,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 17:28:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2044/ppt_5-6_2019_art04_skibsted_525px.jpg?crop=High"
   },
   {
     "id": 17977,
@@ -13852,7 +15292,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -14257,7 +15713,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 19:10:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2052/ppt_5-6_2019_art05_nimgaard-larsen_525px.jpg?crop=High"
   },
   {
     "id": 17978,
@@ -14312,7 +15800,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -14717,7 +16221,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-11 18:08:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2047/ppt_5-6_2019_art06_molb-ªk_525px.jpg?crop=High"
   },
   {
     "id": 17979,
@@ -14772,7 +16308,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -15177,7 +16729,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-12 11:45:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2049/ppt_5-6_2019_art07_damgaard-m-ller_525px.jpg?crop=High"
   },
   {
     "id": 17980,
@@ -15232,7 +16816,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -15637,6 +17237,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2020-07-12 11:46:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2051/ppt_5-6_2019_art08_szulevicz_525px.jpg?crop=High"
   }
 ]

@@ -76,7 +76,16 @@
       "fullName": "Charlotte Gervig",
       "message": "Tak fordi du har købt Legepaletten. Vi håber I får rigtig meget glæde af den. ",
       "media": "umb://document/37cd340a24c74949b964d7ed00520de1"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 100287,
@@ -151,7 +160,16 @@
       "fullName": "Kildeskolens Børnehave",
       "message": "Tak fordi du har købt Legepaletten. Vi håber I får rigtig meget glæde af den. ",
       "media": "umb://document/8929da333f304b32ad2e9c9ef52d0528"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 93903,
@@ -226,6 +244,15 @@
       "fullName": "Kit Nørgaard",
       "message": "Tak fordi du har købt Legepaletten. Vi håber I får rigtig meget glæde af den. ",
       "media": "umb://document/1e853d10a2ae43af8ab0870730de429d"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

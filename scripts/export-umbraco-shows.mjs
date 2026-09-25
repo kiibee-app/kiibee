@@ -56,6 +56,13 @@ const SHOW_CSV_COLUMNS = [
   "hasPublishedVersion",
   "createDate",
   "updateDate",
+  "publishDate",
+  "releaseDate",
+  "removeDate",
+  "ownerName",
+  "ownerId",
+  "updaterName",
+  "updaterId",
   "urls",
   "statsEntryCount",
   "statsPlayCount",
@@ -67,6 +74,9 @@ const SHOW_CSV_COLUMNS = [
   "videoThumbnailURL",
   "videoDownloadURL",
   "thumbnail",
+  "thumbnailCrops",
+  "thumbnailWide",
+  "thumbnailHigh",
   "year",
   "length",
   "rentalPrice",
@@ -138,6 +148,8 @@ async function requestJson(url, config) {
       cookie: config.cookie,
       pragma: "no-cache",
       referer: `${BASE_URL}/umbraco`,
+      origin: BASE_URL,
+      "x-requested-with": "XMLHttpRequest",
       "cache-control": "no-cache",
       "x-umb-xsrf-token": config.xsrfToken,
       "user-agent":
@@ -296,6 +308,23 @@ function normalizeContent(child, detail) {
   const key = String(firstDefined(contentKey(source), contentKey(child), "")).toLowerCase();
   const urls = toArray(firstDefined(source?.urls, source?.Urls, child?.urls, child?.Urls, []));
 
+  const ownerObj = firstDefined(source?.owner, source?.Owner, child?.owner, child?.Owner, null);
+  const ownerName = firstDefined(ownerObj?.name, ownerObj?.Name, "");
+  const ownerId = firstDefined(ownerObj?.id, ownerObj?.Id, null);
+
+  const updaterObj = firstDefined(source?.updater, source?.Updater, child?.updater, child?.Updater, null);
+  const updaterName = firstDefined(updaterObj?.name, updaterObj?.Name, "");
+  const updaterId = firstDefined(updaterObj?.id, updaterObj?.Id, null);
+
+  const publishDate = firstDefined(source?.publishDate, source?.PublishDate, child?.publishDate, child?.PublishDate, "");
+  const releaseDate = firstDefined(source?.releaseDate, source?.ReleaseDate, child?.releaseDate, child?.ReleaseDate, null);
+  const removeDate = firstDefined(source?.removeDate, source?.RemoveDate, child?.removeDate, child?.RemoveDate, null);
+
+  const thumbnailVal = properties.thumbnail || "";
+  const thumbSrc = typeof thumbnailVal === "string" ? thumbnailVal : thumbnailVal?.src || thumbnailVal?.Src || "";
+  const thumbnailWide = thumbSrc ? `${thumbSrc}?crop=Wide` : "";
+  const thumbnailHigh = thumbSrc ? `${thumbSrc}?crop=High` : "";
+
   return {
     id: contentId(source) ?? contentId(child),
     key,
@@ -321,6 +350,15 @@ function normalizeContent(child, detail) {
     ),
     createDate: firstDefined(source?.createDate, source?.CreateDate, child?.createDate, child?.CreateDate, ""),
     updateDate: firstDefined(source?.updateDate, source?.UpdateDate, child?.updateDate, child?.UpdateDate, ""),
+    publishDate,
+    releaseDate,
+    removeDate,
+    owner: ownerObj,
+    ownerName,
+    ownerId,
+    updater: updaterObj,
+    updaterName,
+    updaterId,
     parentId: firstDefined(source?.parentId, source?.ParentId, child?.parentId, child?.ParentId, null),
     path: firstDefined(source?.path, source?.Path, child?.path, child?.Path, ""),
     sortOrder: firstDefined(source?.sortOrder, source?.SortOrder, child?.sortOrder, child?.SortOrder, null),
@@ -348,7 +386,13 @@ function normalizeContent(child, detail) {
     production: properties.production || "",
     productionLink: properties.productionLink || "",
     tags: properties.tags || "",
-    thumbnail: properties.thumbnail || "",
+    thumbnail: thumbSrc,
+    thumbnailCrops: [
+      { alias: "Wide", width: 1920, height: 1080, url: thumbnailWide },
+      { alias: "High", width: 650, height: 920, url: thumbnailHigh },
+    ],
+    thumbnailWide,
+    thumbnailHigh,
     productLink: properties.productLink || "",
     access: properties.access || [],
     rentalPrice: properties.rentalPrice || "",

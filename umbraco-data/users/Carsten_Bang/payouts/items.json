@@ -40,7 +40,16 @@
       "to": "2026-05-19 10:39:30",
       "transactionAmount": "49.2",
       "kiibeeCutAmount": "200"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 116361,
@@ -83,7 +92,16 @@
       "to": "2025-12-09 13:02:11",
       "transactionAmount": "20.22",
       "kiibeeCutAmount": "60"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 110515,
@@ -126,7 +144,16 @@
       "to": "2025-06-13 13:53:39",
       "transactionAmount": "47.46",
       "kiibeeCutAmount": "180"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108213,
@@ -169,7 +196,16 @@
       "to": "2025-04-02 11:10:44",
       "transactionAmount": "61.62",
       "kiibeeCutAmount": "260"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 78702,
@@ -212,7 +248,16 @@
       "to": "2023-03-07 10:58:26",
       "transactionAmount": "35.15",
       "kiibeeCutAmount": "255"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 53095,
@@ -255,6 +300,15 @@
       "to": "2021-11-27 10:16:30",
       "transactionAmount": "19.44",
       "kiibeeCutAmount": "120"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

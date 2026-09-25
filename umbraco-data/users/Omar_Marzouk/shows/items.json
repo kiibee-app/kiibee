@@ -46,7 +46,23 @@
       "tags": "Comedy,Stand-up,Omar Marzouk",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3535/omar-kriga3.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3535/omar-kriga3.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3535/omar-kriga3.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3535/omar-kriga3.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -96,7 +112,32 @@
       "firstEntryAt": "2025-09-24 18:57:03",
       "lastEntryAt": "2025-09-24 18:57:03",
       "sampleEntryIds": [113080]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3535/omar-kriga3.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3535/omar-kriga3.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3535/omar-kriga3.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3535/omar-kriga3.jpg?crop=High"
   },
   {
     "id": 46889,
@@ -145,7 +186,23 @@
       "tags": "Comedy,Stand-up,Omar Marzouk",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3536/400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3536/400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3536/400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3536/400x600.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -195,7 +252,32 @@
       "firstEntryAt": "2024-02-09 18:58:41",
       "lastEntryAt": "2025-04-19 22:47:35",
       "sampleEntryIds": [108642, 108628, 108614, 94675]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3536/400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3536/400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3536/400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3536/400x600.jpg?crop=High"
   },
   {
     "id": 47068,
@@ -244,7 +326,23 @@
       "tags": "Comedy,Stand-up,Omar Marzouk",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -294,7 +392,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3537/omar-marzouk-omskaret-dvd-brugt.jpg?crop=High"
   },
   {
     "id": 47071,
@@ -343,7 +466,23 @@
       "tags": "Comedy,Stand-up,Omar Marzouk",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -393,7 +532,32 @@
       "firstEntryAt": "2023-12-04 14:31:29",
       "lastEntryAt": "2025-09-13 19:55:24",
       "sampleEntryIds": [112482, 112481, 92821]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3538/omar-marzouk-bange-for-sjov_400x600.jpg?crop=High"
   },
   {
     "id": 47306,
@@ -442,7 +606,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3544/fem-pa-flugt.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3544/fem-pa-flugt.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3544/fem-pa-flugt.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3544/fem-pa-flugt.jpeg?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -492,7 +672,32 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3544/fem-pa-flugt.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3544/fem-pa-flugt.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3544/fem-pa-flugt.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3544/fem-pa-flugt.jpeg?crop=High"
   },
   {
     "id": 47307,
@@ -541,7 +746,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3545/a2-danish-final.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3545/a2-danish-final.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3545/a2-danish-final.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3545/a2-danish-final.jpeg?crop=High"
     },
     "type": ["264"],
     "rawFile": "",
@@ -591,6 +812,31 @@
       "firstEntryAt": "",
       "lastEntryAt": "",
       "sampleEntryIds": []
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3545/a2-danish-final.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3545/a2-danish-final.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3545/a2-danish-final.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3545/a2-danish-final.jpeg?crop=High"
   }
 ]

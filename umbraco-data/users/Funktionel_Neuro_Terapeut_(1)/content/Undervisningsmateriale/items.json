@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4963/modul-1-slide1-billede.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4963/modul-1-slide1-billede.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4963/modul-1-slide1-billede.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4963/modul-1-slide1-billede.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:18",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4963/modul-1-slide1-billede.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4963/modul-1-slide1-billede.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4963/modul-1-slide1-billede.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4963/modul-1-slide1-billede.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4963/modul-1-slide1-billede.jpg?crop=High"
   },
   {
     "id": 112427,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4961/modul-1-slide1-billede.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4961/modul-1-slide1-billede.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4961/modul-1-slide1-billede.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4961/modul-1-slide1-billede.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:20",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4961/modul-1-slide1-billede.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4961/modul-1-slide1-billede.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4961/modul-1-slide1-billede.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4961/modul-1-slide1-billede.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4961/modul-1-slide1-billede.jpg?crop=High"
   },
   {
     "id": 112361,
@@ -952,7 +1048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4959/uden-navn.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4959/uden-navn.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4959/uden-navn.png?crop=Wide",
+      "thumbnailHigh": "/media/4959/uden-navn.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4959/uden-navn.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4959/uden-navn.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4959/uden-navn.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4959/uden-navn.png?crop=Wide",
+    "thumbnailHigh": "/media/4959/uden-navn.png?crop=High"
   },
   {
     "id": 114077,
@@ -1404,7 +1548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4996/modul-2-foto.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4996/modul-2-foto.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4996/modul-2-foto.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4996/modul-2-foto.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,7 +1965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4996/modul-2-foto.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4996/modul-2-foto.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4996/modul-2-foto.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4996/modul-2-foto.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4996/modul-2-foto.jpg?crop=High"
   },
   {
     "id": 114049,
@@ -1856,7 +2048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4992/modul-2-foto.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4992/modul-2-foto.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4992/modul-2-foto.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4992/modul-2-foto.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2257,7 +2465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4992/modul-2-foto.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4992/modul-2-foto.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4992/modul-2-foto.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4992/modul-2-foto.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4992/modul-2-foto.jpg?crop=High"
   },
   {
     "id": 115200,
@@ -2308,7 +2548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5024/billede1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5024/billede1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5024/billede1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5024/billede1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2709,7 +2965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5024/billede1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5024/billede1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5024/billede1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5024/billede1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5024/billede1.jpg?crop=High"
   },
   {
     "id": 116177,
@@ -2760,7 +3048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5067/billede1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5067/billede1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5067/billede1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5067/billede1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3161,7 +3465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5067/billede1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5067/billede1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5067/billede1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5067/billede1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5067/billede1.jpg?crop=High"
   },
   {
     "id": 117135,
@@ -3212,7 +3548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5079/ydre-og-indre-oere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5079/ydre-og-indre-oere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5079/ydre-og-indre-oere.png?crop=Wide",
+      "thumbnailHigh": "/media/5079/ydre-og-indre-oere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3613,7 +3965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5079/ydre-og-indre-oere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5079/ydre-og-indre-oere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5079/ydre-og-indre-oere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5079/ydre-og-indre-oere.png?crop=Wide",
+    "thumbnailHigh": "/media/5079/ydre-og-indre-oere.png?crop=High"
   },
   {
     "id": 117148,
@@ -3664,7 +4048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5087/ydre-og-indre-oere.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5087/ydre-og-indre-oere.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5087/ydre-og-indre-oere.png?crop=Wide",
+      "thumbnailHigh": "/media/5087/ydre-og-indre-oere.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4065,7 +4465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5087/ydre-og-indre-oere.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5087/ydre-og-indre-oere.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5087/ydre-og-indre-oere.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5087/ydre-og-indre-oere.png?crop=Wide",
+    "thumbnailHigh": "/media/5087/ydre-og-indre-oere.png?crop=High"
   },
   {
     "id": 118265,
@@ -4116,7 +4548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4517,7 +4965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5117/aandedraettet_lunger-paa-loeber.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5117/aandedraettet_lunger-paa-loeber.jpg?crop=High"
   },
   {
     "id": 118263,
@@ -4568,7 +5048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5115/biopsykosocial.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5115/biopsykosocial.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5115/biopsykosocial.png?crop=Wide",
+      "thumbnailHigh": "/media/5115/biopsykosocial.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4969,6 +5465,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-05 10:55:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5115/biopsykosocial.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5115/biopsykosocial.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5115/biopsykosocial.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5115/biopsykosocial.png?crop=Wide",
+    "thumbnailHigh": "/media/5115/biopsykosocial.png?crop=High"
   }
 ]

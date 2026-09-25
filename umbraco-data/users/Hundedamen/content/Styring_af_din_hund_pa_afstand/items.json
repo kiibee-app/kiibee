@@ -48,7 +48,23 @@
       "tags": "Hundetræning,onlinekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4121/sit.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4121/sit.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4121/sit.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4121/sit.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-07-04 17:18:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4121/sit.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4121/sit.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4121/sit.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4121/sit.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4121/sit.jpg?crop=High"
   },
   {
     "id": 67527,
@@ -500,7 +548,23 @@
       "tags": "Hundetræning,onlinekursus,Hundedamen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4122/daek.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4122/daek.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4122/daek.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4122/daek.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,6 +965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-07-04 17:18:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4122/daek.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4122/daek.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4122/daek.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4122/daek.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4122/daek.jpg?crop=High"
   }
 ]

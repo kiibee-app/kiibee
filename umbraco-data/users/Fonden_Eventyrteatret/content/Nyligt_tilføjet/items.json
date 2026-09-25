@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5121/nattergalen-eventyrteatret.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5121/nattergalen-eventyrteatret.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5121/nattergalen-eventyrteatret.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5121/nattergalen-eventyrteatret.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-20 12:30:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5121/nattergalen-eventyrteatret.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5121/nattergalen-eventyrteatret.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5121/nattergalen-eventyrteatret.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5121/nattergalen-eventyrteatret.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5121/nattergalen-eventyrteatret.jpg?crop=High"
   },
   {
     "id": 118911,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5123/2001-snedronningenweb.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5123/2001-snedronningenweb.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5123/2001-snedronningenweb.jpg?crop=Wide",
+      "thumbnailHigh": "/media/5123/2001-snedronningenweb.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-26 11:47:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5123/2001-snedronningenweb.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5123/2001-snedronningenweb.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5123/2001-snedronningenweb.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5123/2001-snedronningenweb.jpg?crop=Wide",
+    "thumbnailHigh": "/media/5123/2001-snedronningenweb.jpg?crop=High"
   },
   {
     "id": 118912,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=Wide",
+      "thumbnailHigh": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,6 +1489,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2026-02-26 11:47:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=Wide",
+    "thumbnailHigh": "/media/5131/1999-prinsessen-paa-aertenweb-jpg.webp?crop=High"
   }
 ]

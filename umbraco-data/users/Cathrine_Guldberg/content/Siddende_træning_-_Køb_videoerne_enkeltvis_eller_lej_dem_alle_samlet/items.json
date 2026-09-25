@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=Wide",
+      "thumbnailHigh": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-09 20:33:58",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4424/skaermbillede-2023-05-28-145935.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=Wide",
+    "thumbnailHigh": "/media/4424/skaermbillede-2023-05-28-145935.png?crop=High"
   },
   {
     "id": 85218,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=Wide",
+      "thumbnailHigh": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-09 20:34:27",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4435/skaermbillede-2023-05-28-171331.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=Wide",
+    "thumbnailHigh": "/media/4435/skaermbillede-2023-05-28-171331.png?crop=High"
   },
   {
     "id": 85217,
@@ -972,7 +1068,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=Wide",
+      "thumbnailHigh": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-09 20:34:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4434/skaermbillede-2023-05-28-165936.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=Wide",
+    "thumbnailHigh": "/media/4434/skaermbillede-2023-05-28-165936.png?crop=High"
   },
   {
     "id": 85212,
@@ -1432,7 +1576,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=Wide",
+      "thumbnailHigh": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,6 +1997,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-09 20:37:55",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4431/skaermbillede-2023-05-28-160925.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=Wide",
+    "thumbnailHigh": "/media/4431/skaermbillede-2023-05-28-160925.png?crop=High"
   }
 ]

@@ -39,32 +39,30 @@
       "year": "2022",
       "description": "Johnni Gade forener YouTube, Freestyle Rap og stand up i et show, som du næppe har set det før. Johnni er kendt for at grille sine YouTube-kollegaer på den hårde klinge og med showet Kogekone er der lagt i ovnen til en roast, som selv Gordon Ramsey ville blive misundelig over.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
       "title": "Kogekone",
       "badge": "",
       "length": "53",
       "tags": "Johnni Gade,Kogekone,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -483,6 +481,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-09-05 12:48:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 1,
+      "name": "Anders Halfter"
+    },
+    "updaterName": "Anders Halfter",
+    "updaterId": 1,
+    "thumbnail": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4131/johnnigade_poster_a2_02-kopier.jpg?crop=High"
   }
 ]

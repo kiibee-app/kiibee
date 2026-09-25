@@ -39,32 +39,30 @@
       "year": "2016",
       "description": "Stream Elias Ehlers Det Dystre Skæg - lej eller køb online\r\nI starten af 2016 tog Martin Nørgaard og Elias Ehlers rundt i landet og optrådte med deres stand-up show “Det Dystre Skæg”. Showet er opkaldt efter deres podcast af samme navn. Showet er to-delt, hvor Martin og Elias laver stand-up i ca. 50 minutter hver.\r\n\r\nI maj samme år optog de det på et propfyldt Bremen Teater i København, og du kan nu se det digitalt!",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3237/det-dystre-skaeg-_facing_.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3237/det-dystre-skaeg-_facing_.jpg",
       "title": "Det dyste skæg",
       "badge": "",
       "length": "136",
       "tags": "Det Dystre Skæg,Comedy,Stand-up,Elias Ehlers,Martin Nørgaard",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -483,7 +481,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-06-17 11:37:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3237/det-dystre-skaeg-_facing_.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3237/det-dystre-skaeg-_facing_.jpg?crop=High"
   },
   {
     "id": 42713,
@@ -525,32 +555,30 @@
       "year": "2015",
       "description": "Stream Elias Ehlers Helt Perfekt - lej eller køb online\r\nElias Ehlers præsenterer den perfekte udgave af sig selv i selvsatirisk nyt one man show.\r\n\r\nLivet er en balancegang mellem målet at være det perfekte menneske og hvile i sig selv som den man er. For Elias Ehlers hedder det balancepunkt voksen og det prøver han så at blive - på godt og ondt. Og sjovt! For det bliver Elias Ehlers andet one man show med garanti, når han i HELT PERFEKT leverer en guided stand-up-tour i sin egen identitetskrise. HELT PERFEKT byder på et gensyn med den eksistentialistiske satire, der efterhånden er blevet Elias Ehlers komiske varemærke.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3156/elias_helt_perfekt.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3156/elias_helt_perfekt.jpg",
       "title": "Helt Perfekt",
       "badge": "",
       "length": "115",
       "tags": "Helt Perfekt,Elias Ehlers,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3156/elias_helt_perfekt.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3156/elias_helt_perfekt.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3156/elias_helt_perfekt.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3156/elias_helt_perfekt.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -969,7 +997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-06-17 11:38:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3156/elias_helt_perfekt.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3156/elias_helt_perfekt.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3156/elias_helt_perfekt.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3156/elias_helt_perfekt.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3156/elias_helt_perfekt.jpg?crop=High"
   },
   {
     "id": 42712,
@@ -1011,32 +1071,30 @@
       "year": "2012",
       "description": "Stream Elias Ehlers Fucking Glad - lej eller køb online\r\nElias Ehlers har allerede leveret mange perler til den danske comedy-scene. Alene hans sæt til de sidste års Comedy Aid har vakt vild jubel med hans samfundssatiriske undren over verden omkring ham. I \"Fucking glad\" vender han blikket indad og præsenterer sit indre tragikomiske univers i et forrygende show. For livet er en lidelse, når man hedder Elias Ehlers, er sortseer og født med et ansigt fastfrosset i afmagtens folder, hvor bare det mindste smil føles som en mental fibersprængning. Især når verden er fyldt med jubeloptimister, der konstant forsøger at aftvinge ham en smule begejstring eller i det mindste bare en mimik ... Elias´verden er faktisk hysterisk sjov, set udefra. Og som showet byder på udleverende tilbageblik på livet som Elias og den tristesse han bærer som et åg på sine i forvejen spinkle skuldre, er det nærmest umuligt at holde tårerne tilbage.... for du kommer med garanti til at græde af grin.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3155/elias-fucking-glad-clean.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3155/elias-fucking-glad-clean.jpg",
       "title": "Fucking Glad",
       "badge": "",
       "length": "106",
       "tags": "Fucking Glad,Elias Ehlers,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3155/elias-fucking-glad-clean.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3155/elias-fucking-glad-clean.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3155/elias-fucking-glad-clean.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3155/elias-fucking-glad-clean.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1455,6 +1513,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-06-17 11:38:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3155/elias-fucking-glad-clean.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3155/elias-fucking-glad-clean.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3155/elias-fucking-glad-clean.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3155/elias-fucking-glad-clean.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3155/elias-fucking-glad-clean.jpg?crop=High"
   }
 ]

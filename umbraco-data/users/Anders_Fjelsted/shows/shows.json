@@ -39,32 +39,30 @@
       "year": "2014",
       "description": "<h2>Stream Anders Fjelsteds Lige ved og voksen - lej eller køb online</h2>\nAnders Fjelsted har lavet stand-up siden han var 19 år gammel. Nu er han snart 38. Ergo har han… Øh, en del års erfaring. Dengang i ’95 handlede det meget om kæresteproblemer, dumme forældre og besværet ved at være flyttet hjemmefra til en lille lejlighed. I 2014 er kæresten blevet til konen, forældrene er blevet bedsteforældre og lejligheden er blevet hus med have. I ’95 handlede det hele om øl, fisse og hornmusik. I dag giver øllet tømmermænd, fissen har født to børn og hornmusikken forstyrrer nattesøvnen. Er Anders mon blevet voksen? Det er vist lige ved. Derfor handler Anders’ nyeste show primært om voksenting. Naturligvis leveret med Fjelles sædvanlige sans for observans og barnlige tilgang til livet. For du kan muligvis tage Fjelsted ud af barnet, men du kan ikke tage barnet ud af Fjelsted… Eller noget i den stil.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3140/fjelle_400x600.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3140/fjelle_400x600.jpg",
       "title": "Lige ved og voksen ",
       "badge": "",
       "length": "113",
       "tags": "Lige ved og voksen,Anders Fjelsted,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3140/fjelle_400x600.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3140/fjelle_400x600.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3140/fjelle_400x600.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3140/fjelle_400x600.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -88,25 +86,7 @@
     "production": "",
     "productionLink": "",
     "tags": "Lige ved og voksen,Anders Fjelsted,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/3140/fjelle_400x600.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/3140/fjelle_400x600.jpg",
     "productLink": "",
     "access": ["58"],
     "rentalPrice": "29",
@@ -132,7 +112,32 @@
       "firstEntryAt": "2021-06-05 08:31:40",
       "lastEntryAt": "2025-03-25 17:43:50",
       "sampleEntryIds": [107851, 107850, 107849, 107773, 107772]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3140/fjelle_400x600.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3140/fjelle_400x600.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3140/fjelle_400x600.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3140/fjelle_400x600.jpg?crop=High"
   },
   {
     "id": 42517,
@@ -174,32 +179,30 @@
       "year": "2010",
       "description": "<h2>Stream Anders Fjelsteds Barnligt Voksen - lej eller køb online</h2>\nI showet balancerer Anders Fjelsted på kanten mellem det indre barn, der bare vil ud, og den voksne mand han er. Det kan ikke andet end give en skæv indgang til tilværelsen, men han leverer samtidig materiale til en forrygende omgang stand-up hvor \"Fjelle\" med sin sædvanlige drengede charme joker sig igennem emner som politik, handicap-toiletter, mænd, kvinder og parforhold.",
       "productionLink": "",
-      "thumbnail": {
-        "focalPoint": {
-          "left": 0.5,
-          "top": 0.5
-        },
-        "src": "/media/3139/fjelsted_dvd_packshot.jpg",
-        "crops": [
-          {
-            "alias": "Wide",
-            "width": 1920,
-            "height": 1080
-          },
-          {
-            "alias": "High",
-            "width": 650,
-            "height": 920
-          }
-        ]
-      },
+      "thumbnail": "/media/3139/fjelsted_dvd_packshot.jpg",
       "title": "Barnligt Voksen ",
       "badge": "",
       "length": "134",
       "tags": "Barnligt Voksen,Anders Fjelsted,Comedy,Stand-up",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3139/fjelsted_dvd_packshot.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3139/fjelsted_dvd_packshot.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3139/fjelsted_dvd_packshot.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3139/fjelsted_dvd_packshot.jpg?crop=High"
     },
     "type": ["73"],
     "rawFile": "",
@@ -223,25 +226,7 @@
     "production": "",
     "productionLink": "",
     "tags": "Barnligt Voksen,Anders Fjelsted,Comedy,Stand-up",
-    "thumbnail": {
-      "focalPoint": {
-        "left": 0.5,
-        "top": 0.5
-      },
-      "src": "/media/3139/fjelsted_dvd_packshot.jpg",
-      "crops": [
-        {
-          "alias": "Wide",
-          "width": 1920,
-          "height": 1080
-        },
-        {
-          "alias": "High",
-          "width": 650,
-          "height": 920
-        }
-      ]
-    },
+    "thumbnail": "/media/3139/fjelsted_dvd_packshot.jpg",
     "productLink": "",
     "access": ["58"],
     "rentalPrice": "29",
@@ -267,6 +252,31 @@
       "firstEntryAt": "2021-06-05 08:51:39",
       "lastEntryAt": "2025-03-25 17:41:06",
       "sampleEntryIds": [107848, 107774, 64177, 46812]
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null,
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3139/fjelsted_dvd_packshot.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3139/fjelsted_dvd_packshot.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3139/fjelsted_dvd_packshot.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3139/fjelsted_dvd_packshot.jpg?crop=High"
   }
 ]

@@ -52,7 +52,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2527/velkomst.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2527/velkomst.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2527/velkomst.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2527/velkomst.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-07-05 10:39:47",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2527/velkomst.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2527/velkomst.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2527/velkomst.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2527/velkomst.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2527/velkomst.jpg?crop=High"
   },
   {
     "id": 21056,
@@ -512,7 +560,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/2528/haandtegn.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/2528/haandtegn.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/2528/haandtegn.jpg?crop=Wide",
+      "thumbnailHigh": "/media/2528/haandtegn.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-07-05 10:40:52",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/2528/haandtegn.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/2528/haandtegn.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/2528/haandtegn.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/2528/haandtegn.jpg?crop=Wide",
+    "thumbnailHigh": "/media/2528/haandtegn.jpg?crop=High"
   },
   {
     "id": 60687,
@@ -972,7 +1068,23 @@
       "tags": "Hundetræning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=Wide",
+      "thumbnailHigh": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-24 12:36:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3962/skaermbillede-2022-02-01-kl-141449.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=Wide",
+    "thumbnailHigh": "/media/3962/skaermbillede-2022-02-01-kl-141449.png?crop=High"
   },
   {
     "id": 60684,
@@ -1432,7 +1576,23 @@
       "tags": "Hundetræning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=Wide",
+      "thumbnailHigh": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-24 12:34:42",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3960/skaermbillede-2022-05-24-kl-085628.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=Wide",
+    "thumbnailHigh": "/media/3960/skaermbillede-2022-05-24-kl-085628.png?crop=High"
   },
   {
     "id": 60686,
@@ -1892,7 +2084,23 @@
       "tags": "Hundetræning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=Wide",
+      "thumbnailHigh": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-24 12:35:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3961/skaermbillede-2022-02-01-kl-141030.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=Wide",
+    "thumbnailHigh": "/media/3961/skaermbillede-2022-02-01-kl-141030.png?crop=High"
   },
   {
     "id": 60688,
@@ -2352,7 +2592,23 @@
       "tags": "Hundetræning",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=Wide",
+      "thumbnailHigh": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,6 +3013,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-01-24 12:35:01",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3963/skaermbillede-2022-02-01-kl-141628.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=Wide",
+    "thumbnailHigh": "/media/3963/skaermbillede-2022-02-01-kl-141628.png?crop=High"
   }
 ]

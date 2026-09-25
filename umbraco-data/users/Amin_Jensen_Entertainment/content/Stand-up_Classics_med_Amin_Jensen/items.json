@@ -48,7 +48,23 @@
       "tags": "Podcast,Stand-up Classics med Amin Jensen,Talkshow",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4632/amin.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4632/amin.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4632/amin.png?crop=Wide",
+      "thumbnailHigh": "/media/4632/amin.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-12-16 14:21:49",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4632/amin.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4632/amin.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4632/amin.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4632/amin.png?crop=Wide",
+    "thumbnailHigh": "/media/4632/amin.png?crop=High"
   },
   {
     "id": 103749,
@@ -500,7 +548,23 @@
       "tags": "Stand-up,Stand-up Classics med Amin Jensen",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4837/carsten-bang.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4837/carsten-bang.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4837/carsten-bang.png?crop=Wide",
+      "thumbnailHigh": "/media/4837/carsten-bang.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-12-16 14:20:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4837/carsten-bang.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4837/carsten-bang.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4837/carsten-bang.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4837/carsten-bang.png?crop=Wide",
+    "thumbnailHigh": "/media/4837/carsten-bang.png?crop=High"
   },
   {
     "id": 103751,
@@ -952,7 +1048,23 @@
       "tags": "Stand-up Classics med Amin Jensen,Comedy",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4838/tm-w.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4838/tm-w.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4838/tm-w.png?crop=Wide",
+      "thumbnailHigh": "/media/4838/tm-w.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,6 +1465,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-12-16 14:26:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4838/tm-w.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4838/tm-w.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4838/tm-w.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4838/tm-w.png?crop=Wide",
+    "thumbnailHigh": "/media/4838/tm-w.png?crop=High"
   }
 ]

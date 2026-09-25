@@ -48,7 +48,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3273/kamma-ka-lgriner.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3273/kamma-ka-lgriner.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3273/kamma-ka-lgriner.png?crop=Wide",
+      "thumbnailHigh": "/media/3273/kamma-ka-lgriner.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -449,7 +465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 20:07:46",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3273/kamma-ka-lgriner.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3273/kamma-ka-lgriner.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3273/kamma-ka-lgriner.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3273/kamma-ka-lgriner.png?crop=Wide",
+    "thumbnailHigh": "/media/3273/kamma-ka-lgriner.png?crop=High"
   },
   {
     "id": 42957,
@@ -500,7 +548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide",
+      "thumbnailHigh": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -901,7 +965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 15:06:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=Wide",
+    "thumbnailHigh": "/media/3182/ka-l-krammer-din-krop00_00_43_11still002.png?crop=High"
   },
   {
     "id": 42963,
@@ -952,7 +1048,23 @@
       "tags": "opskrifter,madlavning,sundhed,kål,diabetes,kogebog",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1353,7 +1465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:41:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3183/den-ra-ka-l00_01_14_20still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3183/den-ra-ka-l00_01_14_20still001.png?crop=High"
   },
   {
     "id": 42989,
@@ -1404,7 +1548,23 @@
       "tags": "sundhed,kost,opskrifter,madlavning,kål,grøntsager,madlavningkursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1805,7 +1965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:41:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3184/ka-lkoed-00_01_15_16still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3184/ka-lkoed-00_01_15_16still001.png?crop=High"
   },
   {
     "id": 43000,
@@ -1856,7 +2048,23 @@
       "tags": "sundhed,kost,opskrifter,madlavning,kål,grøntsager,madlavningskursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3190/cremede-ka-l.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3190/cremede-ka-l.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3190/cremede-ka-l.png?crop=Wide",
+      "thumbnailHigh": "/media/3190/cremede-ka-l.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2257,7 +2465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:41:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3190/cremede-ka-l.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3190/cremede-ka-l.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3190/cremede-ka-l.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3190/cremede-ka-l.png?crop=Wide",
+    "thumbnailHigh": "/media/3190/cremede-ka-l.png?crop=High"
   },
   {
     "id": 42990,
@@ -2308,7 +2548,23 @@
       "tags": "sundhed,kost,opskirfter,madlavning,kål,grøntsager historie,madlavningskursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3185/kamma-grin-med-ka-l.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3185/kamma-grin-med-ka-l.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3185/kamma-grin-med-ka-l.png?crop=Wide",
+      "thumbnailHigh": "/media/3185/kamma-grin-med-ka-l.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2709,7 +2965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 15:06:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3185/kamma-grin-med-ka-l.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3185/kamma-grin-med-ka-l.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3185/kamma-grin-med-ka-l.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3185/kamma-grin-med-ka-l.png?crop=Wide",
+    "thumbnailHigh": "/media/3185/kamma-grin-med-ka-l.png?crop=High"
   },
   {
     "id": 42997,
@@ -2760,7 +3048,23 @@
       "tags": "sundhed,kost,madlavning,kål,grøntsager,madlavningskursus,opskrifter",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=Wide",
+      "thumbnailHigh": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3161,7 +3465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:42:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3186/den-stegte-ka-l00_01_42_16still004.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=Wide",
+    "thumbnailHigh": "/media/3186/den-stegte-ka-l00_01_42_16still004.png?crop=High"
   },
   {
     "id": 42998,
@@ -3212,7 +3548,23 @@
       "tags": "sundhed,kost,madlavning,kål,grøntsager,opskrifter,madlavningskursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=Wide",
+      "thumbnailHigh": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3613,7 +3965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:42:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3187/den-bagte-ka-l00_07_51_17still001.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=Wide",
+    "thumbnailHigh": "/media/3187/den-bagte-ka-l00_07_51_17still001.png?crop=High"
   },
   {
     "id": 42999,
@@ -3664,7 +4048,23 @@
       "tags": "sundhed,kost,opskirfter,madlavning,kål,grøntsager,madlavningskursus",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3188/ka-l-hacks-sug.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3188/ka-l-hacks-sug.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3188/ka-l-hacks-sug.png?crop=Wide",
+      "thumbnailHigh": "/media/3188/ka-l-hacks-sug.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4065,7 +4465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-04-12 12:43:04",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3188/ka-l-hacks-sug.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3188/ka-l-hacks-sug.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3188/ka-l-hacks-sug.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3188/ka-l-hacks-sug.png?crop=Wide",
+    "thumbnailHigh": "/media/3188/ka-l-hacks-sug.png?crop=High"
   },
   {
     "id": 43170,
@@ -4116,7 +4548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3217/kammas-online-kursus.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3217/kammas-online-kursus.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3217/kammas-online-kursus.png?crop=Wide",
+      "thumbnailHigh": "/media/3217/kammas-online-kursus.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4517,7 +4965,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 15:06:39",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3217/kammas-online-kursus.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3217/kammas-online-kursus.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3217/kammas-online-kursus.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3217/kammas-online-kursus.png?crop=Wide",
+    "thumbnailHigh": "/media/3217/kammas-online-kursus.png?crop=High"
   },
   {
     "id": 43171,
@@ -4568,7 +5048,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3219/masser-af-groent.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3219/masser-af-groent.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3219/masser-af-groent.png?crop=Wide",
+      "thumbnailHigh": "/media/3219/masser-af-groent.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4969,7 +5465,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 15:06:40",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3219/masser-af-groent.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3219/masser-af-groent.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3219/masser-af-groent.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3219/masser-af-groent.png?crop=Wide",
+    "thumbnailHigh": "/media/3219/masser-af-groent.png?crop=High"
   },
   {
     "id": 43174,
@@ -5020,7 +5548,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3221/ka-l-superhelt.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3221/ka-l-superhelt.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3221/ka-l-superhelt.png?crop=Wide",
+      "thumbnailHigh": "/media/3221/ka-l-superhelt.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5421,6 +5965,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2021-04-21 15:06:41",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3221/ka-l-superhelt.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3221/ka-l-superhelt.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3221/ka-l-superhelt.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3221/ka-l-superhelt.png?crop=Wide",
+    "thumbnailHigh": "/media/3221/ka-l-superhelt.png?crop=High"
   }
 ]

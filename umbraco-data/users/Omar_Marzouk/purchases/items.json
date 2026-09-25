@@ -74,7 +74,16 @@
       "fullName": "Morten Tygesen",
       "message": "",
       "media": "umb://document/8153f0aa48b14b8592b1b689806e6baa"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 113079,
@@ -151,7 +160,16 @@
       "fullName": "Karina Stenberg ",
       "message": "",
       "media": "umb://document/8668122acf7543b19419868055f502e9"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 112480,
@@ -228,7 +246,16 @@
       "fullName": "Karina Stenberg ",
       "message": "",
       "media": "umb://document/145bc47b231e4bc59387245f0b3c6b5f"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 108613,
@@ -305,7 +332,16 @@
       "fullName": "Mohammad ",
       "message": "",
       "media": "umb://document/53c2f56eb4fe4cafa37bc4b272acbcc1"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 94674,
@@ -382,7 +418,16 @@
       "fullName": "Jacob Brinch Kristensen",
       "message": "",
       "media": "umb://document/53c2f56eb4fe4cafa37bc4b272acbcc1"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   },
   {
     "id": 92820,
@@ -459,6 +504,15 @@
       "fullName": "Johnny Jørgensedn",
       "message": "",
       "media": "umb://document/145bc47b231e4bc59387245f0b3c6b5f"
-    }
+    },
+    "publishDate": "",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": null,
+    "ownerName": "",
+    "ownerId": null,
+    "updater": null,
+    "updaterName": "",
+    "updaterId": null
   }
 ]

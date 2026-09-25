@@ -52,7 +52,23 @@
       "tags": "Filmen Hammel og omegnens historie,video",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4650/dvd-forside-2.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4650/dvd-forside-2.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4650/dvd-forside-2.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4650/dvd-forside-2.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-28 08:12:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4650/dvd-forside-2.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4650/dvd-forside-2.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4650/dvd-forside-2.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4650/dvd-forside-2.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4650/dvd-forside-2.jpg?crop=High"
   },
   {
     "id": 96620,
@@ -512,7 +560,23 @@
       "tags": "e-bog,FOLK FRA HAMMEL-KANTEN 1,portrætbog,PDF format",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4649/billede-26042024-kl-0858.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4649/billede-26042024-kl-0858.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4649/billede-26042024-kl-0858.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4649/billede-26042024-kl-0858.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-28 08:13:42",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4649/billede-26042024-kl-0858.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4649/billede-26042024-kl-0858.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4649/billede-26042024-kl-0858.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4649/billede-26042024-kl-0858.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4649/billede-26042024-kl-0858.jpg?crop=High"
   },
   {
     "id": 96630,
@@ -972,7 +1068,23 @@
       "tags": "e-bog,FOLK FRA HAMMEL-KANTEN 2,e-bog i PDF,PDF format",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4648/billede-26042024-kl-0847.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4648/billede-26042024-kl-0847.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4648/billede-26042024-kl-0847.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4648/billede-26042024-kl-0847.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-28 08:14:15",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4648/billede-26042024-kl-0847.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4648/billede-26042024-kl-0847.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4648/billede-26042024-kl-0847.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4648/billede-26042024-kl-0847.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4648/billede-26042024-kl-0847.jpg?crop=High"
   },
   {
     "id": 96679,
@@ -1432,7 +1576,23 @@
       "tags": "e-Bog,FOLK FRA HAMMEL-KANTEN 3",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,6 +1997,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2024-04-28 10:09:00",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4655/640x-omslag-ffh3_kor.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4655/640x-omslag-ffh3_kor.jpg?crop=High"
   }
 ]

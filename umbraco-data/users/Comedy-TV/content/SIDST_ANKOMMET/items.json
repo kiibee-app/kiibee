@@ -46,7 +46,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -447,7 +463,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4342/st_optur_2000x3000_300dpi_v2-1.jpg?crop=High"
   },
   {
     "id": 76278,
@@ -496,7 +544,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -897,7 +961,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4258/jt_kroellehjern_650x1030.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4258/jt_kroellehjern_650x1030.jpg?crop=High"
   },
   {
     "id": 64864,
@@ -946,7 +1042,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=Wide",
+      "thumbnailHigh": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1347,7 +1459,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4091/mens-room-4_streaming_320x445-1.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=Wide",
+    "thumbnailHigh": "/media/4091/mens-room-4_streaming_320x445-1.jpg?crop=High"
   },
   {
     "id": 69128,
@@ -1396,7 +1540,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1797,7 +1957,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/4132/johnnigade_poster_a2_02-kopier.jpeg?crop=High"
   },
   {
     "id": 88927,
@@ -1848,7 +2040,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/4479/lange-plakat.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/4479/lange-plakat.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/4479/lange-plakat.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/4479/lange-plakat.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2249,7 +2457,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:33",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/4479/lange-plakat.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/4479/lange-plakat.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/4479/lange-plakat.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/4479/lange-plakat.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/4479/lange-plakat.jpeg?crop=High"
   },
   {
     "id": 56284,
@@ -2298,7 +2538,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3952/danglish-2-poster.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3952/danglish-2-poster.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3952/danglish-2-poster.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3952/danglish-2-poster.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2699,7 +2955,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:34",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3952/danglish-2-poster.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3952/danglish-2-poster.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3952/danglish-2-poster.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3952/danglish-2-poster.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3952/danglish-2-poster.jpeg?crop=High"
   },
   {
     "id": 55743,
@@ -2748,7 +3036,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3937/dm-i-standup-2021-poster.png?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3937/dm-i-standup-2021-poster.png?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3937/dm-i-standup-2021-poster.png?crop=Wide",
+      "thumbnailHigh": "/media/3937/dm-i-standup-2021-poster.png?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3149,7 +3453,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:36",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3937/dm-i-standup-2021-poster.png",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3937/dm-i-standup-2021-poster.png?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3937/dm-i-standup-2021-poster.png?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3937/dm-i-standup-2021-poster.png?crop=Wide",
+    "thumbnailHigh": "/media/3937/dm-i-standup-2021-poster.png?crop=High"
   },
   {
     "id": 55744,
@@ -3198,7 +3534,23 @@
       "tags": "",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3938/dm-2019.jpeg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3938/dm-2019.jpeg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3938/dm-2019.jpeg?crop=Wide",
+      "thumbnailHigh": "/media/3938/dm-2019.jpeg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3599,6 +3951,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2025-09-29 13:47:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3938/dm-2019.jpeg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3938/dm-2019.jpeg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3938/dm-2019.jpeg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3938/dm-2019.jpeg?crop=Wide",
+    "thumbnailHigh": "/media/3938/dm-2019.jpeg?crop=High"
   }
 ]

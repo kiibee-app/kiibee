@@ -1,5 +1,5 @@
-id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,orderID,title,access,badge,code,description,expandedDescription,hidden,hideDownload,hidePlay,length,metaDescription,metaTitle,openWebContentFromList,openWebContentInNewWindows,production,productionLink,productLink,purchasePrice,rawFile,rentalPrice,siteMapOption,tags,thumbnail,trailer,type,videoDownloadURL,videoID,videoSize,videoStatus,videoThumbnailURL,webContentURL,year
-111249,a53a183d-b815-4914-ac03-71145202f7ab,umb://document/a53a183db8154914ac0371145202f7ab,Min Rolighedspause,media,true,true,2025-07-21 14:09:47,2025-09-03 08:20:21,111140,0,/skolero-aps/rolighedspause/min-rolighedspause/,0,Min Rolighedspause,60,Nyhed,,"Drømmer du om mere ro og trivsel i din klasse eller daginstitution? Nu bliver det let som aldrig før med SkoleRos helt nye Rolighedspause-sæt!
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,publishDate,releaseDate,removeDate,ownerName,ownerId,updaterName,updaterId,parentId,sortOrder,urls,purchasePrice,access,rentalPrice,code,metaDescription,metaTitle,type,videoDownloadURL,rawFile,videoStatus,hidden,videoThumbnailURL,videoID,openWebContentInNewWindows,trailer,openWebContentFromList,webContentURL,orderID,videoSize,productLink,expandedDescription,production,year,description,productionLink,thumbnail,title,badge,length,tags,hidePlay,hideDownload,siteMapOption,thumbnailCrops,thumbnailWide,thumbnailHigh
+"111249","a53a183d-b815-4914-ac03-71145202f7ab","umb://document/a53a183db8154914ac0371145202f7ab","Min Rolighedspause","media","true","true","2025-07-21 14:09:47","2025-09-03 08:20:21","2025-09-03 08:20:21","","","Martin H. Schläger","0","Martin H. Schläger","0","111140","0","[""/skolero-aps/rolighedspause/min-rolighedspause/""]","","[""60""]","","","","","[""75""]","","/media/4948/rolighedspausesaettet.pdf","","0","","","0","","0","","0","","","Drømmer du om mere ro og trivsel i din klasse eller daginstitution? Nu bliver det let som aldrig før med SkoleRos helt nye Rolighedspause-sæt!
 
 ✅ Hvad får du?
 
@@ -11,7 +11,7 @@ Fysiske børneyogaøvelser, åndedrætsøvelser, makkerøvelser og mindfulnessø
 
 🔄 Mix og Match øvelserne efter dine behov. Print, laminér og brug lærertyggegummi til nemt at sammensætte jeres helt egne Rolighedspauser.
 
-Med SkoleRos Rolighedspauser er en afslappet, fokuseret og glad børnegruppe kun et klik væk.","Drømmer du om mere ro og trivsel i din klasse eller daginstitution? Nu bliver det let som aldrig før med SkoleRos helt nye Rolighedspause-sæt!
+Med SkoleRos Rolighedspauser er en afslappet, fokuseret og glad børnegruppe kun et klik væk.","SkoleRo ApS","2025","Drømmer du om mere ro og trivsel i din klasse eller daginstitution? Nu bliver det let som aldrig før med SkoleRos helt nye Rolighedspause-sæt!
 
 ✅ Hvad får du?
 
@@ -23,4 +23,4 @@ Fysiske børneyogaøvelser, åndedrætsøvelser, makkerøvelser og mindfulnessø
 
 🔄 Mix og Match øvelserne efter dine behov. Print, laminér og brug lærertyggegummi til nemt at sammensætte jeres helt egne Rolighedspauser.
 
-Med SkoleRos Rolighedspauser er en afslappet, fokuseret og glad børnegruppe kun et klik væk.",0,0,0,5,,,0,0,SkoleRo ApS,https://skolero.dk/,,,/media/4948/rolighedspausesaettet.pdf,,,"Trivsel,skole,børnehave,indlæring",/media/4949/1.jpg,,75,,,,,,,2025
+Med SkoleRos Rolighedspauser er en afslappet, fokuseret og glad børnegruppe kun et klik væk.","https://skolero.dk/","/media/4949/1.jpg","Min Rolighedspause","Nyhed","5","Trivsel,skole,børnehave,indlæring","0","0","","[{""alias"":""Wide"",""width"":1920,""height"":1080,""url"":""/media/4949/1.jpg?crop=Wide""},{""alias"":""High"",""width"":650,""height"":920,""url"":""/media/4949/1.jpg?crop=High""}]","/media/4949/1.jpg?crop=Wide","/media/4949/1.jpg?crop=High"

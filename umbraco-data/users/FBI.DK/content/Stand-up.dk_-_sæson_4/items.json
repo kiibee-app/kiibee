@@ -52,7 +52,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3408/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3408/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3408/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3408/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -457,7 +473,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:12:29",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3408/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3408/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3408/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3408/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3408/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44432,
@@ -512,7 +560,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3407/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3407/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3407/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3407/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -917,7 +981,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:12:59",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3407/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3407/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3407/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3407/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3407/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44433,
@@ -972,7 +1068,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3409/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3409/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3409/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3409/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1377,7 +1489,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:13:10",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3409/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3409/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3409/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3409/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3409/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44434,
@@ -1432,7 +1576,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3406/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3406/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3406/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3406/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -1837,7 +1997,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:13:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3406/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3406/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3406/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3406/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3406/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44438,
@@ -1892,7 +2084,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3410/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3410/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3410/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3410/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2297,7 +2505,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:13:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3410/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3410/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3410/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3410/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3410/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44439,
@@ -2352,7 +2592,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3468/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3468/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3468/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3468/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -2757,7 +3013,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:14:12",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3468/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3468/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3468/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3468/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3468/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44440,
@@ -2812,7 +3100,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3469/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3469/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3469/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3469/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3217,7 +3521,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:14:30",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3469/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3469/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3469/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3469/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3469/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44442,
@@ -3272,7 +3608,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3470/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3470/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3470/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3470/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -3677,7 +4029,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:14:44",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3470/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3470/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3470/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3470/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3470/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44443,
@@ -3732,7 +4116,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3471/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3471/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3471/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3471/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4137,7 +4537,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:15:31",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3471/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3471/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3471/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3471/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3471/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44445,
@@ -4192,7 +4624,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3472/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3472/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3472/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3472/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -4597,7 +5045,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:15:45",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3472/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3472/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3472/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3472/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3472/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44449,
@@ -4652,7 +5132,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3473/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3473/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3473/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3473/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5057,7 +5553,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:16:01",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3473/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3473/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3473/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3473/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3473/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44447,
@@ -5112,7 +5640,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3474/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3474/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3474/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3474/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5517,7 +6061,39 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:16:22",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3474/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3474/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3474/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3474/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3474/sudk-dvdfront.jpg?crop=High"
   },
   {
     "id": 44448,
@@ -5572,7 +6148,23 @@
       "tags": "Comedy,Standup",
       "hidePlay": "0",
       "hideDownload": "0",
-      "siteMapOption": ""
+      "siteMapOption": "",
+      "thumbnailCrops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080,
+          "url": "/media/3475/sudk-dvdfront.jpg?crop=Wide"
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920,
+          "url": "/media/3475/sudk-dvdfront.jpg?crop=High"
+        }
+      ],
+      "thumbnailWide": "/media/3475/sudk-dvdfront.jpg?crop=Wide",
+      "thumbnailHigh": "/media/3475/sudk-dvdfront.jpg?crop=High"
     },
     "fieldDetails": {
       "purchasePrice": {
@@ -5977,6 +6569,38 @@
       "hidePlay",
       "hideDownload",
       "siteMapOption"
-    ]
+    ],
+    "publishDate": "2022-03-18 10:16:35",
+    "releaseDate": null,
+    "removeDate": null,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "ownerName": "Martin H. Schläger",
+    "ownerId": 0,
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updaterName": "Martin H. Schläger",
+    "updaterId": 0,
+    "thumbnail": "/media/3475/sudk-dvdfront.jpg",
+    "thumbnailCrops": [
+      {
+        "alias": "Wide",
+        "width": 1920,
+        "height": 1080,
+        "url": "/media/3475/sudk-dvdfront.jpg?crop=Wide"
+      },
+      {
+        "alias": "High",
+        "width": 650,
+        "height": 920,
+        "url": "/media/3475/sudk-dvdfront.jpg?crop=High"
+      }
+    ],
+    "thumbnailWide": "/media/3475/sudk-dvdfront.jpg?crop=Wide",
+    "thumbnailHigh": "/media/3475/sudk-dvdfront.jpg?crop=High"
   }
 ]
