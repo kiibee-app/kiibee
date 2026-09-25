@@ -16,7 +16,6 @@ import {
   CONTENT_VISIBILITY,
   DEFAULT_ALL_CREATORS_LIMIT,
   ROLE,
-  SORT_DIRECTIONS,
   STATUS,
 } from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
@@ -24,7 +23,15 @@ import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
-type SortBy = 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
+type SortBy =
+  | 'name'
+  | 'subscriberCount'
+  | 'newest'
+  | 'top'
+  | 'featured'
+  | 'popular'
+  | 'subscribers'
+  | 'new';
 
 const publishedMediaJoinCondition = and(
   eq(mediaFiles.creatorId, users.id),
@@ -69,6 +76,14 @@ export const allCreatorsService = async ({
     const isFeaturedOnly = sortBy === 'featured';
     const hasSearch = !!search?.trim();
 
+    const [featuredCountResult] = isFeaturedOnly
+      ? await db
+          .select({ count: sql<number>`COUNT(*)::int` })
+          .from(featureCreators)
+      : [{ count: 0 }];
+
+    const hasFeaturedRecords = Number(featuredCountResult?.count ?? 0) > 0;
+
     const hasImageSql = sql<number>`
       CASE 
         WHEN ${contentAppearance.mobileCoverImageUrl} IS NOT NULL AND trim(${contentAppearance.mobileCoverImageUrl}) <> '' THEN 1
@@ -88,15 +103,22 @@ export const allCreatorsService = async ({
               END
             `,
         )
-      : sortBy === SORT_DIRECTIONS.SUBSCRIBER_COUNT
+      : sortBy === 'subscriberCount' || sortBy === 'popular' || sortBy === 'subscribers'
         ? desc(subscriberCountSql)
-        : sortBy === SORT_DIRECTIONS.TOP
+        : sortBy === 'top'
           ? desc(uploadCountSql)
-          : sortBy === SORT_DIRECTIONS.NEWEST
+          : sortBy === 'newest' || sortBy === 'new'
             ? desc(users.createdAt)
-            : asc(creatorDisplayNameSql);
+            : sortBy === 'featured'
+              ? desc(subscriberCountSql)
+              : asc(creatorDisplayNameSql);
 
-    const orderCondition = [desc(hasImageSql), primarySort];
+    const orderCondition = [
+      desc(hasImageSql),
+      primarySort,
+      desc(subscriberCountSql),
+      desc(uploadCountSql),
+    ];
 
     const whereCondition = and(
       eq(users.isActive, true),
@@ -105,7 +127,7 @@ export const allCreatorsService = async ({
       eq(users.status, STATUS.ACTIVE),
       publiclyVisibleCreatorWhere,
       sql`${creatorDisplayNameSql} <> ''`,
-      isFeaturedOnly
+      isFeaturedOnly && hasFeaturedRecords
         ? sql`${featureCreators.creatorId} IS NOT NULL`
         : sql`TRUE`,
       hasSearch
@@ -137,7 +159,14 @@ export const allCreatorsService = async ({
       .select({
         id: users.id,
         name: creatorDisplayNameSql.as('name'),
-        profileImageUrl: users.avatarUrl,
+        profileImageUrl: sql<string | null>`case
+          when ${contentAppearance.userId} is not null
+            then nullif(${contentAppearance.logoUrl}, '')
+          else coalesce(
+            nullif(${creatorChannels.logoUrl}, ''),
+            nullif(${users.avatarUrl}, '')
+          )
+        end`.as('profile_image_url'),
         coverImageUrl: sql<string | null>`coalesce(
           nullif(${contentAppearance.desktopCoverImageUrl}, ''),
           nullif(${creatorChannels.coverImageUrl}, '')
@@ -165,7 +194,10 @@ export const allCreatorsService = async ({
         users.avatarUrl,
         users.createdAt,
         creatorChannels.name,
+        creatorChannels.logoUrl,
         creatorChannels.coverImageUrl,
+        contentAppearance.userId,
+        contentAppearance.logoUrl,
         contentAppearance.desktopCoverImageUrl,
         contentAppearance.mobileCoverImageUrl,
         contentAppearance.layout,
@@ -196,7 +228,21 @@ export const allCreatorsService = async ({
       }
     }
 
-    const items = allCreators.map((creator) => {
+    type CreatorItem = {
+      id: string;
+      name: string;
+      profileImageUrl: string | null;
+      coverImageUrl: string | null;
+      mobileCoverImageUrl: string | null;
+      createdAt: Date | string;
+      uploadCount: number;
+      subscriberCount: number;
+      layout: string | null;
+      contentCategory: string[];
+      category: string | null;
+    };
+
+    const items: CreatorItem[] = allCreators.map((creator) => {
       const contentCategory = (creator.categoryIds || [])
         .map((id) => categoryNameMap.get(id))
         .filter((name): name is string => !!name);

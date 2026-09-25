@@ -61,6 +61,9 @@ export const CORS_ALLOWED_HEADERS: string[] = [
   'Content-Type',
   'Authorization',
   'Accept',
+  'X-Requested-With',
+  'Origin',
+  'Cookie',
 ];
 
 export const ACCOUNT_STATUS = {

@@ -31,7 +31,12 @@ const baseSelect = {
   creatorName: users.fullName,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
-  categoryName: contentCategories.name,
+  categoryName: sql<string>`(
+    SELECT cc.name FROM content_categories cc
+    INNER JOIN media_file_categories mfc ON mfc.category_id = cc.id
+    WHERE mfc.media_file_id = media_files.id
+    LIMIT 1
+  )`,
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
@@ -161,20 +166,28 @@ export const getAllContentsService = async (
 
     switch (sort) {
       case SORT_DIRECTIONS.NEW:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
 
       case SORT_DIRECTIONS.POPULAR:
-        orderBy = sql`RANDOM()`;
+        orderBy = [
+          desc(
+            sql`(SELECT COUNT(*) FROM orders WHERE orders.media_file_id = media_files.id AND orders.status = 'completed')`,
+          ),
+          desc(sql`CAST(COALESCE(${mediaFiles.rating}, '0') AS NUMERIC)`),
+          desc(mediaFiles.sortOrder),
+          desc(mediaFiles.publishedAt),
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.FREE:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
 
       case SORT_DIRECTIONS.ALL:
       default:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
     }
 
@@ -190,16 +203,8 @@ export const getAllContentsService = async (
         ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
-      .leftJoin(
-        mediaFileCategories,
-        eq(mediaFileCategories.mediaFileId, mediaFiles.id),
-      )
-      .leftJoin(
-        contentCategories,
-        eq(contentCategories.id, mediaFileCategories.categoryId),
-      )
       .where(whereClause)
-      .orderBy(orderBy)
+      .orderBy(...orderBy)
       .limit(limit);
 
     const formatted = format(data);
@@ -210,6 +215,7 @@ export const getAllContentsService = async (
       HttpStatus.OK,
     );
   } catch (error) {
+    console.error('DEBUG getAllContents error:', error);
     logger.error('Failed to get all contents:', error);
 
     return fail(
