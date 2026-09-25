@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -185,6 +185,7 @@ export function useCategoryContent(categoryName: string) {
       return response.data;
     },
     enabled: Boolean(categoryName) && Boolean(categoryId),
+    placeholderData: keepPreviousData,
     staleTime: 0,
   });
 
