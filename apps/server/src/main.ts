@@ -34,7 +34,7 @@ async function bootstrap() {
     );
 
     await pool.connect().then((client) => {
-      console.log('✅ Database connected');
+      console.log(':white_check_mark: Database connected');
       client.release();
     });
 
@@ -74,15 +74,36 @@ async function bootstrap() {
     const nodeEnv = configService.get('NODE_ENV');
     const isProduction = nodeEnv === 'production';
 
+    const isAllowedOrigin = (origin?: string): boolean => {
+      if (!origin || !isProduction) return true;
+      if (corsOrigins.includes(origin)) return true;
+      try {
+        const { hostname } = new URL(origin);
+        if (
+          hostname === 'kiibee.com' ||
+          hostname.endsWith('.kiibee.com') ||
+          hostname === 'kiibee.dk' ||
+          hostname.endsWith('.kiibee.dk') ||
+          hostname === 'localhost' ||
+          hostname === '127.0.0.1'
+        ) {
+          return true;
+        }
+      } catch {
+        return false;
+      }
+      return false;
+    };
+
     app.enableCors({
       origin: (origin, callback) => {
-        if (!isProduction || !origin || corsOrigins.includes(origin)) {
+        if (isAllowedOrigin(origin)) {
           callback(null, true);
           return;
         }
 
         logger.warn(`Blocked CORS origin: ${origin}`);
-        callback(new Error('Not allowed by CORS'), false);
+        callback(null, false);
       },
       credentials: true,
       methods: CORS_HTTP_METHODS,
@@ -98,9 +119,9 @@ async function bootstrap() {
     const port = Number(process.env.PORT) || 4001;
     await app.listen(port, '0.0.0.0');
 
-    console.log(`🚀 API running at http://localhost:${port}/api/v1`);
+    console.log(`:rocket: API running at http://localhost:${port}/api/v1`);
   } catch (error) {
-    logger.error('❌ Failed to start server:', error as Error);
+    logger.error(':x: Failed to start server:', error as Error);
     process.exit(1);
   }
 }
