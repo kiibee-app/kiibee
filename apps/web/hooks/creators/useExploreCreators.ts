@@ -28,7 +28,6 @@ import {
   TOP_CREATORS_LIMIT,
 } from "@/utils/Constants";
 
-const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
 const BACKEND_SORT_NAME = "name";
 
 export function formatSubscriberCountK(count: number): number {

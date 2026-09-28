@@ -89,7 +89,7 @@ async function bootstrap() {
         ) {
           return true;
         }
-      } catch (err) {
+      } catch {
         return false;
       }
       return false;

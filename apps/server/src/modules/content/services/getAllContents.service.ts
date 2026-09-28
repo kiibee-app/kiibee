@@ -11,12 +11,7 @@ import {
 } from 'src/utils/constant';
 
 import { db } from 'src/database/db';
-import {
-  users,
-  contentTypes,
-  mediaFileCategories,
-  contentCategories,
-} from 'src/database/schema';
+import { users, contentTypes, mediaFileCategories } from 'src/database/schema';
 
 import { buildSearch, format } from '../content.helper';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
