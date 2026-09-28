@@ -74,36 +74,15 @@ async function bootstrap() {
     const nodeEnv = configService.get('NODE_ENV');
     const isProduction = nodeEnv === 'production';
 
-    const isAllowedOrigin = (origin?: string): boolean => {
-      if (!origin || !isProduction) return true;
-      if (corsOrigins.includes(origin)) return true;
-      try {
-        const { hostname } = new URL(origin);
-        if (
-          hostname === 'kiibee.com' ||
-          hostname.endsWith('.kiibee.com') ||
-          hostname === 'kiibee.dk' ||
-          hostname.endsWith('.kiibee.dk') ||
-          hostname === 'localhost' ||
-          hostname === '127.0.0.1'
-        ) {
-          return true;
-        }
-      } catch {
-        return false;
-      }
-      return false;
-    };
-
     app.enableCors({
       origin: (origin, callback) => {
-        if (isAllowedOrigin(origin)) {
+        if (!isProduction || !origin || corsOrigins.includes(origin)) {
           callback(null, true);
           return;
         }
 
         logger.warn(`Blocked CORS origin: ${origin}`);
-        callback(null, false);
+        callback(new Error('Not allowed by CORS'), false);
       },
       credentials: true,
       methods: CORS_HTTP_METHODS,
