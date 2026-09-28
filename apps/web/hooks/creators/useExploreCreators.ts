@@ -153,7 +153,7 @@ function extractPagination(
 function mapFilterToSortBy(filter?: string): string | undefined {
   if (filter === SORT_FEATURED) return SORT_FEATURED;
   if (filter === SORT_NEW) return SORT_OPTION_NEWEST;
-  if (filter === SORT_POPULAR) return BACKEND_SORT_SUBSCRIBER_COUNT;
+  if (filter === SORT_POPULAR) return SORT_POPULAR;
   if (filter === SORT_ALL) return BACKEND_SORT_NAME;
   return undefined;
 }

@@ -73,6 +73,22 @@ export const allCreatorsService = async ({
       COUNT(DISTINCT ${emailSubscribers.id})
     `;
 
+    const salesCountSql = sql<number>`
+      COALESCE((
+        SELECT COUNT(*)::int
+        FROM orders
+        WHERE orders.status = 'completed'
+          AND (
+            orders.media_file_id IN (
+              SELECT mf.id FROM media_files mf WHERE mf.creator_id = ${users.id} AND mf.is_deleted = false
+            )
+            OR orders.collection_id IN (
+              SELECT c.id FROM collections c WHERE c.creator_id = ${users.id} AND c.is_deleted = false
+            )
+          )
+      ), 0)
+    `;
+
     const isFeaturedOnly = sortBy === 'featured';
     const hasSearch = !!search?.trim();
 
@@ -103,21 +119,26 @@ export const allCreatorsService = async ({
               END
             `,
         )
-      : sortBy === 'subscriberCount' || sortBy === 'popular' || sortBy === 'subscribers'
-        ? desc(subscriberCountSql)
-        : sortBy === 'top'
-          ? desc(uploadCountSql)
-          : sortBy === 'newest' || sortBy === 'new'
-            ? desc(users.createdAt)
-            : sortBy === 'featured'
-              ? desc(subscriberCountSql)
-              : asc(creatorDisplayNameSql);
+      : sortBy === 'popular'
+        ? desc(salesCountSql)
+        : sortBy === 'subscriberCount' || sortBy === 'subscribers'
+          ? desc(subscriberCountSql)
+          : sortBy === 'top'
+            ? desc(uploadCountSql)
+            : sortBy === 'newest' || sortBy === 'new'
+              ? desc(users.createdAt)
+              : sortBy === 'featured'
+                ? desc(subscriberCountSql)
+                : asc(creatorDisplayNameSql);
 
     const orderCondition = [
       desc(hasImageSql),
       primarySort,
+      desc(salesCountSql),
       desc(subscriberCountSql),
       desc(uploadCountSql),
+      desc(users.createdAt),
+      desc(users.id),
     ];
 
     const whereCondition = and(

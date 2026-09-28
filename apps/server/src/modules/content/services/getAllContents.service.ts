@@ -172,7 +172,18 @@ export const getAllContentsService = async (
       case SORT_DIRECTIONS.POPULAR:
         orderBy = [
           desc(
-            sql`(SELECT COUNT(*) FROM orders WHERE orders.media_file_id = media_files.id AND orders.status = 'completed')`,
+            sql`(
+              SELECT COUNT(*) FROM orders
+              WHERE orders.status = 'completed'
+                AND (
+                  orders.media_file_id = ${mediaFiles.id}
+                  OR orders.collection_id IN (
+                    SELECT ci.collection_id
+                    FROM collection_items ci
+                    WHERE ci.media_file_id = ${mediaFiles.id}
+                  )
+                )
+            )`,
           ),
           desc(sql`CAST(COALESCE(${mediaFiles.rating}, '0') AS NUMERIC)`),
           desc(mediaFiles.sortOrder),
