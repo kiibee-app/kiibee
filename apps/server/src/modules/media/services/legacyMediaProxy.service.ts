@@ -54,7 +54,7 @@ export class LegacyMediaProxyService {
     params.reply
       .header('Content-Type', contentType)
       .header('Content-Disposition', 'inline')
-      .header('Cache-Control', 'private, max-age=300')
+      .header('Cache-Control', 'public, max-age=31536000, immutable')
       .header('X-Content-Type-Options', 'nosniff')
       .removeHeader('x-frame-options')
       .removeHeader('content-security-policy');

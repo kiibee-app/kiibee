@@ -26,7 +26,7 @@ import {
   ESCAPE,
   KEYDOWN,
   STRING,
-  EXPLORE_PAGE_SIZE,
+  EXPLORE_INITIAL_PAGE_SIZE,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
@@ -330,9 +330,9 @@ function CategoryExplorePageContent() {
                   <GenericEmptyState title={t("nav.explore.noResults")} />
                 </ResultsState>
               ) : (
-                Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
-                  <Skeleton.Card key={i} />
-                ))
+                Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map(
+                  (_, i) => <Skeleton.Card key={i} />,
+                )
               )}
             </CardsGrid>
 
@@ -364,9 +364,11 @@ export default function CategoryExplorePage() {
           <Main>
             <MainContent>
               <CardsGrid>
-                {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
-                  <Skeleton.Card key={i} />
-                ))}
+                {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map(
+                  (_, i) => (
+                    <Skeleton.Card key={i} />
+                  ),
+                )}
               </CardsGrid>
             </MainContent>
           </Main>

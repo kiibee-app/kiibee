@@ -24,7 +24,7 @@ import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { EXPLORE_INITIAL_PAGE_SIZE } from "@/utils/Constants";
 import {
   Hero,
   HeroTitleText,
@@ -100,9 +100,11 @@ function FormatPageContent() {
             <PageWrapper>
               {isLoading ? (
                 <Grid>
-                  {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
-                    <Skeleton.Card key={i} />
-                  ))}
+                  {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map(
+                    (_, i) => (
+                      <Skeleton.Card key={i} />
+                    ),
+                  )}
                 </Grid>
               ) : filteredTutorials.length > 0 ? (
                 <Grid>
@@ -138,7 +140,27 @@ function FormatPageContent() {
 
 export default function FormatPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <LocalPageContainer $navTextTone="light">
+          <NavBar navTextTone="light" />
+          <Main>
+            <Section>
+              <PageWrapper>
+                <Grid>
+                  {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map(
+                    (_, i) => (
+                      <Skeleton.Card key={i} />
+                    ),
+                  )}
+                </Grid>
+              </PageWrapper>
+            </Section>
+          </Main>
+          <Footer />
+        </LocalPageContainer>
+      }
+    >
       <FormatPageContent />
     </Suspense>
   );

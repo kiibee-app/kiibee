@@ -1,10 +1,16 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
+  DEFAULT_SORT,
   getExploreCreatorInitialSort,
   getExploreCreatorTitleKey,
-  mapCreatorSortToExploreFilter,
+  SORT_FEATURED,
+  SORT_OPTION_AZ,
+  SORT_OPTION_NEWEST,
+  SORT_OPTION_POPULAR,
+  SORT_OPTION_SUBSCRIBERS,
+  SORT_POPULAR,
   type ExploreCreatorFilter,
   type SortValue,
 } from "@/utils/sortOptions";
@@ -27,6 +33,17 @@ export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
     setSearchQuery(value);
   }, []);
 
+  const backendSortBy = useMemo(() => {
+    if (filter === SORT_FEATURED && sortBy === DEFAULT_SORT) {
+      return SORT_FEATURED;
+    }
+    if (sortBy === SORT_OPTION_POPULAR) return SORT_POPULAR;
+    if (sortBy === SORT_OPTION_SUBSCRIBERS) return SORT_OPTION_SUBSCRIBERS;
+    if (sortBy === SORT_OPTION_NEWEST) return SORT_OPTION_NEWEST;
+    if (sortBy === SORT_OPTION_AZ) return "name";
+    return undefined;
+  }, [filter, sortBy]);
+
   const {
     creators,
     isLoading,
@@ -37,7 +54,7 @@ export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
   } = usePaginatedExploreCreators({
     limit: EXPLORE_INITIAL_PAGE_SIZE,
     search: debouncedSearchQuery,
-    filter: mapCreatorSortToExploreFilter(filter, sortBy),
+    sortBy: backendSortBy,
   });
 
   const handleLoadMore = useCallback(() => {

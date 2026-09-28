@@ -168,23 +168,26 @@ export default function GenericCard({
               src={imageSrc!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, 50vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
+              decoding="async"
               unoptimized
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
           ) : showOptimizedImage ? (
             <Image
+              ref={handleImageRef}
               src={image!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, 50vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
+              decoding="async"
               onLoad={markImageLoaded}
               onError={handleImageError}
             />

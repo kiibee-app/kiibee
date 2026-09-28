@@ -89,13 +89,14 @@ export const ImageWrapper = styled.div<{
     height: 100%;
     opacity: ${({ $isLoading }) => ($isLoading ? 0 : 1)};
     transition:
-      opacity 0.3s ease,
+      opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
       transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
     z-index: 0;
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
       $coverImage ? "center top" : "center"};
     border-radius: inherit;
+    will-change: transform, opacity;
   }
 
   ${media.tablet} {

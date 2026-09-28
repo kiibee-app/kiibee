@@ -4,6 +4,7 @@ import {
   getSiteUrl,
   SEO_HEADERS_CONTEXT,
 } from "./utils/seo";
+import { LEGACY_REDIRECTS } from "./config/legacyRedirects";
 
 const SITE_URL = getSiteUrl(SEO_HEADERS_CONTEXT);
 const INDEXABLE_PATHS = getLocalizedIndexableRoutes();
@@ -16,6 +17,9 @@ const nextConfig: NextConfig = {
       fileName: true,
       meaninglessFileNames: ["index", "styles"],
     },
+  },
+  async redirects() {
+    return [...LEGACY_REDIRECTS];
   },
   async headers() {
     return [
