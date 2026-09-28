@@ -19,16 +19,23 @@ export type CreatorProfile = {
   createdAt: number;
 };
 
+export {
+  SORT_OPTION_AZ,
+  SORT_OPTION_POPULAR,
+  SORT_OPTION_NEW,
+} from "./Constants";
+
 export const SORT_OPTION_SUBSCRIBERS = "subscribers";
 export const SORT_OPTION_NEWEST = "newest";
 
 export const SORT_OPTIONS = [
+  { label: "Popular", value: SORT_OPTION_POPULAR },
   { label: "A-Z", value: SORT_OPTION_AZ },
   { label: "Subscribers", value: SORT_OPTION_SUBSCRIBERS },
   { label: "Newest", value: SORT_OPTION_NEWEST },
 ] as const;
 
-export const DEFAULT_SORT: SortValue = SORT_OPTIONS[0].value;
+export const DEFAULT_SORT: SortValue = SORT_OPTION_POPULAR;
 export type SortValue = (typeof SORT_OPTIONS)[number]["value"];
 
 export const SORT_NEW = "new";
@@ -58,8 +65,9 @@ export const EXPLORE_CREATOR_FILTER_TITLE_KEYS: Record<
 export const EXPLORE_CREATOR_INITIAL_SORT: Partial<
   Record<ExploreCreatorFilter, SortValue>
 > = {
+  [SORT_ALL]: SORT_OPTION_POPULAR,
   [SORT_NEW]: SORT_OPTION_NEWEST,
-  [SORT_POPULAR]: SORT_OPTION_SUBSCRIBERS,
+  [SORT_POPULAR]: SORT_OPTION_POPULAR,
 };
 
 export function isExploreCreatorFilter(
@@ -157,6 +165,7 @@ export const SORT_MAP: Record<
   typeof SORT_NEW | typeof SORT_POPULAR | typeof SORT_ALL
 > = {
   [SORT_OPTION_AZ]: SORT_ALL,
+  [SORT_OPTION_POPULAR]: SORT_POPULAR,
   [SORT_OPTION_SUBSCRIBERS]: SORT_POPULAR,
   [SORT_OPTION_NEWEST]: SORT_NEW,
 };

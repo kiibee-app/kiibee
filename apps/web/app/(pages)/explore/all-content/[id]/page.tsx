@@ -14,7 +14,7 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useAllContent } from "@/hooks/feed/useAllContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { getCategorySortOptions } from "@/utils/sortOptions";
-import { ESCAPE, EXPLORE_PAGE_SIZE, KEYDOWN, STRING } from "@/utils/Constants";
+import { ESCAPE, EXPLORE_INITIAL_PAGE_SIZE, KEYDOWN, STRING } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import CreatorFiltersControl from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters";
@@ -132,7 +132,7 @@ function AllContentExplorePageContent() {
 
   const renderContent = () => {
     if (isLoading || (isFetching && tutorials.length === 0)) {
-      return Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+      return Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map((_, i) => (
         <Skeleton.Card key={i} />
       ));
     }
@@ -227,7 +227,32 @@ function AllContentExplorePageContent() {
 
 export default function AllContentExplorePage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <LocalPageContainer $navTextTone="light">
+          <NavBar navTextTone="light" />
+          <Main>
+            <Hero>
+              <Inner>
+                <Content>
+                  <Title>
+                    <HeroTitleText>Explore</HeroTitleText>
+                  </Title>
+                </Content>
+              </Inner>
+            </Hero>
+            <MainContent>
+              <CardsGrid>
+                {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map((_, i) => (
+                  <Skeleton.Card key={i} />
+                ))}
+              </CardsGrid>
+            </MainContent>
+          </Main>
+          <Footer />
+        </LocalPageContainer>
+      }
+    >
       <AllContentExplorePageContent />
     </Suspense>
   );
