@@ -21,11 +21,16 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
-  max-width: 540px;
+  max-width: 800px;
+  width: 100%;
 `;
 
 export const Heading = styled.h2`
   margin: 3rem 0 0.75rem;
+
+  @media (min-width: 768px) {
+    white-space: nowrap;
+  }
 `;
 
 export const Tagline = styled.p`

@@ -56,14 +56,13 @@ export function getDanishIndexablePath(
   return INDEXABLE_ROUTE_DA[pathname];
 }
 
-export function getSiteUrl(errorContext: string): string {
-  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL;
-
-  if (!rawSiteUrl) {
-    throw new Error(
-      `SITE_URL or NEXT_PUBLIC_SITE_URL must be set for ${errorContext}.`,
-    );
-  }
-
+export function getSiteUrl(errorContext?: string): string {
+  const port = process.env.PORT || "3000";
+  const rawSiteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL ??
+    (process.env.NODE_ENV === "production"
+      ? "https://kiibee.dk"
+      : `http://localhost:${port}`);
   return rawSiteUrl.replace(TRAILING_SLASH_REGEX, "");
 }

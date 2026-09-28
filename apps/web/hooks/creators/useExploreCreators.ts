@@ -28,7 +28,6 @@ import {
   TOP_CREATORS_LIMIT,
 } from "@/utils/Constants";
 
-const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
 const BACKEND_SORT_NAME = "name";
 
 export function formatSubscriberCountK(count: number): number {
@@ -55,6 +54,8 @@ export function sortExploreCreators(
   switch (sortBy) {
     case "a-z":
       return data.sort((a, b) => a.name.localeCompare(b.name));
+    case "popular":
+      return data;
     case "subscribers":
       return data.sort((a, b) => b.subscriberCount - a.subscriberCount);
     case "newest":
@@ -153,7 +154,7 @@ function extractPagination(
 function mapFilterToSortBy(filter?: string): string | undefined {
   if (filter === SORT_FEATURED) return SORT_FEATURED;
   if (filter === SORT_NEW) return SORT_OPTION_NEWEST;
-  if (filter === SORT_POPULAR) return BACKEND_SORT_SUBSCRIBER_COUNT;
+  if (filter === SORT_POPULAR) return SORT_POPULAR;
   if (filter === SORT_ALL) return BACKEND_SORT_NAME;
   return undefined;
 }
@@ -246,7 +247,8 @@ type UsePaginatedExploreCreatorsArgs = {
   limit?: number;
   pageSize?: number;
   search?: string;
-  filter: string;
+  filter?: string;
+  sortBy?: string;
 };
 
 export const usePaginatedExploreCreators = ({
@@ -254,8 +256,9 @@ export const usePaginatedExploreCreators = ({
   pageSize = LOAD_MORE_SIZE,
   search,
   filter,
+  sortBy: explicitSortBy,
 }: UsePaginatedExploreCreatorsArgs) => {
-  const sortBy = mapFilterToSortBy(filter);
+  const sortBy = explicitSortBy ?? mapFilterToSortBy(filter);
   const trimmedSearch = search?.trim() || undefined;
 
   const query = useInfiniteQuery({
