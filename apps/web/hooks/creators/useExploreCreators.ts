@@ -55,6 +55,8 @@ export function sortExploreCreators(
   switch (sortBy) {
     case "a-z":
       return data.sort((a, b) => a.name.localeCompare(b.name));
+    case "popular":
+      return data;
     case "subscribers":
       return data.sort((a, b) => b.subscriberCount - a.subscriberCount);
     case "newest":
@@ -246,7 +248,8 @@ type UsePaginatedExploreCreatorsArgs = {
   limit?: number;
   pageSize?: number;
   search?: string;
-  filter: string;
+  filter?: string;
+  sortBy?: string;
 };
 
 export const usePaginatedExploreCreators = ({
@@ -254,8 +257,9 @@ export const usePaginatedExploreCreators = ({
   pageSize = LOAD_MORE_SIZE,
   search,
   filter,
+  sortBy: explicitSortBy,
 }: UsePaginatedExploreCreatorsArgs) => {
-  const sortBy = mapFilterToSortBy(filter);
+  const sortBy = explicitSortBy ?? mapFilterToSortBy(filter);
   const trimmedSearch = search?.trim() || undefined;
 
   const query = useInfiniteQuery({
