@@ -4,6 +4,10 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import {
+  exploreCardsGrid,
+  exploreSectionFrame,
+} from "@/styles/exploreCardGrid";
 
 export const PageHeader = styled.div<{ $compact?: boolean }>`
   display: flex;
@@ -418,27 +422,12 @@ export const PassiveActionBlock = styled.div`
 `;
 
 export const MediaGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  ${exploreCardsGrid(4)}
+  ${exploreSectionFrame}
   align-items: stretch;
 
   > * {
     height: 100%;
-  }
-
-  ${media.desktopMd} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
-    gap: 10px;
   }
 `;
 
