@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import {
   mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
@@ -31,13 +31,23 @@ import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
-  const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
+  const params = useParams();
+
+  const rawSlug = params?.creatorSlug;
+  const creatorSlugParam = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
+
+  const creatorIdentifier =
+    searchParams.get("creatorId") ||
+    searchParams.get(CREATOR_ID_PARAM) ||
+    creatorSlugParam ||
+    null;
   const storedUser = useStoredLoginUser();
+  const { creator: publicCreator, isLoading: isLoadingPublic } =
+    useCreatorPublicProfile(creatorIdentifier);
+  const publicCreatorId = publicCreator?.id ?? creatorIdentifier;
   const isOwnerOfPublicView =
     Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
-  const isPublicView = Boolean(publicCreatorId) && !isOwnerOfPublicView;
-  const { creator: publicCreator, isLoading: isLoadingPublic } =
-    useCreatorPublicProfile(publicCreatorId);
+  const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
@@ -194,6 +204,9 @@ export function useCreatorChannelProfile(enabled = true) {
       : profileQuery.isLoading || appearanceQuery.isLoading,
     isPublicView,
     publicCreatorId,
+    publicCreatorSlug: isPublicView
+      ? publicCreator?.slug
+      : profile?.channel?.slug,
     textColor: appearance?.textColor ?? null,
     buttonColor: appearance?.buttonColor ?? null,
     about: aboutData,

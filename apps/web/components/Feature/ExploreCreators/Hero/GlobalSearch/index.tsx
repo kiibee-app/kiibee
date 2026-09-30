@@ -62,7 +62,10 @@ export default function GlobalSearch({
               {creators.map((creator) => (
                 <SearchDropdownItem
                   key={creator.id}
-                  onClick={handleCreatorClick(creator.id, creator.layout)}
+                  onClick={handleCreatorClick(
+                    creator.slug || creator.id,
+                    creator.layout,
+                  )}
                 >
                   <SearchEmptyText>{creator.name}</SearchEmptyText>
                 </SearchDropdownItem>
@@ -78,7 +81,12 @@ export default function GlobalSearch({
               {tutorials.map((tutorial) => (
                 <SearchDropdownItem
                   key={tutorial.id}
-                  onClick={handleContentClick(tutorial.id)}
+                  onClick={handleContentClick(
+                    tutorial.id,
+                    tutorial.slug,
+                    tutorial.creatorSlug,
+                    tutorial.title,
+                  )}
                 >
                   <SearchEmptyText>{tutorial.title}</SearchEmptyText>
                 </SearchDropdownItem>

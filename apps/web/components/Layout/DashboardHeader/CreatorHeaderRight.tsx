@@ -19,15 +19,18 @@ type CreatorHeaderRightProps = {
   initial: string;
   displayName: string;
   avatarUrl: string | null;
+  publicCreatorSlug?: string;
 };
 
 const CreatorHeaderRight = ({
   initial,
   displayName,
   avatarUrl,
+  publicCreatorSlug,
 }: CreatorHeaderRightProps) => {
   const { t } = useTranslation();
-  const { channelHref } = useCreatorChannelLayout();
+  const { savedLayout } = useCreatorChannelLayout();
+  const channelHref = `/${publicCreatorSlug || ""}`;
 
   return (
     <>

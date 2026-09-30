@@ -39,8 +39,11 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const isCreator = role === ROLE_CREATOR;
   const router = useRouter();
   const paths = useLocalizedPaths();
-  const { avatarUrl: profileAvatarUrl, displayName } =
-    useCreatorChannelProfile(isCreator);
+  const {
+    avatarUrl: profileAvatarUrl,
+    displayName,
+    publicCreatorSlug,
+  } = useCreatorChannelProfile(isCreator);
   const initial = getDisplayFirstLetter(displayName, user);
   const avatarUrl =
     profileAvatarUrl ??
@@ -90,6 +93,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
             initial={initial}
             displayName={displayName}
             avatarUrl={avatarUrl}
+            publicCreatorSlug={publicCreatorSlug || user?.id}
           />
         ) : (
           <ViewerHeaderRight

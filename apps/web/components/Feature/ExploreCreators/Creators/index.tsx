@@ -109,7 +109,10 @@ export default function ExploreCreators({
               footer={
                 <GenericButton
                   asAnchor
-                  href={getPublicCreatorProfilePath(creator.id, creator.layout)}
+                  href={getPublicCreatorProfilePath(
+                    creator.slug || creator.id,
+                    creator.layout,
+                  )}
                   variant={VARIANT.SECONDARY}
                 >
                   {t(CREATORS.viewProfile)}

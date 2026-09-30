@@ -128,15 +128,23 @@ export function useCreatorLayoutParam(): CreatorLayoutParam {
 export function useCreatorProfileTabs() {
   const { t } = useTranslation();
   const layoutParam = useCreatorLayoutParam();
-  const publicCreatorId = useSearchParams().get("creatorId");
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const rawSlug = params?.creatorSlug;
+  const publicCreatorId =
+    (Array.isArray(rawSlug) ? rawSlug[0] : rawSlug) ||
+    searchParams.get("creatorId") ||
+    searchParams.get("creator");
 
   return useMemo(
     () =>
-      getCreatorProfileTabDefs(layoutParam).map((tab) => ({
+      getCreatorProfileTabDefs(layoutParam, publicCreatorId).map((tab) => ({
         key: tab.key,
         label: t(tab.labelKey),
         href: tab.href
-          ? withCreatorIdQuery(tab.href, publicCreatorId)
+          ? tab.href.startsWith(`/${publicCreatorId}`)
+            ? tab.href
+            : withCreatorIdQuery(tab.href, publicCreatorId)
           : undefined,
       })),
     [layoutParam, publicCreatorId, t],
@@ -227,11 +235,17 @@ export function useCreatorProfileUi() {
 
 export function useCreatorNavItems() {
   const layoutParam = useCreatorLayoutParam();
-  const publicCreatorId = useSearchParams().get("creatorId");
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const rawSlug = params?.creatorSlug;
+  const publicCreatorId =
+    (Array.isArray(rawSlug) ? rawSlug[0] : rawSlug) ||
+    searchParams.get("creatorId") ||
+    searchParams.get("creator");
   const { isAboutOpen, openAbout } = useCreatorProfileUi();
 
   const navItems = useMemo((): NavBarItem[] => {
-    const defs = getCreatorNavItemDefs(layoutParam);
+    const defs = getCreatorNavItemDefs(layoutParam, publicCreatorId);
     return defs.map((item) =>
       item.key === "nav.profile.about"
         ? {
@@ -242,7 +256,9 @@ export function useCreatorNavItems() {
         : {
             key: item.key,
             href: item.href
-              ? withCreatorIdQuery(item.href, publicCreatorId)
+              ? item.href.startsWith(`/${publicCreatorId}`)
+                ? item.href
+                : withCreatorIdQuery(item.href, publicCreatorId)
               : undefined,
           },
     );

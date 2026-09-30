@@ -11,7 +11,12 @@ import {
 } from 'src/utils/constant';
 
 import { db } from 'src/database/db';
-import { users, contentTypes, mediaFileCategories } from 'src/database/schema';
+import {
+  users,
+  contentTypes,
+  mediaFileCategories,
+  creatorChannels,
+} from 'src/database/schema';
 
 import { buildSearch, format } from '../content.helper';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
@@ -22,8 +27,10 @@ const baseSelect = {
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   trailerUrl: mediaFiles.trailerUrl,
+  slug: mediaFiles.slug,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: sql<string>`(
@@ -209,6 +216,10 @@ export const getAllContentsService = async (
         ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
+      .leftJoin(
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
+      )
       .where(whereClause)
       .orderBy(...orderBy)
       .limit(limit);

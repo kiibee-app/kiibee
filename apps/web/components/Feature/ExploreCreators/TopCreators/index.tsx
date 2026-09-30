@@ -68,7 +68,7 @@ export default function TopCreators({ search }: { search?: string }) {
           <Card
             key={creator.id}
             as={Link}
-            href={getPublicCreatorProfilePath(creator.id)}
+            href={getPublicCreatorProfilePath(creator.slug || creator.id)}
           >
             <Avatar>
               <CreatorChannelAvatar

@@ -124,8 +124,13 @@ function TutorialCard({
   }, [tutorial.formatType]);
 
   const singleTutorialHref = useMemo(
-    () => pathPublishedContent(tutorial.id),
-    [tutorial.id],
+    () =>
+      pathPublishedContent(
+        tutorial.slug || tutorial.id,
+        tutorial.creatorSlug,
+        tutorial.title,
+      ),
+    [tutorial.slug, tutorial.id, tutorial.creatorSlug, tutorial.title],
   );
 
   const buttons = useMemo(() => {
@@ -163,7 +168,9 @@ function TutorialCard({
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(getPublicCreatorProfilePath(tutorial.creatorId));
+    router.push(
+      getPublicCreatorProfilePath(tutorial.creatorSlug || tutorial.creatorId),
+    );
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
@@ -201,7 +208,9 @@ function TutorialCard({
       </CardCreator>
     ) : (
       <Link
-        href={getPublicCreatorProfilePath(tutorial.creatorId)}
+        href={getPublicCreatorProfilePath(
+          tutorial.creatorSlug || tutorial.creatorId,
+        )}
         onClick={openCreatorProfile}
         style={{
           textDecoration: "none",

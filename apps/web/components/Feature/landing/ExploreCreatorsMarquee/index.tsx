@@ -76,7 +76,10 @@ export default function ExploreCreatorsMarquee() {
             </CardDescription>
           )}
           <ProfileButton
-            href={getPublicCreatorProfilePath(creator.id, creator.layout)}
+            href={getPublicCreatorProfilePath(
+              creator.slug || creator.id,
+              creator.layout,
+            )}
           >
             {t(CREATORS.viewProfile)}
           </ProfileButton>

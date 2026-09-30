@@ -111,7 +111,11 @@ export default function CollectionItemCard({
 
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
-  const contentHref = pathPublishedContent(video.id);
+  const contentHref = pathPublishedContent(
+    video.slug || video.id,
+    video.creatorSlug,
+    video.title,
+  );
   const buttons: TutorialButton[] = hasAccess
     ? [
         {
@@ -161,7 +165,9 @@ export default function CollectionItemCard({
   const openCreatorProfile = (event: MouseEvent) => {
     if (!video.creatorId) return;
     stopCardNavigation(event);
-    router.push(getPublicCreatorProfilePath(video.creatorId));
+    router.push(
+      getPublicCreatorProfilePath(video.creatorSlug || video.creatorId),
+    );
   };
 
   const title = <CollectionTitle>{video.title}</CollectionTitle>;

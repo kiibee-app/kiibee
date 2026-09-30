@@ -107,6 +107,9 @@ export default function ProfileHomeSections({
           description: latest.description ?? "",
           actions: latestConfig.actions,
           contentId: latest.id,
+          slug: (latest as { slug?: string }).slug,
+          creatorSlug:
+            (latest as { creatorSlug?: string | null }).creatorSlug ?? null,
           trailerUrl:
             (latest as { trailerUrl?: string | null }).trailerUrl ?? null,
           accessType:

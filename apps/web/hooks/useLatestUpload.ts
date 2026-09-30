@@ -21,6 +21,8 @@ import { resolvePublicMediaUrl } from "@/utils/media";
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
+  slug?: string;
+  creatorSlug?: string | null;
   thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: ImageSource | null;
   trailerUrl?: string | null;
@@ -61,6 +63,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             ? new Date(latest.createdAt).getTime()
             : Date.now(),
           category: latest.categoryName ?? null,
+          slug: latest.slug,
+          creatorSlug: latest.creatorSlug ?? null,
           contentType: latest.contentType ?? "video",
           thumbnailUrl:
             resolvePublicMediaUrl(latest.thumbnailUrl) ??
@@ -127,6 +131,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
         return {
           ...latest,
           title: content?.title || latest.name || "",
+          slug: content?.slug,
+          creatorSlug: content?.creatorSlug ?? null,
           category: category ?? null,
           thumbnailUrl:
             resolvePublicMediaUrl(content?.thumbnailUrl) ??

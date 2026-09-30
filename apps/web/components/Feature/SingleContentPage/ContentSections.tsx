@@ -128,7 +128,10 @@ function SingleContentCreator({ creator }: SingleContentCreatorProps) {
 
   if (creator.id) {
     return (
-      <CreatorRow as={Link} href={getPublicCreatorProfilePath(creator.id)}>
+      <CreatorRow
+        as={Link}
+        href={getPublicCreatorProfilePath(creator.slug || creator.id)}
+      >
         {content}
       </CreatorRow>
     );
