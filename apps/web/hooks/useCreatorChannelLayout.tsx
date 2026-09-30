@@ -23,9 +23,9 @@ import {
   isCreatorLayoutParam,
   layoutParamFromKey,
   readSavedCreatorLayout,
-  withCreatorIdQuery,
   writeSavedCreatorLayout,
 } from "@/utils/creatorChannel";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 
 type CreatorChannelLayoutContextValue = {
   selectedLayout: CreatorLayoutKey;
@@ -125,29 +125,38 @@ export function useCreatorLayoutParam(): CreatorLayoutParam {
   return layoutParamFromKey(DEFAULT_CREATOR_LAYOUT);
 }
 
+function usePublicCreatorRouteSlug() {
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const rawCreatorSlug = params?.creatorSlug;
+  const creatorIdentifier =
+    searchParams.get("creatorId") ||
+    searchParams.get("creator") ||
+    (Array.isArray(rawCreatorSlug) ? rawCreatorSlug[0] : rawCreatorSlug);
+  const { publicCreatorSlug } = useCreatorChannelProfile();
+
+  return {
+    isPublicCreatorRoute: Boolean(creatorIdentifier),
+    creatorSlug: creatorIdentifier ? (publicCreatorSlug ?? null) : null,
+  };
+}
+
 export function useCreatorProfileTabs() {
   const { t } = useTranslation();
   const layoutParam = useCreatorLayoutParam();
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const rawSlug = params?.creatorSlug;
-  const publicCreatorId =
-    (Array.isArray(rawSlug) ? rawSlug[0] : rawSlug) ||
-    searchParams.get("creatorId") ||
-    searchParams.get("creator");
+  const { creatorSlug, isPublicCreatorRoute } = usePublicCreatorRouteSlug();
 
   return useMemo(
     () =>
-      getCreatorProfileTabDefs(layoutParam, publicCreatorId).map((tab) => ({
+      getCreatorProfileTabDefs(layoutParam, creatorSlug).map((tab) => ({
         key: tab.key,
         label: t(tab.labelKey),
-        href: tab.href
-          ? tab.href.startsWith(`/${publicCreatorId}`)
+        href:
+          tab.href && (!isPublicCreatorRoute || creatorSlug)
             ? tab.href
-            : withCreatorIdQuery(tab.href, publicCreatorId)
-          : undefined,
+            : undefined,
       })),
-    [layoutParam, publicCreatorId, t],
+    [creatorSlug, isPublicCreatorRoute, layoutParam, t],
   );
 }
 
@@ -235,17 +244,11 @@ export function useCreatorProfileUi() {
 
 export function useCreatorNavItems() {
   const layoutParam = useCreatorLayoutParam();
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const rawSlug = params?.creatorSlug;
-  const publicCreatorId =
-    (Array.isArray(rawSlug) ? rawSlug[0] : rawSlug) ||
-    searchParams.get("creatorId") ||
-    searchParams.get("creator");
+  const { creatorSlug, isPublicCreatorRoute } = usePublicCreatorRouteSlug();
   const { isAboutOpen, openAbout } = useCreatorProfileUi();
 
   const navItems = useMemo((): NavBarItem[] => {
-    const defs = getCreatorNavItemDefs(layoutParam, publicCreatorId);
+    const defs = getCreatorNavItemDefs(layoutParam, creatorSlug);
     return defs.map((item) =>
       item.key === "nav.profile.about"
         ? {
@@ -255,14 +258,13 @@ export function useCreatorNavItems() {
           }
         : {
             key: item.key,
-            href: item.href
-              ? item.href.startsWith(`/${publicCreatorId}`)
+            href:
+              item.href && (!isPublicCreatorRoute || creatorSlug)
                 ? item.href
-                : withCreatorIdQuery(item.href, publicCreatorId)
-              : undefined,
+                : undefined,
           },
     );
-  }, [isAboutOpen, layoutParam, openAbout, publicCreatorId]);
+  }, [creatorSlug, isAboutOpen, isPublicCreatorRoute, layoutParam, openAbout]);
 
   return { navItems };
 }

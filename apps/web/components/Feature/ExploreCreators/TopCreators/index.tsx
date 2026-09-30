@@ -64,31 +64,33 @@ export default function TopCreators({ search }: { search?: string }) {
       </Header>
 
       <List>
-        {creators.map((creator) => (
-          <Card
-            key={creator.id}
-            as={Link}
-            href={getPublicCreatorProfilePath(creator.slug || creator.id)}
-          >
-            <Avatar>
-              <CreatorChannelAvatar
-                avatarUrl={creator.profileImageUrl}
-                initial={getNameInitials(creator.name)}
-                alt={creator.name}
-                sizes="(max-width: 768px) 100px, 150px"
-                initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
-              />
-            </Avatar>
+        {creators
+          .filter((creator) => creator.slug)
+          .map((creator) => (
+            <Card
+              key={creator.id}
+              as={Link}
+              href={getPublicCreatorProfilePath(creator.slug!)}
+            >
+              <Avatar>
+                <CreatorChannelAvatar
+                  avatarUrl={creator.profileImageUrl}
+                  initial={getNameInitials(creator.name)}
+                  alt={creator.name}
+                  sizes="(max-width: 768px) 100px, 150px"
+                  initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
+                />
+              </Avatar>
 
-            <CreatorName $use="Body_Medium">{creator.name}</CreatorName>
-            <CreatorMeta $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-              {t(CREATORS.topCreatorUploads, {
-                count: creator.uploadCount,
-                formattedCount: formatUploadCount(creator.uploadCount),
-              })}
-            </CreatorMeta>
-          </Card>
-        ))}
+              <CreatorName $use="Body_Medium">{creator.name}</CreatorName>
+              <CreatorMeta $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                {t(CREATORS.topCreatorUploads, {
+                  count: creator.uploadCount,
+                  formattedCount: formatUploadCount(creator.uploadCount),
+                })}
+              </CreatorMeta>
+            </Card>
+          ))}
       </List>
     </Wrapper>
   );

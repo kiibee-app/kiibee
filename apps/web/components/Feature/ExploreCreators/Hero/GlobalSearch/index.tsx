@@ -62,10 +62,12 @@ export default function GlobalSearch({
               {creators.map((creator) => (
                 <SearchDropdownItem
                   key={creator.id}
-                  onClick={handleCreatorClick(
-                    creator.slug || creator.id,
-                    creator.layout,
-                  )}
+                  $interactive={Boolean(creator.slug)}
+                  onClick={
+                    creator.slug
+                      ? handleCreatorClick(creator.slug, creator.layout)
+                      : undefined
+                  }
                 >
                   <SearchEmptyText>{creator.name}</SearchEmptyText>
                 </SearchDropdownItem>

@@ -180,6 +180,7 @@ export const allCreatorsService = async ({
       .select({
         id: users.id,
         name: creatorDisplayNameSql.as('name'),
+        slug: creatorChannels.slug,
         profileImageUrl: sql<string | null>`case
           when ${contentAppearance.userId} is not null
             then nullif(${contentAppearance.logoUrl}, '')
@@ -215,6 +216,7 @@ export const allCreatorsService = async ({
         users.avatarUrl,
         users.createdAt,
         creatorChannels.name,
+        creatorChannels.slug,
         creatorChannels.logoUrl,
         creatorChannels.coverImageUrl,
         contentAppearance.userId,
@@ -252,6 +254,7 @@ export const allCreatorsService = async ({
     type CreatorItem = {
       id: string;
       name: string;
+      slug: string | null;
       profileImageUrl: string | null;
       coverImageUrl: string | null;
       mobileCoverImageUrl: string | null;
@@ -271,6 +274,7 @@ export const allCreatorsService = async ({
       return {
         id: creator.id,
         name: creator.name,
+        slug: creator.slug,
         profileImageUrl: creator.profileImageUrl,
         coverImageUrl: creator.coverImageUrl,
         mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,

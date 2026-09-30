@@ -107,16 +107,18 @@ export default function ExploreCreators({
                 ) : undefined
               }
               footer={
-                <GenericButton
-                  asAnchor
-                  href={getPublicCreatorProfilePath(
-                    creator.slug || creator.id,
-                    creator.layout,
-                  )}
-                  variant={VARIANT.SECONDARY}
-                >
-                  {t(CREATORS.viewProfile)}
-                </GenericButton>
+                creator.slug ? (
+                  <GenericButton
+                    asAnchor
+                    href={getPublicCreatorProfilePath(
+                      creator.slug,
+                      creator.layout,
+                    )}
+                    variant={VARIANT.SECONDARY}
+                  >
+                    {t(CREATORS.viewProfile)}
+                  </GenericButton>
+                ) : null
               }
             />
           );

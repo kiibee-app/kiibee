@@ -164,13 +164,11 @@ function TutorialCard({
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!tutorial.creatorId) return;
+    if (!tutorial.creatorSlug) return;
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(
-      getPublicCreatorProfilePath(tutorial.creatorSlug || tutorial.creatorId),
-    );
+    router.push(getPublicCreatorProfilePath(tutorial.creatorSlug));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
@@ -197,7 +195,7 @@ function TutorialCard({
     navigateToContent(targetHref);
   };
 
-  const creatorSubtitle = tutorial.creatorId ? (
+  const creatorSubtitle = tutorial.creatorSlug ? (
     isCardLinked ? (
       <CardCreator
         $use="Body_SemiMedium"
@@ -208,9 +206,7 @@ function TutorialCard({
       </CardCreator>
     ) : (
       <Link
-        href={getPublicCreatorProfilePath(
-          tutorial.creatorSlug || tutorial.creatorId,
-        )}
+        href={getPublicCreatorProfilePath(tutorial.creatorSlug)}
         onClick={openCreatorProfile}
         style={{
           textDecoration: "none",
