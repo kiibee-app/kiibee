@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
 import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
-import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
   ChannelLink,
@@ -19,7 +18,7 @@ type CreatorHeaderRightProps = {
   initial: string;
   displayName: string;
   avatarUrl: string | null;
-  publicCreatorSlug?: string;
+  publicCreatorSlug?: string | null;
 };
 
 const CreatorHeaderRight = ({
@@ -29,17 +28,20 @@ const CreatorHeaderRight = ({
   publicCreatorSlug,
 }: CreatorHeaderRightProps) => {
   const { t } = useTranslation();
-  const { savedLayout } = useCreatorChannelLayout();
-  const channelHref = `/${publicCreatorSlug || ""}`;
+  const channelHref = publicCreatorSlug ? `/${publicCreatorSlug}` : null;
 
   return (
     <>
-      <ChannelLink href={channelHref}>
-        <ChannelText $use="Body_Medium">
-          {t("dashboard.creatorHeader.myChannel")}
-        </ChannelText>
-      </ChannelLink>
-      <Divider />
+      {channelHref ? (
+        <>
+          <ChannelLink href={channelHref}>
+            <ChannelText $use="Body_Medium">
+              {t("dashboard.creatorHeader.myChannel")}
+            </ChannelText>
+          </ChannelLink>
+          <Divider />
+        </>
+      ) : null}
       <RightProfileWrapper
         href={PATHS.DASHBOARD_CREATOR_PROFILE}
         aria-label={t("common.creatorProfile")}

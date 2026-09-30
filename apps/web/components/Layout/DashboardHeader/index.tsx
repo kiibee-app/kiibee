@@ -93,7 +93,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
             initial={initial}
             displayName={displayName}
             avatarUrl={avatarUrl}
-            publicCreatorSlug={publicCreatorSlug || user?.id}
+            publicCreatorSlug={publicCreatorSlug}
           />
         ) : (
           <ViewerHeaderRight

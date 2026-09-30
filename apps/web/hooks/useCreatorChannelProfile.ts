@@ -28,6 +28,7 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
+import fallbackCoverImage from "@/assets/images/cover.png";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
@@ -133,6 +134,11 @@ export function useCreatorChannelProfile(enabled = true) {
     return getAvatarUrl(appearanceQuery.data?.data?.mobileCoverImageUrl);
   }, [isPublicView, publicCreator, appearanceQuery.data]);
 
+  const resolvedCoverImageUrl =
+    coverImageUrl || mobileCoverImageUrl || fallbackCoverImage.src;
+  const resolvedMobileCoverImageUrl =
+    mobileCoverImageUrl || coverImageUrl || fallbackCoverImage.src;
+
   const appearance = isPublicView ? publicCreator : appearanceQuery.data?.data;
 
   const initial = useMemo(
@@ -196,8 +202,8 @@ export function useCreatorChannelProfile(enabled = true) {
   return {
     displayName,
     avatarUrl,
-    coverImageUrl,
-    mobileCoverImageUrl,
+    coverImageUrl: resolvedCoverImageUrl,
+    mobileCoverImageUrl: resolvedMobileCoverImageUrl,
     initial,
     isLoadingProfile: isPublicView
       ? isLoadingPublic
