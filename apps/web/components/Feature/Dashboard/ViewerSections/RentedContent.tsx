@@ -197,11 +197,22 @@ export default function RentedContent({
     [selectedCollectionId, sources.collections],
   );
 
+  const selectedContent = useMemo(() => {
+    if (!selectedContentId) return undefined;
+    return (
+      sources.videos.find((item) => item.title === selectedContentId) ||
+      sources.audios.find((item) => item.title === selectedContentId) ||
+      sources.pdfs.find((item) => item.title === selectedContentId) ||
+      sources.epubs.find((item) => item.title === selectedContentId) ||
+      sources.webs.find((item) => item.title === selectedContentId)
+    );
+  }, [selectedContentId, sources]);
+
   const openMediaInDashboard = useCallback(
     (item: RentedMediaItem) => {
       const params = new URLSearchParams(searchParamsString);
       params.delete(CONTENT_COLLECTION_QUERY_KEY);
-      params.set(CONTENT_ITEM_QUERY_KEY, item.id);
+      params.set(CONTENT_ITEM_QUERY_KEY, item.title);
       const query = params.toString();
       const nextUrl = query ? `${pathname}?${query}` : pathname;
       router.replace(nextUrl, { scroll: false });
@@ -286,7 +297,7 @@ export default function RentedContent({
               >
                 <LeftIcon style={{ transform: "rotate(180deg)" }} />
               </HeaderBackButton>
-              <MonoText $use="H4_SemiBold">{title}</MonoText>
+              <MonoText $use="H4_SemiBold">{selectedContent?.title || title}</MonoText>
             </HeaderTitleWrap>
           </PageHeader>
           <PublishedContentDetail
