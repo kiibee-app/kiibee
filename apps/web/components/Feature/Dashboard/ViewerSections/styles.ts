@@ -422,12 +422,43 @@ export const PassiveActionBlock = styled.div`
 `;
 
 export const MediaGrid = styled.div`
-  ${exploreCardsGrid(4)}
-  ${exploreSectionFrame}
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   align-items: stretch;
+  justify-content: flex-start;
 
-  > * {
+  && > * {
     height: 100%;
+    width: calc((100% - 3 * 16px) / 4);
+    flex: 0 0 calc((100% - 3 * 16px) / 4);
+    max-width: calc((100% - 3 * 16px) / 4);
+  }
+
+  ${media.desktopMd} {
+    && > * {
+      width: calc((100% - 2 * 16px) / 3);
+      flex: 0 0 calc((100% - 2 * 16px) / 3);
+      max-width: calc((100% - 2 * 16px) / 3);
+    }
+  }
+
+  ${media.tablet} {
+    gap: 12px;
+    && > * {
+      width: calc((100% - 12px) / 2);
+      flex: 0 0 calc((100% - 12px) / 2);
+      max-width: calc((100% - 12px) / 2);
+    }
+  }
+
+  ${media.mobileLg} {
+    gap: 10px;
+    && > * {
+      width: 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
   }
 `;
 

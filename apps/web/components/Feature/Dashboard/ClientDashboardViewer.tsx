@@ -92,9 +92,9 @@ export default function ClientDashboardViewer({
         }
       }
 
-      return `${pathname}${formatSearch(localizeSearchParams(params, language))}`;
+      return `/dashboard/viewer${formatSearch(localizeSearchParams(params, language))}`;
     },
-    [pathname, searchParams, language],
+    [searchParams, language],
   );
 
   const handleSelect = useCallback(
