@@ -90,7 +90,7 @@ export const createSubscriptionService = async ({
     }
 
     const billingPlanId =
-      plan.name === 'Pro'
+      plan.price === 299
         ? process.env.EPAY_PLAN_PRO
         : process.env.EPAY_PLAN_STARTUP;
 
