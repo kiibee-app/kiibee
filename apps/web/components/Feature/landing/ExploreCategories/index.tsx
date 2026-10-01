@@ -28,7 +28,7 @@ export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
   const { tutorials, isLoading } = useRecentContent({
-    limit: EXPLORE_PAGE_SIZE,
+    limit: 100,
   });
 
   const categoriesList = useMemo(() => {
@@ -53,12 +53,7 @@ export default function ExploreCategories() {
         ? tutorials
         : tutorials.filter((item) => item.category === resolvedActiveCategory);
 
-    return pickUniqueCreatorItems(
-      byCategory,
-      EXPLORE_PAGE_SIZE,
-      (item) =>
-        item.creatorId?.trim() || item.creator?.trim().toLowerCase() || null,
-    );
+    return byCategory.slice(0, EXPLORE_PAGE_SIZE);
   }, [tutorials, resolvedActiveCategory]);
 
   if (isLoading) {

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import ePub from "epubjs";
 
-export default function EpubViewer({ src }: { src: string }) {
+export default function EpubViewer({ src, onReady }: { src: string; onReady?: () => void }) {
   const viewerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -30,7 +30,11 @@ export default function EpubViewer({ src }: { src: string }) {
           manager: isMultiPage ? "continuous" : "default",
         });
 
-        return rendition.display();
+        return rendition.display().then(() => {
+          if (onReady) {
+            onReady();
+          }
+        });
       })
       .catch(() => {});
 
