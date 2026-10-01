@@ -62,7 +62,29 @@ export function getDashboardPathForRole(role: unknown): string {
     : PATHS.DASHBOARD_CREATOR;
 }
 
-export function pathPublishedContent(contentKey: string): string {
+export function slugifyContentTitle(title: string): string {
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe")
+    .replace(/å/g, "a")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function pathPublishedContent(
+  contentKey: string,
+  creatorSlug?: string | null,
+  contentTitle?: string | null,
+): string {
+  if (creatorSlug) {
+    const visibleSlug = contentTitle
+      ? slugifyContentTitle(contentTitle)
+      : contentKey;
+    return `/${encodeURIComponent(creatorSlug)}/shows/${encodeURIComponent(visibleSlug)}`;
+  }
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
 }
 

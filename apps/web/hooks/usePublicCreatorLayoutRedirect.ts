@@ -1,7 +1,12 @@
 "use client";
 
 import { useLayoutEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { API } from "@/lib/http/api/endpoints";
@@ -21,21 +26,31 @@ export function usePublicCreatorLayoutRedirect(
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
-  const { creator, isLoading: isLoadingPublic } =
-    useCreatorPublicProfile(publicCreatorId);
+  const params = useParams();
+  const rawCreatorSlug = params?.creatorSlug;
+  const creatorSlug = Array.isArray(rawCreatorSlug)
+    ? rawCreatorSlug[0]
+    : rawCreatorSlug;
+  const publicCreatorIdentifier =
+    searchParams.get("creatorId") ||
+    searchParams.get(CREATOR_ID_PARAM) ||
+    creatorSlug ||
+    null;
+  const { creator, isLoading: isLoadingPublic } = useCreatorPublicProfile(
+    publicCreatorIdentifier,
+  );
 
   const appearanceQuery = useGetAPI<ContentAppearanceResponse>(
     API.content.appearance,
     undefined,
     {
-      enabled: !publicCreatorId,
+      enabled: !publicCreatorIdentifier,
       retry: false,
       refetchOnWindowFocus: false,
     },
   );
 
-  const isPublicView = Boolean(publicCreatorId);
+  const isPublicView = Boolean(publicCreatorIdentifier);
   const activeLayout = isPublicView
     ? creator?.layout
     : appearanceQuery.data?.data?.layout;
@@ -50,6 +65,21 @@ export function usePublicCreatorLayoutRedirect(
     );
 
   useLayoutEffect(() => {
+    if (isLoading) return;
+
+    if (
+      isPublicView &&
+      creator?.slug &&
+      pathname === `/creator/${currentLayout}`
+    ) {
+      const queryParams = new URLSearchParams(searchParams.toString());
+      queryParams.delete("creatorId");
+      queryParams.delete(CREATOR_ID_PARAM);
+      const query = queryParams.toString();
+      router.replace(`/${creator.slug}${query ? `?${query}` : ""}`);
+      return;
+    }
+
     if (isLoading || !activeLayout) return;
     if (!isCreatorLayoutKey(activeLayout)) return;
 
@@ -70,6 +100,7 @@ export function usePublicCreatorLayoutRedirect(
   }, [
     activeLayout,
     currentLayout,
+    creator?.slug,
     isLoading,
     isPublicView,
     pathname,

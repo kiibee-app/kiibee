@@ -39,7 +39,12 @@ export const API = {
     types: "/content/types",
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
-    view: (id: string, userId: string) => `/content/${id}/${userId}`,
+    view: (id: string, userId: string, creatorSlug?: string | null) => {
+      const query = creatorSlug
+        ? `?creatorSlug=${encodeURIComponent(creatorSlug)}`
+        : "";
+      return `/content/${id}/${userId}${query}`;
+    },
     verifyCode: (id: string) => `/content/${id}/verify-code`,
     relatedCollection: (id: string) => `/content/${id}/related-collection`,
     publicCollection: (id: string, viewerId?: string) =>

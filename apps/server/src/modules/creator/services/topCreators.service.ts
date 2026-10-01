@@ -1,7 +1,12 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { desc, eq, sql, and } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { emailSubscribers, mediaFiles, users } from 'src/database/schema';
+import {
+  emailSubscribers,
+  mediaFiles,
+  users,
+  creatorChannels,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
@@ -13,12 +18,14 @@ export const topCreatorsService = async () => {
       .select({
         id: users.id,
         name: users.fullName,
+        slug: creatorChannels.slug,
         profileImageUrl: users.avatarUrl,
         createdAt: users.createdAt,
         uploadCount: sql<number>`COUNT(DISTINCT ${mediaFiles.id})`,
         subscriberCount: sql<number>`COUNT(DISTINCT ${emailSubscribers.id})`,
       })
       .from(users)
+      .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
       .leftJoin(
         mediaFiles,
         and(
@@ -37,7 +44,13 @@ export const topCreatorsService = async () => {
           publiclyVisibleCreatorWhere,
         ),
       )
-      .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
+      .groupBy(
+        users.id,
+        users.fullName,
+        users.avatarUrl,
+        users.createdAt,
+        creatorChannels.slug,
+      )
       .orderBy(desc(sql`COUNT(DISTINCT ${mediaFiles.id})`))
       .limit(10);
 

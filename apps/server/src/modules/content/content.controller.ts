@@ -215,9 +215,12 @@ export class ContentController {
   }
 
   @Get(':id/:userId')
-  async getSingleContent(@Req() req: any) {
+  async getSingleContent(
+    @Req() req: any,
+    @Query('creatorSlug') creatorSlug?: string,
+  ) {
     const contentId = req.params.id;
     const userId = req.params.userId;
-    return this.contentService.getSingleContent(contentId, userId);
+    return this.contentService.getSingleContent(contentId, userId, creatorSlug);
   }
 }

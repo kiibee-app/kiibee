@@ -4,8 +4,6 @@ import { db } from 'src/database/db';
 import {
   contentAppearance,
   creatorChannels,
-  emailSubscribers,
-  mediaFiles,
   users,
   creatorInfo,
   contentSettings,
@@ -37,32 +35,6 @@ export type ExploreCreatorItem = {
   buttonColor: string | null;
 };
 
-const subscriberCounts = db
-  .select({
-    creatorId: emailSubscribers.creatorId,
-    subscriberCount: sql<number>`count(*)::int`.as('subscriber_count'),
-  })
-  .from(emailSubscribers)
-  .where(eq(emailSubscribers.isActive, true))
-  .groupBy(emailSubscribers.creatorId)
-  .as('subscriber_counts');
-
-const uploadCounts = db
-  .select({
-    creatorId: mediaFiles.creatorId,
-    uploadCount: sql<number>`count(*)::int`.as('upload_count'),
-  })
-  .from(mediaFiles)
-  .where(
-    and(
-      eq(mediaFiles.isDeleted, false),
-      eq(mediaFiles.isPublished, true),
-      eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
-    ),
-  )
-  .groupBy(mediaFiles.creatorId)
-  .as('upload_counts');
-
 const activeCreatorConditions = (): SQL[] => [
   eq(users.role, ROLE.CREATOR),
   eq(users.isDeleted, false),
@@ -77,10 +49,12 @@ const creatorDisplayNameSql = sql<string>`trim(coalesce(
   nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
 ))`;
 
-const buildCreatorsQuery = (creatorId?: string, search?: string) => {
+const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
-  if (creatorId) {
-    conditions.push(eq(users.id, creatorId));
+  if (idOrSlug) {
+    conditions.push(
+      or(eq(users.id, idOrSlug), eq(creatorChannels.slug, idOrSlug))!,
+    );
   }
 
   if (search) {
@@ -121,11 +95,11 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
       ),
       category: sql<string | null>`null`.as('category'),
       uploadCount:
-        sql<number>`coalesce(${uploadCounts.uploadCount}, 0)::int`.as(
+        sql<number>`(SELECT count(*)::int FROM media_files WHERE creator_id = ${users.id} AND is_deleted = false AND is_published = true AND visibility = ${CONTENT_VISIBILITY.PUBLIC})`.as(
           'upload_count',
         ),
       subscriberCount:
-        sql<number>`coalesce(${subscriberCounts.subscriberCount}, 0)::int`.as(
+        sql<number>`(SELECT count(*)::int FROM email_subscribers WHERE creator_id = ${users.id} AND is_active = true)`.as(
           'subscriber_count',
         ),
       createdAt: users.createdAt,
@@ -144,8 +118,6 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
-    .leftJoin(uploadCounts, eq(uploadCounts.creatorId, users.id))
-    .leftJoin(subscriberCounts, eq(subscriberCounts.creatorId, users.id))
     .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
     .leftJoin(contentSettings, eq(contentSettings.userId, users.id))
     .where(and(...conditions))
@@ -155,7 +127,9 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
           OR (${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '') 
         THEN 1 ELSE 0 
       END`),
-      desc(sql`coalesce(${subscriberCounts.subscriberCount}, 0)`),
+      desc(
+        sql`(SELECT count(*)::int FROM email_subscribers WHERE creator_id = ${users.id} AND is_active = true)`,
+      ),
     );
 };
 

@@ -236,11 +236,16 @@ function formatBuyPrice(
 export function resolveContentActionHref(
   contentId: string,
   actionLabel: string,
-  item: Pick<FeedContentItem, "rentPrice" | "buyPrice">,
+  item: Pick<FeedContentItem, "rentPrice" | "buyPrice"> &
+    Partial<Pick<FeedContentItem, "slug" | "creatorSlug" | "title">>,
   actionsCount: number,
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): string {
-  const href = pathPublishedContent(contentId);
+  const href = pathPublishedContent(
+    item.slug || contentId,
+    item.creatorSlug,
+    item.title,
+  );
   if (actionsCount <= 1) return href;
 
   const { rentPrefix, buyPrefix, buyCollectionPrefix } = resolvePricingPrefixes(
@@ -259,7 +264,7 @@ export function resolveContentActionHref(
     actionLabel === buyLabel ||
     (options?.inCollection && actionLabel === collectionBuyLabel)
   ) {
-    return `${href}#buy`;
+    return href;
   }
   return href;
 }

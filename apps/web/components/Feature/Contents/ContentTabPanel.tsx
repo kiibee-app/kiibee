@@ -30,6 +30,7 @@ import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import MetaData from "./MetaData";
 import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
@@ -108,6 +109,7 @@ export default function ContentTabPanel({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const { publicCreatorSlug } = useCreatorChannelProfile();
   const [selectedCoupon, setSelectedCoupon] = useState<CouponEntity | null>(
     null,
   );
@@ -183,7 +185,11 @@ export default function ContentTabPanel({
             type={COLLECTION_TABLE_TYPE.CONTENTS}
             data={data}
             searchValue={searchValue}
-            onRowClick={(row) => router.push(pathPublishedContent(row.id))}
+            onRowClick={(row) =>
+              router.push(
+                pathPublishedContent(row.id, publicCreatorSlug, row.name),
+              )
+            }
             onEdit={onEditContent}
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
             onMoveUp={handleMoveUp}

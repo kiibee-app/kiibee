@@ -53,10 +53,16 @@ export const useGlobalSearch = ({
   const isLoading = isContentLoading || isCreatorsLoading;
 
   const handleContentClick = useCallback(
-    (id: string) => () => {
-      closeSearch();
-      router.push(pathPublishedContent(id));
-    },
+    (
+      id: string,
+      slug?: string,
+      creatorSlug?: string | null,
+      title?: string | null,
+    ) =>
+      () => {
+        closeSearch();
+        router.push(pathPublishedContent(slug || id, creatorSlug, title));
+      },
     [closeSearch, router],
   );
 

@@ -101,8 +101,12 @@ export class ContentService {
     return getAllContentsService(limit, search, sort, filter);
   }
 
-  async getSingleContent(contentId: string, userId: string) {
-    return getSingleContentService(contentId, userId);
+  async getSingleContent(
+    contentId: string,
+    userId: string,
+    creatorSlug?: string,
+  ) {
+    return getSingleContentService(contentId, userId, creatorSlug);
   }
 
   async getRelatedCollectionContent(contentId: string) {
