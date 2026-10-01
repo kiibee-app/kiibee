@@ -65,12 +65,8 @@ export const createPayment = async ({
       subscription: {
         type: UNSCHEDULED_TYPE,
       },
-      successUrl: stripUrlPort(
-        `${process.env.FRONTEND_URL}/payment/success?orderId=${orderId}`,
-      ),
-      failureUrl: stripUrlPort(
-        `${process.env.FRONTEND_URL}/payment/failure?orderId=${orderId}`,
-      ),
+      successUrl: `${process.env.FRONTEND_URL}/payment/success?orderId=${orderId}`,
+      failureUrl: `${process.env.FRONTEND_URL}/payment/failure?orderId=${orderId}`,
       notificationUrl: `${process.env.EPAY_WEBHOOK_URL}/api/v1/payment/webhook`,
     };
 

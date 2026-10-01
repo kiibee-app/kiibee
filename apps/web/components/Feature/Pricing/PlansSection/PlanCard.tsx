@@ -132,7 +132,7 @@ export default function PlanCard({
         planId,
       });
 
-      if (response.type?.toLowerCase() === FREE_LABEL) {
+      if (response.type?.toLowerCase() === FREE_LABEL.toLowerCase()) {
         await invalidateCreatorPlan();
         toast.success(t("pricingPlans.subscriptionActivated"));
         return;

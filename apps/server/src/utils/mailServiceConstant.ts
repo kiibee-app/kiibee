@@ -13,6 +13,7 @@ export const templateName = {
   PURCHASE_RECEIPT: 'sendReceipt',
   SUBSCRIPTION_PAYMENT_FAILED: 'subscriptionPaymentFailed',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN: 'subscriptionPaymentFailedAdmin',
+  SUBSCRIPTION_ACTIVATED: 'subscriptionActivated',
 };
 
 export const mailSubject = {
@@ -33,6 +34,7 @@ export const mailSubject = {
     'Din Kiibee-abonnementbetaling kunne ikke gennemføres',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
     'Creator-abonnementbetaling mislykkedes – Kiibee',
+  SUBSCRIPTION_ACTIVATED: 'Dit Kiibee-abonnement er nu aktivt',
 };
 
 export const mailNote = {

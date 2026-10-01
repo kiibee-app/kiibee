@@ -21,8 +21,8 @@ export const addNewCardService = async (userId: string) => {
       currency: CURRENCY.DKK,
       reference,
       customerId: userId,
-      successUrl: stripUrlPort(`${process.env.FRONTEND_URL}/card/success`),
-      failureUrl: stripUrlPort(`${process.env.FRONTEND_URL}/card/failure`),
+      successUrl: `${process.env.FRONTEND_URL}/card/success`,
+      failureUrl: `${process.env.FRONTEND_URL}/card/failure`,
       subscription: {
         type: 'UNSCHEDULED',
         reference,
