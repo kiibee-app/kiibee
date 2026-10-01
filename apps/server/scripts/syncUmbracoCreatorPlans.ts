@@ -98,6 +98,73 @@ async function main() {
               ),
             );
 
+          const isKammas =
+            (details.profileKey || '')
+              .toLowerCase()
+              .includes('kammas-kantine') ||
+            (details.profileKey || '').toLowerCase().includes('kammas_kantine');
+
+          let customPriceOverride: number | null = null;
+          if (isKammas) {
+            customPriceOverride = 25;
+          } else if (
+            desiredPlanName === 'Start-up' &&
+            [
+              'umb://document/6ae38a0b56144a55ac017545e006b9a4',
+              'umb://document/e46ced3f3b544a3ead6838c69a79ac8f',
+            ].includes(
+              subscriptionKey(details.rawFiles?.['subscription.json']) || '',
+            )
+          ) {
+            customPriceOverride = 99;
+          } else if (
+            desiredPlanName === 'Start-up' &&
+            [
+              'damkjaermedier',
+              'damkjær',
+              'stopsygefravær',
+              'find-dig-ikke-i-smerte',
+              'find_dig_ikke_i_smerte',
+            ].some((ex) =>
+              (details.profileKey || '').toLowerCase().includes(ex),
+            )
+          ) {
+            customPriceOverride = 99;
+          }
+
+          const subscriptionJson =
+            details.rawFiles?.['subscription.json'] || {};
+
+          let customMaxFiles: number | null = null;
+          if (
+            subscriptionJson.maxFiles &&
+            String(subscriptionJson.maxFiles).trim() !== ''
+          ) {
+            customMaxFiles = Number(String(subscriptionJson.maxFiles).trim());
+            if (isNaN(customMaxFiles)) customMaxFiles = null;
+          }
+
+          let customKiibeeCutDkk: number | null = null;
+          if (
+            subscriptionJson.kiibeeCut &&
+            String(subscriptionJson.kiibeeCut).trim() !== ''
+          ) {
+            customKiibeeCutDkk = Number(
+              String(subscriptionJson.kiibeeCut).trim(),
+            );
+            if (isNaN(customKiibeeCutDkk)) customKiibeeCutDkk = null;
+          }
+
+          let customTransactionFeePct: number | null = null;
+          if (
+            subscriptionJson.transactionFee &&
+            String(subscriptionJson.transactionFee).trim() !== ''
+          ) {
+            customTransactionFeePct = Number(
+              String(subscriptionJson.transactionFee).trim(),
+            );
+            if (isNaN(customTransactionFeePct)) customTransactionFeePct = null;
+          }
           // Insert new active plan
           await db
             .insert(creatorPlans)
@@ -106,11 +173,19 @@ async function main() {
               creatorId: creator.id,
               planId: targetPlan.id,
               status: STATUS.ACTIVE,
+              customPrice: customPriceOverride,
+              customMaxFiles: customMaxFiles,
+              customKiibeeCutDkk: customKiibeeCutDkk,
+              customTransactionFeePct: customTransactionFeePct,
             })
             .onConflictDoUpdate({
               target: creatorPlans.id,
               set: {
                 status: STATUS.ACTIVE,
+                customPrice: customPriceOverride,
+                customMaxFiles: customMaxFiles,
+                customKiibeeCutDkk: customKiibeeCutDkk,
+                customTransactionFeePct: customTransactionFeePct,
               },
             });
 

@@ -3,6 +3,8 @@ import { getAllSubscriptionPlansService } from './services/getAllSubscriptionPla
 import { createSubscriptionService } from './services/createSubscription.service';
 import { getCreatorPlan } from './services/getCreatorPlan.service';
 import { deleteSubscriptionService } from './services/deleteSubscription.service';
+import { adminGetCreatorPlan } from './services/adminGetCreatorPlan.service';
+import { adminUpdateCreatorPlan } from './services/adminUpdateCreatorPlan.service';
 
 @Injectable()
 export class SubscriptionService {
@@ -25,5 +27,13 @@ export class SubscriptionService {
   async deleteSubscriptionService(userId: string) {
     const result = await deleteSubscriptionService(userId);
     return result;
+  }
+
+  async getAdminCreatorPlan(creatorId: string) {
+    return adminGetCreatorPlan(creatorId);
+  }
+
+  async updateAdminCreatorPlan(creatorId: string, input: any) {
+    return adminUpdateCreatorPlan(creatorId, input);
   }
 }
