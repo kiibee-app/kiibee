@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams, useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -43,6 +43,40 @@ import PublishedContentDetail from "@/components/Feature/SingleContentPage/Publi
 import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/SingleCollectionDetail";
 import { DetailTopWrap } from "./purchasedCollectionDetail.styles";
 
+const slugify = (text: string) => {
+  if (!text) return "";
+  let str = text.toString().toLowerCase().trim();
+  const sets = [
+    { to: 'ae', from: '[æä]' },
+    { to: 'oe', from: '[øö]' },
+    { to: 'aa', from: '[å]' },
+  ];
+  sets.forEach(set => {
+    str = str.replace(new RegExp(set.from, 'gi'), set.to);
+  });
+  return str
+    .replace(/\s+/g, '-') 
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-') 
+    .replace(/^-+/, '') 
+    .replace(/-+$/, '');
+};
+
+const mapMediaTypeToSlug = (mediaType: string, lang: string) => {
+  const type = mediaType.toLowerCase();
+  if (lang === 'da') {
+    switch (type) {
+      case "video": return "video";
+      case "audio": return "lyd-fil";
+      case "pdf": return "pdf";
+      case "epub": return "epub";
+      case "web": return "web-indhold";
+      default: return type;
+    }
+  }
+  return type;
+};
+
 type Props = {
   title: string;
   mode: RentedMode;
@@ -54,11 +88,13 @@ export default function RentedContent({
   mode,
   initialExpandedSection = null,
 }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
+  const params = useParams();
+  const slug = params?.slug as string[] | undefined;
 
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -131,8 +167,10 @@ export default function RentedContent({
     isPurchasedFetching ||
     isPreviouslyRentedLoading ||
     isPreviouslyRentedFetching;
-  const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
+  const isContentView = slug && slug.length === 2 && ["video", "lyd-fil", "audio", "pdf", "epub", "web", "web-indhold"].includes(slug[0].toLowerCase());
+  const selectedContentSlug = isContentView ? slug[1] : undefined;
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
+  const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
 
   const filteredCollections = filterCollections(
     searchValue,
@@ -198,66 +236,89 @@ export default function RentedContent({
   );
 
   const selectedContent = useMemo(() => {
-    if (!selectedContentId) return undefined;
-    return (
-      sources.videos.find((item) => item.title === selectedContentId) ||
-      sources.audios.find((item) => item.title === selectedContentId) ||
-      sources.pdfs.find((item) => item.title === selectedContentId) ||
-      sources.epubs.find((item) => item.title === selectedContentId) ||
-      sources.webs.find((item) => item.title === selectedContentId)
-    );
-  }, [selectedContentId, sources]);
+    if (selectedContentSlug) {
+      return (
+        sources.videos.find((item) => slugify(item.title) === selectedContentSlug) ||
+        sources.audios.find((item) => slugify(item.title) === selectedContentSlug) ||
+        sources.pdfs.find((item) => slugify(item.title) === selectedContentSlug) ||
+        sources.epubs.find((item) => slugify(item.title) === selectedContentSlug) ||
+        sources.webs.find((item) => slugify(item.title) === selectedContentSlug)
+      );
+    }
+    if (selectedContentId) {
+      return (
+        sources.videos.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
+        sources.audios.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
+        sources.pdfs.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
+        sources.epubs.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
+        sources.webs.find((item) => item.id === selectedContentId || item.title === selectedContentId)
+      );
+    }
+    return undefined;
+  }, [selectedContentSlug, selectedContentId, sources]);
 
   const openMediaInDashboard = useCallback(
     (item: RentedMediaItem) => {
-      const params = new URLSearchParams(searchParamsString);
-      params.delete(CONTENT_COLLECTION_QUERY_KEY);
-      params.set(CONTENT_ITEM_QUERY_KEY, item.title);
-      const query = params.toString();
-      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      const queryParams = new URLSearchParams(searchParamsString);
+      queryParams.delete(CONTENT_COLLECTION_QUERY_KEY);
+      queryParams.delete(CONTENT_ITEM_QUERY_KEY);
+      const query = queryParams.toString();
+      const mediaSlug = mapMediaTypeToSlug(item.mediaType, i18n.language);
+      const titleSlug = slugify(item.title);
+      const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [pathname, router, searchParamsString],
+    [router, searchParamsString],
   );
 
   const handleOpenCollection = useCallback(
     (collectionId: string) => {
-      const params = new URLSearchParams(searchParamsString);
-      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
-      params.delete(CONTENT_ITEM_QUERY_KEY);
-      const query = params.toString();
-      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      const queryParams = new URLSearchParams(searchParamsString);
+      queryParams.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+      queryParams.delete(CONTENT_ITEM_QUERY_KEY);
+      const query = queryParams.toString();
+      const nextUrl = `/dashboard/viewer${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [pathname, router, searchParamsString],
+    [router, searchParamsString],
   );
 
   const handleCloseDetail = useCallback(() => {
-    const params = new URLSearchParams(searchParamsString);
-    params.delete(CONTENT_COLLECTION_QUERY_KEY);
-    params.delete(CONTENT_ITEM_QUERY_KEY);
-    const query = params.toString();
-    const nextUrl = query ? `${pathname}?${query}` : pathname;
+    const queryParams = new URLSearchParams(searchParamsString);
+    queryParams.delete(CONTENT_COLLECTION_QUERY_KEY);
+    queryParams.delete(CONTENT_ITEM_QUERY_KEY);
+    const query = queryParams.toString();
+    const nextUrl = `/dashboard/viewer${query ? `?${query}` : ""}`;
     router.replace(nextUrl, { scroll: false });
-  }, [pathname, router, searchParamsString]);
+  }, [router, searchParamsString]);
 
   const handleCloseContentDetail = useCallback(() => {
-    const params = new URLSearchParams(searchParamsString);
-    params.delete(CONTENT_ITEM_QUERY_KEY);
-    const query = params.toString();
-    const nextUrl = query ? `${pathname}?${query}` : pathname;
+    const queryParams = new URLSearchParams(searchParamsString);
+    queryParams.delete(CONTENT_ITEM_QUERY_KEY);
+    const query = queryParams.toString();
+    const nextUrl = `/dashboard/viewer${query ? `?${query}` : ""}`;
     router.replace(nextUrl, { scroll: false });
-  }, [pathname, router, searchParamsString]);
+  }, [router, searchParamsString]);
 
   const handleSelectDetailMedia = useCallback(
-    (mediaId: string) => {
-      const params = new URLSearchParams(searchParamsString);
-      params.set(CONTENT_ITEM_QUERY_KEY, mediaId);
-      const query = params.toString();
-      const nextUrl = query ? `${pathname}?${query}` : pathname;
+    (mediaTitle: string) => {
+      const item =
+        sources.videos.find((i) => i.title === mediaTitle) ||
+        sources.audios.find((i) => i.title === mediaTitle) ||
+        sources.pdfs.find((i) => i.title === mediaTitle) ||
+        sources.epubs?.find((i) => i.title === mediaTitle) ||
+        sources.webs?.find((i) => i.title === mediaTitle);
+      
+      const mediaType = item?.mediaType || "video";
+      const mediaSlug = mapMediaTypeToSlug(mediaType, i18n.language);
+      const titleSlug = slugify(mediaTitle);
+      const queryParams = new URLSearchParams(searchParamsString);
+      queryParams.delete(CONTENT_ITEM_QUERY_KEY);
+      const query = queryParams.toString();
+      const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [pathname, router, searchParamsString],
+    [router, searchParamsString, sources],
   );
 
   const isSelectedCollectionLoading = Boolean(
@@ -280,7 +341,7 @@ export default function RentedContent({
     );
   }
 
-  if (selectedContentId) {
+  if (selectedContentSlug || selectedContentId) {
     return (
       <DashboardPageWrapper>
         <DetailTopWrap>
@@ -301,7 +362,7 @@ export default function RentedContent({
             </HeaderTitleWrap>
           </PageHeader>
           <PublishedContentDetail
-            contentKey={selectedContentId}
+            contentKey={selectedContent?.id || selectedContentId || ""}
             onBack={
               selectedCollectionId
                 ? handleCloseContentDetail
