@@ -26,7 +26,11 @@ function resolveLayoutParam(layout?: string | null): string {
 export function getPublicCreatorChannelUrl(
   creatorId: string,
   layout?: string | null,
+  channelSlug?: string | null,
 ): string {
+  if (channelSlug) {
+    return `${resolveWebBaseUrl()}/${channelSlug}`;
+  }
   const params = new URLSearchParams({ [CREATOR_ID_QUERY_PARAM]: creatorId });
   return `${resolveWebBaseUrl()}${CREATOR_PROFILE_PATH}/${resolveLayoutParam(layout)}?${params.toString()}`;
 }
@@ -36,12 +40,13 @@ export function ChannelLink({
   channelName,
   companyName,
   layout,
+  channelSlug,
   fallbackLabel = existingCreatorLabels.noChannel,
   onClick,
   children,
   className,
 }: ChannelLinkProps) {
-  const channelUrl = getPublicCreatorChannelUrl(creatorId, layout);
+  const channelUrl = getPublicCreatorChannelUrl(creatorId, layout, channelSlug);
   const displayName = channelName || companyName;
 
   if (!displayName) {

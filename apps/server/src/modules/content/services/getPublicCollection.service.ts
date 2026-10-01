@@ -10,6 +10,7 @@ import {
   mediaFiles,
   userContentAccess,
   users,
+  creatorChannels,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
@@ -28,6 +29,8 @@ const collectionItemSelect = {
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
+  slug: mediaFiles.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
@@ -128,6 +131,10 @@ export const getPublicCollectionService = async (
       .leftJoin(
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
+      )
+      .leftJoin(
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
       )
       .where(and(...itemConditions));
 

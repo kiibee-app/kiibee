@@ -559,12 +559,15 @@ export function useContentFormActions({
       paymentTexts.purchaseTitle ? PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT : null,
     ].filter(Boolean) as (typeof PAYMENT_AMOUNT_FIELDS)[number][];
     const nextErrors: Partial<ContentFormErrors> = {};
+    const hasAmount = requiredFields.some((field) => formState[field].trim());
+
+    if (!hasAmount && requiredFields.length > 0) {
+      nextErrors[requiredFields[0]] = requiredMessage;
+    }
 
     requiredFields.forEach((field) => {
       const val = formState[field].trim();
-      if (!val) {
-        nextErrors[field] = requiredMessage;
-      } else {
+      if (val) {
         const errorMsg = getPaymentAmountErrorMessage(val, t);
         if (errorMsg) {
           nextErrors[field] = errorMsg;
@@ -593,18 +596,21 @@ export function useContentFormActions({
     }
 
     const requiredMessage = t("contents.payment.common.requiredAmount");
-    const rentalErr = getPaymentAmountErrorMessage(collectionRentalAmount, t);
-    const purchaseErr = getPaymentAmountErrorMessage(
-      collectionPurchaseAmount,
-      t,
-    );
-    const hasMissingAmount =
-      !collectionRentalAmount.trim() || !collectionPurchaseAmount.trim();
+    const rentalAmount = collectionRentalAmount.trim();
+    const purchaseAmount = collectionPurchaseAmount.trim();
+    const hasAmount = rentalAmount || purchaseAmount;
 
-    if (hasMissingAmount) {
+    if (!hasAmount) {
       toast.error(requiredMessage);
       return false;
     }
+
+    const rentalErr = rentalAmount
+      ? getPaymentAmountErrorMessage(rentalAmount, t)
+      : null;
+    const purchaseErr = purchaseAmount
+      ? getPaymentAmountErrorMessage(purchaseAmount, t)
+      : null;
 
     if (rentalErr || purchaseErr) {
       toast.error(rentalErr || purchaseErr);

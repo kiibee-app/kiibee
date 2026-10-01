@@ -76,6 +76,8 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  slug?: string;
+  creatorSlug?: string | null;
   trailerUrl?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
@@ -126,7 +128,11 @@ export default function LatestUpload({
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
         ];
       }
@@ -144,11 +150,19 @@ export default function LatestUpload({
           {
             title: t("pricingLabels.free"),
             subtitle: t("singleContent.pricing.downloadFiles"),
-            href: `${pathPublishedContent(data.contentId)}#buy`,
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
           {
             title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
         ];
       }
@@ -163,7 +177,11 @@ export default function LatestUpload({
       if (isGatedLabel) {
         return gatedActions.map((action) => ({
           title: action.label,
-          href: pathPublishedContent(data.contentId!),
+          href: pathPublishedContent(
+            data.slug || data.contentId!,
+            data.creatorSlug,
+            data.title,
+          ),
         }));
       }
 
@@ -175,7 +193,11 @@ export default function LatestUpload({
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
         ];
       }
@@ -186,7 +208,12 @@ export default function LatestUpload({
         href: resolveContentActionHref(
           data.contentId!,
           action.label,
-          pricingItem,
+          {
+            ...pricingItem,
+            slug: data.slug,
+            creatorSlug: data.creatorSlug,
+            title: data.title,
+          },
           pricingActions.length,
           { labels },
         ),

@@ -95,6 +95,7 @@ export function AppearanceFormProvider({
     setSelectedLayout(values.layout);
 
     const creatorId = storedUser?.id;
+    const creatorSlug = profileResponse?.data?.channel?.slug;
     await Promise.all([
       queryClient.invalidateQueries({
         queryKey: [API.content.appearance],
@@ -102,6 +103,13 @@ export function AppearanceFormProvider({
       creatorId
         ? queryClient.invalidateQueries({
             queryKey: [API.creators.byId(creatorId)],
+            refetchType: "all",
+          })
+        : Promise.resolve(),
+      creatorSlug
+        ? queryClient.invalidateQueries({
+            queryKey: [API.creators.byId(creatorSlug)],
+            refetchType: "all",
           })
         : Promise.resolve(),
       queryClient.invalidateQueries({
@@ -119,6 +127,7 @@ export function AppearanceFormProvider({
     validateAll,
     values,
     storedUser,
+    profileResponse?.data?.channel?.slug,
   ]);
 
   const cancelAppearance = useCallback(() => {

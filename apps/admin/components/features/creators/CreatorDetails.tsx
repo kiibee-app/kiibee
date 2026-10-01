@@ -189,6 +189,7 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
                   channelName={creator.channelName || displayName}
                   companyName={creator.companyName || displayName}
                   layout={creator.layout}
+                  channelSlug={creator.channelSlug}
                   fallbackLabel={existingCreatorLabels.noChannel}
                 />
               </InfoValue>

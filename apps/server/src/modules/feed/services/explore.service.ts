@@ -5,7 +5,7 @@ import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, FIXED_LIMIT } from 'src/utils/constant';
-import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
+import { getSafePositiveInteger } from 'src/utils/pagination';
 
 import { buildSearch, format, cleanNumber } from '../feed.helper';
 import {
@@ -64,7 +64,7 @@ export const exploreService = async (
   type?: ExploreType,
 ) => {
   try {
-    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT, MAX_LIMIT);
+    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT);
     const sections = resolveSections(type);
     const searchCondition = buildSearch(search);
     const contentTypeIds = cleanArray(filter?.contentTypeId);
