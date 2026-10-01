@@ -47,6 +47,7 @@ export const CONTENT_RESPONSE_KEYS = {
   DESCRIPTION: "description",
   CONTENT_TYPE_ID: "contentTypeId",
   CONTENT_TYPE: "contentType",
+  SLUG: "slug",
   FILE_KEY: "fileKey",
   CONTENT_URL: "contentUrl",
   THUMBNAIL_URL: "thumbnailUrl",
@@ -108,6 +109,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.DESCRIPTION]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_TYPE_ID]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_TYPE]?: string | null;
+  [CONTENT_RESPONSE_KEYS.SLUG]?: string;
   [CONTENT_RESPONSE_KEYS.FILE_KEY]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_URL]?: string | null;
@@ -129,6 +131,7 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  creatorSlug?: string | null;
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
   [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
@@ -337,7 +340,13 @@ export const getSingleContentProps = (
 
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
+    slug: toTrimmedString(content[CONTENT_RESPONSE_KEYS.SLUG]),
     title,
+    creator: {
+      id: content[CONTENT_RESPONSE_KEYS.CREATOR_ID] ?? undefined,
+      slug: content.creatorSlug,
+      name: options?.creatorName ?? "",
+    },
     descriptions: description ? [description] : [],
     tags,
     statusLabel: statusLabel,

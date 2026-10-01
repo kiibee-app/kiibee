@@ -20,12 +20,14 @@ import {
 export type FeedContentItem = {
   id: string;
   title: string;
+  slug?: string;
   description?: string | null;
   thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: string | null;
   trailerUrl?: string | null;
   creatorId?: string;
   creatorName?: string | null;
+  creatorSlug?: string | null;
   contentType?: string | null;
   accessType?: string | null;
   categoryName?: string | null;
@@ -166,10 +168,12 @@ export function feedContentToTutorial(
 
   return {
     id: item.id,
+    slug: item.slug,
     title: item.title,
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
     creatorId: item.creatorId,
+    creatorSlug: item.creatorSlug,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",

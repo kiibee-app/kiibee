@@ -41,6 +41,7 @@ export type SingleContentHeroProps = {
 
 export type SingleContentPageProps = {
   contentId?: string;
+  slug?: string;
   collectionId?: string;
   content?: ContentDetailItem;
   title: string;
@@ -53,6 +54,7 @@ export type SingleContentPageProps = {
   };
   creator?: {
     id?: string;
+    slug?: string | null;
     name: string;
     avatar?: ImageSource;
     avatarAlt?: string;

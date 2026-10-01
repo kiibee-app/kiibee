@@ -77,9 +77,15 @@ export function useProfileHomeCollections(
             name: collection.name,
             cards: (publicContentResponses[index]?.data?.data?.items ?? []).map(
               (item) =>
-                feedContentToTutorial(item, seeContentLabel, {
-                  labels: getPricingLabels(t),
-                }),
+                feedContentToTutorial(
+                  {
+                    ...item,
+                  },
+                  seeContentLabel,
+                  {
+                    labels: getPricingLabels(t),
+                  },
+                ),
             ),
           }))
           .filter((collection) => collection.cards.length > 0);
@@ -119,13 +125,19 @@ export function useProfileHomeCollections(
                 {
                   label: seeContentLabel,
                   variant: VARIANT.SECONDARY,
-                  href: pathPublishedContent(content.id),
+                  href: pathPublishedContent(
+                    contentDetail?.slug || content.id,
+                    contentDetail?.creatorSlug,
+                    contentDetail?.title || content.name,
+                  ),
                 },
               ];
 
               return {
                 ...fallbackTemplate,
                 id: content.id,
+                slug: contentDetail?.slug,
+                creatorSlug: contentDetail?.creatorSlug,
                 title: content.name,
                 category:
                   contentDetail?.categories?.[0]?.name ??

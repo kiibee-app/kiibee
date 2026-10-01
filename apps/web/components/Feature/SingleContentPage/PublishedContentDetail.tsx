@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
@@ -40,6 +45,7 @@ import AccessGate from "@/components/Feature/AccessGate";
 import { useContentAccessGate } from "@/hooks/useContentAccessGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { Section } from "@/app/styles";
+import { pathPublishedContent } from "@/utils/path";
 
 type Props = {
   contentKey: string;
@@ -58,6 +64,7 @@ export default function PublishedContentDetail({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const params = useParams();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const user = useStoredLoginUser();
@@ -66,6 +73,10 @@ export default function PublishedContentDetail({
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey.replaceAll(":", "-");
+  const rawCreatorSlug = params?.creatorSlug;
+  const creatorSlug = Array.isArray(rawCreatorSlug)
+    ? rawCreatorSlug[0]
+    : rawCreatorSlug;
   const viewerId = resolveContentViewerId(resolvedUserId);
 
   useEffect(() => {
@@ -75,7 +86,7 @@ export default function PublishedContentDetail({
   }, [normalizedContentKey, embedded]);
 
   const contentViewRoute = normalizedContentKey
-    ? API.content.view(normalizedContentKey, viewerId)
+    ? API.content.view(normalizedContentKey, viewerId, creatorSlug)
     : API.content.create;
   const discoverFallback = resolvePublishedContentByKey(normalizedContentKey);
   const {
@@ -107,6 +118,33 @@ export default function PublishedContentDetail({
       enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
     },
   );
+  const resolvedContentSlug = tutorial?.title || content?.title;
+  const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
+
+  useEffect(() => {
+    if (embedded || !resolvedContentSlug || !resolvedCreatorSlug) return;
+
+    const canonicalPath = pathPublishedContent(
+      content?.slug || tutorial?.slug || resolvedContentSlug,
+      resolvedCreatorSlug,
+      resolvedContentSlug,
+    );
+    if (pathname === canonicalPath) return;
+
+    const search = searchParams.toString();
+    router.replace(`${canonicalPath}${search ? `?${search}` : ""}`, {
+      scroll: false,
+    });
+  }, [
+    pathname,
+    embedded,
+    content?.slug,
+    resolvedContentSlug,
+    resolvedCreatorSlug,
+    tutorial?.slug,
+    router,
+    searchParams,
+  ]);
   const {
     gateType: activeGateType,
     isLoading: gateLoading,
@@ -206,6 +244,7 @@ export default function PublishedContentDetail({
             publicCreator
               ? {
                   id: publicCreator.id,
+                  slug: publicCreator.slug,
                   name: publicCreator.name,
                   avatar:
                     resolvePublicMediaUrl(
