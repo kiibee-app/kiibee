@@ -101,6 +101,7 @@ export function ExistingCreatorsTable({
                         creator.companyName || creator.fullName || displayName
                       }
                       layout={creator.layout}
+                      channelSlug={creator.channelSlug}
                       fallbackLabel={existingCreatorLabels.noChannel}
                       onClick={(e) => {
                         e.stopPropagation();

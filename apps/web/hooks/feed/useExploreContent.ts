@@ -64,7 +64,7 @@ type ExploreContentSection = "trending" | "latest" | "recent";
 
 export type ExploreTopCreator = Pick<
   ExploreCreator,
-  "id" | "name" | "profileImageUrl" | "createdAt"
+  "id" | "name" | "slug" | "profileImageUrl" | "createdAt"
 > & {
   uploadCount: number;
   subscriberCount: number;
@@ -145,6 +145,7 @@ function normalizeTopCreator(
   return {
     id: creator.id,
     name: creator.name,
+    slug: creator.slug ?? null,
     profileImageUrl: creator.profileImageUrl ?? null,
     createdAt: creator.createdAt,
     uploadCount: toSafeNumber(creator.uploadCount),

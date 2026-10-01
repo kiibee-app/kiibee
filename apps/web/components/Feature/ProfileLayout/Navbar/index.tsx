@@ -86,6 +86,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     initial,
     isPublicView,
     publicCreatorId,
+    publicCreatorSlug,
     textColor,
   } = useCreatorChannelProfile();
   const navTextTone =
@@ -97,7 +98,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const brandName = displayName;
   const brandHref =
     isPublicView && publicCreatorId
-      ? getPublicCreatorProfilePath(publicCreatorId, variant)
+      ? publicCreatorSlug
+        ? getPublicCreatorProfilePath(publicCreatorSlug, variant)
+        : PATHS.EXPLORE
       : PATHS.DASHBOARD_CREATOR;
 
   const handleBack = () => {

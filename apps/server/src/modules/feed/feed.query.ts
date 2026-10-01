@@ -6,6 +6,7 @@ import {
   mediaFileCategories,
   contentCategories,
   emailSubscribers,
+  creatorChannels,
 } from 'src/database/schema';
 import { eq, desc, and, sql, inArray } from 'drizzle-orm';
 import {
@@ -23,12 +24,14 @@ import {
 
 const baseSelect = {
   id: mediaFiles.id,
+  slug: mediaFiles.slug,
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
@@ -60,6 +63,7 @@ async function fetchMediaFilesByIds(ids: string[]) {
       contentCategories,
       eq(contentCategories.id, mediaFileCategories.categoryId),
     )
+    .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .where(and(inArray(mediaFiles.id, ids), eq(mediaFiles.isDeleted, false)));
 
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
@@ -142,6 +146,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
       createdAt: users.createdAt,
       uploadCount: sql<number>`COUNT(DISTINCT media_files.id)`,
       subscriberCount: sql<number>`COUNT(DISTINCT email_subscribers.id)`,
+      slug: creatorChannels.slug,
     })
     .from(users)
     .leftJoin(
@@ -154,6 +159,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
       ),
     )
     .leftJoin(emailSubscribers, eq(emailSubscribers.creatorId, users.id))
+    .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .where(
       and(
         eq(users.isActive, true),
@@ -162,6 +168,12 @@ export const getTopCreatorsQuery = (limit = 10) =>
         publiclyVisibleCreatorWhere,
       ),
     )
-    .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
+    .groupBy(
+      users.id,
+      users.fullName,
+      users.avatarUrl,
+      users.createdAt,
+      creatorChannels.slug,
+    )
     .orderBy(desc(sql`COUNT(DISTINCT media_files.id)`))
     .limit(limit);

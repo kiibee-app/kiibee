@@ -26,6 +26,7 @@ import {
 type ProfileShellProps = {
   variant: ProfileLayoutVariant;
   children: ReactNode;
+  hideHero?: boolean;
 };
 
 function ProfileAboutModal() {
@@ -34,7 +35,11 @@ function ProfileAboutModal() {
   return <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />;
 }
 
-export default function ProfileShell({ variant, children }: ProfileShellProps) {
+export default function ProfileShell({
+  variant,
+  children,
+  hideHero,
+}: ProfileShellProps) {
   useProfileSync();
   usePublicCreatorLayoutRedirect(variant);
   const { textColor, buttonColor } = useCreatorChannelProfile();
@@ -63,7 +68,7 @@ export default function ProfileShell({ variant, children }: ProfileShellProps) {
         }
       >
         <ProfileNavbar variant={variant} />
-        <ProfileHero variant={variant} />
+        {!hideHero && <ProfileHero variant={variant} />}
         {children}
         <ProfileFooter />
         <ProfileAboutModal />

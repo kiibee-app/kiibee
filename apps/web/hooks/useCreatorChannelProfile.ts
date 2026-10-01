@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import {
   mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
@@ -28,16 +28,27 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
+import fallbackCoverImage from "@/assets/images/cover.png";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
-  const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
+  const params = useParams();
+
+  const rawSlug = params?.creatorSlug;
+  const creatorSlugParam = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
+
+  const creatorIdentifier =
+    searchParams.get("creatorId") ||
+    searchParams.get(CREATOR_ID_PARAM) ||
+    creatorSlugParam ||
+    null;
   const storedUser = useStoredLoginUser();
+  const { creator: publicCreator, isLoading: isLoadingPublic } =
+    useCreatorPublicProfile(creatorIdentifier);
+  const publicCreatorId = publicCreator?.id ?? creatorIdentifier;
   const isOwnerOfPublicView =
     Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
-  const isPublicView = Boolean(publicCreatorId) && !isOwnerOfPublicView;
-  const { creator: publicCreator, isLoading: isLoadingPublic } =
-    useCreatorPublicProfile(publicCreatorId);
+  const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
@@ -123,6 +134,11 @@ export function useCreatorChannelProfile(enabled = true) {
     return getAvatarUrl(appearanceQuery.data?.data?.mobileCoverImageUrl);
   }, [isPublicView, publicCreator, appearanceQuery.data]);
 
+  const resolvedCoverImageUrl =
+    coverImageUrl || mobileCoverImageUrl || fallbackCoverImage.src;
+  const resolvedMobileCoverImageUrl =
+    mobileCoverImageUrl || coverImageUrl || fallbackCoverImage.src;
+
   const appearance = isPublicView ? publicCreator : appearanceQuery.data?.data;
 
   const initial = useMemo(
@@ -186,14 +202,17 @@ export function useCreatorChannelProfile(enabled = true) {
   return {
     displayName,
     avatarUrl,
-    coverImageUrl,
-    mobileCoverImageUrl,
+    coverImageUrl: resolvedCoverImageUrl,
+    mobileCoverImageUrl: resolvedMobileCoverImageUrl,
     initial,
     isLoadingProfile: isPublicView
       ? isLoadingPublic
       : profileQuery.isLoading || appearanceQuery.isLoading,
     isPublicView,
     publicCreatorId,
+    publicCreatorSlug: isPublicView
+      ? publicCreator?.slug
+      : profile?.channel?.slug,
     textColor: appearance?.textColor ?? null,
     buttonColor: appearance?.buttonColor ?? null,
     about: aboutData,

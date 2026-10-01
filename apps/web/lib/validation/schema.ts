@@ -104,7 +104,6 @@ export const createCreatorRequestSchema = (messages: {
 export const createCreatorProfileSchema = (messages: {
   firstNameRequired: string;
   firstNameMax: string;
-  lastNameRequired: string;
   lastNameMax: string;
   cvrInvalid: string;
 }) =>
@@ -115,11 +114,7 @@ export const createCreatorProfileSchema = (messages: {
         .trim()
         .min(1, messages.firstNameRequired)
         .max(50, messages.firstNameMax),
-      lastName: z
-        .string()
-        .trim()
-        .min(1, messages.lastNameRequired)
-        .max(50, messages.lastNameMax),
+      lastName: z.string().trim().max(50, messages.lastNameMax),
       cvr: z
         .string()
         .trim()
