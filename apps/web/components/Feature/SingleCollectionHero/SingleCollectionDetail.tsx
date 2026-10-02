@@ -70,7 +70,7 @@ import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { MODAL_ALIGN, isBrowser } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
@@ -329,7 +329,7 @@ export default function SingleCollectionDetail({
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
-    if (typeof window !== "undefined" && window.location.hash === HASH_BUY) {
+    if (isBrowser && window.location.hash === HASH_BUY) {
       window.history.replaceState(
         null,
         "",
@@ -339,7 +339,7 @@ export default function SingleCollectionDetail({
   };
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!isBrowser) return;
 
     const handleHash = () => {
       if (
