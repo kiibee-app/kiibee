@@ -139,17 +139,6 @@ function TutorialCard({
   const isPaid = isPaidCollection || tutorial.isPaidCollection;
 
   const buttons = useMemo(() => {
-    const isFreeButtonLabel = (label?: string) => {
-      if (!label) return false;
-      const l = label.trim().toLowerCase();
-      return (
-        l === "free" ||
-        l === "gratis" ||
-        l === t(TUTORIAL_VIDEOS.buttonFreeLabel).toLowerCase() ||
-        l === t("pricingLabels.free").toLowerCase()
-      );
-    };
-
     if (hasAccess) {
       return [
         {
@@ -160,21 +149,16 @@ function TutorialCard({
       ];
     }
 
-    const partOfCollectionAction: TutorialButton = {
-      label: t("pricingLabels.partOfCollection"),
-      variant: VARIANT.SECONDARY,
-      href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId || "")}${HASH_BUY}`,
-      requiresAuth: false,
-      fullWidth: true,
-    };
-
-    if (isPaid && effectiveCollectionId) {
-      if (tutorial.buttons?.length) {
-        return tutorial.buttons.map((b) =>
-          isFreeButtonLabel(b.label) ? partOfCollectionAction : b,
-        );
-      }
-      return [partOfCollectionAction];
+    if (isPaid && effectiveCollectionId && tutorial.isFree) {
+      return [
+        {
+          label: t("pricingLabels.partOfCollection"),
+          variant: VARIANT.SECONDARY,
+          href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+          requiresAuth: false,
+          fullWidth: true,
+        },
+      ];
     }
 
     const defaultButton: TutorialButton = {
@@ -185,9 +169,10 @@ function TutorialCard({
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
   }, [
     hasAccess,
-    tutorial.buttons,
     isPaid,
     effectiveCollectionId,
+    tutorial.isFree,
+    tutorial.buttons,
     t,
     singleTutorialHref,
   ]);
