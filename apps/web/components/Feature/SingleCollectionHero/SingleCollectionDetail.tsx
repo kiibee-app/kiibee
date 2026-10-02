@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
@@ -30,6 +30,7 @@ import {
   ACTION_SIGNUP,
   REGISTER_SOURCE,
   TYPE_CODE,
+  HASH_BUY,
 } from "@/utils/Constants";
 import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import { useLogout } from "@/hooks/auth/useLogout";
@@ -41,7 +42,12 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
-import { resolveCollectionPricing } from "@/utils/contentPricingActions";
+import {
+  resolveCollectionPricing,
+  isPaidCollection,
+  getContentDetailPricingActions,
+  getPricingLabels,
+} from "@/utils/contentPricingActions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
@@ -185,9 +191,20 @@ export default function SingleCollectionDetail({
   }, [id, publicCollectionsQuery.data]);
 
   const resolvedPricing = useMemo(() => {
-    if (!selectedCollection) return undefined;
+    const target =
+      selectedCollection ||
+      (dynamicSection
+        ? {
+            accessType: dynamicSection.accessType,
+            buyPrice: dynamicSection.buyPrice,
+            rentPrice: dynamicSection.rentPrice,
+            rentDuration: dynamicSection.rentDuration,
+          }
+        : undefined);
 
-    const pricingInfo = resolveCollectionPricing(selectedCollection);
+    if (!target) return undefined;
+
+    const pricingInfo = resolveCollectionPricing(target);
 
     return {
       accessType: pricingInfo.accessType,
@@ -195,7 +212,11 @@ export default function SingleCollectionDetail({
       rentPrice: pricingInfo.rentPrice,
       rentDurationHours: convertRentDurationToHours(pricingInfo.rentDuration),
     };
-  }, [selectedCollection]);
+  }, [selectedCollection, dynamicSection]);
+
+  const isPaid = useMemo(() => {
+    return isPaidCollection(resolvedPricing);
+  }, [resolvedPricing]);
 
   const resolvedDescription =
     dynamicSection?.description ?? selectedCollection?.description;
@@ -233,19 +254,22 @@ export default function SingleCollectionDetail({
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
-  const handlePricingActionClick = (action: PricingAction) => {
-    if (user?.role === ROLE_CREATOR) {
-      setShowCreatorModal1(true);
-      return;
-    }
-    const durationHours = resolvedPricing?.rentDurationHours;
-    const rentalExpiresAt = !action.isPurchase
-      ? calculateRentalExpiryDate(durationHours)
-      : undefined;
+  const handlePricingActionClick = useCallback(
+    (action: PricingAction) => {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
+      const durationHours = resolvedPricing?.rentDurationHours;
+      const rentalExpiresAt = !action.isPurchase
+        ? calculateRentalExpiryDate(durationHours)
+        : undefined;
 
-    setSelectedAction({ ...action, rentalExpiresAt });
-    setShowPurchaseModal(true);
-  };
+      setSelectedAction({ ...action, rentalExpiresAt });
+      setShowPurchaseModal(true);
+    },
+    [resolvedPricing?.rentDurationHours, user?.role],
+  );
 
   const handlePurchaseConfirm = (
     couponCode?: string,
@@ -305,7 +329,60 @@ export default function SingleCollectionDetail({
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    if (typeof window !== "undefined" && window.location.hash === HASH_BUY) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
   };
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleHash = () => {
+      if (
+        window.location.hash === HASH_BUY &&
+        resolvedPricing &&
+        !hasCollectionAccess &&
+        !showPurchaseModal
+      ) {
+        const pricingActions = getContentDetailPricingActions(
+          resolvedPricing,
+          t,
+          {
+            inCollection: true,
+            labels: getPricingLabels(t),
+          },
+        );
+
+        const buyAction =
+          pricingActions.find((a) =>
+            a.label
+              .toLowerCase()
+              .includes(t("pricingLabels.buy").toLowerCase()),
+          ) || pricingActions[0];
+
+        if (buyAction) {
+          handlePricingActionClick({
+            label: buyAction.label,
+            subtitle: buyAction.subtitle,
+            isPurchase: true,
+          });
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+  }, [
+    resolvedPricing,
+    hasCollectionAccess,
+    showPurchaseModal,
+    t,
+    handlePricingActionClick,
+  ]);
 
   const handleCloseLoginModal = () => setLoginModalVisible(false);
 
@@ -581,6 +658,7 @@ export default function SingleCollectionDetail({
         videos={dynamicSection.videos}
         embedded={embedded}
         collectionId={id}
+        isPaidCollection={isPaid}
         onSelectVideo={embedded ? handleSelectContent : undefined}
       />
       {purchaseModals}

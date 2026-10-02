@@ -16,7 +16,7 @@ import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, HASH_BUY } from "@/utils/Constants";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
@@ -157,6 +157,20 @@ export default function CollectionItemCard({
 
       handleShowLoginModal(targetHref, msg);
       return;
+    }
+
+    if (typeof window !== "undefined" && targetHref.includes(HASH_BUY)) {
+      const [targetPath, targetHash] = targetHref.split("#");
+      const currentUrl = `${window.location.pathname}${window.location.search}`;
+      if (
+        (currentUrl === targetPath ||
+          (collectionId && window.location.search.includes(collectionId))) &&
+        targetHash
+      ) {
+        window.history.pushState(null, "", `#${targetHash}`);
+        window.dispatchEvent(new Event("hashchange"));
+        return;
+      }
     }
 
     navigateToContent(targetHref);

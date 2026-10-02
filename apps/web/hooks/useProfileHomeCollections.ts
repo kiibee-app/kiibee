@@ -24,7 +24,10 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
-import { getPricingLabels } from "@/utils/contentPricingActions";
+import {
+  getPricingLabels,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
 
 export type CollectionWithCards = {
   id: string;
@@ -72,22 +75,33 @@ export function useProfileHomeCollections(
         );
 
         return collections
-          .map((collection, index) => ({
-            id: collection.id,
-            name: collection.name,
-            cards: (publicContentResponses[index]?.data?.data?.items ?? []).map(
-              (item) =>
+          .map((collection, index) => {
+            const isPaid = isPaidCollection(collection);
+            const partOfCollectionLabel = t("pricingLabels.partOfCollection", {
+              defaultValue: "Part of a collection",
+            });
+            return {
+              id: collection.id,
+              name: collection.name,
+              cards: (
+                publicContentResponses[index]?.data?.data?.items ?? []
+              ).map((item) =>
                 feedContentToTutorial(
                   {
                     ...item,
                   },
                   seeContentLabel,
                   {
+                    inCollection: true,
+                    collectionId: collection.id,
+                    isPaidCollection: isPaid,
+                    partOfCollectionLabel,
                     labels: getPricingLabels(t),
                   },
                 ),
-            ),
-          }))
+              ),
+            };
+          })
           .filter((collection) => collection.cards.length > 0);
       }
 

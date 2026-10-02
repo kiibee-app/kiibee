@@ -1,0 +1,11 @@
+process.env.NODE_ENV = 'test';
+process.env.DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
+process.env.JWT_ACCESS_SECRET = 'test_access_secret_1234567890';
+process.env.JWT_REFRESH_SECRET = 'test_refresh_secret_1234567890';
+process.env.FRONTEND_URL = 'http://localhost:3000';
+process.env.SMTP_HOST = 'smtp.example.com';
+process.env.SMTP_PORT = '587';
+process.env.SMTP_USER = 'test@example.com';
+process.env.SMTP_PASS = 'test_password';
+process.env.SENDER_EMAIL = 'no-reply@example.com';
+process.env.SENDER_NAME = 'Kiibee Test';

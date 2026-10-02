@@ -12,7 +12,10 @@ import {
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import { resolveContentThumbnailCandidates } from "@/utils/media";
-import { getPricingLabels } from "@/utils/contentPricingActions";
+import {
+  getPricingLabels,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
 
 type ApiResponse<T> = {
   success?: boolean;
@@ -23,6 +26,10 @@ type PublicCollectionPayload = {
   collectionId: string;
   name: string;
   description?: string | null;
+  accessType?: string | null;
+  buyPrice?: number | string | null;
+  rentPrice?: number | string | null;
+  rentDuration?: string | null;
   items: FeedContentItem[];
 };
 
@@ -34,6 +41,11 @@ export type PublicCollectionResult = {
   creatorName?: string;
   heroImage?: string;
   heroImageFallback?: string;
+  accessType?: string | null;
+  buyPrice?: number | string | null;
+  rentPrice?: number | string | null;
+  rentDuration?: string | null;
+  isPaid?: boolean;
   videos: TutorialVideo[];
 };
 
@@ -72,6 +84,17 @@ export function usePublicCollectionContent(
         { preferLandscape: true },
       );
 
+      const isPaid = isPaidCollection({
+        accessType: payload.accessType,
+        buyPrice: payload.buyPrice,
+        rentPrice: payload.rentPrice,
+        rentDuration: payload.rentDuration,
+      });
+
+      const partOfCollectionLabel = t("pricingLabels.partOfCollection", {
+        defaultValue: "Part of a collection",
+      });
+
       return {
         collectionId: payload.collectionId,
         name: payload.name,
@@ -80,8 +103,17 @@ export function usePublicCollectionContent(
         creatorName: primaryItem?.creatorName ?? undefined,
         heroImage: heroImages[0],
         heroImageFallback: heroImages[1],
+        accessType: payload.accessType,
+        buyPrice: payload.buyPrice,
+        rentPrice: payload.rentPrice,
+        rentDuration: payload.rentDuration,
+        isPaid,
         videos: items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
+            inCollection: true,
+            collectionId: payload.collectionId,
+            isPaidCollection: isPaid,
+            partOfCollectionLabel,
             labels: getPricingLabels(t),
           }),
         ),

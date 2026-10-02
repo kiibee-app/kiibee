@@ -3,7 +3,7 @@
 import { memo, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { resolveImageUrl, VARIANT, HASH_BUY } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -26,7 +26,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, COLLECTION_ROUTE } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
@@ -42,6 +42,7 @@ type TutorialCardProps = {
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
   collectionId?: string | null;
+  isPaidCollection?: boolean;
   imagePriority?: boolean;
 };
 
@@ -65,6 +66,7 @@ function TutorialCard({
   onPlayClick,
   isSelected = false,
   collectionId = null,
+  isPaidCollection = false,
   imagePriority = false,
 }: TutorialCardProps) {
   const router = useRouter();
@@ -133,7 +135,21 @@ function TutorialCard({
     [tutorial.slug, tutorial.id, tutorial.creatorSlug, tutorial.title],
   );
 
+  const effectiveCollectionId = collectionId || tutorial.collectionId;
+  const isPaid = isPaidCollection || tutorial.isPaidCollection;
+
   const buttons = useMemo(() => {
+    const isFreeButtonLabel = (label?: string) => {
+      if (!label) return false;
+      const l = label.trim().toLowerCase();
+      return (
+        l === "free" ||
+        l === "gratis" ||
+        l === t(TUTORIAL_VIDEOS.buttonFreeLabel).toLowerCase() ||
+        l === t("pricingLabels.free").toLowerCase()
+      );
+    };
+
     if (hasAccess) {
       return [
         {
@@ -143,13 +159,40 @@ function TutorialCard({
         },
       ];
     }
+
+    const partOfCollectionAction: TutorialButton = {
+      label: t("pricingLabels.partOfCollection", {
+        defaultValue: "Part of a collection",
+      }),
+      variant: VARIANT.SECONDARY,
+      href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId || "")}${HASH_BUY}`,
+      requiresAuth: false,
+      fullWidth: true,
+    };
+
+    if (isPaid && effectiveCollectionId) {
+      if (tutorial.buttons?.length) {
+        return tutorial.buttons.map((b) =>
+          isFreeButtonLabel(b.label) ? partOfCollectionAction : b,
+        );
+      }
+      return [partOfCollectionAction];
+    }
+
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [hasAccess, tutorial.buttons, t, singleTutorialHref]);
+  }, [
+    hasAccess,
+    tutorial.buttons,
+    isPaid,
+    effectiveCollectionId,
+    t,
+    singleTutorialHref,
+  ]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -190,6 +233,21 @@ function TutorialCard({
 
       handleShowLoginModal(targetHref, msg);
       return;
+    }
+
+    if (typeof window !== "undefined" && targetHref.includes(HASH_BUY)) {
+      const [targetPath, targetHash] = targetHref.split("#");
+      const currentUrl = `${window.location.pathname}${window.location.search}`;
+      if (
+        (currentUrl === targetPath ||
+          (effectiveCollectionId &&
+            window.location.search.includes(effectiveCollectionId))) &&
+        targetHash
+      ) {
+        window.history.pushState(null, "", `#${targetHash}`);
+        window.dispatchEvent(new Event("hashchange"));
+        return;
+      }
     }
 
     navigateToContent(targetHref);
