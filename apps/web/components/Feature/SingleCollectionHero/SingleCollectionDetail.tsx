@@ -31,6 +31,7 @@ import {
   REGISTER_SOURCE,
   TYPE_CODE,
   HASH_BUY,
+  EVENT_HASHCHANGE,
 } from "@/utils/Constants";
 import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import { useLogout } from "@/hooks/auth/useLogout";
@@ -375,8 +376,8 @@ export default function SingleCollectionDetail({
     };
 
     handleHash();
-    window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    window.addEventListener(EVENT_HASHCHANGE, handleHash);
+    return () => window.removeEventListener(EVENT_HASHCHANGE, handleHash);
   }, [
     resolvedPricing,
     hasCollectionAccess,
