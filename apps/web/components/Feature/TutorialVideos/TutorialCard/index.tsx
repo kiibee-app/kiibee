@@ -218,21 +218,6 @@ function TutorialCard({
       return;
     }
 
-    if (typeof window !== "undefined" && targetHref.includes(HASH_BUY)) {
-      const [targetPath, targetHash] = targetHref.split("#");
-      const currentUrl = `${window.location.pathname}${window.location.search}`;
-      if (
-        (currentUrl === targetPath ||
-          (effectiveCollectionId &&
-            window.location.search.includes(effectiveCollectionId))) &&
-        targetHash
-      ) {
-        window.history.pushState(null, "", `#${targetHash}`);
-        window.dispatchEvent(new Event("hashchange"));
-        return;
-      }
-    }
-
     navigateToContent(targetHref);
   };
 

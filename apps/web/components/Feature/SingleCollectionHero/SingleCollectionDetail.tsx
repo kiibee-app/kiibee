@@ -376,6 +376,7 @@ export default function SingleCollectionDetail({
 
     handleHash();
     window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
   }, [
     resolvedPricing,
     hasCollectionAccess,
