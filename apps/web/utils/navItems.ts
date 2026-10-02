@@ -55,12 +55,7 @@ const NAV_ITEMS: NavItem[] = [
             key: "nav.explore.category.education",
             href: PATHS.CATEGORY_EDUCATION,
           },
-          {
-            key: "nav.explore.category.business",
-            href: PATHS.CATEGORY_BUSINESS,
-          },
           { key: "nav.explore.category.arts", href: PATHS.CATEGORY_ARTS },
-          { key: "nav.explore.category.tech", href: PATHS.CATEGORY_TECH },
         ],
       },
 
