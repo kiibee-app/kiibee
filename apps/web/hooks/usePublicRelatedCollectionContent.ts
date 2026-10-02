@@ -73,9 +73,7 @@ export function usePublicRelatedCollectionContent(
         rentDuration: payload.rentDuration,
       });
 
-      const partOfCollectionLabel = t("pricingLabels.partOfCollection", {
-        defaultValue: "Part of a collection",
-      });
+      const partOfCollectionLabel = t("pricingLabels.partOfCollection");
 
       return {
         collectionId: payload.collectionId,

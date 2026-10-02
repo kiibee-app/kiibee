@@ -163,9 +163,7 @@ export default function LatestUpload({
         if (isPaidCol && effectiveCollectionId) {
           return [
             {
-              title: t("pricingLabels.partOfCollection", {
-                defaultValue: "Part of a collection",
-              }),
+              title: t("pricingLabels.partOfCollection"),
               href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
             },
           ];

@@ -408,9 +408,7 @@ export const getSingleContentProps = (
             !hasViewerAccess &&
             !isOwner
               ? {
-                  label: t("pricingLabels.partOfCollection", {
-                    defaultValue: "Part of a collection",
-                  }),
+                  label: t("pricingLabels.partOfCollection"),
                   href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
                 }
               : {
@@ -425,9 +423,7 @@ export const getSingleContentProps = (
             !isOwner
               ? [
                   {
-                    label: t("pricingLabels.partOfCollection", {
-                      defaultValue: "Part of a collection",
-                    }),
+                    label: t("pricingLabels.partOfCollection"),
                     href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
                   },
                 ]

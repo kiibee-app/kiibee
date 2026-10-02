@@ -43,9 +43,7 @@ export function getPricingLabels(t: TFunction): PricingLabels {
     free: t("pricingLabels.free"),
     accessCodeRequired: t("pricingLabels.accessCodeRequired"),
     emailRequired: t("pricingLabels.emailRequired"),
-    partOfCollection: t("pricingLabels.partOfCollection", {
-      defaultValue: "Part of a collection",
-    }),
+    partOfCollection: t("pricingLabels.partOfCollection"),
   };
 }
 

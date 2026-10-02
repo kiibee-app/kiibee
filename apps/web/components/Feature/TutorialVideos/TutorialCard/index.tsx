@@ -161,9 +161,7 @@ function TutorialCard({
     }
 
     const partOfCollectionAction: TutorialButton = {
-      label: t("pricingLabels.partOfCollection", {
-        defaultValue: "Part of a collection",
-      }),
+      label: t("pricingLabels.partOfCollection"),
       variant: VARIANT.SECONDARY,
       href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId || "")}${HASH_BUY}`,
       requiresAuth: false,

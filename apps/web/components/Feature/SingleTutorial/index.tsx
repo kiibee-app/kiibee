@@ -122,9 +122,7 @@ export default function SingleTutorial({
       primaryAction={
         isPaid && effectiveCollectionId && !hasAccess
           ? {
-              label: t("pricingLabels.partOfCollection", {
-                defaultValue: "Part of a collection",
-              }),
+              label: t("pricingLabels.partOfCollection"),
               href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
             }
           : {

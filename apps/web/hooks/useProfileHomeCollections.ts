@@ -77,9 +77,7 @@ export function useProfileHomeCollections(
         return collections
           .map((collection, index) => {
             const isPaid = isPaidCollection(collection);
-            const partOfCollectionLabel = t("pricingLabels.partOfCollection", {
-              defaultValue: "Part of a collection",
-            });
+            const partOfCollectionLabel = t("pricingLabels.partOfCollection");
             return {
               id: collection.id,
               name: collection.name,
