@@ -25,11 +25,13 @@ import {
   getContentDetail,
   getSingleContentProps,
 } from "@/utils/contentApi";
+import { isPaidCollection } from "@/utils/contentPricingActions";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 import {
   resolvePublishedContentByKey,
@@ -114,6 +116,18 @@ export default function PublishedContentDetail({
       enabled: Boolean(content?.id) && !discoverFallback && !tutorial,
     },
   );
+  const effectiveCollectionId =
+    content?.collectionId || relatedCollectionQuery.data?.collectionId;
+  const isPaidCol =
+    Boolean(content?.isPaidCollection) ||
+    isPaidCollection(relatedCollectionQuery.data);
+
+  const { hasAccess: hasCollectionOrContentAccess } = useViewerContentAccess(
+    content?.id ?? "",
+    null,
+    effectiveCollectionId,
+  );
+
   const resolvedContentSlug = tutorial?.title || content?.title;
   const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
 
@@ -145,7 +159,7 @@ export default function PublishedContentDetail({
     gateType: activeGateType,
     isLoading: gateLoading,
     handleSuccess: handleGateSuccess,
-  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+  } = useContentAccessGate(content, effectiveCollectionId);
 
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
@@ -229,9 +243,14 @@ export default function PublishedContentDetail({
           {...getSingleContentProps(content, t, {
             viewerId: resolvedUserId,
             creatorName: publicCreator?.name,
+            inCollection: Boolean(effectiveCollectionId),
+            collectionId: effectiveCollectionId,
+            isPaidCollection: isPaidCol,
+            hasAccess:
+              Boolean(content?.accessInfo) || hasCollectionOrContentAccess,
           })}
           content={content}
-          collectionId={relatedCollectionQuery.data?.collectionId}
+          collectionId={effectiveCollectionId}
           showBack={showBack}
           showShare={showShare}
           onBack={onBack}

@@ -2399,7 +2399,8 @@
     "buyCollection": "Køb samling",
     "free": "Gratis",
     "accessCodeRequired": "Adgangskode påkrævet",
-    "emailRequired": "E-mail påkrævet"
+    "emailRequired": "E-mail påkrævet",
+    "partOfCollection": "Del af en samling"
   },
   "viewerRented": {
     "emptyStates": {

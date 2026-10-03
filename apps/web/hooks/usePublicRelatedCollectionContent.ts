@@ -9,7 +9,10 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
-import { getPricingLabels } from "@/utils/contentPricingActions";
+import {
+  getPricingLabels,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import { slugifyContentTitle } from "@/utils/path";
@@ -23,12 +26,21 @@ type RelatedCollectionPayload = {
   collectionId: string;
   collectionSlug: string;
   collectionName?: string;
+  accessType?: string | null;
+  buyPrice?: number | string | null;
+  rentPrice?: number | string | null;
+  rentDuration?: string | null;
   items: FeedContentItem[];
 };
 
 export type PublicRelatedCollectionResult = {
   collectionId: string;
   collectionSlug: string;
+  accessType?: string | null;
+  buyPrice?: number | string | null;
+  rentPrice?: number | string | null;
+  rentDuration?: string | null;
+  isPaid?: boolean;
   videos: TutorialVideo[];
 };
 
@@ -58,13 +70,31 @@ export function usePublicRelatedCollectionContent(
         return null;
       }
 
+      const isPaid = isPaidCollection({
+        accessType: payload.accessType,
+        buyPrice: payload.buyPrice,
+        rentPrice: payload.rentPrice,
+        rentDuration: payload.rentDuration,
+      });
+
+      const partOfCollectionLabel = t("pricingLabels.partOfCollection");
+
       return {
         collectionId: payload.collectionId,
         collectionSlug: payload.collectionName
           ? slugifyContentTitle(payload.collectionName)
           : payload.collectionSlug,
+        accessType: payload.accessType,
+        buyPrice: payload.buyPrice,
+        rentPrice: payload.rentPrice,
+        rentDuration: payload.rentDuration,
+        isPaid,
         videos: payload.items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
+            inCollection: true,
+            collectionId: payload.collectionId,
+            isPaidCollection: isPaid,
+            partOfCollectionLabel,
             labels: getPricingLabels(t),
           }),
         ),

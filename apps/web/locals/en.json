@@ -2399,7 +2399,8 @@
     "buyCollection": "Buy collection",
     "free": "Free",
     "accessCodeRequired": "Access code required",
-    "emailRequired": "Email required"
+    "emailRequired": "Email required",
+    "partOfCollection": "Part of a collection"
   },
   "viewerRented": {
     "emptyStates": {

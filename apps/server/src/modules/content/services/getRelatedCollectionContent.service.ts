@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, ne, or } from 'drizzle-orm';
+import { and, eq, ne } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
@@ -47,12 +47,32 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       return fail('Content ID is required', HttpStatus.BAD_REQUEST);
     }
 
+    const isUuid =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        contentId,
+      );
+
+    let resolvedMediaFileId = contentId;
+    if (!isUuid) {
+      const [mediaFile] = await db
+        .select({ id: mediaFiles.id })
+        .from(mediaFiles)
+        .where(eq(mediaFiles.slug, contentId))
+        .limit(1);
+      if (mediaFile) {
+        resolvedMediaFileId = mediaFile.id;
+      }
+    }
+
     const [collectionItem] = await db
       .select({
         collectionId: collectionItems.collectionId,
         collectionSlug: collections.slug,
         collectionName: collections.name,
-        mediaFileId: collectionItems.mediaFileId,
+        accessType: collections.accessType,
+        buyPrice: collections.buyPrice,
+        rentPrice: collections.rentPrice,
+        rentDuration: collections.rentDuration,
       })
       .from(collectionItems)
       .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
@@ -63,7 +83,7 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           eq(collections.isDeleted, false),
         ),
       )
-      .where(or(eq(mediaFiles.id, contentId), eq(mediaFiles.slug, contentId)))
+      .where(eq(collectionItems.mediaFileId, resolvedMediaFileId))
       .limit(1);
 
     if (!collectionItem) {
@@ -98,14 +118,10 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       .where(
         and(
           eq(collectionItems.collectionId, collectionItem.collectionId),
-          ne(collectionItems.mediaFileId, collectionItem.mediaFileId),
+          ne(collectionItems.mediaFileId, resolvedMediaFileId),
           publishedPublicWhere,
         ),
       );
-
-    if (!rows.length) {
-      return success(null, 'No related collection content found');
-    }
 
     const items = rows.map((item) => ({
       ...item,
@@ -117,6 +133,10 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
         collectionId: collectionItem.collectionId,
         collectionSlug: collectionItem.collectionSlug,
         collectionName: collectionItem.collectionName,
+        accessType: collectionItem.accessType,
+        buyPrice: collectionItem.buyPrice,
+        rentPrice: collectionItem.rentPrice,
+        rentDuration: collectionItem.rentDuration,
         items,
       },
       'Related collection content fetched successfully',

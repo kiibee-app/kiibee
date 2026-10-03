@@ -86,6 +86,10 @@ export const getPublicCollectionService = async (
         description: collections.description,
         isDeleted: collections.isDeleted,
         creatorId: collections.creatorId,
+        accessType: collections.accessType,
+        buyPrice: collections.buyPrice,
+        rentPrice: collections.rentPrice,
+        rentDuration: collections.rentDuration,
       })
       .from(collections)
       .where(
@@ -153,6 +157,10 @@ export const getPublicCollectionService = async (
         collectionId: collection.id,
         name: collection.name,
         description: collection.description,
+        accessType: collection.accessType,
+        buyPrice: collection.buyPrice,
+        rentPrice: collection.rentPrice,
+        rentDuration: collection.rentDuration,
         items,
       },
       'Collection fetched successfully',
