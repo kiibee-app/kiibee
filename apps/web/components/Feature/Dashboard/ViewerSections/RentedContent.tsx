@@ -307,7 +307,7 @@ export default function RentedContent({
       const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [i18n.language, router, searchParamsString],
+    [router, searchParamsString, i18n.language],
   );
 
   const handleOpenCollection = useCallback(
@@ -357,7 +357,7 @@ export default function RentedContent({
       const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [i18n.language, router, searchParamsString, sources],
+    [router, searchParamsString, sources, i18n.language],
   );
 
   const isSelectedCollectionLoading = Boolean(
