@@ -99,11 +99,7 @@ export default function PublishedContentDetail({
     contentViewRoute,
     undefined,
     {
-      enabled:
-        Boolean(normalizedContentKey) &&
-        !discoverFallback &&
-        !tutorial &&
-        !isTutorialLoading,
+      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
       refetchInterval: isPaymentSuccess ? 1500 : false,
       placeholderData: (previousData) => previousData,
     },
@@ -247,10 +243,9 @@ export default function PublishedContentDetail({
                   slug: publicCreator.slug,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(
-                      publicCreator.profileImageUrl ||
-                        publicCreator.mobileCoverImageUrl,
-                    ) ?? undefined,
+                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
+                    resolvePublicMediaUrl(publicCreator.mobileCoverImageUrl) ??
+                    undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined
