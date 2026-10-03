@@ -5,7 +5,8 @@ import {
   resolveContentActionHref,
   type PricingLabels,
 } from "@/utils/contentPricingActions";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import { ACCESS_TYPE_FREE, HASH_BUY, VARIANT } from "@/utils/Constants";
+import { COLLECTION_ROUTE } from "@/utils/path";
 import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
@@ -35,6 +36,8 @@ export type FeedContentItem = {
   rentPrice?: string | number | null;
   publishedAgo?: string | null;
   createdAt?: string | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
@@ -131,8 +134,33 @@ export function pickUniqueCreatorFeedItems(
 function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    partOfCollectionLabel?: string;
+    labels?: PricingLabels;
+  },
 ): TutorialButton[] {
+  const effectiveCollectionId = options?.collectionId || item.collectionId;
+  const isPaid = options?.isPaidCollection || item.isPaidCollection;
+
+  if (isPaid && effectiveCollectionId && isFreeContentItem(item)) {
+    const label =
+      options?.partOfCollectionLabel ||
+      options?.labels?.partOfCollection ||
+      "Part of a collection";
+    return [
+      {
+        label,
+        variant: VARIANT.SECONDARY,
+        href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+        requiresAuth: false,
+        fullWidth: true,
+      },
+    ];
+  }
+
   const actions = getContentPricingActions(item, freeLabel, options);
   const requiresAuth = !isFreeContentItem(item);
 
@@ -156,6 +184,9 @@ export function feedContentToTutorial(
   freeLabel: string,
   options?: {
     inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    partOfCollectionLabel?: string;
     labels?: PricingLabels;
     language?: string;
   },
@@ -178,6 +209,8 @@ export function feedContentToTutorial(
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
     isFree: isFreeContentItem(item),
+    collectionId: options?.collectionId || item.collectionId,
+    isPaidCollection: options?.isPaidCollection || item.isPaidCollection,
     formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
     image: thumbnailCandidates[0] ?? recentCreator,

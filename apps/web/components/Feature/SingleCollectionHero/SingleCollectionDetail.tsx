@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
@@ -30,6 +30,8 @@ import {
   ACTION_SIGNUP,
   REGISTER_SOURCE,
   TYPE_CODE,
+  HASH_BUY,
+  EVENT_HASHCHANGE,
 } from "@/utils/Constants";
 import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import { useLogout } from "@/hooks/auth/useLogout";
@@ -41,7 +43,12 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
-import { resolveCollectionPricing } from "@/utils/contentPricingActions";
+import {
+  resolveCollectionPricing,
+  isPaidCollection,
+  getContentDetailPricingActions,
+  getPricingLabels,
+} from "@/utils/contentPricingActions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
@@ -64,7 +71,7 @@ import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { MODAL_ALIGN, isBrowser } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
@@ -185,9 +192,20 @@ export default function SingleCollectionDetail({
   }, [id, publicCollectionsQuery.data]);
 
   const resolvedPricing = useMemo(() => {
-    if (!selectedCollection) return undefined;
+    const target =
+      selectedCollection ||
+      (dynamicSection
+        ? {
+            accessType: dynamicSection.accessType,
+            buyPrice: dynamicSection.buyPrice,
+            rentPrice: dynamicSection.rentPrice,
+            rentDuration: dynamicSection.rentDuration,
+          }
+        : undefined);
 
-    const pricingInfo = resolveCollectionPricing(selectedCollection);
+    if (!target) return undefined;
+
+    const pricingInfo = resolveCollectionPricing(target);
 
     return {
       accessType: pricingInfo.accessType,
@@ -195,7 +213,11 @@ export default function SingleCollectionDetail({
       rentPrice: pricingInfo.rentPrice,
       rentDurationHours: convertRentDurationToHours(pricingInfo.rentDuration),
     };
-  }, [selectedCollection]);
+  }, [selectedCollection, dynamicSection]);
+
+  const isPaid = useMemo(() => {
+    return isPaidCollection(resolvedPricing);
+  }, [resolvedPricing]);
 
   const resolvedDescription =
     dynamicSection?.description ?? selectedCollection?.description;
@@ -233,19 +255,22 @@ export default function SingleCollectionDetail({
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
-  const handlePricingActionClick = (action: PricingAction) => {
-    if (user?.role === ROLE_CREATOR) {
-      setShowCreatorModal1(true);
-      return;
-    }
-    const durationHours = resolvedPricing?.rentDurationHours;
-    const rentalExpiresAt = !action.isPurchase
-      ? calculateRentalExpiryDate(durationHours)
-      : undefined;
+  const handlePricingActionClick = useCallback(
+    (action: PricingAction) => {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
+      const durationHours = resolvedPricing?.rentDurationHours;
+      const rentalExpiresAt = !action.isPurchase
+        ? calculateRentalExpiryDate(durationHours)
+        : undefined;
 
-    setSelectedAction({ ...action, rentalExpiresAt });
-    setShowPurchaseModal(true);
-  };
+      setSelectedAction({ ...action, rentalExpiresAt });
+      setShowPurchaseModal(true);
+    },
+    [resolvedPricing?.rentDurationHours, user?.role],
+  );
 
   const handlePurchaseConfirm = (
     couponCode?: string,
@@ -305,7 +330,61 @@ export default function SingleCollectionDetail({
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    if (isBrowser && window.location.hash === HASH_BUY) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
   };
+
+  useEffect(() => {
+    if (!isBrowser) return;
+
+    const handleHash = () => {
+      if (
+        window.location.hash === HASH_BUY &&
+        resolvedPricing &&
+        !hasCollectionAccess &&
+        !showPurchaseModal
+      ) {
+        const pricingActions = getContentDetailPricingActions(
+          resolvedPricing,
+          t,
+          {
+            inCollection: true,
+            labels: getPricingLabels(t),
+          },
+        );
+
+        const buyAction =
+          pricingActions.find((a) =>
+            a.label
+              .toLowerCase()
+              .includes(t("pricingLabels.buy").toLowerCase()),
+          ) || pricingActions[0];
+
+        if (buyAction) {
+          handlePricingActionClick({
+            label: buyAction.label,
+            subtitle: buyAction.subtitle,
+            isPurchase: true,
+          });
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener(EVENT_HASHCHANGE, handleHash);
+    return () => window.removeEventListener(EVENT_HASHCHANGE, handleHash);
+  }, [
+    resolvedPricing,
+    hasCollectionAccess,
+    showPurchaseModal,
+    t,
+    handlePricingActionClick,
+  ]);
 
   const handleCloseLoginModal = () => setLoginModalVisible(false);
 
@@ -581,6 +660,7 @@ export default function SingleCollectionDetail({
         videos={dynamicSection.videos}
         embedded={embedded}
         collectionId={id}
+        isPaidCollection={isPaid}
         onSelectVideo={embedded ? handleSelectContent : undefined}
       />
       {purchaseModals}

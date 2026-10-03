@@ -36,6 +36,8 @@ export type TutorialVideo = {
   focus: string;
   level: string;
   isFree?: boolean;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
   formatLabel: string;
   formatType?: FormatType;
   buttons?: TutorialButton[];

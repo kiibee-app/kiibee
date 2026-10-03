@@ -122,6 +122,11 @@ export default function ProfileHomeSections({
           rentDurationHours:
             (latest as { rentDurationHours?: string | number | null })
               .rentDurationHours ?? null,
+          collectionId:
+            (latest as { collectionId?: string | null }).collectionId ?? null,
+          isPaidCollection: Boolean(
+            (latest as { isPaidCollection?: boolean }).isPaidCollection,
+          ),
         };
       })()
     : null;

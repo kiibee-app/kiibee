@@ -3,6 +3,7 @@ import { eq, and, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
+  collections,
   mediaFiles,
   mediaFileCategories,
   contentCategories,
@@ -78,78 +79,102 @@ export const getSingleContentService = async (
 
     const resolvedContentId = content.id;
 
-    const [emailAccess, directAccess, collectionAccess, creator] =
-      await Promise.all([
-        db
-          .select({ grantedAt: contentAccessRequests.approvedAt })
-          .from(contentAccessRequests)
-          .innerJoin(
-            users,
-            sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
-          )
-          .where(
-            and(
-              eq(users.id, userId),
-              eq(contentAccessRequests.contentId, resolvedContentId),
-              eq(contentAccessRequests.status, STATUS.APPROVED),
-            ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+    const [
+      emailAccess,
+      directAccess,
+      collectionAccess,
+      creator,
+      collectionInfo,
+    ] = await Promise.all([
+      db
+        .select({ grantedAt: contentAccessRequests.approvedAt })
+        .from(contentAccessRequests)
+        .innerJoin(
+          users,
+          sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
+        )
+        .where(
+          and(
+            eq(users.id, userId),
+            eq(contentAccessRequests.contentId, resolvedContentId),
+            eq(contentAccessRequests.status, STATUS.APPROVED),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
 
-        db
-          .select()
-          .from(userContentAccess)
-          .where(
-            and(
-              eq(userContentAccess.userId, userId),
-              eq(userContentAccess.mediaFileId, resolvedContentId),
-              or(
-                isNull(userContentAccess.rentExpiresAt),
-                gt(userContentAccess.rentExpiresAt, now),
-              ),
+      db
+        .select()
+        .from(userContentAccess)
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            eq(userContentAccess.mediaFileId, resolvedContentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
             ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
 
-        db
-          .select({
-            accessType: userContentAccess.accessType,
-            rentExpiresAt: userContentAccess.rentExpiresAt,
-            grantedAt: userContentAccess.grantedAt,
-          })
-          .from(userContentAccess)
-          .innerJoin(
-            collectionItems,
-            eq(collectionItems.collectionId, userContentAccess.collectionId),
-          )
-          .where(
-            and(
-              eq(userContentAccess.userId, userId),
-              isNull(userContentAccess.mediaFileId),
-              eq(collectionItems.mediaFileId, resolvedContentId),
-              or(
-                isNull(userContentAccess.rentExpiresAt),
-                gt(userContentAccess.rentExpiresAt, now),
-              ),
+      db
+        .select({
+          accessType: userContentAccess.accessType,
+          rentExpiresAt: userContentAccess.rentExpiresAt,
+          grantedAt: userContentAccess.grantedAt,
+        })
+        .from(userContentAccess)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, userContentAccess.collectionId),
+        )
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            isNull(userContentAccess.mediaFileId),
+            eq(collectionItems.mediaFileId, resolvedContentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
             ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
 
-        db
-          .select({
-            isHidden: users.isHidden,
-            isDeleted: users.isDeleted,
-            slug: creatorChannels.slug,
-          })
-          .from(users)
-          .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
-          .where(eq(users.id, content.creatorId))
-          .limit(1)
-          .then((r) => r[0]),
-      ]);
+      db
+        .select({
+          isHidden: users.isHidden,
+          isDeleted: users.isDeleted,
+          slug: creatorChannels.slug,
+        })
+        .from(users)
+        .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+        .where(eq(users.id, content.creatorId))
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select({
+          collectionId: collections.id,
+          accessType: collections.accessType,
+          buyPrice: collections.buyPrice,
+          rentPrice: collections.rentPrice,
+        })
+        .from(collectionItems)
+        .innerJoin(
+          collections,
+          and(
+            eq(collections.id, collectionItems.collectionId),
+            eq(collections.isDeleted, false),
+          ),
+        )
+        .where(eq(collectionItems.mediaFileId, resolvedContentId))
+        .limit(1)
+        .then((r) => r[0]),
+    ]);
 
     const isCreatorPubliclyHidden =
       !creator || creator.isDeleted || creator.isHidden;
@@ -226,12 +251,21 @@ export const getSingleContentService = async (
 
     await insertPageVisitService(content.creatorId, content.id, null);
 
+    const isPaidCollection = Boolean(
+      collectionInfo &&
+      (collectionInfo.accessType === 'paid' ||
+        (collectionInfo.buyPrice && Number(collectionInfo.buyPrice) > 0) ||
+        (collectionInfo.rentPrice && Number(collectionInfo.rentPrice) > 0)),
+    );
+
     return success(
       {
         ...content,
         creatorSlug: creator?.slug,
         categories,
         tags: contentTags.map((tag) => tag.name),
+        collectionId: collectionInfo?.collectionId ?? null,
+        isPaidCollection,
         ...(accessInfo && { accessInfo }),
       },
       'Content fetched successfully',

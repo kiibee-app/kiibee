@@ -1,7 +1,12 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
-import { usePathname, useRouter, useSearchParams, useParams } from "next/navigation";
+import {
+  usePathname,
+  useRouter,
+  useSearchParams,
+  useParams,
+} from "next/navigation";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -47,31 +52,37 @@ const slugify = (text: string) => {
   if (!text) return "";
   let str = text.toString().toLowerCase().trim();
   const sets = [
-    { to: 'ae', from: '[æä]' },
-    { to: 'oe', from: '[øö]' },
-    { to: 'aa', from: '[å]' },
+    { to: "ae", from: "[æä]" },
+    { to: "oe", from: "[øö]" },
+    { to: "aa", from: "[å]" },
   ];
-  sets.forEach(set => {
-    str = str.replace(new RegExp(set.from, 'gi'), set.to);
+  sets.forEach((set) => {
+    str = str.replace(new RegExp(set.from, "gi"), set.to);
   });
   return str
-    .replace(/\s+/g, '-') 
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-') 
-    .replace(/^-+/, '') 
-    .replace(/-+$/, '');
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 };
 
 const mapMediaTypeToSlug = (mediaType: string, lang: string) => {
   const type = mediaType.toLowerCase();
-  if (lang === 'da') {
+  if (lang === "da") {
     switch (type) {
-      case "video": return "video";
-      case "audio": return "lyd-fil";
-      case "pdf": return "pdf";
-      case "epub": return "epub";
-      case "web": return "web-indhold";
-      default: return type;
+      case "video":
+        return "video";
+      case "audio":
+        return "lyd-fil";
+      case "pdf":
+        return "pdf";
+      case "epub":
+        return "epub";
+      case "web":
+        return "web-indhold";
+      default:
+        return type;
     }
   }
   return type;
@@ -167,7 +178,12 @@ export default function RentedContent({
     isPurchasedFetching ||
     isPreviouslyRentedLoading ||
     isPreviouslyRentedFetching;
-  const isContentView = slug && slug.length === 2 && ["video", "lyd-fil", "audio", "pdf", "epub", "web", "web-indhold"].includes(slug[0].toLowerCase());
+  const isContentView =
+    slug &&
+    slug.length === 2 &&
+    ["video", "lyd-fil", "audio", "pdf", "epub", "web", "web-indhold"].includes(
+      slug[0].toLowerCase(),
+    );
   const selectedContentSlug = isContentView ? slug[1] : undefined;
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
@@ -238,20 +254,43 @@ export default function RentedContent({
   const selectedContent = useMemo(() => {
     if (selectedContentSlug) {
       return (
-        sources.videos.find((item) => slugify(item.title) === selectedContentSlug) ||
-        sources.audios.find((item) => slugify(item.title) === selectedContentSlug) ||
-        sources.pdfs.find((item) => slugify(item.title) === selectedContentSlug) ||
-        sources.epubs.find((item) => slugify(item.title) === selectedContentSlug) ||
+        sources.videos.find(
+          (item) => slugify(item.title) === selectedContentSlug,
+        ) ||
+        sources.audios.find(
+          (item) => slugify(item.title) === selectedContentSlug,
+        ) ||
+        sources.pdfs.find(
+          (item) => slugify(item.title) === selectedContentSlug,
+        ) ||
+        sources.epubs.find(
+          (item) => slugify(item.title) === selectedContentSlug,
+        ) ||
         sources.webs.find((item) => slugify(item.title) === selectedContentSlug)
       );
     }
     if (selectedContentId) {
       return (
-        sources.videos.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
-        sources.audios.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
-        sources.pdfs.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
-        sources.epubs.find((item) => item.id === selectedContentId || item.title === selectedContentId) ||
-        sources.webs.find((item) => item.id === selectedContentId || item.title === selectedContentId)
+        sources.videos.find(
+          (item) =>
+            item.id === selectedContentId || item.title === selectedContentId,
+        ) ||
+        sources.audios.find(
+          (item) =>
+            item.id === selectedContentId || item.title === selectedContentId,
+        ) ||
+        sources.pdfs.find(
+          (item) =>
+            item.id === selectedContentId || item.title === selectedContentId,
+        ) ||
+        sources.epubs.find(
+          (item) =>
+            item.id === selectedContentId || item.title === selectedContentId,
+        ) ||
+        sources.webs.find(
+          (item) =>
+            item.id === selectedContentId || item.title === selectedContentId,
+        )
       );
     }
     return undefined;
@@ -268,7 +307,7 @@ export default function RentedContent({
       const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [router, searchParamsString],
+    [i18n.language, router, searchParamsString],
   );
 
   const handleOpenCollection = useCallback(
@@ -308,7 +347,7 @@ export default function RentedContent({
         sources.pdfs.find((i) => i.title === mediaTitle) ||
         sources.epubs?.find((i) => i.title === mediaTitle) ||
         sources.webs?.find((i) => i.title === mediaTitle);
-      
+
       const mediaType = item?.mediaType || "video";
       const mediaSlug = mapMediaTypeToSlug(mediaType, i18n.language);
       const titleSlug = slugify(mediaTitle);
@@ -318,7 +357,7 @@ export default function RentedContent({
       const nextUrl = `/dashboard/viewer/${mediaSlug}/${titleSlug}${query ? `?${query}` : ""}`;
       router.replace(nextUrl, { scroll: false });
     },
-    [router, searchParamsString, sources],
+    [i18n.language, router, searchParamsString, sources],
   );
 
   const isSelectedCollectionLoading = Boolean(
@@ -358,7 +397,9 @@ export default function RentedContent({
               >
                 <LeftIcon style={{ transform: "rotate(180deg)" }} />
               </HeaderBackButton>
-              <MonoText $use="H4_SemiBold">{selectedContent?.title || title}</MonoText>
+              <MonoText $use="H4_SemiBold">
+                {selectedContent?.title || title}
+              </MonoText>
             </HeaderTitleWrap>
           </PageHeader>
           <PublishedContentDetail

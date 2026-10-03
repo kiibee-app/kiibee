@@ -3,7 +3,7 @@
 import { memo, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { resolveImageUrl, VARIANT, HASH_BUY } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -26,7 +26,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, COLLECTION_ROUTE } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
@@ -42,6 +42,7 @@ type TutorialCardProps = {
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
   collectionId?: string | null;
+  isPaidCollection?: boolean;
   imagePriority?: boolean;
 };
 
@@ -65,6 +66,7 @@ function TutorialCard({
   onPlayClick,
   isSelected = false,
   collectionId = null,
+  isPaidCollection = false,
   imagePriority = false,
 }: TutorialCardProps) {
   const router = useRouter();
@@ -133,6 +135,9 @@ function TutorialCard({
     [tutorial.slug, tutorial.id, tutorial.creatorSlug, tutorial.title],
   );
 
+  const effectiveCollectionId = collectionId || tutorial.collectionId;
+  const isPaid = isPaidCollection || tutorial.isPaidCollection;
+
   const buttons = useMemo(() => {
     if (hasAccess) {
       return [
@@ -143,13 +148,34 @@ function TutorialCard({
         },
       ];
     }
+
+    if (isPaid && effectiveCollectionId && tutorial.isFree) {
+      return [
+        {
+          label: t("pricingLabels.partOfCollection"),
+          variant: VARIANT.SECONDARY,
+          href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+          requiresAuth: false,
+          fullWidth: true,
+        },
+      ];
+    }
+
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [hasAccess, tutorial.buttons, t, singleTutorialHref]);
+  }, [
+    hasAccess,
+    isPaid,
+    effectiveCollectionId,
+    tutorial.isFree,
+    tutorial.buttons,
+    t,
+    singleTutorialHref,
+  ]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
