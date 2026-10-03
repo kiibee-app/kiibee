@@ -42,6 +42,8 @@
       "category": {
         "comedy": "Komedie",
         "education": "Uddannelse & Kurser",
+        "sportsAndFitness": "Sport & fitness",
+        "booksAndWriting": "Bøger & skrivning",
         "business": "Forretning & Marketing",
         "arts": "Kunst & Kultur",
         "tech": "Teknologi"
@@ -834,7 +836,7 @@
     "meditation": "Guidede meditationer",
     "fitness": "Fitness",
     "theater": "Teater",
-    "sound": "Lydeffekter og loops",
+    "education": "Uddannelse & læring",
     "articles": "Artikler og essays"
   },
   "pricingPage": {

@@ -11,7 +11,6 @@ import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import { getCategoryLabel } from "@/utils/category";
-import { pickUniqueCreatorItems } from "@/utils/feedContentToTutorial";
 import {
   Section,
   HeaderSection,
@@ -24,6 +23,8 @@ import {
   BrowseAllButton,
 } from "./styles";
 
+const HIDDEN_LANDING_CATEGORIES = new Set(["lifestyle & vlogs"]);
+
 export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
@@ -34,7 +35,10 @@ export default function ExploreCategories() {
   const categoriesList = useMemo(() => {
     const uniqueCategories = new Set<string>();
     tutorials.forEach((item) => {
-      if (item.category) {
+      if (
+        item.category &&
+        !HIDDEN_LANDING_CATEGORIES.has(item.category.trim().toLowerCase())
+      ) {
         uniqueCategories.add(item.category);
       }
     });
