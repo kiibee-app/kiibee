@@ -70,6 +70,7 @@ export const loginService = async (
       });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { passwordHash, ...userWithoutPassword } = user;
 
     return success(userWithoutPassword, 'Login successful', HttpStatus.CREATED);

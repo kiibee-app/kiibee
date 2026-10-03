@@ -1,7 +1,6 @@
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { CURRENCY } from 'src/utils/constant';
-import { stripUrlPort } from 'src/utils/extranalApi';
 
 interface AddNewCardResponse {
   paymentWindowUrl: string;

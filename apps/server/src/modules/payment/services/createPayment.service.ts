@@ -4,7 +4,6 @@ import dns from 'node:dns';
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { UNSCHEDULED_TYPE } from 'src/utils/constant';
-import { stripUrlPort } from 'src/utils/extranalApi';
 
 dns.setDefaultResultOrder('ipv4first');
 
