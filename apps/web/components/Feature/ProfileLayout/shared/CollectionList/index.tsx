@@ -35,7 +35,7 @@ import {
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
 import { ProfileLoadingWrapper } from "@/components/Feature/ProfileLayout/pageStyles";
-import { pathPublicCollection } from "@/utils/path";
+import { pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
@@ -58,8 +58,13 @@ type PublicCollectionResponse = {
 export default function CollectionList() {
   const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName, isPublicView, publicCreatorId, isLoadingProfile } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    isPublicView,
+    publicCreatorId,
+    publicCreatorSlug,
+    isLoadingProfile,
+  } = useCreatorChannelProfile();
   const router = useRouter();
   const user = useStoredLoginUser();
 
@@ -150,7 +155,11 @@ export default function CollectionList() {
     const rows = collectionsWithPublicContent;
 
     return rows.map((row) => {
-      const collectionHref = pathPublicCollection(row.id);
+      const collectionHref = pathPublicCollection(
+        publicCreatorSlug ? slugifyContentTitle(row.name) : row.id,
+        publicCreatorId,
+        publicCreatorSlug,
+      );
 
       const hasCollectionAccess = accessibleCollectionIds.has(row.id);
 
@@ -207,6 +216,8 @@ export default function CollectionList() {
     isPublicView,
     collectionsWithPublicContent,
     displayName,
+    publicCreatorId,
+    publicCreatorSlug,
     t,
     accessibleCollectionIds,
   ]);

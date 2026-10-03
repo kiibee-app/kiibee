@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
@@ -66,7 +66,7 @@ import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
-import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
+import { PATHS, pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
@@ -74,6 +74,7 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 type Props = {
   collectionId: string;
   creatorId?: string | null;
+  creatorSlug?: string | null;
   onBack?: () => void;
   showBack?: boolean;
   embedded?: boolean;
@@ -83,6 +84,7 @@ type Props = {
 export default function SingleCollectionDetail({
   collectionId,
   creatorId: publicCreatorId = null,
+  creatorSlug = null,
   onBack,
   showBack = true,
   embedded = false,
@@ -140,38 +142,28 @@ export default function SingleCollectionDetail({
     useTutorialCollectionLookup(id);
 
   const viewerId = user?.id ?? readStoredLoginUser()?.id ?? null;
-
-  const {
-    data: dynamicSection,
-    isLoading: isDynamicLoading,
-    isError,
-  } = usePublicCollectionContent(!staticSection ? id : null, viewerId);
-
-  const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
-
-  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    publicCreatorId || creatorSlug,
+  );
+  const collectionOwnerCreatorId = publicCreatorId || publicCreator?.id;
 
   const handleOpenDashboard = () => {
     const params = new URLSearchParams({
       [VIEW]: CREATORS_LABELS.CONTENTS,
     });
-    if (id) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    if (canonicalCollectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, canonicalCollectionId);
     }
     router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
   };
 
-  const { creator: publicCreator } = useCreatorPublicProfile(
-    resolvedCreatorId ?? null,
-  );
-
   const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
-    resolvedCreatorId
-      ? API.collection.getPublicByCreator(resolvedCreatorId)
+    collectionOwnerCreatorId
+      ? API.collection.getPublicByCreator(collectionOwnerCreatorId)
       : API.collection.getAll,
     undefined,
     {
-      enabled: Boolean(id && resolvedCreatorId && !staticSection),
+      enabled: Boolean(id && collectionOwnerCreatorId && !staticSection),
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -180,9 +172,62 @@ export default function SingleCollectionDetail({
   const selectedCollection = useMemo(() => {
     if (!id || !publicCollectionsQuery.data) return undefined;
     return getCollectionRows(publicCollectionsQuery.data).find(
-      (collection) => collection.id === id,
+      (collection) =>
+        collection.id === id ||
+        collection.slug === id ||
+        slugifyContentTitle(collection.name) === id,
     );
   }, [id, publicCollectionsQuery.data]);
+
+  const {
+    data: dynamicSection,
+    isLoading: isDynamicLoading,
+    isError,
+  } = usePublicCollectionContent(
+    !staticSection ? selectedCollection?.id || (creatorSlug ? null : id) : null,
+    viewerId,
+  );
+
+  const resolvedCreatorId =
+    publicCreatorId || dynamicSection?.creatorId || publicCreator?.id;
+  const resolvedCollectionId = dynamicSection?.collectionId || id;
+  const canonicalCollectionId =
+    selectedCollection?.id ||
+    dynamicSection?.collectionId ||
+    resolvedCollectionId;
+  const canonicalCreatorSlug = publicCreator?.slug || creatorSlug;
+  const canonicalCollectionSlug = selectedCollection
+    ? slugifyContentTitle(selectedCollection.name)
+    : id;
+  const isCollectionLookupLoading = Boolean(
+    creatorSlug && !staticSection && publicCollectionsQuery.isLoading,
+  );
+  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+
+  useEffect(() => {
+    if (embedded || staticSection || !canonicalCreatorSlug) return;
+
+    const canonicalPath = pathPublicCollection(
+      canonicalCollectionSlug,
+      resolvedCreatorId,
+      canonicalCreatorSlug,
+    );
+    if (pathname === canonicalPath) return;
+
+    const search = searchParams?.toString();
+    router.replace(`${canonicalPath}${search ? `?${search}` : ""}`, {
+      scroll: false,
+    });
+  }, [
+    canonicalCollectionSlug,
+    canonicalCreatorSlug,
+    embedded,
+    pathname,
+    resolvedCreatorId,
+    router,
+    searchParams,
+    staticSection,
+  ]);
 
   const resolvedPricing = useMemo(() => {
     if (!selectedCollection) return undefined;
@@ -217,13 +262,13 @@ export default function SingleCollectionDetail({
     dynamicSection?.videos?.[0]?.image;
 
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
-    !staticSection ? id : null,
+    !staticSection ? canonicalCollectionId : null,
   );
   const {
     hasAccess: hasCollectionAccess,
     isPurchased,
     isRented,
-  } = useViewerCollectionAccess(id);
+  } = useViewerCollectionAccess(canonicalCollectionId);
 
   const userAccessStatus = isPurchased
     ? COLLECTION_ACCESS_STATUS.PURCHASED
@@ -251,7 +296,7 @@ export default function SingleCollectionDetail({
     couponCode?: string,
     subscriptionId?: string,
   ) => {
-    if (!selectedAction || !id) return;
+    if (!selectedAction || !canonicalCollectionId) return;
 
     if (!user?.id) {
       setLoginModalVisible(true);
@@ -262,7 +307,7 @@ export default function SingleCollectionDetail({
 
     createCollectionOrderMutation.mutate(
       {
-        collectionId: id,
+        collectionId: canonicalCollectionId,
         itemType: selectedAction.isPurchase
           ? ORDER_TYPES.PURCHASE
           : ORDER_TYPES.RENTAL,
@@ -322,7 +367,7 @@ export default function SingleCollectionDetail({
       return;
     }
 
-    router.replace(next ? `${COLLECTION_ROUTE}?${next}` : COLLECTION_ROUTE, {
+    router.replace(next ? `${pathname}?${next}` : pathname, {
       scroll: false,
     });
   };
@@ -348,8 +393,8 @@ export default function SingleCollectionDetail({
       params.set(VIEW, VIEWER_VIEW_VALUES.CURRENTLY_RENTED);
     }
 
-    if (id) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    if (canonicalCollectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, canonicalCollectionId);
     }
 
     router.push(`${PATHS.DASHBOARD_VIEWER}?${params.toString()}`);
@@ -366,22 +411,29 @@ export default function SingleCollectionDetail({
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
 
   const handleCollectionGateSuccess = async (value: string, name?: string) => {
-    if (!id || (gateType !== TYPE_CODE && !resolvedCreatorId)) return false;
+    if (
+      !canonicalCollectionId ||
+      (gateType !== TYPE_CODE && !resolvedCreatorId)
+    ) {
+      return false;
+    }
 
     const request =
       gateType === TYPE_CODE
-        ? axiosClient.post(API.content.verifyCode(id), { code: value })
+        ? axiosClient.post(API.content.verifyCode(canonicalCollectionId), {
+            code: value,
+          })
         : axiosClient.post(API.creatorUsers.register, {
             creatorId: resolvedCreatorId,
             email: value,
             name,
             source: REGISTER_SOURCE.COLLECTION,
-            sourceId: id,
+            sourceId: canonicalCollectionId,
           });
 
     await request;
     window.localStorage.setItem(
-      `kiibee:gate:unlocked:collection:${id}`,
+      `kiibee:gate:unlocked:collection:${canonicalCollectionId}`,
       "true",
     );
     window.location.reload();
@@ -403,7 +455,7 @@ export default function SingleCollectionDetail({
         contentType="collection"
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
-        collectionId={id || undefined}
+        collectionId={canonicalCollectionId || undefined}
         elementCount={
           selectedCollection?.contentsCount ||
           dynamicSection?.videos.length ||
@@ -491,14 +543,14 @@ export default function SingleCollectionDetail({
           videos={staticSection.tutorials}
           maxWidth={staticSection.gridMaxWidth}
           embedded={embedded}
-          collectionId={id}
+          collectionId={canonicalCollectionId}
           onSelectVideo={embedded ? handleSelectContent : undefined}
         />
       </Section>
     );
   }
 
-  if (isGateLoading || isDynamicLoading) {
+  if (isGateLoading || isDynamicLoading || isCollectionLookupLoading) {
     return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
   }
 
@@ -580,7 +632,7 @@ export default function SingleCollectionDetail({
       <CollectionContent
         videos={dynamicSection.videos}
         embedded={embedded}
-        collectionId={id}
+        collectionId={canonicalCollectionId}
         onSelectVideo={embedded ? handleSelectContent : undefined}
       />
       {purchaseModals}

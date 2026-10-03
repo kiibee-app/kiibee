@@ -58,7 +58,7 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
 
   if (collectionsQuery.data) {
     const collections = getCollectionRows(collectionsQuery.data);
-    const matched = collections.find((col) => col.id === id);
+    const matched = collections.find((col) => col.id === id || col.slug === id);
     if (matched) {
       accessType = matched.accessType ?? null;
     }

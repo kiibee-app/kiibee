@@ -29,6 +29,7 @@ import { getPricingLabels } from "@/utils/contentPricingActions";
 export type CollectionWithCards = {
   id: string;
   name: string;
+  slug?: string;
   cards: TutorialVideo[];
 };
 
@@ -75,6 +76,7 @@ export function useProfileHomeCollections(
           .map((collection, index) => ({
             id: collection.id,
             name: collection.name,
+            slug: collection.slug,
             cards: (publicContentResponses[index]?.data?.data?.items ?? []).map(
               (item) =>
                 feedContentToTutorial(

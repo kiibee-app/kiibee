@@ -12,6 +12,7 @@ import {
 import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
+import { slugifyContentTitle } from "@/utils/path";
 
 type ApiResponse<T> = {
   success?: boolean;
@@ -20,11 +21,14 @@ type ApiResponse<T> = {
 
 type RelatedCollectionPayload = {
   collectionId: string;
+  collectionSlug: string;
+  collectionName?: string;
   items: FeedContentItem[];
 };
 
 export type PublicRelatedCollectionResult = {
   collectionId: string;
+  collectionSlug: string;
   videos: TutorialVideo[];
 };
 
@@ -56,6 +60,9 @@ export function usePublicRelatedCollectionContent(
 
       return {
         collectionId: payload.collectionId,
+        collectionSlug: payload.collectionName
+          ? slugifyContentTitle(payload.collectionName)
+          : payload.collectionSlug,
         videos: payload.items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
             labels: getPricingLabels(t),

@@ -113,9 +113,9 @@ export default function PublishedContentDetail({
     content?.creatorId ?? null,
   );
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
-    normalizedContentKey,
+    content?.id,
     {
-      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
+      enabled: Boolean(content?.id) && !discoverFallback && !tutorial,
     },
   );
   const resolvedContentSlug = tutorial?.title || content?.title;
@@ -269,7 +269,9 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              collectionSlug={relatedCollectionQuery.data.collectionSlug}
               ownerCreatorId={content.creatorId}
+              ownerCreatorSlug={content.creatorSlug}
             />
           ) : null}
         </SingleContentPage>

@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, ne } from 'drizzle-orm';
+import { and, eq, ne, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
@@ -45,8 +45,14 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     }
 
     const [collectionItem] = await db
-      .select({ collectionId: collectionItems.collectionId })
+      .select({
+        collectionId: collectionItems.collectionId,
+        collectionSlug: collections.slug,
+        collectionName: collections.name,
+        mediaFileId: collectionItems.mediaFileId,
+      })
       .from(collectionItems)
+      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
       .innerJoin(
         collections,
         and(
@@ -54,7 +60,7 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           eq(collections.isDeleted, false),
         ),
       )
-      .where(eq(collectionItems.mediaFileId, contentId))
+      .where(or(eq(mediaFiles.id, contentId), eq(mediaFiles.slug, contentId)))
       .limit(1);
 
     if (!collectionItem) {
@@ -85,7 +91,7 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       .where(
         and(
           eq(collectionItems.collectionId, collectionItem.collectionId),
-          ne(collectionItems.mediaFileId, contentId),
+          ne(collectionItems.mediaFileId, collectionItem.mediaFileId),
           publishedPublicWhere,
         ),
       );
@@ -102,6 +108,8 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     return success(
       {
         collectionId: collectionItem.collectionId,
+        collectionSlug: collectionItem.collectionSlug,
+        collectionName: collectionItem.collectionName,
         items,
       },
       'Related collection content fetched successfully',

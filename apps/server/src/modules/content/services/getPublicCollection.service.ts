@@ -88,7 +88,12 @@ export const getPublicCollectionService = async (
         creatorId: collections.creatorId,
       })
       .from(collections)
-      .where(eq(collections.id, collectionId))
+      .where(
+        or(
+          eq(collections.id, collectionId),
+          eq(collections.slug, collectionId),
+        ),
+      )
       .limit(1);
 
     if (!collection) {
@@ -100,13 +105,13 @@ export const getPublicCollectionService = async (
     if (collection.isDeleted) {
       if (
         !viewerId ||
-        !(await hasActiveCollectionAccess(collectionId, viewerId))
+        !(await hasActiveCollectionAccess(collection.id, viewerId))
       ) {
         return fail('Collection not found', HttpStatus.NOT_FOUND);
       }
     }
 
-    const itemConditions = [eq(collectionItems.collectionId, collectionId)];
+    const itemConditions = [eq(collectionItems.collectionId, collection.id)];
     if (!collection.isDeleted) {
       itemConditions.push(publishedPublicWhere!);
     }
