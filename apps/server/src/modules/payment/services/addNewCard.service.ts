@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { CURRENCY } from 'src/utils/constant';
+import { stripUrlPort } from 'src/utils/extranalApi';
 
 interface AddNewCardResponse {
   paymentWindowUrl: string;
@@ -20,8 +21,8 @@ export const addNewCardService = async (userId: string) => {
       currency: CURRENCY.DKK,
       reference,
       customerId: userId,
-      successUrl: `${process.env.FRONTEND_URL}/card/success`,
-      failureUrl: `${process.env.FRONTEND_URL}/card/failure`,
+      successUrl: stripUrlPort(`${process.env.FRONTEND_URL}/card/success`),
+      failureUrl: stripUrlPort(`${process.env.FRONTEND_URL}/card/failure`),
       subscription: {
         type: 'UNSCHEDULED',
         reference,

@@ -33,7 +33,7 @@ export class PaymentController {
   }
 
   @Post('webhook/card')
-  async handleAddCardWebhook(@Body() body: any) {
+  async handleAddCardWebhook(@Body() body: any, @Req() req: any) {
     await handleAddCardWebhook(body);
 
     return { received: true };

@@ -4,6 +4,7 @@ import dns from 'node:dns';
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { UNSCHEDULED_TYPE } from 'src/utils/constant';
+import { stripUrlPort } from 'src/utils/extranalApi';
 
 dns.setDefaultResultOrder('ipv4first');
 
@@ -64,8 +65,12 @@ export const createPayment = async ({
       subscription: {
         type: UNSCHEDULED_TYPE,
       },
-      successUrl: `${process.env.FRONTEND_URL}/payment/success?orderId=${orderId}`,
-      failureUrl: `${process.env.FRONTEND_URL}/payment/failure?orderId=${orderId}`,
+      successUrl: stripUrlPort(
+        `${process.env.FRONTEND_URL}/payment/success?orderId=${orderId}`,
+      ),
+      failureUrl: stripUrlPort(
+        `${process.env.FRONTEND_URL}/payment/failure?orderId=${orderId}`,
+      ),
       notificationUrl: `${process.env.EPAY_WEBHOOK_URL}/api/v1/payment/webhook`,
     };
 
