@@ -13,7 +13,9 @@ import {
   ACCESS_STATUS_EXPIRED,
   VISIBILITY_DRAFT_LOWER,
   VISIBILITY_DRAFT_UPPER,
+  HASH_BUY,
 } from "@/utils/Constants";
+import { COLLECTION_ROUTE } from "@/utils/path";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   type ContentType,
@@ -132,6 +134,8 @@ export type ContentDetailItem = {
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
   creatorSlug?: string | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
   [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
@@ -265,10 +269,17 @@ export const getSingleContentProps = (
   t: Translate,
   options?: {
     inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    hasAccess?: boolean;
     viewerId?: string;
     creatorName?: string;
   },
 ): SingleContentPageProps => {
+  const effectiveCollectionId = options?.collectionId || content.collectionId;
+  const effectiveIsPaidCollection =
+    options?.isPaidCollection ?? Boolean(content.isPaidCollection);
+
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
     t(CONTENT_TRANSLATION_KEYS.imageAlt);
@@ -290,7 +301,8 @@ export const getSingleContentProps = (
   const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
   const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
   const isFree = isFreeContentItem(pricingItem);
-  const hasViewerAccess = Boolean(content.accessInfo);
+  const hasViewerAccess =
+    Boolean(content.accessInfo) || Boolean(options?.hasAccess);
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
@@ -390,16 +402,36 @@ export const getSingleContentProps = (
     },
     ...(showSeeContentAction
       ? {
-          primaryAction: {
-            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-          },
+          primaryAction:
+            effectiveIsPaidCollection &&
+            effectiveCollectionId &&
+            !hasViewerAccess &&
+            !isOwner
+              ? {
+                  label: t("pricingLabels.partOfCollection"),
+                  href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+                }
+              : {
+                  label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+                },
         }
       : {
-          primaryActions: pricingActions.map((action) => ({
-            label: action.label,
-            subtitle: action.subtitle,
-            variant: action.variant,
-          })),
+          primaryActions:
+            effectiveIsPaidCollection &&
+            effectiveCollectionId &&
+            !hasViewerAccess &&
+            !isOwner
+              ? [
+                  {
+                    label: t("pricingLabels.partOfCollection"),
+                    href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+                  },
+                ]
+              : pricingActions.map((action) => ({
+                  label: action.label,
+                  subtitle: action.subtitle,
+                  variant: action.variant,
+                })),
         }),
     metaItems: [
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]

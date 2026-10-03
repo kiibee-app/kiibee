@@ -32,6 +32,7 @@ export type PricingLabels = {
   free: string;
   accessCodeRequired: string;
   emailRequired: string;
+  partOfCollection?: string;
 };
 
 export function getPricingLabels(t: TFunction): PricingLabels {
@@ -42,6 +43,7 @@ export function getPricingLabels(t: TFunction): PricingLabels {
     free: t("pricingLabels.free"),
     accessCodeRequired: t("pricingLabels.accessCodeRequired"),
     emailRequired: t("pricingLabels.emailRequired"),
+    partOfCollection: t("pricingLabels.partOfCollection"),
   };
 }
 
@@ -137,6 +139,21 @@ export function resolveCollectionPricing(
     buyPrice,
     rentDuration,
   };
+}
+
+export function isPaidCollection(
+  collection?: {
+    accessType?: string | null;
+    buyPrice?: number | string | null;
+    rentPrice?: number | string | null;
+    rentDuration?: string | null;
+  } | null,
+): boolean {
+  if (!collection) return false;
+  const pricing = resolveCollectionPricing(collection);
+  const hasBuy = pricing.buyPrice != null && Number(pricing.buyPrice) > 0;
+  const hasRent = pricing.rentPrice != null && Number(pricing.rentPrice) > 0;
+  return hasBuy || hasRent || pricing.accessType === ACCESS_TYPE_PAID;
 }
 
 function isPasswordAccessType(accessType?: string | null): boolean {

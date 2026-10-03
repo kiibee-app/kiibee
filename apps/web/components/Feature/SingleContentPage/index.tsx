@@ -212,11 +212,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId,
     createOrderMutation,
     handleActionClick,
-    handleShowLoginModal,
     primaryAction,
     primaryActions,
     t,
-    user?.id,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -282,6 +280,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = useCallback(async () => {
+    if (primaryAction?.href) {
+      router.push(primaryAction.href);
+      return;
+    }
+
     if (!user?.id) {
       handleShowLoginModal();
       return;
@@ -360,6 +363,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     metaItems,
     previewMediaUrl,
     primaryAction,
+    router,
     t,
     user?.id,
     user?.role,

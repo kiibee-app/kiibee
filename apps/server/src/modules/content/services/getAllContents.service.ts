@@ -41,6 +41,22 @@ const baseSelect = {
   )`,
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
+  collectionId: sql<string | null>`(
+    SELECT ci.collection_id FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
+  isPaidCollection: sql<boolean>`EXISTS (
+    SELECT 1 FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+      AND (
+        (c.buy_price IS NOT NULL AND CAST(c.buy_price AS NUMERIC) > 0)
+        OR (c.rent_price IS NOT NULL AND CAST(c.rent_price AS NUMERIC) > 0)
+        OR c.access_type = 'paid'
+      )
+  )`,
   createdAt: mediaFiles.createdAt,
   sortOrder: mediaFiles.sortOrder,
   rating: mediaFiles.rating,
