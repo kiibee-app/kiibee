@@ -17,6 +17,7 @@ function subscriptionKey(subscription: any): string | null {
     return textOrNull(subscription);
   }
   return (
+    textOrNull(subscription.subscription) ??
     textOrNull(subscription.path) ??
     textOrNull(subscription.udi) ??
     textOrNull(subscription.name)
@@ -28,7 +29,7 @@ function resolveDesiredPlanName(subscription: any, profileKey: string): string {
     (profileKey || '').toLowerCase().includes('kammas-kantine') ||
     (profileKey || '').toLowerCase().includes('kammas_kantine')
   ) {
-    return 'Pro';
+    return 'Start-up';
   }
 
   const key = subscriptionKey(subscription);
@@ -68,7 +69,37 @@ async function main() {
     .from(users)
     .where(eq(users.role, 'creator'));
 
+  const skipList = [
+    'elsebeth fogh',
+    'stopsygefravær',
+    'tegnestuen undertryk',
+    'nsccm',
+    'elias ehlers',
+    'elstudio',
+    'gitte hildebrandt',
+    'gottleben',
+    'lindhardt',
+  ];
+
   for (const creator of allCreators) {
+    const searchString =
+      `${creator.fullName || ''} ${creator.email || ''}`.toLowerCase();
+    if (
+      skipList.some((skipStr) => searchString.includes(skipStr.toLowerCase()))
+    ) {
+      console.log(
+        `Skipping and deleting creator from skip list: ${creator.fullName} (${creator.email})`,
+      );
+      await db
+        .update(users)
+        .set({
+          isDeleted: true,
+          deletedAt: new Date(),
+          status: 'deleted',
+        })
+        .where(eq(users.id, creator.id));
+      continue;
+    }
     const latestAuditLog = await db.query.auditLogs.findFirst({
       where: (t) =>
         and(eq(t.userId, creator.id), eq(t.action, 'umbraco_profile_seed')),
@@ -79,13 +110,13 @@ async function main() {
       const details = latestAuditLog.details as any;
 
       // Re-evaluate the correct plan name using the latest rules instead of relying on what was saved previously
-      const desiredPlanName = resolveDesiredPlanName(
+      let desiredPlanName = resolveDesiredPlanName(
         details.rawFiles?.['subscription.json'],
         details.profileKey,
       );
 
       if (desiredPlanName) {
-        const targetPlan = planMap.get(desiredPlanName);
+        let targetPlan = planMap.get(desiredPlanName);
         if (targetPlan) {
           // Deactivate existing plans
           await db
@@ -98,42 +129,75 @@ async function main() {
               ),
             );
 
-          const isKammas =
-            (details.profileKey || '')
-              .toLowerCase()
-              .includes('kammas-kantine') ||
-            (details.profileKey || '').toLowerCase().includes('kammas_kantine');
-
           let customPriceOverride: number | null = null;
-          if (isKammas) {
-            customPriceOverride = 25;
-          } else if (
-            desiredPlanName === 'Start-up' &&
-            [
-              'umb://document/6ae38a0b56144a55ac017545e006b9a4',
-              'umb://document/e46ced3f3b544a3ead6838c69a79ac8f',
-            ].includes(
-              subscriptionKey(details.rawFiles?.['subscription.json']) || '',
-            )
-          ) {
-            customPriceOverride = 99;
-          } else if (
-            desiredPlanName === 'Start-up' &&
-            [
-              'damkjaermedier',
-              'damkjær',
-              'stopsygefravær',
-              'find-dig-ikke-i-smerte',
-              'find_dig_ikke_i_smerte',
-            ].some((ex) =>
-              (details.profileKey || '').toLowerCase().includes(ex),
-            )
-          ) {
-            customPriceOverride = 99;
-          }
+          let customPrice3: number | null = null;
+          let customPrice6: number | null = null;
+          let customPrice12: number | null = null;
+          let paymentPeriod: string | null = null;
 
           const subscriptionJson =
             details.rawFiles?.['subscription.json'] || {};
+
+          if (
+            subscriptionJson.price &&
+            String(subscriptionJson.price).trim() !== ''
+          ) {
+            customPriceOverride = Number(String(subscriptionJson.price).trim());
+            if (isNaN(customPriceOverride)) customPriceOverride = null;
+          }
+          if (
+            subscriptionJson.price3 &&
+            String(subscriptionJson.price3).trim() !== ''
+          ) {
+            customPrice3 = Number(String(subscriptionJson.price3).trim());
+            if (isNaN(customPrice3)) customPrice3 = null;
+          }
+          if (
+            subscriptionJson.price6 &&
+            String(subscriptionJson.price6).trim() !== ''
+          ) {
+            customPrice6 = Number(String(subscriptionJson.price6).trim());
+            if (isNaN(customPrice6)) customPrice6 = null;
+          }
+          if (
+            subscriptionJson.price12 &&
+            String(subscriptionJson.price12).trim() !== ''
+          ) {
+            customPrice12 = Number(String(subscriptionJson.price12).trim());
+            if (isNaN(customPrice12)) customPrice12 = null;
+          }
+
+          // Map Umbraco PreValue IDs to actual month numbers
+          const periodMap: Record<string, string> = {
+            '385': '1',
+            '386': '3',
+            '387': '6',
+            '388': '12',
+          };
+
+          if (
+            subscriptionJson.paymentPeriod &&
+            Array.isArray(subscriptionJson.paymentPeriod) &&
+            subscriptionJson.paymentPeriod.length > 0
+          ) {
+            const rawVal = String(subscriptionJson.paymentPeriod[0]).trim();
+            paymentPeriod = periodMap[rawVal] || rawVal;
+          } else if (
+            subscriptionJson.paymentPeriod &&
+            String(subscriptionJson.paymentPeriod).trim() !== ''
+          ) {
+            const rawVal = String(subscriptionJson.paymentPeriod).trim();
+            paymentPeriod = periodMap[rawVal] || rawVal;
+          }
+
+          // Automatically correct the plan if they have a custom price (typically means they are on Start-up)
+          if (
+            (customPriceOverride !== null || customPrice12 !== null) &&
+            desiredPlanName !== 'Pro'
+          ) {
+            desiredPlanName = 'Start-up';
+            targetPlan = planMap.get('Start-up') || targetPlan;
+          }
 
           let customMaxFiles: number | null = null;
           if (
@@ -165,6 +229,11 @@ async function main() {
             );
             if (isNaN(customTransactionFeePct)) customTransactionFeePct = null;
           }
+          if (!targetPlan) {
+            console.error(`Target plan ${desiredPlanName} not found!`);
+            continue;
+          }
+
           // Insert new active plan
           await db
             .insert(creatorPlans)
@@ -174,6 +243,10 @@ async function main() {
               planId: targetPlan.id,
               status: STATUS.ACTIVE,
               customPrice: customPriceOverride,
+              customPrice3: customPrice3,
+              customPrice6: customPrice6,
+              customPrice12: customPrice12,
+              paymentPeriod: paymentPeriod,
               customMaxFiles: customMaxFiles,
               customKiibeeCutDkk: customKiibeeCutDkk,
               customTransactionFeePct: customTransactionFeePct,
@@ -183,6 +256,10 @@ async function main() {
               set: {
                 status: STATUS.ACTIVE,
                 customPrice: customPriceOverride,
+                customPrice3: customPrice3,
+                customPrice6: customPrice6,
+                customPrice12: customPrice12,
+                paymentPeriod: paymentPeriod,
                 customMaxFiles: customMaxFiles,
                 customKiibeeCutDkk: customKiibeeCutDkk,
                 customTransactionFeePct: customTransactionFeePct,
