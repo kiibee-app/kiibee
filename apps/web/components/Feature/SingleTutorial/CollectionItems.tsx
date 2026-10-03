@@ -31,13 +31,17 @@ export const COLLECTION_ITEMS_PAGE_SIZE = 4;
 type Props = {
   videos: TutorialVideo[];
   collectionId?: string;
+  collectionSlug?: string;
   ownerCreatorId?: string | null;
+  ownerCreatorSlug?: string | null;
 };
 
 export default function CollectionItems({
   videos,
   collectionId,
+  collectionSlug,
   ownerCreatorId,
+  ownerCreatorSlug,
 }: Props) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
@@ -77,9 +81,11 @@ export default function CollectionItems({
 
   if (!videos.length) return null;
 
-  const href = collectionId
-    ? pathPublicCollection(collectionId)
-    : "/tutorial-videos";
+  const href = collectionSlug
+    ? pathPublicCollection(collectionSlug, ownerCreatorId, ownerCreatorSlug)
+    : collectionId
+      ? pathPublicCollection(collectionId, ownerCreatorId, ownerCreatorSlug)
+      : "/tutorial-videos";
 
   const visibleVideos = getFeedPageSlice(
     filteredVideos,

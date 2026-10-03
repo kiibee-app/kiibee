@@ -89,10 +89,15 @@ export function pathPublishedContent(
 }
 
 export function pathPublicCollection(
-  collectionId: string,
+  collectionSlugOrId: string,
   creatorId?: string | null,
+  creatorSlug?: string | null,
 ): string {
-  const params = new URLSearchParams({ id: collectionId });
+  if (creatorSlug) {
+    return `/${encodeURIComponent(creatorSlug)}/collections/${encodeURIComponent(collectionSlugOrId)}`;
+  }
+
+  const params = new URLSearchParams({ name: collectionSlugOrId });
 
   if (creatorId) {
     params.set("creatorId", creatorId);

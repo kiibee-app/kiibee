@@ -57,7 +57,13 @@ export const getCreatorByIdService = async (creatorId: string) => {
       .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
       .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
       .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
-      .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
+      .leftJoin(
+        creatorPlans,
+        and(
+          eq(creatorPlans.creatorId, users.id),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
       .leftJoin(
         mediaFiles,

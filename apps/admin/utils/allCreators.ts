@@ -1,10 +1,18 @@
 export const ALL_CREATORS_TAB_KEYS = {
   CREATORS: "creators",
+  HIDDEN: "hidden",
+  TRY: "try",
+  STARTUP: "startup",
+  PRO: "pro",
   SETTINGS: "settings",
 } as const;
 
 export const ALL_CREATORS_TABS = [
   { key: ALL_CREATORS_TAB_KEYS.CREATORS, label: "All Creators" },
+  { key: ALL_CREATORS_TAB_KEYS.HIDDEN, label: "Hidden Creator" },
+  { key: ALL_CREATORS_TAB_KEYS.TRY, label: "Try Kiibee" },
+  { key: ALL_CREATORS_TAB_KEYS.STARTUP, label: "Start-up" },
+  { key: ALL_CREATORS_TAB_KEYS.PRO, label: "Pro" },
   { key: ALL_CREATORS_TAB_KEYS.SETTINGS, label: "Creator Settings" },
 ] as const;
 

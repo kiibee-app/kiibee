@@ -72,6 +72,12 @@ const FooterActions = styled.div`
   display: flex;
   width: 100%;
   gap: 0.5rem;
+
+  > button,
+  > a {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 `;
 
 type Props = {
@@ -193,7 +199,7 @@ export default function CollectionItemCard({
           key={`${button.label}-${index}`}
           type="button"
           variant={button.variant ?? VARIANT.SOFT_OUTLINE}
-          fullWidth={button.fullWidth}
+          fullWidth={buttons.length > 1 || button.fullWidth}
           onClick={(event) => handleButtonClick(event, button)}
         >
           {button.label}

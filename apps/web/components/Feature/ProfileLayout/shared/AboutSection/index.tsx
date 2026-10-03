@@ -91,7 +91,7 @@ export default function AboutSection() {
                 </MonoText>
               </SectionTag>
             </SectionLabel>
-            <SectionLink href="/single-collection?id=clothes">
+            <SectionLink href="/single-collection?name=clothes">
               <LeftIcon />
             </SectionLink>
           </SectionHeader>
@@ -112,7 +112,7 @@ export default function AboutSection() {
                 </MonoText>
               </SectionTag>
             </SectionLabel>
-            <SectionLink href="/single-collection?id=plants-and-animals">
+            <SectionLink href="/single-collection?name=plants-and-animals">
               <LeftIcon />
             </SectionLink>
           </SectionHeader>

@@ -101,11 +101,7 @@ export default function PublishedContentDetail({
     contentViewRoute,
     undefined,
     {
-      enabled:
-        Boolean(normalizedContentKey) &&
-        !discoverFallback &&
-        !tutorial &&
-        !isTutorialLoading,
+      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
       refetchInterval: isPaymentSuccess ? 1500 : false,
       placeholderData: (previousData) => previousData,
     },
@@ -115,12 +111,9 @@ export default function PublishedContentDetail({
     content?.creatorId ?? null,
   );
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
-    content?.id || normalizedContentKey,
+    content?.id,
     {
-      enabled:
-        Boolean(content?.id || normalizedContentKey) &&
-        !discoverFallback &&
-        !tutorial,
+      enabled: Boolean(content?.id) && !discoverFallback && !tutorial,
     },
   );
   const effectiveCollectionId =
@@ -269,10 +262,9 @@ export default function PublishedContentDetail({
                   slug: publicCreator.slug,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(
-                      publicCreator.profileImageUrl ||
-                        publicCreator.mobileCoverImageUrl,
-                    ) ?? undefined,
+                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
+                    resolvePublicMediaUrl(publicCreator.mobileCoverImageUrl) ??
+                    undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined
@@ -291,7 +283,9 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              collectionSlug={relatedCollectionQuery.data.collectionSlug}
               ownerCreatorId={content.creatorId}
+              ownerCreatorSlug={content.creatorSlug}
             />
           ) : null}
         </SingleContentPage>

@@ -15,6 +15,7 @@ import {
 } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
+import { slugifyContentTitle } from "@/utils/path";
 
 type ApiResponse<T> = {
   success?: boolean;
@@ -23,6 +24,8 @@ type ApiResponse<T> = {
 
 type RelatedCollectionPayload = {
   collectionId: string;
+  collectionSlug: string;
+  collectionName?: string;
   accessType?: string | null;
   buyPrice?: number | string | null;
   rentPrice?: number | string | null;
@@ -32,6 +35,7 @@ type RelatedCollectionPayload = {
 
 export type PublicRelatedCollectionResult = {
   collectionId: string;
+  collectionSlug: string;
   accessType?: string | null;
   buyPrice?: number | string | null;
   rentPrice?: number | string | null;
@@ -77,6 +81,9 @@ export function usePublicRelatedCollectionContent(
 
       return {
         collectionId: payload.collectionId,
+        collectionSlug: payload.collectionName
+          ? slugifyContentTitle(payload.collectionName)
+          : payload.collectionSlug,
         accessType: payload.accessType,
         buyPrice: payload.buyPrice,
         rentPrice: payload.rentPrice,

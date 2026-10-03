@@ -5,7 +5,7 @@ import { creatorPlans, plans } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 
-export const getCreatorPlan = async (creatorId: string) => {
+export const adminGetCreatorPlan = async (creatorId: string) => {
   try {
     if (!creatorId) {
       return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
@@ -23,16 +23,7 @@ export const getCreatorPlan = async (creatorId: string) => {
       .limit(1);
 
     if (!creatorCurrentPlan || creatorCurrentPlan.length === 0) {
-      const [freePlan] = await db
-        .select()
-        .from(plans)
-        .where(eq(plans.price, 0))
-        .limit(1);
-      return success(
-        freePlan ? [freePlan] : [],
-        'Creator plan retrieved successfully',
-        HttpStatus.OK,
-      );
+      return success(null, 'No active plan found', HttpStatus.OK);
     }
 
     const [plan] = await db
@@ -44,20 +35,16 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
-    const overriddenPlan = {
-      ...plan,
-      price: creatorCurrentPlan[0].customPrice ?? plan.price,
-      maxFiles: creatorCurrentPlan[0].customMaxFiles ?? plan.maxFiles,
-    };
-
     return success(
-      [overriddenPlan],
+      {
+        plan,
+        overrides: creatorCurrentPlan[0],
+      },
       'Creator plan retrieved successfully',
       HttpStatus.OK,
     );
   } catch (error) {
-    logger.error('Error setting up creator account:', error);
-
+    logger.error('Error getting admin creator plan:', error);
     if (error instanceof HttpException) {
       throw error;
     }

@@ -9,6 +9,7 @@ import {
   mediaFileCategories,
   mediaFiles,
   users,
+  creatorChannels,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
@@ -18,12 +19,14 @@ import { fail, success } from 'src/utils/sendResponse';
 
 const relatedItemSelect = {
   id: mediaFiles.id,
+  slug: mediaFiles.slug,
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
@@ -64,12 +67,15 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     const [collectionItem] = await db
       .select({
         collectionId: collectionItems.collectionId,
+        collectionSlug: collections.slug,
+        collectionName: collections.name,
         accessType: collections.accessType,
         buyPrice: collections.buyPrice,
         rentPrice: collections.rentPrice,
         rentDuration: collections.rentDuration,
       })
       .from(collectionItems)
+      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
       .innerJoin(
         collections,
         and(
@@ -96,6 +102,10 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           publiclyVisibleCreatorWhere,
         ),
       )
+      .leftJoin(
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
+      )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,
@@ -121,6 +131,8 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     return success(
       {
         collectionId: collectionItem.collectionId,
+        collectionSlug: collectionItem.collectionSlug,
+        collectionName: collectionItem.collectionName,
         accessType: collectionItem.accessType,
         buyPrice: collectionItem.buyPrice,
         rentPrice: collectionItem.rentPrice,

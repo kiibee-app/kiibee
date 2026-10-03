@@ -32,6 +32,7 @@ import {
 export type CollectionWithCards = {
   id: string;
   name: string;
+  slug?: string;
   cards: TutorialVideo[];
 };
 
@@ -81,6 +82,7 @@ export function useProfileHomeCollections(
             return {
               id: collection.id,
               name: collection.name,
+              slug: collection.slug,
               cards: (
                 publicContentResponses[index]?.data?.data?.items ?? []
               ).map((item) =>
