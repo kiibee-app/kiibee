@@ -42,6 +42,8 @@
       "category": {
         "comedy": "Comedy",
         "education": "Education & Courses",
+        "sportsAndFitness": "Sports & Fitness",
+        "booksAndWriting": "Books & Writing",
         "business": "Business & Marketing",
         "arts": "Arts & Culture",
         "tech": "Tech & Digital"

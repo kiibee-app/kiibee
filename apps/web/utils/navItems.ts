@@ -56,6 +56,14 @@ const NAV_ITEMS: NavItem[] = [
             href: PATHS.CATEGORY_EDUCATION,
           },
           { key: "nav.explore.category.arts", href: PATHS.CATEGORY_ARTS },
+          {
+            key: "nav.explore.category.sportsAndFitness",
+            href: PATHS.CATEGORY_FITNESS,
+          },
+          {
+            key: "nav.explore.category.booksAndWriting",
+            href: PATHS.CATEGORY_BOOKS,
+          },
         ],
       },
 

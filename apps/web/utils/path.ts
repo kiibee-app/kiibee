@@ -30,6 +30,8 @@ export const PATHS = {
   EXPLORE_WEB: "/formats/web",
   CATEGORY_COMEDY: "/explore/category/comedy",
   CATEGORY_EDUCATION: "/explore/category/education",
+  CATEGORY_BOOKS: "/explore/category/books",
+  CATEGORY_FITNESS: "/explore/category/fitness",
   CATEGORY_BUSINESS: "/explore/category/business",
   CATEGORY_ARTS: "/explore/category/arts",
   CATEGORY_TECH: "/explore/category/tech",
