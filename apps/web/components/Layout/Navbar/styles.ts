@@ -10,7 +10,7 @@ export const Header = styled.header<HeaderProps>`
   left: 0;
   width: 100%;
   min-height: ${({ $isMegaOpen }) =>
-    $isMegaOpen ? "300px" : "var(--navbar-height, 73px)"};
+    $isMegaOpen ? "320px" : "var(--navbar-height, 73px)"};
   height: ${({ $isMegaOpen }) =>
     $isMegaOpen ? "auto" : "var(--navbar-height, 73px)"};
   display: block;
@@ -24,6 +24,11 @@ export const Header = styled.header<HeaderProps>`
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
   z-index: ${({ theme }) => theme.zIndex.navbar};
+
+  ${media.desktopSm} {
+    min-height: ${({ $isMegaOpen }) =>
+      $isMegaOpen ? "360px" : "var(--navbar-height, 73px)"};
+  }
 
   ${media.mobileXl} {
     height: var(--navbar-height, 73px);
@@ -212,8 +217,8 @@ export const MegaMenu = styled.div<{
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
   left: 0;
   width: 100%;
-  padding: 1.5rem 0;
-  min-height: 300px;
+  padding: 1.5rem 0 2rem;
+  min-height: 330px;
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-10px")});
