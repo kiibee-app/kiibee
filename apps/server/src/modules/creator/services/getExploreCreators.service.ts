@@ -110,7 +110,11 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
       exampleWorkLink: creatorInfo.exampleWorkLink,
       supportEmail: contentAppearance.supportEmail,
       accountEmail: users.email,
-      accessType: contentSettings.accessType,
+      accessType: sql<string | null>`coalesce(
+        ${contentSettings.accessType}::text,
+        (SELECT access_type::text FROM collections WHERE creator_id = ${users.id} AND is_deleted = false AND access_type IN ('password', 'email_gated') LIMIT 1),
+        (SELECT access_type::text FROM media_files WHERE creator_id = ${users.id} AND is_deleted = false AND is_published = true AND access_type IN ('password', 'email_gated') LIMIT 1)
+      )`.as('access_type'),
       layout: contentAppearance.layout,
       textColor: contentAppearance.textColor,
       buttonColor: contentAppearance.buttonColor,

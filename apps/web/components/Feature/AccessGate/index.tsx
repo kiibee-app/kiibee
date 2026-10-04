@@ -7,11 +7,11 @@ import {
   GateCard,
   GateConsentText,
   GateFieldGroup,
-  GateFieldsRow,
   GateForm,
   GateInner,
   GateInput,
   GateLabel,
+  RequiredAsterisk,
   GateSubmitButton,
   GateTitle,
   GateTitleText,
@@ -39,7 +39,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 
 export type { AccessGateType, AccessGateVariant };
 
-const TAG_LABEL = "label";
 const EMPTY_STRING = "";
 
 type AccessGateProps = {
@@ -97,8 +96,9 @@ function CodeGate({
 
       <GateForm onSubmit={handleSubmit}>
         <GateFieldGroup>
-          <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_CODE}>
+          <GateLabel htmlFor={HTML_ID_CODE}>
             {t(ACCESS_GATE.codeLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
           </GateLabel>
           <GateInput
             id={HTML_ID_CODE}
@@ -193,40 +193,40 @@ function EmailGate({
       </GateTitle>
 
       <GateForm onSubmit={handleSubmit}>
-        <GateFieldsRow>
-          <GateFieldGroup>
-            <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_NAME}>
-              {t(ACCESS_GATE.nameLabel)}
-            </GateLabel>
-            <GateInput
-              id={HTML_ID_NAME}
-              type={INPUT_TYPE_TEXT}
-              value={name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
-              placeholder={t(ACCESS_GATE.namePlaceholder)}
-              autoComplete={AUTOCOMPLETE_NAME}
-            />
-          </GateFieldGroup>
+        <GateFieldGroup>
+          <GateLabel htmlFor={HTML_ID_NAME}>
+            {t(ACCESS_GATE.nameLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
+          </GateLabel>
+          <GateInput
+            id={HTML_ID_NAME}
+            type={INPUT_TYPE_TEXT}
+            value={name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
+            placeholder={t(ACCESS_GATE.namePlaceholder)}
+            autoComplete={AUTOCOMPLETE_NAME}
+          />
+        </GateFieldGroup>
 
-          <GateFieldGroup>
-            <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_EMAIL}>
-              {t(ACCESS_GATE.emailLabel)}
-            </GateLabel>
-            <GateInput
-              id={HTML_ID_EMAIL}
-              type={INPUT_TYPE_EMAIL}
-              value={email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
-              placeholder={t(ACCESS_GATE.emailPlaceholder)}
-              autoComplete={AUTOCOMPLETE_EMAIL}
-              required
-            />
-          </GateFieldGroup>
-        </GateFieldsRow>
+        <GateFieldGroup>
+          <GateLabel htmlFor={HTML_ID_EMAIL}>
+            {t(ACCESS_GATE.emailLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
+          </GateLabel>
+          <GateInput
+            id={HTML_ID_EMAIL}
+            type={INPUT_TYPE_EMAIL}
+            value={email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
+            placeholder={t(ACCESS_GATE.emailPlaceholder)}
+            autoComplete={AUTOCOMPLETE_EMAIL}
+            required
+          />
+        </GateFieldGroup>
 
         <GateConsentText>
           {t(ACCESS_GATE.consentText, {

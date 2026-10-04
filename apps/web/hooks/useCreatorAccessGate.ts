@@ -24,6 +24,7 @@ import {
   getCreatorUnlockStorageKey,
   unlockCreatorAccessGate,
 } from "@/utils/accessGate";
+import { useLatestUpload } from "@/hooks/useLatestUpload";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
@@ -65,15 +66,25 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
 
+  const { data: latest } = useLatestUpload(
+    isPublicView ? publicCreatorId : null,
+  );
+
+  const fallbackAccessType =
+    (latest as { accessType?: string | null })?.accessType ?? null;
+
   const accessType = isPublicView
     ? publicCreator?.accessType
     : privateSettings?.data?.accessType;
 
+  const effectiveAccessType = accessType || fallbackAccessType;
+
   const resolvedGateType: AccessGateType | null =
-    accessType === SET_PASSWORD_ACCESS || accessType === ACCESS_TYPE_PASSWORD
+    effectiveAccessType === SET_PASSWORD_ACCESS ||
+    effectiveAccessType === ACCESS_TYPE_PASSWORD
       ? TYPE_CODE
-      : accessType === REQUEST_EMAIL_ACCESS ||
-          accessType === ACCESS_TYPE_EMAIL_GATED
+      : effectiveAccessType === REQUEST_EMAIL_ACCESS ||
+          effectiveAccessType === ACCESS_TYPE_EMAIL_GATED
         ? TYPE_EMAIL
         : null;
 
