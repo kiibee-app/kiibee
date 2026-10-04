@@ -18,6 +18,6 @@ export const interests: InterestItem[] = [
   { label: "interests.meditation", variant: "dark" },
   { label: "interests.fitness", variant: "dark" },
   { label: "interests.theater", variant: "green" },
-  { label: "interests.sound", variant: "light" },
+  { label: "interests.education", variant: "light" },
   { label: "interests.articles", variant: "white" },
 ];
