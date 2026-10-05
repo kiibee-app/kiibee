@@ -117,6 +117,10 @@ export default function ProfileHomeSections({
           description: latest.description ?? "",
           actions: latestConfig.actions,
           contentId: latest.id,
+          creatorId:
+            (latest as { creatorId?: string }).creatorId ||
+            publicCreatorId ||
+            null,
           slug: (latest as { slug?: string }).slug,
           creatorSlug:
             (latest as { creatorSlug?: string | null }).creatorSlug ?? null,

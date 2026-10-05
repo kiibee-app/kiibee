@@ -78,6 +78,7 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  creatorId?: string | null;
   slug?: string;
   creatorSlug?: string | null;
   trailerUrl?: string | null;
@@ -132,7 +133,7 @@ export default function LatestUpload({
 
   const { hasAccess } = useViewerContentAccess(
     data.contentId ?? "",
-    null,
+    data.creatorId ?? null,
     effectiveCollectionId,
   );
 
