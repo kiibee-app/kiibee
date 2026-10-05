@@ -19,6 +19,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import paymentCardImage from "@/assets/icons/payment-icons.svg";
 import { SelectedCheckIcon, InfoIcon, PlaylistIcon } from "@/assets/icons";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
@@ -77,7 +78,6 @@ import {
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
-import { PAYMENT_ICONS } from "@/utils/paymentIcons";
 import COLORS from "@repo/ui/colors";
 import { getCouponErrorMessage } from "@/utils/couponErrors";
 
@@ -257,14 +257,16 @@ export default function PurchaseModal({
       label: (
         <PurchaseModalPaymentMethodSelected>
           <PurchaseModalPaymentMethodPrimary>
-            <MonoText $use="Body_Medium">{formatSavedCardLabel(card)}</MonoText>
+            <MonoText $use="Body_SemiBold" style={{ fontSize: "14px" }}>
+              {formatSavedCardLabel(card)}
+            </MonoText>
             {card.isDefault ? (
               <PurchaseModalPaymentMethodDefaultBadge>
                 {t("dashboard.viewerBillings.paymentMethods.defaultBadge")}
               </PurchaseModalPaymentMethodDefaultBadge>
             ) : null}
           </PurchaseModalPaymentMethodPrimary>
-          <MonoText $use="Body_Medium">
+          <MonoText $use="Body_Small">
             {t("singleContent.pricing.expires", {
               date: formatCardExpiry(card.expireDate),
             })}
@@ -453,12 +455,12 @@ export default function PurchaseModal({
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseAccess")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
@@ -469,7 +471,7 @@ export default function PurchaseModal({
       {isCollectionRental || isRental ? (
         <PurchaseModalCollectionBenefits>
           <PurchaseModalCollectionBenefitsTitle>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+            <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
               {isCollectionRental
                 ? t("singleContent.pricing.collectionRentalTitle")
                 : t("singleContent.pricing.contentRentalTitle", {
@@ -479,7 +481,7 @@ export default function PurchaseModal({
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {isCollectionRental
                   ? t("singleContent.pricing.collectionRentalStreaming", {
                       count: rentalMonths,
@@ -491,7 +493,7 @@ export default function PurchaseModal({
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
@@ -522,11 +524,11 @@ export default function PurchaseModal({
           >
             <SelectedCheckIcon selected={isUsingNewCard} size={20} />
             <PurchaseModalPaymentMethodText>
-              <MonoText $use="Body_Bold">
+              <MonoText $use="Body_SemiBold" style={{ fontSize: "13px" }}>
                 {t("singleContent.pricing.useNewCard")}
               </MonoText>
               <PurchaseModalPaymentMethodHint>
-                <MonoText $use="Body_Medium">
+                <MonoText $use="Body_Small">
                   {t("singleContent.pricing.useNewCardHint")}
                 </MonoText>
               </PurchaseModalPaymentMethodHint>
@@ -591,48 +593,45 @@ export default function PurchaseModal({
       <PurchaseModalPriceSummary>
         <PurchaseModalPriceRow>
           <PurchaseModalPriceLabel>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {t("singleContent.pricing.subtotal")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="Body_Medium">{displayPrice}</MonoText>
+            <MonoText $use="Body_Regular">{displayPrice}</MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRow>
         <PurchaseModalPriceRow>
           <PurchaseModalPriceLabel>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {t("singleContent.pricing.discount")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {discount > 0 ? `- ${discount} kr` : "0 kr"}
             </MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRow>
         <PurchaseModalPriceRowTotal>
           <PurchaseModalPriceLabel>
-            <MonoText $use="H5_Medium">
+            <MonoText $use="Body_SemiBold">
               {t("singleContent.pricing.total")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="H5_Medium">{total} kr</MonoText>
+            <MonoText $use="Body_SemiBold">{total} kr</MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
 
       <PurchaseModalPaymentIcons>
-        {PAYMENT_ICONS.map((icon) => (
-          <Image
-            key={icon.alt}
-            src={icon.src}
-            alt={icon.alt}
-            width={34}
-            height={23}
-          />
-        ))}
+        <Image
+          src={paymentCardImage}
+          alt="Payment options"
+          height={30}
+          style={{ height: "30px", width: "auto" }}
+        />
       </PurchaseModalPaymentIcons>
 
       <PurchaseModalButtonWrapper>

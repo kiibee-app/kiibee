@@ -33,6 +33,8 @@ export const PATHS = {
   CATEGORY_BUSINESS: "/explore/category/business",
   CATEGORY_ARTS: "/explore/category/arts",
   CATEGORY_TECH: "/explore/category/tech",
+  CATEGORY_BOOKS: "/explore/category/books",
+  CATEGORY_FITNESS: "/explore/category/fitness",
   FOR_CREATORS: "/for-creators",
   CREATORS: "/creators/all",
   CREATORS_FEATURED: "/creators/featured",

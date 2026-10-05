@@ -44,6 +44,7 @@ export class CreatorService {
   getAdminCreators(options?: {
     search?: string;
     plan?: string;
+    hidden?: boolean;
     page?: number;
     limit?: number;
   }) {

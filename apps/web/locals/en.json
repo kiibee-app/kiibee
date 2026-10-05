@@ -42,8 +42,10 @@
       "category": {
         "comedy": "Comedy",
         "education": "Education & Courses",
+        "sportsAndFitness": "Sports & Fitness",
+        "booksAndWriting": "Books & Writing",
         "business": "Business & Marketing",
-        "arts": "Arts & Culture",
+        "arts": "Arts & Illustration",
         "tech": "Tech & Digital"
       },
       "creatorTitle": "Creator",
@@ -834,7 +836,7 @@
     "meditation": "Guided meditations",
     "fitness": "Fitness",
     "theater": "Theater",
-    "sound": "Sound effects and loops",
+    "education": "Education & learning",
     "articles": "Articles & essays"
   },
   "pricingPage": {
