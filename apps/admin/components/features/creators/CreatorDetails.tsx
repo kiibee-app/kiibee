@@ -150,9 +150,18 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
       <DetailsSection>
         <DetailsSectionHeader>
           <DetailsSectionTitle>Profile Details</DetailsSectionTitle>
-          <DetailsSectionAction href={`/all-creators/${creatorId}/appearance`}>
-            Update creator setting
-          </DetailsSectionAction>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <DetailsSectionAction
+              href={`/all-creators/${creatorId}/subscription`}
+            >
+              Manage Subscription
+            </DetailsSectionAction>
+            <DetailsSectionAction
+              href={`/all-creators/${creatorId}/appearance`}
+            >
+              Update creator setting
+            </DetailsSectionAction>
+          </div>
         </DetailsSectionHeader>
         <DetailsSectionBody>
           <InfoGrid>

@@ -41,7 +41,8 @@ import {
 import { useIsMobile } from "@/utils/useIsMobile";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, COLLECTION_ROUTE } from "@/utils/path";
+import { HASH_BUY } from "@/utils/Constants";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
@@ -58,6 +59,7 @@ import {
   isThirdPartyVideoUrl,
 } from "@/utils/media";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 
 type LatestUploadAction = {
   title: string;
@@ -76,6 +78,7 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  creatorId?: string | null;
   slug?: string;
   creatorSlug?: string | null;
   trailerUrl?: string | null;
@@ -83,6 +86,8 @@ export type LatestUploadData = {
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
 };
 
 type LatestUploadProps = {
@@ -116,10 +121,20 @@ export default function LatestUpload({
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const trailerVideoRef = useRef<HTMLVideoElement | null>(null);
   const { navigateToContent } = useProtectedContentNavigation();
+  const relatedCollectionQuery = usePublicRelatedCollectionContent(
+    data.contentId ?? null,
+  );
+
+  const effectiveCollectionId =
+    data.collectionId || relatedCollectionQuery.data?.collectionId;
+  const isPaidCol =
+    Boolean(data.isPaidCollection) ||
+    Boolean(relatedCollectionQuery.data?.isPaid);
+
   const { hasAccess } = useViewerContentAccess(
     data.contentId ?? "",
-    null,
-    null,
+    data.creatorId ?? null,
+    effectiveCollectionId,
   );
 
   const computedActions = useMemo((): ComputedAction[] => {
@@ -146,6 +161,15 @@ export default function LatestUpload({
       const labels = getPricingLabels(t);
 
       if (isFreeContentItem(pricingItem)) {
+        if (isPaidCol && effectiveCollectionId) {
+          return [
+            {
+              title: t("pricingLabels.partOfCollection"),
+              href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+            },
+          ];
+        }
+
         return [
           {
             title: t("pricingLabels.free"),
@@ -230,7 +254,7 @@ export default function LatestUpload({
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t, isOwner, hasAccess]);
+  }, [data, t, isOwner, hasAccess, isPaidCol, effectiveCollectionId]);
 
   const visibleActions = computedActions;
 
@@ -415,17 +439,33 @@ export default function LatestUpload({
                 type="button"
                 data-creator-content-button
                 onClick={handlePrimaryActionClick}
-                $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                $tone={
+                  primaryAction.title ===
+                    t("createProfileHome.latestUpload.seeContent") &&
+                  !secondaryAction
+                    ? VARIANT.SECONDARY
+                    : VARIANT.PRIMARY
+                }
               >
                 <ActionMainText
-                  $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                  $tone={
+                    primaryAction.title ===
+                      t("createProfileHome.latestUpload.seeContent") &&
+                    !secondaryAction
+                      ? VARIANT.SECONDARY
+                      : VARIANT.PRIMARY
+                  }
                 >
                   {primaryAction.title}
                 </ActionMainText>
                 {primaryAction.subtitle ? (
                   <ActionSubText
                     $tone={
-                      secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY
+                      primaryAction.title ===
+                        t("createProfileHome.latestUpload.seeContent") &&
+                      !secondaryAction
+                        ? VARIANT.SECONDARY
+                        : VARIANT.PRIMARY
                     }
                   >
                     {primaryAction.subtitle}

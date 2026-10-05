@@ -15,6 +15,7 @@ import {
   getTopCreatorsQuery,
 } from '../feed.query';
 import { ExploreType } from '../dto/exploreQuery.dto';
+import { creatorContentIsDiscoverable } from 'src/utils/publicCreatorVisibility';
 
 const cleanArray = (value?: string[] | string | null) => {
   if (!value) return [];
@@ -76,6 +77,7 @@ export const exploreService = async (
       sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
+      creatorContentIsDiscoverable,
     ];
     const extra: SQL[] = [];
 

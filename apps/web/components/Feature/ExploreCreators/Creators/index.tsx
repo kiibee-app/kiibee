@@ -7,6 +7,7 @@ import {
   PageWrapper,
   EmptyState,
 } from "./styles";
+import { useRouter } from "next/navigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -40,6 +41,7 @@ export default function ExploreCreators({
   showLoadMoreButton,
   onLoadMore,
 }: Props) {
+  const router = useRouter();
   const { t } = useTranslation();
 
   if (isLoading && creators.length === 0) {
@@ -109,12 +111,16 @@ export default function ExploreCreators({
               footer={
                 creator.slug ? (
                   <GenericButton
-                    asAnchor
-                    href={getPublicCreatorProfilePath(
-                      creator.slug,
-                      creator.layout,
-                    )}
+                    type="button"
                     variant={VARIANT.SECONDARY}
+                    onClick={() =>
+                      router.push(
+                        getPublicCreatorProfilePath(
+                          creator.slug!,
+                          creator.layout,
+                        ),
+                      )
+                    }
                   >
                     {t(CREATORS.viewProfile)}
                   </GenericButton>

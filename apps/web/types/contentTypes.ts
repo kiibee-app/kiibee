@@ -16,6 +16,7 @@ export type SingleContentAction = {
   ariaLabel?: string;
   onClick?: () => void;
   disabled?: boolean;
+  href?: string;
 };
 
 export type SingleContentHeroProps = {

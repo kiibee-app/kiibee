@@ -38,6 +38,7 @@ export type CollectionsApiItem = {
   rentPrice?: number | string | null;
   rentDuration?: string | null;
   passwordHash?: string | null;
+  slug?: string;
 };
 
 export type CollectionsApiResponse =
@@ -159,6 +160,7 @@ export const getCollectionRows = (
       rentDuration: item.rentDuration ?? null,
       hasPassword: Boolean(item.passwordHash),
       passwordCount: getPasswordCount(item.passwordHash),
+      slug: item.slug ?? undefined,
     }));
 };
 

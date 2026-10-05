@@ -33,6 +33,8 @@ export const PATHS = {
   CATEGORY_BUSINESS: "/explore/category/business",
   CATEGORY_ARTS: "/explore/category/arts",
   CATEGORY_TECH: "/explore/category/tech",
+  CATEGORY_BOOKS: "/explore/category/books",
+  CATEGORY_FITNESS: "/explore/category/fitness",
   FOR_CREATORS: "/for-creators",
   CREATORS: "/creators/all",
   CREATORS_FEATURED: "/creators/featured",
@@ -89,10 +91,15 @@ export function pathPublishedContent(
 }
 
 export function pathPublicCollection(
-  collectionId: string,
+  collectionSlugOrId: string,
   creatorId?: string | null,
+  creatorSlug?: string | null,
 ): string {
-  const params = new URLSearchParams({ id: collectionId });
+  if (creatorSlug) {
+    return `/${encodeURIComponent(creatorSlug)}/collections/${encodeURIComponent(collectionSlugOrId)}`;
+  }
+
+  const params = new URLSearchParams({ name: collectionSlugOrId });
 
   if (creatorId) {
     params.set("creatorId", creatorId);

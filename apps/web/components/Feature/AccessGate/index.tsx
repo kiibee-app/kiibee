@@ -7,11 +7,11 @@ import {
   GateCard,
   GateConsentText,
   GateFieldGroup,
-  GateFieldsRow,
   GateForm,
   GateInner,
   GateInput,
   GateLabel,
+  RequiredAsterisk,
   GateSubmitButton,
   GateTitle,
   GateTitleText,
@@ -35,11 +35,11 @@ import {
   HTML_ID_EMAIL,
 } from "@/utils/Constants";
 import { GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 
 export type { AccessGateType, AccessGateVariant };
 
-const TAG_LABEL = "label";
 const EMPTY_STRING = "";
 
 type AccessGateProps = {
@@ -97,8 +97,9 @@ function CodeGate({
 
       <GateForm onSubmit={handleSubmit}>
         <GateFieldGroup>
-          <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_CODE}>
+          <GateLabel htmlFor={HTML_ID_CODE}>
             {t(ACCESS_GATE.codeLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
           </GateLabel>
           <GateInput
             id={HTML_ID_CODE}
@@ -193,40 +194,40 @@ function EmailGate({
       </GateTitle>
 
       <GateForm onSubmit={handleSubmit}>
-        <GateFieldsRow>
-          <GateFieldGroup>
-            <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_NAME}>
-              {t(ACCESS_GATE.nameLabel)}
-            </GateLabel>
-            <GateInput
-              id={HTML_ID_NAME}
-              type={INPUT_TYPE_TEXT}
-              value={name}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
-              placeholder={t(ACCESS_GATE.namePlaceholder)}
-              autoComplete={AUTOCOMPLETE_NAME}
-            />
-          </GateFieldGroup>
+        <GateFieldGroup>
+          <GateLabel htmlFor={HTML_ID_NAME}>
+            {t(ACCESS_GATE.nameLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
+          </GateLabel>
+          <GateInput
+            id={HTML_ID_NAME}
+            type={INPUT_TYPE_TEXT}
+            value={name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
+            placeholder={t(ACCESS_GATE.namePlaceholder)}
+            autoComplete={AUTOCOMPLETE_NAME}
+          />
+        </GateFieldGroup>
 
-          <GateFieldGroup>
-            <GateLabel as={TAG_LABEL} htmlFor={HTML_ID_EMAIL}>
-              {t(ACCESS_GATE.emailLabel)}
-            </GateLabel>
-            <GateInput
-              id={HTML_ID_EMAIL}
-              type={INPUT_TYPE_EMAIL}
-              value={email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
-              placeholder={t(ACCESS_GATE.emailPlaceholder)}
-              autoComplete={AUTOCOMPLETE_EMAIL}
-              required
-            />
-          </GateFieldGroup>
-        </GateFieldsRow>
+        <GateFieldGroup>
+          <GateLabel htmlFor={HTML_ID_EMAIL}>
+            {t(ACCESS_GATE.emailLabel)}
+            <RequiredAsterisk aria-hidden="true">*</RequiredAsterisk>
+          </GateLabel>
+          <GateInput
+            id={HTML_ID_EMAIL}
+            type={INPUT_TYPE_EMAIL}
+            value={email}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
+            placeholder={t(ACCESS_GATE.emailPlaceholder)}
+            autoComplete={AUTOCOMPLETE_EMAIL}
+            required
+          />
+        </GateFieldGroup>
 
         <GateConsentText>
           {t(ACCESS_GATE.consentText, {
@@ -267,5 +268,33 @@ export default function AccessGate({
         )}
       </GateInner>
     </GateWrapper>
+  );
+}
+
+export function CreatorAccessGrantedModal({
+  visible,
+  onClose,
+}: {
+  visible: boolean;
+  onClose: () => void;
+}) {
+  const { t } = useTranslation();
+
+  return (
+    <GenericModal
+      visible={visible}
+      icon={<SuccessModalIcon />}
+      iconMargin="0 auto 8px"
+      textAlign={MODAL_ALIGN.CENTER}
+      title={t("accessGate.accessGrantedTitle")}
+      message={t("accessGate.accessGrantedMessage")}
+      confirmLabel={t("accessGate.viewCollection")}
+      onConfirm={onClose}
+      onClose={onClose}
+      closeOnConfirm={false}
+      buttonRow
+      size="sm"
+      showCloseButton={false}
+    />
   );
 }

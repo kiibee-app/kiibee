@@ -42,8 +42,10 @@
       "category": {
         "comedy": "Komedie",
         "education": "Uddannelse & Kurser",
+        "sportsAndFitness": "Sport & fitness",
+        "booksAndWriting": "Bøger & skrivning",
         "business": "Forretning & Marketing",
-        "arts": "Kunst & Kultur",
+        "arts": "Kunst & illustration",
         "tech": "Teknologi"
       },
       "creatorTitle": "Udgiver",
@@ -834,7 +836,7 @@
     "meditation": "Guidede meditationer",
     "fitness": "Fitness",
     "theater": "Teater",
-    "sound": "Lydeffekter og loops",
+    "education": "Uddannelse & læring",
     "articles": "Artikler og essays"
   },
   "pricingPage": {
@@ -2042,6 +2044,7 @@
     "admissionRequirements": {
       "title": "Adgangskrav",
       "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+      "channelDescription": "Angiv adgang for alle samlinger og alt indhold på din kanal.",
       "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
@@ -2391,6 +2394,9 @@
     "tryAgain": "Prøv igen",
     "requestSentTitle": "Anmodning sendt",
     "requestSentMessage": "Udgiveren har modtaget din anmodning. Hvis den godkendes, sender vi dig et link til indholdet via e-mail.",
+    "accessGrantedTitle": "Adgang givet",
+    "accessGrantedMessage": "Du har nu adgang til denne udgivers samlinger og indhold.",
+    "viewCollection": "Se indhold",
     "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee's kundeservice."
   },
   "pricingLabels": {
@@ -2399,7 +2405,8 @@
     "buyCollection": "Køb samling",
     "free": "Gratis",
     "accessCodeRequired": "Adgangskode påkrævet",
-    "emailRequired": "E-mail påkrævet"
+    "emailRequired": "E-mail påkrævet",
+    "partOfCollection": "Del af en samling"
   },
   "viewerRented": {
     "emptyStates": {

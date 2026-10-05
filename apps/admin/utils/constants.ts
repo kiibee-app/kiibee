@@ -13,6 +13,11 @@ export const API_ENDPOINTS = {
   CREATOR_VISIBILITY: (creatorId: string) =>
     `/creators/admin/${creatorId}/visibility`,
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
+  ALL_PLANS: "/subscription/plans",
+  ADMIN_GET_SUBSCRIPTION: (creatorId: string) =>
+    `/subscription/admin/creator/${creatorId}`,
+  ADMIN_UPDATE_SUBSCRIPTION: (creatorId: string) =>
+    `/subscription/admin/creator/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/viewer/admin/all-viewers",
   VIEWER_BY_ID: (viewerId: string) => `/auth/all-viewers/${viewerId}`,
@@ -131,6 +136,8 @@ export const QUERY_KEY = {
   CREATOR_WALLETS: "creator-wallets",
   ADMIN_PAYOUT_CALCULATE: "admin-payout-calculate",
   DOWNLOAD_LIMIT: "download-limit",
+  ADMIN_SUBSCRIPTION: "admin-subscription",
+  ALL_PLANS: "all-plans",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {

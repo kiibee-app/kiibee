@@ -16,7 +16,10 @@ import {
   RECENT_CANDIDATE_MULTIPLIER,
   RECENT_MIN_CANDIDATE_LIMIT,
 } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorContentIsDiscoverable,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import {
   dedupeFeedMediaByCreator,
   dedupeFeedMediaById,
@@ -48,6 +51,7 @@ const activeCreatorJoin = and(
   eq(users.id, mediaFiles.creatorId),
   eq(users.isDeleted, false),
   publiclyVisibleCreatorWhere,
+  creatorContentIsDiscoverable,
 );
 
 export const getRecentContentService = async (limit = 10) => {
