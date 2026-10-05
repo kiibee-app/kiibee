@@ -64,7 +64,6 @@ const NAV_ITEMS: NavItem[] = [
             key: "nav.explore.category.booksAndWriting",
             href: PATHS.CATEGORY_BOOKS,
           },
-          { key: "nav.explore.category.tech", href: PATHS.CATEGORY_TECH },
         ],
       },
 

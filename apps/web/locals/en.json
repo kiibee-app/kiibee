@@ -44,6 +44,8 @@
         "education": "Education & Courses",
         "sportsAndFitness": "Sports & Fitness",
         "booksAndWriting": "Books & Writing",
+        "business": "Business & Marketing",
+        "arts": "Art & Culture",
         "tech": "Tech & Digital"
       },
       "creatorTitle": "Creator",
