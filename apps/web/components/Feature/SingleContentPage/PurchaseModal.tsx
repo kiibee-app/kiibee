@@ -453,12 +453,12 @@ export default function PurchaseModal({
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseAccess")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
@@ -469,7 +469,7 @@ export default function PurchaseModal({
       {isCollectionRental || isRental ? (
         <PurchaseModalCollectionBenefits>
           <PurchaseModalCollectionBenefitsTitle>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+            <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
               {isCollectionRental
                 ? t("singleContent.pricing.collectionRentalTitle")
                 : t("singleContent.pricing.contentRentalTitle", {
@@ -479,7 +479,7 @@ export default function PurchaseModal({
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {isCollectionRental
                   ? t("singleContent.pricing.collectionRentalStreaming", {
                       count: rentalMonths,
@@ -491,7 +491,7 @@ export default function PurchaseModal({
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
             <PurchaseModalCollectionBenefitsItem>
-              <MonoText $use="Body_Medium">
+              <MonoText $use="Body_Regular">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
@@ -591,34 +591,34 @@ export default function PurchaseModal({
       <PurchaseModalPriceSummary>
         <PurchaseModalPriceRow>
           <PurchaseModalPriceLabel>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {t("singleContent.pricing.subtotal")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="Body_Medium">{displayPrice}</MonoText>
+            <MonoText $use="Body_Regular">{displayPrice}</MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRow>
         <PurchaseModalPriceRow>
           <PurchaseModalPriceLabel>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {t("singleContent.pricing.discount")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Regular">
               {discount > 0 ? `- ${discount} kr` : "0 kr"}
             </MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRow>
         <PurchaseModalPriceRowTotal>
           <PurchaseModalPriceLabel>
-            <MonoText $use="H5_Medium">
+            <MonoText $use="Body_SemiBold">
               {t("singleContent.pricing.total")}
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="H5_Medium">{total} kr</MonoText>
+            <MonoText $use="Body_SemiBold">{total} kr</MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
@@ -627,8 +627,8 @@ export default function PurchaseModal({
         <Image
           src={paymentCardImage}
           alt="Payment options"
-          height={23}
-          style={{ height: "23px", width: "auto" }}
+          height={30}
+          style={{ height: "30px", width: "auto" }}
         />
       </PurchaseModalPaymentIcons>
 
