@@ -73,10 +73,13 @@ interface AdmissionRequirementsProps {
   onChangeAccessDuration?: (value: AccessDurationValue) => void;
   showDescription?: boolean;
   showPaymentOption?: boolean;
+  isChannelSettings?: boolean;
   showPasswordMeta?: boolean;
-  onValidationChange?: (hasError: boolean) => void;
+  onValidationChange?: (hasError: boolean, passwordDraft?: string) => void;
   hasPassword?: boolean;
   passwordCount?: number;
+  removedPasswordIndexes?: number[];
+  onRemoveSavedPassword?: (index: number) => void;
 }
 
 function AdmissionRequirements({
@@ -95,10 +98,13 @@ function AdmissionRequirements({
   onChangeAccessDuration,
   showDescription = true,
   showPaymentOption = true,
+  isChannelSettings = false,
   showPasswordMeta = false,
   onValidationChange,
   hasPassword = false,
   passwordCount = 1,
+  removedPasswordIndexes = [],
+  onRemoveSavedPassword,
 }: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -179,7 +185,7 @@ function AdmissionRequirements({
       const hasError =
         isPasswordRequirement && isPasswordInvalid(effectivePasswords);
 
-      onValidationChange?.(hasError);
+      onValidationChange?.(hasError, "");
       setOpen(false);
     },
     [onChangeAccessType, onValidationChange, effectivePasswords],
@@ -192,13 +198,13 @@ function AdmissionRequirements({
   const handlePasswordsChange = (val: string) => {
     updateValue(val, onChangePasswords, setLocalPasswords);
     const full = combinePasswords(val, typedPasswords);
-    onValidationChange?.(isPasswordInvalid(full));
+    onValidationChange?.(isPasswordInvalid(full), typedPasswords);
   };
 
   const handleTypedPasswordsChange = (typed: string) => {
     setTypedPasswords(typed);
     const full = combinePasswords(passwords, typed);
-    onValidationChange?.(isPasswordInvalid(full));
+    onValidationChange?.(typed ? isPasswordInvalid(full) : false, typed);
   };
 
   return (
@@ -209,11 +215,13 @@ function AdmissionRequirements({
         </MonoText>
 
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          {t("contents.admissionRequirements.description", {
-            contentType:
-              contentType ||
-              t("contents.admissionRequirements.fallbackContentType"),
-          })}
+          {isChannelSettings
+            ? t("contents.admissionRequirements.channelDescription")
+            : t("contents.admissionRequirements.description", {
+                contentType:
+                  contentType ||
+                  t("contents.admissionRequirements.fallbackContentType"),
+              })}
         </MonoText>
       </TextBlock>
 
@@ -273,32 +281,28 @@ function AdmissionRequirements({
 
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>
-          {hasPassword && !passwords && !typedPasswords ? (
-            <TagsInput
-              value={Array(passwordCount || 1)
-                .fill("••••••")
-                .join(", ")}
-              onInputChange={(typed) => handleTypedPasswordsChange(typed)}
-              placeholder={t(
-                "contents.admissionRequirements.password.placeholder",
-              )}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              hasError={false}
-              separateOnSpace={true}
-            />
-          ) : (
-            <TagsInput
-              value={passwords}
-              onChange={(value) => handlePasswordsChange(value as string)}
-              onInputChange={(typed) => handleTypedPasswordsChange(typed)}
-              placeholder={t(
-                "contents.admissionRequirements.password.placeholder",
-              )}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              hasError={validatePasswordInput(effectivePasswords)}
-              separateOnSpace={true}
-            />
-          )}
+          <TagsInput
+            value={passwords}
+            onChange={(value) => handlePasswordsChange(value as string)}
+            onInputChange={(typed) => handleTypedPasswordsChange(typed)}
+            protectedTags={
+              hasPassword
+                ? Array.from({ length: passwordCount || 1 }, (_, index) => ({
+                    id: String(index),
+                    label: "••••••",
+                  })).filter(
+                    (tag) => !removedPasswordIndexes.includes(Number(tag.id)),
+                  )
+                : []
+            }
+            onRemoveProtectedTag={(id) => onRemoveSavedPassword?.(Number(id))}
+            placeholder={t(
+              "contents.admissionRequirements.password.placeholder",
+            )}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            hasError={validatePasswordInput(effectivePasswords)}
+            separateOnSpace={true}
+          />
 
           {!hasPassword || passwords || typedPasswords
             ? validatePasswordInput(effectivePasswords) && (

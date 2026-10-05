@@ -124,7 +124,7 @@ export default function PublishedContentDetail({
 
   const { hasAccess: hasCollectionOrContentAccess } = useViewerContentAccess(
     content?.id ?? "",
-    null,
+    content?.creatorId ?? null,
     effectiveCollectionId,
   );
 

@@ -2044,6 +2044,7 @@
     "admissionRequirements": {
       "title": "Adgangskrav",
       "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
+      "channelDescription": "Angiv adgang for alle samlinger og alt indhold på din kanal.",
       "fallbackContentType": "samling",
       "options": {
         "free": "Gratis",
@@ -2393,6 +2394,9 @@
     "tryAgain": "Prøv igen",
     "requestSentTitle": "Anmodning sendt",
     "requestSentMessage": "Udgiveren har modtaget din anmodning. Hvis den godkendes, sender vi dig et link til indholdet via e-mail.",
+    "accessGrantedTitle": "Adgang givet",
+    "accessGrantedMessage": "Du har nu adgang til denne udgivers samlinger og indhold.",
+    "viewCollection": "Se indhold",
     "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee's kundeservice."
   },
   "pricingLabels": {

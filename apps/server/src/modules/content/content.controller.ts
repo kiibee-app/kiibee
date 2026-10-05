@@ -175,6 +175,8 @@ export class ContentController {
       minPrice: body?.minPrice,
       maxPrice: body?.maxPrice,
       rating: body?.rating,
+      excludeChannelLockedCreatorContent:
+        body?.excludeChannelLockedCreatorContent,
     };
 
     return this.contentService.getAllContents(
