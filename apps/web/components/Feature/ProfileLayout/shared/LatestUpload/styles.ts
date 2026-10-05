@@ -180,24 +180,30 @@ export const ReadMoreButton = styled(GenericButton).attrs<{
       $tone === VARIANT.PRIMARY
         ? theme.colors.neutral.OFF_WHITE
         : theme.colors.primary.BLACK};
-    border: none;
+    border: 1px solid
+      ${({ theme, $tone }) =>
+        $tone === VARIANT.PRIMARY
+          ? theme.colors.primary.BLACK
+          : theme.colors.neutral.GRAY_200};
     box-shadow: none;
-    transform: none;
+    transition: all 0.2s ease-in-out;
   }
 
   &&:not([type="submit"]):hover {
     background: ${({ theme, $tone }) =>
       $tone === VARIANT.PRIMARY
-        ? theme.colors.primary.BLACK
-        : theme.colors.neutral.GRAY_200};
-    color: ${({ theme, $tone }) =>
-      $tone === VARIANT.PRIMARY
-        ? theme.colors.neutral.OFF_WHITE
+        ? theme.colors.neutral.GRAY_700
         : theme.colors.primary.BLACK};
-    border: none;
-    box-shadow: none;
-    transform: none;
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+    border-color: ${({ theme, $tone }) =>
+      $tone === VARIANT.PRIMARY
+        ? theme.colors.neutral.GRAY_700
+        : theme.colors.primary.BLACK};
     opacity: 1;
+
+    span {
+      color: ${({ theme }) => theme.colors.primary.WHITE} !important;
+    }
   }
 `;
 

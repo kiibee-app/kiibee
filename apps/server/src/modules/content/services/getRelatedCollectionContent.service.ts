@@ -9,6 +9,7 @@ import {
   mediaFileCategories,
   mediaFiles,
   users,
+  creatorChannels,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
@@ -18,12 +19,14 @@ import { fail, success } from 'src/utils/sendResponse';
 
 const relatedItemSelect = {
   id: mediaFiles.id,
+  slug: mediaFiles.slug,
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
@@ -44,9 +47,35 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       return fail('Content ID is required', HttpStatus.BAD_REQUEST);
     }
 
+    const isUuid =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        contentId,
+      );
+
+    let resolvedMediaFileId = contentId;
+    if (!isUuid) {
+      const [mediaFile] = await db
+        .select({ id: mediaFiles.id })
+        .from(mediaFiles)
+        .where(eq(mediaFiles.slug, contentId))
+        .limit(1);
+      if (mediaFile) {
+        resolvedMediaFileId = mediaFile.id;
+      }
+    }
+
     const [collectionItem] = await db
-      .select({ collectionId: collectionItems.collectionId })
+      .select({
+        collectionId: collectionItems.collectionId,
+        collectionSlug: collections.slug,
+        collectionName: collections.name,
+        accessType: collections.accessType,
+        buyPrice: collections.buyPrice,
+        rentPrice: collections.rentPrice,
+        rentDuration: collections.rentDuration,
+      })
       .from(collectionItems)
+      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
       .innerJoin(
         collections,
         and(
@@ -54,7 +83,7 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           eq(collections.isDeleted, false),
         ),
       )
-      .where(eq(collectionItems.mediaFileId, contentId))
+      .where(eq(collectionItems.mediaFileId, resolvedMediaFileId))
       .limit(1);
 
     if (!collectionItem) {
@@ -73,6 +102,10 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           publiclyVisibleCreatorWhere,
         ),
       )
+      .leftJoin(
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
+      )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,
@@ -85,14 +118,10 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
       .where(
         and(
           eq(collectionItems.collectionId, collectionItem.collectionId),
-          ne(collectionItems.mediaFileId, contentId),
+          ne(collectionItems.mediaFileId, resolvedMediaFileId),
           publishedPublicWhere,
         ),
       );
-
-    if (!rows.length) {
-      return success(null, 'No related collection content found');
-    }
 
     const items = rows.map((item) => ({
       ...item,
@@ -102,6 +131,12 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     return success(
       {
         collectionId: collectionItem.collectionId,
+        collectionSlug: collectionItem.collectionSlug,
+        collectionName: collectionItem.collectionName,
+        accessType: collectionItem.accessType,
+        buyPrice: collectionItem.buyPrice,
+        rentPrice: collectionItem.rentPrice,
+        rentDuration: collectionItem.rentDuration,
         items,
       },
       'Related collection content fetched successfully',

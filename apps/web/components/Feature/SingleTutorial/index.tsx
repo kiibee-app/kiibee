@@ -11,6 +11,9 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
+import { COLLECTION_ROUTE } from "@/utils/path";
+import { HASH_BUY } from "@/utils/Constants";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -25,6 +28,13 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t, i18n } = useTranslation();
+  const effectiveCollectionId = collectionId || tutorial.collectionId;
+  const isPaid = tutorial.isPaidCollection;
+  const { hasAccess } = useViewerContentAccess(
+    tutorial.id,
+    tutorial.creatorId,
+    effectiveCollectionId,
+  );
 
   const playbackUrl = useMemo(
     () => resolveCloudflareStreamPlaybackUrl(null, tutorial.videoUrl),
@@ -109,9 +119,16 @@ export default function SingleTutorial({
         mediaIcon: playCircleIcon,
         mediaIconAlt: t("singleTutorial.seeContent"),
       }}
-      primaryAction={{
-        label: t("singleTutorial.seeContent"),
-      }}
+      primaryAction={
+        isPaid && effectiveCollectionId && !hasAccess
+          ? {
+              label: t("pricingLabels.partOfCollection"),
+              href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+            }
+          : {
+              label: t("singleTutorial.seeContent"),
+            }
+      }
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),

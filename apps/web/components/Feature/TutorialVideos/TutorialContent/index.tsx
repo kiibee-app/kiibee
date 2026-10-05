@@ -23,6 +23,7 @@ import COLORS from "@repo/ui/colors";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import ContentPreviewModal from "@/components/Feature/SingleContentPage/ContentPreviewModal";
 import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
+import { pathPublicCollection } from "@/utils/path";
 import { Grid } from "../TutorialsShowcase/styles";
 import {
   SkeletonCard,
@@ -145,7 +146,7 @@ function TutorialSectionRow({
   );
 
   const openCollection = () =>
-    router.push(`/single-collection?id=${section.id}`);
+    router.push(pathPublicCollection(section.slug || section.id));
 
   const movePrev = useCallback(() => {
     setPageStart((prev) => Math.max(prev - TUTORIAL_VIDEOS_PAGE_SIZE, 0));

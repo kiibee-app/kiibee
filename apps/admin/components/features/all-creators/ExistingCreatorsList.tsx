@@ -10,11 +10,7 @@ import {
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import { useDebounce } from "@/hooks/ui/use-debounce";
 import { Modal } from "../../common/Modal";
-import {
-  CREATOR_PLAN_FILTER_OPTIONS,
-  PLACEHOLDERS,
-  STORAGE_KEYS,
-} from "@/utils/constants";
+import { PLACEHOLDERS, STORAGE_KEYS } from "@/utils/constants";
 import { DEFAULT_PAGE_SIZE, getInitialPageSize } from "@/utils/pagination";
 import {
   ALL_CREATORS_TABLIST_LABEL,
@@ -38,7 +34,6 @@ import {
   AllCreatorsTabs,
   ClearIcon,
   HeaderControls,
-  PlanFilterSelect,
   SearchClearButton,
   SearchContainer,
   SearchIcon,
@@ -55,7 +50,6 @@ export function ExistingCreatorsList() {
     DEFAULT_ALL_CREATORS_TAB,
   );
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [creatorToHide, setCreatorToHide] = useState<ExistingCreator | null>(
     null,
@@ -65,9 +59,27 @@ export function ExistingCreatorsList() {
   );
   const debouncedSearch = useDebounce(searchTerm);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const handleTabChange = (tab: AllCreatorsTab) => {
+    setActiveTab(tab);
+    setCurrentPage(1);
+  };
+
+  const derivedPlan =
+    activeTab === ALL_CREATORS_TAB_KEYS.TRY
+      ? "Try Kiibee"
+      : activeTab === ALL_CREATORS_TAB_KEYS.STARTUP
+        ? "Start-up"
+        : activeTab === ALL_CREATORS_TAB_KEYS.PRO
+          ? "Pro"
+          : undefined;
+
+  const isHiddenTab = activeTab === ALL_CREATORS_TAB_KEYS.HIDDEN;
+
   const existingCreatorsQuery = useExistingCreators({
     search: debouncedSearch,
-    plan: selectedPlan || undefined,
+    plan: derivedPlan,
+    hidden: isHiddenTab ? true : undefined,
     page: currentPage,
     limit: pageSize,
   });
@@ -93,11 +105,6 @@ export function ExistingCreatorsList() {
     onPageChange: setCurrentPage,
     onPageSizeChange: setPageSize,
   });
-
-  const handlePlanChange = (plan: string) => {
-    setSelectedPlan(plan);
-    existingCreatorsPagination.onPageChange(1);
-  };
 
   const handleSearchChange = (value: string) => {
     setSearchTerm(value);
@@ -204,7 +211,7 @@ export function ExistingCreatorsList() {
               role="tab"
               aria-selected={activeTab === tab.key}
               $active={activeTab === tab.key}
-              onClick={() => setActiveTab(tab.key)}
+              onClick={() => handleTabChange(tab.key)}
             >
               {tab.label}
             </AllCreatorsTabButton>
@@ -212,23 +219,10 @@ export function ExistingCreatorsList() {
         </AllCreatorsTabs>
       </AllCreatorsHeader>
 
-      {activeTab === ALL_CREATORS_TAB_KEYS.CREATORS ? (
+      {activeTab !== ALL_CREATORS_TAB_KEYS.SETTINGS ? (
         <>
           <AllCreatorsControlsHeader>
             <HeaderControls>
-              <PlanFilterSelect
-                aria-label="Filter creators by plan"
-                value={selectedPlan}
-                onChange={(event) => handlePlanChange(event.target.value)}
-              >
-                <option value="">All plans</option>
-                {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
-                  <option key={plan} value={plan}>
-                    {plan}
-                  </option>
-                ))}
-              </PlanFilterSelect>
-
               <SearchContainer>
                 <SearchIconWrapper>
                   <SearchIcon />

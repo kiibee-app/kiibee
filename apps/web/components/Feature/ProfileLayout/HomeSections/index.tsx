@@ -24,7 +24,10 @@ import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import AccessGate from "@/components/Feature/AccessGate";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import AccessGate, {
+  CreatorAccessGrantedModal,
+} from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
@@ -50,7 +53,14 @@ export default function ProfileHomeSections({
   const isOwner =
     !isPublicView ||
     (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
-  const { gateType, handleSuccess } = useCreatorAccessGate();
+  const {
+    gateType,
+    handleSuccess,
+    showAccessGranted,
+    closeAccessGranted,
+    isLoginModalVisible,
+    closeLoginModal,
+  } = useCreatorAccessGate();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -107,6 +117,10 @@ export default function ProfileHomeSections({
           description: latest.description ?? "",
           actions: latestConfig.actions,
           contentId: latest.id,
+          creatorId:
+            (latest as { creatorId?: string }).creatorId ||
+            publicCreatorId ||
+            null,
           slug: (latest as { slug?: string }).slug,
           creatorSlug:
             (latest as { creatorSlug?: string | null }).creatorSlug ?? null,
@@ -122,6 +136,11 @@ export default function ProfileHomeSections({
           rentDurationHours:
             (latest as { rentDurationHours?: string | number | null })
               .rentDurationHours ?? null,
+          collectionId:
+            (latest as { collectionId?: string | null }).collectionId ?? null,
+          isPaidCollection: Boolean(
+            (latest as { isPaidCollection?: boolean }).isPaidCollection,
+          ),
         };
       })()
     : null;
@@ -158,12 +177,18 @@ export default function ProfileHomeSections({
 
   if (gateType) {
     return (
-      <AccessGate
-        type={gateType}
-        variant={VARIANT_PAGE}
-        creatorName={displayName ?? undefined}
-        onSuccess={handleSuccess}
-      />
+      <>
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_PAGE}
+          creatorName={displayName ?? undefined}
+          onSuccess={handleSuccess}
+        />
+        <LoginRequiredModal
+          visible={isLoginModalVisible}
+          onClose={closeLoginModal}
+        />
+      </>
     );
   }
 
@@ -205,13 +230,19 @@ export default function ProfileHomeSections({
 
   if (isLoading) {
     return (
-      <SectionWrapper>
-        <ContentAdjust>
-          <ProfileLoadingWrapper>
-            <GenericSpinner size={48} />
-          </ProfileLoadingWrapper>
-        </ContentAdjust>
-      </SectionWrapper>
+      <>
+        <SectionWrapper>
+          <ContentAdjust>
+            <ProfileLoadingWrapper>
+              <GenericSpinner size={48} />
+            </ProfileLoadingWrapper>
+          </ContentAdjust>
+        </SectionWrapper>
+        <CreatorAccessGrantedModal
+          visible={showAccessGranted}
+          onClose={closeAccessGranted}
+        />
+      </>
     );
   }
 
@@ -241,11 +272,17 @@ export default function ProfileHomeSections({
     }
 
     return (
-      <ProfileEmptyState
-        title={emptyTitle}
-        description={emptyDescription}
-        action={emptyAction}
-      />
+      <>
+        <ProfileEmptyState
+          title={emptyTitle}
+          description={emptyDescription}
+          action={emptyAction}
+        />
+        <CreatorAccessGrantedModal
+          visible={showAccessGranted}
+          onClose={closeAccessGranted}
+        />
+      </>
     );
   }
 
@@ -256,6 +293,11 @@ export default function ProfileHomeSections({
 
       {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW) &&
         collectionPreviewSection}
+
+      <CreatorAccessGrantedModal
+        visible={showAccessGranted}
+        onClose={closeAccessGranted}
+      />
     </>
   );
 }

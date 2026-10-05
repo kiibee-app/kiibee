@@ -1,4 +1,4 @@
-import { and, eq } from 'drizzle-orm';
+import { and, eq, isNotNull } from 'drizzle-orm';
 import { HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { collections, contentSettings, mediaFiles } from 'src/database/schema';
@@ -27,7 +27,13 @@ const matchesStoredCode = async (
 };
 
 const resolveStoredCode = async (targetId: string): Promise<string | null> => {
-  const [[content], [collection], [creatorSetting]] = await Promise.all([
+  const [
+    [content],
+    [collection],
+    [creatorSetting],
+    [creatorCollection],
+    [creatorMedia],
+  ] = await Promise.all([
     db
       .select({ passwordHash: mediaFiles.passwordHash })
       .from(mediaFiles)
@@ -45,9 +51,39 @@ const resolveStoredCode = async (targetId: string): Promise<string | null> => {
       .from(contentSettings)
       .where(eq(contentSettings.userId, targetId))
       .limit(1),
+    db
+      .select({ passwordHash: collections.passwordHash })
+      .from(collections)
+      .where(
+        and(
+          eq(collections.creatorId, targetId),
+          eq(collections.isDeleted, false),
+          isNotNull(collections.passwordHash),
+        ),
+      )
+      .limit(1),
+    db
+      .select({ passwordHash: mediaFiles.passwordHash })
+      .from(mediaFiles)
+      .where(
+        and(
+          eq(mediaFiles.creatorId, targetId),
+          eq(mediaFiles.isDeleted, false),
+          isNotNull(mediaFiles.passwordHash),
+        ),
+      )
+      .limit(1),
   ]);
 
-  return (content ?? collection ?? creatorSetting)?.passwordHash ?? null;
+  return (
+    (
+      content ??
+      collection ??
+      creatorSetting ??
+      creatorCollection ??
+      creatorMedia
+    )?.passwordHash ?? null
+  );
 };
 
 export const verifyContentAccessCode = async (

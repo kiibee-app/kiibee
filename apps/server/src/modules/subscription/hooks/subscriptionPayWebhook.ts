@@ -246,6 +246,30 @@ export async function handleSubscriptionPayment(body: any) {
       });
     }
 
+    const [creator] = await db
+      .select({ email: users.email, fullName: users.fullName })
+      .from(users)
+      .where(eq(users.id, customerId))
+      .limit(1);
+
+    if (creator?.email) {
+      runInBackground(
+        sendTemplateEmail({
+          to: creator.email,
+          subject: mailSubject.SUBSCRIPTION_ACTIVATED,
+          templateName: templateName.SUBSCRIPTION_ACTIVATED,
+          variables: {
+            creator: {
+              fullName: creator.fullName ?? '',
+            },
+            planName: plan.name ?? 'Abonnement',
+            amount: formattedAmount,
+            currency: currency ?? CURRENCY.DKK,
+          },
+        }),
+      );
+    }
+
     logger.info('✅ Subscription processed successfully');
   } catch (error: any) {
     logger.error('❌ webhook error:', error);

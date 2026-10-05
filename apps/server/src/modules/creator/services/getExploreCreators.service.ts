@@ -110,7 +110,9 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
       exampleWorkLink: creatorInfo.exampleWorkLink,
       supportEmail: contentAppearance.supportEmail,
       accountEmail: users.email,
-      accessType: contentSettings.accessType,
+      accessType: sql<string | null>`${contentSettings.accessType}::text`.as(
+        'access_type',
+      ),
       layout: contentAppearance.layout,
       textColor: contentAppearance.textColor,
       buttonColor: contentAppearance.buttonColor,

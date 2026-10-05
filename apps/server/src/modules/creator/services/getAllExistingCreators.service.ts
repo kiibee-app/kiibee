@@ -23,11 +23,13 @@ import {
 export const getAdminCreatorsService = async ({
   search,
   plan,
+  hidden,
   page,
   limit,
 }: {
   search?: string;
   plan?: string;
+  hidden?: boolean;
   page?: number;
   limit?: number;
 } = {}) => {
@@ -47,6 +49,10 @@ export const getAdminCreatorsService = async ({
     const requestedPage = getSafePositiveInteger(page, 1);
     const pageSize = getSafePositiveInteger(limit, DEFAULT_LIMIT, MAX_LIMIT);
     const filters = [eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)];
+
+    if (hidden !== undefined) {
+      filters.push(eq(users.isHidden, hidden));
+    }
 
     if (searchPattern) {
       const searchFilter = or(
@@ -68,7 +74,13 @@ export const getAdminCreatorsService = async ({
     const [totalResult] = await db
       .select({ count: sql<number>`COUNT(DISTINCT ${users.id})::int` })
       .from(users)
-      .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
+      .leftJoin(
+        creatorPlans,
+        and(
+          eq(creatorPlans.creatorId, users.id),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
       .where(and(...filters));
 
@@ -108,7 +120,13 @@ export const getAdminCreatorsService = async ({
       .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
       .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
       .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
-      .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
+      .leftJoin(
+        creatorPlans,
+        and(
+          eq(creatorPlans.creatorId, users.id),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
       .leftJoin(
         mediaFiles,
