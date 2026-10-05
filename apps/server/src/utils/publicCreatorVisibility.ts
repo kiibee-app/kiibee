@@ -1,11 +1,21 @@
 import { HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { users } from 'src/database/schema';
+import { contentSettings, mediaFiles, users } from 'src/database/schema';
 import { ROLE } from 'src/utils/constant';
 import { fail } from 'src/utils/sendResponse';
 
 export const publiclyVisibleCreatorWhere = eq(users.isHidden, false);
+
+export const creatorContentIsDiscoverable = sql`(
+  ${mediaFiles.accessType} NOT IN ('password', 'email_gated')
+  AND NOT EXISTS (
+    SELECT 1
+    FROM ${contentSettings}
+    WHERE ${contentSettings.userId} = ${mediaFiles.creatorId}
+      AND ${contentSettings.accessType} IN ('set_password', 'request_email', 'password', 'email_gated')
+  )
+)`;
 
 export const requirePubliclyVisibleCreator = async (creatorId: string) => {
   const [creator] = await db

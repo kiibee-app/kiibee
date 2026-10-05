@@ -1957,6 +1957,7 @@
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your {{contentType}} should have",
+      "channelDescription": "Set access for all collections and content on your channel.",
       "fallbackContentType": "collection",
       "options": {
         "free": "Free",
@@ -2391,6 +2392,9 @@
     "tryAgain": "Try Again",
     "requestSentTitle": "Request sent",
     "requestSentMessage": "The creator has received your request. If it is approved, we will email you a link to this content.",
+    "accessGrantedTitle": "Access granted",
+    "accessGrantedMessage": "You now have access to this creator's collections and content.",
+    "viewCollection": "View content",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {

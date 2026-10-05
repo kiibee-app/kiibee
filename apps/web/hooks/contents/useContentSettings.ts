@@ -9,6 +9,7 @@ export type ContentSettingData = {
   accessType?: string;
   userId?: string;
   hasPassword?: boolean;
+  passwordCount?: number;
 };
 
 type ContentSettingResponse = {
@@ -18,6 +19,7 @@ type ContentSettingResponse = {
 export type SaveContentSettingPayload = {
   accessType: string;
   password?: string;
+  removePasswordIndexes?: number[];
 };
 
 export const CONTENT_SETTING_QUERY_KEY = [API.content.setting];

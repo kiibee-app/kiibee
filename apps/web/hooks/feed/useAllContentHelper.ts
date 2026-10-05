@@ -41,6 +41,7 @@ export async function fetchAllContent({
   const selectedFormatIds = withoutAllFilterOption(formats);
 
   const body = {
+    excludeChannelLockedCreatorContent: true,
     categoryId:
       selectedCategoryIds.length > 0 ? selectedCategoryIds : undefined,
     creatorId: creators.length > 0 ? creators : undefined,

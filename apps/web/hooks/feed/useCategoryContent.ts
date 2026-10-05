@@ -157,6 +157,7 @@ export function useCategoryContent(categoryName: string) {
     ],
     queryFn: async () => {
       const body = {
+        excludeChannelLockedCreatorContent: true,
         categoryId: [categoryId!],
         creatorId:
           filterStates.selectedOptions.creators.length > 0

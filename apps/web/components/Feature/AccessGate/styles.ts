@@ -11,16 +11,16 @@ export const GateWrapper = styled.div<{ $variant?: string }>`
           background: transparent;
         `
       : css`
-          padding: 40px 0 100px;
+          padding: 24px 0 40px;
           background: ${theme.colors.neutral.WHITE};
-          min-height: 400px;
+          min-height: 0;
 
           ${theme.media.desktopSm} {
-            padding: 32px 0 80px;
+            padding: 20px 0 32px;
           }
 
           ${theme.media.mobileLg} {
-            padding: 24px 0 60px;
+            padding: 16px 0 24px;
           }
         `}
 `;
@@ -37,34 +37,41 @@ export const GateInner = styled.div<{ $variant?: string }>`
 `;
 
 export const GateCard = styled.div<{ $variant?: string }>`
-  background: transparent;
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   border: none;
-  border-radius: 0;
-  padding: 0;
+  border-radius: 8px;
+  padding: 16px;
   width: 100%;
-  max-width: 100%;
+  max-width: 352px;
   box-sizing: border-box;
+
+  ${({ theme }) => theme.media.mobileLg} {
+    padding: 12px;
+  }
 `;
 
 export const GateTitle = styled.h2`
-  margin: 0 0 24px;
+  margin: 0 0 12px;
 
   ${({ theme }) => theme.media.mobileLg} {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 `;
 
 export const GateTitleText = styled(MonoText).attrs(({ theme }) => ({
   $use: "H4_SemiBold",
   color: theme.colors.primary.BLACK,
-}))``;
+}))`
+  font-size: 16px;
+  line-height: 1.3;
+`;
 
 export const GateForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  max-width: 320px;
+  max-width: 100%;
 `;
 
 export const GateFieldsRow = styled.div`
@@ -77,7 +84,7 @@ export const GateFieldsRow = styled.div`
 export const GateFieldGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
 `;
 
@@ -85,7 +92,7 @@ export const GateLabel = styled.label`
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -98,12 +105,12 @@ export const RequiredAsterisk = styled.span`
 
 export const GateInput = styled.input`
   width: 100%;
-  height: 44px;
-  padding: 0 16px;
+  height: 40px;
+  padding: 0 12px;
   border: 1px solid transparent;
   border-radius: ${({ theme }) => theme.radius.md};
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
-  font-size: 14px;
+  font-size: 13px;
   font-family: inherit;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   outline: none;
@@ -124,12 +131,12 @@ export const GateInput = styled.input`
 
 export const GateSubmitButton = styled.button`
   width: 100%;
-  height: 44px;
+  height: 40px;
   border: none;
   border-radius: ${({ theme }) => theme.radius.md};
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
@@ -137,7 +144,7 @@ export const GateSubmitButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: opacity ${({ theme }) => theme.animations.fast};
-  margin-top: 4px;
+  margin-top: 0;
 
   &:hover:not(:disabled) {
     opacity: 0.88;

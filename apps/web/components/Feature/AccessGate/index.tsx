@@ -35,6 +35,7 @@ import {
   HTML_ID_EMAIL,
 } from "@/utils/Constants";
 import { GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 
 export type { AccessGateType, AccessGateVariant };
@@ -267,5 +268,33 @@ export default function AccessGate({
         )}
       </GateInner>
     </GateWrapper>
+  );
+}
+
+export function CreatorAccessGrantedModal({
+  visible,
+  onClose,
+}: {
+  visible: boolean;
+  onClose: () => void;
+}) {
+  const { t } = useTranslation();
+
+  return (
+    <GenericModal
+      visible={visible}
+      icon={<SuccessModalIcon />}
+      iconMargin="0 auto 8px"
+      textAlign={MODAL_ALIGN.CENTER}
+      title={t("accessGate.accessGrantedTitle")}
+      message={t("accessGate.accessGrantedMessage")}
+      confirmLabel={t("accessGate.viewCollection")}
+      onConfirm={onClose}
+      onClose={onClose}
+      closeOnConfirm={false}
+      buttonRow
+      size="sm"
+      showCloseButton={false}
+    />
   );
 }

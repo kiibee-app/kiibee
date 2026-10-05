@@ -71,8 +71,14 @@ type Props = {
   setCollectionPurchaseAmount?: (value: string) => void;
   collectionAccessDuration?: AccessDurationValue;
   setCollectionAccessDuration?: (value: AccessDurationValue) => void;
-  onPasswordValidationChange?: (hasError: boolean) => void;
+  onPasswordValidationChange?: (
+    hasError: boolean,
+    passwordDraft?: string,
+  ) => void;
   collectionHasPassword?: boolean;
+  passwordCount?: number;
+  removedPasswordIndexes?: number[];
+  onRemoveSavedPassword?: (index: number) => void;
 };
 
 export default function ContentTabPanel({
@@ -106,6 +112,9 @@ export default function ContentTabPanel({
   setCollectionAccessDuration,
   onPasswordValidationChange,
   collectionHasPassword,
+  passwordCount,
+  removedPasswordIndexes,
+  onRemoveSavedPassword,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -256,11 +265,16 @@ export default function ContentTabPanel({
         onChangePurchaseAmount={setCollectionPurchaseAmount}
         accessDuration={collectionAccessDuration}
         onChangeAccessDuration={setCollectionAccessDuration}
-        showDescription={true}
+        showDescription={Boolean(selectedCollection)}
         showPaymentOption={true}
+        isChannelSettings={!selectedCollection}
         onValidationChange={onPasswordValidationChange}
         hasPassword={collectionHasPassword}
-        passwordCount={selectedCollection?.passwordCount}
+        passwordCount={passwordCount}
+        removedPasswordIndexes={removedPasswordIndexes}
+        onRemoveSavedPassword={
+          selectedCollection ? undefined : onRemoveSavedPassword
+        }
       />
     );
   }

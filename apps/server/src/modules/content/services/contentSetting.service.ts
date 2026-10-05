@@ -22,6 +22,25 @@ const toContentSettingResponse = (setting: {
   passwordCount: getPasswordCount(setting.passwordHash),
 });
 
+const parsePasswordHashes = (stored?: string | null): string[] => {
+  if (!stored) return [];
+  if (!stored.startsWith('[')) return [stored];
+
+  try {
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed)
+      ? parsed.filter((hash): hash is string => typeof hash === 'string')
+      : [stored];
+  } catch {
+    return [stored];
+  }
+};
+
+const serializePasswordHashes = (hashes: string[]): string | null => {
+  if (hashes.length === 0) return null;
+  return hashes.length === 1 ? hashes[0] : JSON.stringify(hashes);
+};
+
 export const getContentSettingByUserId = async (userId: string) => {
   try {
     const contentSetting = await db
@@ -64,7 +83,11 @@ export const createOrUpdateContentSetting = async (
   contentSettingDto: ContentSettingDto,
 ) => {
   try {
-    const { accessType, password } = contentSettingDto;
+    const {
+      accessType,
+      password,
+      removePasswordIndexes = [],
+    } = contentSettingDto;
 
     const existingSetting = await db
       .select()
@@ -83,8 +106,18 @@ export const createOrUpdateContentSetting = async (
 
     if (accessType !== 'set_password') {
       updatePayload.passwordHash = null;
-    } else if (password?.trim()) {
-      updatePayload.passwordHash = await hashAccessPasswords(password);
+    } else if (password?.trim() || removePasswordIndexes.length > 0) {
+      const removedIndexes = new Set(removePasswordIndexes);
+      const existingHashes = parsePasswordHashes(
+        existingSetting[0]?.passwordHash,
+      ).filter((_, index) => !removedIndexes.has(index));
+      const newHashes = parsePasswordHashes(
+        password?.trim() ? await hashAccessPasswords(password) : null,
+      );
+      updatePayload.passwordHash = serializePasswordHashes([
+        ...existingHashes,
+        ...newHashes,
+      ]);
     }
 
     if (existingSetting && existingSetting.length > 0) {

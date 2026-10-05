@@ -15,7 +15,10 @@ import {
   RECENT_MIN_CANDIDATE_LIMIT,
   ROLE,
 } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorContentIsDiscoverable,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import {
   dedupeFeedMediaByCreator,
   dedupeFeedMediaById,
@@ -64,7 +67,13 @@ async function fetchMediaFilesByIds(ids: string[]) {
       eq(contentCategories.id, mediaFileCategories.categoryId),
     )
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
-    .where(and(inArray(mediaFiles.id, ids), eq(mediaFiles.isDeleted, false)));
+    .where(
+      and(
+        inArray(mediaFiles.id, ids),
+        eq(mediaFiles.isDeleted, false),
+        creatorContentIsDiscoverable,
+      ),
+    );
 
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }

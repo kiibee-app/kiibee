@@ -10,8 +10,11 @@ import CollectionContent from "@/components/Feature/SingleCollectionHero/Collect
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
-import AccessGate from "@/components/Feature/AccessGate";
+import AccessGate, {
+  CreatorAccessGrantedModal,
+} from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { useViewerCollectionAccess } from "@/hooks/useViewerContentAccess";
 import {
   VARIANT_CONTENT,
@@ -283,14 +286,24 @@ export default function SingleCollectionDetail({
     dynamicSection?.heroImage ??
     dynamicSection?.videos?.[0]?.image;
 
-  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
-    !staticSection ? canonicalCollectionId : null,
-  );
+  const {
+    gateType: creatorGateType,
+    isLoading: isCreatorGateLoading,
+    handleSuccess: handleCreatorGateSuccess,
+    showAccessGranted,
+    closeAccessGranted,
+    isLoginModalVisible: isCreatorLoginModalVisible,
+    closeLoginModal: closeCreatorLoginModal,
+  } = useCreatorAccessGate(!staticSection ? resolvedCreatorId : null);
+  const { gateType: collectionGateType, isLoading: isCollectionGateLoading } =
+    useCollectionAccessGate(!staticSection ? canonicalCollectionId : null);
+  const gateType = creatorGateType ?? collectionGateType;
+  const isGateLoading = isCreatorGateLoading || isCollectionGateLoading;
   const {
     hasAccess: hasCollectionAccess,
     isPurchased,
     isRented,
-  } = useViewerCollectionAccess(canonicalCollectionId);
+  } = useViewerCollectionAccess(canonicalCollectionId, resolvedCreatorId);
 
   const userAccessStatus = isPurchased
     ? COLLECTION_ACCESS_STATUS.PURCHASED
@@ -490,15 +503,19 @@ export default function SingleCollectionDetail({
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
 
   const handleCollectionGateSuccess = async (value: string, name?: string) => {
+    if (creatorGateType) {
+      return handleCreatorGateSuccess(value, name);
+    }
+
     if (
       !canonicalCollectionId ||
-      (gateType !== TYPE_CODE && !resolvedCreatorId)
+      (collectionGateType !== TYPE_CODE && !resolvedCreatorId)
     ) {
       return false;
     }
 
     const request =
-      gateType === TYPE_CODE
+      collectionGateType === TYPE_CODE
         ? axiosClient.post(API.content.verifyCode(canonicalCollectionId), {
             code: value,
           })
@@ -547,12 +564,21 @@ export default function SingleCollectionDetail({
       />
 
       <LoginRequiredModal
-        visible={isLoginModalVisible}
-        onClose={handleCloseLoginModal}
+        visible={isLoginModalVisible || isCreatorLoginModalVisible}
+        onClose={() => {
+          handleCloseLoginModal();
+          closeCreatorLoginModal();
+        }}
         message={t("createProfileHome.latestUpload.loginModal.message")}
         onSuccess={() => {
           handleCloseLoginModal();
+          closeCreatorLoginModal();
         }}
+      />
+
+      <CreatorAccessGrantedModal
+        visible={showAccessGranted}
+        onClose={closeAccessGranted}
       />
 
       <GenericModal

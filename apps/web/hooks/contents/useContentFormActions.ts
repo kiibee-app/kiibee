@@ -101,6 +101,10 @@ type Params = {
     backToTypeSelect: () => void;
   };
   contentSettingAccessType?: string;
+  contentSettingPasswordCount?: number;
+  removedPasswordIndexes: number[];
+  clearRemovedPasswordIndexes: () => void;
+  passwordDraft: string;
   saveContentSetting?: (payload: SaveContentSettingPayload) => Promise<void>;
 };
 
@@ -117,6 +121,10 @@ export function useContentFormActions({
   createCollectionFlow,
   contentTypeFlow,
   contentSettingAccessType,
+  contentSettingPasswordCount,
+  removedPasswordIndexes,
+  clearRemovedPasswordIndexes,
+  passwordDraft,
   saveContentSetting,
 }: Params) {
   const { t } = useTranslation();
@@ -620,6 +628,16 @@ export function useContentFormActions({
     return true;
   };
 
+  const getPasswordsForSave = () =>
+    Array.from(
+      new Set(
+        [collectionPasswords, passwordDraft]
+          .flatMap((value) => value.split(","))
+          .map((value) => value.trim())
+          .filter(Boolean),
+      ),
+    ).join(", ");
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
@@ -687,16 +705,14 @@ export function useContentFormActions({
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    const passwordsForSave = getPasswordsForSave();
     if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
       const hasExistingPassword = Boolean(selectedCollection.hasPassword);
-      if (!collectionPasswords.trim() && !hasExistingPassword) {
+      if (!passwordsForSave && !hasExistingPassword) {
         toast.error(t("authForm.errors.required"));
         return;
       }
-      if (
-        collectionPasswords.trim() &&
-        validatePasswordInput(collectionPasswords)
-      ) {
+      if (passwordsForSave && validatePasswordInput(passwordsForSave)) {
         toast.error(
           t("contents.admissionRequirements.password.error.minLength"),
         );
@@ -725,8 +741,8 @@ export function useContentFormActions({
         rentDuration: hasRental ? collectionAccessDuration : null,
         password:
           collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-          collectionPasswords.trim()
-            ? collectionPasswords.trim()
+          passwordsForSave
+            ? passwordsForSave
             : undefined,
       });
 
@@ -796,20 +812,23 @@ export function useContentFormActions({
 
   const saveContentSettings = async () => {
     if (!saveContentSetting) return;
+    const passwordsForSave = getPasswordsForSave();
 
     if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
       const hasExistingPassword = Boolean(
         contentSettingAccessType === SET_PASSWORD_ACCESS ||
         contentSettingAccessType === ACCESS_TYPE_PASSWORD,
       );
-      if (!collectionPasswords.trim() && !hasExistingPassword) {
+      const remainingPasswordCount = Math.max(
+        0,
+        (contentSettingPasswordCount ?? (hasExistingPassword ? 1 : 0)) -
+          removedPasswordIndexes.length,
+      );
+      if (!passwordsForSave && remainingPasswordCount === 0) {
         toast.error(t(AUTH_FORM.errors.required));
         return;
       }
-      if (
-        collectionPasswords.trim() &&
-        validatePasswordInput(collectionPasswords)
-      ) {
+      if (passwordsForSave && validatePasswordInput(passwordsForSave)) {
         toast.error(t(CONTENTS.admissionRequirements.password.error.minLength));
         return;
       }
@@ -824,12 +843,16 @@ export function useContentFormActions({
 
       if (
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-        collectionPasswords.trim()
+        passwordsForSave
       ) {
-        payload.password = collectionPasswords.trim();
+        payload.password = passwordsForSave;
+      }
+      if (removedPasswordIndexes.length > 0) {
+        payload.removePasswordIndexes = removedPasswordIndexes;
       }
 
       await saveContentSetting(payload);
+      clearRemovedPasswordIndexes();
 
       const hasRental =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
@@ -954,6 +977,7 @@ export function useContentFormActions({
     }
     if (activeTab === SETTINGS) {
       applySettingsSnapshot(savedSettings);
+      clearRemovedPasswordIndexes();
       return;
     }
     openDiscardModal();
@@ -983,6 +1007,7 @@ export function useContentFormActions({
 
   const hasSettingsUnsavedChanges =
     collectionAccessType !== savedSettings.accessType ||
+    removedPasswordIndexes.length > 0 ||
     collectionPasswords !== savedSettings.passwords ||
     collectionDescription !== savedSettings.description ||
     collectionRentalAmount !== savedSettings.rentalAmount ||

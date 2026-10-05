@@ -8,7 +8,13 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import type { CreatorLayoutKey } from "@/utils/creatorChannel";
-import { DEFAULT_DEBOUNCE_DELAY } from "@/utils/Constants";
+import {
+  ACCESS_TYPE_EMAIL_GATED,
+  ACCESS_TYPE_PASSWORD,
+  DEFAULT_DEBOUNCE_DELAY,
+  REQUEST_EMAIL_ACCESS,
+  SET_PASSWORD_ACCESS,
+} from "@/utils/Constants";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -50,6 +56,23 @@ export const useGlobalSearch = ({
     debouncedQuery,
   );
 
+  const lockedCreatorIds = new Set(
+    creators
+      .filter((creator) =>
+        [
+          ACCESS_TYPE_PASSWORD,
+          ACCESS_TYPE_EMAIL_GATED,
+          SET_PASSWORD_ACCESS,
+          REQUEST_EMAIL_ACCESS,
+        ].includes(creator.accessType ?? ""),
+      )
+      .map((creator) => creator.id),
+  );
+  const visibleTutorials = tutorials.filter(
+    (tutorial) =>
+      !tutorial.creatorId || !lockedCreatorIds.has(tutorial.creatorId),
+  );
+
   const isLoading = isContentLoading || isCreatorsLoading;
 
   const handleContentClick = useCallback(
@@ -74,8 +97,7 @@ export const useGlobalSearch = ({
     [closeSearch, router],
   );
 
-  const hasResults =
-    (tutorials?.length ?? 0) > 0 || (creators?.length ?? 0) > 0;
+  const hasResults = visibleTutorials.length > 0 || creators.length > 0;
 
   return {
     searchQuery,
@@ -84,7 +106,7 @@ export const useGlobalSearch = ({
     containerRef,
     isLoading,
     creators,
-    tutorials,
+    tutorials: visibleTutorials,
     hasResults,
     handleContentClick,
     handleCreatorClick,

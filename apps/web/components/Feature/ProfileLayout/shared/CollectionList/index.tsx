@@ -24,7 +24,10 @@ import {
   resolveImageUrl,
   VARIANT_PAGE,
 } from "@/utils/Constants";
-import AccessGate from "@/components/Feature/AccessGate";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import AccessGate, {
+  CreatorAccessGrantedModal,
+} from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
@@ -68,7 +71,14 @@ export default function CollectionList() {
   const router = useRouter();
   const user = useStoredLoginUser();
 
-  const { gateType, handleSuccess } = useCreatorAccessGate();
+  const {
+    gateType,
+    handleSuccess,
+    showAccessGranted,
+    closeAccessGranted,
+    isLoginModalVisible,
+    closeLoginModal,
+  } = useCreatorAccessGate();
 
   const { data: collectionsResponse, isLoading: isCollectionsLoading } =
     useGetAPI<CollectionsApiResponse>(
@@ -236,50 +246,62 @@ export default function CollectionList() {
 
   if (gateType) {
     return (
-      <AccessGate
-        type={gateType}
-        variant={VARIANT_PAGE}
-        creatorName={displayName ?? undefined}
-        onSuccess={handleSuccess}
-      />
+      <>
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_PAGE}
+          creatorName={displayName ?? undefined}
+          onSuccess={handleSuccess}
+        />
+        <LoginRequiredModal
+          visible={isLoginModalVisible}
+          onClose={closeLoginModal}
+        />
+      </>
     );
   }
 
   return (
-    <CollectionListShell data-creator-collection>
-      <CollectionListInner>
-        {isLoading ? (
-          <ProfileLoadingWrapper>
-            <GenericSpinner size={48} />
-          </ProfileLoadingWrapper>
-        ) : filteredItems.length === 0 ? (
-          <ProfileEmptyState
-            title={
-              searchQuery.trim() !== ""
-                ? t("createProfileHome.noSearchResultsTitle")
-                : t("createProfileHome.noContentTitle")
-            }
-            description={
-              searchQuery.trim() !== ""
-                ? t("createProfileHome.noSearchResultsDescription")
-                : t("createProfileHome.noContentDescription")
-            }
-          />
-        ) : (
-          <CollectionsSection
-            mode={RENTED_MODES.PURCHASED}
-            items={filteredItems}
-            totalItems={filteredItems.length}
-            canSlide={() => false}
-            canGoPrev={() => false}
-            canGoNext={() => false}
-            movePrev={() => {}}
-            moveNext={() => {}}
-            onCollectionPrimaryAction={handleBuyClick}
-            onCollectionClick={handleCardClick}
-          />
-        )}
-      </CollectionListInner>
-    </CollectionListShell>
+    <>
+      <CollectionListShell data-creator-collection>
+        <CollectionListInner>
+          {isLoading ? (
+            <ProfileLoadingWrapper>
+              <GenericSpinner size={48} />
+            </ProfileLoadingWrapper>
+          ) : filteredItems.length === 0 ? (
+            <ProfileEmptyState
+              title={
+                searchQuery.trim() !== ""
+                  ? t("createProfileHome.noSearchResultsTitle")
+                  : t("createProfileHome.noContentTitle")
+              }
+              description={
+                searchQuery.trim() !== ""
+                  ? t("createProfileHome.noSearchResultsDescription")
+                  : t("createProfileHome.noContentDescription")
+              }
+            />
+          ) : (
+            <CollectionsSection
+              mode={RENTED_MODES.PURCHASED}
+              items={filteredItems}
+              totalItems={filteredItems.length}
+              canSlide={() => false}
+              canGoPrev={() => false}
+              canGoNext={() => false}
+              movePrev={() => {}}
+              moveNext={() => {}}
+              onCollectionPrimaryAction={handleBuyClick}
+              onCollectionClick={handleCardClick}
+            />
+          )}
+        </CollectionListInner>
+      </CollectionListShell>
+      <CreatorAccessGrantedModal
+        visible={showAccessGranted}
+        onClose={closeAccessGranted}
+      />
+    </>
   );
 }

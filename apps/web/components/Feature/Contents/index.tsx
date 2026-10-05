@@ -288,6 +288,10 @@ function CreatorsContentsInner() {
   );
 
   const contentSettings = useContentSettings();
+  const [removedPasswordIndexes, setRemovedPasswordIndexes] = useState<
+    number[]
+  >([]);
+  const [passwordDraft, setPasswordDraft] = useState("");
 
   const contentSettingAccessType =
     contentSettings.data?.data?.accessType ?? undefined;
@@ -339,12 +343,23 @@ function CreatorsContentsInner() {
     createCollectionFlow,
     contentTypeFlow,
     contentSettingAccessType,
+    contentSettingPasswordCount: contentSettings.data?.data?.passwordCount,
+    removedPasswordIndexes,
+    clearRemovedPasswordIndexes: () => setRemovedPasswordIndexes([]),
+    passwordDraft,
     saveContentSetting: contentSettings.updateSetting,
   });
 
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [pendingAppearanceTab, setPendingAppearanceTab] =
     useState<ContentTab | null>(null);
+
+  useEffect(() => {
+    if (activeTab !== SETTINGS) {
+      setHasPasswordError(false);
+      setPasswordDraft("");
+    }
+  }, [activeTab]);
 
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
@@ -520,13 +535,15 @@ function CreatorsContentsInner() {
           onSave={handleHeaderSave}
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
-            (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
+            (activeTab === SETTINGS &&
+              !hasSettingsUnsavedChanges &&
+              !passwordDraft.trim()) ||
             (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
               !hasExistingPassword &&
-              (!collectionPasswords.trim() ||
-                validatePasswordInput(collectionPasswords))) ||
+              !collectionPasswords.trim() &&
+              !passwordDraft.trim()) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
               !!collectionPasswords.trim() &&
@@ -607,8 +624,21 @@ function CreatorsContentsInner() {
             setCollectionPurchaseAmount={setCollectionPurchaseAmount}
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
-            onPasswordValidationChange={setHasPasswordError}
+            onPasswordValidationChange={(hasError, draft) => {
+              setHasPasswordError(hasError);
+              setPasswordDraft(draft ?? "");
+            }}
             collectionHasPassword={hasExistingPassword}
+            removedPasswordIndexes={removedPasswordIndexes}
+            onRemoveSavedPassword={(index) =>
+              setRemovedPasswordIndexes((current) =>
+                current.includes(index) ? current : [...current, index],
+              )
+            }
+            passwordCount={
+              selectedCollection?.passwordCount ??
+              contentSettings.data?.data?.passwordCount
+            }
           />
         </ContentPanel>
       </ContentsScrollArea>

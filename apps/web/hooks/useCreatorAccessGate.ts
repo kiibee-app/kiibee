@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 import { isBrowser } from "@/utils/ui";
@@ -24,13 +25,23 @@ import {
   getCreatorUnlockStorageKey,
   unlockCreatorAccessGate,
 } from "@/utils/accessGate";
-import { useLatestUpload } from "@/hooks/useLatestUpload";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
   isLoading: boolean;
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
+  showAccessGranted: boolean;
+  closeAccessGranted: () => void;
+  isLoginModalVisible: boolean;
+  closeLoginModal: () => void;
 } {
+  const [unlockedCreatorInSession, setUnlockedCreatorInSession] = useState<
+    string | null
+  >(null);
+  const [accessGrantedCreatorId, setAccessGrantedCreatorId] = useState<
+    string | null
+  >(null);
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
 
@@ -53,10 +64,13 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const currentUserId = storedUser?.id;
 
   const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
-  const isUnlocked =
+  const isStoredUnlock =
     isBrowser && storageKey
       ? window.localStorage.getItem(storageKey) === STRING_TRUE
       : false;
+  const isUnlocked =
+    unlockedCreatorInSession === targetCreatorId || isStoredUnlock;
+  const showAccessGranted = accessGrantedCreatorId === targetCreatorId;
 
   const isOwner =
     !isPublicView ||
@@ -66,25 +80,15 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
 
-  const { data: latest } = useLatestUpload(
-    isPublicView ? publicCreatorId : null,
-  );
-
-  const fallbackAccessType =
-    (latest as { accessType?: string | null })?.accessType ?? null;
-
   const accessType = isPublicView
     ? publicCreator?.accessType
     : privateSettings?.data?.accessType;
 
-  const effectiveAccessType = accessType || fallbackAccessType;
-
   const resolvedGateType: AccessGateType | null =
-    effectiveAccessType === SET_PASSWORD_ACCESS ||
-    effectiveAccessType === ACCESS_TYPE_PASSWORD
+    accessType === SET_PASSWORD_ACCESS || accessType === ACCESS_TYPE_PASSWORD
       ? TYPE_CODE
-      : effectiveAccessType === REQUEST_EMAIL_ACCESS ||
-          effectiveAccessType === ACCESS_TYPE_EMAIL_GATED
+      : accessType === REQUEST_EMAIL_ACCESS ||
+          accessType === ACCESS_TYPE_EMAIL_GATED
         ? TYPE_EMAIL
         : null;
 
@@ -100,6 +104,11 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const handleSuccess = async (value: string, name?: string) => {
     if (!targetCreatorId || !finalGateType) return false;
 
+    if (!storedUser?.id) {
+      setIsLoginModalVisible(true);
+      return false;
+    }
+
     const request =
       finalGateType === TYPE_CODE
         ? axiosClient.post(API.content.verifyCode(targetCreatorId), {
@@ -114,9 +123,19 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
           });
 
     await request;
-    unlockCreatorAccessGate(targetCreatorId, currentUserId);
+    unlockCreatorAccessGate(targetCreatorId, currentUserId, false);
+    setUnlockedCreatorInSession(targetCreatorId);
+    setAccessGrantedCreatorId(targetCreatorId);
     return true;
   };
 
-  return { gateType: finalGateType, isLoading, handleSuccess };
+  return {
+    gateType: finalGateType,
+    isLoading,
+    handleSuccess,
+    showAccessGranted,
+    closeAccessGranted: () => setAccessGrantedCreatorId(null),
+    isLoginModalVisible,
+    closeLoginModal: () => setIsLoginModalVisible(false),
+  };
 }
