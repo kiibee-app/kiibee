@@ -41,6 +41,7 @@ export type TutorialItemApiItem =
 
 export type TutorialVideoSectionApiItem = {
   id: string;
+  slug?: string;
   title: string;
   sortOrder: number;
   gridMaxWidth?: string | null;
