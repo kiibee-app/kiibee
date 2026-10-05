@@ -257,14 +257,16 @@ export default function PurchaseModal({
       label: (
         <PurchaseModalPaymentMethodSelected>
           <PurchaseModalPaymentMethodPrimary>
-            <MonoText $use="Body_Medium">{formatSavedCardLabel(card)}</MonoText>
+            <MonoText $use="Body_SemiBold" style={{ fontSize: "14px" }}>
+              {formatSavedCardLabel(card)}
+            </MonoText>
             {card.isDefault ? (
               <PurchaseModalPaymentMethodDefaultBadge>
                 {t("dashboard.viewerBillings.paymentMethods.defaultBadge")}
               </PurchaseModalPaymentMethodDefaultBadge>
             ) : null}
           </PurchaseModalPaymentMethodPrimary>
-          <MonoText $use="Body_Medium">
+          <MonoText $use="Body_Small">
             {t("singleContent.pricing.expires", {
               date: formatCardExpiry(card.expireDate),
             })}
@@ -522,11 +524,11 @@ export default function PurchaseModal({
           >
             <SelectedCheckIcon selected={isUsingNewCard} size={20} />
             <PurchaseModalPaymentMethodText>
-              <MonoText $use="Body_Bold">
+              <MonoText $use="Body_SemiBold" style={{ fontSize: "13px" }}>
                 {t("singleContent.pricing.useNewCard")}
               </MonoText>
               <PurchaseModalPaymentMethodHint>
-                <MonoText $use="Body_Medium">
+                <MonoText $use="Body_Small">
                   {t("singleContent.pricing.useNewCardHint")}
                 </MonoText>
               </PurchaseModalPaymentMethodHint>
