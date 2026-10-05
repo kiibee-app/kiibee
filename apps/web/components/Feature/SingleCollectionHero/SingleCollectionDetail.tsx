@@ -302,10 +302,6 @@ export default function SingleCollectionDetail({
 
   const handlePricingActionClick = useCallback(
     (action: PricingAction) => {
-      if (user?.role === ROLE_CREATOR) {
-        setShowCreatorModal1(true);
-        return;
-      }
       const durationHours = resolvedPricing?.rentDurationHours;
       const rentalExpiresAt = !action.isPurchase
         ? calculateRentalExpiryDate(durationHours)
@@ -314,7 +310,7 @@ export default function SingleCollectionDetail({
       setSelectedAction({ ...action, rentalExpiresAt });
       setShowPurchaseModal(true);
     },
-    [resolvedPricing?.rentDurationHours, user?.role],
+    [resolvedPricing?.rentDurationHours],
   );
 
   const handlePurchaseConfirm = (
@@ -325,6 +321,12 @@ export default function SingleCollectionDetail({
 
     if (!user?.id) {
       setLoginModalVisible(true);
+      return;
+    }
+
+    if (user?.role === ROLE_CREATOR) {
+      setShowPurchaseModal(false);
+      setShowCreatorModal1(true);
       return;
     }
 

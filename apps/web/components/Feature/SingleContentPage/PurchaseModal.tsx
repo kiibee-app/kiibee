@@ -19,6 +19,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import paymentCardImage from "@/assets/icons/payment-icons.svg";
 import { SelectedCheckIcon, InfoIcon, PlaylistIcon } from "@/assets/icons";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
@@ -77,7 +78,6 @@ import {
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
-import { PAYMENT_ICONS } from "@/utils/paymentIcons";
 import COLORS from "@repo/ui/colors";
 import { getCouponErrorMessage } from "@/utils/couponErrors";
 
@@ -624,15 +624,12 @@ export default function PurchaseModal({
       </PurchaseModalPriceSummary>
 
       <PurchaseModalPaymentIcons>
-        {PAYMENT_ICONS.map((icon) => (
-          <Image
-            key={icon.alt}
-            src={icon.src}
-            alt={icon.alt}
-            width={34}
-            height={23}
-          />
-        ))}
+        <Image
+          src={paymentCardImage}
+          alt="Payment options"
+          height={23}
+          style={{ height: "23px", width: "auto" }}
+        />
       </PurchaseModalPaymentIcons>
 
       <PurchaseModalButtonWrapper>
