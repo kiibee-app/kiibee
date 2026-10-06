@@ -41,6 +41,9 @@
       "categoryTitle": "Category",
       "category": {
         "comedy": "Comedy",
+        "history": "History",
+        "entertainment": "Entertainment",
+        "coaching": "Coaching",
         "education": "Education & Courses",
         "sportsAndFitness": "Sports & Fitness",
         "booksAndWriting": "Books & Writing",
@@ -178,6 +181,9 @@
         "subtitle": "Select all that apply.",
         "options": {
           "comedy": "Comedy",
+          "history": "History",
+          "entertainment": "Entertainment",
+          "coaching": "Coaching",
           "music": "Music",
           "podcasts": "Podcasts",
           "artsAndIllustration": "Arts & Illustration",

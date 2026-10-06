@@ -1,7 +1,10 @@
-import { contentCategories } from '../schema/content/contentCategories.schema';
-import { db } from '../db';
+import 'dotenv/config';
+import { db } from '../src/database/db';
+import { contentCategories } from '../src/database/schema/content/contentCategories.schema';
 
-export const seedContentCategories = async () => {
+async function main() {
+  console.log('Starting categories sync...');
+
   const categories = [
     {
       id: 'comedy',
@@ -87,5 +90,11 @@ export const seedContentCategories = async () => {
     await db.insert(contentCategories).values(category).onConflictDoNothing();
   }
 
-  console.log('Content categories seeded successfully');
-};
+  console.log('Categories synced successfully!');
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error('Error syncing categories:', err);
+  process.exit(1);
+});

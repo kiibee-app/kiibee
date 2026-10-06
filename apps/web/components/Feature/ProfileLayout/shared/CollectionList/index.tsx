@@ -18,8 +18,6 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { axiosClient } from "@/lib/http/axiosClient";
 import {
   CREATOR,
-  HASH_RENT,
-  HASH_BUY,
   STRING_EMPTY,
   resolveImageUrl,
   VARIANT_PAGE,
@@ -40,8 +38,6 @@ import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
   getPricingLabels,
-  isRentActionLabel,
-  isBuyActionLabel,
   resolveCollectionPricing,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
@@ -176,16 +172,10 @@ export default function CollectionList() {
 
         actions = pricingActions.map((action) => {
           const label = action.label ?? STRING_EMPTY;
-          const hash = isRentActionLabel(label)
-            ? HASH_RENT
-            : isBuyActionLabel(label)
-              ? HASH_BUY
-              : STRING_EMPTY;
-
           return {
             label,
-            variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: `${collectionHref}${hash}`,
+            variant: VARIANT.PRIMARY,
+            href: collectionHref,
           };
         });
       } else {

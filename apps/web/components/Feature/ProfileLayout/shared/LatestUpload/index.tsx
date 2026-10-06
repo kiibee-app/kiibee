@@ -41,8 +41,7 @@ import {
 import { useIsMobile } from "@/utils/useIsMobile";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { pathPublishedContent, COLLECTION_ROUTE } from "@/utils/path";
-import { HASH_BUY } from "@/utils/Constants";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
@@ -161,10 +160,15 @@ export default function LatestUpload({
 
       if (isFreeContentItem(pricingItem)) {
         if (isPaidCol && effectiveCollectionId) {
+          const href = pathPublicCollection(
+            effectiveCollectionId,
+            undefined,
+            data.creatorSlug,
+          );
           return [
             {
               title: t("pricingLabels.partOfCollection"),
-              href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+              href,
             },
           ];
         }

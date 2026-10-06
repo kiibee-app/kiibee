@@ -41,6 +41,9 @@
       "categoryTitle": "Kategori",
       "category": {
         "comedy": "Komedie",
+        "history": "Historie",
+        "entertainment": "Underholdning",
+        "coaching": "Coaching",
         "education": "Uddannelse & Kurser",
         "sportsAndFitness": "Sport & fitness",
         "booksAndWriting": "Bøger & skrivning",
@@ -178,6 +181,9 @@
         "subtitle": "Vælg alle, der passer.",
         "options": {
           "comedy": "Komedie",
+          "history": "Historie",
+          "entertainment": "Underholdning",
+          "coaching": "Coaching",
           "music": "Musik",
           "podcasts": "Podcasts",
           "artsAndIllustration": "Kunst & illustration",

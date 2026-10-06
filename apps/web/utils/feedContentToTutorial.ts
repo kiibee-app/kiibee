@@ -5,8 +5,8 @@ import {
   resolveContentActionHref,
   type PricingLabels,
 } from "@/utils/contentPricingActions";
-import { ACCESS_TYPE_FREE, HASH_BUY, VARIANT } from "@/utils/Constants";
-import { COLLECTION_ROUTE } from "@/utils/path";
+import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
@@ -150,11 +150,16 @@ function buildPricingButtons(
       options?.partOfCollectionLabel ||
       options?.labels?.partOfCollection ||
       "Part of a collection";
+    const collectionHref = pathPublicCollection(
+      effectiveCollectionId,
+      item.creatorId,
+      item.creatorSlug,
+    );
     return [
       {
         label,
         variant: VARIANT.SECONDARY,
-        href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+        href: collectionHref,
         requiresAuth: false,
         fullWidth: true,
       },
