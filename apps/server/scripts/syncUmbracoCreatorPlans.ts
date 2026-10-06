@@ -1,6 +1,5 @@
+import 'dotenv/config';
 import { eq, and, desc } from 'drizzle-orm';
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
 
 import { creatorPlans, plans, users } from '../src/database/schema';
 import { auditLogs } from '../src/database/schema/system/auditLogs.schema';

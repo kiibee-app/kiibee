@@ -5,7 +5,7 @@ import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
@@ -63,7 +63,6 @@ export default function ClientDashboardViewer({
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();

@@ -10,6 +10,24 @@ export const seedContentCategories = async () => {
       isActive: true,
     },
     {
+      id: 'history',
+      name: 'History',
+      description: 'History and historical content',
+      isActive: true,
+    },
+    {
+      id: 'entertainment',
+      name: 'Entertainment',
+      description: 'Entertainment, movies, and shows',
+      isActive: true,
+    },
+    {
+      id: 'coaching',
+      name: 'Coaching',
+      description: 'Personal coaching and development',
+      isActive: true,
+    },
+    {
       id: 'music',
       name: 'Music',
       description: 'Songs, albums, and music content',
