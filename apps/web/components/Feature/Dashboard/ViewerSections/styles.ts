@@ -4,10 +4,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
-import {
-  exploreCardsGrid,
-  exploreSectionFrame,
-} from "@/styles/exploreCardGrid";
 
 export const PageHeader = styled.div<{ $compact?: boolean }>`
   display: flex;
