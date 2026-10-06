@@ -13,9 +13,8 @@ import {
   ACCESS_STATUS_EXPIRED,
   VISIBILITY_DRAFT_LOWER,
   VISIBILITY_DRAFT_UPPER,
-  HASH_BUY,
 } from "@/utils/Constants";
-import { COLLECTION_ROUTE } from "@/utils/path";
+import { pathPublicCollection } from "@/utils/path";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   type ContentType,
@@ -279,6 +278,9 @@ export const getSingleContentProps = (
   const effectiveCollectionId = options?.collectionId || content.collectionId;
   const effectiveIsPaidCollection =
     options?.isPaidCollection ?? Boolean(content.isPaidCollection);
+  const creatorSlug = (content as Record<string, unknown>).creatorSlug as
+    | string
+    | undefined;
 
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -409,7 +411,13 @@ export const getSingleContentProps = (
             !isOwner
               ? {
                   label: t("pricingLabels.partOfCollection"),
-                  href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+                  href: pathPublicCollection(
+                    effectiveCollectionId,
+                    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] as
+                      | string
+                      | undefined,
+                    creatorSlug,
+                  ),
                 }
               : {
                   label: t(CONTENT_TRANSLATION_KEYS.seeContent),
@@ -424,7 +432,13 @@ export const getSingleContentProps = (
               ? [
                   {
                     label: t("pricingLabels.partOfCollection"),
-                    href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+                    href: pathPublicCollection(
+                      effectiveCollectionId,
+                      content[CONTENT_RESPONSE_KEYS.CREATOR_ID] as
+                        | string
+                        | undefined,
+                      creatorSlug,
+                    ),
                   },
                 ]
               : pricingActions.map((action) => ({

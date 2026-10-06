@@ -11,8 +11,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
-import { COLLECTION_ROUTE } from "@/utils/path";
-import { HASH_BUY } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import CollectionItems from "./CollectionItems";
 
@@ -123,7 +122,11 @@ export default function SingleTutorial({
         isPaid && effectiveCollectionId && !hasAccess
           ? {
               label: t("pricingLabels.partOfCollection"),
-              href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+              href: pathPublicCollection(
+                effectiveCollectionId,
+                tutorial.creatorId,
+                tutorial.creatorSlug,
+              ),
             }
           : {
               label: t("singleTutorial.seeContent"),

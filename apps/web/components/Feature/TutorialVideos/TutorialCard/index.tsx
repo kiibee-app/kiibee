@@ -3,7 +3,7 @@
 import { memo, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { resolveImageUrl, VARIANT, HASH_BUY } from "@/utils/Constants";
+import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -26,7 +26,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
-import { pathPublishedContent, COLLECTION_ROUTE } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
@@ -150,11 +150,16 @@ function TutorialCard({
     }
 
     if (isPaid && effectiveCollectionId && tutorial.isFree) {
+      const collectionHref = pathPublicCollection(
+        effectiveCollectionId,
+        tutorial.creatorId,
+        tutorial.creatorSlug,
+      );
       return [
         {
           label: t("pricingLabels.partOfCollection"),
           variant: VARIANT.SECONDARY,
-          href: `${COLLECTION_ROUTE}?id=${encodeURIComponent(effectiveCollectionId)}${HASH_BUY}`,
+          href: collectionHref,
           requiresAuth: false,
           fullWidth: true,
         },
@@ -173,6 +178,8 @@ function TutorialCard({
     effectiveCollectionId,
     tutorial.isFree,
     tutorial.buttons,
+    tutorial.creatorId,
+    tutorial.creatorSlug,
     t,
     singleTutorialHref,
   ]);
