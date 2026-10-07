@@ -119,7 +119,7 @@ export default function SingleTutorial({
         mediaIconAlt: t("singleTutorial.seeContent"),
       }}
       primaryAction={
-        isPaid && effectiveCollectionId && !hasAccess
+        isPaid && effectiveCollectionId && tutorial.isFree && !hasAccess
           ? {
               label: t("pricingLabels.partOfCollection"),
               href: pathPublicCollection(
