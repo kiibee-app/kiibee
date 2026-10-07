@@ -407,6 +407,7 @@ export const getSingleContentProps = (
           primaryAction:
             effectiveIsPaidCollection &&
             effectiveCollectionId &&
+            isFree &&
             !hasViewerAccess &&
             !isOwner
               ? {
@@ -424,28 +425,11 @@ export const getSingleContentProps = (
                 },
         }
       : {
-          primaryActions:
-            effectiveIsPaidCollection &&
-            effectiveCollectionId &&
-            !hasViewerAccess &&
-            !isOwner
-              ? [
-                  {
-                    label: t("pricingLabels.partOfCollection"),
-                    href: pathPublicCollection(
-                      effectiveCollectionId,
-                      content[CONTENT_RESPONSE_KEYS.CREATOR_ID] as
-                        | string
-                        | undefined,
-                      creatorSlug,
-                    ),
-                  },
-                ]
-              : pricingActions.map((action) => ({
-                  label: action.label,
-                  subtitle: action.subtitle,
-                  variant: action.variant,
-                })),
+          primaryActions: pricingActions.map((action) => ({
+            label: action.label,
+            subtitle: action.subtitle,
+            variant: action.variant,
+          })),
         }),
     metaItems: [
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]

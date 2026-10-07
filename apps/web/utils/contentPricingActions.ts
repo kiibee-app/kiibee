@@ -93,12 +93,9 @@ export function resolveCollectionPricing(
 
   const rawAccessType =
     collection.accessType === ACCESS_TYPE_PAID ||
-    (!hasCustomPricing &&
-      isGlobalPayment &&
-      (collection.accessType === ACCESS_TYPE_FREE || !collection.accessType))
+    (!hasCustomPricing && isGlobalPayment && !collection.accessType)
       ? ACCESS_TYPE_PAID
-      : (collection.accessType ??
-        (isGlobalPayment ? ACCESS_TYPE_PAID : ACCESS_TYPE_FREE));
+      : (collection.accessType ?? ACCESS_TYPE_FREE);
 
   const accessType: CollectionAccessType =
     rawAccessType === ACCESS_TYPE_PAID ||
@@ -156,14 +153,26 @@ export function isPaidCollection(
   return hasBuy || hasRent || pricing.accessType === ACCESS_TYPE_PAID;
 }
 
-function isPasswordAccessType(accessType?: string | null): boolean {
+export function isPasswordAccessType(accessType?: string | null): boolean {
+  if (!accessType) return false;
+  const normalized = accessType.toLowerCase().replace(/_/g, "-");
   return (
-    accessType === ACCESS_TYPE_PASSWORD || accessType === SET_PASSWORD_ACCESS
+    normalized === "password" ||
+    normalized === "set-password" ||
+    normalized === "code" ||
+    normalized === "access-code" ||
+    accessType === ACCESS_TYPE_PASSWORD ||
+    accessType === SET_PASSWORD_ACCESS
   );
 }
 
-function isEmailAccessType(accessType?: string | null): boolean {
+export function isEmailAccessType(accessType?: string | null): boolean {
+  if (!accessType) return false;
+  const normalized = accessType.toLowerCase().replace(/_/g, "-");
   return (
+    normalized === "email" ||
+    normalized === "email-gated" ||
+    normalized === "request-email" ||
     accessType === ACCESS_TYPE_EMAIL_GATED ||
     accessType === REQUEST_EMAIL_ACCESS
   );
@@ -289,9 +298,20 @@ export function resolveContentActionHref(
 export function getContentPricingActions(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
   freeLabel: string = FREE_LABEL,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    collectionAccessType?: string | null;
+    labels?: PricingLabels;
+  },
 ): ContentPricingAction[] {
-  if (isPasswordAccessType(item.accessType)) {
+  const effectiveAccessType =
+    options?.inCollection &&
+    (isPasswordAccessType(options?.collectionAccessType) ||
+      isEmailAccessType(options?.collectionAccessType))
+      ? options.collectionAccessType
+      : item.accessType;
+
+  if (isPasswordAccessType(effectiveAccessType)) {
     return [
       {
         label:
@@ -301,7 +321,7 @@ export function getContentPricingActions(
     ];
   }
 
-  if (isEmailAccessType(item.accessType)) {
+  if (isEmailAccessType(effectiveAccessType)) {
     return [
       {
         label: options?.labels?.emailRequired ?? EMAIL_REQUIRED_LABEL,
@@ -317,11 +337,7 @@ export function getContentPricingActions(
   const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
-  const buy = formatBuyPrice(
-    item.buyPrice,
-    options?.inCollection,
-    options?.labels,
-  );
+  const buy = formatBuyPrice(item.buyPrice, false, options?.labels);
 
   if (!rent && !buy) {
     if (item.accessType === ACCESS_TYPE_PAID) {

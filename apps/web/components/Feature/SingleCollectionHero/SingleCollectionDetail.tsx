@@ -268,7 +268,9 @@ export default function SingleCollectionDetail({
   }, [resolvedPricing]);
 
   const resolvedDescription =
-    dynamicSection?.description ?? selectedCollection?.description;
+    dynamicSection?.description?.trim() ||
+    selectedCollection?.description?.trim() ||
+    null;
 
   const resolvedCreatorName =
     publicCreator?.name || dynamicSection?.creatorName;

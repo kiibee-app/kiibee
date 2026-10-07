@@ -41,6 +41,9 @@ import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
   getPricingLabels,
+  isEmailAccessType,
+  isPaidCollection,
+  isPasswordAccessType,
   resolveCollectionPricing,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
@@ -173,29 +176,30 @@ export default function CollectionList() {
 
       if (isPublicView && !hasCollectionAccess) {
         const resolvedPricing = resolveCollectionPricing(row);
+        const isPaid = isPaidCollection(resolvedPricing);
+        const isPassword = isPasswordAccessType(resolvedPricing.accessType);
+        const isEmail = isEmailAccessType(resolvedPricing.accessType);
 
-        const pricingActions = getContentPricingActions(
-          resolvedPricing,
-          t("pricingLabels.free"),
-          { inCollection: true, labels: getPricingLabels(t) },
-        );
+        if (isPaid || isPassword || isEmail) {
+          const pricingActions = getContentPricingActions(
+            resolvedPricing,
+            t("pricingLabels.free"),
+            { inCollection: true, labels: getPricingLabels(t) },
+          );
 
-        actions = pricingActions.map((action) => {
-          const label = action.label ?? STRING_EMPTY;
-          return {
-            label,
-            variant: VARIANT.PRIMARY,
-            href: collectionHref,
-          };
-        });
+          actions = pricingActions.map((action) => {
+            const label = action.label ?? STRING_EMPTY;
+            return {
+              label,
+              variant: VARIANT.PRIMARY,
+              href: collectionHref,
+            };
+          });
+        } else {
+          actions = [];
+        }
       } else {
-        actions = [
-          {
-            label: t("createProfileHome.latestUpload.seeContent"),
-            variant: VARIANT.SECONDARY,
-            href: collectionHref,
-          },
-        ];
+        actions = [];
       }
 
       return {

@@ -8,8 +8,16 @@ import { logger } from 'src/logger/logger';
 import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 import { fail, success } from 'src/utils/sendResponse';
 
-export const getAllCollections = async (creatorId: string) => {
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
+
+export const getAllCollections = async (creatorIdOrSlug: string) => {
   try {
+    const creatorRes = await requirePubliclyVisibleCreator(creatorIdOrSlug);
+    if ('statusCode' in creatorRes && creatorRes.statusCode !== 200) {
+      return creatorRes;
+    }
+    const targetCreatorId = (creatorRes as any).id;
+
     const collectionColumns = getTableColumns(collections);
 
     const result = await db
@@ -31,7 +39,7 @@ export const getAllCollections = async (creatorId: string) => {
       )
       .where(
         and(
-          eq(collections.creatorId, creatorId),
+          eq(collections.creatorId, targetCreatorId),
           eq(collections.isDeleted, false),
         ),
       )
