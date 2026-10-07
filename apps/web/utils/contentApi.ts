@@ -37,6 +37,7 @@ import {
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
+import { getCategoryLabel } from "@/utils/category";
 
 type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
@@ -386,7 +387,7 @@ export const getSingleContentProps = (
             },
           }
         : {}),
-      categoryLabel: categories[0],
+      categoryLabel: categories[0] ? getCategoryLabel(categories[0], t) : "",
       mediaLabel: getContentTypeLabel(contentType),
       ...(isVideo
         ? {
@@ -447,7 +448,7 @@ export const getSingleContentProps = (
       mainCategory
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.category),
-            value: mainCategory,
+            value: getCategoryLabel(mainCategory, t),
           }
         : undefined,
       createdAt

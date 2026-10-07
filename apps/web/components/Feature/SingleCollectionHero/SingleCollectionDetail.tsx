@@ -80,6 +80,7 @@ import { PATHS, pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 type Props = {
   collectionId: string;
@@ -238,6 +239,20 @@ export default function SingleCollectionDetail({
     searchParams,
     staticSection,
   ]);
+
+  const handleBackToChannel = useCallback(() => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    const targetSlug =
+      canonicalCreatorSlug || creatorSlug || publicCreator?.slug;
+    if (targetSlug) {
+      router.push(getPublicCreatorProfilePath(targetSlug));
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  }, [onBack, canonicalCreatorSlug, creatorSlug, publicCreator?.slug, router]);
 
   const resolvedPricing = useMemo(() => {
     const target =
@@ -676,7 +691,7 @@ export default function SingleCollectionDetail({
           onActionClick={handlePricingActionClick}
           isOwner={isOwner}
           onOpenDashboard={handleOpenDashboard}
-          onBack={onBack}
+          onBack={handleBackToChannel}
           showBack={showBack}
           embedded={embedded}
           accessGate={
@@ -697,7 +712,7 @@ export default function SingleCollectionDetail({
       <HeroWrapper $embedded={embedded}>
         <TopBar $embedded={embedded}>
           {showBack ? (
-            <BackButtonWrapper onClick={onBack ?? (() => router.back())}>
+            <BackButtonWrapper onClick={handleBackToChannel}>
               <BackButtonIcon />
             </BackButtonWrapper>
           ) : null}
@@ -734,7 +749,7 @@ export default function SingleCollectionDetail({
         isOwner={isOwner}
         userAccessStatus={userAccessStatus}
         onOpenDashboard={handleOpenDashboard}
-        onBack={onBack}
+        onBack={handleBackToChannel}
         showBack={showBack}
         embedded={embedded}
       />

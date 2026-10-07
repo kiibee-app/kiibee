@@ -76,6 +76,12 @@ export default function ExploreCreators({
         {creators.map((creator, index) => {
           const image = getCreatorCardImage(creator);
           const categoryLabel = getExploreCreatorCategoryLabel(creator);
+          const profilePath = creator.slug
+            ? getPublicCreatorProfilePath(creator.slug, creator.layout)
+            : null;
+          const handleCardClick = profilePath
+            ? () => router.push(profilePath)
+            : undefined;
 
           return (
             <GenericCard
@@ -87,6 +93,7 @@ export default function ExploreCreators({
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
               imagePriority={index < 4}
+              onClick={handleCardClick}
               badgeVariant="overlay"
               badge={
                 categoryLabel ? (
@@ -109,18 +116,14 @@ export default function ExploreCreators({
                 ) : undefined
               }
               footer={
-                creator.slug ? (
+                profilePath ? (
                   <GenericButton
                     type="button"
                     variant={VARIANT.SECONDARY}
-                    onClick={() =>
-                      router.push(
-                        getPublicCreatorProfilePath(
-                          creator.slug!,
-                          creator.layout,
-                        ),
-                      )
-                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(profilePath);
+                    }}
                   >
                     {t(CREATORS.viewProfile)}
                   </GenericButton>
