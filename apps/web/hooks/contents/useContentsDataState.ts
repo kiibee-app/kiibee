@@ -70,9 +70,26 @@ export const useContentsDataState = (
     return getCollectionContentRows(collectionContentsResponse);
   }, [collectionContentsResponse]);
 
-  const collectionContents = selectedCollection
-    ? (contentsMap[selectedCollection.id] ?? apiCollectionContents)
-    : [];
+  const collectionContents = useMemo(() => {
+    if (!selectedCollection) return [];
+    const local = contentsMap[selectedCollection.id];
+    if (!local || local.length === 0) return apiCollectionContents;
+
+    const localMap = new Map(local.map((item) => [item.id, item]));
+    const apiIds = new Set(apiCollectionContents.map((item) => item.id));
+
+    const merged = apiCollectionContents.map((apiItem) => {
+      const localItem = localMap.get(apiItem.id);
+      if (!localItem) return apiItem;
+      return {
+        ...localItem,
+        ...apiItem,
+      };
+    });
+
+    const localOnly = local.filter((item) => !apiIds.has(item.id));
+    return [...merged, ...localOnly];
+  }, [selectedCollection, contentsMap, apiCollectionContents]);
 
   const deleteState = useDeleteHandler(
     setCollections,

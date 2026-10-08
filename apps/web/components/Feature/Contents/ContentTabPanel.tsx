@@ -46,6 +46,7 @@ type Props = {
   collectionContents: CollectionContentRow[];
   collections: CollectionRow[];
   editingContentId?: string | null;
+  isNewContent?: boolean;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
@@ -87,6 +88,7 @@ export default function ContentTabPanel({
   collectionContents,
   collections,
   editingContentId,
+  isNewContent = false,
   setCollections,
   setSelectedCollection,
   onDelete,
@@ -194,6 +196,7 @@ export default function ContentTabPanel({
             type={COLLECTION_TABLE_TYPE.CONTENTS}
             data={data}
             searchValue={searchValue}
+            parentCollection={selectedCollection}
             onRowClick={(row) =>
               router.push(
                 pathPublishedContent(row.id, publicCreatorSlug, row.name),
@@ -339,7 +342,12 @@ export default function ContentTabPanel({
     const editingContent = collectionContents?.find(
       (c) => c.id === editingContentId,
     );
-    return <Payment contentType={editingContent?.contentType} />;
+    return (
+      <Payment
+        contentType={editingContent?.contentType}
+        isNewContent={isNewContent}
+      />
+    );
   }
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }

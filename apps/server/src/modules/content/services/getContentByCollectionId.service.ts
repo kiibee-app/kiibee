@@ -19,6 +19,10 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
         description: mediaFiles.description,
         visibility: mediaFiles.visibility,
         createdAt: mediaFiles.createdAt,
+        accessType: mediaFiles.accessType,
+        buyPrice: mediaFiles.buyPrice,
+        rentPrice: mediaFiles.rentPrice,
+        hasPassword: mediaFiles.passwordHash,
 
         contentTypeName: contentTypes.name,
       })
@@ -42,6 +46,10 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
       slug: item.slug,
       description: item.description,
       contentType: item.contentTypeName || 'Unknown',
+      accessType: item.accessType,
+      buyPrice: item.buyPrice,
+      rentPrice: item.rentPrice,
+      hasPassword: Boolean(item.hasPassword),
       visibility:
         item.visibility.charAt(0).toUpperCase() + item.visibility.slice(1),
       createdAt: item.createdAt,

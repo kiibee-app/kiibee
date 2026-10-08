@@ -106,6 +106,9 @@ type Params = {
   clearRemovedPasswordIndexes: () => void;
   passwordDraft: string;
   saveContentSetting?: (payload: SaveContentSettingPayload) => Promise<void>;
+  setContentsMap?: Dispatch<
+    SetStateAction<Record<string, CollectionContentRow[]>>
+  >;
 };
 
 export function useContentFormActions({
@@ -126,6 +129,7 @@ export function useContentFormActions({
   clearRemovedPasswordIndexes,
   passwordDraft,
   saveContentSetting,
+  setContentsMap,
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -682,17 +686,46 @@ export function useContentFormActions({
 
       await axiosClient.put(API.content.update(editingContent.id), payload);
 
-      await Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: [API.content.get(editingContent.id)],
-        }),
-        selectedCollection?.id
-          ? queryClient.invalidateQueries({
-              queryKey: [API.content.collection(selectedCollection.id)],
-            })
-          : Promise.resolve(),
-        queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
-      ]);
+      if (selectedCollection?.id && editingContent?.id && setContentsMap) {
+        const hasPriceOrCode =
+          payload.accessType !== ACCESS_TYPE_FREE ||
+          Boolean(payload.buyPrice) ||
+          Boolean(payload.rentPrice) ||
+          Boolean(payload.password);
+
+        setContentsMap((prev) => {
+          const baseList =
+            prev[selectedCollection.id] &&
+            prev[selectedCollection.id].length > 0
+              ? prev[selectedCollection.id]
+              : collectionContents;
+
+          const updated = baseList.map((item) =>
+            item.id === editingContent.id
+              ? {
+                  ...item,
+                  accessType: payload.accessType,
+                  buyPrice: payload.buyPrice ?? null,
+                  rentPrice: payload.rentPrice ?? null,
+                  hasPassword: Boolean(
+                    payload.password ||
+                    payload.accessType === ACCESS_TYPE_PASSWORD,
+                  ),
+                  isFree: !hasPriceOrCode,
+                  isPaid: hasPriceOrCode,
+                }
+              : item,
+          );
+          return { ...prev, [selectedCollection.id]: updated };
+        });
+      }
+
+      await queryClient.invalidateQueries({
+        predicate: (query) =>
+          typeof query.queryKey[0] === "string" &&
+          (query.queryKey[0].includes("content") ||
+            query.queryKey[0].includes("collection")),
+      });
 
       toast.success(t("settings.notifications.successModal.message"));
       setShowSaveSuccessModal(true);
@@ -907,6 +940,9 @@ export function useContentFormActions({
         storage.set(
           GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
           JSON.stringify({
+            accessType: apiAccessType,
+            hasPassword:
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password,
             rentalAmount: hasRental ? collectionRentalAmount : "",
             purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
             accessDuration: hasRental
@@ -1146,11 +1182,15 @@ export function useContentFormActions({
           admissionRequirement:
             fullContent.accessType === "free"
               ? "free"
-              : fullContent.accessType === "paid"
+              : fullContent.accessType === "paid" ||
+                  fullContent.accessType === "payment"
                 ? "payment"
-                : fullContent.accessType === "password"
+                : fullContent.accessType === "password" ||
+                    fullContent.accessType === "set_password" ||
+                    Boolean(fullContent.passwordHash)
                   ? "set_password"
-                  : fullContent.accessType === "email_gated"
+                  : fullContent.accessType === "email_gated" ||
+                      fullContent.accessType === "request_email"
                     ? "request_email"
                     : "free",
           password: "",

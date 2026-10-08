@@ -49,6 +49,7 @@ export function getPricingLabels(t: TFunction): PricingLabels {
 
 export type GlobalPaymentSettingInput = {
   accessType?: string | null;
+  hasPassword?: boolean;
   rentalAmount?: string | number | null;
   purchaseAmount?: string | number | null;
   accessDuration?: string | null;
@@ -60,13 +61,28 @@ export function getStoredGlobalPaymentSettings():
   try {
     const raw = storage.get(GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY);
     if (raw) {
-      const parsed = JSON.parse(raw);
-      return {
-        accessType: ADMISSION_REQUIREMENT_VALUES.payment,
-        rentalAmount: parsed.rentalAmount || null,
-        purchaseAmount: parsed.purchaseAmount || null,
-        accessDuration: parsed.accessDuration || null,
-      };
+      const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
+      const hasRental = Boolean(
+        parsed.rentalAmount && Number(parsed.rentalAmount) > 0,
+      );
+      const hasPurchase = Boolean(
+        parsed.purchaseAmount && Number(parsed.purchaseAmount) > 0,
+      );
+      const accessType =
+        parsed.accessType ||
+        (hasRental || hasPurchase
+          ? ADMISSION_REQUIREMENT_VALUES.payment
+          : undefined);
+
+      if (accessType || hasRental || hasPurchase || parsed.hasPassword) {
+        return {
+          accessType: accessType || null,
+          hasPassword: Boolean(parsed.hasPassword),
+          rentalAmount: parsed.rentalAmount || null,
+          purchaseAmount: parsed.purchaseAmount || null,
+          accessDuration: parsed.accessDuration || null,
+        };
+      }
     }
   } catch {}
   return undefined;
