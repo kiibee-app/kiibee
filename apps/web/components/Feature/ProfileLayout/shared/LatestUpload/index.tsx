@@ -59,6 +59,7 @@ import {
 } from "@/utils/media";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
+import { getCategoryLabel } from "@/utils/category";
 
 type LatestUploadAction = {
   title: string;
@@ -365,7 +366,7 @@ export default function LatestUpload({
 
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection $isPdf={!isMediaPlayable}>
-          <Badge>{data.badge}</Badge>
+          <Badge>{getCategoryLabel(data.badge, t)}</Badge>
 
           {isTrailerPlaying && isEmbedTrailer ? (
             <TrailerEmbed
@@ -414,7 +415,14 @@ export default function LatestUpload({
                   <>
                     <LeftControlButton>
                       <PlayCircleIcon />
-                      {t("createProfileHome.latestUpload.video")}
+                      {t(
+                        `contents.contentTypeModal.options.${normalizedContentType}`,
+                        {
+                          defaultValue: t(
+                            "createProfileHome.latestUpload.video",
+                          ),
+                        },
+                      )}
                     </LeftControlButton>
 
                     {hasTrailer ? (

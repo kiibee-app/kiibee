@@ -62,6 +62,25 @@ export default function DynamicProfileShell({
     }
   }, [creator?.slug, creatorSlug, isLoading, pathname, router]);
 
+  useEffect(() => {
+    if (typeof window === "undefined" || isLoading) return;
+
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetScroll();
+    const rafId = requestAnimationFrame(resetScroll);
+    const timeoutId = setTimeout(resetScroll, 100);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timeoutId);
+    };
+  }, [isLoading, pathname]);
+
   if (isLoading) {
     return (
       <SectionWrapper>

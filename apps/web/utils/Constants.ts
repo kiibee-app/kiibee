@@ -350,10 +350,41 @@ export const mockSizeFallback = 12 * 1024 * 1024;
 export const IS_FALLBACK_SIZE = "isFallbackSize";
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
+  const normAdmission = String(formState.admissionRequirement ?? "")
+    .toLowerCase()
+    .trim();
+
   const isPaymentAdmission =
-    formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+    normAdmission === "payment" ||
+    normAdmission === ADMISSION_TYPE.PAYMENT ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.payment.toLowerCase();
+
+  const isPasswordAdmission =
+    normAdmission === "set_password" ||
+    normAdmission === "set-password" ||
+    normAdmission === "set password" ||
+    normAdmission === "password" ||
+    normAdmission === ADMISSION_TYPE.SET_PASSWORD ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.password.toLowerCase();
+
+  const isEmailAdmission =
+    normAdmission === "request_email" ||
+    normAdmission === "request-email" ||
+    normAdmission === "request email" ||
+    normAdmission === "email" ||
+    normAdmission === ADMISSION_TYPE.REQUEST_EMAIL ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.email.toLowerCase();
+
   const parsedBuyPrice = parsePaymentAmount(formState.purchaseAmount);
   const parsedRentPrice = parsePaymentAmount(formState.rentalAmount);
+
+  const resolvedAccessType = isPaymentAdmission
+    ? ACCESS_TYPE_PAID
+    : isPasswordAdmission
+      ? ACCESS_TYPE_PASSWORD
+      : isEmailAdmission
+        ? ACCESS_TYPE_EMAIL_GATED
+        : ACCESS_TYPE_FREE;
 
   return {
     title: formState.title,
@@ -379,13 +410,9 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
-    accessType: formState.admissionRequirement
-      ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
-        ACCESS_TYPE_FREE)
-      : undefined,
+    accessType: resolvedAccessType,
     password:
-      formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
-      formState.password.trim()
+      isPasswordAdmission && formState.password.trim()
         ? formState.password.trim()
         : undefined,
     buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,

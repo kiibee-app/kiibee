@@ -2052,12 +2052,15 @@
       "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
       "channelDescription": "Angiv adgang for alle samlinger og alt indhold på din kanal.",
       "fallbackContentType": "samling",
+      "placeholder": "Vælg adgangstype",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
         "password": "Angiv adgangskode",
         "email": "Anmod om e-mail"
       },
+      "freeContentToastWarning": "Du har gratis indhold. Angiv venligst betaling eller adgangskode for at offentliggøre eller bevare det offentligt.",
+      "freeContentWarningBadge": "Gratis indhold (Betaling eller kode påkrævet)",
       "password": {
         "placeholder": "Indtast adgangskoder",
         "helper": "Adskil flere adgangskoder med kommaer.",

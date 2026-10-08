@@ -13,6 +13,7 @@ import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper"
 import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { pathPublicCollection } from "@/utils/path";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { getCategoryLabel } from "@/utils/category";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -69,9 +70,10 @@ export default function SingleTutorial({
       return tutorial.tags;
     }
 
-    return [tutorial.category, t("singleTutorial.tags.tutorials")].filter(
-      Boolean,
-    );
+    return [
+      getCategoryLabel(tutorial.category, t),
+      t("singleTutorial.tags.tutorials"),
+    ].filter(Boolean);
   }, [t, tutorial.category, tutorial.tags]);
 
   const publisherName = tutorial.publisher ?? tutorial.creator;
@@ -113,7 +115,7 @@ export default function SingleTutorial({
               trailerIconAlt: t("singleTutorial.playTrailer"),
             }
           : {}),
-        categoryLabel: tutorial.category,
+        categoryLabel: getCategoryLabel(tutorial.category, t),
         mediaLabel: tutorial.formatLabel,
         mediaIcon: playCircleIcon,
         mediaIconAlt: t("singleTutorial.seeContent"),

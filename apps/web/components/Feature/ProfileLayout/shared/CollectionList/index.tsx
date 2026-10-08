@@ -3,6 +3,7 @@
 import { useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { useQueries } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import GenericSpinner from "@/components/UI/GenericSpinner";
@@ -10,6 +11,7 @@ import {
   CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import type { CollectionRow } from "@/types/collectionsType";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
@@ -55,6 +57,29 @@ type PublicCollectionResponse = {
   data?: {
     items?: unknown[];
   } | null;
+};
+
+const buildCollectionActions = (
+  row: CollectionRow,
+  href: string,
+  t: TFunction,
+): CollectionAction[] => {
+  const pricing = resolveCollectionPricing(row);
+  const isGated =
+    isPaidCollection(pricing) ||
+    isPasswordAccessType(pricing.accessType) ||
+    isEmailAccessType(pricing.accessType);
+
+  if (!isGated) return [];
+
+  return getContentPricingActions(pricing, t("pricingLabels.free"), {
+    inCollection: true,
+    labels: getPricingLabels(t),
+  }).map((action) => ({
+    label: action.label ?? STRING_EMPTY,
+    variant: VARIANT.PRIMARY,
+    href,
+  }));
 };
 
 export default function CollectionList() {
@@ -171,36 +196,9 @@ export default function CollectionList() {
       );
 
       const hasCollectionAccess = accessibleCollectionIds.has(row.id);
-
-      let actions: CollectionAction[] | undefined = undefined;
-
-      if (isPublicView && !hasCollectionAccess) {
-        const resolvedPricing = resolveCollectionPricing(row);
-        const isPaid = isPaidCollection(resolvedPricing);
-        const isPassword = isPasswordAccessType(resolvedPricing.accessType);
-        const isEmail = isEmailAccessType(resolvedPricing.accessType);
-
-        if (isPaid || isPassword || isEmail) {
-          const pricingActions = getContentPricingActions(
-            resolvedPricing,
-            t("pricingLabels.free"),
-            { inCollection: true, labels: getPricingLabels(t) },
-          );
-
-          actions = pricingActions.map((action) => {
-            const label = action.label ?? STRING_EMPTY;
-            return {
-              label,
-              variant: VARIANT.PRIMARY,
-              href: collectionHref,
-            };
-          });
-        } else {
-          actions = [];
-        }
-      } else {
-        actions = [];
-      }
+      const actions = hasCollectionAccess
+        ? []
+        : buildCollectionActions(row, collectionHref, t);
 
       return {
         id: row.id,
@@ -217,7 +215,6 @@ export default function CollectionList() {
       };
     });
   }, [
-    isPublicView,
     collectionsWithPublicContent,
     displayName,
     publicCreatorId,

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import {
   useExploreCreators,
@@ -34,6 +35,7 @@ import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { MARQUEE_LIMIT } from "@/utils/Constants";
 
 export default function ExploreCreatorsMarquee() {
+  const router = useRouter();
   const { t } = useTranslation();
   const { creators: allCreators } = useExploreCreators();
   const creators = allCreators
@@ -50,8 +52,16 @@ export default function ExploreCreatorsMarquee() {
     const description =
       creator.contentDescription ?? t(CREATORS.marquee.defaultDescription);
 
+    const profilePath = creator.slug
+      ? getPublicCreatorProfilePath(creator.slug, creator.layout)
+      : null;
+
     return (
-      <CreatorCard key={`${prefix}-${creator.id}-${idx}`}>
+      <CreatorCard
+        key={`${prefix}-${creator.id}-${idx}`}
+        onClick={profilePath ? () => router.push(profilePath) : undefined}
+        style={profilePath ? { cursor: "pointer" } : undefined}
+      >
         <CardLeft>
           <CardHeader>
             <CardTitle>
@@ -75,9 +85,12 @@ export default function ExploreCreatorsMarquee() {
               </MonoText>
             </CardDescription>
           )}
-          {creator.slug ? (
+          {profilePath ? (
             <ProfileButton
-              href={getPublicCreatorProfilePath(creator.slug, creator.layout)}
+              href={profilePath}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
             >
               {t(CREATORS.viewProfile)}
             </ProfileButton>
