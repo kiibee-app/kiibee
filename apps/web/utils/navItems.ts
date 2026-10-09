@@ -51,14 +51,9 @@ const NAV_ITEMS: NavItem[] = [
         titleKey: "nav.explore.categoryTitle",
         items: [
           { key: "nav.explore.category.comedy", href: PATHS.CATEGORY_COMEDY },
-          { key: "nav.explore.category.history", href: PATHS.CATEGORY_HISTORY },
           {
             key: "nav.explore.category.entertainment",
             href: PATHS.CATEGORY_ENTERTAINMENT,
-          },
-          {
-            key: "nav.explore.category.coaching",
-            href: PATHS.CATEGORY_COACHING,
           },
           {
             key: "nav.explore.category.education",
@@ -68,10 +63,6 @@ const NAV_ITEMS: NavItem[] = [
           {
             key: "nav.explore.category.sportsAndFitness",
             href: PATHS.CATEGORY_FITNESS,
-          },
-          {
-            key: "nav.explore.category.booksAndWriting",
-            href: PATHS.CATEGORY_BOOKS,
           },
         ],
       },

@@ -22,6 +22,10 @@ export const ACCESS_TYPE = {
   EMAIL_GATED: 'email_gated',
 } as const;
 
+export const MEDIA_FILE_TYPE = {
+  WEB: 'web',
+} as const;
+
 export const CONTENT_SETTING_ACCESS_TYPE = {
   PAYMENT: 'payment',
   PAID: 'paid',

@@ -10,11 +10,16 @@ import {
   EditProfileIcon,
   FolderIcon,
   ThreeDotIcon,
+  WarningIcon,
 } from "@/assets/icons";
 import { TABLE_ALIGN } from "@/utils/ui";
-import { BUTTON } from "@/utils/Constants";
-import { ActionWrapper, IconButton, NameWrapper } from "./styles";
+import { BUTTON, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
+import { checkHasPriceOrCode } from "@/utils/admissionRequirements";
+import { getStoredGlobalPaymentSettings } from "@/utils/contentPricingActions";
+import { FORMAT_TYPE } from "@/utils/types";
+import { ActionWrapper, IconButton, NameWrapper, WarningBadge } from "./styles";
 import { useTranslation } from "react-i18next";
+import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import {
   CollectionRow,
   CollectionContentRow,
@@ -29,7 +34,6 @@ import {
   getCollectionColumns,
   getCollectionContentColumns,
 } from "@/utils/tableHeader";
-import { SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
 import {
   MOVE_UP,
   MOVE_DOWN,
@@ -42,9 +46,35 @@ import {
 
 type TableRow = CollectionRow | CollectionContentRow;
 
+const isWebContent = (contentType?: string) =>
+  contentType?.toLowerCase() === FORMAT_TYPE.WEB;
+
+const isFreeNonWebContent = (content: CollectionContentRow) =>
+  !isWebContent(content.contentType) && !checkHasPriceOrCode(content);
+
+const shouldShowCollectionWarning = (
+  collection: CollectionRow,
+  hasGlobalAccessGate: boolean,
+) =>
+  !hasGlobalAccessGate &&
+  !checkHasPriceOrCode(collection) &&
+  collection.hasWarningItem === true;
+
+const shouldShowContentWarning = (
+  content: CollectionContentRow,
+  parentCollection: CollectionRow | null | undefined,
+  hasGlobalAccessGate: boolean,
+) =>
+  !hasGlobalAccessGate &&
+  !checkHasPriceOrCode(parentCollection) &&
+  isFreeNonWebContent(content);
+
 export default function CollectionTable(props: CollectionTableProps) {
   const { t } = useTranslation();
   const isCollections = props.type === COLLECTION_TABLE_TYPE.COLLECTIONS;
+  const hasGlobalAccessGate = checkHasPriceOrCode(
+    getStoredGlobalPaymentSettings(),
+  );
   const columns = isCollections
     ? getCollectionColumns(t)
     : getCollectionContentColumns(t);
@@ -156,6 +186,17 @@ export default function CollectionTable(props: CollectionTableProps) {
         const col = columns.find((c) => c.label === header);
 
         if (col?.key === columns[0].key) {
+          const showWarning = isCollections
+            ? shouldShowCollectionWarning(
+                row as CollectionRow,
+                hasGlobalAccessGate,
+              )
+            : shouldShowContentWarning(
+                row as CollectionContentRow,
+                props.parentCollection,
+                hasGlobalAccessGate,
+              );
+
           return (
             <NameWrapper>
               {isCollections ? (
@@ -165,6 +206,20 @@ export default function CollectionTable(props: CollectionTableProps) {
               ) : null}
 
               <MonoText $use="Body_SemiBold">{row.name}</MonoText>
+
+              {showWarning && (
+                <WarningBadge
+                  title={t(
+                    CONTENTS_KEYS.admissionRequirements.freeContentWarningBadge,
+                  )}
+                >
+                  <WarningIcon
+                    width={16}
+                    height={16}
+                    color={COLORS.primary.ORANGE}
+                  />
+                </WarningBadge>
+              )}
             </NameWrapper>
           );
         }

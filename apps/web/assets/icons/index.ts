@@ -51,4 +51,5 @@ export { default as WebLinkIcon } from "./WebLink";
 export { ProfileIcon } from "./profileIcon";
 export { default as CopyIcon } from "./CopyIcon";
 export { default as CheckIcon } from "./CheckIcon";
+export { default as WarningIcon } from "./WarningIcon";
 export { LeftArrow, RightArrow } from "./carouselArrows";

@@ -136,7 +136,7 @@ function TutorialCard({
   );
 
   const effectiveCollectionId = collectionId || tutorial.collectionId;
-  const isPaid = isPaidCollection || tutorial.isPaidCollection;
+  const isPaid = isPaidCollection;
 
   const buttons = useMemo(() => {
     if (hasAccess) {
@@ -147,6 +147,10 @@ function TutorialCard({
           href: singleTutorialHref,
         },
       ];
+    }
+
+    if (tutorial.buttons?.length) {
+      return tutorial.buttons;
     }
 
     if (isPaid && effectiveCollectionId && tutorial.isFree) {
@@ -171,7 +175,7 @@ function TutorialCard({
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
-    return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
+    return [defaultButton];
   }, [
     hasAccess,
     isPaid,

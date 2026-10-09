@@ -42,6 +42,7 @@ import {
   PAYMENTS_FORM_FIELDS,
 } from "@/utils/paymentRequirements";
 import SettingsPaymentSection from "./PaymentSection";
+import { FORMAT_TYPE } from "@/utils/types";
 const updateValue = <T,>(
   value: T,
   onChange?: (value: T) => void,
@@ -155,20 +156,30 @@ function AdmissionRequirements({
     [passwords, typedPasswords],
   );
 
-  const visibleOptions = useMemo(
-    () =>
-      showPaymentOption
-        ? ADMISSION_REQUIREMENTS
-        : ADMISSION_REQUIREMENTS.filter(
-            (option) => option.value !== PAYMENT_ADMISSION_VALUE,
-          ),
-    [showPaymentOption],
-  );
+  const isWebContentType =
+    contentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
+    contentType?.toLowerCase() === "web";
+
+  const visibleOptions = useMemo(() => {
+    let options = ADMISSION_REQUIREMENTS;
+
+    if (!showPaymentOption) {
+      options = options.filter(
+        (option) => option.value !== PAYMENT_ADMISSION_VALUE,
+      );
+    }
+
+    if (!isWebContentType) {
+      options = options.filter(
+        (option) => option.value !== ADMISSION_REQUIREMENT_VALUES.free,
+      );
+    }
+
+    return options;
+  }, [showPaymentOption, isWebContentType]);
 
   const selectedOption = useMemo(
-    () =>
-      visibleOptions.find((option) => option.value === selected) ??
-      visibleOptions[0],
+    () => visibleOptions.find((option) => option.value === selected),
     [selected, visibleOptions],
   );
   const accessDurationOptions = useMemo(
@@ -236,7 +247,14 @@ function AdmissionRequirements({
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
         >
-          <MonoText $use="Body_Medium">{t(selectedOption.labelKey)}</MonoText>
+          <MonoText
+            $use="Body_Medium"
+            color={selectedOption ? undefined : COLORS.neutral.GRAY_400}
+          >
+            {selectedOption
+              ? t(selectedOption.labelKey)
+              : t("contents.admissionRequirements.placeholder")}
+          </MonoText>
           <ArrowIcon
             color={COLORS.neutral.GRAY_400}
             direction={open ? Directions.UP : Directions.DOWN}

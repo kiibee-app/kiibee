@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import CollectionPreview from "@/components/Feature/ProfileLayout/shared/CollectionPreview";
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
@@ -76,6 +76,12 @@ export default function ProfileHomeSections({
 
   const { data: privateSections = [], isLoading: isPrivateLoading } =
     useProfileHomeCollections(displayName || "", !isPublicView);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  }, [isLatestLoading, isPublicLoading]);
 
   const normalizedLatestContentType = latest
     ? normalizeContentTypeValue(

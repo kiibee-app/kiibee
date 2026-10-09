@@ -45,6 +45,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   ADMISSION_REQUIREMENTS,
   ADMISSION_REQUIREMENT_VALUES,
+  checkHasPriceOrCode,
   validatePasswordInput,
 } from "@/utils/admissionRequirements";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
@@ -58,6 +59,8 @@ import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
+import { useFreeContentAlert } from "@/hooks/useFreeContentAlert";
+import { getStoredGlobalPaymentSettings } from "@/utils/contentPricingActions";
 import {
   SCROLL_OPTIONS,
   UI_TITLE_FALLBACK,
@@ -105,6 +108,30 @@ function CreatorsContentsInner() {
     handleConfirmDelete,
     setContentsMap,
   } = useContentsDataState(selectedCollection);
+
+  const hasFreeContent = useMemo(() => {
+    const globalSetting = getStoredGlobalPaymentSettings();
+    const isGlobalPayment = Boolean(
+      (globalSetting?.rentalAmount && Number(globalSetting.rentalAmount) > 0) ||
+      (globalSetting?.purchaseAmount &&
+        Number(globalSetting.purchaseAmount) > 0) ||
+      checkHasPriceOrCode(globalSetting),
+    );
+
+    if (isGlobalPayment) return false;
+
+    if (selectedCollection) {
+      if (checkHasPriceOrCode(selectedCollection)) return false;
+    }
+
+    return (collectionContents ?? []).some((item) => {
+      const isWeb =
+        String(item.contentType ?? "").toLowerCase() === FORMAT_TYPE.WEB;
+      return !isWeb && !checkHasPriceOrCode(item);
+    });
+  }, [collectionContents, selectedCollection]);
+
+  useFreeContentAlert(hasFreeContent);
 
   const needsCouponSearchData =
     searchValue.trim().length >= 2 || activeTab === COUPONS;
@@ -348,6 +375,7 @@ function CreatorsContentsInner() {
     clearRemovedPasswordIndexes: () => setRemovedPasswordIndexes([]),
     passwordDraft,
     saveContentSetting: contentSettings.updateSetting,
+    setContentsMap,
   });
 
   const [hasPasswordError, setHasPasswordError] = useState(false);
@@ -504,6 +532,18 @@ function CreatorsContentsInner() {
     ? Boolean(selectedCollection.hasPassword)
     : Boolean(contentSettings.data?.data?.hasPassword);
 
+  const activeSelectedCollection = useMemo(() => {
+    if (!selectedCollection) return null;
+    return (
+      collections.find(
+        (c) =>
+          c.id === selectedCollection.id ||
+          c.name.trim().toLowerCase() ===
+            selectedCollection.name.trim().toLowerCase(),
+      ) ?? selectedCollection
+    );
+  }, [collections, selectedCollection]);
+
   return (
     <PageShell>
       <PageHeader>
@@ -597,11 +637,12 @@ function CreatorsContentsInner() {
         <ContentPanel id="contents-content-area">
           <ContentTabPanel
             activeTab={activeTab}
-            selectedCollection={selectedCollection}
+            selectedCollection={activeSelectedCollection}
             collectionContents={collectionContents}
             collections={collections}
             searchValue={searchValue}
             editingContentId={editingContent?.id ?? null}
+            isNewContent={postCreateContentId === editingContent?.id}
             setCollections={setCollections}
             setContentsMap={setContentsMap}
             setActiveTab={setActiveTabAndQuery}

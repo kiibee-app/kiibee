@@ -12,6 +12,7 @@ import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  window.history.scrollRestoration = "manual";
 }
 
 function shouldUseSmoothScroll(pathname: string) {
@@ -33,7 +34,32 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!shouldUseSmoothScroll(pathname)) return;
+    if (typeof window === "undefined") return;
+
+    window.history.scrollRestoration = "manual";
+
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetScroll();
+    const raf1 = requestAnimationFrame(resetScroll);
+    const raf2 = requestAnimationFrame(() =>
+      requestAnimationFrame(resetScroll),
+    );
+    const t1 = setTimeout(resetScroll, 50);
+    const t2 = setTimeout(resetScroll, 200);
+
+    if (!shouldUseSmoothScroll(pathname)) {
+      return () => {
+        cancelAnimationFrame(raf1);
+        cancelAnimationFrame(raf2);
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    }
 
     const lenis = new Lenis({
       autoRaf: false,
@@ -45,6 +71,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       easing: (t: number) => 1 - Math.pow(1 - t, SMOOTH_SCROLL.easingPower),
       overscroll: false,
     });
+
+    lenis.scrollTo(0, { immediate: true });
 
     let resizeRafId: number | null = null;
     let destroyed = false;
