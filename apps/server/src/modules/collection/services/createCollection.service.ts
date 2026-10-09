@@ -64,6 +64,7 @@ export const createCollection = async (
       .values({
         id: collectionId,
         name: normalizedName,
+        description: dto.description?.trim() || null,
         creatorId,
         slug,
         accessType: defaultAccessType,
@@ -72,6 +73,7 @@ export const createCollection = async (
       .returning({
         id: collections.id,
         name: collections.name,
+        description: collections.description,
         slug: collections.slug,
         creatorId: collections.creatorId,
         accessType: collections.accessType,

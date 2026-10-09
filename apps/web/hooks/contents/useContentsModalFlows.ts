@@ -39,12 +39,14 @@ import { CONTENTS } from "@/utils/translationKeys";
 type CreatedCollectionResponse = {
   id?: string;
   name?: string;
-  data?: { id?: string; name?: string };
+  description?: string | null;
+  data?: { id?: string; name?: string; description?: string | null };
 };
 
 const mapCreatedCollection = (
   createdRes: CreatedCollectionResponse,
   fallbackName: string,
+  fallbackDescription: string,
 ): CollectionRow | null => {
   const createdData = createdRes?.data || createdRes;
   const createdId = createdData?.id;
@@ -53,6 +55,7 @@ const mapCreatedCollection = (
   return {
     id: createdId,
     name: createdData?.name || fallbackName,
+    description: createdData?.description ?? fallbackDescription,
     contentsCount: 0,
     createdAt: new Date().toISOString(),
     actions: "",
@@ -93,6 +96,7 @@ export const useContentsModalFlows = (
   const [selectedContentType, setSelectedContentType] =
     useState<ContentType | null>(null);
   const [collectionName, setCollectionName] = useState("");
+  const [collectionDescription, setCollectionDescription] = useState("");
   const [couponStep, setCouponStep] = useState<CouponStep | null>(null);
   const [editingCollectionId, setEditingCollectionId] = useState<string | null>(
     null,
@@ -100,9 +104,10 @@ export const useContentsModalFlows = (
   const createCouponMutation = usePostAPI<unknown, CreateCouponPayload>(
     API.coupon.create,
   );
-  const createCollectionMutation = usePostAPI<unknown, { name: string }>(
-    API.collection.create,
-  );
+  const createCollectionMutation = usePostAPI<
+    unknown,
+    { name: string; description?: string }
+  >(API.collection.create);
   const normalizeCouponForm = (form: typeof INITIAL_COUPON_FORM) => ({
     ...form,
     title: form.title.trim(),
@@ -149,6 +154,7 @@ export const useContentsModalFlows = (
   const resetCreateFlow = () => {
     setShowCreateModal(false);
     setCollectionName("");
+    setCollectionDescription("");
     setEditingCollectionId(null);
     setShowSuccessModal(true);
   };
@@ -156,20 +162,24 @@ export const useContentsModalFlows = (
   const createCollectionFlow = {
     collectionName,
     setCollectionName,
+    collectionDescription,
+    setCollectionDescription,
     showCreateModal,
     showSuccessModal,
 
     editingCollectionId,
 
-    openCreate: (name?: string, id?: string) => {
-      if (name) setCollectionName(name);
-      if (id) setEditingCollectionId(id);
+    openCreate: (name?: string, id?: string, description?: string) => {
+      setCollectionName(name ?? "");
+      setCollectionDescription(description ?? "");
+      setEditingCollectionId(id ?? null);
       setShowCreateModal(true);
     },
 
     closeCreate: () => {
       setShowCreateModal(false);
       setCollectionName("");
+      setCollectionDescription("");
       setEditingCollectionId(null);
     },
     completeCreate: async () => {
@@ -180,11 +190,16 @@ export const useContentsModalFlows = (
         if (editingCollectionId) {
           await axiosClient.patch(API.collection.update(editingCollectionId), {
             name: trimmedName,
+            description: collectionDescription.trim(),
           });
           setCollections((prev) =>
             prev.map((item) =>
               item.id === editingCollectionId
-                ? { ...item, name: trimmedName }
+                ? {
+                    ...item,
+                    name: trimmedName,
+                    description: collectionDescription.trim(),
+                  }
                 : item,
             ),
           );
@@ -202,9 +217,14 @@ export const useContentsModalFlows = (
 
         const createdRes = (await createCollectionMutation.mutateAsync({
           name: trimmedName,
+          description: collectionDescription.trim(),
         })) as CreatedCollectionResponse;
 
-        const createdCollection = mapCreatedCollection(createdRes, trimmedName);
+        const createdCollection = mapCreatedCollection(
+          createdRes,
+          trimmedName,
+          collectionDescription.trim(),
+        );
 
         if (createdCollection) {
           setCollections((prev) => [...prev, createdCollection]);
@@ -474,7 +494,7 @@ export const useContentsModalFlows = (
     const item = collections.find((c) => c.id === id);
     if (!item) return;
 
-    createCollectionFlow.openCreate(item.name, id);
+    createCollectionFlow.openCreate(item.name, id, item.description);
   };
 
   const openCouponEdit = (
