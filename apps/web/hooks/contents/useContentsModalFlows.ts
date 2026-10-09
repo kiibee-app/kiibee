@@ -281,7 +281,11 @@ export const useContentsModalFlows = (
       const createdRes = (await createCollectionMutation.mutateAsync({
         name: localizedName,
       })) as CreatedCollectionResponse;
-      const createdCollection = mapCreatedCollection(createdRes, localizedName);
+      const createdCollection = mapCreatedCollection(
+        createdRes,
+        localizedName,
+        "",
+      );
 
       if (createdCollection) {
         setCollections((prev) => {
