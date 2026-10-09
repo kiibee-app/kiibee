@@ -13,6 +13,7 @@ import {
 import { db } from 'src/database/db';
 import {
   users,
+  contentSettings,
   contentTypes,
   mediaFileCategories,
   creatorChannels,
@@ -35,7 +36,11 @@ const baseSelect = {
   creatorName: users.fullName,
   creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
-  accessType: mediaFiles.accessType,
+  accessType: sql<string>`COALESCE(
+    NULLIF(${mediaFiles.accessType}::text, 'free'),
+    NULLIF(${contentSettings.accessType}::text, 'free'),
+    ${mediaFiles.accessType}::text
+  )`,
   categoryName: sql<string>`(
     SELECT cc.name FROM content_categories cc
     INNER JOIN media_file_categories mfc ON mfc.category_id = cc.id
@@ -243,6 +248,10 @@ export const getAllContentsService = async (
       .leftJoin(
         creatorChannels,
         eq(creatorChannels.creatorId, mediaFiles.creatorId),
+      )
+      .leftJoin(
+        contentSettings,
+        eq(contentSettings.userId, mediaFiles.creatorId),
       )
       .where(whereClause)
       .orderBy(...orderBy)

@@ -37,6 +37,7 @@ import {
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
+import { getCategoryLabel } from "@/utils/category";
 
 type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
@@ -386,7 +387,7 @@ export const getSingleContentProps = (
             },
           }
         : {}),
-      categoryLabel: categories[0],
+      categoryLabel: categories[0] ? getCategoryLabel(categories[0], t) : "",
       mediaLabel: getContentTypeLabel(contentType),
       ...(isVideo
         ? {
@@ -407,6 +408,7 @@ export const getSingleContentProps = (
           primaryAction:
             effectiveIsPaidCollection &&
             effectiveCollectionId &&
+            isFree &&
             !hasViewerAccess &&
             !isOwner
               ? {
@@ -424,28 +426,11 @@ export const getSingleContentProps = (
                 },
         }
       : {
-          primaryActions:
-            effectiveIsPaidCollection &&
-            effectiveCollectionId &&
-            !hasViewerAccess &&
-            !isOwner
-              ? [
-                  {
-                    label: t("pricingLabels.partOfCollection"),
-                    href: pathPublicCollection(
-                      effectiveCollectionId,
-                      content[CONTENT_RESPONSE_KEYS.CREATOR_ID] as
-                        | string
-                        | undefined,
-                      creatorSlug,
-                    ),
-                  },
-                ]
-              : pricingActions.map((action) => ({
-                  label: action.label,
-                  subtitle: action.subtitle,
-                  variant: action.variant,
-                })),
+          primaryActions: pricingActions.map((action) => ({
+            label: action.label,
+            subtitle: action.subtitle,
+            variant: action.variant,
+          })),
         }),
     metaItems: [
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
@@ -463,7 +448,7 @@ export const getSingleContentProps = (
       mainCategory
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.category),
-            value: mainCategory,
+            value: getCategoryLabel(mainCategory, t),
           }
         : undefined,
       createdAt

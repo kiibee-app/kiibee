@@ -30,7 +30,7 @@ export default function TutorialsShowcase({
           onPlayClick={onSelectVideo}
           isSelected={selectedVideoId === tutorial.id}
           collectionId={collectionId}
-          isPaidCollection={isPaidCollection || tutorial.isPaidCollection}
+          isPaidCollection={isPaidCollection}
         />
       ))}
     </Grid>

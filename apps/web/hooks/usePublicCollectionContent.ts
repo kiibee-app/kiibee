@@ -111,6 +111,7 @@ export function usePublicCollectionContent(
             inCollection: true,
             collectionId: payload.collectionId,
             isPaidCollection: isPaid,
+            collectionAccessType: payload.accessType,
             partOfCollectionLabel,
             labels: getPricingLabels(t),
           }),

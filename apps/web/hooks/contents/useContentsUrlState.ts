@@ -100,7 +100,15 @@ export function useContentsUrlState({
       return;
     }
 
-    const match = collections.find((c) => c.id === queryCollectionId);
+    const queryDecoded = decodeURIComponent(queryCollectionId)
+      .trim()
+      .toLowerCase();
+    const match = collections.find(
+      (c) =>
+        c.id === queryCollectionId ||
+        c.name.trim().toLowerCase() === queryDecoded ||
+        c.slug?.trim().toLowerCase() === queryDecoded,
+    );
 
     if (!match) {
       replaceQuery({ collectionId: null, contentId: null });
@@ -132,7 +140,7 @@ export function useContentsUrlState({
   const handleSelectCollection = useCallback(
     (collection: CollectionRow) => {
       setSelectedCollection(collection);
-      replaceQuery({ collectionId: collection.id, contentId: null });
+      replaceQuery({ collectionId: collection.name, contentId: null });
     },
     [replaceQuery, setSelectedCollection],
   );
@@ -142,12 +150,21 @@ export function useContentsUrlState({
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, id);
       hasRestoredContentRef.current = true;
       replaceQuery({
-        collectionId: selectedCollection?.id ?? queryCollectionId ?? null,
+        collectionId:
+          selectedCollection?.name ??
+          selectedCollection?.id ??
+          queryCollectionId ??
+          null,
         contentId: id,
         tab: tab,
       });
     },
-    [queryCollectionId, replaceQuery, selectedCollection?.id],
+    [
+      queryCollectionId,
+      replaceQuery,
+      selectedCollection?.name,
+      selectedCollection?.id,
+    ],
   );
 
   const handleEditContent = useCallback(

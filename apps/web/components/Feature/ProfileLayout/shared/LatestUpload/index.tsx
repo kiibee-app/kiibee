@@ -59,6 +59,7 @@ import {
 } from "@/utils/media";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
+import { getCategoryLabel } from "@/utils/category";
 
 type LatestUploadAction = {
   title: string;
@@ -159,6 +160,28 @@ export default function LatestUpload({
       };
       const labels = getPricingLabels(t);
 
+      const collectionAccessType = relatedCollectionQuery.data?.accessType;
+
+      const gatedActions = getContentPricingActions(pricingItem, labels.free, {
+        inCollection: Boolean(effectiveCollectionId),
+        collectionAccessType,
+        labels,
+      });
+      const isGatedLabel =
+        gatedActions[0]?.label === labels.accessCodeRequired ||
+        gatedActions[0]?.label === labels.emailRequired;
+
+      if (isGatedLabel) {
+        return gatedActions.map((action) => ({
+          title: action.label,
+          href: pathPublishedContent(
+            data.slug || data.contentId!,
+            data.creatorSlug,
+            data.title,
+          ),
+        }));
+      }
+
       if (isFreeContentItem(pricingItem)) {
         if (isPaidCol && effectiveCollectionId) {
           const href = pathPublicCollection(
@@ -193,24 +216,6 @@ export default function LatestUpload({
             ),
           },
         ];
-      }
-
-      const gatedActions = getContentPricingActions(pricingItem, labels.free, {
-        labels,
-      });
-      const isGatedLabel =
-        gatedActions[0]?.label === labels.accessCodeRequired ||
-        gatedActions[0]?.label === labels.emailRequired;
-
-      if (isGatedLabel) {
-        return gatedActions.map((action) => ({
-          title: action.label,
-          href: pathPublishedContent(
-            data.slug || data.contentId!,
-            data.creatorSlug,
-            data.title,
-          ),
-        }));
       }
 
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
@@ -258,7 +263,15 @@ export default function LatestUpload({
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t, isOwner, hasAccess, isPaidCol, effectiveCollectionId]);
+  }, [
+    data,
+    t,
+    isOwner,
+    hasAccess,
+    isPaidCol,
+    effectiveCollectionId,
+    relatedCollectionQuery.data?.accessType,
+  ]);
 
   const visibleActions = computedActions;
 
@@ -353,7 +366,7 @@ export default function LatestUpload({
 
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection $isPdf={!isMediaPlayable}>
-          <Badge>{data.badge}</Badge>
+          <Badge>{getCategoryLabel(data.badge, t)}</Badge>
 
           {isTrailerPlaying && isEmbedTrailer ? (
             <TrailerEmbed
@@ -402,7 +415,14 @@ export default function LatestUpload({
                   <>
                     <LeftControlButton>
                       <PlayCircleIcon />
-                      {t("createProfileHome.latestUpload.video")}
+                      {t(
+                        `contents.contentTypeModal.options.${normalizedContentType}`,
+                        {
+                          defaultValue: t(
+                            "createProfileHome.latestUpload.video",
+                          ),
+                        },
+                      )}
                     </LeftControlButton>
 
                     {hasTrailer ? (

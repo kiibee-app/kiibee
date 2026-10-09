@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   useParams,
   usePathname,
@@ -8,6 +8,8 @@ import {
   useSearchParams,
 } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { GenericModal } from "@/components/UI/Modals";
@@ -47,7 +49,6 @@ import AccessGate from "@/components/Feature/AccessGate";
 import { useContentAccessGate } from "@/hooks/useContentAccessGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { Section } from "@/app/styles";
-import { pathPublishedContent } from "@/utils/path";
 
 type Props = {
   contentKey: string;
@@ -175,6 +176,20 @@ export default function PublishedContentDetail({
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   };
 
+  const handleBackToChannel = useCallback(() => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    const targetSlug =
+      creatorSlug || publicCreator?.slug || content?.creatorSlug;
+    if (targetSlug) {
+      router.push(getPublicCreatorProfilePath(targetSlug));
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  }, [onBack, creatorSlug, publicCreator?.slug, content?.creatorSlug, router]);
+
   const paymentSuccessModal = (
     <GenericModal
       visible={showPaymentSuccessModal}
@@ -253,7 +268,7 @@ export default function PublishedContentDetail({
           collectionId={effectiveCollectionId}
           showBack={showBack}
           showShare={showShare}
-          onBack={onBack}
+          onBack={handleBackToChannel}
           embedded={embedded}
           creator={
             publicCreator

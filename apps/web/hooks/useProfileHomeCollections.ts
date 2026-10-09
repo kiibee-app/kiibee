@@ -25,9 +25,11 @@ import {
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
 import {
+  getContentPricingActions,
   getPricingLabels,
   isPaidCollection,
 } from "@/utils/contentPricingActions";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 
 export type CollectionWithCards = {
   id: string;
@@ -48,7 +50,7 @@ export function useProfileHomeCollections(
   publicCreatorId?: string | null,
 ) {
   const { t } = useTranslation();
-  const seeContentLabel = t("createProfileHome.latestUpload.seeContent");
+  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
   const queryClient = useQueryClient();
 
   return useQuery<CollectionWithCards[]>({
@@ -90,11 +92,12 @@ export function useProfileHomeCollections(
                   {
                     ...item,
                   },
-                  seeContentLabel,
+                  freeLabel,
                   {
                     inCollection: true,
                     collectionId: collection.id,
                     isPaidCollection: isPaid,
+                    collectionAccessType: collection.accessType,
                     partOfCollectionLabel,
                     labels: getPricingLabels(t),
                   },
@@ -135,17 +138,31 @@ export function useProfileHomeCollections(
                 });
               const contentDetail = getContentDetail(contentData);
 
-              const buttons = [
-                {
-                  label: seeContentLabel,
-                  variant: VARIANT.SECONDARY,
-                  href: pathPublishedContent(
-                    contentDetail?.slug || content.id,
-                    contentDetail?.creatorSlug,
-                    contentDetail?.title || content.name,
-                  ),
-                },
-              ];
+              const pricingItem = {
+                accessType: contentDetail?.accessType,
+                buyPrice: contentDetail?.buyPrice,
+                rentPrice: contentDetail?.rentPrice,
+                rentDurationHours: contentDetail?.rentDurationHours,
+              };
+
+              const pricingActions = getContentPricingActions(
+                pricingItem,
+                freeLabel,
+                { labels: getPricingLabels(t) },
+              );
+
+              const contentHref = pathPublishedContent(
+                contentDetail?.slug || content.id,
+                contentDetail?.creatorSlug,
+                contentDetail?.title || content.name,
+              );
+
+              const buttons = pricingActions.map((action) => ({
+                label: action.label,
+                variant: VARIANT.SECONDARY,
+                href: contentHref,
+                fullWidth: action.fullWidth,
+              }));
 
               return {
                 ...fallbackTemplate,

@@ -587,6 +587,8 @@ export const CONTENTS = {
     },
   },
   admissionRequirements: {
+    freeContentWarningBadge:
+      "contents.admissionRequirements.freeContentWarningBadge",
     password: {
       error: {
         minLength: "contents.admissionRequirements.password.error.minLength",

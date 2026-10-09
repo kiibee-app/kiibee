@@ -138,12 +138,16 @@ function buildPricingButtons(
     inCollection?: boolean;
     collectionId?: string | null;
     isPaidCollection?: boolean;
+    collectionAccessType?: string | null;
     partOfCollectionLabel?: string;
     labels?: PricingLabels;
   },
 ): TutorialButton[] {
   const effectiveCollectionId = options?.collectionId || item.collectionId;
-  const isPaid = options?.isPaidCollection || item.isPaidCollection;
+  const isPaid =
+    options?.isPaidCollection !== undefined
+      ? options.isPaidCollection
+      : item.isPaidCollection;
 
   if (isPaid && effectiveCollectionId && isFreeContentItem(item)) {
     const label =
@@ -191,6 +195,7 @@ export function feedContentToTutorial(
     inCollection?: boolean;
     collectionId?: string | null;
     isPaidCollection?: boolean;
+    collectionAccessType?: string | null;
     partOfCollectionLabel?: string;
     labels?: PricingLabels;
     language?: string;
@@ -215,7 +220,10 @@ export function feedContentToTutorial(
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
     isFree: isFreeContentItem(item),
     collectionId: options?.collectionId || item.collectionId,
-    isPaidCollection: options?.isPaidCollection || item.isPaidCollection,
+    isPaidCollection:
+      options?.isPaidCollection !== undefined
+        ? options.isPaidCollection
+        : item.isPaidCollection,
     formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
     image: thumbnailCandidates[0] ?? recentCreator,

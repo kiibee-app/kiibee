@@ -21,16 +21,8 @@ export const CONTENT_CATEGORY_OPTIONS = [
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("comedy"),
   },
   {
-    key: "history",
-    translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("history"),
-  },
-  {
     key: "entertainment",
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("entertainment"),
-  },
-  {
-    key: "coaching",
-    translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("coaching"),
   },
   {
     key: "music",
@@ -45,10 +37,6 @@ export const CONTENT_CATEGORY_OPTIONS = [
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option(
       "artsAndIllustration",
     ),
-  },
-  {
-    key: "booksAndWriting",
-    translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("booksAndWriting"),
   },
   {
     key: "wellnessAndMindfulness",
