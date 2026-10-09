@@ -60,6 +60,7 @@ type Props = {
   searchValue?: string;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  hasGlobalAccessGate: boolean;
   collectionAccessType?: AdmissionRequirementValue;
   setCollectionAccessType?: (value: AdmissionRequirementValue) => void;
   collectionPasswords?: string;
@@ -100,6 +101,7 @@ export default function ContentTabPanel({
   searchValue,
   uploadedFile,
   uploadedPreview,
+  hasGlobalAccessGate,
   collectionAccessType,
   setCollectionAccessType,
   collectionPasswords,
@@ -194,6 +196,7 @@ export default function ContentTabPanel({
         <>
           <CollectionTable
             type={COLLECTION_TABLE_TYPE.CONTENTS}
+            hasGlobalAccessGate={hasGlobalAccessGate}
             data={data}
             searchValue={searchValue}
             parentCollection={selectedCollection}
@@ -234,6 +237,7 @@ export default function ContentTabPanel({
     return (
       <CollectionTable
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
+        hasGlobalAccessGate={hasGlobalAccessGate}
         data={visibleCollections}
         searchValue={searchValue}
         onRowClick={setSelectedCollection}
