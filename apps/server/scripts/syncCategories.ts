@@ -1,166 +1,154 @@
 import 'dotenv/config';
-import { eq, ilike } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
-import { db } from '../src/database/db';
+import { and, eq, ilike, inArray } from 'drizzle-orm';
+import { closeDatabase, db } from '../src/database/db';
 import { contentCategories } from '../src/database/schema/content/contentCategories.schema';
+import { mediaFileCategories } from '../src/database/schema/content/mediaFileCategories.schema';
+import { mediaFiles } from '../src/database/schema/content/mediaFiles.schema';
 import { creatorChannels } from '../src/database/schema/creator/creatorChannels.schema';
 import { userContentCategory } from '../src/database/schema/users/userContentCategories.shema';
 
-async function main() {
-  console.log('Starting categories sync...');
+const creatorTargets = [
+  {
+    nameQuery: '%Eventyr%teat%',
+    categoryIds: ['entertainment'],
+  },
+  {
+    nameQuery: '%TANIA ELLIS%',
+    categoryIds: ['education'],
+  },
+  {
+    nameQuery: '%Pædagogisk Psykologisk%',
+    categoryIds: ['education'],
+  },
+] as const;
 
-  const categories = [
-    {
-      id: 'comedy',
-      name: 'Comedy',
-      description: 'Funny and entertaining content',
-      isActive: true,
-    },
-    {
-      id: 'history',
-      name: 'History',
-      description: 'History and historical content',
-      isActive: true,
-    },
-    {
-      id: 'entertainment',
-      name: 'Entertainment',
-      description: 'Entertainment, movies, and shows',
-      isActive: true,
-    },
-    {
-      id: 'coaching',
-      name: 'Coaching',
-      description: 'Personal coaching and development',
-      isActive: true,
-    },
-    {
-      id: 'music',
-      name: 'Music',
-      description: 'Songs, albums, and music content',
-      isActive: true,
-    },
-    {
-      id: 'podcasts',
-      name: 'Podcasts',
-      description: 'Audio shows and podcasts',
-      isActive: true,
-    },
-    {
-      id: 'arts',
-      name: 'Arts & Illustration',
-      description: 'Art, drawings, and creative illustrations',
-      isActive: true,
-    },
-    {
-      id: 'books',
-      name: 'Books & Writing',
-      description: 'Books, stories, and writing content',
-      isActive: true,
-    },
-    {
-      id: 'wellness',
-      name: 'Wellness & Mindfulness',
-      description: 'Mental health and wellness content',
-      isActive: true,
-    },
-    {
-      id: 'education',
-      name: 'Education / Learning',
-      description: 'Educational and learning materials',
-      isActive: true,
-    },
-    {
-      id: 'lifestyle',
-      name: 'Lifestyle & Vlogs',
-      description: 'Daily life and vlog content',
-      isActive: true,
-    },
-    {
-      id: 'food',
-      name: 'Cooking / Food',
-      description: 'Recipes and food-related content',
-      isActive: true,
-    },
-    {
-      id: 'fitness',
-      name: 'Sports & Fitness',
-      description: 'Fitness and sports content',
-      isActive: true,
-    },
-  ];
+const INSERT_BATCH_SIZE = 500;
 
-  for (const category of categories) {
-    await db.insert(contentCategories).values(category).onConflictDoNothing();
-  }
+async function resolveCreatorTargets() {
+  return Promise.all(
+    creatorTargets.map(async (target) => {
+      const matches = await db
+        .select()
+        .from(creatorChannels)
+        .where(ilike(creatorChannels.name, target.nameQuery));
 
-  console.log('Master categories synced successfully!');
+      if (matches.length !== 1) {
+        const matchedNames = matches.map((channel) => channel.name).join(', ');
+        throw new Error(
+          `Expected exactly one creator for "${target.nameQuery}", found ${matches.length}${matchedNames ? `: ${matchedNames}` : ''}`,
+        );
+      }
 
-  // Sync specific creator categories
-  console.log('Syncing specific creator categories...');
-  const creatorTargets = [
-    {
-      nameQuery: '%Eventyr%teat%',
-      categoryIds: ['entertainment'],
-    },
-    {
-      nameQuery: '%TANIA ELLIS%',
-      categoryIds: ['education'],
-    },
-    {
-      nameQuery: '%Pædagogisk Psykologisk%',
-      categoryIds: ['education'],
-    },
-  ];
-
-  for (const target of creatorTargets) {
-    const channel = await db.query.creatorChannels.findFirst({
-      where: ilike(creatorChannels.name, target.nameQuery),
-    });
-
-    if (!channel) {
-      console.warn(
-        `⚠️ Creator channel not found for query: "${target.nameQuery}"`,
-      );
-      continue;
-    }
-
-    const userId = channel.creatorId;
-
-    const existingUserCategory = await db.query.userContentCategory.findFirst({
-      where: eq(userContentCategory.userId, userId),
-    });
-
-    if (existingUserCategory) {
-      await db
-        .update(userContentCategory)
-        .set({
-          categoryIds: target.categoryIds,
-          updatedAt: new Date(),
-        })
-        .where(eq(userContentCategory.userId, userId));
-
-      console.log(
-        `✅ Updated category for "${channel.name}" -> [${target.categoryIds.join(', ')}]`,
-      );
-    } else {
-      await db.insert(userContentCategory).values({
-        id: randomUUID(),
-        userId,
-        categoryIds: target.categoryIds,
-      });
-
-      console.log(
-        `✅ Inserted category for "${channel.name}" -> [${target.categoryIds.join(', ')}]`,
-      );
-    }
-  }
-
-  console.log('Categories & Creator assignments synced successfully!');
-  process.exit(0);
+      return { ...target, channel: matches[0] };
+    }),
+  );
 }
 
-main().catch((err) => {
-  console.error('Error syncing categories:', err);
-  process.exit(1);
-});
+async function main() {
+  const dryRun = process.argv.includes('--dry-run');
+  const resolvedTargets = await resolveCreatorTargets();
+  const targetCategoryIds = [
+    ...new Set(resolvedTargets.flatMap(({ categoryIds }) => categoryIds)),
+  ];
+  const existingCategories = await db
+    .select({ id: contentCategories.id })
+    .from(contentCategories)
+    .where(inArray(contentCategories.id, targetCategoryIds));
+  const existingCategoryIds = new Set(
+    existingCategories.map((category) => category.id),
+  );
+  const missingCategoryIds = targetCategoryIds.filter(
+    (categoryId) => !existingCategoryIds.has(categoryId),
+  );
+
+  if (missingCategoryIds.length > 0) {
+    throw new Error(
+      `Required categories do not exist: ${missingCategoryIds.join(', ')}`,
+    );
+  }
+
+  const contentCounts = await Promise.all(
+    resolvedTargets.map(async ({ channel }) => {
+      const contents = await db
+        .select({ id: mediaFiles.id })
+        .from(mediaFiles)
+        .where(
+          and(
+            eq(mediaFiles.creatorId, channel.creatorId),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        );
+      return contents.length;
+    }),
+  );
+
+  resolvedTargets.forEach(({ channel, categoryIds }, index) => {
+    console.log(
+      `${dryRun ? '[DRY RUN] ' : ''}${channel.name}: ${contentCounts[index]} content item(s) -> ${categoryIds.join(', ')}`,
+    );
+  });
+
+  if (dryRun) return;
+
+  await db.transaction(async (tx) => {
+    for (const { channel, categoryIds } of resolvedTargets) {
+      const contents = await tx
+        .select({ id: mediaFiles.id })
+        .from(mediaFiles)
+        .where(
+          and(
+            eq(mediaFiles.creatorId, channel.creatorId),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        );
+      const contentIds = contents.map((content) => content.id);
+
+      const existingUserCategory = await tx.query.userContentCategory.findFirst({
+        where: eq(userContentCategory.userId, channel.creatorId),
+      });
+
+      if (existingUserCategory) {
+        await tx
+          .update(userContentCategory)
+          .set({ categoryIds: [...categoryIds], updatedAt: new Date() })
+          .where(eq(userContentCategory.userId, channel.creatorId));
+      } else {
+        await tx.insert(userContentCategory).values({
+          id: randomUUID(),
+          userId: channel.creatorId,
+          categoryIds: [...categoryIds],
+        });
+      }
+
+      if (contentIds.length === 0) continue;
+
+      await tx
+        .delete(mediaFileCategories)
+        .where(inArray(mediaFileCategories.mediaFileId, contentIds));
+
+      const assignments = contentIds.flatMap((mediaFileId) =>
+        categoryIds.map((categoryId) => ({
+          id: randomUUID(),
+          mediaFileId,
+          categoryId,
+        })),
+      );
+
+      for (let offset = 0; offset < assignments.length; offset += INSERT_BATCH_SIZE) {
+        await tx
+          .insert(mediaFileCategories)
+          .values(assignments.slice(offset, offset + INSERT_BATCH_SIZE));
+      }
+    }
+  });
+
+  console.log('Creator and content categories synced successfully.');
+}
+
+main()
+  .catch((error: unknown) => {
+    console.error('Error syncing categories:', error);
+    process.exitCode = 1;
+  })
+  .finally(closeDatabase);
