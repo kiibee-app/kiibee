@@ -14,7 +14,11 @@ import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollec
 import { fail, success } from 'src/utils/sendResponse';
 
 import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
-import { ACCESS_TYPE, MEDIA_FILE_TYPE } from 'src/utils/constant';
+import {
+  ACCESS_TYPE,
+  CONTENT_TYPES,
+  MEDIA_FILE_TYPE,
+} from 'src/utils/constant';
 
 export const getAllCollections = async (creatorIdOrSlug: string) => {
   try {
@@ -32,7 +36,10 @@ export const getAllCollections = async (creatorIdOrSlug: string) => {
         contentQty: count(mediaFiles.id),
         hasWarningItem: sql<boolean>`COALESCE(BOOL_OR(
           ${mediaFiles.accessType} = ${ACCESS_TYPE.FREE}
-          AND COALESCE(LOWER(${contentTypes.name}), '') <> ${MEDIA_FILE_TYPE.WEB}
+          AND COALESCE(LOWER(${contentTypes.name}), '') NOT IN (
+            ${MEDIA_FILE_TYPE.WEB},
+            ${CONTENT_TYPES.WEB.toLowerCase()}
+          )
           AND COALESCE(${mediaFiles.buyPrice}, 0) <= 0
           AND COALESCE(${mediaFiles.rentPrice}, 0) <= 0
           AND (${mediaFiles.passwordHash} IS NULL OR ${mediaFiles.passwordHash} = '')
