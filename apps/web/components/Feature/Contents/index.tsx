@@ -322,6 +322,11 @@ function CreatorsContentsInner() {
 
   const contentSettingAccessType =
     contentSettings.data?.data?.accessType ?? undefined;
+  const hasGlobalAccessGate = contentSettings.data?.data
+    ? checkHasPriceOrCode(contentSettings.data.data)
+    : contentSettings.isLoading
+      ? checkHasPriceOrCode(getStoredGlobalPaymentSettings())
+      : false;
 
   const {
     uploadedFile,
@@ -653,6 +658,7 @@ function CreatorsContentsInner() {
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
+            hasGlobalAccessGate={hasGlobalAccessGate}
             collectionAccessType={collectionAccessType}
             setCollectionAccessType={setCollectionAccessType}
             collectionPasswords={collectionPasswords}
@@ -698,7 +704,11 @@ function CreatorsContentsInner() {
         <CreateCollectionModal
           visible={createCollectionFlow.showCreateModal}
           collectionName={createCollectionFlow.collectionName}
+          collectionDescription={createCollectionFlow.collectionDescription}
           onChangeCollectionName={createCollectionFlow.setCollectionName}
+          onChangeCollectionDescription={
+            createCollectionFlow.setCollectionDescription
+          }
           onClose={createCollectionFlow.closeCreate}
           onConfirm={createCollectionFlow.completeCreate}
         />
