@@ -55,6 +55,7 @@ export type CollectionContentRow = {
 export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.COLLECTIONS;
+      hasGlobalAccessGate?: boolean;
       data: CollectionRow[];
       searchValue?: string;
       onRowClick?: (row: CollectionRow) => void;
@@ -67,6 +68,7 @@ export type CollectionTableProps =
     }
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
+      hasGlobalAccessGate?: boolean;
       data: CollectionContentRow[];
       searchValue?: string;
       parentCollection?: CollectionRow | null;

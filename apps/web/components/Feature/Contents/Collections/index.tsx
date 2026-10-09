@@ -72,9 +72,9 @@ const shouldShowContentWarning = (
 export default function CollectionTable(props: CollectionTableProps) {
   const { t } = useTranslation();
   const isCollections = props.type === COLLECTION_TABLE_TYPE.COLLECTIONS;
-  const hasGlobalAccessGate = checkHasPriceOrCode(
-    getStoredGlobalPaymentSettings(),
-  );
+  const hasGlobalAccessGate =
+    props.hasGlobalAccessGate ??
+    checkHasPriceOrCode(getStoredGlobalPaymentSettings());
   const columns = isCollections
     ? getCollectionColumns(t)
     : getCollectionContentColumns(t);

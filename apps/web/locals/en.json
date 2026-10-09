@@ -2167,7 +2167,9 @@
     "createCollectionModal": {
       "title": "Create collection",
       "collectionName": "Collection name",
-      "placeholder": "Enter name"
+      "placeholder": "Enter name",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter a description"
     },
     "createCollectionSuccessModal": {
       "title": "Changes saved",
