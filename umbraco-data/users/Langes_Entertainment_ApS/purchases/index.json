@@ -1,0 +1,212 @@
+{
+  "exportedAt": "2026-06-02T11:02:32.692Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/31205",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 31205,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 31205,
+    "key": "12164c6a-d9f9-4faf-aeba-572f91f5b85e",
+    "udi": "umb://document/12164c6ad9f94fafaeba572f91f5b85e",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/langes-entertainment-aps/purchases/"],
+    "path": "-1,1067,31200,31205",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 2652,
+    "childrenFetched": 2652,
+    "detailsFetched": 2652,
+    "detailErrors": 0,
+    "purchaseEntries": 1109,
+    "nonPurchaseEntries": 1543,
+    "entriesWithDownloads": 720,
+    "entriesWithStreams": 814,
+    "totalDownloads": 1562,
+    "totalStreams": 2010,
+    "uniqueMediaUdis": 3,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 3,
+    "mediaResolved": 3,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 15,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 16,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 17,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 18,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 19,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 20,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 21,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 22,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 23,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 24,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 25,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 26,
+      "itemCount": 100,
+      "totalItems": 2652
+    },
+    {
+      "pageNumber": 27,
+      "itemCount": 52,
+      "totalItems": 2652
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Langes_Entertainment_ApS\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Langes_Entertainment_ApS\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Langes_Entertainment_ApS\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Langes_Entertainment_ApS\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

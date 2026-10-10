@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Pædagogisk Psykologisk Tidsskrift",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 16702,
+  "key": "3f455bc0-b97c-4cdd-940e-950bf517701a",
+  "udi": "umb://document/3f455bc0b97c4cdd940e950bf517701a",
+  "path": "-1,1067,16702",
+  "url": "/paedagogisk-psykologisk-tidsskrift/",
+  "createDate": "2020-06-05 11:00:16",
+  "updateDate": "2026-08-11 00:00:04",
+  "publishDate": "2026-08-11 00:00:04",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

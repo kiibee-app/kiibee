@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+95146,3db2bfed-11a8-48f5-b575-921cc4b04583,umb://document/3db2bfed11a848f5b575921cc4b04583,KBF-1497,6267.36,6267.36,true,2024-03-05 20:23:42,2024-03-05 20:23:42,https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/,matched-public-payout-url,https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/,https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/,,

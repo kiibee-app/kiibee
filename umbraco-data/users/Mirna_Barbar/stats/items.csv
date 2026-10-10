@@ -1,0 +1,4 @@
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,isPlay,media,uID
+120071,45bfb000-1733-44cf-ad1d-e975c2981071,umb://document/45bfb000173344cfad1de975c2981071,01d353b5e4d541bcbc19f9aab03356fd,statsEntry,true,true,2026-03-18 08:16:20,2026-03-18 08:16:20,119676,2,,0,umb://document/6b5cba89ecac47fcbf86a46039572c28,
+120069,d295eaa4-b56c-4fc2-9cd1-766c3177003f,umb://document/d295eaa4b56c4fc29cd1766c3177003f,1065028e2aa04ef4827ae470064d0e00,statsEntry,true,true,2026-03-18 08:00:21,2026-03-18 08:00:21,119676,1,,0,umb://document/6b5cba89ecac47fcbf86a46039572c28,
+120036,5cce39c0-8309-480e-8bab-a441414ad989,umb://document/5cce39c08309480e8baba441414ad989,1fa1fb663e2b4668a9eec479246f2198,statsEntry,true,true,2026-03-17 08:21:18,2026-03-17 08:21:18,119676,0,,0,umb://document/6b5cba89ecac47fcbf86a46039572c28,

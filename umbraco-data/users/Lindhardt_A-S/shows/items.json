@@ -1,0 +1,276 @@
+[
+  {
+    "id": 2649,
+    "key": "03ed7c95-eb19-4853-8c31-573af38202e2",
+    "udi": "umb://document/03ed7c95eb1948538c31573af38202e2",
+    "name": "Forsmag på Beslutningsmodellen.",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-02-07 15:18:33",
+    "updateDate": "2022-03-08 22:25:45",
+    "parentId": 2646,
+    "path": "-1,1067,2587,2646,2649",
+    "sortOrder": 0,
+    "urls": [
+      "/lindhardt-as/faa-en-gratis-forsmag-paa-undervisningsforloebet/forsmag-paa-beslutningsmodellen/"
+    ],
+    "properties": {
+      "purchasePrice": "",
+      "access": ["57"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/7474fa2935c96bd84ded91e7434080b6/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/7474fa2935c96bd84ded91e7434080b6/thumbnails/thumbnail.jpg",
+      "videoID": "7474fa2935c96bd84ded91e7434080b6",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "149944087",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Se, hvad du kan bruge Beslutningsmodellen til.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1552/beslutningsmodellen01.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Forsmag på Beslutningsmodellen.",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "1",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "7474fa2935c96bd84ded91e7434080b6",
+    "videoStatus": "ready",
+    "videoSize": "149944087",
+    "videoThumbnailURL": "https://videodelivery.net/7474fa2935c96bd84ded91e7434080b6/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/7474fa2935c96bd84ded91e7434080b6/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Forsmag på Beslutningsmodellen.",
+    "description": "Se, hvad du kan bruge Beslutningsmodellen til.",
+    "expandedDescription": "",
+    "year": "0",
+    "length": "0",
+    "badge": "",
+    "production": "",
+    "productionLink": "",
+    "tags": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1552/beslutningsmodellen01.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["57"],
+    "rentalPrice": "",
+    "purchasePrice": "",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": true,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/03ed7c95eb1948538c31573af38202e2",
+      "mediaKey": "03ed7c95-eb19-4853-8c31-573af38202e2",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 2694,
+    "key": "fce713b4-7df0-46c7-9c7b-cfef1aabd09d",
+    "udi": "umb://document/fce713b47df046c79c7bcfef1aabd09d",
+    "name": "Hør mere om Søren.",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-02-17 11:33:36",
+    "updateDate": "2020-03-25 11:32:15",
+    "parentId": 2646,
+    "path": "-1,1067,2587,2646,2694",
+    "sortOrder": 1,
+    "urls": [
+      "/lindhardt-as/faa-en-gratis-forsmag-paa-undervisningsforloebet/hoer-mere-om-soeren/"
+    ],
+    "properties": {
+      "purchasePrice": "",
+      "access": ["57"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "",
+      "trailer": "",
+      "openWebContentFromList": "",
+      "webContentURL": "https://vimeo.com/389024915",
+      "orderID": "1",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Se, hvad du kan få ud af en tredages uddannelse med Søren Lindhardt.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1556/lindhardt.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Hør mere om Søren.",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "1",
+      "siteMapOption": ""
+    },
+    "type": ["264"],
+    "rawFile": "",
+    "videoID": "",
+    "videoStatus": "",
+    "videoSize": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "trailer": "",
+    "webContentURL": "https://vimeo.com/389024915",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "Hør mere om Søren.",
+    "description": "Se, hvad du kan få ud af en tredages uddannelse med Søren Lindhardt.",
+    "expandedDescription": "",
+    "year": "0",
+    "length": "0",
+    "badge": "",
+    "production": "",
+    "productionLink": "",
+    "tags": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1556/lindhardt.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["57"],
+    "rentalPrice": "",
+    "purchasePrice": "",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": true,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/fce713b47df046c79c7bcfef1aabd09d",
+      "mediaKey": "fce713b4-7df0-46c7-9c7b-cfef1aabd09d",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  }
+]

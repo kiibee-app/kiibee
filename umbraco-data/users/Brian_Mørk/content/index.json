@@ -1,0 +1,15 @@
+{
+  "requestedName": "Brian Mørk",
+  "liveName": "Brian Mørk",
+  "userId": 42313,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 42320,
+      "status": "ok"
+    }
+  ]
+}

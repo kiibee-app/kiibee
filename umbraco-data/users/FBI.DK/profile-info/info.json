@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "FBI.DK",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 41913,
+  "key": "bb935421-cf77-4a9b-a15a-8fbee58985b6",
+  "udi": "umb://document/bb935421cf774a9ba15a8fbee58985b6",
+  "path": "-1,1067,41913",
+  "url": "/fbidk/",
+  "createDate": "2021-04-02 13:52:58",
+  "updateDate": "2026-08-17 00:00:16",
+  "publishDate": "2026-08-17 00:00:16",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

@@ -1,0 +1,1281 @@
+{
+  "matched": [
+    {
+      "id": 111733,
+      "key": "2fb677cf-5b90-4a44-938e-30be5a398ab2",
+      "udi": "umb://document/2fb677cf5b904a44938e30be5a398ab2",
+      "name": "KBF-1661",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/111733",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-08-10 15:28:50",
+      "updateDate": "2025-08-12 08:17:25",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,111733",
+      "sortOrder": 25,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "207.6",
+      "amountNumber": 207.6,
+      "isPaid": true,
+      "payoutCreateDate": "2025-08-10 15:28:50",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "2",
+        "transactionFee": "6",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2025-04-22 11:52:03",
+        "rawEarnings": "240",
+        "amount": "207.6",
+        "isPaid": "1",
+        "to": "2025-08-10 15:28:15",
+        "transactionAmount": "14.4",
+        "kiibeeCutAmount": "18"
+      }
+    },
+    {
+      "id": 108734,
+      "key": "193b47e9-83d5-4b82-a896-b7b8a0579bd0",
+      "udi": "umb://document/193b47e983d54b82a896b7b8a0579bd0",
+      "name": "KBF-1625",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/108734",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-04-22 11:52:10",
+      "updateDate": "2025-04-23 10:44:36",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,108734",
+      "sortOrder": 24,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "80.3",
+      "amountNumber": 80.3,
+      "isPaid": true,
+      "payoutCreateDate": "2025-04-22 11:52:10",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "6",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2025-04-10 18:15:49",
+        "rawEarnings": "95",
+        "amount": "80.3",
+        "isPaid": "1",
+        "to": "2025-04-22 11:52:03",
+        "transactionAmount": "5.7",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 108377,
+      "key": "d6cc9ad7-c280-4436-9e5a-f2dcf29a7557",
+      "udi": "umb://document/d6cc9ad7c28044369e5af2dcf29a7557",
+      "name": "KBF-1623",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/108377",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-04-10 18:15:56",
+      "updateDate": "2025-04-12 09:39:16",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,108377",
+      "sortOrder": 23,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "207.6",
+      "amountNumber": 207.6,
+      "isPaid": true,
+      "payoutCreateDate": "2025-04-10 18:15:56",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "2",
+        "transactionFee": "6",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2024-03-30 09:48:21",
+        "rawEarnings": "240",
+        "amount": "207.6",
+        "isPaid": "1",
+        "to": "2025-04-10 18:15:49",
+        "transactionAmount": "14.4",
+        "kiibeeCutAmount": "18"
+      }
+    },
+    {
+      "id": 95902,
+      "key": "1b0155ab-0193-4ecc-8fdf-168364cda72e",
+      "udi": "umb://document/1b0155ab01934ecc8fdf168364cda72e",
+      "name": "KBF-1503",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/95902",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2024-03-30 09:48:29",
+      "updateDate": "2024-04-02 09:16:40",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,95902",
+      "sortOrder": 22,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "81.25",
+      "amountNumber": 81.25,
+      "isPaid": true,
+      "payoutCreateDate": "2024-03-30 09:48:29",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2024-02-18 08:07:28",
+        "rawEarnings": "95",
+        "amount": "81.25",
+        "isPaid": "1",
+        "to": "2024-03-30 09:48:21",
+        "transactionAmount": "4.75",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 94800,
+      "key": "124f9c0d-c023-4cf2-9c14-84d8b342faf3",
+      "udi": "umb://document/124f9c0dc0234cf29c1484d8b342faf3",
+      "name": "KBF-1492",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/94800",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2024-02-18 08:07:36",
+      "updateDate": "2024-02-20 11:48:09",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,94800",
+      "sortOrder": 21,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "81.25",
+      "amountNumber": 81.25,
+      "isPaid": true,
+      "payoutCreateDate": "2024-02-18 08:07:36",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2023-09-19 10:47:50",
+        "rawEarnings": "95",
+        "amount": "81.25",
+        "isPaid": "1",
+        "to": "2024-02-18 08:07:28",
+        "transactionAmount": "4.75",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 90185,
+      "key": "09e410e3-7571-4730-a92d-0b0e1daf1884",
+      "udi": "umb://document/09e410e375714730a92d0b0e1daf1884",
+      "name": "KBF-1443",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/90185",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-09-19 10:47:55",
+      "updateDate": "2023-09-20 13:33:24",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,90185",
+      "sortOrder": 20,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "128.75",
+      "amountNumber": 128.75,
+      "isPaid": true,
+      "payoutCreateDate": "2023-09-19 10:47:55",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2023-08-12 12:25:56",
+        "rawEarnings": "145",
+        "amount": "128.75",
+        "isPaid": "1",
+        "to": "2023-09-19 10:47:50",
+        "transactionAmount": "7.25",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 88048,
+      "key": "f6502c6e-755a-4d96-b87d-d5cf97a95c5b",
+      "udi": "umb://document/f6502c6e755a4d96b87dd5cf97a95c5b",
+      "name": "KBF-1435",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/88048",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-08-12 12:26:02",
+      "updateDate": "2023-08-14 09:09:44",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,88048",
+      "sortOrder": 19,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "81.25",
+      "amountNumber": 81.25,
+      "isPaid": true,
+      "payoutCreateDate": "2023-08-12 12:26:02",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2023-08-09 23:41:07",
+        "rawEarnings": "95",
+        "amount": "81.25",
+        "isPaid": "1",
+        "to": "2023-08-12 12:25:56",
+        "transactionAmount": "4.75",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 87983,
+      "key": "f5e990d8-7136-49fa-aadf-9a0999763be3",
+      "udi": "umb://document/f5e990d8713649faaadf9a0999763be3",
+      "name": "KBF-1434",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/87983",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-08-09 23:41:29",
+      "updateDate": "2023-08-11 08:09:52",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,87983",
+      "sortOrder": 18,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "162.5",
+      "amountNumber": 162.5,
+      "isPaid": true,
+      "payoutCreateDate": "2023-08-09 23:41:29",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "2",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2023-02-01 08:45:37",
+        "rawEarnings": "190",
+        "amount": "162.5",
+        "isPaid": "1",
+        "to": "2023-08-09 23:41:07",
+        "transactionAmount": "9.5",
+        "kiibeeCutAmount": "18"
+      }
+    },
+    {
+      "id": 77715,
+      "key": "cdc4ac6e-5af5-4b1b-99af-a326aff8795d",
+      "udi": "umb://document/cdc4ac6e5af54b1b99afa326aff8795d",
+      "name": "KBF-1370",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/77715",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-02-01 08:45:43",
+      "updateDate": "2023-02-02 08:59:13",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,77715",
+      "sortOrder": 17,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "81.25",
+      "amountNumber": 81.25,
+      "isPaid": true,
+      "payoutCreateDate": "2023-02-01 08:45:43",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2022-10-05 20:14:17",
+        "rawEarnings": "95",
+        "amount": "81.25",
+        "isPaid": "1",
+        "to": "2023-02-01 08:45:37",
+        "transactionAmount": "4.75",
+        "kiibeeCutAmount": "9"
+      }
+    },
+    {
+      "id": 73446,
+      "key": "38d13c91-d445-40b1-be44-48e39b4e4e77",
+      "udi": "umb://document/38d13c91d44540b1be4448e39b4e4e77",
+      "name": "KBF-1323",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/73446",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-10-05 20:14:24",
+      "updateDate": "2022-10-06 09:53:43",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,73446",
+      "sortOrder": 16,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "225.75",
+      "amountNumber": 225.75,
+      "isPaid": true,
+      "payoutCreateDate": "2022-10-05 20:14:24",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2022-09-05 12:30:36",
+        "rawEarnings": "245",
+        "amount": "225.75",
+        "isPaid": "1",
+        "to": "2022-10-05 20:14:17",
+        "transactionAmount": "12.25",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 71286,
+      "key": "4a421785-6cf8-4c51-b7f9-729e7b076661",
+      "udi": "umb://document/4a4217856cf84c51b7f9729e7b076661",
+      "name": "KBF-1303",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/71286",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-09-05 12:30:43",
+      "updateDate": "2022-09-06 10:49:40",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,71286",
+      "sortOrder": 15,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "225.75",
+      "amountNumber": 225.75,
+      "isPaid": true,
+      "payoutCreateDate": "2022-09-05 12:30:43",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2022-07-18 13:55:43",
+        "rawEarnings": "245",
+        "amount": "225.75",
+        "isPaid": "1",
+        "to": "2022-09-05 12:30:36",
+        "transactionAmount": "12.25",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 67952,
+      "key": "ae377541-4df9-49fc-ba41-94313c04f985",
+      "udi": "umb://document/ae3775414df949fcba4194313c04f985",
+      "name": "KBF-1289",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/67952",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-07-18 13:55:51",
+      "updateDate": "2022-07-20 09:28:58",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,67952",
+      "sortOrder": 14,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "85.15",
+      "amountNumber": 85.15,
+      "isPaid": true,
+      "payoutCreateDate": "2022-07-18 13:55:51",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2022-04-20 10:20:04",
+        "rawEarnings": "95",
+        "amount": "85.15",
+        "isPaid": "1",
+        "to": "2022-07-18 13:55:43",
+        "transactionAmount": "2.85",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 63689,
+      "key": "2a2c78de-cdff-4335-ae35-7bb79435c9a5",
+      "udi": "umb://document/2a2c78decdff4335ae357bb79435c9a5",
+      "name": "KBF-1269",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/63689",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-04-20 10:20:15",
+      "updateDate": "2022-04-22 13:22:11",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,63689",
+      "sortOrder": 13,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "182.15",
+      "amountNumber": 182.15,
+      "isPaid": true,
+      "payoutCreateDate": "2022-04-20 10:20:15",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-12-28 07:23:21",
+        "rawEarnings": "195",
+        "amount": "182.15",
+        "isPaid": "1",
+        "to": "2022-04-20 10:20:04",
+        "transactionAmount": "5.85",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 55560,
+      "key": "ba5ee1e2-d025-45d8-a453-8adb74db7399",
+      "udi": "umb://document/ba5ee1e2d02545d8a4538adb74db7399",
+      "name": "KBF-1238",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/55560",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-12-28 07:23:28",
+      "updateDate": "2021-12-28 11:07:45",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,55560",
+      "sortOrder": 12,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "85.15",
+      "amountNumber": 85.15,
+      "isPaid": true,
+      "payoutCreateDate": "2021-12-28 07:23:28",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-10-04 11:02:23",
+        "rawEarnings": "95",
+        "amount": "85.15",
+        "isPaid": "1",
+        "to": "2021-12-28 07:23:21",
+        "transactionAmount": "2.85",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 50551,
+      "key": "2c9d7203-6e9b-406e-9b9b-6385ba692dc9",
+      "udi": "umb://document/2c9d72036e9b406e9b9b6385ba692dc9",
+      "name": "KBF-1200",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/50551",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-10-04 11:02:29",
+      "updateDate": "2021-10-04 11:02:29",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,50551",
+      "sortOrder": 11,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "85.15",
+      "amountNumber": 85.15,
+      "isPaid": false,
+      "payoutCreateDate": "2021-10-04 11:02:29",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-08-03 10:58:39",
+        "rawEarnings": "95",
+        "amount": "85.15",
+        "isPaid": "0",
+        "to": "2021-10-04 11:02:23",
+        "transactionAmount": "2.85",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 48887,
+      "key": "8b7cfaf4-8777-4b53-b86f-20963172ef94",
+      "udi": "umb://document/8b7cfaf487774b53b86f20963172ef94",
+      "name": "KBF-1175",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/48887",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-08-03 10:58:46",
+      "updateDate": "2021-08-03 11:39:58",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,48887",
+      "sortOrder": 10,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "170.3",
+      "amountNumber": 170.3,
+      "isPaid": true,
+      "payoutCreateDate": "2021-08-03 10:58:46",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "2",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-07-28 10:19:44",
+        "rawEarnings": "190",
+        "amount": "170.3",
+        "isPaid": "1",
+        "to": "2021-08-03 10:58:39",
+        "transactionAmount": "5.7",
+        "kiibeeCutAmount": "14"
+      }
+    },
+    {
+      "id": 48632,
+      "key": "03dcb997-751f-4d57-8493-ec8f80e9e884",
+      "udi": "umb://document/03dcb997751f4d578493ec8f80e9e884",
+      "name": "KBF-1171",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/48632",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-07-28 10:19:51",
+      "updateDate": "2021-07-28 10:37:31",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,48632",
+      "sortOrder": 9,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "255.45",
+      "amountNumber": 255.45,
+      "isPaid": true,
+      "payoutCreateDate": "2021-07-28 10:19:51",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "3",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-07-27 10:24:03",
+        "rawEarnings": "285",
+        "amount": "255.45",
+        "isPaid": "1",
+        "to": "2021-07-28 10:19:44",
+        "transactionAmount": "8.55",
+        "kiibeeCutAmount": "21"
+      }
+    },
+    {
+      "id": 48631,
+      "key": "9490b94f-5c49-408c-ae58-e2fa39a9edd6",
+      "udi": "umb://document/9490b94f5c49408cae58e2fa39a9edd6",
+      "name": "KBF-1170",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/48631",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-07-28 10:19:48",
+      "updateDate": "2021-07-28 10:37:40",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,48631",
+      "sortOrder": 8,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "255.45",
+      "amountNumber": 255.45,
+      "isPaid": true,
+      "payoutCreateDate": "2021-07-28 10:19:48",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "3",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-07-27 10:24:03",
+        "rawEarnings": "285",
+        "amount": "255.45",
+        "isPaid": "1",
+        "to": "2021-07-28 10:19:44",
+        "transactionAmount": "8.55",
+        "kiibeeCutAmount": "21"
+      }
+    },
+    {
+      "id": 48608,
+      "key": "1b91a34f-fec3-4f11-8cb1-2f3135ebccd5",
+      "udi": "umb://document/1b91a34ffec34f118cb12f3135ebccd5",
+      "name": "KBF-1169",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/48608",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-07-27 10:24:11",
+      "updateDate": "2021-07-28 10:22:15",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,48608",
+      "sortOrder": 7,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "85.15",
+      "amountNumber": 85.15,
+      "isPaid": true,
+      "payoutCreateDate": "2021-07-27 10:24:11",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-04-27 20:54:30",
+        "rawEarnings": "95",
+        "amount": "85.15",
+        "isPaid": "1",
+        "to": "2021-07-27 10:24:03",
+        "transactionAmount": "2.85",
+        "kiibeeCutAmount": "7"
+      }
+    },
+    {
+      "id": 44267,
+      "key": "bbb46ebb-bc99-495f-8741-1eb4749ab403",
+      "udi": "umb://document/bbb46ebbbc99495f87411eb4749ab403",
+      "name": "KBF-1143",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/44267",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-04-27 20:54:55",
+      "updateDate": "2021-04-28 11:34:57",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,44267",
+      "sortOrder": 6,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "255.45",
+      "amountNumber": 255.45,
+      "isPaid": true,
+      "payoutCreateDate": "2021-04-27 20:54:55",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "3",
+        "transactionFee": "3",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2021-03-10 07:37:40",
+        "rawEarnings": "285",
+        "amount": "255.45",
+        "isPaid": "1",
+        "to": "2021-04-27 20:54:30",
+        "transactionAmount": "8.55",
+        "kiibeeCutAmount": "21"
+      }
+    },
+    {
+      "id": 35337,
+      "key": "feacd728-e9d2-41e6-990c-6e1adaa0c9b0",
+      "udi": "umb://document/feacd728e9d241e6990c6e1adaa0c9b0",
+      "name": "KBF-1119",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/35337",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-02-08 13:38:09",
+      "updateDate": "2021-02-09 12:43:32",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,35337",
+      "sortOrder": 5,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "85.15",
+      "amountNumber": 85.15,
+      "isPaid": true,
+      "payoutCreateDate": "2021-02-08 13:38:09",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2021-01-27 15:13:37",
+        "rawEarnings": "",
+        "amount": "85.15",
+        "isPaid": "1",
+        "to": "2021-02-08 13:38:03",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    },
+    {
+      "id": 30657,
+      "key": "38902a07-1225-4420-a57e-f99d9df94a47",
+      "udi": "umb://document/38902a0712254420a57ef99d9df94a47",
+      "name": "KBF-1113",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/30657",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-01-27 15:13:43",
+      "updateDate": "2021-01-27 16:08:17",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,30657",
+      "sortOrder": 4,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "182.15",
+      "amountNumber": 182.15,
+      "isPaid": true,
+      "payoutCreateDate": "2021-01-27 15:13:43",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2020-12-11 10:01:24",
+        "rawEarnings": "",
+        "amount": "182.15",
+        "isPaid": "1",
+        "to": "2021-01-27 15:13:37",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    },
+    {
+      "id": 23815,
+      "key": "eb3ee165-f980-459f-9651-af0df2ff6adc",
+      "udi": "umb://document/eb3ee165f980459f9651af0df2ff6adc",
+      "name": "KBF-1098",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/23815",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2020-12-11 10:01:31",
+      "updateDate": "2020-12-11 10:40:42",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,23815",
+      "sortOrder": 3,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "352.45",
+      "amountNumber": 352.45,
+      "isPaid": true,
+      "payoutCreateDate": "2020-12-11 10:01:31",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2020-11-13 21:48:36",
+        "rawEarnings": "",
+        "amount": "352.45",
+        "isPaid": "1",
+        "to": "2020-12-11 10:01:24",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    },
+    {
+      "id": 22218,
+      "key": "0cb15788-0b94-4e28-95ce-d1f8b0ec16ae",
+      "udi": "umb://document/0cb157880b944e2895ced1f8b0ec16ae",
+      "name": "KBF-1086",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/22218",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2020-11-13 21:48:44",
+      "updateDate": "2020-11-14 09:26:13",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,22218",
+      "sortOrder": 2,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "764.15",
+      "amountNumber": 764.15,
+      "isPaid": true,
+      "payoutCreateDate": "2020-11-13 21:48:44",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2020-10-29 11:07:19",
+        "rawEarnings": "",
+        "amount": "764.15",
+        "isPaid": "1",
+        "to": "2020-11-13 21:48:36",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    },
+    {
+      "id": 21449,
+      "key": "4506245f-56fb-4b60-869a-0efb616fc524",
+      "udi": "umb://document/4506245f56fb4b60869a0efb616fc524",
+      "name": "KBF-1069",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/21449",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2020-10-29 11:07:23",
+      "updateDate": "2020-10-29 17:11:27",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,21449",
+      "sortOrder": 1,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "189.7",
+      "amountNumber": 189.7,
+      "isPaid": true,
+      "payoutCreateDate": "2020-10-29 11:07:23",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2020-05-01 08:07:11",
+        "rawEarnings": "",
+        "amount": "189.7",
+        "isPaid": "1",
+        "to": "2020-10-29 11:07:19",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    },
+    {
+      "id": 12938,
+      "key": "c049a4c3-bdae-4071-8950-9eda0fc799f3",
+      "udi": "umb://document/c049a4c3bdae407189509eda0fc799f3",
+      "name": "KBF-1035",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/12938",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2020-05-01 08:07:25",
+      "updateDate": "2020-05-01 08:56:01",
+      "parentId": 2260,
+      "path": "-1,1067,2257,2260,12938",
+      "sortOrder": 0,
+      "urls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "amount": "654.12",
+      "amountNumber": 654.12,
+      "isPaid": true,
+      "payoutCreateDate": "2020-05-01 08:07:25",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+      ],
+      "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2019-10-11 22:05:12",
+        "rawEarnings": "",
+        "amount": "654.12",
+        "isPaid": "1",
+        "to": "2020-05-01 08:07:11",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

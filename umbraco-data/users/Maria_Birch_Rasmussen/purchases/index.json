@@ -1,0 +1,81 @@
+{
+  "exportedAt": "2026-06-02T11:13:28.954Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/123128",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 123128,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 123128,
+    "key": "db30291f-8236-4902-8ce3-ec58da1c375b",
+    "udi": "umb://document/db30291f823649028ce3ec58da1c375b",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/maria-birch-rasmussen/purchases/"],
+    "path": "-1,1067,123123,123128",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailsFetched": 0,
+    "detailErrors": 0,
+    "purchaseEntries": 0,
+    "nonPurchaseEntries": 0,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 0,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 0,
+    "mediaResolved": 0,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Maria_Birch_Rasmussen\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maria_Birch_Rasmussen\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Maria_Birch_Rasmussen\\purchases\\media.json",
+      "count": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

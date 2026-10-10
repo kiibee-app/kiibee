@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-06-02T11:04:30.691Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42297",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 42297,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 42297,
+    "key": "4701acbc-811a-41fd-b9b4-367d2c5d369c",
+    "udi": "umb://document/4701acbc811a41fdb9b4367d2c5d369c",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/dan-andersen/purchases/"],
+    "path": "-1,1067,42292,42297",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 58,
+    "childrenFetched": 58,
+    "detailsFetched": 58,
+    "detailErrors": 0,
+    "purchaseEntries": 41,
+    "nonPurchaseEntries": 17,
+    "entriesWithDownloads": 15,
+    "entriesWithStreams": 6,
+    "totalDownloads": 22,
+    "totalStreams": 19,
+    "uniqueMediaUdis": 2,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 2,
+    "mediaResolved": 2,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 58,
+      "totalItems": 58
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Dan_Andersen\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Dan_Andersen\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Dan_Andersen\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Dan_Andersen\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

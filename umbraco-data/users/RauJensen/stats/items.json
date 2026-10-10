@@ -1,0 +1,62 @@
+[
+  {
+    "id": 100541,
+    "key": "ba8c691f-85e8-4c5c-ac3a-7a42a2c368cd",
+    "udi": "umb://document/ba8c691f85e84c5cac3a7a42a2c368cd",
+    "name": "964361d631c54ed595b7f250ee3f94f1",
+    "contentTypeAlias": "statsEntry",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-09-20 15:37:07",
+    "updateDate": "2024-09-20 15:37:07",
+    "parentId": 99739,
+    "path": "-1,1067,99738,99739,100541",
+    "sortOrder": 0,
+    "urls": [],
+    "fields": {
+      "isPlay": "1",
+      "uID": "",
+      "media": "umb://document/1e3c878b24504c25b4a9f51e14752b94"
+    },
+    "fieldDetails": {
+      "isPlay": {
+        "alias": "isPlay",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.TrueFalse",
+        "value": "1"
+      },
+      "uID": {
+        "alias": "uID",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.Textbox",
+        "value": ""
+      },
+      "media": {
+        "alias": "media",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.ContentPicker2",
+        "value": "umb://document/1e3c878b24504c25b4a9f51e14752b94"
+      }
+    },
+    "fieldOrder": ["isPlay", "uID", "media"],
+    "isPlay": "1",
+    "uID": "",
+    "mediaUdi": "umb://document/1e3c878b24504c25b4a9f51e14752b94",
+    "mediaKey": "1e3c878b-2450-4c25-b4a9-f51e14752b94"
+  }
+]

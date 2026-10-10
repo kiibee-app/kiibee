@@ -1,0 +1,886 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 1,
+    "totalItems": 3,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 1373491,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373492,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373493,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373494,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373495,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373496,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373497,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1373498,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373499,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373500,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373501,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373502,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373503,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373504,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373505,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373506,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "0",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373507,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373508,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373509,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373510,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373511,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373512,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373513,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1373514,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "DET' HELT VILDT - Vildsvin",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373515,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373516,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373517,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1373518,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373519,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-11-09 10:48:20",
+        "createDate": "2022-10-14 22:21:12",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 0,
+        "name": "DET' HELT VILDT - Vildsvin",
+        "id": 73868,
+        "udi": "umb://document/21787dc98dc143dcaa8579b74eb38146",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "21787dc9-8dc1-43dc-aa85-79b74eb38146",
+        "parentId": 73842,
+        "alias": null,
+        "path": "-1,1067,73339,73842,73868",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1373433,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373434,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373435,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373436,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373437,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373438,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373439,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1373440,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373441,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373442,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373443,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373444,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373445,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373446,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373447,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373448,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "1",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373449,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373450,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373451,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373452,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373453,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373454,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373455,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1373456,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "DET' HELT VILDT - Fasan",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373457,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373458,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373459,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1373460,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373461,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-11-09 10:46:57",
+        "createDate": "2022-11-09 10:45:16",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 1,
+        "name": "DET' HELT VILDT - Fasan",
+        "id": 74779,
+        "udi": "umb://document/e7317899114b4fda9782fe0a40b511a7",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "e7317899-114b-4fda-9782-fe0a40b511a7",
+        "parentId": 73842,
+        "alias": null,
+        "path": "-1,1067,73339,73842,74779",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1373672,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373673,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373674,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1373675,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373676,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1373677,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373678,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1373679,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373680,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373681,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373682,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373683,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373684,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373685,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373686,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373687,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373688,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373689,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373690,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373691,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373692,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1373693,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373694,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1373695,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "DET' HELT VILDT - Rådyr",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373696,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1373697,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1373698,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1373699,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1373700,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-11-09 11:07:27",
+        "createDate": "2022-11-09 11:03:49",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 2,
+        "name": "DET' HELT VILDT - Rådyr",
+        "id": 74780,
+        "udi": "umb://document/55d2fbbdf9a64e69bc9628cb8e6ab38b",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "55d2fbbd-f9a6-4e69-bc96-28cb8e6ab38b",
+        "parentId": 73842,
+        "alias": null,
+        "path": "-1,1067,73339,73842,74780",
+        "metaData": {}
+      }
+    ]
+  }
+]

@@ -1,0 +1,1887 @@
+{
+  "startedAt": "2026-08-24T14:44:57.335Z",
+  "finishedAt": "2026-08-24T14:45:34.286Z",
+  "rootId": 1067,
+  "tasks": ["stats", "shows", "purchases", "payouts", "logs"],
+  "skipExisting": true,
+  "counts": {
+    "ok": 30,
+    "skipped": 130,
+    "error": 0
+  },
+  "users": [
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820
+    }
+  ],
+  "results": [
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FliCFLAC",
+      "liveName": "FliCFLAC",
+      "userId": 1828,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Mit_test_site",
+      "liveName": "Mit test site",
+      "userId": 2550,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elsebeth_Fogh",
+      "liveName": "Elsebeth Fogh",
+      "userId": 2717,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Life-_&_Business_Coach",
+      "liveName": "Life- & Business Coach",
+      "userId": 4798,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Songs_Of_Jacob_Elk",
+      "liveName": "Songs Of Jacob Elk",
+      "userId": 14663,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Adal_Faragalla",
+      "liveName": "Adal Faragalla",
+      "userId": 17825,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Anne_Kongsbak",
+      "liveName": "Anne Kongsbak",
+      "userId": 20852,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kammas_Kantine",
+      "liveName": "Kammas Kantine",
+      "userId": 41628,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "FBI.DK",
+      "liveName": "FBI.DK",
+      "userId": 41913,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Brian_Mørk",
+      "liveName": "Brian Mørk",
+      "userId": 42313,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Tingleff",
+      "liveName": "Jacob Tingleff",
+      "userId": 42483,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Torben_Chris",
+      "liveName": "Torben Chris",
+      "userId": 42564,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "task": "stats",
+      "parentId": 125040,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:05.838Z",
+      "finishedAt": "2026-08-24T14:45:06.656Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Peter_Peitersen/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "task": "purchases",
+      "parentId": 125044,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:06.659Z",
+      "finishedAt": "2026-08-24T14:45:07.445Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Peter_Peitersen/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "task": "payouts",
+      "parentId": 125043,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:07.448Z",
+      "finishedAt": "2026-08-24T14:45:08.909Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Peter_Peitersen/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Peter_Peitersen",
+      "liveName": "Peter Peitersen",
+      "userId": 125039,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "task": "stats",
+      "parentId": 125585,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:09.220Z",
+      "finishedAt": "2026-08-24T14:45:10.175Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Marner_Analytics/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "task": "purchases",
+      "parentId": 125589,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:10.178Z",
+      "finishedAt": "2026-08-24T14:45:11.465Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Marner_Analytics/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "task": "payouts",
+      "parentId": 125588,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:11.468Z",
+      "finishedAt": "2026-08-24T14:45:12.357Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Marner_Analytics/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Marner_Analytics",
+      "liveName": "Marner Analytics",
+      "userId": 125584,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "task": "stats",
+      "parentId": 125709,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:12.657Z",
+      "finishedAt": "2026-08-24T14:45:13.642Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Jesper_Jensen/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "task": "purchases",
+      "parentId": 125713,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:13.645Z",
+      "finishedAt": "2026-08-24T14:45:14.403Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Jesper_Jensen/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "task": "payouts",
+      "parentId": 125712,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:14.406Z",
+      "finishedAt": "2026-08-24T14:45:15.217Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Jesper_Jensen/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jesper_Jensen",
+      "liveName": "Jesper Jensen",
+      "userId": 125708,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "task": "stats",
+      "parentId": 126040,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:15.516Z",
+      "finishedAt": "2026-08-24T14:45:16.832Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Funktionel_Neuroterapeut_2026/stats",
+        "collectionName": "stats",
+        "childrenFetched": 112,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 112
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "task": "purchases",
+      "parentId": 126044,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:16.835Z",
+      "finishedAt": "2026-08-24T14:45:17.646Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Funktionel_Neuroterapeut_2026/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "task": "payouts",
+      "parentId": 126043,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:17.649Z",
+      "finishedAt": "2026-08-24T14:45:18.440Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Funktionel_Neuroterapeut_2026/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "task": "stats",
+      "parentId": 126092,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:18.739Z",
+      "finishedAt": "2026-08-24T14:45:19.573Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Kristian_Kjaer/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "task": "purchases",
+      "parentId": 126096,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:19.576Z",
+      "finishedAt": "2026-08-24T14:45:20.342Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Kristian_Kjaer/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "task": "payouts",
+      "parentId": 126095,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:20.344Z",
+      "finishedAt": "2026-08-24T14:45:21.140Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Kristian_Kjaer/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kristian_Kjaer",
+      "liveName": "Kristian Kjaer",
+      "userId": 126091,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "task": "stats",
+      "parentId": 126403,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:21.422Z",
+      "finishedAt": "2026-08-24T14:45:22.179Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Johanne_Kubert/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "task": "purchases",
+      "parentId": 126407,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:22.182Z",
+      "finishedAt": "2026-08-24T14:45:22.949Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Johanne_Kubert/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "task": "payouts",
+      "parentId": 126406,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:22.951Z",
+      "finishedAt": "2026-08-24T14:45:23.731Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Johanne_Kubert/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Johanne_Kubert",
+      "liveName": "Johanne Kubert",
+      "userId": 126402,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "task": "stats",
+      "parentId": 127439,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:24.028Z",
+      "finishedAt": "2026-08-24T14:45:24.775Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lea_Nielsen/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "task": "purchases",
+      "parentId": 127443,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:24.776Z",
+      "finishedAt": "2026-08-24T14:45:25.489Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lea_Nielsen/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "task": "payouts",
+      "parentId": 127442,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:25.491Z",
+      "finishedAt": "2026-08-24T14:45:26.257Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lea_Nielsen/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lea_Nielsen",
+      "liveName": "Lea Nielsen",
+      "userId": 127438,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "task": "stats",
+      "parentId": 127477,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:26.581Z",
+      "finishedAt": "2026-08-24T14:45:27.509Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Heidi_Stjerne/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "task": "purchases",
+      "parentId": 127481,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:27.510Z",
+      "finishedAt": "2026-08-24T14:45:28.334Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Heidi_Stjerne/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "task": "payouts",
+      "parentId": 127480,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:28.335Z",
+      "finishedAt": "2026-08-24T14:45:29.033Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Heidi_Stjerne/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Heidi_Stjerne",
+      "liveName": "Heidi Stjerne",
+      "userId": 127476,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "task": "stats",
+      "parentId": 127715,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:29.317Z",
+      "finishedAt": "2026-08-24T14:45:30.130Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Bettina_Ramsing/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "task": "purchases",
+      "parentId": 127719,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:30.133Z",
+      "finishedAt": "2026-08-24T14:45:30.919Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Bettina_Ramsing/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "task": "payouts",
+      "parentId": 127718,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:30.922Z",
+      "finishedAt": "2026-08-24T14:45:31.667Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Bettina_Ramsing/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Bettina_Ramsing",
+      "liveName": "Bettina  Ramsing ",
+      "userId": 127714,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "task": "stats",
+      "parentId": 127821,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:31.965Z",
+      "finishedAt": "2026-08-24T14:45:32.725Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lisathe_Møller/stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "task": "purchases",
+      "parentId": 127825,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:32.728Z",
+      "finishedAt": "2026-08-24T14:45:33.492Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lisathe_Møller/purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "task": "payouts",
+      "parentId": 127824,
+      "status": "ok",
+      "startedAt": "2026-08-24T14:45:33.495Z",
+      "finishedAt": "2026-08-24T14:45:34.282Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Lisathe_Møller/payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lisathe_Møller",
+      "liveName": "Lisathe Møller",
+      "userId": 127820,
+      "task": "logs",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    }
+  ],
+  "liveUserCount": 109
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "udi": "umb://document/7d978ccac261419e80d1d316b3f8937c",
+    "key": "7d978cca-c261-419e-80d1-d316b3f8937c",
+    "resolved": true,
+    "id": 14438,
+    "name": "PDF: Succes med at håndtere sygefravær i din forretning.",
+    "title": "PDF: Succes med at håndtere sygefravær i din forretning.",
+    "urls": [
+      "/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appén/pdf-succes-med-at-haandtere-sygefravaer-i-din-forretning/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
+    "webContentURL": "",
+    "thumbnail": "/media/1844/konkret-viden.png",
+    "purchasePrice": "199",
+    "rentalPrice": "",
+    "purchaseEntryCount": 1,
+    "purchaseOrderCount": 1,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2022-03-30 12:21:48",
+    "lastPurchaseAt": "2022-03-30 12:21:48",
+    "samplePurchaseIds": [
+      63099
+    ]
+  }
+]

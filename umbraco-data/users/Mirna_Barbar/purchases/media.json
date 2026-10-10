@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/1a981053cfb34648900f1af46d24abad",
+    "key": "1a981053-cfb3-4648-900f-1af46d24abad",
+    "resolved": true,
+    "id": 119682,
+    "name": "E-Bøger",
+    "title": "E-Bøger",
+    "urls": ["/mirna-barbar/e-boeger/"],
+    "contentTypeAlias": "collection",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "",
+    "purchasePrice": "",
+    "rentalPrice": "",
+    "purchaseEntryCount": 1,
+    "purchaseOrderCount": 1,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2026-03-17 08:20:51",
+    "lastPurchaseAt": "2026-03-17 08:20:51",
+    "samplePurchaseIds": [120035]
+  }
+]

@@ -1,0 +1,5337 @@
+[
+  {
+    "id": 43420,
+    "key": "47158410-cdcd-485a-a093-82fbc5973b9f",
+    "udi": "umb://document/47158410cdcd485aa09382fbc5973b9f",
+    "name": "Extrospekt",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/thomas-hartmann/shows/extrospekt/",
+      "orderID": "0",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3241/th4-dvd-slipcase5.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Extrospekt",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/thomas-hartmann/shows/extrospekt/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3241/th4-dvd-slipcase5.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Extrospekt"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43443,
+    "key": "55214bee-7389-41ec-ad55-01c227f4c6d2",
+    "udi": "umb://document/55214bee738941ecad5501c227f4c6d2",
+    "name": "SPAS",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-spas/",
+      "orderID": "1",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Test ",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3254/400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "SPAS",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-spas/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "1"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Test "
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3254/400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "SPAS"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 41879,
+    "key": "2608a046-8212-42d4-b72f-d2d446196781",
+    "udi": "umb://document/2608a046821242d4b72fd2d446196781",
+    "name": "Kærlighed",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/thomas-hartmann/shows/kaerlighed/",
+      "orderID": "2",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3065/kaerlighed-facing.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Kærlighed ",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/thomas-hartmann/shows/kaerlighed/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3065/kaerlighed-facing.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Kærlighed "
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43464,
+    "key": "d1bcefa8-558f-49a0-aea9-98f078824ba6",
+    "udi": "umb://document/d1bcefa8558f49a0aea998f078824ba6",
+    "name": "Helt Perfekt",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/elias-ehlers/shows/helt-perfekt/",
+      "orderID": "3",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Helt Perfekt",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/elias-ehlers/shows/helt-perfekt/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "3"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3271/elias-ehlers_helt-perfekt_400-600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Helt Perfekt"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 45043,
+    "key": "02e46b80-9d12-467b-8734-c9b21956b7d6",
+    "udi": "umb://document/02e46b809d12467b8734c9b21956b7d6",
+    "name": "Men’s Room 3",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/fbidk/mens-room/men-s-room-3/",
+      "orderID": "4",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "test",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3412/mens-room-3-400.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Men’s Room 3",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/fbidk/mens-room/men-s-room-3/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "4"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "test"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3412/mens-room-3-400.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Men’s Room 3"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43431,
+    "key": "b9ef5671-fa58-4248-8907-f9ca2aa0eb10",
+    "udi": "umb://document/b9ef5671fa5842488907f9ca2aa0eb10",
+    "name": "Dyret!",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/carsten-bang/shows/dyret/",
+      "orderID": "5",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst ",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3246/400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Dyret!",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/carsten-bang/shows/dyret/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "5"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst "
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3246/400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Dyret!"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43461,
+    "key": "d6d5cc87-8f70-460c-a2be-6169a2dd5267",
+    "udi": "umb://document/d6d5cc878f70460ca2be6169a2dd5267",
+    "name": "ABC",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/torben-chris/shows/abc/",
+      "orderID": "6",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3268/tc_abc_web_ikon-628x890.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "ABC",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/torben-chris/shows/abc/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "6"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3268/tc_abc_web_ikon-628x890.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "ABC"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43460,
+    "key": "bfb5dee0-feb8-4479-ba4a-e5db72ad5559",
+    "udi": "umb://document/bfb5dee0feb84479ba4ae5db72ad5559",
+    "name": "Lige ved og voksen",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/anders-fjelsted/shows/lige-ved-og-voksen/",
+      "orderID": "7",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3267/fjelle_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Lige ved og voksen",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/anders-fjelsted/shows/lige-ved-og-voksen/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "7"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3267/fjelle_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Lige ved og voksen"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43450,
+    "key": "7a94e1eb-30b7-49f2-975e-6db5d78b1159",
+    "udi": "umb://document/7a94e1eb30b749f2975e6db5d78b1159",
+    "name": "MØRK",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/brian-moerk/shows/m%C3%B8rk/",
+      "orderID": "8",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3260/mork_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "MØRK",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/brian-moerk/shows/m%C3%B8rk/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "8"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3260/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "MØRK"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 43455,
+    "key": "d3ec8c08-287d-442a-8a5d-9bb34b57b599",
+    "udi": "umb://document/d3ec8c08287d442a8a5d9bb34b57b599",
+    "name": "Guide til parforhold",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/jacob-tingleff/shows/guide-til-parforhold/",
+      "orderID": "9",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Tekst",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Guide til parforhold",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/jacob-tingleff/shows/guide-til-parforhold/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "9"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Tekst"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3265/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Guide til parforhold"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 42463,
+    "key": "70efc9a0-c274-48a8-b56c-6ae68e0d45fe",
+    "udi": "umb://document/70efc9a0c27448a8b56c6ae68e0d45fe",
+    "name": "Carsten Bang - Alter Ego",
+    "fields": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["264"],
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "1",
+      "webContentURL": "https://www.kiibee.dk/carsten-bang/shows/alter-ego/",
+      "orderID": "10",
+      "videoSize": "",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "",
+      "year": "0",
+      "description": "Alter Ego",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3130/alter-ego.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Carsten Bang - Alter Ego",
+      "badge": "",
+      "length": "0",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": true
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "39"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["264"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.kiibee.dk/carsten-bang/shows/alter-ego/"
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "10"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Alter Ego"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3130/alter-ego.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Carsten Bang - Alter Ego"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": true
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  }
+]

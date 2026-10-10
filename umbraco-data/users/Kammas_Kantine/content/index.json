@@ -1,0 +1,30 @@
+{
+  "requestedName": "Kammas Kantine",
+  "liveName": "Kammas Kantine",
+  "userId": 41628,
+  "status": "found",
+  "folderCount": 4,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "KRAM DIN KROP MED KÅL - komplet adgang til hele kurset, 78 min.",
+      "id": 42900,
+      "status": "ok"
+    },
+    {
+      "name": "Introduktion til KRAM DIN KROP MED KÅL",
+      "id": 42955,
+      "status": "ok"
+    },
+    {
+      "name": "KRAM DIN KROP MED KÅL - Online kogebog, fem fantastiske kålretter, 52 min. ",
+      "id": 43002,
+      "status": "ok"
+    },
+    {
+      "name": "ANMELDER UDGAVE - efter aftale med Kammas Kantine",
+      "id": 43019,
+      "status": "ok"
+    }
+  ]
+}

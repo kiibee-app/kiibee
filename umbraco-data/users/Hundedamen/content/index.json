@@ -1,0 +1,41 @@
+{
+  "requestedName": "Hundedamen",
+  "liveName": "Hundedamen",
+  "userId": 21046,
+  "status": "found",
+  "folderCount": 6,
+  "itemCount": 27,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Hvalpekursus  (1)",
+      "id": 21053,
+      "status": "ok"
+    },
+    {
+      "name": "Træning med indkald / stemme, håndtegn og fløjte",
+      "id": 21054,
+      "status": "ok"
+    },
+    {
+      "name": "Styring af din hund på afstand",
+      "id": 22602,
+      "status": "ok"
+    },
+    {
+      "name": "Hvalpekursus ",
+      "id": 47653,
+      "status": "ok"
+    },
+    {
+      "name": "Fløjteindkald hjemme ",
+      "id": 60689,
+      "status": "ok"
+    },
+    {
+      "name": "Styring af din hund på afstand ",
+      "id": 67516,
+      "status": "ok"
+    }
+  ]
+}

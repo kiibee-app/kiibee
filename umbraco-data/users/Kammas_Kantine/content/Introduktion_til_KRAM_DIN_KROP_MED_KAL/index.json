@@ -1,0 +1,269 @@
+{
+  "exportedAt": "2026-08-24T14:44:33.318Z",
+  "collectionName": "Introduktion til KRAM DIN KROP MED KÅL",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42955",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 42955,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 42955,
+    "key": "f865a482-2cdb-40ee-8f9c-6cc91cd00cb3",
+    "udi": "umb://document/f865a4822cdb40ee8f9c6cc91cd00cb3",
+    "name": "Introduktion til KRAM DIN KROP MED KÅL",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/kammas-kantine/introduktion-til-kram-din-krop-med-kål/"],
+    "fields": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": ["57"],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "",
+      "period": "",
+      "headline": "",
+      "description": "Velkommen til online kurser i Kammas Kantine.<br/><br/>Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop med fuld fokus på viden, sundhed og fantastiske retter - der er enkle at lave i dit eget køkken. <br/><br/>Det er også online kurser til dig, som elsker ny viden, men foretrækker at få den leveret, når det passer dig og din hverdag. Det er kurser til dig, der sætter pris på video af høj kvalitet, energi og vel fortalte historier.<br/><br/>Kurserne er for dig, der gerne vil:<br/><br/>- Tabe dig<br/>- Vide mere om den mad, du spiser<br/>- Vide hvordan du laver skøn mad, du kan nyde hver dag<br/>- Af med den insisterende sukkertrang<br/>- Stabilisere dit blodsukker <br/>- Give din krop og dine celler mulighed for at holde på både ungdom og et stærkt helbred<br/>",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "1",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["57"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "period": {
+        "alias": "period",
+        "label": "Period",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": ""
+      },
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Velkommen til online kurser i Kammas Kantine.<br/><br/>Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop med fuld fokus på viden, sundhed og fantastiske retter - der er enkle at lave i dit eget køkken. <br/><br/>Det er også online kurser til dig, som elsker ny viden, men foretrækker at få den leveret, når det passer dig og din hverdag. Det er kurser til dig, der sætter pris på video af høj kvalitet, energi og vel fortalte historier.<br/><br/>Kurserne er for dig, der gerne vil:<br/><br/>- Tabe dig<br/>- Vide mere om den mad, du spiser<br/>- Vide hvordan du laver skøn mad, du kan nyde hver dag<br/>- Af med den insisterende sukkertrang<br/>- Stabilisere dit blodsukker <br/>- Give din krop og dine celler mulighed for at holde på både ungdom og et stærkt helbred<br/>"
+      },
+      "coverImage": {
+        "alias": "coverImage",
+        "label": "Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": ""
+      },
+      "fadeCoverImage": {
+        "alias": "fadeCoverImage",
+        "label": "Fade Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "thumbnailWide": {
+        "alias": "thumbnailWide",
+        "label": "Thumbnail Wide",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "columnAmount": {
+        "alias": "columnAmount",
+        "label": "Column Amount",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "1"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView",
+      "orderID",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period",
+      "headline",
+      "description",
+      "coverImage",
+      "fadeCoverImage",
+      "thumbnailWide",
+      "columnAmount",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailIdsRequested": 1,
+    "detailsFetched": 1,
+    "errors": 0,
+    "fieldCount": 40
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

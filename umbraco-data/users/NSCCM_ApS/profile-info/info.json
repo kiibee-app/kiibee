@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "NSCCM ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 50069,
+  "key": "e5f0ad3a-b9a5-4a43-9796-06583c95b44f",
+  "udi": "umb://document/e5f0ad3ab9a54a43979606583c95b44f",
+  "path": "-1,1067,50069",
+  "url": "/nsccm-aps/",
+  "createDate": "2021-09-16 19:51:10",
+  "updateDate": "2022-10-27 11:15:31",
+  "publishDate": "2022-10-27 11:15:31",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

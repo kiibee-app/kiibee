@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "A5 Forlag ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 73339,
+  "key": "38614827-103e-4233-9372-a562019c6b6c",
+  "udi": "umb://document/38614827103e42339372a562019c6b6c",
+  "path": "-1,1067,73339",
+  "url": "/a5-forlag-aps/",
+  "createDate": "2022-10-03 10:37:30",
+  "updateDate": "2023-01-23 14:02:11",
+  "publishDate": "2023-01-23 14:02:11",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

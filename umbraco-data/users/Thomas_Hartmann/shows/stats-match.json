@@ -1,0 +1,94 @@
+{
+  "matchedShows": [
+    {
+      "id": 41814,
+      "key": "60131bb0-d902-4d9d-9483-b4b988a40163",
+      "udi": "umb://document/60131bb0d9024d9d9483b4b988a40163",
+      "name": "Kærlighed",
+      "title": "Kærlighed ",
+      "statsEntryCount": 279,
+      "statsPlayCount": 86,
+      "statsNonPlayCount": 193
+    },
+    {
+      "id": 41769,
+      "key": "0195b1c7-8756-4dd6-9274-139ea1b4a599",
+      "udi": "umb://document/0195b1c787564dd69274139ea1b4a599",
+      "name": "BETAMAX",
+      "title": "BETAMAX",
+      "statsEntryCount": 126,
+      "statsPlayCount": 28,
+      "statsNonPlayCount": 98
+    },
+    {
+      "id": 41813,
+      "key": "d7797344-12a7-4504-b7fa-c1cf050197da",
+      "udi": "umb://document/d779734412a74504b7fac1cf050197da",
+      "name": "Jokebox",
+      "title": "Jokebox",
+      "statsEntryCount": 136,
+      "statsPlayCount": 22,
+      "statsNonPlayCount": 114
+    },
+    {
+      "id": 41808,
+      "key": "b99b2468-5c08-4bfa-a725-71699916b3b0",
+      "udi": "umb://document/b99b24685c084bfaa72571699916b3b0",
+      "name": "Science Faction",
+      "title": "Science Faction",
+      "statsEntryCount": 129,
+      "statsPlayCount": 36,
+      "statsNonPlayCount": 93
+    },
+    {
+      "id": 41770,
+      "key": "668a818e-e4fb-4e1a-a5a9-d1d2ea896831",
+      "udi": "umb://document/668a818ee4fb4e1aa5a9d1d2ea896831",
+      "name": "Extrospekt",
+      "title": "Extrospekt",
+      "statsEntryCount": 129,
+      "statsPlayCount": 29,
+      "statsNonPlayCount": 100
+    },
+    {
+      "id": 41782,
+      "key": "98dc939c-00ec-4378-9680-2308249998dc",
+      "udi": "umb://document/98dc939c00ec437896802308249998dc",
+      "name": "Hartmann 3",
+      "title": "Hartmann 3",
+      "statsEntryCount": 99,
+      "statsPlayCount": 16,
+      "statsNonPlayCount": 83
+    },
+    {
+      "id": 41836,
+      "key": "03b4b4f1-f60f-4947-a7fa-5d40decbfc0d",
+      "udi": "umb://document/03b4b4f1f60f4947a7fa5d40decbfc0d",
+      "name": "X-ll",
+      "title": "X-ll",
+      "statsEntryCount": 91,
+      "statsPlayCount": 3,
+      "statsNonPlayCount": 88
+    },
+    {
+      "id": 41797,
+      "key": "0eff5e2b-b4b6-463f-b9c2-dcfe5c4bdfe5",
+      "udi": "umb://document/0eff5e2bb4b6463fb9c2dcfe5c4bdfe5",
+      "name": "Hartmann X",
+      "title": "Hartmann X",
+      "statsEntryCount": 98,
+      "statsPlayCount": 14,
+      "statsNonPlayCount": 84
+    }
+  ],
+  "showsWithoutStats": [
+    {
+      "id": 43720,
+      "key": "846292b7-981c-482c-8a51-7a36c05b26de",
+      "udi": "umb://document/846292b7981c482c8a517a36c05b26de",
+      "name": "Farvelagte Frustrationer",
+      "title": "Farvelagte Frustrationer"
+    }
+  ],
+  "statsMediaWithoutShow": []
+}

@@ -1,0 +1,81 @@
+{
+  "exportedAt": "2026-06-02T11:12:54.452Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1794",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1794,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1794,
+    "key": "f31c63ab-67ca-4566-8008-f4c64f337d1a",
+    "udi": "umb://document/f31c63ab67ca45668008f4c64f337d1a",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/fysioteamet/purchases/"],
+    "path": "-1,1067,1790,1794",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailsFetched": 0,
+    "detailErrors": 0,
+    "purchaseEntries": 0,
+    "nonPurchaseEntries": 0,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 0,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 0,
+    "mediaResolved": 0,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Fysioteamet\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fysioteamet\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Fysioteamet\\purchases\\media.json",
+      "count": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

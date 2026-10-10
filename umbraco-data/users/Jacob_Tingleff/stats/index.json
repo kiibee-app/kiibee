@@ -1,0 +1,72 @@
+{
+  "exportedAt": "2026-06-02T11:04:41.732Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42484",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 42484,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 42484,
+    "key": "dc91d030-5ad4-49d4-a7dd-86f6f31fdae4",
+    "udi": "umb://document/dc91d0305ad449d4a7dd86f6f31fdae4",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/jacob-tingleff/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 10,
+    "childrenFetched": 10,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 10,
+      "totalItems": 10
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

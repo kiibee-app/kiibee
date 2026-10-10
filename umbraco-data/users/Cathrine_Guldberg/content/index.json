@@ -1,0 +1,36 @@
+{
+  "requestedName": "Cathrine Guldberg",
+  "liveName": "Cathrine Guldberg",
+  "userId": 1841,
+  "status": "found",
+  "folderCount": 5,
+  "itemCount": 19,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Siddende træning - Introduktion",
+      "id": 1859,
+      "status": "ok"
+    },
+    {
+      "name": "Siddende træning - Køb videoerne enkeltvis eller lej dem alle samlet",
+      "id": 1861,
+      "status": "ok"
+    },
+    {
+      "name": "Sitting training - English subtitle",
+      "id": 1867,
+      "status": "ok"
+    },
+    {
+      "name": "Split Ropes™",
+      "id": 1936,
+      "status": "ok"
+    },
+    {
+      "name": "Inspiration til brugen af dit nye Split Rope™- Kræver adgangskode som følger med dit køb.",
+      "id": 2743,
+      "status": "ok"
+    }
+  ]
+}

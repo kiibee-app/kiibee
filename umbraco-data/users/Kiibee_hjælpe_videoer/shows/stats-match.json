@@ -1,0 +1,34 @@
+{
+  "matchedShows": [],
+  "showsWithoutStats": [
+    {
+      "id": 52882,
+      "key": "41e1caa1-ef04-4c5c-8ba0-1c7557b8b9c1",
+      "udi": "umb://document/41e1caa1ef044c5c8ba01c7557b8b9c1",
+      "name": "Opsætning af Online kurser eller samlinger ",
+      "title": "Opsætning af Online kurser eller samlinger "
+    },
+    {
+      "id": 2585,
+      "key": "b094d239-ec26-4366-9ede-5e8b07edfedb",
+      "udi": "umb://document/b094d239ec2643669ede5e8b07edfedb",
+      "name": "Kom igang på 3 minutter ",
+      "title": "Kom igang på 3 minutter "
+    },
+    {
+      "id": 27205,
+      "key": "c9c83716-3c3f-4590-adb5-05a2a9213e9a",
+      "udi": "umb://document/c9c837163c3f4590adb505a2a9213e9a",
+      "name": "Har du brug for hjælp til at få produceret dit indhold ? ",
+      "title": "Har du brug for hjælp til at få produceret dit indhold ? "
+    },
+    {
+      "id": 51223,
+      "key": "14c0257c-f579-4e4e-a4e3-9de37082361c",
+      "udi": "umb://document/14c0257cf5794e4ea4e39de37082361c",
+      "name": "Opsætning af Online kurser eller samlinger 2",
+      "title": "Opsætning af Online kurser eller samlinger 2"
+    }
+  ],
+  "statsMediaWithoutShow": []
+}

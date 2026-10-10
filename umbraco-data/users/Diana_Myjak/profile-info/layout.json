@@ -1,0 +1,35 @@
+{
+  "tab": "Layout",
+  "name": "Diana Myjak",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Diana Myjak",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5128/ai.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "block",
+  "headline": "Hverdags struktur med ChatGPT",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

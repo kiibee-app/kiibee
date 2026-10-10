@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T11:13:58.443Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1960",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 1960,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1960,
+    "key": "af906165-a7ca-4a2c-b068-d8c3382b79e5",
+    "udi": "umb://document/af906165a7ca4a2cb068d8c3382b79e5",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/tania-ellis-the-social-business-company/payouts/"],
+    "path": "-1,1067,1957,1960",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2019-08-08 14:52:32"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailsFetched": 0,
+    "detailErrors": 0,
+    "paidPayouts": 0,
+    "unpaidPayouts": 0,
+    "totalAmount": 0,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 0,
+    "entriesWithInvoiceLink": 0,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

@@ -1,0 +1,886 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 1,
+    "totalItems": 3,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 1906970,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1906971,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1906972,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1906973,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906974,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906975,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906976,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1906977,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906978,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1906979,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906980,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906981,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906982,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906983,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906984,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906985,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906986,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906987,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "0",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906988,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906989,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906990,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906991,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906992,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906993,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906994,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906995,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1906996,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Stand-up Classics med Amin Jensen Gæst: Anders Matthesen",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906997,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906998,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906999,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1907000,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907001,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907002,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-12-16 14:21:49",
+        "createDate": "2024-04-12 09:32:20",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 0,
+        "name": "Stand-up Classics med Amin Jensen Gæst: Anders Matthesen",
+        "id": 96294,
+        "udi": "umb://document/acb6bd3618ed47bfbd3f1254be57ef0b",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "acb6bd36-18ed-47bf-bd3f-1254be57ef0b",
+        "parentId": 96293,
+        "alias": null,
+        "path": "-1,1067,1902,96293,96294",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1906901,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1906902,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1906903,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1906904,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906905,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906906,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906907,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1906908,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906909,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1906910,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906911,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906912,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906913,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906914,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906915,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906916,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906917,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906918,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "1",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906919,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906920,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906921,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906922,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906923,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906924,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1906925,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906926,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1906927,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Stand-up Classics med Amin Jensen Gæst: Carsten Bang",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906928,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1906929,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1906930,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1906931,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906932,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1906933,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-12-16 14:20:33",
+        "createDate": "2024-12-16 14:17:36",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 1,
+        "name": "Stand-up Classics med Amin Jensen Gæst: Carsten Bang",
+        "id": 103749,
+        "udi": "umb://document/8571bb4417cd4623a2ae0bd8d226849e",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "8571bb44-17cd-4623-a2ae-0bd8d226849e",
+        "parentId": 96293,
+        "alias": null,
+        "path": "-1,1067,1902,96293,103749",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1907069,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1907070,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1907071,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1907072,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1907073,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907074,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907075,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1907076,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907077,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1907078,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907079,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907080,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907081,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907082,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907083,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907084,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907085,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907086,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1907087,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907088,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907089,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1907090,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907091,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1907092,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1907093,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907094,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1907095,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Stand-up Classics med Amin Jensen Gæst: Timm Vladimir",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907096,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1907097,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1907098,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1907099,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907100,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1907101,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-12-16 14:26:15",
+        "createDate": "2024-12-16 14:23:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 2,
+        "name": "Stand-up Classics med Amin Jensen Gæst: Timm Vladimir",
+        "id": 103751,
+        "udi": "umb://document/a428aa30c07243b6a6ca018a7e180a1b",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "a428aa30-c072-43b6-a6ca-018a7e180a1b",
+        "parentId": 96293,
+        "alias": null,
+        "path": "-1,1067,1902,96293,103751",
+        "metaData": {}
+      }
+    ]
+  }
+]

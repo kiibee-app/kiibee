@@ -1,0 +1,45 @@
+{
+  "tab": "Layout",
+  "name": "Kiibee",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Dit firmanavn eller logo",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5011389521640092
+    },
+    "src": "/media/1171/card-coffee-cup-1449082.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "69"
+  ],
+  "coverTextPositionClass": "noblock",
+  "headline": "Velkommen til din kanal for digitalt indhold  ",
+  "description": "På sitet her kan du se eksempler på forskellige måder at præsentere og sælge digitalt indhold på.",
+  "css": "",
+  "javaScript": ""
+}

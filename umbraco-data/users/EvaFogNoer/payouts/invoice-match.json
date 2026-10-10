@@ -1,0 +1,50 @@
+{
+  "matched": [
+    {
+      "id": 72033,
+      "key": "c8e39705-65d8-4e73-a53d-a467a0818d92",
+      "udi": "umb://document/c8e3970565d84e73a53da467a0818d92",
+      "name": "KBF-1306",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/72033",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-09-11 12:04:48",
+      "updateDate": "2022-09-14 09:02:22",
+      "parentId": 57265,
+      "path": "-1,1067,57261,57265,72033",
+      "sortOrder": 0,
+      "urls": ["/evafognoer/payouts/kbf-1306/"],
+      "publicPayoutUrls": ["https://kiibee.dk/evafognoer/payouts/kbf-1306/"],
+      "publicPayoutUrl": "https://kiibee.dk/evafognoer/payouts/kbf-1306/",
+      "amount": "376.04",
+      "amountNumber": 376.04,
+      "isPaid": true,
+      "payoutCreateDate": "2022-09-11 12:04:48",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": ["https://kiibee.dk/evafognoer/payouts/kbf-1306/"],
+      "invoiceUrl": "https://kiibee.dk/evafognoer/payouts/kbf-1306/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "4",
+        "kiibeeCut": "7",
+        "rentAmount": "0",
+        "from": "2022-01-26 17:21:05",
+        "rawEarnings": "399",
+        "amount": "376.04",
+        "isPaid": "1",
+        "to": "2022-09-11 12:04:30",
+        "transactionAmount": "15.96",
+        "kiibeeCutAmount": "7"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

@@ -1,0 +1,358 @@
+[
+  {
+    "id": 70427,
+    "key": "fc564609-1a35-42a8-8e49-eeef8a256b49",
+    "udi": "umb://document/fc5646091a3542a88e49eeef8a256b49",
+    "name": "13f902092022111801",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-09-02 11:18:32",
+    "updateDate": "2022-09-02 11:19:09",
+    "parentId": 1832,
+    "path": "-1,1067,1828,1832,70427",
+    "sortOrder": 3,
+    "urls": ["/flicflac/purchases/13f902092022111801/"],
+    "fullName": "Susan Auchenberg",
+    "email": "auchenberg@privat.dk",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2022-09-09 11:18:30",
+    "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+    "orderCreateDate": "2022-09-02 11:18:32",
+    "mediaRelationUdis": ["umb://document/baae498eeae84cd09bd9dad4061b808a"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/baae498eeae84cd09bd9dad4061b808a"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/baae498eeae84cd09bd9dad4061b808a",
+        "key": "baae498e-eae8-4cd0-9bd9-dad4061b808a",
+        "resolved": true,
+        "id": 1874,
+        "name": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+        "title": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+        "urls": [
+          "/flicflac/laeringsvideoer/foredrag-om-kis-kidd-hos-spaedboern-og-motorisk-udvikling-0-12-maaneder/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://cloudflarestream.com/601c4bbdfa0a6820b8b3bacbfb5d7e99/thumbnails/thumb_5_0.jpg",
+        "videoDownloadURL": "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg",
+        "purchasePrice": "49",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\""
+    ],
+    "mediaUrls": [
+      "/flicflac/laeringsvideoer/foredrag-om-kis-kidd-hos-spaedboern-og-motorisk-udvikling-0-12-maaneder/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+      "email": "auchenberg@privat.dk",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2022-09-09 11:18:30",
+      "price": "49",
+      "fullName": "Susan Auchenberg",
+      "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+      "media": "umb://document/baae498eeae84cd09bd9dad4061b808a"
+    }
+  },
+  {
+    "id": 2698,
+    "key": "da047640-1df0-4529-938f-132da3ea4346",
+    "udi": "umb://document/da0476401df04529938f132da3ea4346",
+    "name": "lb2l17022020142707",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-02-17 14:27:18",
+    "updateDate": "2020-03-18 14:27:21",
+    "parentId": 1832,
+    "path": "-1,1067,1828,1832,2698",
+    "sortOrder": 2,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Camilla Madsen ",
+    "email": "Camillamadsen@outlook.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "",
+    "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+    "orderCreateDate": "2020-02-17 14:27:18",
+    "mediaRelationUdis": ["umb://document/be73df4adac548b8b1873fbfc4e7f337"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/be73df4adac548b8b1873fbfc4e7f337"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/be73df4adac548b8b1873fbfc4e7f337",
+        "key": "be73df4a-dac5-48b8-b187-3fbfc4e7f337",
+        "resolved": true,
+        "id": 1851,
+        "name": "Motorisk udvikling hos babyer",
+        "title": "Motorisk udvikling hos babyer",
+        "urls": ["/flicflac/laeringsvideoer/motorisk-udvikling-hos-babyer/"],
+        "contentTypeAlias": "media",
+        "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://cloudflarestream.com/c6118140fa2859404b5c560fbbf0fd86/thumbnails/thumb_5_0.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1212/flicflac-thumb.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "29",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Motorisk udvikling hos babyer"],
+    "mediaUrls": ["/flicflac/laeringsvideoer/motorisk-udvikling-hos-babyer/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+      "email": "Camillamadsen@outlook.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "29",
+      "fullName": "Camilla Madsen ",
+      "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+      "media": "umb://document/be73df4adac548b8b1873fbfc4e7f337"
+    }
+  },
+  {
+    "id": 2696,
+    "key": "e2e45966-fd3a-45f9-8387-e28bae3f62fd",
+    "udi": "umb://document/e2e45966fd3a45f98387e28bae3f62fd",
+    "name": "yx9117022020142602",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-02-17 14:26:15",
+    "updateDate": "2020-03-18 14:26:20",
+    "parentId": 1832,
+    "path": "-1,1067,1828,1832,2696",
+    "sortOrder": 1,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Camilla madsen",
+    "email": "Camillamadsen@outlook.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "",
+    "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+    "orderCreateDate": "2020-02-17 14:26:15",
+    "mediaRelationUdis": ["umb://document/baae498eeae84cd09bd9dad4061b808a"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/baae498eeae84cd09bd9dad4061b808a"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/baae498eeae84cd09bd9dad4061b808a",
+        "key": "baae498e-eae8-4cd0-9bd9-dad4061b808a",
+        "resolved": true,
+        "id": 1874,
+        "name": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+        "title": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+        "urls": [
+          "/flicflac/laeringsvideoer/foredrag-om-kis-kidd-hos-spaedboern-og-motorisk-udvikling-0-12-maaneder/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://cloudflarestream.com/601c4bbdfa0a6820b8b3bacbfb5d7e99/thumbnails/thumb_5_0.jpg",
+        "videoDownloadURL": "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg",
+        "purchasePrice": "49",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\""
+    ],
+    "mediaUrls": [
+      "/flicflac/laeringsvideoer/foredrag-om-kis-kidd-hos-spaedboern-og-motorisk-udvikling-0-12-maaneder/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+      "email": "Camillamadsen@outlook.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "49",
+      "fullName": "Camilla madsen",
+      "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+      "media": "umb://document/baae498eeae84cd09bd9dad4061b808a"
+    }
+  },
+  {
+    "id": 2378,
+    "key": "4f6cc2b3-8ae5-4c99-8598-0d5be6fc7d18",
+    "udi": "umb://document/4f6cc2b38ae54c9985980d5be6fc7d18",
+    "name": "2t6q23102019094559",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2019-10-23 09:46:28",
+    "updateDate": "2019-11-22 09:46:28",
+    "parentId": 1832,
+    "path": "-1,1067,1828,1832,2378",
+    "sortOrder": 0,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Mette Moore",
+    "email": "metteloebner@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "",
+    "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+    "orderCreateDate": "2019-10-23 09:46:28",
+    "mediaRelationUdis": ["umb://document/be73df4adac548b8b1873fbfc4e7f337"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/be73df4adac548b8b1873fbfc4e7f337"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/be73df4adac548b8b1873fbfc4e7f337",
+        "key": "be73df4a-dac5-48b8-b187-3fbfc4e7f337",
+        "resolved": true,
+        "id": 1851,
+        "name": "Motorisk udvikling hos babyer",
+        "title": "Motorisk udvikling hos babyer",
+        "urls": ["/flicflac/laeringsvideoer/motorisk-udvikling-hos-babyer/"],
+        "contentTypeAlias": "media",
+        "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://cloudflarestream.com/c6118140fa2859404b5c560fbbf0fd86/thumbnails/thumb_5_0.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1212/flicflac-thumb.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "29",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Motorisk udvikling hos babyer"],
+    "mediaUrls": ["/flicflac/laeringsvideoer/motorisk-udvikling-hos-babyer/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+      "email": "metteloebner@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "29",
+      "fullName": "Mette Moore",
+      "message": "Tak fordi du har valgt at købe videoen om babyers motoriske udvikling! Jeg håber den lever op til forventningerne. Har du efterfølgende spørgsmål, ris eller ros, kan du skrive til info@flicflac.dk og husk at få downloadet videoen inden linket løber ud (48 timer)",
+      "media": "umb://document/be73df4adac548b8b1873fbfc4e7f337"
+    }
+  }
+]

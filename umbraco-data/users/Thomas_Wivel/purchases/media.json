@@ -1,0 +1,92 @@
+[
+  {
+    "udi": "umb://document/bf5ef2cbb34243c1927cdd502f812362",
+    "key": "bf5ef2cb-b342-43c1-927c-dd502f812362",
+    "resolved": true,
+    "id": 42660,
+    "name": "Med Ryggen Mod Muren",
+    "title": "Med Ryggen Mod Muren",
+    "urls": ["/thomas-wivel/shows/med-ryggen-mod-muren/"],
+    "contentTypeAlias": "media",
+    "videoID": "78c7eb40966ff8db3a50ed230b575d4d",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/78c7eb40966ff8db3a50ed230b575d4d/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3152/wivel-mrmm-poster.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 3,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 1,
+    "totalStreams": 2,
+    "firstPurchaseAt": "2021-06-05 09:32:07",
+    "lastPurchaseAt": "2025-09-26 16:11:03",
+    "samplePurchaseIds": [113180, 76933, 46825]
+  },
+  {
+    "udi": "umb://document/5ec3b7091fc840028c6dcb6c2b480b9a",
+    "key": "5ec3b709-1fc8-4002-8c6d-cb6c2b480b9a",
+    "resolved": true,
+    "id": 42659,
+    "name": "Wivels Vaffelbar",
+    "title": "Wivels Vaffelbar",
+    "urls": ["/thomas-wivel/shows/wivels-vaffelbar/"],
+    "contentTypeAlias": "media",
+    "videoID": "d2db86c899f1a3cd483cc6406826e9c7",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/d2db86c899f1a3cd483cc6406826e9c7/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3151/vaffel1.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 3,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 1,
+    "totalStreams": 1,
+    "firstPurchaseAt": "2021-06-05 09:15:48",
+    "lastPurchaseAt": "2023-01-13 15:03:17",
+    "samplePurchaseIds": [76936, 73871, 46822]
+  }
+]

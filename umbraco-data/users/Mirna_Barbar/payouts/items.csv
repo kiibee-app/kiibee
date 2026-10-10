@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+120406,9346a4de-40c9-4301-8465-40a9e10cf1ea,umb://document/9346a4de40c94301846540a9e10cf1ea,KBF-1730,99.1,99.1,true,2026-03-30 13:39:49,2026-03-30 13:39:49,https://kiibee.dk/mirna-barbar/payouts/kbf-1730/,matched-public-payout-url,https://kiibee.dk/mirna-barbar/payouts/kbf-1730/,https://kiibee.dk/mirna-barbar/payouts/kbf-1730/,,

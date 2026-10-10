@@ -1,0 +1,936 @@
+[
+  {
+    "id": 1851,
+    "key": "be73df4a-dac5-48b8-b187-3fbfc4e7f337",
+    "udi": "umb://document/be73df4adac548b8b1873fbfc4e7f337",
+    "name": "Motorisk udvikling hos babyer",
+    "fields": {
+      "purchasePrice": "29",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": [
+        "73"
+      ],
+      "videoDownloadURL": "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/c6118140fa2859404b5c560fbbf0fd86/thumbnails/thumb_5_0.jpg",
+      "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "",
+      "videoSize": "625953548",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FLiCFLAC",
+      "year": "2017",
+      "description": "Børnekiropraktor Kari Skovmand gennemgår på 60 minutter nogle af de væsentligste parametre i den motoriske udvikling hos børn i alderen 0-12 måneder. Materialet henvender sig til mennesker der, privat som professionelt, har med babyer at gøre i deres hverdag.\n\nVed køb får du et link i din kvitteringsmail, så du kan downloade videoen til din egen computer indenfor 48 timer - god fornøjelse.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1212/flicflac-thumb.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Motorisk udvikling hos babyer",
+      "badge": "",
+      "length": "60",
+      "tags": "",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "29"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "58"
+        ]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "73"
+        ]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4"
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "ready"
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://cloudflarestream.com/c6118140fa2859404b5c560fbbf0fd86/thumbnails/thumb_5_0.jpg"
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "c6118140fa2859404b5c560fbbf0fd86"
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": ""
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "625953548"
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "FLiCFLAC"
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2017"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Børnekiropraktor Kari Skovmand gennemgår på 60 minutter nogle af de væsentligste parametre i den motoriske udvikling hos børn i alderen 0-12 måneder. Materialet henvender sig til mennesker der, privat som professionelt, har med babyer at gøre i deres hverdag.\n\nVed køb får du et link i din kvitteringsmail, så du kan downloade videoen til din egen computer indenfor 48 timer - god fornøjelse."
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1212/flicflac-thumb.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Motorisk udvikling hos babyer"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "60"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": ""
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  },
+  {
+    "id": 1874,
+    "key": "baae498e-eae8-4cd0-9bd9-dad4061b808a",
+    "udi": "umb://document/baae498eeae84cd09bd9dad4061b808a",
+    "name": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+    "fields": {
+      "purchasePrice": "49",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": [
+        "73"
+      ],
+      "videoDownloadURL": "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/601c4bbdfa0a6820b8b3bacbfb5d7e99/thumbnails/thumb_5_0.jpg",
+      "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "",
+      "videoSize": "246257570",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FliCFLAC",
+      "year": "2017",
+      "description": "Denne video er optaget under en landsturné, hvor børnekiropraktor Kari Skovmand holdt oplæg for medlemmer af Foreningen Danske Zoneterapeuter. Kari fortæller om KISS-KIDD i spædbarnealderen (KISS I og KISS II), samt om vigtigtheden af, at de motoriske udviklingstrin i alderen 0-12 måneder finder sted med god kvalitet. Foredraget er således rettet mod fagpersoner, og oplagt materiale for sundhedsplejersker, vuggestue personale, dagplejere og andre, der til dagligt arbejder med de helt små børn - men foredraget kan også sagtens forstås - og drage stor nytte - for forældrene til de små.\r\n\r\nDu har nu mulighed for at købe foredraget til download (Husk at det skal downloades inden 48 timer efter at du har modtaget linket med videoen) - god fornøjelse.",
+      "productionLink": "",
+      "thumbnail": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg",
+      "title": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+      "badge": "",
+      "length": "70",
+      "tags": "LÆRING",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "49"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "58"
+        ]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "73"
+        ]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4"
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "ready"
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://cloudflarestream.com/601c4bbdfa0a6820b8b3bacbfb5d7e99/thumbnails/thumb_5_0.jpg"
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "601c4bbdfa0a6820b8b3bacbfb5d7e99"
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": ""
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "246257570"
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "FliCFLAC"
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2017"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Denne video er optaget under en landsturné, hvor børnekiropraktor Kari Skovmand holdt oplæg for medlemmer af Foreningen Danske Zoneterapeuter. Kari fortæller om KISS-KIDD i spædbarnealderen (KISS I og KISS II), samt om vigtigtheden af, at de motoriske udviklingstrin i alderen 0-12 måneder finder sted med god kvalitet. Foredraget er således rettet mod fagpersoner, og oplagt materiale for sundhedsplejersker, vuggestue personale, dagplejere og andre, der til dagligt arbejder med de helt små børn - men foredraget kan også sagtens forstås - og drage stor nytte - for forældrene til de små.\r\n\r\nDu har nu mulighed for at købe foredraget til download (Husk at det skal downloades inden 48 timer efter at du har modtaget linket med videoen) - god fornøjelse."
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg"
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\""
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "70"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": "LÆRING"
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  }
+]

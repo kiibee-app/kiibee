@@ -1,0 +1,81 @@
+{
+  "mediaResolveErrors": {
+    "count": 14,
+    "sample": [
+      {
+        "udi": "umb://document/01c926cd60b14d99bb1473fd80152440",
+        "key": "01c926cd-60b1-4d99-bb14-73fd80152440",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/57481fd1fa5e482a9db8c1de4fd7a2f6",
+        "key": "57481fd1-fa5e-482a-9db8-c1de4fd7a2f6",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/8c9070066e7b47cb8cff8f3396ce1efd",
+        "key": "8c907006-6e7b-47cb-8cff-8f3396ce1efd",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/43fbdd84f3da49afa8e6cf9d00025ac1",
+        "key": "43fbdd84-f3da-49af-a8e6-cf9d00025ac1",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/8528f7cfb9234997ab884e4afd8a409f",
+        "key": "8528f7cf-b923-4997-ab88-4e4afd8a409f",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/3bd05ad81e794b5987d31a8cfdb7eecf",
+        "key": "3bd05ad8-1e79-4b59-87d3-1a8cfdb7eecf",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/0499d06abecd4e378f94c5bcdb0b9028",
+        "key": "0499d06a-becd-4e37-8f94-c5bcdb0b9028",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/7b445fde367e4428a44633b3c0eb5206",
+        "key": "7b445fde-367e-4428-a446-33b3c0eb5206",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/9a721f864fb24a86a2c668ea6e6088c7",
+        "key": "9a721f86-4fb2-4a86-a2c6-68ea6e6088c7",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/b16f6aec0bfb46f39570441b705c4156",
+        "key": "b16f6aec-0bfb-46f3-9570-441b705c4156",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/97c1052e118d49e39f8d1d84ac2df5ca",
+        "key": "97c1052e-118d-49e3-9f8d-1d84ac2df5ca",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/29d116ccb28240b7b0f42889badf886c",
+        "key": "29d116cc-b282-40b7-b0f4-2889badf886c",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/34708e665d1a4ff6b3c43dae1bb1ee07",
+        "key": "34708e66-5d1a-4ff6-b3c4-3dae1bb1ee07",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/913babe94abf4a73821575a0cd692429",
+        "key": "913babe9-4abf-4a73-8215-75a0cd692429",
+        "error": "HTTP 404: "
+      }
+    ]
+  },
+  "otherErrors": {
+    "count": 0,
+    "sample": []
+  }
+}

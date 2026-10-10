@@ -1,0 +1,594 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 1,
+    "totalItems": 2,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 1523495,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1523496,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1523497,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1523498,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523499,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1523500,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523501,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1523502,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523503,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1523504,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523505,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523506,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1523507,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523508,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1523509,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523510,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "1",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1523511,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523512,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1523513,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523514,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1523515,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1523516,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523517,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1523518,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Siddende HIT & Cross Training - Introduktion",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523519,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1523520,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1523521,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1523522,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1523523,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-05-28 15:58:24",
+        "createDate": "2023-05-26 18:15:45",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 2,
+        "name": "Siddende HIT & Cross Training - Introduktion",
+        "id": 85066,
+        "udi": "umb://document/1865745691b4431794cb5b9af84ef721",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "18657456-91b4-4317-94cb-5b9af84ef721",
+        "parentId": 1859,
+        "alias": null,
+        "path": "-1,1067,1841,1859,85066",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1528076,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1528077,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": null,
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1528078,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1528079,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528080,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": null,
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "id": 1528081,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528082,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": null,
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "id": 1528083,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528084,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1528085,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528086,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528087,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1528088,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528089,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1528090,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528091,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1528092,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528093,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1528094,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528095,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1528096,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": null,
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "id": 1528097,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528098,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": null,
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "id": 1528099,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Sitting training - Introduction",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528100,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": null,
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1528101,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "id": 1528102,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": null,
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "id": 1528103,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1528104,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": null,
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": null,
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-05-28 15:58:27",
+        "createDate": "2020-12-01 19:06:06",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "media",
+        "sortOrder": 3,
+        "name": "Sitting training - Introduction",
+        "id": 22914,
+        "udi": "umb://document/952efde436ac457abda1db31b20c6498",
+        "icon": "icon-play color-black",
+        "trashed": false,
+        "key": "952efde4-36ac-457a-bda1-db31b20c6498",
+        "parentId": 1859,
+        "alias": null,
+        "path": "-1,1067,1841,1859,22914",
+        "metaData": {}
+      }
+    ]
+  }
+]

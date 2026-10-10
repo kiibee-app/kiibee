@@ -1,0 +1,18 @@
+{
+  "tab": "Access & Price",
+  "name": "Ahmed Mittani",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "access": ["57"],
+  "rentalPrice": "",
+  "purchasePrice": "",
+  "code": ""
+}

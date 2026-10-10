@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Damkjær Medier",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 94485,
+  "key": "818e5591-aa9d-4220-9041-4ec1b6c96c0a",
+  "udi": "umb://document/818e5591aa9d422090414ec1b6c96c0a",
+  "path": "-1,1067,94485",
+  "url": "/damkjaer-medier/",
+  "createDate": "2024-02-01 14:34:21",
+  "updateDate": "2025-03-13 07:55:22",
+  "publishDate": "2025-03-13 07:55:22",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

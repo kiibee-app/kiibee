@@ -1,0 +1,97 @@
+{
+  "exportedAt": "2026-06-02T11:05:00.974Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/96016",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 96016,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 96016,
+    "key": "6fa4a1fb-29ec-45c0-ac3c-3e5204f8b86c",
+    "udi": "umb://document/6fa4a1fb29ec45c0ac3c3e5204f8b86c",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/fonden-eventyrteatret/purchases/"],
+    "path": "-1,1067,96011,96016",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 360,
+    "childrenFetched": 360,
+    "detailsFetched": 360,
+    "detailErrors": 0,
+    "purchaseEntries": 168,
+    "nonPurchaseEntries": 192,
+    "entriesWithDownloads": 167,
+    "entriesWithStreams": 189,
+    "totalDownloads": 405,
+    "totalStreams": 472,
+    "uniqueMediaUdis": 14,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 9,
+    "mediaResolved": 9,
+    "mediaUnresolved": 5,
+    "mediaResolveErrors": 5
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 360
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 360
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 360
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 60,
+      "totalItems": 360
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Fonden_Eventyrteatret\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fonden_Eventyrteatret\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Fonden_Eventyrteatret\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fonden_Eventyrteatret\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

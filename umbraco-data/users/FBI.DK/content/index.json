@@ -1,0 +1,60 @@
+{
+  "requestedName": "FBI.DK",
+  "liveName": "FBI.DK",
+  "userId": 41913,
+  "status": "found",
+  "folderCount": 10,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Stand-up.dk - sæson 1",
+      "id": 41920,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 2",
+      "id": 41929,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 3",
+      "id": 41930,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 4",
+      "id": 41931,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 5",
+      "id": 41932,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 6",
+      "id": 41933,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up.dk - sæson 7",
+      "id": 41934,
+      "status": "ok"
+    },
+    {
+      "name": "Men's Room",
+      "id": 42891,
+      "status": "ok"
+    },
+    {
+      "name": "Shows",
+      "id": 43292,
+      "status": "ok"
+    },
+    {
+      "name": "DM i stand-up",
+      "id": 45066,
+      "status": "ok"
+    }
+  ]
+}

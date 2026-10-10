@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Comedy-TV",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 39727,
+  "key": "5fd5786a-9227-49ba-9e1e-4a89e644c443",
+  "udi": "umb://document/5fd5786a922749ba9e1e4a89e644c443",
+  "path": "-1,1067,39727",
+  "url": "https://comedy-tv.dk/",
+  "createDate": "2021-03-09 07:53:20",
+  "updateDate": "2026-08-25 00:00:04",
+  "publishDate": "2026-08-25 00:00:04",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

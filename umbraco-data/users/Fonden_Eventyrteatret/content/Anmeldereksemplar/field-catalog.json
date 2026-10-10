@@ -1,0 +1,282 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": ["Undersider"],
+    "editors": ["listview"],
+    "seenOn": ["parent"]
+  },
+  "access": {
+    "alias": "access",
+    "labels": ["Access"],
+    "tabs": ["Access & Price"],
+    "editors": ["dropdownFlexible"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "badge": {
+    "alias": "badge",
+    "labels": ["Badge"],
+    "tabs": ["Metadata"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "code": {
+    "alias": "code",
+    "labels": ["Code"],
+    "tabs": ["Access & Price"],
+    "editors": ["textarea"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "columnAmount": {
+    "alias": "columnAmount",
+    "labels": ["Column Amount"],
+    "tabs": ["Layout"],
+    "editors": ["integer"],
+    "seenOn": ["parent"]
+  },
+  "coverImage": {
+    "alias": "coverImage",
+    "labels": ["Cover Image"],
+    "tabs": ["Layout"],
+    "editors": ["imagecropper"],
+    "seenOn": ["parent"]
+  },
+  "description": {
+    "alias": "description",
+    "labels": ["Description"],
+    "tabs": ["Layout", "Metadata"],
+    "editors": ["textarea"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "expandedDescription": {
+    "alias": "expandedDescription",
+    "labels": ["Expanded description"],
+    "tabs": ["Metadata"],
+    "editors": ["textarea"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "fadeCoverImage": {
+    "alias": "fadeCoverImage",
+    "labels": ["Fade Cover Image"],
+    "tabs": ["Layout"],
+    "editors": ["boolean"],
+    "seenOn": ["parent"]
+  },
+  "headline": {
+    "alias": "headline",
+    "labels": ["Headline"],
+    "tabs": ["Layout"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "hidden": {
+    "alias": "hidden",
+    "labels": ["Hidden"],
+    "tabs": ["General"],
+    "editors": ["boolean"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "hideDownload": {
+    "alias": "hideDownload",
+    "labels": ["Hide Download"],
+    "tabs": ["Access & Price"],
+    "editors": ["boolean"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "hidePlay": {
+    "alias": "hidePlay",
+    "labels": ["Hide Play"],
+    "tabs": ["Access & Price"],
+    "editors": ["boolean"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "length": {
+    "alias": "length",
+    "labels": ["Length"],
+    "tabs": ["Metadata"],
+    "editors": ["integer"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "metaDescription": {
+    "alias": "metaDescription",
+    "labels": ["Description"],
+    "tabs": ["SEO"],
+    "editors": ["textbox"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "metaTitle": {
+    "alias": "metaTitle",
+    "labels": ["Title"],
+    "tabs": ["SEO"],
+    "editors": ["textbox"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "openWebContentFromList": {
+    "alias": "openWebContentFromList",
+    "labels": ["Open WebContent From List"],
+    "tabs": ["General"],
+    "editors": ["boolean"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "openWebContentInNewWindows": {
+    "alias": "openWebContentInNewWindows",
+    "labels": ["Open WebContent In New Windows"],
+    "tabs": ["General"],
+    "editors": ["boolean"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "orderID": {
+    "alias": "orderID",
+    "labels": ["Order ID"],
+    "tabs": ["General"],
+    "editors": ["integer"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "period": {
+    "alias": "period",
+    "labels": ["Period"],
+    "tabs": ["Access & Price"],
+    "editors": ["integer"],
+    "seenOn": ["parent"]
+  },
+  "production": {
+    "alias": "production",
+    "labels": ["Production"],
+    "tabs": ["Metadata"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "productionLink": {
+    "alias": "productionLink",
+    "labels": ["Production Link"],
+    "tabs": ["Metadata"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "productLink": {
+    "alias": "productLink",
+    "labels": ["Product Link"],
+    "tabs": ["Metadata"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "purchasePrice": {
+    "alias": "purchasePrice",
+    "labels": ["Purchase Price"],
+    "tabs": ["Access & Price"],
+    "editors": ["decimal"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "rawFile": {
+    "alias": "rawFile",
+    "labels": ["Raw File"],
+    "tabs": ["General"],
+    "editors": ["fileupload"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "rentalPrice": {
+    "alias": "rentalPrice",
+    "labels": ["Rental Price"],
+    "tabs": ["Access & Price"],
+    "editors": ["decimal"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "siteMapOption": {
+    "alias": "siteMapOption",
+    "labels": ["siteMapOption"],
+    "tabs": ["SiteMap"],
+    "editors": ["/App_Plugins/MBran.SitemapXml/sitemap.html"],
+    "seenOn": ["parent", "item:115356", "item:116506"]
+  },
+  "tags": {
+    "alias": "tags",
+    "labels": ["Tags"],
+    "tabs": ["Metadata"],
+    "editors": ["tags"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "thumbnail": {
+    "alias": "thumbnail",
+    "labels": ["Thumbnail"],
+    "tabs": ["Metadata"],
+    "editors": ["imagecropper"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "thumbnailWide": {
+    "alias": "thumbnailWide",
+    "labels": ["Thumbnail Wide"],
+    "tabs": ["Layout"],
+    "editors": ["boolean"],
+    "seenOn": ["parent"]
+  },
+  "title": {
+    "alias": "title",
+    "labels": ["Title"],
+    "tabs": ["Metadata"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "trailer": {
+    "alias": "trailer",
+    "labels": ["Trailer"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "type": {
+    "alias": "type",
+    "labels": ["Type"],
+    "tabs": ["General"],
+    "editors": ["dropdownFlexible"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "videoDownloadURL": {
+    "alias": "videoDownloadURL",
+    "labels": ["Video Download URL"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "videoID": {
+    "alias": "videoID",
+    "labels": ["Video ID"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "videoSize": {
+    "alias": "videoSize",
+    "labels": ["Video Size"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "videoStatus": {
+    "alias": "videoStatus",
+    "labels": ["Video Status"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "videoThumbnailURL": {
+    "alias": "videoThumbnailURL",
+    "labels": ["Video Thumbnail URL"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "webContentURL": {
+    "alias": "webContentURL",
+    "labels": ["WebContent URL"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["item:115356", "item:116506"]
+  },
+  "year": {
+    "alias": "year",
+    "labels": ["Year"],
+    "tabs": ["Metadata"],
+    "editors": ["integer"],
+    "seenOn": ["item:115356", "item:116506"]
+  }
+}

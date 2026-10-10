@@ -1,0 +1,108 @@
+{
+  "exportedAt": "2026-06-02T11:05:43.497Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/75785",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 75785,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 75785,
+    "key": "2e39a9d5-5507-4f53-8e49-a161fb946398",
+    "udi": "umb://document/2e39a9d555074f538e49a161fb946398",
+    "name": "SHOWS",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/jacob-taarnhoej/shows/"
+    ],
+    "path": "-1,1067,75778,75785",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "65",
+      "purchasePrice": "85",
+      "code": "",
+      "period": "1",
+      "headline": "",
+      "description": "PREMIERE TILBUD<br/>Nu kan du købe begge Jacob Taarhøj`s shows til en super skarp pris....puhaaa det kan blive en sjov aften 😂🤣",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "3",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 2,
+    "childrenFetched": 2,
+    "detailsFetched": 2,
+    "detailErrors": 0,
+    "statsEntriesRead": 203,
+    "uniqueStatsMedia": 2,
+    "showsMatchedToStats": 2,
+    "showsWithoutStats": 0,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 2,
+      "totalItems": 2
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data\\users\\Jacob_Taarnhøj\\stats\\items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

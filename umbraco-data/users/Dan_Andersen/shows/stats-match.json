@@ -1,0 +1,26 @@
+{
+  "matchedShows": [
+    {
+      "id": 48899,
+      "key": "a9424114-a8f2-4b6b-8b99-e8097c9d0348",
+      "udi": "umb://document/a9424114a8f24b6b8b99e8097c9d0348",
+      "name": "Dan Andersen På Vippen",
+      "title": "Dan Andersen På Vippen ",
+      "statsEntryCount": 123,
+      "statsPlayCount": 52,
+      "statsNonPlayCount": 71
+    },
+    {
+      "id": 42310,
+      "key": "158b0fdf-dc49-46b8-b762-4aa6cd0ac207",
+      "udi": "umb://document/158b0fdfdc4946b8b7624aa6cd0ac207",
+      "name": "Extravaganza",
+      "title": "Extravaganza",
+      "statsEntryCount": 22,
+      "statsPlayCount": 15,
+      "statsNonPlayCount": 7
+    }
+  ],
+  "showsWithoutStats": [],
+  "statsMediaWithoutShow": []
+}

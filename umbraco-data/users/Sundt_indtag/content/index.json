@@ -1,0 +1,15 @@
+{
+  "requestedName": "Sundt indtag",
+  "liveName": "Sundt indtag",
+  "userId": 2679,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Medlemsklubben motivationsklubben",
+      "id": 37835,
+      "status": "ok"
+    }
+  ]
+}

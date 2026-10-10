@@ -1,0 +1,14 @@
+{
+  "startedAt": "2026-06-02T10:51:16.130Z",
+  "finishedAt": null,
+  "rootId": 1067,
+  "tasks": ["stats", "shows", "purchases", "payouts"],
+  "skipExisting": true,
+  "counts": {
+    "ok": 0,
+    "skipped": 0,
+    "error": 0
+  },
+  "users": [],
+  "results": []
+}

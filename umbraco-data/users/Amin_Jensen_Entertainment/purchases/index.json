@@ -1,0 +1,87 @@
+{
+  "exportedAt": "2026-05-27T12:43:51.096Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1906",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1906,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1906,
+    "key": "f4445b7d-0668-4529-86fa-86ebed4df2cd",
+    "udi": "umb://document/f4445b7d0668452986fa86ebed4df2cd",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/amin-jensen-entertainment/purchases/"],
+    "path": "-1,1067,1902,1906",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 481,
+    "childrenFetched": 481,
+    "detailsFetched": 481,
+    "detailErrors": 0,
+    "purchaseEntries": 414,
+    "nonPurchaseEntries": 67,
+    "entriesWithDownloads": 300,
+    "entriesWithStreams": 58,
+    "totalDownloads": 839,
+    "totalStreams": 159,
+    "uniqueMediaUdis": 6,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 6,
+    "mediaResolved": 6,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 200,
+      "totalItems": 481
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 200,
+      "totalItems": 481
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 81,
+      "totalItems": 481
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data/users/Amin_Jensen_Entertainment/stats/media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Amin_Jensen_Entertainment\\stats\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

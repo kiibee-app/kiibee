@@ -1,0 +1,25 @@
+{
+  "requestedName": "Adal Faragalla",
+  "liveName": "Adal Faragalla",
+  "userId": 17825,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Inspiration",
+      "id": 76732,
+      "status": "ok"
+    },
+    {
+      "name": "Med kode 2",
+      "id": 76734,
+      "status": "ok"
+    },
+    {
+      "name": "Med kode 1",
+      "id": 76739,
+      "status": "ok"
+    }
+  ]
+}

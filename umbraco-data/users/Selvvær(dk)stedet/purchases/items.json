@@ -1,0 +1,83 @@
+[
+  {
+    "id": 16629,
+    "key": "43f02dc2-2cde-48c7-9e47-474aaa1544b6",
+    "udi": "umb://document/43f02dc22cde48c79e47474aaa1544b6",
+    "name": "witz03062020220127",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-06-03 22:04:55",
+    "updateDate": "2020-07-03 22:05:31",
+    "parentId": 16449,
+    "path": "-1,1067,16444,16449,16629",
+    "sortOrder": 0,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Mette Gertsen",
+    "email": "mettegertsen9@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "125",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2020-06-03 22:04:55",
+    "mediaRelationUdis": [
+      "umb://document/a1dcb7e140634807b65e15f6f7acaf74"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/a1dcb7e140634807b65e15f6f7acaf74"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/a1dcb7e140634807b65e15f6f7acaf74",
+        "key": "a1dcb7e1-4063-4807-b65e-15f6f7acaf74",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5e71e480891186eb9b446899058c9771",
+      "email": "mettegertsen9@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "125",
+      "fullName": "Mette Gertsen",
+      "message": "",
+      "media": "umb://document/a1dcb7e140634807b65e15f6f7acaf74"
+    }
+  }
+]

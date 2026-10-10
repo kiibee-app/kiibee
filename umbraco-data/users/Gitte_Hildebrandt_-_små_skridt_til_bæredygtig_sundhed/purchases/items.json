@@ -1,0 +1,3371 @@
+[
+  {
+    "id": 109771,
+    "key": "63bb5c57-85b3-41d6-9e6d-df26470d0177",
+    "udi": "umb://document/63bb5c5785b341d69e6ddf26470d0177",
+    "name": "7j2618052025213932",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-05-18 21:39:58",
+    "updateDate": "2025-05-18 21:39:58",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,109771",
+    "sortOrder": 38,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Vera Kleberg dalsgaard",
+    "email": "Vera.kleberg@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "145",
+    "expireDate": "2025-06-01 21:39:56",
+    "message": "",
+    "orderCreateDate": "2025-05-18 21:39:58",
+    "mediaRelationUdis": [
+      "umb://document/2ebc285d17c2480fa97c498605bae8b8"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/2ebc285d17c2480fa97c498605bae8b8"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/2ebc285d17c2480fa97c498605bae8b8",
+        "key": "2ebc285d-17c2-480f-a97c-498605bae8b8",
+        "resolved": true,
+        "id": 90184,
+        "name": "Sådan tøjler du hormonel migræne via kosten",
+        "title": "Sådan tøjler du hormonel migræne via kosten",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4480/saadan-toejler-du-hormonel-migraene-via-kosten.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4481/hearty-harvest-weekend-market-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan tøjler du hormonel migræne via kosten"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "Vera.kleberg@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2025-06-01 21:39:56",
+      "price": "145",
+      "fullName": "Vera Kleberg dalsgaard",
+      "message": "",
+      "media": "umb://document/2ebc285d17c2480fa97c498605bae8b8"
+    }
+  },
+  {
+    "id": 108876,
+    "key": "b0661a8b-1924-40a1-8d76-2dc3d6b17967",
+    "udi": "umb://document/b0661a8b192440a18d762dc3d6b17967",
+    "name": "m1lb27042025132526",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-27 13:26:02",
+    "updateDate": "2025-04-27 13:26:02",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,108876",
+    "sortOrder": 37,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Nina Lak Andersen ",
+    "email": "ninlak@jubii.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2025-05-11 13:25:57",
+    "message": "",
+    "orderCreateDate": "2025-04-27 13:26:02",
+    "mediaRelationUdis": [
+      "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/7667d5bcc9454746bbf9d93003bef643",
+        "key": "7667d5bc-c945-4746-bbf9-d93003bef643",
+        "resolved": true,
+        "id": 20280,
+        "name": "7 lækre hverdagsretter med mere grønt",
+        "title": "7 lækre hverdagsretter med mere grønt",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2414/ilovepdf_merged-5.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2415/untitled-design-4.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lækre hverdagsretter med mere grønt"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "ninlak@jubii.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2025-05-11 13:25:57",
+      "price": "95",
+      "fullName": "Nina Lak Andersen ",
+      "message": "",
+      "media": "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    }
+  },
+  {
+    "id": 108690,
+    "key": "f162b0de-05b5-4dec-aa51-52cb9acbe13c",
+    "udi": "umb://document/f162b0de05b54decaa5152cb9acbe13c",
+    "name": "5z8121042025004109",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-21 00:43:32",
+    "updateDate": "2025-04-21 00:43:32",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,108690",
+    "sortOrder": 36,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Lise Bækhøj",
+    "email": "lise.bkhj@yahoo.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2025-05-05 00:43:29",
+    "message": "",
+    "orderCreateDate": "2025-04-21 00:43:32",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "lise.bkhj@yahoo.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2025-05-05 00:43:29",
+      "price": "95",
+      "fullName": "Lise Bækhøj",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 108336,
+    "key": "bf157471-77cb-4066-af87-d117c233976a",
+    "udi": "umb://document/bf15747177cb4066af87d117c233976a",
+    "name": "223608042025071804",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-08 07:18:34",
+    "updateDate": "2025-04-08 07:18:34",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,108336",
+    "sortOrder": 35,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Anette Juellund",
+    "email": "anettejuellund@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2025-04-22 07:18:30",
+    "message": "",
+    "orderCreateDate": "2025-04-08 07:18:34",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "anettejuellund@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2025-04-22 07:18:30",
+      "price": "95",
+      "fullName": "Anette Juellund",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 102893,
+    "key": "29d5be19-e202-4559-b69c-2c89e1148a18",
+    "udi": "umb://document/29d5be19e2024559b69c2c89e1148a18",
+    "name": "y91g19112024153436",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-11-19 15:34:59",
+    "updateDate": "2024-11-19 15:34:59",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,102893",
+    "sortOrder": 34,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Jasmina Basic",
+    "email": "jasmina_basic@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "145",
+    "expireDate": "2024-12-03 15:34:57",
+    "message": "",
+    "orderCreateDate": "2024-11-19 15:34:59",
+    "mediaRelationUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/4c51733af0384ca28d4858bf1c973b66",
+        "key": "4c51733a-f038-4ca2-8d48-58bf1c973b66",
+        "resolved": true,
+        "id": 87905,
+        "name": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "title": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4475/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-17.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4476/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-instagram-post-square-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "jasmina_basic@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2024-12-03 15:34:57",
+      "price": "145",
+      "fullName": "Jasmina Basic",
+      "message": "",
+      "media": "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    }
+  },
+  {
+    "id": 95875,
+    "key": "f9020d34-dbe2-4f4c-9b83-fba421c2a71d",
+    "udi": "umb://document/f9020d34dbe24f4c9b83fba421c2a71d",
+    "name": "gxzf29032024160512",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-03-29 16:05:28",
+    "updateDate": "2024-03-29 16:05:28",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,95875",
+    "sortOrder": 33,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Susan Svendsen",
+    "email": "susan@bmt-byg.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2024-04-12 16:05:25",
+    "message": "",
+    "orderCreateDate": "2024-03-29 16:05:28",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "susan@bmt-byg.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2024-04-12 16:05:25",
+      "price": "95",
+      "fullName": "Susan Svendsen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 94695,
+    "key": "f70bf581-bbdc-460a-9226-5d822b630ea9",
+    "udi": "umb://document/f70bf581bbdc460a92265d822b630ea9",
+    "name": "hr7611022024101152",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-02-11 10:12:08",
+    "updateDate": "2024-02-11 10:12:08",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,94695",
+    "sortOrder": 32,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "muriel nielsen",
+    "email": "et.men1@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2024-02-25 10:12:06",
+    "message": "",
+    "orderCreateDate": "2024-02-11 10:12:08",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "et.men1@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2024-02-25 10:12:06",
+      "price": "95",
+      "fullName": "muriel nielsen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 89096,
+    "key": "0cd03803-ef4c-4e2a-9eb9-836359eabf7f",
+    "udi": "umb://document/0cd03803ef4c4e2a9eb9836359eabf7f",
+    "name": "huzg05092023141557",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-09-05 14:16:10",
+    "updateDate": "2023-09-05 14:16:10",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,89096",
+    "sortOrder": 31,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Susanne Hansen",
+    "email": "sushh2910@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "145",
+    "expireDate": "2023-09-12 14:16:08",
+    "message": "",
+    "orderCreateDate": "2023-09-05 14:16:10",
+    "mediaRelationUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/4c51733af0384ca28d4858bf1c973b66",
+        "key": "4c51733a-f038-4ca2-8d48-58bf1c973b66",
+        "resolved": true,
+        "id": 87905,
+        "name": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "title": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4475/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-17.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4476/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-instagram-post-square-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "sushh2910@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-09-12 14:16:08",
+      "price": "145",
+      "fullName": "Susanne Hansen",
+      "message": "",
+      "media": "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    }
+  },
+  {
+    "id": 88017,
+    "key": "3a20e132-6dc0-4a9a-8abc-80b2cdb45f27",
+    "udi": "umb://document/3a20e1326dc04a9a8abc80b2cdb45f27",
+    "name": "k29t10082023185833",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-08-10 18:58:49",
+    "updateDate": "2023-08-10 18:58:49",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,88017",
+    "sortOrder": 30,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Agnes ipsen",
+    "email": "agnesbyriel@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2023-08-17 18:58:46",
+    "message": "",
+    "orderCreateDate": "2023-08-10 18:58:49",
+    "mediaRelationUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/4c51733af0384ca28d4858bf1c973b66",
+        "key": "4c51733a-f038-4ca2-8d48-58bf1c973b66",
+        "resolved": true,
+        "id": 87905,
+        "name": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "title": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4475/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-17.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4476/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-instagram-post-square-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "agnesbyriel@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-08-17 18:58:46",
+      "price": "95",
+      "fullName": "Agnes ipsen",
+      "message": "",
+      "media": "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    }
+  },
+  {
+    "id": 87961,
+    "key": "034594e0-f4e7-4736-8981-7308a7037178",
+    "udi": "umb://document/034594e0f4e7473689817308a7037178",
+    "name": "51g209082023080845",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-08-09 08:09:04",
+    "updateDate": "2023-08-09 08:09:04",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,87961",
+    "sortOrder": 29,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Helle Krogsgaard ",
+    "email": "hkrogsgaard@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2023-08-16 08:09:00",
+    "message": "",
+    "orderCreateDate": "2023-08-09 08:09:04",
+    "mediaRelationUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/4c51733af0384ca28d4858bf1c973b66",
+        "key": "4c51733a-f038-4ca2-8d48-58bf1c973b66",
+        "resolved": true,
+        "id": 87905,
+        "name": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "title": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4475/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-17.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4476/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-instagram-post-square-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "hkrogsgaard@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-08-16 08:09:00",
+      "price": "95",
+      "fullName": "Helle Krogsgaard ",
+      "message": "",
+      "media": "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    }
+  },
+  {
+    "id": 87936,
+    "key": "13f29fa2-004b-4ab9-8f9f-555b044f1f80",
+    "udi": "umb://document/13f29fa2004b4ab98f9f555b044f1f80",
+    "name": "rk3i07082023163011",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-08-07 16:30:26",
+    "updateDate": "2023-08-07 16:30:26",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,87936",
+    "sortOrder": 28,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Charlotte Landtved ",
+    "email": "charlotteskov1978@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2023-08-14 16:30:24",
+    "message": "",
+    "orderCreateDate": "2023-08-07 16:30:26",
+    "mediaRelationUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/4c51733af0384ca28d4858bf1c973b66",
+        "key": "4c51733a-f038-4ca2-8d48-58bf1c973b66",
+        "resolved": true,
+        "id": 87905,
+        "name": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "title": "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4475/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-17.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/4476/saadan-forebygger-du-hormonel-migraene-de-4-vigtigste-kosttilskud-instagram-post-square-650-1030-px.png",
+        "purchasePrice": "145",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Sådan forebygger du hormonel migræne - De 4 vigtigste kosttilskud"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "charlotteskov1978@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-08-14 16:30:24",
+      "price": "95",
+      "fullName": "Charlotte Landtved ",
+      "message": "",
+      "media": "umb://document/4c51733af0384ca28d4858bf1c973b66"
+    }
+  },
+  {
+    "id": 77559,
+    "key": "d4dde50c-cb0c-44aa-8206-2001b4b575ae",
+    "udi": "umb://document/d4dde50ccb0c44aa82062001b4b575ae",
+    "name": "uevu27012023075452",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-01-27 07:55:47",
+    "updateDate": "2023-01-27 07:55:47",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,77559",
+    "sortOrder": 27,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "karina Christensen",
+    "email": "karina_eriksen@yahoo.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2023-02-03 07:55:45",
+    "message": "",
+    "orderCreateDate": "2023-01-27 07:55:47",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "karina_eriksen@yahoo.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-02-03 07:55:45",
+      "price": "95",
+      "fullName": "karina Christensen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 73416,
+    "key": "cc1ec124-106a-488d-9184-4655599a5b4c",
+    "udi": "umb://document/cc1ec124106a488d91844655599a5b4c",
+    "name": "59q804102022184408",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-04 18:44:21",
+    "updateDate": "2022-10-04 18:44:21",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,73416",
+    "sortOrder": 26,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Tina Greve Jensen",
+    "email": "tineth4@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "245",
+    "expireDate": "2022-10-11 18:44:19",
+    "message": "",
+    "orderCreateDate": "2022-10-04 18:44:21",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "tineth4@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-10-11 18:44:19",
+      "price": "245",
+      "fullName": "Tina Greve Jensen",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 71129,
+    "key": "8d1e507b-66b7-408c-9df0-14f919a503dd",
+    "udi": "umb://document/8d1e507b66b7408c9df014f919a503dd",
+    "name": "31lq04092022082628",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-09-04 08:26:43",
+    "updateDate": "2022-09-04 08:26:43",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,71129",
+    "sortOrder": 25,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Winnie Bagge Kolding-Andersen",
+    "email": "baggewinnie@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "245",
+    "expireDate": "2022-09-11 08:26:41",
+    "message": "",
+    "orderCreateDate": "2022-09-04 08:26:43",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "baggewinnie@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-09-11 08:26:41",
+      "price": "245",
+      "fullName": "Winnie Bagge Kolding-Andersen",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 64431,
+    "key": "eac8932f-93a2-40ef-9022-9fc87fa9baf9",
+    "udi": "umb://document/eac8932f93a240ef90229fc87fa9baf9",
+    "name": "274b17052022154723",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-17 16:03:18",
+    "updateDate": "2022-05-17 16:03:18",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,64431",
+    "sortOrder": 24,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Annlis Bjarkhamar ",
+    "email": "annlisb@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2022-06-16 16:03:17",
+    "message": "",
+    "orderCreateDate": "2022-05-17 16:03:18",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "annlisb@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-06-16 16:03:17",
+      "price": "95",
+      "fullName": "Annlis Bjarkhamar ",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 62585,
+    "key": "42ff1890-cd26-4188-9009-c8cebce56dbd",
+    "udi": "umb://document/42ff1890cd2641889009c8cebce56dbd",
+    "name": "6ca315032022125028",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-15 12:50:42",
+    "updateDate": "2022-03-15 12:50:42",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,62585",
+    "sortOrder": 23,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Marianne Klitt Jensen",
+    "email": "mkjpiv@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "195",
+    "expireDate": "2022-04-14 12:50:40",
+    "message": "",
+    "orderCreateDate": "2022-03-15 12:50:42",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "mkjpiv@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-14 12:50:40",
+      "price": "195",
+      "fullName": "Marianne Klitt Jensen",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 54626,
+    "key": "80f99d90-8f22-42ab-8b6c-dee5cdf923a5",
+    "udi": "umb://document/80f99d908f2242ab8b6cdee5cdf923a5",
+    "name": "856211122021170443",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-12-11 17:05:04",
+    "updateDate": "2021-12-11 17:05:04",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,54626",
+    "sortOrder": 22,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Anne Marie Christensen ",
+    "email": "annemaage@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2022-01-10 17:05:03",
+    "message": "",
+    "orderCreateDate": "2021-12-11 17:05:04",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "annemaage@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-01-10 17:05:03",
+      "price": "95",
+      "fullName": "Anne Marie Christensen ",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 49715,
+    "key": "06ef6a98-be23-434a-8725-eb4c493932dd",
+    "udi": "umb://document/06ef6a98be23434a8725eb4c493932dd",
+    "name": "dy7q02092021104604",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-09-02 10:46:59",
+    "updateDate": "2021-09-02 10:46:59",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,49715",
+    "sortOrder": 21,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Ingun Midberg Jacobsen",
+    "email": "ingun_midberg@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-10-02 10:46:59",
+    "message": "",
+    "orderCreateDate": "2021-09-02 10:46:59",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "ingun_midberg@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-10-02 10:46:59",
+      "price": "95",
+      "fullName": "Ingun Midberg Jacobsen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 48740,
+    "key": "1829ea93-b94d-4897-b3e6-9947cc09ee17",
+    "udi": "umb://document/1829ea93b94d4897b3e69947cc09ee17",
+    "name": "d32831072021164025",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-31 16:40:44",
+    "updateDate": "2021-07-31 16:40:44",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48740",
+    "sortOrder": 20,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Camilla Møller",
+    "email": "camillasteen80@yahoo.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-30 16:40:43",
+    "message": "",
+    "orderCreateDate": "2021-07-31 16:40:44",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "camillasteen80@yahoo.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-30 16:40:43",
+      "price": "95",
+      "fullName": "Camilla Møller",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 48707,
+    "key": "6e8e5ef8-bc2f-40de-a180-c2d584a2b4af",
+    "udi": "umb://document/6e8e5ef8bc2f40dea180c2d584a2b4af",
+    "name": "346530072021090516",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-30 09:05:28",
+    "updateDate": "2021-07-30 09:05:28",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48707",
+    "sortOrder": 19,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Louise Hoff Byrnak",
+    "email": "louise@hoff-byrnak.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-29 09:05:28",
+    "message": "",
+    "orderCreateDate": "2021-07-30 09:05:28",
+    "mediaRelationUdis": [
+      "umb://document/07692890b7f347e780d1fb86fef62e15"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/07692890b7f347e780d1fb86fef62e15"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/07692890b7f347e780d1fb86fef62e15",
+        "key": "07692890-b7f3-47e7-80d1-fb86fef62e15",
+        "resolved": true,
+        "id": 24730,
+        "name": "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv",
+        "title": "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=EcUp5BM6-yg&feature=youtu.be",
+        "thumbnail": "/media/2710/add-a-heading.png",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "louise@hoff-byrnak.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-29 09:05:28",
+      "price": "95",
+      "fullName": "Louise Hoff Byrnak",
+      "message": "",
+      "media": "umb://document/07692890b7f347e780d1fb86fef62e15"
+    }
+  },
+  {
+    "id": 48623,
+    "key": "203dfb15-93c8-4d23-ba94-f8316362b629",
+    "udi": "umb://document/203dfb1593c84d23ba94f8316362b629",
+    "name": "pwkq28072021092241",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-28 09:22:55",
+    "updateDate": "2021-07-28 09:22:55",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48623",
+    "sortOrder": 18,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Gitte Hildebrandt",
+    "email": "gitte@gittebsk.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-27 09:22:54",
+    "message": "",
+    "orderCreateDate": "2021-07-28 09:22:55",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "gitte@gittebsk.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-27 09:22:54",
+      "price": "95",
+      "fullName": "Gitte Hildebrandt",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 48621,
+    "key": "43bb70ae-e83c-44ae-8b4e-fa52b85ea09e",
+    "udi": "umb://document/43bb70aee83c44ae8b4efa52b85ea09e",
+    "name": "kmi928072021092131",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-28 09:22:34",
+    "updateDate": "2021-07-28 09:22:34",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48621",
+    "sortOrder": 17,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Gitte Hiidebrandt",
+    "email": "gitte@gittebsk.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-27 09:22:33",
+    "message": "",
+    "orderCreateDate": "2021-07-28 09:22:34",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "gitte@gittebsk.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-27 09:22:33",
+      "price": "95",
+      "fullName": "Gitte Hiidebrandt",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 48613,
+    "key": "197a402e-daab-43eb-94ac-63b2c7ed18cc",
+    "udi": "umb://document/197a402edaab43eb94ac63b2c7ed18cc",
+    "name": "21p127072021165251",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-27 16:53:06",
+    "updateDate": "2021-07-27 16:53:06",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48613",
+    "sortOrder": 16,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Lone Billeskov Jansen",
+    "email": "lonebilleskov@hotmail.con",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-26 16:53:05",
+    "message": "",
+    "orderCreateDate": "2021-07-27 16:53:06",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "lonebilleskov@hotmail.con",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-26 16:53:05",
+      "price": "95",
+      "fullName": "Lone Billeskov Jansen",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 48599,
+    "key": "75f0e4d7-dbea-4eb2-aeda-17372c5c6b5e",
+    "udi": "umb://document/75f0e4d7dbea4eb2aeda17372c5c6b5e",
+    "name": "gv2i27072021004657",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-07-27 00:47:13",
+    "updateDate": "2021-07-27 00:47:13",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,48599",
+    "sortOrder": 15,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Hanne Dau Køhler ",
+    "email": "mojndau@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-08-26 00:47:13",
+    "message": "",
+    "orderCreateDate": "2021-07-27 00:47:13",
+    "mediaRelationUdis": [
+      "umb://document/07692890b7f347e780d1fb86fef62e15"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/07692890b7f347e780d1fb86fef62e15"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/07692890b7f347e780d1fb86fef62e15",
+        "key": "07692890-b7f3-47e7-80d1-fb86fef62e15",
+        "resolved": true,
+        "id": 24730,
+        "name": "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv",
+        "title": "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=EcUp5BM6-yg&feature=youtu.be",
+        "thumbnail": "/media/2710/add-a-heading.png",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Bliv klogere på triggere i kosten og få redskaber til at undersøge,  om kosten er et issue for dig - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "mojndau@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-08-26 00:47:13",
+      "price": "95",
+      "fullName": "Hanne Dau Køhler ",
+      "message": "",
+      "media": "umb://document/07692890b7f347e780d1fb86fef62e15"
+    }
+  },
+  {
+    "id": 43436,
+    "key": "c868c2b3-b410-45f7-8749-dfba83e5612f",
+    "udi": "umb://document/c868c2b3b41045f78749dfba83e5612f",
+    "name": "3j4e20042021114927",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-20 11:49:38",
+    "updateDate": "2021-04-20 11:49:38",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,43436",
+    "sortOrder": 14,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Ulla Jakobsen",
+    "email": "ulla_jakobsen@yahoo.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-05-20 11:49:38",
+    "message": "",
+    "orderCreateDate": "2021-04-20 11:49:38",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "ulla_jakobsen@yahoo.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-05-20 11:49:38",
+      "price": "95",
+      "fullName": "Ulla Jakobsen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 43403,
+    "key": "0ccb37df-656c-45e1-b90e-a240fd59888b",
+    "udi": "umb://document/0ccb37df656c45e1b90ea240fd59888b",
+    "name": "569s20042021090658",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-20 09:07:09",
+    "updateDate": "2021-04-20 09:07:09",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,43403",
+    "sortOrder": 13,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Ulla Jakobsen",
+    "email": "ulla_jakobsen@yahoo.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-05-20 09:07:09",
+    "message": "",
+    "orderCreateDate": "2021-04-20 09:07:09",
+    "mediaRelationUdis": [
+      "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/7667d5bcc9454746bbf9d93003bef643",
+        "key": "7667d5bc-c945-4746-bbf9-d93003bef643",
+        "resolved": true,
+        "id": 20280,
+        "name": "7 lækre hverdagsretter med mere grønt",
+        "title": "7 lækre hverdagsretter med mere grønt",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2414/ilovepdf_merged-5.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2415/untitled-design-4.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lækre hverdagsretter med mere grønt"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "ulla_jakobsen@yahoo.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-05-20 09:07:09",
+      "price": "95",
+      "fullName": "Ulla Jakobsen",
+      "message": "",
+      "media": "umb://document/7667d5bcc9454746bbf9d93003bef643"
+    }
+  },
+  {
+    "id": 43227,
+    "key": "964c3765-5185-45d2-9798-938990deafb6",
+    "udi": "umb://document/964c3765518545d29798938990deafb6",
+    "name": "7b2z17042021075711",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-17 07:57:59",
+    "updateDate": "2021-04-17 07:57:59",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,43227",
+    "sortOrder": 12,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Jeanette Graversen ",
+    "email": "jeanettegraversen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-05-17 07:57:59",
+    "message": "",
+    "orderCreateDate": "2021-04-17 07:57:59",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "jeanettegraversen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-05-17 07:57:59",
+      "price": "95",
+      "fullName": "Jeanette Graversen ",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 38284,
+    "key": "d7dc3979-13a3-4eb5-b5a0-9dcbf95a942b",
+    "udi": "umb://document/d7dc397913a34eb5b5a09dcbf95a942b",
+    "name": "w15623022021154142",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-02-23 15:42:03",
+    "updateDate": "2021-02-23 15:42:03",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,38284",
+    "sortOrder": 11,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Malene Jensen",
+    "email": "mj84@godmail.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-03-25 15:42:03",
+    "message": "",
+    "orderCreateDate": "2021-02-23 15:42:03",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "mj84@godmail.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-03-25 15:42:03",
+      "price": "95",
+      "fullName": "Malene Jensen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 31262,
+    "key": "24d206f1-25d1-4590-be43-ccb6e7ddf672",
+    "udi": "umb://document/24d206f125d14590be43ccb6e7ddf672",
+    "name": "61p201022021152357",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-02-01 15:24:51",
+    "updateDate": "2021-02-01 15:24:51",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,31262",
+    "sortOrder": 10,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Marianne høstrup",
+    "email": "mariannehoestrup@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2021-03-03 15:24:51",
+    "message": "",
+    "orderCreateDate": "2021-02-01 15:24:51",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "mariannehoestrup@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-03-03 15:24:51",
+      "price": "95",
+      "fullName": "Marianne høstrup",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 29026,
+    "key": "47cddd74-6f52-415a-b39d-4050178212fe",
+    "udi": "umb://document/47cddd746f52415ab39d4050178212fe",
+    "name": "822t16012021155249",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-01-16 15:53:04",
+    "updateDate": "2021-01-16 15:53:04",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,29026",
+    "sortOrder": 9,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Sine Hvid Rasmussen ",
+    "email": "sine-vh@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "195",
+    "expireDate": "2021-02-15 15:53:03",
+    "message": "",
+    "orderCreateDate": "2021-01-16 15:53:04",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "sine-vh@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-02-15 15:53:03",
+      "price": "195",
+      "fullName": "Sine Hvid Rasmussen ",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 23125,
+    "key": "4b6ac219-4c90-4914-a51c-94461b263244",
+    "udi": "umb://document/4b6ac2194c904914a51c94461b263244",
+    "name": "g4m805122020113314",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-05 11:33:29",
+    "updateDate": "2020-12-05 11:33:29",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,23125",
+    "sortOrder": 8,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Ditte Normann Møller ",
+    "email": "dittenm@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "195",
+    "expireDate": "2021-01-04 11:33:29",
+    "message": "",
+    "orderCreateDate": "2020-12-05 11:33:29",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "dittenm@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-04 11:33:29",
+      "price": "195",
+      "fullName": "Ditte Normann Møller ",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 22901,
+    "key": "1346941b-4d99-4246-afbd-19861e94e29d",
+    "udi": "umb://document/1346941b4d994246afbd19861e94e29d",
+    "name": "asqq01122020163013",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-01 16:30:25",
+    "updateDate": "2020-12-01 16:30:25",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,22901",
+    "sortOrder": 7,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Pia Sørensen",
+    "email": "moesbakken46@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2020-12-31 16:30:24",
+    "message": "",
+    "orderCreateDate": "2020-12-01 16:30:25",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "moesbakken46@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2020-12-31 16:30:24",
+      "price": "95",
+      "fullName": "Pia Sørensen",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 22617,
+    "key": "7b7d3325-865b-476b-a45f-fbc35d9ac460",
+    "udi": "umb://document/7b7d3325865b476ba45ffbc35d9ac460",
+    "name": "453523112020201856",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-11-23 20:19:09",
+    "updateDate": "2020-11-23 20:19:09",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,22617",
+    "sortOrder": 6,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Dorte Liiv Vilsgaard ",
+    "email": "doddie@live.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "95",
+    "expireDate": "2020-12-23 20:19:09",
+    "message": "",
+    "orderCreateDate": "2020-11-23 20:19:09",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "doddie@live.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2020-12-23 20:19:09",
+      "price": "95",
+      "fullName": "Dorte Liiv Vilsgaard ",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 22141,
+    "key": "90754091-990b-487b-bd73-c9b6e37053c5",
+    "udi": "umb://document/90754091990b487bbd73c9b6e37053c5",
+    "name": "pcyv11112020171904",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-11-11 17:19:28",
+    "updateDate": "2020-11-20 12:01:57",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,22141",
+    "sortOrder": 5,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "fullName": "Charlotte Piester",
+    "email": "charlotte@piester.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "795",
+    "expireDate": "2020-12-11 17:19:28",
+    "message": "",
+    "orderCreateDate": "2020-11-11 17:19:28",
+    "mediaRelationUdis": [
+      "umb://document/79b49292000a4c18af84b42d4808e5a9"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/79b49292000a4c18af84b42d4808e5a9"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/79b49292000a4c18af84b42d4808e5a9",
+        "key": "79b49292-000a-4c18-af84-b42d4808e5a9",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "charlotte@piester.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2020-12-11 17:19:28",
+      "price": "795",
+      "fullName": "Charlotte Piester",
+      "message": "",
+      "media": "umb://document/79b49292000a4c18af84b42d4808e5a9"
+    }
+  },
+  {
+    "id": 20775,
+    "key": "07f0a351-d279-433b-8768-c7dd2d8b63df",
+    "udi": "umb://document/07f0a351d279433b8768c7dd2d8b63df",
+    "name": "n3c716102020113635",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-10-16 11:36:57",
+    "updateDate": "2020-11-15 11:37:29",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,20775",
+    "sortOrder": 4,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Camilla Vigholt Nielsen",
+    "email": "camse_v@yahoo.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "145",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2020-10-16 11:36:57",
+    "mediaRelationUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/15424f1974f7439198aa8af1dfc9647f",
+        "key": "15424f19-74f7-4391-98aa-8af1dfc9647f",
+        "resolved": true,
+        "id": 20752,
+        "name": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "title": "7 mulige veje til at mindske hormonel migræne - Sølv",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://www.youtube.com/watch?v=-auYExsgiko",
+        "thumbnail": "/media/2458/add-a-heading-2.jpg",
+        "purchasePrice": "295",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 mulige veje til at mindske hormonel migræne - Sølv"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "camse_v@yahoo.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "145",
+      "fullName": "Camilla Vigholt Nielsen",
+      "message": "",
+      "media": "umb://document/15424f1974f7439198aa8af1dfc9647f"
+    }
+  },
+  {
+    "id": 20173,
+    "key": "a930ac31-9eb6-4811-8959-b8aa7b83276a",
+    "udi": "umb://document/a930ac319eb648118959b8aa7b83276a",
+    "name": "72n927092020073521",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-09-27 07:35:39",
+    "updateDate": "2020-10-27 07:36:34",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,20173",
+    "sortOrder": 3,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Sara Græsborg Lassen ",
+    "email": "graesborglassen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "65",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2020-09-27 07:35:39",
+    "mediaRelationUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7",
+        "key": "f069528b-1b6b-4ace-b2d4-f0d3287ed2c7",
+        "resolved": true,
+        "id": 20152,
+        "name": "7 lette og migrænevenlige hverdagsretter",
+        "title": "7 lette og migrænevenlige hverdagsretter",
+        "urls": [
+          "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/2406/combinepdf.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/2407/7-l.jpg",
+        "purchasePrice": "95",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "7 lette og migrænevenlige hverdagsretter"
+    ],
+    "mediaUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "graesborglassen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "65",
+      "fullName": "Sara Græsborg Lassen ",
+      "message": "",
+      "media": "umb://document/f069528b1b6b4aceb2d4f0d3287ed2c7"
+    }
+  },
+  {
+    "id": 12343,
+    "key": "6949bc5e-119f-43b7-b6b2-4f384ebaab58",
+    "udi": "umb://document/6949bc5e119f43b7b6b24f384ebaab58",
+    "name": "p79728042020151803",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-04-28 15:18:18",
+    "updateDate": "2020-05-28 15:19:11",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,12343",
+    "sortOrder": 2,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Berit Lyng",
+    "email": "2berit@gmail.con",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "647",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2020-04-28 15:18:18",
+    "mediaRelationUdis": [
+      "umb://document/dff99775e2054a72a5e7ddea55596c74"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/dff99775e2054a72a5e7ddea55596c74"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/dff99775e2054a72a5e7ddea55596c74",
+        "key": "dff99775-e205-4a72-a5e7-ddea55596c74",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "2berit@gmail.con",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "647",
+      "fullName": "Berit Lyng",
+      "message": "",
+      "media": "umb://document/dff99775e2054a72a5e7ddea55596c74"
+    }
+  },
+  {
+    "id": 2665,
+    "key": "2385368d-6f41-4f3f-89d2-e84c1b7bac2c",
+    "udi": "umb://document/2385368d6f414f3f89d2e84c1b7bac2c",
+    "name": "h77209022020155506",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-02-09 15:55:39",
+    "updateDate": "2020-02-11 15:56:29",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,2665",
+    "sortOrder": 1,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Karoline Fuglsang",
+    "email": "karolinefuglsang5@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2020-02-09 15:55:39",
+    "mediaRelationUdis": [
+      "umb://document/d3f86b5f0c6f44a9bb2bf7eb8d8c95c0"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/d3f86b5f0c6f44a9bb2bf7eb8d8c95c0"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/d3f86b5f0c6f44a9bb2bf7eb8d8c95c0",
+        "key": "d3f86b5f-0c6f-44a9-bb2b-f7eb8d8c95c0",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "fdee153153515fa51f37836bcee204c3",
+      "email": "karolinefuglsang5@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "",
+      "price": "39",
+      "fullName": "Karoline Fuglsang",
+      "message": "",
+      "media": "umb://document/d3f86b5f0c6f44a9bb2bf7eb8d8c95c0"
+    }
+  },
+  {
+    "id": 2383,
+    "key": "6b6ec8e3-82ce-4b99-ba98-b8e3b5857ee5",
+    "udi": "umb://document/6b6ec8e382ce4b99ba98b8e3b5857ee5",
+    "name": "l86d25102019082713",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2019-10-25 08:27:23",
+    "updateDate": "2019-11-24 08:28:21",
+    "parentId": 2261,
+    "path": "-1,1067,2257,2261,2383",
+    "sortOrder": 0,
+    "urls": [
+      "Dette punkt er endnu ikke udgivet"
+    ],
+    "fullName": "Gitte Hildebrandt",
+    "email": "gitsor@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "10",
+    "expireDate": "",
+    "message": "",
+    "orderCreateDate": "2019-10-25 08:27:23",
+    "mediaRelationUdis": [
+      "umb://document/ce48c47d7773420e86599c09a4f21b78"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/ce48c47d7773420e86599c09a4f21b78"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ce48c47d7773420e86599c09a4f21b78",
+        "key": "ce48c47d-7773-420e-8659-9c09a4f21b78",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "gitsor@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "10",
+      "fullName": "Gitte Hildebrandt",
+      "message": "",
+      "media": "umb://document/ce48c47d7773420e86599c09a4f21b78"
+    }
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Sundt indtag",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 2679,
+  "key": "1e2afe6d-3be3-4e32-9ddb-61c67c8ac129",
+  "udi": "umb://document/1e2afe6d3be34e329ddb61c67c8ac129",
+  "path": "-1,1067,2679",
+  "url": "/sundt-indtag/",
+  "createDate": "2020-02-12 13:20:17",
+  "updateDate": "2024-09-01 09:27:58",
+  "publishDate": "2024-09-01 09:27:58",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

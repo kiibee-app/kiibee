@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-06-02T11:06:07.343Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/65132",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 65132,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 65132,
+    "key": "f1dd0ef4-b4ef-4cdb-b272-dd8e7d7de872",
+    "udi": "umb://document/f1dd0ef4b4ef4cdbb272dd8e7d7de872",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/foreningen-danske-revisorer/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 224,
+    "childrenFetched": 224,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 224
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 224
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 24,
+      "totalItems": 224
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "id": 114759,
+    "key": "c9b7e314-1f52-444e-9da4-63738169cc28",
+    "udi": "umb://document/c9b7e3141f52444e9da463738169cc28",
+    "name": "232480b712b44f28b1892f31c36d205b",
+    "fields": {
+      "isPlay": "0",
+      "uID": "",
+      "media": "umb://document/a53a183db8154914ac0371145202f7ab"
+    },
+    "fieldDetails": {
+      "isPlay": {
+        "alias": "isPlay",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.TrueFalse",
+        "value": "0"
+      },
+      "uID": {
+        "alias": "uID",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.Textbox",
+        "value": ""
+      },
+      "media": {
+        "alias": "media",
+        "label": "",
+        "description": "",
+        "tab": "",
+        "variant": "",
+        "culture": null,
+        "source": "children",
+        "editor": "Umbraco.ContentPicker2",
+        "value": "umb://document/a53a183db8154914ac0371145202f7ab"
+      }
+    },
+    "fieldOrder": ["isPlay", "uID", "media"]
+  }
+]

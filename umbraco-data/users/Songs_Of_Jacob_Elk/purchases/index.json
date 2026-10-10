@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-06-02T10:57:24.141Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/14668",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 14668,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 14668,
+    "key": "846f997c-6e0a-4d29-a382-4d9bce708a6c",
+    "udi": "umb://document/846f997c6e0a4d29a3824d9bce708a6c",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/songs-of-jacob-elk/purchases/"],
+    "path": "-1,1067,14663,14668",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 60,
+    "childrenFetched": 60,
+    "detailsFetched": 60,
+    "detailErrors": 0,
+    "purchaseEntries": 54,
+    "nonPurchaseEntries": 6,
+    "entriesWithDownloads": 2,
+    "entriesWithStreams": 0,
+    "totalDownloads": 4,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 7,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 2,
+    "mediaResolved": 2,
+    "mediaUnresolved": 5,
+    "mediaResolveErrors": 5
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 60,
+      "totalItems": 60
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Songs_Of_Jacob_Elk\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Songs_Of_Jacob_Elk\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Songs_Of_Jacob_Elk\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Songs_Of_Jacob_Elk\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

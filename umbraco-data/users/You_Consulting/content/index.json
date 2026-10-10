@@ -1,0 +1,18 @@
+{
+  "requestedName": "You Consulting",
+  "liveName": "You Consulting",
+  "userId": 78110,
+  "folderCount": 2,
+  "folders": [
+    {
+      "name": "Orakelkort",
+      "id": 78117,
+      "status": "ok"
+    },
+    {
+      "name": "Human Design Intro PDF",
+      "id": 84966,
+      "status": "ok"
+    }
+  ]
+}

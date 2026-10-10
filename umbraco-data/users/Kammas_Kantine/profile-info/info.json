@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Kammas Kantine",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 41628,
+  "key": "ec9729c1-03ee-45eb-893f-7cbd29f8e21c",
+  "udi": "umb://document/ec9729c103ee45eb893f7cbd29f8e21c",
+  "path": "-1,1067,41628",
+  "url": "/kammas-kantine/",
+  "createDate": "2021-03-29 16:06:47",
+  "updateDate": "2026-08-24 00:00:14",
+  "publishDate": "2026-08-24 00:00:14",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

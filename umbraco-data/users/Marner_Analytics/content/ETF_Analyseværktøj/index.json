@@ -1,0 +1,279 @@
+{
+  "exportedAt": "2026-08-24T14:43:24.855Z",
+  "collectionName": "ETF Analyseværktøj",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/125592",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 125592,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 125592,
+    "key": "60a92a26-d5e6-443e-84fb-24432b419efb",
+    "udi": "umb://document/60a92a26d5e6443e84fb24432b419efb",
+    "name": "ETF Analyseværktøj",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/marner-analytics/etf-analysevaerktoej/"
+    ],
+    "fields": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "",
+      "purchasePrice": "225",
+      "code": "",
+      "period": "3",
+      "headline": "",
+      "description": "ETF Analyse-assistent — AI-drevet ETF-værktøj til danske Nordnet-investorer<br/><br/>Analysér markedet, byg risikotilpassede porteføljer, rebalancér på ETF-niveau og sæt stop/loss — drevet af Claude AI. til Windows.<br/><br/><br/><br/>Få overblik over dine ETF-investeringer — og lad AI gøre det tunge arbejde.<br/><br/>ETF Analyse-assistent er et dansk skrivebordsprogram bygget til private investorer, der bruger Nordnet. Det kombinerer hele Nordnets ETF-univers (2.000+ fonde) med Claude AI og giver dig konkrete, gennemtænkte analyser — ikke bare tal.<br/><br/>Det kan værktøjet:<br/><br/><br/><br/><br/><br/>🔍 AI-analyse af markedet og enkelte ETF'er med nyhedskontekst<br/><br/><br/><br/>📊 Markedsoverblik pr. sektor med live kurser<br/><br/><br/><br/>📈 Porteføljeforslag efter risikoprofil (aggressiv/balanceret/defensiv) — skattebevidst for både pension og frie midler<br/><br/><br/><br/>🌍 Regionsvisning (Verden, USA, Europa, Asien, Emerging Markets, Latinamerika)<br/><br/><br/><br/>💰 Porteføljestyring med live-værdier — importér dine beholdninger direkte fra Nordnet, så værdierne matcher præcist<br/><br/><br/><br/>⚖️ Rebalancering på ETF-niveau — får du at vide præcis hvilken fond du skal købe/sælge og for hvor meget<br/><br/><br/><br/>🛑 Trailing stop/loss-vagter med alarm (skærm + lyd; e-mail/Pushover som tilvalg)<br/><br/><br/><br/>📉 Afkastfremskrivning med konservative, realistiske estimater<br/><br/>Dine data bliver på din PC. Programmet kører lokalt — kun selve AI-analysen sender forespørgsler til Claude.<br/><br/>Hvad du skal bruge:<br/><br/><br/><br/><br/><br/>Windows 10/11<br/><br/><br/><br/>En Claude API-nøgle (gratis at oprette på platform.claude.com — du betaler kun dit eget forbrug, typisk under 1 krone pr. analyse). Trin-for-trin guide er med i pakken.<br/><br/><br/><br/>En Nordnet-konto (værktøjet er bygget til Nordnets ETF-univers)<br/><br/>Hvad du får:<br/><br/><br/><br/><br/><br/>ETF Analyse-assistent.exe — ingen installation, bare dobbeltklik<br/><br/><br/><br/>Nordnets ETF-liste er allerede inkluderet<br/><br/><br/><br/>Dansk LÆS MIG med komplet kom-godt-i-gang + API-nøgle-guide<br/><br/>⚠️ Vigtigt: Brugerfladen er på dansk og bygget til Nordnet. Programmet er ikke finansiel rådgivning — det leverer information og analyse, og du træffer alle investeringsbeslutninger selv og på eget ansvar. Windows kan vise en SmartScreen-advarsel første gang (filen er ikke signeret) → vælg \"Mere info\" → \"Kør alligevel\".<br/><br/>📜 Kort licens (kan sættes nederst i beskrivelsen eller som separat fil)<br/><br/><br/><br/>Licens: Du må bruge programmet til personligt brug på dine egne enheder. Videresalg, videredistribution eller deling af filen er ikke tilladt. Programmet leveres \"som det er\", uden nogen garanti. Hverken værktøjet eller udvikleren påtager sig ansvar for økonomiske tab. Ved køb accepterer du disse vilkår.",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "4",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "58"
+        ]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "225"
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "period": {
+        "alias": "period",
+        "label": "Period",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "3"
+      },
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "ETF Analyse-assistent — AI-drevet ETF-værktøj til danske Nordnet-investorer<br/><br/>Analysér markedet, byg risikotilpassede porteføljer, rebalancér på ETF-niveau og sæt stop/loss — drevet af Claude AI. til Windows.<br/><br/><br/><br/>Få overblik over dine ETF-investeringer — og lad AI gøre det tunge arbejde.<br/><br/>ETF Analyse-assistent er et dansk skrivebordsprogram bygget til private investorer, der bruger Nordnet. Det kombinerer hele Nordnets ETF-univers (2.000+ fonde) med Claude AI og giver dig konkrete, gennemtænkte analyser — ikke bare tal.<br/><br/>Det kan værktøjet:<br/><br/><br/><br/><br/><br/>🔍 AI-analyse af markedet og enkelte ETF'er med nyhedskontekst<br/><br/><br/><br/>📊 Markedsoverblik pr. sektor med live kurser<br/><br/><br/><br/>📈 Porteføljeforslag efter risikoprofil (aggressiv/balanceret/defensiv) — skattebevidst for både pension og frie midler<br/><br/><br/><br/>🌍 Regionsvisning (Verden, USA, Europa, Asien, Emerging Markets, Latinamerika)<br/><br/><br/><br/>💰 Porteføljestyring med live-værdier — importér dine beholdninger direkte fra Nordnet, så værdierne matcher præcist<br/><br/><br/><br/>⚖️ Rebalancering på ETF-niveau — får du at vide præcis hvilken fond du skal købe/sælge og for hvor meget<br/><br/><br/><br/>🛑 Trailing stop/loss-vagter med alarm (skærm + lyd; e-mail/Pushover som tilvalg)<br/><br/><br/><br/>📉 Afkastfremskrivning med konservative, realistiske estimater<br/><br/>Dine data bliver på din PC. Programmet kører lokalt — kun selve AI-analysen sender forespørgsler til Claude.<br/><br/>Hvad du skal bruge:<br/><br/><br/><br/><br/><br/>Windows 10/11<br/><br/><br/><br/>En Claude API-nøgle (gratis at oprette på platform.claude.com — du betaler kun dit eget forbrug, typisk under 1 krone pr. analyse). Trin-for-trin guide er med i pakken.<br/><br/><br/><br/>En Nordnet-konto (værktøjet er bygget til Nordnets ETF-univers)<br/><br/>Hvad du får:<br/><br/><br/><br/><br/><br/>ETF Analyse-assistent.exe — ingen installation, bare dobbeltklik<br/><br/><br/><br/>Nordnets ETF-liste er allerede inkluderet<br/><br/><br/><br/>Dansk LÆS MIG med komplet kom-godt-i-gang + API-nøgle-guide<br/><br/>⚠️ Vigtigt: Brugerfladen er på dansk og bygget til Nordnet. Programmet er ikke finansiel rådgivning — det leverer information og analyse, og du træffer alle investeringsbeslutninger selv og på eget ansvar. Windows kan vise en SmartScreen-advarsel første gang (filen er ikke signeret) → vælg \"Mere info\" → \"Kør alligevel\".<br/><br/>📜 Kort licens (kan sættes nederst i beskrivelsen eller som separat fil)<br/><br/><br/><br/>Licens: Du må bruge programmet til personligt brug på dine egne enheder. Videresalg, videredistribution eller deling af filen er ikke tilladt. Programmet leveres \"som det er\", uden nogen garanti. Hverken værktøjet eller udvikleren påtager sig ansvar for økonomiske tab. Ved køb accepterer du disse vilkår."
+      },
+      "coverImage": {
+        "alias": "coverImage",
+        "label": "Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": ""
+      },
+      "fadeCoverImage": {
+        "alias": "fadeCoverImage",
+        "label": "Fade Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "thumbnailWide": {
+        "alias": "thumbnailWide",
+        "label": "Thumbnail Wide",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "columnAmount": {
+        "alias": "columnAmount",
+        "label": "Column Amount",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "4"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView",
+      "orderID",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period",
+      "headline",
+      "description",
+      "coverImage",
+      "fadeCoverImage",
+      "thumbnailWide",
+      "columnAmount",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 16
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

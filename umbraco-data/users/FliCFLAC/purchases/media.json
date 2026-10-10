@@ -1,0 +1,76 @@
+[
+  {
+    "udi": "umb://document/baae498eeae84cd09bd9dad4061b808a",
+    "key": "baae498e-eae8-4cd0-9bd9-dad4061b808a",
+    "resolved": true,
+    "id": 1874,
+    "name": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+    "title": "Foredrag om KIS-KIDD hos spædbørn, og motorisk udvikling 0-12 måneder\"",
+    "urls": [
+      "/flicflac/laeringsvideoer/foredrag-om-kis-kidd-hos-spaedboern-og-motorisk-udvikling-0-12-maaneder/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "601c4bbdfa0a6820b8b3bacbfb5d7e99",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/601c4bbdfa0a6820b8b3bacbfb5d7e99/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/601c4bbdfa0a6820b8b3bacbfb5d7e99/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "/media/1213/flic-flac-kiropraktor-kari-skovmand-foredrag-kiropraktik3.jpg",
+    "purchasePrice": "49",
+    "rentalPrice": "",
+    "purchaseEntryCount": 2,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 2,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2020-02-17 14:26:15",
+    "lastPurchaseAt": "2022-09-02 11:18:32",
+    "samplePurchaseIds": [70427, 2696]
+  },
+  {
+    "udi": "umb://document/be73df4adac548b8b1873fbfc4e7f337",
+    "key": "be73df4a-dac5-48b8-b187-3fbfc4e7f337",
+    "resolved": true,
+    "id": 1851,
+    "name": "Motorisk udvikling hos babyer",
+    "title": "Motorisk udvikling hos babyer",
+    "urls": ["/flicflac/laeringsvideoer/motorisk-udvikling-hos-babyer/"],
+    "contentTypeAlias": "media",
+    "videoID": "c6118140fa2859404b5c560fbbf0fd86",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://cloudflarestream.com/c6118140fa2859404b5c560fbbf0fd86/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/c6118140fa2859404b5c560fbbf0fd86/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1212/flicflac-thumb.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "29",
+    "rentalPrice": "",
+    "purchaseEntryCount": 2,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2019-10-23 09:46:28",
+    "lastPurchaseAt": "2020-02-17 14:27:18",
+    "samplePurchaseIds": [2698, 2378]
+  }
+]

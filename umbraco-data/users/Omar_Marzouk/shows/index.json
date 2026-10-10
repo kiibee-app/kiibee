@@ -1,0 +1,104 @@
+{
+  "exportedAt": "2026-06-02T11:05:51.493Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/46878",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 46878,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 46878,
+    "key": "0ba50e76-35a6-4324-999a-a99740b7c589",
+    "udi": "umb://document/0ba50e7635a64324999aa99740b7c589",
+    "name": "Shows",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/omar-marzouk/shows/"],
+    "path": "-1,1067,46871,46878",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": [],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "",
+      "period": "",
+      "headline": "",
+      "description": "",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "4",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 6,
+    "childrenFetched": 6,
+    "detailsFetched": 6,
+    "detailErrors": 0,
+    "statsEntriesRead": 8,
+    "uniqueStatsMedia": 3,
+    "showsMatchedToStats": 3,
+    "showsWithoutStats": 3,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 6,
+      "totalItems": 6
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data\\users\\Omar_Marzouk\\stats\\items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "networker",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "41817",
+  "emailReceipt": "",
+  "supportEmail": "hej@henrikhavemand.dk"
+}

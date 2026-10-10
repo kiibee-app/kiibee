@@ -1,0 +1,108 @@
+{
+  "exportedAt": "2026-06-02T09:15:59.120Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2084",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2084,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 2084,
+    "key": "93e211e2-175a-4237-8853-cf228845b1b8",
+    "udi": "umb://document/93e211e2175a42378853cf228845b1b8",
+    "name": "1:1 slanke coaching",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/slank-og-wellness/11-slanke-coaching/"
+    ],
+    "path": "-1,1067,2072,2084",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "1",
+      "access": [
+        "57"
+      ],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "",
+      "period": "",
+      "headline": "",
+      "description": "",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "3",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailsFetched": 1,
+    "detailErrors": 0,
+    "statsEntriesRead": 0,
+    "uniqueStatsMedia": 0,
+    "showsMatchedToStats": 0,
+    "showsWithoutStats": 1,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data/users/slank_og_wellness/stats/items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

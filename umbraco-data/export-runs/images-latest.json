@@ -1,0 +1,93 @@
+{
+  "startedAt": "2026-08-25T14:24:36.534Z",
+  "users": [
+    {
+      "name": "Elias Ehlers",
+      "userDir": "Elias_Ehlers",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Funktionel Neuro Terapeut",
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "srcs": 67,
+      "ok": 61,
+      "failed": [
+        {
+          "src": "/media/4909/modul-3-dag-1.pdf",
+          "fileName": "4909_modul-3-dag-1.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4798/nervesystem_kvindeloeber.jpg",
+          "fileName": "4798_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4823/nervesystem_kvindeloeber.jpg",
+          "fileName": "4823_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4849/nervesystem_kvindeloeber.jpg",
+          "fileName": "4849_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4850/nervesystem_kvindeloeber.jpg",
+          "fileName": "4850_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4795/skaermbillede-2019-11-21-kl-113408.png",
+          "fileName": "4795_skaermbillede-2019-11-21-kl-113408.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Tine Rask Mathiesen",
+      "userDir": "Tine_Rask_Mathiesen",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    },
+    {
+      "name": "Vital New Software ApS",
+      "userDir": "Vital_New_Software_ApS",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Comedy-TV",
+      "userDir": "Comedy-TV",
+      "srcs": 140,
+      "ok": 140,
+      "failed": []
+    },
+    {
+      "name": "Thomas Hartmann",
+      "userDir": "Thomas_Hartmann",
+      "srcs": 15,
+      "ok": 15,
+      "failed": []
+    },
+    {
+      "name": "slank og wellness",
+      "userDir": "slank_og_wellness",
+      "srcs": 4,
+      "ok": 4,
+      "failed": []
+    },
+    {
+      "name": "Sundt indtag",
+      "userDir": "Sundt_indtag",
+      "srcs": 3,
+      "ok": 3,
+      "failed": []
+    }
+  ],
+  "finishedAt": "2026-08-25T14:25:39.941Z"
+}

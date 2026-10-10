@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/bd26b9506a5445eb971800b2c283207d",
+    "key": "bd26b950-6a54-45eb-9718-00b2c283207d",
+    "resolved": true,
+    "id": 46220,
+    "name": "Jacob Wilson Live Fra Comedy ZOO",
+    "title": "Jacob Wilson Live Fra Comedy ZOO",
+    "urls": ["/jacob-wilson/shows/jacob-wilson-live-fra-comedy-zoo/"],
+    "contentTypeAlias": "media",
+    "videoID": "efda21bff1ae8d3d35c953f92ad03a46",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/efda21bff1ae8d3d35c953f92ad03a46/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/efda21bff1ae8d3d35c953f92ad03a46/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "/media/3503/jacob-wilson_live-fra-comedy-zoo_400x600.jpg",
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 7,
+    "purchaseOrderCount": 7,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 9,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-05-30 19:40:46",
+    "lastPurchaseAt": "2025-01-23 19:08:13",
+    "samplePurchaseIds": [105189, 95664, 90702, 88699, 80660]
+  }
+]

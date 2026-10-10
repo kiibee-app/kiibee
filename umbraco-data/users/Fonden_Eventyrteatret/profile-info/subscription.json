@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "Fonden Eventyrteatret",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/e46ced3f3b544a3ead6838c69a79ac8f",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": "",
+  "kiibeeCut": "",
+  "transactionFee": "",
+  "paymentPeriod": ["1"]
+}

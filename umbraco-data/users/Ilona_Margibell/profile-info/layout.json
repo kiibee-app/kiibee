@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Ilona Margibell",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Ilona Margibell",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2731/logo_ny_pb-mere-farve.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2732/heltinden_original_lys.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Gavekort til bogen \"Jordomrejse med engle og dæmoner\"",
+  "description": "En bog om at gribe livet og vove eventyret. Om kærlighedens fortryllende veje og grufulde vildveje. Og om en 2000 kilometer lang pilgrimsvandring, der starter med Caminoen til Santiago de Compostela i Nordspanien og fortsætter i Himalaya over Peru til det eksotiske Bali.\r\nEn magisk opdagelsesrejse, der bevæger sig gennem ydre og indre landskaber. Læseren inviteres til at se dybt ind i livet, til at stille spørgsmål og til at følge sandheden i sit eget hjerte.\r\n\r\nBogen tilsendes ved udgivelsen.",
+  "css": "",
+  "javaScript": ""
+}

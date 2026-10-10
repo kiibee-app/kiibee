@@ -1,0 +1,84 @@
+{
+  "exportedAt": "2026-08-24T14:45:33.475Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/127825",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 127825,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 127825,
+    "key": "1b77da7f-2492-4811-975d-2c91f80e1f09",
+    "udi": "umb://document/1b77da7f24924811975d2c91f80e1f09",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/lisathe-moeller/purchases/"
+    ],
+    "path": "-1,1067,127820,127825",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailsFetched": 0,
+    "detailErrors": 0,
+    "purchaseEntries": 0,
+    "nonPurchaseEntries": 0,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 0,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 0,
+    "mediaResolved": 0,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data/users/Lisathe_Møller/stats/media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'umbraco-data/users/Lisathe_Møller/stats/media.json'"
+    },
+    {
+      "path": "umbraco-data/users/Lisathe_Møller/purchases/media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'umbraco-data/users/Lisathe_Møller/purchases/media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

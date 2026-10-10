@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+48968,1c403ae8-6a97-4279-9bc2-534ec6b58ac5,umb://document/1c403ae86a9742799bc2534ec6b58ac5,KBF-1176,1186,1186,true,2021-08-07 03:13:58,2021-08-07 03:13:58,https://kiibee.dk/chief1/payouts/kbf-1176/,matched-public-payout-url,https://kiibee.dk/chief1/payouts/kbf-1176/,https://kiibee.dk/chief1/payouts/kbf-1176/,,

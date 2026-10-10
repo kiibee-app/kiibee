@@ -1,0 +1,15 @@
+{
+  "requestedName": "Langes Entertainment ApS",
+  "liveName": "Langes Entertainment ApS",
+  "userId": 31200,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Standup-show",
+      "id": 31231,
+      "status": "ok"
+    }
+  ]
+}

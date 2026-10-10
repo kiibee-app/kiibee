@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Microphone Entertainment",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Microphone Entertainment",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1720/microphone.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2605/mick-2-retina.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3381/micl-oe-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Mick Øgendahl</h1>\n<p>I over 25 år har Mick Øgendahl været blandt de absolut førende navne i dansk comedy. Med sin charmerende facon tager han publikum med rundt i sin forvirrede hjerne, hvor både livets store og små spørgsmål bliver grundigt vendt. Mick er garanti for lattermusklerne bliver rørt, når han med sin gakkede stil vender det hele på hovedet.</p>",
+  "css": "",
+  "javaScript": ""
+}

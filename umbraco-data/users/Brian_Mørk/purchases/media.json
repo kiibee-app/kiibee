@@ -1,0 +1,55 @@
+[
+  {
+    "udi": "umb://document/1866cad365ba47428b717d505c365345",
+    "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+    "resolved": true,
+    "id": 42559,
+    "name": "MØRK",
+    "title": "MØRK ",
+    "urls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "5bc404d30326108638ef1becedb42fdd",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3142/mork_400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 18,
+    "purchaseOrderCount": 11,
+    "nonPurchaseEntryCount": 7,
+    "totalDownloads": 16,
+    "totalStreams": 17,
+    "firstPurchaseAt": "2021-05-31 16:27:11",
+    "lastPurchaseAt": "2026-03-26 20:47:51",
+    "samplePurchaseIds": [
+      120309,
+      118798,
+      118691,
+      118363,
+      112090
+    ]
+  }
+]

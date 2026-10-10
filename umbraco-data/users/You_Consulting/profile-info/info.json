@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "You Consulting",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 78110,
+  "key": "ef68d28a-e8ec-47a3-805b-4518219502e8",
+  "udi": "umb://document/ef68d28ae8ec47a3805b4518219502e8",
+  "path": "-1,1067,78110",
+  "url": "/you-consulting/",
+  "createDate": "2023-02-13 20:28:31",
+  "updateDate": "2024-04-30 08:14:22",
+  "publishDate": "2024-04-30 08:14:22",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

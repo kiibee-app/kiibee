@@ -1,0 +1,254 @@
+[
+  {
+    "udi": "umb://document/75a70ce524ac4e788f5ae955d66d5121",
+    "key": "75a70ce5-24ac-4e78-8f5a-e955d66d5121",
+    "resolved": true,
+    "id": 42190,
+    "name": "Alter Ego",
+    "title": "Alter Ego",
+    "urls": ["/carsten-bang/shows/alter-ego/"],
+    "contentTypeAlias": "media",
+    "videoID": "c7ef37daf66b2ae555fa6367f103ae07",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/c7ef37daf66b2ae555fa6367f103ae07/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/c7ef37daf66b2ae555fa6367f103ae07/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3116/dvd.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 23,
+    "purchaseOrderCount": 17,
+    "nonPurchaseEntryCount": 6,
+    "totalDownloads": 19,
+    "totalStreams": 7,
+    "firstPurchaseAt": "2021-05-22 22:16:51",
+    "lastPurchaseAt": "2026-04-04 22:28:27",
+    "samplePurchaseIds": [120716, 117574, 116443, 112198, 109746]
+  },
+  {
+    "udi": "umb://document/5026e6263ee842d59878c3a012f79815",
+    "key": "5026e626-3ee8-42d5-9878-c3a012f79815",
+    "resolved": true,
+    "id": 42173,
+    "name": "Shows",
+    "title": "Shows",
+    "urls": ["/carsten-bang/shows/"],
+    "contentTypeAlias": "collection",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "",
+    "purchasePrice": "149",
+    "rentalPrice": "119",
+    "purchaseEntryCount": 18,
+    "purchaseOrderCount": 18,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 115,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-06-05 11:29:06",
+    "lastPurchaseAt": "2026-04-25 00:43:49",
+    "samplePurchaseIds": [121557, 118684, 118300, 117915, 115905]
+  },
+  {
+    "udi": "umb://document/84b206d69a764360a873a2b9a5a71565",
+    "key": "84b206d6-9a76-4360-a873-a2b9a5a71565",
+    "resolved": true,
+    "id": 42224,
+    "name": "Dyret!",
+    "title": "Dyret!",
+    "urls": ["/carsten-bang/shows/dyret/"],
+    "contentTypeAlias": "media",
+    "videoID": "788664a2746cd3f542848f77c0b80816",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/788664a2746cd3f542848f77c0b80816/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/788664a2746cd3f542848f77c0b80816/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3118/400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 13,
+    "purchaseOrderCount": 7,
+    "nonPurchaseEntryCount": 6,
+    "totalDownloads": 7,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-06-28 21:21:30",
+    "lastPurchaseAt": "2025-05-18 02:34:00",
+    "samplePurchaseIds": [109741, 109651, 78360, 67621, 65033]
+  },
+  {
+    "udi": "umb://document/9a3617b1d91f412cac888c2c1634b78f",
+    "key": "9a3617b1-d91f-412c-ac88-8c2c1634b78f",
+    "resolved": true,
+    "id": 42225,
+    "name": "Har Satan En Fætter ?",
+    "title": "Har Satan En Fætter ?",
+    "urls": ["/carsten-bang/shows/har-satan-en-faetter/"],
+    "contentTypeAlias": "media",
+    "videoID": "214c6878d0e80247552ee6660c89adfa",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/214c6878d0e80247552ee6660c89adfa/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/214c6878d0e80247552ee6660c89adfa/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3119/cb_hsef04_2006.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 5,
+    "purchaseOrderCount": 4,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 4,
+    "totalStreams": 2,
+    "firstPurchaseAt": "2025-04-12 23:31:34",
+    "lastPurchaseAt": "2026-04-10 10:34:21",
+    "samplePurchaseIds": [120952, 120103, 118872, 109287, 108450]
+  },
+  {
+    "udi": "umb://document/d39770934c4243f3897cc87e7429a8b2",
+    "key": "d3977093-4c42-43f3-897c-c87e7429a8b2",
+    "resolved": true,
+    "id": 42227,
+    "name": "Plukker Kameler",
+    "title": "Plukker Kameler",
+    "urls": ["/carsten-bang/shows/plukker-kameler/"],
+    "contentTypeAlias": "media",
+    "videoID": "5755aeb8ab43b7eb937945ab077cf97e",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/5755aeb8ab43b7eb937945ab077cf97e/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/5755aeb8ab43b7eb937945ab077cf97e/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3120/400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 4,
+    "purchaseOrderCount": 3,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 3,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-08-16 15:40:05",
+    "lastPurchaseAt": "2023-02-20 19:28:53",
+    "samplePurchaseIds": [78357, 75949, 64985, 49288]
+  },
+  {
+    "udi": "umb://document/1640d68b0aa7448ba8ec6ba564e13a62",
+    "key": "1640d68b-0aa7-448b-a8ec-6ba564e13a62",
+    "resolved": true,
+    "id": 42177,
+    "name": "Bang! Jeg er død",
+    "title": "Bang! Jeg er død",
+    "urls": ["/carsten-bang/shows/bang-jeg-er-doed/"],
+    "contentTypeAlias": "media",
+    "videoID": "b2d40d5e44ef2b1e9ac0291fbe43aa86",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/b2d40d5e44ef2b1e9ac0291fbe43aa86/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/b2d40d5e44ef2b1e9ac0291fbe43aa86/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3117/400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 1,
+    "purchaseOrderCount": 0,
+    "nonPurchaseEntryCount": 1,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2022-06-04 14:15:40",
+    "lastPurchaseAt": "2022-06-04 14:15:40",
+    "samplePurchaseIds": [65060]
+  }
+]

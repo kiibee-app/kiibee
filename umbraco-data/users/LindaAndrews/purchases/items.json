@@ -1,0 +1,196 @@
+[
+  {
+    "id": 25605,
+    "key": "dcf7103a-ea0f-4fb8-9600-2450e595e592",
+    "udi": "umb://document/dcf7103aea0f4fb896002450e595e592",
+    "name": "n4zn25122020075618",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-25 07:57:19",
+    "updateDate": "2020-12-25 07:57:19",
+    "parentId": 25355,
+    "path": "-1,1067,25350,25355,25605",
+    "sortOrder": 1,
+    "urls": ["/lindaandrews/purchases/n4zn25122020075618/"],
+    "fullName": "Terje Eli Dam",
+    "email": "tdam@stofanet.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-01-24 07:57:19",
+    "message": "",
+    "orderCreateDate": "2020-12-25 07:57:19",
+    "mediaRelationUdis": ["umb://document/849e1c83f8554ccf813fd338f4750ea7"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/849e1c83f8554ccf813fd338f4750ea7"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
+        "key": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+        "resolved": true,
+        "id": 25358,
+        "name": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+        "title": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+        "urls": [
+          "/lindaandrews/koncertfilm-merry-christmas-med-linda-andrews-klik-her/julekoncertfilm-merry-christmas-med-linda-andrews/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://vimeo.com/493739931",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2733/filmcover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Julekoncertfilm: \"Merry Christmas med Linda Andrews\""],
+    "mediaUrls": [
+      "/lindaandrews/koncertfilm-merry-christmas-med-linda-andrews-klik-her/julekoncertfilm-merry-christmas-med-linda-andrews/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "tdam@stofanet.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-24 07:57:19",
+      "price": "49",
+      "fullName": "Terje Eli Dam",
+      "message": "",
+      "media": "umb://document/849e1c83f8554ccf813fd338f4750ea7"
+    }
+  },
+  {
+    "id": 25443,
+    "key": "3a1f649d-48a9-49c4-b734-b8498488c0a9",
+    "udi": "umb://document/3a1f649d48a949c4b734b8498488c0a9",
+    "name": "9vi623122020132624",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-23 13:27:02",
+    "updateDate": "2020-12-23 13:27:02",
+    "parentId": 25355,
+    "path": "-1,1067,25350,25355,25443",
+    "sortOrder": 0,
+    "urls": ["/lindaandrews/purchases/9vi623122020132624/"],
+    "fullName": "Linda Andrews",
+    "email": "mail@lindaandrews.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-01-22 13:27:01",
+    "message": "",
+    "orderCreateDate": "2020-12-23 13:27:02",
+    "mediaRelationUdis": ["umb://document/849e1c83f8554ccf813fd338f4750ea7"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/849e1c83f8554ccf813fd338f4750ea7"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
+        "key": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+        "resolved": true,
+        "id": 25358,
+        "name": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+        "title": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+        "urls": [
+          "/lindaandrews/koncertfilm-merry-christmas-med-linda-andrews-klik-her/julekoncertfilm-merry-christmas-med-linda-andrews/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "https://vimeo.com/493739931",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2733/filmcover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "49",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Julekoncertfilm: \"Merry Christmas med Linda Andrews\""],
+    "mediaUrls": [
+      "/lindaandrews/koncertfilm-merry-christmas-med-linda-andrews-klik-her/julekoncertfilm-merry-christmas-med-linda-andrews/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "mail@lindaandrews.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-22 13:27:01",
+      "price": "49",
+      "fullName": "Linda Andrews",
+      "message": "",
+      "media": "umb://document/849e1c83f8554ccf813fd338f4750ea7"
+    }
+  }
+]

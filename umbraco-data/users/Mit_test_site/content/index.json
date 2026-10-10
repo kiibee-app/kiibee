@@ -1,0 +1,20 @@
+{
+  "requestedName": "Mit test site",
+  "liveName": "Mit test site",
+  "userId": 2550,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Instruktion",
+      "id": 2576,
+      "status": "ok"
+    },
+    {
+      "name": "Live streaming ",
+      "id": 2907,
+      "status": "ok"
+    }
+  ]
+}

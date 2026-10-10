@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Kort & Dokumentar Filmskolen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Kort & Dokumentar Filmskolen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1705/kdf_logo_2019_308x80.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "PT6"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1704/tutorials_banner-tonet-varm-graa.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "PTA"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "bottom",
+  "headline": "VIDEO TUTORIALS I EN CORONA-TID",
+  "description": "Gratis online læring. I den kommende tid bliver en række tutorials tilgængelige her på hjemmesiden. Du lærer af branchefolk, som er førende indenfor hvert deres fagområde og har års undervisningserfaring. \r\n\r\nGod fornøjelse!\r\n\r\nEt initiativ af instruktør og filmfotograf Kenneth Sorento med støtte fra Danske Filminstruktører, Dansk Filmfotograf Forbund, Dansk Journalistforbund, Film- & tv-arbejderforeningen, Producentforeningen.\r\n\r\nProduceret af Kort & Dokumentar Filmskolen.\r\n\r\nHosted af Kiibee.",
+  "css": "",
+  "javaScript": ""
+}

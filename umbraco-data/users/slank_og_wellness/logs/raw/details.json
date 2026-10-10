@@ -1,0 +1,408 @@
+{
+  "2082": {
+    "publishDate": "2019-10-05 20:51:53",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "logEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 21:24:42",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Log Entry",
+      "id": 1087,
+      "udi": "umb://document-type/e4e1bf3dda31425183f8cd19bf6348cd",
+      "icon": "icon-tactics color-black",
+      "trashed": false,
+      "key": "e4e1bf3d-da31-4251-83f8-cd19bf6348cd",
+      "parentId": -1,
+      "path": "-1,1087",
+      "metaData": {}
+    },
+    "urls": [
+      "/slank-og-wellness/log/bq7828092019210918/"
+    ],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/6c0b611edb1f4b94a2a974dde7985db1",
+    "contentTypeName": "Log Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 19,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Purchase",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77193,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPurchase",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77198,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "Transaction ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77197,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "230478537",
+            "alias": "transactionID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Paytype",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77195,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1",
+            "alias": "paytype",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Acquirer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77194,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "acquirer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77192,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "19",
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Name",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77191,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Tina Kristensen",
+            "alias": "fullName",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Email",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77196,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "tina.gistrup@hotmail.com",
+            "alias": "email",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Purchase",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77193,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "1",
+        "alias": "isPurchase",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77198,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "Transaction ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77197,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "230478537",
+        "alias": "transactionID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Paytype",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77195,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1",
+        "alias": "paytype",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Acquirer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77194,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "acquirer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77192,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "19",
+        "alias": "price",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Name",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77191,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Tina Kristensen",
+        "alias": "fullName",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Email",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77196,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "tina.gistrup@hotmail.com",
+        "alias": "email",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2019-10-05 20:51:53",
+    "createDate": "2019-09-28 21:10:17",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "logEntry",
+    "sortOrder": 0,
+    "name": "bq7828092019210918",
+    "id": 2082,
+    "udi": "umb://document/6c0b611edb1f4b94a2a974dde7985db1",
+    "icon": "icon-tactics color-black",
+    "trashed": false,
+    "key": "6c0b611e-db1f-4b94-a2a9-74dde7985db1",
+    "parentId": 2073,
+    "alias": null,
+    "path": "-1,1067,2072,2073,2082",
+    "metaData": {}
+  }
+}

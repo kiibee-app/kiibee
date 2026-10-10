@@ -1,0 +1,25 @@
+{
+  "requestedName": "Chief1",
+  "liveName": "Chief1",
+  "userId": 23691,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Gratis musikvideoer",
+      "id": 24538,
+      "status": "ok"
+    },
+    {
+      "name": "Nye musikvideoer",
+      "id": 33169,
+      "status": "ok"
+    },
+    {
+      "name": "Koncerter",
+      "id": 42852,
+      "status": "ok"
+    }
+  ]
+}

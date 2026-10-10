@@ -1,0 +1,36 @@
+{
+  "mediaResolveErrors": {
+    "count": 5,
+    "sample": [
+      {
+        "udi": "umb://document/35d095478dc742878cba4ff108e574e4",
+        "key": "35d09547-8dc7-4287-8cba-4ff108e574e4",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/8893ee313f3c4bfc9e9f992deabd5c19",
+        "key": "8893ee31-3f3c-4bfc-9e9f-992deabd5c19",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/eb1bc903be20402ca5743d6881ef0e1f",
+        "key": "eb1bc903-be20-402c-a574-3d6881ef0e1f",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/a4f9fbe93f334d30afb9b40281b62d06",
+        "key": "a4f9fbe9-3f33-4d30-afb9-b40281b62d06",
+        "error": "HTTP 404: "
+      },
+      {
+        "udi": "umb://document/dbf6193a88c54b0db8e0a7742cc44149",
+        "key": "dbf6193a-88c5-4b0d-b8e0-a7742cc44149",
+        "error": "HTTP 404: "
+      }
+    ]
+  },
+  "otherErrors": {
+    "count": 0,
+    "sample": []
+  }
+}

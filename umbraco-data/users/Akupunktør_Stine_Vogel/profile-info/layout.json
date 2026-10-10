@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Akupunktør Stine Vogel",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Akupunktør Stine Vogel",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5092/yin-yang-akupunktur-logo-design.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5093/blide-akupressur-guides-til-egenomsorg-i-hverdagen-skabt-til-dig-der-oensker-ro-balance-og-kropsforstaaelse-udviklet-af-rab-uddannet-akupunktoer-1.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "68"
+  ],
+  "coverTextPositionClass": "block",
+  "headline": "Akupunktør Stine Vogel",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

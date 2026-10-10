@@ -1,0 +1,541 @@
+[
+  {
+    "id": 110638,
+    "key": "1243b9fd-cae7-4772-be85-f148ebbeb602",
+    "udi": "umb://document/1243b9fdcae74772be85f148ebbeb602",
+    "name": "KBF-1649",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/110638",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-06-17 16:23:34",
+    "updateDate": "2025-06-17 16:31:47",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,110638",
+    "sortOrder": 10,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "172.06",
+    "amountNumber": 172.06,
+    "isPaid": true,
+    "payoutCreateDate": "2025-06-17 16:23:34",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "1",
+      "transactionFee": "6",
+      "kiibeeCut": "15",
+      "rentAmount": "0",
+      "from": "2024-12-03 07:47:32",
+      "rawEarnings": "199",
+      "amount": "172.06",
+      "isPaid": "1",
+      "to": "2025-06-17 16:23:26",
+      "transactionAmount": "11.94",
+      "kiibeeCutAmount": "15"
+    }
+  },
+  {
+    "id": 103314,
+    "key": "7f4b64cb-2939-4c5d-bd33-797dd370d7e8",
+    "udi": "umb://document/7f4b64cb29394c5dbd33797dd370d7e8",
+    "name": "KBF-1588",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/103314",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-12-03 07:47:38",
+    "updateDate": "2024-12-03 09:24:40",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,103314",
+    "sortOrder": 9,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "328.18",
+    "amountNumber": 328.18,
+    "isPaid": true,
+    "payoutCreateDate": "2024-12-03 07:47:38",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "1",
+      "transactionFee": "6",
+      "kiibeeCut": "15",
+      "rentAmount": "2",
+      "from": "2024-05-29 16:19:05",
+      "rawEarnings": "397",
+      "amount": "328.18",
+      "isPaid": "1",
+      "to": "2024-12-03 07:47:32",
+      "transactionAmount": "23.82",
+      "kiibeeCutAmount": "45"
+    }
+  },
+  {
+    "id": 97469,
+    "key": "f37629e6-51e1-4377-abca-46a663563ccd",
+    "udi": "umb://document/f37629e651e14377abca46a663563ccd",
+    "name": "KBF-1526",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/97469",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-05-29 16:19:17",
+    "updateDate": "2024-05-31 10:25:38",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,97469",
+    "sortOrder": 8,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "344.12",
+    "amountNumber": 344.12,
+    "isPaid": true,
+    "payoutCreateDate": "2024-05-29 16:19:17",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "2",
+      "transactionFee": "6",
+      "kiibeeCut": "15",
+      "rentAmount": "0",
+      "from": "2023-10-22 05:47:21",
+      "rawEarnings": "398",
+      "amount": "344.12",
+      "isPaid": "1",
+      "to": "2024-05-29 16:19:05",
+      "transactionAmount": "23.88",
+      "kiibeeCutAmount": "30"
+    }
+  },
+  {
+    "id": 91429,
+    "key": "79b7fa5d-6505-4bcc-a607-7aacf5ddef24",
+    "udi": "umb://document/79b7fa5d65054bcca6077aacf5ddef24",
+    "name": "KBF-1453",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/91429",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-10-22 05:47:38",
+    "updateDate": "2023-10-23 12:44:43",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,91429",
+    "sortOrder": 7,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "1063.35",
+    "amountNumber": 1063.35,
+    "isPaid": true,
+    "payoutCreateDate": "2023-10-22 05:47:38",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "5",
+      "transactionFee": "5",
+      "kiibeeCut": "10",
+      "rentAmount": "2",
+      "from": "2023-04-07 16:53:38",
+      "rawEarnings": "1193",
+      "amount": "1063.35",
+      "isPaid": "1",
+      "to": "2023-10-22 05:47:21",
+      "transactionAmount": "59.65",
+      "kiibeeCutAmount": "70"
+    }
+  },
+  {
+    "id": 79968,
+    "key": "6ea0daf0-a08f-4dba-a0aa-380a16a39342",
+    "udi": "umb://document/6ea0daf0a08f4dbaa0aa380a16a39342",
+    "name": "KBF-1398",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/79968",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-04-07 16:53:46",
+    "updateDate": "2023-04-09 11:15:43",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,79968",
+    "sortOrder": 6,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "1074.3",
+    "amountNumber": 1074.3,
+    "isPaid": true,
+    "payoutCreateDate": "2023-04-07 16:53:46",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "6",
+      "transactionFee": "5",
+      "kiibeeCut": "10",
+      "rentAmount": "0",
+      "from": "2023-03-17 13:24:30",
+      "rawEarnings": "1194",
+      "amount": "1074.3",
+      "isPaid": "1",
+      "to": "2023-04-07 16:53:38",
+      "transactionAmount": "59.7",
+      "kiibeeCutAmount": "60"
+    }
+  },
+  {
+    "id": 79158,
+    "key": "86f917bb-401f-4c28-b53e-3d5804ecdeb2",
+    "udi": "umb://document/86f917bb401f4c28b53e3d5804ecdeb2",
+    "name": "KBF-1394",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/79158",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-03-17 13:24:40",
+    "updateDate": "2023-03-17 14:06:27",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,79158",
+    "sortOrder": 5,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "621.2",
+    "amountNumber": 621.2,
+    "isPaid": true,
+    "payoutCreateDate": "2023-03-17 13:24:40",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "3",
+      "transactionFee": "5",
+      "kiibeeCut": "10",
+      "rentAmount": "1",
+      "from": "2022-11-29 05:59:37",
+      "rawEarnings": "696",
+      "amount": "621.2",
+      "isPaid": "1",
+      "to": "2023-03-17 13:24:30",
+      "transactionAmount": "34.8",
+      "kiibeeCutAmount": "40"
+    }
+  },
+  {
+    "id": 75462,
+    "key": "3238a3b3-67e3-4d4b-b03b-95bfedf13d18",
+    "udi": "umb://document/3238a3b367e34d4bb03b95bfedf13d18",
+    "name": "KBF-1343",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/75462",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-11-29 05:59:54",
+    "updateDate": "2022-11-29 17:06:09",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,75462",
+    "sortOrder": 4,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "705.25",
+    "amountNumber": 705.25,
+    "isPaid": true,
+    "payoutCreateDate": "2022-11-29 05:59:54",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "3",
+      "transactionFee": "5",
+      "kiibeeCut": "10",
+      "rentAmount": "2",
+      "from": "2022-08-24 08:02:48",
+      "rawEarnings": "795",
+      "amount": "705.25",
+      "isPaid": "1",
+      "to": "2022-11-29 05:59:37",
+      "transactionAmount": "39.75",
+      "kiibeeCutAmount": "50"
+    }
+  },
+  {
+    "id": 68971,
+    "key": "7f254771-b46e-4eb3-a477-873c18dc0842",
+    "udi": "umb://document/7f254771b46e4eb3a477873c18dc0842",
+    "name": "KBF-1297",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/68971",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-08-24 08:02:58",
+    "updateDate": "2022-08-25 19:30:42",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,68971",
+    "sortOrder": 3,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "436.16",
+    "amountNumber": 436.16,
+    "isPaid": true,
+    "payoutCreateDate": "2022-08-24 08:02:58",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "1",
+      "transactionFee": "4",
+      "kiibeeCut": "10",
+      "rentAmount": "3",
+      "from": "2022-05-30 10:23:45",
+      "rawEarnings": "496",
+      "amount": "436.16",
+      "isPaid": "1",
+      "to": "2022-08-24 08:02:48",
+      "transactionAmount": "19.84",
+      "kiibeeCutAmount": "40"
+    }
+  },
+  {
+    "id": 64852,
+    "key": "9d475f15-c4de-465a-ac2b-d2b1beefba33",
+    "udi": "umb://document/9d475f15c4de465aac2bd2b1beefba33",
+    "name": "KBF-1278",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/64852",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-30 10:23:52",
+    "updateDate": "2022-05-31 11:19:34",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,64852",
+    "sortOrder": 2,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "266.08",
+    "amountNumber": 266.08,
+    "isPaid": true,
+    "payoutCreateDate": "2022-05-30 10:23:52",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "1",
+      "transactionFee": "4",
+      "kiibeeCut": "10",
+      "rentAmount": "1",
+      "from": "2022-03-17 09:40:46",
+      "rawEarnings": "298",
+      "amount": "266.08",
+      "isPaid": "1",
+      "to": "2022-05-30 10:23:45",
+      "transactionAmount": "11.92",
+      "kiibeeCutAmount": "20"
+    }
+  },
+  {
+    "id": 62642,
+    "key": "e6e74634-ecf1-4a9a-9613-c894ed344c9b",
+    "udi": "umb://document/e6e74634ecf14a9a9613c894ed344c9b",
+    "name": "KBF-1259",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/62642",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-17 09:41:04",
+    "updateDate": "2022-03-17 09:59:03",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,62642",
+    "sortOrder": 1,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "787.28",
+    "amountNumber": 787.28,
+    "isPaid": true,
+    "payoutCreateDate": "2022-03-17 09:41:04",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "2",
+      "transactionFee": "4",
+      "kiibeeCut": "10",
+      "rentAmount": "5",
+      "from": "2021-11-01 07:23:37",
+      "rawEarnings": "893",
+      "amount": "787.28",
+      "isPaid": "1",
+      "to": "2022-03-17 09:40:46",
+      "transactionAmount": "35.72",
+      "kiibeeCutAmount": "70"
+    }
+  },
+  {
+    "id": 51145,
+    "key": "07e2ec7c-1b67-4f82-932e-a504a148bde0",
+    "udi": "umb://document/07e2ec7c1b674f82932ea504a148bde0",
+    "name": "KBF-1209",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/51145",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-01 07:23:56",
+    "updateDate": "2021-11-01 14:03:56",
+    "parentId": 22554,
+    "path": "-1,1067,22550,22554,51145",
+    "sortOrder": 0,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "publicPayoutUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "amount": "10009.6",
+    "amountNumber": 10009.6,
+    "isPaid": true,
+    "payoutCreateDate": "2021-11-01 07:23:56",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "invoiceUrl": "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "46",
+      "transactionFee": "4",
+      "kiibeeCut": "10",
+      "rentAmount": "22",
+      "from": "2020-11-22 19:09:35",
+      "rawEarnings": "11135",
+      "amount": "10009.6",
+      "isPaid": "1",
+      "to": "2021-11-01 07:23:37",
+      "transactionAmount": "445.4",
+      "kiibeeCutAmount": "680"
+    }
+  }
+]

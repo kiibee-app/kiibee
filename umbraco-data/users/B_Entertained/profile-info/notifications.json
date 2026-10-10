@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "B Entertained",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-08-17",
+  "frequency": "30",
+  "notificationsType": "1",
+  "emails": ""
+}

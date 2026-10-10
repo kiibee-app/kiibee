@@ -1,0 +1,20 @@
+{
+  "requestedName": "Akupunktør Stine Vogel",
+  "liveName": "Akupunktør Stine Vogel",
+  "userId": 117157,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Akupressurpunkter - hjælp til selvhjælp",
+      "id": 117188,
+      "status": "ok"
+    },
+    {
+      "name": "Ro til dit nervesystem",
+      "id": 126239,
+      "status": "ok"
+    }
+  ]
+}

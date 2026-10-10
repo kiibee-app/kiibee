@@ -1,0 +1,144 @@
+{
+  "exportedAt": "2026-06-02T09:14:17.362Z",
+  "collectionName": "Stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2833",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2833,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": []
+  },
+  "parent": {
+    "id": 2833,
+    "key": "99dfcf62-8d4b-441d-bd00-b9c40c571595",
+    "udi": "umb://document/99dfcf628d4b441dbd00b9c40c571595",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/microphone-entertainment/stats/"
+    ],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1301,
+    "childrenFetched": 1301,
+    "detailIdsRequested": 1301,
+    "detailsFetched": 1301,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 1301
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 1,
+      "totalItems": 1301
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

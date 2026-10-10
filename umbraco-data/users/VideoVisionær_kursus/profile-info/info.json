@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "VideoVisionær kursus",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 100020,
+  "key": "cb06c3c8-0d85-4f32-9b37-9aa3b5b897b2",
+  "udi": "umb://document/cb06c3c80d854f329b379aa3b5b897b2",
+  "path": "-1,1067,100020",
+  "url": "/videovisionaer-kursus/",
+  "createDate": "2024-08-27 13:20:44",
+  "updateDate": "2024-08-27 15:37:14",
+  "publishDate": "2024-08-27 15:37:14",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

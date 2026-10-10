@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+116103,52bf19bb-45ba-4b7c-8ac9-6b64144c3416,umb://document/52bf19bb45ba4b7c8ac96b64144c3416,KBF-1687,391.56,391.56,false,2025-11-29 16:37:16,2025-11-29 16:37:16,https://kiibee.dk/forlaget-akka/payouts/kbf-1687/,matched-public-payout-url,https://kiibee.dk/forlaget-akka/payouts/kbf-1687/,https://kiibee.dk/forlaget-akka/payouts/kbf-1687/,,

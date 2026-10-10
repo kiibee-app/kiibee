@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Tobias Dybvad",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Tobias Dybvad ",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3125/tobias-dybvad-prange.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3385/tobias-dybvad-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Tobias Dybvad - Populær nytænkende stand-up</h1>\n<p>Tobias Dybvad er en af tidens mest populære komikere. Med velbesøgte one-man shows og ekstremt populære TV-programmer som \"Dyvaaaaad\" og \"Verdensmænd\" i bagagen, er Tobias en sand publikumsyndling.</p>",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

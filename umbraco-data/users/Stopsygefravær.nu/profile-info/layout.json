@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Stopsygefravær.nu",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Stopsygefravær.nu",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1833/logo-stopsygefravaer-3.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til online ydelser fra Stopsygefravær.nu",
+  "description": " Har du spørgsmål, så hold dig ikke tilbage. Vi er kun en mail eller et telefonopkald fra at kunne besvare dine spørgsmål.\r\n\r\nMail: kontakt@stopsygefravaer.nu\r\nTelefon: 51408114",
+  "css": ".footer-identity {display:none !important;}",
+  "javaScript": ""
+}

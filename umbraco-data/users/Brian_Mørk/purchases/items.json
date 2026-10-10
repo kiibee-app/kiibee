@@ -1,0 +1,1928 @@
+[
+  {
+    "id": 120309,
+    "key": "2fc91c44-2f5f-491f-bec8-006250c461e5",
+    "udi": "umb://document/2fc91c442f5f491fbec8006250c461e5",
+    "name": "9h7526032026204741",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-03-26 20:47:51",
+    "updateDate": "2026-03-26 23:10:13",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,120309",
+    "sortOrder": 17,
+    "urls": [
+      "/brian-moerk/purchases/9h7526032026204741/"
+    ],
+    "fullName": "Oskar Jespersen",
+    "email": "oskarjespersen19@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 3,
+    "price": "29",
+    "expireDate": "2026-03-28 20:47:49",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2026-03-26 20:47:51",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "oskarjespersen19@gmail.com",
+      "streams": "3",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2026-03-28 20:47:49",
+      "price": "29",
+      "fullName": "Oskar Jespersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 118798,
+    "key": "eddf7a3e-a79e-4e52-8ed1-cdd9dbdfa0ed",
+    "udi": "umb://document/eddf7a3ea79e4e528ed1cdd9dbdfa0ed",
+    "name": "1c8r15022026231514",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-02-15 23:15:27",
+    "updateDate": "2026-02-15 23:15:39",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,118798",
+    "sortOrder": 16,
+    "urls": [
+      "/brian-moerk/purchases/1c8r15022026231514/"
+    ],
+    "fullName": "Tim Fuglsang ",
+    "email": "tim_fuglsang@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-03-01 23:15:25",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2026-02-15 23:15:27",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "tim_fuglsang@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2026-03-01 23:15:25",
+      "price": "39",
+      "fullName": "Tim Fuglsang ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 118691,
+    "key": "1784cac2-a7f8-47bf-aae4-3b20dbe9f15d",
+    "udi": "umb://document/1784cac2a7f847bfaae43b20dbe9f15d",
+    "name": "rskd13022026191507",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-02-13 19:15:40",
+    "updateDate": "2026-02-13 19:15:50",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,118691",
+    "sortOrder": 15,
+    "urls": [
+      "/brian-moerk/purchases/rskd13022026191507/"
+    ],
+    "fullName": "Michael Jeppesen",
+    "email": "standupcomedyfan4700@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-02-27 19:15:38",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2026-02-13 19:15:40",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "standupcomedyfan4700@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2026-02-27 19:15:38",
+      "price": "39",
+      "fullName": "Michael Jeppesen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 118363,
+    "key": "aec3087f-091b-4395-a10e-f7efdf19e347",
+    "udi": "umb://document/aec3087f091b4395a10ef7efdf19e347",
+    "name": "41wm08022026151403",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-02-08 15:14:23",
+    "updateDate": "2026-02-08 19:07:55",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,118363",
+    "sortOrder": 14,
+    "urls": [
+      "/brian-moerk/purchases/41wm08022026151403/"
+    ],
+    "fullName": "Jenna Stefansdottir",
+    "email": "jennast@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 5,
+    "price": "29",
+    "expireDate": "2026-02-10 15:14:21",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2026-02-08 15:14:23",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "jennast@hotmail.com",
+      "streams": "5",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2026-02-10 15:14:21",
+      "price": "29",
+      "fullName": "Jenna Stefansdottir",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 112090,
+    "key": "d1728873-1293-45ea-8f75-aeba3deb3888",
+    "udi": "umb://document/d1728873129345ea8f75aeba3deb3888",
+    "name": "627927082025193410",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-08-27 19:34:35",
+    "updateDate": "2025-08-27 19:35:33",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,112090",
+    "sortOrder": 13,
+    "urls": [
+      "/brian-moerk/purchases/627927082025193410/"
+    ],
+    "fullName": "Gustav Østerlund Larsen",
+    "email": "gussedaver100@live.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "29",
+    "expireDate": "2025-08-29 19:34:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2025-08-27 19:34:35",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "gussedaver100@live.dk",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2025-08-29 19:34:32",
+      "price": "29",
+      "fullName": "Gustav Østerlund Larsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 110320,
+    "key": "548cfee3-7d06-486b-b0b7-a39208534b3d",
+    "udi": "umb://document/548cfee37d06486bb0b7a39208534b3d",
+    "name": "47m808062025001611",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-06-08 00:16:35",
+    "updateDate": "2025-06-08 00:17:36",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,110320",
+    "sortOrder": 12,
+    "urls": [
+      "/brian-moerk/purchases/47m808062025001611/"
+    ],
+    "fullName": "Brian Kragekjær Hansen ",
+    "email": "bkh3008@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-06-22 00:16:32",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2025-06-08 00:16:35",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "bkh3008@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-06-22 00:16:32",
+      "price": "39",
+      "fullName": "Brian Kragekjær Hansen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 108657,
+    "key": "7b509eb5-721c-42c3-91c0-9b562c7450ff",
+    "udi": "umb://document/7b509eb5721c42c391c09b562c7450ff",
+    "name": "b54p20042025165817",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-20 16:58:33",
+    "updateDate": "2025-04-20 17:06:20",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,108657",
+    "sortOrder": 11,
+    "urls": [
+      "/brian-moerk/purchases/b54p20042025165817/"
+    ],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-05-04 16:58:30",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2025-04-20 16:58:33",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-05-04 16:58:30",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 107108,
+    "key": "dbf1e8da-c312-4091-9dac-ba3464d64943",
+    "udi": "umb://document/dbf1e8dac31240919dacba3464d64943",
+    "name": "7nx712032025025626",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-03-12 02:57:17",
+    "updateDate": "2025-03-12 02:58:31",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,107108",
+    "sortOrder": 10,
+    "urls": [
+      "/brian-moerk/purchases/7nx712032025025626/"
+    ],
+    "fullName": "Nikolaj Christiansen",
+    "email": "nikolaj.christ17@hotmail.com",
+    "isPurchase": true,
+    "downloads": 3,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-03-26 02:57:13",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2025-03-12 02:57:17",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "nikolaj.christ17@hotmail.com",
+      "streams": "",
+      "downloads": "3",
+      "isPurchase": "1",
+      "expireDate": "2025-03-26 02:57:13",
+      "price": "39",
+      "fullName": "Nikolaj Christiansen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 104472,
+    "key": "4e6141b7-32aa-46b7-8d25-209be891b59d",
+    "udi": "umb://document/4e6141b732aa46b78d25209be891b59d",
+    "name": "f54w07012025163403",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-01-07 16:34:21",
+    "updateDate": "2025-01-07 20:11:56",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,104472",
+    "sortOrder": 9,
+    "urls": [
+      "/brian-moerk/purchases/f54w07012025163403/"
+    ],
+    "fullName": "Karina stenberg",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 4,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-01-21 16:34:18",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2025-01-07 16:34:21",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "4",
+      "isPurchase": "1",
+      "expireDate": "2025-01-21 16:34:18",
+      "price": "39",
+      "fullName": "Karina stenberg",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 100376,
+    "key": "8dcf8463-ece0-4061-a979-3a83eb65a1d6",
+    "udi": "umb://document/8dcf8463ece04061a9793a83eb65a1d6",
+    "name": "h7lq13092024233311",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-09-13 23:33:25",
+    "updateDate": "2024-09-13 23:33:50",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,100376",
+    "sortOrder": 8,
+    "urls": [
+      "/brian-moerk/purchases/h7lq13092024233311/"
+    ],
+    "fullName": "Thomas meyer",
+    "email": "tbm94@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2024-09-27 23:33:22",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2024-09-13 23:33:25",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "tbm94@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-09-27 23:33:22",
+      "price": "39",
+      "fullName": "Thomas meyer",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 93964,
+    "key": "59047bfd-e182-4676-b1fa-5929d9f4097b",
+    "udi": "umb://document/59047bfde1824676b1fa5929d9f4097b",
+    "name": "fli911012024000713",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-01-11 00:07:26",
+    "updateDate": "2024-01-11 00:07:26",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,93964",
+    "sortOrder": 7,
+    "urls": [
+      "/brian-moerk/purchases/fli911012024000713/"
+    ],
+    "fullName": "Mads Ingvartsen ",
+    "email": "mads1129@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2024-01-25 00:07:23",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2024-01-11 00:07:26",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "mads1129@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2024-01-25 00:07:23",
+      "price": "39",
+      "fullName": "Mads Ingvartsen ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 75613,
+    "key": "0a7c1efe-bd44-4ef8-8efb-ec6e90d6bf64",
+    "udi": "umb://document/0a7c1efebd444ef88efbec6e90d6bf64",
+    "name": "lf2p04122022114512",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-04 11:45:42",
+    "updateDate": "2022-12-04 11:46:01",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,75613",
+    "sortOrder": 6,
+    "urls": [
+      "/brian-moerk/purchases/lf2p04122022114512/"
+    ],
+    "fullName": "Martin Hansen",
+    "email": "mhansen131@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 2,
+    "price": "29",
+    "expireDate": "2022-12-06 11:45:39",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2022-12-04 11:45:42",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "mhansen131@gmail.com",
+      "streams": "2",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-12-06 11:45:39",
+      "price": "29",
+      "fullName": "Martin Hansen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 75177,
+    "key": "3c2be8e6-76a4-4354-96cf-9435a73d6aa2",
+    "udi": "umb://document/3c2be8e676a4435496cf9435a73d6aa2",
+    "name": "l9u920112022015834",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-11-20 01:58:50",
+    "updateDate": "2022-11-20 21:53:02",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,75177",
+    "sortOrder": 5,
+    "urls": [
+      "/brian-moerk/purchases/l9u920112022015834/"
+    ],
+    "fullName": "Marcus Raunkjær ",
+    "email": "marc726b45@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 5,
+    "price": "29",
+    "expireDate": "2022-11-22 01:58:48",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2022-11-20 01:58:50",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "marc726b45@gmail.com",
+      "streams": "5",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-11-22 01:58:48",
+      "price": "29",
+      "fullName": "Marcus Raunkjær ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 74316,
+    "key": "6dba5fcf-246f-4ebb-b81c-098104d20d51",
+    "udi": "umb://document/6dba5fcf246f4ebbb81c098104d20d51",
+    "name": "9vr328102022013553",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-10-28 01:36:12",
+    "updateDate": "2022-11-01 00:38:15",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,74316",
+    "sortOrder": 4,
+    "urls": [
+      "/brian-moerk/purchases/9vr328102022013553/"
+    ],
+    "fullName": "Mathias Ditlevsen",
+    "email": "mathiasditdut@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-11-04 01:36:10",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2022-10-28 01:36:12",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "mathiasditdut@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2022-11-04 01:36:10",
+      "price": "39",
+      "fullName": "Mathias Ditlevsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 64307,
+    "key": "8aa8bfa5-980a-4ffd-8903-3efc919571bb",
+    "udi": "umb://document/8aa8bfa5980a4ffd89033efc919571bb",
+    "name": "5xwq11052022234546",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-11 23:45:59",
+    "updateDate": "2022-05-11 23:45:59",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,64307",
+    "sortOrder": 3,
+    "urls": [
+      "/brian-moerk/purchases/5xwq11052022234546/"
+    ],
+    "fullName": "Christian Caspersen",
+    "email": "ckc2000@live.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2022-05-13 23:45:57",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2022-05-11 23:45:59",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "ckc2000@live.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2022-05-13 23:45:57",
+      "price": "29",
+      "fullName": "Christian Caspersen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 49432,
+    "key": "4c8b9769-9515-4a8b-a6d3-7753b12e0a9d",
+    "udi": "umb://document/4c8b976995154a8ba6d37753b12e0a9d",
+    "name": "d8k421082021122423",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-21 12:25:56",
+    "updateDate": "2021-08-21 12:25:56",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,49432",
+    "sortOrder": 2,
+    "urls": [
+      "/brian-moerk/purchases/d8k421082021122423/"
+    ],
+    "fullName": "Martin hansen",
+    "email": "mhansen131@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "29",
+    "expireDate": "2021-08-23 12:25:56",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2021-08-21 12:25:56",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "mhansen131@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-08-23 12:25:56",
+      "price": "29",
+      "fullName": "Martin hansen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 48929,
+    "key": "f41f9e9e-903f-4cf2-87b5-f6f260eb7c40",
+    "udi": "umb://document/f41f9e9e903f4cf287b5f6f260eb7c40",
+    "name": "b92u04082021215122",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-08-04 21:51:42",
+    "updateDate": "2021-08-04 21:51:42",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,48929",
+    "sortOrder": 1,
+    "urls": [
+      "/brian-moerk/purchases/b92u04082021215122/"
+    ],
+    "fullName": "René kim Christensen",
+    "email": "Zioncity-18@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-09-03 21:51:42",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2021-08-04 21:51:42",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "Zioncity-18@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-09-03 21:51:42",
+      "price": "39",
+      "fullName": "René kim Christensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  },
+  {
+    "id": 46537,
+    "key": "209e8679-4764-4094-b6b3-d8f27ba00e4d",
+    "udi": "umb://document/209e867947644094b6b3d8f27ba00e4d",
+    "name": "w2u731052021162647",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-31 16:27:11",
+    "updateDate": "2021-05-31 16:27:11",
+    "parentId": 42318,
+    "path": "-1,1067,42313,42318,46537",
+    "sortOrder": 0,
+    "urls": [
+      "/brian-moerk/purchases/w2u731052021162647/"
+    ],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-06-30 16:27:11",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+    "orderCreateDate": "2021-05-31 16:27:11",
+    "mediaRelationUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/1866cad365ba47428b717d505c365345"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/1866cad365ba47428b717d505c365345",
+        "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+        "resolved": true,
+        "id": 42559,
+        "name": "MØRK",
+        "title": "MØRK ",
+        "urls": [
+          "/brian-moerk/shows/mørk/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "5bc404d30326108638ef1becedb42fdd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3142/mork_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "MØRK "
+    ],
+    "mediaUrls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-06-30 16:27:11",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Brian",
+      "media": "umb://document/1866cad365ba47428b717d505c365345"
+    }
+  }
+]

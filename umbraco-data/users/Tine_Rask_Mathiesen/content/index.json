@@ -1,0 +1,25 @@
+{
+  "requestedName": "Tine Rask Mathiesen",
+  "liveName": "Tine Rask Mathiesen",
+  "userId": 115439,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Nissebreve ",
+      "id": 115446,
+      "status": "ok"
+    },
+    {
+      "name": "Masker ",
+      "id": 118134,
+      "status": "ok"
+    },
+    {
+      "name": "Masker  (1)",
+      "id": 118135,
+      "status": "ok"
+    }
+  ]
+}

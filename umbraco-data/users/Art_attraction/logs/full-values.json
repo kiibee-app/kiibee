@@ -1,0 +1,626 @@
+[
+  {
+    "id": 116601,
+    "key": "9c435eff-7859-4ff1-bfd7-90dee16d64e1",
+    "udi": "umb://document/9c435eff78594ff1bfd790dee16d64e1",
+    "name": "734h20122025155758",
+    "createDate": "2025-12-20 15:58:13",
+    "updateDate": "2025-12-20 15:58:13",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi guide | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/",
+        "resolvedReference": {
+          "udi": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+          "key": "e2d636e7-8e8b-4845-95c6-3fa2256cbc9f",
+          "id": 1991,
+          "name": "Lær basal zoneterapi guide",
+          "title": "Lær basal zoneterapi guide",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1285/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "397942185",
+        "booleanValue": null,
+        "displayValue": "397942185",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "25",
+        "booleanValue": null,
+        "displayValue": "25",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Frank Thomsen",
+        "booleanValue": null,
+        "displayValue": "Frank Thomsen",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "frankabild@gmail.com",
+        "booleanValue": null,
+        "displayValue": "frankabild@gmail.com",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi guide | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/",
+        "resolvedReference": {
+          "udi": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+          "key": "e2d636e7-8e8b-4845-95c6-3fa2256cbc9f",
+          "id": 1991,
+          "name": "Lær basal zoneterapi guide",
+          "title": "Lær basal zoneterapi guide",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi-guide/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1285/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "397942185",
+        "booleanValue": null,
+        "displayValue": "397942185",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "25",
+        "booleanValue": null,
+        "displayValue": "25",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Frank Thomsen",
+        "booleanValue": null,
+        "displayValue": "Frank Thomsen",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "frankabild@gmail.com",
+        "booleanValue": null,
+        "displayValue": "frankabild@gmail.com",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 2094,
+    "key": "a049577b-a5f0-499e-be83-98f386d8823b",
+    "udi": "umb://document/a049577ba5f0499ebe8398f386d8823b",
+    "name": "2p3103102019101631",
+    "createDate": "2019-10-03 10:17:25",
+    "updateDate": "2019-10-05 20:52:38",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+        "resolvedReference": {
+          "udi": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+          "key": "7b4a8704-d55a-4715-8a80-c0d6298d54f4",
+          "id": 1990,
+          "name": "Lær basal zoneterapi",
+          "title": "Lær basal zoneterapi",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+          "contentTypeAlias": "media",
+          "videoID": "43e8b02ebaf6e7408fd6a9fc6f1020bd",
+          "videoStatus": "ready",
+          "videoThumbnailURL": "https://cloudflarestream.com/43e8b02ebaf6e7408fd6a9fc6f1020bd/thumbnails/thumb_5_0.jpg",
+          "videoDownloadURL": "https://videodelivery.net/43e8b02ebaf6e7408fd6a9fc6f1020bd/downloads/default.mp4",
+          "thumbnail": "/media/1283/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": "10"
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "231227235",
+        "booleanValue": null,
+        "displayValue": "231227235",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "5",
+        "booleanValue": null,
+        "displayValue": "5",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Helle Buttrup",
+        "booleanValue": null,
+        "displayValue": "Helle Buttrup",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "helle@praktiskpraksis.dk",
+        "booleanValue": null,
+        "displayValue": "helle@praktiskpraksis.dk",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+        "resolvedReference": {
+          "udi": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+          "key": "7b4a8704-d55a-4715-8a80-c0d6298d54f4",
+          "id": 1990,
+          "name": "Lær basal zoneterapi",
+          "title": "Lær basal zoneterapi",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+          "contentTypeAlias": "media",
+          "videoID": "43e8b02ebaf6e7408fd6a9fc6f1020bd",
+          "videoStatus": "ready",
+          "videoThumbnailURL": "https://cloudflarestream.com/43e8b02ebaf6e7408fd6a9fc6f1020bd/thumbnails/thumb_5_0.jpg",
+          "videoDownloadURL": "https://videodelivery.net/43e8b02ebaf6e7408fd6a9fc6f1020bd/downloads/default.mp4",
+          "thumbnail": "/media/1283/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": "10"
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "231227235",
+        "booleanValue": null,
+        "displayValue": "231227235",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "5",
+        "booleanValue": null,
+        "displayValue": "5",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Helle Buttrup",
+        "booleanValue": null,
+        "displayValue": "Helle Buttrup",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "helle@praktiskpraksis.dk",
+        "booleanValue": null,
+        "displayValue": "helle@praktiskpraksis.dk",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 2092,
+    "key": "9ac971b5-2939-4c60-a916-0cf139cd31fb",
+    "udi": "umb://document/9ac971b529394c60a9160cf139cd31fb",
+    "name": "em1e03102019101009",
+    "createDate": "2019-10-03 10:10:31",
+    "updateDate": "2019-10-05 20:52:26",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+        "resolvedReference": {
+          "udi": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+          "key": "7b4a8704-d55a-4715-8a80-c0d6298d54f4",
+          "id": 1990,
+          "name": "Lær basal zoneterapi",
+          "title": "Lær basal zoneterapi",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+          "contentTypeAlias": "media",
+          "videoID": "43e8b02ebaf6e7408fd6a9fc6f1020bd",
+          "videoStatus": "ready",
+          "videoThumbnailURL": "https://cloudflarestream.com/43e8b02ebaf6e7408fd6a9fc6f1020bd/thumbnails/thumb_5_0.jpg",
+          "videoDownloadURL": "https://videodelivery.net/43e8b02ebaf6e7408fd6a9fc6f1020bd/downloads/default.mp4",
+          "thumbnail": "/media/1283/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": "10"
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "231226421",
+        "booleanValue": null,
+        "displayValue": "231226421",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "5",
+        "booleanValue": null,
+        "displayValue": "5",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "anders halfter",
+        "booleanValue": null,
+        "displayValue": "anders halfter",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "a.halfter@gmail.com",
+        "booleanValue": null,
+        "displayValue": "a.halfter@gmail.com",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "booleanValue": null,
+        "displayValue": "Lær basal zoneterapi | /art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+        "resolvedReference": {
+          "udi": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+          "key": "7b4a8704-d55a-4715-8a80-c0d6298d54f4",
+          "id": 1990,
+          "name": "Lær basal zoneterapi",
+          "title": "Lær basal zoneterapi",
+          "urls": [
+            "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/"
+          ],
+          "url": "/art-attraction/zoneterapi-selvhjaelp/laer-basal-zoneterapi/",
+          "contentTypeAlias": "media",
+          "videoID": "43e8b02ebaf6e7408fd6a9fc6f1020bd",
+          "videoStatus": "ready",
+          "videoThumbnailURL": "https://cloudflarestream.com/43e8b02ebaf6e7408fd6a9fc6f1020bd/thumbnails/thumb_5_0.jpg",
+          "videoDownloadURL": "https://videodelivery.net/43e8b02ebaf6e7408fd6a9fc6f1020bd/downloads/default.mp4",
+          "thumbnail": "/media/1283/laer-basal-zoneterapi.png",
+          "purchasePrice": "25",
+          "rentalPrice": "10"
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "231226421",
+        "booleanValue": null,
+        "displayValue": "231226421",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "5",
+        "booleanValue": null,
+        "displayValue": "5",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "anders halfter",
+        "booleanValue": null,
+        "displayValue": "anders halfter",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "a.halfter@gmail.com",
+        "booleanValue": null,
+        "displayValue": "a.halfter@gmail.com",
+        "resolvedReference": null
+      }
+    ]
+  }
+]

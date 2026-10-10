@@ -1,0 +1,109 @@
+{
+  "exportedAt": "2026-06-02T10:58:24.613Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/16707",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 16707,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 16707,
+    "key": "9d580ae5-2d37-45dc-aa37-eb8a18d2ea8d",
+    "udi": "umb://document/9d580ae52d3745dcaa37eb8a18d2ea8d",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/paedagogisk-psykologisk-tidsskrift/purchases/"
+    ],
+    "path": "-1,1067,16702,16707",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 565,
+    "childrenFetched": 565,
+    "detailsFetched": 565,
+    "detailErrors": 0,
+    "purchaseEntries": 564,
+    "nonPurchaseEntries": 1,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 128,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 127,
+    "mediaResolved": 127,
+    "mediaUnresolved": 1,
+    "mediaResolveErrors": 1
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 565
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 565
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 565
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 565
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 565
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 65,
+      "totalItems": 565
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Pædagogisk_Psykologisk_Tidsskrift\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Pædagogisk_Psykologisk_Tidsskrift\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Pædagogisk_Psykologisk_Tidsskrift\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Pædagogisk_Psykologisk_Tidsskrift\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

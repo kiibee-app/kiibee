@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/7086d4f5f9b44d42bd7c3fe749f6e4c5",
+    "key": "7086d4f5-f9b4-4d42-bd7c-3fe749f6e4c5",
+    "resolved": true,
+    "id": 19337,
+    "name": "Qigong - for dit bedre helbred",
+    "title": "Qigong - for dit bedre helbred",
+    "urls": ["/britta-koch-qigong/qigong-film/qigong-for-dit-bedre-helbred/"],
+    "contentTypeAlias": "media",
+    "videoID": "44dc002806fce90f688f97c6787d3402",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/44dc002806fce90f688f97c6787d3402/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/44dc002806fce90f688f97c6787d3402/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": "/media/2238/cover-2x.png",
+    "purchasePrice": "210",
+    "rentalPrice": "",
+    "purchaseEntryCount": 15,
+    "purchaseOrderCount": 15,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 30,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2020-09-17 13:16:57",
+    "lastPurchaseAt": "2026-05-07 11:28:03",
+    "samplePurchaseIds": [123016, 119126, 116487, 114100, 104262]
+  }
+]

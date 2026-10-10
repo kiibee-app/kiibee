@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Olivia Hvoslef Mejer Madsen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Olivia Hvoslef Mejer Madsen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4882/img_6999.jpeg",
+    "crops": []
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4883/img_6999.jpeg",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "My booty program",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

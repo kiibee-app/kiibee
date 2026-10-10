@@ -1,0 +1,20 @@
+{
+  "requestedName": "Line JL Feel the Heal",
+  "liveName": "Line JL Feel the Heal",
+  "userId": 78467,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "SkoleRo Plakater til klassen",
+      "id": 91151,
+      "status": "ok"
+    },
+    {
+      "name": "TEST",
+      "id": 92316,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "exportedAt": "2026-06-02T10:55:07.315Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2261",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2261,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 2261,
+    "key": "69cd816b-03f8-450b-af28-09204bd03a2d",
+    "udi": "umb://document/69cd816b03f8450baf2809204bd03a2d",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'Gitte Hildebrandt - små skridt til bæredygtig sundhed' ikke er udgivet!"
+    ],
+    "path": "-1,1067,2257,2261",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 39,
+    "childrenFetched": 39,
+    "detailsFetched": 39,
+    "detailErrors": 0,
+    "purchaseEntries": 38,
+    "nonPurchaseEntries": 1,
+    "entriesWithDownloads": 0,
+    "entriesWithStreams": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 10,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 6,
+    "mediaResolved": 6,
+    "mediaUnresolved": 4,
+    "mediaResolveErrors": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 39,
+      "totalItems": 39
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

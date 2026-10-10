@@ -1,0 +1,989 @@
+[
+  {
+    "id": 1909,
+    "key": "40d0bea8-e747-4243-9ed9-6fa953279278",
+    "udi": "umb://document/40d0bea8e74742439ed96fa953279278",
+    "name": "Mick Øgendahl - FEST",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 12:23:46",
+    "updateDate": "2024-01-27 22:55:04",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1909",
+    "sortOrder": 1,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-fest/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls FEST - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/af1113a3069c77a38cd3011f21dce3ac/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/af1113a3069c77a38cd3011f21dce3ac/thumbnails/thumb_5_0.jpg",
+      "videoID": "af1113a3069c77a38cd3011f21dce3ac",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=hsI_Cbe1JLY",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1964799109",
+      "productLink": "",
+      "expandedDescription": "<h2>Mick Magic i Mick Øgendahls FEST</h2>\nKomikeren <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> tryllebandt i 2016 og 2017 publikum med sit anmelderroste one-man show \"FEST\". Forestillingen har turneret landet rundt for udsolgte sale og er nu foreviget på DVD. Øgendahl formår at fange essensen af det danske i skarpøjede observationer og rammende parodier. Med kropskomikkens mesterlige sans for timing og mimik rammer han en nerve i det selvoptagede publikum, der genkender sig selv i det skæve spejl.\n\nFEST, som er det femte af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, er en fryd for glade sjæle. Om det er den svenske kønsneutralitet \"hen\", teenagedrenges sprængfarlige opførsel eller hotdogs efter en brandert, rammer Øgendahl lige i sjovskødet. Han åbner op for egne pinsler på den lukkede afdeling, mens lattermusklerne får massage. Som Øgendahl selv udtrykker det med pegefingeren rettet mod sit indre jeg: \"Jeg er nok flyttet fra Falster, men Falster er stadig herinde\". Hans rødder på Falster og opvækst uden for storbyen siver stadig igennem i det nye show.\n\nØgendahl er en af de gamle travere på den danske stand-up scene. Alligevel er glæden og nervepirrende begejstring stadig at spore, når han entrerer de skrå brædder. Han insisterer på at gå sine egne veje kunstnerisk og vælger projekter med hjertet. I \"FEST\" leverer den rutinerede entertainer varen og tryller latteren frem med sin helt egen Mick Magic. Anmelderne har hældt den ene topkarakter efter den anden ned over showet. Men den virkelige anerkendelse kommer ifølge Øgendahl selv fra publikum. Og der er ingen tvivl - \"FEST\" er en forrygende fest for øjet, øret og lattermusklerne. Showet FEST er efterfølgeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-fest/\">FEST</a> og forgængeren til hans nyeste show Bad Boy.",
+      "production": "Microphone ApS",
+      "year": "2016",
+      "description": "<h2>Stream Mick Øgendahls FEST - lej eller køb online</h2>\nI 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. Stream Mick Øgendahls FEST lige her.\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\nDu kan se Mick Øgendahls show FEST fra 2017 lige her ved enten at leje showet i 48 timer eller købe adgang til download. Uanset så står der et klasseshow og -fest klar til dig!",
+      "productionLink": "https://microphone.dk",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1247/mick-fest.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - FEST",
+      "badge": "",
+      "length": "96",
+      "tags": "Mick Øgendahl,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "af1113a3069c77a38cd3011f21dce3ac",
+    "videoStatus": "ready",
+    "videoSize": "1964799109",
+    "videoThumbnailURL": "https://cloudflarestream.com/af1113a3069c77a38cd3011f21dce3ac/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/af1113a3069c77a38cd3011f21dce3ac/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=hsI_Cbe1JLY",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Mick Øgendahl - FEST",
+    "description": "<h2>Stream Mick Øgendahls FEST - lej eller køb online</h2>\nI 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. Stream Mick Øgendahls FEST lige her.\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\nDu kan se Mick Øgendahls show FEST fra 2017 lige her ved enten at leje showet i 48 timer eller købe adgang til download. Uanset så står der et klasseshow og -fest klar til dig!",
+    "expandedDescription": "<h2>Mick Magic i Mick Øgendahls FEST</h2>\nKomikeren <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> tryllebandt i 2016 og 2017 publikum med sit anmelderroste one-man show \"FEST\". Forestillingen har turneret landet rundt for udsolgte sale og er nu foreviget på DVD. Øgendahl formår at fange essensen af det danske i skarpøjede observationer og rammende parodier. Med kropskomikkens mesterlige sans for timing og mimik rammer han en nerve i det selvoptagede publikum, der genkender sig selv i det skæve spejl.\n\nFEST, som er det femte af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, er en fryd for glade sjæle. Om det er den svenske kønsneutralitet \"hen\", teenagedrenges sprængfarlige opførsel eller hotdogs efter en brandert, rammer Øgendahl lige i sjovskødet. Han åbner op for egne pinsler på den lukkede afdeling, mens lattermusklerne får massage. Som Øgendahl selv udtrykker det med pegefingeren rettet mod sit indre jeg: \"Jeg er nok flyttet fra Falster, men Falster er stadig herinde\". Hans rødder på Falster og opvækst uden for storbyen siver stadig igennem i det nye show.\n\nØgendahl er en af de gamle travere på den danske stand-up scene. Alligevel er glæden og nervepirrende begejstring stadig at spore, når han entrerer de skrå brædder. Han insisterer på at gå sine egne veje kunstnerisk og vælger projekter med hjertet. I \"FEST\" leverer den rutinerede entertainer varen og tryller latteren frem med sin helt egen Mick Magic. Anmelderne har hældt den ene topkarakter efter den anden ned over showet. Men den virkelige anerkendelse kommer ifølge Øgendahl selv fra publikum. Og der er ingen tvivl - \"FEST\" er en forrygende fest for øjet, øret og lattermusklerne. Showet FEST er efterfølgeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-fest/\">FEST</a> og forgængeren til hans nyeste show Bad Boy.",
+    "year": "2016",
+    "length": "96",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "https://microphone.dk",
+    "tags": "Mick Øgendahl,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1247/mick-fest.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Mick Øgendahls FEST - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/40d0bea8e74742439ed96fa953279278",
+      "mediaKey": "40d0bea8-e747-4243-9ed9-6fa953279278",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1908,
+    "key": "0321ff8a-ac30-4491-9c96-4259a36ff09a",
+    "udi": "umb://document/0321ff8aac3044919c964259a36ff09a",
+    "name": "Mick Øgendahl - SPAS",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 11:30:57",
+    "updateDate": "2024-01-27 20:41:22",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1908",
+    "sortOrder": 0,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-spas/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls SPAS - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/30df23e22976e6bc24fa329c86286610/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/30df23e22976e6bc24fa329c86286610/thumbnails/thumb_5_0.jpg",
+      "videoID": "30df23e22976e6bc24fa329c86286610",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=aSEK_s3NuWk",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "1",
+      "videoSize": "1954307367",
+      "productLink": "",
+      "expandedDescription": "<h2>Mick Øgendahls kontroversielle show SPAS</h2>\n<p>SPAS er det seneste show fra den anerkendte danske komiker <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a>. Showet er kendt for sin kontroversielle og grænseoverskridende humor, hvor Mick Øgendahl skider på alle former for selvcensur og politisk korrekthed. I SPAS får man Mick Øgendahl i sin reneste og mest anarkistiske form. Han dyrker det grimme og leverer ren guerilla-komik fra start til slut i showet, der varer ca. 100 minutter. SPAS blev godt modtaget af både anmeldere og publikum. Mick Øgendahl blev på baggrund af showet kåret til Årets Komiker 2012 ved Comedy Gallaen i Operaen. Showet er nomineret i flere kategorier til diverse priser for sin kontroversielle tilgang til stand-up comedy.</p>\n<p>SPAS, som er det femte af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, blev godt modtaget af både anmeldere og publikum. Mick Øgendahl blev på baggrund af showet kåret til Årets Komiker 2012 ved Comedy Gallaen i Operaen. Showet var nomineret i flere kategorier til diverse priser for sin kontroversielle tilgang til stand-up comedy.\n»SPAS er leg. Det er fri dressur. Der er ingen doktriner. Det er bare spas. Jeg håber at kunne byde publikum på en god aften, hvor man får grinet, glemmer sine problemer og slapper af. Men showet er en organisk klump - det ændrer sig hele tiden. Der er selvfølgelig en ramme, et skelet, som jeg så kan bygge på. Stand-up er lidt ligesom film - hvis der ikke er noget overraskelsesmoment, gider man ikke se det. En joke er jo ikke sjov, hvis man kan gætte sig til, hvad der sker.«\n\nDe seneste år har Mick Øgendahl bevæget sig mere og mere rundt i filmens verden med store roller i blandt andet »Blå Mænd« og »Alle for én,« og den kommende »Alle for to,« hvor han i alle tre tilfælde også har været involveret i manuskriptarbejdet.\nSPAS har fået blandede reaktioner fra publikum. Nogle mener, showet er temmelig fladpandet humor uden de store overraskelser. Andre hylder det som Mick Øgendahl, når han er allerbedst, og roser de spastiske bevægelser og den anarkistiske komik.\nUanset holdning er de fleste enige om, at SPAS cementerer Mick Øgendahls position som en af Danmarks absolut bedste stand-up komikere.\nSPAS er efterfølgeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-propaganda/\">Propaganda</a> og forgængeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-fest/\">FEST</a>.</p>",
+      "production": "Microphone ApS",
+      "year": "2012",
+      "description": "<h2>Stream Mick Øgendahls SPAS - lej eller køb online</h2>\nEr du til revsende satire, klare politiske kommentarer og indlæg, som sætter dagsordenen i samfundsdebatten? Ja, så er det her nok ikke showet for dig – for det er bare en stor vidunderlig og beskidt gang SPAS. SPAS er showet, hvor Mick Øgendahl skider på alle fine fornemmelser og indholdsmæssige overvejelser - og bare er sig selv. Helt anarkistisk dyrker han det grimme og præsterer ren guerilla-komik fra start til slut. Det er Mick Øgendahl, når han er allerbedst. Mick Øgendahls femte solo stand-up show SPAS blev så populært, at der hurtigt blev oprettet ekstra shows, og det er set af mere end 80.000 live publikummer. Mick Øgendahl fik også, helt velfortjent, prisen som ”Årets komiker 2012” for SPAS ved TV2’s Comedy Galla.",
+      "productionLink": "https://microphone.dk",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1249/mick-spas.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - SPAS",
+      "badge": "",
+      "length": "98",
+      "tags": "Mick Øgendahl,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "30df23e22976e6bc24fa329c86286610",
+    "videoStatus": "ready",
+    "videoSize": "1954307367",
+    "videoThumbnailURL": "https://cloudflarestream.com/30df23e22976e6bc24fa329c86286610/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/30df23e22976e6bc24fa329c86286610/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=aSEK_s3NuWk",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "1",
+    "title": "Mick Øgendahl - SPAS",
+    "description": "<h2>Stream Mick Øgendahls SPAS - lej eller køb online</h2>\nEr du til revsende satire, klare politiske kommentarer og indlæg, som sætter dagsordenen i samfundsdebatten? Ja, så er det her nok ikke showet for dig – for det er bare en stor vidunderlig og beskidt gang SPAS. SPAS er showet, hvor Mick Øgendahl skider på alle fine fornemmelser og indholdsmæssige overvejelser - og bare er sig selv. Helt anarkistisk dyrker han det grimme og præsterer ren guerilla-komik fra start til slut. Det er Mick Øgendahl, når han er allerbedst. Mick Øgendahls femte solo stand-up show SPAS blev så populært, at der hurtigt blev oprettet ekstra shows, og det er set af mere end 80.000 live publikummer. Mick Øgendahl fik også, helt velfortjent, prisen som ”Årets komiker 2012” for SPAS ved TV2’s Comedy Galla.",
+    "expandedDescription": "<h2>Mick Øgendahls kontroversielle show SPAS</h2>\n<p>SPAS er det seneste show fra den anerkendte danske komiker <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a>. Showet er kendt for sin kontroversielle og grænseoverskridende humor, hvor Mick Øgendahl skider på alle former for selvcensur og politisk korrekthed. I SPAS får man Mick Øgendahl i sin reneste og mest anarkistiske form. Han dyrker det grimme og leverer ren guerilla-komik fra start til slut i showet, der varer ca. 100 minutter. SPAS blev godt modtaget af både anmeldere og publikum. Mick Øgendahl blev på baggrund af showet kåret til Årets Komiker 2012 ved Comedy Gallaen i Operaen. Showet er nomineret i flere kategorier til diverse priser for sin kontroversielle tilgang til stand-up comedy.</p>\n<p>SPAS, som er det femte af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, blev godt modtaget af både anmeldere og publikum. Mick Øgendahl blev på baggrund af showet kåret til Årets Komiker 2012 ved Comedy Gallaen i Operaen. Showet var nomineret i flere kategorier til diverse priser for sin kontroversielle tilgang til stand-up comedy.\n»SPAS er leg. Det er fri dressur. Der er ingen doktriner. Det er bare spas. Jeg håber at kunne byde publikum på en god aften, hvor man får grinet, glemmer sine problemer og slapper af. Men showet er en organisk klump - det ændrer sig hele tiden. Der er selvfølgelig en ramme, et skelet, som jeg så kan bygge på. Stand-up er lidt ligesom film - hvis der ikke er noget overraskelsesmoment, gider man ikke se det. En joke er jo ikke sjov, hvis man kan gætte sig til, hvad der sker.«\n\nDe seneste år har Mick Øgendahl bevæget sig mere og mere rundt i filmens verden med store roller i blandt andet »Blå Mænd« og »Alle for én,« og den kommende »Alle for to,« hvor han i alle tre tilfælde også har været involveret i manuskriptarbejdet.\nSPAS har fået blandede reaktioner fra publikum. Nogle mener, showet er temmelig fladpandet humor uden de store overraskelser. Andre hylder det som Mick Øgendahl, når han er allerbedst, og roser de spastiske bevægelser og den anarkistiske komik.\nUanset holdning er de fleste enige om, at SPAS cementerer Mick Øgendahls position som en af Danmarks absolut bedste stand-up komikere.\nSPAS er efterfølgeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-propaganda/\">Propaganda</a> og forgængeren til <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/mick-%C3%B8gendahl-fest/\">FEST</a>.</p>",
+    "year": "2012",
+    "length": "98",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "https://microphone.dk",
+    "tags": "Mick Øgendahl,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1249/mick-spas.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "Stream Mick Øgendahls SPAS - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/0321ff8aac3044919c964259a36ff09a",
+      "mediaKey": "0321ff8a-ac30-4491-9c96-4259a36ff09a",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1921,
+    "key": "2fa33a61-c70d-45a9-b62f-07df8676de47",
+    "udi": "umb://document/2fa33a61c70d45a9b62f07df8676de47",
+    "name": "Mick Øgendahl - Propaganda",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 20:39:02",
+    "updateDate": "2024-01-28 14:46:55",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1921",
+    "sortOrder": 4,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-propaganda/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls Propaganda - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/bc31ed9dd119a1f98224c1cf765319c2/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/bc31ed9dd119a1f98224c1cf765319c2/thumbnails/thumb_5_0.jpg",
+      "videoID": "bc31ed9dd119a1f98224c1cf765319c2",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=C2-F9tlSZjI&t=1s",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "2",
+      "videoSize": "1949902045",
+      "productLink": "",
+      "expandedDescription": "<h2>Mick Øgendahl latterliggør idioti i Propaganda</h2>\nI 2010 var <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> tilbage på den danske comedy-scene med sit veloplagte one-man show \"Propaganda\". Med skarp observans og rammende mimik fik Øgendahl sat spot på alskens absurditeter i det moderne samfund. Over 100 udsolgte forestillinger vidner om, at danskerne elsker, når Øgendahl graver i tidens tossegodheder. Intet emne er for småt eller for stort for hans skarpe pen. Alt fra rengøringsmidler og teenage-ekspedienter til Karen Blixen og finanskrisen bliver genstand for hans humoristiske dom.\n\nPropaganda, som er det fjerde af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, formår at ramme bredt til en stor del af befolkningen. Øgendahl har altid formået at ramme en nerve i publikum, der føler sig afbilledet i det skæve spejl. Hans fænomenale kropssprog og ansigtsmimik forstærker budskabet og får lattermusklerne til at vibrere. Timingen er perfekt takket være mange år på de skrå brædder. I Propaganda, som er det fjerde i rækken af Mick Øgendahls shows, har Mick DJ Steen Rock med på scenen. DJ'en sætter stemningen og bidrager til showets rytmiske flow. De to herrer har et indøvet makkerskab efter mere end 75 fælles optrædener.\n\nØgendahl har altid insisteret på at gå sine egne veje kunstnerisk. Propaganda vidner om en kunstner, der stadig formår at overraske og udfordre publikum. Hans skarpe blik på menneskers dumheder har ingen udløbsdato. Propaganda er ren morskab og giver et humoristisk spark bagi på vores kulturelle selvfedme. Ifølge Øgendahl selv har idioti desværre mange ansigter. Heldigvis har han selv et gummi-ansigt, der kan fortrækkes i alle retninger.",
+      "production": "Microphone ApS",
+      "year": "2010",
+      "description": "<h2>Stream Mick Øgendahls Propaganda - lej eller køb online</h2>\nMed showet ‘Propaganda’ vendte Mick Øgendahl i 2010 tilbage til sine foretrukne omgivelser – en scene, en mikrofon og et publikum.Mere end 100 udsolgte shows taler deres eget sprog! Med Mick Øgendahl i absolut storform er der garanti for fantastisk under- holdning. Også selv om emnerne er så forskellige som rengøringsprodukter, parforhold, Karen Blixen, gratisaviser, biler, teenage-ekspedienter og meget, meget mere … Mick Øgendahl er en af landets absolut mest populære komikere og med dette show beviser han ig en hvorfor. For Mick er der ingen emner der er for små til at blive taget under behandling – og ingen der er for store.",
+      "productionLink": "https://microphone.dk",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1251/mick-propoganda.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - Propaganda ",
+      "badge": "",
+      "length": "85",
+      "tags": "Comedy,Stand-up,Mick Øgendahl",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "bc31ed9dd119a1f98224c1cf765319c2",
+    "videoStatus": "ready",
+    "videoSize": "1949902045",
+    "videoThumbnailURL": "https://cloudflarestream.com/bc31ed9dd119a1f98224c1cf765319c2/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/bc31ed9dd119a1f98224c1cf765319c2/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=C2-F9tlSZjI&t=1s",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "2",
+    "title": "Mick Øgendahl - Propaganda ",
+    "description": "<h2>Stream Mick Øgendahls Propaganda - lej eller køb online</h2>\nMed showet ‘Propaganda’ vendte Mick Øgendahl i 2010 tilbage til sine foretrukne omgivelser – en scene, en mikrofon og et publikum.Mere end 100 udsolgte shows taler deres eget sprog! Med Mick Øgendahl i absolut storform er der garanti for fantastisk under- holdning. Også selv om emnerne er så forskellige som rengøringsprodukter, parforhold, Karen Blixen, gratisaviser, biler, teenage-ekspedienter og meget, meget mere … Mick Øgendahl er en af landets absolut mest populære komikere og med dette show beviser han ig en hvorfor. For Mick er der ingen emner der er for små til at blive taget under behandling – og ingen der er for store.",
+    "expandedDescription": "<h2>Mick Øgendahl latterliggør idioti i Propaganda</h2>\nI 2010 var <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> tilbage på den danske comedy-scene med sit veloplagte one-man show \"Propaganda\". Med skarp observans og rammende mimik fik Øgendahl sat spot på alskens absurditeter i det moderne samfund. Over 100 udsolgte forestillinger vidner om, at danskerne elsker, når Øgendahl graver i tidens tossegodheder. Intet emne er for småt eller for stort for hans skarpe pen. Alt fra rengøringsmidler og teenage-ekspedienter til Karen Blixen og finanskrisen bliver genstand for hans humoristiske dom.\n\nPropaganda, som er det fjerde af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, formår at ramme bredt til en stor del af befolkningen. Øgendahl har altid formået at ramme en nerve i publikum, der føler sig afbilledet i det skæve spejl. Hans fænomenale kropssprog og ansigtsmimik forstærker budskabet og får lattermusklerne til at vibrere. Timingen er perfekt takket være mange år på de skrå brædder. I Propaganda, som er det fjerde i rækken af Mick Øgendahls shows, har Mick DJ Steen Rock med på scenen. DJ'en sætter stemningen og bidrager til showets rytmiske flow. De to herrer har et indøvet makkerskab efter mere end 75 fælles optrædener.\n\nØgendahl har altid insisteret på at gå sine egne veje kunstnerisk. Propaganda vidner om en kunstner, der stadig formår at overraske og udfordre publikum. Hans skarpe blik på menneskers dumheder har ingen udløbsdato. Propaganda er ren morskab og giver et humoristisk spark bagi på vores kulturelle selvfedme. Ifølge Øgendahl selv har idioti desværre mange ansigter. Heldigvis har han selv et gummi-ansigt, der kan fortrækkes i alle retninger.",
+    "year": "2010",
+    "length": "85",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "https://microphone.dk",
+    "tags": "Comedy,Stand-up,Mick Øgendahl",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1251/mick-propoganda.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Mick Øgendahls Propaganda - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/2fa33a61c70d45a9b62f07df8676de47",
+      "mediaKey": "2fa33a61-c70d-45a9-b62f-07df8676de47",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1923,
+    "key": "381f35ca-850e-4b1e-b13d-81f54fbdcaf8",
+    "udi": "umb://document/381f35ca850e4b1eb13d81f54fbdcaf8",
+    "name": "Mick Øgendahl - Undskyld",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 22:40:49",
+    "updateDate": "2024-01-28 14:45:24",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1923",
+    "sortOrder": 6,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-undskyld/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls Undskyld - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/0a9ad8af74147e45ad7b5bac090745b3/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/0a9ad8af74147e45ad7b5bac090745b3/thumbnails/thumb_5_0.jpg",
+      "videoID": "0a9ad8af74147e45ad7b5bac090745b3",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://youtu.be/Y-OTZupRhVs",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "3",
+      "videoSize": "1960602531",
+      "productLink": "",
+      "expandedDescription": "<h2>Mick Øgendahl leverer varen i standup-delen af Undskyld!</h2>\n\nI 2006 præsenterede <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> noget så usædvanligt som en blanding af standupshow og spillefilm i forestillingen \"Undskyld!\". Selvom filmelementet ikke helt lykkedes, så beviste Øgendahl endnu en gang, at han er en af Danmarks absolut bedste standupkomikere. I den traditionelle standup-del af showet er Mick Øgendahl i absolut verdensklasse og får lattermusklerne til at vibrere med sine veltimede pointer og skarpe iagttagelser. Han formår både at parodiere og mime på en måde, så man føler sig afbilledet - på godt og ondt.\n\nUndskyld, som er det tredje af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, er en klassiker, som bliver ved med at give. Blandt højdepunkterne i showet er Mick Øgendahls sublime Kim Larsen-imitation og hans betragtninger over alt fra myggestik til ordet \"faktum\". Mick Øgendahls fysiske udtryk og ansigtsmimik forstærker budskabet og får grinene til at runge ud over salen. \n\nSelvom ideen med at blande standupshow og film ikke helt lykkedes, så står den rendyrkede standup-del stærkt i Undskyld!. Her er Øgendahl i sit rette element og leverer varen, som kun han formår. Hans skarpe, men kærlige blik på danskerne og det danske har ingen udløbsdato. Mick Øgendahl beviste med Undskyld!, at uanset koncept og eksperimenter så er hans standup af allerfineste karat. Når først han bestiger scenen med mikrofon i hånd, så er der lagt op til en fest uden lige for lattermusklerne.",
+      "production": "Microphone ApS",
+      "year": "2006",
+      "description": "<h2>Stream Mick Øgendahls Undskyld - lej eller køb online</h2>\nI februar 2006 havde Mick Øgendahl premiere på one-man showet ”UNDSKYLD!”. Med film og live stand-up på plakaten tog publikum og anmelderne varmt imod Mick og kvitterede med aftenens dom: Undskyldningen er godtaget Dette show er unikt. For første gang nogensinde tager et live stand-up show og film hinanden i hånden og danner rammen om en enestående oplevelse hvor fiktion og virkelighed glider sammen i en skøn harmoni. Mick Øgendahl har med dette show skabt en ny for form genre: CinemaComedy. Selve filmen handler om to brødre, spillet af Kim Bodnia og Mick Øgendahl, som under stort besvær tager til Sverige for at hente en hundehvalp. Stand-up showet er klassisk stand-up som kun Øgendahl kan levere det. Mick tager udgangspunkt i filmens pludselige dilemmaer og danner dermed en hybrid mellem oplevelsen af biograf og liveshow. En sand fornøjelse og en forfriskende progressiv nyskabelse – tilsammen hedder det UNDSKYLD!",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1253/mick-undskyld.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - Undskyld ",
+      "badge": "",
+      "length": "97",
+      "tags": "Comedy,Stand-up,Mick Øgendahl",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "0a9ad8af74147e45ad7b5bac090745b3",
+    "videoStatus": "ready",
+    "videoSize": "1960602531",
+    "videoThumbnailURL": "https://cloudflarestream.com/0a9ad8af74147e45ad7b5bac090745b3/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/0a9ad8af74147e45ad7b5bac090745b3/downloads/default.mp4",
+    "trailer": "https://youtu.be/Y-OTZupRhVs",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "3",
+    "title": "Mick Øgendahl - Undskyld ",
+    "description": "<h2>Stream Mick Øgendahls Undskyld - lej eller køb online</h2>\nI februar 2006 havde Mick Øgendahl premiere på one-man showet ”UNDSKYLD!”. Med film og live stand-up på plakaten tog publikum og anmelderne varmt imod Mick og kvitterede med aftenens dom: Undskyldningen er godtaget Dette show er unikt. For første gang nogensinde tager et live stand-up show og film hinanden i hånden og danner rammen om en enestående oplevelse hvor fiktion og virkelighed glider sammen i en skøn harmoni. Mick Øgendahl har med dette show skabt en ny for form genre: CinemaComedy. Selve filmen handler om to brødre, spillet af Kim Bodnia og Mick Øgendahl, som under stort besvær tager til Sverige for at hente en hundehvalp. Stand-up showet er klassisk stand-up som kun Øgendahl kan levere det. Mick tager udgangspunkt i filmens pludselige dilemmaer og danner dermed en hybrid mellem oplevelsen af biograf og liveshow. En sand fornøjelse og en forfriskende progressiv nyskabelse – tilsammen hedder det UNDSKYLD!",
+    "expandedDescription": "<h2>Mick Øgendahl leverer varen i standup-delen af Undskyld!</h2>\n\nI 2006 præsenterede <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> noget så usædvanligt som en blanding af standupshow og spillefilm i forestillingen \"Undskyld!\". Selvom filmelementet ikke helt lykkedes, så beviste Øgendahl endnu en gang, at han er en af Danmarks absolut bedste standupkomikere. I den traditionelle standup-del af showet er Mick Øgendahl i absolut verdensklasse og får lattermusklerne til at vibrere med sine veltimede pointer og skarpe iagttagelser. Han formår både at parodiere og mime på en måde, så man føler sig afbilledet - på godt og ondt.\n\nUndskyld, som er det tredje af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, er en klassiker, som bliver ved med at give. Blandt højdepunkterne i showet er Mick Øgendahls sublime Kim Larsen-imitation og hans betragtninger over alt fra myggestik til ordet \"faktum\". Mick Øgendahls fysiske udtryk og ansigtsmimik forstærker budskabet og får grinene til at runge ud over salen. \n\nSelvom ideen med at blande standupshow og film ikke helt lykkedes, så står den rendyrkede standup-del stærkt i Undskyld!. Her er Øgendahl i sit rette element og leverer varen, som kun han formår. Hans skarpe, men kærlige blik på danskerne og det danske har ingen udløbsdato. Mick Øgendahl beviste med Undskyld!, at uanset koncept og eksperimenter så er hans standup af allerfineste karat. Når først han bestiger scenen med mikrofon i hånd, så er der lagt op til en fest uden lige for lattermusklerne.",
+    "year": "2006",
+    "length": "97",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "",
+    "tags": "Comedy,Stand-up,Mick Øgendahl",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1253/mick-undskyld.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Mick Øgendahls Undskyld - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/381f35ca850e4b1eb13d81f54fbdcaf8",
+      "mediaKey": "381f35ca-850e-4b1e-b13d-81f54fbdcaf8",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1922,
+    "key": "109a767c-9cfb-478b-a53d-1b53678bb1b3",
+    "udi": "umb://document/109a767c9cfb478ba53d1b53678bb1b3",
+    "name": "Mick Øgendahl - Tåfræser",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 22:20:15",
+    "updateDate": "2024-01-28 15:05:23",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1922",
+    "sortOrder": 5,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-taafraeser/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls Tåfræser - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/b386d223a0fab0c0c931c81c99055ca1/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/b386d223a0fab0c0c931c81c99055ca1/thumbnails/thumb_5_0.jpg",
+      "videoID": "b386d223a0fab0c0c931c81c99055ca1",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=BxpCc_Qk6cE",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "4",
+      "videoSize": "1963647985",
+      "productLink": "",
+      "expandedDescription": "<h2>Øgendahl i højeste gear i Tåfræser</h2>\nI 2004 leverede den energiske standupkomiker <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> endnu et veloplagt one-man show med titlen \"Tåfræser\". Her boltrede han sig i vanlig stil i alt fra brok over anmeldere til teenageeksistensen i Greve, hvor han på det tidspunkt boede. Øgendahl er kendt og elsket for sin fysiske formåen og enestående kropsbeherskelse på scenen. Hans ansigtsmimik og lydeffekter forstærker de skarptskårne betragtninger og skaber en nærværende energi i lokalet. Timingen er altid i top takket være utallige år på comedy-scenen.\n\nTåfræser , som er det andet af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, bringer dig helt ud på stolen af grin. Showets første del byder på en rebelsk Øgendahl, der ikke lægger fingre imellem i sit angreb på alt fra gud til anmeldere. Anden del står dog klart stærkere med mere personligt og genkendeligt materiale fra livet i Greve.\n\nSelvom første del virker en anelse søgt, så er der fuld damp på kedlerne, når Øgendahl trykker speederen i bund i anden del med velkendt fart og energi. Tåfræser cementerede på ny Øgendahls position som Danmarks ubetingede mester i fysisk og underholdende standup. Han er og bliver klassens rapkæftede knægt med attitude og bravur på de skrå brædder.",
+      "production": "Microphone ApS",
+      "year": "2004",
+      "description": "<h2>Stream Mick Øgendahls Tåfræser - lej eller køb online</h2>\nSe eller gense Mick`s one man show, der har titlen ”Tåfræser” – og her kan ingen føle sig sikker, når Mick med iskold præcision sparker verbale øretæver både til højre og venstre. Emnerne, som Mick blandt andet vil berøre, er arv og miljø, og publikum vil for første gang kunne opleve en mere voksen og ærlig Mick Øgendahl.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1252/mick-taafraeser.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - Tåfræser ",
+      "badge": "",
+      "length": "120",
+      "tags": "Comedy,Mick Øgendahl,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "b386d223a0fab0c0c931c81c99055ca1",
+    "videoStatus": "ready",
+    "videoSize": "1963647985",
+    "videoThumbnailURL": "https://cloudflarestream.com/b386d223a0fab0c0c931c81c99055ca1/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/b386d223a0fab0c0c931c81c99055ca1/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=BxpCc_Qk6cE",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "4",
+    "title": "Mick Øgendahl - Tåfræser ",
+    "description": "<h2>Stream Mick Øgendahls Tåfræser - lej eller køb online</h2>\nSe eller gense Mick`s one man show, der har titlen ”Tåfræser” – og her kan ingen føle sig sikker, når Mick med iskold præcision sparker verbale øretæver både til højre og venstre. Emnerne, som Mick blandt andet vil berøre, er arv og miljø, og publikum vil for første gang kunne opleve en mere voksen og ærlig Mick Øgendahl.",
+    "expandedDescription": "<h2>Øgendahl i højeste gear i Tåfræser</h2>\nI 2004 leverede den energiske standupkomiker <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/\">Mick Øgendahl</a> endnu et veloplagt one-man show med titlen \"Tåfræser\". Her boltrede han sig i vanlig stil i alt fra brok over anmeldere til teenageeksistensen i Greve, hvor han på det tidspunkt boede. Øgendahl er kendt og elsket for sin fysiske formåen og enestående kropsbeherskelse på scenen. Hans ansigtsmimik og lydeffekter forstærker de skarptskårne betragtninger og skaber en nærværende energi i lokalet. Timingen er altid i top takket være utallige år på comedy-scenen.\n\nTåfræser , som er det andet af <a style=\"color: #000000; text-decoration: underline;\" href=\"https://kiibee.dk/microphone-entertainment/shows/\">Mick Øgendahls shows</a>, bringer dig helt ud på stolen af grin. Showets første del byder på en rebelsk Øgendahl, der ikke lægger fingre imellem i sit angreb på alt fra gud til anmeldere. Anden del står dog klart stærkere med mere personligt og genkendeligt materiale fra livet i Greve.\n\nSelvom første del virker en anelse søgt, så er der fuld damp på kedlerne, når Øgendahl trykker speederen i bund i anden del med velkendt fart og energi. Tåfræser cementerede på ny Øgendahls position som Danmarks ubetingede mester i fysisk og underholdende standup. Han er og bliver klassens rapkæftede knægt med attitude og bravur på de skrå brædder.",
+    "year": "2004",
+    "length": "120",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "",
+    "tags": "Comedy,Mick Øgendahl,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1252/mick-taafraeser.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Mick Øgendahls Tåfræser - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/109a767c9cfb478ba53d1b53678bb1b3",
+      "mediaKey": "109a767c-9cfb-478b-a53d-1b53678bb1b3",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1913,
+    "key": "7f7c14f8-4825-43b6-aed4-a6176b035c0e",
+    "udi": "umb://document/7f7c14f8482543b6aed4a6176b035c0e",
+    "name": "Mick Øgendahl - Micktrix",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 18:06:06",
+    "updateDate": "2024-01-29 14:40:25",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1913",
+    "sortOrder": 3,
+    "urls": ["/microphone-entertainment/shows/mick-øgendahl-micktrix/"],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Mick Øgendahls Micktrix - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/1f548be541a95a8316e97d291165b8a4/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/1f548be541a95a8316e97d291165b8a4/thumbnails/thumb_5_0.jpg",
+      "videoID": "1f548be541a95a8316e97d291165b8a4",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=_DYN5tTpjI4",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "5",
+      "videoSize": "1966783199",
+      "productLink": "",
+      "expandedDescription": "<h2>Mick Øgendahl tryller igen med Micktrix</h2>\nI 2002 genopførte den energiske standupkomiker Mick Øgendahl sit legendariske one-man show \"Micktrix\" fra 2000 for at forevige det på DVD. Her fik publikum igen lov at opleve Øgendahl i absolut storform. Med vanlig bravur og en enestående kropsbeherskelse fylder Øgendahl hele scenen ud fra første færd. Hans ansigtsmimik og lydeffekter forstærker de skarpe betragtninger og skaber en medrivende stemning.\n\nI de tre acts \"I Danmark er jeg født\", \"Fra vugge til grav\" og \"Patriarkens fallit\" leverer Øgendahl bidende standup om alt fra sit liv til samfundsudviklingen. Intet emne er for småt eller stort til hans rapkæftede pen. Udover Øgendahl selv byder showet også på optrædener af Grønlands eneste standupkomiker Jonatan Klaksvik og den excentriske karakter Dr. J.P. Bjæverskov.\n\nMicktrix viser endnu engang, hvorfor Mick Øgendahl regnes som en af landets absolut bedste standupkomikere. Når han først tryller med ord, lyd og krop på scenen, er der lagt op til en sand latterfest for publikum. Øgendahl evner at få selv de mindste hverdagsbetragtninger til at fremstå som det mest hysteriske, man nogensinde har hørt. Han er og bliver Danmarks ubetingede mester i fysisk komik.",
+      "production": "Microphone ApS",
+      "year": "2000",
+      "description": "<h2>Stream Mick Øgendahls Micktrix - lej eller køb online</h2>\nMicktrix - One man showet her er resultatet af en klubturné rundt i landet i 2000. Ca. 20 små spillesteder i DK blev gæstet. At kalde det et one man show er dog en sandhed med ret mange modifikationer. Ud over Mick Øgendahl selv gæsteoptræder nemlig Grønlands eneste stand-up komiker Jonathan Klaksvig og Dr. Med. J. P Bjæverskov. Så helt ensomt har det ikke været. Det er blevet til et show om divergenserne i kultur og levevis verden over. En kronologisk gennemgang af livet som det udspiller sig fra vugge til grav, og sidst men ikke mindst en refleksion over det uomgængelige faktum, at kvinden har overtaget styringen fra primaten - nemlig manden.",
+      "productionLink": "https://microphone.dk",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1250/mick-micktrix.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - Micktrix",
+      "badge": "",
+      "length": "75",
+      "tags": "Mick Øgendahl,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "1f548be541a95a8316e97d291165b8a4",
+    "videoStatus": "ready",
+    "videoSize": "1966783199",
+    "videoThumbnailURL": "https://cloudflarestream.com/1f548be541a95a8316e97d291165b8a4/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/1f548be541a95a8316e97d291165b8a4/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=_DYN5tTpjI4",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "5",
+    "title": "Mick Øgendahl - Micktrix",
+    "description": "<h2>Stream Mick Øgendahls Micktrix - lej eller køb online</h2>\nMicktrix - One man showet her er resultatet af en klubturné rundt i landet i 2000. Ca. 20 små spillesteder i DK blev gæstet. At kalde det et one man show er dog en sandhed med ret mange modifikationer. Ud over Mick Øgendahl selv gæsteoptræder nemlig Grønlands eneste stand-up komiker Jonathan Klaksvig og Dr. Med. J. P Bjæverskov. Så helt ensomt har det ikke været. Det er blevet til et show om divergenserne i kultur og levevis verden over. En kronologisk gennemgang af livet som det udspiller sig fra vugge til grav, og sidst men ikke mindst en refleksion over det uomgængelige faktum, at kvinden har overtaget styringen fra primaten - nemlig manden.",
+    "expandedDescription": "<h2>Mick Øgendahl tryller igen med Micktrix</h2>\nI 2002 genopførte den energiske standupkomiker Mick Øgendahl sit legendariske one-man show \"Micktrix\" fra 2000 for at forevige det på DVD. Her fik publikum igen lov at opleve Øgendahl i absolut storform. Med vanlig bravur og en enestående kropsbeherskelse fylder Øgendahl hele scenen ud fra første færd. Hans ansigtsmimik og lydeffekter forstærker de skarpe betragtninger og skaber en medrivende stemning.\n\nI de tre acts \"I Danmark er jeg født\", \"Fra vugge til grav\" og \"Patriarkens fallit\" leverer Øgendahl bidende standup om alt fra sit liv til samfundsudviklingen. Intet emne er for småt eller stort til hans rapkæftede pen. Udover Øgendahl selv byder showet også på optrædener af Grønlands eneste standupkomiker Jonatan Klaksvik og den excentriske karakter Dr. J.P. Bjæverskov.\n\nMicktrix viser endnu engang, hvorfor Mick Øgendahl regnes som en af landets absolut bedste standupkomikere. Når han først tryller med ord, lyd og krop på scenen, er der lagt op til en sand latterfest for publikum. Øgendahl evner at få selv de mindste hverdagsbetragtninger til at fremstå som det mest hysteriske, man nogensinde har hørt. Han er og bliver Danmarks ubetingede mester i fysisk komik.",
+    "year": "2000",
+    "length": "75",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "https://microphone.dk",
+    "tags": "Mick Øgendahl,Comedy,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1250/mick-micktrix.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Mick Øgendahls Micktrix - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/7f7c14f8482543b6aed4a6176b035c0e",
+      "mediaKey": "7f7c14f8-4825-43b6-aed4-a6176b035c0e",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  },
+  {
+    "id": 1924,
+    "key": "a14b96d4-d642-49da-9ef1-00d2ad9d576f",
+    "udi": "umb://document/a14b96d4d64249da9ef100d2ad9d576f",
+    "name": "Mick Øgendahl - FEST med undertekster",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-07-23 23:41:38",
+    "updateDate": "2022-03-08 22:23:05",
+    "parentId": 1900,
+    "path": "-1,1067,1894,1900,1924",
+    "sortOrder": 7,
+    "urls": [
+      "/microphone-entertainment/shows/mick-øgendahl-fest-med-undertekster/"
+    ],
+    "properties": {
+      "purchasePrice": "39",
+      "access": ["58"],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://videodelivery.net/aaa4751e577d0727184e087cd3849dad/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://cloudflarestream.com/aaa4751e577d0727184e087cd3849dad/thumbnails/thumb_5_0.jpg",
+      "videoID": "aaa4751e577d0727184e087cd3849dad",
+      "openWebContentInNewWindows": "0",
+      "trailer": "https://www.youtube.com/watch?v=hsI_Cbe1JLY",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "6",
+      "videoSize": "1960848361",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "Microphone ApS",
+      "year": "2016",
+      "description": "I 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. \r\n\r\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\r\n\r\n\r\nShowet her er med undertekster.",
+      "productionLink": "https://microphone.dk",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1248/mick-fest.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Mick Øgendahl - FEST med undertekster",
+      "badge": "",
+      "length": "96",
+      "tags": "Comedy,Mick Øgendahl,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "aaa4751e577d0727184e087cd3849dad",
+    "videoStatus": "ready",
+    "videoSize": "1960848361",
+    "videoThumbnailURL": "https://cloudflarestream.com/aaa4751e577d0727184e087cd3849dad/thumbnails/thumb_5_0.jpg",
+    "videoDownloadURL": "https://videodelivery.net/aaa4751e577d0727184e087cd3849dad/downloads/default.mp4",
+    "trailer": "https://www.youtube.com/watch?v=hsI_Cbe1JLY",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "6",
+    "title": "Mick Øgendahl - FEST med undertekster",
+    "description": "I 2016 og 2017 turnerede Mick Øgendahl rundt for udsolgte sale i hele landet med showet FEST. Det taler for sig selv: Oplev intimiteten og stemningen, når Mick Øgendahl med glæde og begejstring, leger sig igennem showet foran et feststemt publikum. \r\n\r\nEt barnligt sind i en efterhånden gammel krop. Mick Øgendahl har været i 'gamet' i snart mange år. Alligevel føler han sig som en af de nye. Glæden og begejstringen ved at stå foran et publikum er stadig lige så stor, som da han første gang trådte op på de skrå brædder.\r\n\r\n\r\nShowet her er med undertekster.",
+    "expandedDescription": "",
+    "year": "2016",
+    "length": "96",
+    "badge": "",
+    "production": "Microphone ApS",
+    "productionLink": "https://microphone.dk",
+    "tags": "Comedy,Mick Øgendahl,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/1248/mick-fest.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": false,
+    "statsEntryCount": 0,
+    "statsPlayCount": 0,
+    "statsNonPlayCount": 0,
+    "firstStatAt": "",
+    "lastStatAt": "",
+    "stats": {
+      "mediaUdi": "umb://document/a14b96d4d64249da9ef100d2ad9d576f",
+      "mediaKey": "a14b96d4-d642-49da-9ef1-00d2ad9d576f",
+      "entryCount": 0,
+      "playCount": 0,
+      "nonPlayCount": 0,
+      "firstEntryAt": "",
+      "lastEntryAt": "",
+      "sampleEntryIds": []
+    }
+  }
+]

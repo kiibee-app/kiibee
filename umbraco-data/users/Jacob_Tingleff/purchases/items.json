@@ -1,0 +1,1047 @@
+[
+  {
+    "id": 120680,
+    "key": "2200dc39-903b-4948-a96d-5184b503eb57",
+    "udi": "umb://document/2200dc39903b4948a96d5184b503eb57",
+    "name": "847n04042026200637",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-04-04 20:06:58",
+    "updateDate": "2026-04-04 20:07:10",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,120680",
+    "sortOrder": 10,
+    "urls": ["/jacob-tingleff/purchases/847n04042026200637/"],
+    "fullName": "Morten Tygesen",
+    "email": "Tygesen1@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-04-18 20:06:57",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2026-04-04 20:06:58",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "Tygesen1@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2026-04-18 20:06:57",
+      "price": "39",
+      "fullName": "Morten Tygesen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 109582,
+    "key": "33c52a16-c3d0-4a25-95ee-fc85f61118f4",
+    "udi": "umb://document/33c52a16c3d04a2595eefc85f61118f4",
+    "name": "3q1z15052025184249",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-05-15 18:43:12",
+    "updateDate": "2025-05-15 18:46:23",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,109582",
+    "sortOrder": 9,
+    "urls": ["/jacob-tingleff/purchases/3q1z15052025184249/"],
+    "fullName": "Karina Stenberg ",
+    "email": "Karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-05-29 18:43:09",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2025-05-15 18:43:12",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "Karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-05-29 18:43:09",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 108889,
+    "key": "99193e78-3c3e-427f-b881-0e368556239e",
+    "udi": "umb://document/99193e783c3e427fb8810e368556239e",
+    "name": "2vs427042025213450",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-27 21:35:29",
+    "updateDate": "2025-04-27 21:35:56",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,108889",
+    "sortOrder": 8,
+    "urls": ["/jacob-tingleff/purchases/2vs427042025213450/"],
+    "fullName": "Karina stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-05-11 21:35:27",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2025-04-27 21:35:29",
+    "mediaRelationUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+        "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+        "resolved": true,
+        "id": 42577,
+        "name": "Tingleff, Tingleff Eller Tingleff",
+        "title": "Tingleff, Tingleff Eller Tingleff",
+        "urls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+        "contentTypeAlias": "media",
+        "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3148/tingleffx3-5.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Tingleff, Tingleff Eller Tingleff"],
+    "mediaUrls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-05-11 21:35:27",
+      "price": "39",
+      "fullName": "Karina stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/033f1cd4e29c48cc94c95869904de021"
+    }
+  },
+  {
+    "id": 105462,
+    "key": "46b726ba-d04d-4e48-a2b9-7fe576c7eb56",
+    "udi": "umb://document/46b726bad04d4e48a2b97fe576c7eb56",
+    "name": "e5gj31012025144106",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-01-31 14:41:37",
+    "updateDate": "2025-01-31 14:42:04",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,105462",
+    "sortOrder": 7,
+    "urls": ["/jacob-tingleff/purchases/e5gj31012025144106/"],
+    "fullName": "Simon Houborg Jensen",
+    "email": "Lemonhouborg@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-02-14 14:41:34",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2025-01-31 14:41:37",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "Lemonhouborg@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2025-02-14 14:41:34",
+      "price": "39",
+      "fullName": "Simon Houborg Jensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 100172,
+    "key": "fda418a6-258b-48da-a197-c1942ee138af",
+    "udi": "umb://document/fda418a6258b48daa197c1942ee138af",
+    "name": "13cs03092024030434",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-09-03 03:04:55",
+    "updateDate": "2024-09-03 03:05:12",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,100172",
+    "sortOrder": 6,
+    "urls": ["/jacob-tingleff/purchases/13cs03092024030434/"],
+    "fullName": "Jimmie Iversen",
+    "email": "jimmieiversen91@pm.me",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2024-09-17 03:04:51",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2024-09-03 03:04:55",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "jimmieiversen91@pm.me",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2024-09-17 03:04:51",
+      "price": "39",
+      "fullName": "Jimmie Iversen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 92473,
+    "key": "d21fbcf1-7d74-496a-abe0-333ccac833a8",
+    "udi": "umb://document/d21fbcf17d74496aabe0333ccac833a8",
+    "name": "i7wy19112023154828",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-11-19 15:48:43",
+    "updateDate": "2023-11-19 15:49:09",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,92473",
+    "sortOrder": 5,
+    "urls": ["/jacob-tingleff/purchases/i7wy19112023154828/"],
+    "fullName": "Tim Fuglsang",
+    "email": "tim_fuglsang@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2023-12-03 15:48:40",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2023-11-19 15:48:43",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "tim_fuglsang@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-12-03 15:48:40",
+      "price": "39",
+      "fullName": "Tim Fuglsang",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 67108,
+    "key": "98f52303-06cc-424a-b820-7922130c6a59",
+    "udi": "umb://document/98f5230306cc424ab8207922130c6a59",
+    "name": "eg3627062022010002",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-06-27 01:00:36",
+    "updateDate": "2022-06-27 01:01:09",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,67108",
+    "sortOrder": 4,
+    "urls": ["/jacob-tingleff/purchases/eg3627062022010002/"],
+    "fullName": "Lasse Madsen",
+    "email": "lass.mads@gmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-07-04 01:00:34",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2022-06-27 01:00:36",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "lass.mads@gmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-07-04 01:00:34",
+      "price": "39",
+      "fullName": "Lasse Madsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  },
+  {
+    "id": 63897,
+    "key": "f21e0492-0a28-431e-b9d3-2b139ecafe65",
+    "udi": "umb://document/f21e04920a28431eb9d32b139ecafe65",
+    "name": "8vm126042022004715",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-04-26 00:48:25",
+    "updateDate": "2022-04-26 00:48:25",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,63897",
+    "sortOrder": 3,
+    "urls": ["/jacob-tingleff/purchases/8vm126042022004715/"],
+    "fullName": "Rune Løfgren",
+    "email": "runeloefgren@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-05-26 00:48:23",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2022-04-26 00:48:25",
+    "mediaRelationUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+        "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+        "resolved": true,
+        "id": 42577,
+        "name": "Tingleff, Tingleff Eller Tingleff",
+        "title": "Tingleff, Tingleff Eller Tingleff",
+        "urls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+        "contentTypeAlias": "media",
+        "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3148/tingleffx3-5.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Tingleff, Tingleff Eller Tingleff"],
+    "mediaUrls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+      "email": "runeloefgren@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-05-26 00:48:23",
+      "price": "39",
+      "fullName": "Rune Løfgren",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/033f1cd4e29c48cc94c95869904de021"
+    }
+  },
+  {
+    "id": 63416,
+    "key": "e8a1f660-85ae-4bbb-97d4-32bd77b111c9",
+    "udi": "umb://document/e8a1f66085ae4bbb97d432bd77b111c9",
+    "name": "ihdh10042022232041",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-04-10 23:21:38",
+    "updateDate": "2022-04-10 23:21:38",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,63416",
+    "sortOrder": 2,
+    "urls": ["/jacob-tingleff/purchases/ihdh10042022232041/"],
+    "fullName": "Gabriel Emil Stricker",
+    "email": "gaemstricker@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-05-10 23:21:37",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2022-04-10 23:21:38",
+    "mediaRelationUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+        "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+        "resolved": true,
+        "id": 42577,
+        "name": "Tingleff, Tingleff Eller Tingleff",
+        "title": "Tingleff, Tingleff Eller Tingleff",
+        "urls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+        "contentTypeAlias": "media",
+        "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3148/tingleffx3-5.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Tingleff, Tingleff Eller Tingleff"],
+    "mediaUrls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+      "email": "gaemstricker@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-05-10 23:21:37",
+      "price": "39",
+      "fullName": "Gabriel Emil Stricker",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/033f1cd4e29c48cc94c95869904de021"
+    }
+  },
+  {
+    "id": 46819,
+    "key": "7933b053-f66c-4eae-a5c2-c424cb9c4bf2",
+    "udi": "umb://document/7933b053f66c4eaea5c2c424cb9c4bf2",
+    "name": "y49205062021090323",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 09:03:49",
+    "updateDate": "2021-06-05 09:03:49",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,46819",
+    "sortOrder": 1,
+    "urls": ["/jacob-tingleff/purchases/y49205062021090323/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 09:03:49",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2021-06-05 09:03:49",
+    "mediaRelationUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/033f1cd4e29c48cc94c95869904de021"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+        "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+        "resolved": true,
+        "id": 42577,
+        "name": "Tingleff, Tingleff Eller Tingleff",
+        "title": "Tingleff, Tingleff Eller Tingleff",
+        "urls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+        "contentTypeAlias": "media",
+        "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3148/tingleffx3-5.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Tingleff, Tingleff Eller Tingleff"],
+    "mediaUrls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 09:03:49",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/033f1cd4e29c48cc94c95869904de021"
+    }
+  },
+  {
+    "id": 46816,
+    "key": "00d44c0f-966a-4ed8-aa71-b6dadb807843",
+    "udi": "umb://document/00d44c0f966a4ed8aa71b6dadb807843",
+    "name": "699l05062021085626",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 08:56:51",
+    "updateDate": "2021-06-05 08:56:51",
+    "parentId": 42488,
+    "path": "-1,1067,42483,42488,46816",
+    "sortOrder": 0,
+    "urls": ["/jacob-tingleff/purchases/699l05062021085626/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 08:56:50",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+    "orderCreateDate": "2021-06-05 08:56:51",
+    "mediaRelationUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/ac0b2b532c8b4844ac8263c73491aabe"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+        "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+        "resolved": true,
+        "id": 42576,
+        "name": "Guide til parforhold",
+        "title": "Guide til parforhold",
+        "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+        "contentTypeAlias": "media",
+        "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Guide til parforhold"],
+    "mediaUrls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 08:56:50",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nKh Jacob",
+      "media": "umb://document/ac0b2b532c8b4844ac8263c73491aabe"
+    }
+  }
+]

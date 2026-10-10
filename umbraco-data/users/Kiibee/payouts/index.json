@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T10:49:00.495Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1815",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 1815,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1815,
+    "key": "ba99104d-d05c-4894-a5b9-fc8bef52faae",
+    "udi": "umb://document/ba99104dd05c4894a5b9fc8bef52faae",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/kiibee/payouts/"],
+    "path": "-1,1067,1812,1815",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2025-11-30 16:03:14"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailsFetched": 1,
+    "detailErrors": 0,
+    "paidPayouts": 0,
+    "unpaidPayouts": 1,
+    "totalAmount": 14.51,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 1,
+    "entriesWithInvoiceLink": 1,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

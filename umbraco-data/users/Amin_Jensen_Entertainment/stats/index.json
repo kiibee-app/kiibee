@@ -1,0 +1,116 @@
+{
+  "exportedAt": "2026-05-27T12:43:31.286Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2832",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2832,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": []
+  },
+  "parent": {
+    "id": 2832,
+    "key": "8b7f5048-f22c-4cf8-a1ca-db7b3d920159",
+    "udi": "umb://document/8b7f5048f22c4cf8a1cadb7b3d920159",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/amin-jensen-entertainment/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 1943,
+    "childrenFetched": 1943,
+    "detailIdsRequested": 1943,
+    "detailsFetched": 1943,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 200,
+      "totalItems": 1943
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 143,
+      "totalItems": 1943
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

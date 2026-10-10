@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Pædagogisk Psykologisk Tidsskrift",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-08-11",
+  "frequency": "30",
+  "notificationsType": "2",
+  "emails": ""
+}

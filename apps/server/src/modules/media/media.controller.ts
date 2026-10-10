@@ -12,6 +12,7 @@ import {
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
 import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 import { CreatorGuard } from '../auth/guards/admin.guard';
@@ -50,7 +51,7 @@ export class MediaController {
     return this.mediaService.getStreamUrl(uid);
   }
 
-  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
+  @UseGuards(OptionalJwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/stream')
   stream(@Query('key') key: string, @Req() req: FastifyRequest) {
     const role = (req as FastifyRequest & { user?: { role?: string } }).user

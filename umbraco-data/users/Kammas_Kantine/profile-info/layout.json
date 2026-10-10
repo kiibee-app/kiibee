@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Kammas Kantine",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Kammas Kantine ",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3176/kk500x500.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.62,
+      "top": 0.4563106796116505
+    },
+    "src": "/media/3177/karm-din-krop-3-1920x658.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Online kurser i Kammas Kantine",
+  "description": "Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop. \r\nDet får du med viden, sundhed, praktiske tips og tricks og fantastiske retter - der er enkle at lave i dit eget køkken.\r\nSom kostvejleder og professionel formidler serverer jeg viden om sund mad på en forståelig måde - uden dogmer og løftede pegefingre.\r\nAlt er nøje planlagt, så du kan kramme din krop på kærligste, mest smagfulde vis.\r\n",
+  "css": "header { background-color: #443959; color: white; }\nbody { background-color: #443959; color: white; }\nh5 { background-color: #443959; white; }\nh6 { background-color: #443959; color: white; }\n.line { background-color: #8a8584; } \n\n/* Main */\nmain .cover { background-color: #443959; color: white; }\n\n\n@media screen and (min-width: 1025px) {\n    main .cover .covertext--block .covertext-container { background-color: rgba(134,117,167, 0.65); }\n    main .cover .covertext--block .covertext-container h1 { color: #fff; }\n    main .cover .covertext--block .covertext-container .teaser { color: #fff; }\n}\n\n/* Hide blur effekt */\n.media__blur { display: none; }/*main .media__blur:after { background-image: -webkit-gradient(linear, left bottom, left top, from(#1d1d1d), color-stop(30%, rgba(29, 29, 29, 0.8)), to(rgba(29, 29, 29, 0))); background-image: linear-gradient(to top, \n#1d1d1d 0%, rgba(29, 29, 29, 0.8) 30%, rgba(29, 29, 29, 0) 100%); } */\nmain .media .purchases .purchase { background-color: #8675A7; color: white; }\nmain .media .purchases .purchase .grey { color: white; }\n\n\n\nmain .media .trailer { background-color: #8675A7; }",
+  "javaScript": ""
+}

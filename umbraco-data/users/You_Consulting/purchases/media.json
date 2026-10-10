@@ -1,0 +1,49 @@
+[
+  {
+    "udi": "umb://document/18557172088b49019013ac25fe5d1234",
+    "key": "18557172-088b-4901-9013-ac25fe5d1234",
+    "resolved": true,
+    "id": 78118,
+    "name": "3 måder du kan bruge Orakelkort på som selvstændig",
+    "title": "3 måder du kan bruge Orakelkort på som selvstændig",
+    "urls": [
+      "/you-consulting/orakelkort/3-maader-du-kan-bruge-orakelkort-paa-som-selvstaendig/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "f855b682c0e8816a448bee7149fceeff",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "300",
+    "rentalPrice": "",
+    "purchaseEntryCount": 2,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 4,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2023-02-16 12:20:06",
+    "lastPurchaseAt": "2023-02-23 16:25:27",
+    "samplePurchaseIds": [78480, 78240]
+  }
+]

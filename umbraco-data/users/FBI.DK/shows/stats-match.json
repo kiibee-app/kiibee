@@ -1,0 +1,447 @@
+{
+  "matchedShows": [
+    {
+      "id": 43294,
+      "key": "8d78bae0-0384-4c3a-bb10-41d3cd6663d0",
+      "udi": "umb://document/8d78bae003844c3abb1041d3cd6663d0",
+      "name": "Farvelagte Frustrationer",
+      "title": "Farvelagte Frustrationer",
+      "statsEntryCount": 31,
+      "statsPlayCount": 3,
+      "statsNonPlayCount": 28
+    },
+    {
+      "id": 46979,
+      "key": "a175fb3d-ddbf-4f81-b0aa-0115b422c7d0",
+      "udi": "umb://document/a175fb3dddbf4f81b0aa0115b422c7d0",
+      "name": "Fem På Flugt",
+      "title": "Fem På Flugt",
+      "statsEntryCount": 11,
+      "statsPlayCount": 1,
+      "statsNonPlayCount": 10
+    },
+    {
+      "id": 46980,
+      "key": "715472b6-3865-42c8-9188-2c41d21af5fe",
+      "udi": "umb://document/715472b6386542c891882c41d21af5fe",
+      "name": "Stand-up I Edinburgh",
+      "title": "Stand-up I Edinburgh",
+      "statsEntryCount": 6,
+      "statsPlayCount": 2,
+      "statsNonPlayCount": 4
+    },
+    {
+      "id": 62895,
+      "key": "76266a5d-4edc-46f7-a062-8e230484cd9e",
+      "udi": "umb://document/76266a5d4edc46f7a0628e230484cd9e",
+      "name": "Det' jo løgn",
+      "title": "Det' jo løgn",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3
+    }
+  ],
+  "showsWithoutStats": [],
+  "statsMediaWithoutShow": [
+    {
+      "mediaUdi": "umb://document/c4557903164e41f786789444db94ee29",
+      "mediaKey": "c4557903-164e-41f7-8678-9444db94ee29",
+      "statsEntryCount": 1207,
+      "statsPlayCount": 503,
+      "statsNonPlayCount": 704,
+      "firstEntryAt": "2022-05-30 10:44:42",
+      "lastEntryAt": "2026-06-02 12:38:15",
+      "sampleEntryIds": [124096, 124095, 124073, 123994, 123984]
+    },
+    {
+      "mediaUdi": "umb://document/e470c367a9f7420a9f1c975287f4f6a6",
+      "mediaKey": "e470c367-a9f7-420a-9f1c-975287f4f6a6",
+      "statsEntryCount": 336,
+      "statsPlayCount": 52,
+      "statsNonPlayCount": 284,
+      "firstEntryAt": "2021-05-23 03:52:50",
+      "lastEntryAt": "2026-05-30 12:28:58",
+      "sampleEntryIds": [123985, 123980, 123100, 123099, 123080]
+    },
+    {
+      "mediaUdi": "umb://document/b44201c507044b2f829165b3811f2117",
+      "mediaKey": "b44201c5-0704-4b2f-8291-65b3811f2117",
+      "statsEntryCount": 247,
+      "statsPlayCount": 54,
+      "statsNonPlayCount": 193,
+      "firstEntryAt": "2021-06-01 16:00:39",
+      "lastEntryAt": "2026-05-30 12:30:18",
+      "sampleEntryIds": [123993, 123989, 123988, 123982, 122702]
+    },
+    {
+      "mediaUdi": "umb://document/de1fc39ecab645deaab4ad3358f276ed",
+      "mediaKey": "de1fc39e-cab6-45de-aab4-ad3358f276ed",
+      "statsEntryCount": 229,
+      "statsPlayCount": 34,
+      "statsNonPlayCount": 195,
+      "firstEntryAt": "2021-06-01 16:12:04",
+      "lastEntryAt": "2026-05-30 12:29:12",
+      "sampleEntryIds": [123987, 123981, 122996, 122995, 122992]
+    },
+    {
+      "mediaUdi": "umb://document/7d13c8d5894b435eb4a6eb5c9b5812a9",
+      "mediaKey": "7d13c8d5-894b-435e-b4a6-eb5c9b5812a9",
+      "statsEntryCount": 49,
+      "statsPlayCount": 12,
+      "statsNonPlayCount": 37,
+      "firstEntryAt": "2021-12-31 20:00:47",
+      "lastEntryAt": "2025-04-26 17:11:51",
+      "sampleEntryIds": [108843, 108842, 85793, 78641, 78640]
+    },
+    {
+      "mediaUdi": "umb://document/b1ab796bacc546e1a67815e6556c95e4",
+      "mediaKey": "b1ab796b-acc5-46e1-a678-15e6556c95e4",
+      "statsEntryCount": 43,
+      "statsPlayCount": 11,
+      "statsNonPlayCount": 32,
+      "firstEntryAt": "2021-12-31 19:59:35",
+      "lastEntryAt": "2025-10-27 20:38:11",
+      "sampleEntryIds": [114729, 114728, 112240, 112236, 108382]
+    },
+    {
+      "mediaUdi": "umb://document/a5c5dec16ab24ff28570976fb459785d",
+      "mediaKey": "a5c5dec1-6ab2-4ff2-8570-976fb459785d",
+      "statsEntryCount": 23,
+      "statsPlayCount": 8,
+      "statsNonPlayCount": 15,
+      "firstEntryAt": "2021-07-30 22:18:15",
+      "lastEntryAt": "2025-11-22 19:39:33",
+      "sampleEntryIds": [115868, 115867, 115866, 115846, 115845]
+    },
+    {
+      "mediaUdi": "umb://document/f7afe50afca34e6a9b7061f543ac0def",
+      "mediaKey": "f7afe50a-fca3-4e6a-9b70-61f543ac0def",
+      "statsEntryCount": 15,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 15,
+      "firstEntryAt": "2021-07-31 17:48:28",
+      "lastEntryAt": "2025-12-04 19:57:38",
+      "sampleEntryIds": [116203, 114875, 114874, 112113, 112106]
+    },
+    {
+      "mediaUdi": "umb://document/a101b028fcf048538e9c92416eb57c19",
+      "mediaKey": "a101b028-fcf0-4853-8e9c-92416eb57c19",
+      "statsEntryCount": 13,
+      "statsPlayCount": 3,
+      "statsNonPlayCount": 10,
+      "firstEntryAt": "2021-08-28 17:45:10",
+      "lastEntryAt": "2025-09-04 19:59:25",
+      "sampleEntryIds": [112239, 109353, 109352, 109351, 109350]
+    },
+    {
+      "mediaUdi": "umb://document/6fc14951d7474b03b81f7e0dc83071c4",
+      "mediaKey": "6fc14951-d747-4b03-b81f-7e0dc83071c4",
+      "statsEntryCount": 13,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 13,
+      "firstEntryAt": "2021-11-04 14:20:07",
+      "lastEntryAt": "2025-01-23 11:31:04",
+      "sampleEntryIds": [105160, 77468, 76720, 74498, 74492]
+    },
+    {
+      "mediaUdi": "umb://document/545e8332de774ac289a8190d88767c1b",
+      "mediaKey": "545e8332-de77-4ac2-89a8-190d88767c1b",
+      "statsEntryCount": 11,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 11,
+      "firstEntryAt": "2021-06-05 07:32:07",
+      "lastEntryAt": "2022-11-16 21:08:06",
+      "sampleEntryIds": [75065, 46803, 46800, 46799, 46798]
+    },
+    {
+      "mediaUdi": "umb://document/71d6030df45f4b0c853c487712b039d7",
+      "mediaKey": "71d6030d-f45f-4b0c-853c-487712b039d7",
+      "statsEntryCount": 9,
+      "statsPlayCount": 4,
+      "statsNonPlayCount": 5,
+      "firstEntryAt": "2021-09-11 18:32:10",
+      "lastEntryAt": "2025-11-17 19:32:27",
+      "sampleEntryIds": [115532, 110875, 110066, 110065, 80286]
+    },
+    {
+      "mediaUdi": "umb://document/a206798f213a4a31a03cecf01988cb02",
+      "mediaKey": "a206798f-213a-4a31-a03c-ecf01988cb02",
+      "statsEntryCount": 6,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 6,
+      "firstEntryAt": "2021-06-05 12:47:31",
+      "lastEntryAt": "2026-05-14 18:39:35",
+      "sampleEntryIds": [123246, 74489, 71362, 61749, 61421]
+    },
+    {
+      "mediaUdi": "umb://document/6e4a1c727baf4bd5b00a131f4e868cf5",
+      "mediaKey": "6e4a1c72-7baf-4bd5-b00a-131f4e868cf5",
+      "statsEntryCount": 5,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 5,
+      "firstEntryAt": "2022-02-19 16:38:38",
+      "lastEntryAt": "2025-01-09 13:00:06",
+      "sampleEntryIds": [104587, 104584, 74491, 71360, 61747]
+    },
+    {
+      "mediaUdi": "umb://document/7bdaf49c1eb54654a525ccd99c42ed9d",
+      "mediaKey": "7bdaf49c-1eb5-4654-a525-ccd99c42ed9d",
+      "statsEntryCount": 5,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 5,
+      "firstEntryAt": "2022-02-19 16:38:39",
+      "lastEntryAt": "2024-08-02 19:00:57",
+      "sampleEntryIds": [99264, 99263, 74490, 71361, 61748]
+    },
+    {
+      "mediaUdi": "umb://document/adaab4f93b574753958576b7f6fa7440",
+      "mediaKey": "adaab4f9-3b57-4753-9585-76b7f6fa7440",
+      "statsEntryCount": 5,
+      "statsPlayCount": 2,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2021-04-02 14:31:04",
+      "lastEntryAt": "2022-11-16 21:07:08",
+      "sampleEntryIds": [75062, 46790, 46777, 42838, 41924]
+    },
+    {
+      "mediaUdi": "umb://document/8d749b086c7f46318c25edb75fe2d839",
+      "mediaKey": "8d749b08-6c7f-4631-8c25-edb75fe2d839",
+      "statsEntryCount": 4,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 4,
+      "firstEntryAt": "2021-06-05 07:34:28",
+      "lastEntryAt": "2021-06-05 08:03:28",
+      "sampleEntryIds": [46794, 46788, 46784, 46781]
+    },
+    {
+      "mediaUdi": "umb://document/5036a36b0ae5433b83453f8e5c1267ef",
+      "mediaKey": "5036a36b-0ae5-433b-8345-3f8e5c1267ef",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2021-06-05 07:47:43",
+      "lastEntryAt": "2022-11-16 21:10:28",
+      "sampleEntryIds": [75067, 46796, 46786]
+    },
+    {
+      "mediaUdi": "umb://document/caa85681bc1a4a8cbf2fe60e42743c7b",
+      "mediaKey": "caa85681-bc1a-4a8c-bf2f-e60e42743c7b",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2021-06-05 07:43:38",
+      "lastEntryAt": "2022-11-16 21:09:52",
+      "sampleEntryIds": [75066, 46795, 46785]
+    },
+    {
+      "mediaUdi": "umb://document/9a42335b306c45bfaa343ae862b47ef1",
+      "mediaKey": "9a42335b-306c-45bf-aa34-3ae862b47ef1",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2021-06-05 07:31:49",
+      "lastEntryAt": "2022-11-16 21:07:54",
+      "sampleEntryIds": [75064, 46792, 46779]
+    },
+    {
+      "mediaUdi": "umb://document/b34d1659f71d4e7e8fe94c9d02d6cd55",
+      "mediaKey": "b34d1659-f71d-4e7e-8fe9-4c9d02d6cd55",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2021-06-05 07:24:46",
+      "lastEntryAt": "2022-11-16 21:07:24",
+      "sampleEntryIds": [75063, 46791, 46778]
+    },
+    {
+      "mediaUdi": "umb://document/a3b4917cb5c340e6bb4c325175a9fb46",
+      "mediaKey": "a3b4917c-b5c3-40e6-bb4c-325175a9fb46",
+      "statsEntryCount": 3,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 3,
+      "firstEntryAt": "2022-02-19 16:46:25",
+      "lastEntryAt": "2022-10-31 16:02:57",
+      "sampleEntryIds": [74488, 71363, 61750]
+    },
+    {
+      "mediaUdi": "umb://document/32c2c5a6aeff491593a9b49e0136eab0",
+      "mediaKey": "32c2c5a6-aeff-4915-93a9-b49e0136eab0",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:20:00",
+      "lastEntryAt": "2021-10-27 00:20:00",
+      "sampleEntryIds": [51056]
+    },
+    {
+      "mediaUdi": "umb://document/1fe71c8f200d4827a525b8c9527bc4c7",
+      "mediaKey": "1fe71c8f-200d-4827-a525-b8c9527bc4c7",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:19:59",
+      "lastEntryAt": "2021-10-27 00:19:59",
+      "sampleEntryIds": [51055]
+    },
+    {
+      "mediaUdi": "umb://document/221a5800b657462385c181751100227e",
+      "mediaKey": "221a5800-b657-4623-85c1-81751100227e",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:19:58",
+      "lastEntryAt": "2021-10-27 00:19:58",
+      "sampleEntryIds": [51054]
+    },
+    {
+      "mediaUdi": "umb://document/66536110bca94e66a83a57ecc2118f7f",
+      "mediaKey": "66536110-bca9-4e66-a83a-57ecc2118f7f",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:18:24",
+      "lastEntryAt": "2021-10-27 00:18:24",
+      "sampleEntryIds": [51053]
+    },
+    {
+      "mediaUdi": "umb://document/4e10099b19e74446adfec309d90af619",
+      "mediaKey": "4e10099b-19e7-4446-adfe-c309d90af619",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:16:01",
+      "lastEntryAt": "2021-10-27 00:16:01",
+      "sampleEntryIds": [51052]
+    },
+    {
+      "mediaUdi": "umb://document/5daef2a2147a41a09f773302fc96157e",
+      "mediaKey": "5daef2a2-147a-41a0-9f77-3302fc96157e",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:16:00",
+      "lastEntryAt": "2021-10-27 00:16:00",
+      "sampleEntryIds": [51051]
+    },
+    {
+      "mediaUdi": "umb://document/1ce4c7959ca94f35b5c41c89b4763261",
+      "mediaKey": "1ce4c795-9ca9-4f35-b5c4-1c89b4763261",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:15:58",
+      "lastEntryAt": "2021-10-27 00:15:58",
+      "sampleEntryIds": [51050]
+    },
+    {
+      "mediaUdi": "umb://document/c36d212d9fea4aa9a5d5a34921b3e6f9",
+      "mediaKey": "c36d212d-9fea-4aa9-a5d5-a34921b3e6f9",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:15:57",
+      "lastEntryAt": "2021-10-27 00:15:57",
+      "sampleEntryIds": [51049]
+    },
+    {
+      "mediaUdi": "umb://document/5384dda3772d4f34b0b1c091bd83e3d6",
+      "mediaKey": "5384dda3-772d-4f34-b0b1-c091bd83e3d6",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:14:23",
+      "lastEntryAt": "2021-10-27 00:14:23",
+      "sampleEntryIds": [51048]
+    },
+    {
+      "mediaUdi": "umb://document/1dca5efe66394c19a30050b67652ced1",
+      "mediaKey": "1dca5efe-6639-4c19-a300-50b67652ced1",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-27 00:12:49",
+      "lastEntryAt": "2021-10-27 00:12:49",
+      "sampleEntryIds": [51047]
+    },
+    {
+      "mediaUdi": "umb://document/8b0ee9bf89f1468eb7876f380763eec1",
+      "mediaKey": "8b0ee9bf-89f1-468e-b787-6f380763eec1",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:52:47",
+      "lastEntryAt": "2021-10-09 23:52:47",
+      "sampleEntryIds": [50696]
+    },
+    {
+      "mediaUdi": "umb://document/9a1714289b874d379bb445c3ee43d2d0",
+      "mediaKey": "9a171428-9b87-4d37-9bb4-45c3ee43d2d0",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:49:26",
+      "lastEntryAt": "2021-10-09 23:49:26",
+      "sampleEntryIds": [50693]
+    },
+    {
+      "mediaUdi": "umb://document/a5beb6a997bf4dbe80f3382a2754472f",
+      "mediaKey": "a5beb6a9-97bf-4dbe-80f3-382a2754472f",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:42:53",
+      "lastEntryAt": "2021-10-09 23:42:53",
+      "sampleEntryIds": [50690]
+    },
+    {
+      "mediaUdi": "umb://document/06463ad3732a4961bc562c16f365c5cb",
+      "mediaKey": "06463ad3-732a-4961-bc56-2c16f365c5cb",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:41:34",
+      "lastEntryAt": "2021-10-09 23:41:34",
+      "sampleEntryIds": [50687]
+    },
+    {
+      "mediaUdi": "umb://document/f7b2273656f5434dad4a4fd5bf3971b6",
+      "mediaKey": "f7b22736-56f5-434d-ad4a-4fd5bf3971b6",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:34:48",
+      "lastEntryAt": "2021-10-09 23:34:48",
+      "sampleEntryIds": [50684]
+    },
+    {
+      "mediaUdi": "umb://document/de77e7f2f8c6497fa3547fc5a43ecf12",
+      "mediaKey": "de77e7f2-f8c6-497f-a354-7fc5a43ecf12",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-09 23:32:51",
+      "lastEntryAt": "2021-10-09 23:32:51",
+      "sampleEntryIds": [50681]
+    },
+    {
+      "mediaUdi": "umb://document/93018139af9840f4a52b8928a4a18860",
+      "mediaKey": "93018139-af98-40f4-a52b-8928a4a18860",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-03 17:11:53",
+      "lastEntryAt": "2021-10-03 17:11:53",
+      "sampleEntryIds": [50547]
+    },
+    {
+      "mediaUdi": "umb://document/e66bf39bf31e4f559cdd40a3162ed34d",
+      "mediaKey": "e66bf39b-f31e-4f55-9cdd-40a3162ed34d",
+      "statsEntryCount": 1,
+      "statsPlayCount": 0,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-10-03 17:01:35",
+      "lastEntryAt": "2021-10-03 17:01:35",
+      "sampleEntryIds": [50544]
+    }
+  ]
+}

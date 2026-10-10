@@ -85,7 +85,10 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
         end`.as('profile_image_url'),
       coverImageUrl: sql<string | null>`case
           when ${contentAppearance.userId} is not null
-            then nullif(${contentAppearance.desktopCoverImageUrl}, '')
+            then coalesce(
+              nullif(${contentAppearance.desktopCoverImageUrl}, ''),
+              nullif(${creatorChannels.coverImageUrl}, '')
+            )
           else nullif(${creatorChannels.coverImageUrl}, '')
         end`.as('cover_image_url'),
       mobileCoverImageUrl: sql<
@@ -125,7 +128,8 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
     .where(and(...conditions))
     .orderBy(
       desc(sql`CASE 
-        WHEN (${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '') 
+        WHEN (${contentAppearance.mobileCoverImageUrl} IS NOT NULL AND trim(${contentAppearance.mobileCoverImageUrl}) <> '')
+          OR (${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '') 
           OR (${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '') 
         THEN 1 ELSE 0 
       END`),

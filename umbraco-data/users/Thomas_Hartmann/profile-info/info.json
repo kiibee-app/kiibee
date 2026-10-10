@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Thomas Hartmann",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 41761,
+  "key": "8e1b69ce-d72a-40b2-af44-c0f7d3c8d79a",
+  "udi": "umb://document/8e1b69ced72a40b2af44c0f7d3c8d79a",
+  "path": "-1,1067,41761",
+  "url": "/thomas-hartmann/",
+  "createDate": "2021-03-31 17:22:41",
+  "updateDate": "2024-04-30 08:11:53",
+  "publishDate": "2024-04-30 08:11:53",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

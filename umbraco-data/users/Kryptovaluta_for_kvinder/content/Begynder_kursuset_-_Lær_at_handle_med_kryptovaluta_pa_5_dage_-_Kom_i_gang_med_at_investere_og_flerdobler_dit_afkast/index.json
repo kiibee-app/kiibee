@@ -1,0 +1,279 @@
+{
+  "exportedAt": "2026-07-21T19:09:53.353Z",
+  "collectionName": "Begynder kursuset - Lær at handle med kryptovaluta på 5 dage - Kom i gang med at investere og flerdobler dit afkast",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42887",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 42887,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 42887,
+    "key": "38444732-abf1-4813-b855-b416638b1cf9",
+    "udi": "umb://document/38444732abf14813b855b416638b1cf9",
+    "name": "Begynder kursuset - Lær at handle med kryptovaluta på 5 dage - Kom i gang med at investere og flerdobler dit afkast",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/kryptovaluta-for-kvinder/begynder-kursuset-laer-at-handle-med-kryptovaluta-paa-5-dage-kom-i-gang-med-at-investere-og-flerdobler-dit-afkast/"
+    ],
+    "fields": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": [
+        "59"
+      ],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "Line1992",
+      "period": "",
+      "headline": "",
+      "description": "Køb begynder kurset - Lær at handle med kryptovaluta på 5 dage <br/><br/>Kurset strækker sig over uge 46 og 47. Der bliver afholdt live spørgerunde følgende dage: 15/11, 22/11 og d. 25/11 kl 20. <br/>Prisen er kun 295 kr. <br/><br/>Alt dette får du med:<br/><br/>Du får adgang til en lukket Facebook gruppe tilknyttet kurset, hvor der lægges lektioner op, og 3 live spørgetimer! <br/><br/>Begynder kursus: <br/><br/>1. dag<br/><br/>Forstå hvad kryptovaluta er på 10 minutter <br/><br/>Whale, Bull & Bear - PDF med 10 begreber du skal kende!<br/> <br/>PDF med gennemgang af de forskellige opbevaringsmuligheder for dine kryptovalutaer<br/><br/>Videogennemgang - Lær at oprette en bruger på Binance <br/><br/><br/>2. dag<br/><br/>Videogennemgang -Lær at trade din krypto valuta på Binance og hvordan du får afkastet ud på din bankkonto<br/><br/>Hvor meget skal jeg invester for? Find dit svar i denne PDF guide<br/><br/><br/><br/>3. dag<br/><br/><br/>Videogennemgang - Sådan daytrader du og fordobler dine coins<br/><br/>Slip for at arbejde eller gå tidligt på pension! PDF der lærer dig at forstå renters rente, og beregn hvornår du kan blive finansielt uafhængig<br/><br/><br/>4. dag<br/><br/>Videogennemgang - Hiv de helt store afkast hjem ved at kende disse 5 begreber i teknisk analyse. Forstå candle stick grafen på 5 minutter – jeg gennemgår 10 ”candle sticks” du skal holde øje med!<br/><br/><br/>5 dag<br/><br/>Bliv godt rustet til den psykologiske rutschebane tur – PDF med mine 3 bedste tips <br/><br/>Videogennemgang - Historien om hvorfor jeg solgte alle mine aktier og satte dem i Kryptovaluta<br/><br/>Find din exit plan – kom ud med den store gevinst inden at kursen dykker igen!<br/>",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "1",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": [
+          "59"
+        ]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Line1992"
+      },
+      "period": {
+        "alias": "period",
+        "label": "Period",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": ""
+      },
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Køb begynder kurset - Lær at handle med kryptovaluta på 5 dage <br/><br/>Kurset strækker sig over uge 46 og 47. Der bliver afholdt live spørgerunde følgende dage: 15/11, 22/11 og d. 25/11 kl 20. <br/>Prisen er kun 295 kr. <br/><br/>Alt dette får du med:<br/><br/>Du får adgang til en lukket Facebook gruppe tilknyttet kurset, hvor der lægges lektioner op, og 3 live spørgetimer! <br/><br/>Begynder kursus: <br/><br/>1. dag<br/><br/>Forstå hvad kryptovaluta er på 10 minutter <br/><br/>Whale, Bull & Bear - PDF med 10 begreber du skal kende!<br/> <br/>PDF med gennemgang af de forskellige opbevaringsmuligheder for dine kryptovalutaer<br/><br/>Videogennemgang - Lær at oprette en bruger på Binance <br/><br/><br/>2. dag<br/><br/>Videogennemgang -Lær at trade din krypto valuta på Binance og hvordan du får afkastet ud på din bankkonto<br/><br/>Hvor meget skal jeg invester for? Find dit svar i denne PDF guide<br/><br/><br/><br/>3. dag<br/><br/><br/>Videogennemgang - Sådan daytrader du og fordobler dine coins<br/><br/>Slip for at arbejde eller gå tidligt på pension! PDF der lærer dig at forstå renters rente, og beregn hvornår du kan blive finansielt uafhængig<br/><br/><br/>4. dag<br/><br/>Videogennemgang - Hiv de helt store afkast hjem ved at kende disse 5 begreber i teknisk analyse. Forstå candle stick grafen på 5 minutter – jeg gennemgår 10 ”candle sticks” du skal holde øje med!<br/><br/><br/>5 dag<br/><br/>Bliv godt rustet til den psykologiske rutschebane tur – PDF med mine 3 bedste tips <br/><br/>Videogennemgang - Historien om hvorfor jeg solgte alle mine aktier og satte dem i Kryptovaluta<br/><br/>Find din exit plan – kom ud med den store gevinst inden at kursen dykker igen!<br/>"
+      },
+      "coverImage": {
+        "alias": "coverImage",
+        "label": "Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": ""
+      },
+      "fadeCoverImage": {
+        "alias": "fadeCoverImage",
+        "label": "Fade Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "thumbnailWide": {
+        "alias": "thumbnailWide",
+        "label": "Thumbnail Wide",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "columnAmount": {
+        "alias": "columnAmount",
+        "label": "Column Amount",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "1"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView",
+      "orderID",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period",
+      "headline",
+      "description",
+      "coverImage",
+      "fadeCoverImage",
+      "thumbnailWide",
+      "columnAmount",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailIdsRequested": 1,
+    "detailsFetched": 1,
+    "errors": 0,
+    "fieldCount": 40
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

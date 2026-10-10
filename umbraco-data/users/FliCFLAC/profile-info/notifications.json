@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "FliCFLAC",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-08-31",
+  "frequency": "30",
+  "notificationsType": "0",
+  "emails": ""
+}

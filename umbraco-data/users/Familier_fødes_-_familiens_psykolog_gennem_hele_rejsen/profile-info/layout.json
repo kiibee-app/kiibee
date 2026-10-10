@@ -1,0 +1,46 @@
+{
+  "tab": "Layout",
+  "name": "Familier fødes - familiens psykolog gennem hele rejsen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Familier fødes - familiens psykolog gennem hele rejsen",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4487/logo.png",
+    "crops": []
+  },
+  "useCoverImage": "0",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4488/logo.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

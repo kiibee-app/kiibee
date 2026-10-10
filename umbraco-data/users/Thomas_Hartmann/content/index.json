@@ -1,0 +1,20 @@
+{
+  "requestedName": "Thomas Hartmann",
+  "liveName": "Thomas Hartmann",
+  "userId": 41761,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 41768,
+      "status": "ok"
+    },
+    {
+      "name": "Men`s Room",
+      "id": 43006,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "matchedShows": [
+    {
+      "id": 43127,
+      "key": "5197f1d3-9e94-4619-9449-ce69c0f87b74",
+      "udi": "umb://document/5197f1d39e9446199449ce69c0f87b74",
+      "name": "ABC",
+      "title": "ABC",
+      "statsEntryCount": 224,
+      "statsPlayCount": 88,
+      "statsNonPlayCount": 136
+    },
+    {
+      "id": 44290,
+      "key": "9692937e-ea1e-4234-8227-5d67b6d46dea",
+      "udi": "umb://document/9692937eea1e423482275d67b6d46dea",
+      "name": "Rage Against The Mainstream",
+      "title": "Rage Against The Mainstream",
+      "statsEntryCount": 56,
+      "statsPlayCount": 12,
+      "statsNonPlayCount": 44
+    },
+    {
+      "id": 42574,
+      "key": "23d9bbd8-d555-421d-959a-b41a04749f74",
+      "udi": "umb://document/23d9bbd8d555421d959ab41a04749f74",
+      "name": "Jydelogik",
+      "title": "Jydelogik ",
+      "statsEntryCount": 89,
+      "statsPlayCount": 38,
+      "statsNonPlayCount": 51
+    }
+  ],
+  "showsWithoutStats": [
+    {
+      "id": 43014,
+      "key": "d9723bcd-400e-44e0-9de9-16b3e73d9bb4",
+      "udi": "umb://document/d9723bcd400e44e09de916b3e73d9bb4",
+      "name": "Men`s Room ",
+      "title": "Men`s Room "
+    },
+    {
+      "id": 43013,
+      "key": "61d98fb8-9199-4f17-8a61-07611c18f578",
+      "udi": "umb://document/61d98fb891994f178a6107611c18f578",
+      "name": "Men`s Room 2 ",
+      "title": "Men`s Room 2 "
+    },
+    {
+      "id": 43012,
+      "key": "605b9ad8-c4eb-467f-a36f-ff85d5180904",
+      "udi": "umb://document/605b9ad8c4eb467fa36fff85d5180904",
+      "name": "Men`s Room 3",
+      "title": "Men`s Room 3"
+    }
+  ],
+  "statsMediaWithoutShow": [
+    {
+      "mediaUdi": "umb://document/b78349ee3ec14b89a78be88e94aa1a34",
+      "mediaKey": "b78349ee-3ec1-4b89-a78b-e88e94aa1a34",
+      "statsEntryCount": 2,
+      "statsPlayCount": 1,
+      "statsNonPlayCount": 1,
+      "firstEntryAt": "2021-04-27 19:51:36",
+      "lastEntryAt": "2021-04-27 19:53:05",
+      "sampleEntryIds": [44265, 44264]
+    }
+  ]
+}

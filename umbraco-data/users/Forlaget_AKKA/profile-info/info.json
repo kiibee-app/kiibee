@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Forlaget AKKA",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 96549,
+  "key": "b03713bd-d01c-4933-a49a-e933e8fe92dc",
+  "udi": "umb://document/b03713bdd01c4933a49ae933e8fe92dc",
+  "path": "-1,1067,96549",
+  "url": "/forlaget-akka/",
+  "createDate": "2024-04-22 17:12:47",
+  "updateDate": "2026-07-28 00:00:06",
+  "publishDate": "2026-07-28 00:00:06",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

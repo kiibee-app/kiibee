@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "gymstream",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-09-05",
+  "frequency": 7,
+  "notificationsType": "0",
+  "emails": ["gymstream.dk@gmail.com"]
+}

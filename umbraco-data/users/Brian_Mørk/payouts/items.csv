@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+123383,2275b6ef-8e9f-4dbe-a968-783e5e263d55,umb://document/2275b6ef8e9f4dbea968783e5e263d55,KBF-1745,324.08,324.08,true,2026-05-19 10:32:20,2026-05-19 10:32:20,https://kiibee.dk/brian-moerk/payouts/kbf-1745/,matched-public-payout-url,https://kiibee.dk/brian-moerk/payouts/kbf-1745/,https://kiibee.dk/brian-moerk/payouts/kbf-1745/,,

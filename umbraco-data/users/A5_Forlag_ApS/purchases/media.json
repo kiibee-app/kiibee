@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/e7317899114b4fda9782fe0a40b511a7",
+    "key": "e7317899-114b-4fda-9782-fe0a40b511a7",
+    "resolved": true,
+    "id": 74779,
+    "name": "DET' HELT VILDT - Fasan",
+    "title": "DET' HELT VILDT - Fasan",
+    "urls": ["/a5-forlag-aps/det-helt-vildt-opskrifter/det-helt-vildt-fasan/"],
+    "contentTypeAlias": "media",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "/media/4204/fasan_opti.pdf",
+    "webContentURL": "",
+    "thumbnail": "/media/4205/skaermbillede-2022-11-09-kl-103839.png",
+    "purchasePrice": "99",
+    "rentalPrice": "",
+    "purchaseEntryCount": 1,
+    "purchaseOrderCount": 1,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2025-11-24 17:44:38",
+    "lastPurchaseAt": "2025-11-24 17:44:38",
+    "samplePurchaseIds": [115919]
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "note": "The Umbraco session began returning HTTP 401 during the long detail/media-resolution phase. Required stats-entry values are still present for all rows from GetChildren includeProperties=isPlay,uID,media.",
+  "detailErrors": {
+    "count": 3879,
+    "sample": [
+      {
+        "id": 9189,
+        "name": "430c015062f54049b0bd355efa6be16a",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 19461,
+        "name": "42daebcbe024434c9ad08dc476a7ec56",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 91879,
+        "name": "42f19caf9b5d4bc798781a140045883f",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 55104,
+        "name": "43116c0fda644d8eb6a8486632ff7fd6",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 88090,
+        "name": "43129d4d481a442e81b8f0230f2e1e3a",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 43757,
+        "name": "42dcd8d08bd446d0be64e3ba26d79a96",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 11532,
+        "name": "432282c4a825418c8b9e8db65f998ff8",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 4102,
+        "name": "431c64b3efab4a3386fb9095a6790161",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 68769,
+        "name": "43539f68f2494d32a6e3f8655d558a7f",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 20800,
+        "name": "4375c4aa1a15498388dbc5e742a4e2d0",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      }
+    ]
+  },
+  "mediaErrors": {
+    "count": 5,
+    "sample": [
+      {
+        "udi": "umb://document/07fa0220798447bc84ea6a587a8c8279",
+        "key": "07fa0220-7984-47bc-84ea-6a587a8c8279",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "udi": "umb://document/dd6b6775483f42a79549808876b06070",
+        "key": "dd6b6775-483f-42a7-9549-808876b06070",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "udi": "umb://document/9f6dc121b3cc474383306955db6c919e",
+        "key": "9f6dc121-b3cc-4743-8330-6955db6c919e",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "udi": "umb://document/db79b9139572490ea97c6fe37df94b06",
+        "key": "db79b913-9572-490e-a97c-6fe37df94b06",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "udi": "umb://document/4ece8d2b99e94417b624320c4907671c",
+        "key": "4ece8d2b-99e9-4417-b624-320c4907671c",
+        "error": "HTTP 401: )]}',\n{\"Message\":\"Authorization has been denied for this request.\"}"
+      }
+    ]
+  }
+}

@@ -22,8 +22,23 @@ export function deterministicUuid(value: string): string {
   ].join('-');
 }
 
+/**
+ * Directory renames for filesystem safety (e.g. spaces → underscores).
+ * Seed UUIDs keep the legacy key so existing DB rows stay linked.
+ */
+const PROFILE_SEED_KEY_ALIASES: Record<string, string> = {
+  Microphone_Entertainment: 'Microphone Entertainment',
+};
+
+/** Canonical key used for deterministic seed UUIDs. */
+export function profileSeedKey(profileKey: string): string {
+  return PROFILE_SEED_KEY_ALIASES[profileKey] ?? profileKey;
+}
+
 export function profileUserId(profileKey: string): string {
-  return deterministicUuid(`umbraco-profile:user:${profileKey}`);
+  return deterministicUuid(
+    `umbraco-profile:user:${profileSeedKey(profileKey)}`,
+  );
 }
 
 export function viewerUserId(email: string): string {
@@ -35,7 +50,9 @@ export function showSeedUuid(
   profileKey: string,
   showKey: string,
 ): string {
-  return deterministicUuid(`umbraco-show:${scope}:${profileKey}:${showKey}`);
+  return deterministicUuid(
+    `umbraco-show:${scope}:${profileSeedKey(profileKey)}:${showKey}`,
+  );
 }
 
 export function umbracoSeedUuid(
@@ -43,7 +60,9 @@ export function umbracoSeedUuid(
   profileKey: string,
   itemKey: string,
 ): string {
-  return deterministicUuid(`umbraco-${scope}:${profileKey}:${itemKey}`);
+  return deterministicUuid(
+    `umbraco-${scope}:${profileSeedKey(profileKey)}:${itemKey}`,
+  );
 }
 
 /** Resolve Umbraco media paths/URLs via shared CDN rewrite logic. */
@@ -108,46 +127,6 @@ export function normalizeEmail(value: unknown): string | null {
   return email?.includes('@') ? email : null;
 }
 
-export const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
-
-function slugifyProfileKey(value: string): string {
-  return (
-    value
-      .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/&/g, ' and ')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'umbraco-profile'
-  );
-}
-
-export function uniqueSyntheticEmail(profileKey: string): string {
-  const slug = slugifyProfileKey(profileKey).slice(0, 48);
-  const suffix = createHash('sha256')
-    .update(profileKey)
-    .digest('hex')
-    .slice(0, 8);
-
-  return `${slug}-${suffix}@${UMBRACO_PROFILE_EMAIL_DOMAIN}`;
-}
-
-export function plusAddressEmail(
-  baseEmail: string,
-  profileKey: string,
-): string | null {
-  const atIndex = baseEmail.lastIndexOf('@');
-  if (atIndex <= 0 || atIndex === baseEmail.length - 1) {
-    return null;
-  }
-
-  const localPart = baseEmail.slice(0, atIndex);
-  const domain = baseEmail.slice(atIndex + 1);
-  const slug = slugifyProfileKey(profileKey).slice(0, 40);
-
-  return `${localPart}+${slug}@${domain}`;
-}
-
 /** Notification inboxes first — supportEmail is often shared (e.g. info@kiibee.dk). */
 export function collectProfileEmailCandidates(
   supportEmail: unknown,
@@ -175,12 +154,306 @@ export function collectProfileEmailCandidates(
   return candidates;
 }
 
+export type CmsMemberRecord = {
+  nodeId: number;
+  email?: string;
+  Email?: string;
+  loginName?: string;
+  LoginName?: string;
+  key?: string;
+  profileKey?: string | null;
+  Password?: string;
+};
+
+const CONTENT_NODE_ID_OFFSET = 1;
+
+function cmsMemberEmail(record: CmsMemberRecord): string | null {
+  return normalizeEmail(record.email ?? record.Email);
+}
+
+function parseOwnerNodeId(owner: unknown): number | null {
+  const text = textOrNull(owner);
+  if (!text || !/^\d+$/.test(text)) {
+    return null;
+  }
+
+  return Number(text);
+}
+
+function normalizeMemberKey(value: unknown): string | null {
+  const text = textOrNull(value);
+  if (!text) {
+    return null;
+  }
+
+  const fromUdi = text.match(/umb:\/\/member\/([a-f0-9-]+)/i);
+  const raw = fromUdi?.[1] ?? (/^[a-f0-9-]{32,36}$/i.test(text) ? text : null);
+  return raw ? raw.replace(/-/g, '').toLowerCase() : null;
+}
+
+export function findCmsMembersFile(): string | null {
+  const envPath = process.env.UMBRACO_CMS_MEMBERS_PATH?.trim();
+  const candidates = [
+    ...(envPath ? [resolve(envPath)] : []),
+    resolve(process.cwd(), 'umbraco-data', 'cms-members.json'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'cms-members.json'),
+    resolve(process.cwd(), '..', '..', 'umbraco-data', 'cms-members.json'),
+  ];
+
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
+}
+
+export function findUmbracoExportRunFile(): string | null {
+  const envPath = process.env.UMBRACO_EXPORT_RUN_PATH?.trim();
+  const candidates = [
+    ...(envPath ? [resolve(envPath)] : []),
+    resolve(process.cwd(), 'umbraco-data', 'export-runs', 'latest.json'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'export-runs', 'latest.json'),
+    resolve(
+      process.cwd(),
+      '..',
+      '..',
+      'umbraco-data',
+      'export-runs',
+      'latest.json',
+    ),
+  ];
+
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
+}
+
+export function loadCmsMembersByNodeId(): Map<number, string> {
+  const filePath = findCmsMembersFile();
+  if (!filePath) {
+    return new Map();
+  }
+
+  const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as {
+    cmsMember?: CmsMemberRecord[];
+  };
+  const map = new Map<number, string>();
+
+  for (const member of parsed.cmsMember ?? []) {
+    const email = cmsMemberEmail(member);
+    if (email) {
+      map.set(member.nodeId, email);
+    }
+  }
+
+  return map;
+}
+
+function loadCmsMembersByKey(): Map<string, string> {
+  const filePath = findCmsMembersFile();
+  if (!filePath) {
+    return new Map();
+  }
+
+  const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as {
+    cmsMember?: CmsMemberRecord[];
+  };
+  const map = new Map<string, string>();
+
+  for (const member of parsed.cmsMember ?? []) {
+    const email = cmsMemberEmail(member);
+    const key = normalizeMemberKey(member.key);
+    if (email && key) {
+      map.set(key, email);
+    }
+  }
+
+  return map;
+}
+
+export function loadContentUserIdByProfileKey(
+  umbracoUsersRoot?: string,
+): Map<string, number> {
+  const map = new Map<string, number>();
+
+  const remember = (profileKey: string, userId: number) => {
+    if (!profileKey || !Number.isFinite(userId) || userId <= 0) {
+      return;
+    }
+    map.set(profileKey, userId);
+    const underscored = profileKey.replace(/ /g, '_');
+    if (underscored !== profileKey) {
+      map.set(underscored, userId);
+    }
+  };
+
+  const exportRunFile = findUmbracoExportRunFile();
+  if (exportRunFile) {
+    try {
+      const parsed = JSON.parse(readFileSync(exportRunFile, 'utf8')) as {
+        users?: Array<{ userDir?: string; userId?: number }>;
+      };
+      for (const user of parsed.users ?? []) {
+        if (user.userDir && user.userId) {
+          remember(user.userDir, user.userId);
+        }
+      }
+    } catch {
+      // Ignore corrupt export-run files; local folders are the fallback.
+    }
+  }
+
+  const rootCandidates = [
+    ...(umbracoUsersRoot ? [umbracoUsersRoot] : []),
+    resolve(process.cwd(), 'umbraco-data', 'users'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'users'),
+    resolve(process.cwd(), '..', '..', 'umbraco-data', 'users'),
+  ];
+  const root = rootCandidates.find((candidate) => existsSync(candidate));
+  if (!root) {
+    return map;
+  }
+
+  for (const profileKey of readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)) {
+    if (map.has(profileKey)) {
+      continue;
+    }
+    const userId = readContentUserIdFromProfileDir(join(root, profileKey));
+    if (userId) {
+      remember(profileKey, userId);
+    }
+  }
+
+  return map;
+}
+
+function readContentUserIdFromProfileDir(profileDir: string): number | null {
+  const candidates = [
+    'content/index.json',
+    'stats/index.json',
+    'shows/index.json',
+    'purchases/index.json',
+    'payouts/index.json',
+    'logs/index.json',
+  ];
+
+  for (const relativePath of candidates) {
+    const filePath = join(profileDir, relativePath);
+    if (!existsSync(filePath)) {
+      continue;
+    }
+
+    try {
+      const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as JsonRecord;
+      const direct = Number(parsed.userId);
+      if (Number.isFinite(direct) && direct > 0) {
+        return direct;
+      }
+
+      const parent = parsed.parent;
+      if (parent && typeof parent === 'object') {
+        const pathValue = textOrNull((parent as JsonRecord).path);
+        const fromPath = contentUserIdFromUmbracoPath(pathValue);
+        if (fromPath) {
+          return fromPath;
+        }
+      }
+    } catch {
+      // Try the next candidate file.
+    }
+  }
+
+  return null;
+}
+
+/** Umbraco path like "-1,1067,41913,41914" → content user node 41913. */
+function contentUserIdFromUmbracoPath(pathValue: string | null): number | null {
+  if (!pathValue) {
+    return null;
+  }
+
+  const parts = pathValue
+    .split(',')
+    .map((part) => Number(part.trim()))
+    .filter((part) => Number.isFinite(part));
+
+  // [-1, usersRoot, contentUser, ...]
+  if (parts.length >= 3 && parts[0] === -1) {
+    return parts[2];
+  }
+
+  return null;
+}
+
+/** Match a profile to its Umbraco CMS member login email. */
+export function resolveProfileCmsMemberEmail(
+  owner: unknown,
+  contentUserId: number | undefined,
+  cmsByNodeId: Map<number, string>,
+  cmsByKey: Map<string, string> = new Map(),
+): string | null {
+  const ownerKey = normalizeMemberKey(owner);
+  const byOwnerKey = ownerKey ? (cmsByKey.get(ownerKey) ?? null) : null;
+  const byContent = contentUserId
+    ? (cmsByNodeId.get(contentUserId - CONTENT_NODE_ID_OFFSET) ?? null)
+    : null;
+  const ownerNodeId = parseOwnerNodeId(owner);
+  const byOwner = ownerNodeId ? (cmsByNodeId.get(ownerNodeId) ?? null) : null;
+
+  if (byOwner && byContent && byOwner !== byContent) {
+    return byOwnerKey ?? byContent;
+  }
+
+  return byOwnerKey ?? byOwner ?? byContent ?? null;
+}
+
+/** Umbraco CMS member login emails keyed by exported profile directory name. */
+export function loadCmsMemberEmailByProfileKey(
+  umbracoUsersRoot: string,
+): Map<string, string> {
+  const cmsByNodeId = loadCmsMembersByNodeId();
+  const cmsByKey = loadCmsMembersByKey();
+  if (!cmsByNodeId.size && !cmsByKey.size) {
+    return new Map();
+  }
+
+  const contentUserIdByProfileKey =
+    loadContentUserIdByProfileKey(umbracoUsersRoot);
+  const map = new Map<string, string>();
+
+  for (const profileKey of loadUmbracoProfileKeys(umbracoUsersRoot)) {
+    const generalPath = join(
+      umbracoUsersRoot,
+      profileKey,
+      'profile-info',
+      'general.json',
+    );
+    const general = JSON.parse(readFileSync(generalPath, 'utf8')) as JsonRecord;
+    const email = resolveProfileCmsMemberEmail(
+      general.owner,
+      contentUserIdByProfileKey.get(profileKey),
+      cmsByNodeId,
+      cmsByKey,
+    );
+
+    if (email) {
+      map.set(profileKey, email);
+    }
+  }
+
+  return map;
+}
+
+/** Resolve a real Umbraco creator email, or null when none is available. */
 export function resolveCreatorEmailFromUmbraco(
   profileKey: string,
   supportEmail: unknown,
   notificationEmails: unknown,
   usedEmails: Set<string>,
-): string {
+  cmsMemberEmailByProfileKey: Map<string, string> = new Map(),
+): string | null {
+  const cmsMemberEmail = cmsMemberEmailByProfileKey.get(profileKey);
+  if (cmsMemberEmail && !usedEmails.has(cmsMemberEmail)) {
+    usedEmails.add(cmsMemberEmail);
+    return cmsMemberEmail;
+  }
+
   const candidates = collectProfileEmailCandidates(
     supportEmail,
     notificationEmails,
@@ -193,18 +466,7 @@ export function resolveCreatorEmailFromUmbraco(
     }
   }
 
-  const primaryUmbracoEmail = candidates[0];
-  if (primaryUmbracoEmail) {
-    const plusEmail = plusAddressEmail(primaryUmbracoEmail, profileKey);
-    if (plusEmail && !usedEmails.has(plusEmail)) {
-      usedEmails.add(plusEmail);
-      return plusEmail;
-    }
-  }
-
-  const synthetic = uniqueSyntheticEmail(profileKey);
-  usedEmails.add(synthetic);
-  return synthetic;
+  return null;
 }
 
 export function slugFromUrls(urls: unknown): string | null {
@@ -375,14 +637,25 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'ADHDFOKUS',
   'APHypnose',
   'Ahmed_Mittani',
+  'CamComm',
   'Diy_for_børn',
   'Foreningen_Danske_Revisorer',
   'Fredensborg_Sundhedscenter',
   'Galleri_EVIG',
   'Go_Video',
+  'Kiibee',
+  'Kiibee_(1)',
+  'Kiibee_Comedy',
+  'Kiibee_hjælpe_videoer',
+  'Kort_&_Dokumentar_Filmskolen',
+  'Letsmove_-_Motion_i_Centrum',
   'LindaAndrews',
   'Maria_Birch_Rasmussen',
+  'mariebrixtofte',
   'Maximilian_Nielsen',
+  'NuVenue',
+  'Publika',
+  'Puplika',
   'Rumhed',
   'TjelesVenner',
   'Vocal_Line',
@@ -390,16 +663,41 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'jwtc',
 ]);
 
-export function isSkippedUmbracoProfile(profileKey: string): boolean {
-  return UMBRACO_SKIP_PROFILE_KEYS.has(profileKey);
+/** Empty = seed every non-skipped Umbraco profile with profile-info. */
+export const UMBRACO_SEED_PROFILE_ALLOWLIST = new Set<string>([]);
+
+function normalizeProfileKey(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/gi, '')
+    .toLowerCase();
 }
 
-/** Umbraco profiles that have exported profile-info (real creator data). */
+const SKIPPED_PROFILE_KEY_NORMALIZED = new Set(
+  [...UMBRACO_SKIP_PROFILE_KEYS].map(normalizeProfileKey),
+);
+
+export function isSkippedUmbracoProfile(profileKey: string): boolean {
+  return (
+    UMBRACO_SKIP_PROFILE_KEYS.has(profileKey) ||
+    SKIPPED_PROFILE_KEY_NORMALIZED.has(normalizeProfileKey(profileKey))
+  );
+}
+
+export function isAllowlistedUmbracoProfile(profileKey: string): boolean {
+  if (UMBRACO_SEED_PROFILE_ALLOWLIST.size === 0) {
+    return true;
+  }
+  return UMBRACO_SEED_PROFILE_ALLOWLIST.has(profileKey);
+}
+
 export function loadUmbracoProfileKeys(root: string): string[] {
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .filter((profileKey) => !isSkippedUmbracoProfile(profileKey))
+    .filter((profileKey) => isAllowlistedUmbracoProfile(profileKey))
     .filter((profileKey) => existsSync(join(root, profileKey, 'profile-info')))
     .sort((left, right) => left.localeCompare(right));
 }
@@ -494,6 +792,7 @@ const PROFILE_CATEGORY_OVERRIDES: Record<string, string> = {
   Sundt_indtag: 'food',
   slank_og_wellness: 'wellness',
   'TANIA_ELLIS_-_The_Social_Business_Company': 'education',
+  Microphone_Entertainment: 'comedy',
   'Microphone Entertainment': 'comedy',
   'FBI.DK': 'comedy',
 };
@@ -668,24 +967,36 @@ const CLOUDFLARE_VIDEO_ID_PATTERN =
 
 const IMAGE_MEDIA_PATH_PATTERN = /\.(jpe?g|png|webp|gif|avif)(\?.*)?$/i;
 
+function unwrapUmbracoProperty(value: unknown): unknown {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return value;
+  }
+
+  const record = value as JsonRecord;
+  if ('value' in record && 'alias' in record) {
+    return record.value;
+  }
+
+  return value;
+}
+
+function isPresentUmbracoValue(value: unknown): boolean {
+  return value !== undefined && value !== null && value !== '';
+}
+
 export function getUmbracoShowValue(show: JsonRecord, key: string): unknown {
-  const direct = show[key];
-  if (direct !== undefined && direct !== null && direct !== '') {
-    return direct;
-  }
+  const candidates = [
+    show[key],
+    (show.properties as JsonRecord | undefined)?.[key],
+    (show.fields as JsonRecord | undefined)?.[key],
+    (show.fieldDetails as JsonRecord | undefined)?.[key],
+  ];
 
-  const fromProperties = (show.properties as JsonRecord | undefined)?.[key];
-  if (
-    fromProperties !== undefined &&
-    fromProperties !== null &&
-    fromProperties !== ''
-  ) {
-    return fromProperties;
-  }
-
-  const fromFields = (show.fields as JsonRecord | undefined)?.[key];
-  if (fromFields !== undefined && fromFields !== null && fromFields !== '') {
-    return fromFields;
+  for (const candidate of candidates) {
+    const unwrapped = unwrapUmbracoProperty(candidate);
+    if (isPresentUmbracoValue(unwrapped)) {
+      return unwrapped;
+    }
   }
 
   return undefined;
@@ -793,6 +1104,7 @@ export function resolveUmbracoShowThumbnails(
     resolveUmbracoThumbnailMediaUrl(
       getUmbracoShowValue(show, 'videoThumbnailURL'),
     ) ??
+    cloudflareThumbnail ??
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
     rawFileImageUrl ??
     fallbacks.creatorCoverImageUrl ??

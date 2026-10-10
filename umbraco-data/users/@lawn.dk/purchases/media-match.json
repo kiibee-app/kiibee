@@ -1,0 +1,32 @@
+{
+  "matchedMedia": [],
+  "unresolvedMedia": [
+    {
+      "udi": "umb://document/acd236a579f54309a4b660d23c3ba8a5",
+      "key": "acd236a5-79f5-4309-a4b6-60d23c3ba8a5",
+      "resolved": false,
+      "id": null,
+      "name": "",
+      "title": "",
+      "urls": [],
+      "contentTypeAlias": "",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "",
+      "purchaseEntryCount": 2,
+      "purchaseOrderCount": 2,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2023-04-08 17:33:28",
+      "lastPurchaseAt": "2023-04-08 23:00:01",
+      "samplePurchaseIds": [80196, 80125]
+    }
+  ]
+}

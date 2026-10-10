@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T11:13:54.376Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2075",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 2075,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 2075,
+    "key": "88b7508e-f78e-4ba8-ab3e-66c8d8ba0d92",
+    "udi": "umb://document/88b7508ef78e4ba8ab3e66c8d8ba0d92",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/slank-og-wellness/payouts/"],
+    "path": "-1,1067,2072,2075",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2019-09-26 20:02:50"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailsFetched": 0,
+    "detailErrors": 0,
+    "paidPayouts": 0,
+    "unpaidPayouts": 0,
+    "totalAmount": 0,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 0,
+    "entriesWithInvoiceLink": 0,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

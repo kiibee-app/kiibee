@@ -1,0 +1,350 @@
+[
+  {
+    "id": 116601,
+    "key": "9c435eff-7859-4ff1-bfd7-90dee16d64e1",
+    "udi": "umb://document/9c435eff78594ff1bfd790dee16d64e1",
+    "name": "734h20122025155758",
+    "fields": {
+      "fullName": "Frank Thomsen",
+      "price": "25",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "frankabild@gmail.com",
+      "transactionID": "397942185",
+      "media": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Frank Thomsen"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "25"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "frankabild@gmail.com"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "397942185"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 2094,
+    "key": "a049577b-a5f0-499e-be83-98f386d8823b",
+    "udi": "umb://document/a049577ba5f0499ebe8398f386d8823b",
+    "name": "2p3103102019101631",
+    "fields": {
+      "fullName": "Helle Buttrup",
+      "price": "5",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "helle@praktiskpraksis.dk",
+      "transactionID": "231227235",
+      "media": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Helle Buttrup"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "5"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "helle@praktiskpraksis.dk"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "231227235"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 2092,
+    "key": "9ac971b5-2939-4c60-a916-0cf139cd31fb",
+    "udi": "umb://document/9ac971b529394c60a9160cf139cd31fb",
+    "name": "em1e03102019101009",
+    "fields": {
+      "fullName": "anders halfter",
+      "price": "5",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "a.halfter@gmail.com",
+      "transactionID": "231226421",
+      "media": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "anders halfter"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "5"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "a.halfter@gmail.com"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "231226421"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  }
+]

@@ -1,0 +1,582 @@
+[
+  {
+    "id": 50207,
+    "key": "a9ec7948-2c75-4e04-be16-5f425ed5851b",
+    "udi": "umb://document/a9ec79482c754e04be165f425ed5851b",
+    "name": "3b9c22092021202031",
+    "fields": {
+      "fullName": "Henrik Lund Rasmussen",
+      "price": "279",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "henriklundrasmussen@outlook.dk",
+      "transactionID": "307535155",
+      "media": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Henrik Lund Rasmussen"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "henriklundrasmussen@outlook.dk"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "307535155"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 23078,
+    "key": "9166af23-c6d3-47a1-ad09-973d0a547ff1",
+    "udi": "umb://document/9166af23c6d347a1ad09973d0a547ff1",
+    "name": "278j04122020132433",
+    "fields": {
+      "fullName": "Heidi Bonsvig",
+      "price": "279",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "heidi@goch.dk",
+      "transactionID": "280901943",
+      "media": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Heidi Bonsvig"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "heidi@goch.dk"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "280901943"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 3388,
+    "key": "b5f8ff30-9404-4aaf-9a37-ba3c25b5060c",
+    "udi": "umb://document/b5f8ff3094044aaf9a37ba3c25b5060c",
+    "name": "8x4723032020092923",
+    "fields": {
+      "fullName": "Anne Stadager",
+      "price": "279",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "annestadager1@gmail.com",
+      "transactionID": "251578245",
+      "media": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Anne Stadager"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "annestadager1@gmail.com"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "251578245"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 2768,
+    "key": "23163603-e88a-406a-9c46-418ad7402662",
+    "udi": "umb://document/23163603e88a406a9c46418ad7402662",
+    "name": "k3m525022020124916",
+    "fields": {
+      "fullName": "Anna Nielsen",
+      "price": "279",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "annadorethe@yahoo.dk",
+      "transactionID": "248732237",
+      "media": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Anna Nielsen"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "annadorethe@yahoo.dk"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "248732237"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  },
+  {
+    "id": 2758,
+    "key": "2301f36c-4955-421c-8a6b-73dd9d75f57e",
+    "udi": "umb://document/2301f36c4955421c8a6b73dd9d75f57e",
+    "name": "4ut424022020173212",
+    "fields": {
+      "fullName": "Jenet Helvig",
+      "price": "279",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "mail@klinik-unik.dk",
+      "transactionID": "248653747",
+      "media": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Jenet Helvig"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "mail@klinik-unik.dk"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "248653747"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62"
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  }
+]

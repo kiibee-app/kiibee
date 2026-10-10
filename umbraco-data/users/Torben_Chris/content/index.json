@@ -1,0 +1,15 @@
+{
+  "requestedName": "Torben Chris",
+  "liveName": "Torben Chris",
+  "userId": 42564,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 42571,
+      "status": "ok"
+    }
+  ]
+}

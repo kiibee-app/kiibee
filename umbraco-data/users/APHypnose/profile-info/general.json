@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "APHypnose",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "122770",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

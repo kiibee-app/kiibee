@@ -1,0 +1,75 @@
+{
+  "requestedName": "Comedy-TV",
+  "liveName": "Comedy-TV",
+  "userId": 39727,
+  "status": "found",
+  "folderCount": 13,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "FORSLAG TIL DIG",
+      "id": 39799,
+      "status": "ok"
+    },
+    {
+      "name": "KOMIKERE ",
+      "id": 39808,
+      "status": "ok"
+    },
+    {
+      "name": "HAR DU POPCORN KLAR? VÆLG SHOW",
+      "id": 39841,
+      "status": "ok"
+    },
+    {
+      "name": "SHOWS I TOPFORM",
+      "id": 39846,
+      "status": "ok"
+    },
+    {
+      "name": "SENEST UDGIVET",
+      "id": 39858,
+      "status": "ok"
+    },
+    {
+      "name": "KØB SAMLINGER",
+      "id": 41897,
+      "status": "ok"
+    },
+    {
+      "name": "TILBAGE I TIDEN ",
+      "id": 41911,
+      "status": "ok"
+    },
+    {
+      "name": "WE STAND TOGETHER",
+      "id": 43021,
+      "status": "ok"
+    },
+    {
+      "name": "DM I STAND-UP",
+      "id": 43818,
+      "status": "ok"
+    },
+    {
+      "name": "STAND-UP.DK",
+      "id": 44964,
+      "status": "ok"
+    },
+    {
+      "name": "COMEDY AID & TALEGAVER TIL BØRN ",
+      "id": 47309,
+      "status": "ok"
+    },
+    {
+      "name": "SIDST ANKOMMET",
+      "id": 55396,
+      "status": "ok"
+    },
+    {
+      "name": "NYHEDER",
+      "id": 64863,
+      "status": "ok"
+    }
+  ]
+}

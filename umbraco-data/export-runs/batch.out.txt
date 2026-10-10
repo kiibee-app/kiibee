@@ -1,0 +1,992 @@
+Live users from Umbraco: 116
+
+[user] Settings (1073)
+  [skipped] Settings stats: section not found in Umbraco
+  [skipped] Settings shows: section not found in Umbraco
+  [skipped] Settings purchases: section not found in Umbraco
+  [skipped] Settings payouts: section not found in Umbraco
+  [skip] Settings: all requested data already exists or no matching sections
+
+[user] Admin (1223)
+  [skipped] Admin stats: section not found in Umbraco
+  [skipped] Admin shows: section not found in Umbraco
+  [skipped] Admin purchases: section not found in Umbraco
+  [skipped] Admin payouts: section not found in Umbraco
+  [skip] Admin: all requested data already exists or no matching sections
+
+[user] Fysioteamet (1790)
+  [skipped] Fysioteamet stats: data already exists
+  [skipped] Fysioteamet shows: section not found in Umbraco
+  [run] purchases parent=1794
+  [ok] Fysioteamet purchases
+  [run] payouts parent=1793
+  [ok] Fysioteamet payouts
+
+[user] Kiibee (1812)
+  [skipped] Kiibee stats: data already exists
+  [skipped] Kiibee shows: section not found in Umbraco
+  [skipped] Kiibee purchases: data already exists
+  [skipped] Kiibee payouts: data already exists
+  [skip] Kiibee: all requested data already exists or no matching sections
+
+[user] FliCFLAC (1828)
+  [skipped] FliCFLAC stats: data already exists
+  [skipped] FliCFLAC shows: section not found in Umbraco
+  [skipped] FliCFLAC purchases: data already exists
+  [run] payouts parent=1831
+  [ok] FliCFLAC payouts
+
+[user] Cathrine_Guldberg (1841)
+  [run] stats parent=2835
+  [ok] Cathrine_Guldberg stats
+  [skipped] Cathrine_Guldberg shows: section not found in Umbraco
+  [run] purchases parent=1845
+  [ok] Cathrine_Guldberg purchases
+  [run] payouts parent=1844
+  [ok] Cathrine_Guldberg payouts
+
+[user] Uffe_Holm (1879)
+  [skipped] Uffe_Holm stats: data already exists
+  [skipped] Uffe_Holm shows: data already exists
+  [skipped] Uffe_Holm purchases: data already exists
+  [skipped] Uffe_Holm payouts: data already exists
+  [skip] Uffe_Holm: all requested data already exists or no matching sections
+
+[user] Microphone Entertainment (1894)
+  [skipped] Microphone Entertainment stats: data already exists
+  [skipped] Microphone Entertainment shows: data already exists
+  [skipped] Microphone Entertainment purchases: data already exists
+  [skipped] Microphone Entertainment payouts: data already exists
+  [skip] Microphone Entertainment: all requested data already exists or no matching sections
+
+[user] Amin_Jensen_Entertainment (1902)
+  [skipped] Amin_Jensen_Entertainment stats: data already exists
+  [skipped] Amin_Jensen_Entertainment shows: data already exists
+  [skipped] Amin_Jensen_Entertainment purchases: data already exists
+  [skipped] Amin_Jensen_Entertainment payouts: data already exists
+  [skip] Amin_Jensen_Entertainment: all requested data already exists or no matching sections
+
+[user] TANIA_ELLIS_-_The_Social_Business_Company (1957)
+  [skipped] TANIA_ELLIS_-_The_Social_Business_Company stats: data already exists
+  [skipped] TANIA_ELLIS_-_The_Social_Business_Company shows: data already exists
+  [run] purchases parent=1961
+  [ok] TANIA_ELLIS_-_The_Social_Business_Company purchases
+  [run] payouts parent=1960
+  [ok] TANIA_ELLIS_-_The_Social_Business_Company payouts
+
+[user] slank_og_wellness (2072)
+  [run] stats parent=2829
+  [ok] slank_og_wellness stats
+  [skipped] slank_og_wellness shows: data already exists
+  [skipped] slank_og_wellness purchases: data already exists
+  [run] payouts parent=2075
+  [ok] slank_og_wellness payouts
+
+[user] Kiibee_hjælpe_videoer (2220)
+  [skipped] Kiibee_hjælpe_videoer stats: data already exists
+  [skipped] Kiibee_hjælpe_videoer shows: data already exists
+  [run] purchases parent=2224
+  [ok] Kiibee_hjælpe_videoer purchases
+  [run] payouts parent=2223
+  [ok] Kiibee_hjælpe_videoer payouts
+
+[user] Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed (2257)
+  [run] stats parent=2825
+  [ok] Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed stats
+  [skipped] Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed shows: section not found in Umbraco
+  [run] purchases parent=2261
+  [ok] Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed purchases
+  [run] payouts parent=2260
+  [ok] Gitte_Hildebrandt_-_små_skridt_til_bæredygtig_sundhed payouts
+
+[user] Mit_test_site (2550)
+  [skipped] Mit_test_site stats: data already exists
+  [skipped] Mit_test_site shows: data already exists
+  [run] purchases parent=2554
+  [ok] Mit_test_site purchases
+  [run] payouts parent=2553
+  [ok] Mit_test_site payouts
+
+[user] Lindhardt_A-S (2587)
+  [skipped] Lindhardt_A-S stats: data already exists
+  [skipped] Lindhardt_A-S shows: data already exists
+  [run] purchases parent=2591
+  [ok] Lindhardt_A-S purchases
+  [run] payouts parent=2590
+  [ok] Lindhardt_A-S payouts
+
+[user] Sundt_indtag (2679)
+  [run] stats parent=2817
+  [ok] Sundt_indtag stats
+  [skipped] Sundt_indtag shows: data already exists
+  [run] purchases parent=2683
+  [ok] Sundt_indtag purchases
+  [run] payouts parent=2682
+  [ok] Sundt_indtag payouts
+
+[user] Elsebeth_Fogh (2717)
+  [skipped] Elsebeth_Fogh stats: data already exists
+  [skipped] Elsebeth_Fogh shows: data already exists
+  [skipped] Elsebeth_Fogh purchases: data already exists
+  [skipped] Elsebeth_Fogh payouts: data already exists
+  [skip] Elsebeth_Fogh: all requested data already exists or no matching sections
+
+[user] ElStudio (3208)
+  [skipped] ElStudio stats: data already exists
+  [skipped] ElStudio shows: data already exists
+  [run] purchases parent=3213
+  [ok] ElStudio purchases
+  [run] payouts parent=3212
+  [ok] ElStudio payouts
+
+[user] Letsmove_-_Motion_i_Centrum (3933)
+  [run] stats parent=3934
+  [ok] Letsmove_-_Motion_i_Centrum stats
+  [skipped] Letsmove_-_Motion_i_Centrum shows: section not found in Umbraco
+  [run] purchases parent=3938
+  [ok] Letsmove_-_Motion_i_Centrum purchases
+  [run] payouts parent=3937
+  [ok] Letsmove_-_Motion_i_Centrum payouts
+
+[user] Life-_&_Business_Coach (4798)
+  [run] stats parent=4799
+  [ok] Life-_&_Business_Coach stats
+  [skipped] Life-_&_Business_Coach shows: section not found in Umbraco
+  [run] purchases parent=4803
+  [ok] Life-_&_Business_Coach purchases
+  [run] payouts parent=4802
+  [ok] Life-_&_Business_Coach payouts
+
+[user] Kort_&_Dokumentar_Filmskolen (8904)
+  [run] stats parent=8905
+  [ok] Kort_&_Dokumentar_Filmskolen stats
+  [skipped] Kort_&_Dokumentar_Filmskolen shows: section not found in Umbraco
+  [run] purchases parent=8909
+  [ok] Kort_&_Dokumentar_Filmskolen purchases
+  [run] payouts parent=8908
+  [ok] Kort_&_Dokumentar_Filmskolen payouts
+
+[user] Morten_Bonde_Development (11654)
+  [run] stats parent=11655
+  [ok] Morten_Bonde_Development stats
+  [skipped] Morten_Bonde_Development shows: section not found in Umbraco
+  [run] purchases parent=11659
+  [ok] Morten_Bonde_Development purchases
+  [run] payouts parent=11658
+  [ok] Morten_Bonde_Development payouts
+
+[user] Fredensborg_Sundhedscenter (12144)
+  [run] stats parent=12145
+  [ok] Fredensborg_Sundhedscenter stats
+  [skipped] Fredensborg_Sundhedscenter shows: section not found in Umbraco
+  [run] purchases parent=12149
+  [ok] Fredensborg_Sundhedscenter purchases
+  [run] payouts parent=12148
+  [ok] Fredensborg_Sundhedscenter payouts
+
+[user] Find_dig_ikke_i_smerte (13618)
+  [run] stats parent=13619
+  [ok] Find_dig_ikke_i_smerte stats
+  [skipped] Find_dig_ikke_i_smerte shows: section not found in Umbraco
+  [run] purchases parent=13623
+  [ok] Find_dig_ikke_i_smerte purchases
+  [run] payouts parent=13622
+  [ok] Find_dig_ikke_i_smerte payouts
+
+[user] Stopsygefravær.nu (14217)
+  [run] stats parent=14218
+  [ok] Stopsygefravær.nu stats
+  [skipped] Stopsygefravær.nu shows: section not found in Umbraco
+  [run] purchases parent=14222
+  [ok] Stopsygefravær.nu purchases
+  [run] payouts parent=14221
+  [ok] Stopsygefravær.nu payouts
+
+[user] Songs_Of_Jacob_Elk (14663)
+  [run] stats parent=14664
+  [ok] Songs_Of_Jacob_Elk stats
+  [skipped] Songs_Of_Jacob_Elk shows: section not found in Umbraco
+  [run] purchases parent=14668
+  [ok] Songs_Of_Jacob_Elk purchases
+  [run] payouts parent=14667
+  [ok] Songs_Of_Jacob_Elk payouts
+
+[user] Selvvær(dk)stedet (16444)
+  [run] stats parent=16445
+  [ok] Selvvær(dk)stedet stats
+  [skipped] Selvvær(dk)stedet shows: section not found in Umbraco
+  [run] purchases parent=16449
+  [ok] Selvvær(dk)stedet purchases
+  [run] payouts parent=16448
+  [ok] Selvvær(dk)stedet payouts
+
+[user] Pædagogisk_Psykologisk_Tidsskrift (16702)
+  [run] stats parent=16703
+  [ok] Pædagogisk_Psykologisk_Tidsskrift stats
+  [skipped] Pædagogisk_Psykologisk_Tidsskrift shows: section not found in Umbraco
+  [run] purchases parent=16707
+  [ok] Pædagogisk_Psykologisk_Tidsskrift purchases
+  [run] payouts parent=16706
+  [ok] Pædagogisk_Psykologisk_Tidsskrift payouts
+
+[user] Adal_Faragalla (17825)
+  [run] stats parent=17826
+  [ok] Adal_Faragalla stats
+  [skipped] Adal_Faragalla shows: section not found in Umbraco
+  [run] purchases parent=17830
+  [ok] Adal_Faragalla purchases
+  [run] payouts parent=17829
+  [ok] Adal_Faragalla payouts
+
+[user] Tegnestuen_Undertryk (18467)
+  [run] stats parent=18468
+  [ok] Tegnestuen_Undertryk stats
+  [skipped] Tegnestuen_Undertryk shows: section not found in Umbraco
+  [run] purchases parent=18472
+  [ok] Tegnestuen_Undertryk purchases
+  [run] payouts parent=18471
+  [ok] Tegnestuen_Undertryk payouts
+
+[user] Granli_Velvære (18838)
+  [run] stats parent=18839
+  [ok] Granli_Velvære stats
+  [skipped] Granli_Velvære shows: section not found in Umbraco
+  [run] purchases parent=18843
+  [ok] Granli_Velvære purchases
+  [run] payouts parent=18842
+  [ok] Granli_Velvære payouts
+
+[user] Britta_Koch_-_Qigong (19329)
+  [run] stats parent=19330
+  [ok] Britta_Koch_-_Qigong stats
+  [skipped] Britta_Koch_-_Qigong shows: section not found in Umbraco
+  [run] purchases parent=19334
+  [ok] Britta_Koch_-_Qigong purchases
+  [run] payouts parent=19333
+  [ok] Britta_Koch_-_Qigong payouts
+
+[user] NuVenue (19856)
+  [run] stats parent=19857
+  [ok] NuVenue stats
+  [skipped] NuVenue shows: section not found in Umbraco
+  [run] purchases parent=19861
+  [ok] NuVenue purchases
+  [run] payouts parent=19860
+  [ok] NuVenue payouts
+
+[user] Anne_Kongsbak (20852)
+  [run] stats parent=20853
+  [ok] Anne_Kongsbak stats
+  [skipped] Anne_Kongsbak shows: section not found in Umbraco
+  [run] purchases parent=20857
+  [ok] Anne_Kongsbak purchases
+  [run] payouts parent=20856
+  [ok] Anne_Kongsbak payouts
+
+[user] Hundedamen (21046)
+  [run] stats parent=21047
+  [ok] Hundedamen stats
+  [skipped] Hundedamen shows: section not found in Umbraco
+  [run] purchases parent=21051
+  [ok] Hundedamen purchases
+  [run] payouts parent=21050
+  [ok] Hundedamen payouts
+
+[user] mariebrixtofte (22550)
+  [run] stats parent=22551
+  [ok] mariebrixtofte stats
+  [skipped] mariebrixtofte shows: section not found in Umbraco
+  [run] purchases parent=22555
+  [ok] mariebrixtofte purchases
+  [run] payouts parent=22554
+  [ok] mariebrixtofte payouts
+
+[user] Galleri_EVIG (22584)
+  [run] stats parent=22585
+  [ok] Galleri_EVIG stats
+  [skipped] Galleri_EVIG shows: section not found in Umbraco
+  [run] purchases parent=22589
+  [ok] Galleri_EVIG purchases
+  [run] payouts parent=22588
+  [ok] Galleri_EVIG payouts
+
+[user] Chief1 (23691)
+  [run] stats parent=23692
+  [ok] Chief1 stats
+  [skipped] Chief1 shows: section not found in Umbraco
+  [run] purchases parent=23696
+  [ok] Chief1 purchases
+  [run] payouts parent=23695
+  [ok] Chief1 payouts
+
+[user] Ilona_Margibell (25340)
+  [run] stats parent=25341
+  [ok] Ilona_Margibell stats
+  [skipped] Ilona_Margibell shows: section not found in Umbraco
+  [run] purchases parent=25345
+  [ok] Ilona_Margibell purchases
+  [run] payouts parent=25344
+  [ok] Ilona_Margibell payouts
+
+[user] LindaAndrews (25350)
+  [run] stats parent=25351
+  [ok] LindaAndrews stats
+  [skipped] LindaAndrews shows: section not found in Umbraco
+  [run] purchases parent=25355
+  [ok] LindaAndrews purchases
+  [run] payouts parent=25354
+  [ok] LindaAndrews payouts
+
+[user] Kiibee_Comedy (25709)
+  [run] stats parent=25710
+  [ok] Kiibee_Comedy stats
+  [skipped] Kiibee_Comedy shows: section not found in Umbraco
+  [run] purchases parent=25714
+  [ok] Kiibee_Comedy purchases
+  [run] payouts parent=25713
+  [ok] Kiibee_Comedy payouts
+
+[user] SigneNeslein.dk (27108)
+  [run] stats parent=27109
+  [ok] SigneNeslein.dk stats
+  [skipped] SigneNeslein.dk shows: section not found in Umbraco
+  [run] purchases parent=27113
+  [ok] SigneNeslein.dk purchases
+  [run] payouts parent=27112
+  [ok] SigneNeslein.dk payouts
+
+[user] Go_Video (29389)
+  [run] stats parent=29390
+  [ok] Go_Video stats
+  [skipped] Go_Video shows: section not found in Umbraco
+  [run] purchases parent=29394
+  [ok] Go_Video purchases
+  [run] payouts parent=29393
+  [ok] Go_Video payouts
+
+[user] Langes_Entertainment_ApS (31200)
+  [run] stats parent=31201
+  [ok] Langes_Entertainment_ApS stats
+  [skipped] Langes_Entertainment_ApS shows: section not found in Umbraco
+  [run] purchases parent=31205
+  [ok] Langes_Entertainment_ApS purchases
+  [run] payouts parent=31204
+  [ok] Langes_Entertainment_ApS payouts
+
+[user] Comedy-TV (39727)
+  [run] stats parent=39728
+  [ok] Comedy-TV stats
+  [skipped] Comedy-TV shows: section not found in Umbraco
+  [run] purchases parent=39732
+  [ok] Comedy-TV purchases
+  [run] payouts parent=39731
+  [ok] Comedy-TV payouts
+
+[user] Kammas_Kantine (41628)
+  [run] stats parent=41629
+  [ok] Kammas_Kantine stats
+  [skipped] Kammas_Kantine shows: section not found in Umbraco
+  [run] purchases parent=41633
+  [ok] Kammas_Kantine purchases
+  [run] payouts parent=41632
+  [ok] Kammas_Kantine payouts
+
+[user] Thomas_Hartmann (41761)
+  [run] stats parent=41762
+  [ok] Thomas_Hartmann stats
+  [run] shows parent=41768
+  [ok] Thomas_Hartmann shows
+  [run] purchases parent=41766
+  [ok] Thomas_Hartmann purchases
+  [run] payouts parent=41765
+  [ok] Thomas_Hartmann payouts
+
+[user] networker (41818)
+  [run] stats parent=41819
+  [ok] networker stats
+  [skipped] networker shows: section not found in Umbraco
+  [run] purchases parent=41823
+  [ok] networker purchases
+  [run] payouts parent=41822
+  [ok] networker payouts
+
+[user] FBI.DK (41913)
+  [run] stats parent=41914
+  [ok] FBI.DK stats
+  [run] shows parent=43292
+  [ok] FBI.DK shows
+  [run] purchases parent=41918
+  [ok] FBI.DK purchases
+  [run] payouts parent=41917
+  [ok] FBI.DK payouts
+
+[user] Carsten_Bang (42166)
+  [run] stats parent=42167
+  [ok] Carsten_Bang stats
+  [run] shows parent=42173
+  [ok] Carsten_Bang shows
+  [run] purchases parent=42171
+  [ok] Carsten_Bang purchases
+  [run] payouts parent=42170
+  [ok] Carsten_Bang payouts
+
+[user] Tobias_Dybvad (42275)
+  [run] stats parent=42276
+  [ok] Tobias_Dybvad stats
+  [run] shows parent=42300
+  [ok] Tobias_Dybvad shows
+  [run] purchases parent=42280
+  [ok] Tobias_Dybvad purchases
+  [run] payouts parent=42279
+  [ok] Tobias_Dybvad payouts
+
+[user] Dan_Andersen (42292)
+  [run] stats parent=42293
+  [ok] Dan_Andersen stats
+  [run] shows parent=42309
+  [ok] Dan_Andersen shows
+  [run] purchases parent=42297
+  [ok] Dan_Andersen purchases
+  [run] payouts parent=42296
+  [ok] Dan_Andersen payouts
+
+[user] Brian_Mørk (42313)
+  [run] stats parent=42314
+  [ok] Brian_Mørk stats
+  [run] shows parent=42320
+  [ok] Brian_Mørk shows
+  [run] purchases parent=42318
+  [ok] Brian_Mørk purchases
+  [run] payouts parent=42317
+  [ok] Brian_Mørk payouts
+
+[user] Johnny_Logan (42410)
+  [run] stats parent=42411
+  [ok] Johnny_Logan stats
+  [skipped] Johnny_Logan shows: section not found in Umbraco
+  [run] purchases parent=42415
+  [ok] Johnny_Logan purchases
+  [run] payouts parent=42414
+  [ok] Johnny_Logan payouts
+
+[user] Thomas_Wivel (42475)
+  [run] stats parent=42476
+  [ok] Thomas_Wivel stats
+  [run] shows parent=42658
+  [ok] Thomas_Wivel shows
+  [run] purchases parent=42480
+  [ok] Thomas_Wivel purchases
+  [run] payouts parent=42479
+  [ok] Thomas_Wivel payouts
+
+[user] Jacob_Tingleff (42483)
+  [skipped] Jacob_Tingleff stats: data already exists
+  [skipped] Jacob_Tingleff shows: data already exists
+  [skipped] Jacob_Tingleff purchases: data already exists
+  [run] payouts parent=42487
+  [ok] Jacob_Tingleff payouts
+
+[user] Anders_Fjelsted (42509)
+  [skipped] Anders_Fjelsted stats: data already exists
+  [run] shows parent=42516
+  [ok] Anders_Fjelsted shows
+  [run] purchases parent=42514
+  [ok] Anders_Fjelsted purchases
+  [run] payouts parent=42513
+  [ok] Anders_Fjelsted payouts
+
+[user] Torben_Chris (42564)
+  [run] stats parent=42565
+  [ok] Torben_Chris stats
+  [run] shows parent=42571
+  [ok] Torben_Chris shows
+  [run] purchases parent=42569
+  [ok] Torben_Chris purchases
+  [run] payouts parent=42568
+  [ok] Torben_Chris payouts
+
+[user] Elias_Ehlers (42704)
+  [run] stats parent=42705
+  [ok] Elias_Ehlers stats
+  [run] shows parent=42711
+  [ok] Elias_Ehlers shows
+  [run] purchases parent=42709
+  [ok] Elias_Ehlers purchases
+  [run] payouts parent=42708
+  [ok] Elias_Ehlers payouts
+
+[user] Kryptovaluta_for_kvinder (42880)
+  [run] stats parent=42881
+  [ok] Kryptovaluta_for_kvinder stats
+  [skipped] Kryptovaluta_for_kvinder shows: section not found in Umbraco
+  [run] purchases parent=42885
+  [ok] Kryptovaluta_for_kvinder purchases
+  [run] payouts parent=42884
+  [ok] Kryptovaluta_for_kvinder payouts
+
+[user] Jacob_Wilson (46212)
+  [run] stats parent=46213
+  [ok] Jacob_Wilson stats
+  [run] shows parent=46219
+  [ok] Jacob_Wilson shows
+  [run] purchases parent=46217
+  [ok] Jacob_Wilson purchases
+  [run] payouts parent=46216
+  [ok] Jacob_Wilson payouts
+
+[user] Red_Barnet (46713)
+  [run] stats parent=46714
+  [ok] Red_Barnet stats
+  [run] shows parent=46934
+  [ok] Red_Barnet shows
+  [run] purchases parent=46718
+  [ok] Red_Barnet purchases
+  [run] payouts parent=46717
+  [ok] Red_Barnet payouts
+
+[user] Omar_Marzouk (46871)
+  [run] stats parent=46872
+  [ok] Omar_Marzouk stats
+  [run] shows parent=46878
+  [ok] Omar_Marzouk shows
+  [run] purchases parent=46876
+  [ok] Omar_Marzouk purchases
+  [run] payouts parent=46875
+  [ok] Omar_Marzouk payouts
+
+[user] Gottleben (47444)
+  [run] stats parent=47445
+  [ok] Gottleben stats
+  [skipped] Gottleben shows: section not found in Umbraco
+  [run] purchases parent=47449
+  [ok] Gottleben purchases
+  [run] payouts parent=47448
+  [ok] Gottleben payouts
+
+[user] NSCCM_ApS (50069)
+  [run] stats parent=50070
+  [ok] NSCCM_ApS stats
+  [skipped] NSCCM_ApS shows: section not found in Umbraco
+  [run] purchases parent=50074
+  [ok] NSCCM_ApS purchases
+  [run] payouts parent=50073
+  [ok] NSCCM_ApS payouts
+
+[user] TjelesVenner (50462)
+  [run] stats parent=50463
+  [ok] TjelesVenner stats
+  [skipped] TjelesVenner shows: section not found in Umbraco
+  [run] purchases parent=50467
+  [ok] TjelesVenner purchases
+  [run] payouts parent=50466
+  [ok] TjelesVenner payouts
+
+[user] M.C._Caffe (50894)
+  [run] stats parent=50895
+  [ok] M.C._Caffe stats
+  [skipped] M.C._Caffe shows: section not found in Umbraco
+  [run] purchases parent=50899
+  [ok] M.C._Caffe purchases
+  [run] payouts parent=50898
+  [ok] M.C._Caffe payouts
+
+[user] gymstream (51011)
+  [run] stats parent=51012
+  [ok] gymstream stats
+  [skipped] gymstream shows: section not found in Umbraco
+  [run] purchases parent=51016
+  [ok] gymstream purchases
+  [run] payouts parent=51015
+  [ok] gymstream payouts
+
+[user] B_Entertained (55246)
+  [skipped] B_Entertained stats: data already exists
+  [skipped] B_Entertained shows: section not found in Umbraco
+  [skipped] B_Entertained purchases: data already exists
+  [skipped] B_Entertained payouts: data already exists
+  [skip] B_Entertained: all requested data already exists or no matching sections
+
+[user] EvaFogNoer (57261)
+  [skipped] EvaFogNoer stats: data already exists
+  [skipped] EvaFogNoer shows: section not found in Umbraco
+  [skipped] EvaFogNoer purchases: data already exists
+  [skipped] EvaFogNoer payouts: data already exists
+  [skip] EvaFogNoer: all requested data already exists or no matching sections
+
+[user] Vital_New_Software_ApS (62344)
+  [skipped] Vital_New_Software_ApS stats: data already exists
+  [skipped] Vital_New_Software_ApS shows: section not found in Umbraco
+  [run] purchases parent=62349
+  [ok] Vital_New_Software_ApS purchases
+  [run] payouts parent=62348
+  [ok] Vital_New_Software_ApS payouts
+
+[user] Foreningen_Danske_Revisorer (65131)
+  [skipped] Foreningen_Danske_Revisorer stats: data already exists
+  [skipped] Foreningen_Danske_Revisorer shows: section not found in Umbraco
+  [skipped] Foreningen_Danske_Revisorer purchases: data already exists
+  [skipped] Foreningen_Danske_Revisorer payouts: data already exists
+  [skip] Foreningen_Danske_Revisorer: all requested data already exists or no matching sections
+
+[user] Rikke_Brünner (67371)
+  [run] stats parent=67372
+  [ok] Rikke_Brünner stats
+  [skipped] Rikke_Brünner shows: section not found in Umbraco
+  [run] purchases parent=67376
+  [ok] Rikke_Brünner purchases
+  [run] payouts parent=67375
+  [ok] Rikke_Brünner payouts
+
+[user] A5_Forlag_ApS (73339)
+  [skipped] A5_Forlag_ApS stats: data already exists
+  [skipped] A5_Forlag_ApS shows: section not found in Umbraco
+  [skipped] A5_Forlag_ApS purchases: data already exists
+  [run] payouts parent=73343
+  [ok] A5_Forlag_ApS payouts
+
+[user] ADHDFOKUS (75311)
+  [skipped] ADHDFOKUS stats: data already exists
+  [skipped] ADHDFOKUS shows: section not found in Umbraco
+  [skipped] ADHDFOKUS purchases: data already exists
+  [skipped] ADHDFOKUS payouts: data already exists
+  [skip] ADHDFOKUS: all requested data already exists or no matching sections
+
+[user] Jacob_Taarnhøj (75778)
+  [skipped] Jacob_Taarnhøj stats: data already exists
+  [skipped] Jacob_Taarnhøj shows: data already exists
+  [skipped] Jacob_Taarnhøj purchases: data already exists
+  [skipped] Jacob_Taarnhøj payouts: data already exists
+  [skip] Jacob_Taarnhøj: all requested data already exists or no matching sections
+
+[user] Simon_Talbot (77648)
+  [skipped] Simon_Talbot stats: data already exists
+  [skipped] Simon_Talbot shows: data already exists
+  [skipped] Simon_Talbot purchases: data already exists
+  [skipped] Simon_Talbot payouts: data already exists
+  [skip] Simon_Talbot: all requested data already exists or no matching sections
+
+[user] You_Consulting (78110)
+  [skipped] You_Consulting stats: data already exists
+  [skipped] You_Consulting shows: section not found in Umbraco
+  [skipped] You_Consulting purchases: data already exists
+  [skipped] You_Consulting payouts: data already exists
+  [skip] You_Consulting: all requested data already exists or no matching sections
+
+[user] Line_JL_Feel_the_Heal (78467)
+  [skipped] Line_JL_Feel_the_Heal stats: data already exists
+  [skipped] Line_JL_Feel_the_Heal shows: section not found in Umbraco
+  [skipped] Line_JL_Feel_the_Heal purchases: data already exists
+  [skipped] Line_JL_Feel_the_Heal payouts: data already exists
+  [skip] Line_JL_Feel_the_Heal: all requested data already exists or no matching sections
+
+[user] @lawn.dk (79943)
+  [skipped] @lawn.dk stats: data already exists
+  [skipped] @lawn.dk shows: section not found in Umbraco
+  [skipped] @lawn.dk purchases: data already exists
+  [skipped] @lawn.dk payouts: data already exists
+  [skip] @lawn.dk: all requested data already exists or no matching sections
+
+[user] Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen (91260)
+  [skipped] Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen stats: data already exists
+  [skipped] Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen shows: section not found in Umbraco
+  [skipped] Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen purchases: data already exists
+  [run] payouts parent=91264
+  [ok] Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen payouts
+
+[user] Per_Vers (91682)
+  [run] stats parent=91683
+  [ok] Per_Vers stats
+  [skipped] Per_Vers shows: section not found in Umbraco
+  [run] purchases parent=91687
+  [ok] Per_Vers purchases
+  [run] payouts parent=91686
+  [ok] Per_Vers payouts
+
+[user] Kitnoergaard.dk (93855)
+  [skipped] Kitnoergaard.dk stats: data already exists
+  [skipped] Kitnoergaard.dk shows: section not found in Umbraco
+  [skipped] Kitnoergaard.dk purchases: data already exists
+  [skipped] Kitnoergaard.dk payouts: data already exists
+  [skip] Kitnoergaard.dk: all requested data already exists or no matching sections
+
+[user] Damkjær_Medier (94485)
+  [skipped] Damkjær_Medier stats: data already exists
+  [skipped] Damkjær_Medier shows: section not found in Umbraco
+  [skipped] Damkjær_Medier purchases: data already exists
+  [skipped] Damkjær_Medier payouts: data already exists
+  [skip] Damkjær_Medier: all requested data already exists or no matching sections
+
+[user] Karina_Eckhausen (95577)
+  [skipped] Karina_Eckhausen stats: data already exists
+  [skipped] Karina_Eckhausen shows: section not found in Umbraco
+  [skipped] Karina_Eckhausen purchases: data already exists
+  [run] payouts parent=95581
+  [ok] Karina_Eckhausen payouts
+
+[user] Fonden_Eventyrteatret (96011)
+  [skipped] Fonden_Eventyrteatret stats: data already exists
+  [skipped] Fonden_Eventyrteatret shows: section not found in Umbraco
+  [skipped] Fonden_Eventyrteatret purchases: data already exists
+  [skipped] Fonden_Eventyrteatret payouts: data already exists
+  [skip] Fonden_Eventyrteatret: all requested data already exists or no matching sections
+
+[user] Forlaget_AKKA (96549)
+  [skipped] Forlaget_AKKA stats: data already exists
+  [skipped] Forlaget_AKKA shows: section not found in Umbraco
+  [skipped] Forlaget_AKKA purchases: data already exists
+  [skipped] Forlaget_AKKA payouts: data already exists
+  [skip] Forlaget_AKKA: all requested data already exists or no matching sections
+
+[user] Lev_Dit_Liv_NU (97418)
+  [skipped] Lev_Dit_Liv_NU stats: data already exists
+  [skipped] Lev_Dit_Liv_NU shows: section not found in Umbraco
+  [run] purchases parent=97423
+  [ok] Lev_Dit_Liv_NU purchases
+  [run] payouts parent=97422
+  [ok] Lev_Dit_Liv_NU payouts
+
+[user] RauJensen (99738)
+  [skipped] RauJensen stats: data already exists
+  [skipped] RauJensen shows: section not found in Umbraco
+  [run] purchases parent=99743
+  [ok] RauJensen purchases
+  [run] payouts parent=99742
+  [ok] RauJensen payouts
+
+[user] VideoVisionær_kursus (100020)
+  [run] stats parent=100021
+  [ok] VideoVisionær_kursus stats
+  [skipped] VideoVisionær_kursus shows: section not found in Umbraco
+  [run] purchases parent=100025
+  [ok] VideoVisionær_kursus purchases
+  [run] payouts parent=100024
+  [ok] VideoVisionær_kursus payouts
+
+[user] CamComm (100474)
+  [run] stats parent=100475
+  [ok] CamComm stats
+  [skipped] CamComm shows: section not found in Umbraco
+  [run] purchases parent=100479
+  [ok] CamComm purchases
+  [run] payouts parent=100478
+  [ok] CamComm payouts
+
+[user] Janni_-_Køreskole_og_Terapi (100586)
+  [run] stats parent=100587
+  [ok] Janni_-_Køreskole_og_Terapi stats
+  [skipped] Janni_-_Køreskole_og_Terapi shows: section not found in Umbraco
+  [run] purchases parent=100591
+  [ok] Janni_-_Køreskole_og_Terapi purchases
+  [run] payouts parent=100590
+  [ok] Janni_-_Køreskole_og_Terapi payouts
+
+[user] Publika (101314)
+  [skipped] Publika stats: data already exists
+  [skipped] Publika shows: section not found in Umbraco
+  [skipped] Publika purchases: data already exists
+  [skipped] Publika payouts: data already exists
+  [skip] Publika: all requested data already exists or no matching sections
+
+[user] Funktionel_Neuro_Terapeut (101587)
+  [skipped] Funktionel_Neuro_Terapeut stats: data already exists
+  [skipped] Funktionel_Neuro_Terapeut shows: section not found in Umbraco
+  [run] purchases parent=101592
+  [ok] Funktionel_Neuro_Terapeut purchases
+  [run] payouts parent=101591
+  [ok] Funktionel_Neuro_Terapeut payouts
+
+[user] SkoleRo_ApS (103939)
+  [skipped] SkoleRo_ApS stats: data already exists
+  [skipped] SkoleRo_ApS shows: section not found in Umbraco
+  [run] purchases parent=103944
+  [ok] SkoleRo_ApS purchases
+  [run] payouts parent=103943
+  [ok] SkoleRo_ApS payouts
+
+[user] Olivia_Hvoslef_Mejer_Madsen (106362)
+  [run] stats parent=106363
+  [ok] Olivia_Hvoslef_Mejer_Madsen stats
+  [skipped] Olivia_Hvoslef_Mejer_Madsen shows: section not found in Umbraco
+  [run] purchases parent=106367
+  [ok] Olivia_Hvoslef_Mejer_Madsen purchases
+  [run] payouts parent=106366
+  [ok] Olivia_Hvoslef_Mejer_Madsen payouts
+
+[user] Kiibee_(1) (111740)
+  [run] stats parent=111742
+  [ok] Kiibee_(1) stats
+  [skipped] Kiibee_(1) shows: section not found in Umbraco
+  [run] purchases parent=111750
+  [ok] Kiibee_(1) purchases
+  [run] payouts parent=111748
+  [ok] Kiibee_(1) payouts
+
+[user] Funktionel_Neuro_Terapeut_(1) (112070)
+  [skipped] Funktionel_Neuro_Terapeut_(1) stats: data already exists
+  [skipped] Funktionel_Neuro_Terapeut_(1) shows: section not found in Umbraco
+  [run] purchases parent=112075
+  [ok] Funktionel_Neuro_Terapeut_(1) purchases
+  [run] payouts parent=112074
+  [ok] Funktionel_Neuro_Terapeut_(1) payouts
+
+[user] Anne_brietzke (112870)
+  [skipped] Anne_brietzke stats: data already exists
+  [skipped] Anne_brietzke shows: section not found in Umbraco
+  [skipped] Anne_brietzke purchases: data already exists
+  [skipped] Anne_brietzke payouts: data already exists
+  [skip] Anne_brietzke: all requested data already exists or no matching sections
+
+[user] Ana_Castellanos (113739)
+  [run] stats parent=113740
+  [ok] Ana_Castellanos stats
+  [skipped] Ana_Castellanos shows: section not found in Umbraco
+  [run] purchases parent=113744
+  [ok] Ana_Castellanos purchases
+  [run] payouts parent=113743
+  [ok] Ana_Castellanos payouts
+
+[user] Ali_El-Atbi (113834)
+  [run] stats parent=113835
+  [ok] Ali_El-Atbi stats
+  [skipped] Ali_El-Atbi shows: section not found in Umbraco
+  [run] purchases parent=113839
+  [ok] Ali_El-Atbi purchases
+  [run] payouts parent=113838
+  [ok] Ali_El-Atbi payouts
+
+[user] jwtc (114463)
+  [run] stats parent=114464
+  [ok] jwtc stats
+  [skipped] jwtc shows: section not found in Umbraco
+  [run] purchases parent=114468
+  [ok] jwtc purchases
+  [run] payouts parent=114467
+  [ok] jwtc payouts
+
+[user] Tine_Rask_Mathiesen (115439)
+  [run] stats parent=115440
+  [ok] Tine_Rask_Mathiesen stats
+  [skipped] Tine_Rask_Mathiesen shows: section not found in Umbraco
+  [run] purchases parent=115444
+  [ok] Tine_Rask_Mathiesen purchases
+  [run] payouts parent=115443
+  [ok] Tine_Rask_Mathiesen payouts
+
+[user] Ahmed_Mittani (115623)
+  [run] stats parent=115624
+  [ok] Ahmed_Mittani stats
+  [skipped] Ahmed_Mittani shows: section not found in Umbraco
+  [run] purchases parent=115628
+  [ok] Ahmed_Mittani purchases
+  [run] payouts parent=115627
+  [ok] Ahmed_Mittani payouts
+
+[user] Akupunktør_Stine_Vogel (117157)
+  [run] stats parent=117158
+  [ok] Akupunktør_Stine_Vogel stats
+  [skipped] Akupunktør_Stine_Vogel shows: section not found in Umbraco
+  [run] purchases parent=117162
+  [ok] Akupunktør_Stine_Vogel purchases
+  [run] payouts parent=117161
+  [ok] Akupunktør_Stine_Vogel payouts
+
+[user] Nethe_Nomonde_Dalgaard (117505)
+  [skipped] Nethe_Nomonde_Dalgaard stats: data already exists
+  [skipped] Nethe_Nomonde_Dalgaard shows: section not found in Umbraco
+  [skipped] Nethe_Nomonde_Dalgaard purchases: data already exists
+  [skipped] Nethe_Nomonde_Dalgaard payouts: data already exists
+  [skip] Nethe_Nomonde_Dalgaard: all requested data already exists or no matching sections
+
+[user] Dahls_regnskabsservice_ApS (117534)
+  [skipped] Dahls_regnskabsservice_ApS stats: data already exists
+  [skipped] Dahls_regnskabsservice_ApS shows: section not found in Umbraco
+  [skipped] Dahls_regnskabsservice_ApS purchases: data already exists
+  [skipped] Dahls_regnskabsservice_ApS payouts: data already exists
+  [skip] Dahls_regnskabsservice_ApS: all requested data already exists or no matching sections
+
+[user] Vocal_Line (117974)
+  [run] stats parent=117975
+  [ok] Vocal_Line stats
+  [skipped] Vocal_Line shows: section not found in Umbraco
+  [run] purchases parent=117979
+  [ok] Vocal_Line purchases
+  [run] payouts parent=117978
+  [ok] Vocal_Line payouts
+
+[user] Laura_Nielsen (118111)
+  [skipped] Laura_Nielsen stats: data already exists
+  [skipped] Laura_Nielsen shows: section not found in Umbraco
+  [run] purchases parent=118116
+  [ok] Laura_Nielsen purchases
+  [run] payouts parent=118115
+  [ok] Laura_Nielsen payouts
+
+[user] Diana_Myjak (118984)
+  [run] stats parent=118985
+  [ok] Diana_Myjak stats
+  [skipped] Diana_Myjak shows: section not found in Umbraco
+  [run] purchases parent=118989
+  [ok] Diana_Myjak purchases
+  [run] payouts parent=118988
+  [ok] Diana_Myjak payouts
+
+[user] Mirna_Barbar (119675)
+  [skipped] Mirna_Barbar stats: data already exists
+  [skipped] Mirna_Barbar shows: section not found in Umbraco
+  [skipped] Mirna_Barbar purchases: data already exists
+  [skipped] Mirna_Barbar payouts: data already exists
+  [skip] Mirna_Barbar: all requested data already exists or no matching sections
+
+[user] APHypnose (122771)
+  [run] stats parent=122772
+  [ok] APHypnose stats
+  [skipped] APHypnose shows: section not found in Umbraco
+  [run] purchases parent=122776
+  [ok] APHypnose purchases
+  [run] payouts parent=122775
+  [ok] APHypnose payouts
+
+[user] Maria_Birch_Rasmussen (123123)
+  [run] stats parent=123124
+  [ok] Maria_Birch_Rasmussen stats
+  [skipped] Maria_Birch_Rasmussen shows: section not found in Umbraco
+  [run] purchases parent=123128
+  [ok] Maria_Birch_Rasmussen purchases
+  [run] payouts parent=123127
+  [ok] Maria_Birch_Rasmussen payouts
+
+[user] Maximilian_Nielsen (123336)
+  [run] stats parent=123337
+  [ok] Maximilian_Nielsen stats
+  [skipped] Maximilian_Nielsen shows: section not found in Umbraco
+  [run] purchases parent=123341
+  [ok] Maximilian_Nielsen purchases
+  [run] payouts parent=123340
+  [ok] Maximilian_Nielsen payouts
+
+[user] Diy_for_børn (123466)
+  [run] stats parent=123467
+  [ok] Diy_for_børn stats
+  [skipped] Diy_for_børn shows: section not found in Umbraco
+  [run] purchases parent=123471
+  [ok] Diy_for_børn purchases
+  [run] payouts parent=123470
+  [ok] Diy_for_børn payouts
+
+[user] Rumhed (123946)
+  [run] stats parent=123947
+  [ok] Rumhed stats
+  [skipped] Rumhed shows: section not found in Umbraco
+  [run] purchases parent=123951
+  [ok] Rumhed purchases
+  [run] payouts parent=123950
+  [ok] Rumhed payouts
+{
+  "reportPath": "umbraco-data\\export-runs\\2026-06-02T10-54-24-964Z.json",
+  "latestPath": "umbraco-data\\export-runs\\latest.json",
+  "counts": {
+    "ok": 261,
+    "skipped": 203,
+    "error": 0
+  }
+}
