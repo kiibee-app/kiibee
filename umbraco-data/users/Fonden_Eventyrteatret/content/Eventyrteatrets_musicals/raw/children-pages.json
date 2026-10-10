@@ -10,7 +10,7 @@
           {
             "id": 2235441,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -18,7 +18,7 @@
           {
             "id": 2235442,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -26,7 +26,7 @@
           {
             "id": 2235443,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "99",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -34,7 +34,7 @@
           {
             "id": 2235444,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -194,7 +194,7 @@
           {
             "id": 2235464,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Et Juleeventyr møder vi den rige og sure nisse Ebenezer Scrooge, som julenat får besøg af tre juleånder. Med deres hjælp får den nærige nisse mulighed for at besøge både sin fortid, sin nutid og sin fremtid. Det bliver smertelige oplevelser, der får den gamle nisse til at indse, at han har opgivet både sin store kærlighed og hele sin nissefamilie til fordel for sit umættelige pengebegær. Undervejs lærer Scrooge, hvad julen virkelig handler om; nemlig gavmildhed og næstekærlighed, og hvordan han stadig kan nå at rette op på sine fejltagelser.",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -302,7 +302,7 @@
           {
             "id": 2100099,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -310,7 +310,7 @@
           {
             "id": 2100100,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -318,7 +318,7 @@
           {
             "id": 2100101,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "99",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -326,7 +326,7 @@
           {
             "id": 2100102,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -486,7 +486,7 @@
           {
             "id": 2100122,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "”Alice i Eventyrland” handler om en pige med en livlig fantasi. Allerede inden morgenmad har hun tænkt på seks umulige ting. Men det er ikke alle, der ser hendes livlige fantasi som en god ting. Overalt får hun at vide, at det er på tide at vokse op og stoppe dagdrømmeriet.\r\n\r\nEn dag får hun øje på en besynderlig talende kanin, som hun beslutter sig for at følge. Det bringer hende ud på et uventet eventyr: hun falder ned i et dybt hul og lander i en farvestrålende verden fyldt med magiske væsner og umulige ting. Men bag al skønheden lurer mørke kræfter, der vil overtage magten og holde hende fanget for evigt.\r\n\r\nVil hun finde styrken til at besejre de mørke kræfter og vende tilbage til virkeligheden?\r\n\r\n“Det er så fantastisk fejende flot farverig fantasifuld en forestilling, at det næppe er set bedre.”\r\n– Out & About ✶✶✶✶✶✶\r\n\r\n”Der var fuld smæk på farver, sange og højt humør i den eventyrlige familieforestilling.”\r\n– Børn i Byen ✶✶✶✶✶✶\r\n\r\n”Silas Holst har skabt et farverigt, humoristisk og rørende univers, hvor dans, sang og teater smelter sammen til en levende og magisk helhedsoplevelse.”\r\n– Teaterpigerne ✶✶✶✶✶✶",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -594,7 +594,7 @@
           {
             "id": 2100132,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -602,7 +602,7 @@
           {
             "id": 2100133,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -610,7 +610,7 @@
           {
             "id": 2100134,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -618,7 +618,7 @@
           {
             "id": 2100135,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -778,7 +778,7 @@
           {
             "id": 2100155,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "I Eventyrteatrets musical møder vi Gepetto, der har bygget en søn ud af gamle computerdele. Han kalder drengen Pinocchio og sender ham i skole med de andre børn. Sammen med hans tro følgesvend, Jesper, skal han lære at navigere i livet som en rigtig dreng. For ingen må opdage, at han i virkeligheden er en kunstig intelligens.\r\n\r\nEn dag møder de legetøjssælgeren Ærlige Bente, der sælger robotter med kunstig intelligens. Legetøjssælgeren opdager hurtigt, at Pinocchio ikke er som de andre børn, og hun lægger straks en skummel plan for at afsløre hans hemmelighed.\r\n\r\nTag med Pinocchio med til en eventyrlig, fjern fremtid fyldt med farvestrålende robotter, humoristiske løgne og iørefaldende sange for både børn og voksne.\r\n\r\n“Eventyrteatret gør det altså igen! Pinocchio er en morsom, medrivende musical, og den fortjener i den grad 6 stjerner.” ✶✶✶✶✶✶ Scenekanten\r\n\r\n“Vi får sange, der begejstrer, sange der giver gåsehud og sange som tryllebinder os.” ✶✶✶✶✶✶ Maglings anmeldelser\r\n\r\n”Eventyrteatrets Pinocchio er en nyskabende musical, der hvis oversat, faktisk godt kan have potentiale som en vidunderlig international børne- og ungemusical. Dét har den potentiale til, så farverig og fantasifuld som den er.” ✶✶✶✶✶ Out & about\r\n",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -886,7 +886,7 @@
           {
             "id": 2113142,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -894,7 +894,7 @@
           {
             "id": 2113143,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -902,7 +902,7 @@
           {
             "id": 2113144,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -910,7 +910,7 @@
           {
             "id": 2113145,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1070,7 +1070,7 @@
           {
             "id": 2113165,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Det fejrer vi med 10% på køb af alle Eventyrteatrets mus\r\nDet er aften og Wendy, John og Michael sover. Pludselig kommer Peter Pan og Klokkeblomst snigende ind ad vinduet og tager dem med til Ønskeøen. På den magiske ø bliver Wendy overtalt til at være mor for De Glemte Børn. Imens planlægger Kaptajn Klo og piraterne, hvordan de skal besejre Peter Pan, overtage øen og herske over dens indbyggere. Samtidig bliver Klokkeblomst jaloux på den opmærksomhed, Peter Pan giver Wendy, og det udnytter Kaptajn Klo til at gennemføre sin onde plan. Men vil det lykkes piraterne at overtage Ønskeøen?\r\n\r\nI Eventyrteatrets nyfortolkning af det velkendte eventyr vil du møde Populusere, havfruer, feer og pirater i en humoristisk og spændende musical for hele familien.\r\n\r\n”Vi lo, så tårerne trillede, vi havde en klump i halsen, og vi nød en forestilling, der helt og holdent var noget nær det ypperste man kan opleve” Maglings anmeldelser ✶✶✶✶✶✶\r\n\r\n”Den er smuk, sjov og rørende, og jeg synes den har alt, hvad man kan forlange af en forestilling for hele familien.” Scenekanten ✶✶✶✶✶✶\r\n\r\n”Det var både rørende og fuldstændigt betagende at se de unge talenter udfolde sig på scenen. Med stor musikalitet, fantastisk indlevelse og en god portion humor, gjorde de hver en scene til en sand fornøjelse.” Børn i byen ✶✶✶✶✶",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1178,7 +1178,7 @@
           {
             "id": 2082441,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1186,7 +1186,7 @@
           {
             "id": 2082442,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -1194,7 +1194,7 @@
           {
             "id": 2082443,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1202,7 +1202,7 @@
           {
             "id": 2082444,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1362,7 +1362,7 @@
           {
             "id": 2082464,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Eventyrteatrets version af det elskede eventyr tager publikum med ind i en verden, hvor der eksisterer to lande: Irisia og Heroikom. Rapunzel med det meget lange gyldne hår må skjule det for alle omkring hende. For i landet Heroikum er der ikke plads til at være anderledes.\r\n\r\nMen Rapunzel og hendes venner gør oprør og bliver fanget og spærret inde i et tårn. Det store spørgsmål er, om de slipper fri og kan rejse til det festlige og farverige land Irisia, hvor alle må være præcis som de er?\r\n\r\n”Eventyrteatret har i over tre årtier kandideret til titlen Danmarks bedste børneteater, og man går aldrig uimponeret hjem fra deres forestillinger. Deres seneste - RAPUNZEL - indgår smukt i sejrsrækken, ....” Michael Søby, Cphculture.dk ✶✶✶✶✶✶\r\n\r\n”Jeg kan kun give max 6 stjerner til dette pragtstykke, hvor de unge talenter igen har givet os formidling på højt professionelt plan.” Tina Magling, Magling.dk ✶✶✶✶✶✶\r\n\r\n”Her er masser af kostumer, masser af gode energier og fine præstationer i både de store roller og i de små, finurlige roller, som netop Eventyrteatret er så gode til at skabe.” Morten Buckhøj, Morten Buckhøj ✶✶✶✶✶",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1470,7 +1470,7 @@
           {
             "id": 2082474,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1478,7 +1478,7 @@
           {
             "id": 2082475,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -1486,7 +1486,7 @@
           {
             "id": 2082476,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1494,7 +1494,7 @@
           {
             "id": 2082477,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1654,7 +1654,7 @@
           {
             "id": 2082497,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Da den unge Robin af Locksley vender hjem fra korstogene, er England i kaos: Den onde Prins John har allieret sig med en troldkvinde, som med sin sorte magi vil hjælpe ham med at overtage magten fra sin bortrejste bror, Kong Richard Løvehjerte.\r\n\r\nDe fattige sulter, og de fredløse må flygte ud i Sherwoods vilde skove, hvor også eventyrvæsener holder til. Da Prins John prøver at erobre Robins barndomskæreste, Lady Marian, beslutter Robin sig for at handle.\r\n\r\nMen tingene går ikke, som vores unge helt har planlagt, så han får brug for sine alle sine venners hjælp.\r\n\r\n”Efterårsferiens ubetinget bedste kulturtilbud for børn – og barnlige sjæle finder man i Tivolis legendariske glassal. Kirsten Brinks overdådige scenografi og Christine Brinckers ødsle kostumer gør forestillingen til et overflødighedshorn af visuel nydelse, og Eventyrteatret kan således fejre det flottest tænkelige 30-års jubilæum.” Michael Søby, Cphculture.dk ✶✶✶✶✶✶\r\n\r\n”På fantastisk vis og med snilde for både sang og kostumer får Eventyrteatret tryllet den velkendte fortælling om til en fangende forestilling med humor og højt humør for både store og små.” Ninette Marie Hemmingsen, Scenekanten ✶✶✶✶✶✶\r\n\r\n”7/6 stjerner for denne mesterlige forestilling – med den ekstra stjerne til de helt nye musical performere på scenen.” Tina Magling, Magling.dk ✶✶✶✶✶✶",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1762,7 +1762,7 @@
           {
             "id": 2082507,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "149",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1770,7 +1770,7 @@
           {
             "id": 2082508,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -1778,7 +1778,7 @@
           {
             "id": 2082509,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -1786,7 +1786,7 @@
           {
             "id": 2082510,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -1946,7 +1946,7 @@
           {
             "id": 2082530,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Den unge Prinsesse Margrete er løbet hjemmefra for at undgå sin skæbne. I en magisk skov møder hun et væld af eventyrlige væsener, som strides indbyrdes og har brug for prinsessens hjælp til at forene dem i kampen mod en mørk og grusom magt.\r\n\r\nPrinsessen må erkende, at når man har fået særlige evner i vuggegave, må man tage sin skæbne på sig og gå forrest i kampen for at samle skovens folk.\r\n\r\nSom voksen bliver prinsessen Danmarks første kvindelige regent, Dronning Margrete 1. Og nu får hun igen brug for sine særlige evner, denne gang til at samle Nordens folk i Kalmarunionen.\r\n\r\nPressen skrev blandt andet:\r\n\r\n\"Publikum må overgive sig betingelsesløst under den overdådige finale, og det rungende stående bifald er en hyldest til alle de herlige spilleglade børn.\" CPH Culture *****\r\n\r\n”En pragtfuld og visuel smuk teateroplevelse… Hvis det her ikke er teatermagi, hvad er så?” – Scenekanten *****\r\n\r\n”Eventyrteatret begejstrer igen børn og voksne med en sprudlende, energisk og visuelt overdådig forestilling.... Den perfekte efterårsoplevelse i Tivolis smukke Glassal.” – Børn i byen *****\r\n\r\n”Et veloplagt og musikalsk efterårsferieeventyr af høj klasse, og to timers glimrende underholdning.” – Morten Buckhøj ****\r\n\r\n”Børnene på scenen er hvinende dygtige – til tider i en sådan grad at man slet ikke kan forstå det.\" – Ungt Teaterblod ****\r\n\r\n”Den forestilling rører mig på et eller andet plan, som jeg ikke har kontrol over!” – Tina Magling ******",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -2054,7 +2054,7 @@
           {
             "id": 2197161,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "99",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -2062,7 +2062,7 @@
           {
             "id": 2197162,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -2070,7 +2070,7 @@
           {
             "id": 2197163,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -2078,7 +2078,7 @@
           {
             "id": 2197164,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -2238,7 +2238,7 @@
           {
             "id": 2197184,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Som halv gud og halvt menneske færdes den unge Herkules lige hjemmevant på Olympen og på Jorden. Da gudernes evige ungdom er truet, sender Zeus den unge helt på en farlig mission til jorden for at finde ud af, hvem der har bortført ungdommens gudinde, den smukke Hebe – og Herkules hvirvles ind i et forrygende eventyr blandt amazoner, satyrer og andre eventyrlige væsener.\r\n\r\nHerkules’ søgen efter Hebe fører ham gennem skoven, hvor frugtbarhedsguden Dionysos holder fest med sit slæng, til verdens ende hvor Hesperiderne vogter over de magiske æbler, og til dødsriget, hvor Hades hersker og føler sig ensom.",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -2346,7 +2346,7 @@
           {
             "id": 2197194,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "99",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -2354,7 +2354,7 @@
           {
             "id": 2197195,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": ["58"],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -2362,7 +2362,7 @@
           {
             "id": 2197196,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "49",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -2370,7 +2370,7 @@
           {
             "id": 2197197,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -2530,7 +2530,7 @@
           {
             "id": 2197217,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Uden at kende sine forældres dramatiske fortid er den forældreløse Arthur i hele sin barndom blevet vejledt af den visse troldmand, Merlin. Men hvad skal den unge væbner bruge al sin visdom til?\r\n\r\nVi følger Arthurs eventyrlige udvikling fra barndom til manddom. Gennem adskillige prøvelser og eventyrlig magi lærer Arthur at tage ansvaret for sit eget liv – men også at gribe magten og forstå kærlighedens sande væsen.\r\n\r\nI det underholdende eventyr møde du både raske riddere, kække køkkenpiger, langspyttende adelsfrøkener og en deprimeret drage.\r\n\r\nPressen skrev blandt andet:\r\n\r\nFornøjelig ridder-musical med masser af ungt talent (Jyllands-Posten)\r\n\r\nDenne forestilling slår dem alle (Kultur for Unge)\r\n\r\n”Sværdet i Stenen” blev opført i Glassalen i Tivoli i oktober 2010.",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false

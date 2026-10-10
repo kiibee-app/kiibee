@@ -1,12 +1,24 @@
 {
-  "exportedAt": "2026-07-23T13:04:16.319Z",
+  "exportedAt": "2026-10-10T14:12:01.468Z",
   "collectionName": "Eventyrteatrets musicals",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/96020",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 96020,
-    "includeProperties": ["title", "orderID", "hidden"],
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "description",
+      "headline",
+      "coverImage",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period"
+    ],
     "orderBy": "orderID",
     "orderDirection": "Ascending",
     "orderBySystemField": false,

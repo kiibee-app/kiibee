@@ -10,7 +10,7 @@
           {
             "id": 2213580,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "39",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -18,7 +18,9 @@
           {
             "id": 2213581,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": [
+              "58"
+            ],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -26,7 +28,7 @@
           {
             "id": 2213582,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "19",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -34,7 +36,7 @@
           {
             "id": 2213583,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -194,7 +196,7 @@
           {
             "id": 2213603,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Eventyrteatret præsenterer musicalen \"Nattergalen\", frit efter H. C. Andersens eventyr.\r\n\r\nAlle der har læst eller hørt eventyret om Nattergalen, kender historien om den mægtige Kejser af Kina, der møder den lille Nattergal og endelig indser, hvad meningen med livet er.\r\n\r\nI Eventyrteatrets anmelder roste musical kommer publikum med indenfor Den Forbudte Bys mure, hvor vi bl.a. skal møde det snobbede hof, der aldrig har været uden for slottets mure. Det kæmpe dyrerige med syngende køer, dansende frøer og øffende grise og den frække og charmerende abe Muschi. Rejsende fra hele verden, en spækhøkerfamilie uden én eneste ren tone i livet. Men ikke mindst den fattige køkkenpige Chulin, der viser Kejseren, at det smukke og ægte ikke altid findes i det pompøse og overdådige, men også kan findes i selv de enkleste skabninger.\r\n\r\nEventyrteatrets talentfulde børn og unge spiller, synger og danser med en smittende livsglæde. en humoristiske og fantastiske familiemusical. Sprængfyldt med storslået musik, farvestrålende kostumer og imponerende kulisser.",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -302,7 +304,7 @@
           {
             "id": 2218480,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "39",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -310,7 +312,9 @@
           {
             "id": 2218481,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": [
+              "58"
+            ],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -318,7 +322,7 @@
           {
             "id": 2218482,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "19",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -326,7 +330,7 @@
           {
             "id": 2218483,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -486,7 +490,7 @@
           {
             "id": 2218503,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "Eventyret om Snedronningen er omskrevet til en musical,\r\nhvor 100 talentfulde børn fører os gennem dette fantastiske\r\neventyr. En storslået forestilling, med over 500 kostumer,\r\nsne, røg, fyrværkeri og et velspillende orkester. En\r\nfestforestilling for hele familien.\r\n\r\nDer var engang en meget ond trold. Han var\r\ndjævlen selv. Sammen med sine djævleunger,\r\nudfordrer han selveste Vor Herre, og ondskabens\r\nspejl knuses i tusindvis af stykker, som bliver\r\nspredt udover hele verden.\r\n\r\nSådan en spejlsplint rammer Kay i øjet og i hjertet,\r\nså alt hvad der er godt og smukt, bliver ondt\r\nog grimt. Dette gælder også hans følelser for sin\r\nbedste legekammerat, Gerda.\r\nEn vinterdag, hvor sneen fyger, kommer Snedronningen\r\nog bortfører Kay til det kolde Nord.\r\nGerda er fortvivlet, og begynder på sin lange\r\nrejse, for at finde sin bedste ven Kay.\r\nDet bliver en spændende rejse gennem floder, fortryllende\r\nhaver, slotte, røverskove og vildmarker helt til\r\nSnedronningens Slot.\r\n\r\nPå rejsen møder Gerda sjove skaldyr, blomster, rockende\r\nmælkebøtter, muntre krager, prinsesser og tryllekoner,\r\nrøvere, trolde og farlige isstykker, inden hun til sidst når\r\nfrem til Snedronningens kolde slot.\r\nMon Kay stadig er der…",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -594,7 +598,7 @@
           {
             "id": 2218447,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "39",
             "alias": "purchasePrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -602,7 +606,9 @@
           {
             "id": 2218448,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
-            "value": null,
+            "value": [
+              "58"
+            ],
             "alias": "access",
             "editor": "Umbraco.DropDown.Flexible",
             "isSensitive": false
@@ -610,7 +616,7 @@
           {
             "id": 2218449,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
-            "value": null,
+            "value": "19",
             "alias": "rentalPrice",
             "editor": "Umbraco.Decimal",
             "isSensitive": false
@@ -618,7 +624,7 @@
           {
             "id": 2218450,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "",
             "alias": "code",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false
@@ -778,7 +784,7 @@
           {
             "id": 2218470,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
-            "value": null,
+            "value": "\"Prinsessen på ærten\" er et eventyr om en prins, som så gerne ville giftes med en rigtig prinsesse. \r\nHan rejser ud i verden for at lede og undervejs kommer han til forskellige kongeriger. Simsalabim, Maluk, Miniatyrien, Gourmesien, ja selv et rumskib fra planeten Matria møder han. \r\n\r\nPrinsen kommer hjem igen uden en prinsesse. Men så en aften banker det på slottets port. \r\nUdenfor står en våd ung pige som siger, at hun er en virkelig prinsesse. \r\nMen først skal hun bestå prinsesseprøven. Gennem tyve madrasser og tyve edderdunsdyner skal hun kunne mærke en ært. Hvis hun kan det er hun en rigtig prinsesse!\r\n",
             "alias": "description",
             "editor": "Umbraco.TextboxMultiple",
             "isSensitive": false

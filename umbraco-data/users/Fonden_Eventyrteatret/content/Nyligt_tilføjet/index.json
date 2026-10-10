@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-23T13:04:18.768Z",
+  "exportedAt": "2026-10-10T14:12:05.287Z",
   "collectionName": "Nyligt tilføjet",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/118909",
@@ -9,7 +9,15 @@
     "includeProperties": [
       "title",
       "orderID",
-      "hidden"
+      "hidden",
+      "description",
+      "headline",
+      "coverImage",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period"
     ],
     "orderBy": "orderID",
     "orderDirection": "Ascending",

@@ -1,12 +1,24 @@
 {
-  "exportedAt": "2026-07-23T13:04:16.989Z",
+  "exportedAt": "2026-10-10T14:12:02.686Z",
   "collectionName": "Kommer snart",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/100628",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 100628,
-    "includeProperties": ["title", "orderID", "hidden"],
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "description",
+      "headline",
+      "coverImage",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period"
+    ],
     "orderBy": "orderID",
     "orderDirection": "Ascending",
     "orderBySystemField": false,
@@ -238,18 +250,18 @@
     ]
   },
   "counts": {
-    "totalItemsFromApi": 0,
-    "childrenFetched": 0,
-    "detailIdsRequested": 0,
-    "detailsFetched": 0,
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailIdsRequested": 1,
+    "detailsFetched": 1,
     "errors": 0,
-    "fieldCount": 16
+    "fieldCount": 40
   },
   "pagination": [
     {
       "pageNumber": 1,
-      "itemCount": 0,
-      "totalItems": 0
+      "itemCount": 1,
+      "totalItems": 1
     }
   ],
   "files": {
