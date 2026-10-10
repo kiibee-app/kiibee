@@ -77,7 +77,11 @@ export default function SalesTabContent({
 
   if (isLoading) {
     return (
-      <GenericLoader variant={LOADER_VARIANT.INLINE} isOpen label={undefined} />
+      <GenericLoader
+        variant={LOADER_VARIANT.CONTAINER}
+        isOpen
+        label={undefined}
+      />
     );
   }
 

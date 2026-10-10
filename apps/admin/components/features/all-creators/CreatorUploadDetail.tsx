@@ -1,5 +1,3 @@
-"use client";
-
 import {
   ArrowLeft,
   FileText,
@@ -28,11 +26,9 @@ import {
   DetailContainer,
   DetailHeaderCard,
   DetailMediaWrapper,
-  DetailThumbnail,
   DetailTitle,
   DetailDescription,
   UploadBadge,
-  PlaceholderVideoIcon,
   BadgeContainer,
   AssetLink,
   PriceStack,
@@ -42,6 +38,7 @@ import {
   DrawerSectionTitle,
   DrawerCardList,
 } from "./AllCreators.styles";
+import { ContentThumbnail } from "../../common/ContentThumbnail";
 
 export type CreatorUploadDetailProps = {
   upload: UploadItem;
@@ -52,6 +49,8 @@ export function CreatorUploadDetail({
   upload,
   onBack,
 }: CreatorUploadDetailProps) {
+  const imageSrc = upload.thumbnailLandscapeUrl || upload.thumbnailUrl;
+
   return (
     <DetailContainer>
       <BackButton onClick={onBack}>
@@ -60,18 +59,13 @@ export function CreatorUploadDetail({
 
       <DetailHeaderCard>
         <DetailMediaWrapper>
-          {upload.thumbnailLandscapeUrl || upload.thumbnailUrl ? (
-            <DetailThumbnail
-              src={
-                upload.thumbnailLandscapeUrl || upload.thumbnailUrl || undefined
-              }
-              alt={upload.title}
-            />
-          ) : (
-            <PlaceholderVideoIcon>
-              <Video size={48} />
-            </PlaceholderVideoIcon>
-          )}
+          <ContentThumbnail
+            src={imageSrc}
+            alt={upload.title}
+            contentType={upload.contentType}
+            size={48}
+            fallbackIcon={<Video size={48} />}
+          />
         </DetailMediaWrapper>
         <DetailTitle>{upload.title}</DetailTitle>
         <BadgeContainer>

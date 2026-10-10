@@ -50,21 +50,21 @@ export type FooterLink = {
 export const footerLinks: FooterLink[][] = [
   [
     {
-      href: "/creator-terms",
+      href: PATHS.CREATOR_TERMS,
       label: "footer.creatorTerms",
     },
     {
-      href: "/privacy-policy",
+      href: PATHS.PRIVACY_POLICY,
       label: "footer.privacyPolicy",
     },
     {
-      href: "/terms-of-service",
+      href: PATHS.TERMS,
       label: "footer.termsOfService",
     },
   ],
   [
     {
-      href: "/cookie-settings",
+      href: PATHS.COOKIE_SETTINGS,
       label: "footer.cookieSettings",
     },
   ],

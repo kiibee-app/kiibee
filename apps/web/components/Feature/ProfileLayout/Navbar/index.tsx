@@ -86,6 +86,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     initial,
     isPublicView,
     publicCreatorId,
+    publicCreatorSlug,
     textColor,
   } = useCreatorChannelProfile();
   const navTextTone =
@@ -97,14 +98,21 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const brandName = displayName;
   const brandHref =
     isPublicView && publicCreatorId
-      ? getPublicCreatorProfilePath(publicCreatorId, variant)
+      ? publicCreatorSlug
+        ? getPublicCreatorProfilePath(publicCreatorSlug, variant)
+        : PATHS.CREATORS
       : PATHS.DASHBOARD_CREATOR;
 
   const handleBack = () => {
+    if (isPublicView) {
+      router.push(PATHS.CREATORS);
+      return;
+    }
+
     if (isBrowser && window.history.length > 1) {
       router.back();
     } else {
-      router.push(PATHS.EXPLORE);
+      router.push(PATHS.CREATORS);
     }
   };
 

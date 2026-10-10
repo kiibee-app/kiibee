@@ -12,6 +12,9 @@ import {
 } from 'src/utils/constant';
 import { deleteSubscriptionService } from './deleteSubscription.service';
 import { stripUrlPort } from 'src/utils/extranalApi';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
+import { runInBackground } from 'src/utils/backgroundTask';
 
 const epay = axios.create({
   baseURL: process.env.EPAY_BASE_URL,
@@ -82,6 +85,24 @@ export const createSubscriptionService = async ({
         })
         .onConflictDoNothing();
 
+      if (user.email) {
+        runInBackground(
+          sendTemplateEmail({
+            to: user.email,
+            subject: mailSubject.SUBSCRIPTION_ACTIVATED,
+            templateName: templateName.SUBSCRIPTION_ACTIVATED,
+            variables: {
+              creator: {
+                fullName: user.fullName || '',
+              },
+              planName: plan.name || 'Abonnement',
+              amount: '0',
+              currency: plan.currency || 'DKK',
+            },
+          }),
+        );
+      }
+
       return {
         success: true,
         type: PAYMENT_TYPES.FREE,
@@ -90,7 +111,7 @@ export const createSubscriptionService = async ({
     }
 
     const billingPlanId =
-      plan.name === 'Pro'
+      plan.price === 299
         ? process.env.EPAY_PLAN_PRO
         : process.env.EPAY_PLAN_STARTUP;
 
@@ -102,7 +123,7 @@ export const createSubscriptionService = async ({
     const reference = createSafeReference('ref', planId);
     const subscriptionReference = planId;
 
-    const notificationUrl = process.env.EPAY_WEBHOOK_URL;
+    const notificationUrl = `${process.env.EPAY_WEBHOOK_URL}/api/v1/subscription/webhook`;
 
     if (!notificationUrl?.startsWith('https://')) {
       throw new Error('Invalid EPAY_WEBHOOK_URL');

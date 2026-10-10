@@ -19,8 +19,8 @@ export const buildRegistrationRowsHtml = (registrations: RegistrationRow[]) => {
 
   return `<tr>
                   <td colspan="3" style="padding: 28px 20px; text-align: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
-                    <p style="margin: 0 0 6px; font-size: 15px; font-weight: 600; color: #444444;">No signups yet</p>
-                    <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #888888;">No email signups were recorded for this period. When viewers submit your email-gated forms, they will appear here.</p>
+                    <p style="margin: 0 0 6px; font-size: 15px; font-weight: 600; color: #444444;">Ingen tilmeldinger endnu</p>
+                    <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #888888;">Ingen e-mailtilmeldinger blev registreret i denne periode. Når seere udfylder dine e-mailbeskyttede formularer, vises de her.</p>
                   </td>
                 </tr>`;
 };

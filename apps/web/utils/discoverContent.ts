@@ -111,7 +111,7 @@ export const discoverContentData: DiscoverContentItem[] = [
       },
       {
         labelKey: "discoverContent.items.1.actions.buy",
-        href: `${pathPublishedContent("krollehjerne")}#buy`,
+        href: pathPublishedContent("krollehjerne"),
         requiresAuth: true,
       },
     ],

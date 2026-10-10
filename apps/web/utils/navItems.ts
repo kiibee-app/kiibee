@@ -24,7 +24,7 @@ const NAV_ITEMS: NavItem[] = [
 
   {
     key: "nav.exploreCreators",
-    href: PATHS.EXPLORE,
+    href: PATHS.EXPLORE_CREATORS,
     children: [
       {
         titleKey: "nav.explore.allContentTitle",
@@ -52,15 +52,18 @@ const NAV_ITEMS: NavItem[] = [
         items: [
           { key: "nav.explore.category.comedy", href: PATHS.CATEGORY_COMEDY },
           {
+            key: "nav.explore.category.entertainment",
+            href: PATHS.CATEGORY_ENTERTAINMENT,
+          },
+          {
             key: "nav.explore.category.education",
             href: PATHS.CATEGORY_EDUCATION,
           },
-          {
-            key: "nav.explore.category.business",
-            href: PATHS.CATEGORY_BUSINESS,
-          },
           { key: "nav.explore.category.arts", href: PATHS.CATEGORY_ARTS },
-          { key: "nav.explore.category.tech", href: PATHS.CATEGORY_TECH },
+          {
+            key: "nav.explore.category.sportsAndFitness",
+            href: PATHS.CATEGORY_FITNESS,
+          },
         ],
       },
 

@@ -25,6 +25,7 @@ type Props = {
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
   collectionId?: string | null;
+  isPaidCollection?: boolean;
 };
 
 export default function CollectionContent({
@@ -34,6 +35,7 @@ export default function CollectionContent({
   selectedVideoId = null,
   onSelectVideo,
   collectionId = null,
+  isPaidCollection = false,
 }: Props) {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
@@ -64,7 +66,7 @@ export default function CollectionContent({
             {t("singleCollection.inCollection")}
           </MonoText>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {filteredVideos.length} {t("singleCollection.uploads")}
+            {t("singleCollection.uploads", { count: filteredVideos.length })}
           </MonoText>
         </TitleGroup>
 
@@ -83,6 +85,7 @@ export default function CollectionContent({
             selectedVideoId={selectedVideoId}
             onSelectVideo={onSelectVideo}
             collectionId={collectionId}
+            isPaidCollection={isPaidCollection}
           />
         ) : (
           <GenericEmptyState title={t("singleCollection.noResults")} />

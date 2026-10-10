@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useMemo,
+  useEffect,
+} from "react";
 import {
   TagsContainer,
   TagChip,
@@ -25,6 +31,8 @@ export type TagsInputProps = {
   value: string;
   onChange?: (value: string) => void;
   onInputChange?: (typed: string) => void;
+  protectedTags?: { id: string; label: string }[];
+  onRemoveProtectedTag?: (id: string) => void;
   placeholder?: string;
   maxLength?: number;
   variant?: InputVariant;
@@ -37,6 +45,8 @@ export default function TagsInput({
   value,
   onChange,
   onInputChange,
+  protectedTags = [],
+  onRemoveProtectedTag,
   placeholder,
   maxLength = maxLogoNameCharacters,
   variant = INPUT_VARIANTS.PRIMARY_GRAY,
@@ -47,14 +57,20 @@ export default function TagsInput({
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const tags = useMemo(() => parseTags(value), [value]);
-  const currentTotalLength = useMemo(() => tags.join("").length, [tags]);
+  const tagsRef = useRef(tags);
+
+  useEffect(() => {
+    tagsRef.current = tags;
+  }, [tags]);
 
   const addTag = useCallback(
     (tagText: string) => {
       const trimmedTag = tagText.trim();
+      const currentTags = tagsRef.current;
+      const currentTotalLength = currentTags.join("").length;
       const shouldSkip =
         !trimmedTag ||
-        tags.includes(trimmedTag) ||
+        currentTags.includes(trimmedTag) ||
         currentTotalLength + trimmedTag.length > maxLength;
 
       if (shouldSkip) {
@@ -65,20 +81,26 @@ export default function TagsInput({
         return;
       }
 
-      onChange?.([...tags, trimmedTag].join(", "));
+      const nextTags = [...currentTags, trimmedTag];
+      tagsRef.current = nextTags;
+      onChange?.(nextTags.join(", "));
       setInputValue("");
       if (onInputChange) {
         onInputChange("");
       }
     },
-    [tags, onChange, maxLength, currentTotalLength, onInputChange],
+    [onChange, maxLength, onInputChange],
   );
 
   const removeTag = useCallback(
     (indexToRemove: number) => {
-      onChange?.(tags.filter((_, index) => index !== indexToRemove).join(", "));
+      const nextTags = tagsRef.current.filter(
+        (_, index) => index !== indexToRemove,
+      );
+      tagsRef.current = nextTags;
+      onChange?.(nextTags.join(", "));
     },
-    [tags, onChange],
+    [onChange],
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -120,6 +142,21 @@ export default function TagsInput({
       onClick={() => inputRef.current?.focus()}
     >
       <TagsContainer>
+        {protectedTags.map((tag) => (
+          <TagChip key={`protected-${tag.id}`}>
+            <TagText>{tag.label}</TagText>
+            <TagRemoveButton
+              onClick={(e) => {
+                e.stopPropagation();
+                onRemoveProtectedTag?.(tag.id);
+              }}
+              disabled={disabled || !onRemoveProtectedTag}
+              type={BUTTON}
+            >
+              <ChipCloseIcon size={12} />
+            </TagRemoveButton>
+          </TagChip>
+        ))}
         {tags.map((tag, index) => (
           <TagChip key={`${tag}-${index}`}>
             <TagText>{tag}</TagText>

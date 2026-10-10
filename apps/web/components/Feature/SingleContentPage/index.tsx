@@ -46,7 +46,7 @@ import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
-import { resolveImageUrl } from "@/utils/media";
+import { isEmbeddableVideoUrl, resolveImageUrl } from "@/utils/media";
 import { openInNewTab } from "@/utils/common";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
@@ -195,16 +195,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal(
-              t("createProfileHome.latestUpload.loginModal.message"),
-            );
-            return;
-          }
-          if (user?.role === ROLE_CREATOR) {
-            setShowCreatorModal1(true);
-            return;
-          }
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -218,11 +208,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId,
     createOrderMutation,
     handleActionClick,
-    handleShowLoginModal,
     primaryAction,
     primaryActions,
     t,
-    user?.id,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -255,11 +243,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
       if (actions.length) {
         const action = actions[0];
-        if (user?.role === ROLE_CREATOR) {
-          setShowCreatorModal1(true);
-          return;
-        }
-
         setSelectedAction({
           label: action.label,
           subtitle: action.subtitle,
@@ -288,12 +271,22 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = useCallback(async () => {
+    if (primaryAction?.href) {
+      router.push(primaryAction.href);
+      return;
+    }
+
     if (!user?.id) {
       handleShowLoginModal();
       return;
     }
 
-    if (isWebType && previewMediaUrl) {
+    if (
+      isWebType &&
+      previewMediaUrl &&
+      !isEmbeddableVideoUrl(previewMediaUrl) &&
+      !isEmbeddableVideoUrl(hero.contentUrl)
+    ) {
       openInNewTab(previewMediaUrl);
       return;
     }
@@ -334,10 +327,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     );
 
     if (isPurchaseAction || isRentalAction) {
-      if (user?.role === ROLE_CREATOR) {
-        setShowCreatorModal1(true);
-        return;
-      }
       setSelectedAction({
         label: primaryAction?.label as string,
         subtitle: primaryAction?.subtitle,
@@ -356,10 +345,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     canPreview,
     fetchMediaUrl,
     handleShowLoginModal,
+    hero.contentUrl,
     isWebType,
     metaItems,
     previewMediaUrl,
     primaryAction,
+    router,
     t,
     user?.id,
     user?.role,
@@ -501,6 +492,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     if (!user?.id) {
       handleShowLoginModal();
+      return;
+    }
+
+    if (user?.role === ROLE_CREATOR) {
+      setShowPurchaseModal(false);
+      setShowCreatorModal1(true);
       return;
     }
 

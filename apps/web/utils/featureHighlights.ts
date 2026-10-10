@@ -1,25 +1,36 @@
-import mockImg from "../assets/images/steps/content.webp";
+import freeUserEn from "../assets/images/free-user-en.webp";
+import freeUserDa from "../assets/images/free-user-da.webp";
+import personalizedEn from "../assets/images/personalized-en.webp";
+import personalizedDa from "../assets/images/personalized-da.webp";
+import purchaseEn from "../assets/images/purchase-en.webp";
+import purchaseDa from "../assets/images/purchase-da.webp";
+import contentEn from "../assets/images/content-en.webp";
+import contentDa from "../assets/images/content-da.webp";
 
 export const featureData = [
   {
     titleKey: "features.items.0.title",
     textKey: "features.items.0.text",
-    image: mockImg,
+    image: freeUserEn,
+    imageDa: freeUserDa,
   },
   {
     titleKey: "features.items.1.title",
     textKey: "features.items.1.text",
-    image: mockImg,
+    image: personalizedEn,
+    imageDa: personalizedDa,
   },
   {
     titleKey: "features.items.2.title",
     textKey: "features.items.2.text",
-    image: mockImg,
+    image: purchaseEn,
+    imageDa: purchaseDa,
   },
   {
     titleKey: "features.items.3.title",
     textKey: "features.items.3.text",
-    image: mockImg,
+    image: contentEn,
+    imageDa: contentDa,
   },
 ];
 

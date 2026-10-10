@@ -10,7 +10,9 @@ import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericCard from "@/components/UI/GenericCard";
+import { getCategoryLabel } from "@/utils/category";
 import GenericButton from "@/components/UI/GenericButton";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
@@ -38,6 +40,7 @@ import {
   CollectionVideoLabelText,
   CollectionVideoPill,
 } from "./styles";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 
 type IconComponent = ComponentType<{
   width?: number;
@@ -69,6 +72,12 @@ const FooterActions = styled.div`
   display: flex;
   width: 100%;
   gap: 0.5rem;
+
+  > button,
+  > a {
+    flex: 1 1 0;
+    min-width: 0;
+  }
 `;
 
 type Props = {
@@ -83,7 +92,7 @@ export default function CollectionItemCard({
   collectionId = null,
 }: Props) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
@@ -108,7 +117,11 @@ export default function CollectionItemCard({
 
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
-  const contentHref = pathPublishedContent(video.id);
+  const contentHref = pathPublishedContent(
+    video.slug || video.id,
+    video.creatorSlug,
+    video.title,
+  );
   const buttons: TutorialButton[] = hasAccess
     ? [
         {
@@ -141,25 +154,28 @@ export default function CollectionItemCard({
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
-      const msg = isPurchaseOrRent
-        ? t("createProfileHome.latestUpload.loginModal.message")
-        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+      if (isPurchaseOrRent) {
+        navigateToContent(targetHref);
+        return;
+      }
+
+      const msg = t("createProfileHome.latestUpload.loginModal.viewMessage");
 
       handleShowLoginModal(targetHref, msg);
       return;
     }
 
-    navigateToContent(targetHref, button.requiresAuth ?? false);
+    navigateToContent(targetHref);
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!video.creatorId) return;
+    if (!video.creatorSlug) return;
     stopCardNavigation(event);
-    router.push(getPublicCreatorProfilePath(video.creatorId));
+    router.push(getPublicCreatorProfilePath(video.creatorSlug));
   };
 
   const title = <CollectionTitle>{video.title}</CollectionTitle>;
-  const subtitle = video.creatorId ? (
+  const subtitle = video.creatorSlug ? (
     <CollectionAuthor
       onClick={openCreatorProfile}
       role="link"
@@ -183,7 +199,7 @@ export default function CollectionItemCard({
           key={`${button.label}-${index}`}
           type="button"
           variant={button.variant ?? VARIANT.SOFT_OUTLINE}
-          fullWidth={button.fullWidth}
+          fullWidth={buttons.length > 1 || button.fullWidth}
           onClick={(event) => handleButtonClick(event, button)}
         >
           {button.label}
@@ -199,18 +215,27 @@ export default function CollectionItemCard({
           image={video.image}
           imageFallback={FALLBACK_THUMBNAIL_SRC}
           coverImage
+          imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+          minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
           alt={video.title}
           title={title}
           subtitle={subtitle}
+          meta={
+            <CollectionTime>
+              {video.published
+                ? formatTimeAgoByLang(video.published, i18n.language)
+                : ""}
+            </CollectionTime>
+          }
           badge={
             video.category?.trim() ? (
-              <CollectionBadgeText>{video.category}</CollectionBadgeText>
+              <CollectionBadgeText>
+                {getCategoryLabel(video.category, t)}
+              </CollectionBadgeText>
             ) : null
           }
           footer={footer}
         >
-          <CollectionTime>{video.published}</CollectionTime>
-
           <CollectionVideoPill>
             <CollectionVideoIconBox>
               <FormatIcon width={10} height={10} />
@@ -227,7 +252,7 @@ export default function CollectionItemCard({
         message={loginModalMessage}
         onSuccess={() => {
           if (pendingRedirectUrl) {
-            navigateToContent(pendingRedirectUrl, true);
+            navigateToContent(pendingRedirectUrl);
             setPendingRedirectUrl("");
           }
         }}

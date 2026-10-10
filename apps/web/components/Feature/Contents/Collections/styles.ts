@@ -6,6 +6,12 @@ export const NameWrapper = styled.div`
   gap: 8px;
 `;
 
+export const WarningBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+`;
+
 export const ActionWrapper = styled.div`
   display: flex;
   align-items: center;

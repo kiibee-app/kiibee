@@ -12,6 +12,7 @@ import { payoutRequestCalculationService } from './services/createPayoutRequest.
 import { getPayoutRequestService } from './services/getPayoutReques.service';
 import { getPayoutRequestByIdService } from './services/getPayoutRequestById.service';
 import { rejectPayoutRequestService } from './services/rejectPayoutRequest.service';
+import { approvePayoutRequestService } from './services/approvePayoutRequest.service';
 import { getPayoutHistoryByCreatorIdService } from './services/getPayoutHistoryByCreator.service';
 import { getAllPayoutHistoryService } from './services/getAllPayoutHistory.service';
 import { getCreatorWalletsService } from './services/getCreatorWallets.service';
@@ -65,6 +66,10 @@ export class PayoutService {
 
   async rejectPayoutRequestService(requestId: string) {
     return rejectPayoutRequestService(requestId);
+  }
+
+  async approvePayoutRequestService(requestId: string) {
+    return approvePayoutRequestService(requestId);
   }
 
   async getPayoutHistoryByCreatorIdService(

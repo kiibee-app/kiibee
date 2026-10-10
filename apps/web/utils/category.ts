@@ -1,0 +1,45 @@
+import { toCamelCaseKey } from "./common";
+const CATEGORY_ALL = "all";
+
+export function getCategoryLabel(
+  category: string | null | undefined,
+  t: (key: string) => string,
+): string {
+  if (!category) return "";
+  if (category === CATEGORY_ALL) {
+    return t("exploreCategories.categories.all");
+  }
+  const key = toCamelCaseKey(category);
+
+  const paths = [
+    `viewerSignup.preference.content.options.${key}`,
+    `exploreCategories.categories.${key}`,
+    `creators.filters.options.categories.${key}`,
+  ];
+
+  for (const path of paths) {
+    const translation = t(path);
+    if (translation && translation !== path) {
+      return translation;
+    }
+  }
+
+  const normalized = category.toLowerCase().trim();
+  if (
+    normalized.includes("education") ||
+    normalized.includes("learning") ||
+    normalized.includes("uddannelse")
+  ) {
+    const res = t(
+      "viewerSignup.preference.content.options.educationAndLearning",
+    );
+    if (
+      res &&
+      res !== "viewerSignup.preference.content.options.educationAndLearning"
+    ) {
+      return res;
+    }
+  }
+
+  return category;
+}

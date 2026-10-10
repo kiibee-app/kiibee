@@ -1,46 +1,53 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { fluidCardColumns } from "@/styles/exploreCardGrid";
+
 export const Grid = styled.div<{
   $maxWidth?: string;
   $columnMax?: string;
   $columns?: number;
-  $alignStart?: boolean;
 }>`
   width: 100%;
-  max-width: ${({ $maxWidth, $columnMax, $columns }) =>
-    $maxWidth ?? ($columnMax ? "100%" : $columns ? "1300px" : "1300px")};
+  max-width: ${({ $maxWidth }) =>
+    $maxWidth ?? GENERIC_CARD_LAYOUT.CONTENT_WIDTH};
   margin: 0 auto;
   display: grid;
+  min-width: 0;
   grid-template-columns: ${({ $columnMax, $columns }) => {
     if ($columnMax) {
-      return `repeat(auto-fill, minmax(260px, ${$columnMax}))`;
+      return `repeat(auto-fill, minmax(min(100%, ${GENERIC_CARD_LAYOUT.GRID_MIN}), ${$columnMax}))`;
     }
     if ($columns) {
-      return `repeat(${$columns}, minmax(0, 1fr))`;
+      return fluidCardColumns($columns);
     }
-    return "repeat(4, minmax(0, 1fr))";
+    return fluidCardColumns(4);
   }};
-  gap: ${({ $columnMax }) => ($columnMax ? "1.25rem" : "20px")};
-  justify-content: ${({ $alignStart }) => ($alignStart ? "start" : "center")};
+  gap: ${GENERIC_CARD_LAYOUT.GAP};
+  justify-content: stretch;
+
+  > * {
+    min-width: 0;
+  }
 
   ${media.desktop} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
       if ($columnMax) {
-        return `repeat(auto-fill, minmax(260px, ${$columnMax}))`;
+        return `repeat(auto-fill, minmax(min(100%, ${GENERIC_CARD_LAYOUT.GRID_MIN}), ${$columnMax}))`;
       }
       if ($columns) {
-        return `repeat(${Math.min($columns, 3)}, minmax(0, 1fr))`;
+        return fluidCardColumns(Math.min($columns, 3));
       }
-      return "repeat(3, minmax(0, 1fr))";
+      return fluidCardColumns(3);
     }};
   }
 
   ${media.tablet} {
     grid-template-columns: ${({ $columnMax, $columns }) => {
       if ($columnMax) return "1fr";
-      if ($columns) return "repeat(2, minmax(0, 1fr))";
-      return "repeat(2, minmax(0, 1fr))";
+      if ($columns) return fluidCardColumns(Math.min($columns, 2));
+      return fluidCardColumns(2);
     }};
   }
 

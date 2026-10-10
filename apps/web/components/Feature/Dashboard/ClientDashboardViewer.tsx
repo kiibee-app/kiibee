@@ -5,7 +5,7 @@ import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
@@ -33,6 +33,13 @@ import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBil
 import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
 import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
 import { RENTED_MODES } from "@/utils/viewerRented";
+import { useAppLanguage } from "@/hooks/useLocalizedPaths";
+import {
+  formatSearch,
+  getCanonicalParam,
+  localizeSearchParams,
+  toCanonicalSearchParams,
+} from "@/utils/localizedQueryParams";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -50,18 +57,18 @@ export default function ClientDashboardViewer({
   initialExpandedSection = null,
 }: Props) {
   const { t } = useTranslation();
+  const language = useAppLanguage();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
     useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
   const { isReady } = useRequireAuthSession();
 
-  const viewParam = searchParams?.get(VIEW);
+  const viewParam = getCanonicalParam(searchParams ?? undefined, VIEW);
   const activePage: ViewerLabel =
     viewParam && ROUTABLE_VIEWER_VIEWS.has(viewParam)
       ? VIEWER_VIEW_TO_LABEL[viewParam as ViewerViewValue]
@@ -69,7 +76,7 @@ export default function ClientDashboardViewer({
 
   const getHrefForView = useCallback(
     (label: ViewerLabel) => {
-      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      const params = toCanonicalSearchParams(searchParams?.toString() ?? "");
 
       params.delete(VIEWER_SECTION);
       params.delete(CONTENT_COLLECTION_QUERY_KEY);
@@ -84,10 +91,9 @@ export default function ClientDashboardViewer({
         }
       }
 
-      const qs = params.toString();
-      return qs ? `${pathname}?${qs}` : pathname;
+      return `/dashboard/viewer${formatSearch(localizeSearchParams(params, language))}`;
     },
-    [pathname, searchParams],
+    [searchParams, language],
   );
 
   const handleSelect = useCallback(

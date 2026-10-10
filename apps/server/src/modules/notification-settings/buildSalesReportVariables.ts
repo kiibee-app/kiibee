@@ -64,7 +64,12 @@ export const buildSalesReportVariables = async (
 
   const sales = rows.map((row) => ({
     name: formatUserDisplayName(row),
-    itemType: formatSaleType(row.itemType),
+    itemType:
+      row.itemType === 'rental'
+        ? 'Leje'
+        : row.itemType === 'purchase'
+          ? 'Køb'
+          : formatSaleType(row.itemType),
     price: formatSalePrice(row.price, row.currency),
     date: formatDisplayDate(row.createdAt),
   }));
@@ -81,6 +86,6 @@ export const buildSalesReportVariables = async (
     salesMessage:
       sales.length > 0
         ? ''
-        : 'No completed sales were recorded for this period.',
+        : 'Ingen gennemførte salg blev registreret i denne periode.',
   };
 };

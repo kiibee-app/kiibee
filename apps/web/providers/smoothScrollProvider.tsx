@@ -7,24 +7,26 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/utils/landingShared";
 import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
+import { toCanonicalPathname } from "@/utils/localizedRoutes";
 import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  window.history.scrollRestoration = "manual";
 }
 
-/** Same allow-list as before: Lenis only outside app/grid routes. */
 function shouldUseSmoothScroll(pathname: string) {
+  const canonical = toCanonicalPathname(pathname);
   return !(
-    pathname.startsWith("/dashboard") ||
-    pathname.startsWith("/creator/") ||
-    pathname.startsWith("/creators") ||
-    pathname.startsWith("/auth") ||
-    pathname.startsWith("/explore") ||
-    pathname.startsWith("/formats") ||
-    pathname.startsWith("/content/") ||
-    pathname.startsWith("/subscription") ||
-    pathname.startsWith("/payment")
+    canonical.startsWith("/dashboard") ||
+    canonical.startsWith("/creator/") ||
+    canonical.startsWith("/creators") ||
+    canonical.startsWith("/auth") ||
+    canonical.startsWith("/explore") ||
+    canonical.startsWith("/formats") ||
+    canonical.startsWith("/content/") ||
+    canonical.startsWith("/subscription") ||
+    canonical.startsWith("/payment")
   );
 }
 
@@ -32,7 +34,32 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!shouldUseSmoothScroll(pathname)) return;
+    if (typeof window === "undefined") return;
+
+    window.history.scrollRestoration = "manual";
+
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetScroll();
+    const raf1 = requestAnimationFrame(resetScroll);
+    const raf2 = requestAnimationFrame(() =>
+      requestAnimationFrame(resetScroll),
+    );
+    const t1 = setTimeout(resetScroll, 50);
+    const t2 = setTimeout(resetScroll, 200);
+
+    if (!shouldUseSmoothScroll(pathname)) {
+      return () => {
+        cancelAnimationFrame(raf1);
+        cancelAnimationFrame(raf2);
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    }
 
     const lenis = new Lenis({
       autoRaf: false,
@@ -44,6 +71,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       easing: (t: number) => 1 - Math.pow(1 - t, SMOOTH_SCROLL.easingPower),
       overscroll: false,
     });
+
+    lenis.scrollTo(0, { immediate: true });
 
     let resizeRafId: number | null = null;
     let destroyed = false;

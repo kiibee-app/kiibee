@@ -6,6 +6,7 @@ import {
   type PricingLabels,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
@@ -20,12 +21,14 @@ import {
 export type FeedContentItem = {
   id: string;
   title: string;
+  slug?: string;
   description?: string | null;
   thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: string | null;
   trailerUrl?: string | null;
   creatorId?: string;
   creatorName?: string | null;
+  creatorSlug?: string | null;
   contentType?: string | null;
   accessType?: string | null;
   categoryName?: string | null;
@@ -33,6 +36,8 @@ export type FeedContentItem = {
   rentPrice?: string | number | null;
   publishedAgo?: string | null;
   createdAt?: string | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
@@ -61,9 +66,18 @@ function resolveFormatType(contentType?: string | null): FormatType {
   return FORMAT_TYPE.VIDEO;
 }
 
-function formatFormatLabel(contentType?: string | null): string {
+function formatFormatLabel(
+  contentType?: string | null,
+  language?: string,
+): string {
   const key = normalizeContentTypeKey(contentType);
-  if (key === "web" || key === "web link") return "Web content";
+  if (key === "web" || key === "web link") {
+    const isEn =
+      language === "en" ||
+      (typeof document !== "undefined" &&
+        document.documentElement.lang === "en");
+    return isEn ? "Web content" : "Web indhold";
+  }
   if (key === "epub") return "E-pub";
   if (!contentType) return "Video";
   return contentType;
@@ -81,11 +95,81 @@ export function dedupeFeedContentItems(
   });
 }
 
+export function pickUniqueCreatorItems<T>(
+  items: T[],
+  limit: number,
+  getCreatorKey: (item: T) => string | null | undefined,
+): T[] {
+  const selected: T[] = [];
+  const seen = new Set<string>();
+
+  for (const item of items) {
+    const rawKey = getCreatorKey(item);
+    const creatorKey = rawKey?.trim() || null;
+
+    if (creatorKey) {
+      if (seen.has(creatorKey)) continue;
+      seen.add(creatorKey);
+    }
+
+    selected.push(item);
+    if (selected.length >= limit) break;
+  }
+
+  return selected;
+}
+
+export function pickUniqueCreatorFeedItems(
+  items: FeedContentItem[],
+  limit: number,
+): FeedContentItem[] {
+  return pickUniqueCreatorItems(
+    items,
+    limit,
+    (item) =>
+      item.creatorId?.trim() || item.creatorName?.trim().toLowerCase() || null,
+  );
+}
+
 function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    collectionAccessType?: string | null;
+    partOfCollectionLabel?: string;
+    labels?: PricingLabels;
+  },
 ): TutorialButton[] {
+  const effectiveCollectionId = options?.collectionId || item.collectionId;
+  const isPaid =
+    options?.isPaidCollection !== undefined
+      ? options.isPaidCollection
+      : item.isPaidCollection;
+
+  if (isPaid && effectiveCollectionId && isFreeContentItem(item)) {
+    const label =
+      options?.partOfCollectionLabel ||
+      options?.labels?.partOfCollection ||
+      "Part of a collection";
+    const collectionHref = pathPublicCollection(
+      effectiveCollectionId,
+      item.creatorId,
+      item.creatorSlug,
+    );
+    return [
+      {
+        label,
+        variant: VARIANT.SECONDARY,
+        href: collectionHref,
+        requiresAuth: false,
+        fullWidth: true,
+      },
+    ];
+  }
+
   const actions = getContentPricingActions(item, freeLabel, options);
   const requiresAuth = !isFreeContentItem(item);
 
@@ -107,7 +191,15 @@ function buildPricingButtons(
 export function feedContentToTutorial(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    collectionAccessType?: string | null;
+    partOfCollectionLabel?: string;
+    labels?: PricingLabels;
+    language?: string;
+  },
 ): TutorialVideo {
   const thumbnailCandidates = resolveContentThumbnailCandidates(
     item.thumbnailUrl,
@@ -117,15 +209,22 @@ export function feedContentToTutorial(
 
   return {
     id: item.id,
+    slug: item.slug,
     title: item.title,
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
     creatorId: item.creatorId,
+    creatorSlug: item.creatorSlug,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
     isFree: isFreeContentItem(item),
-    formatLabel: formatFormatLabel(item.contentType),
+    collectionId: options?.collectionId || item.collectionId,
+    isPaidCollection:
+      options?.isPaidCollection !== undefined
+        ? options.isPaidCollection
+        : item.isPaidCollection,
+    formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
     image: thumbnailCandidates[0] ?? recentCreator,
     ...(thumbnailCandidates[1]

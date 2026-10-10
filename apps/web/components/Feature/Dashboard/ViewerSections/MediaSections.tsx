@@ -4,7 +4,13 @@ import { useState } from "react";
 
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
+import { getCategoryLabel } from "@/utils/category";
 import GenericButton from "@/components/UI/GenericButton";
+import {
+  CardCreator,
+  CardTitle,
+} from "@/components/Feature/TutorialVideos/TutorialCard/styles";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 import {
   VARIANT,
   SORT_ARROW_UP,
@@ -254,13 +260,32 @@ export default function MediaSections({
                   <GenericCard
                     key={item.id}
                     coverImage
+                    imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+                    minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
                     image={item.thumbSrc}
-                    title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
+                    title={<CardTitle $use="Body_Medium">{item.title}</CardTitle>}
                     subtitle={
-                      <MonoText $use="Body_Medium">{item.author}</MonoText>
+                      <CardCreator $use="Body_SemiMedium">
+                        {item.author}
+                      </CardCreator>
                     }
+                    meta={
+                      <MonoText
+                        $use="Body_Medium"
+                        color={
+                          isCurrent
+                            ? COLORS.primary.RED
+                            : COLORS.neutral.GRAY_400
+                        }
+                      >
+                        {item.expiryText}
+                      </MonoText>
+                    }
+                    badgeVariant="overlay"
                     badge={
-                      <MonoText $use="Body_Bold">{item.category}</MonoText>
+                      <MonoText $use="Body_Bold">
+                        {getCategoryLabel(item.category, t)}
+                      </MonoText>
                     }
                     onClick={onCardClick ? () => onCardClick(item) : undefined}
                     footer={
@@ -295,14 +320,6 @@ export default function MediaSections({
                       )
                     }
                   >
-                    <MonoText
-                      $use="Body_Medium"
-                      color={
-                        isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
-                      }
-                    >
-                      {item.expiryText}
-                    </MonoText>
                     <MediaTypePill>
                       <MediaTypeIcon type={section.key} />
                       <MonoText $use="Body_Bold">

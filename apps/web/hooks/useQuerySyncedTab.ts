@@ -3,6 +3,12 @@
 import { useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { isBrowser } from "@/utils/ui";
+import { useAppLanguage } from "@/hooks/useLocalizedPaths";
+import {
+  formatSearch,
+  localizeSearchParams,
+  toCanonicalSearchParams,
+} from "@/utils/localizedQueryParams";
 
 type UseQuerySyncedTabParams<T extends string> = {
   queryKey: string;
@@ -20,11 +26,12 @@ export function useQuerySyncedTab<T extends string>({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const language = useAppLanguage();
   const validTabSet = useMemo(() => new Set<T>(validTabs), [validTabs]);
   const searchParamsString = searchParams?.toString() ?? "";
 
   const activeTab = useMemo(() => {
-    const params = new URLSearchParams(searchParamsString);
+    const params = toCanonicalSearchParams(searchParamsString);
     const tabParam = params.get(queryKey);
 
     if (tabParam && validTabSet.has(tabParam as T)) {
@@ -38,7 +45,7 @@ export function useQuerySyncedTab<T extends string>({
       const liveParams = isBrowser
         ? window.location.search
         : `?${searchParamsString}`;
-      const params = new URLSearchParams(liveParams);
+      const params = toCanonicalSearchParams(liveParams);
 
       cleanupQueryKeys.forEach((key) => params.delete(key));
 
@@ -48,10 +55,17 @@ export function useQuerySyncedTab<T extends string>({
         params.set(queryKey, tab);
       }
 
-      const query = params.toString();
-      return query ? `${pathname}?${query}` : pathname;
+      const localized = localizeSearchParams(params, language);
+      return `${pathname}${formatSearch(localized)}`;
     },
-    [searchParamsString, cleanupQueryKeys, defaultTab, queryKey, pathname],
+    [
+      searchParamsString,
+      cleanupQueryKeys,
+      defaultTab,
+      queryKey,
+      pathname,
+      language,
+    ],
   );
 
   const setActiveTabAndQuery = useCallback(

@@ -1,14 +1,13 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
-import { s3 } from 'src/services/s3.client';
 import { eq } from 'drizzle-orm';
-import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
+
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema';
-import { fail } from 'src/utils/sendResponse';
 import { insertContentViewService } from 'src/modules/creator-overview/services/insertContentView.service';
+import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
+import { resolvePlayableFileUrl } from 'src/utils/resolvePlayableFileUrl';
+import { fail } from 'src/utils/sendResponse';
+import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
 
 @Injectable()
 export class GetMediaByKeyService {
@@ -22,31 +21,22 @@ export class GetMediaByKeyService {
       expiresIn?: number;
       contentType?: string;
       disposition?: 'inline' | 'attachment';
+      apiBaseUrl?: string;
+      recordView?: boolean;
     } = {},
   ) {
     const {
       expiresIn = SIGNED_URL_EXPIRY.MEDIUM,
       contentType,
       disposition = 'inline',
+      apiBaseUrl,
+      recordView = true,
     } = options;
 
     const externalUrl = await this.resolveImportedMediaUrl.findExternalUrl(key);
     if (externalUrl) {
       return externalUrl;
     }
-
-    const isVideo =
-      key.includes('/videos/') ||
-      key.endsWith('.mp4') ||
-      key.endsWith('.webm') ||
-      key.endsWith('.mov');
-
-    const command = new GetObjectCommand({
-      Bucket: process.env.DO_BUCKET!,
-      Key: key,
-      ResponseContentDisposition: disposition,
-      ResponseContentType: contentType || (isVideo ? 'video/mp4' : undefined),
-    });
 
     const [mediaInfo] = await db
       .select({
@@ -60,12 +50,24 @@ export class GetMediaByKeyService {
       return fail('Media file not found', HttpStatus.NOT_FOUND);
     }
 
-    await insertContentViewService(
-      mediaInfo.creatorId,
-      mediaInfo.mediaFileId,
-      null,
-    );
+    const url = await resolvePlayableFileUrl(key, apiBaseUrl, {
+      expiresIn,
+      contentType,
+      disposition,
+    });
 
-    return getSignedUrl(s3, command, { expiresIn });
+    if (!url) {
+      return fail('Media file not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (recordView) {
+      await insertContentViewService(
+        mediaInfo.creatorId,
+        mediaInfo.mediaFileId,
+        null,
+      );
+    }
+
+    return url;
   }
 }

@@ -41,9 +41,14 @@
       "categoryTitle": "Category",
       "category": {
         "comedy": "Comedy",
+        "history": "History",
+        "entertainment": "Entertainment",
+        "coaching": "Coaching",
         "education": "Education & Courses",
+        "sportsAndFitness": "Sports & Fitness",
+        "booksAndWriting": "Books & Writing",
         "business": "Business & Marketing",
-        "arts": "Arts & Culture",
+        "arts": "Arts & Illustration",
         "tech": "Tech & Digital"
       },
       "creatorTitle": "Creator",
@@ -57,12 +62,13 @@
   },
   "createProfileHome": {
     "brandName": "Nana Jacobson",
-    "uploads": "{{count}} uploads",
+    "uploads_one": "{{count}} upload",
+    "uploads_other": "{{count}} uploads",
     "title": "Nana Jacobson",
     "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete.",
     "more": "...more",
     "searchPlaceholder": "Search content",
-    "searchOpenPlaceholder": "Search for posts",
+    "searchOpenPlaceholder": "Search for content",
     "searchCollectionsPlaceholder": "Search collections",
     "searchAriaLabel": "Search profile content",
     "noContentTitle": "Content coming soon",
@@ -175,6 +181,9 @@
         "subtitle": "Select all that apply.",
         "options": {
           "comedy": "Comedy",
+          "history": "History",
+          "entertainment": "Entertainment",
+          "coaching": "Coaching",
           "music": "Music",
           "podcasts": "Podcasts",
           "artsAndIllustration": "Arts & Illustration",
@@ -483,32 +492,31 @@
       }
     },
     "howToGetStarted": {
-      "title": "How Kiibee helps you sell more",
-      "subtitle": "More than a platform. A partner in growing your business.",
+      "title": "How to get started as a publisher",
       "steps": {
-        "getDiscovered": {
-          "title": "Get discovered",
-          "description": "Your content can be featured across the Kiibee platform, newsletters, social media, and curated campaigns—helping more people find your work."
+        "createProfile": {
+          "title": "Create your profile",
+          "description": "Create your profile quickly and easily, and set up your layout in the theme you want with images and colors."
         },
-        "frictionlessPayments": {
-          "title": "Frictionless payments",
-          "description": "Make buying effortless with MobilePay, Apple Pay, Google Pay, and major credit and debit cards."
+        "uploadAndPublish": {
+          "title": "Upload and publish",
+          "description": "Upload video, PDF, audio, and other files to your profile, choose a payment method, and make the content public for your customers. Purchases are easy with MobilePay, Apple Pay, Google Pay, and most credit and debit cards."
         },
-        "sellFromOwnWebsite": {
-          "title": "Sell from your own website",
-          "description": "Keep your audience on your own website while Kiibee securely handles payments, access, and content delivery."
+        "connectWebsite": {
+          "title": "Connect your website",
+          "description": "Let us help you connect your profile to your own website so your customers can easily purchase your content."
         },
-        "promotionsDiscountCodes": {
-          "title": "Promotions & Discount Codes",
-          "description": "Launch discount codes, limited-time offers, campaigns, and product releases to engage your audience and increase sales."
+        "launchPromotions": {
+          "title": "Launch promotions",
+          "description": "Launch discount codes, limited-time offers, promotions, and product launches to engage your audience and increase sales."
         },
-        "dataThatDrivesGrowth": {
-          "title": "Data that drives growth",
-          "description": "Understand your audience with insights into sales, customer behaviour, top-performing content, and revenue trends."
+        "trackSales": {
+          "title": "Track your sales",
+          "description": "Track your sales on your dashboard, with daily updates so you are always up to date on your business."
         },
-        "focusOnCreating": {
-          "title": "Focus on Creating",
-          "description": "Spend more time creating while Kiibee manages payments, streaming, downloads, access control, and platform infrastructure."
+        "reachCustomers": {
+          "title": "Reach the right customers",
+          "description": "Sit back and see how we help you expose your content to the right customers through newsletters, social media, and advertising."
         }
       }
     },
@@ -554,19 +562,21 @@
         }
       }
     },
-    "search": "Search for posts",
-    "searchCreators": "Search for creators",
+    "search": "Search for content",
+    "searchCreators": "Search for content",
     "sort": "Sort by:",
     "recentlyAdded": {
       "badge": "Recently added",
       "heading": "Recently added content",
       "tag": "Recently added"
     },
-    "viewProfile": "View profile",
+    "viewProfile": "View creator",
     "noCreatorsFound": "No creators found",
-    "uploadsCount": "{{count}} uploads",
+    "uploadsCount_one": "{{count}} upload",
+    "uploadsCount_other": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-Z",
+    "popular": "Popular",
     "subscribers": "Subscribers",
     "newest": "Newest",
     "topCreators": "Top creators",
@@ -715,11 +725,11 @@
     "backgroundAlt": "Creator testimonial background",
     "prevAriaLabel": "Previous testimonial",
     "nextAriaLabel": "Next testimonial",
-    "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
+    "quote": "Kiibee helps creative creators easily publish, share and sell their digital content. Whether it is video, design, teaching, music or other creative projects, the platform makes it simple to reach an audience and create value from their work. The focus is on giving creators the tools they need so they can concentrate on creativity rather than the technical side.",
     "author": "Kamma, freelance graphic designer",
-    "quote2": "Kiibee made it incredibly easy to package my online tutorials and sell them directly to my audience. I don't have to worry about managing subscription platforms or payment systems; it just works. I went from zero earnings to a steady side income in a matter of weeks!",
+    "quote2": "Kiibee makes it simple for educators, coaches and content creators to gather their online courses, tutorials and digital products in one place. The platform handles payments, time and access management, so the creator can focus on the content and the relationship with their audience. That makes it easier to turn knowledge and creativity into a stable digital income.",
     "author2": "Sarah, online content creator",
-    "quote3": "As an educator, I wanted a simple way to distribute my coding courses without forcing my students into a monthly subscription. Kiibee's rental model is exactly what we needed. The playback is smooth, and the setup was seamless.",
+    "quote3": "Kiibee gives publishers, book publishers and educators a simple way to distribute digital books, courses and other content without depending on complex subscription platforms. With flexible models for sales, rental and access management, it becomes easy to reach readers and students, while the platform ensures a stable and user-friendly experience from setup to playback and delivery.",
     "author3": "Marcus, tech educator"
   },
   "securePayment": {
@@ -777,7 +787,7 @@
     }
   },
   "features": {
-    "heading": "More than just content",
+    "heading": "Your personal experience",
     "sub": "Explore our features",
     "items": [
       {
@@ -832,7 +842,7 @@
     "meditation": "Guided meditations",
     "fitness": "Fitness",
     "theater": "Theater",
-    "sound": "Sound effects and loops",
+    "education": "Education & learning",
     "articles": "Articles & essays"
   },
   "pricingPage": {
@@ -1185,6 +1195,7 @@
     "meta": {
       "category": "Category:",
       "publishedYear": "Published:",
+      "publishedBy": "Published by:",
       "createdAt": "Created:",
       "accessType": "Access:",
       "visibility": "Visibility:",
@@ -1194,18 +1205,19 @@
     }
   },
   "singleCollection": {
-    "subtitle": "Learn how to use our platform",
+    "subtitle": "Welcome to this exclusive collection. Explore a curated selection of videos, interactive lessons, and in-depth resources tailored to provide you with a comprehensive and engaging learning experience. Browse through all the materials below, dive into individual topics at your own pace, and get started watching today.",
     "seeContent": "See content",
     "notFound": "Collection not found",
     "noContent": "No content in this collection",
     "inCollection": "In this collection",
-    "uploads": "uploads",
+    "uploads_one": "{{count}} upload",
+    "uploads_other": "{{count}} uploads",
     "noResults": "No uploads match your search."
   },
   "singleTutorial": {
-    "title": "Del 1. Oprettelse af profil og kanal & site",
-    "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
-    "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
+    "title": "Part 1. Creating a profile and channel & site",
+    "descriptionPrimary": "In this video we show how to get started after setup and customize your site or channel.",
+    "descriptionSecondary": "If the video quality looks blurry, it may be because your internet connection is poor. You can improve the quality by pressing the gear icon in the player and setting the resolution to 1080p in Chrome, Firefox and Microsoft Edge / Explorer browsers.",
     "playTrailer": "Play trailer",
     "seeContent": "See content",
     "notFound": "Tutorial not found",
@@ -1495,6 +1507,7 @@
     }
   },
   "users": {
+    "title": "Users",
     "search": "Search by name",
     "tabs": {
       "registrations": "Registrations",
@@ -1829,6 +1842,24 @@
       "deleteContent": "Delete content",
       "addContent": "Add content"
     },
+    "tableHeaders": {
+      "collectionName": "Collection Name",
+      "numberOfContents": "Number of Contents",
+      "created": "Created",
+      "contentName": "Content name",
+      "visibility": "Visibility",
+      "title": "Title",
+      "codes": "Codes",
+      "status": "Status",
+      "createdDate": "Created date",
+      "actions": "Actions"
+    },
+    "rowActions": {
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "settings": "Settings",
+      "moveToAnotherCollection": "Move to another collection"
+    },
     "couponDetails": {
       "title": "Coupon details",
       "fields": {
@@ -1934,13 +1965,17 @@
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your {{contentType}} should have",
+      "channelDescription": "Set access for all collections and content on your channel.",
       "fallbackContentType": "collection",
+      "placeholder": "Select access type",
       "options": {
         "free": "Free",
         "payment": "Payment",
         "password": "Set password",
         "email": "Request email"
       },
+      "freeContentToastWarning": "You have free content. Please set payment or access code to publish or maintain it public.",
+      "freeContentWarningBadge": "Free Content (Payment or code required)",
       "password": {
         "placeholder": "Enter passwords",
         "helper": "Separate multiple passwords with commas.",
@@ -2132,7 +2167,9 @@
     "createCollectionModal": {
       "title": "Create collection",
       "collectionName": "Collection name",
-      "placeholder": "Enter name"
+      "placeholder": "Enter name",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter a description"
     },
     "createCollectionSuccessModal": {
       "title": "Changes saved",
@@ -2189,7 +2226,7 @@
         "title": "Thumbnail",
         "mediaCardLabel": "Upload thumbnail for the media card",
         "mediaCardSize": "Use size {{width}}x{{height}} pixel image",
-        "portraitLabel": "Upload thumbnail for portrait format",
+        "portraitLabel": "Upload thumbnail for landscape format",
         "portraitSize": "Use size {{width}}x{{height}} pixel image",
         "portraitPdfSize": "Use size {{width}}x{{height}} pixel image"
       }
@@ -2213,6 +2250,14 @@
       "webRental": {
         "title": "Web content rental (Streaming)",
         "description": "When web content is rented, it will be available for 48 hours."
+      },
+      "webPurchase": {
+        "title": "Web content purchase (lifetime access)",
+        "description": "Users get permanent access to the web content."
+      },
+      "epubRental": {
+        "title": "E-publication rental",
+        "description": "Readers can get temporary access to the publication."
       },
       "epubPurchase": {
         "title": "E-publication purchase / download",
@@ -2360,6 +2405,9 @@
     "tryAgain": "Try Again",
     "requestSentTitle": "Request sent",
     "requestSentMessage": "The creator has received your request. If it is approved, we will email you a link to this content.",
+    "accessGrantedTitle": "Access granted",
+    "accessGrantedMessage": "You now have access to this creator's collections and content.",
+    "viewCollection": "View content",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {
@@ -2368,7 +2416,8 @@
     "buyCollection": "Buy collection",
     "free": "Free",
     "accessCodeRequired": "Access code required",
-    "emailRequired": "Email required"
+    "emailRequired": "Email required",
+    "partOfCollection": "Part of a collection"
   },
   "viewerRented": {
     "emptyStates": {

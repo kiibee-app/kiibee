@@ -1,24 +1,17 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
+import { exploreSectionFrame } from "@/styles/exploreCardGrid";
 
 export const Wrapper = styled.section`
-  width: min(100%, 1300px);
-  margin: 0 auto;
-  padding: 40px 0;
-
-  ${media.desktopMd} {
-    width: 100%;
-    padding: 40px 25px;
-  }
-
-  ${media.desktop} {
-    width: 100%;
-    padding: 40px 25px;
-  }
+  ${exploreSectionFrame}
+  container-type: inline-size;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   ${media.tablet} {
-    width: 100%;
-    padding: 2rem 1.75rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 `;
 
@@ -39,29 +32,45 @@ export const SeeAll = styled.a`
 `;
 
 export const List = styled.div`
+  --creator-size: 150px;
+  --creator-visible: 6;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  gap: 73px;
-  align-self: stretch;
+  align-items: flex-start;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  padding-right: 2rem;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  gap: calc(
+    (100% - (var(--creator-size) * var(--creator-visible))) /
+      (var(--creator-visible) - 1)
+  );
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  ${media.tablet} {
-    gap: 60px;
-    padding: 0 1.25rem 0.25rem 1.25rem;
+  @container (max-width: 899px) {
+    --creator-visible: 5;
   }
 
-  ${media.mobile} {
-    gap: 50px;
-    padding: 0 1rem 0.25rem 1rem;
+  @container (max-width: 749px) {
+    --creator-visible: 4;
+  }
+
+  @container (max-width: 599px) {
+    --creator-visible: 3;
+  }
+
+  ${media.tablet} {
+    --creator-size: 100px;
+    --creator-visible: 4;
+  }
+
+  ${media.mobileLg} {
+    --creator-visible: 3;
   }
 `;
 
@@ -69,7 +78,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 150px;
+  width: var(--creator-size, 150px);
+  min-width: var(--creator-size, 150px);
+  max-width: var(--creator-size, 150px);
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   gap: 7px;
   text-decoration: none;
   color: inherit;
@@ -82,16 +96,33 @@ export const Card = styled.div`
     transform: scale(1.05);
     opacity: 0.9;
   }
-
-  ${media.tablet} {
-    min-width: 100px;
-  }
 `;
 
 export const Avatar = styled.div`
-  min-width: 150px;
-  min-height: 150px;
-  border-radius: 90px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   overflow: hidden;
   position: relative;
+  flex-shrink: 0;
+`;
+
+export const CreatorName = styled(MonoText)`
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.2;
+`;
+
+export const CreatorMeta = styled(MonoText)`
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.2;
 `;

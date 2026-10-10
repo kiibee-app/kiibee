@@ -1,6 +1,13 @@
 import styled from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
 
 export { Card, CardTop, TextBlock } from "../Payout/styles";
+export { Settlement } from "../styles";
+
+export const Subtitle = styled(MonoText)`
+  margin-top: 4px;
+  display: block;
+`;
 
 export const Fields = styled.div`
   display: flex;

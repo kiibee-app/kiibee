@@ -70,7 +70,9 @@ import {
   DRAWER_VARIANT,
   TOUCH,
 } from "@/utils/Constants";
-import { PATHS, isDashboardPath } from "@/utils/path";
+import { isDashboardPath } from "@/utils/path";
+import { toCanonicalPathname } from "@/utils/localizedRoutes";
+import { useLocalizedHref, useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
@@ -250,11 +252,18 @@ export default function NavBar({
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
+  const localize = useLocalizedHref();
+  const paths = useLocalizedPaths();
+  const canonicalPathname = toCanonicalPathname(pathname || "/");
   const dashboardPath = useSessionDashboardPath();
   const isLoggedIn = Boolean(dashboardPath);
   const { logout: logoutFromNav, isPending: isLogoutPending } = useLogout();
-  const loginButtonHref = PATHS.AUTH_LOGIN;
+  const loginButtonHref = paths.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
+  const getLocalizedItemHref = (item: NavBarItem) =>
+    localize(getItemHref(item));
+  const isHrefActive = (href: string) =>
+    canonicalPathname === toCanonicalPathname(href);
   const [openMegaKey, setOpenMegaKey] = useState<string | null>(null);
   const [renderedMegaKey, setRenderedMegaKey] = useState<string | null>(null);
   const activeItem = items.find(
@@ -495,7 +504,7 @@ export default function NavBar({
       </NavButton>
     ) : (
       <NavAnchor
-        href={getItemHref(item)}
+        href={getLocalizedItemHref(item)}
         scroll={false}
         $isActive={isRouteActive}
         $textTone={navTextTone}
@@ -507,7 +516,7 @@ export default function NavBar({
   };
 
   const renderDefaultNavItem = (item: NavBarItem) => {
-    const href = getItemHref(item);
+    const href = getLocalizedItemHref(item);
 
     if (item.onClick) {
       return (
@@ -539,8 +548,8 @@ export default function NavBar({
             {col.items.map((ci) => (
               <DrawerSubMenuLink
                 key={ci.key}
-                href={ci.href}
-                $isActive={pathname === ci.href}
+                href={localize(ci.href)}
+                $isActive={isHrefActive(ci.href)}
                 onClick={collapseSidebar}
               >
                 {t(ci.key)}
@@ -562,7 +571,7 @@ export default function NavBar({
           <DrawerMenuRow>
             {item.href ? (
               <DrawerMenuLink
-                href={item.href}
+                href={localize(item.href)}
                 $isActive={isRouteActive}
                 onClick={collapseSidebar}
               >
@@ -642,7 +651,7 @@ export default function NavBar({
           )}
           {brand ?? (
             <Logo>
-              <Link href={PATHS.HOME}>
+              <Link href={paths.HOME}>
                 <Image
                   src={logo}
                   alt={t(NAV.logoAlt)}
@@ -721,7 +730,7 @@ export default function NavBar({
                 <GenericButton
                   className="start-btn"
                   asAnchor
-                  href={PATHS.AUTH_SIGNUP}
+                  href={paths.AUTH_SIGNUP}
                   variant={VARIANT.PRIMARY}
                 >
                   <span className="desktop-text">{t(NAV.startCreating)}</span>
@@ -761,7 +770,7 @@ export default function NavBar({
               >
                 <ColumnTitle>{t(col.titleKey)}</ColumnTitle>
                 {col.items.map((ci) => (
-                  <ColumnItem key={ci.key} href={ci.href}>
+                  <ColumnItem key={ci.key} href={localize(ci.href)}>
                     {t(ci.key)}
                   </ColumnItem>
                 ))}
@@ -839,7 +848,7 @@ export default function NavBar({
                   <GenericButton
                     className="start-btn"
                     asAnchor
-                    href={PATHS.AUTH_SIGNUP}
+                    href={paths.AUTH_SIGNUP}
                     variant={VARIANT.PRIMARY}
                   >
                     <span className="desktop-text">{t(NAV.startCreating)}</span>

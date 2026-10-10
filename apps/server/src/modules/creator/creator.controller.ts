@@ -40,12 +40,14 @@ export class CreatorController {
   async getAdminCreators(
     @Query('search') search?: string,
     @Query('plan') plan?: string,
+    @Query('hidden') hidden?: string,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
   ) {
     return this.creatorService.getAdminCreators({
       search: search?.trim() || undefined,
       plan: plan?.trim() || undefined,
+      hidden: hidden === 'true' ? true : hidden === 'false' ? false : undefined,
       page: page ? Number(page) : undefined,
       limit: limit ? Number(limit) : undefined,
     });

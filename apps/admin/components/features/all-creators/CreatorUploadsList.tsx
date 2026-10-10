@@ -1,5 +1,3 @@
-"use client";
-
 import { Video, ArrowLeft } from "lucide-react";
 import { useCreatorUploads, type UploadItem } from "../../../hooks/api";
 import { existingCreatorLabels } from "../../../utils/existingCreatorsConfig";
@@ -13,8 +11,6 @@ import {
   BackButton,
   UploadsListContainer,
   UploadCard,
-  UploadThumbnail,
-  UploadThumbnailPlaceholder,
   UploadInfo,
   UploadTitle,
   UploadMeta,
@@ -22,6 +18,7 @@ import {
   StatusMessage,
   ContentTypeLabel,
 } from "./CreatorUploads.styles";
+import { ContentThumbnail } from "../../common/ContentThumbnail";
 
 export type CreatorUploadsListProps = {
   creatorId: string;
@@ -58,13 +55,13 @@ export function CreatorUploadsList({
         <UploadsListContainer>
           {uploads.map((upload) => (
             <UploadCard key={upload.id} onClick={() => onSelectUpload(upload)}>
-              {upload.thumbnailUrl ? (
-                <UploadThumbnail src={upload.thumbnailUrl} alt={upload.title} />
-              ) : (
-                <UploadThumbnailPlaceholder>
-                  <Video size={20} />
-                </UploadThumbnailPlaceholder>
-              )}
+              <ContentThumbnail
+                src={upload.thumbnailUrl}
+                alt={upload.title}
+                contentType={upload.contentType}
+                size={20}
+                fallbackIcon={<Video size={20} />}
+              />
               <UploadInfo>
                 <UploadTitle>{upload.title}</UploadTitle>
                 <UploadMeta>

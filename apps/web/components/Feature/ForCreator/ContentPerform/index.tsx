@@ -1,7 +1,10 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creatorDashboardImage from "@/assets/images/creators/creator_dashboard.webp";
+import dashboardEnglishImage from "@/assets/images/dashboard-english.webp";
+import dashboardDanishImage from "@/assets/images/dashboard-danish.webp";
+import { DA } from "@/utils/common";
+import { normalizeAppLanguage } from "@/utils/language";
 import {
   Section,
   ContentWrapper,
@@ -25,7 +28,13 @@ const DASHBOARD_REVEAL_STYLE = {
 } as const;
 
 export default function ContentPerform() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = normalizeAppLanguage(
+    i18n.resolvedLanguage || i18n.language,
+  );
+  const dashboardImage =
+    currentLang === DA ? dashboardDanishImage : dashboardEnglishImage;
+
   const points = t("creators.contentPerform.points", {
     returnObjects: true,
   }) as string[];
@@ -46,22 +55,13 @@ export default function ContentPerform() {
             </ListIntro>
           </ScrollReveal>
 
-          <PointsList>
-            {points.map((point, index) => (
-              <PointItem key={point}>
-                <ScrollReveal
-                  sequence={false}
-                  delay={
-                    LANDING_REVEAL.mediumDelay +
-                    LANDING_REVEAL.ctaCardStaggerDelay +
-                    index * LANDING_REVEAL.ctaCardStaggerDelay
-                  }
-                >
-                  {point}
-                </ScrollReveal>
-              </PointItem>
-            ))}
-          </PointsList>
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
+            <PointsList>
+              {points.map((point) => (
+                <PointItem key={point}>{point}</PointItem>
+              ))}
+            </PointsList>
+          </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.shortDelay * 4}>
             <Outro as="p">{t("creators.contentPerform.outro")}</Outro>
@@ -74,11 +74,15 @@ export default function ContentPerform() {
             variant={LANDING_REVEAL_VARIANTS.slideUp}
             duration={LANDING_REVEAL.longRevealDuration}
             style={DASHBOARD_REVEAL_STYLE}
+            noClip
           >
             <ImageFrame>
               <DashboardImage
-                src={creatorDashboardImage.src}
+                key={currentLang}
+                src={dashboardImage.src}
                 alt={t("creators.contentPerform.imageAlt")}
+                width={dashboardImage.width}
+                height={dashboardImage.height}
               />
             </ImageFrame>
           </ImageReveal>

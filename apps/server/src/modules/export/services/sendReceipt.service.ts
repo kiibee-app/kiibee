@@ -13,7 +13,13 @@ import {
 } from 'src/utils/mailServiceConstant';
 import { formatDate } from 'src/utils/formatDate';
 import { success } from 'src/utils/sendResponse';
-import { ORDER_TYPES } from 'src/utils/constant';
+import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+
+const RECEIPT_STATUS_LABEL: Record<string, string> = {
+  [ORDER_STATUS.COMPLETED]: 'Købt',
+  [ORDER_STATUS.PENDING]: 'Afventer',
+  [ORDER_STATUS.FAILED]: 'Mislykkedes',
+};
 
 export const sendReceiptService = async (orderId: string) => {
   try {
@@ -41,6 +47,7 @@ export const sendReceiptService = async (orderId: string) => {
           cardType: sql<string>`coalesce(${payments.cardType}, 'Not found')`,
           cardNo: sql<string>`coalesce(${payments.cardNo}, 'XXXX-XXXX-XXXX-XXXX')`,
           paidAt: payments.paidAt,
+          amount: payments.amount,
         },
       })
       .from(orders)
@@ -70,14 +77,18 @@ export const sendReceiptService = async (orderId: string) => {
           orderId: orderInfo.orderId,
           mediaTitle: orderInfo.content.mediaTitle,
           creatorName: orderInfo.content.creatorName,
-          orderTypeLabel: isRental ? ORDER_TYPES.RENTAL : ORDER_TYPES.PURCHASE,
+          orderTypeLabel: isRental ? 'leje' : 'køb',
           headerTitle: isRental
-            ? 'Your rental is confirmed'
-            : 'Your purchase is confirmed',
+            ? 'Din leje er bekræftet'
+            : 'Dit køb er bekræftet',
           createdAt: formatDate(orderInfo.createdAt),
-          price: orderInfo.price,
+          price: orderInfo.payment.amount ?? orderInfo.price,
           currency: orderInfo.currency,
-          status: orderInfo.status,
+          status: isRental
+            ? orderInfo.status === ORDER_STATUS.COMPLETED
+              ? 'Lejet'
+              : (RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status)
+            : (RECEIPT_STATUS_LABEL[orderInfo.status] ?? orderInfo.status),
           paymentMethod: orderInfo.payment.paymentMethod,
           cardType: orderInfo.payment.cardType,
           cardNoLast4: orderInfo.payment.cardNo.slice(-4),

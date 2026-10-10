@@ -9,20 +9,24 @@ import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getCategoryLabel } from "@/utils/category";
 import {
   MediaTypeBox,
   IconFrame,
   DiscoverContainer,
   CardTitle,
+  CardAuthor,
 } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_IMAGE_DIMENSIONS } from "@/utils/landingUtils";
 import GenericCard from "@/components/UI/GenericCard";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 
-function DiscoverCard({ item }: DiscoverCardProps) {
+function DiscoverCard({ item, lng }: DiscoverCardProps) {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
 
@@ -32,33 +36,42 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   const handleOpen = () => {
-    navigateToContent(targetHref, false);
+    navigateToContent(targetHref);
   };
 
   const handleActionClick = (href: string) => {
-    navigateToContent(href, false);
+    navigateToContent(href);
   };
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
   };
 
+  const categoryLabel = getCategoryLabel(item.categoryKey, t);
+
   return (
     <GenericCard
       coverImage
+      imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
+      minHeight={GENERIC_CARD_LAYOUT.CONTENT_MIN_HEIGHT}
       image={item.image}
       alt={safeT(item.titleKey)}
       badge={
-        safeT(item.categoryKey) ? (
+        categoryLabel ? (
           <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-            {safeT(item.categoryKey)}
+            {categoryLabel}
           </MonoText>
         ) : undefined
       }
-      title={<CardTitle $use="Body_Medium">{safeT(item.titleKey)}</CardTitle>}
+      title={<CardTitle $use="H5_Medium">{safeT(item.titleKey)}</CardTitle>}
       subtitle={
-        <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
+        <CardAuthor $use="Body_SemiMedium" color={COLORS.primary.BLACK_90}>
           {safeT(item.authorKey)}
+        </CardAuthor>
+      }
+      meta={
+        <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
+          {formatTimeAgoByLang(item.dateKey, lng || i18n.language)}
         </MonoText>
       }
       onClick={handleOpen}
@@ -77,10 +90,6 @@ function DiscoverCard({ item }: DiscoverCardProps) {
         </DiscoverContainer>
       }
     >
-      <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-        {safeT(item.dateKey)}
-      </MonoText>
-
       <MediaTypeBox>
         <IconFrame>
           {item.mediaType === MEDIA_TYPE.EPUB ? (

@@ -373,9 +373,11 @@ export const ModalConfirmButton = styled.button`
   }
 `;
 
-export const PreviewFrame = styled.iframe`
+export const PreviewFrame = styled.iframe<{ $tall?: boolean }>`
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: ${({ $tall }) => ($tall ? "auto" : "16 / 9")};
+  height: ${({ $tall }) => ($tall ? "70vh" : "auto")};
+  min-height: ${({ $tall }) => ($tall ? "70vh" : "0")};
   border: 0;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.secondary.main};

@@ -27,6 +27,28 @@ export const buildHeaderMap = <TValue extends string>(
     {} as Record<string, TValue>,
   );
 
+export const getCollectionColumns = (t: TFunction) => [
+  { label: t("contents.tableHeaders.collectionName"), key: "name" },
+  { label: t("contents.tableHeaders.numberOfContents"), key: "contentsCount" },
+  { label: t("contents.tableHeaders.created"), key: "createdAt" },
+  { label: "", key: "Actions" },
+];
+
+export const getCollectionContentColumns = (t: TFunction) => [
+  { label: t("contents.tableHeaders.contentName"), key: "name" },
+  { label: t("contents.tableHeaders.visibility"), key: "visibility" },
+  { label: t("contents.tableHeaders.created"), key: "createdAt" },
+  { label: "", key: "Actions" },
+];
+
+export const getCouponTableColumns = (t: TFunction) => [
+  { label: t("contents.tableHeaders.title"), key: "title" },
+  { label: t("contents.tableHeaders.codes"), key: "codes" },
+  { label: t("contents.tableHeaders.status"), key: "status" },
+  { label: t("contents.tableHeaders.createdDate"), key: "createdAt" },
+  { label: "", key: "action" },
+];
+
 export const COLLECTION_COLUMNS = [
   { label: "Collection Name", key: "name" },
   { label: "Number of Contents", key: "contentsCount" },

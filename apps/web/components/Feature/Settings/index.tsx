@@ -293,10 +293,10 @@ export default function SettingsContent() {
         search={{
           open: openSearch,
           value: searchValue,
-          placeholder: t("search"),
+          placeholder: t("common.search"),
           onToggle: () => setOpenSearch((prev) => !prev),
           onChange: handleSearchChange,
-          ariaLabel: t("search"),
+          ariaLabel: t("common.search"),
         }}
       />
 

@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, sql } from 'drizzle-orm';
+import { and, eq, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorChannels,
@@ -46,6 +46,7 @@ export const getCreatorByIdService = async (creatorId: string) => {
         cvr: creatorInfo.cvr,
         channelName: creatorChannels.name,
         channelSlug: creatorChannels.slug,
+        slug: creatorChannels.slug,
         isPublished: creatorChannels.isPublished,
         layout: contentAppearance.layout,
         planName: planNameSql,
@@ -56,7 +57,13 @@ export const getCreatorByIdService = async (creatorId: string) => {
       .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
       .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
       .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
-      .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
+      .leftJoin(
+        creatorPlans,
+        and(
+          eq(creatorPlans.creatorId, users.id),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
       .leftJoin(
         mediaFiles,
@@ -74,7 +81,7 @@ export const getCreatorByIdService = async (creatorId: string) => {
       )
       .where(
         and(
-          eq(users.id, creatorId),
+          or(eq(users.id, creatorId), eq(creatorChannels.slug, creatorId)),
           eq(users.role, ROLE.CREATOR),
           eq(users.isDeleted, false),
         ),

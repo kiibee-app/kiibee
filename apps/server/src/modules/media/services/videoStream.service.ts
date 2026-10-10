@@ -1,9 +1,11 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema';
-import { eq } from 'drizzle-orm';
-import { fail } from 'src/utils/sendResponse';
 import { insertContentViewService } from 'src/modules/creator-overview/services/insertContentView.service';
+import { isCloudflareStreamVideoId } from 'src/utils/legacyUmbracoMedia';
+import { fail } from 'src/utils/sendResponse';
+
 @Injectable()
 export class VideoStreamService {
   private readonly accountId = process.env.CF_ACCOUNT_ID as string;
@@ -17,6 +19,10 @@ export class VideoStreamService {
     expiresInSec = 3600,
     options?: { recordView?: boolean },
   ) {
+    if (!isCloudflareStreamVideoId(videoId)) {
+      return fail('Media file not found', HttpStatus.NOT_FOUND);
+    }
+
     const response = await fetch(
       `https://api.cloudflare.com/client/v4/accounts/${this.accountId}/stream/${videoId}/token`,
       {

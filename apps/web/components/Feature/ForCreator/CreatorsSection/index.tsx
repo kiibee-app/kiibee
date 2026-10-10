@@ -99,7 +99,7 @@ export default function CreatorsSection() {
 
             return (
               <AnimatedCard
-                key={card.title}
+                key={`creator-card-${index}`}
                 ref={(node) => {
                   cardRefs.current[index] = node;
                 }}
@@ -119,6 +119,8 @@ export default function CreatorsSection() {
                   src={resolveImageUrl(card.image)}
                   alt={card.alt}
                   draggable={false}
+                  decoding="async"
+                  loading="eager"
                 />
                 <CardContent>
                   <CardTitle>{card.title}</CardTitle>

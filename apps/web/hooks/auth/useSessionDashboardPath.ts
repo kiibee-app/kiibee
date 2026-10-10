@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 import { authStorage } from "@/lib/auth/authStorage";
 import { STORED_LOGIN_USER_UPDATED } from "@/lib/auth/storageKeys";
 import { getDashboardPathForRole } from "@/utils/path";
+import { localizePathname } from "@/utils/localizedRoutes";
+import { useAppLanguage } from "@/hooks/useLocalizedPaths";
 
 const SESSION_CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
@@ -24,6 +26,7 @@ function getServerSnapshot(): null {
 }
 
 export function useSessionDashboardPath() {
+  const language = useAppLanguage();
   const dashboardPath = useSyncExternalStore(
     subscribe,
     readSessionDashboardPath,
@@ -58,5 +61,8 @@ export function useSessionDashboardPath() {
     };
   }, []);
 
-  return dashboardPath;
+  return useMemo(
+    () => (dashboardPath ? localizePathname(dashboardPath, language) : null),
+    [dashboardPath, language],
+  );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import {
   useExploreCreators,
@@ -9,6 +10,7 @@ import {
 import SafeImage from "@/components/UI/SafeImage";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
+import { getCategoryLabel } from "@/utils/category";
 import { CREATORS } from "@/utils/translationKeys";
 import {
   Section,
@@ -33,6 +35,7 @@ import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { MARQUEE_LIMIT } from "@/utils/Constants";
 
 export default function ExploreCreatorsMarquee() {
+  const router = useRouter();
   const { t } = useTranslation();
   const { creators: allCreators } = useExploreCreators();
   const creators = allCreators
@@ -49,8 +52,16 @@ export default function ExploreCreatorsMarquee() {
     const description =
       creator.contentDescription ?? t(CREATORS.marquee.defaultDescription);
 
+    const profilePath = creator.slug
+      ? getPublicCreatorProfilePath(creator.slug, creator.layout)
+      : null;
+
     return (
-      <CreatorCard key={`${prefix}-${creator.id}-${idx}`}>
+      <CreatorCard
+        key={`${prefix}-${creator.id}-${idx}`}
+        onClick={profilePath ? () => router.push(profilePath) : undefined}
+        style={profilePath ? { cursor: "pointer" } : undefined}
+      >
         <CardLeft>
           <CardHeader>
             <CardTitle>
@@ -58,7 +69,9 @@ export default function ExploreCreatorsMarquee() {
             </CardTitle>
             {creator.category && (
               <CategoryBadge>
-                <MonoText $use="Body_SemiMedium">{creator.category}</MonoText>
+                <MonoText $use="Body_SemiMedium">
+                  {getCategoryLabel(creator.category, t)}
+                </MonoText>
               </CategoryBadge>
             )}
           </CardHeader>
@@ -72,11 +85,16 @@ export default function ExploreCreatorsMarquee() {
               </MonoText>
             </CardDescription>
           )}
-          <ProfileButton
-            href={getPublicCreatorProfilePath(creator.id, creator.layout)}
-          >
-            {t(CREATORS.viewProfile)}
-          </ProfileButton>
+          {profilePath ? (
+            <ProfileButton
+              href={profilePath}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              {t(CREATORS.viewProfile)}
+            </ProfileButton>
+          ) : null}
         </CardLeft>
         <CardRight>
           {imageUrl ? (

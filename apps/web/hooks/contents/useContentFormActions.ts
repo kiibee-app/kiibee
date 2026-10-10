@@ -35,6 +35,10 @@ import {
 import { AccessDurationValue } from "@/utils/common";
 import {
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_PAID,
+  ACCESS_TYPE_PASSWORD,
+  SET_PASSWORD_ACCESS,
+  GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
   CONTENT_FORM_FIELDS,
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
@@ -55,6 +59,7 @@ import {
   NUMERIC_ONLY_REGEX,
   IS_FALLBACK_SIZE,
 } from "@/utils/Constants";
+import { AUTH_FORM, CONTENTS } from "@/utils/translationKeys";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import {
@@ -85,6 +90,7 @@ type Params = {
   selectedCollection: CollectionRow | null;
   setSelectedCollection: Dispatch<SetStateAction<CollectionRow | null>>;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
+  collections?: CollectionRow[];
   collectionContents: CollectionContentRow[];
   setActiveTabAndQuery: (tab: ContentTab) => void;
   openDiscardModal: () => void;
@@ -95,7 +101,14 @@ type Params = {
     backToTypeSelect: () => void;
   };
   contentSettingAccessType?: string;
+  contentSettingPasswordCount?: number;
+  removedPasswordIndexes: number[];
+  clearRemovedPasswordIndexes: () => void;
+  passwordDraft: string;
   saveContentSetting?: (payload: SaveContentSettingPayload) => Promise<void>;
+  setContentsMap?: Dispatch<
+    SetStateAction<Record<string, CollectionContentRow[]>>
+  >;
 };
 
 export function useContentFormActions({
@@ -104,13 +117,19 @@ export function useContentFormActions({
   selectedCollection,
   setSelectedCollection,
   setCollections,
+  collections,
   collectionContents,
   setActiveTabAndQuery,
   openDiscardModal,
   createCollectionFlow,
   contentTypeFlow,
   contentSettingAccessType,
+  contentSettingPasswordCount,
+  removedPasswordIndexes,
+  clearRemovedPasswordIndexes,
+  passwordDraft,
   saveContentSetting,
+  setContentsMap,
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -161,6 +180,8 @@ export function useContentFormActions({
     free: ADMISSION_REQUIREMENT_VALUES.free,
     set_password: ADMISSION_REQUIREMENT_VALUES.password,
     request_email: ADMISSION_REQUIREMENT_VALUES.email,
+    paid: ADMISSION_REQUIREMENT_VALUES.payment,
+    payment: ADMISSION_REQUIREMENT_VALUES.payment,
   };
 
   const buildSettingsSnapshot = (
@@ -225,7 +246,31 @@ export function useContentFormActions({
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType] ||
       ADMISSION_REQUIREMENT_VALUES.free;
-    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
+
+    let storedRental = "";
+    let storedPurchase = "";
+    let storedDuration = PAYMENT_DEFAULT_ACCESS_DURATION;
+
+    try {
+      const rawStored = storage.get(
+        GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
+      );
+      if (rawStored) {
+        const parsed = JSON.parse(rawStored);
+        storedRental = parsed.rentalAmount ?? "";
+        storedPurchase = parsed.purchaseAmount ?? "";
+        storedDuration =
+          parsed.accessDuration ?? PAYMENT_DEFAULT_ACCESS_DURATION;
+      }
+    } catch {}
+
+    applySettingsSnapshot(
+      buildSettingsSnapshot(uiAccessType, {
+        rentalAmount: storedRental,
+        purchaseAmount: storedPurchase,
+        accessDuration: storedDuration,
+      }),
+    );
     setContentSettingLoaded(true);
   }
   const collectionId = selectedCollection?.id ?? null;
@@ -526,12 +571,15 @@ export function useContentFormActions({
       paymentTexts.purchaseTitle ? PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT : null,
     ].filter(Boolean) as (typeof PAYMENT_AMOUNT_FIELDS)[number][];
     const nextErrors: Partial<ContentFormErrors> = {};
+    const hasAmount = requiredFields.some((field) => formState[field].trim());
+
+    if (!hasAmount && requiredFields.length > 0) {
+      nextErrors[requiredFields[0]] = requiredMessage;
+    }
 
     requiredFields.forEach((field) => {
       const val = formState[field].trim();
-      if (!val) {
-        nextErrors[field] = requiredMessage;
-      } else {
+      if (val) {
         const errorMsg = getPaymentAmountErrorMessage(val, t);
         if (errorMsg) {
           nextErrors[field] = errorMsg;
@@ -560,18 +608,21 @@ export function useContentFormActions({
     }
 
     const requiredMessage = t("contents.payment.common.requiredAmount");
-    const rentalErr = getPaymentAmountErrorMessage(collectionRentalAmount, t);
-    const purchaseErr = getPaymentAmountErrorMessage(
-      collectionPurchaseAmount,
-      t,
-    );
-    const hasMissingAmount =
-      !collectionRentalAmount.trim() || !collectionPurchaseAmount.trim();
+    const rentalAmount = collectionRentalAmount.trim();
+    const purchaseAmount = collectionPurchaseAmount.trim();
+    const hasAmount = rentalAmount || purchaseAmount;
 
-    if (hasMissingAmount) {
+    if (!hasAmount) {
       toast.error(requiredMessage);
       return false;
     }
+
+    const rentalErr = rentalAmount
+      ? getPaymentAmountErrorMessage(rentalAmount, t)
+      : null;
+    const purchaseErr = purchaseAmount
+      ? getPaymentAmountErrorMessage(purchaseAmount, t)
+      : null;
 
     if (rentalErr || purchaseErr) {
       toast.error(rentalErr || purchaseErr);
@@ -580,6 +631,16 @@ export function useContentFormActions({
 
     return true;
   };
+
+  const getPasswordsForSave = () =>
+    Array.from(
+      new Set(
+        [collectionPasswords, passwordDraft]
+          .flatMap((value) => value.split(","))
+          .map((value) => value.trim())
+          .filter(Boolean),
+      ),
+    ).join(", ");
 
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
@@ -625,17 +686,46 @@ export function useContentFormActions({
 
       await axiosClient.put(API.content.update(editingContent.id), payload);
 
-      await Promise.all([
-        queryClient.invalidateQueries({
-          queryKey: [API.content.get(editingContent.id)],
-        }),
-        selectedCollection?.id
-          ? queryClient.invalidateQueries({
-              queryKey: [API.content.collection(selectedCollection.id)],
-            })
-          : Promise.resolve(),
-        queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
-      ]);
+      if (selectedCollection?.id && editingContent?.id && setContentsMap) {
+        const hasPriceOrCode =
+          payload.accessType !== ACCESS_TYPE_FREE ||
+          Boolean(payload.buyPrice) ||
+          Boolean(payload.rentPrice) ||
+          Boolean(payload.password);
+
+        setContentsMap((prev) => {
+          const baseList =
+            prev[selectedCollection.id] &&
+            prev[selectedCollection.id].length > 0
+              ? prev[selectedCollection.id]
+              : collectionContents;
+
+          const updated = baseList.map((item) =>
+            item.id === editingContent.id
+              ? {
+                  ...item,
+                  accessType: payload.accessType,
+                  buyPrice: payload.buyPrice ?? null,
+                  rentPrice: payload.rentPrice ?? null,
+                  hasPassword: Boolean(
+                    payload.password ||
+                    payload.accessType === ACCESS_TYPE_PASSWORD,
+                  ),
+                  isFree: !hasPriceOrCode,
+                  isPaid: hasPriceOrCode,
+                }
+              : item,
+          );
+          return { ...prev, [selectedCollection.id]: updated };
+        });
+      }
+
+      await queryClient.invalidateQueries({
+        predicate: (query) =>
+          typeof query.queryKey[0] === "string" &&
+          (query.queryKey[0].includes("content") ||
+            query.queryKey[0].includes("collection")),
+      });
 
       toast.success(t("settings.notifications.successModal.message"));
       setShowSaveSuccessModal(true);
@@ -648,16 +738,14 @@ export function useContentFormActions({
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    const passwordsForSave = getPasswordsForSave();
     if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
       const hasExistingPassword = Boolean(selectedCollection.hasPassword);
-      if (!collectionPasswords.trim() && !hasExistingPassword) {
+      if (!passwordsForSave && !hasExistingPassword) {
         toast.error(t("authForm.errors.required"));
         return;
       }
-      if (
-        collectionPasswords.trim() &&
-        validatePasswordInput(collectionPasswords)
-      ) {
+      if (passwordsForSave && validatePasswordInput(passwordsForSave)) {
         toast.error(
           t("contents.admissionRequirements.password.error.minLength"),
         );
@@ -686,8 +774,8 @@ export function useContentFormActions({
         rentDuration: hasRental ? collectionAccessDuration : null,
         password:
           collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-          collectionPasswords.trim()
-            ? collectionPasswords.trim()
+          passwordsForSave
+            ? passwordsForSave
             : undefined,
       });
 
@@ -752,10 +840,35 @@ export function useContentFormActions({
     [ADMISSION_REQUIREMENT_VALUES.free]: ADMISSION_TYPE.FREE,
     [ADMISSION_REQUIREMENT_VALUES.password]: ADMISSION_TYPE.SET_PASSWORD,
     [ADMISSION_REQUIREMENT_VALUES.email]: ADMISSION_TYPE.REQUEST_EMAIL,
+    [ADMISSION_REQUIREMENT_VALUES.payment]: ADMISSION_TYPE.PAYMENT,
   };
 
   const saveContentSettings = async () => {
     if (!saveContentSetting) return;
+    const passwordsForSave = getPasswordsForSave();
+
+    if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+      const hasExistingPassword = Boolean(
+        contentSettingAccessType === SET_PASSWORD_ACCESS ||
+        contentSettingAccessType === ACCESS_TYPE_PASSWORD,
+      );
+      const remainingPasswordCount = Math.max(
+        0,
+        (contentSettingPasswordCount ?? (hasExistingPassword ? 1 : 0)) -
+          removedPasswordIndexes.length,
+      );
+      if (!passwordsForSave && remainingPasswordCount === 0) {
+        toast.error(t(AUTH_FORM.errors.required));
+        return;
+      }
+      if (passwordsForSave && validatePasswordInput(passwordsForSave)) {
+        toast.error(t(CONTENTS.admissionRequirements.password.error.minLength));
+        return;
+      }
+    }
+
+    if (!validateCollectionPaymentAmounts()) return;
+
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
@@ -763,20 +876,95 @@ export function useContentFormActions({
 
       if (
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-        collectionPasswords.trim()
+        passwordsForSave
       ) {
-        payload.password = collectionPasswords.trim();
+        payload.password = passwordsForSave;
+      }
+      if (removedPasswordIndexes.length > 0) {
+        payload.removePasswordIndexes = removedPasswordIndexes;
       }
 
       await saveContentSetting(payload);
+      clearRemovedPasswordIndexes();
+
+      const hasRental =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionRentalAmount.trim() !== "";
+      const hasPurchase =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionPurchaseAmount.trim() !== "";
+      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
+      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
+
+      if (
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collections &&
+        collections.length > 0
+      ) {
+        const unsetCollections = collections.filter(
+          (c) =>
+            c.accessType !== ACCESS_TYPE_PAID ||
+            (c.rentPrice == null && c.buyPrice == null),
+        );
+
+        if (unsetCollections.length > 0) {
+          const updatePromises = unsetCollections.map((c) =>
+            axiosClient.patch(API.collection.update(c.id), {
+              accessType: ACCESS_TYPE_PAID,
+              rentPrice: hasRental ? parsedRentalAmount : null,
+              buyPrice: hasPurchase ? parsedPurchaseAmount : null,
+              rentDuration: hasRental ? collectionAccessDuration : null,
+            }),
+          );
+
+          await Promise.allSettled(updatePromises);
+
+          const unsetIds = new Set(unsetCollections.map((c) => c.id));
+          setCollections((prev) =>
+            prev.map((c) =>
+              unsetIds.has(c.id)
+                ? {
+                    ...c,
+                    accessType: ACCESS_TYPE_PAID,
+                    rentPrice: hasRental ? parsedRentalAmount : null,
+                    buyPrice: hasPurchase ? parsedPurchaseAmount : null,
+                    rentDuration: hasRental ? collectionAccessDuration : null,
+                  }
+                : c,
+            ),
+          );
+        }
+      }
+
+      try {
+        storage.set(
+          GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
+          JSON.stringify({
+            accessType: apiAccessType,
+            hasPassword:
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password,
+            rentalAmount: hasRental ? collectionRentalAmount : "",
+            purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+            accessDuration: hasRental
+              ? collectionAccessDuration
+              : PAYMENT_DEFAULT_ACCESS_DURATION,
+          }),
+        );
+      } catch {}
 
       applySettingsSnapshot({
         accessType: collectionAccessType,
         passwords: "",
-        description: "",
-        rentalAmount: "",
-        purchaseAmount: "",
-        accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+        description: collectionDescription.trim(),
+        rentalAmount: hasRental ? collectionRentalAmount : "",
+        purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+        accessDuration: hasRental
+          ? collectionAccessDuration
+          : PAYMENT_DEFAULT_ACCESS_DURATION,
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [API.collection.getAll],
       });
 
       setShowSaveSuccessModal(true);
@@ -825,6 +1013,7 @@ export function useContentFormActions({
     }
     if (activeTab === SETTINGS) {
       applySettingsSnapshot(savedSettings);
+      clearRemovedPasswordIndexes();
       return;
     }
     openDiscardModal();
@@ -854,6 +1043,7 @@ export function useContentFormActions({
 
   const hasSettingsUnsavedChanges =
     collectionAccessType !== savedSettings.accessType ||
+    removedPasswordIndexes.length > 0 ||
     collectionPasswords !== savedSettings.passwords ||
     collectionDescription !== savedSettings.description ||
     collectionRentalAmount !== savedSettings.rentalAmount ||
@@ -992,11 +1182,15 @@ export function useContentFormActions({
           admissionRequirement:
             fullContent.accessType === "free"
               ? "free"
-              : fullContent.accessType === "paid"
+              : fullContent.accessType === "paid" ||
+                  fullContent.accessType === "payment"
                 ? "payment"
-                : fullContent.accessType === "password"
+                : fullContent.accessType === "password" ||
+                    fullContent.accessType === "set_password" ||
+                    Boolean(fullContent.passwordHash)
                   ? "set_password"
-                  : fullContent.accessType === "email_gated"
+                  : fullContent.accessType === "email_gated" ||
+                      fullContent.accessType === "request_email"
                     ? "request_email"
                     : "free",
           password: "",

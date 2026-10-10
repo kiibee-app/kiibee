@@ -13,13 +13,17 @@ import {
 import { db } from 'src/database/db';
 import {
   users,
+  contentSettings,
   contentTypes,
   mediaFileCategories,
-  contentCategories,
+  creatorChannels,
 } from 'src/database/schema';
 
 import { buildSearch, format } from '../content.helper';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorContentIsDiscoverable,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 
 const baseSelect = {
   id: mediaFiles.id,
@@ -27,13 +31,40 @@ const baseSelect = {
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   trailerUrl: mediaFiles.trailerUrl,
+  slug: mediaFiles.slug,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
-  accessType: mediaFiles.accessType,
-  categoryName: contentCategories.name,
+  accessType: sql<string>`COALESCE(
+    NULLIF(${mediaFiles.accessType}::text, 'free'),
+    NULLIF(${contentSettings.accessType}::text, 'free'),
+    ${mediaFiles.accessType}::text
+  )`,
+  categoryName: sql<string>`(
+    SELECT cc.name FROM content_categories cc
+    INNER JOIN media_file_categories mfc ON mfc.category_id = cc.id
+    WHERE mfc.media_file_id = media_files.id
+    LIMIT 1
+  )`,
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
+  collectionId: sql<string | null>`(
+    SELECT ci.collection_id FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
+  isPaidCollection: sql<boolean>`EXISTS (
+    SELECT 1 FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+      AND (
+        (c.buy_price IS NOT NULL AND CAST(c.buy_price AS NUMERIC) > 0)
+        OR (c.rent_price IS NOT NULL AND CAST(c.rent_price AS NUMERIC) > 0)
+        OR c.access_type = 'paid'
+      )
+  )`,
   createdAt: mediaFiles.createdAt,
   sortOrder: mediaFiles.sortOrder,
   rating: mediaFiles.rating,
@@ -50,6 +81,7 @@ export type GetAllContentsFilter = {
   minPrice?: string | number | null;
   maxPrice?: string | number | null;
   rating?: string | number | null;
+  excludeChannelLockedCreatorContent?: boolean;
 };
 
 const cleanArray = (val?: string[] | string | null) => {
@@ -92,6 +124,10 @@ export const getAllContentsService = async (
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
     ];
+
+    if (filter.excludeChannelLockedCreatorContent) {
+      baseWhere.push(creatorContentIsDiscoverable);
+    }
 
     if (sort === SORT_DIRECTIONS.FREE) {
       baseWhere.push(sql`${mediaFiles.buyPrice} IS NULL`);
@@ -161,20 +197,39 @@ export const getAllContentsService = async (
 
     switch (sort) {
       case SORT_DIRECTIONS.NEW:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
 
       case SORT_DIRECTIONS.POPULAR:
-        orderBy = sql`RANDOM()`;
+        orderBy = [
+          desc(
+            sql`(
+              SELECT COUNT(*) FROM orders
+              WHERE orders.status = 'completed'
+                AND (
+                  orders.media_file_id = ${mediaFiles.id}
+                  OR orders.collection_id IN (
+                    SELECT ci.collection_id
+                    FROM collection_items ci
+                    WHERE ci.media_file_id = ${mediaFiles.id}
+                  )
+                )
+            )`,
+          ),
+          desc(sql`CAST(COALESCE(${mediaFiles.rating}, '0') AS NUMERIC)`),
+          desc(mediaFiles.sortOrder),
+          desc(mediaFiles.publishedAt),
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.FREE:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
 
       case SORT_DIRECTIONS.ALL:
       default:
-        orderBy = desc(mediaFiles.publishedAt);
+        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
         break;
     }
 
@@ -191,15 +246,15 @@ export const getAllContentsService = async (
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
-        mediaFileCategories,
-        eq(mediaFileCategories.mediaFileId, mediaFiles.id),
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
       )
       .leftJoin(
-        contentCategories,
-        eq(contentCategories.id, mediaFileCategories.categoryId),
+        contentSettings,
+        eq(contentSettings.userId, mediaFiles.creatorId),
       )
       .where(whereClause)
-      .orderBy(orderBy)
+      .orderBy(...orderBy)
       .limit(limit);
 
     const formatted = format(data);
@@ -210,6 +265,7 @@ export const getAllContentsService = async (
       HttpStatus.OK,
     );
   } catch (error) {
+    console.error('DEBUG getAllContents error:', error);
     logger.error('Failed to get all contents:', error);
 
     return fail(

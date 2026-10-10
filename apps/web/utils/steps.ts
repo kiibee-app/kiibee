@@ -4,6 +4,12 @@ import imgSellFromOwnWebsite from "@/assets/images/steps/sell-from-your-own-webs
 import imgPromotionsDiscountCodes from "@/assets/images/steps/promotions-discount-codes.webp";
 import imgDataThatDrivesGrowth from "@/assets/images/steps/data-that-drives-growth.webp";
 import imgFocusOnCreating from "@/assets/images/steps/focus-on-creating.webp";
+import imgGetDiscoveredDa from "@/assets/images/steps/get-discovered-da.webp";
+import imgFocusOnCreatingDa from "@/assets/images/steps/focus-on-creating-da.webp";
+import imgFrictionlessPaymentsDa from "@/assets/images/steps/frictionless-payments-da.webp";
+import imgPromotionsDiscountCodesDa from "@/assets/images/steps/promotions-discount-codes-da.webp";
+import imgDataThatDrivesGrowthDa from "@/assets/images/steps/data-that-drives-growth-da.webp";
+import imgSellFromOwnWebsiteDa from "@/assets/images/steps/sell-from-your-own-website-da.webp";
 import step1 from "../assets/images/steps/step1.webp";
 import step2 from "../assets/images/steps/step2.webp";
 import step3 from "../assets/images/steps/step3.webp";
@@ -16,44 +22,47 @@ import {
 export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
   {
     id: 1,
-    titleKey: "creators.howToGetStarted.steps.getDiscovered.title",
-    descriptionKey: "creators.howToGetStarted.steps.getDiscovered.description",
+    titleKey: "creators.howToGetStarted.steps.createProfile.title",
+    descriptionKey: "creators.howToGetStarted.steps.createProfile.description",
     image: imgGetDiscovered,
+    imageDa: imgGetDiscoveredDa,
   },
   {
     id: 2,
-    titleKey: "creators.howToGetStarted.steps.frictionlessPayments.title",
+    titleKey: "creators.howToGetStarted.steps.uploadAndPublish.title",
     descriptionKey:
-      "creators.howToGetStarted.steps.frictionlessPayments.description",
-    image: imgFrictionlessPayments,
+      "creators.howToGetStarted.steps.uploadAndPublish.description",
+    image: imgFocusOnCreating,
+    imageDa: imgFocusOnCreatingDa,
   },
   {
     id: 3,
-    titleKey: "creators.howToGetStarted.steps.sellFromOwnWebsite.title",
-    descriptionKey:
-      "creators.howToGetStarted.steps.sellFromOwnWebsite.description",
-    image: imgSellFromOwnWebsite,
+    titleKey: "creators.howToGetStarted.steps.connectWebsite.title",
+    descriptionKey: "creators.howToGetStarted.steps.connectWebsite.description",
+    image: imgFrictionlessPayments,
+    imageDa: imgFrictionlessPaymentsDa,
   },
   {
     id: 4,
-    titleKey: "creators.howToGetStarted.steps.promotionsDiscountCodes.title",
+    titleKey: "creators.howToGetStarted.steps.launchPromotions.title",
     descriptionKey:
-      "creators.howToGetStarted.steps.promotionsDiscountCodes.description",
+      "creators.howToGetStarted.steps.launchPromotions.description",
     image: imgPromotionsDiscountCodes,
+    imageDa: imgPromotionsDiscountCodesDa,
   },
   {
     id: 5,
-    titleKey: "creators.howToGetStarted.steps.dataThatDrivesGrowth.title",
-    descriptionKey:
-      "creators.howToGetStarted.steps.dataThatDrivesGrowth.description",
+    titleKey: "creators.howToGetStarted.steps.trackSales.title",
+    descriptionKey: "creators.howToGetStarted.steps.trackSales.description",
     image: imgDataThatDrivesGrowth,
+    imageDa: imgDataThatDrivesGrowthDa,
   },
   {
     id: 6,
-    titleKey: "creators.howToGetStarted.steps.focusOnCreating.title",
-    descriptionKey:
-      "creators.howToGetStarted.steps.focusOnCreating.description",
-    image: imgFocusOnCreating,
+    titleKey: "creators.howToGetStarted.steps.reachCustomers.title",
+    descriptionKey: "creators.howToGetStarted.steps.reachCustomers.description",
+    image: imgSellFromOwnWebsite,
+    imageDa: imgSellFromOwnWebsiteDa,
   },
 ];
 

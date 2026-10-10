@@ -55,7 +55,13 @@ export const CONTENT_TAB = "tab";
 export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
 export const CONTENT_ITEM_QUERY_KEY = "contentId";
 export const QUERY_KEY_FORMAT = "format";
+export const QUERY_KEY_SORT = "sort";
+export const QUERY_KEY_FILTER = "filter";
+export const SORT_QUERY_KEY = QUERY_KEY_SORT;
+export const SORT_QUERY_PARAM = QUERY_KEY_SORT;
 export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
+export const GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY =
+  "global_content_payment_settings";
 export const BILLING_TAB = "billingTab";
 export const DUMMY_TAB = "dummy-tab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
@@ -344,10 +350,41 @@ export const mockSizeFallback = 12 * 1024 * 1024;
 export const IS_FALLBACK_SIZE = "isFallbackSize";
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
+  const normAdmission = String(formState.admissionRequirement ?? "")
+    .toLowerCase()
+    .trim();
+
   const isPaymentAdmission =
-    formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+    normAdmission === "payment" ||
+    normAdmission === ADMISSION_TYPE.PAYMENT ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.payment.toLowerCase();
+
+  const isPasswordAdmission =
+    normAdmission === "set_password" ||
+    normAdmission === "set-password" ||
+    normAdmission === "set password" ||
+    normAdmission === "password" ||
+    normAdmission === ADMISSION_TYPE.SET_PASSWORD ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.password.toLowerCase();
+
+  const isEmailAdmission =
+    normAdmission === "request_email" ||
+    normAdmission === "request-email" ||
+    normAdmission === "request email" ||
+    normAdmission === "email" ||
+    normAdmission === ADMISSION_TYPE.REQUEST_EMAIL ||
+    normAdmission === ADMISSION_REQUIREMENT_VALUES.email.toLowerCase();
+
   const parsedBuyPrice = parsePaymentAmount(formState.purchaseAmount);
   const parsedRentPrice = parsePaymentAmount(formState.rentalAmount);
+
+  const resolvedAccessType = isPaymentAdmission
+    ? ACCESS_TYPE_PAID
+    : isPasswordAdmission
+      ? ACCESS_TYPE_PASSWORD
+      : isEmailAdmission
+        ? ACCESS_TYPE_EMAIL_GATED
+        : ACCESS_TYPE_FREE;
 
   return {
     title: formState.title,
@@ -373,13 +410,9 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
-    accessType: formState.admissionRequirement
-      ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
-        ACCESS_TYPE_FREE)
-      : undefined,
+    accessType: resolvedAccessType,
     password:
-      formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD &&
-      formState.password.trim()
+      isPasswordAdmission && formState.password.trim()
         ? formState.password.trim()
         : undefined,
     buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
@@ -442,8 +475,11 @@ export const BUY_KEYWORDS = ["buy", "køb"];
 export const RENT_KEYWORDS = ["rent", "lej"];
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
+export const DISCOVER_CONTENT_LIMIT = 4;
 export const EXPLORE_PAGE_SIZE = 12;
-export const TOP_CREATORS_LIMIT = 6;
+export const EXPLORE_INITIAL_PAGE_SIZE = 24;
+export const TOP_CREATORS_LIMIT = 20;
+export const TOP_CREATORS_VISIBLE = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 export const SKELETON_COUNT = 5;

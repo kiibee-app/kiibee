@@ -174,6 +174,8 @@ export function toCamelCaseKey(value: string): string {
     .join("");
 }
 
+export { getCategoryLabel } from "./category";
+
 export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
 
 export const URL_REGEX = /(https?:\/\/[^\s<>"]+|www\.[^\s<>"]+)/g;
@@ -258,3 +260,5 @@ export const STATE_CHANGING_METHODS: readonly string[] = [
   HTTP_METHODS.PATCH,
   HTTP_METHODS.DELETE,
 ];
+
+export const HIDDEN_LANDING_CATEGORIES = new Set(["lifestyle & vlogs"]);

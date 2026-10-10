@@ -23,14 +23,46 @@ export const INDEXABLE_ROUTES = [
   "/tutorial-videos",
 ] as const;
 
-export function getSiteUrl(errorContext: string): string {
-  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL;
+const INDEXABLE_ROUTE_DA: Record<(typeof INDEXABLE_ROUTES)[number], string> = {
+  "/": "/",
+  "/about-kiibee": "/om-kiibee",
+  "/cookie-settings": "/cookie-indstillinger",
+  "/creator-terms": "/skaber-vilkaar",
+  "/explore": "/udforsk",
+  "/explore-creators": "/udforsk-skabere",
+  "/for-creators": "/for-skabere",
+  "/how-it-works": "/saadan-fungerer-det",
+  "/pricing": "/priser",
+  "/privacy-policy": "/privatlivspolitik",
+  "/single-collection": "/samling",
+  "/subscription": "/abonnement",
+  "/support": "/support",
+  "/terms-of-service": "/vilkaar",
+  "/tutorial-videos": "/tutorial-videoer",
+};
 
-  if (!rawSiteUrl) {
-    throw new Error(
-      `SITE_URL or NEXT_PUBLIC_SITE_URL must be set for ${errorContext}.`,
-    );
+export function getLocalizedIndexableRoutes(): string[] {
+  const paths = new Set<string>();
+  for (const route of INDEXABLE_ROUTES) {
+    paths.add(route);
+    paths.add(INDEXABLE_ROUTE_DA[route]);
   }
+  return [...paths];
+}
 
+export function getDanishIndexablePath(
+  pathname: (typeof INDEXABLE_ROUTES)[number],
+): string {
+  return INDEXABLE_ROUTE_DA[pathname];
+}
+
+export function getSiteUrl(errorContext?: string): string {
+  const port = process.env.PORT || "3000";
+  const rawSiteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL ??
+    (process.env.NODE_ENV === "production"
+      ? "https://kiibee.dk"
+      : `http://localhost:${port}`);
   return rawSiteUrl.replace(TRAILING_SLASH_REGEX, "");
 }

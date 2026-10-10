@@ -10,7 +10,7 @@ export const SortBox = styled.div<{
   position: relative;
   width: ${({ $width, $compact }) => $width || ($compact ? "auto" : "100%")};
   max-width: ${({ $maxWidth, $compact }) =>
-    $maxWidth || ($compact ? "none" : "200px")};
+    $maxWidth || ($compact ? "none" : "280px")};
   min-height: ${({ $compact }) => ($compact ? "auto" : "44px")};
   display: flex;
   align-items: center;
@@ -52,6 +52,9 @@ export const SortBox = styled.div<{
         }`};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
+  overflow: visible;
+  box-sizing: border-box;
+  flex-shrink: 0;
 `;
 
 export const Dropdown = styled.div<{
@@ -64,14 +67,20 @@ export const Dropdown = styled.div<{
 }>`
   position: ${({ $inFlow }) => ($inFlow ? "relative" : "absolute")};
   top: ${({ $inFlow, $topOffset }) =>
-    $inFlow ? "auto" : ($topOffset ?? "calc(100% + 2px)")};
+    $inFlow ? "auto" : ($topOffset ?? "calc(100% + 8px)")};
   left: ${({ $inFlow, $alignRight }) =>
     $inFlow ? "auto" : $alignRight ? "auto" : "0"};
   right: ${({ $inFlow, $alignRight }) =>
-    $inFlow ? "0" : $alignRight ? "0" : "auto"};
+    $inFlow ? "auto" : $alignRight ? "0" : "auto"};
   margin-top: ${({ $inFlow }) => ($inFlow ? "8px" : "0")};
-  width: ${({ $width }) => $width || "100%"};
-  max-width: ${({ $maxWidth }) => $maxWidth || "200px"};
+  box-sizing: border-box;
+  width: ${({ $width, $inFlow }) =>
+    $width || ($inFlow ? "100%" : "max-content")};
+  min-width: 100%;
+  max-width: ${({ $maxWidth }) =>
+    !$maxWidth || $maxWidth === "100%"
+      ? "min(18rem, calc(100vw - 32px))"
+      : $maxWidth};
   padding: ${({ $variant }) =>
     $variant === SORT_DROPDOWN_VARIANT.SURFACE ? "8px" : "12px"};
   background: ${({ theme, $variant }) =>
@@ -89,11 +98,11 @@ export const Dropdown = styled.div<{
   display: flex;
   flex-direction: column;
   gap: 8px;
-  z-index: 100;
+  z-index: 220;
   box-shadow: ${({ theme }) => theme.shadows.lg};
 
   max-height: 240px;
-  overflow-x: hidden;
+  overflow-x: visible;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
@@ -156,5 +165,6 @@ export const Text = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
   white-space: nowrap;
 `;

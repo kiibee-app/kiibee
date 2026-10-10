@@ -11,6 +11,9 @@ import {
   URL_FORMAT_IDS,
   VARIANT,
   SCROLL_ANIMATION_SELECTORS,
+  QUERY_KEY_FORMAT,
+  QUERY_KEY_SORT,
+  QUERY_KEY_FILTER,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
@@ -70,12 +73,12 @@ export default function LatestRelease({ search }: { search?: string }) {
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
-  const urlFilter = searchParams.get("filter");
-  const urlFormat = normalizeUrlFormat(searchParams.get("format"));
+  const urlFilter = searchParams.get(QUERY_KEY_FILTER);
+  const urlFormat = normalizeUrlFormat(searchParams.get(QUERY_KEY_FORMAT));
   const urlAccessType = urlFilter === ACCESS_TYPE_FREE ? ACCESS_TYPE_FREE : "";
   const initialExploreSort = getInitialExploreSort(
     urlFilter,
-    searchParams.get("sort"),
+    searchParams.get(QUERY_KEY_SORT),
   );
   const [activeExploreSort, setActiveExploreSort] =
     useState<ExploreContentSort>(initialExploreSort);

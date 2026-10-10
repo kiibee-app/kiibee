@@ -3,6 +3,7 @@ import { eq, and, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
+  collections,
   mediaFiles,
   mediaFileCategories,
   contentCategories,
@@ -11,15 +12,18 @@ import {
   userContentAccess,
   contentAccessRequests,
   users,
+  creatorChannels,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { insertPageVisitService } from 'src/modules/creator-overview/services/insertPageVisit.service';
 import { ACCESS_TYPE, ACCRESS_TYPES, STATUS, Time } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
+import { contentTitleUrlSlug } from '../content.helper';
 
 export const getSingleContentService = async (
   contentId: string,
   userId: string,
+  creatorSlug?: string,
 ) => {
   try {
     if (!contentId) {
@@ -28,86 +32,149 @@ export const getSingleContentService = async (
 
     const now = new Date();
 
-    const [emailAccess, directAccess, collectionAccess, content] =
-      await Promise.all([
-        db
-          .select({ grantedAt: contentAccessRequests.approvedAt })
-          .from(contentAccessRequests)
-          .innerJoin(
-            users,
-            sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
-          )
-          .where(
-            and(
-              eq(users.id, userId),
-              eq(contentAccessRequests.contentId, contentId),
-              eq(contentAccessRequests.status, STATUS.APPROVED),
-            ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+    const isUuid =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+        contentId,
+      );
 
-        db
-          .select()
-          .from(userContentAccess)
-          .where(
-            and(
-              eq(userContentAccess.userId, userId),
-              eq(userContentAccess.mediaFileId, contentId),
-              or(
-                isNull(userContentAccess.rentExpiresAt),
-                gt(userContentAccess.rentExpiresAt, now),
-              ),
-            ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+    let content = await db
+      .select()
+      .from(mediaFiles)
+      .where(
+        isUuid ? eq(mediaFiles.id, contentId) : eq(mediaFiles.slug, contentId),
+      )
+      .limit(1)
+      .then((r) => r[0]);
 
-        db
-          .select({
-            accessType: userContentAccess.accessType,
-            rentExpiresAt: userContentAccess.rentExpiresAt,
-            grantedAt: userContentAccess.grantedAt,
-          })
-          .from(userContentAccess)
-          .innerJoin(
-            collectionItems,
-            eq(collectionItems.collectionId, userContentAccess.collectionId),
-          )
-          .where(
-            and(
-              eq(userContentAccess.userId, userId),
-              isNull(userContentAccess.mediaFileId),
-              eq(collectionItems.mediaFileId, contentId),
-              or(
-                isNull(userContentAccess.rentExpiresAt),
-                gt(userContentAccess.rentExpiresAt, now),
-              ),
-            ),
-          )
-          .limit(1)
-          .then((r) => r[0]),
+    if (!content && creatorSlug) {
+      const [creator] = await db
+        .select({ id: creatorChannels.creatorId })
+        .from(creatorChannels)
+        .where(eq(creatorChannels.slug, creatorSlug))
+        .limit(1);
 
-        db
+      const creatorContent = creator
+        ? await db
+            .select({ id: mediaFiles.id, title: mediaFiles.title })
+            .from(mediaFiles)
+            .where(eq(mediaFiles.creatorId, creator.id))
+        : [];
+      const titleMatch = creatorContent.find(
+        (candidate) => contentTitleUrlSlug(candidate.title) === contentId,
+      );
+
+      if (titleMatch) {
+        content = await db
           .select()
           .from(mediaFiles)
-          .where(eq(mediaFiles.id, contentId))
+          .where(eq(mediaFiles.id, titleMatch.id))
           .limit(1)
-          .then((r) => r[0]),
-      ]);
+          .then((r) => r[0]);
+      }
+    }
 
     if (!content) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
-    const [creator] = await db
-      .select({
-        isHidden: users.isHidden,
-        isDeleted: users.isDeleted,
-      })
-      .from(users)
-      .where(eq(users.id, content.creatorId))
-      .limit(1);
+    const resolvedContentId = content.id;
+
+    const [
+      emailAccess,
+      directAccess,
+      collectionAccess,
+      creator,
+      collectionInfo,
+    ] = await Promise.all([
+      db
+        .select({ grantedAt: contentAccessRequests.approvedAt })
+        .from(contentAccessRequests)
+        .innerJoin(
+          users,
+          sql`lower(${users.email}) = lower(${contentAccessRequests.viewerEmail})`,
+        )
+        .where(
+          and(
+            eq(users.id, userId),
+            eq(contentAccessRequests.contentId, resolvedContentId),
+            eq(contentAccessRequests.status, STATUS.APPROVED),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select()
+        .from(userContentAccess)
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            eq(userContentAccess.mediaFileId, resolvedContentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select({
+          accessType: userContentAccess.accessType,
+          rentExpiresAt: userContentAccess.rentExpiresAt,
+          grantedAt: userContentAccess.grantedAt,
+        })
+        .from(userContentAccess)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, userContentAccess.collectionId),
+        )
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            isNull(userContentAccess.mediaFileId),
+            eq(collectionItems.mediaFileId, resolvedContentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select({
+          isHidden: users.isHidden,
+          isDeleted: users.isDeleted,
+          slug: creatorChannels.slug,
+        })
+        .from(users)
+        .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+        .where(eq(users.id, content.creatorId))
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select({
+          collectionId: collections.id,
+          accessType: collections.accessType,
+          buyPrice: collections.buyPrice,
+          rentPrice: collections.rentPrice,
+        })
+        .from(collectionItems)
+        .innerJoin(
+          collections,
+          and(
+            eq(collections.id, collectionItems.collectionId),
+            eq(collections.isDeleted, false),
+          ),
+        )
+        .where(eq(collectionItems.mediaFileId, resolvedContentId))
+        .limit(1)
+        .then((r) => r[0]),
+    ]);
 
     const isCreatorPubliclyHidden =
       !creator || creator.isDeleted || creator.isHidden;
@@ -139,13 +206,13 @@ export const getSingleContentService = async (
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
       )
-      .where(eq(mediaFileCategories.mediaFileId, contentId));
+      .where(eq(mediaFileCategories.mediaFileId, resolvedContentId));
 
     const contentTags = await db
       .select({ name: tags.name })
       .from(mediaFileTags)
       .innerJoin(tags, eq(tags.id, mediaFileTags.tagId))
-      .where(eq(mediaFileTags.mediaFileId, contentId));
+      .where(eq(mediaFileTags.mediaFileId, resolvedContentId));
 
     const isRented = access?.accessType === ACCRESS_TYPES.RENTED;
     const isExpired =
@@ -184,11 +251,21 @@ export const getSingleContentService = async (
 
     await insertPageVisitService(content.creatorId, content.id, null);
 
+    const isPaidCollection = Boolean(
+      collectionInfo &&
+      (collectionInfo.accessType === 'paid' ||
+        (collectionInfo.buyPrice && Number(collectionInfo.buyPrice) > 0) ||
+        (collectionInfo.rentPrice && Number(collectionInfo.rentPrice) > 0)),
+    );
+
     return success(
       {
         ...content,
+        creatorSlug: creator?.slug,
         categories,
         tags: contentTags.map((tag) => tag.name),
+        collectionId: collectionInfo?.collectionId ?? null,
+        isPaidCollection,
         ...(accessInfo && { accessInfo }),
       },
       'Content fetched successfully',

@@ -4,14 +4,16 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { CreateCollectionModalContent } from "../styles";
 
 type Props = {
   visible: boolean;
   collectionName: string;
+  collectionDescription: string;
   onChangeCollectionName: (value: string) => void;
+  onChangeCollectionDescription: (value: string) => void;
   onClose: () => void;
   onConfirm: () => void;
 };
@@ -19,7 +21,9 @@ type Props = {
 export default function CreateCollectionModal({
   visible,
   collectionName,
+  collectionDescription,
   onChangeCollectionName,
+  onChangeCollectionDescription,
   onClose,
   onConfirm,
 }: Props) {
@@ -28,11 +32,13 @@ export default function CreateCollectionModal({
 
   const [prevVisible, setPrevVisible] = useState(false);
   const [initialName, setInitialName] = useState("");
+  const [initialDescription, setInitialDescription] = useState("");
 
   if (visible !== prevVisible) {
     setPrevVisible(visible);
     if (visible) {
       setInitialName(collectionName);
+      setInitialDescription(collectionDescription);
     }
   }
 
@@ -54,7 +60,9 @@ export default function CreateCollectionModal({
       return;
     }
 
-    const hasChanges = collectionName.trim() !== initialName.trim();
+    const hasChanges =
+      collectionName.trim() !== initialName.trim() ||
+      collectionDescription.trim() !== initialDescription.trim();
     if (hasChanges) {
       setShowDiscardModal(true);
       return;
@@ -74,7 +82,9 @@ export default function CreateCollectionModal({
         onClose={handleClose}
         onConfirm={onConfirm}
         confirmDisabled={
-          !collectionName.trim() || collectionName.trim() === initialName.trim()
+          !collectionName.trim() ||
+          (collectionName.trim() === initialName.trim() &&
+            collectionDescription.trim() === initialDescription.trim())
         }
         closeOnConfirm={false}
         size="md"
@@ -91,6 +101,17 @@ export default function CreateCollectionModal({
             placeholder={t("contents.createCollectionModal.placeholder")}
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             height="40px"
+          />
+          <InputField
+            type={INPUT_TYPE.TEXTAREA}
+            label={t("contents.createCollectionModal.description")}
+            value={collectionDescription}
+            onChange={(value) => onChangeCollectionDescription(value as string)}
+            placeholder={t(
+              "contents.createCollectionModal.descriptionPlaceholder",
+            )}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            height="96px"
           />
         </CreateCollectionModalContent>
       </GenericModal>

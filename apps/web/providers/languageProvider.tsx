@@ -58,7 +58,7 @@ export function LanguageProvider({
   initialLang = DA,
 }: LanguageProviderProps) {
   const lang = normalizeAppLanguage(initialLang);
-  const i18nInstance = useMemo(() => createI18nInstance(lang), [lang]);
+  const i18nInstance = useMemo(() => createI18nInstance(lang), [lang, en, da]);
 
   useEffect(() => {
     const active = normalizeAppLanguage(

@@ -8,12 +8,14 @@ import { FileUploadService } from './services/fileUpload.service';
 import { PublicImageUploadService } from './services/publicImageUpload.service';
 import { GetMediaByKeyService } from './services/getmediaByKey.service';
 import { ResolveImportedMediaUrlService } from './services/resolveImportedMediaUrl.service';
+import { LegacyMediaProxyService } from './services/legacyMediaProxy.service';
 
 @Module({
   controllers: [MediaController],
   providers: [
     MediaService,
     ResolveImportedMediaUrlService,
+    LegacyMediaProxyService,
     CloudflareStreamService,
     VideoStreamService,
     VideoDownloadService,

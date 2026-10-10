@@ -217,8 +217,7 @@ export const PanelHeader = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: ${({ theme }) => theme.spacing(4)}
-    ${({ theme }) => theme.spacing(4.5)};
+  padding: ${({ theme }) => theme.spacing(4)} ${({ theme }) => theme.spacing(5)};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   background: linear-gradient(
     180deg,
@@ -260,16 +259,16 @@ export const PanelHint = styled.p`
 `;
 
 export const PanelBody = styled.div`
-  padding: ${({ theme }) => theme.spacing(4.5)};
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(3.5)};
+  gap: 20px;
 `;
 
 export const FieldGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: ${({ theme }) => theme.spacing(3.5)};
+  gap: 24px;
 
   ${media.mobileLg} {
     grid-template-columns: 1fr;
@@ -281,6 +280,8 @@ export const Field = styled.label`
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  margin-bottom: 24px;
+  margin-right: 16px;
 `;
 
 export const FieldLabel = styled.span`
@@ -296,11 +297,12 @@ export const FieldHint = styled.span`
 
 const controlBase = css`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  max-width: 640px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
   border-radius: 12px;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.secondary.main};
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   transition:
     border-color ${({ theme }) => theme.animations.fast},
     box-shadow ${({ theme }) => theme.animations.fast};
@@ -329,7 +331,15 @@ export const TextArea = styled.textarea`
 export const SelectInput = styled.select`
   ${controlBase};
   min-height: 44px;
-  padding: 0 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234B5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+  background-size: 16px;
+  padding: 0 44px 0 14px;
+  cursor: pointer;
 `;
 
 export const LayoutGrid = styled.div`

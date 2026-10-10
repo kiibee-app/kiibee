@@ -22,6 +22,23 @@ export const ACCESS_TYPE = {
   EMAIL_GATED: 'email_gated',
 } as const;
 
+export const MEDIA_FILE_TYPE = {
+  WEB: 'web',
+} as const;
+
+export const CONTENT_SETTING_ACCESS_TYPE = {
+  PAYMENT: 'payment',
+  PAID: 'paid',
+  SET_PASSWORD: 'set_password',
+  REQUEST_EMAIL: 'request_email',
+} as const;
+
+export const COLLECTION_MESSAGES = {
+  ALREADY_EXISTS: 'Collection with the same name already exists',
+  CREATE_SUCCESS: 'Collection created successfully',
+  CREATE_FAILED: 'Failed to create collection',
+} as const;
+
 export const EMAIL_SUBSCRIBER_SOURCE = {
   CONTENT: 'content',
   EMAIL_GATE: 'email_gate',
@@ -48,6 +65,9 @@ export const CORS_ALLOWED_HEADERS: string[] = [
   'Content-Type',
   'Authorization',
   'Accept',
+  'X-Requested-With',
+  'Origin',
+  'Cookie',
 ];
 
 export const ACCOUNT_STATUS = {
@@ -91,6 +111,8 @@ export const isValidAvatarUrl = (value: string): boolean => {
   return isDataUrl || isHttpUrl;
 };
 export const FIXED_LIMIT = 10;
+export const RECENT_CANDIDATE_MULTIPLIER = 25;
+export const RECENT_MIN_CANDIDATE_LIMIT = 50;
 export const DEFAULT_ALL_CREATORS_LIMIT = 12;
 
 export const SORT_DIRECTIONS = {

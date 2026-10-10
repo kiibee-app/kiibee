@@ -8,6 +8,7 @@ import {
   Label,
   InlineWrapper,
   FullPageWrapper,
+  ContainerWrapper,
 } from "./styles";
 import {
   KEYBOARD,
@@ -59,6 +60,17 @@ export default function GenericLoader({
           {content}
         </Content>
       </FullPageWrapper>
+    );
+  }
+
+  if (variant === LOADER_VARIANT.CONTAINER) {
+    return (
+      <ContainerWrapper className={className}>
+        <Content>
+          {spinner}
+          {content}
+        </Content>
+      </ContainerWrapper>
     );
   }
 

@@ -33,6 +33,17 @@ export const contentSlugGenerator = async (title: string) => {
   return slug;
 };
 
+export const contentTitleUrlSlug = (title: string) =>
+  title
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'oe')
+    .replace(/å/g, 'a')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
 export const checkDuplicateContentTitle = async (
   creatorId: string,
   title: string,

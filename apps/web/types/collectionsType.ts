@@ -24,7 +24,11 @@ export type CollectionRow = {
   rentPrice?: number | null;
   rentDuration?: string | null;
   hasPassword?: boolean;
+  hasWarningItem?: boolean;
   passwordCount?: number;
+  isFree?: boolean;
+  isPaid?: boolean;
+  slug?: string;
 };
 
 export type CollectionContentType = ContentType;
@@ -39,11 +43,19 @@ export type CollectionContentRow = {
   actions: string;
   title?: string;
   videoUrl?: string;
+  accessType?: string;
+  isFree?: boolean;
+  isPaid?: boolean;
+  buyPrice?: number | null;
+  rentPrice?: number | null;
+  hasPassword?: boolean;
+  passwordCount?: number;
 };
 
 export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.COLLECTIONS;
+      hasGlobalAccessGate?: boolean;
       data: CollectionRow[];
       searchValue?: string;
       onRowClick?: (row: CollectionRow) => void;
@@ -56,8 +68,10 @@ export type CollectionTableProps =
     }
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
+      hasGlobalAccessGate?: boolean;
       data: CollectionContentRow[];
       searchValue?: string;
+      parentCollection?: CollectionRow | null;
       onRowClick?: (row: CollectionContentRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;

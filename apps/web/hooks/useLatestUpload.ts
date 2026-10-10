@@ -17,10 +17,13 @@ import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 import { resolvePublicMediaUrl } from "@/utils/media";
+import { isPaidCollection } from "@/utils/contentPricingActions";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
+  slug?: string;
+  creatorSlug?: string | null;
   thumbnailUrl?: string | null;
   thumbnailLandscapeUrl?: ImageSource | null;
   trailerUrl?: string | null;
@@ -29,6 +32,7 @@ type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
   collectionId?: string;
+  isPaidCollection?: boolean;
 };
 
 export function useLatestUpload(publicCreatorId: string | null = null) {
@@ -61,6 +65,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             ? new Date(latest.createdAt).getTime()
             : Date.now(),
           category: latest.categoryName ?? null,
+          slug: latest.slug,
+          creatorSlug: latest.creatorSlug ?? null,
           contentType: latest.contentType ?? "video",
           thumbnailUrl:
             resolvePublicMediaUrl(latest.thumbnailUrl) ??
@@ -74,6 +80,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
           rentPrice: latest.rentPrice ?? null,
+          collectionId: latest.collectionId ?? undefined,
+          isPaidCollection: latest.isPaidCollection ?? false,
         } as LatestUploadItem;
       }
 
@@ -99,15 +107,19 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             | { data: CollectionContentRow[] };
 
           const rows = Array.isArray(data) ? data : (data?.data ?? []);
+          const targetCollection = collections[collectionIndex];
+          const isPaid = isPaidCollection(targetCollection);
           return rows.map((row) => ({
             row,
-            collectionId: collections[collectionIndex]?.id,
+            collectionId: targetCollection?.id,
+            isPaidCollection: isPaid,
           }));
         })
-        .map(({ row, collectionId }) => ({
+        .map(({ row, collectionId, isPaidCollection: isPaidCol }) => ({
           ...row,
           createdAt: new Date(row.createdAt).getTime(),
           collectionId,
+          isPaidCollection: isPaidCol,
         }))
         .filter((i) => !isNaN(i.createdAt));
 
@@ -127,7 +139,12 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
         return {
           ...latest,
           title: content?.title || latest.name || "",
+          slug: content?.slug,
+          creatorSlug: content?.creatorSlug ?? null,
           category: category ?? null,
+          collectionId: content?.collectionId ?? latest.collectionId,
+          isPaidCollection:
+            content?.isPaidCollection ?? latest.isPaidCollection,
           thumbnailUrl:
             resolvePublicMediaUrl(content?.thumbnailUrl) ??
             content?.thumbnailUrl ??

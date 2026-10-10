@@ -21,6 +21,10 @@ export const CONTENT_CATEGORY_OPTIONS = [
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("comedy"),
   },
   {
+    key: "entertainment",
+    translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("entertainment"),
+  },
+  {
     key: "music",
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("music"),
   },
@@ -33,10 +37,6 @@ export const CONTENT_CATEGORY_OPTIONS = [
     translationKey: VIEWER_SIGNUP_PREFERENCE.content.option(
       "artsAndIllustration",
     ),
-  },
-  {
-    key: "booksAndWriting",
-    translationKey: VIEWER_SIGNUP_PREFERENCE.content.option("booksAndWriting"),
   },
   {
     key: "wellnessAndMindfulness",

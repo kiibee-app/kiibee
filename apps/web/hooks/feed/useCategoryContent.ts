@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -16,10 +16,13 @@ import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import {
+  EXPLORE_INITIAL_PAGE_SIZE,
   EXPLORE_PAGE_SIZE,
   SORT_OPTION_AZ,
-  SORT_OPTION_NEW,
+  SORT_OPTION_POPULAR,
   CATEGORY_ALL,
+  QUERY_KEY_FORMAT,
+  QUERY_KEY_SORT,
 } from "@/utils/Constants";
 
 type ApiResponse<T> = {
@@ -61,8 +64,20 @@ export function useCategoryContent(categoryName: string) {
   );
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [sortOption, setSortOption] = useState<string>(SORT_OPTION_NEW);
-  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
+  const urlSort = searchParams.get(QUERY_KEY_SORT);
+  const initialSortOption = urlSort || SORT_OPTION_POPULAR;
+  const [sortOption, setSortOption] = useState<string>(initialSortOption);
+  const [limit, setLimit] = useState(EXPLORE_INITIAL_PAGE_SIZE);
+  const [prevSyncKey, setPrevSyncKey] = useState(
+    `${categoryName}_${urlSort || ""}`,
+  );
+
+  const currentSyncKey = `${categoryName}_${urlSort || ""}`;
+  if (currentSyncKey !== prevSyncKey) {
+    setPrevSyncKey(currentSyncKey);
+    setSortOption(initialSortOption);
+    setLimit(EXPLORE_INITIAL_PAGE_SIZE);
+  }
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -108,7 +123,7 @@ export function useCategoryContent(categoryName: string) {
     formatOptions,
   } = useExploreFilterOptions();
 
-  const urlFormat = searchParams.get("format");
+  const urlFormat = searchParams.get(QUERY_KEY_FORMAT);
   const initialSelectedOptions = useMemo(
     () => ({
       formats: urlFormat ? [urlFormat] : [],
@@ -142,6 +157,7 @@ export function useCategoryContent(categoryName: string) {
     ],
     queryFn: async () => {
       const body = {
+        excludeChannelLockedCreatorContent: true,
         categoryId: [categoryId!],
         creatorId:
           filterStates.selectedOptions.creators.length > 0
@@ -170,6 +186,7 @@ export function useCategoryContent(categoryName: string) {
       return response.data;
     },
     enabled: Boolean(categoryName) && Boolean(categoryId),
+    placeholderData: keepPreviousData,
     staleTime: 0,
   });
 

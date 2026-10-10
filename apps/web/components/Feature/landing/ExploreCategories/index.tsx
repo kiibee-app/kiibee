@@ -10,8 +10,7 @@ import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
-import { toCamelCaseKey } from "@/utils/common";
-import type { TFunction } from "i18next";
+import { getCategoryLabel } from "@/utils/category";
 import {
   Section,
   HeaderSection,
@@ -23,39 +22,22 @@ import {
   BottomCtaSection,
   BrowseAllButton,
 } from "./styles";
-
-const getCategoryLabel = (category: string, t: TFunction) => {
-  if (category === CATEGORY_ALL) {
-    return t("exploreCategories.categories.all");
-  }
-  const key = toCamelCaseKey(category);
-
-  const paths = [
-    `viewerSignup.preference.content.options.${key}`,
-    `exploreCategories.categories.${key}`,
-    `creators.filters.options.categories.${key}`,
-  ];
-
-  for (const path of paths) {
-    const translation = t(path);
-    if (translation && translation !== path) {
-      return translation;
-    }
-  }
-  return category;
-};
+import { HIDDEN_LANDING_CATEGORIES } from "@/utils/common";
 
 export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
   const { tutorials, isLoading } = useRecentContent({
-    limit: EXPLORE_PAGE_SIZE,
+    limit: 100,
   });
 
   const categoriesList = useMemo(() => {
     const uniqueCategories = new Set<string>();
     tutorials.forEach((item) => {
-      if (item.category) {
+      if (
+        item.category &&
+        !HIDDEN_LANDING_CATEGORIES.has(item.category.trim().toLowerCase())
+      ) {
         uniqueCategories.add(item.category);
       }
     });
@@ -69,10 +51,12 @@ export default function ExploreCategories() {
   }, [categoriesList, activeCategory]);
 
   const filteredItems = useMemo(() => {
-    if (resolvedActiveCategory === CATEGORY_ALL) {
-      return tutorials;
-    }
-    return tutorials.filter((item) => item.category === resolvedActiveCategory);
+    const byCategory =
+      resolvedActiveCategory === CATEGORY_ALL
+        ? tutorials
+        : tutorials.filter((item) => item.category === resolvedActiveCategory);
+
+    return byCategory.slice(0, EXPLORE_PAGE_SIZE);
   }, [tutorials, resolvedActiveCategory]);
 
   if (isLoading) {
@@ -147,7 +131,7 @@ export default function ExploreCategories() {
         <BrowseAllButton
           id="browse-all-creators-btn"
           asAnchor
-          href={PATHS.EXPLORE}
+          href={PATHS.EXPLORE_EVERYTHING}
         >
           <MonoText $use="Body_Medium">
             {t("exploreCategories.browseAll")}

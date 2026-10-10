@@ -36,14 +36,17 @@ export const ContentWrapper = styled.div`
 `;
 
 export const ImageColumn = styled.div`
-  flex: 1.2 1 0;
+  flex: 1.5 1 0;
   min-width: 0;
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  overflow: visible;
 
   > #cp-image-reveal {
     width: 100%;
+    max-width: 41.375rem;
+    overflow: visible;
   }
 
   ${media.desktop} {
@@ -55,13 +58,23 @@ export const ImageColumn = styled.div`
 export const ImageFrame = styled.div`
   position: relative;
   width: 100%;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
-  box-shadow: ${({ theme }) => theme.shadows.lg};
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.gradient.NEAR_BLACK} 15%,
+    transparent
+  );
+  box-shadow: 0 4.57px 18.28px 0
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.BLACK} 15%,
+      transparent
+    );
 
   ${media.tablet} {
-    border-radius: 0.5rem;
+    border-radius: 10px;
   }
 `;
 
@@ -69,8 +82,9 @@ export const DashboardImage = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  border-radius: inherit;
+  border-radius: 6px;
   object-fit: cover;
+  object-position: center;
 `;
 
 export const TextColumn = styled.div`

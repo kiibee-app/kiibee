@@ -204,14 +204,8 @@ export function useCreatePayout() {
   return useMutation({
     mutationFn: async (payload: PayoutCreatePayload) => {
       const data = await ensureSuccess(
-        apiClient(API_ENDPOINTS.CREATE_PAYOUT, {
-          method: "POST",
-          body: JSON.stringify({
-            creatorId: payload.creatorId,
-            amount: payload.amount,
-            payoutId: payload.payoutId,
-            paymentMethodId: payload.paymentMethodId,
-          }),
+        apiClient(API_ENDPOINTS.APPROVE_PAYOUT_REQUEST(payload.requestId), {
+          method: "PUT",
         }),
       );
       return data;
@@ -229,6 +223,13 @@ export function useCreatePayout() {
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.PAYOUT_REQUEST_DETAIL, payload.requestId],
+      });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.CREATOR_WALLETS] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.ALL_PAYOUT_HISTORY],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.PAYOUT_HISTORY_BY_CREATOR],
       });
     },
   });

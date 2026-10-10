@@ -6,7 +6,13 @@ import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { ActionRow, CardLink, CardTitle, VideoBox } from "./styles";
+import {
+  ActionRow,
+  CardCreator,
+  CardLink,
+  CardTitle,
+  VideoBox,
+} from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -18,21 +24,25 @@ import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getCategoryLabel } from "@/utils/category";
 import GenericCard from "@/components/UI/GenericCard";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import {
   isBuyActionLabel,
   isRentActionLabel,
 } from "@/utils/contentPricingActions";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
   collectionId?: string | null;
+  isPaidCollection?: boolean;
   imagePriority?: boolean;
 };
 
@@ -56,10 +66,11 @@ function TutorialCard({
   onPlayClick,
   isSelected = false,
   collectionId = null,
+  isPaidCollection = false,
   imagePriority = false,
 }: TutorialCardProps) {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
@@ -115,9 +126,17 @@ function TutorialCard({
   }, [tutorial.formatType]);
 
   const singleTutorialHref = useMemo(
-    () => pathPublishedContent(tutorial.id),
-    [tutorial.id],
+    () =>
+      pathPublishedContent(
+        tutorial.slug || tutorial.id,
+        tutorial.creatorSlug,
+        tutorial.title,
+      ),
+    [tutorial.slug, tutorial.id, tutorial.creatorSlug, tutorial.title],
   );
+
+  const effectiveCollectionId = collectionId || tutorial.collectionId;
+  const isPaid = isPaidCollection;
 
   const buttons = useMemo(() => {
     if (hasAccess) {
@@ -129,13 +148,45 @@ function TutorialCard({
         },
       ];
     }
+
+    if (tutorial.buttons?.length) {
+      return tutorial.buttons;
+    }
+
+    if (isPaid && effectiveCollectionId && tutorial.isFree) {
+      const collectionHref = pathPublicCollection(
+        effectiveCollectionId,
+        tutorial.creatorId,
+        tutorial.creatorSlug,
+      );
+      return [
+        {
+          label: t("pricingLabels.partOfCollection"),
+          variant: VARIANT.SECONDARY,
+          href: collectionHref,
+          requiresAuth: false,
+          fullWidth: true,
+        },
+      ];
+    }
+
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
-    return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [hasAccess, tutorial.buttons, t, singleTutorialHref]);
+    return [defaultButton];
+  }, [
+    hasAccess,
+    isPaid,
+    effectiveCollectionId,
+    tutorial.isFree,
+    tutorial.buttons,
+    tutorial.creatorId,
+    tutorial.creatorSlug,
+    t,
+    singleTutorialHref,
+  ]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -150,11 +201,11 @@ function TutorialCard({
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!tutorial.creatorId) return;
+    if (!tutorial.creatorSlug) return;
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(getPublicCreatorProfilePath(tutorial.creatorId));
+    router.push(getPublicCreatorProfilePath(tutorial.creatorSlug));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
@@ -167,44 +218,53 @@ function TutorialCard({
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
-      const msg = isPurchaseOrRent
-        ? t("createProfileHome.latestUpload.loginModal.message")
-        : t("createProfileHome.latestUpload.loginModal.viewMessage");
+      if (isPurchaseOrRent) {
+        navigateToContent(targetHref);
+        return;
+      }
+
+      const msg = t("createProfileHome.latestUpload.loginModal.viewMessage");
 
       handleShowLoginModal(targetHref, msg);
       return;
     }
 
-    navigateToContent(targetHref, button.requiresAuth ?? false);
+    navigateToContent(targetHref);
   };
 
-  const creatorSubtitle = tutorial.creatorId ? (
+  const creatorSubtitle = tutorial.creatorSlug ? (
     isCardLinked ? (
-      <MonoText
-        $use="Body_Medium"
+      <CardCreator
+        $use="Body_SemiMedium"
         style={{ cursor: "pointer" }}
         onClick={openCreatorProfile}
       >
         {tutorial.creator}
-      </MonoText>
+      </CardCreator>
     ) : (
       <Link
-        href={getPublicCreatorProfilePath(tutorial.creatorId)}
+        href={getPublicCreatorProfilePath(tutorial.creatorSlug)}
         onClick={openCreatorProfile}
-        style={{ textDecoration: "none", color: "inherit" }}
+        style={{
+          textDecoration: "none",
+          color: "inherit",
+          minWidth: 0,
+          display: "block",
+        }}
       >
-        <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
+        <CardCreator $use="Body_SemiMedium" style={{ cursor: "pointer" }}>
           {tutorial.creator}
-        </MonoText>
+        </CardCreator>
       </Link>
     )
   ) : (
-    <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
+    <CardCreator $use="Body_SemiMedium">{tutorial.creator}</CardCreator>
   );
 
   const card = (
     <GenericCard
       coverImage
+      imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
       image={image}
       imageFallback={imageFallback}
       imagePriority={imagePriority}
@@ -213,12 +273,26 @@ function TutorialCard({
       badge={
         tutorial.category ? (
           <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-            {tutorial.category}
+            {getCategoryLabel(tutorial.category, t)}
           </MonoText>
         ) : undefined
       }
       title={<CardTitle $use="H5_Medium">{tutorial.title}</CardTitle>}
       subtitle={creatorSubtitle}
+      meta={
+        <>
+          {rentedItem?.expiryText ? (
+            <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+              {rentedItem.expiryText}
+            </MonoText>
+          ) : null}
+          {tutorial.published ? (
+            <MonoText $use="Body_Small" color={COLORS.neutral.GRAY_400}>
+              {formatTimeAgoByLang(tutorial.published, i18n.language)}
+            </MonoText>
+          ) : null}
+        </>
+      }
       footer={
         <ActionRow onClick={stopCardNavigation}>
           {buttons.map((button, index) => {
@@ -263,18 +337,6 @@ function TutorialCard({
         </ActionRow>
       }
     >
-      {rentedItem?.expiryText ? (
-        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-          {rentedItem.expiryText}
-        </MonoText>
-      ) : null}
-
-      {tutorial.published ? (
-        <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-          {tutorial.published}
-        </MonoText>
-      ) : null}
-
       <VideoBox>
         <FormatIcon width={22} height={22} color={COLORS.neutral.BLACK} />
         <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>
@@ -289,7 +351,7 @@ function TutorialCard({
       message={loginModalMessage}
       onSuccess={() => {
         if (pendingRedirectUrl) {
-          navigateToContent(pendingRedirectUrl, true);
+          navigateToContent(pendingRedirectUrl);
           setPendingRedirectUrl("");
         }
       }}

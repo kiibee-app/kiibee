@@ -9,7 +9,7 @@ import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/Si
 
 function SingleCollectionContent() {
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const id = searchParams.get("name") || searchParams.get("id");
   const publicCreatorId = searchParams.get("creatorId");
 
   if (!id) {

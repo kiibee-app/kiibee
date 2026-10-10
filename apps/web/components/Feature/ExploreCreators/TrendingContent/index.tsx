@@ -4,7 +4,6 @@ import { useCallback, useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
-import { SKELETON_COUNT } from "@/utils/Constants";
 import {
   Section,
   SectionTag,
@@ -26,14 +25,6 @@ import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
 
 import { LeftIcon } from "@/assets/icons";
-import {
-  SkeletonCard,
-  SkeletonImage,
-  SkeletonTitle,
-  SkeletonSubtitle,
-  SkeletonBadge,
-  SkeletonFooter,
-} from "../Creators/styles";
 
 export default function TrendingContent({ search }: { search?: string }) {
   const { t } = useTranslation();
@@ -70,7 +61,7 @@ export default function TrendingContent({ search }: { search?: string }) {
             </SectionTag>
           </SectionLabel>
         </SectionHeader>
-        <Grid $columnMax="300px">
+        <Grid $columns={4}>
           {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
             <Skeleton.Card key={i} />
           ))}
@@ -120,20 +111,10 @@ export default function TrendingContent({ search }: { search?: string }) {
           )}
         </HeaderActions>
       </SectionHeader>
-      <Grid $columnMax="300px">
-        {isLoading
-          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-              <SkeletonCard key={i}>
-                <SkeletonImage />
-                <SkeletonBadge />
-                <SkeletonTitle />
-                <SkeletonSubtitle />
-                <SkeletonFooter />
-              </SkeletonCard>
-            ))
-          : visibleTutorials.map((tutorial) => (
-              <TutorialCard key={tutorial.id} tutorial={tutorial} />
-            ))}
+      <Grid $columns={4}>
+        {visibleTutorials.map((tutorial) => (
+          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+        ))}
       </Grid>
     </Section>
   );

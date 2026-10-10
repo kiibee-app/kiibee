@@ -1,4 +1,4 @@
-import { Film, FolderOpen, Headphones, FileText } from "lucide-react";
+import { FolderOpen } from "lucide-react";
 import type {
   ViewerCollectionItem,
   ViewerContentData,
@@ -11,23 +11,16 @@ import {
   ContentGrid,
   ContentMeta,
   ContentThumb,
-  ContentThumbFallback,
-  ContentThumbImage,
   ContentTitle,
   EmptyState,
 } from "./Viewers.styles";
+import { ContentThumbnail } from "../../common/ContentThumbnail";
 
 type ViewerContentGridProps = {
   data: ViewerContentData;
   rentalMode?: "active" | "expired";
   emptyMessage?: string;
 };
-
-function renderMediaIcon(type: string | null, size = 28) {
-  if (type === "audio") return <Headphones size={size} />;
-  if (type === "pdf") return <FileText size={size} />;
-  return <Film size={size} />;
-}
 
 function MediaCard({
   item,
@@ -41,13 +34,11 @@ function MediaCard({
   return (
     <ContentCard>
       <ContentThumb>
-        {item.thumbnailUrl ? (
-          <ContentThumbImage src={item.thumbnailUrl} alt={item.title} />
-        ) : (
-          <ContentThumbFallback>
-            {renderMediaIcon(item.contentType)}
-          </ContentThumbFallback>
-        )}
+        <ContentThumbnail
+          src={item.thumbnailUrl}
+          alt={item.title}
+          contentType={item.contentType}
+        />
       </ContentThumb>
       <ContentBody>
         <ContentTitle>{item.title}</ContentTitle>
@@ -90,13 +81,11 @@ function CollectionCard({
   return (
     <ContentCard>
       <ContentThumb>
-        {item.coverImageUrl ? (
-          <ContentThumbImage src={item.coverImageUrl} alt={item.name} />
-        ) : (
-          <ContentThumbFallback>
-            <FolderOpen size={28} />
-          </ContentThumbFallback>
-        )}
+        <ContentThumbnail
+          src={item.coverImageUrl}
+          alt={item.name}
+          fallbackIcon={<FolderOpen size={28} />}
+        />
       </ContentThumb>
       <ContentBody>
         <ContentTitle>{item.name}</ContentTitle>

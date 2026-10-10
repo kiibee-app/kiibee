@@ -19,12 +19,9 @@ import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
-import {
-  COLLECTION_PREVIEW_LIMIT,
-  COLLECTION_PREVIEW_START,
-} from "@/utils/Constants";
 import { getPaginationState } from "@/utils/feedContentToTutorial";
-import { pathPublicCollection } from "@/utils/path";
+import { COLLECTION_PREVIEW_LIMIT } from "@/utils/Constants";
+import { pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import type { TutorialVideo } from "@/utils/types";
 import {
   CollectionSection,
@@ -127,19 +124,20 @@ function PrivateCollectionPreview({
   variant,
   searchQuery,
   displayName,
+  creatorSlug,
 }: {
   variant: ProfileLayoutVariant;
   searchQuery: string;
   displayName: string;
+  creatorSlug?: string;
 }) {
   const { data: sections = [], isLoading } =
     useProfileHomeCollections(displayName);
 
   const visibleSections = useMemo(() => {
-    const limited = sections.slice(0, 4);
-    if (!searchQuery.trim()) return limited;
+    if (!searchQuery.trim()) return sections;
 
-    return limited
+    return sections
       .map((section) => ({
         ...section,
         cards: section.cards.filter((card) =>
@@ -170,7 +168,11 @@ function PrivateCollectionPreview({
           key={collection.id}
           collection={collection}
           variant={variant}
-          href={`/single-collection?id=${collection.id}`}
+          href={pathPublicCollection(
+            creatorSlug ? slugifyContentTitle(collection.name) : collection.id,
+            null,
+            creatorSlug,
+          )}
         />
       ))}
     </>
@@ -180,11 +182,13 @@ function PrivateCollectionPreview({
 function PublicCollectionPreview({
   variant,
   publicCreatorId,
+  publicCreatorSlug,
   searchQuery,
   displayName,
 }: {
   variant: ProfileLayoutVariant;
   publicCreatorId: string;
+  publicCreatorSlug?: string;
   searchQuery: string;
   displayName: string;
 }) {
@@ -197,13 +201,9 @@ function PublicCollectionPreview({
   const cardsWithSeeContent = useMemo(() => tutorials, [tutorials]);
 
   const visibleCards = useMemo(() => {
-    const limited = cardsWithSeeContent.slice(
-      COLLECTION_PREVIEW_START,
-      COLLECTION_PREVIEW_LIMIT,
-    );
-    if (!searchQuery.trim()) return limited;
+    if (!searchQuery.trim()) return cardsWithSeeContent;
 
-    return limited
+    return cardsWithSeeContent
       .map((section) => ({
         ...section,
         cards: section.cards.filter((card) =>
@@ -234,7 +234,13 @@ function PublicCollectionPreview({
           key={collection.id}
           collection={collection}
           variant={variant}
-          href={pathPublicCollection(collection.id, publicCreatorId)}
+          href={pathPublicCollection(
+            publicCreatorSlug
+              ? slugifyContentTitle(collection.name)
+              : collection.id,
+            publicCreatorId,
+            publicCreatorSlug,
+          )}
         />
       ))}
     </>
@@ -243,7 +249,7 @@ function PublicCollectionPreview({
 
 export default function CollectionPreview({ variant }: Props) {
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName, isPublicView, publicCreatorId } =
+  const { displayName, isPublicView, publicCreatorId, publicCreatorSlug } =
     useCreatorChannelProfile();
 
   if (isPublicView && publicCreatorId) {
@@ -251,6 +257,7 @@ export default function CollectionPreview({ variant }: Props) {
       <PublicCollectionPreview
         variant={variant}
         publicCreatorId={publicCreatorId}
+        publicCreatorSlug={publicCreatorSlug ?? undefined}
         searchQuery={searchQuery}
         displayName={displayName}
       />
@@ -262,6 +269,7 @@ export default function CollectionPreview({ variant }: Props) {
       variant={variant}
       searchQuery={searchQuery}
       displayName={displayName}
+      creatorSlug={publicCreatorSlug ?? undefined}
     />
   );
 }

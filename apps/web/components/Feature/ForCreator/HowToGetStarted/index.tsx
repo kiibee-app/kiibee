@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { creatorOnboardingSteps } from "@/utils/steps";
 import { EVENT_SCROLL, EVENT_RESIZE } from "@/utils/Constants";
+import { DA } from "@/utils/common";
+import { normalizeAppLanguage } from "@/utils/language";
 import {
   Section,
   HeaderWrapper,
@@ -15,7 +17,6 @@ import {
   ImageWrapper,
   ContentContainer,
   Title,
-  Subtitle,
   StepsContainer,
   StepWrapper,
   MobileStepImage,
@@ -30,7 +31,12 @@ import {
 } from "./styles";
 
 export default function HowToGetStarted() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = normalizeAppLanguage(
+    i18n.resolvedLanguage || i18n.language,
+  );
+  const isDanish = currentLang === DA;
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [stepMinHeight, setStepMinHeight] = useState(0);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -102,24 +108,30 @@ export default function HowToGetStarted() {
     <Section>
       <HeaderWrapper>
         <Title>{t(CREATORS.howToGetStarted.title)}</Title>
-        <Subtitle>{t(CREATORS.howToGetStarted.subtitle)}</Subtitle>
       </HeaderWrapper>
 
       <Container>
         <ImageContainer>
           <StickyImageWrapper ref={stickyRef}>
-            {creatorOnboardingSteps.map((step, index) => (
-              <ImageWrapper key={step.id} $active={activeIndex === index}>
-                <Image
-                  src={step.image}
-                  alt={t(step.titleKey)}
-                  fill
-                  sizes={STEP_IMAGE_SIZES.desktop}
-                  style={stepImageStyle}
-                  priority={index === 0}
-                />
-              </ImageWrapper>
-            ))}
+            {creatorOnboardingSteps.map((step, index) => {
+              const stepImg =
+                isDanish && step.imageDa ? step.imageDa : step.image;
+
+              return (
+                <ImageWrapper key={step.id} $active={activeIndex === index}>
+                  <Image
+                    key={`${step.id}-${currentLang}`}
+                    src={stepImg}
+                    alt={t(step.titleKey)}
+                    fill
+                    sizes={STEP_IMAGE_SIZES.desktop}
+                    quality={95}
+                    style={stepImageStyle}
+                    priority={index === 0}
+                  />
+                </ImageWrapper>
+              );
+            })}
           </StickyImageWrapper>
         </ImageContainer>
 
@@ -129,6 +141,8 @@ export default function HowToGetStarted() {
               const listItems = step.listKey
                 ? (t(step.listKey, { returnObjects: true }) as string[])
                 : null;
+              const stepImg =
+                isDanish && step.imageDa ? step.imageDa : step.image;
 
               return (
                 <StepWrapper
@@ -138,10 +152,12 @@ export default function HowToGetStarted() {
                 >
                   <MobileStepImage>
                     <Image
-                      src={step.image}
+                      key={`${step.id}-${currentLang}`}
+                      src={stepImg}
                       alt={t(step.titleKey)}
                       fill
                       sizes={STEP_IMAGE_SIZES.mobile}
+                      quality={95}
                       style={stepImageStyle}
                     />
                   </MobileStepImage>

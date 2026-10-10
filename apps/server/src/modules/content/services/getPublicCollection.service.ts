@@ -1,15 +1,17 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, gt, isNull, or } from 'drizzle-orm';
+import { and, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
   collectionItems,
   contentCategories,
+  contentSettings,
   contentTypes,
   mediaFileCategories,
   mediaFiles,
   userContentAccess,
   users,
+  creatorChannels,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
@@ -28,8 +30,14 @@ const collectionItemSelect = {
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
+  slug: mediaFiles.slug,
   contentType: contentTypes.name,
-  accessType: mediaFiles.accessType,
+  accessType: sql<string>`COALESCE(
+    NULLIF(${mediaFiles.accessType}::text, 'free'),
+    NULLIF(${contentSettings.accessType}::text, 'free'),
+    ${mediaFiles.accessType}::text
+  )`,
   categoryName: contentCategories.name,
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
@@ -83,9 +91,18 @@ export const getPublicCollectionService = async (
         description: collections.description,
         isDeleted: collections.isDeleted,
         creatorId: collections.creatorId,
+        accessType: collections.accessType,
+        buyPrice: collections.buyPrice,
+        rentPrice: collections.rentPrice,
+        rentDuration: collections.rentDuration,
       })
       .from(collections)
-      .where(eq(collections.id, collectionId))
+      .where(
+        or(
+          eq(collections.id, collectionId),
+          eq(collections.slug, collectionId),
+        ),
+      )
       .limit(1);
 
     if (!collection) {
@@ -97,13 +114,13 @@ export const getPublicCollectionService = async (
     if (collection.isDeleted) {
       if (
         !viewerId ||
-        !(await hasActiveCollectionAccess(collectionId, viewerId))
+        !(await hasActiveCollectionAccess(collection.id, viewerId))
       ) {
         return fail('Collection not found', HttpStatus.NOT_FOUND);
       }
     }
 
-    const itemConditions = [eq(collectionItems.collectionId, collectionId)];
+    const itemConditions = [eq(collectionItems.collectionId, collection.id)];
     if (!collection.isDeleted) {
       itemConditions.push(publishedPublicWhere!);
     }
@@ -129,6 +146,14 @@ export const getPublicCollectionService = async (
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
       )
+      .leftJoin(
+        creatorChannels,
+        eq(creatorChannels.creatorId, mediaFiles.creatorId),
+      )
+      .leftJoin(
+        contentSettings,
+        eq(contentSettings.userId, mediaFiles.creatorId),
+      )
       .where(and(...itemConditions));
 
     const items = rows.map((item) => ({
@@ -141,6 +166,10 @@ export const getPublicCollectionService = async (
         collectionId: collection.id,
         name: collection.name,
         description: collection.description,
+        accessType: collection.accessType,
+        buyPrice: collection.buyPrice,
+        rentPrice: collection.rentPrice,
+        rentDuration: collection.rentDuration,
         items,
       },
       'Collection fetched successfully',

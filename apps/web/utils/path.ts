@@ -1,4 +1,5 @@
 import { PROTOCOL_HTTP, PROTOCOL_HTTPS } from "./Constants";
+import { toCanonicalPathname } from "./localizedRoutes";
 
 export const PATHS = {
   HOME: "/",
@@ -28,10 +29,15 @@ export const PATHS = {
   EXPLORE_EPUB: "/formats/epub",
   EXPLORE_WEB: "/formats/web",
   CATEGORY_COMEDY: "/explore/category/comedy",
+  CATEGORY_HISTORY: "/explore/category/history",
+  CATEGORY_ENTERTAINMENT: "/explore/category/entertainment",
+  CATEGORY_COACHING: "/explore/category/coaching",
   CATEGORY_EDUCATION: "/explore/category/education",
   CATEGORY_BUSINESS: "/explore/category/business",
   CATEGORY_ARTS: "/explore/category/arts",
   CATEGORY_TECH: "/explore/category/tech",
+  CATEGORY_BOOKS: "/explore/category/books",
+  CATEGORY_FITNESS: "/explore/category/fitness",
   FOR_CREATORS: "/for-creators",
   CREATORS: "/creators/all",
   CREATORS_FEATURED: "/creators/featured",
@@ -44,6 +50,7 @@ export const PATHS = {
   TERMS: "/terms-of-service",
   CREATOR_TERMS: "/creator-terms",
   PRIVACY_POLICY: "/privacy-policy",
+  COOKIE_SETTINGS: "/cookie-settings",
   CREATOR_PROFILE: "/creator",
   CREATOR_PLANS: "/creator-plans",
 } as const;
@@ -60,15 +67,42 @@ export function getDashboardPathForRole(role: unknown): string {
     : PATHS.DASHBOARD_CREATOR;
 }
 
-export function pathPublishedContent(contentKey: string): string {
+export function slugifyContentTitle(title: string): string {
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe")
+    .replace(/å/g, "a")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function pathPublishedContent(
+  contentKey: string,
+  creatorSlug?: string | null,
+  contentTitle?: string | null,
+): string {
+  if (creatorSlug) {
+    const visibleSlug = contentTitle
+      ? slugifyContentTitle(contentTitle)
+      : contentKey;
+    return `/${encodeURIComponent(creatorSlug)}/shows/${encodeURIComponent(visibleSlug)}`;
+  }
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
 }
 
 export function pathPublicCollection(
-  collectionId: string,
+  collectionSlugOrId: string,
   creatorId?: string | null,
+  creatorSlug?: string | null,
 ): string {
-  const params = new URLSearchParams({ id: collectionId });
+  if (creatorSlug) {
+    return `/${encodeURIComponent(creatorSlug)}/collections/${encodeURIComponent(collectionSlugOrId)}`;
+  }
+
+  const params = new URLSearchParams({ name: collectionSlugOrId });
 
   if (creatorId) {
     params.set("creatorId", creatorId);
@@ -89,16 +123,22 @@ export function isSafePostLoginPath(
     return false;
   }
 
+  const pathname = path.split("?")[0] ?? path;
+  const canonical = toCanonicalPathname(pathname);
+
   return (
-    path === PATHS.CONTENT ||
-    path.startsWith(`${PATHS.CONTENT}/`) ||
-    path === PATHS.EXPLORE ||
-    path.startsWith(`${PATHS.EXPLORE}/`) ||
-    path === PATHS.DASHBOARD_CREATOR ||
-    path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
-    path === PATHS.DASHBOARD_VIEWER ||
-    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
-    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
+    canonical === PATHS.CONTENT ||
+    canonical.startsWith(`${PATHS.CONTENT}/`) ||
+    canonical === PATHS.EXPLORE ||
+    canonical.startsWith(`${PATHS.EXPLORE}/`) ||
+    canonical === PATHS.CREATORS ||
+    canonical.startsWith(`${PATHS.CREATORS}/`) ||
+    canonical.startsWith("/creators/") ||
+    canonical === PATHS.DASHBOARD_CREATOR ||
+    canonical.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
+    canonical === PATHS.DASHBOARD_VIEWER ||
+    canonical.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
+    canonical.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
 }
 
@@ -125,5 +165,7 @@ export function pathLoginWithNext(returnTo: string): string {
 }
 
 export function isDashboardPath(path: string | null | undefined): boolean {
-  return Boolean(path?.startsWith(PATHS.DASHBOARD));
+  if (!path) return false;
+  const pathname = path.split("?")[0] ?? path;
+  return toCanonicalPathname(pathname).startsWith(PATHS.DASHBOARD);
 }

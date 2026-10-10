@@ -19,16 +19,23 @@ export type CreatorProfile = {
   createdAt: number;
 };
 
+export {
+  SORT_OPTION_AZ,
+  SORT_OPTION_POPULAR,
+  SORT_OPTION_NEW,
+} from "./Constants";
+
 export const SORT_OPTION_SUBSCRIBERS = "subscribers";
 export const SORT_OPTION_NEWEST = "newest";
 
 export const SORT_OPTIONS = [
+  { label: "Popular", value: SORT_OPTION_POPULAR },
   { label: "A-Z", value: SORT_OPTION_AZ },
   { label: "Subscribers", value: SORT_OPTION_SUBSCRIBERS },
   { label: "Newest", value: SORT_OPTION_NEWEST },
 ] as const;
 
-export const DEFAULT_SORT: SortValue = SORT_OPTIONS[0].value;
+export const DEFAULT_SORT: SortValue = SORT_OPTION_POPULAR;
 export type SortValue = (typeof SORT_OPTIONS)[number]["value"];
 
 export const SORT_NEW = "new";
@@ -58,8 +65,9 @@ export const EXPLORE_CREATOR_FILTER_TITLE_KEYS: Record<
 export const EXPLORE_CREATOR_INITIAL_SORT: Partial<
   Record<ExploreCreatorFilter, SortValue>
 > = {
+  [SORT_ALL]: SORT_OPTION_POPULAR,
   [SORT_NEW]: SORT_OPTION_NEWEST,
-  [SORT_POPULAR]: SORT_OPTION_SUBSCRIBERS,
+  [SORT_POPULAR]: SORT_OPTION_POPULAR,
 };
 
 export function isExploreCreatorFilter(
@@ -68,10 +76,22 @@ export function isExploreCreatorFilter(
   return EXPLORE_CREATOR_FILTERS.includes(value as ExploreCreatorFilter);
 }
 
+const CREATOR_FILTER_ALIASES: Record<string, ExploreCreatorFilter> = {
+  alle: SORT_ALL,
+  udvalgte: SORT_FEATURED,
+  nye: SORT_NEW,
+  populaere: SORT_POPULAR,
+};
+
 export function resolveExploreCreatorFilter(
   value: unknown,
 ): ExploreCreatorFilter {
-  return isExploreCreatorFilter(value) ? value : SORT_ALL;
+  if (isExploreCreatorFilter(value)) return value;
+  if (typeof value === "string") {
+    const alias = CREATOR_FILTER_ALIASES[value.toLowerCase()];
+    if (alias) return alias;
+  }
+  return SORT_ALL;
 }
 
 export function getExploreCreatorInitialSort(
@@ -126,6 +146,14 @@ export const moveItemInArray = <T extends { id: string }>(
   return next;
 };
 
+export const getActionOptions = (
+  t: (key: string) => string,
+): DropdownOption<RowAction>[] => [
+  { label: t("contents.rowActions.moveUp"), value: MOVE_UP },
+  { label: t("contents.rowActions.moveDown"), value: MOVE_DOWN },
+  { label: t("contents.rowActions.settings"), value: MOVE_SETTINGS },
+];
+
 export const actionOptions: DropdownOption<RowAction>[] = [
   { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
   { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
@@ -137,6 +165,7 @@ export const SORT_MAP: Record<
   typeof SORT_NEW | typeof SORT_POPULAR | typeof SORT_ALL
 > = {
   [SORT_OPTION_AZ]: SORT_ALL,
+  [SORT_OPTION_POPULAR]: SORT_POPULAR,
   [SORT_OPTION_SUBSCRIBERS]: SORT_POPULAR,
   [SORT_OPTION_NEWEST]: SORT_NEW,
 };
@@ -156,6 +185,17 @@ export function mapCreatorSortToExploreFilter(
     : mapSortValueToExploreSort(sortBy);
 }
 
+export const getContentActionOptions = (
+  t: (key: string) => string,
+): DropdownOption<RowAction>[] => [
+  { label: t("contents.rowActions.moveUp"), value: MOVE_UP },
+  { label: t("contents.rowActions.moveDown"), value: MOVE_DOWN },
+  {
+    label: t("contents.rowActions.moveToAnotherCollection"),
+    value: MOVE_TO_ANOTHER_COLLECTION,
+  },
+];
+
 export const contentActionOptions: DropdownOption<RowAction>[] = [
   { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
   { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
@@ -168,11 +208,11 @@ export const contentActionOptions: DropdownOption<RowAction>[] = [
 export const getCategorySortOptions = (
   t: (key: string) => string,
 ): DropdownOption<string>[] => [
-  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.popular").toLowerCase(),
     value: SORT_OPTION_POPULAR,
   },
+  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
   {
     label: t("nav.explore.freeContent").toLowerCase(),
     value: ACCESS_TYPE_FREE,

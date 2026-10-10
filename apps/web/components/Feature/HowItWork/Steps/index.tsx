@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   StepsSection,
@@ -14,52 +14,86 @@ import {
   ImgWrap,
   CardTitle,
   CardText,
-  CARD_IMAGE_RATIOS,
 } from "./styles";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import { howItWorksSteps } from "@/utils/steps";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_REVEAL } from "@/utils/landingUtils";
-import { useStepsParallax } from "@/hooks/useStepsParallax";
+import { useIsMobile } from "@/utils/useIsMobile";
+import { useCreatorCards } from "@/utils/useCreatorCards";
+import { getCardHeightState } from "@/utils/creatorAnimations";
+import { useCreatorsGsap } from "@/components/Feature/ForCreator/CreatorsSection/useCreatorsGsap";
 
 export default function HowSteps() {
   const { t } = useTranslation();
   const items = howItWorksSteps;
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  useStepsParallax(sectionRef, items.length);
+  const {
+    activeCardIndex,
+    setActiveCardIndex,
+    handleMouseEnter,
+    handleMouseLeave,
+    handleCardClick,
+  } = useCreatorCards(isMobile);
+
+  useEffect(() => {
+    setActiveCardIndex(2);
+  }, [setActiveCardIndex]);
+
+  useCreatorsGsap({
+    sectionRef,
+    cardRefs,
+  });
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        handleMouseLeave();
+      }
+    });
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [handleMouseLeave]);
 
   return (
     <StepsSection ref={sectionRef}>
       <Inner>
         <HeaderGroup>
-          <ScrollReveal>
-            <Heading>
-              <MonoText $use="Heading2">{t(NAV.howItWorks)}</MonoText>
-            </Heading>
-          </ScrollReveal>
+          <Heading data-creator-hero-line>
+            <MonoText $use="Heading2">{t(NAV.howItWorks)}</MonoText>
+          </Heading>
 
-          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-            <Subtitle>
-              <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>
-                {t("how.stepsSubtitle")}
-              </MonoText>
-            </Subtitle>
-          </ScrollReveal>
+          <Subtitle data-creator-hero-animate>
+            <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>
+              {t("how.stepsSubtitle")}
+            </MonoText>
+          </Subtitle>
         </HeaderGroup>
 
         <Grid>
-          {items.map((it, i) => (
-            <GridItem key={it.id}>
-              <ScrollReveal
-                delay={LANDING_REVEAL.shortDelay * (i + 1)}
-                style={{ width: "100%" }}
-              >
-                <Card $index={i} data-step-parallax>
-                  <ImgWrap $ratio={CARD_IMAGE_RATIOS[i]}>
+          {items.map((it, i) => {
+            const heightState = getCardHeightState(i, activeCardIndex);
+            return (
+              <GridItem key={it.id}>
+                <Card
+                  ref={(node) => {
+                    cardRefs.current[i] = node;
+                  }}
+                  data-creator-card
+                  onMouseEnter={() => handleMouseEnter(i)}
+                  onClick={() => handleCardClick(i)}
+                  onTouchStart={() => handleCardClick(i)}
+                >
+                  <ImgWrap $heightState={heightState}>
                     <Image
                       src={it.img}
                       alt={t(it.titleKey)}
@@ -75,9 +109,9 @@ export default function HowSteps() {
                     <MonoText $use="Body_Medium">{t(it.textKey)}</MonoText>
                   </CardText>
                 </Card>
-              </ScrollReveal>
-            </GridItem>
-          ))}
+              </GridItem>
+            );
+          })}
         </Grid>
       </Inner>
     </StepsSection>

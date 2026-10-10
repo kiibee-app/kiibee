@@ -44,13 +44,14 @@ const PROFILE_FILES = [
   'subscription.json',
 ] as const;
 
-const FALLBACK_PLAN_NAME = SUBSCRIPTION_PLAN.PRO;
+const FALLBACK_PLAN_NAME = SUBSCRIPTION_PLAN.START_UP;
+const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
 
 const LEGACY_PLAN_DOCUMENT_NAMES: Record<string, string> = {
   'umb://document/5ba7f17c7cf64beea5db1176fd45d365':
     SUBSCRIPTION_PLAN.TRY_KIIBEE,
-  'umb://document/6ae38a0b56144a55ac017545e006b9a4': SUBSCRIPTION_PLAN.PRO,
-  'umb://document/e46ced3f3b544a3ead6838c69a79ac8f': SUBSCRIPTION_PLAN.PRO,
+  'umb://document/6ae38a0b56144a55ac017545e006b9a4': SUBSCRIPTION_PLAN.START_UP,
+  'umb://document/e46ced3f3b544a3ead6838c69a79ac8f': SUBSCRIPTION_PLAN.START_UP,
 };
 
 type JsonRecord = Record<string, any>;
@@ -224,7 +225,14 @@ function subscriptionKey(subscription: unknown): string | null {
   );
 }
 
-function resolveDesiredPlanName(subscription: unknown): string {
+function resolveDesiredPlanName(
+  subscription: unknown,
+  profileKey: string,
+): string {
+  if (slugify(profileKey).includes('kammas-kantine')) {
+    return SUBSCRIPTION_PLAN.PRO;
+  }
+
   const key = subscriptionKey(subscription);
 
   if (!key) {
@@ -253,7 +261,7 @@ function resolveDesiredPlanName(subscription: unknown): string {
   }
 
   if (normalized.includes('pro')) {
-    return SUBSCRIPTION_PLAN.PRO;
+    return SUBSCRIPTION_PLAN.START_UP;
   }
 
   return FALLBACK_PLAN_NAME;
@@ -443,7 +451,10 @@ function mapProfile(
   const description =
     headline ?? textOrNull(seo.metaDescription) ?? truncate(bio ?? '', 500);
   const channelName = truncate(name, 255);
-  const desiredPlanName = resolveDesiredPlanName(subscription.subscription);
+  const desiredPlanName = resolveDesiredPlanName(
+    subscription.subscription,
+    profile.profileKey,
+  );
 
   return {
     profileKey: profile.profileKey,

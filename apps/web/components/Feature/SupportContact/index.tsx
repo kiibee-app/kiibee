@@ -38,10 +38,12 @@ import {
   Title,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import COLORS from "@repo/ui/colors";
 
 export default function SupportContact() {
   const { t } = useTranslation();
+  const paths = useLocalizedPaths();
   const [isSuccess, setIsSuccess] = useState(false);
   const { mutateAsync: submitSupportContact, isPending: isSubmitting } =
     useSupportContact();
@@ -146,7 +148,7 @@ export default function SupportContact() {
               <ResourceCopy>
                 <MonoText $use="Body_Regular">
                   {t("supportPage.resourcesLead")}{" "}
-                  <InlineLink href="/tutorial-videos">
+                  <InlineLink href={paths.TUTORIAL_VIDEOS}>
                     {t("supportPage.tutorialVideos")}
                   </InlineLink>{" "}
                   {t("supportPage.resourcesMiddle")}{" "}

@@ -52,6 +52,7 @@ export function useCreatorRequests() {
 type ExistingCreatorsQuery = {
   search?: string;
   plan?: string;
+  hidden?: boolean;
   page: number;
   limit: number;
 };
@@ -59,17 +60,22 @@ type ExistingCreatorsQuery = {
 export function useExistingCreators({
   search,
   plan,
+  hidden,
   page,
   limit,
 }: ExistingCreatorsQuery) {
   return useQuery({
-    queryKey: [...EXISTING_CREATORS_QUERY_KEY, { search, plan, page, limit }],
+    queryKey: [
+      ...EXISTING_CREATORS_QUERY_KEY,
+      { search, plan, hidden, page, limit },
+    ],
     queryFn: async () => {
       const params = new URLSearchParams({
         page: String(page),
         limit: String(limit),
         ...(search && { search }),
         ...(plan && { plan }),
+        ...(hidden !== undefined && { hidden: String(hidden) }),
       });
 
       const data = await ensureSuccess<ExistingCreatorsResponse>(

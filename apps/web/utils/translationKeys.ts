@@ -40,6 +40,9 @@ export const CREATE_PROFILE_HOME = {
     joined: "createProfileHome.aboutModal.joined",
     links: "createProfileHome.aboutModal.links",
   },
+  latestUpload: {
+    title: "createProfileHome.latestUpload.title",
+  },
 };
 
 export const CREATE_PROFILE_ROUTES = {
@@ -76,6 +79,9 @@ export const AUTH_FORM = {
   title: "authForm.title",
   emailLabel: "authForm.emailLabel",
   passwordLabel: "authForm.passwordLabel",
+  errors: {
+    required: "authForm.errors.required",
+  },
 };
 
 export const AUTH_CREATOR = {
@@ -154,7 +160,6 @@ export const CREATORS = {
   popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
-    subtitle: "creators.howToGetStarted.subtitle",
   },
   marketing: {
     title: "creators.marketing.title",
@@ -237,6 +242,7 @@ export const CREATOR_PROFILE = {
 };
 
 export const DASHBOARD_USERS = {
+  title: "users.title",
   search: "users.search",
   tabs: {
     registrations: "users.tabs.registrations",
@@ -426,6 +432,24 @@ export const CONTENTS = {
     makeInactive: "contents.couponActions.makeInactive",
     delete: "contents.couponActions.delete",
   },
+  tableHeaders: {
+    collectionName: "contents.tableHeaders.collectionName",
+    numberOfContents: "contents.tableHeaders.numberOfContents",
+    created: "contents.tableHeaders.created",
+    contentName: "contents.tableHeaders.contentName",
+    visibility: "contents.tableHeaders.visibility",
+    title: "contents.tableHeaders.title",
+    codes: "contents.tableHeaders.codes",
+    status: "contents.tableHeaders.status",
+    createdDate: "contents.tableHeaders.createdDate",
+    actions: "contents.tableHeaders.actions",
+  },
+  rowActions: {
+    moveUp: "contents.rowActions.moveUp",
+    moveDown: "contents.rowActions.moveDown",
+    settings: "contents.rowActions.settings",
+    moveToAnotherCollection: "contents.rowActions.moveToAnotherCollection",
+  },
   placeholders: {
     collections: "contents.placeholders.collections",
   },
@@ -560,6 +584,15 @@ export const CONTENTS = {
     common: {
       invalidNumber: "contents.payment.common.invalidNumber",
       minAmount: "contents.payment.common.minAmount",
+    },
+  },
+  admissionRequirements: {
+    freeContentWarningBadge:
+      "contents.admissionRequirements.freeContentWarningBadge",
+    password: {
+      error: {
+        minLength: "contents.admissionRequirements.password.error.minLength",
+      },
     },
   },
   deleteModal: {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
@@ -10,8 +10,11 @@ import CollectionContent from "@/components/Feature/SingleCollectionHero/Collect
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
-import AccessGate from "@/components/Feature/AccessGate";
+import AccessGate, {
+  CreatorAccessGrantedModal,
+} from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { useViewerCollectionAccess } from "@/hooks/useViewerContentAccess";
 import {
   VARIANT_CONTENT,
@@ -30,6 +33,8 @@ import {
   ACTION_SIGNUP,
   REGISTER_SOURCE,
   TYPE_CODE,
+  HASH_BUY,
+  EVENT_HASHCHANGE,
 } from "@/utils/Constants";
 import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import { useLogout } from "@/hooks/auth/useLogout";
@@ -38,10 +43,15 @@ import {
   HeroWrapper,
   TopBar,
   BackButtonWrapper,
-  Section as HeroSection,
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
+import {
+  resolveCollectionPricing,
+  isPaidCollection,
+  getContentDetailPricingActions,
+  getPricingLabels,
+} from "@/utils/contentPricingActions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
@@ -64,16 +74,18 @@ import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { MODAL_ALIGN, isBrowser } from "@/utils/ui";
 import { toast } from "react-toastify";
-import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
+import { PATHS, pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 type Props = {
   collectionId: string;
   creatorId?: string | null;
+  creatorSlug?: string | null;
   onBack?: () => void;
   showBack?: boolean;
   embedded?: boolean;
@@ -83,6 +95,7 @@ type Props = {
 export default function SingleCollectionDetail({
   collectionId,
   creatorId: publicCreatorId = null,
+  creatorSlug = null,
   onBack,
   showBack = true,
   embedded = false,
@@ -140,38 +153,28 @@ export default function SingleCollectionDetail({
     useTutorialCollectionLookup(id);
 
   const viewerId = user?.id ?? readStoredLoginUser()?.id ?? null;
-
-  const {
-    data: dynamicSection,
-    isLoading: isDynamicLoading,
-    isError,
-  } = usePublicCollectionContent(!staticSection ? id : null, viewerId);
-
-  const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
-
-  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    publicCreatorId || creatorSlug,
+  );
+  const collectionOwnerCreatorId = publicCreatorId || publicCreator?.id;
 
   const handleOpenDashboard = () => {
     const params = new URLSearchParams({
       [VIEW]: CREATORS_LABELS.CONTENTS,
     });
-    if (id) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    if (canonicalCollectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, canonicalCollectionId);
     }
     router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
   };
 
-  const { creator: publicCreator } = useCreatorPublicProfile(
-    resolvedCreatorId ?? null,
-  );
-
   const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
-    resolvedCreatorId
-      ? API.collection.getPublicByCreator(resolvedCreatorId)
+    collectionOwnerCreatorId
+      ? API.collection.getPublicByCreator(collectionOwnerCreatorId)
       : API.collection.getAll,
     undefined,
     {
-      enabled: Boolean(id && resolvedCreatorId && !staticSection),
+      enabled: Boolean(id && collectionOwnerCreatorId && !staticSection),
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -180,24 +183,109 @@ export default function SingleCollectionDetail({
   const selectedCollection = useMemo(() => {
     if (!id || !publicCollectionsQuery.data) return undefined;
     return getCollectionRows(publicCollectionsQuery.data).find(
-      (collection) => collection.id === id,
+      (collection) =>
+        collection.id === id ||
+        collection.slug === id ||
+        slugifyContentTitle(collection.name) === id,
     );
   }, [id, publicCollectionsQuery.data]);
 
+  const {
+    data: dynamicSection,
+    isLoading: isDynamicLoading,
+    isError,
+  } = usePublicCollectionContent(
+    !staticSection ? selectedCollection?.id || (creatorSlug ? null : id) : null,
+    viewerId,
+  );
+
+  const resolvedCreatorId =
+    publicCreatorId || dynamicSection?.creatorId || publicCreator?.id;
+  const resolvedCollectionId = dynamicSection?.collectionId || id;
+  const canonicalCollectionId =
+    selectedCollection?.id ||
+    dynamicSection?.collectionId ||
+    resolvedCollectionId;
+  const canonicalCreatorSlug = publicCreator?.slug || creatorSlug;
+  const canonicalCollectionSlug = selectedCollection
+    ? slugifyContentTitle(selectedCollection.name)
+    : id;
+  const isCollectionLookupLoading = Boolean(
+    creatorSlug && !staticSection && publicCollectionsQuery.isLoading,
+  );
+  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+
+  useEffect(() => {
+    if (embedded || staticSection || !canonicalCreatorSlug) return;
+
+    const canonicalPath = pathPublicCollection(
+      canonicalCollectionSlug,
+      resolvedCreatorId,
+      canonicalCreatorSlug,
+    );
+    if (pathname === canonicalPath) return;
+
+    const search = searchParams?.toString();
+    router.replace(`${canonicalPath}${search ? `?${search}` : ""}`, {
+      scroll: false,
+    });
+  }, [
+    canonicalCollectionSlug,
+    canonicalCreatorSlug,
+    embedded,
+    pathname,
+    resolvedCreatorId,
+    router,
+    searchParams,
+    staticSection,
+  ]);
+
+  const handleBackToChannel = useCallback(() => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    const targetSlug =
+      canonicalCreatorSlug || creatorSlug || publicCreator?.slug;
+    if (targetSlug) {
+      router.push(getPublicCreatorProfilePath(targetSlug));
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  }, [onBack, canonicalCreatorSlug, creatorSlug, publicCreator?.slug, router]);
+
   const resolvedPricing = useMemo(() => {
-    if (!selectedCollection) return undefined;
+    const target =
+      selectedCollection ||
+      (dynamicSection
+        ? {
+            accessType: dynamicSection.accessType,
+            buyPrice: dynamicSection.buyPrice,
+            rentPrice: dynamicSection.rentPrice,
+            rentDuration: dynamicSection.rentDuration,
+          }
+        : undefined);
+
+    if (!target) return undefined;
+
+    const pricingInfo = resolveCollectionPricing(target);
+
     return {
-      accessType: selectedCollection.accessType,
-      buyPrice: selectedCollection.buyPrice,
-      rentPrice: selectedCollection.rentPrice,
-      rentDurationHours: convertRentDurationToHours(
-        selectedCollection.rentDuration,
-      ),
+      accessType: pricingInfo.accessType,
+      buyPrice: pricingInfo.buyPrice,
+      rentPrice: pricingInfo.rentPrice,
+      rentDurationHours: convertRentDurationToHours(pricingInfo.rentDuration),
     };
-  }, [selectedCollection]);
+  }, [selectedCollection, dynamicSection]);
+
+  const isPaid = useMemo(() => {
+    return isPaidCollection(resolvedPricing);
+  }, [resolvedPricing]);
 
   const resolvedDescription =
-    dynamicSection?.description ?? selectedCollection?.description;
+    dynamicSection?.description?.trim() ||
+    selectedCollection?.description?.trim() ||
+    null;
 
   const resolvedCreatorName =
     publicCreator?.name || dynamicSection?.creatorName;
@@ -215,14 +303,24 @@ export default function SingleCollectionDetail({
     dynamicSection?.heroImage ??
     dynamicSection?.videos?.[0]?.image;
 
-  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
-    !staticSection ? id : null,
-  );
+  const {
+    gateType: creatorGateType,
+    isLoading: isCreatorGateLoading,
+    handleSuccess: handleCreatorGateSuccess,
+    showAccessGranted,
+    closeAccessGranted,
+    isLoginModalVisible: isCreatorLoginModalVisible,
+    closeLoginModal: closeCreatorLoginModal,
+  } = useCreatorAccessGate(!staticSection ? resolvedCreatorId : null);
+  const { gateType: collectionGateType, isLoading: isCollectionGateLoading } =
+    useCollectionAccessGate(!staticSection ? canonicalCollectionId : null);
+  const gateType = creatorGateType ?? collectionGateType;
+  const isGateLoading = isCreatorGateLoading || isCollectionGateLoading;
   const {
     hasAccess: hasCollectionAccess,
     isPurchased,
     isRented,
-  } = useViewerCollectionAccess(id);
+  } = useViewerCollectionAccess(canonicalCollectionId, resolvedCreatorId);
 
   const userAccessStatus = isPurchased
     ? COLLECTION_ACCESS_STATUS.PURCHASED
@@ -232,32 +330,33 @@ export default function SingleCollectionDetail({
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
-  const handlePricingActionClick = (action: PricingAction) => {
-    if (!user?.id) {
-      setLoginModalVisible(true);
-      return;
-    }
-    if (user?.role === ROLE_CREATOR) {
-      setShowCreatorModal1(true);
-      return;
-    }
-    const durationHours = resolvedPricing?.rentDurationHours;
-    const rentalExpiresAt = !action.isPurchase
-      ? calculateRentalExpiryDate(durationHours)
-      : undefined;
+  const handlePricingActionClick = useCallback(
+    (action: PricingAction) => {
+      const durationHours = resolvedPricing?.rentDurationHours;
+      const rentalExpiresAt = !action.isPurchase
+        ? calculateRentalExpiryDate(durationHours)
+        : undefined;
 
-    setSelectedAction({ ...action, rentalExpiresAt });
-    setShowPurchaseModal(true);
-  };
+      setSelectedAction({ ...action, rentalExpiresAt });
+      setShowPurchaseModal(true);
+    },
+    [resolvedPricing?.rentDurationHours],
+  );
 
   const handlePurchaseConfirm = (
     couponCode?: string,
     subscriptionId?: string,
   ) => {
-    if (!selectedAction || !id) return;
+    if (!selectedAction || !canonicalCollectionId) return;
 
     if (!user?.id) {
       setLoginModalVisible(true);
+      return;
+    }
+
+    if (user?.role === ROLE_CREATOR) {
+      setShowPurchaseModal(false);
+      setShowCreatorModal1(true);
       return;
     }
 
@@ -265,7 +364,7 @@ export default function SingleCollectionDetail({
 
     createCollectionOrderMutation.mutate(
       {
-        collectionId: id,
+        collectionId: canonicalCollectionId,
         itemType: selectedAction.isPurchase
           ? ORDER_TYPES.PURCHASE
           : ORDER_TYPES.RENTAL,
@@ -308,7 +407,61 @@ export default function SingleCollectionDetail({
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    if (isBrowser && window.location.hash === HASH_BUY) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
   };
+
+  useEffect(() => {
+    if (!isBrowser) return;
+
+    const handleHash = () => {
+      if (
+        window.location.hash === HASH_BUY &&
+        resolvedPricing &&
+        !hasCollectionAccess &&
+        !showPurchaseModal
+      ) {
+        const pricingActions = getContentDetailPricingActions(
+          resolvedPricing,
+          t,
+          {
+            inCollection: true,
+            labels: getPricingLabels(t),
+          },
+        );
+
+        const buyAction =
+          pricingActions.find((a) =>
+            a.label
+              .toLowerCase()
+              .includes(t("pricingLabels.buy").toLowerCase()),
+          ) || pricingActions[0];
+
+        if (buyAction) {
+          handlePricingActionClick({
+            label: buyAction.label,
+            subtitle: buyAction.subtitle,
+            isPurchase: true,
+          });
+        }
+      }
+    };
+
+    handleHash();
+    window.addEventListener(EVENT_HASHCHANGE, handleHash);
+    return () => window.removeEventListener(EVENT_HASHCHANGE, handleHash);
+  }, [
+    resolvedPricing,
+    hasCollectionAccess,
+    showPurchaseModal,
+    t,
+    handlePricingActionClick,
+  ]);
 
   const handleCloseLoginModal = () => setLoginModalVisible(false);
 
@@ -325,7 +478,7 @@ export default function SingleCollectionDetail({
       return;
     }
 
-    router.replace(next ? `${COLLECTION_ROUTE}?${next}` : COLLECTION_ROUTE, {
+    router.replace(next ? `${pathname}?${next}` : pathname, {
       scroll: false,
     });
   };
@@ -351,8 +504,8 @@ export default function SingleCollectionDetail({
       params.set(VIEW, VIEWER_VIEW_VALUES.CURRENTLY_RENTED);
     }
 
-    if (id) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    if (canonicalCollectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, canonicalCollectionId);
     }
 
     router.push(`${PATHS.DASHBOARD_VIEWER}?${params.toString()}`);
@@ -369,22 +522,33 @@ export default function SingleCollectionDetail({
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
 
   const handleCollectionGateSuccess = async (value: string, name?: string) => {
-    if (!id || (gateType !== TYPE_CODE && !resolvedCreatorId)) return false;
+    if (creatorGateType) {
+      return handleCreatorGateSuccess(value, name);
+    }
+
+    if (
+      !canonicalCollectionId ||
+      (collectionGateType !== TYPE_CODE && !resolvedCreatorId)
+    ) {
+      return false;
+    }
 
     const request =
-      gateType === TYPE_CODE
-        ? axiosClient.post(API.content.verifyCode(id), { code: value })
+      collectionGateType === TYPE_CODE
+        ? axiosClient.post(API.content.verifyCode(canonicalCollectionId), {
+            code: value,
+          })
         : axiosClient.post(API.creatorUsers.register, {
             creatorId: resolvedCreatorId,
             email: value,
             name,
             source: REGISTER_SOURCE.COLLECTION,
-            sourceId: id,
+            sourceId: canonicalCollectionId,
           });
 
     await request;
     window.localStorage.setItem(
-      `kiibee:gate:unlocked:collection:${id}`,
+      `kiibee:gate:unlocked:collection:${canonicalCollectionId}`,
       "true",
     );
     window.location.reload();
@@ -406,7 +570,7 @@ export default function SingleCollectionDetail({
         contentType="collection"
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
-        collectionId={id || undefined}
+        collectionId={canonicalCollectionId || undefined}
         elementCount={
           selectedCollection?.contentsCount ||
           dynamicSection?.videos.length ||
@@ -419,12 +583,21 @@ export default function SingleCollectionDetail({
       />
 
       <LoginRequiredModal
-        visible={isLoginModalVisible}
-        onClose={handleCloseLoginModal}
+        visible={isLoginModalVisible || isCreatorLoginModalVisible}
+        onClose={() => {
+          handleCloseLoginModal();
+          closeCreatorLoginModal();
+        }}
         message={t("createProfileHome.latestUpload.loginModal.message")}
         onSuccess={() => {
           handleCloseLoginModal();
+          closeCreatorLoginModal();
         }}
+      />
+
+      <CreatorAccessGrantedModal
+        visible={showAccessGranted}
+        onClose={closeAccessGranted}
       />
 
       <GenericModal
@@ -494,14 +667,14 @@ export default function SingleCollectionDetail({
           videos={staticSection.tutorials}
           maxWidth={staticSection.gridMaxWidth}
           embedded={embedded}
-          collectionId={id}
+          collectionId={canonicalCollectionId}
           onSelectVideo={embedded ? handleSelectContent : undefined}
         />
       </Section>
     );
   }
 
-  if (isGateLoading || isDynamicLoading) {
+  if (isGateLoading || isDynamicLoading || isCollectionLookupLoading) {
     return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
   }
 
@@ -518,7 +691,7 @@ export default function SingleCollectionDetail({
           onActionClick={handlePricingActionClick}
           isOwner={isOwner}
           onOpenDashboard={handleOpenDashboard}
-          onBack={onBack}
+          onBack={handleBackToChannel}
           showBack={showBack}
           embedded={embedded}
           accessGate={
@@ -539,7 +712,7 @@ export default function SingleCollectionDetail({
       <HeroWrapper $embedded={embedded}>
         <TopBar $embedded={embedded}>
           {showBack ? (
-            <BackButtonWrapper onClick={onBack ?? (() => router.back())}>
+            <BackButtonWrapper onClick={handleBackToChannel}>
               <BackButtonIcon />
             </BackButtonWrapper>
           ) : null}
@@ -576,14 +749,15 @@ export default function SingleCollectionDetail({
         isOwner={isOwner}
         userAccessStatus={userAccessStatus}
         onOpenDashboard={handleOpenDashboard}
-        onBack={onBack}
+        onBack={handleBackToChannel}
         showBack={showBack}
         embedded={embedded}
       />
       <CollectionContent
         videos={dynamicSection.videos}
         embedded={embedded}
-        collectionId={id}
+        collectionId={canonicalCollectionId}
+        isPaidCollection={isPaid}
         onSelectVideo={embedded ? handleSelectContent : undefined}
       />
       {purchaseModals}

@@ -24,7 +24,7 @@ import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { EXPLORE_INITIAL_PAGE_SIZE } from "@/utils/Constants";
 import {
   Hero,
   HeroTitleText,
@@ -32,6 +32,8 @@ import {
   Content,
   Title,
   Controls,
+  SearchBarContainer,
+  SortDropdownContainer,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 
@@ -65,25 +67,30 @@ function FormatPageContent() {
                     <HeroTitleText>{formatTitle}</HeroTitleText>
                   </Title>
                   <Controls>
-                    <SearchBar
-                      placeholder={t("creators.search")}
-                      value={searchQuery}
-                      onChange={setSearchQuery}
-                    />
-                    <SortDropdown
-                      options={SORT_OPTIONS}
-                      value={sortBy}
-                      onChange={setSortBy}
-                      label={t(CREATORS.sort)}
-                      renderSelectedLabel={(value) =>
-                        t(CREATORS.value(value as SortValue)).toLowerCase()
-                      }
-                      renderOptionLabel={(option) =>
-                        t(
-                          CREATORS.value(option.value as SortValue),
-                        ).toLowerCase()
-                      }
-                    />
+                    <SearchBarContainer>
+                      <SearchBar
+                        placeholder={t("creators.search")}
+                        value={searchQuery}
+                        onChange={setSearchQuery}
+                      />
+                    </SearchBarContainer>
+                    <SortDropdownContainer>
+                      <SortDropdown
+                        options={SORT_OPTIONS}
+                        value={sortBy}
+                        onChange={setSortBy}
+                        label={t(CREATORS.sort)}
+                        renderSelectedLabel={(value) =>
+                          t(CREATORS.value(value as SortValue)).toLowerCase()
+                        }
+                        renderOptionLabel={(option) =>
+                          t(
+                            CREATORS.value(option.value as SortValue),
+                          ).toLowerCase()
+                        }
+                        expandLayoutOnOpen={false}
+                      />
+                    </SortDropdownContainer>
                   </Controls>
                 </Content>
               </Inner>
@@ -93,7 +100,7 @@ function FormatPageContent() {
             <PageWrapper>
               {isLoading ? (
                 <Grid>
-                  {Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                  {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map((_, i) => (
                     <Skeleton.Card key={i} />
                   ))}
                 </Grid>
@@ -131,7 +138,25 @@ function FormatPageContent() {
 
 export default function FormatPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <LocalPageContainer $navTextTone="light">
+          <NavBar navTextTone="light" />
+          <Main>
+            <Section>
+              <PageWrapper>
+                <Grid>
+                  {Array.from({ length: EXPLORE_INITIAL_PAGE_SIZE }).map((_, i) => (
+                    <Skeleton.Card key={i} />
+                  ))}
+                </Grid>
+              </PageWrapper>
+            </Section>
+          </Main>
+          <Footer />
+        </LocalPageContainer>
+      }
+    >
       <FormatPageContent />
     </Suspense>
   );

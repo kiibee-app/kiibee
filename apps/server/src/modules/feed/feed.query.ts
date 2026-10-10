@@ -6,20 +6,35 @@ import {
   mediaFileCategories,
   contentCategories,
   emailSubscribers,
+  creatorChannels,
 } from 'src/database/schema';
 import { eq, desc, and, sql, inArray } from 'drizzle-orm';
-import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
-import { dedupeFeedMediaById, orderFeedMediaByIds } from './feed.helper';
+import {
+  CONTENT_VISIBILITY,
+  RECENT_CANDIDATE_MULTIPLIER,
+  RECENT_MIN_CANDIDATE_LIMIT,
+  ROLE,
+} from 'src/utils/constant';
+import {
+  creatorContentIsDiscoverable,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
+import {
+  dedupeFeedMediaByCreator,
+  dedupeFeedMediaById,
+  orderFeedMediaByIds,
+} from './feed.helper';
 
 const baseSelect = {
   id: mediaFiles.id,
+  slug: mediaFiles.slug,
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
+  creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
@@ -51,7 +66,14 @@ async function fetchMediaFilesByIds(ids: string[]) {
       contentCategories,
       eq(contentCategories.id, mediaFileCategories.categoryId),
     )
-    .where(and(inArray(mediaFiles.id, ids), eq(mediaFiles.isDeleted, false)));
+    .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+    .where(
+      and(
+        inArray(mediaFiles.id, ids),
+        eq(mediaFiles.isDeleted, false),
+        creatorContentIsDiscoverable,
+      ),
+    );
 
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }
@@ -99,6 +121,11 @@ export const getLatestQuery = async (
 };
 
 export const getRecentQuery = async (where: any, limit: number) => {
+  const candidateLimit = Math.max(
+    limit * RECENT_CANDIDATE_MULTIPLIER,
+    RECENT_MIN_CANDIDATE_LIMIT,
+  );
+
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
@@ -112,9 +139,11 @@ export const getRecentQuery = async (where: any, limit: number) => {
     )
     .where(where)
     .orderBy(desc(mediaFiles.createdAt))
-    .limit(limit);
+    .limit(candidateLimit);
 
-  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+
+  return dedupeFeedMediaByCreator(candidates, limit);
 };
 
 export const getTopCreatorsQuery = (limit = 10) =>
@@ -126,6 +155,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
       createdAt: users.createdAt,
       uploadCount: sql<number>`COUNT(DISTINCT media_files.id)`,
       subscriberCount: sql<number>`COUNT(DISTINCT email_subscribers.id)`,
+      slug: creatorChannels.slug,
     })
     .from(users)
     .leftJoin(
@@ -138,6 +168,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
       ),
     )
     .leftJoin(emailSubscribers, eq(emailSubscribers.creatorId, users.id))
+    .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .where(
       and(
         eq(users.isActive, true),
@@ -146,6 +177,12 @@ export const getTopCreatorsQuery = (limit = 10) =>
         publiclyVisibleCreatorWhere,
       ),
     )
-    .groupBy(users.id, users.fullName, users.avatarUrl, users.createdAt)
+    .groupBy(
+      users.id,
+      users.fullName,
+      users.avatarUrl,
+      users.createdAt,
+      creatorChannels.slug,
+    )
     .orderBy(desc(sql`COUNT(DISTINCT media_files.id)`))
     .limit(limit);

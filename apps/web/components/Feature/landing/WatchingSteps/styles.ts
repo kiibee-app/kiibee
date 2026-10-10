@@ -21,11 +21,16 @@ export const Content = styled.div`
 `;
 
 export const Header = styled.div`
-  max-width: 540px;
+  max-width: 800px;
+  width: 100%;
 `;
 
 export const Heading = styled.h2`
   margin: 3rem 0 0.75rem;
+
+  @media (min-width: 768px) {
+    white-space: nowrap;
+  }
 `;
 
 export const Tagline = styled.p`
@@ -70,11 +75,24 @@ export const StepsColumn = styled.div`
 export const StepCard = styled.article`
   background: ${({ theme }) => theme.colors.primary.GREEN_10};
   border-radius: 12px;
-  padding: 0.9375rem;
+  padding: 0.9375rem 1.25rem;
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
-  display: flex;
-  justify-content: space-between;
-  gap: clamp(1rem, 8vw, 8rem);
+  display: grid;
+  grid-template-columns: 115px 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+
+  ${media.mobileLg} {
+    grid-template-columns: 105px 1fr;
+    gap: 1rem;
+    padding: 0.9375rem 1rem;
+  }
+
+  ${media.mobileSm} {
+    grid-template-columns: 95px 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
 `;
 
 export const StepNumber = styled.span`
@@ -111,6 +129,7 @@ export const NumberPart = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  white-space: nowrap;
 `;
 
 export const watchingStepsPreviewImageStyle: CSSProperties = {

@@ -1,24 +1,20 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { exploreSectionFrame } from "@/styles/exploreCardGrid";
 
 export const Section = styled.section`
-  width: min(100%, 1300px);
-  margin: 0 auto;
-  padding: 30px 0 40px 0;
+  ${exploreSectionFrame}
+  padding-top: 30px;
+  padding-bottom: 40px;
 
   ${media.desktopMd} {
-    width: 100%;
-    padding: 40px 25px 72px;
-  }
-
-  ${media.desktop} {
-    width: 100%;
-    padding: 40px 25px 72px;
+    padding-top: 40px;
+    padding-bottom: 72px;
   }
 
   ${media.tablet} {
-    width: 100%;
-    padding: 30px 16px 48px;
+    padding-top: 30px;
+    padding-bottom: 48px;
   }
 `;
 
@@ -31,7 +27,7 @@ export const Content = styled.div`
 `;
 
 export const SectionTag = styled.span`
-  padding: 2.35rem 0.75rem;
+  padding: 0;
   border-radius: ${({ theme }) => theme.radius.sm};
 `;
 

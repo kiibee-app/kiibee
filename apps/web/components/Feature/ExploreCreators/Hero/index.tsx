@@ -59,8 +59,7 @@ export default function ExploreCreatorsHero({
                   renderOptionLabel={(option) =>
                     t(CREATORS.value(option.value as SortValue)).toLowerCase()
                   }
-                  width="100%"
-                  maxWidth="100%"
+                  expandLayoutOnOpen={false}
                 />
               </SortDropdownContainer>
             )}

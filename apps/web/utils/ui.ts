@@ -57,6 +57,7 @@ export const LOADER_VARIANT = {
   OVERLAY: "overlay",
   INLINE: "inline",
   FULLPAGE: "fullpage",
+  CONTAINER: "container",
 } as const;
 export const LOADER_SIZE = {
   SM: "sm",
@@ -202,18 +203,35 @@ export const IMAGE_TYPE = {
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const CONTENT_THUMBNAIL_SIZE = {
-  MEDIA_CARD: { width: 300, height: 424 },
-  PORTRAIT: { width: 1920, height: 1080 },
+  MEDIA_CARD: { width: 250, height: 190 },
+  PORTRAIT: { width: 634, height: 345 },
   PORTRAIT_PDF: { width: 376, height: 530 },
 } as const;
 
 export const CONTENT_THUMBNAIL_PREVIEW = {
-  MEDIA_CARD: { maxWidth: "71px", minHeight: "100px" },
+  MEDIA_CARD: { maxWidth: "131px", minHeight: "100px" },
   PORTRAIT: { maxWidth: "184px", minHeight: "100px" },
   PORTRAIT_PDF: { maxWidth: "71px", height: "100px", minHeight: "100px" },
 } as const;
 
 export const CARD_IMAGE_RADIUS = "12px";
+
+export const GENERIC_CARD_LAYOUT = {
+  WIDTH: "290px",
+  GRID_MIN: "260px",
+  GAP: "20px",
+  CONTENT_WIDTH: "1220px",
+  FILTERS_WIDTH: "260px",
+  FILTERS_GAP: "50px",
+  CONTENT_MIN_HEIGHT: "400px",
+  CREATOR_MIN_HEIGHT: "315px",
+  IMAGE_ASPECT_RATIO: "25 / 19",
+  IMAGE_ASPECT_PADDING: "72%",
+  ACTIONS_GAP: "18px",
+  ACTION_HEIGHT: "33px",
+  ACTION_FONT_SIZE: "11px",
+  ACTION_FONT_WEIGHT: 700,
+} as const;
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
   [IMAGE_TYPE.DESKTOP]: {
@@ -268,12 +286,12 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   },
 
   [IMAGE_TYPE.MEDIA_CARD]: {
-    maxWidth: "71px",
+    maxWidth: "131px",
     minHeight: "100px",
     aspectRatio: `${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.width} / ${CONTENT_THUMBNAIL_SIZE.MEDIA_CARD.height}`,
     tablet: {
-      maxWidth: "55px",
-      minHeight: "78px",
+      maxWidth: "100px",
+      minHeight: "76px",
     },
   },
 

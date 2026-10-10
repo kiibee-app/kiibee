@@ -12,6 +12,7 @@ import {
   SidebarDropdownItem,
 } from "@/components/Layout/Sidebar/styles";
 import { useTranslation } from "react-i18next";
+import { useLocalizedHref } from "@/hooks/useLocalizedPaths";
 
 type SidebarHelpDropdownProps = {
   label: string;
@@ -33,6 +34,7 @@ export default function SidebarHelpDropdown({
   onClose,
 }: SidebarHelpDropdownProps) {
   const { t } = useTranslation();
+  const localize = useLocalizedHref();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside({
@@ -67,7 +69,7 @@ export default function SidebarHelpDropdown({
           {HELP_MENU_ITEMS.map((helpItem) => (
             <SidebarDropdownItem
               key={helpItem.href}
-              href={helpItem.href}
+              href={localize(helpItem.href)}
               role="menuitem"
               onClick={onClose}
             >

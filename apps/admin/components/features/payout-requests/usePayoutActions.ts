@@ -23,7 +23,7 @@ export function usePayoutActions(request?: PayoutRequest | null) {
       },
       {
         onSuccess: () => {
-          toast.success("Payout successfully created and approved.");
+          toast.success("Payout approved. Status updated immediately.");
         },
         onError: (err) => {
           toast.error(err.message || "Failed to approve payout.");

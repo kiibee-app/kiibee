@@ -44,8 +44,14 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
+    const overriddenPlan = {
+      ...plan,
+      price: creatorCurrentPlan[0].customPrice ?? plan.price,
+      maxFiles: creatorCurrentPlan[0].customMaxFiles ?? plan.maxFiles,
+    };
+
     return success(
-      [plan],
+      [overriddenPlan],
       'Creator plan retrieved successfully',
       HttpStatus.OK,
     );

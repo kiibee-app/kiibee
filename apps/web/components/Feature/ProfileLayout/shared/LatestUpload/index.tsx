@@ -41,7 +41,7 @@ import {
 import { useIsMobile } from "@/utils/useIsMobile";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
@@ -52,13 +52,14 @@ import {
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
-import { authStorage } from "@/lib/auth/authStorage";
 import {
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
   isThirdPartyVideoUrl,
 } from "@/utils/media";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
+import { getCategoryLabel } from "@/utils/category";
 
 type LatestUploadAction = {
   title: string;
@@ -77,11 +78,16 @@ export type LatestUploadData = {
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
   contentId?: string;
+  creatorId?: string | null;
+  slug?: string;
+  creatorSlug?: string | null;
   trailerUrl?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
 };
 
 type LatestUploadProps = {
@@ -115,10 +121,20 @@ export default function LatestUpload({
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const trailerVideoRef = useRef<HTMLVideoElement | null>(null);
   const { navigateToContent } = useProtectedContentNavigation();
+  const relatedCollectionQuery = usePublicRelatedCollectionContent(
+    data.contentId ?? null,
+  );
+
+  const effectiveCollectionId =
+    data.collectionId || relatedCollectionQuery.data?.collectionId;
+  const isPaidCol =
+    Boolean(data.isPaidCollection) ||
+    Boolean(relatedCollectionQuery.data?.isPaid);
+
   const { hasAccess } = useViewerContentAccess(
     data.contentId ?? "",
-    null,
-    null,
+    data.creatorId ?? null,
+    effectiveCollectionId,
   );
 
   const computedActions = useMemo((): ComputedAction[] => {
@@ -127,7 +143,11 @@ export default function LatestUpload({
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
         ];
       }
@@ -140,21 +160,11 @@ export default function LatestUpload({
       };
       const labels = getPricingLabels(t);
 
-      if (isFreeContentItem(pricingItem)) {
-        return [
-          {
-            title: t("pricingLabels.free"),
-            subtitle: t("singleContent.pricing.downloadFiles"),
-            href: `${pathPublishedContent(data.contentId)}#buy`,
-          },
-          {
-            title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
-          },
-        ];
-      }
+      const collectionAccessType = relatedCollectionQuery.data?.accessType;
 
       const gatedActions = getContentPricingActions(pricingItem, labels.free, {
+        inCollection: Boolean(effectiveCollectionId),
+        collectionAccessType,
         labels,
       });
       const isGatedLabel =
@@ -164,8 +174,48 @@ export default function LatestUpload({
       if (isGatedLabel) {
         return gatedActions.map((action) => ({
           title: action.label,
-          href: pathPublishedContent(data.contentId!),
+          href: pathPublishedContent(
+            data.slug || data.contentId!,
+            data.creatorSlug,
+            data.title,
+          ),
         }));
+      }
+
+      if (isFreeContentItem(pricingItem)) {
+        if (isPaidCol && effectiveCollectionId) {
+          const href = pathPublicCollection(
+            effectiveCollectionId,
+            undefined,
+            data.creatorSlug,
+          );
+          return [
+            {
+              title: t("pricingLabels.partOfCollection"),
+              href,
+            },
+          ];
+        }
+
+        return [
+          {
+            title: t("pricingLabels.free"),
+            subtitle: t("singleContent.pricing.downloadFiles"),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
+          },
+          {
+            title: t("createProfileHome.latestUpload.seeContent"),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
+          },
+        ];
       }
 
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
@@ -176,7 +226,11 @@ export default function LatestUpload({
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
-            href: pathPublishedContent(data.contentId),
+            href: pathPublishedContent(
+              data.slug || data.contentId,
+              data.creatorSlug,
+              data.title,
+            ),
           },
         ];
       }
@@ -187,7 +241,12 @@ export default function LatestUpload({
         href: resolveContentActionHref(
           data.contentId!,
           action.label,
-          pricingItem,
+          {
+            ...pricingItem,
+            slug: data.slug,
+            creatorSlug: data.creatorSlug,
+            title: data.title,
+          },
           pricingActions.length,
           { labels },
         ),
@@ -204,7 +263,15 @@ export default function LatestUpload({
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t, isOwner, hasAccess]);
+  }, [
+    data,
+    t,
+    isOwner,
+    hasAccess,
+    isPaidCol,
+    effectiveCollectionId,
+    relatedCollectionQuery.data?.accessType,
+  ]);
 
   const visibleActions = computedActions;
 
@@ -213,7 +280,7 @@ export default function LatestUpload({
 
   const handleSecondaryActionClick = () => {
     if (secondaryAction?.href) {
-      navigateToContent(secondaryAction.href, true);
+      navigateToContent(secondaryAction.href);
     }
   };
   const handlePrimaryActionClick = () => {
@@ -222,13 +289,7 @@ export default function LatestUpload({
       return;
     }
 
-    if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
-      setPendingHref(primaryAction.href);
-      setLoginModalVisible(true);
-      return;
-    }
-
-    navigateToContent(primaryAction.href, true);
+    navigateToContent(primaryAction.href);
   };
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
@@ -305,7 +366,7 @@ export default function LatestUpload({
 
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection $isPdf={!isMediaPlayable}>
-          <Badge>{data.badge}</Badge>
+          <Badge>{getCategoryLabel(data.badge, t)}</Badge>
 
           {isTrailerPlaying && isEmbedTrailer ? (
             <TrailerEmbed
@@ -354,7 +415,14 @@ export default function LatestUpload({
                   <>
                     <LeftControlButton>
                       <PlayCircleIcon />
-                      {t("createProfileHome.latestUpload.video")}
+                      {t(
+                        `contents.contentTypeModal.options.${normalizedContentType}`,
+                        {
+                          defaultValue: t(
+                            "createProfileHome.latestUpload.video",
+                          ),
+                        },
+                      )}
                     </LeftControlButton>
 
                     {hasTrailer ? (
@@ -395,17 +463,33 @@ export default function LatestUpload({
                 type="button"
                 data-creator-content-button
                 onClick={handlePrimaryActionClick}
-                $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                $tone={
+                  primaryAction.title ===
+                    t("createProfileHome.latestUpload.seeContent") &&
+                  !secondaryAction
+                    ? VARIANT.SECONDARY
+                    : VARIANT.PRIMARY
+                }
               >
                 <ActionMainText
-                  $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                  $tone={
+                    primaryAction.title ===
+                      t("createProfileHome.latestUpload.seeContent") &&
+                    !secondaryAction
+                      ? VARIANT.SECONDARY
+                      : VARIANT.PRIMARY
+                  }
                 >
                   {primaryAction.title}
                 </ActionMainText>
                 {primaryAction.subtitle ? (
                   <ActionSubText
                     $tone={
-                      secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY
+                      primaryAction.title ===
+                        t("createProfileHome.latestUpload.seeContent") &&
+                      !secondaryAction
+                        ? VARIANT.SECONDARY
+                        : VARIANT.PRIMARY
                     }
                   >
                     {primaryAction.subtitle}
@@ -445,7 +529,7 @@ export default function LatestUpload({
         }
         onSuccess={() => {
           if (pendingHref) {
-            navigateToContent(pendingHref, true);
+            navigateToContent(pendingHref);
             setPendingHref(null);
           }
         }}

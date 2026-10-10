@@ -36,6 +36,8 @@ export default function ShortStory() {
             <StoryImage
               src={resolveImageUrl(creatorsStoryImage)}
               alt={t(CREATORS.shortStory.imageAlt)}
+              decoding="async"
+              loading="lazy"
             />
           </ImageReveal>
         </ImageSection>

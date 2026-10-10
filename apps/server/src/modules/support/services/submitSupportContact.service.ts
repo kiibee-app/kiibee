@@ -30,20 +30,20 @@ const buildSupportEmailHtml = (payload: {
     .join(' ');
 
   return `
-    <h2>New support contact message</h2>
-    <p><strong>Name:</strong> ${escapeHtml(fullName)}</p>
-    <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
+    <h2>Ny supportbesked</h2>
+    <p><strong>Navn:</strong> ${escapeHtml(fullName)}</p>
+    <p><strong>E-mail:</strong> ${escapeHtml(payload.email)}</p>
     ${
       payload.companyName
-        ? `<p><strong>Company:</strong> ${escapeHtml(payload.companyName)}</p>`
+        ? `<p><strong>Virksomhed:</strong> ${escapeHtml(payload.companyName)}</p>`
         : ''
     }
     ${
       payload.phoneNumber
-        ? `<p><strong>Phone:</strong> ${escapeHtml(payload.phoneNumber)}</p>`
+        ? `<p><strong>Telefon:</strong> ${escapeHtml(payload.phoneNumber)}</p>`
         : ''
     }
-    <p><strong>Message:</strong></p>
+    <p><strong>Besked:</strong></p>
     <p>${escapeHtml(payload.message).replaceAll('\n', '<br />')}</p>
   `;
 };
@@ -79,7 +79,7 @@ export const submitSupportContactService = async (
         from: `"${env.SENDER_NAME}" <${env.SENDER_EMAIL}>`,
         to: SUPPORT_INBOX_EMAIL,
         replyTo: email,
-        subject: `Support request from ${firstName}`,
+        subject: `Supportanmodning fra ${firstName}`,
         html: buildSupportEmailHtml({
           firstName,
           lastName,

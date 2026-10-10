@@ -1,8 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect, useCallback } from "react";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { GenericModal } from "@/components/UI/Modals";
@@ -20,11 +27,13 @@ import {
   getContentDetail,
   getSingleContentProps,
 } from "@/utils/contentApi";
+import { isPaidCollection } from "@/utils/contentPricingActions";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 import {
   resolvePublishedContentByKey,
@@ -58,6 +67,7 @@ export default function PublishedContentDetail({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const params = useParams();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const user = useStoredLoginUser();
@@ -66,6 +76,10 @@ export default function PublishedContentDetail({
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey.replaceAll(":", "-");
+  const rawCreatorSlug = params?.creatorSlug;
+  const creatorSlug = Array.isArray(rawCreatorSlug)
+    ? rawCreatorSlug[0]
+    : rawCreatorSlug;
   const viewerId = resolveContentViewerId(resolvedUserId);
 
   useEffect(() => {
@@ -75,7 +89,7 @@ export default function PublishedContentDetail({
   }, [normalizedContentKey, embedded]);
 
   const contentViewRoute = normalizedContentKey
-    ? API.content.view(normalizedContentKey, viewerId)
+    ? API.content.view(normalizedContentKey, viewerId, creatorSlug)
     : API.content.create;
   const discoverFallback = resolvePublishedContentByKey(normalizedContentKey);
   const {
@@ -88,11 +102,7 @@ export default function PublishedContentDetail({
     contentViewRoute,
     undefined,
     {
-      enabled:
-        Boolean(normalizedContentKey) &&
-        !discoverFallback &&
-        !tutorial &&
-        !isTutorialLoading,
+      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
       refetchInterval: isPaymentSuccess ? 1500 : false,
       placeholderData: (previousData) => previousData,
     },
@@ -102,16 +112,55 @@ export default function PublishedContentDetail({
     content?.creatorId ?? null,
   );
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
-    normalizedContentKey,
+    content?.id,
     {
-      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
+      enabled: Boolean(content?.id) && !discoverFallback && !tutorial,
     },
   );
+  const effectiveCollectionId =
+    content?.collectionId || relatedCollectionQuery.data?.collectionId;
+  const isPaidCol =
+    Boolean(content?.isPaidCollection) ||
+    isPaidCollection(relatedCollectionQuery.data);
+
+  const { hasAccess: hasCollectionOrContentAccess } = useViewerContentAccess(
+    content?.id ?? "",
+    content?.creatorId ?? null,
+    effectiveCollectionId,
+  );
+
+  const resolvedContentSlug = tutorial?.title || content?.title;
+  const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
+
+  useEffect(() => {
+    if (embedded || !resolvedContentSlug || !resolvedCreatorSlug) return;
+
+    const canonicalPath = pathPublishedContent(
+      content?.slug || tutorial?.slug || resolvedContentSlug,
+      resolvedCreatorSlug,
+      resolvedContentSlug,
+    );
+    if (pathname === canonicalPath) return;
+
+    const search = searchParams.toString();
+    router.replace(`${canonicalPath}${search ? `?${search}` : ""}`, {
+      scroll: false,
+    });
+  }, [
+    pathname,
+    embedded,
+    content?.slug,
+    resolvedContentSlug,
+    resolvedCreatorSlug,
+    tutorial?.slug,
+    router,
+    searchParams,
+  ]);
   const {
     gateType: activeGateType,
     isLoading: gateLoading,
     handleSuccess: handleGateSuccess,
-  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+  } = useContentAccessGate(content, effectiveCollectionId);
 
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
@@ -126,6 +175,20 @@ export default function PublishedContentDetail({
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   };
+
+  const handleBackToChannel = useCallback(() => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    const targetSlug =
+      creatorSlug || publicCreator?.slug || content?.creatorSlug;
+    if (targetSlug) {
+      router.push(getPublicCreatorProfilePath(targetSlug));
+    } else {
+      router.push(PATHS.EXPLORE);
+    }
+  }, [onBack, creatorSlug, publicCreator?.slug, content?.creatorSlug, router]);
 
   const paymentSuccessModal = (
     <GenericModal
@@ -194,23 +257,29 @@ export default function PublishedContentDetail({
         <SingleContentPage
           {...getSingleContentProps(content, t, {
             viewerId: resolvedUserId,
+            creatorName: publicCreator?.name,
+            inCollection: Boolean(effectiveCollectionId),
+            collectionId: effectiveCollectionId,
+            isPaidCollection: isPaidCol,
+            hasAccess:
+              Boolean(content?.accessInfo) || hasCollectionOrContentAccess,
           })}
           content={content}
-          collectionId={relatedCollectionQuery.data?.collectionId}
+          collectionId={effectiveCollectionId}
           showBack={showBack}
           showShare={showShare}
-          onBack={onBack}
+          onBack={handleBackToChannel}
           embedded={embedded}
           creator={
             publicCreator
               ? {
                   id: publicCreator.id,
+                  slug: publicCreator.slug,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(
-                      publicCreator.profileImageUrl ||
-                        publicCreator.mobileCoverImageUrl,
-                    ) ?? undefined,
+                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
+                    resolvePublicMediaUrl(publicCreator.mobileCoverImageUrl) ??
+                    undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined
@@ -229,7 +298,9 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              collectionSlug={relatedCollectionQuery.data.collectionSlug}
               ownerCreatorId={content.creatorId}
+              ownerCreatorSlug={content.creatorSlug}
             />
           ) : null}
         </SingleContentPage>

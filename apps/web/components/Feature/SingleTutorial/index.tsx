@@ -10,6 +10,10 @@ import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { FORMAT_TYPE } from "@/utils/types";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
+import { formatTimeAgoByLang } from "@/utils/formatDate";
+import { pathPublicCollection } from "@/utils/path";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { getCategoryLabel } from "@/utils/category";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -23,7 +27,14 @@ export default function SingleTutorial({
   relatedVideos = [],
   collectionId,
 }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const effectiveCollectionId = collectionId || tutorial.collectionId;
+  const isPaid = tutorial.isPaidCollection;
+  const { hasAccess } = useViewerContentAccess(
+    tutorial.id,
+    tutorial.creatorId,
+    effectiveCollectionId,
+  );
 
   const playbackUrl = useMemo(
     () => resolveCloudflareStreamPlaybackUrl(null, tutorial.videoUrl),
@@ -59,13 +70,18 @@ export default function SingleTutorial({
       return tutorial.tags;
     }
 
-    return [tutorial.category, t("singleTutorial.tags.tutorials")].filter(
-      Boolean,
-    );
+    return [
+      getCategoryLabel(tutorial.category, t),
+      t("singleTutorial.tags.tutorials"),
+    ].filter(Boolean);
   }, [t, tutorial.category, tutorial.tags]);
 
   const publisherName = tutorial.publisher ?? tutorial.creator;
-  const publishedValue = tutorial.publishedYear ?? tutorial.published;
+  const publishedValue =
+    tutorial.publishedYear ??
+    (tutorial.published
+      ? formatTimeAgoByLang(tutorial.published, i18n.language)
+      : "");
   const durationValue =
     tutorial.duration ?? t("singleTutorial.meta.durationValue");
 
@@ -99,14 +115,25 @@ export default function SingleTutorial({
               trailerIconAlt: t("singleTutorial.playTrailer"),
             }
           : {}),
-        categoryLabel: tutorial.category,
+        categoryLabel: getCategoryLabel(tutorial.category, t),
         mediaLabel: tutorial.formatLabel,
         mediaIcon: playCircleIcon,
         mediaIconAlt: t("singleTutorial.seeContent"),
       }}
-      primaryAction={{
-        label: t("singleTutorial.seeContent"),
-      }}
+      primaryAction={
+        isPaid && effectiveCollectionId && tutorial.isFree && !hasAccess
+          ? {
+              label: t("pricingLabels.partOfCollection"),
+              href: pathPublicCollection(
+                effectiveCollectionId,
+                tutorial.creatorId,
+                tutorial.creatorSlug,
+              ),
+            }
+          : {
+              label: t("singleTutorial.seeContent"),
+            }
+      }
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),

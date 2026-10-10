@@ -1,14 +1,27 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { CARD_IMAGE_RATIOS } from "@/utils/landingUtils";
+import { type CardHeightState } from "@/utils/creatorAnimations";
 
 export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
+  box-sizing: border-box;
+
+  [data-creator-hero-line],
+  [data-creator-hero-animate],
+  [data-creator-card] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  ${media.tablet} {
+    padding: 80px 24px;
+  }
 
   ${media.mobileXl} {
-    padding: 80px 24px;
+    padding: 60px 24px;
   }
 `;
 
@@ -20,6 +33,10 @@ export const Inner = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 71px;
+
+  ${media.tablet} {
+    gap: 48px;
+  }
 `;
 
 export const HeaderGroup = styled.div`
@@ -44,70 +61,102 @@ export const Subtitle = styled.p`
 
 export const Grid = styled.div`
   display: flex;
-  justify-content: center;
   align-items: flex-end;
+  justify-content: center;
   gap: 20px;
   width: 100%;
+  min-height: 580px;
+  box-sizing: border-box;
 
   ${media.tablet} {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 20px;
+    align-items: stretch;
+    min-height: auto;
+  }
+
+  ${media.mobileMd} {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 `;
 
 export const GridItem = styled.div`
-  flex: 1 1 0;
-  min-width: 0;
+  flex: 1 1 0px;
   max-width: 392px;
   width: 100%;
   display: flex;
   align-items: flex-end;
   will-change: transform;
   backface-visibility: hidden;
+  transform: translateZ(0);
 
   ${media.tablet} {
-    flex: none;
-    max-width: 500px;
     align-items: stretch;
     will-change: auto;
+
+    &:nth-child(3) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 100%;
+      max-width: calc(50% - 10px);
+    }
+  }
+
+  ${media.mobileMd} {
+    &:nth-child(3) {
+      grid-column: auto;
+      max-width: 100%;
+    }
   }
 `;
 
 export const ImgWrap = styled.div<{
-  $ratio: (typeof CARD_IMAGE_RATIOS)[number];
+  $heightState: CardHeightState;
 }>`
   position: relative;
   width: 100%;
+  height: ${({ $heightState }) =>
+    $heightState === 3 ? "471px" : $heightState === 2 ? "393px" : "314px"};
   border-radius: 14px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  padding-top: ${({ $ratio }) => $ratio}%;
+  will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   transition:
-    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+
+  ${media.tablet} {
+    height: 220px;
+  }
 
   img {
     object-fit: cover;
-    transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 `;
 
-export const Card = styled.div<{ $index: number }>`
+export const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  cursor: pointer;
+  touch-action: manipulation;
+  transform: translateZ(0);
 
   @media (hover: hover) {
     &:hover {
       ${ImgWrap} {
         box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-        transform: translateY(-8px);
       }
 
       img {
-        transform: scale(1.04) !important;
+        transform: scale(1.05) !important;
       }
     }
   }

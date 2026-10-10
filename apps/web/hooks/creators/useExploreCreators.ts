@@ -22,9 +22,12 @@ import {
   SORT_OPTION_NEWEST,
   type SortValue,
 } from "@/utils/sortOptions";
-import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import {
+  EXPLORE_INITIAL_PAGE_SIZE,
+  LOAD_MORE_SIZE,
+  TOP_CREATORS_LIMIT,
+} from "@/utils/Constants";
 
-const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
 const BACKEND_SORT_NAME = "name";
 
 export function formatSubscriberCountK(count: number): number {
@@ -51,6 +54,8 @@ export function sortExploreCreators(
   switch (sortBy) {
     case "a-z":
       return data.sort((a, b) => a.name.localeCompare(b.name));
+    case "popular":
+      return data;
     case "subscribers":
       return data.sort((a, b) => b.subscriberCount - a.subscriberCount);
     case "newest":
@@ -63,6 +68,20 @@ export function sortExploreCreators(
   }
 }
 
+export function getExploreCreatorCategoryLabel(
+  creator: ExploreCreator,
+): string | null {
+  if (creator.category?.trim()) return creator.category.trim();
+  if (creator.categoryName?.trim()) return creator.categoryName.trim();
+
+  const [firstContentCategory] = creator.contentCategory ?? [];
+  if (typeof firstContentCategory === "string") {
+    return firstContentCategory.trim() || null;
+  }
+
+  return firstContentCategory?.name?.trim() || null;
+}
+
 export function getCreatorCardImage(creator: ExploreCreator): string | null {
   return (
     resolvePublicMediaUrl(creator.mobileCoverImageUrl) ??
@@ -72,16 +91,9 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 }
 
 function normalizeExploreCreator(creator: ExploreCreator): ExploreCreator {
-  const [firstContentCategory] = creator.contentCategory ?? [];
-  const contentCategory =
-    typeof firstContentCategory === "string"
-      ? firstContentCategory
-      : firstContentCategory?.name;
-
   return {
     ...creator,
-    category:
-      creator.category ?? creator.categoryName ?? contentCategory ?? null,
+    category: getExploreCreatorCategoryLabel(creator),
   };
 }
 
@@ -142,12 +154,10 @@ function extractPagination(
 function mapFilterToSortBy(filter?: string): string | undefined {
   if (filter === SORT_FEATURED) return SORT_FEATURED;
   if (filter === SORT_NEW) return SORT_OPTION_NEWEST;
-  if (filter === SORT_POPULAR) return BACKEND_SORT_SUBSCRIBER_COUNT;
+  if (filter === SORT_POPULAR) return SORT_POPULAR;
   if (filter === SORT_ALL) return BACKEND_SORT_NAME;
   return undefined;
 }
-
-const TOP_CREATORS_LIMIT = 6;
 
 export const useExploreCreators = (
   limit?: number,
@@ -235,31 +245,37 @@ export const useExploreCreators = (
 
 type UsePaginatedExploreCreatorsArgs = {
   limit?: number;
+  pageSize?: number;
   search?: string;
-  filter: string;
+  filter?: string;
+  sortBy?: string;
 };
 
 export const usePaginatedExploreCreators = ({
-  limit = EXPLORE_PAGE_SIZE,
+  limit = EXPLORE_INITIAL_PAGE_SIZE,
+  pageSize = LOAD_MORE_SIZE,
   search,
   filter,
+  sortBy: explicitSortBy,
 }: UsePaginatedExploreCreatorsArgs) => {
-  const sortBy = mapFilterToSortBy(filter);
+  const sortBy = explicitSortBy ?? mapFilterToSortBy(filter);
   const trimmedSearch = search?.trim() || undefined;
 
   const query = useInfiniteQuery({
     queryKey: [
       API.creators.all,
       "paginated",
-      { limit, search: trimmedSearch, sortBy },
+      { limit, pageSize, search: trimmedSearch, sortBy },
     ],
     queryFn: async ({ pageParam, signal }) => {
+      const isFirstPage = pageParam === 1;
+      const requestLimit = isFirstPage ? limit : pageSize;
       const response = await axiosClient.get<ExploreCreatorsResponse>(
         API.creators.all,
         {
           params: {
             page: pageParam,
-            limit,
+            limit: requestLimit,
             ...(trimmedSearch && { search: trimmedSearch }),
             ...(sortBy && { sortBy }),
           },
@@ -269,14 +285,20 @@ export const usePaginatedExploreCreators = ({
       return response.data;
     },
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
+    getNextPageParam: (lastPage, allPages) => {
       const pagination = extractPagination(lastPage.data);
       if (!pagination) {
         return undefined;
       }
       const hasMore =
         pagination.hasMore ?? pagination.page < pagination.totalPages;
-      return hasMore ? pagination.page + 1 : undefined;
+      if (!hasMore) {
+        return undefined;
+      }
+      if (allPages.length === 1) {
+        return Math.floor(limit / pageSize) + 1;
+      }
+      return pagination.page + 1;
     },
     refetchOnWindowFocus: false,
   });

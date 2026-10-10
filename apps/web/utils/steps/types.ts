@@ -5,6 +5,7 @@ export type CreatorOnboardingStep = {
   titleKey: string;
   descriptionKey: string;
   image: ImageSource;
+  imageDa?: ImageSource;
   listKey?: string;
 };
 

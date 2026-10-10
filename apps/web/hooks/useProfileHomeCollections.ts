@@ -24,11 +24,17 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
-import { getPricingLabels } from "@/utils/contentPricingActions";
+import {
+  getContentPricingActions,
+  getPricingLabels,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 
 export type CollectionWithCards = {
   id: string;
   name: string;
+  slug?: string;
   cards: TutorialVideo[];
 };
 
@@ -44,7 +50,7 @@ export function useProfileHomeCollections(
   publicCreatorId?: string | null,
 ) {
   const { t } = useTranslation();
-  const seeContentLabel = t("createProfileHome.latestUpload.seeContent");
+  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
   const queryClient = useQueryClient();
 
   return useQuery<CollectionWithCards[]>({
@@ -72,16 +78,33 @@ export function useProfileHomeCollections(
         );
 
         return collections
-          .map((collection, index) => ({
-            id: collection.id,
-            name: collection.name,
-            cards: (publicContentResponses[index]?.data?.data?.items ?? []).map(
-              (item) =>
-                feedContentToTutorial(item, seeContentLabel, {
-                  labels: getPricingLabels(t),
-                }),
-            ),
-          }))
+          .map((collection, index) => {
+            const isPaid = isPaidCollection(collection);
+            const partOfCollectionLabel = t("pricingLabels.partOfCollection");
+            return {
+              id: collection.id,
+              name: collection.name,
+              slug: collection.slug,
+              cards: (
+                publicContentResponses[index]?.data?.data?.items ?? []
+              ).map((item) =>
+                feedContentToTutorial(
+                  {
+                    ...item,
+                  },
+                  freeLabel,
+                  {
+                    inCollection: true,
+                    collectionId: collection.id,
+                    isPaidCollection: isPaid,
+                    collectionAccessType: collection.accessType,
+                    partOfCollectionLabel,
+                    labels: getPricingLabels(t),
+                  },
+                ),
+              ),
+            };
+          })
           .filter((collection) => collection.cards.length > 0);
       }
 
@@ -115,17 +138,37 @@ export function useProfileHomeCollections(
                 });
               const contentDetail = getContentDetail(contentData);
 
-              const buttons = [
-                {
-                  label: seeContentLabel,
-                  variant: VARIANT.SECONDARY,
-                  href: pathPublishedContent(content.id),
-                },
-              ];
+              const pricingItem = {
+                accessType: contentDetail?.accessType,
+                buyPrice: contentDetail?.buyPrice,
+                rentPrice: contentDetail?.rentPrice,
+                rentDurationHours: contentDetail?.rentDurationHours,
+              };
+
+              const pricingActions = getContentPricingActions(
+                pricingItem,
+                freeLabel,
+                { labels: getPricingLabels(t) },
+              );
+
+              const contentHref = pathPublishedContent(
+                contentDetail?.slug || content.id,
+                contentDetail?.creatorSlug,
+                contentDetail?.title || content.name,
+              );
+
+              const buttons = pricingActions.map((action) => ({
+                label: action.label,
+                variant: VARIANT.SECONDARY,
+                href: contentHref,
+                fullWidth: action.fullWidth,
+              }));
 
               return {
                 ...fallbackTemplate,
                 id: content.id,
+                slug: contentDetail?.slug,
+                creatorSlug: contentDetail?.creatorSlug,
                 title: content.name,
                 category:
                   contentDetail?.categories?.[0]?.name ??

@@ -1,11 +1,6 @@
-import { Film, Headphones, FileText } from "lucide-react";
 import type { CreatorContentItem } from "../../../types/creator-content";
 import { formatRequestedAt } from "../../../utils/date";
 import { formatPriceSummary } from "../../../utils/creatorUploadsConfig";
-import {
-  CONTENT_FORMAT,
-  normalizeContentFormat,
-} from "../../../utils/contentMedia";
 import {
   creatorContentGridLabels,
   isEmailGatedAccessType,
@@ -15,35 +10,23 @@ import {
   ContentBody,
   ContentGrid,
   ContentMeta,
-  ContentThumbFallback,
   ContentTitle,
   EmptyState,
 } from "../viewers/Viewers.styles";
 import {
   CardCover,
-  CardCoverBlur,
-  CardCoverMain,
-  CardCoverOverlay,
   ClickableContentCard,
   ContentStatBadge,
   ContentStatsRow,
   PriceMeta,
 } from "./Creators.styles";
+import { ContentCardCover } from "../../common/ContentThumbnail";
 
 type CreatorContentGridProps = {
   contents: CreatorContentItem[];
   onSelectContent: (content: CreatorContentItem) => void;
   emptyMessage?: string;
 };
-
-function renderMediaIcon(type: string | null, size = 28) {
-  const format = normalizeContentFormat(type);
-  if (format === CONTENT_FORMAT.AUDIO) return <Headphones size={size} />;
-  if (format === CONTENT_FORMAT.PDF || format === CONTENT_FORMAT.EPUB) {
-    return <FileText size={size} />;
-  }
-  return <Film size={size} />;
-}
 
 export function CreatorContentGrid({
   contents,
@@ -69,20 +52,11 @@ export function CreatorContentGrid({
             onClick={() => onSelectContent(content)}
           >
             <CardCover>
-              {content.thumbnailUrl ? (
-                <>
-                  <CardCoverBlur src={content.thumbnailUrl} alt="" />
-                  <CardCoverOverlay />
-                  <CardCoverMain
-                    src={content.thumbnailUrl}
-                    alt={content.title}
-                  />
-                </>
-              ) : (
-                <ContentThumbFallback>
-                  {renderMediaIcon(content.contentType)}
-                </ContentThumbFallback>
-              )}
+              <ContentCardCover
+                src={content.thumbnailUrl}
+                alt={content.title}
+                contentType={content.contentType}
+              />
             </CardCover>
             <ContentBody>
               <ContentTitle>{content.title}</ContentTitle>

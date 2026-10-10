@@ -16,6 +16,7 @@ import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import type { OptionItem } from "@/types/exportCreators";
 import { TRENDING, TRENDING_LIMIT } from "@/utils/common";
+import { TOP_CREATORS_LIMIT } from "@/utils/Constants";
 
 export const ALL_FILTER_OPTION_KEY = "all";
 
@@ -63,7 +64,7 @@ type ExploreContentSection = "trending" | "latest" | "recent";
 
 export type ExploreTopCreator = Pick<
   ExploreCreator,
-  "id" | "name" | "profileImageUrl" | "createdAt"
+  "id" | "name" | "slug" | "profileImageUrl" | "createdAt"
 > & {
   uploadCount: number;
   subscriberCount: number;
@@ -144,6 +145,7 @@ function normalizeTopCreator(
   return {
     id: creator.id,
     name: creator.name,
+    slug: creator.slug ?? null,
     profileImageUrl: creator.profileImageUrl ?? null,
     createdAt: creator.createdAt,
     uploadCount: toSafeNumber(creator.uploadCount),
@@ -252,7 +254,10 @@ export const useExploreTrendingContent = (params?: {
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
   useExploreTutorialSection("recent", params);
 
-export const useExploreTopCreators = (limit = 6, search?: string) => {
+export const useExploreTopCreators = (
+  limit = TOP_CREATORS_LIMIT,
+  search?: string,
+) => {
   const query = useExploreFeed({ limit, search });
 
   const creators = useMemo((): ExploreTopCreator[] => {

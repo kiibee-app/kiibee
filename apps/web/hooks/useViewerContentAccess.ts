@@ -9,6 +9,7 @@ import { RENTED_MODES, type RentedContentSources } from "@/utils/viewerRented";
 import {
   getContentUnlockStorageKey,
   getCollectionUnlockStorageKey,
+  getCreatorUnlockStorageKey,
 } from "@/utils/accessGate";
 import { STRING_TRUE } from "@/utils/Constants";
 import { isBrowser } from "@/utils/ui";
@@ -60,6 +61,20 @@ const hasLocalCollectionUnlock = (collectionId?: string | null) => {
   );
 };
 
+const hasLocalCreatorUnlock = (
+  creatorId?: string | null,
+  userId?: string | null,
+) => {
+  if (!isBrowser || !creatorId) return false;
+  const keyWithUser = getCreatorUnlockStorageKey(creatorId, userId);
+  const keyWithoutUser = getCreatorUnlockStorageKey(creatorId, null);
+  return Boolean(
+    (keyWithUser && window.localStorage.getItem(keyWithUser) === STRING_TRUE) ||
+    (keyWithoutUser &&
+      window.localStorage.getItem(keyWithoutUser) === STRING_TRUE),
+  );
+};
+
 export function useViewerContentAccess(
   contentId: string,
   creatorId?: string | null,
@@ -105,7 +120,11 @@ export function useViewerContentAccess(
   }, [collectionId, isLoggedIn, purchasedData, rentedData]);
 
   const hasAccess = useMemo(() => {
-    if (hasLocalContentUnlock(contentId) || hasCollectionAccess) {
+    if (
+      hasLocalContentUnlock(contentId) ||
+      hasCollectionAccess ||
+      hasLocalCreatorUnlock(creatorId, user?.id)
+    ) {
       return true;
     }
 
@@ -120,11 +139,13 @@ export function useViewerContentAccess(
   }, [
     accessibleContentIds,
     contentId,
+    creatorId,
     hasCollectionAccess,
     isLoggedIn,
     isOwner,
     purchasedData,
     rentedItem,
+    user?.id,
   ]);
 
   return {
@@ -137,7 +158,10 @@ export function useViewerContentAccess(
   };
 }
 
-export function useViewerCollectionAccess(collectionId?: string | null) {
+export function useViewerCollectionAccess(
+  collectionId?: string | null,
+  creatorId?: string | null,
+) {
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
   const { data: purchasedData } = useViewerPurchased(isLoggedIn);
@@ -157,7 +181,10 @@ export function useViewerCollectionAccess(collectionId?: string | null) {
   }, [collectionId, isLoggedIn, rentedData]);
 
   const hasAccess =
-    isPurchased || isRented || hasLocalCollectionUnlock(collectionId);
+    isPurchased ||
+    isRented ||
+    hasLocalCollectionUnlock(collectionId) ||
+    hasLocalCreatorUnlock(creatorId, user?.id);
 
   return {
     isLoggedIn,

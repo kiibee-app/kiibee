@@ -10,6 +10,7 @@ export const GENERIC_LOADER_VARIANT = {
   OVERLAY: "overlay",
   INLINE: "inline",
   FULLPAGE: "fullpage",
+  CONTAINER: "container",
 } as const;
 
 export type GenericLoaderVariant =

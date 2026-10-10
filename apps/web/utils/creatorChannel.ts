@@ -1,8 +1,9 @@
 import type { ProfileTabKey } from "@/utils/common";
 import { PATHS } from "@/utils/path";
+import { toCanonicalPathname } from "./localizedRoutes";
 export const CREATOR_LAYOUT_STORAGE_KEY = "kiibee.creatorChannelLayout";
 export const CREATOR_LAYOUT_UPDATED = "kiibee:creator-channel-layout-updated";
-export const CREATOR_ID_PARAM = "creatorId";
+export const CREATOR_ID_PARAM = "creator";
 
 export const CREATOR_LAYOUTS = [
   { key: "layout1", param: "1" },
@@ -56,14 +57,7 @@ export function getPublicCreatorProfilePath(
   creatorId: string,
   layout?: CreatorLayoutParam | CreatorLayoutKey | null,
 ): string {
-  const layoutParam =
-    layout == null
-      ? layoutParamFromKey(DEFAULT_CREATOR_LAYOUT)
-      : isCreatorLayoutKey(layout)
-        ? layoutParamFromKey(layout)
-        : layout;
-  const params = new URLSearchParams({ [CREATOR_ID_PARAM]: creatorId });
-  return `${getCreatorHomePath(layoutParam)}?${params.toString()}`;
+  return `/${creatorId}`;
 }
 
 export function withCreatorIdQuery(
@@ -113,28 +107,40 @@ export type CreatorProfileTabDef = {
 
 export function getCreatorProfileTabDefs(
   layout: CreatorLayoutParam,
+  creatorSlug?: string | null,
 ): CreatorProfileTabDef[] {
+  const homeHref = creatorSlug ? `/${creatorSlug}` : getCreatorHomePath(layout);
+  const collectionsHref = creatorSlug
+    ? `/${creatorSlug}/collections`
+    : getCreatorCollectionsPath(layout);
   return [
     {
       key: "home",
       labelKey: "nav.profile.home",
-      href: getCreatorHomePath(layout),
+      href: homeHref,
     },
     {
       key: "collections",
       labelKey: "nav.profile.collections",
-      href: getCreatorCollectionsPath(layout),
+      href: collectionsHref,
     },
     { key: "about", labelKey: "nav.profile.about" },
   ];
 }
 
-export function getCreatorNavItemDefs(layout: CreatorLayoutParam) {
+export function getCreatorNavItemDefs(
+  layout: CreatorLayoutParam,
+  creatorSlug?: string | null,
+) {
+  const homeHref = creatorSlug ? `/${creatorSlug}` : getCreatorHomePath(layout);
+  const collectionsHref = creatorSlug
+    ? `/${creatorSlug}/collections`
+    : getCreatorCollectionsPath(layout);
   return [
-    { key: "nav.profile.home", href: getCreatorHomePath(layout) },
+    { key: "nav.profile.home", href: homeHref },
     {
       key: "nav.profile.collections",
-      href: getCreatorCollectionsPath(layout),
+      href: collectionsHref,
     },
     { key: "nav.profile.about" as const },
   ];
@@ -151,13 +157,16 @@ export function matchesProfileSearch(
 }
 
 function normalizeNavPath(href: string): string {
-  return href.split("?")[0].split("#")[0];
+  return toCanonicalPathname(href.split("?")[0].split("#")[0]);
 }
 
 export function findActiveNavItemKey(
   pathname: string,
   items: ReadonlyArray<{ key: string; href?: string }>,
 ): string | null {
+  const canonicalPathname = toCanonicalPathname(
+    pathname.split("?")[0].split("#")[0],
+  );
   const withHref = items
     .filter((item): item is { key: string; href: string } => Boolean(item.href))
     .map((item) => ({
@@ -167,7 +176,10 @@ export function findActiveNavItemKey(
     .sort((a, b) => b.path.length - a.path.length);
 
   for (const { key, path } of withHref) {
-    if (pathname === path || pathname.startsWith(`${path}/`)) {
+    if (
+      canonicalPathname === path ||
+      canonicalPathname.startsWith(`${path}/`)
+    ) {
       return key;
     }
   }

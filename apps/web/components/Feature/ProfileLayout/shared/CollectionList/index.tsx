@@ -3,6 +3,7 @@
 import { useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { useQueries } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import GenericSpinner from "@/components/UI/GenericSpinner";
@@ -10,6 +11,7 @@ import {
   CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import type { CollectionRow } from "@/types/collectionsType";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
@@ -18,13 +20,14 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { axiosClient } from "@/lib/http/axiosClient";
 import {
   CREATOR,
-  HASH_RENT,
-  HASH_BUY,
   STRING_EMPTY,
   resolveImageUrl,
   VARIANT_PAGE,
 } from "@/utils/Constants";
-import AccessGate from "@/components/Feature/AccessGate";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import AccessGate, {
+  CreatorAccessGrantedModal,
+} from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
@@ -35,13 +38,15 @@ import {
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
 import { ProfileLoadingWrapper } from "@/components/Feature/ProfileLayout/pageStyles";
-import { pathPublicCollection } from "@/utils/path";
+import { pathPublicCollection, slugifyContentTitle } from "@/utils/path";
 import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
   getPricingLabels,
-  isRentActionLabel,
-  isBuyActionLabel,
+  isEmailAccessType,
+  isPaidCollection,
+  isPasswordAccessType,
+  resolveCollectionPricing,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -54,15 +59,50 @@ type PublicCollectionResponse = {
   } | null;
 };
 
+const buildCollectionActions = (
+  row: CollectionRow,
+  href: string,
+  t: TFunction,
+): CollectionAction[] => {
+  const pricing = resolveCollectionPricing(row);
+  const isGated =
+    isPaidCollection(pricing) ||
+    isPasswordAccessType(pricing.accessType) ||
+    isEmailAccessType(pricing.accessType);
+
+  if (!isGated) return [];
+
+  return getContentPricingActions(pricing, t("pricingLabels.free"), {
+    inCollection: true,
+    labels: getPricingLabels(t),
+  }).map((action) => ({
+    label: action.label ?? STRING_EMPTY,
+    variant: VARIANT.PRIMARY,
+    href,
+  }));
+};
+
 export default function CollectionList() {
   const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName, isPublicView, publicCreatorId, isLoadingProfile } =
-    useCreatorChannelProfile();
+  const {
+    displayName,
+    isPublicView,
+    publicCreatorId,
+    publicCreatorSlug,
+    isLoadingProfile,
+  } = useCreatorChannelProfile();
   const router = useRouter();
   const user = useStoredLoginUser();
 
-  const { gateType, handleSuccess } = useCreatorAccessGate();
+  const {
+    gateType,
+    handleSuccess,
+    showAccessGranted,
+    closeAccessGranted,
+    isLoginModalVisible,
+    closeLoginModal,
+  } = useCreatorAccessGate();
 
   const { data: collectionsResponse, isLoading: isCollectionsLoading } =
     useGetAPI<CollectionsApiResponse>(
@@ -149,46 +189,16 @@ export default function CollectionList() {
     const rows = collectionsWithPublicContent;
 
     return rows.map((row) => {
-      const collectionHref = pathPublicCollection(row.id);
-
-      let actions: CollectionAction[] | undefined = undefined;
+      const collectionHref = pathPublicCollection(
+        publicCreatorSlug ? slugifyContentTitle(row.name) : row.id,
+        publicCreatorId,
+        publicCreatorSlug,
+      );
 
       const hasCollectionAccess = accessibleCollectionIds.has(row.id);
-
-      if (isPublicView && !hasCollectionAccess) {
-        const pricingActions = getContentPricingActions(
-          {
-            accessType: row.accessType,
-            buyPrice: row.buyPrice,
-            rentPrice: row.rentPrice,
-          },
-          t("pricingLabels.free"),
-          { inCollection: true, labels: getPricingLabels(t) },
-        );
-
-        actions = pricingActions.map((action) => {
-          const label = action.label ?? STRING_EMPTY;
-          const hash = isRentActionLabel(label)
-            ? HASH_RENT
-            : isBuyActionLabel(label)
-              ? HASH_BUY
-              : STRING_EMPTY;
-
-          return {
-            label,
-            variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: `${collectionHref}${hash}`,
-          };
-        });
-      } else {
-        actions = [
-          {
-            label: t("createProfileHome.latestUpload.seeContent"),
-            variant: VARIANT.SECONDARY,
-            href: collectionHref,
-          },
-        ];
-      }
+      const actions = hasCollectionAccess
+        ? []
+        : buildCollectionActions(row, collectionHref, t);
 
       return {
         id: row.id,
@@ -205,9 +215,10 @@ export default function CollectionList() {
       };
     });
   }, [
-    isPublicView,
     collectionsWithPublicContent,
     displayName,
+    publicCreatorId,
+    publicCreatorSlug,
     t,
     accessibleCollectionIds,
   ]);
@@ -226,50 +237,62 @@ export default function CollectionList() {
 
   if (gateType) {
     return (
-      <AccessGate
-        type={gateType}
-        variant={VARIANT_PAGE}
-        creatorName={displayName ?? undefined}
-        onSuccess={handleSuccess}
-      />
+      <>
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_PAGE}
+          creatorName={displayName ?? undefined}
+          onSuccess={handleSuccess}
+        />
+        <LoginRequiredModal
+          visible={isLoginModalVisible}
+          onClose={closeLoginModal}
+        />
+      </>
     );
   }
 
   return (
-    <CollectionListShell data-creator-collection>
-      <CollectionListInner>
-        {isLoading ? (
-          <ProfileLoadingWrapper>
-            <GenericSpinner size={48} />
-          </ProfileLoadingWrapper>
-        ) : filteredItems.length === 0 ? (
-          <ProfileEmptyState
-            title={
-              searchQuery.trim() !== ""
-                ? t("createProfileHome.noSearchResultsTitle")
-                : t("createProfileHome.noContentTitle")
-            }
-            description={
-              searchQuery.trim() !== ""
-                ? t("createProfileHome.noSearchResultsDescription")
-                : t("createProfileHome.noContentDescription")
-            }
-          />
-        ) : (
-          <CollectionsSection
-            mode={RENTED_MODES.PURCHASED}
-            items={filteredItems}
-            totalItems={filteredItems.length}
-            canSlide={() => false}
-            canGoPrev={() => false}
-            canGoNext={() => false}
-            movePrev={() => {}}
-            moveNext={() => {}}
-            onCollectionPrimaryAction={handleBuyClick}
-            onCollectionClick={handleCardClick}
-          />
-        )}
-      </CollectionListInner>
-    </CollectionListShell>
+    <>
+      <CollectionListShell data-creator-collection>
+        <CollectionListInner>
+          {isLoading ? (
+            <ProfileLoadingWrapper>
+              <GenericSpinner size={48} />
+            </ProfileLoadingWrapper>
+          ) : filteredItems.length === 0 ? (
+            <ProfileEmptyState
+              title={
+                searchQuery.trim() !== ""
+                  ? t("createProfileHome.noSearchResultsTitle")
+                  : t("createProfileHome.noContentTitle")
+              }
+              description={
+                searchQuery.trim() !== ""
+                  ? t("createProfileHome.noSearchResultsDescription")
+                  : t("createProfileHome.noContentDescription")
+              }
+            />
+          ) : (
+            <CollectionsSection
+              mode={RENTED_MODES.PURCHASED}
+              items={filteredItems}
+              totalItems={filteredItems.length}
+              canSlide={() => false}
+              canGoPrev={() => false}
+              canGoNext={() => false}
+              movePrev={() => {}}
+              moveNext={() => {}}
+              onCollectionPrimaryAction={handleBuyClick}
+              onCollectionClick={handleCardClick}
+            />
+          )}
+        </CollectionListInner>
+      </CollectionListShell>
+      <CreatorAccessGrantedModal
+        visible={showAccessGranted}
+        onClose={closeAccessGranted}
+      />
+    </>
   );
 }

@@ -21,7 +21,8 @@ export default function MetaData() {
   const { formState } = useContentForm();
   const isPortraitPdf =
     formState.contentTypeId === FORMAT_TYPE.PDF ||
-    formState.contentTypeId === FORMAT_TYPE.EPUB;
+    formState.contentTypeId === FORMAT_TYPE.EPUB ||
+    formState.contentTypeId === FORMAT_TYPE.WEB;
 
   const mediaCard = CONTENT_THUMBNAIL_SIZE.MEDIA_CARD;
   const portrait = isPortraitPdf

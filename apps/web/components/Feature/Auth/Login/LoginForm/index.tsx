@@ -21,9 +21,9 @@ import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
-import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useLoginForm } from "@/hooks/auth/useLoginForm";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 
 export default function LoginForm({
   onSuccess,
@@ -33,6 +33,7 @@ export default function LoginForm({
   onSwitchMode?: () => void;
 } = {}) {
   const { t } = useTranslation();
+  const paths = useLocalizedPaths();
 
   const {
     methods,
@@ -100,13 +101,13 @@ export default function LoginForm({
             </GenericButton>
           </Form>
         </FormProvider>
-        <ForgotLink href="/auth/forget-password">
+        <ForgotLink href={paths.AUTH_FORGET_PASSWORD}>
           {t("authForm.forgot")}
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
           <SignUpLink
-            href={PATHS.AUTH_SIGNUP}
+            href={paths.AUTH_SIGNUP}
             onClick={(e) => {
               if (onSwitchMode) {
                 e.preventDefault();

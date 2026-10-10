@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
 import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
-import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
   ChannelLink,
@@ -17,26 +16,32 @@ import {
 
 type CreatorHeaderRightProps = {
   initial: string;
-  email: string;
+  displayName: string;
   avatarUrl: string | null;
+  publicCreatorSlug?: string | null;
 };
 
 const CreatorHeaderRight = ({
   initial,
-  email,
+  displayName,
   avatarUrl,
+  publicCreatorSlug,
 }: CreatorHeaderRightProps) => {
   const { t } = useTranslation();
-  const { channelHref } = useCreatorChannelLayout();
+  const channelHref = publicCreatorSlug ? `/${publicCreatorSlug}` : null;
 
   return (
     <>
-      <ChannelLink href={channelHref}>
-        <ChannelText $use="Body_Medium">
-          {t("dashboard.creatorHeader.myChannel")}
-        </ChannelText>
-      </ChannelLink>
-      <Divider />
+      {channelHref ? (
+        <>
+          <ChannelLink href={channelHref}>
+            <ChannelText $use="Body_Medium">
+              {t("dashboard.creatorHeader.myChannel")}
+            </ChannelText>
+          </ChannelLink>
+          <Divider />
+        </>
+      ) : null}
       <RightProfileWrapper
         href={PATHS.DASHBOARD_CREATOR_PROFILE}
         aria-label={t("common.creatorProfile")}
@@ -52,7 +57,7 @@ const CreatorHeaderRight = ({
           />
         </ProfileCircle>
         <EmailWrapper>
-          <MonoText $use="Body_Medium">{email}</MonoText>
+          <MonoText $use="Body_Medium">{displayName}</MonoText>
         </EmailWrapper>
       </RightProfileWrapper>
     </>

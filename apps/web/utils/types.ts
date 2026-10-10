@@ -26,14 +26,18 @@ export type TutorialButton = {
 
 export type TutorialVideo = {
   id: string;
+  slug?: string;
   title: string;
   category: string;
   creator: string;
   creatorId?: string;
+  creatorSlug?: string | null;
   published: string;
   focus: string;
   level: string;
   isFree?: boolean;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
   formatLabel: string;
   formatType?: FormatType;
   buttons?: TutorialButton[];

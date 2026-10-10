@@ -39,15 +39,15 @@ export const NOTIFICATION_TEMPLATE = {
 } as const;
 
 export const NOTIFICATION_FREQUENCY_LABEL = {
-  [NOTIFICATION_FREQUENCY.DAILY]: 'Daily',
-  [NOTIFICATION_FREQUENCY.WEEKLY]: 'Weekly',
-  [NOTIFICATION_FREQUENCY.MONTHLY]: 'Monthly',
+  [NOTIFICATION_FREQUENCY.DAILY]: 'Daglig',
+  [NOTIFICATION_FREQUENCY.WEEKLY]: 'Ugentlig',
+  [NOTIFICATION_FREQUENCY.MONTHLY]: 'Månedlig',
 } as const;
 
 export const NOTIFICATION_TYPE_LABEL = {
-  [NOTIFICATION_TYPE.OVERVIEW]: 'Overview',
-  [NOTIFICATION_TYPE.SALES]: 'Sales',
-  [NOTIFICATION_TYPE.FORM]: 'Form',
+  [NOTIFICATION_TYPE.OVERVIEW]: 'Oversigt',
+  [NOTIFICATION_TYPE.SALES]: 'Salg',
+  [NOTIFICATION_TYPE.FORM]: 'Formular',
 } as const;
 
 export const NOTIFICATION_DASHBOARD = {
@@ -57,7 +57,7 @@ export const NOTIFICATION_DASHBOARD = {
   REGISTRATIONS_TAB: 'registrations',
 } as const;
 
-export const NOTIFICATION_MAIL_SUBJECT_PREFIX = 'Your Kiibee';
+export const NOTIFICATION_MAIL_SUBJECT_PREFIX = 'Din Kiibee';
 
 export type NotificationSettingType =
   (typeof NOTIFICATION_SETTING_TYPES)[number];

@@ -5,7 +5,7 @@ import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, FIXED_LIMIT } from 'src/utils/constant';
-import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
+import { getSafePositiveInteger } from 'src/utils/pagination';
 
 import { buildSearch, format, cleanNumber } from '../feed.helper';
 import {
@@ -15,6 +15,7 @@ import {
   getTopCreatorsQuery,
 } from '../feed.query';
 import { ExploreType } from '../dto/exploreQuery.dto';
+import { creatorContentIsDiscoverable } from 'src/utils/publicCreatorVisibility';
 
 const cleanArray = (value?: string[] | string | null) => {
   if (!value) return [];
@@ -64,7 +65,7 @@ export const exploreService = async (
   type?: ExploreType,
 ) => {
   try {
-    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT, MAX_LIMIT);
+    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT);
     const sections = resolveSections(type);
     const searchCondition = buildSearch(search);
     const contentTypeIds = cleanArray(filter?.contentTypeId);
@@ -76,6 +77,7 @@ export const exploreService = async (
       sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
+      creatorContentIsDiscoverable,
     ];
     const extra: SQL[] = [];
 

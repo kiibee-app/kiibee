@@ -14,6 +14,7 @@ import {
   VISIBILITY_DRAFT_LOWER,
   VISIBILITY_DRAFT_UPPER,
 } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   type ContentType,
@@ -21,6 +22,10 @@ import {
   normalizeContentTypeValue,
 } from "@/utils/content";
 import {
+  getVimeoEmbedUrl,
+  getYouTubeEmbedUrl,
+  isVimeoUrl,
+  isYouTubeUrl,
   resolveCloudflareStreamPlaybackUrl,
   resolveContentThumbnailCandidates,
 } from "@/utils/media";
@@ -32,6 +37,7 @@ import {
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
+import { getCategoryLabel } from "@/utils/category";
 
 type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
@@ -43,6 +49,7 @@ export const CONTENT_RESPONSE_KEYS = {
   DESCRIPTION: "description",
   CONTENT_TYPE_ID: "contentTypeId",
   CONTENT_TYPE: "contentType",
+  SLUG: "slug",
   FILE_KEY: "fileKey",
   CONTENT_URL: "contentUrl",
   THUMBNAIL_URL: "thumbnailUrl",
@@ -87,6 +94,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   share: "common.share",
   meta: {
     publishedYear: "singleContent.meta.publishedYear",
+    publishedBy: "singleContent.meta.publishedBy",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
@@ -103,6 +111,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.DESCRIPTION]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_TYPE_ID]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_TYPE]?: string | null;
+  [CONTENT_RESPONSE_KEYS.SLUG]?: string;
   [CONTENT_RESPONSE_KEYS.FILE_KEY]?: string | null;
   [CONTENT_RESPONSE_KEYS.CONTENT_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_URL]?: string | null;
@@ -124,6 +133,9 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  creatorSlug?: string | null;
+  collectionId?: string | null;
+  isPaidCollection?: boolean;
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
   [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
@@ -183,7 +195,20 @@ export const resolveContentPlaybackUrl = (
   const contentUrl = getContentUrl(content);
   const fileKey = getContentMediaKey(content);
 
+  if (isYouTubeUrl(contentUrl)) {
+    return getYouTubeEmbedUrl(contentUrl);
+  }
+  if (isVimeoUrl(contentUrl)) {
+    return getVimeoEmbedUrl(contentUrl);
+  }
+
   if (contentType === FORMAT_TYPE.WEB) {
+    if (isYouTubeUrl(contentUrl)) {
+      return getYouTubeEmbedUrl(contentUrl);
+    }
+    if (isVimeoUrl(contentUrl)) {
+      return getVimeoEmbedUrl(contentUrl);
+    }
     return contentUrl;
   }
 
@@ -242,8 +267,22 @@ const getTagNames = (content: ContentDetailItem) =>
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
-  options?: { inCollection?: boolean; viewerId?: string },
+  options?: {
+    inCollection?: boolean;
+    collectionId?: string | null;
+    isPaidCollection?: boolean;
+    hasAccess?: boolean;
+    viewerId?: string;
+    creatorName?: string;
+  },
 ): SingleContentPageProps => {
+  const effectiveCollectionId = options?.collectionId || content.collectionId;
+  const effectiveIsPaidCollection =
+    options?.isPaidCollection ?? Boolean(content.isPaidCollection);
+  const creatorSlug = (content as Record<string, unknown>).creatorSlug as
+    | string
+    | undefined;
+
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
     t(CONTENT_TRANSLATION_KEYS.imageAlt);
@@ -265,7 +304,8 @@ export const getSingleContentProps = (
   const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
   const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
   const isFree = isFreeContentItem(pricingItem);
-  const hasViewerAccess = Boolean(content.accessInfo);
+  const hasViewerAccess =
+    Boolean(content.accessInfo) || Boolean(options?.hasAccess);
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
@@ -301,15 +341,27 @@ export const getSingleContentProps = (
   const showTrailerInHero = Boolean(trailerUrl);
 
   const productionCompany = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
+    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY] ??
+      (content as Record<string, unknown>).productionCompany ??
+      (content as Record<string, unknown>).publisher,
   );
+  const publishedByValue = productionCompany || options?.creatorName;
   const manufacturerLink = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
+    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK] ??
+      (content as Record<string, unknown>).manufacturerLink ??
+      (content as Record<string, unknown>).physicalProductLink ??
+      (content as Record<string, unknown>).physical_product_link,
   );
 
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
+    slug: toTrimmedString(content[CONTENT_RESPONSE_KEYS.SLUG]),
     title,
+    creator: {
+      id: content[CONTENT_RESPONSE_KEYS.CREATOR_ID] ?? undefined,
+      slug: content.creatorSlug,
+      name: options?.creatorName ?? "",
+    },
     descriptions: description ? [description] : [],
     tags,
     statusLabel: statusLabel,
@@ -335,7 +387,7 @@ export const getSingleContentProps = (
             },
           }
         : {}),
-      categoryLabel: categories[0],
+      categoryLabel: categories[0] ? getCategoryLabel(categories[0], t) : "",
       mediaLabel: getContentTypeLabel(contentType),
       ...(isVideo
         ? {
@@ -353,9 +405,25 @@ export const getSingleContentProps = (
     },
     ...(showSeeContentAction
       ? {
-          primaryAction: {
-            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-          },
+          primaryAction:
+            effectiveIsPaidCollection &&
+            effectiveCollectionId &&
+            isFree &&
+            !hasViewerAccess &&
+            !isOwner
+              ? {
+                  label: t("pricingLabels.partOfCollection"),
+                  href: pathPublicCollection(
+                    effectiveCollectionId,
+                    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] as
+                      | string
+                      | undefined,
+                    creatorSlug,
+                  ),
+                }
+              : {
+                  label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+                },
         }
       : {
           primaryActions: pricingActions.map((action) => ({
@@ -365,16 +433,22 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
-      mainCategory
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
-            value: mainCategory,
-          }
-        : undefined,
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
             value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
+      publishedByValue
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedBy),
+            value: React.createElement("strong", null, publishedByValue),
+          }
+        : undefined,
+      mainCategory
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
+            value: getCategoryLabel(mainCategory, t),
           }
         : undefined,
       createdAt
@@ -387,12 +461,6 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
             value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
-          }
-        : undefined,
-      productionCompany
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.productionCompany),
-            value: productionCompany,
           }
         : undefined,
       isValidUrl(manufacturerLink)

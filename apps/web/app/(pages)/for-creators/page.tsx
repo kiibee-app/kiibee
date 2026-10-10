@@ -15,6 +15,7 @@ import WhyCreatorsChoose from "@/components/Feature/ForCreator/WhyCreatorsChoose
 import HowToGetStarted from "@/components/Feature/ForCreator/HowToGetStarted";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
+import ctaImage from "@/assets/images/cta-buttom.webp";
 
 const KIIBEE_FRAME_VIDEO = "/videos/kiibeeframe.mp4";
 
@@ -44,6 +45,12 @@ export default function CreatorsPage() {
           translationPrefix="creators.getStarted"
           bgVariant={BG_WHITE}
           alignWide
+        />
+        <CtaSection
+          bgImage={ctaImage}
+          title={t("value.title")}
+          subtitle={t("value.subtitle")}
+          ctaText={isLoggedIn ? undefined : t("value.cta")}
         />
       </Main>
       <Footer />

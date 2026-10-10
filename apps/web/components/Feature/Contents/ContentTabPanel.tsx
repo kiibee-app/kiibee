@@ -18,7 +18,11 @@ import AppearanceContent from "./Appearance";
 import AdmissionRequirements from "./AdmissionRequirements";
 import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
-import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
+import {
+  COLLECTION_TABLE_TYPE,
+  CollectionTableType,
+  isSingleContentCollectionName,
+} from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import { PlaceholderLine } from "./styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
@@ -26,6 +30,7 @@ import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import MetaData from "./MetaData";
 import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
@@ -41,6 +46,7 @@ type Props = {
   collectionContents: CollectionContentRow[];
   collections: CollectionRow[];
   editingContentId?: string | null;
+  isNewContent?: boolean;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
@@ -54,6 +60,7 @@ type Props = {
   searchValue?: string;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  hasGlobalAccessGate: boolean;
   collectionAccessType?: AdmissionRequirementValue;
   setCollectionAccessType?: (value: AdmissionRequirementValue) => void;
   collectionPasswords?: string;
@@ -66,8 +73,14 @@ type Props = {
   setCollectionPurchaseAmount?: (value: string) => void;
   collectionAccessDuration?: AccessDurationValue;
   setCollectionAccessDuration?: (value: AccessDurationValue) => void;
-  onPasswordValidationChange?: (hasError: boolean) => void;
+  onPasswordValidationChange?: (
+    hasError: boolean,
+    passwordDraft?: string,
+  ) => void;
   collectionHasPassword?: boolean;
+  passwordCount?: number;
+  removedPasswordIndexes?: number[];
+  onRemoveSavedPassword?: (index: number) => void;
 };
 
 export default function ContentTabPanel({
@@ -76,6 +89,7 @@ export default function ContentTabPanel({
   collectionContents,
   collections,
   editingContentId,
+  isNewContent = false,
   setCollections,
   setSelectedCollection,
   onDelete,
@@ -87,6 +101,7 @@ export default function ContentTabPanel({
   searchValue,
   uploadedFile,
   uploadedPreview,
+  hasGlobalAccessGate,
   collectionAccessType,
   setCollectionAccessType,
   collectionPasswords,
@@ -101,9 +116,13 @@ export default function ContentTabPanel({
   setCollectionAccessDuration,
   onPasswordValidationChange,
   collectionHasPassword,
+  passwordCount,
+  removedPasswordIndexes,
+  onRemoveSavedPassword,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const { publicCreatorSlug } = useCreatorChannelProfile();
   const [selectedCoupon, setSelectedCoupon] = useState<CouponEntity | null>(
     null,
   );
@@ -154,6 +173,12 @@ export default function ContentTabPanel({
     );
   }, [collectionContents, searchValue, selectedCollection]);
 
+  const visibleCollections = useMemo(() => {
+    return collections.filter(
+      (c) => !(isSingleContentCollectionName(c.name) && c.contentsCount === 0),
+    );
+  }, [collections]);
+
   const renderCollectionsContent = () => {
     if (selectedCollection) {
       const data = filteredCollectionContents;
@@ -171,9 +196,15 @@ export default function ContentTabPanel({
         <>
           <CollectionTable
             type={COLLECTION_TABLE_TYPE.CONTENTS}
+            hasGlobalAccessGate={hasGlobalAccessGate}
             data={data}
             searchValue={searchValue}
-            onRowClick={(row) => router.push(pathPublishedContent(row.id))}
+            parentCollection={selectedCollection}
+            onRowClick={(row) =>
+              router.push(
+                pathPublishedContent(row.id, publicCreatorSlug, row.name),
+              )
+            }
             onEdit={onEditContent}
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
             onMoveUp={handleMoveUp}
@@ -194,7 +225,7 @@ export default function ContentTabPanel({
       );
     }
 
-    if (collections.length === 0) {
+    if (visibleCollections.length === 0) {
       return (
         <GenericEmptyState
           title={t("contents.emptyCollection.title")}
@@ -206,7 +237,8 @@ export default function ContentTabPanel({
     return (
       <CollectionTable
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
-        data={collections}
+        hasGlobalAccessGate={hasGlobalAccessGate}
+        data={visibleCollections}
         searchValue={searchValue}
         onRowClick={setSelectedCollection}
         onMoveUp={handleMoveUp}
@@ -241,10 +273,15 @@ export default function ContentTabPanel({
         accessDuration={collectionAccessDuration}
         onChangeAccessDuration={setCollectionAccessDuration}
         showDescription={Boolean(selectedCollection)}
-        showPaymentOption={Boolean(selectedCollection)}
+        showPaymentOption={true}
+        isChannelSettings={!selectedCollection}
         onValidationChange={onPasswordValidationChange}
         hasPassword={collectionHasPassword}
-        passwordCount={selectedCollection?.passwordCount}
+        passwordCount={passwordCount}
+        removedPasswordIndexes={removedPasswordIndexes}
+        onRemoveSavedPassword={
+          selectedCollection ? undefined : onRemoveSavedPassword
+        }
       />
     );
   }
@@ -309,7 +346,12 @@ export default function ContentTabPanel({
     const editingContent = collectionContents?.find(
       (c) => c.id === editingContentId,
     );
-    return <Payment contentType={editingContent?.contentType} />;
+    return (
+      <Payment
+        contentType={editingContent?.contentType}
+        isNewContent={isNewContent}
+      />
+    );
   }
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }

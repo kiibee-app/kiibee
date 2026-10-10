@@ -12,7 +12,6 @@ export const format = (items: any[]) =>
     publishedAgo: formatTimeAgo(item.createdAt),
   }));
 
-/** One row per media file (category joins can duplicate ids). */
 export const dedupeFeedMediaById = <T extends { id: string }>(
   items: T[],
 ): T[] => {
@@ -23,6 +22,29 @@ export const dedupeFeedMediaById = <T extends { id: string }>(
     if (seen.has(item.id)) continue;
     seen.add(item.id);
     unique.push(item);
+  }
+
+  return unique;
+};
+
+export const dedupeFeedMediaByCreator = <
+  T extends { creatorId?: string | null },
+>(
+  items: T[],
+  limit?: number,
+): T[] => {
+  const seen = new Set<string>();
+  const unique: T[] = [];
+
+  for (const item of items) {
+    const creatorKey = item.creatorId?.trim();
+    if (creatorKey) {
+      if (seen.has(creatorKey)) continue;
+      seen.add(creatorKey);
+    }
+
+    unique.push(item);
+    if (limit != null && unique.length >= limit) break;
   }
 
   return unique;

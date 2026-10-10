@@ -45,6 +45,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   ADMISSION_REQUIREMENTS,
   ADMISSION_REQUIREMENT_VALUES,
+  checkHasPriceOrCode,
   validatePasswordInput,
 } from "@/utils/admissionRequirements";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
@@ -58,6 +59,8 @@ import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
+import { useFreeContentAlert } from "@/hooks/useFreeContentAlert";
+import { getStoredGlobalPaymentSettings } from "@/utils/contentPricingActions";
 import {
   SCROLL_OPTIONS,
   UI_TITLE_FALLBACK,
@@ -105,6 +108,30 @@ function CreatorsContentsInner() {
     handleConfirmDelete,
     setContentsMap,
   } = useContentsDataState(selectedCollection);
+
+  const hasFreeContent = useMemo(() => {
+    const globalSetting = getStoredGlobalPaymentSettings();
+    const isGlobalPayment = Boolean(
+      (globalSetting?.rentalAmount && Number(globalSetting.rentalAmount) > 0) ||
+      (globalSetting?.purchaseAmount &&
+        Number(globalSetting.purchaseAmount) > 0) ||
+      checkHasPriceOrCode(globalSetting),
+    );
+
+    if (isGlobalPayment) return false;
+
+    if (selectedCollection) {
+      if (checkHasPriceOrCode(selectedCollection)) return false;
+    }
+
+    return (collectionContents ?? []).some((item) => {
+      const isWeb =
+        String(item.contentType ?? "").toLowerCase() === FORMAT_TYPE.WEB;
+      return !isWeb && !checkHasPriceOrCode(item);
+    });
+  }, [collectionContents, selectedCollection]);
+
+  useFreeContentAlert(hasFreeContent);
 
   const needsCouponSearchData =
     searchValue.trim().length >= 2 || activeTab === COUPONS;
@@ -288,9 +315,18 @@ function CreatorsContentsInner() {
   );
 
   const contentSettings = useContentSettings();
+  const [removedPasswordIndexes, setRemovedPasswordIndexes] = useState<
+    number[]
+  >([]);
+  const [passwordDraft, setPasswordDraft] = useState("");
 
   const contentSettingAccessType =
     contentSettings.data?.data?.accessType ?? undefined;
+  const hasGlobalAccessGate = contentSettings.data?.data
+    ? checkHasPriceOrCode(contentSettings.data.data)
+    : contentSettings.isLoading
+      ? checkHasPriceOrCode(getStoredGlobalPaymentSettings())
+      : false;
 
   const {
     uploadedFile,
@@ -332,18 +368,31 @@ function CreatorsContentsInner() {
     selectedCollection,
     setSelectedCollection,
     setCollections,
+    collections,
     collectionContents,
     setActiveTabAndQuery,
     openDiscardModal,
     createCollectionFlow,
     contentTypeFlow,
     contentSettingAccessType,
+    contentSettingPasswordCount: contentSettings.data?.data?.passwordCount,
+    removedPasswordIndexes,
+    clearRemovedPasswordIndexes: () => setRemovedPasswordIndexes([]),
+    passwordDraft,
     saveContentSetting: contentSettings.updateSetting,
+    setContentsMap,
   });
 
   const [hasPasswordError, setHasPasswordError] = useState(false);
   const [pendingAppearanceTab, setPendingAppearanceTab] =
     useState<ContentTab | null>(null);
+
+  useEffect(() => {
+    if (activeTab !== SETTINGS) {
+      setHasPasswordError(false);
+      setPasswordDraft("");
+    }
+  }, [activeTab]);
 
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
@@ -484,6 +533,22 @@ function CreatorsContentsInner() {
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
 
+  const hasExistingPassword = selectedCollection
+    ? Boolean(selectedCollection.hasPassword)
+    : Boolean(contentSettings.data?.data?.hasPassword);
+
+  const activeSelectedCollection = useMemo(() => {
+    if (!selectedCollection) return null;
+    return (
+      collections.find(
+        (c) =>
+          c.id === selectedCollection.id ||
+          c.name.trim().toLowerCase() ===
+            selectedCollection.name.trim().toLowerCase(),
+      ) ?? selectedCollection
+    );
+  }, [collections, selectedCollection]);
+
   return (
     <PageShell>
       <PageHeader>
@@ -515,13 +580,15 @@ function CreatorsContentsInner() {
           onSave={handleHeaderSave}
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
-            (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
+            (activeTab === SETTINGS &&
+              !hasSettingsUnsavedChanges &&
+              !passwordDraft.trim()) ||
             (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
-              !selectedCollection?.hasPassword &&
-              (!collectionPasswords.trim() ||
-                validatePasswordInput(collectionPasswords))) ||
+              !hasExistingPassword &&
+              !collectionPasswords.trim() &&
+              !passwordDraft.trim()) ||
             (activeTab === SETTINGS &&
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
               !!collectionPasswords.trim() &&
@@ -575,11 +642,12 @@ function CreatorsContentsInner() {
         <ContentPanel id="contents-content-area">
           <ContentTabPanel
             activeTab={activeTab}
-            selectedCollection={selectedCollection}
+            selectedCollection={activeSelectedCollection}
             collectionContents={collectionContents}
             collections={collections}
             searchValue={searchValue}
             editingContentId={editingContent?.id ?? null}
+            isNewContent={postCreateContentId === editingContent?.id}
             setCollections={setCollections}
             setContentsMap={setContentsMap}
             setActiveTab={setActiveTabAndQuery}
@@ -590,6 +658,7 @@ function CreatorsContentsInner() {
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
+            hasGlobalAccessGate={hasGlobalAccessGate}
             collectionAccessType={collectionAccessType}
             setCollectionAccessType={setCollectionAccessType}
             collectionPasswords={collectionPasswords}
@@ -602,8 +671,21 @@ function CreatorsContentsInner() {
             setCollectionPurchaseAmount={setCollectionPurchaseAmount}
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
-            onPasswordValidationChange={setHasPasswordError}
-            collectionHasPassword={selectedCollection?.hasPassword}
+            onPasswordValidationChange={(hasError, draft) => {
+              setHasPasswordError(hasError);
+              setPasswordDraft(draft ?? "");
+            }}
+            collectionHasPassword={hasExistingPassword}
+            removedPasswordIndexes={removedPasswordIndexes}
+            onRemoveSavedPassword={(index) =>
+              setRemovedPasswordIndexes((current) =>
+                current.includes(index) ? current : [...current, index],
+              )
+            }
+            passwordCount={
+              selectedCollection?.passwordCount ??
+              contentSettings.data?.data?.passwordCount
+            }
           />
         </ContentPanel>
       </ContentsScrollArea>
@@ -622,7 +704,11 @@ function CreatorsContentsInner() {
         <CreateCollectionModal
           visible={createCollectionFlow.showCreateModal}
           collectionName={createCollectionFlow.collectionName}
+          collectionDescription={createCollectionFlow.collectionDescription}
           onChangeCollectionName={createCollectionFlow.setCollectionName}
+          onChangeCollectionDescription={
+            createCollectionFlow.setCollectionDescription
+          }
           onClose={createCollectionFlow.closeCreate}
           onConfirm={createCollectionFlow.completeCreate}
         />

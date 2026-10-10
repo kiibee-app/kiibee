@@ -3,7 +3,10 @@
 import { useTranslation } from "react-i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { type FeedContentItem } from "@/utils/feedContentToTutorial";
+import {
+  pickUniqueCreatorFeedItems,
+  type FeedContentItem,
+} from "@/utils/feedContentToTutorial";
 import { mapFeedItemToDiscoverItem } from "@/utils/discoverContent";
 import {
   Section,
@@ -16,7 +19,7 @@ import {
 import DiscoverCard from "./DiscoverCard";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT, SIZE } from "@/utils/Constants";
+import { VARIANT, SIZE, DISCOVER_CONTENT_LIMIT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
@@ -37,9 +40,9 @@ export default function DiscoverContent() {
   );
 
   const items = recentData?.data
-    ? recentData.data
-        .slice(0, 4)
-        .map((item) => mapFeedItemToDiscoverItem(item, t))
+    ? pickUniqueCreatorFeedItems(recentData.data, DISCOVER_CONTENT_LIMIT).map(
+        (item) => mapFeedItemToDiscoverItem(item, t),
+      )
     : [];
 
   if (isLoading || items.length === 0) {

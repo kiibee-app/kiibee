@@ -862,6 +862,7 @@ export const PurchaseModalCardBadge = styled.span`
 
 export const PurchaseModalCardTitle = styled.div`
   ${({ theme }) => theme.typography.Body_Bold}
+  font-size: 0.9175rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   white-space: nowrap;
   overflow: hidden;
@@ -880,7 +881,12 @@ export const PurchaseModalCardPrice = styled.div`
 `;
 
 export const PurchaseModalHeading = styled.div`
-  padding: 2rem 1.875rem 0.875rem;
+  padding: 0.875rem 1.5rem 0.375rem;
+  font-size: 1.15rem;
+
+  > span {
+    font-size: 1.1875rem;
+  }
 `;
 
 export const PurchaseModalCollectionCard = styled(PurchaseModalCard)`
@@ -889,7 +895,7 @@ export const PurchaseModalCollectionCard = styled(PurchaseModalCard)`
 `;
 
 export const PurchaseModalCollectionCardBody = styled(PurchaseModalCardBody)`
-  padding: 1.25rem;
+  padding: 0.875rem 1.25rem;
 `;
 
 export const PurchaseModalCollectionRentalHeader = styled.div`
@@ -918,7 +924,8 @@ export const PurchaseModalCollectionRentalCardBody = styled(
 `;
 
 export const PurchaseModalCollectionCardImage = styled(PurchaseModalCardImage)`
-  height: 90px;
+  height: 70px;
+  width: 105px;
 `;
 
 export const PurchaseModalCollectionCardBadge = styled(PurchaseModalCardBadge)`
@@ -944,24 +951,32 @@ export const PurchaseModalCollectionMeta = styled.div`
 `;
 
 export const PurchaseModalCollectionBenefits = styled.section`
-  padding: 1rem 1.5rem 0.5rem;
+  padding: 0.375rem 1.5rem 0.25rem;
 `;
 
 export const PurchaseModalCollectionBenefitsTitle = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+
+  > span {
+    font-size: 0.875rem;
+  }
 `;
 
 export const PurchaseModalCollectionBenefitsList = styled.ul`
   display: grid;
-  gap: 0.375rem;
+  gap: 0.125rem;
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: 1.1rem;
 `;
 
 export const PurchaseModalCollectionBenefitsItem = styled.li`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  > span {
+    font-size: 0.875rem;
+  }
 `;
 
 export const PurchaseModalRentalInfo = styled.div`
@@ -988,17 +1003,23 @@ export const PurchaseModalRentalItem = styled.li`
 `;
 
 export const PurchaseModalPaymentMethod = styled.div`
-  padding: 0.5rem 1.5rem 0.75rem;
+  padding: 0.375rem 1.5rem 0.5rem;
 `;
 
 export const PurchaseModalPaymentMethodTitle = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  > span {
+    font-size: 0.875rem;
+  }
 `;
 
 export const PurchaseModalPaymentMethodList = styled.div`
   display: grid;
-  gap: 0.75rem;
+  gap: 0.375rem;
 `;
 
 export const PurchaseModalPaymentMethodOption = styled.button<{
@@ -1008,8 +1029,8 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   align-items: center;
   gap: 0.75rem;
   width: 100%;
-  min-height: 56px;
-  padding: 0.625rem 1rem;
+  min-height: 54px;
+  padding: 0.375rem 0.75rem;
   border: 1px solid
     ${({ theme, $selected }) =>
       $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_300};
@@ -1018,7 +1039,7 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-align: left;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 0.375rem;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -1033,8 +1054,12 @@ export const PurchaseModalPaymentMethodText = styled.div`
 export const PurchaseModalPaymentMethodSelected = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
+
+  > span {
+    font-size: 0.8125rem;
+  }
 `;
 
 export const PurchaseModalPaymentMethodPrimary = styled.div`
@@ -1061,31 +1086,42 @@ export const PurchaseModalPaymentMethodHint = styled.span`
   display: block;
   margin-top: 0.2rem;
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+
+  > span {
+    font-size: 0.8125rem;
+  }
 `;
 
 export const PurchaseModalDiscountSection = styled.div`
-  padding: 0 1.5rem 1.25rem;
+  padding: 0 1.5rem 0.5rem;
 `;
 
 export const PurchaseModalDiscountLabel = styled.div`
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.375rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-size: 1rem;
+  font-weight: 700;
+
+  > span {
+    font-size: 0.9375rem;
+  }
 `;
 
 export const PurchaseModalDiscountRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
 `;
 
 export const PurchaseModalDiscountInput = styled.input`
   flex: 1;
-  height: 48px;
+  height: 42px;
   padding: 0 1rem;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   ${({ theme }) => theme.typography.Body_Medium}
+  font-size: 0.9375rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   outline: none;
 
@@ -1131,22 +1167,27 @@ export const PurchaseModalCouponValidityNotice = styled.div`
 `;
 
 export const PurchaseModalPriceSummary = styled.div`
-  padding: 0 1.5rem 1.25rem;
+  padding: 0 1.5rem 0.5rem;
 `;
 
 export const PurchaseModalPriceRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+
+  > div > span {
+    font-size: 0.9375rem;
+  }
 `;
 
 export const PurchaseModalPriceRowTotal = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
+  margin-top: 0.375rem;
+  padding-top: 0.375rem;
+  font-size: 1rem;
   border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
@@ -1156,16 +1197,17 @@ export const PurchaseModalPriceLabel = styled.span`
 
 export const PurchaseModalPriceValue = styled.span`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-size: 1rem;
 `;
 
 export const PurchaseModalButtonWrapper = styled.div`
-  padding: 0 1.5rem 1.5rem;
+  padding: 0 1.5rem 1rem;
 `;
 
 export const PurchaseModalCardVisual = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1.5rem 1.5rem 0;
+  padding: 1rem 1.5rem 0;
 
   svg {
     width: 100%;
@@ -1179,11 +1221,11 @@ export const PurchaseModalPaymentIcons = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5px;
-  padding: 0 1.5rem 1.25rem;
+  padding: 0 1.5rem 0.5rem;
 
   img {
-    height: 23px;
-    width: 34px;
+    height: 28px;
+    width: auto;
     object-fit: contain;
   }
 `;

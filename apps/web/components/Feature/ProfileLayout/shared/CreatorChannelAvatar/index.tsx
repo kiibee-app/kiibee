@@ -1,37 +1,35 @@
 "use client";
 
-import {
-  CREATOR_CHANNEL_AVATAR_TEXT,
-  type CreatorChannelAvatarTextUse,
-} from "@/utils/Constants";
+import { useState } from "react";
+import profileFallback from "@/assets/images/profile.png";
 import { isRemoteImageSource, resolvePublicMediaUrl } from "@/utils/media";
-import {
-  AvatarImage,
-  AvatarInitial,
-  RemoteAvatarImage,
-  type AvatarFit,
-} from "./styles";
+import { AvatarImage, RemoteAvatarImage, type AvatarFit } from "./styles";
 
 type CreatorChannelAvatarProps = {
   avatarUrl: string | null;
-  initial: string;
+  initial?: string;
   alt: string;
   sizes: string;
-  initialUse?: CreatorChannelAvatarTextUse;
+  initialUse?: unknown;
   fit?: AvatarFit;
 };
 
 export default function CreatorChannelAvatar({
   avatarUrl,
-  initial,
   alt,
   sizes,
-  initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
   fit = "cover",
 }: CreatorChannelAvatarProps) {
   const resolvedAvatarUrl = resolvePublicMediaUrl(avatarUrl);
+  const [prevAvatarUrl, setPrevAvatarUrl] = useState(resolvedAvatarUrl);
+  const [hasError, setHasError] = useState(false);
 
-  if (resolvedAvatarUrl) {
+  if (resolvedAvatarUrl !== prevAvatarUrl) {
+    setPrevAvatarUrl(resolvedAvatarUrl);
+    setHasError(false);
+  }
+
+  if (resolvedAvatarUrl && !hasError) {
     if (isRemoteImageSource(resolvedAvatarUrl)) {
       return (
         <RemoteAvatarImage
@@ -45,6 +43,7 @@ export default function CreatorChannelAvatar({
           }}
           loading="lazy"
           decoding="async"
+          onError={() => setHasError(true)}
         />
       );
     }
@@ -62,9 +61,23 @@ export default function CreatorChannelAvatar({
           objectPosition: "center",
           backgroundColor: "transparent",
         }}
+        onError={() => setHasError(true)}
       />
     );
   }
 
-  return <AvatarInitial $use={initialUse}>{initial}</AvatarInitial>;
+  return (
+    <AvatarImage
+      src={profileFallback}
+      alt={alt}
+      fill
+      sizes={sizes}
+      $fit={fit}
+      style={{
+        objectFit: fit,
+        objectPosition: "center",
+        backgroundColor: "transparent",
+      }}
+    />
+  );
 }

@@ -26,15 +26,7 @@ import {
 } from "@/utils/feedContentToTutorial";
 import Skeleton from "@/components/UI/Skeleton";
 import { PATHS } from "@/utils/path";
-import {
-  SkeletonCard,
-  SkeletonImage,
-  SkeletonTitle,
-  SkeletonSubtitle,
-  SkeletonBadge,
-  SkeletonFooter,
-} from "../Creators/styles";
-import { RECENT_CONTENT_LIMIT, SKELETON_COUNT } from "@/utils/Constants";
+import { RECENT_CONTENT_LIMIT } from "@/utils/Constants";
 
 export default function RecentlyAdded({ search }: { search?: string }) {
   const { t } = useTranslation();
@@ -74,7 +66,7 @@ export default function RecentlyAdded({ search }: { search?: string }) {
             </SectionTag>
           </SectionLabel>
         </SectionHeader>
-        <Grid $columnMax="300px">
+        <Grid $columns={4}>
           {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
             <Skeleton.Card key={i} />
           ))}
@@ -128,20 +120,10 @@ export default function RecentlyAdded({ search }: { search?: string }) {
           )}
         </HeaderActions>
       </SectionHeader>
-      <Grid $columnMax="300px">
-        {isLoading
-          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-              <SkeletonCard key={i}>
-                <SkeletonImage />
-                <SkeletonBadge />
-                <SkeletonTitle />
-                <SkeletonSubtitle />
-                <SkeletonFooter />
-              </SkeletonCard>
-            ))
-          : visibleTutorials.map((tutorial) => (
-              <TutorialCard key={tutorial.id} tutorial={tutorial} />
-            ))}
+      <Grid $columns={4}>
+        {visibleTutorials.map((tutorial) => (
+          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+        ))}
       </Grid>
     </Section>
   );

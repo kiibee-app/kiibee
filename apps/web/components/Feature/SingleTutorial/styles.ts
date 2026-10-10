@@ -1,6 +1,7 @@
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
 
 export const Wrapper = styled.section`
   width: 100%;
@@ -446,15 +447,14 @@ export const CollectionCardBody = styled.div`
 
 export const CollectionTitle = styled.h3`
   margin: 0;
-  height: 24px;
   align-self: stretch;
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  line-height: 1.2;
   ${({ theme }) => theme.typography.H5_Medium}
   font-weight: 500;
-  line-height: normal;
   text-decoration: none;
 
   &:hover {
@@ -465,11 +465,12 @@ export const CollectionTitle = styled.h3`
 export const CollectionAuthor = styled.p`
   margin: 0;
   align-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Medium}
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+  line-height: 1.2;
   text-decoration: none;
 
   &:hover {
@@ -478,7 +479,7 @@ export const CollectionAuthor = styled.p`
 `;
 
 export const CollectionTime = styled.p`
-  margin: 0 0 8px;
+  margin: 0;
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   ${({ theme }) => theme.typography.Body_Medium}
   font-size: 10px;
@@ -487,10 +488,12 @@ export const CollectionTime = styled.p`
 `;
 
 export const CollectionVideoPill = styled.div`
+  box-sizing: border-box;
   width: 100%;
-  height: 36px;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  min-height: ${GENERIC_CARD_LAYOUT.ACTION_HEIGHT};
+  padding: 0 12px;
+  border-radius: ${({ theme }) => theme.radius.md};
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   display: inline-flex;
   align-items: center;
@@ -510,7 +513,9 @@ export const CollectionVideoIconBox = styled.span`
 `;
 
 export const CollectionVideoLabelText = styled.span`
-  ${({ theme }) => theme.typography.Body_Bold}
+  font-size: ${GENERIC_CARD_LAYOUT.ACTION_FONT_SIZE};
+  font-weight: ${GENERIC_CARD_LAYOUT.ACTION_FONT_WEIGHT};
+  line-height: 1;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
