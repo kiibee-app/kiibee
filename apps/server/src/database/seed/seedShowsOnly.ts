@@ -1,13 +1,3 @@
-/**
- * Standalone script: re-runs only seedUmbracoShows() to update
- * maxDownloadCount and pick up newly exported collections — without
- * wiping / re-seeding the entire database.
- *
- * Run from apps/server/:
- *   pnpm seed:shows-only
- * or:
- *   tsx src/database/seed/seedShowsOnly.ts
- */
 import 'dotenv/config';
 import { seedUmbracoShows } from './umbracoShows.seed';
 
