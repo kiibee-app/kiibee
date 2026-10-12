@@ -326,7 +326,7 @@ export const getSingleContentProps = (
       : undefined;
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-    inCollection: options?.inCollection,
+    inCollection: false,
     labels: getPricingLabels(t),
   });
 
