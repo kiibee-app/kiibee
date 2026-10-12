@@ -571,12 +571,6 @@ export function useContentFormActions({
       paymentTexts.purchaseTitle ? PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT : null,
     ].filter(Boolean) as (typeof PAYMENT_AMOUNT_FIELDS)[number][];
     const nextErrors: Partial<ContentFormErrors> = {};
-    const hasAmount = requiredFields.some((field) => formState[field].trim());
-
-    if (!hasAmount && requiredFields.length > 0) {
-      nextErrors[requiredFields[0]] = requiredMessage;
-    }
-
     requiredFields.forEach((field) => {
       const val = formState[field].trim();
       if (val) {
@@ -607,15 +601,8 @@ export function useContentFormActions({
       return true;
     }
 
-    const requiredMessage = t("contents.payment.common.requiredAmount");
     const rentalAmount = collectionRentalAmount.trim();
     const purchaseAmount = collectionPurchaseAmount.trim();
-    const hasAmount = rentalAmount || purchaseAmount;
-
-    if (!hasAmount) {
-      toast.error(requiredMessage);
-      return false;
-    }
 
     const rentalErr = rentalAmount
       ? getPaymentAmountErrorMessage(rentalAmount, t)
@@ -754,17 +741,21 @@ export function useContentFormActions({
     }
     if (!validateCollectionPaymentAmounts()) return;
     try {
-      const apiAccessType =
-        uiToApiAccessTypeMap[collectionAccessType] ?? ACCESS_TYPE_FREE;
-      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
-      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
-
       const hasRental =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
         collectionRentalAmount.trim() !== "";
       const hasPurchase =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
         collectionPurchaseAmount.trim() !== "";
+
+      const apiAccessType =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        !hasRental &&
+        !hasPurchase
+          ? ACCESS_TYPE_FREE
+          : (uiToApiAccessTypeMap[collectionAccessType] ?? ACCESS_TYPE_FREE);
+      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
+      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
 
       await axiosClient.patch(API.collection.update(selectedCollection.id), {
         accessType: apiAccessType,
