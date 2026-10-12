@@ -1142,7 +1142,7 @@
     "noTrailerAvailable": "There is no trailer available.",
     "pricing": {
       "downloadFiles": "Download files",
-      "accessDefault": "Access for 3 months",
+      "accessDefault": "Access for 48 hours",
       "accessMonths": "Access for {{count}} months",
       "accessDays": "Access for {{count}} days",
       "accessHours": "Access for {{count}} hours",

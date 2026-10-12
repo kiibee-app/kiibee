@@ -92,9 +92,13 @@ export const getContentDownloadInfo = async (
         ),
       )
       .limit(1);
-    const maxDownloadLimit = content?.maxDownloadCount ?? 0;
+    const rawMaxLimit = content?.maxDownloadCount;
+    const isUnlimited = rawMaxLimit == null || rawMaxLimit <= 0;
+    const maxDownloadLimit = isUnlimited ? null : rawMaxLimit;
     const downloadCount = downloadCountResult[0]?.downloadCount ?? 0;
-    const remainingDownloads = maxDownloadLimit - downloadCount;
+    const remainingDownloads = isUnlimited
+      ? null
+      : Math.max(0, rawMaxLimit - downloadCount);
 
     const response = {
       maxDownloadLimit,
