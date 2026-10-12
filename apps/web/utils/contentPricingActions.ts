@@ -381,9 +381,16 @@ function formatRentAccessSubtitle(
   rentDurationHours: string | number | null | undefined,
   t: (key: string, options?: Record<string, unknown>) => string,
 ): string {
-  const hours = Number(rentDurationHours);
+  const hours =
+    rentDurationHours != null && rentDurationHours !== ""
+      ? Number(rentDurationHours)
+      : 48;
   if (!Number.isFinite(hours) || hours <= 0) {
-    return t("singleContent.pricing.accessDefault");
+    return t("singleContent.pricing.accessHours", { count: 48 });
+  }
+
+  if (hours <= 48 || hours % 24 !== 0) {
+    return t("singleContent.pricing.accessHours", { count: hours });
   }
 
   const days = Math.round(hours / 24);
@@ -392,11 +399,7 @@ function formatRentAccessSubtitle(
     return t("singleContent.pricing.accessMonths", { count: months });
   }
 
-  if (days >= 1) {
-    return t("singleContent.pricing.accessDays", { count: days });
-  }
-
-  return t("singleContent.pricing.accessHours", { count: hours });
+  return t("singleContent.pricing.accessDays", { count: days });
 }
 
 export function getContentDetailPricingActions(
