@@ -260,9 +260,13 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .filter(Boolean);
 
 const getTagNames = (content: ContentDetailItem) =>
-  (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
-    .map(toTrimmedString)
-    .filter(Boolean);
+  Array.from(
+    new Set(
+      (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
+        .map(toTrimmedString)
+        .filter(Boolean),
+    ),
+  );
 
 export const getSingleContentProps = (
   content: ContentDetailItem,
@@ -326,7 +330,7 @@ export const getSingleContentProps = (
       : undefined;
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-    inCollection: options?.inCollection,
+    inCollection: false,
     labels: getPricingLabels(t),
   });
 

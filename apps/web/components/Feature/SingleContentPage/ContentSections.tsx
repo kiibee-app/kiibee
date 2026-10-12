@@ -150,7 +150,7 @@ export function SingleContentBody({
   accessGate,
 }: SingleContentBodyProps) {
   const safeDescriptions = descriptions ?? [];
-  const safeTags = tags ?? [];
+  const safeTags = Array.from(new Set(tags ?? []));
   const safeMeta = metaItems ?? [];
   const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
 
@@ -173,8 +173,8 @@ export function SingleContentBody({
 
       {safeTags.length ? (
         <TagRow>
-          {safeTags.map((tag) => (
-            <InfoTag key={tag}>
+          {safeTags.map((tag, index) => (
+            <InfoTag key={`${tag}-${index}`}>
               <InfoTagText>{tag}</InfoTagText>
             </InfoTag>
           ))}

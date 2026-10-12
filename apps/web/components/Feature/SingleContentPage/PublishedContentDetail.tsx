@@ -258,7 +258,7 @@ export default function PublishedContentDetail({
           {...getSingleContentProps(content, t, {
             viewerId: resolvedUserId,
             creatorName: publicCreator?.name,
-            inCollection: Boolean(effectiveCollectionId),
+            inCollection: false,
             collectionId: effectiveCollectionId,
             isPaidCollection: isPaidCol,
             hasAccess:
