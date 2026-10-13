@@ -47,8 +47,18 @@ export const updateCollection = async (
       coverImageUrl: dto.coverImageUrl,
       visibility: dto.visibility,
       accessType: dto.accessType,
-      buyPrice: dto.buyPrice != null ? String(dto.buyPrice) : null,
-      rentPrice: dto.rentPrice != null ? String(dto.rentPrice) : null,
+      buyPrice:
+        dto.buyPrice !== undefined
+          ? dto.buyPrice != null
+            ? String(dto.buyPrice)
+            : null
+          : undefined,
+      rentPrice:
+        dto.rentPrice !== undefined
+          ? dto.rentPrice != null
+            ? String(dto.rentPrice)
+            : null
+          : undefined,
       rentDuration: dto.rentDuration,
       description: dto.description,
       sortOrder: dto.sortOrder,

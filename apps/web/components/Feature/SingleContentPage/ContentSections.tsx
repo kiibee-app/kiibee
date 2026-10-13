@@ -164,8 +164,10 @@ export function SingleContentBody({
 
         {safeDescriptions.length ? (
           <BodyTextWrap>
-            {safeDescriptions.map((description) => (
-              <DescriptionText key={description}>{description}</DescriptionText>
+            {safeDescriptions.map((description, index) => (
+              <DescriptionText key={`${index}-${description}`}>
+                {description}
+              </DescriptionText>
             ))}
           </BodyTextWrap>
         ) : null}
@@ -174,7 +176,7 @@ export function SingleContentBody({
       {safeTags.length ? (
         <TagRow>
           {safeTags.map((tag, index) => (
-            <InfoTag key={`${tag}-${index}`}>
+            <InfoTag key={`${index}-${tag}`}>
               <InfoTagText>{tag}</InfoTagText>
             </InfoTag>
           ))}

@@ -377,14 +377,18 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
 
   const parsedBuyPrice = parsePaymentAmount(formState.purchaseAmount);
   const parsedRentPrice = parsePaymentAmount(formState.rentalAmount);
+  const hasAnyPaymentPrice = parsedBuyPrice != null || parsedRentPrice != null;
 
-  const resolvedAccessType = isPaymentAdmission
-    ? ACCESS_TYPE_PAID
-    : isPasswordAdmission
-      ? ACCESS_TYPE_PASSWORD
-      : isEmailAdmission
-        ? ACCESS_TYPE_EMAIL_GATED
-        : ACCESS_TYPE_FREE;
+  const resolvedAccessType =
+    isPaymentAdmission && hasAnyPaymentPrice
+      ? ACCESS_TYPE_PAID
+      : isPaymentAdmission && !hasAnyPaymentPrice
+        ? ACCESS_TYPE_FREE
+        : isPasswordAdmission
+          ? ACCESS_TYPE_PASSWORD
+          : isEmailAdmission
+            ? ACCESS_TYPE_EMAIL_GATED
+            : ACCESS_TYPE_FREE;
 
   return {
     title: formState.title,
@@ -415,12 +419,18 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       isPasswordAdmission && formState.password.trim()
         ? formState.password.trim()
         : undefined,
-    buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
-    rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
+    buyPrice:
+      isPaymentAdmission && hasAnyPaymentPrice
+        ? (parsedBuyPrice ?? null)
+        : null,
+    rentPrice:
+      isPaymentAdmission && hasAnyPaymentPrice
+        ? (parsedRentPrice ?? null)
+        : null,
     rentDurationHours:
-      isPaymentAdmission && parsedRentPrice != null
+      isPaymentAdmission && hasAnyPaymentPrice && parsedRentPrice != null
         ? RENT_DURATION_DEFAULT
-        : undefined,
+        : null,
     maximumDownloadCount:
       formState.maxDownloadLimit &&
       formState.maxDownloadLimit !== DOWNLOAD_LIMIT_UNLIMITED

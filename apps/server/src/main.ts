@@ -31,6 +31,7 @@ async function bootstrap() {
       new FastifyAdapter({
         logger: false,
         bodyLimit: fileSizeLimit,
+        maxParamLength: 500,
       }),
       {
         logger: ['error'],
@@ -77,10 +78,7 @@ async function bootstrap() {
     const rawAllowedDomains = configService.get<string>('ALLOWED_DOMAINS', '');
 
     // Collect all explicit allowed origins from ENV
-    const allowedOrigins = [
-      ...rawCors.split(','),
-      ...frontendUrl.split(','),
-    ]
+    const allowedOrigins = [...rawCors.split(','), ...frontendUrl.split(',')]
       .map((origin) => origin.trim().replace(/\/+$/, ''))
       .filter(Boolean);
 
@@ -95,10 +93,7 @@ async function bootstrap() {
 
     const allowedDomainSuffixes = Array.from(
       new Set(
-        [
-          ...rawAllowedDomains.split(','),
-          ...extractedDomains,
-        ]
+        [...rawAllowedDomains.split(','), ...extractedDomains]
           .map((d) => d.trim().toLowerCase())
           .filter(Boolean),
       ),
