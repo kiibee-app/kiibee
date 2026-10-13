@@ -150,7 +150,7 @@ export function SingleContentBody({
   accessGate,
 }: SingleContentBodyProps) {
   const safeDescriptions = descriptions ?? [];
-  const safeTags = tags ?? [];
+  const safeTags = Array.from(new Set(tags ?? []));
   const safeMeta = metaItems ?? [];
   const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
 

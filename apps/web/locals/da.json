@@ -1142,7 +1142,7 @@
     "noTrailerAvailable": "Der er ingen trailer tilgængelig.",
     "pricing": {
       "downloadFiles": "Download filer",
-      "accessDefault": "Adgang i 3 måneder",
+      "accessDefault": "Adgang i 48 timer",
       "accessMonths": "Adgang i {{count}} måneder",
       "accessDays": "Adgang i {{count}} dage",
       "accessHours": "Adgang i {{count}} timer",
