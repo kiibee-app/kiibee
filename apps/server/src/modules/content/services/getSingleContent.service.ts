@@ -47,10 +47,19 @@ export const getSingleContentService = async (
       .then((r) => r[0]);
 
     if (!content && creatorSlug) {
+      const cleanCreatorSlug = creatorSlug
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .toLowerCase();
+
       const [creator] = await db
         .select({ id: creatorChannels.creatorId })
         .from(creatorChannels)
-        .where(eq(creatorChannels.slug, creatorSlug))
+        .where(
+          or(
+            eq(creatorChannels.slug, creatorSlug),
+            sql`LOWER(REGEXP_REPLACE(${creatorChannels.slug}, '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
+          ),
+        )
         .limit(1);
 
       const creatorContent = creator
@@ -61,6 +70,39 @@ export const getSingleContentService = async (
         : [];
       const titleMatch = creatorContent.find(
         (candidate) => contentTitleUrlSlug(candidate.title) === contentId,
+      );
+
+      if (titleMatch) {
+        content = await db
+          .select()
+          .from(mediaFiles)
+          .where(eq(mediaFiles.id, titleMatch.id))
+          .limit(1)
+          .then((r) => r[0]);
+      }
+    }
+
+    if (!content) {
+      const candidateFiles = await db
+        .select({
+          id: mediaFiles.id,
+          title: mediaFiles.title,
+          slug: mediaFiles.slug,
+        })
+        .from(mediaFiles)
+        .where(
+          or(
+            eq(mediaFiles.slug, contentId),
+            sql`LOWER(${mediaFiles.slug}) ILIKE '%' || ${contentId} || '%'`,
+          ),
+        )
+        .limit(20);
+
+      const titleMatch = candidateFiles.find(
+        (candidate) =>
+          candidate.slug === contentId ||
+          candidate.slug.includes(contentId) ||
+          contentTitleUrlSlug(candidate.title) === contentId,
       );
 
       if (titleMatch) {
@@ -254,6 +296,8 @@ export const getSingleContentService = async (
     const isPaidCollection = Boolean(
       collectionInfo &&
       (collectionInfo.accessType === 'paid' ||
+        collectionInfo.accessType === 'password' ||
+        collectionInfo.accessType === 'email_gated' ||
         (collectionInfo.buyPrice && Number(collectionInfo.buyPrice) > 0) ||
         (collectionInfo.rentPrice && Number(collectionInfo.rentPrice) > 0)),
     );
