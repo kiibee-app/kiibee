@@ -364,6 +364,7 @@ export const DescriptionText = styled.p`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   word-break: break-word;
   overflow-wrap: break-word;
+  white-space: pre-line;
 `;
 
 export const TagRow = styled.div`
