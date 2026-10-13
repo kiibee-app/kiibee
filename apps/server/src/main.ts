@@ -31,6 +31,7 @@ async function bootstrap() {
       new FastifyAdapter({
         logger: false,
         bodyLimit: fileSizeLimit,
+        maxParamLength: 500,
       }),
       {
         logger: ['error'],

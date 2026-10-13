@@ -5,7 +5,7 @@ export const SUBSCRIPTION_STEP = {
 } as const;
 
 export const maxReceiptCharacters = 200;
-export const maxDescriptionCharacters = 500;
+export const maxDescriptionCharacters = 2000;
 export const maxLogoNameCharacters = 100;
 
 export { DEFAULT_HEX } from "@/utils/appearance";

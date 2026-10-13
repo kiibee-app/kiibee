@@ -185,6 +185,7 @@ export const DescriptionText = styled.p`
   ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  white-space: pre-line;
 `;
 
 export const TagRow = styled.div`

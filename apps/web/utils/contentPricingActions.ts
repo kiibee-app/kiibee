@@ -95,9 +95,7 @@ export function resolveCollectionPricing(
     rentPrice?: number | string | null;
     rentDuration?: string | null;
   },
-  globalSetting:
-    | GlobalPaymentSettingInput
-    | undefined = getStoredGlobalPaymentSettings(),
+  globalSetting?: GlobalPaymentSettingInput,
 ) {
   const isGlobalPayment =
     globalSetting?.accessType === ADMISSION_REQUIREMENT_VALUES.payment ||
@@ -125,17 +123,23 @@ export function resolveCollectionPricing(
           ? ACCESS_TYPE_EMAIL_GATED
           : ACCESS_TYPE_FREE;
 
+  const isExplicitlyFree = accessType === ACCESS_TYPE_FREE;
+
   const rawRent =
     collection.rentPrice != null
       ? collection.rentPrice
-      : isGlobalPayment && globalSetting?.rentalAmount != null
+      : !isExplicitlyFree &&
+          isGlobalPayment &&
+          globalSetting?.rentalAmount != null
         ? globalSetting.rentalAmount
         : null;
 
   const rawBuy =
     collection.buyPrice != null
       ? collection.buyPrice
-      : isGlobalPayment && globalSetting?.purchaseAmount != null
+      : !isExplicitlyFree &&
+          isGlobalPayment &&
+          globalSetting?.purchaseAmount != null
         ? globalSetting.purchaseAmount
         : null;
 
@@ -144,7 +148,9 @@ export function resolveCollectionPricing(
 
   const rentDuration =
     collection.rentDuration ??
-    (isGlobalPayment ? (globalSetting?.accessDuration ?? null) : null);
+    (!isExplicitlyFree && isGlobalPayment
+      ? (globalSetting?.accessDuration ?? null)
+      : null);
 
   return {
     accessType,
@@ -167,6 +173,29 @@ export function isPaidCollection(
   const hasBuy = pricing.buyPrice != null && Number(pricing.buyPrice) > 0;
   const hasRent = pricing.rentPrice != null && Number(pricing.rentPrice) > 0;
   return hasBuy || hasRent || pricing.accessType === ACCESS_TYPE_PAID;
+}
+
+export function isGatedCollection(
+  collection?: {
+    accessType?: string | null;
+    buyPrice?: number | string | null;
+    rentPrice?: number | string | null;
+    rentDuration?: string | null;
+    hasPassword?: boolean;
+  } | null,
+): boolean {
+  if (!collection) return false;
+  if (isPaidCollection(collection)) return true;
+  if (
+    isPasswordAccessType(collection.accessType) ||
+    Boolean(collection.hasPassword)
+  ) {
+    return true;
+  }
+  if (isEmailAccessType(collection.accessType)) {
+    return true;
+  }
+  return false;
 }
 
 export function isPasswordAccessType(accessType?: string | null): boolean {
