@@ -37,6 +37,8 @@ export type FeedContentItem = {
   publishedAgo?: string | null;
   createdAt?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
 };
 
@@ -194,6 +196,8 @@ export function feedContentToTutorial(
   options?: {
     inCollection?: boolean;
     collectionId?: string | null;
+    collectionSlug?: string | null;
+    collectionName?: string | null;
     isPaidCollection?: boolean;
     collectionAccessType?: string | null;
     partOfCollectionLabel?: string;
@@ -220,6 +224,8 @@ export function feedContentToTutorial(
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
     isFree: isFreeContentItem(item),
     collectionId: options?.collectionId || item.collectionId,
+    collectionSlug: options?.collectionSlug || item.collectionSlug,
+    collectionName: options?.collectionName || item.collectionName,
     isPaidCollection:
       options?.isPaidCollection !== undefined
         ? options.isPaidCollection

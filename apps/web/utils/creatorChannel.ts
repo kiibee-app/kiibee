@@ -55,7 +55,7 @@ export function getCreatorHomePath(layout: CreatorLayoutParam): string {
 
 export function getPublicCreatorProfilePath(
   creatorId: string,
-  layout?: CreatorLayoutParam | CreatorLayoutKey | null,
+  _layout?: CreatorLayoutParam | CreatorLayoutKey | null,
 ): string {
   return `/${creatorId}`;
 }

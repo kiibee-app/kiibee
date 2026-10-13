@@ -96,6 +96,8 @@ export function useProfileHomeCollections(
                   {
                     inCollection: true,
                     collectionId: collection.id,
+                    collectionSlug: collection.slug,
+                    collectionName: collection.name,
                     isPaidCollection: isPaid,
                     collectionAccessType: collection.accessType,
                     partOfCollectionLabel,
@@ -155,6 +157,7 @@ export function useProfileHomeCollections(
                 contentDetail?.slug || content.id,
                 contentDetail?.creatorSlug,
                 contentDetail?.title || content.name,
+                collection.slug,
               );
 
               const buttons = pricingActions.map((action) => ({
@@ -169,6 +172,9 @@ export function useProfileHomeCollections(
                 id: content.id,
                 slug: contentDetail?.slug,
                 creatorSlug: contentDetail?.creatorSlug,
+                collectionId: collection.id,
+                collectionSlug: collection.slug,
+                collectionName: collection.name,
                 title: content.name,
                 category:
                   contentDetail?.categories?.[0]?.name ??
