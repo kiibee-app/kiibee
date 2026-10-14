@@ -12,6 +12,7 @@ import {
   getExistingCreatorInitials,
 } from "../../../utils/existingCreatorsConfig";
 import { ChannelLink } from "../../common/ChannelLink";
+import { CreatorSequenceCell } from "./CreatorSequenceCell";
 import {
   AccountStatusBadge,
   CreatorAvatar,
@@ -37,6 +38,12 @@ type ExistingCreatorsTableProps = {
   onSelectCreator?: (creator: ExistingCreator) => void;
   onToggleVisibility?: (creator: ExistingCreator) => void;
   pendingCreatorId?: string | null;
+  onUpdateSequence?: (
+    creator: ExistingCreator,
+    nextSequence: number | null,
+    onError?: (err?: Error) => void,
+  ) => void;
+  pendingSequenceCreatorId?: string | null;
 };
 
 export function ExistingCreatorsTable({
@@ -44,6 +51,8 @@ export function ExistingCreatorsTable({
   onSelectCreator,
   onToggleVisibility,
   pendingCreatorId,
+  onUpdateSequence,
+  pendingSequenceCreatorId,
 }: ExistingCreatorsTableProps) {
   return (
     <TableScrollWrapper>
@@ -135,6 +144,14 @@ export function ExistingCreatorsTable({
                       {existingCreatorLabels.subscribers}
                     </MiniText>
                   </MetricGroup>
+                </TableBodyCell>
+                <TableBodyCell onClick={(event) => event.stopPropagation()}>
+                  <CreatorSequenceCell
+                    creator={creator}
+                    allCreators={creators}
+                    onUpdateSequence={onUpdateSequence}
+                    isPending={pendingSequenceCreatorId === creator.id}
+                  />
                 </TableBodyCell>
                 <TableBodyCell>
                   <AccountStatusBadge $status={creator.status}>

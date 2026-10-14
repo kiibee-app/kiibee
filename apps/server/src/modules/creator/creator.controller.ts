@@ -11,6 +11,7 @@ import { CreatorService } from './creator.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
 import { UpdateCreatorVisibilityDto } from './dto/updateCreatorVisibility.dto';
+import { UpdateCreatorSequenceDto } from './dto/updateCreatorSequence.dto';
 
 @Controller('creators')
 export class CreatorController {
@@ -60,6 +61,15 @@ export class CreatorController {
     @Body() body: UpdateCreatorVisibilityDto,
   ) {
     return this.creatorService.updateCreatorVisibility(id, body.isHidden);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('admin/:id/sequence')
+  async updateCreatorSequence(
+    @Param('id') id: string,
+    @Body() body: UpdateCreatorSequenceDto,
+  ) {
+    return this.creatorService.updateCreatorSequence(id, body.sequence);
   }
 
   @Get(':id')
