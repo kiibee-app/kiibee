@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import type { CreatorStatus } from "../../../types/creator-request";
-import { Search, X } from "lucide-react";
+import { Search, X, Loader2 } from "lucide-react";
 
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -219,7 +219,9 @@ export const TableBodyCell = styled.td`
   vertical-align: top;
 
   &:nth-child(6),
-  &:nth-child(7) {
+  &:nth-child(7),
+  &:nth-child(8),
+  &:nth-child(9) {
     vertical-align: middle;
   }
 `;
@@ -973,4 +975,192 @@ export const DescriptionBlock = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
   white-space: pre-wrap;
   box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+export const SequenceCellWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+`;
+
+export const SequenceBadge = styled.div<{
+  $hasRank: boolean;
+  $isFocused: boolean;
+}>`
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  min-width: 72px;
+  max-width: 88px;
+  padding: 0 10px;
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-size: 13px;
+  font-weight: 600;
+  gap: 3px;
+  transition: all ${({ theme }) => theme.animations.fast};
+  cursor: text;
+
+  ${({ $hasRank, $isFocused, theme }) => {
+    if ($isFocused) {
+      return css`
+        background: ${theme.colors.neutral.WHITE};
+        border: 1.5px solid ${theme.colors.primary.GREEN};
+        box-shadow: 0 0 0 3px ${theme.colors.neutral.PALE_GREEN};
+      `;
+    }
+
+    if ($hasRank) {
+      return css`
+        background: ${theme.colors.neutral.PALE_GREEN};
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        color: ${theme.colors.primary.GREEN_100};
+
+        &:hover {
+          border-color: ${theme.colors.primary.GREEN};
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.neutral.OFF_WHITE};
+      border: 1px solid ${theme.colors.secondary.border};
+      color: ${theme.colors.secondary.muted};
+
+      &:hover {
+        background: ${theme.colors.neutral.WHITE};
+        border-color: ${theme.colors.primary.GREEN};
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+    `;
+  }}
+`;
+
+export const SequencePrefix = styled.span<{
+  $hasRank: boolean;
+  $isFocused: boolean;
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  user-select: none;
+  color: ${({ $hasRank, $isFocused, theme }) =>
+    $isFocused
+      ? theme.colors.primary.GREEN
+      : $hasRank
+        ? theme.colors.primary.GREEN_100
+        : theme.colors.secondary.muted};
+  opacity: ${({ $hasRank, $isFocused }) => ($hasRank || $isFocused ? 1 : 0.6)};
+  transition: color ${({ theme }) => theme.animations.fast};
+`;
+
+export const SequenceInput = styled.input<{ $hasRank: boolean }>`
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: ${({ $hasRank, theme }) =>
+    $hasRank ? theme.colors.primary.GREEN_100 : theme.colors.secondary.main};
+
+  /* Remove default spinner arrows */
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+    font-weight: 400;
+    opacity: 0.65;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+`;
+
+export const SequenceClearButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.18);
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+`;
+
+export const SequenceActionGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const SequenceActionButton = styled.button<{
+  $variant?: "confirm" | "cancel";
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: ${({ theme }) => theme.radius.full};
+  border: none;
+  background: ${({ $variant, theme }) =>
+    $variant === "cancel"
+      ? theme.colors.neutral.OFF_WHITE
+      : theme.colors.primary.GREEN};
+  color: ${({ $variant, theme }) =>
+    $variant === "cancel"
+      ? theme.colors.secondary.muted
+      : theme.colors.neutral.WHITE};
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition: all ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    transform: scale(1.08);
+    background: ${({ $variant, theme }) =>
+      $variant === "cancel"
+        ? theme.colors.neutral.GRAY_100
+        : theme.colors.primary.GREEN_100};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+export const SequenceSpinner = styled(Loader2)`
+  width: 14px;
+  height: 14px;
+  animation: ${spin} 1s linear infinite;
+  color: ${({ theme }) => theme.colors.primary.GREEN};
 `;

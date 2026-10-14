@@ -7,6 +7,7 @@ export const existingCreatorTableColumns = [
   "Channel",
   "Plan",
   "Metrics",
+  "Sequence",
   "Status",
   "Visibility",
 ] as const;
