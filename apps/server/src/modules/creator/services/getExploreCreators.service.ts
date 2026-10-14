@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
+import { and, asc, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   contentAppearance,
@@ -18,6 +18,7 @@ export type ExploreCreatorItem = {
   id: string;
   name: string;
   slug: string | null;
+  sequence?: number | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
   mobileCoverImageUrl: string | null;
@@ -52,8 +53,13 @@ const creatorDisplayNameSql = sql<string>`trim(coalesce(
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (idOrSlug) {
+    const cleanSlug = idOrSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     conditions.push(
-      or(eq(users.id, idOrSlug), eq(creatorChannels.slug, idOrSlug))!,
+      or(
+        eq(users.id, idOrSlug),
+        eq(creatorChannels.slug, idOrSlug),
+        sql`LOWER(REGEXP_REPLACE(coalesce(${creatorChannels.slug}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanSlug}`,
+      )!,
     );
   }
 
@@ -116,6 +122,7 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
       layout: contentAppearance.layout,
       textColor: contentAppearance.textColor,
       buttonColor: contentAppearance.buttonColor,
+      sequence: users.sequence,
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
@@ -124,6 +131,8 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
     .leftJoin(contentSettings, eq(contentSettings.userId, users.id))
     .where(and(...conditions))
     .orderBy(
+      asc(sql`CASE WHEN ${users.sequence} IS NOT NULL THEN 0 ELSE 1 END`),
+      asc(users.sequence),
       desc(sql`CASE 
         WHEN (${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '') 
           OR (${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '') 
@@ -139,6 +148,7 @@ const mapCreatorRow = (row: {
   id: string;
   name: string;
   slug: string | null;
+  sequence?: number | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
   mobileCoverImageUrl: string | null;
@@ -158,6 +168,7 @@ const mapCreatorRow = (row: {
   id: row.id,
   name: row.name,
   slug: row.slug,
+  sequence: row.sequence ?? null,
   profileImageUrl: row.profileImageUrl,
   coverImageUrl: row.coverImageUrl,
   mobileCoverImageUrl: row.mobileCoverImageUrl,

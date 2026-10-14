@@ -13,6 +13,7 @@ export {
 export { useCreatorUploads, type UploadItem } from "./use-creator-uploads";
 export { useCreator } from "./use-creator";
 export { useUpdateCreatorVisibility } from "./use-creator-visibility";
+export { useUpdateCreatorSequence } from "./use-creator-sequence";
 export { useCreatorContents } from "./use-creator-contents";
 export {
   useCreatorAppearance,

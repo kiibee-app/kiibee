@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorChannels,
@@ -101,6 +101,7 @@ export const getAdminCreatorsService = async ({
         isEmailVerified: users.isEmailVerified,
         isActive: users.isActive,
         isHidden: users.isHidden,
+        sequence: users.sequence,
         avatarUrl: users.avatarUrl,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt,
@@ -145,7 +146,7 @@ export const getAdminCreatorsService = async ({
       .where(and(...filters))
       .groupBy(
         users.id,
-
+        users.sequence,
         creatorInfo.companyName,
         creatorInfo.phone,
         creatorInfo.city,
@@ -155,7 +156,11 @@ export const getAdminCreatorsService = async ({
         creatorChannels.isPublished,
         contentAppearance.layout,
       )
-      .orderBy(desc(users.createdAt))
+      .orderBy(
+        asc(sql`CASE WHEN ${users.sequence} IS NOT NULL THEN 0 ELSE 1 END`),
+        asc(users.sequence),
+        desc(users.createdAt),
+      )
       .limit(pageSize)
       .offset(offset);
 
@@ -163,6 +168,7 @@ export const getAdminCreatorsService = async ({
       {
         items: creators.map((creator) => ({
           ...creator,
+          sequence: creator.sequence ?? null,
           uploadCount: Number(creator.uploadCount ?? 0),
           subscriberCount: Number(creator.subscriberCount ?? 0),
         })),

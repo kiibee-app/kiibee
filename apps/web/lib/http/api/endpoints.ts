@@ -39,10 +39,16 @@ export const API = {
     types: "/content/types",
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
-    view: (id: string, userId: string, creatorSlug?: string | null) => {
-      const query = creatorSlug
-        ? `?creatorSlug=${encodeURIComponent(creatorSlug)}`
-        : "";
+    view: (
+      id: string,
+      userId: string,
+      creatorSlug?: string | null,
+      collectionSlug?: string | null,
+    ) => {
+      const params = new URLSearchParams();
+      if (creatorSlug) params.set("creatorSlug", creatorSlug);
+      if (collectionSlug) params.set("collectionSlug", collectionSlug);
+      const query = params.toString() ? `?${params.toString()}` : "";
       return `/content/${id}/${userId}${query}`;
     },
     verifyCode: (id: string) => `/content/${id}/verify-code`,

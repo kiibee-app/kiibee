@@ -84,12 +84,14 @@ type Props = {
   video: TutorialVideo;
   ownerCreatorId?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
 };
 
 export default function CollectionItemCard({
   video,
   ownerCreatorId,
   collectionId = null,
+  collectionSlug = null,
 }: Props) {
   const router = useRouter();
   const { t, i18n } = useTranslation();
@@ -117,10 +119,12 @@ export default function CollectionItemCard({
 
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
+  const effectiveCollectionSlug = collectionSlug || video.collectionSlug;
   const contentHref = pathPublishedContent(
     video.slug || video.id,
     video.creatorSlug,
     video.title,
+    effectiveCollectionSlug,
   );
   const buttons: TutorialButton[] = hasAccess
     ? [

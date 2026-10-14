@@ -143,6 +143,7 @@ export default function CollectionItems({
               video={video}
               ownerCreatorId={ownerCreatorId}
               collectionId={collectionId}
+              collectionSlug={collectionSlug}
             />
           </CollectionCardWrap>
         ))}

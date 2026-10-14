@@ -308,14 +308,30 @@ export function resolveContentActionHref(
   contentId: string,
   actionLabel: string,
   item: Pick<FeedContentItem, "rentPrice" | "buyPrice"> &
-    Partial<Pick<FeedContentItem, "slug" | "creatorSlug" | "title">>,
+    Partial<
+      Pick<
+        FeedContentItem,
+        "slug" | "creatorSlug" | "title" | "collectionSlug" | "collectionName"
+      >
+    >,
   actionsCount: number,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    labels?: PricingLabels;
+    collectionSlug?: string | null;
+    collectionName?: string | null;
+  },
 ): string {
+  const effectiveCollection =
+    item.collectionName ||
+    item.collectionSlug ||
+    options?.collectionName ||
+    options?.collectionSlug;
   const href = pathPublishedContent(
     item.slug || contentId,
     item.creatorSlug,
     item.title,
+    effectiveCollection,
   );
   if (actionsCount <= 1) return href;
 
@@ -513,6 +529,10 @@ function extractPricingFromRecord(record: Record<string, unknown>) {
     rentPrice:
       (record[CONTENT_RESPONSE_KEYS.RENT_PRICE] as string | number | null) ??
       undefined,
+    slug: (record[CONTENT_RESPONSE_KEYS.SLUG] as string | null) ?? undefined,
+    creatorSlug: (record.creatorSlug as string | null) ?? undefined,
+    title: (record[CONTENT_RESPONSE_KEYS.TITLE] as string | null) ?? undefined,
+    collectionSlug: (record.collectionSlug as string | null) ?? undefined,
   };
 }
 
@@ -532,7 +552,12 @@ export function buildPricingButtonsForContent(
       {
         label: freeLabel,
         variant: VARIANT.SECONDARY,
-        href: pathPublishedContent(contentId),
+        href: pathPublishedContent(
+          pricingItem.slug || contentId,
+          pricingItem.creatorSlug,
+          pricingItem.title,
+          pricingItem.collectionSlug,
+        ),
       },
     ];
   }

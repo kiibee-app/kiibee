@@ -202,7 +202,12 @@ export default function ContentTabPanel({
             parentCollection={selectedCollection}
             onRowClick={(row) =>
               router.push(
-                pathPublishedContent(row.id, publicCreatorSlug, row.name),
+                pathPublishedContent(
+                  row.id,
+                  publicCreatorSlug,
+                  row.name,
+                  selectedCollection?.slug,
+                ),
               )
             }
             onEdit={onEditContent}

@@ -55,6 +55,18 @@ const baseSelect = {
     WHERE ci.media_file_id = media_files.id
     LIMIT 1
   )`,
+  collectionSlug: sql<string | null>`(
+    SELECT c.slug FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
+  collectionName: sql<string | null>`(
+    SELECT c.name FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
   isPaidCollection: sql<boolean>`EXISTS (
     SELECT 1 FROM collection_items ci
     INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false

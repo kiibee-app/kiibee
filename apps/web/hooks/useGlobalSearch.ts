@@ -81,10 +81,13 @@ export const useGlobalSearch = ({
       slug?: string,
       creatorSlug?: string | null,
       title?: string | null,
+      collectionSlug?: string | null,
     ) =>
       () => {
         closeSearch();
-        router.push(pathPublishedContent(slug || id, creatorSlug, title));
+        router.push(
+          pathPublishedContent(slug || id, creatorSlug, title, collectionSlug),
+        );
       },
     [closeSearch, router],
   );

@@ -88,6 +88,7 @@ export const getPublicCollectionService = async (
       .select({
         id: collections.id,
         name: collections.name,
+        slug: collections.slug,
         description: collections.description,
         isDeleted: collections.isDeleted,
         creatorId: collections.creatorId,
@@ -158,6 +159,9 @@ export const getPublicCollectionService = async (
 
     const items = rows.map((item) => ({
       ...item,
+      collectionId: collection.id,
+      collectionSlug: collection.slug,
+      collectionName: collection.name,
       publishedAgo: formatTimeAgo(item.createdAt),
     }));
 
@@ -165,6 +169,7 @@ export const getPublicCollectionService = async (
       {
         collectionId: collection.id,
         name: collection.name,
+        slug: collection.slug,
         description: collection.description,
         accessType: collection.accessType,
         buyPrice: collection.buyPrice,
