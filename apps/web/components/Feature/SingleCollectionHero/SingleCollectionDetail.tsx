@@ -76,7 +76,12 @@ import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN, isBrowser } from "@/utils/ui";
 import { toast } from "react-toastify";
-import { PATHS, pathPublicCollection, slugifyContentTitle } from "@/utils/path";
+import {
+  PATHS,
+  pathPublicCollection,
+  slugifyContentTitle,
+  cleanCollectionSlug,
+} from "@/utils/path";
 import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
@@ -186,9 +191,10 @@ export default function SingleCollectionDetail({
       (collection) =>
         collection.id === id ||
         collection.slug === id ||
-        slugifyContentTitle(collection.name) === id,
+        slugifyContentTitle(collection.name) === id ||
+        cleanCollectionSlug(collection.slug, creatorSlug) === id,
     );
-  }, [id, publicCollectionsQuery.data]);
+  }, [id, publicCollectionsQuery.data, creatorSlug]);
 
   const {
     data: dynamicSection,

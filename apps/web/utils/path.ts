@@ -79,16 +79,50 @@ export function slugifyContentTitle(title: string): string {
     .replace(/^-|-$/g, "");
 }
 
+export function cleanCollectionSlug(
+  collectionNameOrSlug?: string | null,
+  creatorSlug?: string | null,
+): string {
+  if (!collectionNameOrSlug) {
+    return "shows";
+  }
+
+  let raw = collectionNameOrSlug.trim();
+
+  if (creatorSlug) {
+    const cleanCreator = slugifyContentTitle(creatorSlug);
+    const slugifiedRaw = slugifyContentTitle(raw);
+    if (slugifiedRaw.startsWith(`${cleanCreator}-`)) {
+      raw = slugifiedRaw.slice(cleanCreator.length + 1);
+    }
+  }
+
+  raw = raw
+    .replace(
+      /-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,
+      "",
+    )
+    .replace(/-[0-9a-f]{8,}$/i, "");
+
+  const slug = slugifyContentTitle(raw);
+  return slug || "shows";
+}
+
 export function pathPublishedContent(
   contentKey: string,
   creatorSlug?: string | null,
   contentTitle?: string | null,
+  collectionNameOrSlug?: string | null,
 ): string {
   if (creatorSlug) {
     const visibleSlug = contentTitle
       ? slugifyContentTitle(contentTitle)
       : contentKey;
-    return `/${encodeURIComponent(creatorSlug)}/shows/${encodeURIComponent(visibleSlug)}`;
+    const resolvedCollection = cleanCollectionSlug(
+      collectionNameOrSlug,
+      creatorSlug,
+    );
+    return `/${encodeURIComponent(creatorSlug)}/${encodeURIComponent(resolvedCollection)}/${encodeURIComponent(visibleSlug)}`;
   }
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
 }
@@ -99,7 +133,8 @@ export function pathPublicCollection(
   creatorSlug?: string | null,
 ): string {
   if (creatorSlug) {
-    return `/${encodeURIComponent(creatorSlug)}/collections/${encodeURIComponent(collectionSlugOrId)}`;
+    const cleanSlug = cleanCollectionSlug(collectionSlugOrId, creatorSlug);
+    return `/${encodeURIComponent(creatorSlug)}/collections/${encodeURIComponent(cleanSlug)}`;
   }
 
   const params = new URLSearchParams({ name: collectionSlugOrId });

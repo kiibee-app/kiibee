@@ -25,7 +25,6 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getCategoryLabel } from "@/utils/category";
-import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
@@ -36,12 +35,15 @@ import {
   isRentActionLabel,
 } from "@/utils/contentPricingActions";
 import { GENERIC_CARD_LAYOUT } from "@/utils/ui";
+import GenericCard from "@/components/UI/GenericCard";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
+  creatorSlug?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
   isPaidCollection?: boolean;
   imagePriority?: boolean;
 };
@@ -66,6 +68,7 @@ function TutorialCard({
   onPlayClick,
   isSelected = false,
   collectionId = null,
+  collectionSlug = null,
   isPaidCollection = false,
   imagePriority = false,
 }: TutorialCardProps) {
@@ -125,14 +128,23 @@ function TutorialCard({
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
+  const effectiveCollectionSlug = collectionSlug || tutorial.collectionSlug;
+
   const singleTutorialHref = useMemo(
     () =>
       pathPublishedContent(
         tutorial.slug || tutorial.id,
         tutorial.creatorSlug,
         tutorial.title,
+        effectiveCollectionSlug,
       ),
-    [tutorial.slug, tutorial.id, tutorial.creatorSlug, tutorial.title],
+    [
+      tutorial.slug,
+      tutorial.id,
+      tutorial.creatorSlug,
+      tutorial.title,
+      effectiveCollectionSlug,
+    ],
   );
 
   const effectiveCollectionId = collectionId || tutorial.collectionId;

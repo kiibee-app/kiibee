@@ -18,12 +18,13 @@ import { logger } from 'src/logger/logger';
 import { insertPageVisitService } from 'src/modules/creator-overview/services/insertPageVisit.service';
 import { ACCESS_TYPE, ACCRESS_TYPES, STATUS, Time } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
-import { contentTitleUrlSlug } from '../content.helper';
+import { cleanCollectionSlug, contentTitleUrlSlug } from '../content.helper';
 
 export const getSingleContentService = async (
   contentId: string,
   userId: string,
   creatorSlug?: string,
+  collectionSlug?: string,
 ) => {
   try {
     if (!contentId) {
@@ -37,49 +38,158 @@ export const getSingleContentService = async (
         contentId,
       );
 
-    let content = await db
-      .select()
-      .from(mediaFiles)
-      .where(
-        isUuid ? eq(mediaFiles.id, contentId) : eq(mediaFiles.slug, contentId),
-      )
-      .limit(1)
-      .then((r) => r[0]);
+    const cleanCreatorSlug = creatorSlug
+      ? creatorSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+      : null;
 
-    if (!content && creatorSlug) {
-      const cleanCreatorSlug = creatorSlug
-        .replace(/[^a-zA-Z0-9]/g, '')
-        .toLowerCase();
-
-      const [creator] = await db
+    let creatorId: string | null = null;
+    if (creatorSlug) {
+      const [foundCreator] = await db
         .select({ id: creatorChannels.creatorId })
         .from(creatorChannels)
         .where(
           or(
             eq(creatorChannels.slug, creatorSlug),
-            sql`LOWER(REGEXP_REPLACE(${creatorChannels.slug}, '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
+            sql`LOWER(REGEXP_REPLACE(coalesce(${creatorChannels.slug}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
           ),
         )
         .limit(1);
 
-      const creatorContent = creator
-        ? await db
-            .select({ id: mediaFiles.id, title: mediaFiles.title })
-            .from(mediaFiles)
-            .where(eq(mediaFiles.creatorId, creator.id))
-        : [];
-      const titleMatch = creatorContent.find(
-        (candidate) => contentTitleUrlSlug(candidate.title) === contentId,
+      if (foundCreator) {
+        creatorId = foundCreator.id;
+      }
+    }
+
+    let targetCollection: {
+      id: string;
+      name: string;
+      slug: string;
+      accessType: string;
+      buyPrice: string | null;
+      rentPrice: string | null;
+    } | null = null;
+
+    if (collectionSlug && collectionSlug.toLowerCase() !== 'shows') {
+      const candidateCols = await db
+        .select({
+          id: collections.id,
+          name: collections.name,
+          slug: collections.slug,
+          accessType: collections.accessType,
+          buyPrice: collections.buyPrice,
+          rentPrice: collections.rentPrice,
+        })
+        .from(collections)
+        .where(
+          and(
+            eq(collections.isDeleted, false),
+            creatorId ? eq(collections.creatorId, creatorId) : sql`true`,
+          ),
+        );
+
+      targetCollection =
+        candidateCols.find((c) => {
+          if (c.id === collectionSlug) return true;
+          if (c.slug === collectionSlug) return true;
+          if (contentTitleUrlSlug(c.name) === collectionSlug) return true;
+          if (cleanCollectionSlug(c.slug, creatorSlug) === collectionSlug)
+            return true;
+          if (cleanCollectionSlug(c.name, creatorSlug) === collectionSlug)
+            return true;
+          return false;
+        }) ?? null;
+    }
+
+    let content: any = null;
+
+    if (targetCollection) {
+      const itemsInCollection = await db
+        .select({
+          mediaFile: mediaFiles,
+        })
+        .from(collectionItems)
+        .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
+        .where(
+          and(
+            eq(collectionItems.collectionId, targetCollection.id),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        );
+
+      if (isUuid) {
+        content = itemsInCollection.find(
+          (item) => item.mediaFile.id === contentId,
+        )?.mediaFile;
+      }
+
+      if (!content) {
+        content = itemsInCollection.find(
+          (item) =>
+            item.mediaFile.slug === contentId ||
+            contentTitleUrlSlug(item.mediaFile.title) === contentId,
+        )?.mediaFile;
+      }
+
+      if (!content) {
+        content = itemsInCollection.find(
+          (item) =>
+            item.mediaFile.slug.includes(contentId) ||
+            contentId.includes(item.mediaFile.slug),
+        )?.mediaFile;
+      }
+    }
+
+    if (!content && isUuid) {
+      content = await db
+        .select()
+        .from(mediaFiles)
+        .where(
+          and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)),
+        )
+        .limit(1)
+        .then((r) => r[0]);
+    }
+
+    if (!content && creatorId) {
+      const creatorFiles = await db
+        .select()
+        .from(mediaFiles)
+        .where(
+          and(
+            eq(mediaFiles.creatorId, creatorId),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        );
+
+      content = creatorFiles.find(
+        (candidate) =>
+          candidate.slug === contentId ||
+          contentTitleUrlSlug(candidate.title) === contentId,
       );
 
-      if (titleMatch) {
-        content = await db
-          .select()
-          .from(mediaFiles)
-          .where(eq(mediaFiles.id, titleMatch.id))
-          .limit(1)
-          .then((r) => r[0]);
+      if (!content) {
+        content = creatorFiles.find(
+          (candidate) =>
+            candidate.slug.includes(contentId) ||
+            contentId.includes(candidate.slug),
+        );
       }
+    }
+
+    if (!content) {
+      content = await db
+        .select()
+        .from(mediaFiles)
+        .where(
+          and(
+            isUuid
+              ? eq(mediaFiles.id, contentId)
+              : eq(mediaFiles.slug, contentId),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]);
     }
 
     if (!content) {
@@ -91,9 +201,12 @@ export const getSingleContentService = async (
         })
         .from(mediaFiles)
         .where(
-          or(
-            eq(mediaFiles.slug, contentId),
-            sql`LOWER(${mediaFiles.slug}) ILIKE '%' || ${contentId} || '%'`,
+          and(
+            or(
+              eq(mediaFiles.slug, contentId),
+              sql`LOWER(${mediaFiles.slug}) ILIKE '%' || ${contentId} || '%'`,
+            ),
+            eq(mediaFiles.isDeleted, false),
           ),
         )
         .limit(20);
@@ -177,6 +290,9 @@ export const getSingleContentService = async (
             eq(userContentAccess.userId, userId),
             isNull(userContentAccess.mediaFileId),
             eq(collectionItems.mediaFileId, resolvedContentId),
+            targetCollection
+              ? eq(userContentAccess.collectionId, targetCollection.id)
+              : sql`true`,
             or(
               isNull(userContentAccess.rentExpiresAt),
               gt(userContentAccess.rentExpiresAt, now),
@@ -201,6 +317,8 @@ export const getSingleContentService = async (
       db
         .select({
           collectionId: collections.id,
+          collectionSlug: collections.slug,
+          collectionName: collections.name,
           accessType: collections.accessType,
           buyPrice: collections.buyPrice,
           rentPrice: collections.rentPrice,
@@ -213,9 +331,29 @@ export const getSingleContentService = async (
             eq(collections.isDeleted, false),
           ),
         )
-        .where(eq(collectionItems.mediaFileId, resolvedContentId))
+        .where(
+          and(
+            eq(collectionItems.mediaFileId, resolvedContentId),
+            targetCollection
+              ? eq(collectionItems.collectionId, targetCollection.id)
+              : sql`true`,
+          ),
+        )
         .limit(1)
-        .then((r) => r[0]),
+        .then(
+          (r) =>
+            r[0] ??
+            (targetCollection
+              ? {
+                  collectionId: targetCollection.id,
+                  collectionSlug: targetCollection.slug,
+                  collectionName: targetCollection.name,
+                  accessType: targetCollection.accessType,
+                  buyPrice: targetCollection.buyPrice,
+                  rentPrice: targetCollection.rentPrice,
+                }
+              : null),
+        ),
     ]);
 
     const isCreatorPubliclyHidden =
@@ -309,6 +447,8 @@ export const getSingleContentService = async (
         categories,
         tags: contentTags.map((tag) => tag.name),
         collectionId: collectionInfo?.collectionId ?? null,
+        collectionSlug: collectionInfo?.collectionSlug ?? null,
+        collectionName: collectionInfo?.collectionName ?? null,
         isPaidCollection,
         ...(accessInfo && { accessInfo }),
       },

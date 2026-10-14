@@ -211,7 +211,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     t,
-    user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
@@ -353,7 +352,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     router,
     t,
     user?.id,
-    user?.role,
   ]);
 
   const modifiedPrimaryAction = useMemo(

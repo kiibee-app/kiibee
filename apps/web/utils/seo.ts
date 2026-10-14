@@ -56,7 +56,8 @@ export function getDanishIndexablePath(
   return INDEXABLE_ROUTE_DA[pathname];
 }
 
-export function getSiteUrl(errorContext?: string): string {
+export function getSiteUrl(_errorContext?: string): string {
+  void _errorContext;
   const port = process.env.PORT || "3000";
   const rawSiteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ??

@@ -110,6 +110,8 @@ export function usePublicCollectionContent(
           feedContentToTutorial(item, freeLabel, {
             inCollection: true,
             collectionId: payload.collectionId,
+            collectionSlug: item.collectionSlug,
+            collectionName: payload.name,
             isPaidCollection: isPaid,
             collectionAccessType: payload.accessType,
             partOfCollectionLabel,

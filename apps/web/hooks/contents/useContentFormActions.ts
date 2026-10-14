@@ -564,7 +564,6 @@ export function useContentFormActions({
       return true;
     }
 
-    const requiredMessage = t("contents.payment.common.requiredAmount");
     const paymentTexts = getPaymentContentTexts(t, formState.contentTypeId);
     const requiredFields = [
       paymentTexts.rentalTitle ? PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT : null,

@@ -52,8 +52,13 @@ const creatorDisplayNameSql = sql<string>`trim(coalesce(
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (idOrSlug) {
+    const cleanSlug = idOrSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     conditions.push(
-      or(eq(users.id, idOrSlug), eq(creatorChannels.slug, idOrSlug))!,
+      or(
+        eq(users.id, idOrSlug),
+        eq(creatorChannels.slug, idOrSlug),
+        sql`LOWER(REGEXP_REPLACE(coalesce(${creatorChannels.slug}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanSlug}`,
+      )!,
     );
   }
 

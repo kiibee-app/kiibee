@@ -24,6 +24,7 @@ function CreatorCollectionContent() {
 
   return (
     <SingleCollectionDetail
+      key={`${creatorSlug}:${collectionSlug}`}
       collectionId={collectionSlug}
       creatorSlug={creatorSlug}
     />
