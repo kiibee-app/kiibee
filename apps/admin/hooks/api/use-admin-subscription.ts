@@ -30,8 +30,9 @@ export interface AdminSubscriptionData {
     currency: string;
     billingCycle: string;
     maxFiles: number;
-  };
+  } | null;
   overrides?: AdminSubscriptionOverrides | null;
+  hasSubscription?: boolean;
 }
 
 export function useAdminSubscription(creatorId: string | null) {
@@ -59,7 +60,7 @@ export interface PlanData {
   currency: string;
   billingCycle: string;
   maxFiles: number;
-  paymentPeriod: string;
+  isActive?: boolean;
 }
 
 export function useAllPlans() {
@@ -70,7 +71,7 @@ export function useAllPlans() {
       if (!response.success) {
         throw new Error(response.message || "Failed to fetch plans");
       }
-      return response.data;
+      return response.data ?? [];
     },
   });
 }
@@ -94,7 +95,7 @@ export function useUpdateAdminSubscription(creatorId: string | null) {
     mutationFn: async (payload: UpdateAdminSubscriptionPayload) => {
       if (!creatorId) throw new Error("Missing creator ID");
 
-      const response = await apiClient(
+      const response = await apiClient<AdminSubscriptionData>(
         API_ENDPOINTS.ADMIN_UPDATE_SUBSCRIPTION(creatorId),
         {
           method: "POST",
@@ -106,7 +107,7 @@ export function useUpdateAdminSubscription(creatorId: string | null) {
         throw new Error(response.message || "Failed to update subscription");
       }
 
-      return response;
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -114,6 +115,12 @@ export function useUpdateAdminSubscription(creatorId: string | null) {
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.CREATOR_DETAIL, creatorId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.EXISTING_CREATORS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.ALL_PLANS],
       });
       toast.success("Subscription settings updated successfully");
     },

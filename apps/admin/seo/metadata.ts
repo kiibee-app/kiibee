@@ -66,6 +66,26 @@ export function getPageMeta(pathname: string): PageMeta {
 
   if (
     normalized.startsWith("/all-creators/") &&
+    normalized.endsWith("/subscription")
+  ) {
+    return {
+      title: "Manage Subscription",
+      description: "Configure creator subscription plan and custom overrides.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/all-creators/") &&
+    normalized.endsWith("/appearance")
+  ) {
+    return {
+      title: "Creator Settings",
+      description: "Customize creator channel appearance, logo, and layout.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/all-creators/") &&
     normalized !== "/all-creators"
   ) {
     return {

@@ -11,7 +11,7 @@ import {
   users,
 } from '../schema';
 
-const DEFAULT_PLAN_NAME = 'Pro';
+const DEFAULT_PLAN_NAME = 'Start-up';
 
 const rawCreatorEmails = `
 Email

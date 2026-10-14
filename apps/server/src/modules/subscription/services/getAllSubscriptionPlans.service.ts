@@ -10,18 +10,11 @@ export const getAllSubscriptionPlansService = async () => {
     const activePlans = await db
       .select()
       .from(plans)
-      .where(eq(plans.isActive, true));
-
-    if (!activePlans || activePlans.length === 0) {
-      return success(
-        null,
-        'Active subscription plans retrieved successfully',
-        HttpStatus.OK,
-      );
-    }
+      .where(eq(plans.isActive, true))
+      .orderBy(plans.price);
 
     return success(
-      activePlans,
+      activePlans ?? [],
       'Active subscription plans retrieved successfully',
       HttpStatus.OK,
     );

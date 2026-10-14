@@ -253,6 +253,7 @@ export const DetailsSectionAction = styled(Link)`
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   box-shadow: ${({ theme }) => theme.shadows.sm};
   transition:
     background ${({ theme }) => theme.animations.fast},

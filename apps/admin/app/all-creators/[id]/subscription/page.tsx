@@ -8,5 +8,5 @@ export default async function CreatorSubscriptionPage({
   params,
 }: CreatorSubscriptionPageProps) {
   const { id } = await params;
-  return <CreatorSubscriptionSettings creatorId={id} />;
+  return <CreatorSubscriptionSettings creatorId={decodeURIComponent(id)} />;
 }

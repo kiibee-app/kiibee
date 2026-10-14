@@ -152,12 +152,12 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
           <DetailsSectionTitle>Profile Details</DetailsSectionTitle>
           <div style={{ display: "flex", gap: "8px" }}>
             <DetailsSectionAction
-              href={`/all-creators/${creatorId}/subscription`}
+              href={`/all-creators/${creator.id || creatorId}/subscription`}
             >
               Manage Subscription
             </DetailsSectionAction>
             <DetailsSectionAction
-              href={`/all-creators/${creatorId}/appearance`}
+              href={`/all-creators/${creator.id || creatorId}/appearance`}
             >
               Update creator setting
             </DetailsSectionAction>

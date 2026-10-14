@@ -1,12 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, CreditCard, Save } from "lucide-react";
 import {
   useAdminSubscription,
-  useUpdateAdminSubscription,
+  useAllPlans,
   useCreator,
+  useUpdateAdminSubscription,
 } from "../../../hooks/api";
+import type {
+  AdminSubscriptionData,
+  PlanData,
+} from "../../../hooks/api/use-admin-subscription";
 import {
   BackLink,
   LoadingState,
@@ -37,92 +42,80 @@ import {
   StickyHint,
   TextInput,
 } from "./CreatorAppearanceSettings.styles";
-import { useAllPlans } from "../../../hooks/api";
 
-type CreatorSubscriptionSettingsProps = {
+interface FormValues {
+  planId: string;
+  customPrice: string;
+  customPrice3: string;
+  customPrice6: string;
+  customPrice12: string;
+  customMaxFiles: string;
+  customKiibeeCutDkk: string;
+  customTransactionFeePct: string;
+  paymentPeriod: string;
+}
+
+interface SubscriptionFormProps {
   creatorId: string;
-};
+  creatorEmail: string;
+  creatorPlanName?: string | null;
+  serverData?: AdminSubscriptionData | null;
+  allPlans: PlanData[];
+}
 
-export function CreatorSubscriptionSettings({
+function SubscriptionForm({
   creatorId,
-}: CreatorSubscriptionSettingsProps) {
-  const creatorQuery = useCreator(creatorId);
-  const subscriptionQuery = useAdminSubscription(creatorId);
+  creatorEmail,
+  creatorPlanName,
+  serverData,
+  allPlans,
+}: SubscriptionFormProps) {
   const updateMutation = useUpdateAdminSubscription(creatorId);
 
-  const [values, setValues] = useState<{
-    planId: string;
-    customPrice: string;
-    customPrice3: string;
-    customPrice6: string;
-    customPrice12: string;
-    customMaxFiles: string;
-    customKiibeeCutDkk: string;
-    customTransactionFeePct: string;
-    paymentPeriod: string;
-  }>({
-    planId: "",
-    customPrice: "",
-    customPrice3: "",
-    customPrice6: "",
-    customPrice12: "",
-    customMaxFiles: "",
-    customKiibeeCutDkk: "",
-    customTransactionFeePct: "",
-    paymentPeriod: "",
+  const matchedPlan = allPlans.find(
+    (p) => p.name?.toLowerCase() === creatorPlanName?.toLowerCase(),
+  );
+
+  const initialPlanId =
+    serverData?.plan?.id || matchedPlan?.id || allPlans[0]?.id || "";
+
+  const [values, setValues] = useState<FormValues>({
+    planId: initialPlanId,
+    customPrice:
+      serverData?.overrides?.customPrice != null
+        ? String(serverData.overrides.customPrice)
+        : "",
+    customPrice3:
+      serverData?.overrides?.customPrice3 != null
+        ? String(serverData.overrides.customPrice3)
+        : "",
+    customPrice6:
+      serverData?.overrides?.customPrice6 != null
+        ? String(serverData.overrides.customPrice6)
+        : "",
+    customPrice12:
+      serverData?.overrides?.customPrice12 != null
+        ? String(serverData.overrides.customPrice12)
+        : "",
+    customMaxFiles:
+      serverData?.overrides?.customMaxFiles != null
+        ? String(serverData.overrides.customMaxFiles)
+        : "",
+    customKiibeeCutDkk:
+      serverData?.overrides?.customKiibeeCutDkk != null
+        ? String(serverData.overrides.customKiibeeCutDkk)
+        : "",
+    customTransactionFeePct:
+      serverData?.overrides?.customTransactionFeePct != null
+        ? String(serverData.overrides.customTransactionFeePct)
+        : "",
+    paymentPeriod: serverData?.overrides?.paymentPeriod || "",
   });
-
-  const serverData = subscriptionQuery.data;
-
-  useEffect(() => {
-    if (serverData && !values.planId && serverData.plan?.id) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setValues({
-        planId: serverData.plan?.id || "",
-        customPrice: serverData.overrides?.customPrice?.toString() || "",
-        customPrice3: serverData.overrides?.customPrice3?.toString() || "",
-        customPrice6: serverData.overrides?.customPrice6?.toString() || "",
-        customPrice12: serverData.overrides?.customPrice12?.toString() || "",
-        customMaxFiles: serverData.overrides?.customMaxFiles?.toString() || "",
-        customKiibeeCutDkk:
-          serverData.overrides?.customKiibeeCutDkk?.toString() || "",
-        customTransactionFeePct:
-          serverData.overrides?.customTransactionFeePct?.toString() || "",
-        paymentPeriod: serverData.overrides?.paymentPeriod || "",
-      });
-    }
-  }, [serverData, values.planId]);
 
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [statusTone, setStatusTone] = useState<"error" | "success" | undefined>(
     undefined,
   );
-
-  const allPlansQuery = useAllPlans();
-
-  if (
-    creatorQuery.isLoading ||
-    subscriptionQuery.isLoading ||
-    allPlansQuery.isLoading
-  ) {
-    return <LoadingState>Loading subscription details...</LoadingState>;
-  }
-
-  if (creatorQuery.isError || !creatorQuery.data) {
-    return (
-      <ViewersState>
-        {creatorQuery.error?.message || "Failed to load creator details"}
-      </ViewersState>
-    );
-  }
-
-  if (subscriptionQuery.isError) {
-    return (
-      <ViewersState>
-        {subscriptionQuery.error?.message || "Failed to load subscription"}
-      </ViewersState>
-    );
-  }
 
   const isBusy = updateMutation.isPending;
 
@@ -159,12 +152,10 @@ export function CreatorSubscriptionSettings({
   };
 
   const actionButtons = (
-    <>
-      <PrimaryButton type="button" onClick={handleSave} disabled={isBusy}>
-        <Save size={15} />
-        {isBusy ? "Saving..." : "Save Settings"}
-      </PrimaryButton>
-    </>
+    <PrimaryButton type="button" onClick={handleSave} disabled={isBusy}>
+      <Save size={15} />
+      {isBusy ? "Saving..." : "Save Settings"}
+    </PrimaryButton>
   );
 
   return (
@@ -183,7 +174,7 @@ export function CreatorSubscriptionSettings({
           <AppearanceTitle>Manage Subscription</AppearanceTitle>
           <AppearanceSubtitle>
             Override specific subscription plans and limitations for{" "}
-            {creatorQuery.data.email}
+            {creatorEmail}
           </AppearanceSubtitle>
         </AppearanceHeaderCopy>
         <AppearanceActions>{actionButtons}</AppearanceActions>
@@ -210,20 +201,11 @@ export function CreatorSubscriptionSettings({
               <option value="" disabled>
                 Select a plan
               </option>
-              {allPlansQuery.data?.map(
-                (plan: {
-                  id: string;
-                  name: string;
-                  price: number;
-                  currency: string;
-                  billingCycle: string;
-                }) => (
-                  <option key={plan.id} value={plan.id}>
-                    {plan.name} ({plan.price} {plan.currency}/
-                    {plan.billingCycle})
-                  </option>
-                ),
-              )}
+              {allPlans.map((plan) => (
+                <option key={plan.id} value={plan.id}>
+                  {plan.name} ({plan.price} {plan.currency}/{plan.billingCycle})
+                </option>
+              ))}
             </SelectInput>
           </Field>
         </PanelBody>
@@ -337,5 +319,70 @@ export function CreatorSubscriptionSettings({
         {actionButtons}
       </StickyActions>
     </AppearanceLayout>
+  );
+}
+
+export function CreatorSubscriptionSettings({
+  creatorId,
+}: {
+  creatorId: string;
+}) {
+  const creatorQuery = useCreator(creatorId);
+  const subscriptionQuery = useAdminSubscription(creatorId);
+  const allPlansQuery = useAllPlans();
+
+  if (
+    creatorQuery.isLoading ||
+    subscriptionQuery.isLoading ||
+    allPlansQuery.isLoading
+  ) {
+    return (
+      <AppearanceLayout>
+        <BackLink href={`/all-creators/${creatorId}`}>
+          <ArrowLeft size={16} />
+          Back to Details
+        </BackLink>
+        <LoadingState>Loading subscription details...</LoadingState>
+      </AppearanceLayout>
+    );
+  }
+
+  if (creatorQuery.isError || !creatorQuery.data) {
+    return (
+      <AppearanceLayout>
+        <BackLink href="/all-creators">
+          <ArrowLeft size={16} />
+          Back to creators
+        </BackLink>
+        <ViewersState>
+          {creatorQuery.error?.message || "Failed to load creator details"}
+        </ViewersState>
+      </AppearanceLayout>
+    );
+  }
+
+  if (allPlansQuery.isError || !allPlansQuery.data) {
+    return (
+      <AppearanceLayout>
+        <BackLink href={`/all-creators/${creatorId}`}>
+          <ArrowLeft size={16} />
+          Back to Details
+        </BackLink>
+        <ViewersState>
+          {allPlansQuery.error?.message || "Failed to load subscription plans"}
+        </ViewersState>
+      </AppearanceLayout>
+    );
+  }
+
+  return (
+    <SubscriptionForm
+      key={creatorId}
+      creatorId={creatorId}
+      creatorEmail={creatorQuery.data.email}
+      creatorPlanName={creatorQuery.data.planName}
+      serverData={subscriptionQuery.data}
+      allPlans={allPlansQuery.data}
+    />
   );
 }
