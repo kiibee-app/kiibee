@@ -135,6 +135,8 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
   creatorSlug?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;

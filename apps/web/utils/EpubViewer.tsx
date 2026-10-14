@@ -3,8 +3,19 @@
 import { useEffect, useRef } from "react";
 import ePub from "epubjs";
 
-export default function EpubViewer({ src, onReady }: { src: string; onReady?: () => void }) {
+export default function EpubViewer({
+  src,
+  onReady,
+}: {
+  src: string;
+  onReady?: () => void;
+}) {
   const viewerRef = useRef<HTMLDivElement | null>(null);
+  const onReadyRef = useRef(onReady);
+
+  useEffect(() => {
+    onReadyRef.current = onReady;
+  }, [onReady]);
 
   useEffect(() => {
     if (!src || !viewerRef.current) return;
@@ -31,9 +42,7 @@ export default function EpubViewer({ src, onReady }: { src: string; onReady?: ()
         });
 
         return rendition.display().then(() => {
-          if (onReady) {
-            onReady();
-          }
+          onReadyRef.current?.();
         });
       })
       .catch(() => {});

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import {
   useExistingCreators,
   useUpdateCreatorVisibility,
+  useUpdateCreatorSequence,
 } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import { useDebounce } from "@/hooks/ui/use-debounce";
@@ -84,6 +85,30 @@ export function ExistingCreatorsList() {
     limit: pageSize,
   });
   const updateVisibilityMutation = useUpdateCreatorVisibility();
+  const updateSequenceMutation = useUpdateCreatorSequence();
+
+  const handleUpdateSequence = (
+    creator: ExistingCreator,
+    nextSequence: number | null,
+    onError?: (err?: Error) => void,
+  ) => {
+    updateSequenceMutation.mutate(
+      { creatorId: creator.id, sequence: nextSequence },
+      {
+        onSuccess: () => {
+          toast.success(
+            nextSequence !== null
+              ? `Sequence set to #${nextSequence}`
+              : "Sequence removed",
+          );
+        },
+        onError: (error) => {
+          toast.error(error.message || "Failed to update creator sequence");
+          onError?.(error);
+        },
+      },
+    );
+  };
 
   const handleSearchClear = () => {
     setSearchTerm("");
@@ -181,6 +206,12 @@ export function ExistingCreatorsList() {
           pendingCreatorId={
             updateVisibilityMutation.isPending
               ? (updateVisibilityMutation.variables?.creatorId ?? null)
+              : null
+          }
+          onUpdateSequence={handleUpdateSequence}
+          pendingSequenceCreatorId={
+            updateSequenceMutation.isPending
+              ? (updateSequenceMutation.variables?.creatorId ?? null)
               : null
           }
         />

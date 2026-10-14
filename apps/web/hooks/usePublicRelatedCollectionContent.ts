@@ -36,6 +36,7 @@ type RelatedCollectionPayload = {
 export type PublicRelatedCollectionResult = {
   collectionId: string;
   collectionSlug: string;
+  collectionName?: string | null;
   accessType?: string | null;
   buyPrice?: number | string | null;
   rentPrice?: number | string | null;
@@ -84,6 +85,7 @@ export function usePublicRelatedCollectionContent(
         collectionSlug: payload.collectionName
           ? slugifyContentTitle(payload.collectionName)
           : payload.collectionSlug,
+        collectionName: payload.collectionName,
         accessType: payload.accessType,
         buyPrice: payload.buyPrice,
         rentPrice: payload.rentPrice,
@@ -93,6 +95,8 @@ export function usePublicRelatedCollectionContent(
           feedContentToTutorial(item, freeLabel, {
             inCollection: true,
             collectionId: payload.collectionId,
+            collectionSlug: item.collectionSlug,
+            collectionName: payload.collectionName,
             isPaidCollection: isPaid,
             collectionAccessType: payload.accessType,
             partOfCollectionLabel,

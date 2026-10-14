@@ -37,6 +37,8 @@ export type TutorialVideo = {
   level: string;
   isFree?: boolean;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
   formatLabel: string;
   formatType?: FormatType;

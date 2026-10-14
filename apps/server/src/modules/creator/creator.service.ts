@@ -7,6 +7,7 @@ import { topCreatorsService } from './services/topCreators.service';
 import { allCreatorsService } from './services/getAllCreators.service';
 import { getAdminCreatorsService } from './services/getAllExistingCreators.service';
 import { updateCreatorVisibilityService } from './services/updateCreatorVisibility.service';
+import { updateCreatorSequenceService } from './services/updateCreatorSequence.service';
 
 @Injectable()
 export class CreatorService {
@@ -53,5 +54,9 @@ export class CreatorService {
 
   updateCreatorVisibility(creatorId: string, isHidden: boolean) {
     return updateCreatorVisibilityService(creatorId, isHidden);
+  }
+
+  updateCreatorSequence(creatorId: string, sequence?: number | null) {
+    return updateCreatorSequenceService(creatorId, sequence);
   }
 }

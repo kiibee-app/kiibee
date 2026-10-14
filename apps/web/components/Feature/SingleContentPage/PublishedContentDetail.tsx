@@ -9,7 +9,12 @@ import {
 } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
-import { PATHS, pathPublishedContent } from "@/utils/path";
+import {
+  PATHS,
+  pathPublishedContent,
+  cleanCollectionSlug,
+  slugifyContentTitle,
+} from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { GenericModal } from "@/components/UI/Modals";
@@ -80,6 +85,10 @@ export default function PublishedContentDetail({
   const creatorSlug = Array.isArray(rawCreatorSlug)
     ? rawCreatorSlug[0]
     : rawCreatorSlug;
+  const rawCollectionSlug = params?.collectionSlug;
+  const currentRouteCollectionSlug = Array.isArray(rawCollectionSlug)
+    ? rawCollectionSlug[0]
+    : rawCollectionSlug;
   const viewerId = resolveContentViewerId(resolvedUserId);
 
   useEffect(() => {
@@ -89,7 +98,12 @@ export default function PublishedContentDetail({
   }, [normalizedContentKey, embedded]);
 
   const contentViewRoute = normalizedContentKey
-    ? API.content.view(normalizedContentKey, viewerId, creatorSlug)
+    ? API.content.view(
+        normalizedContentKey,
+        viewerId,
+        creatorSlug,
+        currentRouteCollectionSlug,
+      )
     : API.content.create;
   const discoverFallback = resolvePublishedContentByKey(normalizedContentKey);
   const {
@@ -104,7 +118,6 @@ export default function PublishedContentDetail({
     {
       enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
       refetchInterval: isPaymentSuccess ? 1500 : false,
-      placeholderData: (previousData) => previousData,
     },
   );
   const content = getContentDetail(data);
@@ -132,6 +145,16 @@ export default function PublishedContentDetail({
   const resolvedContentSlug = tutorial?.title || content?.title;
   const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
 
+  const resolvedCollectionSlug =
+    content?.collectionName ||
+    tutorial?.collectionName ||
+    relatedCollectionQuery.data?.collectionName ||
+    content?.collectionSlug ||
+    tutorial?.collectionSlug ||
+    relatedCollectionQuery.data?.collectionSlug ||
+    currentRouteCollectionSlug ||
+    null;
+
   useEffect(() => {
     if (embedded || !resolvedContentSlug || !resolvedCreatorSlug) return;
 
@@ -139,21 +162,46 @@ export default function PublishedContentDetail({
       content?.slug || tutorial?.slug || resolvedContentSlug,
       resolvedCreatorSlug,
       resolvedContentSlug,
+      resolvedCollectionSlug,
     );
     if (pathname === canonicalPath) return;
 
+    const isMatchingCreator =
+      creatorSlug &&
+      cleanCollectionSlug(creatorSlug, null) ===
+        cleanCollectionSlug(resolvedCreatorSlug, null);
+    const isMatchingCollection =
+      currentRouteCollectionSlug &&
+      cleanCollectionSlug(currentRouteCollectionSlug, creatorSlug) ===
+        cleanCollectionSlug(resolvedCollectionSlug, creatorSlug);
+    const isMatchingContent =
+      params?.contentSlug &&
+      slugifyContentTitle(
+        Array.isArray(params.contentSlug)
+          ? params.contentSlug[0]
+          : params.contentSlug,
+      ) === slugifyContentTitle(resolvedContentSlug);
+
+    if (isMatchingCreator && isMatchingCollection && isMatchingContent) {
+      return;
+    }
+
     const search = searchParams.toString();
-    router.replace(`${canonicalPath}${search ? `?${search}` : ""}`, {
-      scroll: false,
-    });
+    const nextUrl = `${canonicalPath}${search ? `?${search}` : ""}`;
+    if (typeof window !== "undefined") {
+      window.history.replaceState(window.history.state, "", nextUrl);
+    }
   }, [
     pathname,
     embedded,
     content?.slug,
     resolvedContentSlug,
     resolvedCreatorSlug,
+    resolvedCollectionSlug,
     tutorial?.slug,
-    router,
+    creatorSlug,
+    currentRouteCollectionSlug,
+    params?.contentSlug,
     searchParams,
   ]);
   const {

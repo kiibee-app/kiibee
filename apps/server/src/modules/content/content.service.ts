@@ -105,8 +105,14 @@ export class ContentService {
     contentId: string,
     userId: string,
     creatorSlug?: string,
+    collectionSlug?: string,
   ) {
-    return getSingleContentService(contentId, userId, creatorSlug);
+    return getSingleContentService(
+      contentId,
+      userId,
+      creatorSlug,
+      collectionSlug,
+    );
   }
 
   async getRelatedCollectionContent(contentId: string) {

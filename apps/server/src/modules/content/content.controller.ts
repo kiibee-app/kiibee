@@ -220,9 +220,15 @@ export class ContentController {
   async getSingleContent(
     @Req() req: any,
     @Query('creatorSlug') creatorSlug?: string,
+    @Query('collectionSlug') collectionSlug?: string,
   ) {
     const contentId = req.params.id;
     const userId = req.params.userId;
-    return this.contentService.getSingleContent(contentId, userId, creatorSlug);
+    return this.contentService.getSingleContent(
+      contentId,
+      userId,
+      creatorSlug,
+      collectionSlug,
+    );
   }
 }

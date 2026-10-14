@@ -12,6 +12,8 @@ export const API_ENDPOINTS = {
   ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_VISIBILITY: (creatorId: string) =>
     `/creators/admin/${creatorId}/visibility`,
+  CREATOR_SEQUENCE: (creatorId: string) =>
+    `/creators/admin/${creatorId}/sequence`,
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_PLANS: "/subscription/plans",
   ADMIN_GET_SUBSCRIPTION: (creatorId: string) =>

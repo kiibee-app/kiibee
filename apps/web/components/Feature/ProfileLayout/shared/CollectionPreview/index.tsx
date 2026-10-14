@@ -113,7 +113,12 @@ function CollectionPreviewItem({
       </SectionHeader>
       <FourColumnGrid>
         {displayedCards.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+          <TutorialCard
+            key={tutorial.id}
+            tutorial={tutorial}
+            collectionId={collection.id}
+            collectionSlug={tutorial.collectionSlug}
+          />
         ))}
       </FourColumnGrid>
     </CollectionSection>
