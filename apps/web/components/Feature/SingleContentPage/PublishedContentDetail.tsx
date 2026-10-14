@@ -118,7 +118,6 @@ export default function PublishedContentDetail({
     {
       enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
       refetchInterval: isPaymentSuccess ? 1500 : false,
-      placeholderData: (previousData) => previousData,
     },
   );
   const content = getContentDetail(data);

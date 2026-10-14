@@ -15,14 +15,25 @@ import DynamicProfileShell from "@/components/Feature/ProfileLayout/DynamicProfi
 
 function PublishedContentDetailFromRoute() {
   const params = useParams();
+  const rawCreator = params?.creatorSlug;
+  const rawCollection = params?.collectionSlug;
   const raw = params?.contentSlug;
+  const creatorSlug = Array.isArray(rawCreator) ? rawCreator[0] : rawCreator;
+  const collectionSlug = Array.isArray(rawCollection)
+    ? rawCollection[0]
+    : rawCollection;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
 
   if (!contentKey) {
     return null;
   }
 
-  return <PublishedContentDetail contentKey={contentKey} />;
+  return (
+    <PublishedContentDetail
+      key={`${creatorSlug || ""}:${collectionSlug || ""}:${contentKey}`}
+      contentKey={contentKey}
+    />
+  );
 }
 
 function PublishedContentLoading() {

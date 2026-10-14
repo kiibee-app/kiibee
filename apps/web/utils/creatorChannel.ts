@@ -57,6 +57,7 @@ export function getPublicCreatorProfilePath(
   creatorId: string,
   _layout?: CreatorLayoutParam | CreatorLayoutKey | null,
 ): string {
+  void _layout;
   return `/${creatorId}`;
 }
 
