@@ -1201,7 +1201,8 @@
       "visibility": "Synlighed:",
       "duration": "Varighed:",
       "productionCompany": "Produktionsselskab:",
-      "manufacturerLink": "Producentlink:"
+      "manufacturerLink": "Producentlink:",
+      "orderPhysicalEdition": "Bestil fysisk udgave - gå til webshop"
     }
   },
   "singleCollection": {
