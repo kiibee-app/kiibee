@@ -112,7 +112,7 @@ export const MODAL_WIDTH_BY_SIZE: Record<ModalSize, string> = {
   [MODAL_SIZE.LG]: "960px",
 };
 
-export const DEFAULT_MODAL_SIZE = MODAL_SIZE.LG;
+export const DEFAULT_MODAL_SIZE = MODAL_SIZE.MD;
 
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",

@@ -7,12 +7,8 @@ import { logger } from 'src/logger/logger';
 
 export const pool = new Pool({
   connectionString: env.DATABASE_URL,
-  ssl:
-    env.NODE_ENV === ENVIRONMENT.PRODUCTION
-      ? true
-      : {
-          rejectUnauthorized: false,
-        },
+  ssl: env.NODE_ENV === ENVIRONMENT.PRODUCTION ? true : false,
+
   max: env.DB_POOL_MAX,
   min: env.DB_POOL_MIN,
   connectionTimeoutMillis: env.DB_CONNECTION_TIMEOUT,
