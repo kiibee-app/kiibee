@@ -13,7 +13,6 @@ export const pool = new Pool({
       : {
           rejectUnauthorized: false,
         },
-
   max: env.DB_POOL_MAX,
   min: env.DB_POOL_MIN,
   connectionTimeoutMillis: env.DB_CONNECTION_TIMEOUT,
