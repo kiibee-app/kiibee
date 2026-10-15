@@ -1,9 +1,10 @@
 "use client";
 
-import { memo, useMemo, useState, type MouseEvent } from "react";
+import { memo, useCallback, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { normalizeExternalUrl } from "@/utils/common";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -67,6 +68,7 @@ function TutorialCard({
   tutorial,
   onPlayClick,
   isSelected = false,
+  creatorSlug = null,
   collectionId = null,
   collectionSlug = null,
   isPaidCollection = false,
@@ -128,29 +130,63 @@ function TutorialCard({
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
+  const effectiveCreatorSlug = creatorSlug || tutorial.creatorSlug;
   const effectiveCollectionSlug = collectionSlug || tutorial.collectionSlug;
 
   const singleTutorialHref = useMemo(
     () =>
       pathPublishedContent(
         tutorial.slug || tutorial.id,
-        tutorial.creatorSlug,
+        effectiveCreatorSlug,
         tutorial.title,
         effectiveCollectionSlug,
       ),
     [
       tutorial.slug,
       tutorial.id,
-      tutorial.creatorSlug,
+      effectiveCreatorSlug,
       tutorial.title,
       effectiveCollectionSlug,
     ],
   );
 
+  const isWebContent = tutorial.formatType === FORMAT_TYPE.WEB;
+  const webUrl =
+    isWebContent && tutorial.contentUrl
+      ? normalizeExternalUrl(tutorial.contentUrl)
+      : "";
+  const cardHref = isWebContent && webUrl ? webUrl : singleTutorialHref;
+
   const effectiveCollectionId = collectionId || tutorial.collectionId;
   const isPaid = isPaidCollection;
 
+  const resolveButtonHref = useCallback(
+    (href?: string) => {
+      if (!href) return singleTutorialHref;
+      if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
+      if (effectiveCreatorSlug || effectiveCollectionSlug) {
+        const hashIndex = href.indexOf("#");
+        const hash = hashIndex !== -1 ? href.slice(hashIndex) : "";
+        return `${singleTutorialHref}${hash}`;
+      }
+      return href;
+    },
+    [singleTutorialHref, effectiveCreatorSlug, effectiveCollectionSlug],
+  );
+
   const buttons = useMemo(() => {
+    if (isWebContent && webUrl) {
+      return [
+        {
+          label: hasAccess
+            ? t("createProfileHome.latestUpload.seeContent")
+            : t(TUTORIAL_VIDEOS.buttonFreeLabel),
+          variant: VARIANT.SECONDARY,
+          href: webUrl,
+        },
+      ];
+    }
+
     if (hasAccess) {
       return [
         {
@@ -162,6 +198,12 @@ function TutorialCard({
     }
 
     if (tutorial.buttons?.length) {
+      if (effectiveCreatorSlug || effectiveCollectionSlug) {
+        return tutorial.buttons.map((button) => ({
+          ...button,
+          href: resolveButtonHref(button.href),
+        }));
+      }
       return tutorial.buttons;
     }
 
@@ -169,7 +211,7 @@ function TutorialCard({
       const collectionHref = pathPublicCollection(
         effectiveCollectionId,
         tutorial.creatorId,
-        tutorial.creatorSlug,
+        effectiveCreatorSlug,
       );
       return [
         {
@@ -189,22 +231,20 @@ function TutorialCard({
     };
     return [defaultButton];
   }, [
+    isWebContent,
+    webUrl,
     hasAccess,
     isPaid,
     effectiveCollectionId,
     tutorial.isFree,
     tutorial.buttons,
     tutorial.creatorId,
-    tutorial.creatorSlug,
+    effectiveCreatorSlug,
+    effectiveCollectionSlug,
+    resolveButtonHref,
     t,
     singleTutorialHref,
   ]);
-
-  const resolveButtonHref = (href?: string) => {
-    if (!href) return singleTutorialHref;
-    if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
-    return href;
-  };
 
   const isCardLinked = !onPlayClick;
 
@@ -213,16 +253,21 @@ function TutorialCard({
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!tutorial.creatorSlug) return;
+    if (!effectiveCreatorSlug) return;
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(getPublicCreatorProfilePath(tutorial.creatorSlug));
+    router.push(getPublicCreatorProfilePath(effectiveCreatorSlug));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
     event.preventDefault();
     event.stopPropagation();
+
+    if (isWebContent && webUrl) {
+      window.location.assign(webUrl);
+      return;
+    }
 
     const isLoggedIn = Boolean(user && user.id);
     const targetHref = resolveButtonHref(button.href);
@@ -244,7 +289,7 @@ function TutorialCard({
     navigateToContent(targetHref);
   };
 
-  const creatorSubtitle = tutorial.creatorSlug ? (
+  const creatorSubtitle = effectiveCreatorSlug ? (
     isCardLinked ? (
       <CardCreator
         $use="Body_SemiMedium"
@@ -255,7 +300,7 @@ function TutorialCard({
       </CardCreator>
     ) : (
       <Link
-        href={getPublicCreatorProfilePath(tutorial.creatorSlug)}
+        href={getPublicCreatorProfilePath(effectiveCreatorSlug)}
         onClick={openCreatorProfile}
         style={{
           textDecoration: "none",
@@ -370,13 +415,21 @@ function TutorialCard({
     />
   );
 
+  const handleCardClick = (event: MouseEvent) => {
+    if (isWebContent && webUrl) {
+      event.preventDefault();
+      window.location.assign(webUrl);
+    }
+  };
+
   if (isCardLinked) {
     return (
       <>
         <CardLink
-          href={singleTutorialHref}
+          href={cardHref}
           $clickable
           aria-label={tutorial.title}
+          onClick={isWebContent && webUrl ? handleCardClick : undefined}
         >
           {card}
         </CardLink>

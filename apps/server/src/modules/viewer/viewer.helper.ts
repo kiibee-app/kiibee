@@ -114,6 +114,7 @@ export const getMediaByType = (mediaIds: string[], type: string) => {
       createdAt: mediaFiles.createdAt,
       contentType: contentTypes.name,
       creatorName: users.fullName,
+      contentUrl: mediaFiles.contentUrl,
     })
     .from(mediaFiles)
     .leftJoin(users, eq(mediaFiles.creatorId, users.id))

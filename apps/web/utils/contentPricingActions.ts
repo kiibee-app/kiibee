@@ -318,18 +318,20 @@ export function resolveContentActionHref(
   options?: {
     inCollection?: boolean;
     labels?: PricingLabels;
+    creatorSlug?: string | null;
     collectionSlug?: string | null;
     collectionName?: string | null;
   },
 ): string {
   const effectiveCollection =
-    item.collectionName ||
-    item.collectionSlug ||
     options?.collectionName ||
-    options?.collectionSlug;
+    options?.collectionSlug ||
+    item.collectionName ||
+    item.collectionSlug;
+  const effectiveCreator = options?.creatorSlug || item.creatorSlug;
   const href = pathPublishedContent(
     item.slug || contentId,
-    item.creatorSlug,
+    effectiveCreator,
     item.title,
     effectiveCollection,
   );

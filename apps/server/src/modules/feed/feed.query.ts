@@ -59,6 +59,7 @@ const baseSelect = {
     LIMIT 1
   )`,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 async function fetchMediaFilesByIds(ids: string[]) {

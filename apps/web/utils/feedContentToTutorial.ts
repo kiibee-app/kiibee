@@ -11,6 +11,7 @@ import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
 } from "@/utils/media";
+import { normalizeExternalUrl } from "@/utils/common";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -40,6 +41,7 @@ export type FeedContentItem = {
   collectionSlug?: string | null;
   collectionName?: string | null;
   isPaidCollection?: boolean;
+  contentUrl?: string | null;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
@@ -172,6 +174,21 @@ function buildPricingButtons(
     ];
   }
 
+  if (
+    resolveFormatType(item.contentType) === FORMAT_TYPE.WEB &&
+    item.contentUrl
+  ) {
+    return [
+      {
+        label: freeLabel,
+        variant: VARIANT.SOFT_OUTLINE,
+        href: normalizeExternalUrl(item.contentUrl),
+        requiresAuth: false,
+        fullWidth: true,
+      },
+    ];
+  }
+
   const actions = getContentPricingActions(item, freeLabel, options);
   const requiresAuth = !isFreeContentItem(item);
 
@@ -195,6 +212,7 @@ export function feedContentToTutorial(
   freeLabel: string,
   options?: {
     inCollection?: boolean;
+    creatorSlug?: string | null;
     collectionId?: string | null;
     collectionSlug?: string | null;
     collectionName?: string | null;
@@ -218,7 +236,7 @@ export function feedContentToTutorial(
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
     creatorId: item.creatorId,
-    creatorSlug: item.creatorSlug,
+    creatorSlug: options?.creatorSlug || item.creatorSlug,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
@@ -238,6 +256,7 @@ export function feedContentToTutorial(
       : thumbnailCandidates[0]
         ? { imageFallback: fallbackImage }
         : {}),
+    contentUrl: item.contentUrl,
     buttons: buildPricingButtons(item, freeLabel, options),
   };
 }

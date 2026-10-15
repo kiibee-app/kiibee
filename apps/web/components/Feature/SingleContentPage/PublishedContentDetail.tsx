@@ -26,6 +26,8 @@ import { API } from "@/lib/http/api/endpoints";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
+import { FORMAT_TYPE } from "@/utils/types";
+import { normalizeExternalUrl } from "@/utils/common";
 import {
   CONTENT_TRANSLATION_KEYS,
   type ContentDetailResponse,
@@ -121,6 +123,16 @@ export default function PublishedContentDetail({
     },
   );
   const content = getContentDetail(data);
+
+  useEffect(() => {
+    if (content?.contentType === FORMAT_TYPE.WEB && content?.contentUrl) {
+      const webUrl = normalizeExternalUrl(content.contentUrl);
+      if (webUrl) {
+        window.location.assign(webUrl);
+      }
+    }
+  }, [content?.contentType, content?.contentUrl]);
+
   const { creator: publicCreator } = useCreatorPublicProfile(
     content?.creatorId ?? null,
   );
@@ -143,16 +155,17 @@ export default function PublishedContentDetail({
   );
 
   const resolvedContentSlug = tutorial?.title || content?.title;
-  const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
+  const resolvedCreatorSlug =
+    creatorSlug || tutorial?.creatorSlug || content?.creatorSlug;
 
   const resolvedCollectionSlug =
+    currentRouteCollectionSlug ||
     content?.collectionName ||
     tutorial?.collectionName ||
     relatedCollectionQuery.data?.collectionName ||
     content?.collectionSlug ||
     tutorial?.collectionSlug ||
     relatedCollectionQuery.data?.collectionSlug ||
-    currentRouteCollectionSlug ||
     null;
 
   useEffect(() => {
@@ -166,27 +179,27 @@ export default function PublishedContentDetail({
     );
     if (pathname === canonicalPath) return;
 
-    const isMatchingCreator =
-      creatorSlug &&
+    const currentParamContent = Array.isArray(params?.contentSlug)
+      ? params.contentSlug[0]
+      : params?.contentSlug;
+    const isExactCreator =
+      Boolean(creatorSlug) &&
       cleanCollectionSlug(creatorSlug, null) ===
         cleanCollectionSlug(resolvedCreatorSlug, null);
-    const isMatchingCollection =
-      currentRouteCollectionSlug &&
+    const isExactCollection =
+      Boolean(currentRouteCollectionSlug) &&
       cleanCollectionSlug(currentRouteCollectionSlug, creatorSlug) ===
         cleanCollectionSlug(resolvedCollectionSlug, creatorSlug);
-    const isMatchingContent =
-      params?.contentSlug &&
-      slugifyContentTitle(
-        Array.isArray(params.contentSlug)
-          ? params.contentSlug[0]
-          : params.contentSlug,
-      ) === slugifyContentTitle(resolvedContentSlug);
+    const isExactContent =
+      Boolean(currentParamContent) &&
+      slugifyContentTitle(currentParamContent!) ===
+        slugifyContentTitle(resolvedContentSlug);
 
-    if (isMatchingCreator && isMatchingCollection && isMatchingContent) {
+    if (isExactCreator && isExactCollection && isExactContent) {
       return;
     }
 
-    const search = searchParams.toString();
+    const search = searchParams?.toString();
     const nextUrl = `${canonicalPath}${search ? `?${search}` : ""}`;
     if (typeof window !== "undefined") {
       window.history.replaceState(window.history.state, "", nextUrl);
@@ -346,9 +359,12 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
-              collectionSlug={relatedCollectionQuery.data.collectionSlug}
-              ownerCreatorId={content.creatorId}
-              ownerCreatorSlug={content.creatorSlug}
+              collectionSlug={
+                currentRouteCollectionSlug ||
+                relatedCollectionQuery.data.collectionSlug
+              }
+              ownerCreatorId={publicCreator?.id || content.creatorId}
+              ownerCreatorSlug={creatorSlug || content.creatorSlug}
             />
           ) : null}
         </SingleContentPage>

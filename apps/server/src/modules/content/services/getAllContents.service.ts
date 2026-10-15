@@ -80,6 +80,7 @@ const baseSelect = {
   createdAt: mediaFiles.createdAt,
   sortOrder: mediaFiles.sortOrder,
   rating: mediaFiles.rating,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 export type SortField = 'all' | 'new' | 'popular' | 'free';

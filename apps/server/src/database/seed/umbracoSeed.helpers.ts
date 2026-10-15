@@ -116,6 +116,11 @@ function slugifyProfileKey(value: string): string {
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'a')
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'umbraco-profile'
@@ -227,6 +232,11 @@ export function slugifyUmbracoValue(value: string): string {
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'a')
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'content'

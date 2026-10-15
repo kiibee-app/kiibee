@@ -17,6 +17,7 @@ import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { VARIANT } from "@/utils/Constants";
+import { normalizeExternalUrl } from "@/utils/common";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
@@ -83,6 +84,7 @@ const FooterActions = styled.div`
 type Props = {
   video: TutorialVideo;
   ownerCreatorId?: string | null;
+  creatorSlug?: string | null;
   collectionId?: string | null;
   collectionSlug?: string | null;
 };
@@ -90,6 +92,7 @@ type Props = {
 export default function CollectionItemCard({
   video,
   ownerCreatorId,
+  creatorSlug = null,
   collectionId = null,
   collectionSlug = null,
 }: Props) {
@@ -120,24 +123,44 @@ export default function CollectionItemCard({
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
   const effectiveCollectionSlug = collectionSlug || video.collectionSlug;
+  const effectiveCreatorSlug = creatorSlug || video.creatorSlug;
   const contentHref = pathPublishedContent(
     video.slug || video.id,
-    video.creatorSlug,
+    effectiveCreatorSlug,
     video.title,
     effectiveCollectionSlug,
   );
-  const buttons: TutorialButton[] = hasAccess
-    ? [
-        {
-          label: t("createProfileHome.latestUpload.seeContent"),
-          variant: VARIANT.SECONDARY,
-          href: contentHref,
-          fullWidth: true,
-        },
-      ]
-    : video.buttons?.length
-      ? video.buttons
-      : [];
+  const isWebContent = video.formatType === FORMAT_TYPE.WEB;
+  const webUrl =
+    isWebContent && video.contentUrl
+      ? normalizeExternalUrl(video.contentUrl)
+      : "";
+  const cardHref = isWebContent && webUrl ? webUrl : contentHref;
+
+  const buttons: TutorialButton[] =
+    isWebContent && webUrl
+      ? [
+          {
+            label: hasAccess
+              ? t("createProfileHome.latestUpload.seeContent")
+              : t("tutorialVideos.buttonFreeLabel"),
+            variant: VARIANT.SECONDARY,
+            href: webUrl,
+            fullWidth: true,
+          },
+        ]
+      : hasAccess
+        ? [
+            {
+              label: t("createProfileHome.latestUpload.seeContent"),
+              variant: VARIANT.SECONDARY,
+              href: contentHref,
+              fullWidth: true,
+            },
+          ]
+        : video.buttons?.length
+          ? video.buttons
+          : [];
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.preventDefault();
@@ -149,6 +172,11 @@ export default function CollectionItemCard({
 
     if (button.onClick) {
       button.onClick();
+      return;
+    }
+
+    if (isWebContent && webUrl) {
+      window.location.assign(webUrl);
       return;
     }
 
@@ -173,13 +201,13 @@ export default function CollectionItemCard({
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!video.creatorSlug) return;
+    if (!effectiveCreatorSlug) return;
     stopCardNavigation(event);
-    router.push(getPublicCreatorProfilePath(video.creatorSlug));
+    router.push(getPublicCreatorProfilePath(effectiveCreatorSlug));
   };
 
   const title = <CollectionTitle>{video.title}</CollectionTitle>;
-  const subtitle = video.creatorSlug ? (
+  const subtitle = effectiveCreatorSlug ? (
     <CollectionAuthor
       onClick={openCreatorProfile}
       role="link"
@@ -214,7 +242,18 @@ export default function CollectionItemCard({
 
   return (
     <>
-      <CardLink href={contentHref} aria-label={video.title}>
+      <CardLink
+        href={cardHref}
+        aria-label={video.title}
+        onClick={
+          isWebContent && webUrl
+            ? (event) => {
+                event.preventDefault();
+                window.location.assign(webUrl);
+              }
+            : undefined
+        }
+      >
         <GenericCard
           image={video.image}
           imageFallback={FALLBACK_THUMBNAIL_SRC}

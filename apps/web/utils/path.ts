@@ -67,14 +67,20 @@ export function getDashboardPathForRole(role: unknown): string {
     : PATHS.DASHBOARD_CREATOR;
 }
 
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export function slugifyContentTitle(title: string): string {
-  return title
+  if (!title) return "";
+  return String(title)
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .replace(/æ/g, "ae")
     .replace(/ø/g, "oe")
     .replace(/å/g, "a")
+    .replace(/['’‘`"“”]/g, "")
+    .replace(/(^|[a-z0-9])-s(-|$)/gi, "$1s$2")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
@@ -117,7 +123,9 @@ export function pathPublishedContent(
   if (creatorSlug) {
     const visibleSlug = contentTitle
       ? slugifyContentTitle(contentTitle)
-      : contentKey;
+      : UUID_REGEX.test(contentKey)
+        ? contentKey
+        : slugifyContentTitle(contentKey);
     const resolvedCollection = cleanCollectionSlug(
       collectionNameOrSlug,
       creatorSlug,
