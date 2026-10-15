@@ -1,0 +1,1765 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": [
+      "Undersider"
+    ],
+    "editors": [
+      "listview"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "access": {
+    "alias": "access",
+    "labels": [
+      "Access"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "dropdownFlexible"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "badge": {
+    "alias": "badge",
+    "labels": [
+      "Badge"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "code": {
+    "alias": "code",
+    "labels": [
+      "Code"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "textarea"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "columnAmount": {
+    "alias": "columnAmount",
+    "labels": [
+      "Column Amount"
+    ],
+    "tabs": [
+      "Layout"
+    ],
+    "editors": [
+      "integer"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "coverImage": {
+    "alias": "coverImage",
+    "labels": [
+      "Cover Image"
+    ],
+    "tabs": [
+      "Layout"
+    ],
+    "editors": [
+      "imagecropper"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "description": {
+    "alias": "description",
+    "labels": [
+      "Description"
+    ],
+    "tabs": [
+      "Layout",
+      "Metadata"
+    ],
+    "editors": [
+      "textarea"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "expandedDescription": {
+    "alias": "expandedDescription",
+    "labels": [
+      "Expanded description"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textarea"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "fadeCoverImage": {
+    "alias": "fadeCoverImage",
+    "labels": [
+      "Fade Cover Image"
+    ],
+    "tabs": [
+      "Layout"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "headline": {
+    "alias": "headline",
+    "labels": [
+      "Headline"
+    ],
+    "tabs": [
+      "Layout"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "hidden": {
+    "alias": "hidden",
+    "labels": [
+      "Hidden"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "hideDownload": {
+    "alias": "hideDownload",
+    "labels": [
+      "Hide Download"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "hidePlay": {
+    "alias": "hidePlay",
+    "labels": [
+      "Hide Play"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "length": {
+    "alias": "length",
+    "labels": [
+      "Length"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "integer"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "metaDescription": {
+    "alias": "metaDescription",
+    "labels": [
+      "Description"
+    ],
+    "tabs": [
+      "SEO"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "metaTitle": {
+    "alias": "metaTitle",
+    "labels": [
+      "Title"
+    ],
+    "tabs": [
+      "SEO"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "openWebContentFromList": {
+    "alias": "openWebContentFromList",
+    "labels": [
+      "Open WebContent From List"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "openWebContentInNewWindows": {
+    "alias": "openWebContentInNewWindows",
+    "labels": [
+      "Open WebContent In New Windows"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "orderID": {
+    "alias": "orderID",
+    "labels": [
+      "Order ID"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "integer"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "period": {
+    "alias": "period",
+    "labels": [
+      "Period"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "integer"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "production": {
+    "alias": "production",
+    "labels": [
+      "Production"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "productionLink": {
+    "alias": "productionLink",
+    "labels": [
+      "Production Link"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "productLink": {
+    "alias": "productLink",
+    "labels": [
+      "Product Link"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "purchasePrice": {
+    "alias": "purchasePrice",
+    "labels": [
+      "Purchase Price"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "decimal"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "rawFile": {
+    "alias": "rawFile",
+    "labels": [
+      "Raw File"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "fileupload"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "rentalPrice": {
+    "alias": "rentalPrice",
+    "labels": [
+      "Rental Price"
+    ],
+    "tabs": [
+      "Access & Price"
+    ],
+    "editors": [
+      "decimal"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "siteMapOption": {
+    "alias": "siteMapOption",
+    "labels": [
+      "siteMapOption"
+    ],
+    "tabs": [
+      "SiteMap"
+    ],
+    "editors": [
+      "/App_Plugins/MBran.SitemapXml/sitemap.html"
+    ],
+    "seenOn": [
+      "parent",
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "tags": {
+    "alias": "tags",
+    "labels": [
+      "Tags"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "tags"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "thumbnail": {
+    "alias": "thumbnail",
+    "labels": [
+      "Thumbnail"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "imagecropper"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "thumbnailWide": {
+    "alias": "thumbnailWide",
+    "labels": [
+      "Thumbnail Wide"
+    ],
+    "tabs": [
+      "Layout"
+    ],
+    "editors": [
+      "boolean"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "title": {
+    "alias": "title",
+    "labels": [
+      "Title"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "trailer": {
+    "alias": "trailer",
+    "labels": [
+      "Trailer"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "type": {
+    "alias": "type",
+    "labels": [
+      "Type"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "dropdownFlexible"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "videoDownloadURL": {
+    "alias": "videoDownloadURL",
+    "labels": [
+      "Video Download URL"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "videoID": {
+    "alias": "videoID",
+    "labels": [
+      "Video ID"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "videoSize": {
+    "alias": "videoSize",
+    "labels": [
+      "Video Size"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "videoStatus": {
+    "alias": "videoStatus",
+    "labels": [
+      "Video Status"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "videoThumbnailURL": {
+    "alias": "videoThumbnailURL",
+    "labels": [
+      "Video Thumbnail URL"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "webContentURL": {
+    "alias": "webContentURL",
+    "labels": [
+      "WebContent URL"
+    ],
+    "tabs": [
+      "General"
+    ],
+    "editors": [
+      "textbox"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  },
+  "year": {
+    "alias": "year",
+    "labels": [
+      "Year"
+    ],
+    "tabs": [
+      "Metadata"
+    ],
+    "editors": [
+      "integer"
+    ],
+    "seenOn": [
+      "item:16715",
+      "item:16716",
+      "item:16717",
+      "item:16718",
+      "item:16720",
+      "item:16721",
+      "item:16722",
+      "item:16765",
+      "item:17925",
+      "item:17926",
+      "item:17927",
+      "item:17928",
+      "item:17929",
+      "item:17930",
+      "item:17931",
+      "item:17932",
+      "item:17933",
+      "item:17924",
+      "item:19787",
+      "item:21393",
+      "item:21394",
+      "item:21395",
+      "item:21396",
+      "item:21397",
+      "item:21398",
+      "item:21400",
+      "item:21405",
+      "item:23818",
+      "item:23820",
+      "item:23821",
+      "item:23822",
+      "item:23824",
+      "item:23825",
+      "item:23827",
+      "item:23828",
+      "item:23829"
+    ]
+  }
+}

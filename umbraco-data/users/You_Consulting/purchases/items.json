@@ -1,0 +1,200 @@
+[
+  {
+    "id": 78480,
+    "key": "d666891a-ef64-4a48-b4c7-0c930c2f36f9",
+    "udi": "umb://document/d666891aef644a48b4c70c930c2f36f9",
+    "name": "5cy623022023162516",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-02-23 16:25:27",
+    "updateDate": "2023-02-25 15:38:34",
+    "parentId": 78115,
+    "path": "-1,1067,78110,78115,78480",
+    "sortOrder": 1,
+    "urls": ["/you-consulting/purchases/5cy623022023162516/"],
+    "fullName": "Line Juncher Lysdahlgaard",
+    "email": "line.lysdahlgaard@hotmail.com",
+    "isPurchase": true,
+    "downloads": 3,
+    "streams": 0,
+    "price": "300",
+    "expireDate": "2023-03-02 16:25:24",
+    "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
+    "orderCreateDate": "2023-02-23 16:25:27",
+    "mediaRelationUdis": ["umb://document/18557172088b49019013ac25fe5d1234"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/18557172088b49019013ac25fe5d1234"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/18557172088b49019013ac25fe5d1234",
+        "key": "18557172-088b-4901-9013-ac25fe5d1234",
+        "resolved": true,
+        "id": 78118,
+        "name": "3 måder du kan bruge Orakelkort på som selvstændig",
+        "title": "3 måder du kan bruge Orakelkort på som selvstændig",
+        "urls": [
+          "/you-consulting/orakelkort/3-maader-du-kan-bruge-orakelkort-paa-som-selvstaendig/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "f855b682c0e8816a448bee7149fceeff",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "300",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["3 måder du kan bruge Orakelkort på som selvstændig"],
+    "mediaUrls": [
+      "/you-consulting/orakelkort/3-maader-du-kan-bruge-orakelkort-paa-som-selvstaendig/"
+    ],
+    "videoDownloadURLs": [
+      "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "f855b682c0e8816a448bee7149fceeff",
+      "email": "line.lysdahlgaard@hotmail.com",
+      "streams": "",
+      "downloads": "3",
+      "isPurchase": "1",
+      "expireDate": "2023-03-02 16:25:24",
+      "price": "300",
+      "fullName": "Line Juncher Lysdahlgaard",
+      "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
+      "media": "umb://document/18557172088b49019013ac25fe5d1234"
+    }
+  },
+  {
+    "id": 78240,
+    "key": "787a2718-076e-4976-81e0-526d7c2c35fa",
+    "udi": "umb://document/787a2718076e497681e0526d7c2c35fa",
+    "name": "2v5m16022023121951",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-02-16 12:20:06",
+    "updateDate": "2023-02-16 12:20:52",
+    "parentId": 78115,
+    "path": "-1,1067,78110,78115,78240",
+    "sortOrder": 0,
+    "urls": ["/you-consulting/purchases/2v5m16022023121951/"],
+    "fullName": "Stine Roel",
+    "email": "info@stineroel.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "300",
+    "expireDate": "2023-02-23 12:20:05",
+    "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
+    "orderCreateDate": "2023-02-16 12:20:06",
+    "mediaRelationUdis": ["umb://document/18557172088b49019013ac25fe5d1234"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/18557172088b49019013ac25fe5d1234"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/18557172088b49019013ac25fe5d1234",
+        "key": "18557172-088b-4901-9013-ac25fe5d1234",
+        "resolved": true,
+        "id": 78118,
+        "name": "3 måder du kan bruge Orakelkort på som selvstændig",
+        "title": "3 måder du kan bruge Orakelkort på som selvstændig",
+        "urls": [
+          "/you-consulting/orakelkort/3-maader-du-kan-bruge-orakelkort-paa-som-selvstaendig/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "f855b682c0e8816a448bee7149fceeff",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/4349/941fba74-0511-48ee-b4ca-da075d39f6fa_1_201_a.jpeg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "300",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["3 måder du kan bruge Orakelkort på som selvstændig"],
+    "mediaUrls": [
+      "/you-consulting/orakelkort/3-maader-du-kan-bruge-orakelkort-paa-som-selvstaendig/"
+    ],
+    "videoDownloadURLs": [
+      "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f855b682c0e8816a448bee7149fceeff/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "f855b682c0e8816a448bee7149fceeff",
+      "email": "info@stineroel.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2023-02-23 12:20:05",
+      "price": "300",
+      "fullName": "Stine Roel",
+      "message": "Af hjertet tak for dit køb.\r\nAl det bedste og god energi til dig.",
+      "media": "umb://document/18557172088b49019013ac25fe5d1234"
+    }
+  }
+]

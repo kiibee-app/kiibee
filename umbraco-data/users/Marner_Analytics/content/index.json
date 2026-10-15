@@ -1,0 +1,15 @@
+{
+  "requestedName": "Marner Analytics",
+  "liveName": "Marner Analytics",
+  "userId": 125584,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "ETF Analyseværktøj",
+      "id": 125592,
+      "status": "ok"
+    }
+  ]
+}

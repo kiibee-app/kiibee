@@ -1,0 +1,45 @@
+{
+  "requestedName": "Elsebeth Fogh",
+  "liveName": "Elsebeth Fogh",
+  "userId": 2717,
+  "status": "found",
+  "folderCount": 7,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Styrk din indre power med Girafsprog - Alle 5 moduler",
+      "id": 2723,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 1. 7 myter og fakta om empati - do´s & don´ts",
+      "id": 2745,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 2. At skabe vind/vind med aktiv lytning",
+      "id": 2747,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 3. Spark ikke til Bikuben, hvis du vil have honning - undgå at dømme",
+      "id": 2749,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 4. Udtryk dig klart med Girafsprog - øg din indflydelse",
+      "id": 2751,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 5. Konflikthåndtering - stop konflikter i tide",
+      "id": 2753,
+      "status": "ok"
+    },
+    {
+      "name": "Gratis E bog med intro. Bliv hørt forstået og respekteret",
+      "id": 2755,
+      "status": "ok"
+    }
+  ]
+}

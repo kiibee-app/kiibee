@@ -1,0 +1,80 @@
+{
+  "exportedAt": "2026-06-02T09:15:53.331Z",
+  "collectionName": "Log",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1982",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1982,
+    "includeProperties": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": []
+  },
+  "parent": {
+    "id": 1982,
+    "key": "1fc6773f-921b-4bca-b623-677a12fb927f",
+    "udi": "umb://document/1fc6773f921b4bcab623677a12fb927f",
+    "name": "Log",
+    "contentTypeAlias": "log",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/art-attraction/log/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 3,
+    "childrenFetched": 3,
+    "detailIdsRequested": 3,
+    "detailsFetched": 3,
+    "errors": 0,
+    "fieldCount": 9
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 3,
+      "totalItems": 3
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

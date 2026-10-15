@@ -1,0 +1,87 @@
+{
+  "exportedAt": "2026-06-02T11:05:17.547Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42709",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 42709,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 42709,
+    "key": "fdb320e3-9ae4-4fd8-9fa9-ab82a232b31f",
+    "udi": "umb://document/fdb320e39ae44fd89fa9ab82a232b31f",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/elias-ehlers/purchases/"],
+    "path": "-1,1067,42704,42709",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 112,
+    "childrenFetched": 112,
+    "detailsFetched": 112,
+    "detailErrors": 0,
+    "purchaseEntries": 99,
+    "nonPurchaseEntries": 13,
+    "entriesWithDownloads": 74,
+    "entriesWithStreams": 4,
+    "totalDownloads": 112,
+    "totalStreams": 8,
+    "uniqueMediaUdis": 3,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 3,
+    "mediaResolved": 3,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 112
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 12,
+      "totalItems": 112
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Elias_Ehlers\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Elias_Ehlers\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Elias_Ehlers\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "tab": "Layout",
+  "name": "SkoleRo ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "SkoleRo ApS",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4952/skolero-logo-1200-x-600-px.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "SkoleRo",
+  "description": "En samlet løsning til varig trivsel og læring\r\n\r\nSKAB MÆRKBAR TRIVSEL BLANDT BØRN, UNGE OG MEDARBEJDERE \r\n  - Alle redskaber samlet i ét system\r\n  - Let at integrere i hverdagen uden forberedelse                                        \r\n  - Ingen dyre tilkøb eller ekstra systemer",
+  "css": "",
+  "javaScript": ""
+}

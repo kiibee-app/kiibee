@@ -1,0 +1,25 @@
+{
+  "requestedName": "Selvvær(dk)stedet",
+  "liveName": "Selvvær(dk)stedet",
+  "userId": 16444,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Workshop",
+      "id": 16453,
+      "status": "skipped"
+    },
+    {
+      "name": "Små oaser",
+      "id": 16478,
+      "status": "skipped"
+    },
+    {
+      "name": "SVV - Kun for medlemmer",
+      "id": 16482,
+      "status": "skipped"
+    }
+  ]
+}

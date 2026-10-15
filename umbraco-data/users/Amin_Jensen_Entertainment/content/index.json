@@ -1,0 +1,25 @@
+{
+  "requestedName": "Amin Jensen Entertainment",
+  "liveName": "Amin Jensen Entertainment",
+  "userId": 1902,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 1911,
+      "status": "ok"
+    },
+    {
+      "name": "Bag om",
+      "id": 1925,
+      "status": "ok"
+    },
+    {
+      "name": "Stand-up Classics med Amin Jensen",
+      "id": 96293,
+      "status": "ok"
+    }
+  ]
+}

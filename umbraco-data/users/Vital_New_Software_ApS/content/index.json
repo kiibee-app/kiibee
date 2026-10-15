@@ -1,0 +1,15 @@
+{
+  "requestedName": "Vital New Software ApS",
+  "liveName": "Vital New Software ApS",
+  "userId": 62344,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Tester",
+      "id": 62351,
+      "status": "ok"
+    }
+  ]
+}

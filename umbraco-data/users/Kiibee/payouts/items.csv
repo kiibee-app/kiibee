@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+116122,a3f23bef-ea82-46bc-a107-0b286bfdb45b,umb://document/a3f23befea8246bca1070b286bfdb45b,KBF-1688,14.51,14.51,false,2025-11-30 16:09:57,2025-11-30 16:09:57,https://kiibee.dk/kiibee/payouts/kbf-1688/,matched-public-payout-url,https://kiibee.dk/kiibee/payouts/kbf-1688/,https://kiibee.dk/kiibee/payouts/kbf-1688/,,

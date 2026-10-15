@@ -1,0 +1,1586 @@
+[
+  {
+    "id": 103623,
+    "key": "d8b95e28-45fa-49db-a7e6-750feac7d4e5",
+    "udi": "umb://document/d8b95e2845fa49dba7e6750feac7d4e5",
+    "name": "iu2112122024120617",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-12-12 12:06:37",
+    "updateDate": "2024-12-12 12:08:10",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,103623",
+    "sortOrder": 15,
+    "urls": ["/morten-bonde-development/purchases/iu2112122024120617/"],
+    "fullName": "Henrik hesselholdt",
+    "email": "henrik.bodyenergy@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "69",
+    "expireDate": "2024-12-26 12:06:35",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2024-12-12 12:06:37",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "henrik.bodyenergy@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2024-12-26 12:06:35",
+      "price": "69",
+      "fullName": "Henrik hesselholdt",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 72502,
+    "key": "1d171deb-5a04-41c3-8763-35ead5390ba3",
+    "udi": "umb://document/1d171deb5a0441c3876335ead5390ba3",
+    "name": "77h115092022175749",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-09-15 17:58:48",
+    "updateDate": "2022-09-15 18:00:58",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,72502",
+    "sortOrder": 14,
+    "urls": ["/morten-bonde-development/purchases/77h115092022175749/"],
+    "fullName": "Jakob johansen",
+    "email": "jakob@johansen.dk",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "69",
+    "expireDate": "2022-09-22 17:58:46",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2022-09-15 17:58:48",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "jakob@johansen.dk",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2022-09-22 17:58:46",
+      "price": "69",
+      "fullName": "Jakob johansen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 49777,
+    "key": "1202591f-ed5e-4dd5-809e-0ff8080a9fca",
+    "udi": "umb://document/1202591fed5e4dd5809e0ff8080a9fca",
+    "name": "4gxs05092021115751",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-09-05 11:58:55",
+    "updateDate": "2021-09-05 11:58:55",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,49777",
+    "sortOrder": 13,
+    "urls": ["/morten-bonde-development/purchases/4gxs05092021115751/"],
+    "fullName": "Sebastian Mikkelsen ",
+    "email": "semelau@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "2021-09-07 11:58:54",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2021-09-05 11:58:55",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "semelau@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-09-07 11:58:54",
+      "price": "49",
+      "fullName": "Sebastian Mikkelsen ",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 45133,
+    "key": "5a967f9e-e8c3-4abd-b941-f327b9654c1d",
+    "udi": "umb://document/5a967f9ee8c34abdb941f327b9654c1d",
+    "name": "v34q08052021145348",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-05-08 14:54:13",
+    "updateDate": "2021-05-08 14:54:13",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,45133",
+    "sortOrder": 12,
+    "urls": ["/morten-bonde-development/purchases/v34q08052021145348/"],
+    "fullName": "Merete kristensen",
+    "email": "mereteclkristensen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "69",
+    "expireDate": "2021-06-07 14:54:13",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2021-05-08 14:54:13",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "mereteclkristensen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-06-07 14:54:13",
+      "price": "69",
+      "fullName": "Merete kristensen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 22183,
+    "key": "f35cc5d2-1d5f-4084-97a9-e61201cee2ae",
+    "udi": "umb://document/f35cc5d21d5f408497a9e61201cee2ae",
+    "name": "hvej12112020181530",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-11-12 18:17:32",
+    "updateDate": "2020-11-20 12:01:57",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,22183",
+    "sortOrder": 11,
+    "urls": ["/morten-bonde-development/purchases/hvej12112020181530/"],
+    "fullName": "Ole Grundsøe",
+    "email": "grundsoe@mail.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "69",
+    "expireDate": "2020-12-12 18:17:31",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-11-12 18:17:32",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "grundsoe@mail.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2020-12-12 18:17:31",
+      "price": "69",
+      "fullName": "Ole Grundsøe",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 19169,
+    "key": "6fe6abfc-8f3f-4b23-ad7f-7db52af9389a",
+    "udi": "umb://document/6fe6abfc8f3f4b23ad7f7db52af9389a",
+    "name": "efe224082020193816",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-08-24 19:39:10",
+    "updateDate": "2020-08-26 19:39:21",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,19169",
+    "sortOrder": 10,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Thomas Tiedemann Romby",
+    "email": "thomas.romby@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-08-24 19:39:10",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "thomas.romby@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "",
+      "price": "49",
+      "fullName": "Thomas Tiedemann Romby",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 16689,
+    "key": "53b95f23-82fc-4c0b-afd6-e2dd72d1d18e",
+    "udi": "umb://document/53b95f2382fc4c0bafd6e2dd72d1d18e",
+    "name": "7x3905062020092958",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-06-05 09:31:11",
+    "updateDate": "2020-07-05 09:31:16",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,16689",
+    "sortOrder": 9,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Berit Overvad",
+    "email": "beritovervad@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-06-05 09:31:11",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "beritovervad@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Berit Overvad",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 16520,
+    "key": "5b011705-ecf7-4d34-8c24-934eb62b9ce7",
+    "udi": "umb://document/5b011705ecf74d348c24934eb62b9ce7",
+    "name": "i1ud01062020153958",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-06-01 15:40:55",
+    "updateDate": "2020-06-03 15:41:13",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,16520",
+    "sortOrder": 8,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Ulla aarenstrup",
+    "email": "hesteskoen@aarenstrup.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "49",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-06-01 15:40:55",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "hesteskoen@aarenstrup.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "",
+      "price": "49",
+      "fullName": "Ulla aarenstrup",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 16201,
+    "key": "4fec288a-d397-4a88-982b-c286a058ad8b",
+    "udi": "umb://document/4fec288ad3974a88982bc286a058ad8b",
+    "name": "pjtx24052020185104",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-24 18:51:29",
+    "updateDate": "2020-06-23 18:52:23",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,16201",
+    "sortOrder": 7,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Ulla jensen",
+    "email": "ullajen25@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-24 18:51:29",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "ullajen25@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Ulla jensen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15981,
+    "key": "c0dc0be3-96df-4307-b8a9-262740f4f04a",
+    "udi": "umb://document/c0dc0be396df4307b8a9262740f4f04a",
+    "name": "9k5819052020150701",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-19 15:07:24",
+    "updateDate": "2020-06-18 15:08:19",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15981",
+    "sortOrder": 6,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Linda Levin ",
+    "email": "lindaklevin@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-19 15:07:24",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "lindaklevin@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Linda Levin ",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15784,
+    "key": "d3da4120-7888-4774-901c-49bc5cb07492",
+    "udi": "umb://document/d3da412078884774901c49bc5cb07492",
+    "name": "517t18052020090432",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-18 09:04:57",
+    "updateDate": "2020-06-17 09:05:18",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15784",
+    "sortOrder": 5,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Peter Otto Nielsen",
+    "email": "pon@stofanet.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-18 09:04:57",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "pon@stofanet.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Peter Otto Nielsen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15776,
+    "key": "7dbf651c-1f4f-421e-a03b-47e0d2f04206",
+    "udi": "umb://document/7dbf651c1f4f421ea03b47e0d2f04206",
+    "name": "wh3i18052020075304",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-18 07:54:00",
+    "updateDate": "2020-06-17 07:54:16",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15776",
+    "sortOrder": 4,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Helle Lisle",
+    "email": "helle_lisle@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-18 07:54:00",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "helle_lisle@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Helle Lisle",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15588,
+    "key": "717fe531-76cb-44aa-bc76-fb29097a0fd9",
+    "udi": "umb://document/717fe53176cb44aabc76fb29097a0fd9",
+    "name": "3evk16052020174322",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-16 17:44:11",
+    "updateDate": "2020-06-15 17:44:31",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15588",
+    "sortOrder": 3,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Paprika Freja Breum",
+    "email": "p.breum@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-16 17:44:11",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "p.breum@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Paprika Freja Breum",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15499,
+    "key": "f4b1f8ae-783f-4af6-9c56-def4b5b09b3b",
+    "udi": "umb://document/f4b1f8ae783f4af69c56def4b5b09b3b",
+    "name": "v3px15052020214119",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-15 21:41:44",
+    "updateDate": "2020-06-14 21:42:15",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15499",
+    "sortOrder": 2,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Inga-Lill Bonet",
+    "email": "ilbonet@me.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "115",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-15 21:41:44",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "ilbonet@me.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "115",
+      "fullName": "Inga-Lill Bonet",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15389,
+    "key": "5948d6fc-9818-419a-bb44-404131e8cfcc",
+    "udi": "umb://document/5948d6fc9818419abb44404131e8cfcc",
+    "name": "3mbn15052020081127",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-15 08:12:29",
+    "updateDate": "2020-06-14 08:12:30",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15389",
+    "sortOrder": 1,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Lisbeth Nordly Lauritzen",
+    "email": "llauritzen@ebay.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "99",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-15 08:12:29",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "llauritzen@ebay.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "99",
+      "fullName": "Lisbeth Nordly Lauritzen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  },
+  {
+    "id": 15366,
+    "key": "40a3fb67-5b12-49be-a4fa-aac4264733ef",
+    "udi": "umb://document/40a3fb675b1249bea4faaac4264733ef",
+    "name": "242714052020233317",
+    "contentTypeAlias": "purchase",
+    "published": false,
+    "hasPublishedVersion": false,
+    "createDate": "2020-05-14 23:33:29",
+    "updateDate": "2020-06-13 23:34:23",
+    "parentId": 11659,
+    "path": "-1,1067,11654,11659,15366",
+    "sortOrder": 0,
+    "urls": ["Dette punkt er endnu ikke udgivet"],
+    "fullName": "Søren Bentzen",
+    "email": "soerenbentzen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "99",
+    "expireDate": "",
+    "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+    "orderCreateDate": "2020-05-14 23:33:29",
+    "mediaRelationUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/b1c0e082126547229a834fca2cb57005"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+        "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+        "resolved": true,
+        "id": 15119,
+        "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+        "urls": [
+          "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "69",
+        "rentalPrice": "49"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["FILMEN Dømt blind - hva' så? - et online foredrag"],
+    "mediaUrls": [
+      "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+    ],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "email": "soerenbentzen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "",
+      "price": "99",
+      "fullName": "Søren Bentzen",
+      "message": "Tusinde tak for din interesse for mit foredrag. \r\n\r\nJeg håber, det vil være til gavn for dig, og inspirere dig til at kaste dig ud i alle livets fantastiske muligheder.\r\n\r\nHvis du har spørgsmål eller kommentarer, eller vil booke mig til et live foredrag, så kontakt mig endelig via formularen på www.mortenbonde.dk.\r\n\r\nKærlig hilsen\r\nMorten Bonde",
+      "media": "umb://document/b1c0e082126547229a834fca2cb57005"
+    }
+  }
+]

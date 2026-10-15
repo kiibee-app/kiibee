@@ -1,0 +1,15 @@
+{
+  "requestedName": "Jacob Tingleff",
+  "liveName": "Jacob Tingleff",
+  "userId": 42483,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 42575,
+      "status": "ok"
+    }
+  ]
+}

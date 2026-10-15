@@ -1,0 +1,166 @@
+{
+  "exportedAt": "2026-05-25T12:01:01.257Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1883",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1883,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1883,
+    "key": "4869231e-7cf0-44f8-8094-e5625f450d0a",
+    "udi": "umb://document/4869231e7cf044f88094e5625f450d0a",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/uffe-holm/purchases/"],
+    "path": "-1,1067,1879,1883",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 1856,
+    "childrenFetched": 1856,
+    "detailsFetched": 1856,
+    "detailErrors": 0,
+    "purchaseEntries": 558,
+    "nonPurchaseEntries": 1298,
+    "entriesWithDownloads": 207,
+    "entriesWithStreams": 295,
+    "totalDownloads": 710,
+    "totalStreams": 916,
+    "uniqueMediaUdis": 7,
+    "mediaResolvedFromCache": 1,
+    "mediaResolvedFromApi": 6,
+    "mediaResolved": 7,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 15,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 16,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 17,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 18,
+      "itemCount": 100,
+      "totalItems": 1856
+    },
+    {
+      "pageNumber": 19,
+      "itemCount": 56,
+      "totalItems": 1856
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data/users/Uffe_Holm/stats/media.json",
+      "count": 6
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

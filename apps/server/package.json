@@ -22,7 +22,8 @@
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit push",
     "db:push": "drizzle-kit push",
-    "seed": "tsx src/database/seed/index.ts"
+    "seed": "tsx src/database/seed/index.ts",
+    "seed:shows-only": "tsx src/database/seed/seedShowsOnly.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1046.0",

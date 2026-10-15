@@ -1,0 +1,366 @@
+{
+  "exportedAt": "2026-06-02T10:48:35.413Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2839",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2839,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": []
+  },
+  "parent": {
+    "id": 2839,
+    "key": "c063f235-3a90-48b5-9cd8-82e93147c509",
+    "udi": "umb://document/c063f2353a9048b59cd882e93147c509",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/fysioteamet/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 5983,
+    "childrenFetched": 5983,
+    "detailIdsRequested": 5983,
+    "detailsFetched": 5983,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 15,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 16,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 17,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 18,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 19,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 20,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 21,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 22,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 23,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 24,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 25,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 26,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 27,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 28,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 29,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 30,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 31,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 32,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 33,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 34,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 35,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 36,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 37,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 38,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 39,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 40,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 41,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 42,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 43,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 44,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 45,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 46,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 47,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 48,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 49,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 50,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 51,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 52,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 53,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 54,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 55,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 56,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 57,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 58,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 59,
+      "itemCount": 100,
+      "totalItems": 5983
+    },
+    {
+      "pageNumber": 60,
+      "itemCount": 83,
+      "totalItems": 5983
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

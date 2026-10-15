@@ -1,0 +1,25 @@
+{
+  "requestedName": "SigneNeslein.dk",
+  "liveName": "SigneNeslein.dk",
+  "userId": 27108,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "E-BØGER",
+      "id": 54856,
+      "status": "ok"
+    },
+    {
+      "name": "Campingferie Rejseplan til Nordkap ",
+      "id": 98995,
+      "status": "ok"
+    },
+    {
+      "name": "Online Kursus - Download nu",
+      "id": 111134,
+      "status": "ok"
+    }
+  ]
+}

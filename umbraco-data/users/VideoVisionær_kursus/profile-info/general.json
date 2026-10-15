@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "VideoVisionær kursus",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/0ff6a209ff984053815ba8a49d8234cf",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

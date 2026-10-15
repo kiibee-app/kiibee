@@ -1,0 +1,392 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/60131bb0d9024d9d9483b4b988a40163",
+      "key": "60131bb0-d902-4d9d-9483-b4b988a40163",
+      "resolved": true,
+      "id": 41814,
+      "name": "Kærlighed",
+      "title": "Kærlighed ",
+      "urls": ["/thomas-hartmann/shows/kaerlighed/"],
+      "contentTypeAlias": "media",
+      "videoID": "91ef7b5b15d68f6f82a6a2010eee3464",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/91ef7b5b15d68f6f82a6a2010eee3464/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/91ef7b5b15d68f6f82a6a2010eee3464/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3063/kaerlighed-facing.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 124,
+      "purchaseOrderCount": 93,
+      "nonPurchaseEntryCount": 31,
+      "totalDownloads": 125,
+      "totalStreams": 66,
+      "firstPurchaseAt": "2021-05-30 20:20:50",
+      "lastPurchaseAt": "2026-05-11 20:47:34",
+      "samplePurchaseIds": [123134, 122834, 120920, 120914, 120705]
+    },
+    {
+      "udi": "umb://document/90c4880cb38547ac942ef0180968599e",
+      "key": "90c4880c-b385-47ac-942e-f0180968599e",
+      "resolved": true,
+      "id": 41768,
+      "name": "Shows",
+      "title": "Shows",
+      "urls": ["/thomas-hartmann/shows/"],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "249",
+      "rentalPrice": "199",
+      "purchaseEntryCount": 59,
+      "purchaseOrderCount": 56,
+      "nonPurchaseEntryCount": 3,
+      "totalDownloads": 597,
+      "totalStreams": 8,
+      "firstPurchaseAt": "2022-01-19 17:17:09",
+      "lastPurchaseAt": "2026-05-30 13:40:39",
+      "samplePurchaseIds": [124009, 123959, 123936, 122904, 120661]
+    },
+    {
+      "udi": "umb://document/668a818ee4fb4e1aa5a9d1d2ea896831",
+      "key": "668a818e-e4fb-4e1a-a5a9-d1d2ea896831",
+      "resolved": true,
+      "id": 41770,
+      "name": "Extrospekt",
+      "title": "Extrospekt",
+      "urls": ["/thomas-hartmann/shows/extrospekt/"],
+      "contentTypeAlias": "media",
+      "videoID": "656a164e6236e820f1dcb7c99e427559",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/656a164e6236e820f1dcb7c99e427559/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/656a164e6236e820f1dcb7c99e427559/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3058/th4-dvd-slipcase5.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 43,
+      "purchaseOrderCount": 31,
+      "nonPurchaseEntryCount": 12,
+      "totalDownloads": 29,
+      "totalStreams": 27,
+      "firstPurchaseAt": "2021-06-01 17:59:20",
+      "lastPurchaseAt": "2026-05-13 20:46:44",
+      "samplePurchaseIds": [123188, 122938, 121090, 120182, 120157]
+    },
+    {
+      "udi": "umb://document/0195b1c787564dd69274139ea1b4a599",
+      "key": "0195b1c7-8756-4dd6-9274-139ea1b4a599",
+      "resolved": true,
+      "id": 41769,
+      "name": "BETAMAX",
+      "title": "BETAMAX",
+      "urls": ["/thomas-hartmann/shows/betamax/"],
+      "contentTypeAlias": "media",
+      "videoID": "1cd5dee2a641591fb58637df95ada29e",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/1cd5dee2a641591fb58637df95ada29e/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/1cd5dee2a641591fb58637df95ada29e/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3057/151871_400x556facing.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 40,
+      "purchaseOrderCount": 30,
+      "nonPurchaseEntryCount": 10,
+      "totalDownloads": 47,
+      "totalStreams": 21,
+      "firstPurchaseAt": "2021-06-01 18:39:29",
+      "lastPurchaseAt": "2026-05-15 21:22:49",
+      "samplePurchaseIds": [123310, 122868, 119721, 119105, 118355]
+    },
+    {
+      "udi": "umb://document/d779734412a74504b7fac1cf050197da",
+      "key": "d7797344-12a7-4504-b7fa-c1cf050197da",
+      "resolved": true,
+      "id": 41813,
+      "name": "Jokebox",
+      "title": "Jokebox",
+      "urls": ["/thomas-hartmann/shows/jokebox/"],
+      "contentTypeAlias": "media",
+      "videoID": "193a2e3181441375cb0c20e720addb04",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/193a2e3181441375cb0c20e720addb04/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/193a2e3181441375cb0c20e720addb04/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3062/jokebox_400x556.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 33,
+      "purchaseOrderCount": 23,
+      "nonPurchaseEntryCount": 10,
+      "totalDownloads": 43,
+      "totalStreams": 21,
+      "firstPurchaseAt": "2021-05-23 21:48:56",
+      "lastPurchaseAt": "2026-04-14 05:58:41",
+      "samplePurchaseIds": [121096, 120423, 119996, 119809, 117632]
+    },
+    {
+      "udi": "umb://document/b99b24685c084bfaa72571699916b3b0",
+      "key": "b99b2468-5c08-4bfa-a725-71699916b3b0",
+      "resolved": true,
+      "id": 41808,
+      "name": "Science Faction",
+      "title": "Science Faction",
+      "urls": ["/thomas-hartmann/shows/science-faction/"],
+      "contentTypeAlias": "media",
+      "videoID": "fc8accd90dacc2e8d44cdf7e8b44a072",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/fc8accd90dacc2e8d44cdf7e8b44a072/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/fc8accd90dacc2e8d44cdf7e8b44a072/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3061/thomas-hartmann-science-faction.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 28,
+      "purchaseOrderCount": 14,
+      "nonPurchaseEntryCount": 14,
+      "totalDownloads": 22,
+      "totalStreams": 33,
+      "firstPurchaseAt": "2021-06-01 18:10:48",
+      "lastPurchaseAt": "2026-05-17 22:53:07",
+      "samplePurchaseIds": [123373, 123085, 122988, 120871, 119633]
+    },
+    {
+      "udi": "umb://document/98dc939c00ec437896802308249998dc",
+      "key": "98dc939c-00ec-4378-9680-2308249998dc",
+      "resolved": true,
+      "id": 41782,
+      "name": "Hartmann 3",
+      "title": "Hartmann 3",
+      "urls": ["/thomas-hartmann/shows/hartmann-3/"],
+      "contentTypeAlias": "media",
+      "videoID": "2fe06fda4e9a47f690096e4fb547f220",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/2fe06fda4e9a47f690096e4fb547f220/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/2fe06fda4e9a47f690096e4fb547f220/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3059/thomas-hartmann-hartmann-3.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 26,
+      "purchaseOrderCount": 16,
+      "nonPurchaseEntryCount": 10,
+      "totalDownloads": 14,
+      "totalStreams": 15,
+      "firstPurchaseAt": "2021-06-01 17:04:17",
+      "lastPurchaseAt": "2026-05-14 21:19:02",
+      "samplePurchaseIds": [123256, 121099, 120179, 119993, 118285]
+    },
+    {
+      "udi": "umb://document/03b4b4f1f60f4947a7fa5d40decbfc0d",
+      "key": "03b4b4f1-f60f-4947-a7fa-5d40decbfc0d",
+      "resolved": true,
+      "id": 41836,
+      "name": "X-ll",
+      "title": "X-ll",
+      "urls": ["/thomas-hartmann/shows/x-ll/"],
+      "contentTypeAlias": "media",
+      "videoID": "a73ad922e1b072f72ddf1bedc1b81947",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/a73ad922e1b072f72ddf1bedc1b81947/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/a73ad922e1b072f72ddf1bedc1b81947/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3064/hartmann-x-ii.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 22,
+      "purchaseOrderCount": 19,
+      "nonPurchaseEntryCount": 3,
+      "totalDownloads": 15,
+      "totalStreams": 4,
+      "firstPurchaseAt": "2021-06-01 18:25:47",
+      "lastPurchaseAt": "2026-05-23 00:00:18",
+      "samplePurchaseIds": [123438, 121093, 118795, 115226, 113074]
+    },
+    {
+      "udi": "umb://document/0eff5e2bb4b6463fb9c2dcfe5c4bdfe5",
+      "key": "0eff5e2b-b4b6-463f-b9c2-dcfe5c4bdfe5",
+      "resolved": true,
+      "id": 41797,
+      "name": "Hartmann X",
+      "title": "Hartmann X",
+      "urls": ["/thomas-hartmann/shows/hartmann-x/"],
+      "contentTypeAlias": "media",
+      "videoID": "93c17e41f5faa47e06f5d2de632df804",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/93c17e41f5faa47e06f5d2de632df804/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/93c17e41f5faa47e06f5d2de632df804/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3060/hartmann-x_cover.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 21,
+      "purchaseOrderCount": 15,
+      "nonPurchaseEntryCount": 6,
+      "totalDownloads": 13,
+      "totalStreams": 12,
+      "firstPurchaseAt": "2021-06-01 16:52:48",
+      "lastPurchaseAt": "2026-05-22 23:58:30",
+      "samplePurchaseIds": [123435, 120876, 118268, 117052, 116709]
+    }
+  ],
+  "unresolvedMedia": []
+}

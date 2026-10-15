@@ -1,0 +1,49 @@
+[
+  {
+    "udi": "umb://document/849e1c83f8554ccf813fd338f4750ea7",
+    "key": "849e1c83-f855-4ccf-813f-d338f4750ea7",
+    "resolved": true,
+    "id": 25358,
+    "name": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+    "title": "Julekoncertfilm: \"Merry Christmas med Linda Andrews\"",
+    "urls": [
+      "/lindaandrews/koncertfilm-merry-christmas-med-linda-andrews-klik-her/julekoncertfilm-merry-christmas-med-linda-andrews/"
+    ],
+    "contentTypeAlias": "media",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "https://vimeo.com/493739931",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/2733/filmcover2.png",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "49",
+    "rentalPrice": "",
+    "purchaseEntryCount": 2,
+    "purchaseOrderCount": 2,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2020-12-23 13:27:02",
+    "lastPurchaseAt": "2020-12-25 07:57:19",
+    "samplePurchaseIds": [25605, 25443]
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Dan Andersen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 42292,
+  "key": "815746b6-7cb0-496a-8ce0-2bd8e951f9c4",
+  "udi": "umb://document/815746b67cb0496a8ce02bd8e951f9c4",
+  "path": "-1,1067,42292",
+  "url": "/dan-andersen/",
+  "createDate": "2021-04-07 12:23:55",
+  "updateDate": "2024-01-24 13:25:40",
+  "publishDate": "2024-01-24 13:25:40",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

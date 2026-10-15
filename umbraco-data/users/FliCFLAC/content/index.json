@@ -1,0 +1,15 @@
+{
+  "requestedName": "FliCFLAC",
+  "liveName": "FliCFLAC",
+  "userId": 1828,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Læringsvideoer",
+      "id": 1834,
+      "status": "ok"
+    }
+  ]
+}

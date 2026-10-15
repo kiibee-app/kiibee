@@ -1,0 +1,13 @@
+{
+  "exportedAt": "2026-06-02T11:20:18.392Z",
+  "userDir": "networker",
+  "dataset": "shows",
+  "status": "empty",
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0
+  },
+  "dataQuality": {
+    "note": "Created by complete-umbraco-user-shape.mjs so every profile has logs, payouts, purchases, shows, and stats folders. No existing export data was overwritten."
+  }
+}

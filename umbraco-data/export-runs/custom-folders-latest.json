@@ -1,0 +1,232 @@
+{
+  "startedAt": "2026-08-25T14:20:04.795Z",
+  "users": [
+    {
+      "requestedName": "Elias Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Shows",
+          "id": 42711,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Funktionel Neuro Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "status": "found",
+      "folderCount": 7,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "NeuroFlow Videoer",
+          "id": 101594,
+          "status": "ok"
+        },
+        {
+          "name": "Videoer med Z-Health baseret Bevægekontrol Øvelser",
+          "id": 101595,
+          "status": "ok"
+        },
+        {
+          "name": "Modul 2",
+          "id": 104214,
+          "status": "ok"
+        },
+        {
+          "name": "Modul 1",
+          "id": 104310,
+          "status": "ok"
+        },
+        {
+          "name": "Modul 3",
+          "id": 104451,
+          "status": "ok"
+        },
+        {
+          "name": "Modul 4",
+          "id": 106294,
+          "status": "ok"
+        },
+        {
+          "name": "Modul 5",
+          "id": 106538,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Tine Rask Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439,
+      "status": "found",
+      "folderCount": 3,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Nissebreve ",
+          "id": 115446,
+          "status": "ok"
+        },
+        {
+          "name": "Masker ",
+          "id": 118134,
+          "status": "ok"
+        },
+        {
+          "name": "Masker  (1)",
+          "id": 118135,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Vital New Software ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Tester",
+          "id": 62351,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Comedy-TV",
+      "liveName": "Comedy-TV",
+      "userId": 39727,
+      "status": "found",
+      "folderCount": 13,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "FORSLAG TIL DIG",
+          "id": 39799,
+          "status": "ok"
+        },
+        {
+          "name": "KOMIKERE ",
+          "id": 39808,
+          "status": "ok"
+        },
+        {
+          "name": "HAR DU POPCORN KLAR? VÆLG SHOW",
+          "id": 39841,
+          "status": "ok"
+        },
+        {
+          "name": "SHOWS I TOPFORM",
+          "id": 39846,
+          "status": "ok"
+        },
+        {
+          "name": "SENEST UDGIVET",
+          "id": 39858,
+          "status": "ok"
+        },
+        {
+          "name": "KØB SAMLINGER",
+          "id": 41897,
+          "status": "ok"
+        },
+        {
+          "name": "TILBAGE I TIDEN ",
+          "id": 41911,
+          "status": "ok"
+        },
+        {
+          "name": "WE STAND TOGETHER",
+          "id": 43021,
+          "status": "ok"
+        },
+        {
+          "name": "DM I STAND-UP",
+          "id": 43818,
+          "status": "ok"
+        },
+        {
+          "name": "STAND-UP.DK",
+          "id": 44964,
+          "status": "ok"
+        },
+        {
+          "name": "COMEDY AID & TALEGAVER TIL BØRN ",
+          "id": 47309,
+          "status": "ok"
+        },
+        {
+          "name": "SIDST ANKOMMET",
+          "id": 55396,
+          "status": "ok"
+        },
+        {
+          "name": "NYHEDER",
+          "id": 64863,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Thomas Hartmann",
+      "liveName": "Thomas Hartmann",
+      "userId": 41761,
+      "status": "found",
+      "folderCount": 2,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Shows",
+          "id": 41768,
+          "status": "ok"
+        },
+        {
+          "name": "Men`s Room",
+          "id": 43006,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "slank og wellness",
+      "liveName": "slank og wellness",
+      "userId": 2072,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "1:1 slanke coaching",
+          "id": 2084,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Sundt indtag",
+      "liveName": "Sundt indtag",
+      "userId": 2679,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Medlemsklubben motivationsklubben",
+          "id": 37835,
+          "status": "ok"
+        }
+      ]
+    }
+  ],
+  "missingUsers": [],
+  "finishedAt": "2026-08-25T14:20:39.425Z"
+}

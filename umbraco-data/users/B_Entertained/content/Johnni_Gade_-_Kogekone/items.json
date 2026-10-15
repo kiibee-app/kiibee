@@ -1,0 +1,488 @@
+[
+  {
+    "id": 68936,
+    "key": "a0be6cf2-f79c-413c-89a8-0aca0f12ec20",
+    "udi": "umb://document/a0be6cf2f79c413c89a80aca0f12ec20",
+    "name": "Kogekone",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-08-23 08:18:47",
+    "updateDate": "2022-09-05 12:48:29",
+    "parentId": 68863,
+    "path": "-1,1067,55246,68863,68936",
+    "sortOrder": 0,
+    "urls": ["/b-entertained/johnni-gade-kogekone/kogekone/"],
+    "fields": {
+      "purchasePrice": "99",
+      "access": ["58"],
+      "rentalPrice": "49",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["73"],
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/thumbnails/thumbnail.jpg",
+      "videoID": "1b1cdf19f63a41b0f8d29ab2e2d1e301",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "2001581361",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "B Entertained",
+      "year": "2022",
+      "description": "Johnni Gade forener YouTube, Freestyle Rap og stand up i et show, som du næppe har set det før. Johnni er kendt for at grille sine YouTube-kollegaer på den hårde klinge og med showet Kogekone er der lagt i ovnen til en roast, som selv Gordon Ramsey ville blive misundelig over.",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Kogekone",
+      "badge": "",
+      "length": "53",
+      "tags": "Johnni Gade,Kogekone,Comedy,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "99"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["58"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "49"
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["73"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/downloads/default.mp4"
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": ""
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "ready"
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/1b1cdf19f63a41b0f8d29ab2e2d1e301/thumbnails/thumbnail.jpg"
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1b1cdf19f63a41b0f8d29ab2e2d1e301"
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "2001581361"
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "B Entertained"
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2022"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Johnni Gade forener YouTube, Freestyle Rap og stand up i et show, som du næppe har set det før. Johnni er kendt for at grille sine YouTube-kollegaer på den hårde klinge og med showet Kogekone er der lagt i ovnen til en roast, som selv Gordon Ramsey ville blive misundelig over."
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/4131/johnnigade_poster_a2_02-kopier.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Kogekone"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "53"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": "Johnni Gade,Kogekone,Comedy,Stand-up"
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  }
+]

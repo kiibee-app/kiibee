@@ -1,0 +1,667 @@
+[
+  {
+    "id": 120678,
+    "key": "2c488ce9-8cd7-4ae0-81be-f7b0dac512bd",
+    "udi": "umb://document/2c488ce98cd74ae081bef7b0dac512bd",
+    "name": "h48w04042026195950",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-04-04 20:00:15",
+    "updateDate": "2026-04-04 20:00:30",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,120678",
+    "sortOrder": 6,
+    "urls": ["/anders-fjelsted/purchases/h48w04042026195950/"],
+    "fullName": "Morten Tygesen",
+    "email": "Tygesen1@hotmail.com",
+    "isPurchase": true,
+    "downloads": 1,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2026-04-18 20:00:13",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2026-04-04 20:00:15",
+    "mediaRelationUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+        "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+        "resolved": true,
+        "id": 42518,
+        "name": "Lige ved og voksen",
+        "title": "Lige ved og voksen ",
+        "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "1f333c5332a2582c07245c39905a67bd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3140/fjelle_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Lige ved og voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "1f333c5332a2582c07245c39905a67bd",
+      "email": "Tygesen1@hotmail.com",
+      "streams": "",
+      "downloads": "1",
+      "isPurchase": "1",
+      "expireDate": "2026-04-18 20:00:13",
+      "price": "39",
+      "fullName": "Morten Tygesen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/0eddf83f560f4d70829e4461764e66af"
+    }
+  },
+  {
+    "id": 107771,
+    "key": "dfa0fade-bf6c-4586-b7d5-daf1423d3f80",
+    "udi": "umb://document/dfa0fadebf6c4586b7d5daf1423d3f80",
+    "name": "re8824032025235549",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-03-24 23:56:07",
+    "updateDate": "2025-03-25 17:44:02",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,107771",
+    "sortOrder": 5,
+    "urls": ["/anders-fjelsted/purchases/re8824032025235549/"],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 5,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-04-07 23:56:03",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2025-03-24 23:56:07",
+    "mediaRelationUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+        "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+        "resolved": true,
+        "id": 42518,
+        "name": "Lige ved og voksen",
+        "title": "Lige ved og voksen ",
+        "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "1f333c5332a2582c07245c39905a67bd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3140/fjelle_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Lige ved og voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "1f333c5332a2582c07245c39905a67bd",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "5",
+      "isPurchase": "1",
+      "expireDate": "2025-04-07 23:56:03",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/0eddf83f560f4d70829e4461764e66af"
+    }
+  },
+  {
+    "id": 107769,
+    "key": "ddc2eac2-ad71-4fba-8f13-9cb2c0487c67",
+    "udi": "umb://document/ddc2eac2ad714fba8f139cb2c0487c67",
+    "name": "22kh24032025235437",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-03-24 23:54:54",
+    "updateDate": "2025-03-25 17:41:14",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,107769",
+    "sortOrder": 4,
+    "urls": ["/anders-fjelsted/purchases/22kh24032025235437/"],
+    "fullName": "Karina Stenberg ",
+    "email": "karinareserve@gmail.com",
+    "isPurchase": true,
+    "downloads": 2,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2025-04-07 23:54:51",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2025-03-24 23:54:54",
+    "mediaRelationUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+        "key": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+        "resolved": true,
+        "id": 42517,
+        "name": "Barnligt Voksen",
+        "title": "Barnligt Voksen ",
+        "urls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Barnligt Voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+      "email": "karinareserve@gmail.com",
+      "streams": "",
+      "downloads": "2",
+      "isPurchase": "1",
+      "expireDate": "2025-04-07 23:54:51",
+      "price": "39",
+      "fullName": "Karina Stenberg ",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff"
+    }
+  },
+  {
+    "id": 68102,
+    "key": "b1165600-ea21-447b-a513-8f1b06d8bbb0",
+    "udi": "umb://document/b1165600ea21447ba5138f1b06d8bbb0",
+    "name": "t6xp24072022160453",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-07-24 16:05:24",
+    "updateDate": "2022-07-28 17:02:32",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,68102",
+    "sortOrder": 3,
+    "urls": ["/anders-fjelsted/purchases/t6xp24072022160453/"],
+    "fullName": "Simon Madsen",
+    "email": "postsendesher@hotmail.com",
+    "isPurchase": true,
+    "downloads": 3,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-07-31 16:05:21",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2022-07-24 16:05:24",
+    "mediaRelationUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+        "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+        "resolved": true,
+        "id": 42518,
+        "name": "Lige ved og voksen",
+        "title": "Lige ved og voksen ",
+        "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "1f333c5332a2582c07245c39905a67bd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3140/fjelle_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Lige ved og voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "1f333c5332a2582c07245c39905a67bd",
+      "email": "postsendesher@hotmail.com",
+      "streams": "",
+      "downloads": "3",
+      "isPurchase": "1",
+      "expireDate": "2022-07-31 16:05:21",
+      "price": "39",
+      "fullName": "Simon Madsen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/0eddf83f560f4d70829e4461764e66af"
+    }
+  },
+  {
+    "id": 64176,
+    "key": "e2cadfaf-d853-4ec8-97af-61aad06b7fe6",
+    "udi": "umb://document/e2cadfafd8534ec897af61aad06b7fe6",
+    "name": "4x4j07052022105209",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-07 10:52:31",
+    "updateDate": "2022-05-07 10:52:31",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,64176",
+    "sortOrder": 2,
+    "urls": ["/anders-fjelsted/purchases/4x4j07052022105209/"],
+    "fullName": "Danni Kobberholm",
+    "email": "omzigg@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2022-06-06 10:52:29",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2022-05-07 10:52:31",
+    "mediaRelationUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+        "key": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+        "resolved": true,
+        "id": 42517,
+        "name": "Barnligt Voksen",
+        "title": "Barnligt Voksen ",
+        "urls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Barnligt Voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+      "email": "omzigg@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-06-06 10:52:29",
+      "price": "39",
+      "fullName": "Danni Kobberholm",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff"
+    }
+  },
+  {
+    "id": 46811,
+    "key": "80aef32c-3b69-44b2-b4ff-8111dc0c5929",
+    "udi": "umb://document/80aef32c3b6944b2b4ff8111dc0c5929",
+    "name": "644405062021084202",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 08:42:29",
+    "updateDate": "2021-06-05 08:42:29",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,46811",
+    "sortOrder": 1,
+    "urls": ["/anders-fjelsted/purchases/644405062021084202/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 08:42:28",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2021-06-05 08:42:29",
+    "mediaRelationUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/d0f27e4eb7044d1bab4621d8852c3aff"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+        "key": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+        "resolved": true,
+        "id": 42517,
+        "name": "Barnligt Voksen",
+        "title": "Barnligt Voksen ",
+        "urls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Barnligt Voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 08:42:28",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff"
+    }
+  },
+  {
+    "id": 46808,
+    "key": "53afac22-4bc3-41fd-977e-547d014f55c1",
+    "udi": "umb://document/53afac224bc341fd977e547d014f55c1",
+    "name": "b8ak05062021083110",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-05 08:31:34",
+    "updateDate": "2021-06-05 08:31:34",
+    "parentId": 42514,
+    "path": "-1,1067,42509,42514,46808",
+    "sortOrder": 0,
+    "urls": ["/anders-fjelsted/purchases/b8ak05062021083110/"],
+    "fullName": "Rene Bo Mortensen",
+    "email": "Enik6@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "39",
+    "expireDate": "2021-07-05 08:31:33",
+    "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+    "orderCreateDate": "2021-06-05 08:31:34",
+    "mediaRelationUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/0eddf83f560f4d70829e4461764e66af"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+        "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+        "resolved": true,
+        "id": 42518,
+        "name": "Lige ved og voksen",
+        "title": "Lige ved og voksen ",
+        "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+        "contentTypeAlias": "media",
+        "videoID": "1f333c5332a2582c07245c39905a67bd",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/3140/fjelle_400x600.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "39",
+        "rentalPrice": "29"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Lige ved og voksen "],
+    "mediaUrls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "1f333c5332a2582c07245c39905a67bd",
+      "email": "Enik6@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-05 08:31:33",
+      "price": "39",
+      "fullName": "Rene Bo Mortensen",
+      "message": "Tusind tak for du valgte at se mit show, må din dag blive fantastisk, TAK.\r\n\r\nDbh. Anders",
+      "media": "umb://document/0eddf83f560f4d70829e4461764e66af"
+    }
+  }
+]

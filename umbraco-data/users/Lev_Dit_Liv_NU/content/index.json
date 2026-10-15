@@ -1,0 +1,35 @@
+{
+  "requestedName": "Lev Dit Liv NU",
+  "liveName": "Lev Dit Liv NU",
+  "userId": 97418,
+  "status": "found",
+  "folderCount": 5,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Personligt Servicetjek ",
+      "id": 97439,
+      "status": "ok"
+    },
+    {
+      "name": "Personligt Servicetjek  (1)",
+      "id": 97440,
+      "status": "ok"
+    },
+    {
+      "name": "Personligt Servicetjek  (2)",
+      "id": 97441,
+      "status": "ok"
+    },
+    {
+      "name": "Gratis Visualisering ",
+      "id": 97876,
+      "status": "ok"
+    },
+    {
+      "name": "Gratis Visualisering  (1)",
+      "id": 97877,
+      "status": "ok"
+    }
+  ]
+}
