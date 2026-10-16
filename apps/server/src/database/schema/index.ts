@@ -16,6 +16,7 @@ export * from './users/usersToken.schema';
 // Creator
 export * from './creator/creatorInfo.schema';
 export * from './creator/creatorChannels.schema';
+export * from './creator/creatorOwners.schema';
 export * from './creator/featuredCreators.schema';
 
 // Content Management
