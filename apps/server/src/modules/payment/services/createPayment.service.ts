@@ -3,7 +3,6 @@ import https from 'https';
 import dns from 'node:dns';
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
-import { UNSCHEDULED_TYPE } from 'src/utils/constant';
 import { stripUrlPort } from 'src/utils/extranalApi';
 
 dns.setDefaultResultOrder('ipv4first');
@@ -62,9 +61,6 @@ export const createPayment = async ({
       amount: Number(amount),
       currency,
       customerId,
-      subscription: {
-        type: UNSCHEDULED_TYPE,
-      },
       successUrl: stripUrlPort(
         `${process.env.FRONTEND_URL}/payment/success?orderId=${orderId}`,
       ),

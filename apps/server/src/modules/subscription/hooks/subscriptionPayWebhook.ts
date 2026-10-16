@@ -22,6 +22,7 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { deleteSubscriptionService } from '../services/deleteSubscription.service';
+import { capturePayment } from 'src/modules/payment/services/capturePayment.service';
 
 export async function handleSubscriptionPayment(body: any) {
   try {
@@ -58,6 +59,30 @@ export async function handleSubscriptionPayment(body: any) {
 
     if (existingPayment) {
       logger.info('⚠️ Duplicate webhook ignored');
+      return;
+    }
+
+    if (!transactionId) {
+      logger.error(
+        '⚠️ Missing transaction id in subscription webhook for reference:',
+        reference,
+      );
+      return;
+    }
+
+    const captureResult = await capturePayment({
+      transactionId,
+      amount,
+      idempotencyKey: `capture-${transactionId}`,
+    });
+
+    if (captureResult?.success === false) {
+      logger.error(
+        '❌ Subscription payment capture failed:',
+        transactionId,
+        captureResult.errorCode,
+      );
+      await handleFailedSubscriptionPayment(transaction);
       return;
     }
 
