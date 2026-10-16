@@ -173,6 +173,8 @@ function isValidPersonName(value?: string | null): boolean {
   if (!value) return false;
   const trimmed = value.trim();
   if (!trimmed) return false;
+  if (trimmed.length < 3) return false;
+  if (trimmed.toLowerCase() === "jah") return false;
   if (isBrandOrDomain(trimmed)) return false;
   return true;
 }
@@ -180,12 +182,18 @@ function isValidPersonName(value?: string | null): boolean {
 export function getExistingCreatorDisplayName(
   creator: ExistingCreator,
 ): string {
+  // 1. If ownerName is provided from backend (e.g. from creator_owners or resolved by backend)
+  // and is a valid name, THIS IS THE #1 SOURCE OF TRUTH!
+  if (isValidPersonName(creator.ownerName)) {
+    return creator.ownerName!.trim();
+  }
+
   const emailKey = creator.email?.toLowerCase().trim();
   const channelKey = creator.channelName?.toLowerCase().trim();
   const companyKey = creator.companyName?.toLowerCase().trim();
   const fullNameKey = creator.fullName?.toLowerCase().trim();
 
-  // 1. Explicit brand channels owner mapping (exact keys)
+  // 2. Explicit brand channels owner mapping (exact keys)
   if (emailKey && KNOWN_BRAND_OWNERS[emailKey]) {
     return KNOWN_BRAND_OWNERS[emailKey];
   }
@@ -199,7 +207,7 @@ export function getExistingCreatorDisplayName(
     return KNOWN_BRAND_OWNERS[fullNameKey];
   }
 
-  // 1b. Partial / domain matches for known brand channels
+  // 2b. Partial / domain matches for known brand channels
   if (
     channelKey?.includes("neuroterapeut") ||
     channelKey?.includes("fysioteamet") ||
@@ -236,11 +244,6 @@ export function getExistingCreatorDisplayName(
   }
   if (channelKey?.includes("hundedamen") || emailKey?.includes("hundedamen")) {
     return "Christin";
-  }
-
-  // 2. Owner name from backend (e.g. from creator_owners, bank account holder or application request)
-  if (isValidPersonName(creator.ownerName)) {
-    return creator.ownerName!.trim();
   }
 
   // 3. From user's first/last name parts, if not matching channel brand

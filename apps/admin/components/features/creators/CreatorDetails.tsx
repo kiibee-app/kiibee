@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Pencil } from "lucide-react";
 import { useCreator, useCreatorContents } from "../../../hooks/api";
 import {
   existingCreatorLabels,
@@ -14,11 +15,13 @@ import { formatRequestedAt } from "../../../utils/date";
 import { AccountStatusBadge } from "../all-creators/AllCreators.styles";
 import { CreatorContentGrid } from "./CreatorContentGrid";
 import { ChannelLink } from "../../common/ChannelLink";
+import { EditCreatorProfileModal } from "./EditCreatorProfileModal";
 import {
   BackLink,
   DetailsLayout,
   DetailsSection,
   DetailsSectionAction,
+  DetailsSectionButton,
   DetailsSectionBody,
   DetailsSectionHeader,
   DetailsSectionTitle,
@@ -52,6 +55,7 @@ function formatValue(value: string | null | undefined) {
 
 export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
   const router = useRouter();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const creatorQuery = useCreator(creatorId);
   const contentsQuery = useCreatorContents(creatorId);
 
@@ -150,7 +154,21 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
       <DetailsSection>
         <DetailsSectionHeader>
           <DetailsSectionTitle>Profile Details</DetailsSectionTitle>
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <DetailsSectionButton
+              type="button"
+              onClick={() => setIsEditModalOpen(true)}
+            >
+              <Pencil size={14} />
+              Edit Profile
+            </DetailsSectionButton>
             <DetailsSectionAction
               href={`/all-creators/${creatorId}/subscription`}
             >
@@ -193,6 +211,14 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
             <InfoItem>
               <InfoLabel>CVR</InfoLabel>
               <InfoValue>{formatValue(creator.cvr)}</InfoValue>
+            </InfoItem>
+            <InfoItem>
+              <InfoLabel>Address</InfoLabel>
+              <InfoValue>{formatValue(creator.address)}</InfoValue>
+            </InfoItem>
+            <InfoItem>
+              <InfoLabel>Postal Code</InfoLabel>
+              <InfoValue>{formatValue(creator.postalCode)}</InfoValue>
             </InfoItem>
             <InfoItem>
               <InfoLabel>Channel</InfoLabel>
@@ -243,6 +269,12 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
           )}
         </DetailsSectionBody>
       </DetailsSection>
+
+      <EditCreatorProfileModal
+        creator={creator}
+        open={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+      />
     </DetailsLayout>
   );
 }

@@ -21,6 +21,8 @@ export type ExistingCreator = {
   updatedAt: string;
   companyName: string | null;
   phone: string | null;
+  address?: string | null;
+  postalCode?: string | null;
   city: string | null;
   cvr: string | null;
   channelName: string | null;

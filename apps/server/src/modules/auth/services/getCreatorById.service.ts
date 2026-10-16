@@ -30,18 +30,6 @@ export const getCreatorByIdService = async (creatorId: string) => {
     const ownerNameSql = sql<string | null>`
       COALESCE(
         NULLIF(TRIM(MAX(${creatorOwners.name})), ''),
-        NULLIF(
-          CASE 
-            WHEN LOWER(TRIM(MAX(${creatorBankAccounts.accountHolderName}))) IN ('seed bank', 'null') 
-              OR MAX(${creatorBankAccounts.accountHolderName}) ~ '^\d+$' 
-              OR MAX(${creatorBankAccounts.accountHolderName}) ILIKE 'umb://%'
-            THEN NULL
-            ELSE TRIM(MAX(${creatorBankAccounts.accountHolderName}))
-          END,
-          ''
-        ),
-        NULLIF(TRIM(MAX(${creatorApplicationRequests.fullName})), ''),
-        NULLIF(TRIM(MAX(CONCAT_WS(' ', ${creatorApplicationRequests.firstName}, ${creatorApplicationRequests.lastName}))), ''),
         CASE
           WHEN LOWER(TRIM(${creatorChannels.name})) ILIKE '%neuroterapeut%' OR LOWER(TRIM(${creatorChannels.name})) = 'fysioteamet' OR LOWER(TRIM(${users.email})) LIKE '%@fysioteamet.dk' OR LOWER(TRIM(${users.email})) = 'jakob.prv@gmail.com' THEN 'Jakob Hansen'
           WHEN LOWER(TRIM(${users.email})) = 'peter@fbi-productions.dk' OR LOWER(TRIM(${creatorChannels.name})) = 'fbi.dk' THEN 'Peter Alan Wheatley'
@@ -72,6 +60,20 @@ export const getCreatorByIdService = async (creatorId: string) => {
           WHEN LOWER(TRIM(${creatorChannels.name})) ILIKE '%kitnoergaard%' OR LOWER(TRIM(${users.email})) ILIKE '%kitnoergaard%' THEN 'Kit Nørgaard'
           ELSE NULL
         END,
+        NULLIF(TRIM(MAX(${creatorApplicationRequests.fullName})), ''),
+        NULLIF(TRIM(MAX(CONCAT_WS(' ', ${creatorApplicationRequests.firstName}, ${creatorApplicationRequests.lastName}))), ''),
+        NULLIF(
+          CASE 
+            WHEN LOWER(TRIM(MAX(${creatorBankAccounts.accountHolderName}))) IN ('seed bank', 'null', 'jah') 
+              OR MAX(${creatorBankAccounts.accountHolderName}) ~ '^\d+$' 
+              OR MAX(${creatorBankAccounts.accountHolderName}) ILIKE 'umb://%'
+              OR LENGTH(TRIM(MAX(${creatorBankAccounts.accountHolderName}))) < 4
+              OR LOWER(TRIM(MAX(${creatorBankAccounts.accountHolderName}))) = LOWER(TRIM(${creatorChannels.name}))
+            THEN NULL
+            ELSE TRIM(MAX(${creatorBankAccounts.accountHolderName}))
+          END,
+          ''
+        ),
         CASE 
           WHEN LOWER(TRIM(CONCAT_WS(' ', ${users.firstName}, ${users.lastName}))) = LOWER(TRIM(${creatorChannels.name})) THEN NULL
           WHEN CONCAT_WS(' ', ${users.firstName}, ${users.lastName}) ~* '\.(dk|com|net|org|nu|eu)$' THEN NULL
@@ -105,6 +107,8 @@ export const getCreatorByIdService = async (creatorId: string) => {
         updatedAt: users.updatedAt,
         companyName: creatorInfo.companyName,
         phone: creatorInfo.phone,
+        address: creatorInfo.address,
+        postalCode: creatorInfo.postalCode,
         city: creatorInfo.city,
         cvr: creatorInfo.cvr,
         channelName: creatorChannels.name,
@@ -166,6 +170,8 @@ export const getCreatorByIdService = async (creatorId: string) => {
         creatorOwners.name,
         creatorInfo.companyName,
         creatorInfo.phone,
+        creatorInfo.address,
+        creatorInfo.postalCode,
         creatorInfo.city,
         creatorInfo.cvr,
         creatorChannels.name,
