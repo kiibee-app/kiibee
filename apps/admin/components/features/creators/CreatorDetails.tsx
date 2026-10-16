@@ -166,6 +166,10 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
         <DetailsSectionBody>
           <InfoGrid>
             <InfoItem>
+              <InfoLabel>Owner</InfoLabel>
+              <InfoValue>{displayName}</InfoValue>
+            </InfoItem>
+            <InfoItem>
               <InfoLabel>Email</InfoLabel>
               <InfoValue>
                 {creator.email}{" "}

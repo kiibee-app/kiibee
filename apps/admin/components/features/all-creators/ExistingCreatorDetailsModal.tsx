@@ -138,6 +138,11 @@ export function ExistingCreatorDetailsModal({
             </DrawerSectionTitle>
             <DrawerCardList>
               <InfoRow
+                icon={<User size={16} />}
+                label="Owner"
+                value={displayName}
+              />
+              <InfoRow
                 icon={<Mail size={16} />}
                 label="Email Address"
                 value={`${creator.email} ${creator.isEmailVerified ? "(Verified)" : "(Unverified)"}`}
