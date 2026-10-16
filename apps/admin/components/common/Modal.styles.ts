@@ -36,8 +36,14 @@ export const ModalCard = styled.div<{ $size?: ModalSize }>`
   box-shadow: ${({ theme }) => theme.shadows.lg};
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
-    max-height: calc(100vh - 24px);
+    max-height: calc(100vh - 32px);
     border-radius: 12px;
+
+    ${({ $size }) =>
+      $size === "lg" &&
+      `
+        width: calc(100% - 16px);
+      `}
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobileLg}) {

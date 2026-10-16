@@ -8,6 +8,7 @@ import {
   type ContentFormat,
 } from "../../../utils/contentMedia";
 import { contentPreviewLabels } from "../../../utils/contentConfig";
+import { MODAL_SIZE } from "../../../utils/constants";
 import {
   PreviewAudio,
   PreviewFrame,
@@ -90,7 +91,7 @@ export function ContentPreviewModal({
   };
 
   return (
-    <Modal title={title} open={open} onClose={onClose}>
+    <Modal title={title} open={open} onClose={onClose} size={MODAL_SIZE.LG}>
       {renderBody()}
     </Modal>
   );
