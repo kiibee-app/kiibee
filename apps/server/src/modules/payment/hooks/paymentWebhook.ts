@@ -19,9 +19,11 @@ import {
 import { addWallet } from 'src/services/addWallet';
 import { parseRentDurationToHours } from 'src/utils/rentDuration';
 import { sendReceiptService } from 'src/modules/export/services/sendReceipt.service';
+import { capturePayment } from '../services/capturePayment.service';
 
 export async function handleEpayPayment(body: any) {
   const {
+    id: transactionId,
     state,
     reference,
     amount,
@@ -54,6 +56,13 @@ export async function handleEpayPayment(body: any) {
     return;
   }
 
+  if (orderInfo.status === ORDER_STATUS.COMPLETED) {
+    logger.info('ℹ️ Order already completed, skipping duplicate webhook:', {
+      orderId,
+    });
+    return;
+  }
+
   if (status === PAYMENT_STATUS.PAYMENT_FAILED) {
     logger.error('❌ Payment failed:', orderId);
     await db
@@ -74,6 +83,30 @@ export async function handleEpayPayment(body: any) {
 
   if (status !== PAYMENT_STATUS.PAYMENT_SUCCESS) {
     logger.info('ℹ️ Unhandled status:', status);
+    return;
+  }
+
+  if (!transactionId) {
+    logger.error('⚠️ Missing transaction id in webhook for order:', orderId);
+    return;
+  }
+
+  const captureResult = await capturePayment({
+    transactionId,
+    amount,
+    idempotencyKey: `capture-${orderId}`,
+  });
+
+  if (captureResult?.success === false) {
+    logger.error(
+      '❌ Payment capture failed:',
+      orderId,
+      captureResult.errorCode,
+    );
+    await db
+      .update(orders)
+      .set({ status: ORDER_STATUS.FAILED, rentExpiresAt: null })
+      .where(eq(orders.id, orderId));
     return;
   }
 

@@ -15,6 +15,8 @@ export const API_ENDPOINTS = {
   CREATOR_SEQUENCE: (creatorId: string) =>
     `/creators/admin/${creatorId}/sequence`,
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
+  ADMIN_UPDATE_CREATOR_PROFILE: (creatorId: string) =>
+    `/auth/all-creators/${creatorId}`,
   ALL_PLANS: "/subscription/plans",
   ADMIN_GET_SUBSCRIPTION: (creatorId: string) =>
     `/subscription/admin/creator/${creatorId}`,

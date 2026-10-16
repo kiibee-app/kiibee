@@ -1201,7 +1201,8 @@
       "visibility": "Visibility:",
       "duration": "Duration:",
       "productionCompany": "Production company:",
-      "manufacturerLink": "Manufacturer link:"
+      "manufacturerLink": "Manufacturer link:",
+      "orderPhysicalEdition": "Order physical edition - go to webshop"
     }
   },
   "singleCollection": {

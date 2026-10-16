@@ -35,9 +35,11 @@ import {
   LinkText,
   DrawerAvatarImage,
   AccountStatusBadge,
+  DrawerSectionActionButton,
 } from "./AllCreators.styles";
 import { CreatorUploadsList } from "./CreatorUploadsList";
 import { CreatorUploadDetail } from "./CreatorUploadDetail";
+import { EditCreatorProfileModal } from "../creators/EditCreatorProfileModal";
 import type { UploadItem } from "../../../hooks/api";
 import {
   existingCreatorLabels,
@@ -79,6 +81,7 @@ export function ExistingCreatorDetailsModal({
   const [view, setView] = useState<View>("details");
   const [selectedUpload, setSelectedUpload] = useState<UploadItem | null>(null);
   const [lastCreatorId, setLastCreatorId] = useState(creator?.id);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   if (creator?.id !== lastCreatorId) {
     setLastCreatorId(creator?.id);
@@ -133,10 +136,30 @@ export function ExistingCreatorDetailsModal({
           </DrawerHeaderCard>
 
           <DrawerSection>
-            <DrawerSectionTitle>
-              <User size={14} /> Contact Information
-            </DrawerSectionTitle>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "8px",
+              }}
+            >
+              <DrawerSectionTitle style={{ margin: 0 }}>
+                <User size={14} /> Contact Information
+              </DrawerSectionTitle>
+              <DrawerSectionActionButton
+                type="button"
+                onClick={() => setIsEditModalOpen(true)}
+              >
+                Edit Profile
+              </DrawerSectionActionButton>
+            </div>
             <DrawerCardList>
+              <InfoRow
+                icon={<User size={16} />}
+                label="Owner"
+                value={displayName}
+              />
               <InfoRow
                 icon={<Mail size={16} />}
                 label="Email Address"
@@ -274,6 +297,12 @@ export function ExistingCreatorDetailsModal({
           </DrawerSection>
         </>
       )}
+
+      <EditCreatorProfileModal
+        creator={creator}
+        open={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+      />
     </Drawer>
   );
 }
