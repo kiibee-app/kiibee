@@ -20,6 +20,7 @@ import {
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
 import {
+  balanceFeedMediaByCreator,
   dedupeFeedMediaByCreator,
   dedupeFeedMediaById,
   orderFeedMediaByIds,
@@ -97,7 +98,43 @@ async function fetchMediaFilesByIds(ids: string[]) {
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }
 
+const trendingScore = sql<number>`(
+  -- Purchases and rentals from user_content_access (primary weight)
+  COALESCE((
+    SELECT COUNT(*)::int
+    FROM user_content_access uca
+    WHERE uca.media_file_id = ${mediaFiles.id}
+       OR uca.collection_id IN (
+         SELECT ci.collection_id
+         FROM collection_items ci
+         WHERE ci.media_file_id = ${mediaFiles.id}
+       )
+  ), 0) * 100
+  +
+  -- Analytics purchases & rentals
+  COALESCE((
+    SELECT SUM(ads.purchases + ads.rentals)::int
+    FROM analytics_daily_summary ads
+    WHERE ads.media_file_id = ${mediaFiles.id}
+  ), 0) * 50
+  +
+  -- Engagement (views and visits)
+  COALESCE((
+    SELECT SUM(ads.views + ads.visits)::int
+    FROM analytics_daily_summary ads
+    WHERE ads.media_file_id = ${mediaFiles.id}
+  ), 0)
+  +
+  -- Priority to monetized buy/rent content
+  (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
+)`;
+
 export const getTrendingQuery = async (where: any, limit: number) => {
+  const candidateLimit = Math.max(
+    limit * RECENT_CANDIDATE_MULTIPLIER,
+    RECENT_MIN_CANDIDATE_LIMIT,
+  );
+
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
@@ -110,10 +147,12 @@ export const getTrendingQuery = async (where: any, limit: number) => {
       ),
     )
     .where(where)
-    .orderBy(desc(mediaFiles.sortOrder))
-    .limit(limit);
+    .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
+    .limit(candidateLimit);
 
-  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+
+  return balanceFeedMediaByCreator(candidates, limit);
 };
 
 export const getLatestQuery = async (

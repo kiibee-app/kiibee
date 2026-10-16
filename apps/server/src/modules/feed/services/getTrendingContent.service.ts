@@ -6,17 +6,25 @@ import {
   mediaFileCategories,
   contentCategories,
 } from 'src/database/schema';
-import { eq, sql, and, inArray } from 'drizzle-orm';
+import { eq, sql, and, inArray, desc } from 'drizzle-orm';
 import { logger } from 'src/logger/logger';
 import { success, fail } from 'src/utils/sendResponse';
 import { HttpStatus } from '@nestjs/common';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
-import { CONTENT_VISIBILITY } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  RECENT_CANDIDATE_MULTIPLIER,
+  RECENT_MIN_CANDIDATE_LIMIT,
+} from 'src/utils/constant';
 import {
   creatorContentIsDiscoverable,
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
-import { dedupeFeedMediaById, orderFeedMediaByIds } from '../feed.helper';
+import {
+  balanceFeedMediaByCreator,
+  dedupeFeedMediaById,
+  orderFeedMediaByIds,
+} from '../feed.helper';
 
 const trendingSelect = {
   id: mediaFiles.id,
@@ -47,15 +55,51 @@ const activeCreatorJoin = and(
   creatorContentIsDiscoverable,
 );
 
+const trendingScore = sql<number>`(
+  -- Purchases and rentals from user_content_access (primary weight)
+  COALESCE((
+    SELECT COUNT(*)::int
+    FROM user_content_access uca
+    WHERE uca.media_file_id = ${mediaFiles.id}
+       OR uca.collection_id IN (
+         SELECT ci.collection_id
+         FROM collection_items ci
+         WHERE ci.media_file_id = ${mediaFiles.id}
+       )
+  ), 0) * 100
+  +
+  -- Analytics purchases & rentals
+  COALESCE((
+    SELECT SUM(ads.purchases + ads.rentals)::int
+    FROM analytics_daily_summary ads
+    WHERE ads.media_file_id = ${mediaFiles.id}
+  ), 0) * 50
+  +
+  -- Engagement (views and visits)
+  COALESCE((
+    SELECT SUM(ads.views + ads.visits)::int
+    FROM analytics_daily_summary ads
+    WHERE ads.media_file_id = ${mediaFiles.id}
+  ), 0)
+  +
+  -- Priority to monetized buy/rent content
+  (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
+)`;
+
 export const getTrendingContentService = async (limit = 10) => {
   try {
+    const candidateLimit = Math.max(
+      limit * RECENT_CANDIDATE_MULTIPLIER,
+      RECENT_MIN_CANDIDATE_LIMIT,
+    );
+
     const trendingIds = await db
       .select({ id: mediaFiles.id })
       .from(mediaFiles)
       .innerJoin(users, activeCreatorJoin)
       .where(publishedPublicWhere)
-      .orderBy(sql`RANDOM()`)
-      .limit(limit);
+      .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
+      .limit(candidateLimit);
 
     if (trendingIds.length === 0) {
       return success(
@@ -82,7 +126,10 @@ export const getTrendingContentService = async (limit = 10) => {
       )
       .where(and(inArray(mediaFiles.id, ids), publishedPublicWhere));
 
-    const trendingContent = orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
+    const trendingContent = balanceFeedMediaByCreator(
+      orderFeedMediaByIds(dedupeFeedMediaById(rows), ids),
+      limit,
+    );
 
     const formatted = trendingContent.map((item) => ({
       ...item,
