@@ -17,7 +17,7 @@ import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { VARIANT } from "@/utils/Constants";
-import { normalizeExternalUrl } from "@/utils/common";
+import { normalizeExternalUrl, isKiibeeUrl } from "@/utils/common";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
@@ -135,32 +135,34 @@ export default function CollectionItemCard({
     isWebContent && video.contentUrl
       ? normalizeExternalUrl(video.contentUrl)
       : "";
-  const cardHref = isWebContent && webUrl ? webUrl : contentHref;
+  const isKiibee = isKiibeeUrl(webUrl);
+  const isDirectWebRedirect =
+    isWebContent && Boolean(webUrl) && (isKiibee || video.isFree || hasAccess);
+  const cardHref = isDirectWebRedirect ? webUrl : contentHref;
 
-  const buttons: TutorialButton[] =
-    isWebContent && webUrl
-      ? [
-          {
-            label: hasAccess
-              ? t("createProfileHome.latestUpload.seeContent")
-              : t("tutorialVideos.buttonFreeLabel"),
-            variant: VARIANT.SECONDARY,
-            href: webUrl,
-            fullWidth: true,
-          },
-        ]
-      : hasAccess
+  const buttons: TutorialButton[] = hasAccess
+    ? [
+        {
+          label: t("createProfileHome.latestUpload.seeContent"),
+          variant: VARIANT.SECONDARY,
+          href: isWebContent && webUrl ? webUrl : contentHref,
+          fullWidth: true,
+        },
+      ]
+    : video.buttons?.length
+      ? video.buttons
+      : isWebContent && webUrl
         ? [
             {
-              label: t("createProfileHome.latestUpload.seeContent"),
+              label: video.isFree
+                ? t("tutorialVideos.buttonFreeLabel")
+                : t("pricingLabels.buy"),
               variant: VARIANT.SECONDARY,
-              href: contentHref,
+              href: isDirectWebRedirect ? webUrl : contentHref,
               fullWidth: true,
             },
           ]
-        : video.buttons?.length
-          ? video.buttons
-          : [];
+        : [];
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.preventDefault();
@@ -175,13 +177,17 @@ export default function CollectionItemCard({
       return;
     }
 
-    if (isWebContent && webUrl) {
-      window.location.assign(webUrl);
+    const targetHref = button.href ?? contentHref;
+
+    if (
+      isDirectWebRedirect &&
+      (targetHref === webUrl || /^https?:\/\//i.test(targetHref))
+    ) {
+      window.location.assign(targetHref);
       return;
     }
 
     const isLoggedIn = Boolean(user && user.id);
-    const targetHref = button.href ?? contentHref;
 
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
@@ -194,6 +200,11 @@ export default function CollectionItemCard({
       const msg = t("createProfileHome.latestUpload.loginModal.viewMessage");
 
       handleShowLoginModal(targetHref, msg);
+      return;
+    }
+
+    if (/^https?:\/\//i.test(targetHref)) {
+      window.location.assign(targetHref);
       return;
     }
 
@@ -246,7 +257,7 @@ export default function CollectionItemCard({
         href={cardHref}
         aria-label={video.title}
         onClick={
-          isWebContent && webUrl
+          isDirectWebRedirect
             ? (event) => {
                 event.preventDefault();
                 window.location.assign(webUrl);

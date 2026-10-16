@@ -4,7 +4,7 @@ import { memo, useCallback, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import { normalizeExternalUrl } from "@/utils/common";
+import { isKiibeeUrl, normalizeExternalUrl } from "@/utils/common";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -155,7 +155,12 @@ function TutorialCard({
     isWebContent && tutorial.contentUrl
       ? normalizeExternalUrl(tutorial.contentUrl)
       : "";
-  const cardHref = isWebContent && webUrl ? webUrl : singleTutorialHref;
+  const isKiibee = isKiibeeUrl(webUrl);
+  const isDirectWebRedirect =
+    isWebContent &&
+    Boolean(webUrl) &&
+    (isKiibee || tutorial.isFree || hasAccess);
+  const cardHref = isDirectWebRedirect ? webUrl : singleTutorialHref;
 
   const effectiveCollectionId = collectionId || tutorial.collectionId;
   const isPaid = isPaidCollection;
@@ -163,6 +168,7 @@ function TutorialCard({
   const resolveButtonHref = useCallback(
     (href?: string) => {
       if (!href) return singleTutorialHref;
+      if (/^https?:\/\//i.test(href)) return href;
       if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
       if (effectiveCreatorSlug || effectiveCollectionSlug) {
         const hashIndex = href.indexOf("#");
@@ -175,24 +181,12 @@ function TutorialCard({
   );
 
   const buttons = useMemo(() => {
-    if (isWebContent && webUrl) {
-      return [
-        {
-          label: hasAccess
-            ? t("createProfileHome.latestUpload.seeContent")
-            : t(TUTORIAL_VIDEOS.buttonFreeLabel),
-          variant: VARIANT.SECONDARY,
-          href: webUrl,
-        },
-      ];
-    }
-
     if (hasAccess) {
       return [
         {
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
-          href: singleTutorialHref,
+          href: isWebContent && webUrl ? webUrl : singleTutorialHref,
         },
       ];
     }
@@ -224,26 +218,41 @@ function TutorialCard({
       ];
     }
 
+    if (isWebContent && webUrl) {
+      return [
+        {
+          label: tutorial.isFree
+            ? t(TUTORIAL_VIDEOS.buttonFreeLabel)
+            : t("pricingLabels.buy"),
+          variant: VARIANT.SECONDARY,
+          href: isDirectWebRedirect ? webUrl : singleTutorialHref,
+        },
+      ];
+    }
+
     const defaultButton: TutorialButton = {
-      label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
+      label: tutorial.isFree
+        ? t(TUTORIAL_VIDEOS.buttonFreeLabel)
+        : t("pricingLabels.buy"),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return [defaultButton];
   }, [
+    hasAccess,
+    t,
     isWebContent,
     webUrl,
-    hasAccess,
+    singleTutorialHref,
+    tutorial.buttons,
+    tutorial.isFree,
     isPaid,
     effectiveCollectionId,
-    tutorial.isFree,
-    tutorial.buttons,
-    tutorial.creatorId,
     effectiveCreatorSlug,
     effectiveCollectionSlug,
+    tutorial.creatorId,
     resolveButtonHref,
-    t,
-    singleTutorialHref,
+    isDirectWebRedirect,
   ]);
 
   const isCardLinked = !onPlayClick;
@@ -264,13 +273,17 @@ function TutorialCard({
     event.preventDefault();
     event.stopPropagation();
 
-    if (isWebContent && webUrl) {
-      window.location.assign(webUrl);
+    const targetHref = resolveButtonHref(button.href);
+
+    if (
+      isDirectWebRedirect &&
+      (targetHref === webUrl || /^https?:\/\//i.test(targetHref))
+    ) {
+      window.location.assign(targetHref);
       return;
     }
 
     const isLoggedIn = Boolean(user && user.id);
-    const targetHref = resolveButtonHref(button.href);
 
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
@@ -416,7 +429,7 @@ function TutorialCard({
   );
 
   const handleCardClick = (event: MouseEvent) => {
-    if (isWebContent && webUrl) {
+    if (isDirectWebRedirect) {
       event.preventDefault();
       window.location.assign(webUrl);
     }
@@ -429,7 +442,7 @@ function TutorialCard({
           href={cardHref}
           $clickable
           aria-label={tutorial.title}
-          onClick={isWebContent && webUrl ? handleCardClick : undefined}
+          onClick={isDirectWebRedirect ? handleCardClick : undefined}
         >
           {card}
         </CardLink>

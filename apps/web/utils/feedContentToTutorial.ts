@@ -11,7 +11,7 @@ import {
   resolveContentThumbnailCandidates,
   resolveImageUrl,
 } from "@/utils/media";
-import { normalizeExternalUrl } from "@/utils/common";
+import { normalizeExternalUrl, isKiibeeUrl } from "@/utils/common";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -174,37 +174,40 @@ function buildPricingButtons(
     ];
   }
 
-  if (
-    resolveFormatType(item.contentType) === FORMAT_TYPE.WEB &&
-    item.contentUrl
-  ) {
-    return [
-      {
-        label: freeLabel,
-        variant: VARIANT.SOFT_OUTLINE,
-        href: normalizeExternalUrl(item.contentUrl),
-        requiresAuth: false,
-        fullWidth: true,
-      },
-    ];
-  }
+  const isWeb = resolveFormatType(item.contentType) === FORMAT_TYPE.WEB;
+  const hasContentUrl = Boolean(item.contentUrl);
+  const normalizedUrl = hasContentUrl
+    ? normalizeExternalUrl(item.contentUrl)
+    : "";
+  const isKiibee = isKiibeeUrl(normalizedUrl);
+  const isFree = isFreeContentItem(item);
 
   const actions = getContentPricingActions(item, freeLabel, options);
-  const requiresAuth = !isFreeContentItem(item);
+  const requiresAuth = !isFree && !isKiibee;
 
-  return actions.map((action) => ({
-    label: action.label,
-    variant: VARIANT.SOFT_OUTLINE,
-    href: resolveContentActionHref(
+  return actions.map((action) => {
+    let href = resolveContentActionHref(
       item.id,
       action.label,
       item,
       actions.length,
       options,
-    ),
-    requiresAuth,
-    fullWidth: action.fullWidth,
-  }));
+    );
+
+    if (isWeb && normalizedUrl) {
+      if (isKiibee || isFree) {
+        href = normalizedUrl;
+      }
+    }
+
+    return {
+      label: action.label,
+      variant: VARIANT.SOFT_OUTLINE,
+      href,
+      requiresAuth,
+      fullWidth: action.fullWidth,
+    };
+  });
 }
 
 export function feedContentToTutorial(

@@ -205,13 +205,20 @@ export const isValidUrl = (url?: string | null): boolean => {
   return URL_PROTOCOL_REGEX.test(url);
 };
 
-export const normalizeExternalUrl = (url?: string | null): string => {
-  const trimmed = (url ?? "").trim();
-  if (!trimmed) return "";
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed;
+export const isKiibeeUrl = (url?: string | null): boolean => {
+  if (!url) return false;
+  try {
+    const normalized = normalizeExternalUrl(url);
+    const parsed = new URL(normalized);
+    const host = parsed.hostname.toLowerCase();
+    return (
+      host === "kiibee.dk" ||
+      host === "www.kiibee.dk" ||
+      host.endsWith(".kiibee.dk")
+    );
+  } catch {
+    return url.toLowerCase().includes("kiibee.dk");
   }
-  return `https://${trimmed}`;
 };
 
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

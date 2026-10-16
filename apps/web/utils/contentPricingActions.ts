@@ -404,7 +404,8 @@ export function getContentPricingActions(
 
   if (!rent && !buy) {
     if (item.accessType === ACCESS_TYPE_PAID) {
-      return [];
+      const { buyPrefix } = resolvePricingPrefixes(options?.labels);
+      return [{ label: buyPrefix, fullWidth: true }];
     }
     return [{ label: freeLabel, fullWidth: true }];
   }
