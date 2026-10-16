@@ -195,6 +195,15 @@ export const isValidUrl = (url?: string | null): boolean => {
   return URL_PROTOCOL_REGEX.test(url);
 };
 
+export const normalizeExternalUrl = (url?: string | null): string => {
+  const trimmed = (url ?? "").trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+};
+
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const MIN_PASSWORD_LENGTH = 6;

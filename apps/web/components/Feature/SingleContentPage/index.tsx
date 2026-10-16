@@ -75,6 +75,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     metaItems = [],
+    physicalProductLink,
     shareLabel = "Share",
     showShare = true,
     showBack = true,
@@ -563,6 +564,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            physicalProductLink={physicalProductLink}
             accessGate={accessGate}
           />
         </ContentLayout>
