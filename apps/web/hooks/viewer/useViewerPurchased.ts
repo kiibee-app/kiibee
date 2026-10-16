@@ -26,6 +26,7 @@ type PurchasedMediaResponse = {
   categoryName: string | null;
   purchasedAt: string | null;
   rentExpiresAt: string | null;
+  contentUrl?: string | null;
 };
 
 type PurchasedCollectionResponse = {
@@ -61,6 +62,7 @@ const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   title: item.title,
   author: item.creatorName || "",
   accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
+  contentUrl: item.contentUrl ?? null,
   expiryText: item.purchasedAt
     ? t("viewerRented.purchasedOn", {
         date: new Date(item.purchasedAt).toLocaleDateString(),
