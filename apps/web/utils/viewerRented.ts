@@ -45,6 +45,7 @@ export type RentedMediaItem = {
   buyPrice?: string | null;
   rentPrice?: string | null;
   accessStatus?: CollectionAccessStatus;
+  contentUrl?: string | null;
 };
 import {
   CURRENT_RENTED_AUDIOS,

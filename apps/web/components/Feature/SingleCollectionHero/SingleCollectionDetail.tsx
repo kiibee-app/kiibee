@@ -187,12 +187,15 @@ export default function SingleCollectionDetail({
 
   const selectedCollection = useMemo(() => {
     if (!id || !publicCollectionsQuery.data) return undefined;
+    const cleanId = cleanCollectionSlug(id, creatorSlug);
     return getCollectionRows(publicCollectionsQuery.data).find(
       (collection) =>
         collection.id === id ||
         collection.slug === id ||
         slugifyContentTitle(collection.name) === id ||
-        cleanCollectionSlug(collection.slug, creatorSlug) === id,
+        cleanCollectionSlug(collection.slug, creatorSlug) === id ||
+        cleanCollectionSlug(collection.name, creatorSlug) === cleanId ||
+        cleanCollectionSlug(collection.slug, creatorSlug) === cleanId,
     );
   }, [id, publicCollectionsQuery.data, creatorSlug]);
 
@@ -215,7 +218,7 @@ export default function SingleCollectionDetail({
   const canonicalCreatorSlug = publicCreator?.slug || creatorSlug;
   const canonicalCollectionSlug = selectedCollection
     ? slugifyContentTitle(selectedCollection.name)
-    : id;
+    : cleanCollectionSlug(id, creatorSlug);
   const isCollectionLookupLoading = Boolean(
     creatorSlug && !staticSection && publicCollectionsQuery.isLoading,
   );
@@ -674,6 +677,8 @@ export default function SingleCollectionDetail({
           maxWidth={staticSection.gridMaxWidth}
           embedded={embedded}
           collectionId={canonicalCollectionId}
+          creatorSlug={canonicalCreatorSlug}
+          collectionSlug={canonicalCollectionSlug}
           onSelectVideo={embedded ? handleSelectContent : undefined}
         />
       </Section>
@@ -763,6 +768,8 @@ export default function SingleCollectionDetail({
         videos={dynamicSection.videos}
         embedded={embedded}
         collectionId={canonicalCollectionId}
+        creatorSlug={canonicalCreatorSlug}
+        collectionSlug={canonicalCollectionSlug}
         isPaidCollection={isPaid}
         onSelectVideo={embedded ? handleSelectContent : undefined}
       />

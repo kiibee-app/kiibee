@@ -72,11 +72,6 @@ export class CreatorController {
     return this.creatorService.updateCreatorSequence(id, body.sequence);
   }
 
-  @Get(':id')
-  async getCreatorPublicProfile(@Param('id') id: string) {
-    return this.creatorService.getCreatorPublicProfile(id);
-  }
-
   @Get('top')
   async getTopCreators() {
     return this.creatorService.getTopCreators();
@@ -99,5 +94,10 @@ export class CreatorController {
       sortBy: sortBy ?? 'name',
       search: search?.trim() || undefined,
     });
+  }
+
+  @Get(':id')
+  async getCreatorPublicProfile(@Param('id') id: string) {
+    return this.creatorService.getCreatorPublicProfile(id);
   }
 }

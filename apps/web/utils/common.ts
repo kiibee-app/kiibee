@@ -188,6 +188,16 @@ export const SPACE = " ";
 export const getHrefFromUrl = (url: string): string =>
   url.startsWith("www.") ? `https://${url}` : url;
 
+export const normalizeExternalUrl = (url?: string | null): string => {
+  if (!url) return "";
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+};
+
 export const INITIAL_INDEX = 0;
 
 export const isValidUrl = (url?: string | null): boolean => {
@@ -195,13 +205,20 @@ export const isValidUrl = (url?: string | null): boolean => {
   return URL_PROTOCOL_REGEX.test(url);
 };
 
-export const normalizeExternalUrl = (url?: string | null): string => {
-  const trimmed = (url ?? "").trim();
-  if (!trimmed) return "";
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed;
+export const isKiibeeUrl = (url?: string | null): boolean => {
+  if (!url) return false;
+  try {
+    const normalized = normalizeExternalUrl(url);
+    const parsed = new URL(normalized);
+    const host = parsed.hostname.toLowerCase();
+    return (
+      host === "kiibee.dk" ||
+      host === "www.kiibee.dk" ||
+      host.endsWith(".kiibee.dk")
+    );
+  } catch {
+    return url.toLowerCase().includes("kiibee.dk");
   }
-  return `https://${trimmed}`;
 };
 
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

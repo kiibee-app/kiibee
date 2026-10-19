@@ -25,6 +25,7 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
         hasPassword: mediaFiles.passwordHash,
 
         contentTypeName: contentTypes.name,
+        contentUrl: mediaFiles.contentUrl,
       })
       .from(mediaFiles)
       .innerJoin(
@@ -46,6 +47,7 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
       slug: item.slug,
       description: item.description,
       contentType: item.contentTypeName || 'Unknown',
+      contentUrl: item.contentUrl,
       accessType: item.accessType,
       buyPrice: item.buyPrice,
       rentPrice: item.rentPrice,

@@ -50,6 +50,30 @@ export const dedupeFeedMediaByCreator = <
   return unique;
 };
 
+export const balanceFeedMediaByCreator = <
+  T extends { creatorId?: string | null },
+>(
+  items: T[],
+  limit?: number,
+): T[] => {
+  const seen = new Set<string>();
+  const firstPass: T[] = [];
+  const remaining: T[] = [];
+
+  for (const item of items) {
+    const creatorKey = item.creatorId?.trim();
+    if (creatorKey && !seen.has(creatorKey)) {
+      seen.add(creatorKey);
+      firstPass.push(item);
+    } else {
+      remaining.push(item);
+    }
+  }
+
+  const combined = [...firstPass, ...remaining];
+  return limit != null ? combined.slice(0, limit) : combined;
+};
+
 export const orderFeedMediaByIds = <T extends { id: string }>(
   items: T[],
   ids: string[],
