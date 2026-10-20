@@ -95,6 +95,10 @@ export function cleanCollectionSlug(
 
   let raw = collectionNameOrSlug.trim();
 
+  if (UUID_REGEX.test(raw)) {
+    return raw.toLowerCase();
+  }
+
   if (creatorSlug) {
     const cleanCreator = slugifyContentTitle(creatorSlug);
     const slugifiedRaw = slugifyContentTitle(raw);

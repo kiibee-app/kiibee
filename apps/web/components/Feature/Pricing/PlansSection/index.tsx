@@ -138,7 +138,7 @@ export default function PricingPlansSection({
 
           const card = (
             <PlanCard
-              title={apiPlan?.name || t(`${baseKey}.title`)}
+              title={t(`${baseKey}.title`)}
               price={apiPlan ? `${apiPlan.price} kr/md` : t(`${baseKey}.price`)}
               descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
               features={

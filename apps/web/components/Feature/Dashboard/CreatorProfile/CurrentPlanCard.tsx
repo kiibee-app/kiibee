@@ -49,8 +49,20 @@ export default function CurrentPlanCard() {
 
   const currentPlan = creatorPlanData?.data?.[0];
 
+  const planName = currentPlan?.name?.trim();
+  const planNameKeyMap: Record<string, string> = {
+    "Try Kiibee": "subscriptionPage.plans.tryKiibee.name",
+    "Start-up": "subscriptionPage.plans.startUp.name",
+    Pro: "subscriptionPage.plans.pro.name",
+  };
+  const localizedPlanName = planName
+    ? planNameKeyMap[planName]
+      ? t(planNameKeyMap[planName])
+      : planName
+    : null;
+
   const displayName =
-    currentPlan?.name?.trim() || t(CREATOR_PROFILE.currentPlan.fallbackName);
+    localizedPlanName || t(CREATOR_PROFILE.currentPlan.fallbackName);
 
   const priceLabel = useMemo(() => {
     if (!currentPlan) {

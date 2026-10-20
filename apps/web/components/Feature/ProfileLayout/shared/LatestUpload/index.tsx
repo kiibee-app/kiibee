@@ -192,7 +192,7 @@ export default function LatestUpload({
       if (isFreeContentItem(pricingItem)) {
         if (isPaidCol && effectiveCollectionId) {
           const href = pathPublicCollection(
-            effectiveCollectionId,
+            effectiveCollectionSlug || effectiveCollectionId,
             undefined,
             data.creatorSlug,
           );
