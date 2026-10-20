@@ -860,31 +860,30 @@
     "enterprise": "Virksomhed",
     "plans": {
       "launch": {
-        "title": "Launch",
+        "title": "Prøv kiibee",
         "price": "0 kr/md",
         "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
         "desc2": "Perfekt til dig, der vil teste en idé, lancere dit første produkt eller komme online uden risiko.",
         "features": [
-          "Eget site & shop med op til to filer.",
+          "Eget site & shop med op til 2 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
-          "Salgs- og visningsstatistik",
-          "Opsamling af e-mail eller kode på indhold"
+          "Salgs- og visningsstatistik"
         ]
       },
       "growth": {
-        "title": "Growth",
+        "title": "Start-up",
         "price": "129 kr/md",
         "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold ét sted.",
         "desc2": "Få mere frihed, mere plads til vækst og en løsning, der følger med dit momentum.",
         "features": [
-          "Eget site & shop",
+          "Eget site & shop med op til 10 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
           "Salgs- og visningsstatistik",
           "Opsamling af e-mail eller kode på indhold",
           "Sæt rabatkoder på dit indhold",
-          "Kommunikerer på dine kunder direkte"
+          "Eksponering i Nyhedsbreve og SoMe posts"
         ]
       },
       "pro": {
@@ -893,14 +892,13 @@
         "desc1": "Til professionelle creators og virksomheder med større ambitioner.",
         "desc2": "Få maksimal fleksibilitet, ekstra support og hjælp til opsætning – så du kan fokusere på salg og skalering.",
         "features": [
-          "Eget site & shop",
+          "Eget site & shop med op til 70 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
           "Salgs- og visningsstatistik",
           "Opsamling af e-mail eller kode på indhold",
           "Sæt rabatkoder på dit indhold",
-          "Kommunikerer på dine kunder direkte",
-          "Integrer med et hav af apps via Zapier.com"
+          "Eksponering i Nyhedsbreve og SoMe posts"
         ]
       }
     }
@@ -917,19 +915,19 @@
     },
     "plans": {
       "tryKiibee": {
-        "name": "Try Kiibee",
-        "meta": "Maks. 2 filer",
+        "name": "Prøv kiibee",
+        "meta": "Op til 2 filer",
         "price": "0 kr/md"
       },
       "startUp": {
         "name": "Start-up",
-        "meta": "Maks. 10 filer",
-        "price": "99 kr/md"
+        "meta": "Op til 10 filer",
+        "price": "129 kr/md"
       },
       "pro": {
         "name": "Pro",
-        "meta": "Maks. 70 filer",
-        "price": "299 kr/md"
+        "meta": "Op til 70 filer",
+        "price": "399 kr/md"
       }
     },
     "invite": {
@@ -987,7 +985,7 @@
     "items": [
       {
         "question": "Kan jeg sælge indhold med den gratis plan?",
-        "answer": "Ja. Den gratis Launch-plan lader dig uploade og sælge op til to produkter uden månedlige omkostninger. Det er en god måde at teste din idé på, før du opgraderer."
+        "answer": "Ja. Den gratis Prøv kiibee-plan lader dig uploade og sælge op til to produkter uden månedlige omkostninger. Det er en god måde at teste din idé på, før du opgraderer."
       },
       {
         "question": "Kan jeg ændre eller annullere min plan?",
