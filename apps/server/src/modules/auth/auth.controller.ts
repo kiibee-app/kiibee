@@ -25,6 +25,7 @@ import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { AdminUpdateCreatorProfileDto } from './dto/adminUpdateCreatorProfile.dto';
 import { DeleteUserDto } from './dto/deleteUser.dto';
 import { logAudit } from 'src/services/auditLog.service';
 import {
@@ -240,6 +241,19 @@ export class AuthController {
   @Get('all-creators/:creatorId')
   async getCreatorById(@Param('creatorId') creatorId: string) {
     const result = await this.authService.getCreatorById(creatorId);
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('all-creators/:creatorId')
+  async adminUpdateCreatorProfile(
+    @Param('creatorId') creatorId: string,
+    @Body() dto: AdminUpdateCreatorProfileDto,
+  ) {
+    const result = await this.authService.adminUpdateCreatorProfile(
+      creatorId,
+      dto,
+    );
     return result;
   }
 

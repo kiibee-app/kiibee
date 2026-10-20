@@ -31,6 +31,7 @@ type BackendMediaItem = {
   categoryName?: string | null;
   purchasedAt?: string | null;
   rentExpiresAt?: string | null;
+  contentUrl?: string | null;
 };
 
 type BackendCollectionItem = {
@@ -75,6 +76,7 @@ function toMediaItem(
     buyPrice: item.buyPrice,
     rentPrice: item.rentPrice,
     accessStatus: COLLECTION_ACCESS_STATUS.RENTED,
+    contentUrl: item.contentUrl ?? null,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
         ? formatExpiredText(item.rentExpiresAt, t)

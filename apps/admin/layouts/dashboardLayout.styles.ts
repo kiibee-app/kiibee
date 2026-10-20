@@ -23,11 +23,11 @@ export const Content = styled.div`
   padding: 16px 20px;
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
-    padding: 12px;
+    padding: 12px 16px;
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
-    padding: 8px;
+    padding: 12px;
   }
 `;
 

@@ -266,6 +266,38 @@ export const DetailsSectionAction = styled(Link)`
   }
 `;
 
+export const DetailsSectionButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+  background: ${({ theme }) => theme.colors.neutral.DUSTY_TEAL};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    transform ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.primary.GREEN};
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
 export const DetailsSectionBody = styled.div`
   padding: ${({ theme }) => theme.spacing(4)}
     ${({ theme }) => theme.spacing(4.5)};

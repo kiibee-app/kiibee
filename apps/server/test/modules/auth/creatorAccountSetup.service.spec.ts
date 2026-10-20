@@ -396,7 +396,8 @@ describe('setupCreatorAccountService', () => {
     let capturedTx: {
       insert: jest.Mock;
       select: jest.Mock;
-    };
+      update: jest.Mock;
+    } = undefined as any;
 
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       capturedTx = {

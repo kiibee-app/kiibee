@@ -860,31 +860,30 @@
     "enterprise": "Enterprise",
     "plans": {
       "launch": {
-        "title": "Launch",
+        "title": "Try Kiibee",
         "price": "0 kr/md",
         "desc1": "Get started quickly selling your digital content.",
         "desc2": "Perfect if you want to test an idea, launch your first product, or go online without risk.",
         "features": [
-          "Own site & shop with up to two files.",
+          "Own site & shop with up to 2 files.",
           "Payment module (Dankort, credit card and MobilePay)",
           "For streaming and download",
-          "Sales and view statistics",
-          "Collect e-mail or code on content"
+          "Sales and view statistics"
         ]
       },
       "growth": {
-        "title": "Growth",
+        "title": "Start-up",
         "price": "129 kr/md",
         "desc1": "Built for creators who publish regularly and want all content in one place.",
         "desc2": "Get more freedom, more room to grow, and a setup that follows your momentum.",
         "features": [
-          "Own site & shop",
+          "Own site & shop with up to 10 files.",
           "Payment module (Dankort, credit card and MobilePay)",
           "For streaming and download",
           "Sales and view statistics",
           "Collect e-mail or code on content",
           "Set discount codes on your content",
-          "Communicate directly with your customers"
+          "Exposure in newsletters and SoMe posts"
         ]
       },
       "pro": {
@@ -893,14 +892,13 @@
         "desc1": "For professional creators and companies with bigger ambitions.",
         "desc2": "Get maximum flexibility, extra support, and setup help so you can focus on sales and scaling.",
         "features": [
-          "Own site & shop",
+          "Own site & shop with up to 70 files.",
           "Payment module (Dankort, credit card and MobilePay)",
           "For streaming and download",
           "Sales and view statistics",
           "Collect e-mail or code on content",
           "Set discount codes on your content",
-          "Communicate directly with your customers",
-          "Integrate with many apps through Zapier.com"
+          "Exposure in newsletters and SoMe posts"
         ]
       }
     }
@@ -918,18 +916,18 @@
     "plans": {
       "tryKiibee": {
         "name": "Try Kiibee",
-        "meta": "Max. 2 files",
+        "meta": "Up to 2 files",
         "price": "0 KR/mo"
       },
       "startUp": {
         "name": "Start-up",
-        "meta": "Max. 10 files",
-        "price": "99 KR/mo"
+        "meta": "Up to 10 files",
+        "price": "129 KR/mo"
       },
       "pro": {
         "name": "Pro",
-        "meta": "Max. 70 files",
-        "price": "299 KR/mo"
+        "meta": "Up to 70 files",
+        "price": "399 KR/mo"
       }
     },
     "invite": {
@@ -987,7 +985,7 @@
     "items": [
       {
         "question": "Can I sell content with the free plan?",
-        "answer": "Yes. The free Launch plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
+        "answer": "Yes. The free Try Kiibee plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
       },
       {
         "question": "Can I change or cancel my plan?",
@@ -1201,7 +1199,8 @@
       "visibility": "Visibility:",
       "duration": "Duration:",
       "productionCompany": "Production company:",
-      "manufacturerLink": "Manufacturer link:"
+      "manufacturerLink": "Manufacturer link:",
+      "orderPhysicalEdition": "Order physical edition - go to webshop"
     }
   },
   "singleCollection": {

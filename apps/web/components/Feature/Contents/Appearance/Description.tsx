@@ -55,15 +55,14 @@ export default function DescriptionSection({
       : appearanceValues.description;
   const handleDescriptionChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    const truncated = text.slice(0, maxDescriptionCharacters);
     if (useFormContext) {
       clearFieldError(CONTENT_FORM_FIELDS.DESCRIPTION);
-      updateField(CONTENT_FORM_FIELDS.DESCRIPTION, truncated);
-    } else if (!showTitle) {
-      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
-      updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
+      updateField(CONTENT_FORM_FIELDS.DESCRIPTION, text);
+    } else if (showTitle) {
+      setLocalDescription(text);
     } else {
-      setLocalDescription(truncated);
+      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
+      updateAppearanceField(FORM_FIELDS.DESCRIPTION, text);
     }
   };
 
