@@ -210,7 +210,11 @@ export const getAllContentsService = async (
 
     switch (sort) {
       case SORT_DIRECTIONS.NEW:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.POPULAR:
@@ -237,12 +241,20 @@ export const getAllContentsService = async (
         break;
 
       case SORT_DIRECTIONS.FREE:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.ALL:
       default:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
         break;
     }
 
