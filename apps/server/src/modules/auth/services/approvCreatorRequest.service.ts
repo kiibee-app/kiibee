@@ -3,6 +3,7 @@ import { randomBytes, randomUUID } from 'crypto';
 import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
 import { db } from 'src/database/db';
 import { creatorInfo } from 'src/database/schema/creator/creatorInfo.schema';
+import { creatorOwners } from 'src/database/schema/creator/creatorOwners.schema';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
 import { success } from 'src/utils/sendResponse';
@@ -121,6 +122,40 @@ export const approveCreatorRequestService = async (
           .values({ ...userData, createdAt: now, updatedAt: now });
       }
       await tx.insert(creatorInfo).values(creatorData);
+
+      const ownerDisplayName =
+        validatedRequest[0].fullName ||
+        [validatedRequest[0].firstName, validatedRequest[0].lastName]
+          .filter(Boolean)
+          .join(' ')
+          .trim() ||
+        userData.fullName ||
+        userData.firstName;
+
+      await tx
+        .insert(creatorOwners)
+        .values({
+          id: randomUUID(),
+          creatorId: userData.id,
+          name: ownerDisplayName,
+          firstName: validatedRequest[0].firstName,
+          lastName: validatedRequest[0].lastName,
+          email: applicationEmail,
+          phone: validatedRequest[0].phone,
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoUpdate({
+          target: creatorOwners.creatorId,
+          set: {
+            name: ownerDisplayName,
+            firstName: validatedRequest[0].firstName,
+            lastName: validatedRequest[0].lastName,
+            email: applicationEmail,
+            phone: validatedRequest[0].phone,
+            updatedAt: now,
+          },
+        });
 
       await ensureCreatorChannel(tx, {
         creatorId: userData.id,

@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, ne } from 'drizzle-orm';
+import { and, eq, ne, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
@@ -16,6 +16,7 @@ import { CONTENT_VISIBILITY } from 'src/utils/constant';
 import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 import { fail, success } from 'src/utils/sendResponse';
+import { contentTitleUrlSlug } from '../content.helper';
 
 const relatedItemSelect = {
   id: mediaFiles.id,
@@ -33,6 +34,7 @@ const relatedItemSelect = {
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 const publishedPublicWhere = and(
@@ -54,11 +56,29 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
 
     let resolvedMediaFileId = contentId;
     if (!isUuid) {
+      const cleanSlug = contentTitleUrlSlug(contentId);
+      const cleanAlpha = contentId.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
       const [mediaFile] = await db
-        .select({ id: mediaFiles.id })
+        .select({
+          id: mediaFiles.id,
+          slug: mediaFiles.slug,
+          title: mediaFiles.title,
+        })
         .from(mediaFiles)
-        .where(eq(mediaFiles.slug, contentId))
+        .where(
+          and(
+            eq(mediaFiles.isDeleted, false),
+            or(
+              eq(mediaFiles.slug, contentId),
+              eq(mediaFiles.slug, cleanSlug),
+              sql`LOWER(REGEXP_REPLACE(coalesce(${mediaFiles.slug}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanAlpha}`,
+              sql`LOWER(REGEXP_REPLACE(coalesce(${mediaFiles.title}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanAlpha}`,
+            ),
+          ),
+        )
         .limit(1);
+
       if (mediaFile) {
         resolvedMediaFileId = mediaFile.id;
       }

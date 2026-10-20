@@ -60,9 +60,11 @@ export default function Payment({
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
   const { contentTypeId, admissionRequirement } = formState;
-  const isWebContent = contentTypeId === FORMAT_TYPE.WEB;
+  const resolvedContentType = contentTypeId || contentType;
+  const isWebContent =
+    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase();
 
-  const admissionOptions = getAdmissionOptions(t, contentTypeId).filter(
+  const admissionOptions = getAdmissionOptions(t).filter(
     (option) =>
       !isNewContent || isWebContent || option.value !== ADMISSION_TYPE.FREE,
   );
@@ -76,14 +78,6 @@ export default function Payment({
       updateField(
         PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
         ADMISSION_TYPE.REQUEST_EMAIL,
-      );
-      return;
-    }
-
-    if (isWebContent && admissionRequirement === ADMISSION_TYPE.PAYMENT) {
-      updateField(
-        PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
-        ADMISSION_TYPE.FREE,
       );
     }
   }, [isNewContent, isWebContent, admissionRequirement, updateField]);
@@ -123,8 +117,8 @@ export default function Payment({
   };
 
   const paymentTexts = useMemo(
-    () => getPaymentContentTexts(t, contentTypeId),
-    [t, contentTypeId],
+    () => getPaymentContentTexts(t, resolvedContentType),
+    [t, resolvedContentType],
   );
 
   const showRentalSection = Boolean(

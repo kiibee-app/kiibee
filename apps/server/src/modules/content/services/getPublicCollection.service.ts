@@ -42,6 +42,7 @@ const collectionItemSelect = {
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 const publishedPublicWhere = and(
@@ -157,11 +158,23 @@ export const getPublicCollectionService = async (
       )
       .where(and(...itemConditions));
 
+    const [collectionCreator] = await db
+      .select({
+        id: users.id,
+        name: users.fullName,
+        slug: creatorChannels.slug,
+      })
+      .from(users)
+      .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+      .where(eq(users.id, collection.creatorId))
+      .limit(1);
+
     const items = rows.map((item) => ({
       ...item,
       collectionId: collection.id,
       collectionSlug: collection.slug,
       collectionName: collection.name,
+      creatorSlug: item.creatorSlug || collectionCreator?.slug || null,
       publishedAgo: formatTimeAgo(item.createdAt),
     }));
 
@@ -171,6 +184,9 @@ export const getPublicCollectionService = async (
         name: collection.name,
         slug: collection.slug,
         description: collection.description,
+        creatorId: collection.creatorId,
+        creatorName: collectionCreator?.name ?? null,
+        creatorSlug: collectionCreator?.slug ?? null,
         accessType: collection.accessType,
         buyPrice: collection.buyPrice,
         rentPrice: collection.rentPrice,

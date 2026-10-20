@@ -64,6 +64,7 @@ export type SingleContentPageProps = {
   primaryAction?: SingleContentAction;
   primaryActions?: SingleContentAction[];
   metaItems?: SingleContentMetaItem[];
+  physicalProductLink?: string;
   shareLabel?: string;
   showShare?: boolean;
   showBack?: boolean;
@@ -102,6 +103,7 @@ export type SingleContentBodyProps = Pick<
   | "primaryActions"
   | "expiry"
   | "metaItems"
+  | "physicalProductLink"
 > & {
   accessGate?: ReactNode;
 };

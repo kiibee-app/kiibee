@@ -17,6 +17,7 @@ import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { VARIANT } from "@/utils/Constants";
+import { normalizeExternalUrl, isKiibeeUrl } from "@/utils/common";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
@@ -83,6 +84,7 @@ const FooterActions = styled.div`
 type Props = {
   video: TutorialVideo;
   ownerCreatorId?: string | null;
+  creatorSlug?: string | null;
   collectionId?: string | null;
   collectionSlug?: string | null;
 };
@@ -90,6 +92,7 @@ type Props = {
 export default function CollectionItemCard({
   video,
   ownerCreatorId,
+  creatorSlug = null,
   collectionId = null,
   collectionSlug = null,
 }: Props) {
@@ -120,24 +123,46 @@ export default function CollectionItemCard({
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
   const effectiveCollectionSlug = collectionSlug || video.collectionSlug;
+  const effectiveCreatorSlug = creatorSlug || video.creatorSlug;
   const contentHref = pathPublishedContent(
     video.slug || video.id,
-    video.creatorSlug,
+    effectiveCreatorSlug,
     video.title,
     effectiveCollectionSlug,
   );
+  const isWebContent = video.formatType === FORMAT_TYPE.WEB;
+  const webUrl =
+    isWebContent && video.contentUrl
+      ? normalizeExternalUrl(video.contentUrl)
+      : "";
+  const isKiibee = isKiibeeUrl(webUrl);
+  const isDirectWebRedirect =
+    isWebContent && Boolean(webUrl) && (isKiibee || video.isFree || hasAccess);
+  const cardHref = isDirectWebRedirect ? webUrl : contentHref;
+
   const buttons: TutorialButton[] = hasAccess
     ? [
         {
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
-          href: contentHref,
+          href: isWebContent && webUrl ? webUrl : contentHref,
           fullWidth: true,
         },
       ]
     : video.buttons?.length
       ? video.buttons
-      : [];
+      : isWebContent && webUrl
+        ? [
+            {
+              label: video.isFree
+                ? t("tutorialVideos.buttonFreeLabel")
+                : t("pricingLabels.buy"),
+              variant: VARIANT.SECONDARY,
+              href: isDirectWebRedirect ? webUrl : contentHref,
+              fullWidth: true,
+            },
+          ]
+        : [];
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.preventDefault();
@@ -152,8 +177,17 @@ export default function CollectionItemCard({
       return;
     }
 
-    const isLoggedIn = Boolean(user && user.id);
     const targetHref = button.href ?? contentHref;
+
+    if (
+      isDirectWebRedirect &&
+      (targetHref === webUrl || /^https?:\/\//i.test(targetHref))
+    ) {
+      window.location.assign(targetHref);
+      return;
+    }
+
+    const isLoggedIn = Boolean(user && user.id);
 
     if (button.requiresAuth && !isLoggedIn) {
       const isPurchaseOrRent =
@@ -169,17 +203,22 @@ export default function CollectionItemCard({
       return;
     }
 
+    if (/^https?:\/\//i.test(targetHref)) {
+      window.location.assign(targetHref);
+      return;
+    }
+
     navigateToContent(targetHref);
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!video.creatorSlug) return;
+    if (!effectiveCreatorSlug) return;
     stopCardNavigation(event);
-    router.push(getPublicCreatorProfilePath(video.creatorSlug));
+    router.push(getPublicCreatorProfilePath(effectiveCreatorSlug));
   };
 
   const title = <CollectionTitle>{video.title}</CollectionTitle>;
-  const subtitle = video.creatorSlug ? (
+  const subtitle = effectiveCreatorSlug ? (
     <CollectionAuthor
       onClick={openCreatorProfile}
       role="link"
@@ -214,7 +253,18 @@ export default function CollectionItemCard({
 
   return (
     <>
-      <CardLink href={contentHref} aria-label={video.title}>
+      <CardLink
+        href={cardHref}
+        aria-label={video.title}
+        onClick={
+          isDirectWebRedirect
+            ? (event) => {
+                event.preventDefault();
+                window.location.assign(webUrl);
+              }
+            : undefined
+        }
+      >
         <GenericCard
           image={video.image}
           imageFallback={FALLBACK_THUMBNAIL_SRC}

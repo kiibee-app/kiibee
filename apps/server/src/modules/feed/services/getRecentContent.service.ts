@@ -39,6 +39,7 @@ const recentSelect = {
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 const publishedPublicWhere = and(
