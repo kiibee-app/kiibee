@@ -4,6 +4,7 @@ import { createCollection } from './services/createCollection.service';
 import { getAllCollections } from './services/getAllCollections.service';
 import { getCollectionById } from './services/getCollectionById.service';
 import { updateCollection } from './services/updateCollection.service';
+import { reorderCollectionsService } from './services/reorderCollections.service';
 import { deleteCollection } from './services/deleteCollection.service';
 import {
   CreateCollectionDto,
@@ -25,6 +26,10 @@ export class CollectionService {
   async getPublicCollectionsService(creatorId: string) {
     await requirePubliclyVisibleCreator(creatorId);
     return getAllCollections(creatorId);
+  }
+
+  async reorderCollections(collectionIds: string[], creatorId: string) {
+    return reorderCollectionsService(collectionIds, creatorId);
   }
 
   async getCollectionByIdService(id: string, creatorId: string) {
