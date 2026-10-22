@@ -29,6 +29,8 @@ export type CollectionRow = {
   isFree?: boolean;
   isPaid?: boolean;
   slug?: string;
+  sortOrder?: number;
+  manualContentOrder?: boolean;
 };
 
 export type CollectionContentType = ContentType;
@@ -64,6 +66,7 @@ export type CollectionTableProps =
       onMore?: (id: string) => void;
       onMoveUp?: (id: string) => void;
       onMoveDown?: (id: string) => void;
+      onReorder?: (sourceId: string, targetId: string) => void;
       onSettings?: (id: string) => void;
     }
   | {
@@ -78,6 +81,7 @@ export type CollectionTableProps =
       onMore?: (id: string) => void;
       onMoveUp?: (id: string) => void;
       onMoveDown?: (id: string) => void;
+      onReorder?: (sourceId: string, targetId: string) => void;
       onOther?: (id: string) => void;
     };
 

@@ -36,6 +36,9 @@ export const users = pgTable(
     isActive: boolean('is_active').notNull().default(true),
     isHidden: boolean('is_hidden').notNull().default(false),
     sequence: integer('sequence'),
+    manualContentOrder: boolean('manual_content_order')
+      .notNull()
+      .default(false),
 
     ...softDeleteFields,
     ...baseTimestamps,

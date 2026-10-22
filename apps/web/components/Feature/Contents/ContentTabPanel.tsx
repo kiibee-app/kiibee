@@ -147,6 +147,7 @@ export default function ContentTabPanel({
   const {
     handleMoveUp,
     handleMoveDown,
+    reorder,
     handleConfirmMoveContent,
     openMoveModal,
     resetMoveSelection,
@@ -155,6 +156,7 @@ export default function ContentTabPanel({
     showMoveSuccessModal,
     setShowMoveSuccessModal,
   } = useContentMoveActions({
+    collections,
     selectedCollection,
     collectionContents,
     setContentsMap,
@@ -214,6 +216,7 @@ export default function ContentTabPanel({
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
             onMoveUp={handleMoveUp}
             onMoveDown={handleMoveDown}
+            onReorder={reorder}
             onMore={openMoveModal}
           />
           <MoveContentModal
@@ -248,6 +251,7 @@ export default function ContentTabPanel({
         onRowClick={setSelectedCollection}
         onMoveUp={handleMoveUp}
         onMoveDown={handleMoveDown}
+        onReorder={reorder}
         onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)}
         onEdit={onEditCollection}
         onSettings={() => setActiveTab(SETTINGS)}

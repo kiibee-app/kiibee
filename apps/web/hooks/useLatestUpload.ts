@@ -49,7 +49,11 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           success?: boolean;
           message?: string;
           data?: FeedContentItem[] | null;
-        }>(API.content.all, { creatorId: publicCreatorId });
+        }>(
+          API.content.all,
+          { creatorId: publicCreatorId },
+          { params: { sort: "upload" } },
+        );
 
         const items = response.data?.data;
         if (!Array.isArray(items) || items.length === 0) return null;
@@ -123,7 +127,10 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
         }))
         .filter((i) => !isNaN(i.createdAt));
 
-      allContents.sort((a, b) => b.createdAt - a.createdAt);
+      const hasManualContentOrder = Boolean(collections[0]?.manualContentOrder);
+      if (!hasManualContentOrder) {
+        allContents.sort((a, b) => b.createdAt - a.createdAt);
+      }
 
       const latest = allContents[0];
       if (!latest) return null;
