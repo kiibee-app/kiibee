@@ -38,6 +38,7 @@ export const API = {
     categories: "/content/categories",
     types: "/content/types",
     collection: (id: string) => `/content/collection/${id}`,
+    reorderCollection: (id: string) => `/content/collection/${id}/order`,
     get: (id: string) => `/content/${id}`,
     view: (
       id: string,
@@ -67,6 +68,7 @@ export const API = {
     getPublicByCreator: (creatorId: string) =>
       `/collection/public/${creatorId}`,
     create: "/collection/create",
+    reorder: "/collection/order",
     update: (id: string) => `/collection/${id}`,
     delete: (id: string) => `/collection/${id}`,
   },

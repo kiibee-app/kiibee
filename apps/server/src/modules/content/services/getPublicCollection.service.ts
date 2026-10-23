@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, gt, isNull, or, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
@@ -156,7 +156,8 @@ export const getPublicCollectionService = async (
         contentSettings,
         eq(contentSettings.userId, mediaFiles.creatorId),
       )
-      .where(and(...itemConditions));
+      .where(and(...itemConditions))
+      .orderBy(asc(collectionItems.sortOrder), desc(mediaFiles.createdAt));
 
     const [collectionCreator] = await db
       .select({

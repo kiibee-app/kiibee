@@ -1,4 +1,17 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+
+export class ReorderCollectionsDto {
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  collectionIds!: string[];
+}
 
 export class CreateCollectionDto {
   @IsString()

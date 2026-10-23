@@ -475,6 +475,7 @@ export const HASH_RENT = "#rent";
 export const HASH_BUY = "#buy";
 export const PLANS_SECTION_ID = "plans";
 export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
+export const SCROLL_TO_PLANS_KEY = "kiibee:scrollToPlans";
 export const EVENT_HASHCHANGE = "hashchange";
 export const EVENT_SCROLL = "scroll";
 export const EVENT_RESIZE = "resize";

@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { collections } from 'src/database/schema';
+import { collections, users } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
@@ -95,6 +95,13 @@ export const updateCollection = async (
       .set(updateData)
       .where(where)
       .returning();
+
+    if (dto.sortOrder !== undefined) {
+      await db
+        .update(users)
+        .set({ manualContentOrder: true })
+        .where(eq(users.id, creatorId));
+    }
 
     return success(updated, 'Collection updated successfully');
   } catch (error) {
