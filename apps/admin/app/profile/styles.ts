@@ -33,6 +33,7 @@ export const HeroLeft = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 `;
 
 export const Avatar = styled.div`
@@ -72,7 +73,9 @@ export const Name = styled.h1`
   line-height: 1.2;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary.main};
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     font-size: 18px;
   }
@@ -86,6 +89,7 @@ export const Email = styled.p`
   margin: 0;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.secondary.muted};
+  overflow-wrap: anywhere;
 `;
 
 export const Badge = styled.span<{ $tone?: BadgeTone }>`
