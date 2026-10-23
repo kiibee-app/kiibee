@@ -123,7 +123,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 
-  @media (max-width: 980px) {
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
