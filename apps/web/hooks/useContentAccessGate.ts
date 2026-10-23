@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -28,6 +28,22 @@ import {
 import { pathLoginWithNext } from "@/utils/path";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { toast } from "react-toastify";
+
+function subscribeToContentUnlock(key: string, onChange: () => void) {
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === key || event.key === null) onChange();
+  };
+  window.addEventListener("storage", handleStorage);
+  return () => window.removeEventListener("storage", handleStorage);
+}
+
+function getContentUnlockSnapshot(key: string) {
+  return Boolean(
+    key &&
+      typeof window !== "undefined" &&
+      window.localStorage.getItem(key) === "true",
+  );
+}
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -61,6 +77,16 @@ export function useContentAccessGate(
   const contentStorageKey = content?.id
     ? `kiibee:gate:unlocked:content:${content.id}`
     : "";
+  const subscribeToUnlock = useCallback(
+    (onChange: () => void) =>
+      subscribeToContentUnlock(contentStorageKey, onChange),
+    [contentStorageKey],
+  );
+  const hasLocalContentUnlock = useSyncExternalStore(
+    subscribeToUnlock,
+    () => getContentUnlockSnapshot(contentStorageKey),
+    () => false,
+  );
 
   const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
@@ -113,8 +139,8 @@ export function useContentAccessGate(
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
   const isContentUnlocked = isContentEmail
-    ? hasApprovedEmailAccess
-    : hasServerAccess;
+    ? hasApprovedEmailAccess || Boolean(loginUser?.id && hasLocalContentUnlock)
+    : hasServerAccess || hasLocalContentUnlock;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
