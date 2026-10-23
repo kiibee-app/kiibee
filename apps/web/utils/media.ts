@@ -320,17 +320,27 @@ export const ICON_SVG_PROP_NAMES = ["width", "height", "color"] as const;
 
 export const MEDIA_TYPE = {
   VIDEO: "video",
+  AUDIO: "audio",
+  PDF: "pdf",
   EPUB: "epub",
+  WEB: "web",
 } as const;
 
 export type MediaType = (typeof MEDIA_TYPE)[keyof typeof MEDIA_TYPE];
 
 export function resolveMediaType(contentType?: string | null): MediaType {
-  return String(contentType ?? "")
+  const normalized = String(contentType ?? "")
     .trim()
-    .toLowerCase() === MEDIA_TYPE.EPUB
-    ? MEDIA_TYPE.EPUB
-    : MEDIA_TYPE.VIDEO;
+    .toLowerCase()
+    .replace(/[_-]+/g, " ");
+
+  if (normalized === MEDIA_TYPE.EPUB) return MEDIA_TYPE.EPUB;
+  if (normalized === MEDIA_TYPE.AUDIO) return MEDIA_TYPE.AUDIO;
+  if (normalized === MEDIA_TYPE.PDF) return MEDIA_TYPE.PDF;
+  if (normalized === MEDIA_TYPE.WEB || normalized === "web link") {
+    return MEDIA_TYPE.WEB;
+  }
+  return MEDIA_TYPE.VIDEO;
 }
 
 const CLOUDFLARE_STREAM_VIDEO_ID_PATTERN = /^[a-f0-9]{32}$/i;

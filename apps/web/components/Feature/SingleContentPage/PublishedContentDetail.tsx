@@ -34,7 +34,10 @@ import {
   getContentDetail,
   getSingleContentProps,
 } from "@/utils/contentApi";
-import { isFreeContentItem, isPaidCollection } from "@/utils/contentPricingActions";
+import {
+  isFreeContentItem,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
@@ -139,12 +142,11 @@ export default function PublishedContentDetail({
     Boolean(content?.isPaidCollection) ||
     isPaidCollection(relatedCollectionQuery.data);
 
-  const { hasAccess: hasCollectionOrContentAccess } =
-    useViewerContentAccess(
-      content?.id ?? "",
-      content?.creatorId ?? null,
-      effectiveCollectionId,
-    );
+  const { hasAccess: hasCollectionOrContentAccess } = useViewerContentAccess(
+    content?.id ?? "",
+    content?.creatorId ?? null,
+    effectiveCollectionId,
+  );
 
   const resolvedContentSlug = tutorial?.title || content?.title;
   const resolvedCreatorSlug =
@@ -226,7 +228,9 @@ export default function PublishedContentDetail({
     if (
       gateLoading ||
       activeGateType ||
-      (!isFreeContent && !content?.accessInfo && !hasCollectionOrContentAccess) ||
+      (!isFreeContent &&
+        !content?.accessInfo &&
+        !hasCollectionOrContentAccess) ||
       content?.contentType !== FORMAT_TYPE.WEB ||
       !content.contentUrl
     ) {
@@ -273,6 +277,10 @@ export default function PublishedContentDetail({
   const handleBackToChannel = useCallback(() => {
     if (onBack) {
       onBack();
+      return;
+    }
+    if (window.history.length > 1) {
+      router.back();
       return;
     }
     const targetSlug =
