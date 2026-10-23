@@ -279,6 +279,10 @@ export default function PublishedContentDetail({
       onBack();
       return;
     }
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
     const targetSlug =
       creatorSlug || publicCreator?.slug || content?.creatorSlug;
     if (targetSlug) {
