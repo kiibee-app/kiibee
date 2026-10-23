@@ -517,6 +517,11 @@ export const RowActionGroup = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
+
+  ${media.mobileLg} {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 export const RowActionButton = styled.button<{
@@ -532,6 +537,11 @@ export const RowActionButton = styled.button<{
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  ${media.mobileLg} {
+    justify-content: center;
+    min-height: 44px;
+    width: 100%;
+  }
   box-shadow: ${({ theme }) => theme.shadows.sm};
   transition:
     background ${({ theme }) => theme.animations.fast},
