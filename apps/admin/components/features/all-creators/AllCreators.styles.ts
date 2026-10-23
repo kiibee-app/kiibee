@@ -31,6 +31,9 @@ export const AllCreatorsControlsHeader = styled(AllCreatorsHeader)`
 
 export const AllCreatorsTabs = styled.div`
   display: inline-flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
   align-items: center;
   align-self: flex-start;
   gap: ${({ theme }) => theme.spacing(1)};

@@ -19,7 +19,6 @@ import {
   HeaderControls,
   MiniText,
   RequestTableRow,
-  RequestsTable,
   SearchClearButton,
   SearchContainer,
   SearchIcon,
@@ -35,6 +34,7 @@ import {
   InlineActionButton,
   InlineActionGroup,
   InlineSecondaryButton,
+  CreatorBalancesTable,
   PayoutHint,
 } from "./PayoutDashboard.styles";
 import { AccountDetailsModal } from "./AccountDetailsModal";
@@ -120,7 +120,7 @@ export function CreatorBalancesTab() {
         ) : items.length ? (
           <>
             <TableScrollWrapper>
-              <RequestsTable>
+              <CreatorBalancesTable>
                 <thead>
                   <tr>
                     <TableHeaderCell>Creator</TableHeaderCell>
@@ -220,7 +220,7 @@ export function CreatorBalancesTab() {
                     );
                   })}
                 </tbody>
-              </RequestsTable>
+              </CreatorBalancesTable>
             </TableScrollWrapper>
             <CreatorPagination
               startIndex={walletsPagination.startIndex}

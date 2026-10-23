@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
+import { QUERY_KEYS } from "@/utils/Constants";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import {
   MOVE_DIRECTION_DOWN,
@@ -10,6 +12,7 @@ import {
 } from "@/utils/sortOptions";
 
 type UseContentMoveActionsParams = {
+  collections: CollectionRow[];
   selectedCollection: CollectionRow | null;
   collectionContents: CollectionContentRow[];
   setContentsMap: Dispatch<
@@ -19,6 +22,7 @@ type UseContentMoveActionsParams = {
 };
 
 export const useContentMoveActions = ({
+  collections,
   selectedCollection,
   collectionContents,
   setContentsMap,
@@ -29,39 +33,112 @@ export const useContentMoveActions = ({
   const [showMoveSuccessModal, setShowMoveSuccessModal] = useState(false);
   const [contentToMoveId, setContentToMoveId] = useState<string | null>(null);
 
-  const handleMoveUp = (id: string) => {
-    if (selectedCollection) {
+  const moveRow = <T extends { id: string }>(
+    items: T[],
+    sourceId: string,
+    targetId: string,
+  ) => {
+    const sourceIndex = items.findIndex((item) => item.id === sourceId);
+    const targetIndex = items.findIndex((item) => item.id === targetId);
+    if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) {
+      return items;
+    }
+
+    const next = [...items];
+    const [moved] = next.splice(sourceIndex, 1);
+    next.splice(targetIndex, 0, moved);
+    return next;
+  };
+
+  const saveCollectionOrder = useCallback(
+    async (nextCollections: CollectionRow[]) => {
+      const previousCollections = collections;
+      setCollections(nextCollections);
+
+      try {
+        await axiosClient.patch(API.collection.reorder, {
+          collectionIds: nextCollections.map((item) => item.id),
+        });
+        await queryClient.invalidateQueries({
+          queryKey: [API.collection.getAll],
+        });
+        await queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD],
+        });
+      } catch (error) {
+        setCollections(previousCollections);
+        console.error("Failed to save collection order:", error);
+        toast.error("Failed to save the new order. Please try again.");
+      }
+    },
+    [collections, queryClient, setCollections],
+  );
+
+  const saveContentOrder = useCallback(
+    async (nextContents: CollectionContentRow[]) => {
+      if (!selectedCollection) return;
+      const collectionId = selectedCollection.id;
+      const previousContents = collectionContents;
       setContentsMap((current) => ({
         ...current,
-        [selectedCollection.id]: moveItemInArray(
-          current[selectedCollection.id] ?? collectionContents,
-          id,
-          MOVE_DIRECTION_UP,
-        ),
+        [collectionId]: nextContents,
       }));
+
+      try {
+        await axiosClient.put(API.content.reorderCollection(collectionId), {
+          contentIds: nextContents.map((item) => item.id),
+        });
+        await queryClient.invalidateQueries({
+          queryKey: [API.content.collection(collectionId)],
+        });
+        await queryClient.invalidateQueries({
+          queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD],
+        });
+      } catch (error) {
+        setContentsMap((current) => ({
+          ...current,
+          [collectionId]: previousContents,
+        }));
+        console.error("Failed to save content order:", error);
+        toast.error("Failed to save the new order. Please try again.");
+      }
+    },
+    [collectionContents, queryClient, selectedCollection, setContentsMap],
+  );
+
+  const reorder = (sourceId: string, targetId: string) => {
+    if (sourceId === targetId) return;
+    if (selectedCollection) {
+      void saveContentOrder(moveRow(collectionContents, sourceId, targetId));
       return;
     }
 
-    setCollections((current) =>
-      moveItemInArray(current, id, MOVE_DIRECTION_UP),
+    void saveCollectionOrder(moveRow(collections, sourceId, targetId));
+  };
+
+  const handleMoveUp = (id: string) => {
+    if (selectedCollection) {
+      void saveContentOrder(
+        moveItemInArray(collectionContents, id, MOVE_DIRECTION_UP),
+      );
+      return;
+    }
+
+    void saveCollectionOrder(
+      moveItemInArray(collections, id, MOVE_DIRECTION_UP),
     );
   };
 
   const handleMoveDown = (id: string) => {
     if (selectedCollection) {
-      setContentsMap((current) => ({
-        ...current,
-        [selectedCollection.id]: moveItemInArray(
-          current[selectedCollection.id] ?? collectionContents,
-          id,
-          MOVE_DIRECTION_DOWN,
-        ),
-      }));
+      void saveContentOrder(
+        moveItemInArray(collectionContents, id, MOVE_DIRECTION_DOWN),
+      );
       return;
     }
 
-    setCollections((current) =>
-      moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
+    void saveCollectionOrder(
+      moveItemInArray(collections, id, MOVE_DIRECTION_DOWN),
     );
   };
 
@@ -158,6 +235,7 @@ export const useContentMoveActions = ({
   return {
     handleMoveUp,
     handleMoveDown,
+    reorder,
     handleConfirmMoveContent,
     openMoveModal,
     resetMoveSelection,
