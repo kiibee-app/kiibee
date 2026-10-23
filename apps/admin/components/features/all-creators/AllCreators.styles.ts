@@ -181,13 +181,16 @@ export const AllCreatorsState = styled.div`
 
 export const TableScrollWrapper = styled.div`
   width: 100%;
+  min-width: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 `;
 
 export const RequestsTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
 `;
 
 export const RequestTableRow = styled.tr`
@@ -210,6 +213,13 @@ export const TableHeaderCell = styled.th`
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+
+  &:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 238px;
+  }
 `;
 
 export const TableBodyCell = styled.td`
@@ -220,6 +230,14 @@ export const TableBodyCell = styled.td`
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   vertical-align: top;
+
+  &:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 238px;
+    background: ${({ theme }) => theme.colors.neutral.WHITE};
+  }
 
   &:nth-child(6),
   &:nth-child(7),

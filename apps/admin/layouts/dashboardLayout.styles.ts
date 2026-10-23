@@ -11,6 +11,7 @@ export const AppContainer = styled.div`
 
 export const Main = styled.main`
   flex: 1;
+  min-width: 0;
   margin-left: 240px;
   min-height: 100vh;
 
