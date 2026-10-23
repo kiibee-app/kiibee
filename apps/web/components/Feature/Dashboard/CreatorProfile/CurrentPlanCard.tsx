@@ -5,8 +5,9 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { SCROLL_TO_PLANS_KEY, VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { useLocalizedHref } from "@/hooks/useLocalizedPaths";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
@@ -40,6 +41,7 @@ type CreatorPlanResponse = {
 export default function CurrentPlanCard() {
   const { t } = useTranslation();
   const router = useRouter();
+  const localizeHref = useLocalizedHref();
 
   const { data: creatorPlanData, isLoading } = useGetAPI<CreatorPlanResponse>(
     API.subscription.creatorPlan,
@@ -79,7 +81,9 @@ export default function CurrentPlanCard() {
     : t(CREATOR_PROFILE.currentPlan.changePlan);
 
   const handleUpgrade = () => {
-    router.push(PATHS.PRICING_PLANS);
+    window.sessionStorage.setItem(SCROLL_TO_PLANS_KEY, "1");
+    // Skip Next's scroll-to-top; it animates (global smooth scroll) and fights the plans scroll.
+    router.push(localizeHref(PATHS.PRICING), { scroll: false });
   };
 
   return (
