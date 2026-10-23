@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq, and, gt, isNull, or, sql } from 'drizzle-orm';
+import { eq, and, gt, ilike, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
