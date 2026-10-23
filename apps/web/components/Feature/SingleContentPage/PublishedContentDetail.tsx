@@ -34,7 +34,7 @@ import {
   getContentDetail,
   getSingleContentProps,
 } from "@/utils/contentApi";
-import { isPaidCollection } from "@/utils/contentPricingActions";
+import { isFreeContentItem, isPaidCollection } from "@/utils/contentPricingActions";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
@@ -124,15 +124,6 @@ export default function PublishedContentDetail({
   );
   const content = getContentDetail(data);
 
-  useEffect(() => {
-    if (content?.contentType === FORMAT_TYPE.WEB && content?.contentUrl) {
-      const webUrl = normalizeExternalUrl(content.contentUrl);
-      if (webUrl) {
-        window.location.assign(webUrl);
-      }
-    }
-  }, [content?.contentType, content?.contentUrl]);
-
   const { creator: publicCreator } = useCreatorPublicProfile(
     content?.creatorId ?? null,
   );
@@ -148,11 +139,12 @@ export default function PublishedContentDetail({
     Boolean(content?.isPaidCollection) ||
     isPaidCollection(relatedCollectionQuery.data);
 
-  const { hasAccess: hasCollectionOrContentAccess } = useViewerContentAccess(
-    content?.id ?? "",
-    content?.creatorId ?? null,
-    effectiveCollectionId,
-  );
+  const { hasAccess: hasCollectionOrContentAccess } =
+    useViewerContentAccess(
+      content?.id ?? "",
+      content?.creatorId ?? null,
+      effectiveCollectionId,
+    );
 
   const resolvedContentSlug = tutorial?.title || content?.title;
   const resolvedCreatorSlug =
@@ -222,6 +214,47 @@ export default function PublishedContentDetail({
     isLoading: gateLoading,
     handleSuccess: handleGateSuccess,
   } = useContentAccessGate(content, effectiveCollectionId);
+  const isFreeContent = content
+    ? isFreeContentItem({
+        accessType: content.accessType,
+        rentPrice: content.rentPrice,
+        buyPrice: content.buyPrice,
+      })
+    : false;
+
+  useEffect(() => {
+    if (
+      gateLoading ||
+      activeGateType ||
+      (!isFreeContent && !content?.accessInfo && !hasCollectionOrContentAccess) ||
+      content?.contentType !== FORMAT_TYPE.WEB ||
+      !content.contentUrl
+    ) {
+      return;
+    }
+
+    const webUrl = normalizeExternalUrl(content.contentUrl);
+    if (!webUrl) return;
+
+    try {
+      const hostname = new URL(webUrl).hostname.toLowerCase();
+      if (hostname !== "kiibee.dk" && !hostname.endsWith(".kiibee.dk")) {
+        return;
+      }
+    } catch {
+      return;
+    }
+
+    window.location.assign(webUrl);
+  }, [
+    activeGateType,
+    content?.accessInfo,
+    content?.contentType,
+    content?.contentUrl,
+    gateLoading,
+    hasCollectionOrContentAccess,
+    isFreeContent,
+  ]);
 
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =

@@ -136,8 +136,7 @@ export default function CollectionItemCard({
       ? normalizeExternalUrl(video.contentUrl)
       : "";
   const isKiibee = isKiibeeUrl(webUrl);
-  const isDirectWebRedirect =
-    isWebContent && Boolean(webUrl) && (isKiibee || video.isFree || hasAccess);
+  const isDirectWebRedirect = isWebContent && Boolean(webUrl) && isKiibee;
   const cardHref = isDirectWebRedirect ? webUrl : contentHref;
 
   const buttons: TutorialButton[] = hasAccess
@@ -177,11 +176,12 @@ export default function CollectionItemCard({
       return;
     }
 
-    const targetHref = button.href ?? contentHref;
+    const requestedHref = button.href ?? contentHref;
+    const targetHref = isWebContent && !isKiibee ? contentHref : requestedHref;
 
     if (
       isDirectWebRedirect &&
-      (targetHref === webUrl || /^https?:\/\//i.test(targetHref))
+      targetHref === webUrl
     ) {
       window.location.assign(targetHref);
       return;
@@ -203,7 +203,7 @@ export default function CollectionItemCard({
       return;
     }
 
-    if (/^https?:\/\//i.test(targetHref)) {
+    if (!isWebContent && /^https?:\/\//i.test(targetHref)) {
       window.location.assign(targetHref);
       return;
     }

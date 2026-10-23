@@ -11,8 +11,9 @@ import {
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
 import { getPricingLabels } from "@/utils/contentPricingActions";
+import { normalizeContentTypeValue } from "@/utils/content";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
-import type { TutorialVideo } from "@/utils/types";
+import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
   EXPLORE_INITIAL_PAGE_SIZE,
@@ -110,9 +111,14 @@ export function useAllContent(allContentId: string) {
     if (!Array.isArray(rawItems)) return [];
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
-    const parsed = rawItems.map((item) =>
-      feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
-    );
+    const parsed = rawItems
+      .filter(
+        (item) =>
+          normalizeContentTypeValue(item.contentType) !== FORMAT_TYPE.WEB,
+      )
+      .map((item) =>
+        feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
+      );
     if (sortOption === SORT_OPTION_AZ) {
       return [...parsed].sort((a, b) => a.title.localeCompare(b.title));
     }
