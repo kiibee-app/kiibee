@@ -23,6 +23,7 @@ import {
   BrowseAllButton,
 } from "./styles";
 import { HIDDEN_LANDING_CATEGORIES } from "@/utils/common";
+import { FORMAT_TYPE } from "@/utils/types";
 
 export default function ExploreCategories() {
   const { t } = useTranslation();
@@ -30,10 +31,14 @@ export default function ExploreCategories() {
   const { tutorials, isLoading } = useRecentContent({
     limit: 100,
   });
+  const nonWebTutorials = useMemo(
+    () => tutorials.filter((item) => item.formatType !== FORMAT_TYPE.WEB),
+    [tutorials],
+  );
 
   const categoriesList = useMemo(() => {
     const uniqueCategories = new Set<string>();
-    tutorials.forEach((item) => {
+    nonWebTutorials.forEach((item) => {
       if (
         item.category &&
         !HIDDEN_LANDING_CATEGORIES.has(item.category.trim().toLowerCase())
@@ -42,7 +47,7 @@ export default function ExploreCategories() {
       }
     });
     return [CATEGORY_ALL, ...Array.from(uniqueCategories)];
-  }, [tutorials]);
+  }, [nonWebTutorials]);
 
   const resolvedActiveCategory = useMemo(() => {
     return categoriesList.includes(activeCategory)
@@ -53,11 +58,13 @@ export default function ExploreCategories() {
   const filteredItems = useMemo(() => {
     const byCategory =
       resolvedActiveCategory === CATEGORY_ALL
-        ? tutorials
-        : tutorials.filter((item) => item.category === resolvedActiveCategory);
+        ? nonWebTutorials
+        : nonWebTutorials.filter(
+            (item) => item.category === resolvedActiveCategory,
+          );
 
     return byCategory.slice(0, EXPLORE_PAGE_SIZE);
-  }, [tutorials, resolvedActiveCategory]);
+  }, [nonWebTutorials, resolvedActiveCategory]);
 
   if (isLoading) {
     return (
@@ -81,7 +88,7 @@ export default function ExploreCategories() {
     );
   }
 
-  if (tutorials.length === 0) {
+  if (nonWebTutorials.length === 0) {
     return null;
   }
 

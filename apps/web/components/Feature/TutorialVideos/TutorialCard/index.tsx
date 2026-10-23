@@ -156,10 +156,7 @@ function TutorialCard({
       ? normalizeExternalUrl(tutorial.contentUrl)
       : "";
   const isKiibee = isKiibeeUrl(webUrl);
-  const isDirectWebRedirect =
-    isWebContent &&
-    Boolean(webUrl) &&
-    (isKiibee || tutorial.isFree || hasAccess);
+  const isDirectWebRedirect = isWebContent && Boolean(webUrl) && isKiibee;
   const cardHref = isDirectWebRedirect ? webUrl : singleTutorialHref;
 
   const effectiveCollectionId = collectionId || tutorial.collectionId;
@@ -168,7 +165,9 @@ function TutorialCard({
   const resolveButtonHref = useCallback(
     (href?: string) => {
       if (!href) return singleTutorialHref;
-      if (/^https?:\/\//i.test(href)) return href;
+      if (/^https?:\/\//i.test(href)) {
+        return isWebContent && !isKiibee ? singleTutorialHref : href;
+      }
       if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
       if (effectiveCreatorSlug || effectiveCollectionSlug) {
         const hashIndex = href.indexOf("#");
@@ -177,7 +176,13 @@ function TutorialCard({
       }
       return href;
     },
-    [singleTutorialHref, effectiveCreatorSlug, effectiveCollectionSlug],
+    [
+      singleTutorialHref,
+      effectiveCreatorSlug,
+      effectiveCollectionSlug,
+      isWebContent,
+      isKiibee,
+    ],
   );
 
   const buttons = useMemo(() => {
@@ -186,7 +191,7 @@ function TutorialCard({
         {
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
-          href: isWebContent && webUrl ? webUrl : singleTutorialHref,
+          href: isDirectWebRedirect ? webUrl : singleTutorialHref,
         },
       ];
     }
@@ -275,10 +280,7 @@ function TutorialCard({
 
     const targetHref = resolveButtonHref(button.href);
 
-    if (
-      isDirectWebRedirect &&
-      (targetHref === webUrl || /^https?:\/\//i.test(targetHref))
-    ) {
+    if (isDirectWebRedirect && targetHref === webUrl) {
       window.location.assign(targetHref);
       return;
     }
