@@ -55,6 +55,18 @@ const baseSelect = {
     WHERE ci.media_file_id = media_files.id
     LIMIT 1
   )`,
+  collectionSlug: sql<string | null>`(
+    SELECT c.slug FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
+  collectionName: sql<string | null>`(
+    SELECT c.name FROM collection_items ci
+    INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
+    WHERE ci.media_file_id = media_files.id
+    LIMIT 1
+  )`,
   isPaidCollection: sql<boolean>`EXISTS (
     SELECT 1 FROM collection_items ci
     INNER JOIN collections c ON c.id = ci.collection_id AND c.is_deleted = false
@@ -68,9 +80,10 @@ const baseSelect = {
   createdAt: mediaFiles.createdAt,
   sortOrder: mediaFiles.sortOrder,
   rating: mediaFiles.rating,
+  contentUrl: mediaFiles.contentUrl,
 };
 
-export type SortField = 'all' | 'new' | 'popular' | 'free';
+export type SortField = 'all' | 'new' | 'popular' | 'free' | 'upload';
 
 export type GetAllContentsFilter = {
   search?: string;
@@ -192,12 +205,44 @@ export const getAllContentsService = async (
     }
 
     const whereClause = and(...baseWhere);
+    const manualCollectionSortOrder = sql`(
+      SELECT c.sort_order
+      FROM collection_items ci
+      INNER JOIN collections c ON c.id = ci.collection_id
+      WHERE ci.media_file_id = ${mediaFiles.id}
+        AND c.creator_id = ${mediaFiles.creatorId}
+        AND c.is_deleted = false
+      ORDER BY c.sort_order DESC, ci.sort_order ASC
+      LIMIT 1
+    )`;
+    const manualContentSortOrder = sql`(
+      SELECT ci.sort_order
+      FROM collection_items ci
+      INNER JOIN collections c ON c.id = ci.collection_id
+      WHERE ci.media_file_id = ${mediaFiles.id}
+        AND c.creator_id = ${mediaFiles.creatorId}
+        AND c.is_deleted = false
+      ORDER BY c.sort_order DESC, ci.sort_order ASC
+      LIMIT 1
+    )`;
+    const manualOrderBy =
+      creatorIds?.length === 1
+        ? [
+            sql`CASE WHEN ${users.manualContentOrder} THEN ${manualCollectionSortOrder} END DESC NULLS LAST`,
+            sql`CASE WHEN ${users.manualContentOrder} THEN ${manualContentSortOrder} END ASC NULLS LAST`,
+            sql`CASE WHEN ${users.manualContentOrder} THEN ${mediaFiles.createdAt} END DESC NULLS LAST`,
+          ]
+        : [];
 
     let orderBy;
 
     switch (sort) {
       case SORT_DIRECTIONS.NEW:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.POPULAR:
@@ -224,12 +269,29 @@ export const getAllContentsService = async (
         break;
 
       case SORT_DIRECTIONS.FREE:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
+        break;
+
+      case 'upload':
+        orderBy = [
+          ...manualOrderBy,
+          desc(mediaFiles.createdAt),
+          desc(mediaFiles.id),
+        ];
         break;
 
       case SORT_DIRECTIONS.ALL:
       default:
-        orderBy = [desc(mediaFiles.publishedAt), desc(mediaFiles.id)];
+        orderBy = [
+          ...manualOrderBy,
+          desc(mediaFiles.publishedAt),
+          sql`${mediaFiles.publishedYear} DESC NULLS LAST`,
+          desc(mediaFiles.id),
+        ];
         break;
     }
 

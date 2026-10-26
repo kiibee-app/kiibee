@@ -24,6 +24,8 @@ type Props = {
   embedded?: boolean;
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
+  creatorSlug?: string | null;
+  collectionSlug?: string | null;
   collectionId?: string | null;
   isPaidCollection?: boolean;
 };
@@ -34,6 +36,8 @@ export default function CollectionContent({
   embedded = false,
   selectedVideoId = null,
   onSelectVideo,
+  creatorSlug = null,
+  collectionSlug = null,
   collectionId = null,
   isPaidCollection = false,
 }: Props) {
@@ -84,6 +88,8 @@ export default function CollectionContent({
             maxWidth={maxWidth || "100%"}
             selectedVideoId={selectedVideoId}
             onSelectVideo={onSelectVideo}
+            creatorSlug={creatorSlug}
+            collectionSlug={collectionSlug}
             collectionId={collectionId}
             isPaidCollection={isPaidCollection}
           />

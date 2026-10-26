@@ -132,9 +132,10 @@ export const Field = styled.div``;
 
 export const ErrorBox = styled.div`
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
-  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
-  color: ${({ theme }) => theme.colors.secondary.main};
+  border: 1px solid ${({ theme }) => theme.colors.primary.RED};
+  background: ${({ theme }) =>
+    `color-mix(in srgb, ${theme.colors.primary.RED} 8%, ${theme.colors.neutral.WHITE})`};
+  color: ${({ theme }) => theme.colors.primary.RED};
   padding: 12px 14px;
   font-size: 13px;
   display: flex;

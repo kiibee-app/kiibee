@@ -44,10 +44,12 @@ function CollectionPreviewItem({
   collection,
   variant,
   href,
+  creatorSlug,
 }: {
   collection: CollectionData;
   variant: ProfileLayoutVariant;
   href: string;
+  creatorSlug?: string;
 }) {
   const [pageStart, setPageStart] = useState(0);
   const totalItems = collection.cards.length;
@@ -113,7 +115,15 @@ function CollectionPreviewItem({
       </SectionHeader>
       <FourColumnGrid>
         {displayedCards.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+          <TutorialCard
+            key={tutorial.id}
+            tutorial={tutorial}
+            creatorSlug={creatorSlug || tutorial.creatorSlug}
+            collectionId={collection.id}
+            collectionSlug={
+              tutorial.collectionSlug || slugifyContentTitle(collection.name)
+            }
+          />
         ))}
       </FourColumnGrid>
     </CollectionSection>
@@ -168,6 +178,7 @@ function PrivateCollectionPreview({
           key={collection.id}
           collection={collection}
           variant={variant}
+          creatorSlug={creatorSlug}
           href={pathPublicCollection(
             creatorSlug ? slugifyContentTitle(collection.name) : collection.id,
             null,
@@ -234,6 +245,7 @@ function PublicCollectionPreview({
           key={collection.id}
           collection={collection}
           variant={variant}
+          creatorSlug={publicCreatorSlug}
           href={pathPublicCollection(
             publicCreatorSlug
               ? slugifyContentTitle(collection.name)

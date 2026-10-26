@@ -3,7 +3,7 @@ import { db } from 'src/database/db';
 import { collectionItems, contentTypes, mediaFiles } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
-import { and, eq, desc } from 'drizzle-orm';
+import { and, eq, desc, asc } from 'drizzle-orm';
 
 export const getContentByCollectionIdService = async (collectionId: string) => {
   try {
@@ -25,6 +25,8 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
         hasPassword: mediaFiles.passwordHash,
 
         contentTypeName: contentTypes.name,
+        contentUrl: mediaFiles.contentUrl,
+        sortOrder: collectionItems.sortOrder,
       })
       .from(mediaFiles)
       .innerJoin(
@@ -38,7 +40,7 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
           eq(mediaFiles.isDeleted, false),
         ),
       )
-      .orderBy(desc(mediaFiles.createdAt));
+      .orderBy(asc(collectionItems.sortOrder), desc(mediaFiles.createdAt));
 
     const responseData = contentItems.map((item) => ({
       id: item.id,
@@ -46,6 +48,7 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
       slug: item.slug,
       description: item.description,
       contentType: item.contentTypeName || 'Unknown',
+      contentUrl: item.contentUrl,
       accessType: item.accessType,
       buyPrice: item.buyPrice,
       rentPrice: item.rentPrice,
@@ -53,6 +56,7 @@ export const getContentByCollectionIdService = async (collectionId: string) => {
       visibility:
         item.visibility.charAt(0).toUpperCase() + item.visibility.slice(1),
       createdAt: item.createdAt,
+      sortOrder: item.sortOrder,
     }));
 
     return success(responseData, 'Content items retrieved successfully');

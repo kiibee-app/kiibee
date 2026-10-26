@@ -104,15 +104,10 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       : PATHS.DASHBOARD_CREATOR;
 
   const handleBack = () => {
-    if (isPublicView) {
-      router.push(PATHS.CREATORS);
-      return;
-    }
-
     if (isBrowser && window.history.length > 1) {
       router.back();
     } else {
-      router.push(PATHS.CREATORS);
+      router.push(isPublicView ? PATHS.CREATORS : PATHS.DASHBOARD_CREATOR);
     }
   };
 

@@ -4,6 +4,7 @@ export type ExploreCreator = {
   id: string;
   name: string;
   slug: string | null;
+  sequence?: number | null;
   profileImageUrl: string | null;
   coverImageUrl: string | null;
   mobileCoverImageUrl?: string | null;

@@ -95,9 +95,7 @@ export function resolveCollectionPricing(
     rentPrice?: number | string | null;
     rentDuration?: string | null;
   },
-  globalSetting:
-    | GlobalPaymentSettingInput
-    | undefined = getStoredGlobalPaymentSettings(),
+  globalSetting?: GlobalPaymentSettingInput,
 ) {
   const isGlobalPayment =
     globalSetting?.accessType === ADMISSION_REQUIREMENT_VALUES.payment ||
@@ -125,17 +123,23 @@ export function resolveCollectionPricing(
           ? ACCESS_TYPE_EMAIL_GATED
           : ACCESS_TYPE_FREE;
 
+  const isExplicitlyFree = accessType === ACCESS_TYPE_FREE;
+
   const rawRent =
     collection.rentPrice != null
       ? collection.rentPrice
-      : isGlobalPayment && globalSetting?.rentalAmount != null
+      : !isExplicitlyFree &&
+          isGlobalPayment &&
+          globalSetting?.rentalAmount != null
         ? globalSetting.rentalAmount
         : null;
 
   const rawBuy =
     collection.buyPrice != null
       ? collection.buyPrice
-      : isGlobalPayment && globalSetting?.purchaseAmount != null
+      : !isExplicitlyFree &&
+          isGlobalPayment &&
+          globalSetting?.purchaseAmount != null
         ? globalSetting.purchaseAmount
         : null;
 
@@ -144,7 +148,9 @@ export function resolveCollectionPricing(
 
   const rentDuration =
     collection.rentDuration ??
-    (isGlobalPayment ? (globalSetting?.accessDuration ?? null) : null);
+    (!isExplicitlyFree && isGlobalPayment
+      ? (globalSetting?.accessDuration ?? null)
+      : null);
 
   return {
     accessType,
@@ -167,6 +173,29 @@ export function isPaidCollection(
   const hasBuy = pricing.buyPrice != null && Number(pricing.buyPrice) > 0;
   const hasRent = pricing.rentPrice != null && Number(pricing.rentPrice) > 0;
   return hasBuy || hasRent || pricing.accessType === ACCESS_TYPE_PAID;
+}
+
+export function isGatedCollection(
+  collection?: {
+    accessType?: string | null;
+    buyPrice?: number | string | null;
+    rentPrice?: number | string | null;
+    rentDuration?: string | null;
+    hasPassword?: boolean;
+  } | null,
+): boolean {
+  if (!collection) return false;
+  if (isPaidCollection(collection)) return true;
+  if (
+    isPasswordAccessType(collection.accessType) ||
+    Boolean(collection.hasPassword)
+  ) {
+    return true;
+  }
+  if (isEmailAccessType(collection.accessType)) {
+    return true;
+  }
+  return false;
 }
 
 export function isPasswordAccessType(accessType?: string | null): boolean {
@@ -279,14 +308,32 @@ export function resolveContentActionHref(
   contentId: string,
   actionLabel: string,
   item: Pick<FeedContentItem, "rentPrice" | "buyPrice"> &
-    Partial<Pick<FeedContentItem, "slug" | "creatorSlug" | "title">>,
+    Partial<
+      Pick<
+        FeedContentItem,
+        "slug" | "creatorSlug" | "title" | "collectionSlug" | "collectionName"
+      >
+    >,
   actionsCount: number,
-  options?: { inCollection?: boolean; labels?: PricingLabels },
+  options?: {
+    inCollection?: boolean;
+    labels?: PricingLabels;
+    creatorSlug?: string | null;
+    collectionSlug?: string | null;
+    collectionName?: string | null;
+  },
 ): string {
+  const effectiveCollection =
+    options?.collectionName ||
+    options?.collectionSlug ||
+    item.collectionName ||
+    item.collectionSlug;
+  const effectiveCreator = options?.creatorSlug || item.creatorSlug;
   const href = pathPublishedContent(
     item.slug || contentId,
-    item.creatorSlug,
+    effectiveCreator,
     item.title,
+    effectiveCollection,
   );
   if (actionsCount <= 1) return href;
 
@@ -357,7 +404,8 @@ export function getContentPricingActions(
 
   if (!rent && !buy) {
     if (item.accessType === ACCESS_TYPE_PAID) {
-      return [];
+      const { buyPrefix } = resolvePricingPrefixes(options?.labels);
+      return [{ label: buyPrefix, fullWidth: true }];
     }
     return [{ label: freeLabel, fullWidth: true }];
   }
@@ -381,9 +429,16 @@ function formatRentAccessSubtitle(
   rentDurationHours: string | number | null | undefined,
   t: (key: string, options?: Record<string, unknown>) => string,
 ): string {
-  const hours = Number(rentDurationHours);
+  const hours =
+    rentDurationHours != null && rentDurationHours !== ""
+      ? Number(rentDurationHours)
+      : 48;
   if (!Number.isFinite(hours) || hours <= 0) {
-    return t("singleContent.pricing.accessDefault");
+    return t("singleContent.pricing.accessHours", { count: 48 });
+  }
+
+  if (hours <= 48 || hours % 24 !== 0) {
+    return t("singleContent.pricing.accessHours", { count: hours });
   }
 
   const days = Math.round(hours / 24);
@@ -392,11 +447,7 @@ function formatRentAccessSubtitle(
     return t("singleContent.pricing.accessMonths", { count: months });
   }
 
-  if (days >= 1) {
-    return t("singleContent.pricing.accessDays", { count: days });
-  }
-
-  return t("singleContent.pricing.accessHours", { count: hours });
+  return t("singleContent.pricing.accessDays", { count: days });
 }
 
 export function getContentDetailPricingActions(
@@ -481,6 +532,10 @@ function extractPricingFromRecord(record: Record<string, unknown>) {
     rentPrice:
       (record[CONTENT_RESPONSE_KEYS.RENT_PRICE] as string | number | null) ??
       undefined,
+    slug: (record[CONTENT_RESPONSE_KEYS.SLUG] as string | null) ?? undefined,
+    creatorSlug: (record.creatorSlug as string | null) ?? undefined,
+    title: (record[CONTENT_RESPONSE_KEYS.TITLE] as string | null) ?? undefined,
+    collectionSlug: (record.collectionSlug as string | null) ?? undefined,
   };
 }
 
@@ -500,7 +555,12 @@ export function buildPricingButtonsForContent(
       {
         label: freeLabel,
         variant: VARIANT.SECONDARY,
-        href: pathPublishedContent(contentId),
+        href: pathPublishedContent(
+          pricingItem.slug || contentId,
+          pricingItem.creatorSlug,
+          pricingItem.title,
+          pricingItem.collectionSlug,
+        ),
       },
     ];
   }

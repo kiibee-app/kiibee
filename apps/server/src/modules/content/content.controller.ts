@@ -12,7 +12,11 @@ import {
 } from '@nestjs/common';
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreateContentDto, UpdateContentDto } from './content.dto';
+import {
+  CreateContentDto,
+  ReorderCollectionContentsDto,
+  UpdateContentDto,
+} from './content.dto';
 import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard, AdminGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
@@ -63,6 +67,20 @@ export class ContentController {
   async getContentByCollectionId(@Req() req: any) {
     const collectionId = req.params.id;
     return this.contentService.getContentByCollectionIdService(collectionId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put('collection/:id/order')
+  async reorderCollectionContents(
+    @Req() req: any,
+    @Param('id') collectionId: string,
+    @Body() body: ReorderCollectionContentsDto,
+  ) {
+    return this.contentService.reorderCollectionContents(
+      collectionId,
+      body.contentIds,
+      req.user.userId,
+    );
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
@@ -220,9 +238,15 @@ export class ContentController {
   async getSingleContent(
     @Req() req: any,
     @Query('creatorSlug') creatorSlug?: string,
+    @Query('collectionSlug') collectionSlug?: string,
   ) {
     const contentId = req.params.id;
     const userId = req.params.userId;
-    return this.contentService.getSingleContent(contentId, userId, creatorSlug);
+    return this.contentService.getSingleContent(
+      contentId,
+      userId,
+      creatorSlug,
+      collectionSlug,
+    );
   }
 }

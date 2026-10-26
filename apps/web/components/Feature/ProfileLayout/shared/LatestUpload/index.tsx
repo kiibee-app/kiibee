@@ -87,6 +87,8 @@ export type LatestUploadData = {
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
 };
 
@@ -139,6 +141,9 @@ export default function LatestUpload({
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
+      const effectiveCollectionSlug =
+        data.collectionSlug || relatedCollectionQuery.data?.collectionSlug;
+
       if (isOwner || hasAccess) {
         return [
           {
@@ -147,6 +152,7 @@ export default function LatestUpload({
               data.slug || data.contentId,
               data.creatorSlug,
               data.title,
+              effectiveCollectionSlug,
             ),
           },
         ];
@@ -178,6 +184,7 @@ export default function LatestUpload({
             data.slug || data.contentId!,
             data.creatorSlug,
             data.title,
+            effectiveCollectionSlug,
           ),
         }));
       }
@@ -185,7 +192,7 @@ export default function LatestUpload({
       if (isFreeContentItem(pricingItem)) {
         if (isPaidCol && effectiveCollectionId) {
           const href = pathPublicCollection(
-            effectiveCollectionId,
+            effectiveCollectionSlug || effectiveCollectionId,
             undefined,
             data.creatorSlug,
           );
@@ -205,6 +212,7 @@ export default function LatestUpload({
               data.slug || data.contentId,
               data.creatorSlug,
               data.title,
+              effectiveCollectionSlug,
             ),
           },
           {
@@ -213,6 +221,7 @@ export default function LatestUpload({
               data.slug || data.contentId,
               data.creatorSlug,
               data.title,
+              effectiveCollectionSlug,
             ),
           },
         ];
@@ -230,6 +239,7 @@ export default function LatestUpload({
               data.slug || data.contentId,
               data.creatorSlug,
               data.title,
+              effectiveCollectionSlug,
             ),
           },
         ];
@@ -271,6 +281,7 @@ export default function LatestUpload({
     isPaidCol,
     effectiveCollectionId,
     relatedCollectionQuery.data?.accessType,
+    relatedCollectionQuery.data?.collectionSlug,
   ]);
 
   const visibleActions = computedActions;

@@ -88,6 +88,7 @@ export default function GlobalSearch({
                     tutorial.slug,
                     tutorial.creatorSlug,
                     tutorial.title,
+                    tutorial.collectionSlug,
                   )}
                 >
                   <SearchEmptyText>{tutorial.title}</SearchEmptyText>

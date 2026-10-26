@@ -26,6 +26,9 @@ type PublicCollectionPayload = {
   collectionId: string;
   name: string;
   description?: string | null;
+  creatorId?: string | null;
+  creatorName?: string | null;
+  creatorSlug?: string | null;
   accessType?: string | null;
   buyPrice?: number | string | null;
   rentPrice?: number | string | null;
@@ -39,6 +42,7 @@ export type PublicCollectionResult = {
   description?: string | null;
   creatorId?: string;
   creatorName?: string;
+  creatorSlug?: string;
   heroImage?: string;
   heroImageFallback?: string;
   accessType?: string | null;
@@ -97,8 +101,11 @@ export function usePublicCollectionContent(
         collectionId: payload.collectionId,
         name: payload.name,
         description: payload.description,
-        creatorId: primaryItem?.creatorId,
-        creatorName: primaryItem?.creatorName ?? undefined,
+        creatorId: payload.creatorId || primaryItem?.creatorId,
+        creatorName:
+          payload.creatorName || primaryItem?.creatorName || undefined,
+        creatorSlug:
+          payload.creatorSlug || primaryItem?.creatorSlug || undefined,
         heroImage: heroImages[0],
         heroImageFallback: heroImages[1],
         accessType: payload.accessType,
@@ -109,7 +116,10 @@ export function usePublicCollectionContent(
         videos: items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
             inCollection: true,
+            creatorSlug: payload.creatorSlug || item.creatorSlug,
             collectionId: payload.collectionId,
+            collectionSlug: item.collectionSlug,
+            collectionName: payload.name,
             isPaidCollection: isPaid,
             collectionAccessType: payload.accessType,
             partOfCollectionLabel,

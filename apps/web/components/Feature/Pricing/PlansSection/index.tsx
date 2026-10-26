@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useSyncExternalStore } from "react";
+import { useLayoutEffect, useMemo, useSyncExternalStore } from "react";
 import { useTranslation } from "react-i18next";
 import PlanCard from "./PlanCard";
 import {
@@ -19,6 +19,7 @@ import {
   EVENT_HASHCHANGE,
   HASH_PLANS,
   PLANS_SECTION_ID,
+  SCROLL_TO_PLANS_KEY,
   SCROLL_TO_START_OPTIONS,
   STRING_TRUE,
   VARIANT,
@@ -97,23 +98,49 @@ export default function PricingPlansSection({
     });
   }, [apiPlans]);
 
-  useEffect(() => {
-    if (!isFocusedFromUpgrade) return;
-
+  // Layout effect: scroll before the first paint so the page never flashes at the top.
+  useLayoutEffect(() => {
+    // In-app upgrade sets a session flag; a hash in router.push gets duplicated/lost.
     const scrollToPlans = () => {
-      document
-        .getElementById(PLANS_SECTION_ID)
-        ?.scrollIntoView(SCROLL_TO_START_OPTIONS);
+      const flagged = window.sessionStorage.getItem(SCROLL_TO_PLANS_KEY) === "1";
+      if (!flagged && window.location.hash !== HASH_PLANS) return;
+      const el = document.getElementById(PLANS_SECTION_ID);
+      if (!el) return;
+      const offset = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+      if (Math.abs(el.getBoundingClientRect().top - offset) < 2) return;
+      el.scrollIntoView({ ...SCROLL_TO_START_OPTIONS, behavior: "instant" });
     };
 
+    scrollToPlans();
     const frame = window.requestAnimationFrame(scrollToPlans);
-    const timeout = window.setTimeout(scrollToPlans, 150);
+    const timeouts = [50, 100, 300, 600, 1000, 1500].map((ms) =>
+      window.setTimeout(scrollToPlans, ms),
+    );
+    timeouts.push(
+      window.setTimeout(
+        () => window.sessionStorage.removeItem(SCROLL_TO_PLANS_KEY),
+        1600,
+      ),
+    );
+
+    const cancel = () => timeouts.forEach(window.clearTimeout);
+    // User input ends the flag; effect cleanup must not (StrictMode re-runs it before other effects read it).
+    const stop = () => {
+      cancel();
+      window.sessionStorage.removeItem(SCROLL_TO_PLANS_KEY);
+    };
+    window.addEventListener("wheel", stop, { passive: true, once: true });
+    window.addEventListener("touchstart", stop, { passive: true, once: true });
+    window.addEventListener("keydown", stop, { once: true });
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.clearTimeout(timeout);
+      cancel();
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
     };
-  }, [isFocusedFromUpgrade]);
+  }, []);
 
   const title = (
     <SectionTitle $alignWide={alignWide}>{t(titleKey)}</SectionTitle>
@@ -138,7 +165,7 @@ export default function PricingPlansSection({
 
           const card = (
             <PlanCard
-              title={apiPlan?.name || t(`${baseKey}.title`)}
+              title={t(`${baseKey}.title`)}
               price={apiPlan ? `${apiPlan.price} kr/md` : t(`${baseKey}.price`)}
               descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
               features={

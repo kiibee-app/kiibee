@@ -36,7 +36,11 @@ import {
 } from "@/utils/contentPricingActions";
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
-import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
+import {
+  URL_PROTOCOL_REGEX,
+  isValidUrl,
+  normalizeExternalUrl,
+} from "@/utils/common";
 import { getCategoryLabel } from "@/utils/category";
 
 type Translate = TFunction;
@@ -69,6 +73,7 @@ export const CONTENT_RESPONSE_KEYS = {
   PUBLISHED_YEAR: "publishedYear",
   PRODUCTION_COMPANY: "production_company",
   MANUFACTURER_LINK: "manufacturerLink",
+  PHYSICAL_PRODUCT_LINK: "physicalProductLink",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -102,6 +107,7 @@ export const CONTENT_TRANSLATION_KEYS = {
     category: "singleContent.meta.category",
     productionCompany: "singleContent.meta.productionCompany",
     manufacturerLink: "singleContent.meta.manufacturerLink",
+    orderPhysicalEdition: "singleContent.meta.orderPhysicalEdition",
   },
 } as const;
 
@@ -133,8 +139,14 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PHYSICAL_PRODUCT_LINK]?: string | null;
+  physicalProductLink?: string | null;
+  physical_product_link?: string | null;
+  productLink?: string | null;
   creatorSlug?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
   [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
   [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
@@ -260,9 +272,13 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .filter(Boolean);
 
 const getTagNames = (content: ContentDetailItem) =>
-  (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
-    .map(toTrimmedString)
-    .filter(Boolean);
+  Array.from(
+    new Set(
+      (content[CONTENT_RESPONSE_KEYS.TAGS] ?? [])
+        .map(toTrimmedString)
+        .filter(Boolean),
+    ),
+  );
 
 export const getSingleContentProps = (
   content: ContentDetailItem,
@@ -326,7 +342,7 @@ export const getSingleContentProps = (
       : undefined;
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-    inCollection: options?.inCollection,
+    inCollection: false,
     labels: getPricingLabels(t),
   });
 
@@ -346,12 +362,18 @@ export const getSingleContentProps = (
       (content as Record<string, unknown>).publisher,
   );
   const publishedByValue = productionCompany || options?.creatorName;
-  const manufacturerLink = toTrimmedString(
+  const rawPhysicalLink = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.PHYSICAL_PRODUCT_LINK] ??
+      (content as Record<string, unknown>).physicalProductLink ??
+      (content as Record<string, unknown>).physical_product_link ??
+      (content as Record<string, unknown>).productLink,
+  );
+  const rawManufacturerLink = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK] ??
       (content as Record<string, unknown>).manufacturerLink ??
-      (content as Record<string, unknown>).physicalProductLink ??
-      (content as Record<string, unknown>).physical_product_link,
+      (content as Record<string, unknown>).productionLink,
   );
+  const resolvedPhysicalLink = rawPhysicalLink || rawManufacturerLink;
 
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
@@ -432,6 +454,9 @@ export const getSingleContentProps = (
             variant: action.variant,
           })),
         }),
+    physicalProductLink: resolvedPhysicalLink
+      ? normalizeExternalUrl(resolvedPhysicalLink)
+      : undefined,
     metaItems: [
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
         ? {
@@ -461,20 +486,6 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
             value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
-          }
-        : undefined,
-      isValidUrl(manufacturerLink)
-        ? {
-            label: t(CONTENT_TRANSLATION_KEYS.meta.manufacturerLink),
-            value: React.createElement(
-              "a",
-              {
-                href: manufacturerLink,
-                target: "_blank",
-                rel: "noopener noreferrer",
-              },
-              manufacturerLink,
-            ),
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

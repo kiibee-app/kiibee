@@ -364,6 +364,7 @@ export const DescriptionText = styled.p`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   word-break: break-word;
   overflow-wrap: break-word;
+  white-space: pre-line;
 `;
 
 export const TagRow = styled.div`
@@ -490,8 +491,8 @@ export const MetaSection = styled.div`
 
 export const MetaRow = styled.div`
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: baseline;
+  gap: 0.35rem;
   margin-bottom: 0.4rem;
 
   &:last-child {
@@ -500,7 +501,7 @@ export const MetaRow = styled.div`
 `;
 
 export const MetaKey = styled.span`
-  min-width: 100px;
+  white-space: nowrap;
 `;
 
 export const MetaLabelText = styled.span`
@@ -515,7 +516,6 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   word-break: break-word;
   overflow-wrap: break-word;
   min-width: 0;
-  flex: 1;
 
   a {
     color: ${({ theme }) => theme.colors.primary.BLUE};
@@ -524,6 +524,33 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
     &:hover {
       opacity: 0.8;
     }
+  }
+`;
+
+export const PhysicalProductLinkRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+`;
+
+export const PhysicalProductLinkAnchor = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium};
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.8;
   }
 `;
 

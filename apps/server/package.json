@@ -23,7 +23,8 @@
     "migrate": "drizzle-kit push",
     "db:push": "drizzle-kit push",
     "seed": "tsx src/database/seed/index.ts",
-    "seed:shows-only": "tsx src/database/seed/seedShowsOnly.ts"
+    "seed:shows-only": "tsx src/database/seed/seedShowsOnly.ts",
+    "sync:owners": "tsx scripts/syncUmbracoCreatorOwners.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1046.0",

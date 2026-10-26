@@ -37,6 +37,8 @@ export type TutorialVideo = {
   level: string;
   isFree?: boolean;
   collectionId?: string | null;
+  collectionSlug?: string | null;
+  collectionName?: string | null;
   isPaidCollection?: boolean;
   formatLabel: string;
   formatType?: FormatType;
@@ -44,6 +46,7 @@ export type TutorialVideo = {
   image: ImageSource;
   imageFallback?: string;
   videoUrl?: string;
+  contentUrl?: string | null;
   trailerUrl?: string | null;
   description?: string | null;
   descriptionSecondary?: string | null;

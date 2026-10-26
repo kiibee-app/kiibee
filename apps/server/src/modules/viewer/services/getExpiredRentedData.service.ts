@@ -77,9 +77,7 @@ export const getExpiredRentedData = async (userId: string) => {
         const isMediaActive =
           order.mediaFileId && activeMediaIds.has(order.mediaFileId);
         const isCollectionActive =
-          order.collectionId &&
-          !order.mediaFileId &&
-          activeCollectionIds.has(order.collectionId);
+          order.collectionId && activeCollectionIds.has(order.collectionId);
 
         if (isMediaActive || isCollectionActive) {
           return false;
@@ -92,10 +90,13 @@ export const getExpiredRentedData = async (userId: string) => {
       .map((order) => order.mediaFileId)
       .filter(Boolean) as string[];
 
-    const collectionIds = onlyExpiredRentalOrders
-      .filter((order) => !order.mediaFileId)
-      .map((order) => order.collectionId)
-      .filter(Boolean) as string[];
+    const collectionIds = Array.from(
+      new Set(
+        onlyExpiredRentalOrders
+          .map((order) => order.collectionId)
+          .filter(Boolean) as string[],
+      ),
+    );
 
     if (!mediaIds.length && !collectionIds.length) {
       return {

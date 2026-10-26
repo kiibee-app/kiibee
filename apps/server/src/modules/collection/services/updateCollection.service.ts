@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { collections } from 'src/database/schema';
+import { collections, users } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
@@ -47,8 +47,18 @@ export const updateCollection = async (
       coverImageUrl: dto.coverImageUrl,
       visibility: dto.visibility,
       accessType: dto.accessType,
-      buyPrice: dto.buyPrice != null ? String(dto.buyPrice) : null,
-      rentPrice: dto.rentPrice != null ? String(dto.rentPrice) : null,
+      buyPrice:
+        dto.buyPrice !== undefined
+          ? dto.buyPrice != null
+            ? String(dto.buyPrice)
+            : null
+          : undefined,
+      rentPrice:
+        dto.rentPrice !== undefined
+          ? dto.rentPrice != null
+            ? String(dto.rentPrice)
+            : null
+          : undefined,
       rentDuration: dto.rentDuration,
       description: dto.description,
       sortOrder: dto.sortOrder,
@@ -85,6 +95,13 @@ export const updateCollection = async (
       .set(updateData)
       .where(where)
       .returning();
+
+    if (dto.sortOrder !== undefined) {
+      await db
+        .update(users)
+        .set({ manualContentOrder: true })
+        .where(eq(users.id, creatorId));
+    }
 
     return success(updated, 'Collection updated successfully');
   } catch (error) {

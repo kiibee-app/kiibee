@@ -26,6 +26,7 @@ type PurchasedMediaResponse = {
   categoryName: string | null;
   purchasedAt: string | null;
   rentExpiresAt: string | null;
+  contentUrl?: string | null;
 };
 
 type PurchasedCollectionResponse = {
@@ -61,6 +62,7 @@ const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   title: item.title,
   author: item.creatorName || "",
   accessStatus: COLLECTION_ACCESS_STATUS.PURCHASED,
+  contentUrl: item.contentUrl ?? null,
   expiryText: item.purchasedAt
     ? t("viewerRented.purchasedOn", {
         date: new Date(item.purchasedAt).toLocaleDateString(),
@@ -97,9 +99,7 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       pdfs: (responseData.pdfs || []).map((item) => mapMediaItem(item, t)),
       epubs: (responseData.epubs || []).map((item) => mapMediaItem(item, t)),
       webs: (responseData.webs || []).map((item) => mapMediaItem(item, t)),
-      collections: (responseData.collections || [])
-        .map(mapCollectionItem)
-        .filter((item) => item.elementCount > 0),
+      collections: (responseData.collections || []).map(mapCollectionItem),
     };
   }, [query.data, t]);
 

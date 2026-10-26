@@ -24,14 +24,19 @@ import { hashAccessPasswords } from 'src/utils/accessPassword';
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 const pickDefined = (obj: Record<string, any>) =>
-  Object.fromEntries(
-    Object.entries(obj).filter(([, v]) => v !== undefined && v !== null),
-  );
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
 
 const slugifyTag = (value: string) =>
   value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .trim()
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'oe')
+    .replace(/å/g, 'a')
+    .replace(/['’‘`"“”]/g, '')
+    .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
     .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
     .replace(SLUG_EDGE_DASH_RE, '');
 
@@ -142,10 +147,28 @@ export const updateContentService = async (
         duration: dto.duration,
         production_company: dto.productionCompany,
         manufacturerLink: dto.manufacturerLink,
-        buyPrice: dto.buyPrice !== undefined ? String(dto.buyPrice) : undefined,
+        buyPrice:
+          dto.accessType && dto.accessType !== 'paid'
+            ? null
+            : dto.buyPrice !== undefined
+              ? dto.buyPrice != null
+                ? String(dto.buyPrice)
+                : null
+              : undefined,
         rentPrice:
-          dto.rentPrice !== undefined ? String(dto.rentPrice) : undefined,
-        rentDurationHours: dto.rentDurationHours,
+          dto.accessType && dto.accessType !== 'paid'
+            ? null
+            : dto.rentPrice !== undefined
+              ? dto.rentPrice != null
+                ? String(dto.rentPrice)
+                : null
+              : undefined,
+        rentDurationHours:
+          dto.accessType && dto.accessType !== 'paid'
+            ? null
+            : dto.rentDurationHours !== undefined
+              ? dto.rentDurationHours
+              : undefined,
         maxDownloadCount: dto.maximumDownloadCount,
         physicalProductLink: dto.physicalProductLink,
         isDownloadable: dto.isDownloadable,

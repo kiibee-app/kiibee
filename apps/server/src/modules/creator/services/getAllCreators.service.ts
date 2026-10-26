@@ -132,6 +132,8 @@ export const allCreatorsService = async ({
                 : asc(creatorDisplayNameSql);
 
     const orderCondition = [
+      asc(sql`CASE WHEN ${users.sequence} IS NOT NULL THEN 0 ELSE 1 END`),
+      asc(users.sequence),
       desc(hasImageSql),
       primarySort,
       desc(salesCountSql),
@@ -181,6 +183,7 @@ export const allCreatorsService = async ({
         id: users.id,
         name: creatorDisplayNameSql.as('name'),
         slug: creatorChannels.slug,
+        sequence: users.sequence,
         profileImageUrl: sql<string | null>`case
           when ${contentAppearance.userId} is not null
             then nullif(${contentAppearance.logoUrl}, '')
@@ -215,6 +218,7 @@ export const allCreatorsService = async ({
         users.lastName,
         users.avatarUrl,
         users.createdAt,
+        users.sequence,
         creatorChannels.name,
         creatorChannels.slug,
         creatorChannels.logoUrl,
@@ -255,6 +259,7 @@ export const allCreatorsService = async ({
       id: string;
       name: string;
       slug: string | null;
+      sequence?: number | null;
       profileImageUrl: string | null;
       coverImageUrl: string | null;
       mobileCoverImageUrl: string | null;
@@ -275,6 +280,7 @@ export const allCreatorsService = async ({
         id: creator.id,
         name: creator.name,
         slug: creator.slug,
+        sequence: creator.sequence ?? null,
         profileImageUrl: creator.profileImageUrl,
         coverImageUrl: creator.coverImageUrl,
         mobileCoverImageUrl: creator.mobileCoverImageUrl?.trim() || null,

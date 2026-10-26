@@ -75,6 +75,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     metaItems = [],
+    physicalProductLink,
     shareLabel = "Share",
     showShare = true,
     showBack = true,
@@ -211,7 +212,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     t,
-    user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
@@ -353,7 +353,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     router,
     t,
     user?.id,
-    user?.role,
   ]);
 
   const modifiedPrimaryAction = useMemo(
@@ -565,6 +564,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            physicalProductLink={physicalProductLink}
             accessGate={accessGate}
           />
         </ContentLayout>

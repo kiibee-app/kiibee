@@ -127,6 +127,50 @@ export function normalizeEmail(value: unknown): string | null {
   return email?.includes('@') ? email : null;
 }
 
+export const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
+
+function slugifyProfileKey(value: string): string {
+  return (
+    value
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'a')
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'umbraco-profile'
+  );
+}
+
+export function uniqueSyntheticEmail(profileKey: string): string {
+  const slug = slugifyProfileKey(profileKey).slice(0, 48);
+  const suffix = createHash('sha256')
+    .update(profileKey)
+    .digest('hex')
+    .slice(0, 8);
+
+  return `${slug}-${suffix}@${UMBRACO_PROFILE_EMAIL_DOMAIN}`;
+}
+
+export function plusAddressEmail(
+  baseEmail: string,
+  profileKey: string,
+): string | null {
+  const atIndex = baseEmail.lastIndexOf('@');
+  if (atIndex <= 0 || atIndex === baseEmail.length - 1) {
+    return null;
+  }
+
+  const localPart = baseEmail.slice(0, atIndex);
+  const domain = baseEmail.slice(atIndex + 1);
+  const slug = slugifyProfileKey(profileKey).slice(0, 40);
+
+  return `${localPart}+${slug}@${domain}`;
+}
 /** Notification inboxes first — supportEmail is often shared (e.g. info@kiibee.dk). */
 export function collectProfileEmailCandidates(
   supportEmail: unknown,
@@ -489,6 +533,11 @@ export function slugifyUmbracoValue(value: string): string {
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'a')
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'content'

@@ -42,6 +42,8 @@ import {
   MetaRow,
   MetaSection,
   MetaValueText,
+  PhysicalProductLinkAnchor,
+  PhysicalProductLinkRow,
   PricingCtaContent,
   PricingCtaRow,
   PricingCtaSubtext,
@@ -51,8 +53,10 @@ import {
   TagRow,
   TopBar,
 } from "./styles";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 import { resolveImageUrl } from "@/utils/media";
+import LinkIcon from "@/assets/icons/LinkIcon";
+import { normalizeExternalUrl } from "@/utils/common";
 import SingleContentHeroView from "./SingleContentHeroView";
 
 export function SingleContentTopBar({
@@ -63,6 +67,8 @@ export function SingleContentTopBar({
   onShare,
   embedded = false,
 }: SingleContentTopBarProps & { embedded?: boolean }) {
+  const { t } = useTranslation();
+
   return (
     <TopBar $embedded={embedded}>
       {showBack ? (
@@ -147,10 +153,12 @@ export function SingleContentBody({
   primaryActions,
   expiry,
   metaItems,
+  physicalProductLink,
   accessGate,
 }: SingleContentBodyProps) {
+  const { t } = useTranslation();
   const safeDescriptions = descriptions ?? [];
-  const safeTags = tags ?? [];
+  const safeTags = Array.from(new Set(tags ?? []));
   const safeMeta = metaItems ?? [];
   const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
 
@@ -164,8 +172,10 @@ export function SingleContentBody({
 
         {safeDescriptions.length ? (
           <BodyTextWrap>
-            {safeDescriptions.map((description) => (
-              <DescriptionText key={description}>{description}</DescriptionText>
+            {safeDescriptions.map((description, index) => (
+              <DescriptionText key={`${index}-${description}`}>
+                {description}
+              </DescriptionText>
             ))}
           </BodyTextWrap>
         ) : null}
@@ -173,8 +183,8 @@ export function SingleContentBody({
 
       {safeTags.length ? (
         <TagRow>
-          {safeTags.map((tag) => (
-            <InfoTag key={tag}>
+          {safeTags.map((tag, index) => (
+            <InfoTag key={`${index}-${tag}`}>
               <InfoTagText>{tag}</InfoTagText>
             </InfoTag>
           ))}
@@ -243,7 +253,7 @@ export function SingleContentBody({
         <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>
       ) : null}
 
-      {safeMeta.length ? (
+      {safeMeta.length || physicalProductLink ? (
         <MetaSection>
           {safeMeta.map((item) => (
             <MetaRow key={item.label}>
@@ -253,6 +263,18 @@ export function SingleContentBody({
               <MetaValueText>{item.value}</MetaValueText>
             </MetaRow>
           ))}
+          {physicalProductLink ? (
+            <PhysicalProductLinkRow>
+              <PhysicalProductLinkAnchor
+                href={normalizeExternalUrl(physicalProductLink)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkIcon width={18} height={18} />
+                <span>{t("singleContent.meta.orderPhysicalEdition")}</span>
+              </PhysicalProductLinkAnchor>
+            </PhysicalProductLinkRow>
+          ) : null}
         </MetaSection>
       ) : null}
     </ContentShell>

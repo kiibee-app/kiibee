@@ -168,7 +168,8 @@ export default function CollectionTable(props: CollectionTableProps) {
     <Table<TableRow>
       headers={columns.map((c) => c.label)}
       data={filteredData}
-      rowsPerPage={10}
+      rowsPerPage={props.onReorder ? Math.max(filteredData.length, 1) : 10}
+      hidePagination={Boolean(props.onReorder)}
       onRowClick={handleRowClick}
       headerToKey={(header) => {
         const col = columns.find((c) => c.label === header);
@@ -182,6 +183,12 @@ export default function CollectionTable(props: CollectionTableProps) {
       isHeaderSortable={() => false}
       onHeaderClick={() => {}}
       getHeaderSortDirection={() => null}
+      onRowReorder={
+        props.onReorder && !searchQuery
+          ? (sourceRow, targetRow) =>
+              props.onReorder?.(sourceRow.id, targetRow.id)
+          : undefined
+      }
       renderCell={({ header, row }) => {
         const col = columns.find((c) => c.label === header);
 

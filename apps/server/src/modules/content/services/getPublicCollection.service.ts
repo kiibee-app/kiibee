@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, gt, isNull, or, sql } from 'drizzle-orm';
+import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
@@ -42,6 +42,7 @@ const collectionItemSelect = {
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 const publishedPublicWhere = and(
@@ -88,6 +89,7 @@ export const getPublicCollectionService = async (
       .select({
         id: collections.id,
         name: collections.name,
+        slug: collections.slug,
         description: collections.description,
         isDeleted: collections.isDeleted,
         creatorId: collections.creatorId,
@@ -154,10 +156,26 @@ export const getPublicCollectionService = async (
         contentSettings,
         eq(contentSettings.userId, mediaFiles.creatorId),
       )
-      .where(and(...itemConditions));
+      .where(and(...itemConditions))
+      .orderBy(asc(collectionItems.sortOrder), desc(mediaFiles.createdAt));
+
+    const [collectionCreator] = await db
+      .select({
+        id: users.id,
+        name: users.fullName,
+        slug: creatorChannels.slug,
+      })
+      .from(users)
+      .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+      .where(eq(users.id, collection.creatorId))
+      .limit(1);
 
     const items = rows.map((item) => ({
       ...item,
+      collectionId: collection.id,
+      collectionSlug: collection.slug,
+      collectionName: collection.name,
+      creatorSlug: item.creatorSlug || collectionCreator?.slug || null,
       publishedAgo: formatTimeAgo(item.createdAt),
     }));
 
@@ -165,7 +183,11 @@ export const getPublicCollectionService = async (
       {
         collectionId: collection.id,
         name: collection.name,
+        slug: collection.slug,
         description: collection.description,
+        creatorId: collection.creatorId,
+        creatorName: collectionCreator?.name ?? null,
+        creatorSlug: collectionCreator?.slug ?? null,
         accessType: collection.accessType,
         buyPrice: collection.buyPrice,
         rentPrice: collection.rentPrice,

@@ -18,6 +18,7 @@ import {
   contentAppearance,
   creatorChannels,
   creatorInfo,
+  creatorOwners,
   creatorPlans,
   plans,
   users,
@@ -160,6 +161,11 @@ function slugify(value: string): string {
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'a')
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'umbraco-profile'
@@ -420,6 +426,167 @@ function buildUniqueChannelSlugs(
   return slugs;
 }
 
+const KNOWN_UMBRACO_OWNERS: Record<
+  string,
+  { firstName: string; lastName: string | null; fullName: string }
+> = {
+  'funktionel neuroterapeut 2026': {
+    firstName: 'Jakob',
+    lastName: 'Hansen',
+    fullName: 'Jakob Hansen',
+  },
+  'funktionel neuro terapeut': {
+    firstName: 'Jakob',
+    lastName: 'Hansen',
+    fullName: 'Jakob Hansen',
+  },
+  fysioteamet: {
+    firstName: 'Jakob',
+    lastName: 'Hansen',
+    fullName: 'Jakob Hansen',
+  },
+  'fbi.dk': {
+    firstName: 'Peter Alan',
+    lastName: 'Wheatley',
+    fullName: 'Peter Alan Wheatley',
+  },
+  chief1: {
+    firstName: 'Lars',
+    lastName: 'Pedersen',
+    fullName: 'Lars Pedersen',
+  },
+  'microphone entertainment': {
+    firstName: 'Mick',
+    lastName: 'Øgendahl',
+    fullName: 'Mick Øgendahl',
+  },
+  'kammas kantine': {
+    firstName: 'Jakob',
+    lastName: 'Kamma',
+    fullName: 'Jakob Kamma',
+  },
+  'red barnet': {
+    firstName: 'Sia',
+    lastName: null,
+    fullName: 'Sia',
+  },
+  'damkjær medier': {
+    firstName: 'Simone',
+    lastName: 'Damkjær',
+    fullName: 'Simone Damkjær',
+  },
+  'langes entertainment aps': {
+    firstName: 'Nicolaj',
+    lastName: 'Lange',
+    fullName: 'Nicolaj Lange',
+  },
+  'signeneslein.dk': {
+    firstName: 'Signe',
+    lastName: 'Neslein',
+    fullName: 'Signe Neslein',
+  },
+  networker: {
+    firstName: 'Henrik',
+    lastName: 'Havemand',
+    fullName: 'Henrik Havemand',
+  },
+  'tania ellis - the social business company': {
+    firstName: 'Tania',
+    lastName: 'Ellis',
+    fullName: 'Tania Ellis',
+  },
+  'you consulting': {
+    firstName: 'Jannie',
+    lastName: 'Hvidberg',
+    fullName: 'Jannie Hvidberg',
+  },
+  'skolero aps': {
+    firstName: 'Line',
+    lastName: null,
+    fullName: 'Line',
+  },
+  'uffe holm': {
+    firstName: 'Uffe',
+    lastName: 'Holm',
+    fullName: 'Uffe Holm',
+  },
+  'amin jensen entertainment': {
+    firstName: 'Amin',
+    lastName: 'Jensen',
+    fullName: 'Amin Jensen',
+  },
+  'comedy-tv': {
+    firstName: 'Dan',
+    lastName: 'Andersen',
+    fullName: 'Dan Andersen',
+  },
+  'britta koch - qigong': {
+    firstName: 'Britta',
+    lastName: 'Koch',
+    fullName: 'Britta Koch',
+  },
+  elstudio: {
+    firstName: 'Stine',
+    lastName: 'Joy',
+    fullName: 'Stine Joy',
+  },
+  raujensen: {
+    firstName: 'Christine',
+    lastName: 'Rau Jensen',
+    fullName: 'Christine Rau Jensen',
+  },
+  'songs of jacob elk': {
+    firstName: 'Jacob',
+    lastName: 'Elk',
+    fullName: 'Jacob Elk',
+  },
+  gymstream: {
+    firstName: 'Lars',
+    lastName: 'Borly',
+    fullName: 'Lars Borly',
+  },
+  'morten bonde development': {
+    firstName: 'Morten',
+    lastName: 'Bonde',
+    fullName: 'Morten Bonde',
+  },
+  nuvenue: {
+    firstName: 'Kaare',
+    lastName: 'Thomsen',
+    fullName: 'Kaare Thomsen',
+  },
+  gottleben: {
+    firstName: 'Kaare',
+    lastName: 'Thomsen',
+    fullName: 'Kaare Thomsen',
+  },
+  tjelesvenner: {
+    firstName: 'Marie',
+    lastName: 'Brixtofte',
+    fullName: 'Marie Brixtofte',
+  },
+  mariebrixtofte: {
+    firstName: 'Marie',
+    lastName: 'Brixtofte',
+    fullName: 'Marie Brixtofte',
+  },
+  'marner analytics': {
+    firstName: 'Marner',
+    lastName: 'Michael',
+    fullName: 'Marner Michael',
+  },
+  hundedamen: {
+    firstName: 'Christin',
+    lastName: null,
+    fullName: 'Christin',
+  },
+  'kitnoergaard.dk': {
+    firstName: 'Kit',
+    lastName: 'Nørgaard',
+    fullName: 'Kit Nørgaard',
+  },
+};
+
 function mapProfile(
   profile: LoadedProfile,
   channelSlug: string,
@@ -437,7 +604,21 @@ function mapProfile(
     parseDate(info.publishDate) ??
     resolveJoinedAtFallback(profile.profileKey) ??
     null;
-  const { firstName, lastName } = splitName(name);
+  const normalizedKey = profile.profileKey
+    .toLowerCase()
+    .replace(/_/g, ' ')
+    .trim();
+  const normalizedName = name.toLowerCase().trim();
+  const knownOwner =
+    KNOWN_UMBRACO_OWNERS[normalizedKey] ?? KNOWN_UMBRACO_OWNERS[normalizedName];
+
+  const { firstName, lastName, fullName } = knownOwner
+    ? knownOwner
+    : {
+        ...splitName(name),
+        fullName: name,
+      };
+
   // Prefer real media src when present — Umbraco often keeps the file even
   // when useCoverImage / useLogoImage is "0". Channel cover and mobile cover
   // are separate assets (wide banner vs square card image).
@@ -467,7 +648,7 @@ function mapProfile(
     email,
     firstName,
     lastName,
-    fullName: name,
+    fullName,
     channelName,
     channelSlug,
     logoUrl,
@@ -675,6 +856,30 @@ export const seedUmbracoProfiles = async () => {
             coverImageUrl: mapped.coverImageUrl,
             logoUrl: mapped.logoUrl,
             isPublished: true,
+            updatedAt: now,
+          },
+        });
+
+      await tx
+        .insert(creatorOwners)
+        .values({
+          id: seedUuid('creator-owner', profile.profileKey),
+          creatorId: mapped.userId,
+          name: mapped.fullName,
+          firstName: mapped.firstName,
+          lastName: mapped.lastName,
+          email: mapped.supportEmail ?? mapped.email,
+          phone: null,
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoUpdate({
+          target: creatorOwners.creatorId,
+          set: {
+            name: mapped.fullName,
+            firstName: mapped.firstName,
+            lastName: mapped.lastName,
+            email: mapped.supportEmail ?? mapped.email,
             updatedAt: now,
           },
         });

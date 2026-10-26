@@ -60,7 +60,7 @@ export const UploadCard = styled.div`
 
   ${media.mobileLg} {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 12px;
   }
 `;

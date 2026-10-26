@@ -7,12 +7,29 @@ import {
   SLUG_NON_ALPHANUMERIC_RE,
 } from 'src/utils/constant';
 
-export const contentSlugGenerator = async (title: string) => {
-  const baseSlug = title
+export const contentTitleUrlSlug = (title: string) => {
+  if (!title) return '';
+  return String(title)
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
-    .trim()
-    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
-    .replace(SLUG_EDGE_DASH_RE, '');
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'oe')
+    .replace(/å/g, 'a')
+    .replace(/['’‘`"“”]/g, '')
+    .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
+export const contentSlugGenerator = async (title: string) => {
+  const baseSlug =
+    contentTitleUrlSlug(title) ||
+    title
+      .toLowerCase()
+      .trim()
+      .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+      .replace(SLUG_EDGE_DASH_RE, '');
 
   let slug = baseSlug;
   let counter = 1;
@@ -33,16 +50,34 @@ export const contentSlugGenerator = async (title: string) => {
   return slug;
 };
 
-export const contentTitleUrlSlug = (title: string) =>
-  title
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/æ/g, 'ae')
-    .replace(/ø/g, 'oe')
-    .replace(/å/g, 'a')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+export const cleanCollectionSlug = (
+  collectionNameOrSlug?: string | null,
+  creatorSlug?: string | null,
+): string => {
+  if (!collectionNameOrSlug) {
+    return 'shows';
+  }
+
+  let raw = collectionNameOrSlug.trim();
+
+  if (creatorSlug) {
+    const cleanCreator = contentTitleUrlSlug(creatorSlug);
+    const slugifiedRaw = contentTitleUrlSlug(raw);
+    if (slugifiedRaw.startsWith(`${cleanCreator}-`)) {
+      raw = slugifiedRaw.slice(cleanCreator.length + 1);
+    }
+  }
+
+  raw = raw
+    .replace(
+      /-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,
+      '',
+    )
+    .replace(/-[0-9a-f]{8,}$/i, '');
+
+  const slug = contentTitleUrlSlug(raw);
+  return slug || 'shows';
+};
 
 export const checkDuplicateContentTitle = async (
   creatorId: string,

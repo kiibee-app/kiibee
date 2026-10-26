@@ -8,8 +8,16 @@ import {
   IsString,
   ValidateIf,
   IsArray,
+  ArrayNotEmpty,
   IsUrl,
 } from 'class-validator';
+
+export class ReorderCollectionContentsDto {
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  contentIds!: string[];
+}
 
 export class CreateContentDto {
   @IsString()
