@@ -26,7 +26,14 @@ export const HomeStatsGrid = styled.div<{ $columns?: number }>`
   gap: ${({ theme }) => theme.spacing(3)};
   width: 100%;
 
-  @media (max-width: ${({ theme }) => theme.media.desktop}) {
+  @media (max-width: ${({ theme }) => theme.media.desktopMd}) {
+    grid-template-columns: repeat(
+      ${({ $columns }) => ($columns === 5 ? 3 : 2)},
+      minmax(0, 1fr)
+    );
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
