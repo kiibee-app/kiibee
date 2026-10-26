@@ -6,6 +6,7 @@ import {
   TwitterIcon,
   InstagramIcon,
   YouTubeIcon,
+  LinkedInIcon,
   LinkIcon,
 } from "@/assets/icons";
 import { ShareIcon } from "@/assets/icons/shareIcon";
@@ -31,7 +32,7 @@ import {
 import { MODAL_PADDINGS } from "@/lib/theme/tokens";
 import {
   getDisplayUrl,
-  isCreatorWebsiteLink,
+  parseCreatorLinks,
   matchSocialPlatform,
   type SocialIconEntry,
 } from "@/utils/creatorProfile";
@@ -44,9 +45,10 @@ const HTTPS_PREFIX = "https://";
 
 const SOCIAL_ENTRIES: SocialIconEntry[] = [
   { domains: ["youtube.com", "youtu.be"], Icon: YouTubeIcon },
-  { domains: ["facebook.com"], Icon: FacebookIcon },
+  { domains: ["facebook.com", "fb.com"], Icon: FacebookIcon },
   { domains: ["twitter.com", "x.com"], Icon: TwitterIcon },
   { domains: ["instagram.com"], Icon: InstagramIcon },
+  { domains: ["linkedin.com"], Icon: LinkedInIcon },
 ];
 
 function toAbsoluteUrl(url: string): string {
@@ -76,12 +78,10 @@ export default function CreatorInfoModal({
   const body = about?.description ?? "";
   const joinedDate = about?.joinedDate ?? "";
   const uploadsCount = about?.uploadCount ?? 0;
-  const links =
-    about?.websiteLink && isCreatorWebsiteLink(about.websiteLink)
-      ? [about.websiteLink]
-      : [];
-  const contactEmail = about?.contactEmail ?? "";
-  const showLinksSection = links.length > 0 || Boolean(contactEmail);
+  const links = (about as { links?: string[] } | null)?.links?.length
+    ? ((about as { links?: string[] }).links ?? [])
+    : parseCreatorLinks(about?.websiteLink);
+  const showLinksSection = links.length > 0;
 
   return (
     <GenericModal
@@ -144,12 +144,6 @@ export default function CreatorInfoModal({
                   <MonoText $use="Body_Medium">{getDisplayUrl(url)}</MonoText>
                 </LinkItem>
               ))}
-              {contactEmail ? (
-                <LinkItem href={`mailto:${contactEmail}`}>
-                  <LinkIcon {...ICON_SIZE} color={ICON_COLOR} />
-                  <MonoText $use="Body_Medium">{contactEmail}</MonoText>
-                </LinkItem>
-              ) : null}
             </LinksList>
           </Section>
         )}
