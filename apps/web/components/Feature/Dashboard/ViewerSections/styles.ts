@@ -423,6 +423,8 @@ export const MediaGrid = styled.div`
   gap: 16px;
   align-items: stretch;
   justify-content: flex-start;
+  width: 100%;
+  max-width: ${GENERIC_CARD_LAYOUT.CONTENT_WIDTH};
 
   && > * {
     height: 100%;
@@ -436,6 +438,14 @@ export const MediaGrid = styled.div`
       width: calc((100% - 2 * 16px) / 3);
       flex: 0 0 calc((100% - 2 * 16px) / 3);
       max-width: calc((100% - 2 * 16px) / 3);
+    }
+  }
+
+  ${media.desktopSm} {
+    && > * {
+      width: calc((100% - 16px) / 2);
+      flex: 0 0 calc((100% - 16px) / 2);
+      max-width: calc((100% - 16px) / 2);
     }
   }
 
