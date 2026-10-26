@@ -1,0 +1,15 @@
+{
+  "requestedName": "Go Video",
+  "liveName": "Go Video",
+  "userId": 29389,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Onlinekursus i mobilvideo",
+      "id": 29447,
+      "status": "ok"
+    }
+  ]
+}

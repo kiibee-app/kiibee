@@ -1,0 +1,84 @@
+{
+  "exportedAt": "2026-10-26T11:37:07.169Z",
+  "collectionName": "Error 404",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/20295",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 20295,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 20295,
+    "key": "0128ebdd-1781-44ed-91f9-1d2ef26fbc75",
+    "udi": "umb://document/0128ebdd178144ed91f91d2ef26fbc75",
+    "name": "Error 404",
+    "contentTypeAlias": "errorPage",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/settings/error-404/"],
+    "fields": {
+      "headline": "Indholdet blev ikke fundet",
+      "text": "<p>Hvis dit køb ikke visses her skal du trykke på opdater side - dit køb er også sendt til dig på e-mail.</p>\n<p>Hvis købet stadig ikke vises, så kan det være at det er udløbet .. desværre. </p>\n<p> </p>\n<p>Har du spørgsmål kan du kontakte os på info@kiibee.dk </p>"
+    },
+    "fieldDetails": {
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Indholdet blev ikke fundet"
+      },
+      "text": {
+        "alias": "text",
+        "label": "Text",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "rte",
+        "value": "<p>Hvis dit køb ikke visses her skal du trykke på opdater side - dit køb er også sendt til dig på e-mail.</p>\n<p>Hvis købet stadig ikke vises, så kan det være at det er udløbet .. desværre. </p>\n<p> </p>\n<p>Har du spørgsmål kan du kontakte os på info@kiibee.dk </p>"
+      }
+    },
+    "fieldOrder": ["headline", "text"]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 2
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

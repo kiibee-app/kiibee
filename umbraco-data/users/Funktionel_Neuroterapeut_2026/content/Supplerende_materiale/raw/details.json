@@ -1,6 +1,6 @@
 {
-  "127764": {
-    "publishDate": "2026-08-16 09:26:30",
+  "128118": {
+    "publishDate": "2026-09-08 15:06:22",
     "releaseDate": null,
     "removeDate": null,
     "template": "media",
@@ -30,7 +30,7 @@
       "metaData": {}
     },
     "urls": [
-      "/funktionel-neuroterapeut-2026/supplerende-materiale/nervebaner-i-medulla-spinalis-oversigt/"
+      "/funktionel-neuroterapeut-2026/supplerende-materiale/eksamensinfo/"
     ],
     "allowPreview": true,
     "allowedActions": [
@@ -55,7 +55,7 @@
     ],
     "isBlueprint": false,
     "isChildOfListView": true,
-    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/77159a25287e4fda9e685ae7b1d7ad03",
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/059fcd81c7c34d34a4e644ff7076a6b1",
     "contentTypeName": "Media",
     "isContainer": false,
     "notifications": [],
@@ -102,7 +102,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503249,
+            "id": 2518090,
             "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
             "value": ["75"],
             "alias": "type",
@@ -120,9 +120,9 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503251,
+            "id": 2518092,
             "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
-            "value": "/media/5193/nervebaner-i-medulla-spinalis.pdf",
+            "value": "/media/5203/eksamensinfo.pdf",
             "alias": "rawFile",
             "editor": "Umbraco.UploadField",
             "isSensitive": false
@@ -138,7 +138,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503255,
+            "id": 2518096,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "videoID",
@@ -156,7 +156,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503252,
+            "id": 2518093,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "videoStatus",
@@ -174,7 +174,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503261,
+            "id": 2518102,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "videoSize",
@@ -192,7 +192,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503254,
+            "id": 2518095,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "videoThumbnailURL",
@@ -210,7 +210,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503250,
+            "id": 2518091,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "videoDownloadURL",
@@ -228,7 +228,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503257,
+            "id": 2518098,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "trailer",
@@ -246,7 +246,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503259,
+            "id": 2518100,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "webContentURL",
@@ -264,7 +264,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503256,
+            "id": 2518097,
             "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
             "value": "0",
             "alias": "openWebContentInNewWindows",
@@ -282,7 +282,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503258,
+            "id": 2518099,
             "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
             "value": "0",
             "alias": "openWebContentFromList",
@@ -300,7 +300,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503253,
+            "id": 2518094,
             "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
             "value": "0",
             "alias": "hidden",
@@ -318,9 +318,9 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503260,
+            "id": 2518101,
             "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
-            "value": "0",
+            "value": "2",
             "alias": "orderID",
             "editor": "Umbraco.Integer",
             "isSensitive": false
@@ -344,9 +344,9 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503269,
+            "id": 2518110,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
-            "value": "Nervebaner i Medulla Spinalis - Oversigt",
+            "value": "EksamensInfo",
             "alias": "title",
             "editor": "Umbraco.Textbox",
             "isSensitive": false
@@ -362,7 +362,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503266,
+            "id": 2518107,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
             "value": ".",
             "alias": "description",
@@ -380,7 +380,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503263,
+            "id": 2518104,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
             "value": "",
             "alias": "expandedDescription",
@@ -398,7 +398,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503265,
+            "id": 2518106,
             "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
             "value": "0",
             "alias": "year",
@@ -416,7 +416,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503271,
+            "id": 2518112,
             "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
             "value": "0",
             "alias": "length",
@@ -434,7 +434,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503270,
+            "id": 2518111,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "badge",
@@ -452,7 +452,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503264,
+            "id": 2518105,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "production",
@@ -470,7 +470,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503267,
+            "id": 2518108,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "productionLink",
@@ -491,7 +491,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503272,
+            "id": 2518113,
             "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
             "value": "",
             "alias": "tags",
@@ -527,9 +527,9 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503268,
+            "id": 2518109,
             "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
-            "value": "/media/5194/rygmarven.png",
+            "value": "/media/5206/flueben-afkrydsning.jpg",
             "alias": "thumbnail",
             "editor": "Umbraco.ImageCropper",
             "isSensitive": false
@@ -545,7 +545,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503262,
+            "id": 2518103,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "productLink",
@@ -591,7 +591,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503244,
+            "id": 2518085,
             "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
             "value": ["57"],
             "alias": "access",
@@ -613,7 +613,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503245,
+            "id": 2518086,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
             "value": "",
             "alias": "rentalPrice",
@@ -635,7 +635,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503243,
+            "id": 2518084,
             "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
             "value": "",
             "alias": "purchasePrice",
@@ -653,7 +653,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503246,
+            "id": 2518087,
             "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
             "value": "",
             "alias": "code",
@@ -671,7 +671,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503273,
+            "id": 2518114,
             "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
             "value": "0",
             "alias": "hidePlay",
@@ -689,7 +689,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503274,
+            "id": 2518115,
             "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
             "value": "0",
             "alias": "hideDownload",
@@ -715,7 +715,7 @@
               "pattern": null
             },
             "readonly": false,
-            "id": 2503275,
+            "id": 2518116,
             "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
             "value": "",
             "alias": "siteMapOption",
@@ -741,7 +741,7 @@
               "pattern": "^.{0,64}$"
             },
             "readonly": false,
-            "id": 2503248,
+            "id": 2518089,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "metaTitle",
@@ -759,7 +759,7 @@
               "pattern": "^.{0,160}$"
             },
             "readonly": false,
-            "id": 2503247,
+            "id": 2518088,
             "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
             "value": "",
             "alias": "metaDescription",
@@ -805,7 +805,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503249,
+        "id": 2518090,
         "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
         "value": ["75"],
         "alias": "type",
@@ -823,9 +823,9 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503251,
+        "id": 2518092,
         "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
-        "value": "/media/5193/nervebaner-i-medulla-spinalis.pdf",
+        "value": "/media/5203/eksamensinfo.pdf",
         "alias": "rawFile",
         "editor": "Umbraco.UploadField",
         "isSensitive": false
@@ -841,7 +841,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503255,
+        "id": 2518096,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "videoID",
@@ -859,7 +859,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503252,
+        "id": 2518093,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "videoStatus",
@@ -877,7 +877,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503261,
+        "id": 2518102,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "videoSize",
@@ -895,7 +895,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503254,
+        "id": 2518095,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "videoThumbnailURL",
@@ -913,7 +913,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503250,
+        "id": 2518091,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "videoDownloadURL",
@@ -931,7 +931,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503257,
+        "id": 2518098,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "trailer",
@@ -949,7 +949,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503259,
+        "id": 2518100,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "webContentURL",
@@ -967,7 +967,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503256,
+        "id": 2518097,
         "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
         "value": "0",
         "alias": "openWebContentInNewWindows",
@@ -985,7 +985,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503258,
+        "id": 2518099,
         "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
         "value": "0",
         "alias": "openWebContentFromList",
@@ -1003,7 +1003,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503253,
+        "id": 2518094,
         "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
         "value": "0",
         "alias": "hidden",
@@ -1021,9 +1021,9 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503260,
+        "id": 2518101,
         "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
-        "value": "0",
+        "value": "2",
         "alias": "orderID",
         "editor": "Umbraco.Integer",
         "isSensitive": false
@@ -1039,9 +1039,9 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503269,
+        "id": 2518110,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
-        "value": "Nervebaner i Medulla Spinalis - Oversigt",
+        "value": "EksamensInfo",
         "alias": "title",
         "editor": "Umbraco.Textbox",
         "isSensitive": false
@@ -1057,7 +1057,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503266,
+        "id": 2518107,
         "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
         "value": ".",
         "alias": "description",
@@ -1075,7 +1075,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503263,
+        "id": 2518104,
         "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
         "value": "",
         "alias": "expandedDescription",
@@ -1093,7 +1093,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503265,
+        "id": 2518106,
         "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
         "value": "0",
         "alias": "year",
@@ -1111,7 +1111,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503271,
+        "id": 2518112,
         "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
         "value": "0",
         "alias": "length",
@@ -1129,7 +1129,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503270,
+        "id": 2518111,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "badge",
@@ -1147,7 +1147,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503264,
+        "id": 2518105,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "production",
@@ -1165,7 +1165,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503267,
+        "id": 2518108,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "productionLink",
@@ -1186,7 +1186,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503272,
+        "id": 2518113,
         "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
         "value": "",
         "alias": "tags",
@@ -1222,9 +1222,9 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503268,
+        "id": 2518109,
         "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
-        "value": "/media/5194/rygmarven.png",
+        "value": "/media/5206/flueben-afkrydsning.jpg",
         "alias": "thumbnail",
         "editor": "Umbraco.ImageCropper",
         "isSensitive": false
@@ -1240,7 +1240,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503262,
+        "id": 2518103,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "productLink",
@@ -1278,7 +1278,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503244,
+        "id": 2518085,
         "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
         "value": ["57"],
         "alias": "access",
@@ -1300,7 +1300,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503245,
+        "id": 2518086,
         "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
         "value": "",
         "alias": "rentalPrice",
@@ -1322,7 +1322,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503243,
+        "id": 2518084,
         "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
         "value": "",
         "alias": "purchasePrice",
@@ -1340,7 +1340,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503246,
+        "id": 2518087,
         "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
         "value": "",
         "alias": "code",
@@ -1358,7 +1358,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503273,
+        "id": 2518114,
         "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
         "value": "0",
         "alias": "hidePlay",
@@ -1376,7 +1376,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503274,
+        "id": 2518115,
         "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
         "value": "0",
         "alias": "hideDownload",
@@ -1394,7 +1394,7 @@
           "pattern": null
         },
         "readonly": false,
-        "id": 2503275,
+        "id": 2518116,
         "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
         "value": "",
         "alias": "siteMapOption",
@@ -1412,7 +1412,7 @@
           "pattern": "^.{0,64}$"
         },
         "readonly": false,
-        "id": 2503248,
+        "id": 2518089,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "metaTitle",
@@ -1430,7 +1430,7 @@
           "pattern": "^.{0,160}$"
         },
         "readonly": false,
-        "id": 2503247,
+        "id": 2518088,
         "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
         "value": "",
         "alias": "metaDescription",
@@ -1438,8 +1438,8 @@
         "isSensitive": false
       }
     ],
-    "updateDate": "2026-08-16 09:26:30",
-    "createDate": "2026-08-16 09:24:17",
+    "updateDate": "2026-09-08 15:06:22",
+    "createDate": "2026-08-27 10:46:05",
     "published": true,
     "hasPublishedVersion": true,
     "owner": {
@@ -1451,16 +1451,1480 @@
       "name": "Martin H. Schläger"
     },
     "contentTypeAlias": "media",
-    "sortOrder": 0,
-    "name": "Nervebaner i Medulla Spinalis - Oversigt",
-    "id": 127764,
-    "udi": "umb://document/77159a25287e4fda9e685ae7b1d7ad03",
+    "sortOrder": 1,
+    "name": "EksamensInfo",
+    "id": 128118,
+    "udi": "umb://document/059fcd81c7c34d34a4e644ff7076a6b1",
     "icon": "icon-play color-black",
     "trashed": false,
-    "key": "77159a25-287e-4fda-9e68-5ae7b1d7ad03",
+    "key": "059fcd81-c7c3-4d34-a4e6-44ff7076a6b1",
     "parentId": 127383,
     "alias": null,
-    "path": "-1,1067,126039,127383,127764",
+    "path": "-1,1067,126039,127383,128118",
+    "metaData": {}
+  },
+  "128172": {
+    "publishDate": "2026-09-08 15:06:23",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": "media",
+    "templateId": 1287,
+    "allowedTemplates": {
+      "media": "Media"
+    },
+    "documentType": {
+      "alias": "media",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 19:50:18",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Media",
+      "id": 1081,
+      "udi": "umb://document-type/73629319b77c4701910ff9b727583725",
+      "icon": "icon-play color-black",
+      "trashed": false,
+      "key": "73629319-b77c-4701-910f-f9b727583725",
+      "parentId": -1,
+      "path": "-1,1081",
+      "metaData": {}
+    },
+    "urls": [
+      "/funktionel-neuroterapeut-2026/supplerende-materiale/gruppefoto-med-navne/"
+    ],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/56edb2fb82224b48802c597bd7e25c5a",
+    "contentTypeName": "Media",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 22,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Type",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "73": {
+                  "value": "Video",
+                  "sortOrder": 1
+                },
+                "74": {
+                  "value": "eBook",
+                  "sortOrder": 2
+                },
+                "75": {
+                  "value": "PDF",
+                  "sortOrder": 3
+                },
+                "76": {
+                  "value": "Audio",
+                  "sortOrder": 4
+                },
+                "264": {
+                  "value": "WebContent",
+                  "sortOrder": 5
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518123,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": ["75"],
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Raw File",
+            "description": null,
+            "view": "fileupload",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518125,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": "/media/5204/gruppefoto-med-navne.pdf",
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "label": "Video ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518129,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Status",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518126,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Size",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518135,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Thumbnail URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518128,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Download URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518124,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Trailer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518131,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "WebContent URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518133,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent In New Windows",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518130,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent From List",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518132,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hidden",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518127,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Order ID",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518134,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "3",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "active": false,
+        "label": "Metadata",
+        "alias": "Metadata",
+        "properties": [
+          {
+            "label": "Title",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518143,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Gruppefoto med navne",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518140,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": ".",
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Expanded description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518137,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Year",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518139,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "0",
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Length",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518145,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "0",
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Badge",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518144,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518138,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518141,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Tags",
+            "description": null,
+            "view": "tags",
+            "config": {
+              "group": "default",
+              "storageType": "Csv"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518146,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": "",
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "label": "Thumbnail",
+            "description": null,
+            "view": "imagecropper",
+            "config": {
+              "focalPoint": {
+                "left": 0.5,
+                "top": 0.5
+              },
+              "src": "",
+              "crops": [
+                {
+                  "alias": "Wide",
+                  "width": 1920,
+                  "height": 1080
+                },
+                {
+                  "alias": "High",
+                  "width": 650,
+                  "height": 920
+                }
+              ]
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518142,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": "/media/5205/gruppefoto-med-navne.jpg",
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "label": "Product Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518136,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "active": false,
+        "label": "Access & Price",
+        "alias": "Access & Price",
+        "properties": [
+          {
+            "label": "Access",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "57": {
+                  "value": "Free",
+                  "sortOrder": 1
+                },
+                "58": {
+                  "value": "Payment",
+                  "sortOrder": 2
+                },
+                "59": {
+                  "value": "Code",
+                  "sortOrder": 3
+                },
+                "60": {
+                  "value": "Email",
+                  "sortOrder": 4
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518118,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": ["57"],
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Rental Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518119,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "",
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Purchase Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518117,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "",
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Code",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518120,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518147,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Download",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518148,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 74,
+        "active": false,
+        "label": "SiteMap",
+        "alias": "SiteMap",
+        "properties": [
+          {
+            "label": "siteMapOption",
+            "description": null,
+            "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2518149,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": "",
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 73,
+        "active": false,
+        "label": "SEO",
+        "alias": "SEO",
+        "properties": [
+          {
+            "label": "Title",
+            "description": "Max 64 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,64}$"
+            },
+            "readonly": false,
+            "id": 2518122,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": "Max 160 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,160}$"
+            },
+            "readonly": false,
+            "id": 2518121,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Type",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "73": {
+              "value": "Video",
+              "sortOrder": 1
+            },
+            "74": {
+              "value": "eBook",
+              "sortOrder": 2
+            },
+            "75": {
+              "value": "PDF",
+              "sortOrder": 3
+            },
+            "76": {
+              "value": "Audio",
+              "sortOrder": 4
+            },
+            "264": {
+              "value": "WebContent",
+              "sortOrder": 5
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518123,
+        "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+        "value": ["75"],
+        "alias": "type",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Raw File",
+        "description": null,
+        "view": "fileupload",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518125,
+        "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+        "value": "/media/5204/gruppefoto-med-navne.pdf",
+        "alias": "rawFile",
+        "editor": "Umbraco.UploadField",
+        "isSensitive": false
+      },
+      {
+        "label": "Video ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518129,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "videoID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Status",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518126,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "videoStatus",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Size",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518135,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "videoSize",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Thumbnail URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518128,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "videoThumbnailURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Download URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518124,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "videoDownloadURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Trailer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518131,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "trailer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "WebContent URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518133,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "webContentURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent In New Windows",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518130,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentInNewWindows",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent From List",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518132,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentFromList",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hidden",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518127,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidden",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Order ID",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518134,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "3",
+        "alias": "orderID",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518143,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Gruppefoto med navne",
+        "alias": "title",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518140,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": ".",
+        "alias": "description",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Expanded description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518137,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "expandedDescription",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Year",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518139,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "0",
+        "alias": "year",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Length",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518145,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "0",
+        "alias": "length",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Badge",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518144,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "badge",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518138,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "production",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518141,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "productionLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Tags",
+        "description": null,
+        "view": "tags",
+        "config": {
+          "group": "default",
+          "storageType": "Csv"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518146,
+        "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+        "value": "",
+        "alias": "tags",
+        "editor": "Umbraco.Tags",
+        "isSensitive": false
+      },
+      {
+        "label": "Thumbnail",
+        "description": null,
+        "view": "imagecropper",
+        "config": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518142,
+        "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+        "value": "/media/5205/gruppefoto-med-navne.jpg",
+        "alias": "thumbnail",
+        "editor": "Umbraco.ImageCropper",
+        "isSensitive": false
+      },
+      {
+        "label": "Product Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518136,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "productLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Access",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "57": {
+              "value": "Free",
+              "sortOrder": 1
+            },
+            "58": {
+              "value": "Payment",
+              "sortOrder": 2
+            },
+            "59": {
+              "value": "Code",
+              "sortOrder": 3
+            },
+            "60": {
+              "value": "Email",
+              "sortOrder": 4
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518118,
+        "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+        "value": ["57"],
+        "alias": "access",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Rental Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518119,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "",
+        "alias": "rentalPrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Purchase Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518117,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "",
+        "alias": "purchasePrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Code",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518120,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "code",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518147,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidePlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Download",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518148,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hideDownload",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "siteMapOption",
+        "description": null,
+        "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2518149,
+        "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+        "value": "",
+        "alias": "siteMapOption",
+        "editor": "MBran.SitemapXml",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": "Max 64 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,64}$"
+        },
+        "readonly": false,
+        "id": 2518122,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaTitle",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": "Max 160 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,160}$"
+        },
+        "readonly": false,
+        "id": 2518121,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaDescription",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2026-09-08 15:06:23",
+    "createDate": "2026-08-28 15:53:22",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "media",
+    "sortOrder": 2,
+    "name": "Gruppefoto med navne",
+    "id": 128172,
+    "udi": "umb://document/56edb2fb82224b48802c597bd7e25c5a",
+    "icon": "icon-play color-black",
+    "trashed": false,
+    "key": "56edb2fb-8222-4b48-802c-597bd7e25c5a",
+    "parentId": 127383,
+    "alias": null,
+    "path": "-1,1067,126039,127383,128172",
     "metaData": {}
   }
 }

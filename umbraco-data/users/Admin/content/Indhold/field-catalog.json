@@ -1,0 +1,65 @@
+{
+  "displayInNav": {
+    "alias": "displayInNav",
+    "labels": ["Display in nav"],
+    "tabs": ["Menu"],
+    "editors": ["boolean"],
+    "seenOn": ["parent"]
+  },
+  "headline": {
+    "alias": "headline",
+    "labels": ["Headline"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "icon": {
+    "alias": "icon",
+    "labels": ["Icon"],
+    "tabs": ["Menu"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "layoutHeadline": {
+    "alias": "layoutHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Layout"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "layoutTeaser": {
+    "alias": "layoutTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Layout"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "settingsHeadline": {
+    "alias": "settingsHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Settings"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "settingsTeaser": {
+    "alias": "settingsTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Settings"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "sortText": {
+    "alias": "sortText",
+    "labels": ["Sort Text"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "teaser": {
+    "alias": "teaser",
+    "labels": ["Teaser"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  }
+}

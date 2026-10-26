@@ -1,0 +1,25 @@
+{
+  "requestedName": "TjelesVenner",
+  "liveName": "TjelesVenner",
+  "userId": 50462,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Foredragsfilm",
+      "id": 50469,
+      "status": "ok"
+    },
+    {
+      "name": "Tjeles Guidede Meditationer",
+      "id": 52795,
+      "status": "ok"
+    },
+    {
+      "name": "Bøger & Apps",
+      "id": 56006,
+      "status": "ok"
+    }
+  ]
+}

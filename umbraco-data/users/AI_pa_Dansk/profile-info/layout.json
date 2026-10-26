@@ -1,0 +1,49 @@
+{
+  "tab": "Layout",
+  "name": "AI på Dansk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "AI på Dansk",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5261/ai_paa_dansk_logo-1.png",
+    "crops": []
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5262/ai_paa_dansk_logo_2000x600.png",
+    "crops": []
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5263/ai_paa_dansk_logo_640x600.png",
+    "crops": []
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Lær lidt. Brug det med det samme.",
+  "description": "Kom i gang med ChatGPT på 20 minutter og Lav bedre opslag med AI.",
+  "css": "",
+  "javaScript": ""
+}

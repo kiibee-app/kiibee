@@ -1,0 +1,408 @@
+{
+  "publishDate": "2019-07-11 22:30:27",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "adminSettings",
+  "templateId": 1270,
+  "allowedTemplates": {
+    "adminSettings": "Settings"
+  },
+  "documentType": {
+    "alias": "adminSettings",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-06 22:19:42",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Settings",
+    "id": 1239,
+    "udi": "umb://document-type/37d4f7e86f7b44f9944f50098e6e4b9a",
+    "icon": "icon-umb-developer color-black",
+    "trashed": false,
+    "key": "37d4f7e8-6f7b-44f9-944f-50098e6e4b9a",
+    "parentId": 1224,
+    "path": "-1,1224,1239",
+    "metaData": {}
+  },
+  "urls": ["/admin/indstillinger/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/517e842100a8480eaf32c986afe39451",
+  "contentTypeName": "Settings",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 45,
+      "active": true,
+      "label": "Payout",
+      "alias": "Payout",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23265,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Udbetaling",
+          "alias": "payoutHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23264,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Når du klikker på knappen opbygges en opgørelse som du kan få udbetalt, klik på udbetaling for at se din kreditnota",
+          "alias": "payoutTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "active": false,
+      "label": "Subscription",
+      "alias": "Subscription",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23267,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Abonnement",
+          "alias": "subscriptionHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23266,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Her kan du se og betale for dit abonnement, klik på faktura med status afventer for at betale eller for at se betalt faktura",
+          "alias": "subscriptionTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "active": false,
+      "label": "Notifications",
+      "alias": "Notifications",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23269,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Notifikationer",
+          "alias": "notificationsHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23268,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Her kan du indstille hvor ofte du vil modtaget opdateringer på mail fra din konto",
+          "alias": "notificationsTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "active": false,
+      "label": "Export",
+      "alias": "Export",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23270,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Eksporter",
+          "alias": "exportHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23271,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Når du klikker på knappen laves et udtag af de valgte data. Udtaget downloades på din pc som en CSV fil",
+          "alias": "exportTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23265,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Udbetaling",
+      "alias": "payoutHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23264,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Når du klikker på knappen opbygges en opgørelse som du kan få udbetalt, klik på udbetaling for at se din kreditnota",
+      "alias": "payoutTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23267,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Abonnement",
+      "alias": "subscriptionHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23266,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Her kan du se og betale for dit abonnement, klik på faktura med status afventer for at betale eller for at se betalt faktura",
+      "alias": "subscriptionTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23269,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Notifikationer",
+      "alias": "notificationsHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23268,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Her kan du indstille hvor ofte du vil modtaget opdateringer på mail fra din konto",
+      "alias": "notificationsTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23270,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Eksporter",
+      "alias": "exportHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23271,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Når du klikker på knappen laves et udtag af de valgte data. Udtaget downloades på din pc som en CSV fil",
+      "alias": "exportTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2019-07-11 22:30:27",
+  "createDate": "2019-03-08 22:59:23",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "adminSettings",
+  "sortOrder": 4,
+  "name": "Indstillinger",
+  "id": 1269,
+  "udi": "umb://document/517e842100a8480eaf32c986afe39451",
+  "icon": "icon-umb-developer color-black",
+  "trashed": false,
+  "key": "517e8421-00a8-480e-af32-c986afe39451",
+  "parentId": 1223,
+  "alias": null,
+  "path": "-1,1067,1223,1269",
+  "metaData": {}
+}

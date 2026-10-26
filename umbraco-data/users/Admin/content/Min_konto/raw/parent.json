@@ -1,0 +1,248 @@
+{
+  "publishDate": "2019-07-11 22:30:27",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "adminAccount",
+  "templateId": 1234,
+  "allowedTemplates": {
+    "adminAccount": "Account"
+  },
+  "documentType": {
+    "alias": "account",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-06 20:20:02",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Account",
+    "id": 1235,
+    "udi": "umb://document-type/03646528a9614ecd8095b4a066f2e0c6",
+    "icon": "icon-umb-users color-black",
+    "trashed": false,
+    "key": "03646528-a961-4ecd-8095-b4a066f2e0c6",
+    "parentId": 1224,
+    "path": "-1,1224,1235",
+    "metaData": {}
+  },
+  "urls": ["/admin/min-konto/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/d0064eb8ecb347af90f1fad11b388dc1",
+  "contentTypeName": "Account",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 41,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23245,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Konto detaljer",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23244,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Generalle konto oplysninger",
+          "alias": "teaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "active": false,
+      "label": "Menu",
+      "alias": "Menu",
+      "properties": [
+        {
+          "label": "Display in nav",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23246,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "0",
+          "alias": "displayInNav",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Icon",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23247,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "icon",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23245,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Konto detaljer",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23244,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Generalle konto oplysninger",
+      "alias": "teaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Display in nav",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23246,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "0",
+      "alias": "displayInNav",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Icon",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23247,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "icon",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2019-07-11 22:30:27",
+  "createDate": "2019-03-06 20:25:00",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "account",
+  "sortOrder": 3,
+  "name": "Min konto",
+  "id": 1238,
+  "udi": "umb://document/d0064eb8ecb347af90f1fad11b388dc1",
+  "icon": "icon-umb-users color-black",
+  "trashed": false,
+  "key": "d0064eb8-ecb3-47af-90f1-fad11b388dc1",
+  "parentId": 1223,
+  "alias": null,
+  "path": "-1,1067,1223,1238",
+  "metaData": {}
+}

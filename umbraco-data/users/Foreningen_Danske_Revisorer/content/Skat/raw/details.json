@@ -1,0 +1,4394 @@
+{
+  "72315": {
+    "publishDate": "2023-01-21 11:55:42",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": "media",
+    "templateId": 1287,
+    "allowedTemplates": {
+      "media": "Media"
+    },
+    "documentType": {
+      "alias": "media",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 19:50:18",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Media",
+      "id": 1081,
+      "udi": "umb://document-type/73629319b77c4701910ff9b727583725",
+      "icon": "icon-play color-black",
+      "trashed": false,
+      "key": "73629319-b77c-4701-910f-f9b727583725",
+      "parentId": -1,
+      "path": "-1,1081",
+      "metaData": {}
+    },
+    "urls": [
+      "/foreningen-danske-revisorer/skat/selskabsskat-i-mindre-selskaber/"
+    ],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/ee7e0c267d4c4e43bee7be7c24cc32ea",
+    "contentTypeName": "Media",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 22,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Type",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "73": {
+                  "value": "Video",
+                  "sortOrder": 1
+                },
+                "74": {
+                  "value": "eBook",
+                  "sortOrder": 2
+                },
+                "75": {
+                  "value": "PDF",
+                  "sortOrder": 3
+                },
+                "76": {
+                  "value": "Audio",
+                  "sortOrder": 4
+                },
+                "264": {
+                  "value": "WebContent",
+                  "sortOrder": 5
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427779,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": ["73"],
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Raw File",
+            "description": null,
+            "view": "fileupload",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427781,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": "",
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "label": "Video ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427785,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "f23e11ba829044efabb257a334b65236",
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Status",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427782,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "ready",
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Size",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427791,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1024313227",
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Thumbnail URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427784,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f23e11ba829044efabb257a334b65236/thumbnails/thumbnail.jpg",
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Download URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427780,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f23e11ba829044efabb257a334b65236/downloads/default.mp4",
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Trailer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427787,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "WebContent URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427789,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent In New Windows",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427786,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent From List",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427788,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hidden",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427783,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Order ID",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427790,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "0",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "active": false,
+        "label": "Metadata",
+        "alias": "Metadata",
+        "properties": [
+          {
+            "label": "Title",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427798,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Selskabsskat i mindre selskaber",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427795,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "Skatterådgiver hos Taxmaster, Thorbjørn Helmo Madsen gennemgår nogle centrale udfordring ved beregning af selskabsskat i mindre selskaber. Vi berører bl.a.\r\n\r\nFra driftsøkonomisk- til skattemæssigt regnskab\r\nOpgørelse af udskudt skat\r\nUlovlige lån – håndtering i praksis\r\nLagermetode debitorer – fordele/ulemper",
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Expanded description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Year",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427794,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2022",
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Length",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427800,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "120",
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Badge",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427799,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427793,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Foreningen Danske Revisorer",
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427796,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "fdr.dk",
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Tags",
+            "description": null,
+            "view": "tags",
+            "config": {
+              "group": "default",
+              "storageType": "Csv"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427801,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": "Selskabsskat,SMV,Taxmaster,Helmo",
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "label": "Thumbnail",
+            "description": null,
+            "view": "imagecropper",
+            "config": {
+              "focalPoint": {
+                "left": 0.5,
+                "top": 0.5
+              },
+              "src": "",
+              "crops": [
+                {
+                  "alias": "Wide",
+                  "width": 1920,
+                  "height": 1080
+                },
+                {
+                  "alias": "High",
+                  "width": 650,
+                  "height": 920
+                }
+              ]
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427797,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": "/media/4151/billede-til-kiibee.jpg",
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "label": "Product Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427792,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "active": false,
+        "label": "Access & Price",
+        "alias": "Access & Price",
+        "properties": [
+          {
+            "label": "Access",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "57": {
+                  "value": "Free",
+                  "sortOrder": 1
+                },
+                "58": {
+                  "value": "Payment",
+                  "sortOrder": 2
+                },
+                "59": {
+                  "value": "Code",
+                  "sortOrder": 3
+                },
+                "60": {
+                  "value": "Email",
+                  "sortOrder": 4
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427776,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": ["58"],
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Rental Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427777,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "600",
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Purchase Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427775,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "",
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Code",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427778,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427802,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Download",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427803,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 74,
+        "active": false,
+        "label": "SiteMap",
+        "alias": "SiteMap",
+        "properties": [
+          {
+            "label": "siteMapOption",
+            "description": null,
+            "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": "",
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 73,
+        "active": false,
+        "label": "SEO",
+        "alias": "SEO",
+        "properties": [
+          {
+            "label": "Title",
+            "description": "Max 64 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,64}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": "Max 160 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,160}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Type",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "73": {
+              "value": "Video",
+              "sortOrder": 1
+            },
+            "74": {
+              "value": "eBook",
+              "sortOrder": 2
+            },
+            "75": {
+              "value": "PDF",
+              "sortOrder": 3
+            },
+            "76": {
+              "value": "Audio",
+              "sortOrder": 4
+            },
+            "264": {
+              "value": "WebContent",
+              "sortOrder": 5
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427779,
+        "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+        "value": ["73"],
+        "alias": "type",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Raw File",
+        "description": null,
+        "view": "fileupload",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427781,
+        "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+        "value": "",
+        "alias": "rawFile",
+        "editor": "Umbraco.UploadField",
+        "isSensitive": false
+      },
+      {
+        "label": "Video ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427785,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "f23e11ba829044efabb257a334b65236",
+        "alias": "videoID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Status",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427782,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "ready",
+        "alias": "videoStatus",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Size",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427791,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1024313227",
+        "alias": "videoSize",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Thumbnail URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427784,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f23e11ba829044efabb257a334b65236/thumbnails/thumbnail.jpg",
+        "alias": "videoThumbnailURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Download URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427780,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f23e11ba829044efabb257a334b65236/downloads/default.mp4",
+        "alias": "videoDownloadURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Trailer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427787,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "trailer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "WebContent URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427789,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "webContentURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent In New Windows",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427786,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentInNewWindows",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent From List",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427788,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentFromList",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hidden",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427783,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidden",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Order ID",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427790,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "0",
+        "alias": "orderID",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427798,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Selskabsskat i mindre selskaber",
+        "alias": "title",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427795,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "Skatterådgiver hos Taxmaster, Thorbjørn Helmo Madsen gennemgår nogle centrale udfordring ved beregning af selskabsskat i mindre selskaber. Vi berører bl.a.\r\n\r\nFra driftsøkonomisk- til skattemæssigt regnskab\r\nOpgørelse af udskudt skat\r\nUlovlige lån – håndtering i praksis\r\nLagermetode debitorer – fordele/ulemper",
+        "alias": "description",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Expanded description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "expandedDescription",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Year",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427794,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "2022",
+        "alias": "year",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Length",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427800,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "120",
+        "alias": "length",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Badge",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427799,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "badge",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427793,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Foreningen Danske Revisorer",
+        "alias": "production",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427796,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "fdr.dk",
+        "alias": "productionLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Tags",
+        "description": null,
+        "view": "tags",
+        "config": {
+          "group": "default",
+          "storageType": "Csv"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427801,
+        "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+        "value": "Selskabsskat,SMV,Taxmaster,Helmo",
+        "alias": "tags",
+        "editor": "Umbraco.Tags",
+        "isSensitive": false
+      },
+      {
+        "label": "Thumbnail",
+        "description": null,
+        "view": "imagecropper",
+        "config": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427797,
+        "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+        "value": "/media/4151/billede-til-kiibee.jpg",
+        "alias": "thumbnail",
+        "editor": "Umbraco.ImageCropper",
+        "isSensitive": false
+      },
+      {
+        "label": "Product Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427792,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "productLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Access",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "57": {
+              "value": "Free",
+              "sortOrder": 1
+            },
+            "58": {
+              "value": "Payment",
+              "sortOrder": 2
+            },
+            "59": {
+              "value": "Code",
+              "sortOrder": 3
+            },
+            "60": {
+              "value": "Email",
+              "sortOrder": 4
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427776,
+        "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+        "value": ["58"],
+        "alias": "access",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Rental Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427777,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "600",
+        "alias": "rentalPrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Purchase Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427775,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "",
+        "alias": "purchasePrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Code",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427778,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "code",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427802,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidePlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Download",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427803,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hideDownload",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "siteMapOption",
+        "description": null,
+        "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+        "value": "",
+        "alias": "siteMapOption",
+        "editor": "MBran.SitemapXml",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": "Max 64 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,64}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaTitle",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": "Max 160 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,160}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaDescription",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2023-01-21 11:55:42",
+    "createDate": "2022-09-12 19:13:59",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "media",
+    "sortOrder": 0,
+    "name": "Selskabsskat i mindre selskaber",
+    "id": 72315,
+    "udi": "umb://document/ee7e0c267d4c4e43bee7be7c24cc32ea",
+    "icon": "icon-play color-black",
+    "trashed": false,
+    "key": "ee7e0c26-7d4c-4e43-bee7-be7c24cc32ea",
+    "parentId": 72313,
+    "alias": null,
+    "path": "-1,1067,65131,72313,72315",
+    "metaData": {}
+  },
+  "72414": {
+    "publishDate": "2023-01-21 11:51:32",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": "media",
+    "templateId": 1287,
+    "allowedTemplates": {
+      "media": "Media"
+    },
+    "documentType": {
+      "alias": "media",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 19:50:18",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Media",
+      "id": 1081,
+      "udi": "umb://document-type/73629319b77c4701910ff9b727583725",
+      "icon": "icon-play color-black",
+      "trashed": false,
+      "key": "73629319-b77c-4701-910f-f9b727583725",
+      "parentId": -1,
+      "path": "-1,1081",
+      "metaData": {}
+    },
+    "urls": [
+      "/foreningen-danske-revisorer/skat/skattemaessige-faldgruber-ved-bogfoering/"
+    ],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/7168794db0d64c26b6886db0f9064c17",
+    "contentTypeName": "Media",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 22,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Type",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "73": {
+                  "value": "Video",
+                  "sortOrder": 1
+                },
+                "74": {
+                  "value": "eBook",
+                  "sortOrder": 2
+                },
+                "75": {
+                  "value": "PDF",
+                  "sortOrder": 3
+                },
+                "76": {
+                  "value": "Audio",
+                  "sortOrder": 4
+                },
+                "264": {
+                  "value": "WebContent",
+                  "sortOrder": 5
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427750,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": ["73"],
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Raw File",
+            "description": null,
+            "view": "fileupload",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427752,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": "",
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "label": "Video ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427756,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "34a30a90eeb38a930a1ab3e1d7b66578",
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Status",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427753,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "ready",
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Size",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427762,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1143763272",
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Thumbnail URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427755,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/34a30a90eeb38a930a1ab3e1d7b66578/thumbnails/thumbnail.jpg",
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Download URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427751,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/34a30a90eeb38a930a1ab3e1d7b66578/downloads/default.mp4",
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Trailer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427758,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "WebContent URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427760,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent In New Windows",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427757,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent From List",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427759,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hidden",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427754,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Order ID",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427761,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "1",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "active": false,
+        "label": "Metadata",
+        "alias": "Metadata",
+        "properties": [
+          {
+            "label": "Title",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427769,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Skattemæssige faldgruber ved bogføring",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427766,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "Skatterådgiver hos Taxmaster, Thorbjørn Helmo Madsen gennemgår af de skattemæssige faldgruber der oftest ske i forbindelse med bogføringen. Emnerne kunne være: \r\n\r\n- Bogføring af biludgifter i VSO – nye regler og krav\r\n- Hvordan anvendes mellemregningskontoen i VSO?\r\n- Hævninger og indskud i VSO - krav og praksis!\r\n- Bogføring af moms ved hotel og bespisning – hvornår og hvor meget må der fradrages.\r\n- Momsfradrag og bogføring af bespisning i ”huset”!\r\n\r\nWebinaret er afholdt af FDR-Foreningen Danske Revisorer i samarbejde med Wisma e-conomic.",
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Expanded description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Year",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427765,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2022",
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Length",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427771,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "120",
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Badge",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427770,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427764,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Foreningen Danske Revisorer",
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427767,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "fdr.dk",
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Tags",
+            "description": null,
+            "view": "tags",
+            "config": {
+              "group": "default",
+              "storageType": "Csv"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427772,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": "Skat,bogføring,kapitalejerlån,VSO,Biler,Moms",
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "label": "Thumbnail",
+            "description": null,
+            "view": "imagecropper",
+            "config": {
+              "focalPoint": {
+                "left": 0.5,
+                "top": 0.5
+              },
+              "src": "",
+              "crops": [
+                {
+                  "alias": "Wide",
+                  "width": 1920,
+                  "height": 1080
+                },
+                {
+                  "alias": "High",
+                  "width": 650,
+                  "height": 920
+                }
+              ]
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427768,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": "/media/4153/billede-til-kiibee.jpg",
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "label": "Product Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427763,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "active": false,
+        "label": "Access & Price",
+        "alias": "Access & Price",
+        "properties": [
+          {
+            "label": "Access",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "57": {
+                  "value": "Free",
+                  "sortOrder": 1
+                },
+                "58": {
+                  "value": "Payment",
+                  "sortOrder": 2
+                },
+                "59": {
+                  "value": "Code",
+                  "sortOrder": 3
+                },
+                "60": {
+                  "value": "Email",
+                  "sortOrder": 4
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427747,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": ["58"],
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Rental Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427748,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "50",
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Purchase Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427746,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "50",
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Code",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427749,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427773,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Download",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1427774,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 74,
+        "active": false,
+        "label": "SiteMap",
+        "alias": "SiteMap",
+        "properties": [
+          {
+            "label": "siteMapOption",
+            "description": null,
+            "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": "",
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 73,
+        "active": false,
+        "label": "SEO",
+        "alias": "SEO",
+        "properties": [
+          {
+            "label": "Title",
+            "description": "Max 64 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,64}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": "Max 160 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,160}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Type",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "73": {
+              "value": "Video",
+              "sortOrder": 1
+            },
+            "74": {
+              "value": "eBook",
+              "sortOrder": 2
+            },
+            "75": {
+              "value": "PDF",
+              "sortOrder": 3
+            },
+            "76": {
+              "value": "Audio",
+              "sortOrder": 4
+            },
+            "264": {
+              "value": "WebContent",
+              "sortOrder": 5
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427750,
+        "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+        "value": ["73"],
+        "alias": "type",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Raw File",
+        "description": null,
+        "view": "fileupload",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427752,
+        "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+        "value": "",
+        "alias": "rawFile",
+        "editor": "Umbraco.UploadField",
+        "isSensitive": false
+      },
+      {
+        "label": "Video ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427756,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "34a30a90eeb38a930a1ab3e1d7b66578",
+        "alias": "videoID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Status",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427753,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "ready",
+        "alias": "videoStatus",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Size",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427762,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1143763272",
+        "alias": "videoSize",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Thumbnail URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427755,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/34a30a90eeb38a930a1ab3e1d7b66578/thumbnails/thumbnail.jpg",
+        "alias": "videoThumbnailURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Download URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427751,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/34a30a90eeb38a930a1ab3e1d7b66578/downloads/default.mp4",
+        "alias": "videoDownloadURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Trailer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427758,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "trailer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "WebContent URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427760,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "webContentURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent In New Windows",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427757,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentInNewWindows",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent From List",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427759,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentFromList",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hidden",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427754,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidden",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Order ID",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427761,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "1",
+        "alias": "orderID",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427769,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Skattemæssige faldgruber ved bogføring",
+        "alias": "title",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427766,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "Skatterådgiver hos Taxmaster, Thorbjørn Helmo Madsen gennemgår af de skattemæssige faldgruber der oftest ske i forbindelse med bogføringen. Emnerne kunne være: \r\n\r\n- Bogføring af biludgifter i VSO – nye regler og krav\r\n- Hvordan anvendes mellemregningskontoen i VSO?\r\n- Hævninger og indskud i VSO - krav og praksis!\r\n- Bogføring af moms ved hotel og bespisning – hvornår og hvor meget må der fradrages.\r\n- Momsfradrag og bogføring af bespisning i ”huset”!\r\n\r\nWebinaret er afholdt af FDR-Foreningen Danske Revisorer i samarbejde med Wisma e-conomic.",
+        "alias": "description",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Expanded description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "expandedDescription",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Year",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427765,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "2022",
+        "alias": "year",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Length",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427771,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "120",
+        "alias": "length",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Badge",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427770,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "badge",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427764,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Foreningen Danske Revisorer",
+        "alias": "production",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427767,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "fdr.dk",
+        "alias": "productionLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Tags",
+        "description": null,
+        "view": "tags",
+        "config": {
+          "group": "default",
+          "storageType": "Csv"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427772,
+        "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+        "value": "Skat,bogføring,kapitalejerlån,VSO,Biler,Moms",
+        "alias": "tags",
+        "editor": "Umbraco.Tags",
+        "isSensitive": false
+      },
+      {
+        "label": "Thumbnail",
+        "description": null,
+        "view": "imagecropper",
+        "config": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427768,
+        "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+        "value": "/media/4153/billede-til-kiibee.jpg",
+        "alias": "thumbnail",
+        "editor": "Umbraco.ImageCropper",
+        "isSensitive": false
+      },
+      {
+        "label": "Product Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427763,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "productLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Access",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "57": {
+              "value": "Free",
+              "sortOrder": 1
+            },
+            "58": {
+              "value": "Payment",
+              "sortOrder": 2
+            },
+            "59": {
+              "value": "Code",
+              "sortOrder": 3
+            },
+            "60": {
+              "value": "Email",
+              "sortOrder": 4
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427747,
+        "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+        "value": ["58"],
+        "alias": "access",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Rental Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427748,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "50",
+        "alias": "rentalPrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Purchase Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427746,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "50",
+        "alias": "purchasePrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Code",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427749,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "code",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427773,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidePlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Download",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1427774,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hideDownload",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "siteMapOption",
+        "description": null,
+        "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+        "value": "",
+        "alias": "siteMapOption",
+        "editor": "MBran.SitemapXml",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": "Max 64 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,64}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaTitle",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": "Max 160 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,160}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaDescription",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2023-01-21 11:51:32",
+    "createDate": "2022-09-14 09:24:24",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "media",
+    "sortOrder": 1,
+    "name": "Skattemæssige faldgruber ved bogføring",
+    "id": 72414,
+    "udi": "umb://document/7168794db0d64c26b6886db0f9064c17",
+    "icon": "icon-play color-black",
+    "trashed": false,
+    "key": "7168794d-b0d6-4c26-b688-6db0f9064c17",
+    "parentId": 72313,
+    "alias": null,
+    "path": "-1,1067,65131,72313,72414",
+    "metaData": {}
+  },
+  "77616": {
+    "publishDate": "2023-01-29 08:39:14",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": "media",
+    "templateId": 1287,
+    "allowedTemplates": {
+      "media": "Media"
+    },
+    "documentType": {
+      "alias": "media",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 19:50:18",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Media",
+      "id": 1081,
+      "udi": "umb://document-type/73629319b77c4701910ff9b727583725",
+      "icon": "icon-play color-black",
+      "trashed": false,
+      "key": "73629319-b77c-4701-910f-f9b727583725",
+      "parentId": -1,
+      "path": "-1,1081",
+      "metaData": {}
+    },
+    "urls": [
+      "/foreningen-danske-revisorer/skat/ansvar-ved-indberetninger-til-skattestyrelsen/"
+    ],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/d9578eae871041e1bc5a88ba001973c1",
+    "contentTypeName": "Media",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 22,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Type",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "73": {
+                  "value": "Video",
+                  "sortOrder": 1
+                },
+                "74": {
+                  "value": "eBook",
+                  "sortOrder": 2
+                },
+                "75": {
+                  "value": "PDF",
+                  "sortOrder": 3
+                },
+                "76": {
+                  "value": "Audio",
+                  "sortOrder": 4
+                },
+                "264": {
+                  "value": "WebContent",
+                  "sortOrder": 5
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433151,
+            "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+            "value": ["73"],
+            "alias": "type",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Raw File",
+            "description": null,
+            "view": "fileupload",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433153,
+            "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+            "value": "",
+            "alias": "rawFile",
+            "editor": "Umbraco.UploadField",
+            "isSensitive": false
+          },
+          {
+            "label": "Video ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433157,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "539b4c2a4834c6ad208c0e194f553dd9",
+            "alias": "videoID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Status",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433154,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "ready",
+            "alias": "videoStatus",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Size",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433163,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "587206004",
+            "alias": "videoSize",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Thumbnail URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433156,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/539b4c2a4834c6ad208c0e194f553dd9/thumbnails/thumbnail.jpg",
+            "alias": "videoThumbnailURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Video Download URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433152,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/539b4c2a4834c6ad208c0e194f553dd9/downloads/default.mp4",
+            "alias": "videoDownloadURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Trailer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433159,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "trailer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "WebContent URL",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433161,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "webContentURL",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent In New Windows",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433158,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentInNewWindows",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Open WebContent From List",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433160,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "openWebContentFromList",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hidden",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433155,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidden",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Order ID",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433162,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2",
+            "alias": "orderID",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "active": false,
+        "label": "Metadata",
+        "alias": "Metadata",
+        "properties": [
+          {
+            "label": "Title",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433170,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Ansvar ved indberetninger til Skattestyrelsen",
+            "alias": "title",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433167,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "Ansvarsvurderinger ved fejl og/eller mangler ved indberetninger, herunder betydningen for revisor/bogholder.\r\n\r\nUndervisere:\r\nAdvokat Henrik Rahbek og Senior Tax Manager Jørgen Frausing, fra advokatfirmaet TVC",
+            "alias": "description",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Expanded description",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "expandedDescription",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Year",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433166,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "2023",
+            "alias": "year",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Length",
+            "description": null,
+            "view": "integer",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433172,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": "140",
+            "alias": "length",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          },
+          {
+            "label": "Badge",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433171,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "badge",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433165,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Foreningen Danske Revisorer",
+            "alias": "production",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Production Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433168,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "fdr.dk",
+            "alias": "productionLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Tags",
+            "description": null,
+            "view": "tags",
+            "config": {
+              "group": "default",
+              "storageType": "Csv"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433173,
+            "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+            "value": "",
+            "alias": "tags",
+            "editor": "Umbraco.Tags",
+            "isSensitive": false
+          },
+          {
+            "label": "Thumbnail",
+            "description": null,
+            "view": "imagecropper",
+            "config": {
+              "focalPoint": {
+                "left": 0.5,
+                "top": 0.5
+              },
+              "src": "",
+              "crops": [
+                {
+                  "alias": "Wide",
+                  "width": 1920,
+                  "height": 1080
+                },
+                {
+                  "alias": "High",
+                  "width": 650,
+                  "height": 920
+                }
+              ]
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433169,
+            "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+            "value": "/media/4337/20230126-billede-til-kiibee.jpg",
+            "alias": "thumbnail",
+            "editor": "Umbraco.ImageCropper",
+            "isSensitive": false
+          },
+          {
+            "label": "Product Link",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433164,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "productLink",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "active": false,
+        "label": "Access & Price",
+        "alias": "Access & Price",
+        "properties": [
+          {
+            "label": "Access",
+            "description": null,
+            "view": "dropdownFlexible",
+            "config": {
+              "items": {
+                "57": {
+                  "value": "Free",
+                  "sortOrder": 1
+                },
+                "58": {
+                  "value": "Payment",
+                  "sortOrder": 2
+                },
+                "59": {
+                  "value": "Code",
+                  "sortOrder": 3
+                },
+                "60": {
+                  "value": "Email",
+                  "sortOrder": 4
+                }
+              },
+              "multiple": "0"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433148,
+            "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+            "value": ["58"],
+            "alias": "access",
+            "editor": "Umbraco.DropDown.Flexible",
+            "isSensitive": false
+          },
+          {
+            "label": "Rental Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433149,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "900",
+            "alias": "rentalPrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Purchase Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433147,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "",
+            "alias": "purchasePrice",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Code",
+            "description": null,
+            "view": "textarea",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433150,
+            "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+            "value": "",
+            "alias": "code",
+            "editor": "Umbraco.TextboxMultiple",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433174,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hidePlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Hide Download",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 1433175,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "hideDownload",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 74,
+        "active": false,
+        "label": "SiteMap",
+        "alias": "SiteMap",
+        "properties": [
+          {
+            "label": "siteMapOption",
+            "description": null,
+            "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+            "value": "",
+            "alias": "siteMapOption",
+            "editor": "MBran.SitemapXml",
+            "isSensitive": false
+          }
+        ]
+      },
+      {
+        "id": 73,
+        "active": false,
+        "label": "SEO",
+        "alias": "SEO",
+        "properties": [
+          {
+            "label": "Title",
+            "description": "Max 64 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,64}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaTitle",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Description",
+            "description": "Max 160 characters",
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": "^.{0,160}$"
+            },
+            "readonly": false,
+            "id": 0,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "metaDescription",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Type",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "73": {
+              "value": "Video",
+              "sortOrder": 1
+            },
+            "74": {
+              "value": "eBook",
+              "sortOrder": 2
+            },
+            "75": {
+              "value": "PDF",
+              "sortOrder": 3
+            },
+            "76": {
+              "value": "Audio",
+              "sortOrder": 4
+            },
+            "264": {
+              "value": "WebContent",
+              "sortOrder": 5
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433151,
+        "dataTypeId": "fc78ece9-0cd3-4654-9c19-7b2cda632514",
+        "value": ["73"],
+        "alias": "type",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Raw File",
+        "description": null,
+        "view": "fileupload",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433153,
+        "dataTypeId": "84c6b441-31df-4ffe-b67e-67d5bc3ae65a",
+        "value": "",
+        "alias": "rawFile",
+        "editor": "Umbraco.UploadField",
+        "isSensitive": false
+      },
+      {
+        "label": "Video ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433157,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "539b4c2a4834c6ad208c0e194f553dd9",
+        "alias": "videoID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Status",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433154,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "ready",
+        "alias": "videoStatus",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Size",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433163,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "587206004",
+        "alias": "videoSize",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Thumbnail URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433156,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/539b4c2a4834c6ad208c0e194f553dd9/thumbnails/thumbnail.jpg",
+        "alias": "videoThumbnailURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Video Download URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433152,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/539b4c2a4834c6ad208c0e194f553dd9/downloads/default.mp4",
+        "alias": "videoDownloadURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Trailer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433159,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "trailer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "WebContent URL",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433161,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "webContentURL",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent In New Windows",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433158,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentInNewWindows",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Open WebContent From List",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433160,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "openWebContentFromList",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hidden",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433155,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidden",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Order ID",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433162,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "2",
+        "alias": "orderID",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433170,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Ansvar ved indberetninger til Skattestyrelsen",
+        "alias": "title",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433167,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "Ansvarsvurderinger ved fejl og/eller mangler ved indberetninger, herunder betydningen for revisor/bogholder.\r\n\r\nUndervisere:\r\nAdvokat Henrik Rahbek og Senior Tax Manager Jørgen Frausing, fra advokatfirmaet TVC",
+        "alias": "description",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Expanded description",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "expandedDescription",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Year",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433166,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "2023",
+        "alias": "year",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Length",
+        "description": null,
+        "view": "integer",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433172,
+        "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+        "value": "140",
+        "alias": "length",
+        "editor": "Umbraco.Integer",
+        "isSensitive": false
+      },
+      {
+        "label": "Badge",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433171,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "badge",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433165,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Foreningen Danske Revisorer",
+        "alias": "production",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Production Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433168,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "fdr.dk",
+        "alias": "productionLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Tags",
+        "description": null,
+        "view": "tags",
+        "config": {
+          "group": "default",
+          "storageType": "Csv"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433173,
+        "dataTypeId": "b6b73142-b9c1-4bf8-a16d-e1c23320b549",
+        "value": "",
+        "alias": "tags",
+        "editor": "Umbraco.Tags",
+        "isSensitive": false
+      },
+      {
+        "label": "Thumbnail",
+        "description": null,
+        "view": "imagecropper",
+        "config": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433169,
+        "dataTypeId": "c60f46a3-5954-4698-b523-7760a3c75f45",
+        "value": "/media/4337/20230126-billede-til-kiibee.jpg",
+        "alias": "thumbnail",
+        "editor": "Umbraco.ImageCropper",
+        "isSensitive": false
+      },
+      {
+        "label": "Product Link",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433164,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "productLink",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Access",
+        "description": null,
+        "view": "dropdownFlexible",
+        "config": {
+          "items": {
+            "57": {
+              "value": "Free",
+              "sortOrder": 1
+            },
+            "58": {
+              "value": "Payment",
+              "sortOrder": 2
+            },
+            "59": {
+              "value": "Code",
+              "sortOrder": 3
+            },
+            "60": {
+              "value": "Email",
+              "sortOrder": 4
+            }
+          },
+          "multiple": "0"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433148,
+        "dataTypeId": "22022a20-a2a0-437c-be3e-5cc9b7cc5f79",
+        "value": ["58"],
+        "alias": "access",
+        "editor": "Umbraco.DropDown.Flexible",
+        "isSensitive": false
+      },
+      {
+        "label": "Rental Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433149,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "900",
+        "alias": "rentalPrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Purchase Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433147,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "",
+        "alias": "purchasePrice",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Code",
+        "description": null,
+        "view": "textarea",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433150,
+        "dataTypeId": "c6bac0dd-4ab9-45b1-8e30-e4b619ee5da3",
+        "value": "",
+        "alias": "code",
+        "editor": "Umbraco.TextboxMultiple",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433174,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hidePlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Hide Download",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 1433175,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "hideDownload",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "siteMapOption",
+        "description": null,
+        "view": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "8c563270-5f5b-4f76-9ebb-3b74cd48eb10",
+        "value": "",
+        "alias": "siteMapOption",
+        "editor": "MBran.SitemapXml",
+        "isSensitive": false
+      },
+      {
+        "label": "Title",
+        "description": "Max 64 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,64}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaTitle",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Description",
+        "description": "Max 160 characters",
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": "^.{0,160}$"
+        },
+        "readonly": false,
+        "id": 0,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "metaDescription",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2023-01-29 08:39:14",
+    "createDate": "2023-01-28 17:54:33",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "media",
+    "sortOrder": 2,
+    "name": "Ansvar ved indberetninger til Skattestyrelsen",
+    "id": 77616,
+    "udi": "umb://document/d9578eae871041e1bc5a88ba001973c1",
+    "icon": "icon-play color-black",
+    "trashed": false,
+    "key": "d9578eae-8710-41e1-bc5a-88ba001973c1",
+    "parentId": 72313,
+    "alias": null,
+    "path": "-1,1067,65131,72313,77616",
+    "metaData": {}
+  }
+}

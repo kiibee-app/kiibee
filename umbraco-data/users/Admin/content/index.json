@@ -1,0 +1,35 @@
+{
+  "requestedName": "Admin",
+  "liveName": "Admin",
+  "userId": 1223,
+  "status": "found",
+  "folderCount": 5,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Oversigt",
+      "id": 1227,
+      "status": "ok"
+    },
+    {
+      "name": "Indhold",
+      "id": 1230,
+      "status": "ok"
+    },
+    {
+      "name": "Brugere",
+      "id": 1233,
+      "status": "ok"
+    },
+    {
+      "name": "Min konto",
+      "id": 1238,
+      "status": "ok"
+    },
+    {
+      "name": "Indstillinger",
+      "id": 1269,
+      "status": "ok"
+    }
+  ]
+}

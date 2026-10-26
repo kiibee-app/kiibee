@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-08-25T11:20:04.239Z",
+  "exportedAt": "2026-10-26T11:30:30.628Z",
   "cmsMember": [
     {
       "nodeId": 1789,
@@ -1014,6 +1014,72 @@
       "Email": "lisathe.consulting@gmail.com",
       "LoginName": "lisathe.consulting@gmail.com",
       "key": "c666a1ab051940a68203abefaf060a87"
+    },
+    {
+      "nodeId": 128144,
+      "Email": "carrybennike.familieraadgiver@gmail.com",
+      "LoginName": "carrybennike.familieraadgiver@gmail.com",
+      "key": "5948fa9ce7a84f22b2cb659c7d2a4f3f"
+    },
+    {
+      "nodeId": 128292,
+      "Email": "erikingemannnielsen@gmail.com",
+      "LoginName": "erikingemannnielsen@gmail.com",
+      "key": "95add20f78024602a5b7b75cea21c985"
+    },
+    {
+      "nodeId": 128461,
+      "Email": "hardtmannnicklas@gmail.com",
+      "LoginName": "hardtmannnicklas@gmail.com",
+      "key": "48756bac99a7480996ef01190e460c36"
+    },
+    {
+      "nodeId": 129291,
+      "Email": "andreashenckel@gmail.com",
+      "LoginName": "andreashenckel@gmail.com",
+      "key": "ce5a6bdaec434f5aaa54edf814c5ffe4"
+    },
+    {
+      "nodeId": 131572,
+      "Email": "christinejensen29@hotmail.com",
+      "LoginName": "christinejensen29@hotmail.com",
+      "key": "d229773bd7ae4109b7ee246378f114cb"
+    },
+    {
+      "nodeId": 131677,
+      "Email": "strunktransport@jubii.dk",
+      "LoginName": "strunktransport@jubii.dk",
+      "key": "e97cd9e206fb486b891acfe2d739f74e"
+    },
+    {
+      "nodeId": 131825,
+      "Email": "ca180370th@gmail.com",
+      "LoginName": "ca180370th@gmail.com",
+      "key": "b8953b55ed5349cd92070b7cc7a55a22"
+    },
+    {
+      "nodeId": 131949,
+      "Email": "johnlarsenxpp@gmail.com",
+      "LoginName": "johnlarsenxpp@gmail.com",
+      "key": "93e58074fb954b94bac10e8e04188f80"
+    },
+    {
+      "nodeId": 131960,
+      "Email": "lonnie.skouboe@hotmail.com",
+      "LoginName": "lonnie.skouboe@hotmail.com",
+      "key": "51e62b17f19e4b55b56f9b0e38a1cfe6"
+    },
+    {
+      "nodeId": 132050,
+      "Email": "lykkeneumann@gmail.com",
+      "LoginName": "lykkeneumann@gmail.com",
+      "key": "c28bc1c493504da6827c16c5f171a4f4"
+    },
+    {
+      "nodeId": 132128,
+      "Email": "fotograf@fotomanden.com",
+      "LoginName": "fotograf@fotomanden.com",
+      "key": "a60ba65ab3ba42fcac6ebe710fa1bb06"
     }
   ]
 }

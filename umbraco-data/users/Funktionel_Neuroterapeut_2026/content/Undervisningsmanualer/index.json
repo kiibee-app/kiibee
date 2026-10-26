@@ -1,24 +1,12 @@
 {
-  "exportedAt": "2026-10-10T14:12:06.813Z",
+  "exportedAt": "2026-10-26T11:36:07.279Z",
   "collectionName": "Undervisningsmanualer",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/127382",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 127382,
-    "includeProperties": [
-      "title",
-      "orderID",
-      "hidden",
-      "description",
-      "headline",
-      "coverImage",
-      "access",
-      "rentalPrice",
-      "purchasePrice",
-      "code",
-      "period"
-    ],
+    "includeProperties": ["title", "orderID", "hidden"],
     "orderBy": "orderID",
     "orderDirection": "Ascending",
     "orderBySystemField": false,
@@ -250,18 +238,18 @@
     ]
   },
   "counts": {
-    "totalItemsFromApi": 6,
-    "childrenFetched": 6,
-    "detailIdsRequested": 6,
-    "detailsFetched": 6,
+    "totalItemsFromApi": 8,
+    "childrenFetched": 8,
+    "detailIdsRequested": 8,
+    "detailsFetched": 8,
     "errors": 0,
     "fieldCount": 40
   },
   "pagination": [
     {
       "pageNumber": 1,
-      "itemCount": 6,
-      "totalItems": 6
+      "itemCount": 8,
+      "totalItems": 8
     }
   ],
   "files": {

@@ -1,0 +1,58 @@
+{
+  "displayInNav": {
+    "alias": "displayInNav",
+    "labels": ["Display in nav"],
+    "tabs": ["Menu"],
+    "editors": ["boolean"],
+    "seenOn": ["parent"]
+  },
+  "headline": {
+    "alias": "headline",
+    "labels": ["Headline"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "icon": {
+    "alias": "icon",
+    "labels": ["Icon"],
+    "tabs": ["Menu"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "salesHeadline": {
+    "alias": "salesHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Sales"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "salesTeaser": {
+    "alias": "salesTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Sales"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "statsHeadline": {
+    "alias": "statsHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Stats"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "statsTeaser": {
+    "alias": "statsTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Stats"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "teaser": {
+    "alias": "teaser",
+    "labels": ["Teaser"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  }
+}

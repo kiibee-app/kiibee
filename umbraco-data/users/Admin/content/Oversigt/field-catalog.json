@@ -1,0 +1,30 @@
+{
+  "displayInNav": {
+    "alias": "displayInNav",
+    "labels": ["Display in nav"],
+    "tabs": ["Menu"],
+    "editors": ["boolean"],
+    "seenOn": ["parent"]
+  },
+  "headline": {
+    "alias": "headline",
+    "labels": ["Headline"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "icon": {
+    "alias": "icon",
+    "labels": ["Icon"],
+    "tabs": ["Menu"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "teaser": {
+    "alias": "teaser",
+    "labels": ["Teaser"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  }
+}

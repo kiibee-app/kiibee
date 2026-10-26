@@ -1,10 +1,10 @@
 {
-  "exportedAt": "2026-05-27T12:43:33.031Z",
+  "exportedAt": "2026-10-26T11:32:04.428Z",
   "source": {
-    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1925",
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1911",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
-    "parentId": 1925,
+    "parentId": 1911,
     "includeProperties": [
       "title",
       "orderID",
@@ -44,25 +44,25 @@
     "orderDirection": "Ascending"
   },
   "parent": {
-    "id": 1925,
-    "key": "0dfa01c1-ca18-4d93-9c32-52a9036df8e8",
-    "udi": "umb://document/0dfa01c1ca184d939c3252a9036df8e8",
-    "name": "Bag om",
+    "id": 1911,
+    "key": "b9e3af1c-6189-40f4-93fc-e4443954d6e6",
+    "udi": "umb://document/b9e3af1c618940f493fce4443954d6e6",
+    "name": "Shows",
     "contentTypeAlias": "collection",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": ["/amin-jensen-entertainment/bag-om/"],
-    "path": "-1,1067,1902,1925",
+    "urls": ["/amin-jensen-entertainment/shows/"],
+    "path": "-1,1067,1902,1911",
     "properties": {
       "_umb_containerView": null,
-      "orderID": "2",
+      "orderID": "1",
       "access": ["58"],
-      "rentalPrice": "45",
-      "purchasePrice": "",
+      "rentalPrice": "0",
+      "purchasePrice": "90",
       "code": "",
       "period": "1",
       "headline": "",
-      "description": "Kom bag om Amin Jensen 3 shows ",
+      "description": "Her kan du købe Amin Jensen`s 4 shows du får nr. 4 show gratis.",
       "coverImage": "",
       "fadeCoverImage": "0",
       "thumbnailWide": "1",
@@ -73,21 +73,21 @@
     }
   },
   "counts": {
-    "totalItemsFromApi": 3,
-    "childrenFetched": 3,
-    "detailsFetched": 3,
+    "totalItemsFromApi": 4,
+    "childrenFetched": 4,
+    "detailsFetched": 4,
     "detailErrors": 0,
     "statsEntriesRead": 1943,
     "uniqueStatsMedia": 0,
     "showsMatchedToStats": 0,
-    "showsWithoutStats": 3,
+    "showsWithoutStats": 4,
     "statsMediaWithoutShow": 0
   },
   "pagination": [
     {
       "pageNumber": 1,
-      "itemCount": 3,
-      "totalItems": 3
+      "itemCount": 4,
+      "totalItems": 4
     }
   ],
   "files": {

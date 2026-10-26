@@ -1,0 +1,108 @@
+{
+  "exportedAt": "2026-10-26T11:36:51.291Z",
+  "collectionName": "Oversigt",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1227",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1227,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 1227,
+    "key": "1ec6c22f-7ddb-4dcc-baa6-faee80845adc",
+    "udi": "umb://document/1ec6c22f7ddb4dccbaa6faee80845adc",
+    "name": "Oversigt",
+    "contentTypeAlias": "dashboard",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/admin/oversigt/"],
+    "fields": {
+      "headline": "Velkommen",
+      "teaser": "Denne side giver dig et overblik over din konto og hvordan det går med dine salg og visninger",
+      "displayInNav": "1",
+      "icon": "home"
+    },
+    "fieldDetails": {
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Velkommen"
+      },
+      "teaser": {
+        "alias": "teaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Denne side giver dig et overblik over din konto og hvordan det går med dine salg og visninger"
+      },
+      "displayInNav": {
+        "alias": "displayInNav",
+        "label": "Display in nav",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "icon": {
+        "alias": "icon",
+        "label": "Icon",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "home"
+      }
+    },
+    "fieldOrder": ["headline", "teaser", "displayInNav", "icon"]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

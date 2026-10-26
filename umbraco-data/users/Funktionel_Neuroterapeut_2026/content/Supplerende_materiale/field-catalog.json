@@ -11,21 +11,21 @@
     "labels": ["Access"],
     "tabs": ["Access & Price"],
     "editors": ["dropdownFlexible"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "badge": {
     "alias": "badge",
     "labels": ["Badge"],
     "tabs": ["Metadata"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "code": {
     "alias": "code",
     "labels": ["Code"],
     "tabs": ["Access & Price"],
     "editors": ["textarea"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "columnAmount": {
     "alias": "columnAmount",
@@ -46,14 +46,14 @@
     "labels": ["Description"],
     "tabs": ["Layout", "Metadata"],
     "editors": ["textarea"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "expandedDescription": {
     "alias": "expandedDescription",
     "labels": ["Expanded description"],
     "tabs": ["Metadata"],
     "editors": ["textarea"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "fadeCoverImage": {
     "alias": "fadeCoverImage",
@@ -74,63 +74,63 @@
     "labels": ["Hidden"],
     "tabs": ["General"],
     "editors": ["boolean"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "hideDownload": {
     "alias": "hideDownload",
     "labels": ["Hide Download"],
     "tabs": ["Access & Price"],
     "editors": ["boolean"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "hidePlay": {
     "alias": "hidePlay",
     "labels": ["Hide Play"],
     "tabs": ["Access & Price"],
     "editors": ["boolean"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "length": {
     "alias": "length",
     "labels": ["Length"],
     "tabs": ["Metadata"],
     "editors": ["integer"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "metaDescription": {
     "alias": "metaDescription",
     "labels": ["Description"],
     "tabs": ["SEO"],
     "editors": ["textbox"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "metaTitle": {
     "alias": "metaTitle",
     "labels": ["Title"],
     "tabs": ["SEO"],
     "editors": ["textbox"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "openWebContentFromList": {
     "alias": "openWebContentFromList",
     "labels": ["Open WebContent From List"],
     "tabs": ["General"],
     "editors": ["boolean"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "openWebContentInNewWindows": {
     "alias": "openWebContentInNewWindows",
     "labels": ["Open WebContent In New Windows"],
     "tabs": ["General"],
     "editors": ["boolean"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "orderID": {
     "alias": "orderID",
     "labels": ["Order ID"],
     "tabs": ["General"],
     "editors": ["integer"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "period": {
     "alias": "period",
@@ -144,63 +144,63 @@
     "labels": ["Production"],
     "tabs": ["Metadata"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "productionLink": {
     "alias": "productionLink",
     "labels": ["Production Link"],
     "tabs": ["Metadata"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "productLink": {
     "alias": "productLink",
     "labels": ["Product Link"],
     "tabs": ["Metadata"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "purchasePrice": {
     "alias": "purchasePrice",
     "labels": ["Purchase Price"],
     "tabs": ["Access & Price"],
     "editors": ["decimal"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "rawFile": {
     "alias": "rawFile",
     "labels": ["Raw File"],
     "tabs": ["General"],
     "editors": ["fileupload"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "rentalPrice": {
     "alias": "rentalPrice",
     "labels": ["Rental Price"],
     "tabs": ["Access & Price"],
     "editors": ["decimal"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "siteMapOption": {
     "alias": "siteMapOption",
     "labels": ["siteMapOption"],
     "tabs": ["SiteMap"],
     "editors": ["/App_Plugins/MBran.SitemapXml/sitemap.html"],
-    "seenOn": ["parent", "item:127764"]
+    "seenOn": ["parent", "item:128118", "item:128172"]
   },
   "tags": {
     "alias": "tags",
     "labels": ["Tags"],
     "tabs": ["Metadata"],
     "editors": ["tags"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "thumbnail": {
     "alias": "thumbnail",
     "labels": ["Thumbnail"],
     "tabs": ["Metadata"],
     "editors": ["imagecropper"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "thumbnailWide": {
     "alias": "thumbnailWide",
@@ -214,69 +214,69 @@
     "labels": ["Title"],
     "tabs": ["Metadata"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "trailer": {
     "alias": "trailer",
     "labels": ["Trailer"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "type": {
     "alias": "type",
     "labels": ["Type"],
     "tabs": ["General"],
     "editors": ["dropdownFlexible"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "videoDownloadURL": {
     "alias": "videoDownloadURL",
     "labels": ["Video Download URL"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "videoID": {
     "alias": "videoID",
     "labels": ["Video ID"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "videoSize": {
     "alias": "videoSize",
     "labels": ["Video Size"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "videoStatus": {
     "alias": "videoStatus",
     "labels": ["Video Status"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "videoThumbnailURL": {
     "alias": "videoThumbnailURL",
     "labels": ["Video Thumbnail URL"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "webContentURL": {
     "alias": "webContentURL",
     "labels": ["WebContent URL"],
     "tabs": ["General"],
     "editors": ["textbox"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   },
   "year": {
     "alias": "year",
     "labels": ["Year"],
     "tabs": ["Metadata"],
     "editors": ["integer"],
-    "seenOn": ["item:127764"]
+    "seenOn": ["item:128118", "item:128172"]
   }
 }

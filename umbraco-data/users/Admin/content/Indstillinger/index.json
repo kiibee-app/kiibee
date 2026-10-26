@@ -1,0 +1,165 @@
+{
+  "exportedAt": "2026-10-26T11:36:54.513Z",
+  "collectionName": "Indstillinger",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1269",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1269,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 1269,
+    "key": "517e8421-00a8-480e-af32-c986afe39451",
+    "udi": "umb://document/517e842100a8480eaf32c986afe39451",
+    "name": "Indstillinger",
+    "contentTypeAlias": "adminSettings",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/admin/indstillinger/"],
+    "fields": {
+      "payoutHeadline": "Udbetaling",
+      "payoutTeaser": "Når du klikker på knappen opbygges en opgørelse som du kan få udbetalt, klik på udbetaling for at se din kreditnota",
+      "subscriptionHeadline": "Abonnement",
+      "subscriptionTeaser": "Her kan du se og betale for dit abonnement, klik på faktura med status afventer for at betale eller for at se betalt faktura",
+      "notificationsHeadline": "Notifikationer",
+      "notificationsTeaser": "Her kan du indstille hvor ofte du vil modtaget opdateringer på mail fra din konto",
+      "exportHeadline": "Eksporter",
+      "exportTeaser": "Når du klikker på knappen laves et udtag af de valgte data. Udtaget downloades på din pc som en CSV fil"
+    },
+    "fieldDetails": {
+      "payoutHeadline": {
+        "alias": "payoutHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Payout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Udbetaling"
+      },
+      "payoutTeaser": {
+        "alias": "payoutTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Payout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Når du klikker på knappen opbygges en opgørelse som du kan få udbetalt, klik på udbetaling for at se din kreditnota"
+      },
+      "subscriptionHeadline": {
+        "alias": "subscriptionHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Abonnement"
+      },
+      "subscriptionTeaser": {
+        "alias": "subscriptionTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Her kan du se og betale for dit abonnement, klik på faktura med status afventer for at betale eller for at se betalt faktura"
+      },
+      "notificationsHeadline": {
+        "alias": "notificationsHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Notifications",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Notifikationer"
+      },
+      "notificationsTeaser": {
+        "alias": "notificationsTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Notifications",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Her kan du indstille hvor ofte du vil modtaget opdateringer på mail fra din konto"
+      },
+      "exportHeadline": {
+        "alias": "exportHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Export",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Eksporter"
+      },
+      "exportTeaser": {
+        "alias": "exportTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Export",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Når du klikker på knappen laves et udtag af de valgte data. Udtaget downloades på din pc som en CSV fil"
+      }
+    },
+    "fieldOrder": [
+      "payoutHeadline",
+      "payoutTeaser",
+      "subscriptionHeadline",
+      "subscriptionTeaser",
+      "notificationsHeadline",
+      "notificationsTeaser",
+      "exportHeadline",
+      "exportTeaser"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 8
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

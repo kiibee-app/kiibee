@@ -1,0 +1,40 @@
+{
+  "requestedName": "Kiibee",
+  "liveName": "Kiibee",
+  "userId": 1812,
+  "status": "found",
+  "folderCount": 6,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Lydfiler og Podcast",
+      "id": 1818,
+      "status": "ok"
+    },
+    {
+      "name": " e-Bøger og PDF ",
+      "id": 1966,
+      "status": "ok"
+    },
+    {
+      "name": "Instruktions videoer",
+      "id": 1987,
+      "status": "ok"
+    },
+    {
+      "name": "Andet indhold",
+      "id": 2478,
+      "status": "ok"
+    },
+    {
+      "name": "XIIA testing",
+      "id": 114786,
+      "status": "ok"
+    },
+    {
+      "name": "Text",
+      "id": 115556,
+      "status": "ok"
+    }
+  ]
+}

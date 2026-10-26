@@ -1,0 +1,178 @@
+{
+  "exportedAt": "2026-10-26T11:36:52.253Z",
+  "collectionName": "Indhold",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1230",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1230,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 1230,
+    "key": "f9d3b5c2-611f-44ea-a419-133579baea88",
+    "udi": "umb://document/f9d3b5c2611f44eaa419133579baea88",
+    "name": "Indhold",
+    "contentTypeAlias": "content",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/admin/indhold/"],
+    "fields": {
+      "headline": "Min kanal",
+      "teaser": "",
+      "sortText": "Rækkefølgen af indholdet på din kanal afhænger af rækkefølgen i denne liste, ændre rækkefølgende ved at trække og slippe på ikonet",
+      "layoutHeadline": "Generelt udseende",
+      "layoutTeaser": "Tilpas din kanals visuelle udseende",
+      "settingsHeadline": "Generelle indstillinger",
+      "settingsTeaser": "Indstillinger for din kanal",
+      "displayInNav": "1",
+      "icon": "folder"
+    },
+    "fieldDetails": {
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Min kanal"
+      },
+      "teaser": {
+        "alias": "teaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "sortText": {
+        "alias": "sortText",
+        "label": "Sort Text",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Rækkefølgen af indholdet på din kanal afhænger af rækkefølgen i denne liste, ændre rækkefølgende ved at trække og slippe på ikonet"
+      },
+      "layoutHeadline": {
+        "alias": "layoutHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Generelt udseende"
+      },
+      "layoutTeaser": {
+        "alias": "layoutTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Tilpas din kanals visuelle udseende"
+      },
+      "settingsHeadline": {
+        "alias": "settingsHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Settings",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Generelle indstillinger"
+      },
+      "settingsTeaser": {
+        "alias": "settingsTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Settings",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Indstillinger for din kanal"
+      },
+      "displayInNav": {
+        "alias": "displayInNav",
+        "label": "Display in nav",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "icon": {
+        "alias": "icon",
+        "label": "Icon",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "folder"
+      }
+    },
+    "fieldOrder": [
+      "headline",
+      "teaser",
+      "sortText",
+      "layoutHeadline",
+      "layoutTeaser",
+      "settingsHeadline",
+      "settingsTeaser",
+      "displayInNav",
+      "icon"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailIdsRequested": 1,
+    "detailsFetched": 1,
+    "errors": 0,
+    "fieldCount": 9
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

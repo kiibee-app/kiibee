@@ -1,0 +1,37 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 1,
+    "totalItems": 1,
+    "items": [
+      {
+        "properties": [],
+        "updateDate": "2019-07-11 22:30:27",
+        "createDate": "2019-03-07 01:02:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "adminCollection",
+        "sortOrder": 0,
+        "name": "Samling",
+        "id": 1248,
+        "udi": "umb://document/6afd6ed4ef2d4af18d5e091238965a2e",
+        "icon": "icon-thumbnails color-black",
+        "trashed": false,
+        "key": "6afd6ed4-ef2d-4af1-8d5e-091238965a2e",
+        "parentId": 1230,
+        "alias": null,
+        "path": "-1,1067,1223,1230,1248",
+        "metaData": {}
+      }
+    ]
+  }
+]

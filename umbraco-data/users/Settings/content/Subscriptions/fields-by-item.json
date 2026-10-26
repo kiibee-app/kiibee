@@ -1,0 +1,311 @@
+[
+  {
+    "id": 1083,
+    "key": "5ba7f17c-7cf6-4bee-a5db-1176fd45d365",
+    "udi": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+    "name": "Prøv Kiibee",
+    "fields": {
+      "price3": "0",
+      "kiibeeCut": "15",
+      "price6": "0",
+      "transactionFee": "6",
+      "price": "0",
+      "price12": "0",
+      "maxFiles": "2"
+    },
+    "fieldDetails": {
+      "price3": {
+        "alias": "price3",
+        "label": "Price 3",
+        "description": "Price á month for 3 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "0"
+      },
+      "kiibeeCut": {
+        "alias": "kiibeeCut",
+        "label": "Kiibee Cut",
+        "description": "In DKK",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "15"
+      },
+      "price6": {
+        "alias": "price6",
+        "label": "Price 6",
+        "description": "Price á month for 6 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "0"
+      },
+      "transactionFee": {
+        "alias": "transactionFee",
+        "label": "Transaction Fee",
+        "description": "In percentages",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "6"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "Price á month for 1 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "0"
+      },
+      "price12": {
+        "alias": "price12",
+        "label": "Price 12",
+        "description": "Price á month for 12 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "0"
+      },
+      "maxFiles": {
+        "alias": "maxFiles",
+        "label": "Max Files",
+        "description": "",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2"
+      }
+    },
+    "fieldOrder": [
+      "price3",
+      "kiibeeCut",
+      "price6",
+      "transactionFee",
+      "price",
+      "price12",
+      "maxFiles"
+    ]
+  },
+  {
+    "id": 1084,
+    "key": "6ae38a0b-5614-4a55-ac01-7545e006b9a4",
+    "udi": "umb://document/6ae38a0b56144a55ac017545e006b9a4",
+    "name": "Start-up",
+    "fields": {
+      "price3": "89",
+      "kiibeeCut": "9",
+      "price6": "79",
+      "transactionFee": "6",
+      "price": "99",
+      "price12": "69",
+      "maxFiles": "10"
+    },
+    "fieldDetails": {
+      "price3": {
+        "alias": "price3",
+        "label": "Price 3",
+        "description": "Price á month for 3 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "89"
+      },
+      "kiibeeCut": {
+        "alias": "kiibeeCut",
+        "label": "Kiibee Cut",
+        "description": "In DKK",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "9"
+      },
+      "price6": {
+        "alias": "price6",
+        "label": "Price 6",
+        "description": "Price á month for 6 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "79"
+      },
+      "transactionFee": {
+        "alias": "transactionFee",
+        "label": "Transaction Fee",
+        "description": "In percentages",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "6"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "Price á month for 1 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "99"
+      },
+      "price12": {
+        "alias": "price12",
+        "label": "Price 12",
+        "description": "Price á month for 12 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "69"
+      },
+      "maxFiles": {
+        "alias": "maxFiles",
+        "label": "Max Files",
+        "description": "",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "10"
+      }
+    },
+    "fieldOrder": [
+      "price3",
+      "kiibeeCut",
+      "price6",
+      "transactionFee",
+      "price",
+      "price12",
+      "maxFiles"
+    ]
+  },
+  {
+    "id": 1085,
+    "key": "e46ced3f-3b54-4a3e-ad68-38c69a79ac8f",
+    "udi": "umb://document/e46ced3f3b544a3ead6838c69a79ac8f",
+    "name": "Pro",
+    "fields": {
+      "price3": "289",
+      "kiibeeCut": "7",
+      "price6": "279",
+      "transactionFee": "6",
+      "price": "299",
+      "price12": "269",
+      "maxFiles": "70"
+    },
+    "fieldDetails": {
+      "price3": {
+        "alias": "price3",
+        "label": "Price 3",
+        "description": "Price á month for 3 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "289"
+      },
+      "kiibeeCut": {
+        "alias": "kiibeeCut",
+        "label": "Kiibee Cut",
+        "description": "In DKK",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "7"
+      },
+      "price6": {
+        "alias": "price6",
+        "label": "Price 6",
+        "description": "Price á month for 6 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "279"
+      },
+      "transactionFee": {
+        "alias": "transactionFee",
+        "label": "Transaction Fee",
+        "description": "In percentages",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "6"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "Price á month for 1 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "299"
+      },
+      "price12": {
+        "alias": "price12",
+        "label": "Price 12",
+        "description": "Price á month for 12 months",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "269"
+      },
+      "maxFiles": {
+        "alias": "maxFiles",
+        "label": "Max Files",
+        "description": "",
+        "tab": "Subscription",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "70"
+      }
+    },
+    "fieldOrder": [
+      "price3",
+      "kiibeeCut",
+      "price6",
+      "transactionFee",
+      "price",
+      "price12",
+      "maxFiles"
+    ]
+  }
+]

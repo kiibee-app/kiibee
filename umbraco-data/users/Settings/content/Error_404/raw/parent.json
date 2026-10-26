@@ -1,0 +1,220 @@
+{
+  "publishDate": "2024-03-21 15:16:06",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "ErrorPage",
+  "templateId": 20293,
+  "allowedTemplates": {
+    "ErrorPage": "Error Page"
+  },
+  "documentType": {
+    "alias": "errorPage",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2020-10-01 12:46:54",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Error Page",
+    "id": 20294,
+    "udi": "umb://document-type/7a4fb0d35b6244439e020f7bb3367034",
+    "icon": "icon-application-error color-black",
+    "trashed": false,
+    "key": "7a4fb0d3-5b62-4443-9e02-0f7bb3367034",
+    "parentId": -1,
+    "path": "-1,20294",
+    "metaData": {}
+  },
+  "urls": ["/settings/error-404/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/0128ebdd178144ed91f91d2ef26fbc75",
+  "contentTypeName": "Error Page",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 66,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 1724878,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Indholdet blev ikke fundet",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Text",
+          "description": null,
+          "view": "rte",
+          "config": {
+            "editor": {
+              "toolbar": [
+                "code",
+                "styleselect",
+                "bold",
+                "italic",
+                "alignleft",
+                "aligncenter",
+                "alignright",
+                "bullist",
+                "numlist",
+                "outdent",
+                "indent",
+                "link",
+                "umbmediapicker",
+                "umbmacro",
+                "umbembeddialog"
+              ],
+              "stylesheets": [],
+              "dimensions": {
+                "height": 300
+              },
+              "maxImageSize": 500
+            },
+            "hideLabel": "0"
+          },
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 1724879,
+          "dataTypeId": "ca90c950-0aff-4e72-b976-a30b1ac57dad",
+          "value": "<p>Hvis dit køb ikke visses her skal du trykke på opdater side - dit køb er også sendt til dig på e-mail.</p>\n<p>Hvis købet stadig ikke vises, så kan det være at det er udløbet .. desværre. </p>\n<p> </p>\n<p>Har du spørgsmål kan du kontakte os på info@kiibee.dk </p>",
+          "alias": "text",
+          "editor": "Umbraco.TinyMCEv3",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 1724878,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Indholdet blev ikke fundet",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Text",
+      "description": null,
+      "view": "rte",
+      "config": {
+        "editor": {
+          "toolbar": [
+            "code",
+            "styleselect",
+            "bold",
+            "italic",
+            "alignleft",
+            "aligncenter",
+            "alignright",
+            "bullist",
+            "numlist",
+            "outdent",
+            "indent",
+            "link",
+            "umbmediapicker",
+            "umbmacro",
+            "umbembeddialog"
+          ],
+          "stylesheets": [],
+          "dimensions": {
+            "height": 300
+          },
+          "maxImageSize": 500
+        },
+        "hideLabel": "0"
+      },
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 1724879,
+      "dataTypeId": "ca90c950-0aff-4e72-b976-a30b1ac57dad",
+      "value": "<p>Hvis dit køb ikke visses her skal du trykke på opdater side - dit køb er også sendt til dig på e-mail.</p>\n<p>Hvis købet stadig ikke vises, så kan det være at det er udløbet .. desværre. </p>\n<p> </p>\n<p>Har du spørgsmål kan du kontakte os på info@kiibee.dk </p>",
+      "alias": "text",
+      "editor": "Umbraco.TinyMCEv3",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2024-03-21 15:16:06",
+  "createDate": "2020-10-01 12:47:25",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 1,
+    "name": "Anders Halfter"
+  },
+  "contentTypeAlias": "errorPage",
+  "sortOrder": 1,
+  "name": "Error 404",
+  "id": 20295,
+  "udi": "umb://document/0128ebdd178144ed91f91d2ef26fbc75",
+  "icon": "icon-application-error color-black",
+  "trashed": false,
+  "key": "0128ebdd-1781-44ed-91f9-1d2ef26fbc75",
+  "parentId": 1073,
+  "alias": null,
+  "path": "-1,1067,1073,20295",
+  "metaData": {}
+}

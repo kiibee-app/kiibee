@@ -1,188 +1,122 @@
 {
-  "startedAt": "2026-08-25T14:19:48.518Z",
+  "startedAt": "2026-10-26T11:31:12.032Z",
   "users": [
     {
-      "requestedName": "Elias Ehlers",
-      "liveName": "Elias Ehlers",
-      "userId": 42704,
-      "userDir": "Elias_Ehlers",
+      "requestedName": "erni",
+      "liveName": "erni",
+      "userId": 128293,
+      "userDir": "erni",
       "status": "ok",
-      "coverSrc": "/media/3165/kopi-af-kopi-af-kopi-af-kopi-af-kopi-af-carsten-bang-2.png",
+      "coverSrc": "/media/5210/gudmekongerne.jpg",
+      "logoSrc": null,
+      "headline": "Erik Ingemann Nielsens tilbud HER",
+      "downloadedImages": [
+        {
+          "src": "/media/5210/gudmekongerne.jpg",
+          "fileName": "gudmekongerne.jpg",
+          "bytes": 33561
+        },
+        {
+          "src": "/media/5211/gog-forside.jpg",
+          "fileName": "gog-forside.jpg",
+          "bytes": 1856574
+        }
+      ]
+    },
+    {
+      "requestedName": "Carsten V Thomassen",
+      "liveName": "Carsten V Thomassen",
+      "userId": 131826,
+      "userDir": "Carsten_V_Thomassen",
+      "status": "ok",
+      "coverSrc": "/media/5258/otto-gif.gif",
+      "logoSrc": "/media/5257/koala_ott.png",
+      "headline": "Billedbøger for børn",
+      "downloadedImages": [
+        {
+          "src": "/media/5258/otto-gif.gif",
+          "fileName": "otto-gif.gif",
+          "bytes": 9213891
+        },
+        {
+          "src": "/media/5257/koala_ott.png",
+          "fileName": "koala_ott.png",
+          "bytes": 585322
+        }
+      ]
+    },
+    {
+      "requestedName": "AI på Dansk",
+      "liveName": "AI på Dansk",
+      "userId": 131950,
+      "userDir": "AI_pa_Dansk",
+      "status": "ok",
+      "coverSrc": "/media/5262/ai_paa_dansk_logo_2000x600.png",
+      "logoSrc": "/media/5261/ai_paa_dansk_logo-1.png",
+      "headline": "Lær lidt. Brug det med det samme.",
+      "downloadedImages": [
+        {
+          "src": "/media/5262/ai_paa_dansk_logo_2000x600.png",
+          "fileName": "ai_paa_dansk_logo_2000x600.png",
+          "bytes": 32541
+        },
+        {
+          "src": "/media/5261/ai_paa_dansk_logo-1.png",
+          "fileName": "ai_paa_dansk_logo-1.png",
+          "bytes": 85040
+        },
+        {
+          "src": "/media/5263/ai_paa_dansk_logo_640x600.png",
+          "fileName": "ai_paa_dansk_logo_640x600.png",
+          "bytes": 11097
+        }
+      ]
+    },
+    {
+      "requestedName": "Dubi Skabeloner",
+      "liveName": "Dubi Skabeloner",
+      "userId": 131961,
+      "userDir": "Dubi_Skabeloner",
+      "status": "ok",
+      "coverSrc": "/media/5267/dubi-cover.png",
+      "logoSrc": "/media/5266/dubi-skabeloner-logo.png",
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5267/dubi-cover.png",
+          "fileName": "dubi-cover.png",
+          "bytes": 2433588
+        },
+        {
+          "src": "/media/5266/dubi-skabeloner-logo.png",
+          "fileName": "dubi-skabeloner-logo.png",
+          "bytes": 871178
+        }
+      ]
+    },
+    {
+      "requestedName": "Lykke Neumann",
+      "liveName": "Lykke Neumann",
+      "userId": 132051,
+      "userDir": "Lykke_Neumann",
+      "status": "ok",
+      "coverSrc": null,
       "logoSrc": null,
       "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3165/kopi-af-kopi-af-kopi-af-kopi-af-kopi-af-carsten-bang-2.png",
-          "fileName": "kopi-af-kopi-af-kopi-af-kopi-af-kopi-af-carsten-bang-2.png",
-          "bytes": 262821
-        },
-        {
-          "src": "/media/3383/elias-ehlers-mobil.png",
-          "fileName": "elias-ehlers-mobil.png",
-          "bytes": 134777
-        }
-      ]
+      "downloadedImages": []
     },
     {
-      "requestedName": "Funktionel Neuro Terapeut",
-      "liveName": "Funktionel Neuro Terapeut",
-      "userId": 101587,
-      "userDir": "Funktionel_Neuro_Terapeut",
+      "requestedName": "Tom Frank Rasmussen",
+      "liveName": "Tom Frank Rasmussen",
+      "userId": 132129,
+      "userDir": "Tom_Frank_Rasmussen",
       "status": "ok",
-      "coverSrc": "/media/4787/massage-cover-kiibee.png",
+      "coverSrc": null,
       "logoSrc": null,
       "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/4787/massage-cover-kiibee.png",
-          "fileName": "massage-cover-kiibee.png",
-          "bytes": 886144
-        },
-        {
-          "src": "/media/4788/hjernebilleder-til-a4-opslag-kopi.jpg",
-          "fileName": "hjernebilleder-til-a4-opslag-kopi.jpg",
-          "bytes": 3674981
-        }
-      ]
-    },
-    {
-      "requestedName": "Tine Rask Mathiesen",
-      "liveName": "Tine Rask Mathiesen",
-      "userId": 115439,
-      "userDir": "Tine_Rask_Mathiesen",
-      "status": "ok",
-      "coverSrc": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-      "logoSrc": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-      "headline": "Nissebreve 50kr pdf ",
-      "downloadedImages": [
-        {
-          "src": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-          "fileName": "file_00000000ef3c7209a9559b260a13f87d-2.png",
-          "bytes": 130578
-        },
-        {
-          "src": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-          "fileName": "nissevers-billede-1-tre-der-duer-2.png",
-          "bytes": 127276
-        }
-      ]
-    },
-    {
-      "requestedName": "Vital New Software ApS",
-      "liveName": "Vital New Software ApS",
-      "userId": 62344,
-      "userDir": "Vital_New_Software_ApS",
-      "status": "ok",
-      "coverSrc": "/media/4208/kiibee-test-2000x600.jpg",
-      "logoSrc": null,
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/4208/kiibee-test-2000x600.jpg",
-          "fileName": "kiibee-test-2000x600.jpg",
-          "bytes": 6827
-        }
-      ]
-    },
-    {
-      "requestedName": "Comedy-TV",
-      "liveName": "Comedy-TV",
-      "userId": 39727,
-      "userDir": "Comedy-TV",
-      "status": "ok",
-      "coverSrc": "/media/3027/comedy-top-final.png",
-      "logoSrc": "/media/3028/nyt-comedy-tv.png",
-      "headline": "Få dit yndlings comedy show fra Danmarks sjoveste komikere",
-      "downloadedImages": [
-        {
-          "src": "/media/3027/comedy-top-final.png",
-          "fileName": "comedy-top-final.png",
-          "bytes": 1337996
-        },
-        {
-          "src": "/media/3028/nyt-comedy-tv.png",
-          "fileName": "nyt-comedy-tv.png",
-          "bytes": 18622
-        },
-        {
-          "src": "/media/3278/top-coemdy-cover-640x600-v2.png",
-          "fileName": "top-coemdy-cover-640x600-v2.png",
-          "bytes": 522127
-        }
-      ]
-    },
-    {
-      "requestedName": "Thomas Hartmann",
-      "liveName": "Thomas Hartmann",
-      "userId": 41761,
-      "userDir": "Thomas_Hartmann",
-      "status": "ok",
-      "coverSrc": "/media/3049/thomas-hartmann.png",
-      "logoSrc": "/media/3056/thomas-logo.png",
-      "headline": null,
-      "downloadedImages": [
-        {
-          "src": "/media/3049/thomas-hartmann.png",
-          "fileName": "thomas-hartmann.png",
-          "bytes": 716184
-        },
-        {
-          "src": "/media/3056/thomas-logo.png",
-          "fileName": "thomas-logo.png",
-          "bytes": 10305
-        },
-        {
-          "src": "/media/3390/thomas-hartmann-mobil.png",
-          "fileName": "thomas-hartmann-mobil.png",
-          "bytes": 399625
-        }
-      ]
-    },
-    {
-      "requestedName": "slank og wellness",
-      "liveName": "slank og wellness",
-      "userId": 2072,
-      "userDir": "slank_og_wellness",
-      "status": "ok",
-      "coverSrc": "/media/1343/slank-og-wellness-1.png",
-      "logoSrc": "/media/1342/kiibee-slank-wellness.png",
-      "headline": "Velkommen til Slank og wellness vidensbibliotek",
-      "downloadedImages": [
-        {
-          "src": "/media/1343/slank-og-wellness-1.png",
-          "fileName": "slank-og-wellness-1.png",
-          "bytes": 188097
-        },
-        {
-          "src": "/media/1342/kiibee-slank-wellness.png",
-          "fileName": "kiibee-slank-wellness.png",
-          "bytes": 7777
-        }
-      ]
-    },
-    {
-      "requestedName": "Sundt indtag",
-      "liveName": "Sundt indtag",
-      "userId": 2679,
-      "userDir": "Sundt_indtag",
-      "status": "ok",
-      "coverSrc": "/media/1554/medlemsklub-bliv.jpg",
-      "logoSrc": "/media/1553/si.jpg",
-      "headline": "Mangler du motivation til mere bevægelse?",
-      "downloadedImages": [
-        {
-          "src": "/media/1554/medlemsklub-bliv.jpg",
-          "fileName": "medlemsklub-bliv.jpg",
-          "bytes": 61782
-        },
-        {
-          "src": "/media/1553/si.jpg",
-          "fileName": "si.jpg",
-          "bytes": 22799
-        }
-      ]
+      "downloadedImages": []
     }
   ],
   "missingUsers": [],
-  "finishedAt": "2026-08-25T14:19:59.352Z"
+  "finishedAt": "2026-10-26T11:31:28.420Z"
 }

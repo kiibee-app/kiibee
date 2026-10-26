@@ -1,9 +1,16 @@
 {
-  "exportedAt": "2026-08-28T14:49:00.000Z",
+  "exportedAt": "2026-10-26T11:36:10.484Z",
   "collectionName": "Cerebellum - Test",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/127385",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 127385,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
     "fetchDetails": true
   },
   "parent": {
@@ -16,8 +23,8 @@
     "hasPublishedVersion": true,
     "urls": ["/funktionel-neuroterapeut-2026/cerebellum-test/"],
     "fields": {
-      "_umb_containerView": "",
-      "orderID": "2",
+      "_umb_containerView": null,
+      "orderID": "5",
       "access": [],
       "rentalPrice": "",
       "purchasePrice": "",
@@ -43,7 +50,7 @@
         "culture": null,
         "source": "detail",
         "editor": "listview",
-        "value": ""
+        "value": null
       },
       "orderID": {
         "alias": "orderID",
@@ -53,8 +60,8 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Integer",
-        "value": "2"
+        "editor": "integer",
+        "value": "5"
       },
       "access": {
         "alias": "access",
@@ -64,7 +71,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.DropDown.Flexible",
+        "editor": "dropdownFlexible",
         "value": []
       },
       "rentalPrice": {
@@ -75,7 +82,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Decimal",
+        "editor": "decimal",
         "value": ""
       },
       "purchasePrice": {
@@ -86,7 +93,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Decimal",
+        "editor": "decimal",
         "value": ""
       },
       "code": {
@@ -97,7 +104,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.TextboxMultiple",
+        "editor": "textarea",
         "value": ""
       },
       "period": {
@@ -108,7 +115,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Integer",
+        "editor": "integer",
         "value": ""
       },
       "headline": {
@@ -119,7 +126,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Textbox",
+        "editor": "textbox",
         "value": ""
       },
       "description": {
@@ -130,7 +137,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.TextboxMultiple",
+        "editor": "textarea",
         "value": ""
       },
       "coverImage": {
@@ -141,7 +148,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.ImageCropper",
+        "editor": "imagecropper",
         "value": ""
       },
       "fadeCoverImage": {
@@ -152,7 +159,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.TrueFalse",
+        "editor": "boolean",
         "value": "0"
       },
       "thumbnailWide": {
@@ -163,7 +170,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.TrueFalse",
+        "editor": "boolean",
         "value": "0"
       },
       "columnAmount": {
@@ -174,7 +181,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Integer",
+        "editor": "integer",
         "value": "4"
       },
       "siteMapOption": {
@@ -185,7 +192,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "MBran.SitemapXml",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
         "value": ""
       },
       "metaTitle": {
@@ -196,7 +203,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Textbox",
+        "editor": "textbox",
         "value": ""
       },
       "metaDescription": {
@@ -207,7 +214,7 @@
         "variant": "",
         "culture": null,
         "source": "detail",
-        "editor": "Umbraco.Textbox",
+        "editor": "textbox",
         "value": ""
       }
     },
@@ -230,5 +237,33 @@
       "metaDescription"
     ]
   },
-  "itemCount": 1
+  "counts": {
+    "totalItemsFromApi": 5,
+    "childrenFetched": 5,
+    "detailIdsRequested": 5,
+    "detailsFetched": 5,
+    "errors": 0,
+    "fieldCount": 40
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 5,
+      "totalItems": 5
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
 }

@@ -1,0 +1,20 @@
+{
+  "requestedName": "ADHDFOKUS",
+  "liveName": "ADHDFOKUS",
+  "userId": 75311,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Hvad er ADD og ADHD?",
+      "id": 76566,
+      "status": "ok"
+    },
+    {
+      "name": "UNDERVISNING TIL UNGE OG VOKSNE MED ADD ELLER ADHD",
+      "id": 103341,
+      "status": "ok"
+    }
+  ]
+}
