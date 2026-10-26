@@ -129,12 +129,28 @@ const RENTED_CONTENT_SOURCE_KEYS = Object.values(
 export function mergeRentedContentSources(
   ...sources: Array<RentedContentSources | undefined>
 ): RentedContentSources {
-  return Object.fromEntries(
-    RENTED_CONTENT_SOURCE_KEYS.map((key) => [
-      key,
-      sources.flatMap((source) => (source?.[key] ?? []) as unknown[]),
-    ]),
-  ) as RentedContentSources;
+  const result: Record<string, unknown[]> = {};
+  for (const key of RENTED_CONTENT_SOURCE_KEYS) {
+    const seen = new Set<string>();
+    const list: Array<RentedCollectionItem | RentedMediaItem> = [];
+    for (const source of sources) {
+      const items = (source?.[key] ?? []) as Array<
+        RentedCollectionItem | RentedMediaItem
+      >;
+      for (const item of items) {
+        if (item?.id) {
+          if (!seen.has(item.id)) {
+            seen.add(item.id);
+            list.push(item);
+          }
+        } else {
+          list.push(item);
+        }
+      }
+    }
+    result[key] = list;
+  }
+  return result as RentedContentSources;
 }
 
 export type RentedMediaSectionItems = Record<
@@ -225,10 +241,9 @@ export function filterCollections(
   searchValue: string,
   items: RentedCollectionItem[],
 ) {
-  const withContent = items.filter((item) => item.elementCount > 0);
   const needle = searchValue.trim().toLowerCase();
-  if (!needle) return withContent;
-  return withContent.filter((item) =>
+  if (!needle) return items;
+  return items.filter((item) =>
     [item.title, item.author, String(item.elementCount)].some((part) =>
       part.toLowerCase().includes(needle),
     ),
