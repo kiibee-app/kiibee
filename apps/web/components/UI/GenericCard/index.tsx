@@ -106,6 +106,14 @@ export default function GenericCard({
     setImageLoading(true);
   }
 
+  React.useEffect(() => {
+    if (!imageLoading) return;
+    const timer = setTimeout(() => {
+      setImageLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [imageLoading, imageKey]);
+
   const activeFallback =
     fallbackState?.forKey === imageKey ? fallbackState.url : null;
   const imageFailed = failedImageKey === imageKey && !activeFallback;
@@ -122,8 +130,13 @@ export default function GenericCard({
   const markImageLoaded = () => setImageLoading(false);
 
   const handleImageRef = (element: HTMLImageElement | null) => {
-    if (element?.complete && element.naturalWidth > 0) {
-      markImageLoaded();
+    if (!element) return;
+    if (element.complete) {
+      if (element.naturalWidth > 0) {
+        markImageLoaded();
+      } else {
+        handleImageError();
+      }
     }
   };
 

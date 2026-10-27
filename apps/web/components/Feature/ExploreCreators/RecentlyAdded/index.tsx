@@ -121,8 +121,12 @@ export default function RecentlyAdded({ search }: { search?: string }) {
         </HeaderActions>
       </SectionHeader>
       <Grid $columns={4}>
-        {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+        {visibleTutorials.map((tutorial, index) => (
+          <TutorialCard
+            key={tutorial.id}
+            tutorial={tutorial}
+            imagePriority={index < 4}
+          />
         ))}
       </Grid>
     </Section>
