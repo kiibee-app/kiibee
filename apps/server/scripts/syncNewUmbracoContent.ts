@@ -45,6 +45,7 @@ type JsonRecord = Record<string, unknown>;
 
 const DEFAULT_RENT_DURATION_HOURS = 48;
 const DEFAULT_COLLECTION_NAME = 'Shows';
+const DEFAULT_COLLECTION_KEY = 'default';
 const FALLBACK_PLAN_NAME = 'Creator Pro';
 
 const LEGACY_TYPE_IDS: Record<string, string> = {
@@ -470,9 +471,11 @@ export async function syncNewUmbracoContent() {
   for (const profileKey of profileDirs) {
     const profileInfoDir = join(root, profileKey, 'profile-info');
     const hasProfileInfo = existsSync(profileInfoDir);
-    const info = hasProfileInfo
-      ? readJsonFile<JsonRecord>(join(profileInfoDir, 'info.json'))
-      : null;
+    if (!hasProfileInfo) {
+      continue;
+    }
+
+    const info = readJsonFile<JsonRecord>(join(profileInfoDir, 'info.json'));
 
     if (isTrashedProfile(profileKey, info)) {
       console.log(`[TRASHED PROFILE - SKIPPED] ${profileKey}`);
@@ -496,7 +499,7 @@ export async function syncNewUmbracoContent() {
     const now = new Date();
 
     // 1. Ensure Creator exists if profile-info is present
-    if (hasProfileInfo && !existingUser) {
+    if (!existingUser) {
       console.log(`\n[NEW CREATOR DETECTED] ${profileKey} (${userId})`);
       const general =
         readJsonFile<JsonRecord>(join(profileInfoDir, 'general.json')) ?? {};
@@ -513,12 +516,27 @@ export async function syncNewUmbracoContent() {
       );
       const { firstName, lastName } = splitName(name);
       const supportEmailCandidate = textOrNull(general.supportEmail);
-      const email =
-        (supportEmailCandidate && supportEmailCandidate.includes('@')
-          ? supportEmailCandidate
-          : null) ??
-        cmsMemberEmails.get(profileKey) ??
-        `${slugify(profileKey)}@umbraco-profile.local`;
+
+      let email = cmsMemberEmails.get(profileKey);
+      if (
+        !email &&
+        supportEmailCandidate &&
+        supportEmailCandidate.includes('@')
+      ) {
+        const emailTaken = await findOne(() =>
+          db
+            .select({ id: users.id })
+            .from(users)
+            .where(eq(users.email, supportEmailCandidate.toLowerCase()))
+            .limit(1),
+        );
+        if (!emailTaken) {
+          email = supportEmailCandidate;
+        }
+      }
+      if (!email) {
+        email = `${slugify(profileKey)}@umbraco-profile.local`;
+      }
 
       const channelSlug = slugify(profileKey);
       const channelName = truncate(name, 255);
@@ -647,6 +665,22 @@ export async function syncNewUmbracoContent() {
       creatorsExisting += 1;
     }
 
+    // Ensure creator user exists in database before proceeding to collections/content
+    const creatorUserInDb =
+      existingUser ||
+      (await findOne(() =>
+        db
+          .select({ id: users.id })
+          .from(users)
+          .where(eq(users.id, userId))
+          .limit(1),
+      ));
+
+    if (!creatorUserInDb && !isDryRun) {
+      console.warn(`[CREATOR NOT IN DB - SKIPPED] ${profileKey} (${userId})`);
+      continue;
+    }
+
     // 2. Discover Collections & Content from content/ and shows/
     const channel = await findOne(() =>
       db
@@ -748,28 +782,30 @@ export async function syncNewUmbracoContent() {
       }
     }
 
-    // B. Read shows/ folder
-    const showsDir = join(root, profileKey, 'shows');
-    if (existsSync(showsDir)) {
-      const showItems =
-        readJsonFile<JsonRecord[]>(join(showsDir, 'items.json')) ||
-        readJsonFile<JsonRecord[]>(join(showsDir, 'shows.json')) ||
-        [];
+    // B. Read shows/ folder (only as fallback if content/ has no collections)
+    if (collectionsToProcess.length === 0) {
+      const showsDir = join(root, profileKey, 'shows');
+      if (existsSync(showsDir)) {
+        const showItems =
+          readJsonFile<JsonRecord[]>(join(showsDir, 'items.json')) ||
+          readJsonFile<JsonRecord[]>(join(showsDir, 'shows.json')) ||
+          [];
 
-      if (showItems.length) {
-        collectionsToProcess.push({
-          collectionKey: 'default-shows',
-          name: 'Shows',
-          sortOrder: 0,
-          description: null,
-          coverImageUrl: null,
-          accessType: 'free',
-          buyPrice: null,
-          rentPrice: null,
-          visibility: 'public',
-          isPublished: true,
-          items: showItems,
-        });
+        if (showItems.length) {
+          collectionsToProcess.push({
+            collectionKey: DEFAULT_COLLECTION_KEY,
+            name: 'Shows',
+            sortOrder: 0,
+            description: null,
+            coverImageUrl: null,
+            accessType: 'free',
+            buyPrice: null,
+            rentPrice: null,
+            visibility: 'public',
+            isPublished: true,
+            items: showItems,
+          });
+        }
       }
     }
 
@@ -808,8 +844,11 @@ export async function syncNewUmbracoContent() {
 
       if (!existingCollection) {
         if (!isDryRun) {
+          const nameSlug = slugify(coll.name) || 'collection';
           const collectionSlug = truncate(
-            `${channelSlug}-${slugify(coll.name)}`,
+            coll.collectionKey === DEFAULT_COLLECTION_KEY
+              ? `${channelSlug}-${nameSlug}`
+              : `${channelSlug}-${nameSlug}-${slugify(coll.collectionKey) || coll.collectionKey}`,
             255,
           );
           await db

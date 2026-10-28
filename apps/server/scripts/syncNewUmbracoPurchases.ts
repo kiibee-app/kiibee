@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { eq, inArray } from 'drizzle-orm';
 
 import { db } from '../src/database/db';
 import {
