@@ -92,7 +92,7 @@ export default function ExploreCreators({
               image={image ?? undefined}
               imageInitials={image ? undefined : getNameInitials(creator.name)}
               alt={creator.name}
-              imagePriority={index < 4}
+              imagePriority={index < 8}
               onClick={handleCardClick}
               badgeVariant="overlay"
               badge={
