@@ -37,7 +37,8 @@ export const DrawerCard = styled.div`
   height: 100dvh;
 
   ${media.tablet} {
-    width: 100vw;
+    width: 480px;
+    max-width: calc(100vw - 24px);
   }
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.lg};
