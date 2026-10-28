@@ -31,6 +31,7 @@ import {
   extractCloudflareVideoId,
   getUmbracoShowValue,
   inferContentCategoryId,
+  isSkippedUmbracoProfile,
   loadCmsMemberEmailByProfileKey,
   loadProfileCategoryContext,
   parseDate,
@@ -347,22 +348,64 @@ function splitName(fullName: string): {
   };
 }
 
-async function resolveDefaultPlanId(): Promise<string> {
-  const availablePlans = await db
-    .select({ id: plans.id, name: plans.name })
-    .from(plans)
-    .where(eq(plans.isActive, true));
+const KNOWN_TRASHED_PROFILE_KEYS = new Set([
+  'lykkeneumann',
+  'tomfrankrasmussen',
+]);
 
-  const byName = new Map(
-    availablePlans.map((p) => [p.name.toLowerCase(), p.id]),
-  );
-  const planId =
-    byName.get(FALLBACK_PLAN_NAME.toLowerCase()) ?? availablePlans[0]?.id;
+function normalizeProfileKey(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/gi, '')
+    .toLowerCase();
+}
 
-  if (!planId) {
-    throw new Error('No active subscription plans found in database.');
+function isTrashedProfile(
+  profileKey: string,
+  info?: JsonRecord | null,
+): boolean {
+  const norm = normalizeProfileKey(profileKey);
+  if (KNOWN_TRASHED_PROFILE_KEYS.has(norm)) {
+    return true;
   }
-  return planId;
+  if (!info) return false;
+  if (info.trashed === true) return true;
+  const pathVal = String(info.path || '');
+  if (
+    pathVal.includes(',-20,') ||
+    pathVal.endsWith(',-20') ||
+    pathVal.startsWith('-1,-20')
+  ) {
+    return true;
+  }
+  return false;
+}
+
+async function resolveDefaultPlanId(isDryRun: boolean): Promise<string> {
+  try {
+    const availablePlans = await db
+      .select({ id: plans.id, name: plans.name })
+      .from(plans)
+      .where(eq(plans.isActive, true));
+
+    const byName = new Map(
+      availablePlans.map((p) => [p.name.toLowerCase(), p.id]),
+    );
+    const planId =
+      byName.get(FALLBACK_PLAN_NAME.toLowerCase()) ?? availablePlans[0]?.id;
+
+    if (!planId) {
+      if (isDryRun) return 'dry-run-plan-id';
+      throw new Error('No active subscription plans found in database.');
+    }
+    return planId;
+  } catch (err: any) {
+    if (isDryRun) {
+      return 'dry-run-plan-id';
+    }
+    throw err;
+  }
 }
 
 export async function syncNewUmbracoContent() {
@@ -386,8 +429,26 @@ export async function syncNewUmbracoContent() {
   }
 
   const defaultPasswordHash = await hashPassword('123456');
-  const defaultPlanId = await resolveDefaultPlanId();
+  const defaultPlanId = await resolveDefaultPlanId(isDryRun);
   const cmsMemberEmails = loadCmsMemberEmailByProfileKey(root);
+
+  const isDbConnectionError = (err: any) =>
+    err?.code === 'ECONNREFUSED' ||
+    err?.cause?.code === 'ECONNREFUSED' ||
+    String(err?.message || '').includes('ECONNREFUSED') ||
+    String(err?.cause?.message || '').includes('ECONNREFUSED');
+
+  const findOne = async <T>(query: () => Promise<T[]>): Promise<T | null> => {
+    try {
+      const rows = await query();
+      return rows[0] ?? null;
+    } catch (err: any) {
+      if (isDryRun && isDbConnectionError(err)) {
+        return null;
+      }
+      throw err;
+    }
+  };
 
   const profileDirs = readdirSync(root, { withFileTypes: true })
     .filter((e) => e.isDirectory())
@@ -409,13 +470,28 @@ export async function syncNewUmbracoContent() {
   for (const profileKey of profileDirs) {
     const profileInfoDir = join(root, profileKey, 'profile-info');
     const hasProfileInfo = existsSync(profileInfoDir);
+    const info = hasProfileInfo
+      ? readJsonFile<JsonRecord>(join(profileInfoDir, 'info.json'))
+      : null;
+
+    if (isTrashedProfile(profileKey, info)) {
+      console.log(`[TRASHED PROFILE - SKIPPED] ${profileKey}`);
+      continue;
+    }
+
+    if (isSkippedUmbracoProfile(profileKey)) {
+      console.log(`[SKIP-LIST - SKIPPED] ${profileKey}`);
+      continue;
+    }
 
     const userId = seedUuid('user', profileKey);
-    const [existingUser] = await db
-      .select({ id: users.id, role: users.role, email: users.email })
-      .from(users)
-      .where(eq(users.id, userId))
-      .limit(1);
+    const existingUser = await findOne(() =>
+      db
+        .select({ id: users.id, role: users.role, email: users.email })
+        .from(users)
+        .where(eq(users.id, userId))
+        .limit(1),
+    );
 
     const now = new Date();
 
@@ -426,8 +502,6 @@ export async function syncNewUmbracoContent() {
         readJsonFile<JsonRecord>(join(profileInfoDir, 'general.json')) ?? {};
       const layout =
         readJsonFile<JsonRecord>(join(profileInfoDir, 'layout.json')) ?? {};
-      const info =
-        readJsonFile<JsonRecord>(join(profileInfoDir, 'info.json')) ?? {};
       const seo =
         readJsonFile<JsonRecord>(join(profileInfoDir, 'seo.json')) ?? {};
 
@@ -438,9 +512,11 @@ export async function syncNewUmbracoContent() {
         200,
       );
       const { firstName, lastName } = splitName(name);
+      const supportEmailCandidate = textOrNull(general.supportEmail);
       const email =
-        textOrNull(general.emailReceipt) ??
-        textOrNull(general.supportEmail) ??
+        (supportEmailCandidate && supportEmailCandidate.includes('@')
+          ? supportEmailCandidate
+          : null) ??
         cmsMemberEmails.get(profileKey) ??
         `${slugify(profileKey)}@umbraco-profile.local`;
 
@@ -457,7 +533,7 @@ export async function syncNewUmbracoContent() {
         headline ?? textOrNull(seo.metaDescription) ?? truncate(bio ?? '', 500);
 
       const joinedAt =
-        parseDate(info.createDate) ?? parseDate(info.publishDate) ?? now;
+        parseDate(info?.createDate) ?? parseDate(info?.publishDate) ?? now;
 
       if (!isDryRun) {
         await db.transaction(async (tx) => {
@@ -572,16 +648,18 @@ export async function syncNewUmbracoContent() {
     }
 
     // 2. Discover Collections & Content from content/ and shows/
-    const [channel] = await db
-      .select({
-        id: creatorChannels.id,
-        slug: creatorChannels.slug,
-        coverImageUrl: creatorChannels.coverImageUrl,
-        logoUrl: creatorChannels.logoUrl,
-      })
-      .from(creatorChannels)
-      .where(eq(creatorChannels.creatorId, userId))
-      .limit(1);
+    const channel = await findOne(() =>
+      db
+        .select({
+          id: creatorChannels.id,
+          slug: creatorChannels.slug,
+          coverImageUrl: creatorChannels.coverImageUrl,
+          logoUrl: creatorChannels.logoUrl,
+        })
+        .from(creatorChannels)
+        .where(eq(creatorChannels.creatorId, userId))
+        .limit(1),
+    );
 
     const channelSlug = channel?.slug || slugify(profileKey);
 
@@ -624,6 +702,11 @@ export async function syncNewUmbracoContent() {
           entry.name.replace(/_/g, ' ');
         const parentKey = textOrNull(parent?.key)?.toLowerCase();
         const collectionKey = parentKey || slugify(entry.name) || entry.name;
+        if (
+          collectionsToProcess.some((c) => c.collectionKey === collectionKey)
+        ) {
+          continue;
+        }
 
         const accessType = (function () {
           const ids = toArray(parentFields.access);
@@ -715,11 +798,13 @@ export async function syncNewUmbracoContent() {
         profileKey,
         coll.collectionKey,
       );
-      const [existingCollection] = await db
-        .select({ id: collections.id })
-        .from(collections)
-        .where(eq(collections.id, collectionId))
-        .limit(1);
+      const existingCollection = await findOne(() =>
+        db
+          .select({ id: collections.id })
+          .from(collections)
+          .where(eq(collections.id, collectionId))
+          .limit(1),
+      );
 
       if (!existingCollection) {
         if (!isDryRun) {
@@ -762,19 +847,23 @@ export async function syncNewUmbracoContent() {
       }
 
       // Process items inside collection
+      const processedItemKeys = new Set<string>();
       for (const item of coll.items) {
         const itemKey = String(item.key || '').toLowerCase();
-        if (!itemKey) {
+        if (!itemKey || processedItemKeys.has(itemKey)) {
           skippedItems += 1;
           continue;
         }
+        processedItemKeys.add(itemKey);
 
         const mediaFileId = showSeedUuid('media', profileKey, itemKey);
-        const [existingMedia] = await db
-          .select({ id: mediaFiles.id })
-          .from(mediaFiles)
-          .where(eq(mediaFiles.id, mediaFileId))
-          .limit(1);
+        const existingMedia = await findOne(() =>
+          db
+            .select({ id: mediaFiles.id })
+            .from(mediaFiles)
+            .where(eq(mediaFiles.id, mediaFileId))
+            .limit(1),
+        );
 
         if (existingMedia) {
           mediaFilesExisting += 1;

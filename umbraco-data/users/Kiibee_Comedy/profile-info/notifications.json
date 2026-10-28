@@ -1,6 +1,6 @@
 {
   "tab": "Notifications",
-  "name": "Kiibee",
+  "name": "Kiibee Comedy",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2026-07-18",
+  "lastNotificationDate": "2022-09-07",
   "frequency": "30",
-  "notificationsType": "2",
+  "notificationsType": "0",
   "emails": ""
 }

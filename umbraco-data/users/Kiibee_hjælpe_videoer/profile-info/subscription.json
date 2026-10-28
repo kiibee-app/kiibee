@@ -1,6 +1,6 @@
 {
   "tab": "Subscription",
-  "name": "Kiibee",
+  "name": "Kiibee hjælpe videoer",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -16,7 +16,7 @@
   "price3": "",
   "price6": "",
   "price12": "",
-  "maxFiles": "40",
+  "maxFiles": "20",
   "kiibeeCut": "1",
   "transactionFee": "1",
   "paymentPeriod": [

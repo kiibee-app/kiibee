@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-07-23T13:01:23.371Z",
+  "exportedAt": "2026-10-28T05:25:58.194Z",
   "collectionName": "Se filmen - klik på billedet her:",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/22858",
@@ -21,9 +21,7 @@
     "contentTypeAlias": "collection",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
-    ],
+    "urls": ["/mariebrixtofte/se-filmen-klik-paa-billedet-her/"],
     "fields": {
       "_umb_containerView": null,
       "orderID": "1",

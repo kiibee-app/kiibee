@@ -700,7 +700,6 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'Letsmove_-_Motion_i_Centrum',
   'LindaAndrews',
   'Maria_Birch_Rasmussen',
-  'mariebrixtofte',
   'Maximilian_Nielsen',
   'NuVenue',
   'Publika',
