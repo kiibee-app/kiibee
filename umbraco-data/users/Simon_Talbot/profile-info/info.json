@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Simon Talbot",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 77648,
+  "key": "e1b47784-db2d-4519-873a-63cdf26d1b03",
+  "udi": "umb://document/e1b47784db2d4519873a63cdf26d1b03",
+  "path": "-1,1067,77648",
+  "url": "/simon-talbot/",
+  "createDate": "2023-01-30 11:18:28",
+  "updateDate": "2024-04-30 08:14:40",
+  "publishDate": "2024-04-30 08:14:40",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

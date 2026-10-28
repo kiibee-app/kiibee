@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Settings",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 1073,
+  "key": "d7098d7a-690b-47e5-bd47-c453c05735fc",
+  "udi": "umb://document/d7098d7a690b47e5bd47c453c05735fc",
+  "path": "-1,1067,1073",
+  "url": "/settings/",
+  "createDate": "2019-03-04 19:27:52",
+  "updateDate": "2026-10-25 16:25:09",
+  "publishDate": "2026-10-25 16:25:09",
+  "documentTypeAlias": "settings",
+  "creatorName": null,
+  "writerName": null
+}

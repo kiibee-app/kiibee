@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "ADHDFOKUS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 75311,
+  "key": "e5cc4c17-3c80-4980-b711-0e4268d3cf76",
+  "udi": "umb://document/e5cc4c173c804980b7110e4268d3cf76",
+  "path": "-1,1067,75311",
+  "url": "/adhdfokus/",
+  "createDate": "2022-11-24 14:46:21",
+  "updateDate": "2026-01-25 12:04:48",
+  "publishDate": "2026-01-25 12:04:48",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

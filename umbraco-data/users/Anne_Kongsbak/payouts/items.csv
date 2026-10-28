@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+75660,9b5ee3ab-75e8-4126-ba33-d7c5fe3f493d,umb://document/9b5ee3ab75e84126ba33d7c5fe3f493d,KBF-1350,215.95,215.95,true,2022-12-05 19:58:01,2022-12-05 19:58:01,https://kiibee.dk/anne-kongsbak/payouts/kbf-1350/,matched-public-payout-url,https://kiibee.dk/anne-kongsbak/payouts/kbf-1350/,https://kiibee.dk/anne-kongsbak/payouts/kbf-1350/,,

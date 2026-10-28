@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Kiibee",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 1812,
+  "key": "556a42a0-2d0b-419d-9853-42aa41bd5e0a",
+  "udi": "umb://document/556a42a02d0b419d985342aa41bd5e0a",
+  "path": "-1,1067,1812",
+  "url": "/kiibee/",
+  "createDate": "2019-07-03 10:57:51",
+  "updateDate": "2026-10-16 00:00:04",
+  "publishDate": "2026-10-16 00:00:04",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

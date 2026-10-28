@@ -1,0 +1,257 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/4ece8d2b99e94417b624320c4907671c",
+      "key": "4ece8d2b-99e9-4417-b624-320c4907671c",
+      "resolved": true,
+      "id": 7010,
+      "name": "Uffe Holm InstaChamp",
+      "title": "Uffe Holm InstaChamp ",
+      "urls": ["/uffe-holm/shows/uffe-holm-instachamp/"],
+      "contentTypeAlias": "media",
+      "videoID": "7e5ff923a2be034ca6af200364025268",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/7e5ff923a2be034ca6af200364025268/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/7e5ff923a2be034ca6af200364025268/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1696/instachamp_cover_650x1030.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "99",
+      "rentalPrice": "49",
+      "purchaseEntryCount": 548,
+      "purchaseOrderCount": 152,
+      "nonPurchaseEntryCount": 396,
+      "totalDownloads": 87,
+      "totalStreams": 247,
+      "firstPurchaseAt": "2020-04-03 16:22:04",
+      "lastPurchaseAt": "2026-10-05 22:34:43",
+      "samplePurchaseIds": [131708, 129112, 128488, 127944, 126325]
+    },
+    {
+      "udi": "umb://document/07fa0220798447bc84ea6a587a8c8279",
+      "key": "07fa0220-7984-47bc-84ea-6a587a8c8279",
+      "resolved": true,
+      "id": 1891,
+      "name": "CHAMP med Uffe Holm",
+      "title": "CHAMP med Uffe Holm",
+      "urls": ["/uffe-holm/shows/champ-med-uffe-holm/"],
+      "contentTypeAlias": "media",
+      "videoID": "dedefc990dfbad47edf180071b080f27",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/dedefc990dfbad47edf180071b080f27/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/dedefc990dfbad47edf180071b080f27/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1227/uffe-champ.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 280,
+      "purchaseOrderCount": 98,
+      "nonPurchaseEntryCount": 182,
+      "totalDownloads": 105,
+      "totalStreams": 172,
+      "firstPurchaseAt": "2020-04-03 15:13:30",
+      "lastPurchaseAt": "2026-09-24 21:55:14",
+      "samplePurchaseIds": [130526, 129106, 128872, 128870, 122898]
+    },
+    {
+      "udi": "umb://document/9f6dc121b3cc474383306955db6c919e",
+      "key": "9f6dc121-b3cc-4743-8330-6955db6c919e",
+      "resolved": true,
+      "id": 1892,
+      "name": "Uffe Holm med UFORBEDERLIG?",
+      "title": "Uffe Holm med UFORBEDERLIG?",
+      "urls": ["/uffe-holm/shows/uffe-holm-med-uforbederlig/"],
+      "contentTypeAlias": "media",
+      "videoID": "35fa0230988edf2ba88257239f72d738",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/35fa0230988edf2ba88257239f72d738/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/35fa0230988edf2ba88257239f72d738/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1226/uffe-uforbederlig.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 111,
+      "purchaseOrderCount": 32,
+      "nonPurchaseEntryCount": 79,
+      "totalDownloads": 36,
+      "totalStreams": 80,
+      "firstPurchaseAt": "2020-04-06 22:20:40",
+      "lastPurchaseAt": "2026-09-04 20:26:17",
+      "samplePurchaseIds": [128566, 128225, 126311, 126286, 125627]
+    },
+    {
+      "udi": "umb://document/35fa583556ff4429900e164126bd0306",
+      "key": "35fa5835-56ff-4429-900e-164126bd0306",
+      "resolved": true,
+      "id": 1885,
+      "name": "Shows",
+      "title": "Shows",
+      "urls": ["/uffe-holm/shows/"],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "199",
+      "rentalPrice": "99",
+      "purchaseEntryCount": 103,
+      "purchaseOrderCount": 64,
+      "nonPurchaseEntryCount": 39,
+      "totalDownloads": 499,
+      "totalStreams": 338,
+      "firstPurchaseAt": "2021-02-22 20:20:32",
+      "lastPurchaseAt": "2026-10-24 22:18:40",
+      "samplePurchaseIds": [132450, 130588, 128525, 128493, 127387]
+    },
+    {
+      "udi": "umb://document/dd6b6775483f42a79549808876b06070",
+      "key": "dd6b6775-483f-42a7-9549-808876b06070",
+      "resolved": true,
+      "id": 1890,
+      "name": "The Uffe Holm Show 4",
+      "title": "The Uffe Holm Show 4",
+      "urls": ["/uffe-holm/shows/the-uffe-holm-show-4/"],
+      "contentTypeAlias": "media",
+      "videoID": "9bd534afd1542b8dad4c87704a424c77",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/9bd534afd1542b8dad4c87704a424c77/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/9bd534afd1542b8dad4c87704a424c77/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1228/uffe-show4.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 100,
+      "purchaseOrderCount": 31,
+      "nonPurchaseEntryCount": 69,
+      "totalDownloads": 30,
+      "totalStreams": 49,
+      "firstPurchaseAt": "2020-04-07 13:58:08",
+      "lastPurchaseAt": "2026-06-19 21:02:38",
+      "samplePurchaseIds": [125531, 125057, 123064, 123034, 121023]
+    },
+    {
+      "udi": "umb://document/db79b9139572490ea97c6fe37df94b06",
+      "key": "db79b913-9572-490e-a97c-6fe37df94b06",
+      "resolved": true,
+      "id": 1889,
+      "name": "The Uffe Holm Show 3",
+      "title": "The Uffe Holm Show 3",
+      "urls": ["/uffe-holm/shows/the-uffe-holm-show-3/"],
+      "contentTypeAlias": "media",
+      "videoID": "39e43f2ea6dfbeb8aef24248f68a4c4f",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://cloudflarestream.com/39e43f2ea6dfbeb8aef24248f68a4c4f/thumbnails/thumb_5_0.jpg",
+      "videoDownloadURL": "https://videodelivery.net/39e43f2ea6dfbeb8aef24248f68a4c4f/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1229/uffe-show3.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 91,
+      "purchaseOrderCount": 31,
+      "nonPurchaseEntryCount": 60,
+      "totalDownloads": 29,
+      "totalStreams": 90,
+      "firstPurchaseAt": "2020-04-12 22:19:07",
+      "lastPurchaseAt": "2026-10-04 00:26:43",
+      "samplePurchaseIds": [131585, 130706, 129014, 120988, 119439]
+    }
+  ],
+  "unresolvedMedia": []
+}

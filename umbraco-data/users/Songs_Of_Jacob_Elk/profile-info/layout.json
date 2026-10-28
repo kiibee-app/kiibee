@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Songs Of Jacob Elk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Elk, Fjæstad & Hellemann",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1847/koncertforedrag-logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1846/top-kiibee.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "noblock",
+  "headline": "NYT ALBUM med 12 NYE sange ! Køb sangene og film her.",
+  "description": "Her kan du købe og downloade alle 12 NYE sange fra vores nye album \"Sange fra et krøllet sind\" skrevet og komponeret af Elk, sunget af Fjæstad og produceret af Brdr. Hellemann. \r\n\r\nDu kan også købe og se vores koncertforedrag med vores forrige album på film. Oplev Bjørn Fjæstad & Jacob Elk fortælle alle historierne bag sangene - og hør dem sunget LIVE. ",
+  "css": "@media only screen and (max-width: 1023px) {\n.covertext h1, .covertext .teaser {\ncolor: #1d1d1d !important;\n}\n}\n@media only screen and (min-width: 1024px) {\n.covertext-container { \nbackground-color: rgba(30, 30, 30, 0.65); \npadding: 1em 1.25em; \nborder-radius: .25em;\ncolor: white !important; \n}\n}",
+  "javaScript": ""
+}

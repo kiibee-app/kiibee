@@ -1,0 +1,20 @@
+{
+  "requestedName": "erni",
+  "liveName": "erni",
+  "userId": 128293,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Gudmekongerne - Bogen om GOG",
+      "id": 128303,
+      "status": "ok"
+    },
+    {
+      "name": "Kuglepen - Bogen om Tommy Poulsen",
+      "id": 128304,
+      "status": "ok"
+    }
+  ]
+}

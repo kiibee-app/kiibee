@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Go Video",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 29389,
+  "key": "c46ea766-32bb-40c1-a642-25f7dd6a7251",
+  "udi": "umb://document/c46ea76632bb40c1a64225f7dd6a7251",
+  "path": "-1,1067,29389",
+  "url": "/go-video/",
+  "createDate": "2021-01-19 12:39:05",
+  "updateDate": "2022-09-07 00:00:46",
+  "publishDate": "2022-09-07 00:00:46",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

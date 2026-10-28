@@ -1,0 +1,30 @@
+{
+  "requestedName": "TANIA ELLIS - The Social Business Company",
+  "liveName": "TANIA ELLIS - The Social Business Company",
+  "userId": 1957,
+  "status": "found",
+  "folderCount": 4,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Miniconference: CSR crises & Dilemmas",
+      "id": 2384,
+      "status": "ok"
+    },
+    {
+      "name": "Miniconference: Sustainability & Tech",
+      "id": 2424,
+      "status": "ok"
+    },
+    {
+      "name": "Miniconference: Passion, Purpose & Personal Sustainability",
+      "id": 2429,
+      "status": "ok"
+    },
+    {
+      "name": "Miniconference: Sustainable Disruption & Corporate Social Entrepreneurship",
+      "id": 2434,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "requestedName": "Settings",
+  "liveName": "Settings",
+  "userId": 1073,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Subscriptions",
+      "id": 1076,
+      "status": "ok"
+    },
+    {
+      "name": "Error 404",
+      "id": 20295,
+      "status": "ok"
+    }
+  ]
+}

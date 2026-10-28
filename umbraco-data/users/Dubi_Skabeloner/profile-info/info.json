@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Dubi Skabeloner",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 131961,
+  "key": "b248a424-365e-443f-8bc7-0b6d63c7368a",
+  "udi": "umb://document/b248a424365e443f8bc70b6d63c7368a",
+  "path": "-1,1067,131961",
+  "url": "/dubi-skabeloner/",
+  "createDate": "2026-10-11 18:39:03",
+  "updateDate": "2026-10-11 20:38:18",
+  "publishDate": "2026-10-11 20:38:18",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

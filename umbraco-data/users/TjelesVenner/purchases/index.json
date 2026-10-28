@@ -1,0 +1,107 @@
+{
+  "exportedAt": "2026-06-02T11:06:50.244Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/50467",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 50467,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 50467,
+    "key": "61d87b6d-8131-4f4d-8a2e-815adca0edc1",
+    "udi": "umb://document/61d87b6d81314f4d8a2e815adca0edc1",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/tjelesvenner/purchases/"],
+    "path": "-1,1067,50462,50467",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 527,
+    "childrenFetched": 527,
+    "detailsFetched": 527,
+    "detailErrors": 0,
+    "purchaseEntries": 526,
+    "nonPurchaseEntries": 1,
+    "entriesWithDownloads": 2,
+    "entriesWithStreams": 1,
+    "totalDownloads": 3,
+    "totalStreams": 2,
+    "uniqueMediaUdis": 7,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 7,
+    "mediaResolved": 7,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 527
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 527
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 527
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 527
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 527
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 27,
+      "totalItems": 527
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\TjelesVenner\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\TjelesVenner\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\TjelesVenner\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\TjelesVenner\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

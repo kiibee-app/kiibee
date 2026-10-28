@@ -1,0 +1,44 @@
+{
+  "requestedName": "Kiibee",
+  "liveName": "Kiibee",
+  "userId": 1812,
+  "status": "found",
+  "folderCount": 6,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Lydfiler og Podcast",
+      "id": 1818,
+      "status": "ok"
+    },
+    {
+      "name": " e-Bøger og PDF ",
+      "id": 1966,
+      "status": "ok"
+    },
+    {
+      "name": "Instruktions videoer",
+      "id": 1987,
+      "status": "error",
+      "error": "Error: HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}\n    at requestJson (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:106:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async fetchChildren (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:486:21)\n    at async main (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:652:53)"
+    },
+    {
+      "name": "Andet indhold",
+      "id": 2478,
+      "status": "error",
+      "error": "Error: HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}\n    at requestJson (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:106:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async fetchChildren (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:486:21)\n    at async main (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:652:53)"
+    },
+    {
+      "name": "XIIA testing",
+      "id": 114786,
+      "status": "error",
+      "error": "Error: HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}\n    at requestJson (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:106:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async fetchChildren (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:486:21)\n    at async main (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:652:53)"
+    },
+    {
+      "name": "Text",
+      "id": 115556,
+      "status": "error",
+      "error": "Error: HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}\n    at requestJson (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:106:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async fetchChildren (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:486:21)\n    at async main (file:///home/user/projects/kiibee/scripts/export-umbraco-collection.mjs:652:53)"
+    }
+  ]
+}

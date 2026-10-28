@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Lykke Neumann",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 132051,
+  "key": "5c997769-ba36-4a39-85c3-1feff9476cc7",
+  "udi": "umb://document/5c997769ba364a3985c31feff9476cc7",
+  "path": "-1,1067,132051",
+  "url": "/lykke-neumann/",
+  "createDate": "2026-10-13 17:46:01",
+  "updateDate": "2026-10-13 17:46:01",
+  "publishDate": "2026-10-13 17:46:01",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

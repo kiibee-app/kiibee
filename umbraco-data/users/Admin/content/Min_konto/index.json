@@ -1,0 +1,108 @@
+{
+  "exportedAt": "2026-10-28T05:26:51.118Z",
+  "collectionName": "Min konto",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1238",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1238,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 1238,
+    "key": "d0064eb8-ecb3-47af-90f1-fad11b388dc1",
+    "udi": "umb://document/d0064eb8ecb347af90f1fad11b388dc1",
+    "name": "Min konto",
+    "contentTypeAlias": "account",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/admin/min-konto/"],
+    "fields": {
+      "headline": "Konto detaljer",
+      "teaser": "Generalle konto oplysninger",
+      "displayInNav": "0",
+      "icon": ""
+    },
+    "fieldDetails": {
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Konto detaljer"
+      },
+      "teaser": {
+        "alias": "teaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Generalle konto oplysninger"
+      },
+      "displayInNav": {
+        "alias": "displayInNav",
+        "label": "Display in nav",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "icon": {
+        "alias": "icon",
+        "label": "Icon",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": ["headline", "teaser", "displayInNav", "icon"]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

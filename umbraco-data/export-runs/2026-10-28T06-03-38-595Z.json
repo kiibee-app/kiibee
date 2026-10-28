@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-10-28T06:03:38.595Z",
+  "finishedAt": "2026-10-28T06:08:42.899Z",
+  "rootId": 1067,
+  "tasks": ["purchases"],
+  "skipExisting": false,
+  "counts": {
+    "ok": 1,
+    "skipped": 0,
+    "error": 1
+  },
+  "users": [
+    {
+      "userDir": "Uffe_Holm",
+      "liveName": "Uffe Holm",
+      "userId": 1879
+    },
+    {
+      "userDir": "Microphone_Entertainment",
+      "liveName": "Microphone Entertainment",
+      "userId": 1894
+    }
+  ],
+  "results": [
+    {
+      "userDir": "Uffe_Holm",
+      "liveName": "Uffe Holm",
+      "userId": 1879,
+      "task": "purchases",
+      "parentId": 1883,
+      "status": "ok",
+      "startedAt": "2026-10-28T06:03:42.565Z",
+      "finishedAt": "2026-10-28T06:08:42.608Z",
+      "output": {
+        "outDir": "/home/user/projects/kiibee/umbraco-data/users/Uffe_Holm/purchases",
+        "purchases": 1886,
+        "purchaseEntries": 572,
+        "detailsFetched": 1233,
+        "uniqueMediaUdis": 6,
+        "mediaResolved": 6,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Microphone_Entertainment",
+      "liveName": "Microphone Entertainment",
+      "userId": 1894,
+      "status": "error",
+      "reason": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+    }
+  ],
+  "liveUserCount": 104
+}

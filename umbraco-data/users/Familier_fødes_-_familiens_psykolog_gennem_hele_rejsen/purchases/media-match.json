@@ -1,0 +1,39 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/6d3670ef86734b6f9ae6e8f591eff807",
+      "key": "6d3670ef-8673-4b6f-9ae6-e8f591eff807",
+      "resolved": true,
+      "id": 91274,
+      "name": "Guidet visualisering",
+      "title": "Guidet visualisering",
+      "urls": [
+        "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "/media/4485/visualisering-til-gravide-v7.wav",
+      "webContentURL": "",
+      "thumbnail": "/media/4486/thumbnail.jpg",
+      "purchasePrice": "65",
+      "rentalPrice": "",
+      "purchaseEntryCount": 4,
+      "purchaseOrderCount": 4,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2023-10-17 17:07:54",
+      "lastPurchaseAt": "2024-05-31 14:33:22",
+      "samplePurchaseIds": [
+        97514,
+        93149,
+        91496,
+        91276
+      ]
+    }
+  ],
+  "unresolvedMedia": []
+}

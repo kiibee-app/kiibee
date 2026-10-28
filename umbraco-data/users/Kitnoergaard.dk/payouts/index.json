@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T11:05:13.887Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/93859",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 93859,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 93859,
+    "key": "07df5305-aa70-4f01-aaac-6853936b9690",
+    "udi": "umb://document/07df5305aa704f01aaac6853936b9690",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/kitnoergaarddk/payouts/"],
+    "path": "-1,1067,93855,93859",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2024-09-26 12:36:13"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 2,
+    "childrenFetched": 2,
+    "detailsFetched": 2,
+    "detailErrors": 0,
+    "paidPayouts": 2,
+    "unpaidPayouts": 0,
+    "totalAmount": 593,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 2,
+    "entriesWithInvoiceLink": 2,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 2,
+      "totalItems": 2
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Carsten V Thomassen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Carsten V Thomassen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5257/koala_ott.png",
+    "crops": []
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5258/otto-gif.gif",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Billedbøger for børn",
+  "description": "børnevenlig billedbøger, En god godnathistorie",
+  "css": "",
+  "javaScript": ""
+}

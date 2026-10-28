@@ -1,0 +1,128 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/e3dcfcc3a7f84c38b0463ce83e914878",
+      "key": "e3dcfcc3-a7f8-4c38-b046-3ce83e914878",
+      "resolved": true,
+      "id": 31311,
+      "name": "Nicolaj Lange - Større End Nogensinde",
+      "title": "Nicolaj Lange - Større End Nogensinde",
+      "urls": [
+        "/langes-entertainment-aps/standup-show/nicolaj-lange-stoerre-end-nogensinde/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "67bd56da6e4d3e980e4b76eef97fd6c7",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/67bd56da6e4d3e980e4b76eef97fd6c7/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/67bd56da6e4d3e980e4b76eef97fd6c7/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/2908/lange_a3-12-2019.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "50",
+      "rentalPrice": "25",
+      "purchaseEntryCount": 1538,
+      "purchaseOrderCount": 546,
+      "nonPurchaseEntryCount": 992,
+      "totalDownloads": 326,
+      "totalStreams": 680,
+      "firstPurchaseAt": "2021-02-01 19:51:08",
+      "lastPurchaseAt": "2026-05-29 19:19:56",
+      "samplePurchaseIds": [123929, 123705, 123424, 123328, 123252]
+    },
+    {
+      "udi": "umb://document/8f5e1c2347d94a3b807dd79ce4666d7a",
+      "key": "8f5e1c23-47d9-4a3b-807d-d79ce4666d7a",
+      "resolved": true,
+      "id": 88595,
+      "name": "Nicolaj Lange - Tættere På End Nogensinde",
+      "title": "Nicolaj Lange - Tættere På End Nogensinde",
+      "urls": [
+        "/langes-entertainment-aps/standup-show/nicolaj-lange-taettere-paa-end-nogensinde/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "ff55b6342e5ddf2f35ca7d8501a74b92",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/ff55b6342e5ddf2f35ca7d8501a74b92/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/ff55b6342e5ddf2f35ca7d8501a74b92/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/4478/lange-plakat.jpeg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "50",
+      "rentalPrice": "25",
+      "purchaseEntryCount": 732,
+      "purchaseOrderCount": 415,
+      "nonPurchaseEntryCount": 317,
+      "totalDownloads": 912,
+      "totalStreams": 783,
+      "firstPurchaseAt": "2023-09-03 11:41:28",
+      "lastPurchaseAt": "2026-06-02 01:37:01",
+      "samplePurchaseIds": [124091, 124083, 124055, 123486, 123427]
+    },
+    {
+      "udi": "umb://document/3d4a029b79d149e3af81df251f0ebc55",
+      "key": "3d4a029b-79d1-49e3-af81-df251f0ebc55",
+      "resolved": true,
+      "id": 111981,
+      "name": "Nicolaj Lange - Halvvejs ",
+      "title": "Nicolaj Lange - Halvvejs ",
+      "urls": [
+        "/langes-entertainment-aps/standup-show/nicolaj-lange-halvvejs/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "190ba6cda0dcd6ecd7447b3e0516db8a",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/190ba6cda0dcd6ecd7447b3e0516db8a/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/190ba6cda0dcd6ecd7447b3e0516db8a/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "/media/4954/lange_halvvejs_04-2024-some4.jpg",
+      "purchasePrice": "100",
+      "rentalPrice": "50",
+      "purchaseEntryCount": 382,
+      "purchaseOrderCount": 148,
+      "nonPurchaseEntryCount": 234,
+      "totalDownloads": 324,
+      "totalStreams": 547,
+      "firstPurchaseAt": "2025-09-10 21:41:20",
+      "lastPurchaseAt": "2026-06-02 00:20:37",
+      "samplePurchaseIds": [124088, 124078, 124075, 124058, 124052]
+    }
+  ],
+  "unresolvedMedia": []
+}

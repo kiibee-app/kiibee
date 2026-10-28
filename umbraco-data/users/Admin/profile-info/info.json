@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Admin",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 1223,
+  "key": "57994e47-41ca-4f64-b9f9-859fbdf753d2",
+  "udi": "umb://document/57994e4741ca4f64b9f9859fbdf753d2",
+  "path": "-1,1067,1223",
+  "url": "/admin/",
+  "createDate": "2019-03-06 12:13:22",
+  "updateDate": "2026-02-07 19:55:22",
+  "publishDate": "2019-07-11 22:30:27",
+  "documentTypeAlias": "admin",
+  "creatorName": null,
+  "writerName": null
+}

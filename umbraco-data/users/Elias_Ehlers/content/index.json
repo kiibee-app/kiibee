@@ -1,0 +1,15 @@
+{
+  "requestedName": "Elias Ehlers",
+  "liveName": "Elias Ehlers",
+  "userId": 42704,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Shows",
+      "id": 42711,
+      "status": "ok"
+    }
+  ]
+}

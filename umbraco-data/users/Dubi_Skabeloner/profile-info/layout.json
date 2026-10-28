@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Dubi Skabeloner",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Dubi Skabeloner",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5266/dubi-skabeloner-logo.png",
+    "crops": []
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5267/dubi-cover.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "noblock",
+  "headline": "",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

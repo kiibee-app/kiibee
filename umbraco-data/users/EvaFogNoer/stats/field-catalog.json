@@ -1,0 +1,69 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": ["Undersider"],
+    "editors": ["listview"],
+    "seenOn": ["parent"]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": [],
+    "tabs": [],
+    "editors": ["Umbraco.TrueFalse"],
+    "seenOn": [
+      "item:71741",
+      "item:69014",
+      "item:66521",
+      "item:64259",
+      "item:64113",
+      "item:63696",
+      "item:63695",
+      "item:63694",
+      "item:63691",
+      "item:63690",
+      "item:63319",
+      "item:62675"
+    ]
+  },
+  "media": {
+    "alias": "media",
+    "labels": [],
+    "tabs": [],
+    "editors": ["Umbraco.ContentPicker2"],
+    "seenOn": [
+      "item:71741",
+      "item:69014",
+      "item:66521",
+      "item:64259",
+      "item:64113",
+      "item:63696",
+      "item:63695",
+      "item:63694",
+      "item:63691",
+      "item:63690",
+      "item:63319",
+      "item:62675"
+    ]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": [],
+    "tabs": [],
+    "editors": ["Umbraco.Textbox"],
+    "seenOn": [
+      "item:71741",
+      "item:69014",
+      "item:66521",
+      "item:64259",
+      "item:64113",
+      "item:63696",
+      "item:63695",
+      "item:63694",
+      "item:63691",
+      "item:63690",
+      "item:63319",
+      "item:62675"
+    ]
+  }
+}

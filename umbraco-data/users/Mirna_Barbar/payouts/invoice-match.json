@@ -1,0 +1,50 @@
+{
+  "matched": [
+    {
+      "id": 120406,
+      "key": "9346a4de-40c9-4301-8465-40a9e10cf1ea",
+      "udi": "umb://document/9346a4de40c94301846540a9e10cf1ea",
+      "name": "KBF-1730",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/120406",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2026-03-30 13:39:49",
+      "updateDate": "2026-03-30 15:50:18",
+      "parentId": 119679,
+      "path": "-1,1067,119675,119679,120406",
+      "sortOrder": 0,
+      "urls": ["/mirna-barbar/payouts/kbf-1730/"],
+      "publicPayoutUrls": ["https://kiibee.dk/mirna-barbar/payouts/kbf-1730/"],
+      "publicPayoutUrl": "https://kiibee.dk/mirna-barbar/payouts/kbf-1730/",
+      "amount": "99.1",
+      "amountNumber": 99.1,
+      "isPaid": true,
+      "payoutCreateDate": "2026-03-30 13:39:49",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": ["https://kiibee.dk/mirna-barbar/payouts/kbf-1730/"],
+      "invoiceUrl": "https://kiibee.dk/mirna-barbar/payouts/kbf-1730/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "6",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2026-03-02 13:02:00",
+        "rawEarnings": "115",
+        "amount": "99.1",
+        "isPaid": "1",
+        "to": "2026-03-30 13:39:40",
+        "transactionAmount": "6.9",
+        "kiibeeCutAmount": "9"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

@@ -1,0 +1,97 @@
+{
+  "exportedAt": "2026-06-02T10:59:47.417Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/27113",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 27113,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 27113,
+    "key": "d2268583-a77e-484c-8696-1914044eb280",
+    "udi": "umb://document/d2268583a77e484c86961914044eb280",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/signenesleindk/purchases/"],
+    "path": "-1,1067,27108,27113",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 332,
+    "childrenFetched": 332,
+    "detailsFetched": 332,
+    "detailErrors": 0,
+    "purchaseEntries": 332,
+    "nonPurchaseEntries": 0,
+    "entriesWithDownloads": 3,
+    "entriesWithStreams": 0,
+    "totalDownloads": 12,
+    "totalStreams": 0,
+    "uniqueMediaUdis": 10,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 3,
+    "mediaResolved": 3,
+    "mediaUnresolved": 7,
+    "mediaResolveErrors": 7
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 332
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 332
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 332
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 32,
+      "totalItems": 332
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\SigneNeslein.dk\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\SigneNeslein.dk\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\SigneNeslein.dk\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\SigneNeslein.dk\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

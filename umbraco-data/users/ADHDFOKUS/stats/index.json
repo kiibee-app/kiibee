@@ -1,0 +1,127 @@
+{
+  "exportedAt": "2026-06-02T11:05:54.445Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/75312",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 75312,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 75312,
+    "key": "69d3a64f-b5a3-4ba5-91cd-d2d96aa2274f",
+    "udi": "umb://document/69d3a64fb5a34ba591cdd2d96aa2274f",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/adhdfokus/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 1171,
+    "childrenFetched": 1171,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1171
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 71,
+      "totalItems": 1171
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

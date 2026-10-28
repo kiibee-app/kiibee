@@ -1,0 +1,95 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/ac0b2b532c8b4844ac8263c73491aabe",
+      "key": "ac0b2b53-2c8b-4844-ac82-63c73491aabe",
+      "resolved": true,
+      "id": 42576,
+      "name": "Guide til parforhold",
+      "title": "Guide til parforhold",
+      "urls": ["/jacob-tingleff/shows/guide-til-parforhold/"],
+      "contentTypeAlias": "media",
+      "videoID": "c0284911134b20bdc7cc2ebf0616060d",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/c0284911134b20bdc7cc2ebf0616060d/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3147/jacob-tingleff_guide-til-parforhold_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 7,
+      "purchaseOrderCount": 7,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 6,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-06-05 08:56:51",
+      "lastPurchaseAt": "2026-04-04 20:06:58",
+      "samplePurchaseIds": [120680, 109582, 105462, 100172, 92473]
+    },
+    {
+      "udi": "umb://document/033f1cd4e29c48cc94c95869904de021",
+      "key": "033f1cd4-e29c-48cc-94c9-5869904de021",
+      "resolved": true,
+      "id": 42577,
+      "name": "Tingleff, Tingleff Eller Tingleff",
+      "title": "Tingleff, Tingleff Eller Tingleff",
+      "urls": ["/jacob-tingleff/shows/tingleff-tingleff-eller-tingleff/"],
+      "contentTypeAlias": "media",
+      "videoID": "37fb9216e3c24faebce8aa1189305ed1",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/37fb9216e3c24faebce8aa1189305ed1/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3148/tingleffx3-5.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "39",
+      "rentalPrice": "29",
+      "purchaseEntryCount": 4,
+      "purchaseOrderCount": 4,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 1,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-06-05 09:03:49",
+      "lastPurchaseAt": "2025-04-27 21:35:29",
+      "samplePurchaseIds": [108889, 63897, 63416, 46819]
+    }
+  ],
+  "unresolvedMedia": []
+}

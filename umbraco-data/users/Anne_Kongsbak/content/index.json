@@ -1,0 +1,15 @@
+{
+  "requestedName": "Anne Kongsbak",
+  "liveName": "Anne Kongsbak",
+  "userId": 20852,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Syvejledning",
+      "id": 20859,
+      "status": "ok"
+    }
+  ]
+}

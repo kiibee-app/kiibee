@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Kiibee hjælpe videoer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 2220,
+  "key": "7fdab568-36c4-41ce-8481-d6207486a88d",
+  "udi": "umb://document/7fdab56836c441ce8481d6207486a88d",
+  "path": "-1,1067,2220",
+  "url": "/kiibee-hjaelpe-videoer/",
+  "createDate": "2019-10-09 12:11:11",
+  "updateDate": "2023-06-22 11:10:32",
+  "publishDate": "2023-06-22 11:10:32",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

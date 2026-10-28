@@ -1,0 +1,131 @@
+{
+  "mediaResolveErrors": {
+    "count": 0,
+    "sample": []
+  },
+  "otherErrors": {
+    "count": 653,
+    "sample": [
+      {
+        "id": 7878,
+        "name": "9ypw03042020133813",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7854,
+        "name": "e1l603042020113303",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7828,
+        "name": "31p103042020091210",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7802,
+        "name": "995603042020033716",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7798,
+        "name": "ep3403042020010743",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7794,
+        "name": "514g03042020001948",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7775,
+        "name": "6pnv02042020222526",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7770,
+        "name": "ymn402042020221944",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7787,
+        "name": "h5tr02042020232552",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7790,
+        "name": "ud6m02042020233402",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7761,
+        "name": "ub4z02042020221208",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7764,
+        "name": "819w02042020221401",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7757,
+        "name": "17n802042020220308",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7754,
+        "name": "71a102042020215910",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7747,
+        "name": "hzpj02042020213023",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7744,
+        "name": "l1jy02042020212830",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7741,
+        "name": "h3v602042020212651",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7733,
+        "name": "68lz02042020205606",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7728,
+        "name": "u58g02042020205252",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      },
+      {
+        "id": 7712,
+        "name": "474l02042020204934",
+        "phase": "itemDetail",
+        "error": "HTTP 401: {\"Message\":\"Authorization has been denied for this request.\"}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/5cb217d5684349049196134742f875f7",
+      "key": "5cb217d5-6843-4904-9196-134742f875f7",
+      "resolved": true,
+      "id": 117543,
+      "name": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+      "title": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+      "urls": [
+        "/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "/media/5100/bogfoering-for-nybegyndere-pdf.pdf",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/5101/skaermbillede-2026-01-12-232915.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "199",
+      "rentalPrice": "",
+      "purchaseEntryCount": 2,
+      "purchaseOrderCount": 2,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2026-01-27 13:32:01",
+      "lastPurchaseAt": "2026-04-29 23:42:46",
+      "samplePurchaseIds": [122781, 117972]
+    }
+  ],
+  "unresolvedMedia": []
+}

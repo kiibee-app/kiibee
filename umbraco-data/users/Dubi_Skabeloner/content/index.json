@@ -1,0 +1,15 @@
+{
+  "requestedName": "Dubi Skabeloner",
+  "liveName": "Dubi Skabeloner",
+  "userId": 131961,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Budgetter",
+      "id": 131968,
+      "status": "ok"
+    }
+  ]
+}

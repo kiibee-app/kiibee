@@ -1,0 +1,16 @@
+{
+  "headline": {
+    "alias": "headline",
+    "labels": ["Headline"],
+    "tabs": ["General"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "text": {
+    "alias": "text",
+    "labels": ["Text"],
+    "tabs": ["General"],
+    "editors": ["rte"],
+    "seenOn": ["parent"]
+  }
+}

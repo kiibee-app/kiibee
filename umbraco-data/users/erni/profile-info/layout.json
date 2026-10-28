@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "erni",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "erni",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5210/gudmekongerne.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5211/gog-forside.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "1",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Erik Ingemann Nielsens tilbud HER",
+  "description": "Gudmekongerne er en lydbog. Den trykte bog - om GOGs historie siden 1970'erne - er udsolgt fra forlaget. I lydbogen får du de vilde, fascinerende, spændende og lærerige historier fra 1970' erne, 80. 90'erne, og fra tiden efter år 2000. De bliver fortalt af nogle af de spændende mennesker, der var med i GOG i de pågældende årtier.",
+  "css": "",
+  "javaScript": ""
+}

@@ -1,0 +1,145 @@
+{
+  "exportedAt": "2026-06-02T10:57:34.199Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/16703",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 16703,
+    "includeProperties": [
+      "isPlay",
+      "uID",
+      "media"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 16703,
+    "key": "aa90af19-6906-451e-a8ff-7e45bc79da29",
+    "udi": "umb://document/aa90af196906451ea8ff7e45bc79da29",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/paedagogisk-psykologisk-tidsskrift/stats/"
+    ],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 1350,
+    "childrenFetched": 1350,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 1350
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 50,
+      "totalItems": 1350
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

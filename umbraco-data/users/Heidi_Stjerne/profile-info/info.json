@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Heidi Stjerne",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 127476,
+  "key": "cd6ad23b-8dee-417a-9f16-14cef17fb691",
+  "udi": "umb://document/cd6ad23b8dee417a9f1614cef17fb691",
+  "path": "-1,1067,127476",
+  "url": "/heidi-stjerne/",
+  "createDate": "2026-08-13 00:47:56",
+  "updateDate": "2026-08-13 00:47:56",
+  "publishDate": "2026-08-13 00:47:56",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

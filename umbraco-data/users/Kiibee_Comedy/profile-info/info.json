@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Kiibee Comedy",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 25709,
+  "key": "dae24727-dd1f-4747-ab02-11129f3fedb0",
+  "udi": "umb://document/dae24727dd1f4747ab0211129f3fedb0",
+  "path": "-1,1067,25709",
+  "url": "/kiibee-comedy/",
+  "createDate": "2020-12-26 11:03:01",
+  "updateDate": "2022-09-07 00:00:44",
+  "publishDate": "2022-09-07 00:00:44",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

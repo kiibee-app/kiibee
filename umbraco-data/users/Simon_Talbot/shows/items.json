@@ -1,0 +1,145 @@
+[
+  {
+    "id": 77664,
+    "key": "dcfde502-c47f-4536-a934-00227f23e593",
+    "udi": "umb://document/dcfde502c47f4536a93400227f23e593",
+    "name": "Simon Talbot - Optur",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-01-30 15:22:37",
+    "updateDate": "2024-01-30 13:11:24",
+    "parentId": 77663,
+    "path": "-1,1067,77648,77663,77664",
+    "sortOrder": 0,
+    "urls": ["/simon-talbot/shows/simon-talbot-optur/"],
+    "properties": {
+      "purchasePrice": "89",
+      "access": ["58"],
+      "rentalPrice": "39",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "Stream Simon Talbots Optur - Køb eller lej online",
+      "type": ["73"],
+      "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cae841ed1b8eb578dcf4e5dca967b802/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cae841ed1b8eb578dcf4e5dca967b802/thumbnails/thumbnail.jpg",
+      "videoID": "cae841ed1b8eb578dcf4e5dca967b802",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1922737668",
+      "productLink": "",
+      "expandedDescription": "<h2>Optur - Simon Talbot lover latter og god stemning</h2>\nÅret 2020 har været en gedigen nedtur for de fleste. Den populære komiker Simon Talbot har derfor besluttet at give danskerne en tiltrængt optur med sit splinternye standup show med navnet \"Optur\". I showet vil Talbot som sædvanlig forvandle temaer og oplevelser fra sit eget liv til morsomme jokes, som publikum kan grine med på. Temaerne spænder vidt fra hårtab over sociale medier og livet som gift mand til danske love og mere.\n\nTalbot lover, at showet vil give publikum \"den største opturs-aften\" med masser af grin og god stemning. Hans mål er, at alle går derfra med ondt i maven af grin og et stort smil på læben - og måske endda med lyst til at feste videre efter showet. Den populære komiker glæder sig allerede til turneen. Efter et år med stress og for meget tid foran skærmen, ser han frem til at underholde og sprede glæde rundt omkring i landet.\n\nSimon Talbot er kendt for shows som \"Damp\", \"Talle Alene i Verden\" og \"Make Denmark Great Again\", der solgte rekordmange billetter. Han er én af Danmarks helt store comedy-stjerner, og med \"Optur\" lover han endnu en omgang solid underholdning til det danske folk.",
+      "production": "",
+      "year": "2022",
+      "description": "<h2>Stream Simon Talbots Optur - lej eller køb online</h2>\n\"Optur” er Simon Talbots største og mest personlige show nogensinde. Her fortæller han om opvæksten i Jehovas Vidner - historien bliver fortalt, imens han forvandler tematikker fra eget liv, såsom sociale medier, katte, næsehår, danske love, kvinders alt for varme bade, og meget meget mere, til jokes, vi alle sammen kan grine af. Gør dig klar til mavekrampende grin og oplev Simons karismatiske energi i et show som garanterer en kæmpe optur.\nSimon gav for alvor over 50.000 danskere noget at grine af, da showet rullede ud over landet. Nu er turen kommet til dig derhjemme! Optur kan streames både som køb og leje direkte her på siden. Se den i dag og få dig et fabelagtigt grin med hele Danmarks Simon Talbot. Han transformerer temaer og emner fra sit eget liv til komedie, som vi alle kan grine ad - sociale medier, katte, næsehår, danske love, kvinders varme bade og mere. Gør dig klar til højlydt latter og oplev Simons karismatiske energi i et show, der garanterer en kæmpe \"optur\".",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/4341/st_optur_650x1030_v2.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Simon Talbot - Optur",
+      "badge": "Nyhed",
+      "length": "71",
+      "tags": "Simon Talbot,Stand-up show,Comedy,Optur",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "type": ["73"],
+    "rawFile": "",
+    "videoID": "cae841ed1b8eb578dcf4e5dca967b802",
+    "videoStatus": "ready",
+    "videoSize": "1922737668",
+    "videoThumbnailURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cae841ed1b8eb578dcf4e5dca967b802/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/cae841ed1b8eb578dcf4e5dca967b802/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "Simon Talbot - Optur",
+    "description": "<h2>Stream Simon Talbots Optur - lej eller køb online</h2>\n\"Optur” er Simon Talbots største og mest personlige show nogensinde. Her fortæller han om opvæksten i Jehovas Vidner - historien bliver fortalt, imens han forvandler tematikker fra eget liv, såsom sociale medier, katte, næsehår, danske love, kvinders alt for varme bade, og meget meget mere, til jokes, vi alle sammen kan grine af. Gør dig klar til mavekrampende grin og oplev Simons karismatiske energi i et show som garanterer en kæmpe optur.\nSimon gav for alvor over 50.000 danskere noget at grine af, da showet rullede ud over landet. Nu er turen kommet til dig derhjemme! Optur kan streames både som køb og leje direkte her på siden. Se den i dag og få dig et fabelagtigt grin med hele Danmarks Simon Talbot. Han transformerer temaer og emner fra sit eget liv til komedie, som vi alle kan grine ad - sociale medier, katte, næsehår, danske love, kvinders varme bade og mere. Gør dig klar til højlydt latter og oplev Simons karismatiske energi i et show, der garanterer en kæmpe \"optur\".",
+    "expandedDescription": "<h2>Optur - Simon Talbot lover latter og god stemning</h2>\nÅret 2020 har været en gedigen nedtur for de fleste. Den populære komiker Simon Talbot har derfor besluttet at give danskerne en tiltrængt optur med sit splinternye standup show med navnet \"Optur\". I showet vil Talbot som sædvanlig forvandle temaer og oplevelser fra sit eget liv til morsomme jokes, som publikum kan grine med på. Temaerne spænder vidt fra hårtab over sociale medier og livet som gift mand til danske love og mere.\n\nTalbot lover, at showet vil give publikum \"den største opturs-aften\" med masser af grin og god stemning. Hans mål er, at alle går derfra med ondt i maven af grin og et stort smil på læben - og måske endda med lyst til at feste videre efter showet. Den populære komiker glæder sig allerede til turneen. Efter et år med stress og for meget tid foran skærmen, ser han frem til at underholde og sprede glæde rundt omkring i landet.\n\nSimon Talbot er kendt for shows som \"Damp\", \"Talle Alene i Verden\" og \"Make Denmark Great Again\", der solgte rekordmange billetter. Han er én af Danmarks helt store comedy-stjerner, og med \"Optur\" lover han endnu en omgang solid underholdning til det danske folk.",
+    "year": "2022",
+    "length": "71",
+    "badge": "Nyhed",
+    "production": "",
+    "productionLink": "",
+    "tags": "Simon Talbot,Stand-up show,Comedy,Optur",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/4341/st_optur_650x1030_v2.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": ["58"],
+    "rentalPrice": "39",
+    "purchasePrice": "89",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": {
+      "priority": 0.5,
+      "frequency": 2,
+      "exclude": false
+    },
+    "metaTitle": "Stream Simon Talbots Optur - Køb eller lej online",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 282,
+    "statsPlayCount": 182,
+    "statsNonPlayCount": 100,
+    "firstStatAt": "2023-01-31 14:45:20",
+    "lastStatAt": "2026-04-02 20:42:56",
+    "stats": {
+      "mediaUdi": "umb://document/dcfde502c47f4536a93400227f23e593",
+      "mediaKey": "dcfde502-c47f-4536-a934-00227f23e593",
+      "entryCount": 282,
+      "playCount": 182,
+      "nonPlayCount": 100,
+      "firstEntryAt": "2023-01-31 14:45:20",
+      "lastEntryAt": "2026-04-02 20:42:56",
+      "sampleEntryIds": [120571, 112894, 111260, 111205, 109157]
+    }
+  }
+]

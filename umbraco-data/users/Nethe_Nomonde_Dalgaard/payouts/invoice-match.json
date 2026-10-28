@@ -1,0 +1,54 @@
+{
+  "matched": [
+    {
+      "id": 123153,
+      "key": "788183b5-effb-4369-98ff-d5d495683647",
+      "udi": "umb://document/788183b5effb436998ffd5d495683647",
+      "name": "KBF-1744",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/123153",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2026-05-12 06:19:00",
+      "updateDate": "2026-05-13 08:59:08",
+      "parentId": 117509,
+      "path": "-1,1067,117505,117509,123153",
+      "sortOrder": 0,
+      "urls": ["/nethe-nomonde-dalgaard/payouts/kbf-1744/"],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/",
+      "amount": "166.5",
+      "amountNumber": 166.5,
+      "isPaid": true,
+      "payoutCreateDate": "2026-05-12 06:19:00",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "5",
+        "transactionFee": "6",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2026-01-12 10:20:34",
+        "rawEarnings": "225",
+        "amount": "166.5",
+        "isPaid": "1",
+        "to": "2026-05-12 06:17:56",
+        "transactionAmount": "13.5",
+        "kiibeeCutAmount": "45"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

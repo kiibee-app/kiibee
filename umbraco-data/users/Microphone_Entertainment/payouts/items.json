@@ -1,0 +1,835 @@
+[
+  {
+    "id": 123417,
+    "key": "c0edb8f9-6f0f-4abe-9e3a-0079988eb90a",
+    "udi": "umb://document/c0edb8f96f0f4abe9e3a0079988eb90a",
+    "name": "KBF-1753",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/123417",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-05-22 10:07:02",
+    "updateDate": "2026-05-22 12:15:36",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,123417",
+    "sortOrder": 16,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1753/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1753/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1753/",
+    "amount": "374.56",
+    "amountNumber": 374.56,
+    "isPaid": true,
+    "payoutCreateDate": "2026-05-22 10:07:02",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1753/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1753/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "11",
+      "transactionFee": "6",
+      "kiibeeCut": "18",
+      "rentAmount": "6",
+      "from": "2025-12-09 10:13:24",
+      "rawEarnings": "724",
+      "amount": "374.56",
+      "isPaid": "1",
+      "to": "2026-05-22 10:06:56",
+      "transactionAmount": "43.44",
+      "kiibeeCutAmount": "306"
+    }
+  },
+  {
+    "id": 116358,
+    "key": "c732d5fd-53ed-40c7-9bba-1d5e09e42964",
+    "udi": "umb://document/c732d5fd53ed40c79bba1d5e09e42964",
+    "name": "KBF-1693",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/116358",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-12-09 10:13:41",
+    "updateDate": "2025-12-09 10:14:32",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,116358",
+    "sortOrder": 15,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1693/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1693/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1693/",
+    "amount": "1112.86",
+    "amountNumber": 1112.86,
+    "isPaid": true,
+    "payoutCreateDate": "2025-12-09 10:13:41",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1693/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1693/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "30",
+      "transactionFee": "6",
+      "kiibeeCut": "18",
+      "rentAmount": "11",
+      "from": "2025-06-14 10:24:45",
+      "rawEarnings": "1969",
+      "amount": "1112.86",
+      "isPaid": "1",
+      "to": "2025-12-09 10:13:24",
+      "transactionAmount": "118.14",
+      "kiibeeCutAmount": "738"
+    }
+  },
+  {
+    "id": 110529,
+    "key": "5ab2dfef-132d-4cf5-be8a-0b3a8b6ef2f3",
+    "udi": "umb://document/5ab2dfef132d4cf5be8a0b3a8b6ef2f3",
+    "name": "KBF-1643",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/110529",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-06-14 10:24:49",
+    "updateDate": "2025-06-14 10:36:21",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,110529",
+    "sortOrder": 14,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1643/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1643/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1643/",
+    "amount": "476.74",
+    "amountNumber": 476.74,
+    "isPaid": true,
+    "payoutCreateDate": "2025-06-14 10:24:49",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1643/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1643/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "16",
+      "transactionFee": "6",
+      "kiibeeCut": "18",
+      "rentAmount": "3",
+      "from": "2025-04-01 12:52:37",
+      "rawEarnings": "871",
+      "amount": "476.74",
+      "isPaid": "1",
+      "to": "2025-06-14 10:24:45",
+      "transactionAmount": "52.26",
+      "kiibeeCutAmount": "342"
+    }
+  },
+  {
+    "id": 108200,
+    "key": "46b4cf06-d96b-4424-ac7d-a566916b609e",
+    "udi": "umb://document/46b4cf06d96b4424ac7da566916b609e",
+    "name": "KBF-1618",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/108200",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2025-04-01 12:52:52",
+    "updateDate": "2025-04-01 12:54:41",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,108200",
+    "sortOrder": 13,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1618/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1618/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1618/",
+    "amount": "1693.56",
+    "amountNumber": 1693.56,
+    "isPaid": true,
+    "payoutCreateDate": "2025-04-01 12:52:52",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1618/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1618/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "38",
+      "transactionFee": "6",
+      "kiibeeCut": "18",
+      "rentAmount": "18",
+      "from": "2024-06-14 09:57:09",
+      "rawEarnings": "2874",
+      "amount": "1693.56",
+      "isPaid": "1",
+      "to": "2025-04-01 12:52:37",
+      "transactionAmount": "172.44",
+      "kiibeeCutAmount": "1008"
+    }
+  },
+  {
+    "id": 97850,
+    "key": "6b64c2f4-1fd1-4b8b-8abe-1018db7dfdad",
+    "udi": "umb://document/6b64c2f41fd14b8b8abe1018db7dfdad",
+    "name": "KBF-1538",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/97850",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-06-14 09:57:13",
+    "updateDate": "2024-06-14 10:05:41",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,97850",
+    "sortOrder": 12,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1538/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1538/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1538/",
+    "amount": "546.88",
+    "amountNumber": 546.88,
+    "isPaid": true,
+    "payoutCreateDate": "2024-06-14 09:57:13",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1538/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1538/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "4",
+      "transactionFee": "6",
+      "kiibeeCut": "20",
+      "rentAmount": "4",
+      "from": "2024-04-30 08:23:38",
+      "rawEarnings": "752",
+      "amount": "546.88",
+      "isPaid": "1",
+      "to": "2024-06-14 09:57:09",
+      "transactionAmount": "45.12",
+      "kiibeeCutAmount": "160"
+    }
+  },
+  {
+    "id": 96737,
+    "key": "74109082-ed26-4548-b395-34f66d91a57b",
+    "udi": "umb://document/74109082ed264548b39534f66d91a57b",
+    "name": "KBF-1512",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/96737",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-04-30 08:23:55",
+    "updateDate": "2024-05-03 13:05:06",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,96737",
+    "sortOrder": 11,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1512/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1512/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1512/",
+    "amount": "1043.7",
+    "amountNumber": 1043.7,
+    "isPaid": true,
+    "payoutCreateDate": "2024-04-30 08:23:55",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1512/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1512/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "20",
+      "transactionFee": "6",
+      "kiibeeCut": "20",
+      "rentAmount": "15",
+      "from": "2023-12-08 10:11:35",
+      "rawEarnings": "1855",
+      "amount": "1043.7",
+      "isPaid": "1",
+      "to": "2024-04-30 08:23:38",
+      "transactionAmount": "111.3",
+      "kiibeeCutAmount": "700"
+    }
+  },
+  {
+    "id": 92941,
+    "key": "794e5954-f3ce-487e-9c6d-5bd99021e059",
+    "udi": "umb://document/794e5954f3ce487e9c6d5bd99021e059",
+    "name": "KBF-1469",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/92941",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-12-08 10:11:46",
+    "updateDate": "2023-12-08 10:12:57",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,92941",
+    "sortOrder": 10,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1469/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1469/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1469/",
+    "amount": "1395.35",
+    "amountNumber": 1395.35,
+    "isPaid": true,
+    "payoutCreateDate": "2023-12-08 10:11:46",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1469/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1469/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "20",
+      "transactionFee": "5",
+      "kiibeeCut": "15",
+      "rentAmount": "17",
+      "from": "2023-05-16 08:40:41",
+      "rawEarnings": "2053",
+      "amount": "1395.35",
+      "isPaid": "1",
+      "to": "2023-12-08 10:11:35",
+      "transactionAmount": "102.65",
+      "kiibeeCutAmount": "555"
+    }
+  },
+  {
+    "id": 81879,
+    "key": "9f1c0369-0cc1-49d4-add6-9e04da28433e",
+    "udi": "umb://document/9f1c03690cc149d4add69e04da28433e",
+    "name": "KBF-1410",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/81879",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-05-16 08:40:46",
+    "updateDate": "2023-05-16 11:44:37",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,81879",
+    "sortOrder": 9,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1410/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1410/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1410/",
+    "amount": "697.85",
+    "amountNumber": 697.85,
+    "isPaid": true,
+    "payoutCreateDate": "2023-05-16 08:40:46",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1410/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1410/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "12",
+      "transactionFee": "5",
+      "kiibeeCut": "15",
+      "rentAmount": "5",
+      "from": "2023-03-07 10:13:41",
+      "rawEarnings": "1003",
+      "amount": "697.85",
+      "isPaid": "1",
+      "to": "2023-05-16 08:40:41",
+      "transactionAmount": "50.15",
+      "kiibeeCutAmount": "255"
+    }
+  },
+  {
+    "id": 78694,
+    "key": "ac08a683-6c6d-45c4-979e-d83f8d4dddd8",
+    "udi": "umb://document/ac08a6836c6d45c4979ed83f8d4dddd8",
+    "name": "KBF-1381",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/78694",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-03-07 10:13:50",
+    "updateDate": "2023-03-07 10:27:44",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,78694",
+    "sortOrder": 8,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1381/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1381/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1381/",
+    "amount": "648.85",
+    "amountNumber": 648.85,
+    "isPaid": true,
+    "payoutCreateDate": "2023-03-07 10:13:50",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1381/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1381/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "15",
+      "transactionFee": "5",
+      "kiibeeCut": "15",
+      "rentAmount": "4",
+      "from": "2022-12-02 09:03:34",
+      "rawEarnings": "983",
+      "amount": "648.85",
+      "isPaid": "1",
+      "to": "2023-03-07 10:13:41",
+      "transactionAmount": "49.15",
+      "kiibeeCutAmount": "285"
+    }
+  },
+  {
+    "id": 75528,
+    "key": "67363783-554a-4ead-8be2-2e44785d5d05",
+    "udi": "umb://document/67363783554a4ead8be22e44785d5d05",
+    "name": "KBF-1348",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/75528",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-12-02 09:03:40",
+    "updateDate": "2022-12-02 09:49:53",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,75528",
+    "sortOrder": 7,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1348/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1348/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1348/",
+    "amount": "1367.65",
+    "amountNumber": 1367.65,
+    "isPaid": true,
+    "payoutCreateDate": "2022-12-02 09:03:40",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1348/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1348/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "19",
+      "transactionFee": "5",
+      "kiibeeCut": "10",
+      "rentAmount": "14",
+      "from": "2022-05-23 13:04:53",
+      "rawEarnings": "1787",
+      "amount": "1367.65",
+      "isPaid": "1",
+      "to": "2022-12-02 09:03:34",
+      "transactionAmount": "89.35",
+      "kiibeeCutAmount": "330"
+    }
+  },
+  {
+    "id": 64608,
+    "key": "e7b03c21-9a9c-45c6-ab32-ab22a392882a",
+    "udi": "umb://document/e7b03c219a9c45c6ab32ab22a392882a",
+    "name": "KBF-1275",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/64608",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-05-23 13:05:01",
+    "updateDate": "2022-05-24 12:19:32",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,64608",
+    "sortOrder": 6,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1275/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1275/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1275/",
+    "amount": "2011.03",
+    "amountNumber": 2011.03,
+    "isPaid": true,
+    "payoutCreateDate": "2022-05-23 13:05:01",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1275/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1275/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "32",
+      "transactionFee": "3",
+      "kiibeeCut": "10",
+      "rentAmount": "19",
+      "from": "2021-11-11 10:28:04",
+      "rawEarnings": "2599",
+      "amount": "2011.03",
+      "isPaid": "1",
+      "to": "2022-05-23 13:04:53",
+      "transactionAmount": "77.97",
+      "kiibeeCutAmount": "510"
+    }
+  },
+  {
+    "id": 51472,
+    "key": "8f3c1fd5-6391-4501-b5c7-7a9bfa22c51b",
+    "udi": "umb://document/8f3c1fd563914501b5c77a9bfa22c51b",
+    "name": "KBF-1216",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/51472",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-11-11 10:28:13",
+    "updateDate": "2021-11-12 13:18:47",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,51472",
+    "sortOrder": 5,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1216/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1216/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1216/",
+    "amount": "1649.24",
+    "amountNumber": 1649.24,
+    "isPaid": true,
+    "payoutCreateDate": "2021-11-11 10:28:13",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1216/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1216/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "28",
+      "transactionFee": "3",
+      "kiibeeCut": "10",
+      "rentAmount": "10",
+      "from": "2021-09-02 09:38:04",
+      "rawEarnings": "2092",
+      "amount": "1649.24",
+      "isPaid": "1",
+      "to": "2021-11-11 10:28:04",
+      "transactionAmount": "62.76",
+      "kiibeeCutAmount": "380"
+    }
+  },
+  {
+    "id": 49710,
+    "key": "4a98fde9-673e-45e9-ba8b-9244f5ce6684",
+    "udi": "umb://document/4a98fde9673e45e9ba8b9244f5ce6684",
+    "name": "KBF-1185",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/49710",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-09-02 09:38:27",
+    "updateDate": "2021-09-02 09:43:38",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,49710",
+    "sortOrder": 4,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1185/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1185/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1185/",
+    "amount": "1269.59",
+    "amountNumber": 1269.59,
+    "isPaid": true,
+    "payoutCreateDate": "2021-09-02 09:38:27",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1185/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1185/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "20",
+      "transactionFee": "3",
+      "kiibeeCut": "7",
+      "rentAmount": "13",
+      "from": "2021-04-28 13:02:28",
+      "rawEarnings": "1547",
+      "amount": "1269.59",
+      "isPaid": "1",
+      "to": "2021-09-02 09:38:04",
+      "transactionAmount": "46.41",
+      "kiibeeCutAmount": "231"
+    }
+  },
+  {
+    "id": 44324,
+    "key": "0fd443f9-18af-421c-9b70-384152a99a92",
+    "udi": "umb://document/0fd443f918af421c9b70384152a99a92",
+    "name": "KBF-1148",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/44324",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-28 13:02:39",
+    "updateDate": "2021-04-28 15:29:54",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,44324",
+    "sortOrder": 3,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1148/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1148/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1148/",
+    "amount": "1120.63",
+    "amountNumber": 1120.63,
+    "isPaid": true,
+    "payoutCreateDate": "2021-04-28 13:02:39",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1148/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1148/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "12",
+      "transactionFee": "3",
+      "kiibeeCut": "7",
+      "rentAmount": "19",
+      "from": "2020-12-28 11:28:40",
+      "rawEarnings": "1379",
+      "amount": "1120.63",
+      "isPaid": "1",
+      "to": "2021-04-28 13:02:28",
+      "transactionAmount": "41.37",
+      "kiibeeCutAmount": "217"
+    }
+  },
+  {
+    "id": 26015,
+    "key": "3fb500f5-f3db-47f7-9ad8-62100dadd917",
+    "udi": "umb://document/3fb500f5f3db47f79ad862100dadd917",
+    "name": "KBF-1106",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/26015",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-28 11:29:11",
+    "updateDate": "2020-12-28 19:38:44",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,26015",
+    "sortOrder": 2,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1106/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1106/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1106/",
+    "amount": "1647.31",
+    "amountNumber": 1647.31,
+    "isPaid": true,
+    "payoutCreateDate": "2020-12-28 11:29:11",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1106/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1106/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "",
+      "transactionFee": "",
+      "kiibeeCut": "",
+      "rentAmount": "",
+      "from": "2020-05-25 12:25:42",
+      "rawEarnings": "",
+      "amount": "1647.31",
+      "isPaid": "1",
+      "to": "2020-12-28 11:28:40",
+      "transactionAmount": "",
+      "kiibeeCutAmount": ""
+    }
+  },
+  {
+    "id": 16222,
+    "key": "2d95f1b9-3957-44ca-9c2a-827c4d262e1c",
+    "udi": "umb://document/2d95f1b9395744ca9c2a827c4d262e1c",
+    "name": "KBF-1039",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/16222",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-05-25 12:26:45",
+    "updateDate": "2020-05-25 12:28:17",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,16222",
+    "sortOrder": 1,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1039/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1039/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1039/",
+    "amount": "1170.81",
+    "amountNumber": 1170.81,
+    "isPaid": true,
+    "payoutCreateDate": "2020-05-25 12:26:45",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1039/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1039/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "",
+      "transactionFee": "",
+      "kiibeeCut": "",
+      "rentAmount": "",
+      "from": "2020-01-12 10:43:39",
+      "rawEarnings": "",
+      "amount": "1170.81",
+      "isPaid": "1",
+      "to": "2020-05-25 12:25:42",
+      "transactionAmount": "",
+      "kiibeeCutAmount": ""
+    }
+  },
+  {
+    "id": 2541,
+    "key": "756332ef-8976-4180-ae74-eb630969b351",
+    "udi": "umb://document/756332ef89764180ae74eb630969b351",
+    "name": "KBF-1015",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/2541",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-01-12 10:44:25",
+    "updateDate": "2020-05-25 12:25:04",
+    "parentId": 1897,
+    "path": "-1,1067,1894,1897,2541",
+    "sortOrder": 0,
+    "urls": [
+      "/microphone-entertainment/payouts/kbf-1015/"
+    ],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1015/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1015/",
+    "amount": "585",
+    "amountNumber": 585,
+    "isPaid": true,
+    "payoutCreateDate": "2020-01-12 10:44:25",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/microphone-entertainment/payouts/kbf-1015/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/microphone-entertainment/payouts/kbf-1015/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "",
+      "transactionFee": "",
+      "kiibeeCut": "",
+      "rentAmount": "",
+      "from": "2019-07-23 10:03:01",
+      "rawEarnings": "",
+      "amount": "585",
+      "isPaid": "1",
+      "to": "2020-01-12 10:43:39",
+      "transactionAmount": "",
+      "kiibeeCutAmount": ""
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "requestedName": "VideoVisionær kursus",
+  "liveName": "VideoVisionær kursus",
+  "userId": 100020,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "VideoVisionær kurset",
+      "id": 100027,
+      "status": "ok"
+    }
+  ]
+}

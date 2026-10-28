@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Tegnestuen Undertryk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/6b0f21cffcdc4fb98627dcff58bd8e44",
+  "emailReceipt": "",
+  "supportEmail": ""
+}
