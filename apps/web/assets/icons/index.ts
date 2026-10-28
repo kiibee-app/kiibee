@@ -32,6 +32,7 @@ export { default as FacebookIcon } from "./facebookIcon";
 export { default as TwitterIcon } from "./twitterIcon";
 export { default as InstagramIcon } from "./InstagramIcon";
 export { default as YouTubeIcon } from "./youTubeIcon";
+export { default as LinkedInIcon } from "./LinkedInIcon";
 export { default as EpubIcon } from "./EpubIcon";
 export { default as LeftIcon } from "./LeftIcon";
 export { default as PlusIcon } from "./PlusIcon";

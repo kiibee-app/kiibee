@@ -56,6 +56,7 @@ type UseExploreContentParams = {
   search?: string;
   sort?: ExploreContentSort;
   filters?: ExploreContentFilters;
+  enabled?: boolean;
 };
 
 type ExploreApiType = "new" | "trending" | "created_for_you";
@@ -177,6 +178,7 @@ export const useExploreFeed = ({
   search,
   sort = EXPLORE_CONTENT_SORT.NEW,
   filters,
+  enabled = true,
 }: UseExploreContentParams = {}) => {
   const body = useMemo(() => pruneExploreFilters(filters), [filters]);
   const params = useMemo(
@@ -200,6 +202,7 @@ export const useExploreFeed = ({
       return response.data;
     },
     placeholderData: keepPreviousData,
+    enabled,
   });
 };
 

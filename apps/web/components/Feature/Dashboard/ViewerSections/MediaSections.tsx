@@ -261,11 +261,8 @@ export default function MediaSections({
                     key={item.id}
                     coverImage
                     imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
-                    minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
                     image={item.thumbSrc}
-                    title={
-                      <CardTitle $use="Body_Medium">{item.title}</CardTitle>
-                    }
+                    title={<CardTitle $use="H5_Medium">{item.title}</CardTitle>}
                     subtitle={
                       <CardCreator $use="Body_SemiMedium">
                         {item.author}
@@ -283,11 +280,12 @@ export default function MediaSections({
                         {item.expiryText}
                       </MonoText>
                     }
-                    badgeVariant="overlay"
                     badge={
-                      <MonoText $use="Body_Bold">
-                        {getCategoryLabel(item.category, t)}
-                      </MonoText>
+                      item.category ? (
+                        <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
+                          {getCategoryLabel(item.category, t)}
+                        </MonoText>
+                      ) : undefined
                     }
                     onClick={onCardClick ? () => onCardClick(item) : undefined}
                     footer={

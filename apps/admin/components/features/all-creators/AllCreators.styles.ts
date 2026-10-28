@@ -181,13 +181,36 @@ export const AllCreatorsState = styled.div`
 
 export const TableScrollWrapper = styled.div`
   width: 100%;
+  min-width: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 `;
 
 export const RequestsTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+`;
+
+export const ActionRequestsTable = styled(RequestsTable)`
+  border-collapse: separate;
+  border-spacing: 0;
+
+  ${media.mobileLg} {
+    th:last-child,
+    td:last-child {
+      position: sticky;
+      right: 0;
+      z-index: 1;
+      background: ${({ theme }) => theme.colors.neutral.WHITE};
+    }
+
+    th:last-child {
+      z-index: 2;
+      background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    }
+  }
 `;
 
 export const RequestTableRow = styled.tr`
@@ -210,6 +233,13 @@ export const TableHeaderCell = styled.th`
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+
+  &:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 238px;
+  }
 `;
 
 export const TableBodyCell = styled.td`
@@ -220,6 +250,14 @@ export const TableBodyCell = styled.td`
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   vertical-align: top;
+
+  &:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 238px;
+    background: ${({ theme }) => theme.colors.neutral.WHITE};
+  }
 
   &:nth-child(6),
   &:nth-child(7),
@@ -517,6 +555,13 @@ export const RowActionGroup = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
+
+  ${media.mobileLg} {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    min-width: 120px;
+  }
 `;
 
 export const RowActionButton = styled.button<{
@@ -532,6 +577,13 @@ export const RowActionButton = styled.button<{
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  ${media.mobileLg} {
+    box-sizing: border-box;
+    justify-content: center;
+    min-height: 44px;
+    width: 100%;
+    min-width: 120px;
+  }
   box-shadow: ${({ theme }) => theme.shadows.sm};
   transition:
     background ${({ theme }) => theme.animations.fast},

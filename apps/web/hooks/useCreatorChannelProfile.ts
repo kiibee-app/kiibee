@@ -19,8 +19,8 @@ import { formatJoinedDate } from "@/utils/formatDate";
 import {
   displayCreatorName,
   getAvatarUrl,
-  isCreatorWebsiteLink,
   resolveCreatorContactEmail,
+  resolveCreatorWebsiteLinks,
 } from "@/utils/creatorProfile";
 import {
   type CollectionsApiResponse,
@@ -156,6 +156,10 @@ export function useCreatorChannelProfile(enabled = true) {
       const supportEmail = hasAppearance
         ? appearanceQuery.data?.data?.supportEmail
         : publicCreator.supportEmail;
+      const resolvedLinks = resolveCreatorWebsiteLinks(
+        publicCreator.exampleWorkLink,
+        publicCreator.accountEmail,
+      );
       return {
         description:
           customDesc !== undefined
@@ -163,9 +167,8 @@ export function useCreatorChannelProfile(enabled = true) {
             : (publicCreator.contentDescription ?? ""),
         joinedDate: formatJoinedDate(publicCreator.createdAt),
         uploadCount: publicCreator.uploadCount ?? 0,
-        websiteLink: isCreatorWebsiteLink(publicCreator.exampleWorkLink ?? "")
-          ? (publicCreator.exampleWorkLink ?? "")
-          : "",
+        websiteLink: resolvedLinks[0] ?? "",
+        links: resolvedLinks,
         contactEmail: resolveCreatorContactEmail(
           supportEmail,
           publicCreator.accountEmail,
@@ -174,17 +177,18 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     if (!profile) return null;
+    const resolvedLinks = resolveCreatorWebsiteLinks(
+      profile.creatorInfo?.exampleWorkLink,
+      profile.user?.email,
+    );
     return {
       description: appearanceQuery.data?.data
         ? (appearanceQuery.data.data.description ?? "")
         : (profile.creatorInfo?.contentDescription ?? ""),
       joinedDate: formatJoinedDate(profile.user?.createdAt),
       uploadCount: uploadCountPrivate,
-      websiteLink: isCreatorWebsiteLink(
-        profile.creatorInfo?.exampleWorkLink ?? "",
-      )
-        ? (profile.creatorInfo?.exampleWorkLink ?? "")
-        : "",
+      websiteLink: resolvedLinks[0] ?? "",
+      links: resolvedLinks,
       contactEmail: resolveCreatorContactEmail(
         appearanceQuery.data?.data?.supportEmail,
         profile.user?.email,
