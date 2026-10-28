@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-02T11:04:23.371Z",
+  "exportedAt": "2026-10-28T06:02:57.780Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/42280",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -32,15 +32,15 @@
     }
   },
   "counts": {
-    "totalItemsFromApi": 29,
-    "childrenFetched": 29,
-    "detailsFetched": 29,
+    "totalItemsFromApi": 33,
+    "childrenFetched": 33,
+    "detailsFetched": 33,
     "detailErrors": 0,
-    "purchaseEntries": 19,
+    "purchaseEntries": 23,
     "nonPurchaseEntries": 10,
-    "entriesWithDownloads": 13,
+    "entriesWithDownloads": 17,
     "entriesWithStreams": 6,
-    "totalDownloads": 17,
+    "totalDownloads": 21,
     "totalStreams": 13,
     "uniqueMediaUdis": 2,
     "mediaResolvedFromCache": 0,
@@ -52,20 +52,18 @@
   "pagination": [
     {
       "pageNumber": 1,
-      "itemCount": 29,
-      "totalItems": 29
+      "itemCount": 33,
+      "totalItems": 33
     }
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data\\users\\Tobias_Dybvad\\stats\\media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Tobias_Dybvad\\stats\\media.json'"
+      "path": "umbraco-data/users/Tobias_Dybvad/stats/media.json",
+      "count": 0
     },
     {
-      "path": "umbraco-data\\users\\Tobias_Dybvad\\purchases\\media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Tobias_Dybvad\\purchases\\media.json'"
+      "path": "umbraco-data/users/Tobias_Dybvad/purchases/media.json",
+      "count": 0
     }
   ],
   "files": {

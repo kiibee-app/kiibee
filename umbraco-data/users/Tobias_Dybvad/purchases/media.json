@@ -35,14 +35,14 @@
     },
     "purchasePrice": "39",
     "rentalPrice": "29",
-    "purchaseEntryCount": 19,
-    "purchaseOrderCount": 12,
+    "purchaseEntryCount": 21,
+    "purchaseOrderCount": 14,
     "nonPurchaseEntryCount": 7,
-    "totalDownloads": 8,
+    "totalDownloads": 10,
     "totalStreams": 10,
     "firstPurchaseAt": "2021-05-26 17:41:35",
-    "lastPurchaseAt": "2026-05-30 12:22:27",
-    "samplePurchaseIds": [123957, 120674, 116540, 115023, 111649]
+    "lastPurchaseAt": "2026-08-29 09:48:26",
+    "samplePurchaseIds": [128223, 126883, 123957, 120674, 116540]
   },
   {
     "udi": "umb://document/16382748f2bb41d58f33ca358cbbc7ee",
@@ -80,13 +80,13 @@
     },
     "purchasePrice": "39",
     "rentalPrice": "29",
-    "purchaseEntryCount": 10,
-    "purchaseOrderCount": 7,
+    "purchaseEntryCount": 12,
+    "purchaseOrderCount": 9,
     "nonPurchaseEntryCount": 3,
-    "totalDownloads": 9,
+    "totalDownloads": 11,
     "totalStreams": 3,
     "firstPurchaseAt": "2021-05-12 07:51:26",
-    "lastPurchaseAt": "2025-06-03 21:09:30",
-    "samplePurchaseIds": [110180, 108660, 106642, 99781, 97265]
+    "lastPurchaseAt": "2026-08-29 09:47:49",
+    "samplePurchaseIds": [128221, 126880, 110180, 108660, 106642]
   }
 ]

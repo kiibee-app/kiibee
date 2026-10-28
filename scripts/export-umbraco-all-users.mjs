@@ -60,6 +60,7 @@ const TASKS = {
         path.join(USERS_DIR, userDir, "stats", "media.json"),
         path.join(USERS_DIR, userDir, "purchases", "media.json"),
       ],
+      fetchItemDetails: false,
     }),
   },
   payouts: {

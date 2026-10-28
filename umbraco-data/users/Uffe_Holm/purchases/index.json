@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-05-25T12:01:01.257Z",
+  "exportedAt": "2026-10-28T06:08:42.542Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1883",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -32,20 +32,20 @@
     }
   },
   "counts": {
-    "totalItemsFromApi": 1856,
-    "childrenFetched": 1856,
-    "detailsFetched": 1856,
-    "detailErrors": 0,
-    "purchaseEntries": 558,
-    "nonPurchaseEntries": 1298,
-    "entriesWithDownloads": 207,
-    "entriesWithStreams": 295,
-    "totalDownloads": 710,
-    "totalStreams": 916,
-    "uniqueMediaUdis": 7,
-    "mediaResolvedFromCache": 1,
-    "mediaResolvedFromApi": 6,
-    "mediaResolved": 7,
+    "totalItemsFromApi": 1886,
+    "childrenFetched": 1886,
+    "detailsFetched": 1233,
+    "detailErrors": 653,
+    "purchaseEntries": 572,
+    "nonPurchaseEntries": 1314,
+    "entriesWithDownloads": 221,
+    "entriesWithStreams": 309,
+    "totalDownloads": 786,
+    "totalStreams": 976,
+    "uniqueMediaUdis": 6,
+    "mediaResolvedFromCache": 6,
+    "mediaResolvedFromApi": 0,
+    "mediaResolved": 6,
     "mediaUnresolved": 0,
     "mediaResolveErrors": 0
   },
@@ -53,103 +53,107 @@
     {
       "pageNumber": 1,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 2,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 3,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 4,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 5,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 6,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 7,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 8,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 9,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 10,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 11,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 12,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 13,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 14,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 15,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 16,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 17,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 18,
       "itemCount": 100,
-      "totalItems": 1856
+      "totalItems": 1886
     },
     {
       "pageNumber": 19,
-      "itemCount": 56,
-      "totalItems": 1856
+      "itemCount": 86,
+      "totalItems": 1886
     }
   ],
   "mediaCache": [
     {
       "path": "umbraco-data/users/Uffe_Holm/stats/media.json",
       "count": 6
+    },
+    {
+      "path": "umbraco-data/users/Uffe_Holm/purchases/media.json",
+      "count": 7
     }
   ],
   "files": {
