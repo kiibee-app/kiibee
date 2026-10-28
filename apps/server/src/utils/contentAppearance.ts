@@ -32,5 +32,4 @@ export const resolveLogoName = (
 
 export const truncateContentAppearanceDescription = (
   description?: string | null,
-): string =>
-  (description ?? '').slice(0, CONTENT_APPEARANCE_DESCRIPTION_MAX_LENGTH);
+): string => description ?? '';
