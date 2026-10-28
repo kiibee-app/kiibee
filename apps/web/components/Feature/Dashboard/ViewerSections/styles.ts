@@ -418,43 +418,29 @@ export const PassiveActionBlock = styled.div`
 `;
 
 export const MediaGrid = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
   gap: 16px;
   align-items: stretch;
-  justify-content: flex-start;
+  width: 100%;
 
-  && > * {
+  > * {
+    min-width: 0;
     height: 100%;
-    width: calc((100% - 3 * 16px) / 4);
-    flex: 0 0 calc((100% - 3 * 16px) / 4);
-    max-width: calc((100% - 3 * 16px) / 4);
   }
 
-  ${media.desktopMd} {
-    && > * {
-      width: calc((100% - 2 * 16px) / 3);
-      flex: 0 0 calc((100% - 2 * 16px) / 3);
-      max-width: calc((100% - 2 * 16px) / 3);
-    }
+  ${media.desktopSm} {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
   }
 
   ${media.tablet} {
     gap: 12px;
-    && > * {
-      width: calc((100% - 12px) / 2);
-      flex: 0 0 calc((100% - 12px) / 2);
-      max-width: calc((100% - 12px) / 2);
-    }
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   ${media.mobileLg} {
     gap: 10px;
-    && > * {
-      width: 100%;
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
+    grid-template-columns: 1fr;
   }
 `;
 

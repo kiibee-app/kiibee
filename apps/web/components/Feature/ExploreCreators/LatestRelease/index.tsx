@@ -249,8 +249,12 @@ export default function LatestRelease({ search }: { search?: string }) {
                 <Skeleton.Card key={i} />
               ))
             ) : tutorials.length > 0 ? (
-              tutorials.map((tutorial) => (
-                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              tutorials.map((tutorial, index) => (
+                <TutorialCard
+                  key={tutorial.id}
+                  tutorial={tutorial}
+                  imagePriority={index < 4}
+                />
               ))
             ) : (
               <ResultsState>

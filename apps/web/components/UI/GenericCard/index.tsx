@@ -122,8 +122,13 @@ export default function GenericCard({
   const markImageLoaded = () => setImageLoading(false);
 
   const handleImageRef = (element: HTMLImageElement | null) => {
-    if (element?.complete && element.naturalWidth > 0) {
-      markImageLoaded();
+    if (!element) return;
+    if (element.complete) {
+      if (element.naturalWidth > 0) {
+        markImageLoaded();
+      } else {
+        handleImageError();
+      }
     }
   };
 

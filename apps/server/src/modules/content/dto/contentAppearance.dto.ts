@@ -34,7 +34,6 @@ export class ContentAppearanceDto {
 
   @IsOptional()
   @IsString()
-  @MaxLength(500)
   description?: string;
 
   @IsOptional()

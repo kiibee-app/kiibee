@@ -163,6 +163,7 @@ export const useExploreCreators = (
   limit?: number,
   search?: string,
   filter?: string,
+  enabled = true,
 ) => {
   const isAllEndpoint = filter !== undefined;
   const sortBy = mapFilterToSortBy(filter);
@@ -177,6 +178,7 @@ export const useExploreCreators = (
   const query = useGetAPI<ExploreCreatorsResponse>(
     isAllEndpoint ? API.creators.all : API.creators.list,
     Object.keys(params).length > 0 ? params : undefined,
+    { enabled },
   );
 
   const baseCreators = useMemo(() => {
@@ -210,7 +212,7 @@ export const useExploreCreators = (
 
       return response.data;
     },
-    enabled: creatorIdsMissingCategory.length > 0,
+    enabled: enabled && creatorIdsMissingCategory.length > 0,
     refetchOnWindowFocus: false,
   });
 

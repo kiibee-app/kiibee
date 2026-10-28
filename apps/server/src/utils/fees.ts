@@ -1,5 +1,5 @@
 export const PLATFORM_FEE_PERCENTAGES: Record<number, number> = {
-  0: 0.4,
+  0: 0.45,
   129: 0.25,
   399: 0.18,
 };

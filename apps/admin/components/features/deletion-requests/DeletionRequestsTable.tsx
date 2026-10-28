@@ -2,7 +2,7 @@
 
 import type { DeletionRequestsTableProps } from "../../../types/deletion-requests-table";
 import {
-  RequestsTable,
+  ActionRequestsTable,
   RequestTableRow,
   TableBodyCell,
   TableHeaderCell,
@@ -20,7 +20,7 @@ export function DeletionRequestsTable({
 }: DeletionRequestsTableProps) {
   return (
     <TableScrollWrapper>
-      <RequestsTable>
+      <ActionRequestsTable>
         <thead>
           <tr>
             {creatorDeletionRequestColumns.map((column) => (
@@ -47,7 +47,7 @@ export function DeletionRequestsTable({
             </RequestTableRow>
           ))}
         </tbody>
-      </RequestsTable>
+      </ActionRequestsTable>
     </TableScrollWrapper>
   );
 }

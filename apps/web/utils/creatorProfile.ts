@@ -291,6 +291,85 @@ export function isCreatorWebsiteLink(url: string): boolean {
   }
 }
 
+const GENERIC_EMAIL_DOMAINS = new Set([
+  "gmail.com",
+  "yahoo.com",
+  "hotmail.com",
+  "hotmail.dk",
+  "outlook.com",
+  "outlook.dk",
+  "live.com",
+  "live.dk",
+  "icloud.com",
+  "aol.com",
+  "mail.com",
+  "proton.me",
+  "protonmail.com",
+  "kiibee.dk",
+  "kiibee.com",
+  "umbraco-profile.local",
+]);
+
+export function parseCreatorLinks(raw?: string | null): string[] {
+  const trimmed = toTrimmedString(raw);
+  if (!trimmed) return [];
+  const parts = trimmed
+    .split(/[\n,]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const links: string[] = [];
+  for (const part of parts) {
+    const subParts = part.split(/\s+/).filter(Boolean);
+    for (const sub of subParts) {
+      if (isCreatorWebsiteLink(sub)) {
+        links.push(sub);
+      }
+    }
+  }
+  return Array.from(new Set(links));
+}
+
+function extractWebsiteDomainFromEmail(raw?: string | null): string | null {
+  const clean = toTrimmedString(raw)
+    .replace(/^mailto:/i, "")
+    .trim()
+    .toLowerCase();
+  const atIndex = clean.lastIndexOf("@");
+  if (atIndex > 0) {
+    const domain = clean.slice(atIndex + 1);
+    if (
+      !GENERIC_EMAIL_DOMAINS.has(domain) &&
+      domain.includes(".") &&
+      isCreatorWebsiteLink(domain)
+    ) {
+      return domain;
+    }
+  }
+  return null;
+}
+
+export function resolveCreatorWebsiteLinks(
+  exampleWorkLink?: string | null,
+  accountEmail?: string | null,
+): string[] {
+  const parsed = parseCreatorLinks(exampleWorkLink);
+  if (parsed.length > 0) {
+    return parsed;
+  }
+
+  const domainFromWorkLink = extractWebsiteDomainFromEmail(exampleWorkLink);
+  if (domainFromWorkLink) {
+    return [`https://${domainFromWorkLink}`];
+  }
+
+  const domainFromAccount = extractWebsiteDomainFromEmail(accountEmail);
+  if (domainFromAccount) {
+    return [`https://${domainFromAccount}`];
+  }
+
+  return [];
+}
+
 export function resolveCreatorContactEmail(
   supportEmail?: string | null,
   accountEmail?: string | null,
