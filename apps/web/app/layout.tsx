@@ -31,7 +31,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   ...(SITE_URL && { metadataBase: new URL(SITE_URL) }),
   title: {
-    default: "Kiibee - Discover Unique Digital Content",
+    default: "Kiibee – Platform for digitalt indhold",
     template: "%s | Kiibee",
   },
   description:
