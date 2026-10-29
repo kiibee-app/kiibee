@@ -74,6 +74,7 @@ interface AdmissionRequirementsProps {
   onChangeAccessDuration?: (value: AccessDurationValue) => void;
   showDescription?: boolean;
   showPaymentOption?: boolean;
+  showFreeOption?: boolean;
   isChannelSettings?: boolean;
   showPasswordMeta?: boolean;
   onValidationChange?: (hasError: boolean, passwordDraft?: string) => void;
@@ -99,6 +100,7 @@ function AdmissionRequirements({
   onChangeAccessDuration,
   showDescription = true,
   showPaymentOption = true,
+  showFreeOption = true,
   isChannelSettings = false,
   showPasswordMeta = false,
   onValidationChange,
@@ -169,14 +171,14 @@ function AdmissionRequirements({
       );
     }
 
-    if (!isWebContentType) {
+    if (!showFreeOption || (contentType && !isWebContentType)) {
       options = options.filter(
         (option) => option.value !== ADMISSION_REQUIREMENT_VALUES.free,
       );
     }
 
     return options;
-  }, [showPaymentOption, isWebContentType]);
+  }, [showPaymentOption, showFreeOption, contentType, isWebContentType]);
 
   const selectedOption = useMemo(
     () => visibleOptions.find((option) => option.value === selected),
