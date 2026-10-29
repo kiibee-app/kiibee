@@ -9,12 +9,14 @@ import {
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 
-const title = "Discover unique digital content from creators";
+const title = "Kiibee – Platform for digitalt indhold";
 const description =
   "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.";
 
 export const metadata: Metadata = {
-  title,
+  title: {
+    absolute: title,
+  },
   description,
   alternates: {
     canonical: PATHS.HOME,
