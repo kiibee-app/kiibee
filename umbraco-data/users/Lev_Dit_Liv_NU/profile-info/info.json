@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Lev Dit Liv NU",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 97418,
+  "key": "dc23e411-3477-466c-adf6-d8f9ce7d1925",
+  "udi": "umb://document/dc23e4113477466cadf6d8f9ce7d1925",
+  "path": "-1,1067,97418",
+  "url": "/lev-dit-liv-nu/",
+  "createDate": "2024-05-28 20:02:51",
+  "updateDate": "2024-06-25 16:42:45",
+  "publishDate": "2024-06-25 16:42:45",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Vital New Software ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/f644cd01c4c8434484a127c7aa7aed08",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

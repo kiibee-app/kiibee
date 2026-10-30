@@ -1,0 +1,408 @@
+{
+  "publishDate": "2020-02-27 18:43:48",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "adminUsers",
+  "templateId": 1231,
+  "allowedTemplates": {
+    "adminUsers": "Users"
+  },
+  "documentType": {
+    "alias": "users",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-06 19:17:40",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Users",
+    "id": 1232,
+    "udi": "umb://document-type/fe4a0d647e204e3abe62ebf405adc698",
+    "icon": "icon-user-females color-black",
+    "trashed": false,
+    "key": "fe4a0d64-7e20-4e3a-be62-ebf405adc698",
+    "parentId": 1224,
+    "path": "-1,1224,1232",
+    "metaData": {}
+  },
+  "urls": ["/admin/brugere/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/345a025d28544136841db1c69cb28cdc",
+  "contentTypeName": "Users",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 41,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205857,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "E-mail tilmeldinger",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205856,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+          "alias": "teaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "active": false,
+      "label": "Sales",
+      "alias": "Sales",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205861,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Salg",
+          "alias": "salesHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205860,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Her finder du en samlet oversigt over alt dit salg",
+          "alias": "salesTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "active": false,
+      "label": "Stats",
+      "alias": "Stats",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205862,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Visninger",
+          "alias": "statsHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205863,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Her finder du oversigten over alle afspilninger og downloads",
+          "alias": "statsTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "active": false,
+      "label": "Menu",
+      "alias": "Menu",
+      "properties": [
+        {
+          "label": "Display in nav",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205858,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "1",
+          "alias": "displayInNav",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Icon",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 2205859,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "supervised_user_circle",
+          "alias": "icon",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205857,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "E-mail tilmeldinger",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205856,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "alias": "teaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205861,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Salg",
+      "alias": "salesHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205860,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Her finder du en samlet oversigt over alt dit salg",
+      "alias": "salesTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205862,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Visninger",
+      "alias": "statsHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205863,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Her finder du oversigten over alle afspilninger og downloads",
+      "alias": "statsTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Display in nav",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205858,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "1",
+      "alias": "displayInNav",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Icon",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 2205859,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "supervised_user_circle",
+      "alias": "icon",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2026-02-07 10:28:25",
+  "createDate": "2019-03-06 19:19:56",
+  "published": false,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 1,
+    "name": "Anders Halfter"
+  },
+  "contentTypeAlias": "users",
+  "sortOrder": 2,
+  "name": "Brugere",
+  "id": 1233,
+  "udi": "umb://document/345a025d28544136841db1c69cb28cdc",
+  "icon": "icon-user-females color-black",
+  "trashed": false,
+  "key": "345a025d-2854-4136-841d-b1c69cb28cdc",
+  "parentId": 1223,
+  "alias": null,
+  "path": "-1,1067,1223,1233",
+  "metaData": {}
+}

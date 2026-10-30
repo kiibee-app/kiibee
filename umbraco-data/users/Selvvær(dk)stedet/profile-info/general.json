@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Selvvær(dk)stedet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/92bb104fcbe641e3801263c2bed8b4a7",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

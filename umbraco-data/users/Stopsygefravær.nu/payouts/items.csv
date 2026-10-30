@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+76142,c9a13a99-ac22-4241-b07e-784c39caccf9,umb://document/c9a13a99ac224241b07e784c39caccf9,KBF-1358,182.05,182.05,true,2022-12-21 21:22:16,2022-12-21 21:22:16,https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/,matched-public-payout-url,https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/,https://kiibee.dk/stopsygefravaernu/payouts/kbf-1358/,,

@@ -1,0 +1,18 @@
+{
+  "requestedName": "Damkjær Medier",
+  "liveName": "Damkjær Medier",
+  "userId": 94485,
+  "folderCount": 2,
+  "folders": [
+    {
+      "name": "VideoVisionær Kursus",
+      "id": 94669,
+      "status": "ok"
+    },
+    {
+      "name": "Videoformat-guide til annoncering og organisk indhold",
+      "id": 95614,
+      "status": "ok"
+    }
+  ]
+}

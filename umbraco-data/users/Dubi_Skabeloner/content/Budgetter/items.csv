@@ -1,0 +1,37 @@
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,orderID,title,access,badge,code,description,expandedDescription,hidden,hideDownload,hidePlay,length,metaDescription,metaTitle,openWebContentFromList,openWebContentInNewWindows,production,productionLink,productLink,purchasePrice,rawFile,rentalPrice,siteMapOption,tags,thumbnail,trailer,type,videoDownloadURL,videoID,videoSize,videoStatus,videoThumbnailURL,webContentURL,year
+131969,cfd8e97f-a6b2-47be-94e9-47d9a407b05c,umb://document/cfd8e97fa6b247be94e947d9a407b05c,Årsbudget i Excel – vejledning,media,true,true,2026-10-11 20:05:34,2026-10-11 20:44:01,131968,0,/dubi-skabeloner/budgetter/årsbudget-i-excel-vejledning/,0,Årsbudget i Excel – vejledning,58,,,"Lav et overskueligt årsbudget til din forening, også selvom du er ny i Excel.
+
+Denne PDF på 6 sider guider dig trin for trin fra et tomt ark til et budget med indbetalinger, udbetalinger og forventet pengebeholdning måned for måned. Fem nummererede figurer viser, hvordan arket kan se ud.
+
+Du får hjælp til at:
+
+Oprette arket og finde de rigtige celler.
+
+Indtaste kontingenter, tilskud og udgifter.
+
+Opsætte formler, så Excel beregner totaler og saldoer.
+
+Kontrollere budgettet og undgå typiske fejl.
+
+Til kasserere og bestyrelsesmedlemmer i små foreninger.
+
+Format: PDF, 6 sider. Kan læses på skærm eller printes. Du skal selv have adgang til Excel på computer. Der medfølger ingen Excel-fil; du bygger arket ved at følge vejledningen.",,0,0,0,0,,,0,0,,,,49,/media/5264/dubi-skabeloner-aarsbudget-vejledning.pdf,,,,/media/5268/minimal-danish-excel-budget-guide.png,,75,,,,,,,2026
+131970,50040caf-6a6e-421e-b868-14df646e0fd1,umb://document/50040caf6a6e421eb86814df646e0fd1,Årsbudget i Excel – udvidet vejledning,media,true,true,2026-10-11 20:07:06,2026-10-11 20:45:27,131968,1,/dubi-skabeloner/budgetter/årsbudget-i-excel-udvidet-vejledning/,1,Årsbudget i Excel – udvidet vejledning,58,,,"Byg foreningens årsbudget, og lær at bruge det til at planlægge, følge op og undersøge, om pengene rækker.
+
+Denne PDF på 10 sider indeholder hele den simple vejledning samt ekstra hjælp til usikre indtægter, ændrede betalingsdatoer og månedlig opfølgning. Seks nummererede figurer og konkrete regneeksempler understøtter forklaringerne.
+
+Ud over grundlæggende opsætning og formler lærer du at:
+
+Placere betalinger i de rigtige måneder.
+
+Sammenligne budgetter med forsinkede eller manglende tilskud.
+
+Opdatere forventninger med faktiske betalinger.
+
+Kontrollere budgettets saldo mod bank og kasse.
+
+Finde typiske Excel-fejl og klargøre budgettet til bestyrelsen.
+
+Til kasserere og bestyrelsesmedlemmer, der ønsker mere hjælp til den løbende økonomiske planlægning.
+
+Format: PDF, 10 sider. Kan læses på skærm eller printes. Du skal selv have adgang til Excel på computer. Der medfølger ingen Excel-fil; du bygger arket ved at følge vejledningen. Den simple vejledning er inkluderet, så du behøver kun købe denne version.",,0,0,0,0,,,0,0,,,,99,/media/5265/dubi-skabeloner-aarsbudget-udvidet-vejledning.pdf,,,,/media/5269/expanded-danish-excel-budget-guide.png,,75,,,,,,,2026

@@ -1,0 +1,35 @@
+{
+  "requestedName": "Foreningen Danske Revisorer",
+  "liveName": "Foreningen Danske Revisorer",
+  "userId": 65131,
+  "status": "found",
+  "folderCount": 5,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Bogføringsloven",
+      "id": 65138,
+      "status": "ok"
+    },
+    {
+      "name": "Moms og afgifter",
+      "id": 65149,
+      "status": "ok"
+    },
+    {
+      "name": "Skat",
+      "id": 72313,
+      "status": "ok"
+    },
+    {
+      "name": "Skat inden året slutter, 2022",
+      "id": 75193,
+      "status": "ok"
+    },
+    {
+      "name": "Kapitalejerlån",
+      "id": 77331,
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "EvaFogNoer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/74a8a566c6c042ac89cd15c09fc152f5",
+  "emailReceipt": "",
+  "supportEmail": "eva@fognoer.dk"
+}

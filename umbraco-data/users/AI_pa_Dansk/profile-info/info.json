@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "AI på Dansk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 131950,
+  "key": "41c85092-994a-4143-bc38-080e9f9a3fd1",
+  "udi": "umb://document/41c85092994a4143bc38080e9f9a3fd1",
+  "path": "-1,1067,131950",
+  "url": "/ai-paa-dansk/",
+  "createDate": "2026-10-11 15:30:39",
+  "updateDate": "2026-10-11 15:52:21",
+  "publishDate": "2026-10-11 15:52:21",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

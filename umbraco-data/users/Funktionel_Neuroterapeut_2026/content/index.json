@@ -1,0 +1,60 @@
+{
+  "requestedName": "Funktionel Neuroterapeut 2026",
+  "liveName": "Funktionel Neuroterapeut 2026",
+  "userId": 126039,
+  "status": "found",
+  "folderCount": 10,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Undervisningsmanualer",
+      "id": 127382,
+      "status": "ok"
+    },
+    {
+      "name": "Supplerende materiale",
+      "id": 127383,
+      "status": "ok"
+    },
+    {
+      "name": "Bevægekontrol Øvelser",
+      "id": 127384,
+      "status": "ok"
+    },
+    {
+      "name": "Cerebellum - Test",
+      "id": 127385,
+      "status": "ok"
+    },
+    {
+      "name": "Bevægekontrol Øvelser - Supplerende videomateriale",
+      "id": 128116,
+      "status": "ok"
+    },
+    {
+      "name": "Cortex - Test",
+      "id": 128269,
+      "status": "ok"
+    },
+    {
+      "name": "Cerebellum - Øvelser",
+      "id": 128704,
+      "status": "ok"
+    },
+    {
+      "name": "Undervisningsvideoer",
+      "id": 131760,
+      "status": "ok"
+    },
+    {
+      "name": "Hjernestammen / PMRF - Øvelser",
+      "id": 132209,
+      "status": "ok"
+    },
+    {
+      "name": "Hjernestammen / PMRF - Test",
+      "id": 132210,
+      "status": "ok"
+    }
+  ]
+}

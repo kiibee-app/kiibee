@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "ADHDFOKUS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "ADHDfokus.dk",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4234/coverfoto_kiibee_.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4382/coverfoto_mobil_kiibee.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "VIDEN OM ADD OG ADHD",
+  "description": "Kan du ikke holde fokus, styre følelserne, falde i søvn eller gøre opgaver færdige? \r\n\r\nGennem 9 videoer om ADD/ADHD forklares, hvad det er, og hvordan tænkning, følelser og livet i det hele taget påvirkes. \r\n\r\nLouise Meldgaard Bruun er specialpsykolog i psykiatri, og Andreas Wernlund er speciallæge i psykiatri.\r\nSammen giver de dig gennem videoerne viden om ADD og ADHD og forslag til strategier til at kunne trives bedre.",
+  "css": "",
+  "javaScript": ""
+}

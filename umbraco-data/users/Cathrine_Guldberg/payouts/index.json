@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T10:54:53.249Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1844",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 1844,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1844,
+    "key": "b5af8e4a-d3b3-4dea-b0a0-1c63c4712683",
+    "udi": "umb://document/b5af8e4ad3b34deab0a01c63c4712683",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/cathrine-guldberg/payouts/"],
+    "path": "-1,1067,1841,1844",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2023-05-26 18:10:20"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 10,
+    "childrenFetched": 10,
+    "detailsFetched": 10,
+    "detailErrors": 0,
+    "paidPayouts": 10,
+    "unpaidPayouts": 0,
+    "totalAmount": 3922.05,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 10,
+    "entriesWithInvoiceLink": 10,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 10,
+      "totalItems": 10
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

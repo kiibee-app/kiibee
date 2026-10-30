@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Foreningen Danske Revisorer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 65131,
+  "key": "cd22800b-323c-4cdc-afc6-08e5344f358b",
+  "udi": "umb://document/cd22800b323c4cdcafc608e5344f358b",
+  "path": "-1,1067,65131",
+  "url": "/foreningen-danske-revisorer/",
+  "createDate": "2022-06-06 10:14:34",
+  "updateDate": "2024-12-11 07:12:34",
+  "publishDate": "2024-12-11 07:12:34",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

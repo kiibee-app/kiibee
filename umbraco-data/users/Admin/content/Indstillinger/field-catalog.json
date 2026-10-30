@@ -1,0 +1,58 @@
+{
+  "exportHeadline": {
+    "alias": "exportHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Export"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "exportTeaser": {
+    "alias": "exportTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Export"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "notificationsHeadline": {
+    "alias": "notificationsHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Notifications"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "notificationsTeaser": {
+    "alias": "notificationsTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Notifications"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "payoutHeadline": {
+    "alias": "payoutHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Payout"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "payoutTeaser": {
+    "alias": "payoutTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Payout"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "subscriptionHeadline": {
+    "alias": "subscriptionHeadline",
+    "labels": ["Headline"],
+    "tabs": ["Subscription"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  },
+  "subscriptionTeaser": {
+    "alias": "subscriptionTeaser",
+    "labels": ["Teaser"],
+    "tabs": ["Subscription"],
+    "editors": ["textbox"],
+    "seenOn": ["parent"]
+  }
+}

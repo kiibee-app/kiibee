@@ -1,0 +1,45 @@
+{
+  "exportedAt": "2026-05-25T11:13:00.493Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2834",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById"
+  },
+  "parent": {
+    "id": 2834,
+    "key": "7ff6f3aa-2ae4-4bdd-babe-d7fd3fd9f78a",
+    "udi": "umb://document/7ff6f3aa2ae44bddbabed7fd3fd9f78a",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "urls": ["/uffe-holm/stats/"],
+    "path": "-1,1067,1879,2834"
+  },
+  "counts": {
+    "totalItemsFromApi": 5263,
+    "childrenFetched": 5263,
+    "itemsWithRequiredProperties": 5263,
+    "entriesWithMediaUdi": 5263,
+    "uniqueMediaUdis": 6,
+    "mediaResolved": 1,
+    "mediaUnresolvedAfterSessionExpired": 5,
+    "isPlayTrue": 3613,
+    "isPlayFalse": 1650,
+    "entriesWithUID": 0,
+    "editPayloadsFetchedBeforeSessionExpired": 1384,
+    "editPayloadErrorsAfterSessionExpired": 3879,
+    "mediaResolveErrorsAfterSessionExpired": 5
+  },
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "completeStatsEntries": true,
+    "statsEntryValueSource": "GetChildren includeProperties=isPlay,uID,media",
+    "editPayloadsFetchedBeforeSessionExpired": 1384,
+    "mediaDocumentsResolvedBeforeSessionExpired": 1,
+    "note": "The Angular edit URL itself is an Umbraco SPA route; this export uses the authenticated backoffice JSON APIs behind it."
+  }
+}

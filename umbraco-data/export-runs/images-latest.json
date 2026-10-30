@@ -1,0 +1,397 @@
+{
+  "startedAt": "2026-10-26T12:14:50.802Z",
+  "users": [
+    {
+      "name": "Funktionel Neuroterapeut 2026",
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "srcs": 59,
+      "ok": 55,
+      "failed": [
+        {
+          "src": "/media/5250/nervesystem_kvindeloeber.jpg",
+          "fileName": "5250_nervesystem_kvindeloeber.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5223/skaermbillede-2020-11-21-kl-122356.png",
+          "fileName": "5223_skaermbillede-2020-11-21-kl-122356.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5218/test.png",
+          "fileName": "5218_test.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5219/test.png",
+          "fileName": "5219_test.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "erni",
+      "userDir": "erni",
+      "srcs": 5,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/5212/del014.mp3",
+          "fileName": "5212_del014.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5214/toomy-kuglepen-forord.wav",
+          "fileName": "5214_toomy-kuglepen-forord.wav",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Carsten V Thomassen",
+      "userDir": "Carsten_V_Thomassen",
+      "srcs": 4,
+      "ok": 3,
+      "failed": [
+        {
+          "src": "/media/5255/otto-den-lille-koala-i-jungleeventyr-billed-bog.pdf",
+          "fileName": "5255_otto-den-lille-koala-i-jungleeventyr-billed-bog.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "AI på Dansk",
+      "userDir": "AI_pa_Dansk",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Dubi Skabeloner",
+      "userDir": "Dubi_Skabeloner",
+      "srcs": 6,
+      "ok": 6,
+      "failed": []
+    },
+    {
+      "name": "Lykke Neumann",
+      "userDir": "Lykke_Neumann",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Tom Frank Rasmussen",
+      "userDir": "Tom_Frank_Rasmussen",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Stopsygefravær.nu",
+      "userDir": "Stopsygefravær.nu",
+      "srcs": 16,
+      "ok": 12,
+      "failed": [
+        {
+          "src": "/media/3001/portraetbillede-kirsten-loevschall.jpg",
+          "fileName": "3001_portraetbillede-kirsten-loevschall.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1842/stop-sygefravaer-e-bog.epub",
+          "fileName": "1842_stop-sygefravaer-e-bog.epub",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/3000/portraet-kirsten-farve-juni-2020.jpg",
+          "fileName": "3000_portraet-kirsten-farve-juni-2020.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/2245/sygefravaer-pa-formel-kirsten-loevschall.jpg",
+          "fileName": "2245_sygefravaer-pa-formel-kirsten-loevschall.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "LindaAndrews",
+      "userDir": "LindaAndrews",
+      "srcs": 1,
+      "ok": 1,
+      "failed": []
+    },
+    {
+      "name": "Kiibee Comedy",
+      "userDir": "Kiibee_Comedy",
+      "srcs": 8,
+      "ok": 8,
+      "failed": []
+    },
+    {
+      "name": "Go Video",
+      "userDir": "Go_Video",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "TjelesVenner",
+      "userDir": "TjelesVenner",
+      "srcs": 32,
+      "ok": 11,
+      "failed": [
+        {
+          "src": "/media/3944/24_timer_ad_gangen.pdf",
+          "fileName": "3944_24_timer_ad_gangen.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3953/18-miniboeger-behandlingscenter-tjele.pdf",
+          "fileName": "3953_18-miniboeger-behandlingscenter-tjele.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3954/miniboegerne.png",
+          "fileName": "3954_miniboegerne.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4054/den_dansende_daemon.pdf",
+          "fileName": "4054_den_dansende_daemon.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4047/de_12_trin.pdf",
+          "fileName": "4047_de_12_trin.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4048/12-trin.png",
+          "fileName": "4048_12-trin.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3685/start-skaerm-1.png",
+          "fileName": "3685_start-skaerm-1.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3686/nyt-startbillede-slinger-i-valsen.png",
+          "fileName": "3686_nyt-startbillede-slinger-i-valsen.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3687/brik_logo_foredrag_filmstart.png",
+          "fileName": "3687_brik_logo_foredrag_filmstart.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3757/intro-til-tjeles-guidede-meditationer.mp3",
+          "fileName": "3757_intro-til-tjeles-guidede-meditationer.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3758/intro.png",
+          "fileName": "3758_intro.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3745/1-dit-sted-guided-meditation.mp3",
+          "fileName": "3745_1-dit-sted-guided-meditation.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3746/1-dit-sted.png",
+          "fileName": "3746_1-dit-sted.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3747/2-aandelighed-guided-meditation.mp3",
+          "fileName": "3747_2-aandelighed-guided-meditation.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3748/2-aandelighed.png",
+          "fileName": "3748_2-aandelighed.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3751/4-sindsro-guided-meditation.mp3",
+          "fileName": "3751_4-sindsro-guided-meditation.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3752/4-sindsro.png",
+          "fileName": "3752_4-sindsro.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3753/5-naervaer-guided-meditation.mp3",
+          "fileName": "3753_5-naervaer-guided-meditation.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3754/5-naervaer.png",
+          "fileName": "3754_5-naervaer.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3755/6-din-indre-kerne-guided-meditation.mp3",
+          "fileName": "3755_6-din-indre-kerne-guided-meditation.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+          "fileName": "3700_kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Foreningen Danske Revisorer",
+      "userDir": "Foreningen_Danske_Revisorer",
+      "srcs": 13,
+      "ok": 10,
+      "failed": [
+        {
+          "src": "/media/4492/momsonestopshop.jpg",
+          "fileName": "4492_momsonestopshop.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4337/20230126-billede-til-kiibee.jpg",
+          "fileName": "4337_20230126-billede-til-kiibee.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/4213/skat-ved-aarets-udgang-3-per-side-med-note.pdf",
+          "fileName": "4213_skat-ved-aarets-udgang-3-per-side-med-note.pdf",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "ADHDFOKUS",
+      "userDir": "ADHDFOKUS",
+      "srcs": 12,
+      "ok": 12,
+      "failed": []
+    },
+    {
+      "name": "VideoVisionær kursus",
+      "userDir": "VideoVisionær_kursus",
+      "srcs": 2,
+      "ok": 2,
+      "failed": []
+    },
+    {
+      "name": "Publika",
+      "userDir": "Publika",
+      "srcs": 5,
+      "ok": 5,
+      "failed": []
+    },
+    {
+      "name": "Ahmed Mittani",
+      "userDir": "Ahmed_Mittani",
+      "srcs": 2,
+      "ok": 0,
+      "failed": [
+        {
+          "src": "/media/5051/julekalender-malebog-2025.pdf",
+          "fileName": "5051_julekalender-malebog-2025.pdf",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5052/bd9e4cc6-d966-4956-be2f-b5b077c9341a.png",
+          "fileName": "5052_bd9e4cc6-d966-4956-be2f-b5b077c9341a.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "userDir": "Admin",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    },
+    {
+      "name": "Kiibee",
+      "userDir": "Kiibee",
+      "srcs": 44,
+      "ok": 36,
+      "failed": [
+        {
+          "src": "/media/1277/thum3.jpg",
+          "fileName": "1277_thum3.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1331/lydfil_.mp3",
+          "fileName": "1331_lydfil_.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1322/lydfil_test2.mp3",
+          "fileName": "1322_lydfil_test2.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1339/lydfil_.mp3",
+          "fileName": "1339_lydfil_.mp3",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1176/bsthumpnail.jpg",
+          "fileName": "1176_bsthumpnail.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/5015/beautiful-disaster-jamie-mcguire.epub",
+          "fileName": "5015_beautiful-disaster-jamie-mcguire.epub",
+          "error": "HTTP 404"
+        },
+        {
+          "src": "/media/1279/linse.jpg",
+          "fileName": "1279_linse.jpg",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1280/active-beautiful-beauty-866027-3.jpg",
+          "fileName": "1280_active-beautiful-beauty-866027-3.jpg",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Kiibee hjælpe videoer",
+      "userDir": "Kiibee_hjælpe_videoer",
+      "srcs": 14,
+      "ok": 12,
+      "failed": [
+        {
+          "src": "/media/1398/creative-tools-for-non-creative-people.png",
+          "fileName": "1398_creative-tools-for-non-creative-people.png",
+          "error": "The operation was aborted due to timeout"
+        },
+        {
+          "src": "/media/1511/kom-igang-pa-3-minutter-billede.png",
+          "fileName": "1511_kom-igang-pa-3-minutter-billede.png",
+          "error": "The operation was aborted due to timeout"
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "userDir": "Settings",
+      "srcs": 0,
+      "ok": 0,
+      "failed": []
+    }
+  ],
+  "finishedAt": "2026-10-26T12:18:03.358Z"
+}

@@ -1,0 +1,15 @@
+{
+  "requestedName": "Tegnestuen Undertryk",
+  "liveName": "Tegnestuen Undertryk",
+  "userId": 18467,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Video",
+      "id": 18474,
+      "status": "skipped"
+    }
+  ]
+}

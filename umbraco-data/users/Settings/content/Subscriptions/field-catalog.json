@@ -1,0 +1,58 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": ["Undersider"],
+    "editors": ["listview"],
+    "seenOn": ["parent"]
+  },
+  "kiibeeCut": {
+    "alias": "kiibeeCut",
+    "labels": ["Kiibee Cut"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "maxFiles": {
+    "alias": "maxFiles",
+    "labels": ["Max Files"],
+    "tabs": ["Subscription"],
+    "editors": ["integer"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "price": {
+    "alias": "price",
+    "labels": ["Price"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "price12": {
+    "alias": "price12",
+    "labels": ["Price 12"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "price3": {
+    "alias": "price3",
+    "labels": ["Price 3"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "price6": {
+    "alias": "price6",
+    "labels": ["Price 6"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  },
+  "transactionFee": {
+    "alias": "transactionFee",
+    "labels": ["Transaction Fee"],
+    "tabs": ["Subscription"],
+    "editors": ["decimal"],
+    "seenOn": ["item:1083", "item:1084", "item:1085"]
+  }
+}

@@ -1,0 +1,350 @@
+[
+  {
+    "id": 97514,
+    "key": "3079eeb7-4206-403d-a72b-7a490c65575a",
+    "udi": "umb://document/3079eeb74206403da72b7a490c65575a",
+    "name": "45u731052024143115",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2024-05-31 14:33:22",
+    "updateDate": "2024-05-31 14:33:22",
+    "parentId": 91265,
+    "path": "-1,1067,91260,91265,97514",
+    "sortOrder": 3,
+    "urls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/purchases/45u731052024143115/"
+    ],
+    "fullName": "Thea Bundgaard christensen",
+    "email": "min_saara@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "65",
+    "expireDate": "2024-06-14 14:33:19",
+    "message": "",
+    "orderCreateDate": "2024-05-31 14:33:22",
+    "mediaRelationUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/6d3670ef86734b6f9ae6e8f591eff807",
+        "key": "6d3670ef-8673-4b6f-9ae6-e8f591eff807",
+        "resolved": true,
+        "id": 91274,
+        "name": "Guidet visualisering",
+        "title": "Guidet visualisering",
+        "urls": [
+          "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4485/visualisering-til-gravide-v7.wav",
+        "webContentURL": "",
+        "thumbnail": "/media/4486/thumbnail.jpg",
+        "purchasePrice": "65",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Guidet visualisering"
+    ],
+    "mediaUrls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "min_saara@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2024-06-14 14:33:19",
+      "price": "65",
+      "fullName": "Thea Bundgaard christensen",
+      "message": "",
+      "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    }
+  },
+  {
+    "id": 93149,
+    "key": "c064ddbb-3c83-412b-b478-32d00fb13d18",
+    "udi": "umb://document/c064ddbb3c83412bb47832d00fb13d18",
+    "name": "z68113122023191751",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-12-13 19:18:05",
+    "updateDate": "2023-12-13 19:18:05",
+    "parentId": 91265,
+    "path": "-1,1067,91260,91265,93149",
+    "sortOrder": 2,
+    "urls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/purchases/z68113122023191751/"
+    ],
+    "fullName": "Maria Jensen ",
+    "email": "muhriajen@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "65",
+    "expireDate": "2023-12-27 19:18:02",
+    "message": "",
+    "orderCreateDate": "2023-12-13 19:18:05",
+    "mediaRelationUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/6d3670ef86734b6f9ae6e8f591eff807",
+        "key": "6d3670ef-8673-4b6f-9ae6-e8f591eff807",
+        "resolved": true,
+        "id": 91274,
+        "name": "Guidet visualisering",
+        "title": "Guidet visualisering",
+        "urls": [
+          "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4485/visualisering-til-gravide-v7.wav",
+        "webContentURL": "",
+        "thumbnail": "/media/4486/thumbnail.jpg",
+        "purchasePrice": "65",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Guidet visualisering"
+    ],
+    "mediaUrls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "muhriajen@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-12-27 19:18:02",
+      "price": "65",
+      "fullName": "Maria Jensen ",
+      "message": "",
+      "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    }
+  },
+  {
+    "id": 91496,
+    "key": "b0304965-24f9-45d4-853c-7899844fddae",
+    "udi": "umb://document/b030496524f945d4853c7899844fddae",
+    "name": "723k24102023164100",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-10-24 16:41:17",
+    "updateDate": "2023-10-24 16:41:17",
+    "parentId": 91265,
+    "path": "-1,1067,91260,91265,91496",
+    "sortOrder": 1,
+    "urls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/purchases/723k24102023164100/"
+    ],
+    "fullName": "Hanna Thygesen Schmidt",
+    "email": "hanna-thy@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "65",
+    "expireDate": "2023-10-31 16:41:14",
+    "message": "",
+    "orderCreateDate": "2023-10-24 16:41:17",
+    "mediaRelationUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/6d3670ef86734b6f9ae6e8f591eff807",
+        "key": "6d3670ef-8673-4b6f-9ae6-e8f591eff807",
+        "resolved": true,
+        "id": 91274,
+        "name": "Guidet visualisering",
+        "title": "Guidet visualisering",
+        "urls": [
+          "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4485/visualisering-til-gravide-v7.wav",
+        "webContentURL": "",
+        "thumbnail": "/media/4486/thumbnail.jpg",
+        "purchasePrice": "65",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Guidet visualisering"
+    ],
+    "mediaUrls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "hanna-thy@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-10-31 16:41:14",
+      "price": "65",
+      "fullName": "Hanna Thygesen Schmidt",
+      "message": "",
+      "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    }
+  },
+  {
+    "id": 91276,
+    "key": "a5be0982-15bf-484b-afe2-875a48fae753",
+    "udi": "umb://document/a5be098215bf484bafe2875a48fae753",
+    "name": "wn3r17102023170736",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-10-17 17:07:54",
+    "updateDate": "2023-10-17 17:07:54",
+    "parentId": 91265,
+    "path": "-1,1067,91260,91265,91276",
+    "sortOrder": 0,
+    "urls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/purchases/wn3r17102023170736/"
+    ],
+    "fullName": "Camilla Maria Hentze Lindstrøm",
+    "email": "camillamaria88@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "65",
+    "expireDate": "2023-10-24 17:07:51",
+    "message": "",
+    "orderCreateDate": "2023-10-17 17:07:54",
+    "mediaRelationUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/6d3670ef86734b6f9ae6e8f591eff807",
+        "key": "6d3670ef-8673-4b6f-9ae6-e8f591eff807",
+        "resolved": true,
+        "id": 91274,
+        "name": "Guidet visualisering",
+        "title": "Guidet visualisering",
+        "urls": [
+          "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/4485/visualisering-til-gravide-v7.wav",
+        "webContentURL": "",
+        "thumbnail": "/media/4486/thumbnail.jpg",
+        "purchasePrice": "65",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Guidet visualisering"
+    ],
+    "mediaUrls": [
+      "/familier-foedes-familiens-psykolog-gennem-hele-rejsen/skab-kontakt-til-krop-og-baby/guidet-visualisering/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "camillamaria88@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2023-10-24 17:07:51",
+      "price": "65",
+      "fullName": "Camilla Maria Hentze Lindstrøm",
+      "message": "",
+      "media": "umb://document/6d3670ef86734b6f9ae6e8f591eff807"
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "requestedName": "Publika",
+  "liveName": "Publika",
+  "userId": 101314,
+  "status": "found",
+  "folderCount": 1,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Excel bilbudget",
+      "id": 101321,
+      "status": "ok"
+    }
+  ]
+}

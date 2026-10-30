@@ -1,0 +1,45 @@
+{
+  "requestedName": "Funktionel Neuro Terapeut",
+  "liveName": "Funktionel Neuro Terapeut",
+  "userId": 101587,
+  "status": "found",
+  "folderCount": 7,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "NeuroFlow Videoer",
+      "id": 101594,
+      "status": "ok"
+    },
+    {
+      "name": "Videoer med Z-Health baseret Bevægekontrol Øvelser",
+      "id": 101595,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 2",
+      "id": 104214,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 1",
+      "id": 104310,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 3",
+      "id": 104451,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 4",
+      "id": 106294,
+      "status": "ok"
+    },
+    {
+      "name": "Modul 5",
+      "id": 106538,
+      "status": "ok"
+    }
+  ]
+}

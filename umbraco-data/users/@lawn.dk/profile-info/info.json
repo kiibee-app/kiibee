@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "@lawn.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 79943,
+  "key": "859e4f01-2263-409b-85a9-8385bf72705a",
+  "udi": "umb://document/859e4f012263409b85a98385bf72705a",
+  "path": "-1,1067,79943",
+  "url": "/lawndk/",
+  "createDate": "2023-04-07 13:10:51",
+  "updateDate": "2026-08-19 00:00:04",
+  "publishDate": "2026-08-19 00:00:04",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

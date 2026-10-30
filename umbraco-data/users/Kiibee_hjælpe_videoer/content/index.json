@@ -1,0 +1,25 @@
+{
+  "requestedName": "Kiibee hjælpe videoer",
+  "liveName": "Kiibee hjælpe videoer",
+  "userId": 2220,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Hjælpevideoer",
+      "id": 2331,
+      "status": "ok"
+    },
+    {
+      "name": "Brugervejledning - Quickguides",
+      "id": 2332,
+      "status": "ok"
+    },
+    {
+      "name": "Intro videoer",
+      "id": 2579,
+      "status": "ok"
+    }
+  ]
+}

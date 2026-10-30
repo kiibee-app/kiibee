@@ -1,0 +1,165 @@
+{
+  "exportedAt": "2026-10-28T05:26:49.831Z",
+  "collectionName": "Brugere",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1233",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1233,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 1233,
+    "key": "345a025d-2854-4136-841d-b1c69cb28cdc",
+    "udi": "umb://document/345a025d28544136841db1c69cb28cdc",
+    "name": "Brugere",
+    "contentTypeAlias": "users",
+    "published": false,
+    "hasPublishedVersion": true,
+    "urls": ["/admin/brugere/"],
+    "fields": {
+      "headline": "E-mail tilmeldinger",
+      "teaser": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "salesHeadline": "Salg",
+      "salesTeaser": "Her finder du en samlet oversigt over alt dit salg",
+      "statsHeadline": "Visninger",
+      "statsTeaser": "Her finder du oversigten over alle afspilninger og downloads",
+      "displayInNav": "1",
+      "icon": "supervised_user_circle"
+    },
+    "fieldDetails": {
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "E-mail tilmeldinger"
+      },
+      "teaser": {
+        "alias": "teaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse."
+      },
+      "salesHeadline": {
+        "alias": "salesHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Sales",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Salg"
+      },
+      "salesTeaser": {
+        "alias": "salesTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Sales",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Her finder du en samlet oversigt over alt dit salg"
+      },
+      "statsHeadline": {
+        "alias": "statsHeadline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Stats",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Visninger"
+      },
+      "statsTeaser": {
+        "alias": "statsTeaser",
+        "label": "Teaser",
+        "description": "",
+        "tab": "Stats",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Her finder du oversigten over alle afspilninger og downloads"
+      },
+      "displayInNav": {
+        "alias": "displayInNav",
+        "label": "Display in nav",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "icon": {
+        "alias": "icon",
+        "label": "Icon",
+        "description": "",
+        "tab": "Menu",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "supervised_user_circle"
+      }
+    },
+    "fieldOrder": [
+      "headline",
+      "teaser",
+      "salesHeadline",
+      "salesTeaser",
+      "statsHeadline",
+      "statsTeaser",
+      "displayInNav",
+      "icon"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 0,
+    "childrenFetched": 0,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 8
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 0,
+      "totalItems": 0
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Kiibee hjælpe videoer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Kiibee info center ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1536/kiibee-logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1379/kiibee-cover-help.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "noblock",
+  "headline": "INFO-CENTER",
+  "description": "Skal du i gang med at vise eller sælge dit digitale indhold? \r\nHer finder du hjælp til hvordan du kommer i gang med Kiibees medieplatform og vejledninger til hvordan du bruger Kiibee`s administrationsside.",
+  "css": ".covertext .row .col .container .row {\njustify-content: center;\ntext-align: center;\n}\n.covertext .covertext-container h1 {\ntext-transform: uppercase;\nfont-weight: 600;\nfont-size: 44px !important;\nletter-spacing: 2px;\n}",
+  "javaScript": ""
+}

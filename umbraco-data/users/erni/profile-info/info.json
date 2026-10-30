@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "erni",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 128293,
+  "key": "5d6c6ea0-db11-40b2-9573-dd58baf05e4b",
+  "udi": "umb://document/5d6c6ea0db1140b29573dd58baf05e4b",
+  "path": "-1,1067,128293",
+  "url": "/erni/",
+  "createDate": "2026-08-30 14:14:52",
+  "updateDate": "2026-09-03 10:13:21",
+  "publishDate": "2026-09-03 10:13:21",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

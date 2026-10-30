@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Laura Nielsen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-01-31",
+  "frequency": "30",
+  "notificationsType": "0",
+  "emails": ""
+}

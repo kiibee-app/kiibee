@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/eb39a5eee85b4590b2049e4b1d7c609f",
+    "key": "eb39a5ee-e85b-4590-b204-9e4b1d7c609f",
+    "resolved": true,
+    "id": 25348,
+    "name": "Gavekort",
+    "title": "Gavekort",
+    "urls": ["/ilona-margibell/gavekort-til-bog/gavekort/"],
+    "contentTypeAlias": "media",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "/media/2729/gavekort.pdf",
+    "webContentURL": "",
+    "thumbnail": "/media/2736/gavekort.jpg",
+    "purchasePrice": "249",
+    "rentalPrice": "",
+    "purchaseEntryCount": 13,
+    "purchaseOrderCount": 13,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2020-12-24 00:18:11",
+    "lastPurchaseAt": "2021-12-17 19:54:54",
+    "samplePurchaseIds": [55018, 29141, 26593, 26591, 26438]
+  }
+]

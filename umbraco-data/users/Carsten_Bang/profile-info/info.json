@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Carsten Bang",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 42166,
+  "key": "a0764e75-f673-4ee1-8d80-9b1360d6cdc8",
+  "udi": "umb://document/a0764e75f6734ee18d809b1360d6cdc8",
+  "path": "-1,1067,42166",
+  "url": "/carsten-bang/",
+  "createDate": "2021-04-05 15:36:59",
+  "updateDate": "2024-04-30 08:12:15",
+  "publishDate": "2024-04-30 08:12:15",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

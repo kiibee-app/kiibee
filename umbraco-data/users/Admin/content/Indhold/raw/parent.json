@@ -1,0 +1,444 @@
+{
+  "publishDate": "2019-07-11 22:30:27",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "adminContent",
+  "templateId": 1228,
+  "allowedTemplates": {
+    "adminContent": "Content"
+  },
+  "documentType": {
+    "alias": "content",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-06 19:13:41",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Content",
+    "id": 1229,
+    "udi": "umb://document-type/eb0e163c7ed84af892103ae14385e3ba",
+    "icon": "icon-folder-close color-black",
+    "trashed": false,
+    "key": "eb0e163c-7ed8-4af8-9210-3ae14385e3ba",
+    "parentId": 1224,
+    "path": "-1,1224,1229",
+    "metaData": {}
+  },
+  "urls": ["/admin/indhold/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/f9d3b5c2611f44eaa419133579baea88",
+  "contentTypeName": "Content",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 41,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23224,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Min kanal",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23223,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "",
+          "alias": "teaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Sort Text",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23227,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Rækkefølgen af indholdet på din kanal afhænger af rækkefølgen i denne liste, ændre rækkefølgende ved at trække og slippe på ikonet",
+          "alias": "sortText",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "active": false,
+      "label": "Layout",
+      "alias": "Layout",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23228,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Generelt udseende",
+          "alias": "layoutHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23229,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Tilpas din kanals visuelle udseende",
+          "alias": "layoutTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "active": false,
+      "label": "Settings",
+      "alias": "Settings",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23230,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Generelle indstillinger",
+          "alias": "settingsHeadline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23231,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Indstillinger for din kanal",
+          "alias": "settingsTeaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "active": false,
+      "label": "Menu",
+      "alias": "Menu",
+      "properties": [
+        {
+          "label": "Display in nav",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23225,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "1",
+          "alias": "displayInNav",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Icon",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 23226,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "folder",
+          "alias": "icon",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23224,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Min kanal",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23223,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "",
+      "alias": "teaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Sort Text",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23227,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Rækkefølgen af indholdet på din kanal afhænger af rækkefølgen i denne liste, ændre rækkefølgende ved at trække og slippe på ikonet",
+      "alias": "sortText",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23228,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Generelt udseende",
+      "alias": "layoutHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23229,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Tilpas din kanals visuelle udseende",
+      "alias": "layoutTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23230,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Generelle indstillinger",
+      "alias": "settingsHeadline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23231,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Indstillinger for din kanal",
+      "alias": "settingsTeaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Display in nav",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23225,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "1",
+      "alias": "displayInNav",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Icon",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 23226,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "folder",
+      "alias": "icon",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2019-07-11 22:30:27",
+  "createDate": "2019-03-06 19:14:48",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "contentTypeAlias": "content",
+  "sortOrder": 1,
+  "name": "Indhold",
+  "id": 1230,
+  "udi": "umb://document/f9d3b5c2611f44eaa419133579baea88",
+  "icon": "icon-folder-close color-black",
+  "trashed": false,
+  "key": "f9d3b5c2-611f-44ea-a419-133579baea88",
+  "parentId": 1223,
+  "alias": null,
+  "path": "-1,1067,1223,1230",
+  "metaData": {}
+}

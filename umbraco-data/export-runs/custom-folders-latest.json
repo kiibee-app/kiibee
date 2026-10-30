@@ -1,0 +1,491 @@
+{
+  "startedAt": "2026-10-26T11:36:05.792Z",
+  "users": [
+    {
+      "requestedName": "Funktionel Neuroterapeut 2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "status": "found",
+      "folderCount": 10,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Undervisningsmanualer",
+          "id": 127382,
+          "status": "ok"
+        },
+        {
+          "name": "Supplerende materiale",
+          "id": 127383,
+          "status": "ok"
+        },
+        {
+          "name": "Bevægekontrol Øvelser",
+          "id": 127384,
+          "status": "ok"
+        },
+        {
+          "name": "Cerebellum - Test",
+          "id": 127385,
+          "status": "ok"
+        },
+        {
+          "name": "Bevægekontrol Øvelser - Supplerende videomateriale",
+          "id": 128116,
+          "status": "ok"
+        },
+        {
+          "name": "Cortex - Test",
+          "id": 128269,
+          "status": "ok"
+        },
+        {
+          "name": "Cerebellum - Øvelser",
+          "id": 128704,
+          "status": "ok"
+        },
+        {
+          "name": "Undervisningsvideoer",
+          "id": 131760,
+          "status": "ok"
+        },
+        {
+          "name": "Hjernestammen / PMRF - Øvelser",
+          "id": 132209,
+          "status": "ok"
+        },
+        {
+          "name": "Hjernestammen / PMRF - Test",
+          "id": 132210,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "erni",
+      "liveName": "erni",
+      "userId": 128293,
+      "status": "found",
+      "folderCount": 2,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Gudmekongerne - Bogen om GOG",
+          "id": 128303,
+          "status": "ok"
+        },
+        {
+          "name": "Kuglepen - Bogen om Tommy Poulsen",
+          "id": 128304,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Carsten V Thomassen",
+      "liveName": "Carsten V Thomassen",
+      "userId": 131826,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Billedbøger for Børn",
+          "id": 131833,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "AI på Dansk",
+      "liveName": "AI på Dansk",
+      "userId": 131950,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "AI på Dansk",
+          "id": 131957,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Dubi Skabeloner",
+      "liveName": "Dubi Skabeloner",
+      "userId": 131961,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Budgetter",
+          "id": 131968,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Lykke Neumann",
+      "liveName": "Lykke Neumann",
+      "userId": 132051,
+      "status": "found",
+      "folderCount": 0,
+      "missingFolders": [],
+      "folders": []
+    },
+    {
+      "requestedName": "Tom Frank Rasmussen",
+      "liveName": "Tom Frank Rasmussen",
+      "userId": 132129,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "SCI-FI Bøger",
+          "id": 132136,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Stopsygefravær.nu",
+      "liveName": "Stopsygefravær.nu",
+      "userId": 14217,
+      "status": "found",
+      "folderCount": 7,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+          "id": 14230,
+          "status": "ok"
+        },
+        {
+          "name": "2 i ÉN løsning",
+          "id": 14914,
+          "status": "ok"
+        },
+        {
+          "name": "3 i ÉN løsning",
+          "id": 14925,
+          "status": "ok"
+        },
+        {
+          "name": "Introduktionsvideo",
+          "id": 14931,
+          "status": "ok"
+        },
+        {
+          "name": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
+          "id": 19339,
+          "status": "ok"
+        },
+        {
+          "name": "Det her skal du vide når du er leder og håndterer sygefravær på arbejdsppladsen!",
+          "id": 39091,
+          "status": "ok"
+        },
+        {
+          "name": "Løsninger der virker.",
+          "id": 49340,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "LindaAndrews",
+      "liveName": "LindaAndrews",
+      "userId": 25350,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Koncertfilm: \"Merry Christmas med Linda Andrews\" - klik her:",
+          "id": 25357,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Kiibee Comedy",
+      "liveName": "Kiibee Comedy",
+      "userId": 25709,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Sådan virker det - Se film og cases her!",
+          "id": 25796,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Go Video",
+      "liveName": "Go Video",
+      "userId": 29389,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Onlinekursus i mobilvideo",
+          "id": 29447,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "status": "found",
+      "folderCount": 3,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Foredragsfilm",
+          "id": 50469,
+          "status": "ok"
+        },
+        {
+          "name": "Tjeles Guidede Meditationer",
+          "id": 52795,
+          "status": "ok"
+        },
+        {
+          "name": "Bøger & Apps",
+          "id": 56006,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Foreningen Danske Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "status": "found",
+      "folderCount": 5,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Bogføringsloven",
+          "id": 65138,
+          "status": "ok"
+        },
+        {
+          "name": "Moms og afgifter",
+          "id": 65149,
+          "status": "ok"
+        },
+        {
+          "name": "Skat",
+          "id": 72313,
+          "status": "ok"
+        },
+        {
+          "name": "Skat inden året slutter, 2022",
+          "id": 75193,
+          "status": "ok"
+        },
+        {
+          "name": "Kapitalejerlån",
+          "id": 77331,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "status": "found",
+      "folderCount": 2,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Hvad er ADD og ADHD?",
+          "id": 76566,
+          "status": "ok"
+        },
+        {
+          "name": "UNDERVISNING TIL UNGE OG VOKSNE MED ADD ELLER ADHD",
+          "id": 103341,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "VideoVisionær kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "VideoVisionær kurset",
+          "id": 100027,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Excel bilbudget",
+          "id": 101321,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Ahmed Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "status": "found",
+      "folderCount": 1,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Print & Farvelægning",
+          "id": 115630,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "status": "found",
+      "folderCount": 5,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Oversigt",
+          "id": 1227,
+          "status": "ok"
+        },
+        {
+          "name": "Indhold",
+          "id": 1230,
+          "status": "ok"
+        },
+        {
+          "name": "Brugere",
+          "id": 1233,
+          "status": "ok"
+        },
+        {
+          "name": "Min konto",
+          "id": 1238,
+          "status": "ok"
+        },
+        {
+          "name": "Indstillinger",
+          "id": 1269,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "status": "found",
+      "folderCount": 6,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Lydfiler og Podcast",
+          "id": 1818,
+          "status": "ok"
+        },
+        {
+          "name": " e-Bøger og PDF ",
+          "id": 1966,
+          "status": "ok"
+        },
+        {
+          "name": "Instruktions videoer",
+          "id": 1987,
+          "status": "ok"
+        },
+        {
+          "name": "Andet indhold",
+          "id": 2478,
+          "status": "ok"
+        },
+        {
+          "name": "XIIA testing",
+          "id": 114786,
+          "status": "ok"
+        },
+        {
+          "name": "Text",
+          "id": 115556,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Kiibee hjælpe videoer",
+      "liveName": "Kiibee hjælpe videoer",
+      "userId": 2220,
+      "status": "found",
+      "folderCount": 3,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Hjælpevideoer",
+          "id": 2331,
+          "status": "ok"
+        },
+        {
+          "name": "Brugervejledning - Quickguides",
+          "id": 2332,
+          "status": "ok"
+        },
+        {
+          "name": "Intro videoer",
+          "id": 2579,
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "requestedName": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "status": "found",
+      "folderCount": 2,
+      "missingFolders": [],
+      "folders": [
+        {
+          "name": "Subscriptions",
+          "id": 1076,
+          "status": "ok"
+        },
+        {
+          "name": "Error 404",
+          "id": 20295,
+          "status": "ok"
+        }
+      ]
+    }
+  ],
+  "missingUsers": [],
+  "finishedAt": "2026-10-26T11:37:07.194Z"
+}

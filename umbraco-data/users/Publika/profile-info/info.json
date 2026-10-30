@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Publika",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 101314,
+  "key": "6557f1dc-daa2-438d-89e5-e2021c3cfc01",
+  "udi": "umb://document/6557f1dcdaa2438d89e5e2021c3cfc01",
+  "path": "-1,1067,101314",
+  "url": "/publika/",
+  "createDate": "2024-10-16 19:49:41",
+  "updateDate": "2026-10-24 00:00:04",
+  "publishDate": "2026-10-24 00:00:04",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

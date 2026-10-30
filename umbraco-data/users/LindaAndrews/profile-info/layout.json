@@ -1,0 +1,35 @@
+{
+  "tab": "Layout",
+  "name": "LindaAndrews",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "LindaAndrews",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2730/kiibee-covermerry-christmas.png",
+    "crops": []
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Julekoncert til dig :-)",
+  "description": "Kære dig og glædelig jul. Her kan du se/streame min julekoncert \"Merry Christmas\". 2020 har været et interessant år, for at sige det mildt, og jeg savner sådan at optræde for jer. Derfor tilbyder jeg nu dig på det her site at se min nye Julekoncert på film/stream. \r\nTil gengæld støtter du mine fremtidige musikprojekter. Rigtig Glædelig Jul til Jer alle fra mig, og vi ses forhåbentlig i 2021. Knus Linda 🌺",
+  "css": "",
+  "javaScript": ""
+}

@@ -1,0 +1,25 @@
+{
+  "tab": "Info",
+  "name": "Hundedamen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "id": 21046,
+  "key": "29781442-cdbf-4a5c-aa25-2bb773091830",
+  "udi": "umb://document/29781442cdbf4a5caa252bb773091830",
+  "path": "-1,1067,21046",
+  "url": "/hundedamen/",
+  "createDate": "2020-10-23 08:43:31",
+  "updateDate": "2026-08-24 00:00:07",
+  "publishDate": "2026-08-24 00:00:07",
+  "documentTypeAlias": "customer",
+  "creatorName": null,
+  "writerName": null
+}

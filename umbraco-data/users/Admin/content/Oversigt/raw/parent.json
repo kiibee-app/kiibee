@@ -1,0 +1,248 @@
+{
+  "publishDate": "2020-02-29 11:23:33",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": "adminDashboard",
+  "templateId": 1226,
+  "allowedTemplates": {
+    "adminDashboard": "Dashboard"
+  },
+  "documentType": {
+    "alias": "dashboard",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-06 12:17:43",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Dashboard",
+    "id": 1225,
+    "udi": "umb://document-type/700dc617e8964f2fa0385cce5914604e",
+    "icon": "icon-dashboard color-black",
+    "trashed": false,
+    "key": "700dc617-e896-4f2f-a038-5cce5914604e",
+    "parentId": 1224,
+    "path": "-1,1224,1225",
+    "metaData": {}
+  },
+  "urls": ["/admin/oversigt/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/1ec6c22f7ddb4dccbaa6faee80845adc",
+  "contentTypeName": "Dashboard",
+  "isContainer": false,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 41,
+      "active": true,
+      "label": "General",
+      "alias": "General",
+      "properties": [
+        {
+          "label": "Headline",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 137262,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Velkommen",
+          "alias": "headline",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        },
+        {
+          "label": "Teaser",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 137261,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "Denne side giver dig et overblik over din konto og hvordan det går med dine salg og visninger",
+          "alias": "teaser",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "active": false,
+      "label": "Menu",
+      "alias": "Menu",
+      "properties": [
+        {
+          "label": "Display in nav",
+          "description": null,
+          "view": "boolean",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 137263,
+          "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+          "value": "1",
+          "alias": "displayInNav",
+          "editor": "Umbraco.TrueFalse",
+          "isSensitive": false
+        },
+        {
+          "label": "Icon",
+          "description": null,
+          "view": "textbox",
+          "config": {},
+          "hideLabel": false,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 137264,
+          "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+          "value": "home",
+          "alias": "icon",
+          "editor": "Umbraco.Textbox",
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "Headline",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 137262,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Velkommen",
+      "alias": "headline",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Teaser",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 137261,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "Denne side giver dig et overblik over din konto og hvordan det går med dine salg og visninger",
+      "alias": "teaser",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    },
+    {
+      "label": "Display in nav",
+      "description": null,
+      "view": "boolean",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 137263,
+      "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+      "value": "1",
+      "alias": "displayInNav",
+      "editor": "Umbraco.TrueFalse",
+      "isSensitive": false
+    },
+    {
+      "label": "Icon",
+      "description": null,
+      "view": "textbox",
+      "config": {},
+      "hideLabel": false,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 137264,
+      "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+      "value": "home",
+      "alias": "icon",
+      "editor": "Umbraco.Textbox",
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2020-02-29 11:23:33",
+  "createDate": "2019-03-06 12:18:36",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 1,
+    "name": "Anders Halfter"
+  },
+  "contentTypeAlias": "dashboard",
+  "sortOrder": 0,
+  "name": "Oversigt",
+  "id": 1227,
+  "udi": "umb://document/1ec6c22f7ddb4dccbaa6faee80845adc",
+  "icon": "icon-dashboard color-black",
+  "trashed": false,
+  "key": "1ec6c22f-7ddb-4dcc-baa6-faee80845adc",
+  "parentId": 1223,
+  "alias": null,
+  "path": "-1,1067,1223,1227",
+  "metaData": {}
+}

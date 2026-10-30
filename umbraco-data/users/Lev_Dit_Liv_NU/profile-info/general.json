@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Lev Dit Liv NU",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/503cbac35316446bb43a0c1ca5a76023",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

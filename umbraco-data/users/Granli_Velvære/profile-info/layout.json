@@ -1,0 +1,63 @@
+{
+  "tab": "Layout",
+  "name": "Granli Velvære",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Granli Velvære v/ Lene Korsåsen",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2220/gv_logo.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2233/krop-og-sind-forside.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      },
+      {
+        "alias": "Cover",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til Granli Velvære",
+  "description": "Hos Granli velvære er der fokus på at skabe balance i krop og sind, både hos børn og voksne.\r\n\r\nHer finder du sansemotorisk træning til børn og snart også afspænding og meditaion for voksne.\r\n\r\nVidere kommer der snart kurser med redskaber og metoder for genoprettelse af balancen i dit liv. \r\nVelkommen til et liv i balance.",
+  "css": "",
+  "javaScript": ""
+}

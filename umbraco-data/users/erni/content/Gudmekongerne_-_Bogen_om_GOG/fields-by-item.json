@@ -1,0 +1,487 @@
+[
+  {
+    "id": 128310,
+    "key": "dcf851a4-1252-4df6-b6d0-ccbed025a5a2",
+    "udi": "umb://document/dcf851a412524df6b6d0ccbed025a5a2",
+    "name": "Gudmekongerne - Bogen om GOG",
+    "fields": {
+      "purchasePrice": "",
+      "access": ["57"],
+      "rentalPrice": "",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": ["76"],
+      "videoDownloadURL": "",
+      "rawFile": "/media/5212/del014.mp3",
+      "videoStatus": "",
+      "hidden": "0",
+      "videoThumbnailURL": "",
+      "videoID": "",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "",
+      "productLink": "https://www.erikingemannnielsen.dk/boeger",
+      "expandedDescription": "For mere info kontakt forlaget ERNI: erikingemannnielsen@gamil.com",
+      "production": "",
+      "year": "2026",
+      "description": "Læs om alle de vilde fester, de skøre ritualer, de store resultater og de mange store håndboldnavne skabt i den lille sydfynske by Gudme.\r\n\r\nBogn er indtalt af Erik Ingemann Nielsen",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/5213/gudmekongerne.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "Gudmekongerne - Bogen om GOG",
+      "badge": "PREMIERE",
+      "length": "0",
+      "tags": "erik ingemann nielsen,GOG,Gudmekongerne,ERNI,Gudme,nikolaj jacobsen,Jan Pytlick,Bent Nyegaard,Poul Syberg,Heidi Bruun,Klavs Bruun Jørgensen,lydbog,Fyn,Sydfyn",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      }
+    },
+    "fieldDetails": {
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["57"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "type": {
+        "alias": "type",
+        "label": "Type",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["76"]
+      },
+      "videoDownloadURL": {
+        "alias": "videoDownloadURL",
+        "label": "Video Download URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "rawFile": {
+        "alias": "rawFile",
+        "label": "Raw File",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "fileupload",
+        "value": "/media/5212/del014.mp3"
+      },
+      "videoStatus": {
+        "alias": "videoStatus",
+        "label": "Video Status",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "hidden": {
+        "alias": "hidden",
+        "label": "Hidden",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "videoThumbnailURL": {
+        "alias": "videoThumbnailURL",
+        "label": "Video Thumbnail URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "videoID": {
+        "alias": "videoID",
+        "label": "Video ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentInNewWindows": {
+        "alias": "openWebContentInNewWindows",
+        "label": "Open WebContent In New Windows",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "trailer": {
+        "alias": "trailer",
+        "label": "Trailer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "openWebContentFromList": {
+        "alias": "openWebContentFromList",
+        "label": "Open WebContent From List",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "webContentURL": {
+        "alias": "webContentURL",
+        "label": "WebContent URL",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "videoSize": {
+        "alias": "videoSize",
+        "label": "Video Size",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "productLink": {
+        "alias": "productLink",
+        "label": "Product Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "https://www.erikingemannnielsen.dk/boeger"
+      },
+      "expandedDescription": {
+        "alias": "expandedDescription",
+        "label": "Expanded description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "For mere info kontakt forlaget ERNI: erikingemannnielsen@gamil.com"
+      },
+      "production": {
+        "alias": "production",
+        "label": "Production",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "year": {
+        "alias": "year",
+        "label": "Year",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "2026"
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Læs om alle de vilde fester, de skøre ritualer, de store resultater og de mange store håndboldnavne skabt i den lille sydfynske by Gudme.\r\n\r\nBogn er indtalt af Erik Ingemann Nielsen"
+      },
+      "productionLink": {
+        "alias": "productionLink",
+        "label": "Production Link",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "thumbnail": {
+        "alias": "thumbnail",
+        "label": "Thumbnail",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/5213/gudmekongerne.jpg",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        }
+      },
+      "title": {
+        "alias": "title",
+        "label": "Title",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Gudmekongerne - Bogen om GOG"
+      },
+      "badge": {
+        "alias": "badge",
+        "label": "Badge",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "PREMIERE"
+      },
+      "length": {
+        "alias": "length",
+        "label": "Length",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "tags": {
+        "alias": "tags",
+        "label": "Tags",
+        "description": "",
+        "tab": "Metadata",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "tags",
+        "value": "erik ingemann nielsen,GOG,Gudmekongerne,ERNI,Gudme,nikolaj jacobsen,Jan Pytlick,Bent Nyegaard,Poul Syberg,Heidi Bruun,Klavs Bruun Jørgensen,lydbog,Fyn,Sydfyn"
+      },
+      "hidePlay": {
+        "alias": "hidePlay",
+        "label": "Hide Play",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "hideDownload": {
+        "alias": "hideDownload",
+        "label": "Hide Download",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": {
+          "priority": 0.5,
+          "frequency": 2,
+          "exclude": false
+        }
+      }
+    },
+    "fieldOrder": [
+      "purchasePrice",
+      "access",
+      "rentalPrice",
+      "code",
+      "metaDescription",
+      "metaTitle",
+      "type",
+      "videoDownloadURL",
+      "rawFile",
+      "videoStatus",
+      "hidden",
+      "videoThumbnailURL",
+      "videoID",
+      "openWebContentInNewWindows",
+      "trailer",
+      "openWebContentFromList",
+      "webContentURL",
+      "orderID",
+      "videoSize",
+      "productLink",
+      "expandedDescription",
+      "production",
+      "year",
+      "description",
+      "productionLink",
+      "thumbnail",
+      "title",
+      "badge",
+      "length",
+      "tags",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption"
+    ]
+  }
+]

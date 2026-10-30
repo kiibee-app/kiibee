@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Settings",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

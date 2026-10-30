@@ -1,0 +1,82 @@
+{
+  "exportedAt": "2026-06-02T11:06:09.496Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/65136",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 65136,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 65136,
+    "key": "a370447d-83fb-4587-b871-c3879d3a0e4a",
+    "udi": "umb://document/a370447d83fb4587b871c3879d3a0e4a",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/foreningen-danske-revisorer/purchases/"],
+    "path": "-1,1067,65131,65136",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 11,
+    "childrenFetched": 11,
+    "detailsFetched": 11,
+    "detailErrors": 0,
+    "purchaseEntries": 10,
+    "nonPurchaseEntries": 1,
+    "entriesWithDownloads": 10,
+    "entriesWithStreams": 1,
+    "totalDownloads": 15,
+    "totalStreams": 4,
+    "uniqueMediaUdis": 4,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 4,
+    "mediaResolved": 4,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 11,
+      "totalItems": 11
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Foreningen_Danske_Revisorer\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Foreningen_Danske_Revisorer\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Foreningen_Danske_Revisorer\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Foreningen_Danske_Revisorer\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

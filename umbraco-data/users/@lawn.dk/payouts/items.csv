@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+80387,911150c5-1703-4e3b-b28d-a36fb55ca5c0,umb://document/911150c517034e3bb28da36fb55ca5c0,KBF-1404,24.52,24.52,true,2023-04-12 09:44:53,2023-04-12 09:44:53,https://kiibee.dk/lawndk/payouts/kbf-1404/,matched-public-payout-url,https://kiibee.dk/lawndk/payouts/kbf-1404/,https://kiibee.dk/lawndk/payouts/kbf-1404/,,

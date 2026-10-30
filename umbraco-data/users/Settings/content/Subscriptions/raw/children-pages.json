@@ -1,0 +1,262 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 1,
+    "totalItems": 3,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 1467138,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price3",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467139,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "kiibeeCut",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467140,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price6",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467141,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "transactionFee",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467142,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467143,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price12",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467144,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "maxFiles",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-03-28 16:36:30",
+        "createDate": "2019-03-04 19:52:41",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 1,
+          "name": "Anders Halfter"
+        },
+        "contentTypeAlias": "subscription",
+        "sortOrder": 0,
+        "name": "Prøv Kiibee",
+        "id": 1083,
+        "udi": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+        "icon": "icon-bill-dollar color-black",
+        "trashed": false,
+        "key": "5ba7f17c-7cf6-4bee-a5db-1176fd45d365",
+        "parentId": 1076,
+        "alias": null,
+        "path": "-1,1067,1073,1076,1083",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1467145,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price3",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467146,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "kiibeeCut",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467147,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price6",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467148,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "transactionFee",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467149,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467150,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price12",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1467151,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "maxFiles",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-03-28 16:36:46",
+        "createDate": "2019-03-04 19:52:57",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 1,
+          "name": "Anders Halfter"
+        },
+        "contentTypeAlias": "subscription",
+        "sortOrder": 1,
+        "name": "Start-up",
+        "id": 1084,
+        "udi": "umb://document/6ae38a0b56144a55ac017545e006b9a4",
+        "icon": "icon-bill-dollar color-black",
+        "trashed": false,
+        "key": "6ae38a0b-5614-4a55-ac01-7545e006b9a4",
+        "parentId": 1076,
+        "alias": null,
+        "path": "-1,1067,1073,1076,1084",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1849948,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price3",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849949,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "kiibeeCut",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849950,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price6",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849951,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "transactionFee",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849952,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849953,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": null,
+            "alias": "price12",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "id": 1849954,
+            "dataTypeId": "2e6d3631-066e-44b8-aec4-96f09099b2b5",
+            "value": null,
+            "alias": "maxFiles",
+            "editor": "Umbraco.Integer",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-09-01 09:31:03",
+        "createDate": "2019-03-04 19:53:04",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 1,
+          "name": "Anders Halfter"
+        },
+        "contentTypeAlias": "subscription",
+        "sortOrder": 2,
+        "name": "Pro",
+        "id": 1085,
+        "udi": "umb://document/e46ced3f3b544a3ead6838c69a79ac8f",
+        "icon": "icon-bill-dollar color-black",
+        "trashed": false,
+        "key": "e46ced3f-3b54-4a3e-ad68-38c69a79ac8f",
+        "parentId": 1076,
+        "alias": null,
+        "path": "-1,1067,1073,1076,1085",
+        "metaData": {}
+      }
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+id,key,udi,name,contentTypeAlias,published,hasPublishedVersion,createDate,updateDate,parentId,sortOrder,urls,kiibeeCut,maxFiles,price,price12,price3,price6,transactionFee
+1083,5ba7f17c-7cf6-4bee-a5db-1176fd45d365,umb://document/5ba7f17c7cf64beea5db1176fd45d365,Prøv Kiibee,subscription,true,true,2019-03-04 19:52:41,2023-03-28 16:36:30,1076,0,/settings/subscriptions/proev-kiibee/,15,2,0,0,0,0,6
+1084,6ae38a0b-5614-4a55-ac01-7545e006b9a4,umb://document/6ae38a0b56144a55ac017545e006b9a4,Start-up,subscription,true,true,2019-03-04 19:52:57,2023-03-28 16:36:46,1076,1,/settings/subscriptions/start-up/,9,10,99,69,89,79,6
+1085,e46ced3f-3b54-4a3e-ad68-38c69a79ac8f,umb://document/e46ced3f3b544a3ead6838c69a79ac8f,Pro,subscription,true,true,2019-03-04 19:53:04,2024-09-01 09:31:03,1076,2,/settings/subscriptions/pro/,7,70,299,269,289,279,6

@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Uffe Holm",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-06-03",
+  "frequency": "90",
+  "notificationsType": "1",
+  "emails": "anders@kiibee.dk,a.halfter@gmail.com,malene@uffeholm.dk"
+}

@@ -1,0 +1,234 @@
+{
+  "publishDate": "2023-01-19 10:54:26",
+  "releaseDate": null,
+  "removeDate": null,
+  "template": null,
+  "templateId": 0,
+  "allowedTemplates": {},
+  "documentType": {
+    "alias": "subscriptions",
+    "updateDate": "0001-01-01 00:00:00",
+    "createDate": "2019-03-04 19:31:13",
+    "description": null,
+    "thumbnail": "folder.png",
+    "iconIsClass": true,
+    "iconFilePath": "",
+    "thumbnailIsClass": false,
+    "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+    "blueprints": {},
+    "name": "Subscriptions",
+    "id": 1074,
+    "udi": "umb://document-type/1afb88a7400c46b093bddddbbd6880d0",
+    "icon": "icon-bills-dollar color-black",
+    "trashed": false,
+    "key": "1afb88a7-400c-46b0-93bd-dddbbd6880d0",
+    "parentId": -1,
+    "path": "-1,1074",
+    "metaData": {}
+  },
+  "urls": ["/settings/subscriptions/"],
+  "allowPreview": true,
+  "allowedActions": [
+    "C",
+    "A",
+    "D",
+    "M",
+    "O",
+    "S",
+    "K",
+    "T",
+    "P",
+    "I",
+    "U",
+    "R",
+    "Z",
+    ":",
+    "5",
+    "F",
+    "7",
+    "ï"
+  ],
+  "isBlueprint": false,
+  "isChildOfListView": false,
+  "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/2f20c6c6bb6c4cf19104b694638f1ffc",
+  "contentTypeName": "Subscriptions",
+  "isContainer": true,
+  "notifications": [],
+  "ModelState": {},
+  "tabs": [
+    {
+      "id": 1,
+      "active": true,
+      "label": "Undersider",
+      "alias": "umbContainerView",
+      "properties": [
+        {
+          "label": "",
+          "description": null,
+          "view": "listview",
+          "config": {
+            "pageSize": "10",
+            "displayAtTabNumber": "1",
+            "orderBy": "price",
+            "orderDirection": "asc",
+            "includeProperties": [
+              {
+                "alias": "price",
+                "isSystem": 0,
+                "header": "Price"
+              },
+              {
+                "alias": "maxFiles",
+                "isSystem": 0,
+                "header": "Max Files"
+              },
+              {
+                "alias": "kiibeeCut",
+                "isSystem": 0,
+                "header": "Kiibee Cut DKK"
+              },
+              {
+                "alias": "transactionFee",
+                "isSystem": 0,
+                "header": "Transaction Fee %"
+              }
+            ],
+            "layouts": [
+              {
+                "name": "List",
+                "path": "views/propertyeditors/listview/layouts/list/list.html",
+                "icon": "icon-list",
+                "isSystem": 1,
+                "selected": true
+              },
+              {
+                "name": "Grid",
+                "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+                "icon": "icon-thumbnails-small",
+                "isSystem": 1,
+                "selected": true
+              }
+            ],
+            "bulkActionPermissions": {
+              "allowBulkPublish": true,
+              "allowBulkUnpublish": true,
+              "allowBulkCopy": true,
+              "allowBulkMove": false,
+              "allowBulkDelete": true
+            },
+            "tabName": null,
+            "entityType": "content"
+          },
+          "hideLabel": true,
+          "validation": {
+            "mandatory": false,
+            "pattern": null
+          },
+          "readonly": false,
+          "id": 0,
+          "dataTypeId": null,
+          "value": null,
+          "alias": "_umb_containerView",
+          "editor": null,
+          "isSensitive": false
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "label": "",
+      "description": null,
+      "view": "listview",
+      "config": {
+        "pageSize": "10",
+        "displayAtTabNumber": "1",
+        "orderBy": "price",
+        "orderDirection": "asc",
+        "includeProperties": [
+          {
+            "alias": "price",
+            "isSystem": 0,
+            "header": "Price"
+          },
+          {
+            "alias": "maxFiles",
+            "isSystem": 0,
+            "header": "Max Files"
+          },
+          {
+            "alias": "kiibeeCut",
+            "isSystem": 0,
+            "header": "Kiibee Cut DKK"
+          },
+          {
+            "alias": "transactionFee",
+            "isSystem": 0,
+            "header": "Transaction Fee %"
+          }
+        ],
+        "layouts": [
+          {
+            "name": "List",
+            "path": "views/propertyeditors/listview/layouts/list/list.html",
+            "icon": "icon-list",
+            "isSystem": 1,
+            "selected": true
+          },
+          {
+            "name": "Grid",
+            "path": "views/propertyeditors/listview/layouts/grid/grid.html",
+            "icon": "icon-thumbnails-small",
+            "isSystem": 1,
+            "selected": true
+          }
+        ],
+        "bulkActionPermissions": {
+          "allowBulkPublish": true,
+          "allowBulkUnpublish": true,
+          "allowBulkCopy": true,
+          "allowBulkMove": false,
+          "allowBulkDelete": true
+        },
+        "tabName": null,
+        "entityType": "content"
+      },
+      "hideLabel": true,
+      "validation": {
+        "mandatory": false,
+        "pattern": null
+      },
+      "readonly": false,
+      "id": 0,
+      "dataTypeId": null,
+      "value": null,
+      "alias": "_umb_containerView",
+      "editor": null,
+      "isSensitive": false
+    }
+  ],
+  "updateDate": "2023-01-19 10:54:26",
+  "createDate": "2019-03-04 19:31:57",
+  "published": true,
+  "hasPublishedVersion": true,
+  "owner": {
+    "id": 0,
+    "name": "Martin H. Schläger"
+  },
+  "updater": {
+    "id": 1,
+    "name": "Anders Halfter"
+  },
+  "contentTypeAlias": "subscriptions",
+  "sortOrder": 0,
+  "name": "Subscriptions",
+  "id": 1076,
+  "udi": "umb://document/2f20c6c6bb6c4cf19104b694638f1ffc",
+  "icon": "icon-bills-dollar color-black",
+  "trashed": false,
+  "key": "2f20c6c6-bb6c-4cf1-9104-b694638f1ffc",
+  "parentId": 1073,
+  "alias": null,
+  "path": "-1,1067,1073,1076",
+  "metaData": {}
+}

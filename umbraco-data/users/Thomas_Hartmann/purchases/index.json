@@ -1,0 +1,97 @@
+{
+  "exportedAt": "2026-06-02T11:03:09.468Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/41766",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 41766,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 41766,
+    "key": "ef763f1e-fee1-4ba8-8f99-a2247231d670",
+    "udi": "umb://document/ef763f1efee14ba88f99a2247231d670",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/thomas-hartmann/purchases/"],
+    "path": "-1,1067,41761,41766",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 396,
+    "childrenFetched": 396,
+    "detailsFetched": 396,
+    "detailErrors": 0,
+    "purchaseEntries": 297,
+    "nonPurchaseEntries": 99,
+    "entriesWithDownloads": 247,
+    "entriesWithStreams": 91,
+    "totalDownloads": 905,
+    "totalStreams": 207,
+    "uniqueMediaUdis": 9,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 9,
+    "mediaResolved": 9,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 396
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 396
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 396
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 96,
+      "totalItems": 396
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\Thomas_Hartmann\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Thomas_Hartmann\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Thomas_Hartmann\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Thomas_Hartmann\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

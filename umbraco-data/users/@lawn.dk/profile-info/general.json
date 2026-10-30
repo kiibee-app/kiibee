@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "@lawn.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/bc2e0d2bdee44010b14dcdd2ef51e1f1",
+  "emailReceipt": "",
+  "supportEmail": "henrik@lawn.dk"
+}

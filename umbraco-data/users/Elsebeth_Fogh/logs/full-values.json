@@ -1,0 +1,1042 @@
+[
+  {
+    "id": 50207,
+    "key": "a9ec7948-2c75-4e04-be16-5f425ed5851b",
+    "udi": "umb://document/a9ec79482c754e04be165f425ed5851b",
+    "name": "3b9c22092021202031",
+    "createDate": "2021-09-22 20:22:30",
+    "updateDate": "2021-09-22 20:22:30",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "307535155",
+        "booleanValue": null,
+        "displayValue": "307535155",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Henrik Lund Rasmussen",
+        "booleanValue": null,
+        "displayValue": "Henrik Lund Rasmussen",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "henriklundrasmussen@outlook.dk",
+        "booleanValue": null,
+        "displayValue": "henriklundrasmussen@outlook.dk",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "307535155",
+        "booleanValue": null,
+        "displayValue": "307535155",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Henrik Lund Rasmussen",
+        "booleanValue": null,
+        "displayValue": "Henrik Lund Rasmussen",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "henriklundrasmussen@outlook.dk",
+        "booleanValue": null,
+        "displayValue": "henriklundrasmussen@outlook.dk",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 23078,
+    "key": "9166af23-c6d3-47a1-ad09-973d0a547ff1",
+    "udi": "umb://document/9166af23c6d347a1ad09973d0a547ff1",
+    "name": "278j04122020132433",
+    "createDate": "2020-12-04 13:24:54",
+    "updateDate": "2020-12-04 13:24:54",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "280901943",
+        "booleanValue": null,
+        "displayValue": "280901943",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Heidi Bonsvig",
+        "booleanValue": null,
+        "displayValue": "Heidi Bonsvig",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "heidi@goch.dk",
+        "booleanValue": null,
+        "displayValue": "heidi@goch.dk",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "280901943",
+        "booleanValue": null,
+        "displayValue": "280901943",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Heidi Bonsvig",
+        "booleanValue": null,
+        "displayValue": "Heidi Bonsvig",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "heidi@goch.dk",
+        "booleanValue": null,
+        "displayValue": "heidi@goch.dk",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 3388,
+    "key": "b5f8ff30-9404-4aaf-9a37-ba3c25b5060c",
+    "udi": "umb://document/b5f8ff3094044aaf9a37ba3c25b5060c",
+    "name": "8x4723032020092923",
+    "createDate": "2020-03-23 09:30:17",
+    "updateDate": "2020-03-23 09:30:17",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "251578245",
+        "booleanValue": null,
+        "displayValue": "251578245",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Anne Stadager",
+        "booleanValue": null,
+        "displayValue": "Anne Stadager",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "annestadager1@gmail.com",
+        "booleanValue": null,
+        "displayValue": "annestadager1@gmail.com",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "251578245",
+        "booleanValue": null,
+        "displayValue": "251578245",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Anne Stadager",
+        "booleanValue": null,
+        "displayValue": "Anne Stadager",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "annestadager1@gmail.com",
+        "booleanValue": null,
+        "displayValue": "annestadager1@gmail.com",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 2768,
+    "key": "23163603-e88a-406a-9c46-418ad7402662",
+    "udi": "umb://document/23163603e88a406a9c46418ad7402662",
+    "name": "k3m525022020124916",
+    "createDate": "2020-02-25 12:49:44",
+    "updateDate": "2020-02-25 12:49:44",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "248732237",
+        "booleanValue": null,
+        "displayValue": "248732237",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Anna Nielsen",
+        "booleanValue": null,
+        "displayValue": "Anna Nielsen",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "annadorethe@yahoo.dk",
+        "booleanValue": null,
+        "displayValue": "annadorethe@yahoo.dk",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "248732237",
+        "booleanValue": null,
+        "displayValue": "248732237",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Anna Nielsen",
+        "booleanValue": null,
+        "displayValue": "Anna Nielsen",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "annadorethe@yahoo.dk",
+        "booleanValue": null,
+        "displayValue": "annadorethe@yahoo.dk",
+        "resolvedReference": null
+      }
+    ]
+  },
+  {
+    "id": 2758,
+    "key": "2301f36c-4955-421c-8a6b-73dd9d75f57e",
+    "udi": "umb://document/2301f36c4955421c8a6b73dd9d75f57e",
+    "name": "4ut424022020173212",
+    "createDate": "2020-02-24 17:32:35",
+    "updateDate": "2020-02-24 17:32:35",
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "248653747",
+        "booleanValue": null,
+        "displayValue": "248653747",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Jenet Helvig",
+        "booleanValue": null,
+        "displayValue": "Jenet Helvig",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "mail@klinik-unik.dk",
+        "booleanValue": null,
+        "displayValue": "mail@klinik-unik.dk",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "booleanValue": null,
+        "displayValue": "Styrk din indre power med Girafsprog | /elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+        "resolvedReference": {
+          "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+          "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+          "id": 2724,
+          "name": "Styrk din indre power med Girafsprog",
+          "title": "Styrk din indre power med Girafsprog",
+          "urls": [
+            "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+          ],
+          "url": "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/",
+          "contentTypeAlias": "media",
+          "videoID": "",
+          "videoStatus": "",
+          "videoThumbnailURL": "",
+          "videoDownloadURL": "",
+          "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+          "purchasePrice": "279",
+          "rentalPrice": ""
+        }
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "248653747",
+        "booleanValue": null,
+        "displayValue": "248653747",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "279",
+        "booleanValue": null,
+        "displayValue": "279",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Jenet Helvig",
+        "booleanValue": null,
+        "displayValue": "Jenet Helvig",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "mail@klinik-unik.dk",
+        "booleanValue": null,
+        "displayValue": "mail@klinik-unik.dk",
+        "resolvedReference": null
+      }
+    ]
+  }
+]

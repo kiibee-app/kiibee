@@ -1,0 +1,398 @@
+{
+  "startedAt": "2026-10-28T05:24:56.535Z",
+  "users": [
+    {
+      "requestedName": "Funktionel Neuroterapeut 2026",
+      "liveName": "Funktionel Neuroterapeut 2026",
+      "userId": 126039,
+      "userDir": "Funktionel_Neuroterapeut_2026",
+      "status": "ok",
+      "coverSrc": "/media/5187/kiibee-coverbillede.jpg",
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5187/kiibee-coverbillede.jpg",
+          "fileName": "kiibee-coverbillede.jpg",
+          "bytes": 335872
+        }
+      ]
+    },
+    {
+      "requestedName": "erni",
+      "liveName": "erni",
+      "userId": 128293,
+      "userDir": "erni",
+      "status": "ok",
+      "coverSrc": "/media/5210/gudmekongerne.jpg",
+      "logoSrc": null,
+      "headline": "Erik Ingemann Nielsens tilbud HER",
+      "downloadedImages": [
+        {
+          "src": "/media/5210/gudmekongerne.jpg",
+          "fileName": "gudmekongerne.jpg",
+          "bytes": 33561
+        },
+        {
+          "src": "/media/5211/gog-forside.jpg",
+          "fileName": "gog-forside.jpg",
+          "bytes": 1856574
+        }
+      ]
+    },
+    {
+      "requestedName": "Carsten V Thomassen",
+      "liveName": "Carsten V Thomassen",
+      "userId": 131826,
+      "userDir": "Carsten_V_Thomassen",
+      "status": "ok",
+      "coverSrc": "/media/5258/otto-gif.gif",
+      "logoSrc": "/media/5257/koala_ott.png",
+      "headline": "Billedbøger for børn",
+      "downloadedImages": [
+        {
+          "src": "/media/5258/otto-gif.gif",
+          "fileName": "otto-gif.gif",
+          "bytes": 9213891
+        },
+        {
+          "src": "/media/5257/koala_ott.png",
+          "fileName": "koala_ott.png",
+          "bytes": 585322
+        }
+      ]
+    },
+    {
+      "requestedName": "AI på Dansk",
+      "liveName": "AI på Dansk",
+      "userId": 131950,
+      "userDir": "AI_pa_Dansk",
+      "status": "ok",
+      "coverSrc": "/media/5262/ai_paa_dansk_logo_2000x600.png",
+      "logoSrc": "/media/5261/ai_paa_dansk_logo-1.png",
+      "headline": "Lær lidt. Brug det med det samme.",
+      "downloadedImages": [
+        {
+          "src": "/media/5262/ai_paa_dansk_logo_2000x600.png",
+          "fileName": "ai_paa_dansk_logo_2000x600.png",
+          "bytes": 32541
+        },
+        {
+          "src": "/media/5261/ai_paa_dansk_logo-1.png",
+          "fileName": "ai_paa_dansk_logo-1.png",
+          "bytes": 85040
+        },
+        {
+          "src": "/media/5263/ai_paa_dansk_logo_640x600.png",
+          "fileName": "ai_paa_dansk_logo_640x600.png",
+          "bytes": 11097
+        }
+      ]
+    },
+    {
+      "requestedName": "Dubi Skabeloner",
+      "liveName": "Dubi Skabeloner",
+      "userId": 131961,
+      "userDir": "Dubi_Skabeloner",
+      "status": "ok",
+      "coverSrc": "/media/5267/dubi-cover.png",
+      "logoSrc": "/media/5266/dubi-skabeloner-logo.png",
+      "headline": null,
+      "downloadedImages": [
+        {
+          "src": "/media/5267/dubi-cover.png",
+          "fileName": "dubi-cover.png",
+          "bytes": 2433588
+        },
+        {
+          "src": "/media/5266/dubi-skabeloner-logo.png",
+          "fileName": "dubi-skabeloner-logo.png",
+          "bytes": 871178
+        }
+      ]
+    },
+    {
+      "requestedName": "mariebrixtofte",
+      "liveName": "mariebrixtofte",
+      "userId": 22550,
+      "userDir": "mariebrixtofte",
+      "status": "ok",
+      "coverSrc": "/media/2614/kiibee-top-stoet.png",
+      "logoSrc": "/media/2625/brix-logo-test-final.png",
+      "headline": "Foredragsfilm: Marie Brixtofte - \"Barn af en alkoholiker\"",
+      "downloadedImages": [
+        {
+          "src": "/media/2614/kiibee-top-stoet.png",
+          "fileName": "kiibee-top-stoet.png",
+          "bytes": 1119493
+        },
+        {
+          "src": "/media/2625/brix-logo-test-final.png",
+          "fileName": "brix-logo-test-final.png",
+          "bytes": 8769
+        }
+      ]
+    },
+    {
+      "requestedName": "Stopsygefravær.nu",
+      "liveName": "Stopsygefravær.nu",
+      "userId": 14217,
+      "userDir": "Stopsygefravær.nu",
+      "status": "ok",
+      "coverSrc": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
+      "logoSrc": "/media/1833/logo-stopsygefravaer-3.png",
+      "headline": "Velkommen til online ydelser fra Stopsygefravær.nu",
+      "downloadedImages": [
+        {
+          "src": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
+          "fileName": "kirsten-loevschall-sygefravaer-pa-formel.jpg",
+          "bytes": 10148283
+        },
+        {
+          "src": "/media/1833/logo-stopsygefravaer-3.png",
+          "fileName": "logo-stopsygefravaer-3.png",
+          "bytes": 7658
+        }
+      ]
+    },
+    {
+      "requestedName": "LindaAndrews",
+      "liveName": "LindaAndrews",
+      "userId": 25350,
+      "userDir": "LindaAndrews",
+      "status": "ok",
+      "coverSrc": "/media/2730/kiibee-covermerry-christmas.png",
+      "logoSrc": null,
+      "headline": "Julekoncert til dig :-)",
+      "downloadedImages": [
+        {
+          "src": "/media/2730/kiibee-covermerry-christmas.png",
+          "fileName": "kiibee-covermerry-christmas.png",
+          "bytes": 942105
+        }
+      ]
+    },
+    {
+      "requestedName": "Kiibee Comedy",
+      "liveName": "Kiibee Comedy",
+      "userId": 25709,
+      "userDir": "Kiibee_Comedy",
+      "status": "ok",
+      "coverSrc": "/media/2746/design-uden-navn-6.png",
+      "logoSrc": "/media/2748/sparkl.png",
+      "headline": "SÆLG DINE SHOWS ONLINE PÅ DIT EGET SALGS & STREAM SITE",
+      "downloadedImages": [
+        {
+          "src": "/media/2746/design-uden-navn-6.png",
+          "fileName": "design-uden-navn-6.png",
+          "bytes": 988200
+        },
+        {
+          "src": "/media/2748/sparkl.png",
+          "fileName": "sparkl.png",
+          "bytes": 10941
+        }
+      ]
+    },
+    {
+      "requestedName": "Go Video",
+      "liveName": "Go Video",
+      "userId": 29389,
+      "userDir": "Go_Video",
+      "status": "ok",
+      "coverSrc": null,
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": []
+    },
+    {
+      "requestedName": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "userDir": "TjelesVenner",
+      "status": "ok",
+      "coverSrc": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+      "logoSrc": null,
+      "headline": "Stream eller download film, bøger, Apps & meditationer",
+      "downloadedImages": [
+        {
+          "src": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+          "fileName": "kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+          "bytes": 1897895
+        },
+        {
+          "src": "/media/3701/kopi-af-foredragsfilm-meditationer-til-dig-og-din-sindsro.png",
+          "fileName": "kopi-af-foredragsfilm-meditationer-til-dig-og-din-sindsro.png",
+          "bytes": 467385
+        }
+      ]
+    },
+    {
+      "requestedName": "Foreningen Danske Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "userDir": "Foreningen_Danske_Revisorer",
+      "status": "ok",
+      "coverSrc": "/media/4097/fdr-logo-blackred-rgb.png",
+      "logoSrc": "/media/4096/fdr-logo-blackred-rgb.png",
+      "headline": "FDR - Foreningen Danske Revisorer",
+      "downloadedImages": [
+        {
+          "src": "/media/4097/fdr-logo-blackred-rgb.png",
+          "fileName": "fdr-logo-blackred-rgb.png",
+          "bytes": 30625
+        },
+        {
+          "src": "/media/4096/fdr-logo-blackred-rgb.png",
+          "fileName": "fdr-logo-blackred-rgb.png",
+          "bytes": 30625
+        }
+      ]
+    },
+    {
+      "requestedName": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "userDir": "ADHDFOKUS",
+      "status": "ok",
+      "coverSrc": "/media/4234/coverfoto_kiibee_.png",
+      "logoSrc": null,
+      "headline": "VIDEN OM ADD OG ADHD",
+      "downloadedImages": [
+        {
+          "src": "/media/4234/coverfoto_kiibee_.png",
+          "fileName": "coverfoto_kiibee_.png",
+          "bytes": 876816
+        },
+        {
+          "src": "/media/4382/coverfoto_mobil_kiibee.png",
+          "fileName": "coverfoto_mobil_kiibee.png",
+          "bytes": 393953
+        }
+      ]
+    },
+    {
+      "requestedName": "VideoVisionær kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "userDir": "VideoVisionær_kursus",
+      "status": "ok",
+      "coverSrc": "/media/4761/topbanner-kiibee-optimeret.jpg",
+      "logoSrc": "/media/4760/black_horizontal.png",
+      "headline": "Slip bekymringerne omkring din markedsføring",
+      "downloadedImages": [
+        {
+          "src": "/media/4761/topbanner-kiibee-optimeret.jpg",
+          "fileName": "topbanner-kiibee-optimeret.jpg",
+          "bytes": 364494
+        },
+        {
+          "src": "/media/4760/black_horizontal.png",
+          "fileName": "black_horizontal.png",
+          "bytes": 20189
+        }
+      ]
+    },
+    {
+      "requestedName": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "userDir": "Publika",
+      "status": "ok",
+      "coverSrc": "/media/4782/budget.jpg",
+      "logoSrc": "/media/4781/6.gif",
+      "headline": "Nemt bilbudget",
+      "downloadedImages": [
+        {
+          "src": "/media/4782/budget.jpg",
+          "fileName": "budget.jpg",
+          "bytes": 1511725
+        },
+        {
+          "src": "/media/4781/6.gif",
+          "fileName": "6.gif",
+          "bytes": 3856
+        },
+        {
+          "src": "/media/4783/budget.jpg",
+          "fileName": "budget.jpg",
+          "bytes": 1511725
+        }
+      ]
+    },
+    {
+      "requestedName": "Ahmed Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "userDir": "Ahmed_Mittani",
+      "status": "ok",
+      "coverSrc": null,
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": []
+    },
+    {
+      "requestedName": "Admin",
+      "liveName": "Admin",
+      "userId": 1223,
+      "userDir": "Admin",
+      "status": "ok",
+      "coverSrc": null,
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": []
+    },
+    {
+      "requestedName": "Kiibee",
+      "liveName": "Kiibee",
+      "userId": 1812,
+      "userDir": "Kiibee",
+      "status": "ok",
+      "coverSrc": "/media/1171/card-coffee-cup-1449082.jpg",
+      "logoSrc": null,
+      "headline": "Velkommen til din kanal for digitalt indhold  ",
+      "downloadedImages": [
+        {
+          "src": "/media/1171/card-coffee-cup-1449082.jpg",
+          "fileName": "card-coffee-cup-1449082.jpg",
+          "bytes": 3971133
+        }
+      ]
+    },
+    {
+      "requestedName": "Kiibee hjælpe videoer",
+      "liveName": "Kiibee hjælpe videoer",
+      "userId": 2220,
+      "userDir": "Kiibee_hjælpe_videoer",
+      "status": "ok",
+      "coverSrc": "/media/1379/kiibee-cover-help.jpg",
+      "logoSrc": "/media/1536/kiibee-logo.png",
+      "headline": "INFO-CENTER",
+      "downloadedImages": [
+        {
+          "src": "/media/1379/kiibee-cover-help.jpg",
+          "fileName": "kiibee-cover-help.jpg",
+          "bytes": 31665
+        },
+        {
+          "src": "/media/1536/kiibee-logo.png",
+          "fileName": "kiibee-logo.png",
+          "bytes": 4647
+        }
+      ]
+    },
+    {
+      "requestedName": "Settings",
+      "liveName": "Settings",
+      "userId": 1073,
+      "userDir": "Settings",
+      "status": "ok",
+      "coverSrc": null,
+      "logoSrc": null,
+      "headline": null,
+      "downloadedImages": []
+    }
+  ],
+  "missingUsers": [],
+  "finishedAt": "2026-10-28T05:25:18.291Z"
+}
