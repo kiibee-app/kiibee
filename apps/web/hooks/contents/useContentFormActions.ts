@@ -210,8 +210,12 @@ export function useContentFormActions({
   if (selectedCollection && selectedCollection.id !== prevCollectionId) {
     setPrevCollectionId(selectedCollection.id);
     const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
+    const rawUiAccessType =
       apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
+    const uiAccessType =
+      rawUiAccessType === ADMISSION_REQUIREMENT_VALUES.free
+        ? ADMISSION_REQUIREMENT_VALUES.email
+        : rawUiAccessType;
     applySettingsSnapshot(
       buildSettingsSnapshot(uiAccessType, {
         description: selectedCollection.description ?? "",
