@@ -4,12 +4,15 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { usePathname, useRouter } from "next/navigation";
 import { DA, EN } from "@/utils/common";
+import { STRING_EMPTY } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
+import { isBrowser } from "@/utils/ui";
 import {
   normalizeAppLanguage,
   persistAppLanguage,
   type AppLanguage,
 } from "@/utils/language";
-import { localizePathname } from "@/utils/localizedRoutes";
+import { localizeHref } from "@/utils/localizedRoutes";
 import { Wrapper, Slider, LangButton } from "./styles";
 
 const LanguageToggle = () => {
@@ -26,14 +29,13 @@ const LanguageToggle = () => {
       persistAppLanguage(lng);
       void i18n.changeLanguage(lng);
 
-      const nextPath = localizePathname(pathname || "/", lng);
-      const search = window.location.search;
-      const hash = window.location.hash;
-      const href = `${nextPath}${search}${hash}`;
-      const currentHref = `${pathname}${search}${hash}`;
+      const search = isBrowser ? window.location.search : STRING_EMPTY;
+      const hash = isBrowser ? window.location.hash : STRING_EMPTY;
+      const currentUrl = `${pathname || PATHS.HOME}${search}${hash}`;
+      const href = localizeHref(currentUrl, lng);
 
-      if (href !== currentHref) {
-        router.replace(href);
+      if (href !== currentUrl) {
+        router.replace(href, { scroll: false });
       }
     },
     [currentLang, i18n, pathname, router],
