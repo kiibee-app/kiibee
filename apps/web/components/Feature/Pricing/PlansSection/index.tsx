@@ -102,7 +102,8 @@ export default function PricingPlansSection({
   useLayoutEffect(() => {
     // In-app upgrade sets a session flag; a hash in router.push gets duplicated/lost.
     const scrollToPlans = () => {
-      const flagged = window.sessionStorage.getItem(SCROLL_TO_PLANS_KEY) === "1";
+      const flagged =
+        window.sessionStorage.getItem(SCROLL_TO_PLANS_KEY) === "1";
       if (!flagged && window.location.hash !== HASH_PLANS) return;
       const el = document.getElementById(PLANS_SECTION_ID);
       if (!el) return;
@@ -197,7 +198,7 @@ export default function PricingPlansSection({
       </CardsWrapper>
       <EnterpriseSection>
         <GenericButton variant={VARIANT.PRIMARY} href={PATHS.SUPPORT}>
-          {t("pricingPlans.enterprise", "Enterprise")}
+          {t("pricingPlans.enterprise")}
         </GenericButton>
       </EnterpriseSection>
     </Section>
