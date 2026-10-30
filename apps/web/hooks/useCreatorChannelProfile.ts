@@ -11,6 +11,8 @@ import {
   getLoginUserDisplayName,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { isBrowser } from "@/utils/ui";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
@@ -43,11 +45,15 @@ export function useCreatorChannelProfile(enabled = true) {
     creatorSlugParam ||
     null;
   const storedUser = useStoredLoginUser();
+  const currentUserId =
+    storedUser?.id || (isBrowser ? readStoredLoginUser()?.id : null);
   const { creator: publicCreator, isLoading: isLoadingPublic } =
     useCreatorPublicProfile(creatorIdentifier);
   const publicCreatorId = publicCreator?.id ?? creatorIdentifier;
   const isOwnerOfPublicView =
-    Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
+    Boolean(publicCreatorId) &&
+    Boolean(currentUserId) &&
+    String(currentUserId).trim() === String(publicCreatorId).trim();
   const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
