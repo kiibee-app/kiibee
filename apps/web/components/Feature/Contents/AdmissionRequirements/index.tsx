@@ -149,7 +149,11 @@ function AdmissionRequirements({
 
   const [typedPasswords, setTypedPasswords] = useState("");
 
-  const selected = accessType ?? localSelected;
+  const rawSelected = accessType ?? localSelected;
+  const selected =
+    !showFreeOption && rawSelected === ADMISSION_REQUIREMENT_VALUES.free
+      ? ADMISSION_REQUIREMENT_VALUES.email
+      : rawSelected;
   const passwords = propPasswords ?? localPasswords;
   const description = propDescription ?? localDescription;
 
