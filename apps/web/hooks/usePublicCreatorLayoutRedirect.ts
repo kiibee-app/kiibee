@@ -2,6 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import {
+  notFound,
   useParams,
   usePathname,
   useRouter,
@@ -9,6 +10,9 @@ import {
 } from "next/navigation";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { isBrowser } from "@/utils/ui";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
@@ -55,6 +59,24 @@ export function usePublicCreatorLayoutRedirect(
     ? creator?.layout
     : appearanceQuery.data?.data?.layout;
   const isLoading = isPublicView ? isLoadingPublic : appearanceQuery.isLoading;
+
+  const storedUser = useStoredLoginUser();
+  const currentUserId =
+    storedUser?.id || (isBrowser ? readStoredLoginUser()?.id : null);
+  const isOwner = Boolean(
+    currentUserId &&
+    creator?.id &&
+    String(currentUserId).trim() === String(creator.id).trim(),
+  );
+  const uploadCount = Number(creator?.uploadCount ?? 0);
+  const hasPublishedPublicContent =
+    Number.isFinite(uploadCount) && uploadCount > 0;
+
+  if (isPublicView && !isLoading) {
+    if (!creator || (!hasPublishedPublicContent && !isOwner)) {
+      notFound();
+    }
+  }
 
   const isLayoutPending =
     isLoading ||
