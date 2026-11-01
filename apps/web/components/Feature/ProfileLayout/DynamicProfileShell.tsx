@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import ProfileShell from "@/components/Feature/ProfileLayout/Shell";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { toCanonicalPathname } from "@/utils/localizedRoutes";
 import {
   DEFAULT_CREATOR_LAYOUT,
   layoutParamFromKey,
@@ -62,6 +63,8 @@ export default function DynamicProfileShell({
     }
   }, [creator?.slug, creatorSlug, isLoading, pathname, router]);
 
+  const canonicalPathname = toCanonicalPathname(pathname);
+
   useEffect(() => {
     if (typeof window === "undefined" || isLoading) return;
 
@@ -79,7 +82,7 @@ export default function DynamicProfileShell({
       cancelAnimationFrame(rafId);
       clearTimeout(timeoutId);
     };
-  }, [isLoading, pathname]);
+  }, [isLoading, canonicalPathname]);
 
   if (isLoading) {
     return (
