@@ -574,6 +574,7 @@ export const CONTENTS = {
       title: "contents.payment.admission.title",
       description: "contents.payment.admission.description",
       fallbackContentType: "contents.payment.admission.fallbackContentType",
+      amountRequired: "contents.payment.admission.amountRequired",
       options: {
         free: "contents.payment.admission.options.free",
         payment: "contents.payment.admission.options.payment",
@@ -587,6 +588,7 @@ export const CONTENTS = {
     },
   },
   admissionRequirements: {
+    required: "contents.admissionRequirements.required",
     freeContentWarningBadge:
       "contents.admissionRequirements.freeContentWarningBadge",
     password: {
