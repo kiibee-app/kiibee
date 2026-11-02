@@ -52,35 +52,30 @@ interface PaymentProps {
   isNewContent?: boolean;
 }
 
-export default function Payment({
-  contentType,
-  isNewContent = false,
-}: PaymentProps = {}) {
+export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
   const { contentTypeId, admissionRequirement } = formState;
   const resolvedContentType = contentTypeId || contentType;
   const isWebContent =
-    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase();
+    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
+    resolvedContentType?.toLowerCase() === "web";
 
   const admissionOptions = getAdmissionOptions(t).filter(
-    (option) =>
-      !isNewContent || isWebContent || option.value !== ADMISSION_TYPE.FREE,
+    (option) => isWebContent || option.value !== ADMISSION_TYPE.FREE,
   );
 
+  const admissionValue =
+    !isWebContent && admissionRequirement === ADMISSION_TYPE.FREE
+      ? ""
+      : admissionRequirement;
+
   useEffect(() => {
-    if (
-      isNewContent &&
-      !isWebContent &&
-      admissionRequirement === ADMISSION_TYPE.FREE
-    ) {
-      updateField(
-        PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
-        ADMISSION_TYPE.REQUEST_EMAIL,
-      );
+    if (!isWebContent && admissionRequirement === ADMISSION_TYPE.FREE) {
+      updateField(PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT, "");
     }
-  }, [isNewContent, isWebContent, admissionRequirement, updateField]);
+  }, [isWebContent, admissionRequirement, updateField]);
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");
@@ -177,13 +172,15 @@ export default function Payment({
             <DropdownWrap>
               <SortDropdown
                 options={admissionOptions}
-                value={formState[PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT]}
+                value={admissionValue}
                 onChange={(value) =>
                   updateField(
                     PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
                     value as AdmissionValue,
                   )
                 }
+                placeholder={t("contents.admissionRequirements.placeholder")}
+                allowNoSelection
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
                 expandLayoutOnOpen={false}

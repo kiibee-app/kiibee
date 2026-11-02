@@ -283,6 +283,7 @@ export default function ContentTabPanel({
         onChangeAccessDuration={setCollectionAccessDuration}
         showDescription={Boolean(selectedCollection)}
         showPaymentOption={true}
+        showFreeOption={!selectedCollection}
         isChannelSettings={!selectedCollection}
         onValidationChange={onPasswordValidationChange}
         hasPassword={collectionHasPassword}
