@@ -10,7 +10,10 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE, STATUS } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorHasPublishedContentWhere,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import { success } from 'src/utils/sendResponse';
 import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
@@ -52,6 +55,9 @@ const creatorDisplayNameSql = sql<string>`trim(coalesce(
 
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
+  if (!idOrSlug) {
+    conditions.push(creatorHasPublishedContentWhere);
+  }
   if (idOrSlug) {
     const cleanSlug = idOrSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     conditions.push(

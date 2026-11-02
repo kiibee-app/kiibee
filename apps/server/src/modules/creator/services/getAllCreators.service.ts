@@ -19,7 +19,10 @@ import {
   STATUS,
 } from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorHasPublishedContentWhere,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
@@ -149,6 +152,7 @@ export const allCreatorsService = async ({
       eq(users.isDeleted, false),
       eq(users.status, STATUS.ACTIVE),
       publiclyVisibleCreatorWhere,
+      creatorHasPublishedContentWhere,
       sql`${creatorDisplayNameSql} <> ''`,
       isFeaturedOnly && hasFeaturedRecords
         ? sql`${featureCreators.creatorId} IS NOT NULL`
