@@ -2052,6 +2052,7 @@
       "channelDescription": "Angiv adgang for alle samlinger og alt indhold på din kanal.",
       "fallbackContentType": "samling",
       "placeholder": "Vælg adgangstype",
+      "required": "Vælg venligst et adgangskrav.",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
@@ -2239,6 +2240,7 @@
         "title": "Adgangskrav",
         "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
         "fallbackContentType": "indhold",
+        "amountRequired": "Angiv mindst et beløb for leje eller køb.",
         "options": {
           "free": "Gratis",
           "payment": "Betaling",
