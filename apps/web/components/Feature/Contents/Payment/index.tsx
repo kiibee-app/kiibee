@@ -67,9 +67,7 @@ export default function Payment({ contentType }: PaymentProps = {}) {
   );
 
   const admissionValue =
-    isNewContent &&
-    !isWebContent &&
-    admissionRequirement === ADMISSION_TYPE.FREE
+    !isWebContent && admissionRequirement === ADMISSION_TYPE.FREE
       ? ""
       : admissionRequirement;
 
