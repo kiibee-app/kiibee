@@ -857,7 +857,7 @@
     "active": "Active",
     "planNotFound": "Plan not found",
     "subscriptionActivated": "Subscription activated!",
-    "enterprise": "Enterprise",
+    "enterprise": "Contact us",
     "plans": {
       "launch": {
         "title": "Try Kiibee",
@@ -1967,6 +1967,7 @@
       "channelDescription": "Set access for all collections and content on your channel.",
       "fallbackContentType": "collection",
       "placeholder": "Select access type",
+      "required": "Please select an admission requirement.",
       "options": {
         "free": "Free",
         "payment": "Payment",
@@ -2239,6 +2240,7 @@
         "title": "Admission requirements",
         "description": "Consider what type of access your {{contentType}} should have",
         "fallbackContentType": "content",
+        "amountRequired": "Enter at least one rental or purchase amount.",
         "options": {
           "free": "Free",
           "payment": "Payment",

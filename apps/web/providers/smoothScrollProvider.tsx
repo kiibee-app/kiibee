@@ -33,6 +33,7 @@ function shouldUseSmoothScroll(pathname: string) {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
+  const canonicalPathname = toCanonicalPathname(pathname);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -58,7 +59,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const t1 = setTimeout(resetScroll, 50);
     const t2 = setTimeout(resetScroll, 200);
 
-    if (!shouldUseSmoothScroll(pathname)) {
+    if (!shouldUseSmoothScroll(canonicalPathname)) {
       return () => {
         cancelAnimationFrame(raf1);
         cancelAnimationFrame(raf2);
@@ -179,7 +180,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
-  }, [pathname]);
+  }, [canonicalPathname]);
 
   return children;
 }
