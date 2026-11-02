@@ -69,6 +69,11 @@ export default function Payment({
       !isNewContent || isWebContent || option.value !== ADMISSION_TYPE.FREE,
   );
 
+  const admissionValue =
+    isNewContent && !isWebContent && admissionRequirement === ADMISSION_TYPE.FREE
+      ? ""
+      : admissionRequirement;
+
   useEffect(() => {
     if (
       isNewContent &&
@@ -77,7 +82,7 @@ export default function Payment({
     ) {
       updateField(
         PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
-        ADMISSION_TYPE.REQUEST_EMAIL,
+        "",
       );
     }
   }, [isNewContent, isWebContent, admissionRequirement, updateField]);
@@ -177,13 +182,15 @@ export default function Payment({
             <DropdownWrap>
               <SortDropdown
                 options={admissionOptions}
-                value={formState[PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT]}
+                value={admissionValue}
                 onChange={(value) =>
                   updateField(
                     PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
                     value as AdmissionValue,
                   )
                 }
+                placeholder={t("contents.admissionRequirements.placeholder")}
+                allowNoSelection
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
                 expandLayoutOnOpen={false}
