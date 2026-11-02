@@ -9,6 +9,7 @@ import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { isBrowser } from "@/utils/ui";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { toCanonicalPathname } from "@/utils/localizedRoutes";
 import {
   DEFAULT_CREATOR_LAYOUT,
   layoutParamFromKey,
@@ -65,6 +66,8 @@ export default function DynamicProfileShell({
     }
   }, [creator?.slug, creatorSlug, isLoading, pathname, router]);
 
+  const canonicalPathname = toCanonicalPathname(pathname);
+
   useEffect(() => {
     if (typeof window === "undefined" || isLoading) return;
 
@@ -82,7 +85,7 @@ export default function DynamicProfileShell({
       cancelAnimationFrame(rafId);
       clearTimeout(timeoutId);
     };
-  }, [isLoading, pathname]);
+  }, [isLoading, canonicalPathname]);
 
   const storedUser = useStoredLoginUser();
   const currentUserId =

@@ -52,40 +52,32 @@ interface PaymentProps {
   isNewContent?: boolean;
 }
 
-export default function Payment({
-  contentType,
-  isNewContent = false,
-}: PaymentProps = {}) {
+export default function Payment({ contentType }: PaymentProps = {}) {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, setFieldError, clearFieldError } =
     useContentForm();
   const { contentTypeId, admissionRequirement } = formState;
   const resolvedContentType = contentTypeId || contentType;
   const isWebContent =
-    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase();
+    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
+    resolvedContentType?.toLowerCase() === "web";
 
   const admissionOptions = getAdmissionOptions(t).filter(
-    (option) =>
-      !isNewContent || isWebContent || option.value !== ADMISSION_TYPE.FREE,
+    (option) => isWebContent || option.value !== ADMISSION_TYPE.FREE,
   );
 
   const admissionValue =
-    isNewContent && !isWebContent && admissionRequirement === ADMISSION_TYPE.FREE
+    isNewContent &&
+    !isWebContent &&
+    admissionRequirement === ADMISSION_TYPE.FREE
       ? ""
       : admissionRequirement;
 
   useEffect(() => {
-    if (
-      isNewContent &&
-      !isWebContent &&
-      admissionRequirement === ADMISSION_TYPE.FREE
-    ) {
-      updateField(
-        PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
-        "",
-      );
+    if (!isWebContent && admissionRequirement === ADMISSION_TYPE.FREE) {
+      updateField(PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT, "");
     }
-  }, [isNewContent, isWebContent, admissionRequirement, updateField]);
+  }, [isWebContent, admissionRequirement, updateField]);
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");
