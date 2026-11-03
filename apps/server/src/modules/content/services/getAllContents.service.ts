@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpStatus } from '@nestjs/common';
 import { mediaFiles } from 'src/database/schema';
 import type { SQL } from 'drizzle-orm';
@@ -33,7 +34,7 @@ const baseSelect = {
   trailerUrl: mediaFiles.trailerUrl,
   slug: mediaFiles.slug,
   creatorId: mediaFiles.creatorId,
-  creatorName: users.fullName,
+  creatorName: publicCreatorName,
   creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: sql<string>`COALESCE(

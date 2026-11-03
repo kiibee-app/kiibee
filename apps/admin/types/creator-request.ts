@@ -5,6 +5,7 @@ export type CreatorRequest = {
   firstName: string;
   lastName: string;
   fullName: string;
+  companyName?: string | null;
   email: string;
   phone: string;
   cvr: string;

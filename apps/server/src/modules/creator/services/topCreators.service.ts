@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { desc, eq, sql, and } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -20,7 +21,7 @@ export const topCreatorsService = async () => {
     const topCreators = await db
       .select({
         id: users.id,
-        name: users.fullName,
+        name: publicCreatorName,
         slug: creatorChannels.slug,
         profileImageUrl: users.avatarUrl,
         createdAt: users.createdAt,

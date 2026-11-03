@@ -68,6 +68,7 @@ export const ensureCreatorChannel = async (
   params: {
     creatorId: string;
     channelName: string | null | undefined;
+    publish?: boolean;
   },
 ): Promise<void> => {
   const name = resolveChannelName(params.channelName);
@@ -94,11 +95,10 @@ export const ensureCreatorChannel = async (
       updatedAt: now,
     };
 
-    const nextSlug = await allocateUniqueChannelSlug(
-      client,
-      name,
-      params.creatorId,
-    );
+    const nextSlug =
+      existing.name === name && existing.slug
+        ? existing.slug
+        : await allocateUniqueChannelSlug(client, name, params.creatorId);
 
     if (existing.name !== name) {
       updates.name = name;
@@ -108,7 +108,7 @@ export const ensureCreatorChannel = async (
       updates.slug = nextSlug;
     }
 
-    if (!existing.isPublished) {
+    if (!existing.isPublished && params.publish !== false) {
       updates.isPublished = true;
     }
 
@@ -134,7 +134,7 @@ export const ensureCreatorChannel = async (
     creatorId: params.creatorId,
     name,
     slug,
-    isPublished: true,
+    isPublished: params.publish !== false,
     createdAt: now,
     updatedAt: now,
   });

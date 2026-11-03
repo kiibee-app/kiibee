@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -29,7 +30,7 @@ const collectionItemSelect = {
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
-  creatorName: users.fullName,
+  creatorName: publicCreatorName,
   creatorSlug: creatorChannels.slug,
   slug: mediaFiles.slug,
   contentType: contentTypes.name,
@@ -162,7 +163,7 @@ export const getPublicCollectionService = async (
     const [collectionCreator] = await db
       .select({
         id: users.id,
-        name: users.fullName,
+        name: publicCreatorName,
         slug: creatorChannels.slug,
       })
       .from(users)

@@ -273,18 +273,7 @@ export function getExistingCreatorDisplayName(
 }
 
 export function getExistingCreatorChannelName(creator: ExistingCreator) {
-  const fromParts = [creator.firstName, creator.lastName]
-    .filter(Boolean)
-    .join(" ")
-    .trim();
-
-  return (
-    creator.channelName?.trim() ||
-    creator.companyName?.trim() ||
-    fromParts ||
-    creator.fullName?.trim() ||
-    null
-  );
+  return creator.companyName?.trim() || creator.channelName?.trim() || null;
 }
 
 export function getExistingCreatorInitials(name: string) {

@@ -47,6 +47,8 @@ export const createViewerSignupSchema = (messages: {
     });
 
 export const createCreatorRequestSchema = (messages: {
+  companyNameRequired: string;
+  companyNameMax: string;
   firstNameRequired: string;
   firstNameMax: string;
   lastNameRequired: string;
@@ -64,6 +66,11 @@ export const createCreatorRequestSchema = (messages: {
 }) =>
   z
     .object({
+      companyName: z
+        .string()
+        .trim()
+        .min(1, messages.companyNameRequired)
+        .max(200, messages.companyNameMax),
       firstName: z
         .string()
         .trim()

@@ -2,13 +2,9 @@
 
 import { useMemo } from "react";
 import { useSearchParams, useParams } from "next/navigation";
-import {
-  mapCreatorProfileToForm,
-  type GetCreatorProfileResponse,
-} from "@/hooks/auth/creatorProfileApi";
+import { type GetCreatorProfileResponse } from "@/hooks/auth/creatorProfileApi";
 import {
   getDisplayFirstLetter,
-  getLoginUserDisplayName,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
@@ -19,7 +15,6 @@ import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { toTrimmedString } from "@/utils/Constants";
 import { formatJoinedDate } from "@/utils/formatDate";
 import {
-  displayCreatorName,
   getAvatarUrl,
   resolveCreatorContactEmail,
   resolveCreatorWebsiteLinks,
@@ -100,14 +95,13 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     if (profile) {
-      const fromProfile = displayCreatorName(mapCreatorProfileToForm(profile));
-      if (fromProfile) return fromProfile;
-
-      const fullName = toTrimmedString(profile.user?.fullName);
-      if (fullName) return fullName;
+      const companyName = toTrimmedString(profile.creatorInfo?.companyName);
+      if (companyName) return companyName;
+      const channelName = toTrimmedString(profile.channel?.name);
+      if (channelName) return channelName;
     }
 
-    return getLoginUserDisplayName(storedUser);
+    return "Creator";
   }, [publicCreator, profile, storedUser]);
 
   const avatarUrl = useMemo(() => {

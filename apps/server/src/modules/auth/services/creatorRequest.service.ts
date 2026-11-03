@@ -13,6 +13,7 @@ export const creatorRequestService = async (
 ) => {
   try {
     const {
+      companyName,
       firstName,
       lastName,
       email,
@@ -63,6 +64,7 @@ export const creatorRequestService = async (
       firstName,
       lastName,
       fullName,
+      companyName: companyName.trim(),
       email: normalizedEmail,
       phone,
       cvr,

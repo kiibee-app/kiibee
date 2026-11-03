@@ -253,6 +253,9 @@
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "form": {
+      "companyName": "Firmanavn",
+      "companyNameRequired": "Firmanavn er påkrævet",
+      "companyNameMax": "Firmanavn må højst være 200 tegn",
       "firstName": "Fornavn",
       "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",

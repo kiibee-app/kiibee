@@ -253,6 +253,9 @@
     "haveAccount": "Already have an account?",
     "login": "Log in",
     "form": {
+      "companyName": "Company name",
+      "companyNameRequired": "Company name is required",
+      "companyNameMax": "Company name must be at most 200 characters",
       "firstName": "First name",
       "firstNameMax": "First name must be 50 characters or less",
       "lastName": "Last name",
