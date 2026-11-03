@@ -15,7 +15,7 @@ import {
   getVimeoEmbedUrl,
   getPdfEmbedUrl,
 } from "@/utils/media";
-import EpubViewer from "@/utils/EpubViewer";
+import dynamic from "next/dynamic";
 import AudioPlayer from "./AudioPlayer";
 import {
   PreviewOverlay,
@@ -26,6 +26,8 @@ import {
 import { ESCAPE, KEYDOWN } from "@/utils/keyboard";
 import { VISIBILITY_HIDDEN_LOWER } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
+
+const EpubViewer = dynamic(() => import("@/utils/EpubViewer"), { ssr: false });
 
 type ContentPreviewModalProps = {
   visible: boolean;
@@ -45,7 +47,9 @@ export default function ContentPreviewModal({
   coverImage,
 }: ContentPreviewModalProps) {
   const [isLoading, setIsLoading] = useState(
-    type === FORMAT_TYPE.PDF || type === FORMAT_TYPE.EPUB || type === FORMAT_TYPE.WEB
+    type === FORMAT_TYPE.PDF ||
+      type === FORMAT_TYPE.EPUB ||
+      type === FORMAT_TYPE.WEB,
   );
 
   useEffect(() => {
@@ -92,9 +96,7 @@ export default function ContentPreviewModal({
       case FORMAT_TYPE.PDF:
         return (
           <>
-            {isLoading && (
-              <GenericSpinner size={48} isLocal />
-            )}
+            {isLoading && <GenericSpinner size={48} isLocal />}
             <PreviewContent
               as="iframe"
               src={getPdfEmbedUrl(src)}
@@ -110,18 +112,20 @@ export default function ContentPreviewModal({
         }
         return (
           <>
-            {isLoading && (
-              <GenericSpinner size={48} isLocal />
-            )}
-            <PreviewContent as="iframe" src={src} title={title} allowFullScreen onLoad={() => setIsLoading(false)} />
+            {isLoading && <GenericSpinner size={48} isLocal />}
+            <PreviewContent
+              as="iframe"
+              src={src}
+              title={title}
+              allowFullScreen
+              onLoad={() => setIsLoading(false)}
+            />
           </>
         );
       case FORMAT_TYPE.EPUB:
         return (
           <PreviewContent>
-            {isLoading && (
-              <GenericSpinner size={48} isLocal />
-            )}
+            {isLoading && <GenericSpinner size={48} isLocal />}
             <EpubViewer src={src} onReady={() => setIsLoading(false)} />
           </PreviewContent>
         );

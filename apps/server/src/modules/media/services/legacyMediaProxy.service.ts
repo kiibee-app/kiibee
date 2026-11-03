@@ -18,6 +18,8 @@ export class LegacyMediaProxyService {
     key: string;
     exp: string;
     sig: string;
+    range?: string;
+    ifRange?: string;
     reply: FastifyReply;
   }) {
     const key = params.key?.trim();
@@ -38,8 +40,17 @@ export class LegacyMediaProxyService {
       headers: {
         'User-Agent': 'KiibeeMediaProxy/1.0',
         Accept: '*/*',
+        'Accept-Encoding': 'identity',
+        ...(params.range ? { Range: params.range } : {}),
+        ...(params.ifRange ? { 'If-Range': params.ifRange } : {}),
       },
     });
+
+    if (upstream.status === 416) {
+      const contentRange = upstream.headers.get('content-range');
+      if (contentRange) params.reply.header('Content-Range', contentRange);
+      return params.reply.code(416).send();
+    }
 
     if (!upstream.ok || !upstream.body) {
       throw new NotFoundException('Media file not found');
@@ -52,12 +63,26 @@ export class LegacyMediaProxyService {
     }
 
     params.reply
+      .code(upstream.status)
       .header('Content-Type', contentType)
       .header('Content-Disposition', 'inline')
-      .header('Cache-Control', 'public, max-age=31536000, immutable')
+      .header(
+        'Cache-Control',
+        `private, max-age=${Math.max(0, Math.min(3600, Number(params.exp) - Math.floor(Date.now() / 1000)))}`,
+      )
       .header('X-Content-Type-Options', 'nosniff')
       .removeHeader('x-frame-options')
       .removeHeader('content-security-policy');
+
+    for (const header of [
+      'accept-ranges',
+      'content-range',
+      'etag',
+      'last-modified',
+    ]) {
+      const value = upstream.headers.get(header);
+      if (value) params.reply.header(header, value);
+    }
 
     const length = upstream.headers.get('content-length');
     if (length) {

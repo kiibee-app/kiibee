@@ -31,6 +31,7 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   const {
     data: mediaResponse,
     isLoading,
+    dataUpdatedAt,
     refetch,
   } = useGetAPI<ContentMediaUrlResponse>(
     mediaEndpoint,
@@ -50,13 +51,23 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
 
   const fetchMediaUrl = useCallback(async () => {
     if (!canFetchMedia) return previewMediaUrl;
+    // Reuse a recently issued link when the viewer is reopened.
+    if (mediaResponse && Date.now() - dataUpdatedAt < 60_000)
+      return previewMediaUrl;
 
     const result = await refetch();
     const signedUrl =
       result.data?.url || result.data?.iframeUrl || result.data?.streamUrl;
 
     return resolveContentPlaybackUrl(content, signedUrl) || previewMediaUrl;
-  }, [canFetchMedia, content, previewMediaUrl, refetch]);
+  }, [
+    canFetchMedia,
+    content,
+    previewMediaUrl,
+    mediaResponse,
+    dataUpdatedAt,
+    refetch,
+  ]);
 
   return {
     contentType,

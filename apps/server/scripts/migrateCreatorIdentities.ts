@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import { randomUUID } from 'crypto';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
+import { mkdirSync, openSync, closeSync, chmodSync } from 'fs';
+import { resolve } from 'path';
+import { spawnSync } from 'child_process';
 import { db, pool } from '../src/database/db';
 import {
   creatorChannels,
@@ -12,9 +15,79 @@ import { ensureCreatorChannel } from '../src/modules/auth/services/ensureCreator
 import { CREATOR_OWNERS } from './legacyCreatorOwners';
 import { getAdminCreatorsService } from '../src/modules/creator/services/getAllExistingCreators.service';
 
-// Dry run by default. Existing company URLs are retained when branding is unchanged.
+async function prepareLiveDatabase() {
+  // Back up before schema or data changes. Credentials stay out of command arguments.
+  const url = new URL(process.env.DATABASE_URL!);
+  const backupDir = resolve(process.env.CREATOR_BACKUP_DIR || '.backups');
+  mkdirSync(backupDir, { recursive: true, mode: 0o700 });
+  const backupPath = resolve(backupDir, `creator-identities-${Date.now()}.sql`);
+  const ownerTable = await db.execute(
+    sql`select to_regclass('public.creator_owners') as name`,
+  );
+  const tables = [
+    'users',
+    'creator_info',
+    'creator_channels',
+    'creator_application_requests',
+  ];
+  if (ownerTable.rows[0]?.name) tables.push('creator_owners');
+  const fd = openSync(backupPath, 'wx', 0o600);
+  let backup;
+  try {
+    backup = spawnSync(
+      'pg_dump',
+      ['--data-only', ...tables.flatMap((table) => ['--table', table])],
+      {
+        env: {
+          ...process.env,
+          PGHOST: url.hostname,
+          PGPORT: url.port || '5432',
+          PGDATABASE: decodeURIComponent(url.pathname.slice(1)),
+          PGUSER: decodeURIComponent(url.username),
+          PGPASSWORD: decodeURIComponent(url.password),
+          PGCONNECT_TIMEOUT: '15',
+          ...(url.searchParams.get('sslmode')
+            ? { PGSSLMODE: url.searchParams.get('sslmode')! }
+            : {}),
+        },
+        stdio: ['ignore', fd, 'pipe'],
+        encoding: 'utf8',
+      },
+    );
+  } finally {
+    closeSync(fd);
+  }
+  chmodSync(backupPath, 0o600);
+  if (backup.error || backup.status !== 0) {
+    throw new Error(
+      `Database backup failed; no data changed. Install a compatible pg_dump. ${backup.error?.message || backup.stderr}`,
+    );
+  }
+  console.log(`Backup saved: ${backupPath}`);
+  await db.transaction(async (tx) => {
+    await tx.execute(
+      sql`ALTER TABLE creator_application_requests ADD COLUMN IF NOT EXISTS company_name varchar(200)`,
+    );
+    await tx.execute(sql`CREATE TABLE IF NOT EXISTS creator_owners (
+      id text PRIMARY KEY NOT NULL,
+      creator_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      name varchar(255) NOT NULL, first_name varchar(255), last_name varchar(255),
+      email varchar(255), phone varchar(50),
+      created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now()
+    )`);
+    await tx.execute(
+      sql`CREATE UNIQUE INDEX IF NOT EXISTS creator_owners_creator_id_unique ON creator_owners(creator_id)`,
+    );
+    await tx.execute(
+      sql`CREATE INDEX IF NOT EXISTS creator_owners_name_idx ON creator_owners(name)`,
+    );
+  });
+}
+
+// Dry run by default. --apply backs up, prepares the schema, then migrates atomically.
 async function main() {
   const apply = process.argv.includes('--apply');
+  if (apply) await prepareLiveDatabase();
   // Use the admin Owner column as the source of truth for legacy personal names.
   const adminOwners = new Map<string, string>();
   let page = 1;
@@ -73,7 +146,9 @@ async function main() {
       const existingPartsMatch =
         [row.ownerFirst, row.ownerLast].filter(Boolean).join(' ').trim() ===
         ownerName;
-      const knownPartsMatch = known?.fullName === ownerName;
+      const knownPartsMatch = Boolean(
+        known && ownerName && known.fullName === ownerName,
+      );
       const firstName = existingPartsMatch
         ? row.ownerFirst
         : knownPartsMatch
