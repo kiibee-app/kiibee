@@ -29,7 +29,6 @@ import { getCategoryLabel } from "@/utils/category";
 import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
-import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import {
   isBuyActionLabel,
@@ -98,32 +97,7 @@ function TutorialCard({
     setLoginModalMessage(undefined);
   };
 
-  const thumbnailCandidates = useMemo(() => {
-    if (tutorial.videoUrl) {
-      return resolveTutorialThumbnailCandidates({
-        videoUrl: tutorial.videoUrl,
-        trailerUrl: tutorial.trailerUrl,
-      });
-    }
-
-    const staticImage = resolveImageUrl(tutorial.image);
-    return staticImage ? [staticImage] : [];
-  }, [tutorial.image, tutorial.trailerUrl, tutorial.videoUrl]);
-
-  const [thumbnailIndex, setThumbnailIndex] = useState(0);
-
-  const image =
-    thumbnailCandidates[thumbnailIndex] ??
-    resolveImageUrl(tutorial.image) ??
-    undefined;
-  const imageFallback = thumbnailCandidates[thumbnailIndex + 1];
-
-  const handleThumbnailError = () => {
-    setThumbnailIndex((current) => {
-      const nextIndex = current + 1;
-      return nextIndex < thumbnailCandidates.length ? nextIndex : current;
-    });
-  };
+  const image = resolveImageUrl(tutorial.image) || undefined;
 
   const FormatIcon = useMemo(() => {
     const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
@@ -338,9 +312,8 @@ function TutorialCard({
       coverImage
       imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
       image={image}
-      imageFallback={imageFallback}
       imagePriority={imagePriority}
-      onImageError={handleThumbnailError}
+      keepImagePlaceholder
       alt={tutorial.title}
       badge={
         tutorial.category ? (

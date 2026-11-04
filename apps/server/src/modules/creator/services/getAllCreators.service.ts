@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq, sql, and, asc, desc, inArray, ilike, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -43,11 +44,7 @@ const publishedMediaJoinCondition = and(
   eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
 );
 
-const creatorDisplayNameSql = sql<string>`trim(coalesce(
-  nullif(${creatorChannels.name}, ''),
-  nullif(${users.fullName}, ''),
-  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
-))`;
+const creatorDisplayNameSql = publicCreatorName;
 
 export const allCreatorsService = async ({
   page,
@@ -159,9 +156,6 @@ export const allCreatorsService = async ({
         : sql`TRUE`,
       hasSearch
         ? or(
-            ilike(users.fullName, `%${search}%`),
-            ilike(users.firstName, `%${search}%`),
-            ilike(users.lastName, `%${search}%`),
             ilike(creatorChannels.name, `%${search}%`),
             sql`${creatorDisplayNameSql} ILIKE ${'%' + search + '%'}`,
           )

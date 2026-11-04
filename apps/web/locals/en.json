@@ -1,4 +1,22 @@
 {
+  "epubViewer": {
+    "index": "Reading the book index…",
+    "download": "Loading the first chapter…",
+    "prepare": "Preparing the first page…",
+    "error": "The book could not be opened.",
+    "retry": "Try again"
+  },
+  "pdfViewer": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "zoom": "Page size",
+    "fitPage": "Fit page",
+    "fitWidth": "Fit width",
+    "page": "Page {{number}}",
+    "pageError": "This page could not be rendered.",
+    "loadError": "The PDF could not load in this reader.",
+    "openNative": "Open in standard PDF viewer"
+  },
   "hero": {
     "title": "Discover and enjoy unique digital content from your favorite creators.",
     "subtitle": "Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks",
@@ -253,6 +271,9 @@
     "haveAccount": "Already have an account?",
     "login": "Log in",
     "form": {
+      "companyName": "Company name",
+      "companyNameRequired": "Company name is required",
+      "companyNameMax": "Company name must be at most 200 characters",
       "firstName": "First name",
       "firstNameMax": "First name must be 50 characters or less",
       "lastName": "Last name",
@@ -868,7 +889,8 @@
           "Own site & shop with up to 2 files.",
           "Payment module (Dankort, credit card and MobilePay)",
           "For streaming and download",
-          "Sales and view statistics"
+          "Sales and view statistics",
+          "45% fee on your sales"
         ]
       },
       "growth": {
@@ -883,7 +905,8 @@
           "Sales and view statistics",
           "Collect e-mail or code on content",
           "Set discount codes on your content",
-          "Exposure in newsletters and SoMe posts"
+          "Exposure in newsletters and SoMe posts",
+          "25% fee on your sales"
         ]
       },
       "pro": {
@@ -898,7 +921,8 @@
           "Sales and view statistics",
           "Collect e-mail or code on content",
           "Set discount codes on your content",
-          "Exposure in newsletters and SoMe posts"
+          "Exposure in newsletters and SoMe posts",
+          "18% fee on your sales"
         ]
       }
     }

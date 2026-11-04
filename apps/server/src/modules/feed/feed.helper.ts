@@ -1,4 +1,5 @@
-import { ilike, or } from 'drizzle-orm';
+import { publicCreatorName } from 'src/utils/publicCreatorName';
+import { ilike, or, sql } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 
@@ -90,7 +91,7 @@ export const buildSearch = (search?: string) => {
   return or(
     ilike(mediaFiles.title, q),
     ilike(mediaFiles.description, q),
-    ilike(users.fullName, q),
+    sql`${publicCreatorName} ILIKE ${q}`,
   );
 };
 

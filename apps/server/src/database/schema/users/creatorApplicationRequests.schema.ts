@@ -6,6 +6,7 @@ export const creatorApplicationRequests = pgTable(
   'creator_application_requests',
   {
     id: text('id').primaryKey(),
+    companyName: varchar('company_name', { length: 200 }),
     firstName: varchar('first_name', { length: 100 }).notNull(),
     lastName: varchar('last_name', { length: 100 }).notNull(),
     fullName: varchar('full_name', { length: 200 }),

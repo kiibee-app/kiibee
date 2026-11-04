@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,6 +9,14 @@ import {
 } from 'class-validator';
 
 export class CreateCreatorApplicationDto {
+  @Transform(({ value }: { value: unknown }) =>
+    typeof value === 'string' ? value.trim() : value,
+  )
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(200)
+  companyName!: string;
+
   @IsString()
   @IsNotEmpty()
   @MaxLength(200)

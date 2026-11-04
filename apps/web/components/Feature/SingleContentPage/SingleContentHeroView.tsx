@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
 import { useRef, useState, type RefObject, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
@@ -15,6 +16,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
+  isRemoteImageSource,
   isStaticImageData,
   isThirdPartyVideoUrl,
   resolveImageUrl,
@@ -126,6 +128,15 @@ const HeroImage = ({
   onImageError: () => void;
   onLoad: () => void;
 }) => {
+  const [directSource, setDirectSource] = useState<string | null>(null);
+  if (!currentSrc) return null;
+  const handlePosterError = () => {
+    if (canOptimizeRemoteImage(currentSrc) && directSource !== currentSrc) {
+      setDirectSource(currentSrc);
+      return;
+    }
+    onImageError();
+  };
   if (isStaticImageData(hero.image)) {
     const imageToRender =
       currentSrc === resolveImageUrl(hero.image) ? hero.image : currentSrc;
@@ -151,8 +162,11 @@ const HeroImage = ({
       priority
       sizes="(max-width: 900px) 100vw, 900px"
       style={{ objectFit: "contain" }}
-      unoptimized
-      onError={onImageError}
+      unoptimized={
+        directSource === currentSrc ||
+        (isRemoteImageSource(currentSrc) && !canOptimizeRemoteImage(currentSrc))
+      }
+      onError={handlePosterError}
       onLoad={onLoad}
     />
   );
@@ -236,12 +250,7 @@ export default function SingleContentHeroView({
     !isCloudflarePlaying;
 
   const primarySrc = resolveImageUrl(hero.image);
-  const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
-
-  const currentSrc =
-    fallbackForSrc === primarySrc && hero.imageFallback
-      ? resolveImageUrl(hero.imageFallback)
-      : primarySrc;
+  const currentSrc = primarySrc;
 
   const [prevSrc, setPrevSrc] = useState(currentSrc);
   if (currentSrc !== prevSrc) {
@@ -250,21 +259,8 @@ export default function SingleContentHeroView({
   }
 
   const handleImageError = () => {
-    if (hero.imageFallback && fallbackForSrc !== primarySrc) {
-      setFallbackForSrc(primarySrc);
-    }
     setImageLoading(false);
   };
-
-  const getCssUrl = (urlStr: string) => {
-    if (urlStr.startsWith("data:")) {
-      return urlStr;
-    }
-    return encodeURI(urlStr);
-  };
-
-  const blurSrc = currentSrc;
-  const encodedBlurSrc = blurSrc ? getCssUrl(blurSrc) : "";
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
@@ -340,8 +336,20 @@ export default function SingleContentHeroView({
 
   return (
     <Hero $isPdf={isPdfLayout} $isLoading={isHeroLoading}>
-      {encodedBlurSrc && (
-        <HeroBlurBg style={{ backgroundImage: `url("${encodedBlurSrc}")` }} />
+      {currentSrc && (
+        <HeroBlurBg aria-hidden="true">
+          <Image
+            src={currentSrc}
+            alt=""
+            fill
+            sizes="(max-width: 900px) 100vw, 900px"
+            style={{ objectFit: "cover" }}
+            unoptimized={
+              isRemoteImageSource(currentSrc) &&
+              !canOptimizeRemoteImage(currentSrc)
+            }
+          />
+        </HeroBlurBg>
       )}
       <Preview
         onClick={showPlayButton ? primaryAction?.onClick : undefined}

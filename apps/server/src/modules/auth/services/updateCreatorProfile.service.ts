@@ -5,6 +5,7 @@ import { randomUUID } from 'crypto';
 import { db } from 'src/database/db';
 import {
   creatorChannels,
+  creatorOwners,
   creatorInfo,
   creatorBankAccounts,
   users,
@@ -60,7 +61,7 @@ export const updateCreatorProfileService = async (
     let resolvedFirstName: string | null | undefined = firstName;
     let resolvedLastName: string | null | undefined = lastName;
     let resolvedFullName: string | undefined;
-    let resolvedCompanyName = companyName;
+    let resolvedCompanyName = companyName?.trim();
 
     await db.transaction(async (trx) => {
       const [currentUser] = await trx
@@ -94,12 +95,23 @@ export const updateCreatorProfileService = async (
         .where(eq(creatorInfo.userId, userId))
         .limit(1);
 
+      resolvedCompanyName =
+        companyName?.trim() ||
+        existingInfo?.companyName?.trim() ||
+        existingChannel?.name?.trim();
+      if (companyName !== undefined && !companyName.trim()) {
+        throw new HttpException(
+          'Company name is required',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
       await trx
         .insert(creatorInfo)
         .values({
           id: randomUUID(),
           userId,
-          companyName: companyName || '',
+          companyName: resolvedCompanyName || '',
           phone: phone || '',
           cvr: cvr || '',
           address: address || '',
@@ -114,7 +126,7 @@ export const updateCreatorProfileService = async (
             phone,
             cvr,
             address,
-            companyName,
+            companyName: resolvedCompanyName,
             city,
             postalCode,
             updatedAt: now,
@@ -179,34 +191,33 @@ export const updateCreatorProfileService = async (
 
       await trx.update(users).set(userUpdates).where(eq(users.id, userId));
 
-      // Keep channel name + slug aligned with the account full name.
-      if (resolvedFullName) {
+      if (nameChanged && resolvedFullName) {
+        await trx
+          .insert(creatorOwners)
+          .values({
+            id: randomUUID(),
+            creatorId: userId,
+            name: resolvedFullName,
+            firstName: resolvedFirstName,
+            lastName: resolvedLastName,
+            email: null,
+            updatedAt: now,
+          })
+          .onConflictDoUpdate({
+            target: creatorOwners.creatorId,
+            set: {
+              name: resolvedFullName,
+              firstName: resolvedFirstName,
+              lastName: resolvedLastName,
+              updatedAt: now,
+            },
+          });
+      }
+      if (resolvedCompanyName) {
         await ensureCreatorChannel(trx, {
           creatorId: userId,
-          channelName: resolvedFullName,
+          channelName: resolvedCompanyName,
         });
-      }
-
-      // Keep company aligned when name changes, or when company was still
-      // mirroring the previous channel name (Umbraco / setup default).
-      if (resolvedFullName && companyName === undefined) {
-        const previousCompany = existingInfo?.companyName?.trim() || '';
-        const previousChannel = existingChannel?.name?.trim() || '';
-        const shouldSyncCompany =
-          nameChanged ||
-          !previousCompany ||
-          previousCompany === previousChannel;
-
-        if (shouldSyncCompany) {
-          resolvedCompanyName = resolvedFullName;
-          await trx
-            .update(creatorInfo)
-            .set({
-              companyName: resolvedFullName,
-              updatedAt: now,
-            })
-            .where(eq(creatorInfo.userId, userId));
-        }
       }
     });
 

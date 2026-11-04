@@ -74,7 +74,6 @@ import {
 import {
   COUPON_DISCOUNT_PERCENTAGE,
   CouponDiscountType,
-  MAX_COUPON_PERCENTAGE_DISCOUNT,
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
@@ -217,7 +216,8 @@ export default function PurchaseModal({
   const isUsingNewCard = selectedSubscriptionId === "";
 
   const priceNumber = extractPriceNumber(priceLabel);
-  const total = priceNumber - discount;
+  const total = Math.round((priceNumber - discount) * 100) / 100;
+  const isFreeContentOrder = Boolean(contentId && appliedCode && total === 0);
   const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
   const isCollectionPricing = isCollectionPurchase || isCollectionRental;
   const isRental = !isCollectionPurchase && !isPurchase;
@@ -285,7 +285,10 @@ export default function PurchaseModal({
       onRequireLogin();
       return;
     }
-    onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
+    onPurchase(
+      appliedCode || undefined,
+      isFreeContentOrder ? undefined : effectiveSubscriptionId || undefined,
+    );
   };
 
   const handleApplyDiscount = async () => {
@@ -305,13 +308,11 @@ export default function PurchaseModal({
         const { discountType, discountValue, validUntil } = response.data;
         const calculatedDiscount =
           discountType === COUPON_DISCOUNT_PERCENTAGE
-            ? Math.round(
-                (priceNumber *
-                  Math.min(discountValue, MAX_COUPON_PERCENTAGE_DISCOUNT)) /
-                  100,
-              )
+            ? (priceNumber * discountValue) / 100
             : discountValue;
-        setDiscount(Math.min(calculatedDiscount, priceNumber));
+        const discountedTotal = Math.max(0, priceNumber - calculatedDiscount);
+        const roundedTotal = Math.round(discountedTotal * 100) / 100;
+        setDiscount(Math.round((priceNumber - roundedTotal) * 100) / 100);
         setAppliedCode(response.data.code);
         toast.success(t("singleContent.pricing.couponApplied"));
 
@@ -501,7 +502,7 @@ export default function PurchaseModal({
         </PurchaseModalCollectionBenefits>
       ) : null}
 
-      {savedCards.length > 0 ? (
+      {!isFreeContentOrder && savedCards.length > 0 ? (
         <PurchaseModalPaymentMethod>
           <PurchaseModalPaymentMethodTitle>
             <MonoText $use="Body_Bold">
@@ -625,14 +626,16 @@ export default function PurchaseModal({
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
 
-      <PurchaseModalPaymentIcons>
-        <Image
-          src={paymentCardImage}
-          alt="Payment options"
-          height={30}
-          style={{ height: "30px", width: "auto" }}
-        />
-      </PurchaseModalPaymentIcons>
+      {!isFreeContentOrder && (
+        <PurchaseModalPaymentIcons>
+          <Image
+            src={paymentCardImage}
+            alt="Payment options"
+            height={30}
+            style={{ height: "30px", width: "auto" }}
+          />
+        </PurchaseModalPaymentIcons>
+      )}
 
       <PurchaseModalButtonWrapper>
         <GenericButton

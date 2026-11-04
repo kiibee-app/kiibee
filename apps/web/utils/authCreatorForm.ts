@@ -5,6 +5,7 @@ import {
 import { INPUT_TYPE, InputModeValue, InputType } from "@/utils/ui";
 
 export type CreatorFormValues = {
+  companyName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -31,6 +32,7 @@ export type CreatorFieldConfig = {
 };
 
 export const INITIAL_CREATOR_FORM: CreatorFormValues = {
+  companyName: "",
   firstName: "",
   lastName: "",
   email: "",
@@ -45,6 +47,7 @@ export const INITIAL_CREATOR_FORM: CreatorFormValues = {
 };
 
 export const REQUIRED_CREATOR_FIELD_KEYS: CreatorFieldKey[] = [
+  "companyName",
   "firstName",
   "lastName",
   "email",
@@ -59,6 +62,13 @@ export const NAME_FIELDS: CreatorFieldConfig[] = [
   { key: "firstName", labelKey: "authCreator.form.firstName", required: true },
   { key: "lastName", labelKey: "authCreator.form.lastName", required: true },
 ];
+
+export const COMPANY_FIELD: CreatorFieldConfig = {
+  key: "companyName",
+  labelKey: "authCreator.form.companyName",
+  required: true,
+  max: 200,
+};
 
 export const EMAIL_FIELD: CreatorFieldConfig = {
   key: "email",
