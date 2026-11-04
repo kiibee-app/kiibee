@@ -129,7 +129,7 @@ export default function EpubViewer({ src }: { src: string }) {
           </PageControls>
         )}
       </Toolbar>
-      <ReadingArea ref={viewerRef} />
+      <ReadingArea ref={viewerRef} data-lenis-prevent="" />
       {phase !== "ready" && (
         <Status
           role={phase === "error" ? "alert" : "status"}

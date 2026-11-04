@@ -339,6 +339,7 @@ export default function PdfViewer({
           aria-label={title}
           tabIndex={0}
           onScroll={handleScroll}
+          data-lenis-prevent=""
         >
           {failed ? (
             <Status role="alert">
