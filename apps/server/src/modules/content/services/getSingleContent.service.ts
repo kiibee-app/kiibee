@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq, and, gt, ilike, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -161,8 +162,7 @@ export const getSingleContentService = async (
             eq(users.id, creatorSlug),
             eq(creatorChannels.slug, creatorSlug),
             sql`LOWER(REGEXP_REPLACE(coalesce(${creatorChannels.slug}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
-            sql`LOWER(REGEXP_REPLACE(coalesce(${users.fullName}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
-            sql`LOWER(REGEXP_REPLACE(coalesce(${users.firstName}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
+            sql`LOWER(REGEXP_REPLACE(coalesce(${publicCreatorName}, ''), '[^a-zA-Z0-9]', '', 'g')) = ${cleanCreatorSlug}`,
           ),
         )
         .limit(1);
@@ -550,7 +550,7 @@ export const getSingleContentService = async (
     );
 
     const resolvedCreatorSlug =
-      creatorSlug ||
+      creator?.slug ||
       (targetCollection?.creatorId
         ? await db
             .select({ slug: creatorChannels.slug })
@@ -559,7 +559,7 @@ export const getSingleContentService = async (
             .limit(1)
             .then((r) => r[0]?.slug)
         : null) ||
-      creator?.slug;
+      null;
 
     return success(
       {

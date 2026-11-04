@@ -1,4 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import {
+  createAdminContentCouponService,
+  type AdminContentCouponPayload,
+} from './services/createAdminContentCoupon.service';
 import { createCouponService } from './services/createCoupon.service';
 import { deleteCouponService } from './services/deleteCoupon.service';
 import { getCouponByIdService } from './services/getCouponById.service';
@@ -22,6 +26,14 @@ type CreateCouponPayload = {
 
 @Injectable()
 export class CouponService {
+  async createAdminContentCoupon(
+    adminId: string,
+    contentId: string,
+    payload: AdminContentCouponPayload,
+  ) {
+    return createAdminContentCouponService(adminId, contentId, payload);
+  }
+
   async createCoupon(creatorId: string, payload: CreateCouponPayload) {
     return createCouponService(creatorId, payload);
   }

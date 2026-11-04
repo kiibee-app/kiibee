@@ -56,6 +56,8 @@ export class MediaService {
     key: string;
     exp: string;
     sig: string;
+    range?: string;
+    ifRange?: string;
     reply: FastifyReply;
   }) {
     return this.legacyMedia.stream(params);

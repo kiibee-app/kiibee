@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
@@ -130,7 +130,12 @@ export default function MediaSections({
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
 
   const getMediaPrimaryActionHandler = (item: RentedMediaItem) =>
-    onMediaPrimaryAction ? () => onMediaPrimaryAction(item) : undefined;
+    onMediaPrimaryAction
+      ? (event: MouseEvent<HTMLElement>) => {
+          event.stopPropagation();
+          onMediaPrimaryAction(item);
+        }
+      : undefined;
 
   return (
     <>

@@ -96,6 +96,7 @@ export const approveCreatorRequestService = async (
     const creatorData = {
       id: randomUUID(),
       userId: userData.id,
+      companyName: validatedRequest[0].companyName,
       phone: validatedRequest[0].phone,
       cvr: validatedRequest[0].cvr,
       address: validatedRequest[0].address,
@@ -159,7 +160,7 @@ export const approveCreatorRequestService = async (
 
       await ensureCreatorChannel(tx, {
         creatorId: userData.id,
-        channelName: userData.fullName || userData.firstName,
+        channelName: validatedRequest[0].companyName || userData.fullName,
       });
 
       await tx

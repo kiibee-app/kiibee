@@ -1,4 +1,22 @@
 {
+  "epubViewer": {
+    "index": "Læser bogens indeks…",
+    "download": "Indlæser det første kapitel…",
+    "prepare": "Forbereder den første side…",
+    "error": "Bogen kunne ikke åbnes.",
+    "retry": "Prøv igen"
+  },
+  "pdfViewer": {
+    "previous": "Forrige side",
+    "next": "Næste side",
+    "zoom": "Sidestørrelse",
+    "fitPage": "Tilpas side",
+    "fitWidth": "Tilpas bredde",
+    "page": "Side {{number}}",
+    "pageError": "Denne side kunne ikke vises.",
+    "loadError": "PDF-filen kunne ikke indlæses i denne læser.",
+    "openNative": "Åbn i standard PDF-læser"
+  },
   "hero": {
     "title": "Opdag og nyd unikt digitalt indhold fra dine foretrukne kreatør eller udgiver.",
     "subtitle": "Se, lyt og lær direkte fra uafhængige udgiver. Lej eller køb eksklusivt indhold med få klik.",
@@ -253,6 +271,9 @@
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "form": {
+      "companyName": "Firmanavn",
+      "companyNameRequired": "Firmanavn er påkrævet",
+      "companyNameMax": "Firmanavn må højst være 200 tegn",
       "firstName": "Fornavn",
       "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",

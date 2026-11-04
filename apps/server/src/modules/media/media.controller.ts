@@ -113,9 +113,17 @@ export class MediaController {
     @Query('key') key: string,
     @Query('exp') exp: string,
     @Query('sig') sig: string,
+    @Req() req: FastifyRequest,
     @Res() reply: FastifyReply,
   ) {
-    return this.mediaService.streamLegacyFile({ key, exp, sig, reply });
+    return this.mediaService.streamLegacyFile({
+      key,
+      exp,
+      sig,
+      reply,
+      range: firstHeader(req.headers.range),
+      ifRange: firstHeader(req.headers['if-range']),
+    });
   }
 
   @Post('images/upload')

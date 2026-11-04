@@ -7,6 +7,7 @@ import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_TYPE_RENTED,
+  ACCESS_TYPE_PURCHASED,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
   ORDER_TYPES,
@@ -149,6 +150,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     data: {
       orderId: string;
       url?: string;
+      completed?: boolean;
     };
   };
 
@@ -221,14 +223,26 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     isPurchase: boolean;
   } | null>(null);
 
+  const ownsContent =
+    Boolean(user?.id) &&
+    content?.accessInfo?.accessType === ACCESS_TYPE_PURCHASED;
   const {
     contentType,
     previewMediaUrl,
+    hasSignedMedia,
     isLoading: isMediaLoading,
     canFetchMedia,
     fetchMediaUrl,
-  } = useContentMediaUrl(content);
+  } = useContentMediaUrl(content, ownsContent && !accessGate);
   const previewContentType = contentType ?? hero.contentType;
+
+  const keepReaderMounted =
+    ownsContent &&
+    !accessGate &&
+    (previewContentType === FORMAT_TYPE.PDF ||
+      previewContentType === FORMAT_TYPE.EPUB);
+  const warmReaderReady =
+    keepReaderMounted && (!canFetchMedia || hasSignedMedia);
 
   const isPreviewableType =
     previewContentType === FORMAT_TYPE.PDF ||
@@ -513,7 +527,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
       const paymentUrl = response?.data?.url;
       const orderId = response?.data?.orderId;
-      if (!paymentUrl && subscriptionId && orderId) {
+      if (
+        !paymentUrl &&
+        orderId &&
+        (response.data.completed || subscriptionId)
+      ) {
         setShowPurchaseModal(false);
         setSelectedAction(null);
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
@@ -572,10 +590,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
       {children}
       {canPreview &&
-        showPreviewModal &&
+        (showPreviewModal || warmReaderReady) &&
         (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
           <ContentPreviewModal
             visible={showPreviewModal}
+            keepMounted={keepReaderMounted}
             onClose={() => setShowPreviewModal(false)}
             src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
             type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}

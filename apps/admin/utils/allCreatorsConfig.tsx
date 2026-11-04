@@ -20,10 +20,15 @@ import {
 } from "../components/features/all-creators/AllCreators.styles";
 
 export const creatorDetailFields: CreatorDetailFieldConfig[] = [
+  {
+    key: "companyName",
+    label: "Company Name",
+    renderValue: (creator) => creator.companyName,
+  },
   { key: "id", label: "ID", renderValue: (creator) => creator.id },
   {
     key: "fullName",
-    label: "Full Name",
+    label: "Owner Name",
     renderValue: (creator) => creator.fullName,
   },
   {
@@ -99,8 +104,8 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
       label: "Creator",
       renderCell: (creator) => (
         <CreatorCell>
-          <CreatorName>{creator.fullName}</CreatorName>
-          <MiniText>@{creator.city}</MiniText>
+          <CreatorName>{creator.companyName || creator.fullName}</CreatorName>
+          <MiniText>{creator.fullName}</MiniText>
         </CreatorCell>
       ),
     },

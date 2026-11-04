@@ -1,5 +1,6 @@
 "use client";
 
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
 import NextImage from "next/image";
 import { useSafeImage } from "@/hooks/useSafeImage";
 import { useTranslation } from "react-i18next";
@@ -50,7 +51,9 @@ function SafeImageInner({
   }
 
   const useNativeImage =
-    typeof imgSrc === "string" && isRemoteImageSource(imgSrc);
+    typeof imgSrc === "string" &&
+    isRemoteImageSource(imgSrc) &&
+    !canOptimizeRemoteImage(imgSrc);
 
   if (useNativeImage) {
     return (
@@ -60,6 +63,8 @@ function SafeImageInner({
         src={imgSrc}
         width={rest.width}
         height={rest.height}
+        loading={rest.loading ?? (rest.priority ? "eager" : "lazy")}
+        fetchPriority={rest.fetchPriority ?? (rest.priority ? "high" : "auto")}
         decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
         className={className}
         style={{
@@ -70,7 +75,7 @@ function SafeImageInner({
                 inset: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: style?.objectFit ?? "cover",
               }
             : {}),
         }}

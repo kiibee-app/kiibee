@@ -1,5 +1,6 @@
 "use client";
 
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
 import Image, { StaticImageData } from "next/image";
 import React, { ReactNode, useState } from "react";
 import {
@@ -43,6 +44,7 @@ type GenericCardProps = {
   width?: string;
   minHeight?: string;
   imagePriority?: boolean;
+  keepImagePlaceholder?: boolean;
   onClick?: () => void;
   onImageError?: () => void;
 };
@@ -88,6 +90,7 @@ export default function GenericCard({
   width,
   minHeight,
   imagePriority = false,
+  keepImagePlaceholder = false,
   onClick,
   onImageError,
 }: GenericCardProps) {
@@ -98,6 +101,7 @@ export default function GenericCard({
     url: string;
   } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
+  const [directImageKey, setDirectImageKey] = useState<string | null>(null);
 
   const [prevImageKey, setPrevImageKey] = useState(imageKey);
 
@@ -133,6 +137,14 @@ export default function GenericCard({
   };
 
   const handleImageError = () => {
+    if (
+      imageSrc &&
+      canOptimizeRemoteImage(imageSrc) &&
+      directImageKey !== imageSrc
+    ) {
+      setDirectImageKey(imageSrc);
+      return;
+    }
     if (imageFallback && activeFallback !== imageFallback) {
       setFallbackState({ forKey: imageKey, url: imageFallback });
       return;
@@ -148,7 +160,8 @@ export default function GenericCard({
   };
 
   const isCurrentlyLoading =
-    imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
+    (keepImagePlaceholder && (!imageSrc || imageFailed)) ||
+    (imageLoading && !showInitials && !imageFailed && Boolean(imageSrc));
 
   return (
     <Card
@@ -159,7 +172,7 @@ export default function GenericCard({
       onClick={onClick}
       style={onClick ? { cursor: "pointer" } : undefined}
     >
-      {(image || imageInitials) && (
+      {(image || imageInitials || keepImagePlaceholder) && (
         <ImageWrapper
           $compact={compact}
           $coverImage={coverImage}
@@ -173,12 +186,15 @@ export default function GenericCard({
               src={imageSrc!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw"
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
-              unoptimized
+              unoptimized={
+                !canOptimizeRemoteImage(imageSrc!) ||
+                directImageKey === imageSrc
+              }
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
@@ -188,7 +204,7 @@ export default function GenericCard({
               src={image!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw"
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}

@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -34,7 +35,7 @@ const baseSelect = {
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
-  creatorName: users.fullName,
+  creatorName: publicCreatorName,
   creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
@@ -208,7 +209,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
   db
     .select({
       id: users.id,
-      name: users.fullName,
+      name: publicCreatorName,
       profileImageUrl: users.avatarUrl,
       createdAt: users.createdAt,
       uploadCount: sql<number>`COUNT(DISTINCT media_files.id)`,

@@ -150,7 +150,10 @@ export default function PublishedContentDetail({
 
   const resolvedContentSlug = tutorial?.title || content?.title;
   const resolvedCreatorSlug =
-    creatorSlug || tutorial?.creatorSlug || content?.creatorSlug;
+    publicCreator?.slug ||
+    content?.creatorSlug ||
+    tutorial?.creatorSlug ||
+    creatorSlug;
 
   const resolvedCollectionSlug =
     currentRouteCollectionSlug ||
@@ -284,7 +287,7 @@ export default function PublishedContentDetail({
       return;
     }
     const targetSlug =
-      creatorSlug || publicCreator?.slug || content?.creatorSlug;
+      publicCreator?.slug || content?.creatorSlug || creatorSlug;
     if (targetSlug) {
       router.push(getPublicCreatorProfilePath(targetSlug));
     } else {
@@ -405,7 +408,9 @@ export default function PublishedContentDetail({
                 relatedCollectionQuery.data.collectionSlug
               }
               ownerCreatorId={publicCreator?.id || content.creatorId}
-              ownerCreatorSlug={creatorSlug || content.creatorSlug}
+              ownerCreatorSlug={
+                publicCreator?.slug || content.creatorSlug || creatorSlug
+              }
             />
           ) : null}
         </SingleContentPage>

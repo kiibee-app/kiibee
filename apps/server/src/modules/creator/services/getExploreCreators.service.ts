@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -47,11 +48,7 @@ const activeCreatorConditions = (): SQL[] => [
   publiclyVisibleCreatorWhere,
 ];
 
-const creatorDisplayNameSql = sql<string>`trim(coalesce(
-  nullif(${creatorChannels.name}, ''),
-  nullif(${users.fullName}, ''),
-  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
-))`;
+const creatorDisplayNameSql = publicCreatorName;
 
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
@@ -73,9 +70,6 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
     const searchTerm = `%${search}%`;
     conditions.push(
       or(
-        ilike(users.fullName, searchTerm),
-        ilike(users.firstName, searchTerm),
-        ilike(users.lastName, searchTerm),
         ilike(creatorChannels.name, searchTerm),
         sql`${creatorDisplayNameSql} ILIKE ${searchTerm}`,
       )!,
