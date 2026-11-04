@@ -14,7 +14,10 @@ import {
 import { extractCloudflareStreamVideoId } from "@/utils/media";
 import { FORMAT_TYPE } from "@/utils/types";
 
-export function useContentMediaUrl(content: ContentDetailItem | undefined) {
+export function useContentMediaUrl(
+  content: ContentDetailItem | undefined,
+  warmReader = false,
+) {
   const contentType = content && getContentType(content);
 
   const contentMediaKey = content && getContentMediaKey(content);
@@ -28,6 +31,12 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   const canFetchMedia =
     Boolean(contentMediaKey) && contentType !== FORMAT_TYPE.WEB;
 
+  const preloadReader =
+    warmReader &&
+    (contentType === FORMAT_TYPE.PDF || contentType === FORMAT_TYPE.EPUB);
+  // File signatures are issued for four hours. Refresh before they expire.
+  const reuseWindow = preloadReader ? 3 * 60 * 60_000 : 60_000;
+
   const {
     data: mediaResponse,
     isLoading,
@@ -36,7 +45,12 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   } = useGetAPI<ContentMediaUrlResponse>(
     mediaEndpoint,
     { [CONTENT_MEDIA_QUERY_KEYS.KEY]: contentMediaKey },
-    { enabled: false },
+    {
+      enabled: preloadReader && canFetchMedia,
+      staleTime: reuseWindow,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
   );
 
   const previewMediaUrl = useMemo(() => {
@@ -52,7 +66,7 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
   const fetchMediaUrl = useCallback(async () => {
     if (!canFetchMedia) return previewMediaUrl;
     // Reuse a recently issued link when the viewer is reopened.
-    if (mediaResponse && Date.now() - dataUpdatedAt < 60_000)
+    if (mediaResponse && Date.now() - dataUpdatedAt < reuseWindow)
       return previewMediaUrl;
 
     const result = await refetch();
@@ -67,11 +81,13 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
     mediaResponse,
     dataUpdatedAt,
     refetch,
+    reuseWindow,
   ]);
 
   return {
     contentType,
     previewMediaUrl,
+    hasSignedMedia: Boolean(mediaResponse?.url),
     isLoading,
     canFetchMedia,
     fetchMediaUrl,

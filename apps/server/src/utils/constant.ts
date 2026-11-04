@@ -62,6 +62,8 @@ export const CORS_HTTP_METHODS: string[] = [
 ];
 
 export const CORS_ALLOWED_HEADERS: string[] = [
+  'Range',
+  'If-Range',
   'Content-Type',
   'Authorization',
   'Accept',

@@ -575,21 +575,31 @@ export const PreviewModalContainer = styled.div`
   overflow: hidden;
 `;
 
-export const PreviewCloseButton = styled.button`
+export const PreviewCloseButton = styled.button<{ $compact?: boolean }>`
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 10;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  border-radius: ${({ $compact }) => ($compact ? "8px" : "50%")};
+  width: ${({ $compact }) => ($compact ? "28px" : "36px")};
+  height: ${({ $compact }) => ($compact ? "28px" : "36px")};
+  ${({ $compact }) =>
+    $compact &&
+    css`
+      box-shadow: none;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    `}
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  box-shadow: ${({ $compact, theme }) =>
+    $compact ? "none" : `0 2px 8px ${theme.colors.gradient.CARD_SHADOW}`};
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_200};

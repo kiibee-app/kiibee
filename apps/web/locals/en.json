@@ -1,4 +1,22 @@
 {
+  "epubViewer": {
+    "index": "Reading the book index…",
+    "download": "Loading the first chapter…",
+    "prepare": "Preparing the first page…",
+    "error": "The book could not be opened.",
+    "retry": "Try again"
+  },
+  "pdfViewer": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "zoom": "Page size",
+    "fitPage": "Fit page",
+    "fitWidth": "Fit width",
+    "page": "Page {{number}}",
+    "pageError": "This page could not be rendered.",
+    "loadError": "The PDF could not load in this reader.",
+    "openNative": "Open in standard PDF viewer"
+  },
   "hero": {
     "title": "Discover and enjoy unique digital content from your favorite creators.",
     "subtitle": "Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks",

@@ -13,7 +13,6 @@ import {
   getYouTubeEmbedUrl,
   isVimeoUrl,
   getVimeoEmbedUrl,
-  getPdfEmbedUrl,
 } from "@/utils/media";
 import dynamic from "next/dynamic";
 import AudioPlayer from "./AudioPlayer";
@@ -27,10 +26,19 @@ import { ESCAPE, KEYDOWN } from "@/utils/keyboard";
 import { VISIBILITY_HIDDEN_LOWER } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 
-const EpubViewer = dynamic(() => import("@/utils/EpubViewer"), { ssr: false });
+const PdfViewer = dynamic(() => import("@/components/UI/PdfViewer"), {
+  ssr: false,
+  loading: () => <GenericSpinner size={48} isLocal />,
+});
+
+const EpubViewer = dynamic(() => import("@/utils/EpubViewer"), {
+  ssr: false,
+  loading: () => <GenericSpinner size={36} isLocal />,
+});
 
 type ContentPreviewModalProps = {
   visible: boolean;
+  keepMounted?: boolean;
   onClose: () => void;
   src: string;
   type: ContentType;
@@ -40,17 +48,14 @@ type ContentPreviewModalProps = {
 
 export default function ContentPreviewModal({
   visible,
+  keepMounted = false,
   onClose,
   src,
   type,
   title,
   coverImage,
 }: ContentPreviewModalProps) {
-  const [isLoading, setIsLoading] = useState(
-    type === FORMAT_TYPE.PDF ||
-      type === FORMAT_TYPE.EPUB ||
-      type === FORMAT_TYPE.WEB,
-  );
+  const [isLoading, setIsLoading] = useState(type === FORMAT_TYPE.WEB);
 
   useEffect(() => {
     if (!visible) return;
@@ -71,7 +76,7 @@ export default function ContentPreviewModal({
     };
   }, [visible]);
 
-  if (!visible || !canUseDOM) return null;
+  if ((!visible && !keepMounted) || !canUseDOM) return null;
 
   const renderContent = () => {
     const videoEmbed = (() => {
@@ -94,18 +99,7 @@ export default function ContentPreviewModal({
 
     switch (type) {
       case FORMAT_TYPE.PDF:
-        return (
-          <>
-            {isLoading && <GenericSpinner size={48} isLocal />}
-            <PreviewContent
-              as="iframe"
-              src={getPdfEmbedUrl(src)}
-              title={title}
-              allowFullScreen
-              onLoad={() => setIsLoading(false)}
-            />
-          </>
-        );
+        return <PdfViewer key={src} src={src} title={title} />;
       case FORMAT_TYPE.WEB:
         if (videoEmbed) {
           return renderVideoFrame(videoEmbed);
@@ -123,12 +117,7 @@ export default function ContentPreviewModal({
           </>
         );
       case FORMAT_TYPE.EPUB:
-        return (
-          <PreviewContent>
-            {isLoading && <GenericSpinner size={48} isLocal />}
-            <EpubViewer src={src} onReady={() => setIsLoading(false)} />
-          </PreviewContent>
-        );
+        return <EpubViewer key={src} src={src} />;
       case FORMAT_TYPE.VIDEO:
         if (videoEmbed) {
           return renderVideoFrame(videoEmbed);
@@ -152,14 +141,22 @@ export default function ContentPreviewModal({
   return ReactDOM.createPortal(
     <PreviewOverlay
       role="dialog"
-      aria-modal="true"
+      aria-modal={visible || undefined}
+      aria-hidden={!visible || undefined}
+      inert={!visible}
+      style={visible ? undefined : { opacity: 0, pointerEvents: "none" }}
       aria-label={title}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <PreviewModalContainer>
-        <PreviewCloseButton type="button" aria-label="Close" onClick={onClose}>
+        <PreviewCloseButton
+          $compact={type === FORMAT_TYPE.PDF}
+          type="button"
+          aria-label="Close"
+          onClick={onClose}
+        >
           <CrossIcon />
         </PreviewCloseButton>
         {renderContent()}
