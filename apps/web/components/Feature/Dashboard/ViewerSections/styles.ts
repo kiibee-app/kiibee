@@ -419,7 +419,10 @@ export const PassiveActionBlock = styled.div`
 
 export const MediaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, max(240px, calc((100% - 64px) / 5))), 1fr)
+  );
   gap: 16px;
   align-items: stretch;
   width: 100%;
@@ -427,10 +430,6 @@ export const MediaGrid = styled.div`
   > * {
     min-width: 0;
     height: 100%;
-  }
-
-  ${media.desktopSm} {
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
   }
 
   ${media.tablet} {

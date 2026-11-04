@@ -142,7 +142,14 @@ async function bootstrap() {
       credentials: true,
       methods: CORS_HTTP_METHODS,
       allowedHeaders: CORS_ALLOWED_HEADERS,
-      exposedHeaders: ['X-Total-Count'],
+      exposedHeaders: [
+        'X-Total-Count',
+        'Accept-Ranges',
+        'Content-Range',
+        'Content-Length',
+        'ETag',
+        'Last-Modified',
+      ],
       maxAge: 3600,
     });
 

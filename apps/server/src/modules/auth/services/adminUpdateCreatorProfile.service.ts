@@ -60,6 +60,8 @@ export const adminUpdateCreatorProfileService = async (
         email: users.email,
         role: users.role,
         fullName: users.fullName,
+        firstName: users.firstName,
+        lastName: users.lastName,
       })
       .from(users)
       .where(and(eq(users.id, creatorId), eq(users.role, ROLE.CREATOR)))
@@ -140,8 +142,14 @@ export const adminUpdateCreatorProfileService = async (
           userUpdates.firstName = dto.firstName.trim();
         if (dto.lastName !== undefined)
           userUpdates.lastName = dto.lastName.trim();
-        const first = dto.firstName !== undefined ? dto.firstName.trim() : '';
-        const last = dto.lastName !== undefined ? dto.lastName.trim() : '';
+        const first =
+          dto.firstName !== undefined
+            ? dto.firstName.trim()
+            : existingUser.firstName;
+        const last =
+          dto.lastName !== undefined
+            ? dto.lastName.trim()
+            : existingUser.lastName;
         userUpdates.fullName = [first, last].filter(Boolean).join(' ').trim();
       }
 
@@ -149,17 +157,47 @@ export const adminUpdateCreatorProfileService = async (
         await trx.update(users).set(userUpdates).where(eq(users.id, creatorId));
       }
 
-      // 4. Update channel name if provided
-      if (dto.channelName !== undefined && dto.channelName.trim()) {
-        await ensureCreatorChannel(trx as any, {
+      // Company and channel are one public identity; owner names remain private.
+      const companyName = (dto.companyName ?? dto.channelName)?.trim();
+      if (companyName !== undefined && !companyName) {
+        throw new HttpException(
+          'Company name is required',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      if (companyName) {
+        await ensureCreatorChannel(trx, {
           creatorId,
-          channelName: dto.channelName.trim(),
+          channelName: companyName,
         });
+      }
+      if (
+        !nameParts &&
+        (dto.firstName !== undefined || dto.lastName !== undefined)
+      ) {
+        const firstName = dto.firstName?.trim() ?? existingUser.firstName;
+        const lastName = dto.lastName?.trim() ?? existingUser.lastName;
+        const name = [firstName, lastName].filter(Boolean).join(' ');
+        await trx
+          .insert(creatorOwners)
+          .values({
+            id: randomUUID(),
+            creatorId,
+            name,
+            firstName,
+            lastName,
+            email: resolvedEmail,
+            updatedAt: now,
+          })
+          .onConflictDoUpdate({
+            target: creatorOwners.creatorId,
+            set: { name, firstName, lastName, updatedAt: now },
+          });
       }
 
       // 5. Update creator info (company, phone, address, cvr, etc.)
       const hasInfoUpdates =
-        dto.companyName !== undefined ||
+        companyName !== undefined ||
         dto.phone !== undefined ||
         dto.cvr !== undefined ||
         dto.address !== undefined ||
@@ -172,7 +210,7 @@ export const adminUpdateCreatorProfileService = async (
           .values({
             id: randomUUID(),
             userId: creatorId,
-            companyName: dto.companyName?.trim() ?? '',
+            companyName: companyName ?? '',
             phone: dto.phone?.trim() ?? '',
             cvr: dto.cvr?.trim() ?? '',
             address: dto.address?.trim() ?? '',
@@ -184,9 +222,7 @@ export const adminUpdateCreatorProfileService = async (
           .onConflictDoUpdate({
             target: creatorInfo.userId,
             set: {
-              ...(dto.companyName !== undefined
-                ? { companyName: dto.companyName.trim() }
-                : {}),
+              ...(companyName !== undefined ? { companyName } : {}),
               ...(dto.phone !== undefined ? { phone: dto.phone.trim() } : {}),
               ...(dto.cvr !== undefined ? { cvr: dto.cvr.trim() } : {}),
               ...(dto.address !== undefined

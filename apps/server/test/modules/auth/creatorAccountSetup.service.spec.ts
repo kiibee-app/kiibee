@@ -50,11 +50,7 @@ describe('setupCreatorAccountService', () => {
     lastName: 'Creator',
   };
 
-  const mockCreatorNameRow = {
-    fullName: 'Test Creator',
-    firstName: 'Test',
-    lastName: 'Creator',
-  };
+  const mockCreatorNameRow = { name: 'FBI.DK' };
 
   function mockSelectChain(...results: unknown[]): jest.Mock {
     const select = jest.fn();
@@ -272,7 +268,7 @@ describe('setupCreatorAccountService', () => {
     expect(mockHashPassword).toHaveBeenCalledWith('password123');
     expect(ensureCreatorChannel).toHaveBeenCalledWith(expect.anything(), {
       creatorId: 'user-id',
-      channelName: 'Test Creator',
+      channelName: 'FBI.DK',
     });
 
     expect(result).toEqual({

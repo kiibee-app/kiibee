@@ -3,7 +3,14 @@ import { randomUUID } from 'crypto';
 import { CreatorAccountSetupDto } from '../dto/creatorAccountSetup.dto';
 import { success } from 'src/utils/sendResponse';
 import { db } from 'src/database/db';
-import { creatorPlans, plans, users, usersToken } from 'src/database/schema';
+import {
+  creatorInfo,
+  creatorChannels,
+  creatorPlans,
+  plans,
+  users,
+  usersToken,
+} from 'src/database/schema';
 import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
 import {
   ACCOUNT_STATUS,
@@ -137,23 +144,20 @@ export const setupCreatorAccountService = async (
         creatorId: userId,
       });
 
-      const [creatorUser] = await tx
-        .select({
-          fullName: users.fullName,
-          firstName: users.firstName,
-          lastName: users.lastName,
-        })
-        .from(users)
-        .where(eq(users.id, userId))
+      const [company] = await tx
+        .select({ name: creatorInfo.companyName })
+        .from(creatorInfo)
+        .where(eq(creatorInfo.userId, userId))
         .limit(1);
-
-      const channelName =
-        creatorUser?.fullName?.trim() ||
-        [creatorUser?.firstName, creatorUser?.lastName]
-          .filter(Boolean)
-          .join(' ')
-          .trim() ||
-        normalizedConfirmEmail.split('@')[0];
+      let channelName = company?.name?.trim();
+      if (!channelName) {
+        const [channel] = await tx
+          .select({ name: creatorChannels.name })
+          .from(creatorChannels)
+          .where(eq(creatorChannels.creatorId, userId))
+          .limit(1);
+        channelName = channel?.name || 'Creator';
+      }
 
       await ensureCreatorChannel(tx, {
         creatorId: userId,

@@ -1,9 +1,7 @@
 import React from "react";
 import type { TFunction } from "i18next";
-import contentFallbackImage from "@/assets/images/single-tutorial/Content image.webp";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
-import draftFallbackImage from "@/assets/images/dafault.webp";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
 import { JAVASCRIPT_TYPE } from "@/utils/collection";
@@ -11,8 +9,6 @@ import {
   toTrimmedString,
   ACCESS_TYPE_RENTED,
   ACCESS_STATUS_EXPIRED,
-  VISIBILITY_DRAFT_LOWER,
-  VISIBILITY_DRAFT_UPPER,
 } from "@/utils/Constants";
 import { pathPublicCollection } from "@/utils/path";
 import { formatDateUSShort } from "@/utils/formatDate";
@@ -36,11 +32,7 @@ import {
 } from "@/utils/contentPricingActions";
 import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
-import {
-  URL_PROTOCOL_REGEX,
-  isValidUrl,
-  normalizeExternalUrl,
-} from "@/utils/common";
+import { URL_PROTOCOL_REGEX, normalizeExternalUrl } from "@/utils/common";
 import { getCategoryLabel } from "@/utils/category";
 
 type Translate = TFunction;
@@ -247,22 +239,14 @@ export const resolveContentPlaybackUrl = (
 const getContentHeroImages = (
   content: ContentDetailItem,
 ): { image: ImageSource; imageFallback?: string } => {
-  const visibility = toTrimmedString(content[CONTENT_RESPONSE_KEYS.VISIBILITY]);
-  const isDraft =
-    visibility === VISIBILITY_DRAFT_LOWER ||
-    visibility === VISIBILITY_DRAFT_UPPER;
-
   const candidates = resolveContentThumbnailCandidates(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
     { preferLandscape: true },
   );
 
-  const fallback = isDraft ? draftFallbackImage : contentFallbackImage;
-
   return {
-    image: candidates[0] ?? fallback,
-    imageFallback: candidates[1] ?? fallback.src,
+    image: candidates[0] ?? "",
   };
 };
 

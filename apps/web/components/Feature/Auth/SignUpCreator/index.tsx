@@ -7,6 +7,7 @@ import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
   ADDRESS_FIELDS,
   CONTACT_FIELDS,
+  COMPANY_FIELD,
   CONTENT_FIELD,
   CreatorFieldConfig,
   EMAIL_FIELD,
@@ -101,6 +102,8 @@ export default function SignUpCreatorSection() {
       <FormProvider {...methods}>
         <Form onSubmit={handleFormSubmit}>
           <Grid>{NAME_FIELDS.map((field) => renderField(field))}</Grid>
+
+          <FullRow>{renderField(COMPANY_FIELD)}</FullRow>
 
           <FullRow>{renderField(EMAIL_FIELD)}</FullRow>
 

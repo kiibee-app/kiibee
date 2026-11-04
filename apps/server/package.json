@@ -23,6 +23,7 @@
     "migrate": "drizzle-kit push",
     "db:push": "drizzle-kit push",
     "seed": "tsx src/database/seed/index.ts",
+    "fix:creator-data": "tsx -r tsconfig-paths/register scripts/migrateCreatorIdentities.ts",
     "sync:owners": "tsx scripts/syncUmbracoCreatorOwners.ts"
   },
   "dependencies": {

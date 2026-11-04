@@ -5,6 +5,7 @@ import {
 } from "@/lib/validation/schema";
 import { PASSWORD_FIELD_KEYS } from "@/utils/signup";
 export type CreatorRequestValues = {
+  companyName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -68,6 +69,7 @@ export const viewerSignUpFormBase = {
 
 export const creatorRequestFormBase = {
   defaultValues: {
+    companyName: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -82,6 +84,8 @@ export const creatorRequestFormBase = {
   },
   createSchema: createCreatorRequestSchema,
   getSchemaMessages: (translate: (key: string) => string) => ({
+    companyNameRequired: translate("authCreator.form.companyNameRequired"),
+    companyNameMax: translate("authCreator.form.companyNameMax"),
     firstNameRequired: translate("authCreator.form.firstName"),
     firstNameMax: translate("authCreator.form.firstNameMax"),
     lastNameRequired: translate("authCreator.form.lastName"),
@@ -98,6 +102,7 @@ export const creatorRequestFormBase = {
     consentRequired: translate("authCreator.form.consentPrefix"),
   }),
   mapValues: (values: CreatorRequestValues) => ({
+    companyName: values.companyName.trim(),
     firstName: values.firstName.trim(),
     lastName: values.lastName.trim(),
     email: values.email.trim().toLowerCase(),

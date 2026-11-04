@@ -1,4 +1,3 @@
-import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import {
   getContentPricingActions,
   isFreeContentItem,
@@ -7,10 +6,7 @@ import {
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { pathPublicCollection } from "@/utils/path";
-import {
-  resolveContentThumbnailCandidates,
-  resolveImageUrl,
-} from "@/utils/media";
+import { resolveContentThumbnailCandidates } from "@/utils/media";
 import { normalizeExternalUrl, isKiibeeUrl } from "@/utils/common";
 import {
   FORMAT_TYPE,
@@ -230,7 +226,6 @@ export function feedContentToTutorial(
     item.thumbnailUrl,
     item.thumbnailLandscapeUrl,
   );
-  const fallbackImage = resolveImageUrl(recentCreator);
 
   return {
     id: item.id,
@@ -253,12 +248,7 @@ export function feedContentToTutorial(
         : item.isPaidCollection,
     formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
-    image: thumbnailCandidates[0] ?? recentCreator,
-    ...(thumbnailCandidates[1]
-      ? { imageFallback: thumbnailCandidates[1] }
-      : thumbnailCandidates[0]
-        ? { imageFallback: fallbackImage }
-        : {}),
+    image: thumbnailCandidates[0] ?? "",
     contentUrl: item.contentUrl,
     buttons: buildPricingButtons(item, freeLabel, options),
   };

@@ -216,12 +216,30 @@ export default function SingleCollectionHero({
           <Image
             src={image || collection}
             fallback={imageFallback}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="(max-width: 768px) 100vw, 560px"
+            style={{
+              objectFit: "cover",
+              filter: "blur(7px) brightness(0.6) saturate(1.2)",
+              transform: "scale(1.1)",
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          />
+          <Image
+            src={image || collection}
+            fallback={imageFallback}
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 560px"
-            style={{ objectFit: "cover" }}
+            style={{
+              objectFit: "contain",
+              objectPosition: "center",
+              zIndex: 1,
+            }}
             priority
-            unoptimized={Boolean(image)}
           />
         </HeroImage>
       </ContentRow>
