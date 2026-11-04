@@ -26,6 +26,7 @@ import {
 import { EngagementUserList } from "./EngagementUserList";
 import { ContentPreviewModal } from "./ContentPreviewModal";
 import { CreateContentCouponModal } from "./CreateContentCouponModal";
+import { ContentCoupons } from "./ContentCoupons";
 import { RejectContentModal } from "./RejectContentModal";
 import {
   HeroActions,
@@ -258,6 +259,8 @@ export function CreatorContentEngagement({
           onClose={() => setCouponOpen(false)}
         />
       )}
+
+      <ContentCoupons contentId={contentId} contentTitle={content.title} />
 
       <StatsRow>
         <StatCard>

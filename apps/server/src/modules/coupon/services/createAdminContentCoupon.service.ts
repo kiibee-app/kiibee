@@ -15,11 +15,10 @@ export type AdminContentCouponPayload = {
   validUntil?: unknown;
 };
 
-export const createAdminContentCouponService = async (
-  adminId: string,
-  contentId: string,
+export function validateAdminContentCoupon(
   payload: AdminContentCouponPayload,
-) => {
+  { allowExpired = false } = {},
+) {
   const { code, percentage, validFrom, validUntil } = payload ?? {};
   if (
     typeof code !== 'string' ||
@@ -41,13 +40,27 @@ export const createAdminContentCouponService = async (
     typeof validUntil !== 'string' ||
     !Number.isFinite(Date.parse(validFrom)) ||
     !Number.isFinite(Date.parse(validUntil)) ||
-    Date.parse(validUntil) <= Math.max(Date.parse(validFrom), Date.now())
+    Date.parse(validUntil) <= Date.parse(validFrom)
   ) {
     throw new BadRequestException(
-      'End time must be in the future and after the start time',
+      'End date must be on or after the start date',
     );
   }
 
+  if (!allowExpired && Date.parse(validUntil) <= Date.now()) {
+    throw new BadRequestException('End date must not have passed');
+  }
+
+  return { code: code.trim().toUpperCase(), percentage, validFrom, validUntil };
+}
+
+export const createAdminContentCouponService = async (
+  adminId: string,
+  contentId: string,
+  payload: AdminContentCouponPayload,
+) => {
+  const { code, percentage, validFrom, validUntil } =
+    validateAdminContentCoupon(payload);
   const [content] = await db
     .select({ currency: mediaFiles.currency })
     .from(mediaFiles)
@@ -58,7 +71,7 @@ export const createAdminContentCouponService = async (
   return createCouponService(
     adminId,
     {
-      title: code.trim().toUpperCase(),
+      title: code,
       codes: [code],
       discountType: COUPON_DISCOUNT_TYPE_PERCENTAGE,
       discountValue: percentage,
