@@ -12,8 +12,15 @@ import {
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreatorGuard } from '../auth/guards/admin.guard';
+import { AdminGuard, CreatorGuard } from '../auth/guards/admin.guard';
+import type { AdminContentCouponPayload } from './services/createAdminContentCoupon.service';
 import { CouponService } from './coupon.service';
+
+import {
+  editAdminContentCoupon,
+  listAdminContentCoupons,
+  removeAdminContentCoupon,
+} from './services/manageAdminContentCoupons.service';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -25,6 +32,45 @@ type AuthenticatedRequest = Request & {
 @Controller('coupons')
 export class CouponController {
   constructor(private readonly couponService: CouponService) {}
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/content/:contentId')
+  async createContentCoupon(
+    @Req() req: AuthenticatedRequest,
+    @Param('contentId') contentId: string,
+    @Body() payload: AdminContentCouponPayload,
+  ) {
+    return this.couponService.createAdminContentCoupon(
+      req.user.userId,
+      contentId,
+      payload,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/content/:contentId')
+  listContentCoupons(@Param('contentId') contentId: string) {
+    return listAdminContentCoupons(contentId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('admin/content/:contentId/:couponId')
+  editContentCoupon(
+    @Param('contentId') contentId: string,
+    @Param('couponId') couponId: string,
+    @Body() payload: AdminContentCouponPayload,
+  ) {
+    return editAdminContentCoupon(contentId, couponId, payload);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Delete('admin/content/:contentId/:couponId')
+  removeContentCoupon(
+    @Param('contentId') contentId: string,
+    @Param('couponId') couponId: string,
+  ) {
+    return removeAdminContentCoupon(contentId, couponId);
+  }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get()

@@ -8,11 +8,14 @@ import {
   collectionItems,
   mediaFiles,
   collections,
+  users,
 } from 'src/database/schema';
+import { ROLE } from 'src/utils/constant';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import {
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
+  MAX_ADMIN_COUPON_PERCENTAGE_DISCOUNT,
   MAX_COUPON_PERCENTAGE_DISCOUNT,
 } from 'src/utils/coupon';
 
@@ -127,9 +130,10 @@ export const verifyCouponService = async (
       return fail('Coupon code has already been used', HttpStatus.BAD_REQUEST);
     }
 
-    const [coupon] = await db
-      .select()
+    const [couponRecord] = await db
+      .select({ coupon: coupons, ownerRole: users.role })
       .from(coupons)
+      .innerJoin(users, eq(users.id, coupons.creatorId))
       .where(
         and(
           eq(coupons.id, couponCode.couponId),
@@ -139,10 +143,12 @@ export const verifyCouponService = async (
       )
       .limit(1);
 
-    if (!coupon) {
+    if (!couponRecord) {
       return fail('Coupon is not active', HttpStatus.BAD_REQUEST);
     }
 
+    const { coupon, ownerRole } = couponRecord;
+    const adminContentCoupon = ownerRole === ROLE.ADMIN;
     const now = new Date();
 
     if (coupon.validFrom && now < coupon.validFrom) {
@@ -157,7 +163,31 @@ export const verifyCouponService = async (
       return fail('Coupon has reached maximum uses', HttpStatus.BAD_REQUEST);
     }
 
-    if (contentId || collectionId) {
+    if (adminContentCoupon) {
+      const [match] = contentId
+        ? await db
+            .select({ id: couponApplicableItems.id })
+            .from(couponApplicableItems)
+            .innerJoin(
+              mediaFiles,
+              eq(mediaFiles.id, couponApplicableItems.mediaFileId),
+            )
+            .where(
+              and(
+                eq(couponApplicableItems.couponId, coupon.id),
+                eq(mediaFiles.id, contentId),
+                eq(mediaFiles.isDeleted, false),
+              ),
+            )
+            .limit(1)
+        : [];
+      if (!match) {
+        return fail(
+          'Coupon is not applicable to this content',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } else if (contentId || collectionId) {
       const isApplicable = contentId
         ? await isCouponApplicableToContent(
             coupon.id,
@@ -181,12 +211,15 @@ export const verifyCouponService = async (
     const discountValue = Number(coupon.discountValue);
     const discountType = coupon.discountType;
 
+    const maxPercentage = adminContentCoupon
+      ? MAX_ADMIN_COUPON_PERCENTAGE_DISCOUNT
+      : MAX_COUPON_PERCENTAGE_DISCOUNT;
     if (
       discountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
-      discountValue > MAX_COUPON_PERCENTAGE_DISCOUNT
+      discountValue > maxPercentage
     ) {
       return fail(
-        `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
+        `Percentage discount cannot be greater than ${maxPercentage}`,
         HttpStatus.BAD_REQUEST,
       );
     }

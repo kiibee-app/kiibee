@@ -11,6 +11,7 @@ import { success } from 'src/utils/sendResponse';
 import { toMidnight } from 'src/utils/date';
 import {
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
+  MAX_ADMIN_COUPON_PERCENTAGE_DISCOUNT,
   MAX_COUPON_PERCENTAGE_DISCOUNT,
   normalizeCouponDiscountType,
   normalizeCouponStatus,
@@ -45,6 +46,7 @@ export const normalizeIdList = (value: unknown) => {
 export const createCouponService = async (
   creatorId: string,
   payload: CouponPayload,
+  { adminContentCoupon = false } = {},
 ) => {
   try {
     const trimmedTitle = payload.title?.trim() ?? '';
@@ -79,12 +81,15 @@ export const createCouponService = async (
       );
     }
 
+    const maxPercentage = adminContentCoupon
+      ? MAX_ADMIN_COUPON_PERCENTAGE_DISCOUNT
+      : MAX_COUPON_PERCENTAGE_DISCOUNT;
     if (
       normalizedDiscountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
-      parsedDiscountValue > MAX_COUPON_PERCENTAGE_DISCOUNT
+      parsedDiscountValue > maxPercentage
     ) {
       throw new HttpException(
-        `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
+        `Percentage discount cannot be greater than ${maxPercentage}`,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -92,7 +97,7 @@ export const createCouponService = async (
     const validFrom = payload.validFrom ? new Date(payload.validFrom) : null;
     const validUntil = payload.validUntil ? new Date(payload.validUntil) : null;
 
-    if (validFrom) {
+    if (validFrom && !adminContentCoupon) {
       const today = toMidnight(new Date());
       if (toMidnight(validFrom) < today) {
         throw new HttpException(
@@ -145,7 +150,17 @@ export const createCouponService = async (
             couponId: insertedCoupon.id,
             code,
           }));
-        await tx.insert(couponCodes).values(codeRows);
+        const insertedCodes = await tx
+          .insert(couponCodes)
+          .values(codeRows)
+          .onConflictDoNothing({ target: couponCodes.code })
+          .returning({ id: couponCodes.id });
+        if (insertedCodes.length !== codeRows.length) {
+          throw new HttpException(
+            'Coupon code already exists',
+            HttpStatus.CONFLICT,
+          );
+        }
       }
 
       const applicableItemRows: Array<
