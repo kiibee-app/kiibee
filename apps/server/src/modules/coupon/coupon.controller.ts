@@ -12,7 +12,8 @@ import {
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreatorGuard } from '../auth/guards/admin.guard';
+import { AdminGuard, CreatorGuard } from '../auth/guards/admin.guard';
+import type { AdminContentCouponPayload } from './services/createAdminContentCoupon.service';
 import { CouponService } from './coupon.service';
 
 type AuthenticatedRequest = Request & {
@@ -25,6 +26,20 @@ type AuthenticatedRequest = Request & {
 @Controller('coupons')
 export class CouponController {
   constructor(private readonly couponService: CouponService) {}
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/content/:contentId')
+  async createContentCoupon(
+    @Req() req: AuthenticatedRequest,
+    @Param('contentId') contentId: string,
+    @Body() payload: AdminContentCouponPayload,
+  ) {
+    return this.couponService.createAdminContentCoupon(
+      req.user.userId,
+      contentId,
+      payload,
+    );
+  }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get()

@@ -149,6 +149,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     data: {
       orderId: string;
       url?: string;
+      completed?: boolean;
     };
   };
 
@@ -513,7 +514,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
       const paymentUrl = response?.data?.url;
       const orderId = response?.data?.orderId;
-      if (!paymentUrl && subscriptionId && orderId) {
+      if (
+        !paymentUrl &&
+        orderId &&
+        (response.data.completed || subscriptionId)
+      ) {
         setShowPurchaseModal(false);
         setSelectedAction(null);
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);

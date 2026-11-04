@@ -3,12 +3,13 @@ import { orders } from 'src/database/schema/commerce/orders.schema';
 import { CreateOrderInputDto } from '../dto/order.dto';
 import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 import { logger } from 'src/logger/logger';
-import { BadRequestException } from '@nestjs/common';
+import { HttpException } from '@nestjs/common';
 import { fail, success } from 'src/utils/sendResponse';
-import { mediaFiles } from 'src/database/schema';
+import { mediaFiles, userContentAccess } from 'src/database/schema';
 import { and, eq } from 'drizzle-orm';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
-import { ORDER_TYPES } from 'src/utils/constant';
+import { ACCRESS_TYPES, ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+import { COUPON_DISCOUNT_TYPE_PERCENTAGE } from 'src/utils/coupon';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
 
 export async function createOrderService(
@@ -62,9 +63,16 @@ export async function createOrderService(
         contentId,
         collectionId,
       );
-      discountAmount = Number(couponInfo.data.discountValue) || 0;
+      const { discountType, discountValue } = couponInfo.data;
+      discountAmount =
+        discountType === COUPON_DISCOUNT_TYPE_PERCENTAGE
+          ? (Number(price) * discountValue) / 100
+          : discountValue;
     }
-    const resolvedPrice = (Number(price) - discountAmount) * 100;
+    const resolvedPrice = Math.max(
+      0,
+      Math.round((Number(price) - discountAmount) * 100),
+    );
 
     const resolvedCurrency = contentInfo.currency;
 
@@ -86,6 +94,44 @@ export async function createOrderService(
       status: 'pending' as const,
     };
 
+    if (couponCode && resolvedPrice === 0) {
+      const isRental = normalizedItemType === ORDER_TYPES.RENTAL;
+      const rentDurationHours = contentInfo.rentDurationHours ?? 0;
+      if (isRental && rentDurationHours <= 0) {
+        return fail(
+          'Rent duration is not configured for this item',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      const rentExpiresAt = isRental
+        ? new Date(Date.now() + rentDurationHours * 60 * 60 * 1000)
+        : null;
+
+      await db.transaction(async (tx) => {
+        await tx.insert(orders).values({
+          ...newOrder,
+          collectionId: null,
+          price: '0',
+          status: ORDER_STATUS.COMPLETED,
+          rentExpiresAt,
+        });
+        await tx.insert(userContentAccess).values({
+          id: crypto.randomUUID(),
+          orderId: newOrder.id,
+          userId,
+          mediaFileId: contentId,
+          accessType: isRental ? ACCRESS_TYPES.RENTED : ACCRESS_TYPES.PURCHASED,
+          rentExpiresAt,
+        });
+      });
+
+      return success(
+        { orderId: newOrder.id, completed: true as const },
+        'Order completed successfully',
+        HttpStatus.CREATED,
+      );
+    }
+
     const [result] = await db.insert(orders).values(newOrder).returning();
     const paymentResult = await createPayment({
       orderId: result.id,
@@ -103,12 +149,12 @@ export async function createOrderService(
       HttpStatus.CREATED,
     );
   } catch (error) {
-    if (error instanceof BadRequestException) {
+    if (error instanceof HttpException) {
       throw error;
     }
-    logger.error('Error assigning user content preferences:', error);
+    logger.error('Error creating content order:', error);
     return fail(
-      'Failed to assign user content preferences',
+      'Failed to create content order',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }

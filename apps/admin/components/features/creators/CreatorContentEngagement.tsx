@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Play, X } from "lucide-react";
+import { ArrowLeft, Play, Ticket, X } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   useContentEngagement,
@@ -25,6 +25,7 @@ import {
 } from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
 import { ContentPreviewModal } from "./ContentPreviewModal";
+import { CreateContentCouponModal } from "./CreateContentCouponModal";
 import { RejectContentModal } from "./RejectContentModal";
 import {
   HeroActions,
@@ -83,6 +84,7 @@ export function CreatorContentEngagement({
     null,
   );
   const [previewError, setPreviewError] = useState<string | null>(null);
+  const [couponOpen, setCouponOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
@@ -219,6 +221,12 @@ export function CreatorContentEngagement({
             </ProfileEmail>
           ) : null}
           <HeroActions>
+            {showPricing && (
+              <PlayButton type="button" onClick={() => setCouponOpen(true)}>
+                <Ticket size={14} />
+                Create coupon
+              </PlayButton>
+            )}
             {canPlay ? (
               <PlayButton
                 type="button"
@@ -242,6 +250,14 @@ export function CreatorContentEngagement({
           </HeroActions>
         </ProfileInfo>
       </ProfileHero>
+
+      {couponOpen && (
+        <CreateContentCouponModal
+          contentId={contentId}
+          contentTitle={content.title}
+          onClose={() => setCouponOpen(false)}
+        />
+      )}
 
       <StatsRow>
         <StatCard>

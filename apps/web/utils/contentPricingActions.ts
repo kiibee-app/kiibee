@@ -245,7 +245,10 @@ type PricingItem = Pick<
 >;
 
 export function extractPriceNumber(priceLabel: string): number {
-  return Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
+  const price = priceLabel.match(/(\d+(?:[.,]\d+)?)\s*kr\b/i)?.[1];
+  return price
+    ? Number(price.replace(",", "."))
+    : Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
 }
 
 export function formatPriceLabel(
