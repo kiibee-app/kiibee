@@ -181,6 +181,11 @@ export default function CollectionsSection({
               ? RENTED_MODES.PREVIOUSLY
               : mode;
           const itemIsPurchased = itemMode === RENTED_MODES.PURCHASED;
+          const primaryActionText = getCollectionPrimaryActionText(
+            itemMode,
+            t,
+            item,
+          );
 
           return (
             <CollectionCard
@@ -269,23 +274,21 @@ export default function CollectionsSection({
                       </CollectionBuyButton>
                     ) : (
                       <>
-                        <CollectionBuyButton
-                          className="collection-cta"
-                          onClick={handlePrimaryClick(item)}
-                        >
-                          <CollectionCtaContent>
-                            <MonoText
-                              $use="Body_SemiBold"
-                              color={COLORS.primary.WHITE}
-                            >
-                              {getCollectionPrimaryActionText(
-                                itemMode,
-                                t,
-                                item,
-                              )}
-                            </MonoText>
-                          </CollectionCtaContent>
-                        </CollectionBuyButton>
+                        {primaryActionText ? (
+                          <CollectionBuyButton
+                            className="collection-cta"
+                            onClick={handlePrimaryClick(item)}
+                          >
+                            <CollectionCtaContent>
+                              <MonoText
+                                $use="Body_SemiBold"
+                                color={COLORS.primary.WHITE}
+                              >
+                                {primaryActionText}
+                              </MonoText>
+                            </CollectionCtaContent>
+                          </CollectionBuyButton>
+                        ) : null}
                         {isCurrent ? (
                           <PassiveActionBlock>
                             <MonoText
