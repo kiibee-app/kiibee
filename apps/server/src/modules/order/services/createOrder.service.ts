@@ -87,7 +87,7 @@ export async function createOrderService(
       id: crypto.randomUUID(),
       userId,
       mediaFileId: contentId || null,
-      collectionId: collectionId || null,
+      collectionId: null,
       itemType: normalizedItemType,
       price: String(price),
       currency: resolvedCurrency,
