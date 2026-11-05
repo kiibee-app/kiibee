@@ -53,7 +53,10 @@ export const getUserOrders = async (
   return db
     .select({
       mediaFileId: orders.mediaFileId,
-      collectionId: orders.collectionId,
+      // A content order may carry its parent collection as context only.
+      collectionId: sql<
+        string | null
+      >`case when ${orders.mediaFileId} is null then ${orders.collectionId} else null end`,
       purchasedAt: orders.createdAt,
       rentExpiresAt: orders.rentExpiresAt,
     })
@@ -67,7 +70,10 @@ export const getExpiredRentalOrders = async (userId: string) => {
   return db
     .select({
       mediaFileId: orders.mediaFileId,
-      collectionId: orders.collectionId,
+      // A content order may carry its parent collection as context only.
+      collectionId: sql<
+        string | null
+      >`case when ${orders.mediaFileId} is null then ${orders.collectionId} else null end`,
       purchasedAt: orders.createdAt,
       rentExpiresAt: orders.rentExpiresAt,
     })

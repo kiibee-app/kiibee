@@ -346,7 +346,7 @@ export function getCollectionPrimaryActionText(
     item?.buyPrice as string | number | null | undefined,
   );
 
-  return buyPriceLabel ?? t("viewerRented.buyPlaceholder");
+  return buyPriceLabel;
 }
 
 export function getSearchPlaceholder(mode: RentedMode, t: TFunction) {
