@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import profileFallback from "@/assets/images/profile.png";
-import { isRemoteImageSource, resolvePublicMediaUrl } from "@/utils/media";
-import { AvatarImage, RemoteAvatarImage, type AvatarFit } from "./styles";
+import { resolvePublicMediaUrl } from "@/utils/media";
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
+import { AvatarImage, type AvatarFit } from "./styles";
 
 type CreatorChannelAvatarProps = {
   avatarUrl: string | null;
@@ -23,6 +24,7 @@ export default function CreatorChannelAvatar({
   const resolvedAvatarUrl = resolvePublicMediaUrl(avatarUrl);
   const [prevAvatarUrl, setPrevAvatarUrl] = useState(resolvedAvatarUrl);
   const [hasError, setHasError] = useState(false);
+  const [directSrc, setDirectSrc] = useState<string | null>(null);
 
   if (resolvedAvatarUrl !== prevAvatarUrl) {
     setPrevAvatarUrl(resolvedAvatarUrl);
@@ -30,38 +32,34 @@ export default function CreatorChannelAvatar({
   }
 
   if (resolvedAvatarUrl && !hasError) {
-    if (isRemoteImageSource(resolvedAvatarUrl)) {
-      return (
-        <RemoteAvatarImage
-          src={resolvedAvatarUrl}
-          alt={alt}
-          $fit={fit}
-          style={{
-            objectFit: fit,
-            objectPosition: "center",
-            backgroundColor: "transparent",
-          }}
-          loading="lazy"
-          decoding="async"
-          onError={() => setHasError(true)}
-        />
-      );
-    }
-
     return (
       <AvatarImage
         src={resolvedAvatarUrl}
         alt={alt}
         fill
         sizes={sizes}
-        unoptimized
+        loading="eager"
+        unoptimized={
+          (resolvedAvatarUrl.startsWith("http") &&
+            !canOptimizeRemoteImage(resolvedAvatarUrl)) ||
+          directSrc === resolvedAvatarUrl
+        }
         $fit={fit}
         style={{
           objectFit: fit,
           objectPosition: "center",
           backgroundColor: "transparent",
         }}
-        onError={() => setHasError(true)}
+        onError={() => {
+          if (
+            canOptimizeRemoteImage(resolvedAvatarUrl) &&
+            directSrc !== resolvedAvatarUrl
+          ) {
+            setDirectSrc(resolvedAvatarUrl);
+          } else {
+            setHasError(true);
+          }
+        }}
       />
     );
   }

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { StaticImageData } from "next/image";
 import { isString } from "@/utils/Constants";
+import { getImageDeliverySource } from "./imageDelivery";
 
 export type ImageSource = StaticImageData | string;
 
@@ -17,16 +18,24 @@ const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
 const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
 const SPACES_HOST_PATTERN = /\.digitaloceanspaces\.com$/i;
 
+// This bucket has an active Spaces CDN. Avoid sending every cold resize to London.
+function preferMediaCdn(base: string): string {
+  return base.replace(
+    /^https:\/\/kiibee-bucket\.lon1\.digitaloceanspaces\.com$/,
+    "https://kiibee-bucket.lon1.cdn.digitaloceanspaces.com",
+  );
+}
+
 function getMediaCdnBase(): string | null {
   const explicit = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
   if (explicit) {
-    return explicit.replace(/\/$/, "");
+    return preferMediaCdn(explicit.replace(/\/$/, ""));
   }
 
   const bucket = process.env.NEXT_PUBLIC_DO_BUCKET?.trim();
   const region = process.env.NEXT_PUBLIC_DO_REGION?.trim();
   if (bucket && region) {
-    return `https://${bucket}.${region}.digitaloceanspaces.com`;
+    return preferMediaCdn(`https://${bucket}.${region}.digitaloceanspaces.com`);
   }
 
   return null;
@@ -96,6 +105,12 @@ function resolveLegacyKiibeeMediaPath(pathname: string): string {
 function rewriteAbsoluteMediaUrl(url: string): string {
   try {
     const parsed = new URL(url);
+    if (
+      parsed.searchParams.has("X-Amz-Signature") ||
+      parsed.searchParams.has("sig")
+    ) {
+      return url;
+    }
     const pathname = (() => {
       try {
         return decodeURIComponent(parsed.pathname);
@@ -115,7 +130,8 @@ function rewriteAbsoluteMediaUrl(url: string): string {
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
       const cdnBase = getMediaCdnBase();
-      const origin = cdnBase ?? `${parsed.protocol}//${parsed.host}`;
+      const origin =
+        cdnBase ?? preferMediaCdn(`${parsed.protocol}//${parsed.host}`);
       return `${origin}${encodeSpacesMediaPath(pathname)}`;
     }
   } catch (error) {
@@ -133,7 +149,7 @@ function rewriteAbsoluteMediaUrl(url: string): string {
 }
 
 export function resolveImageUrl(image: ImageSource) {
-  return isString(image) ? image : image.src;
+  return getImageDeliverySource(isString(image) ? image : image.src);
 }
 
 export function isStaticImageData(
@@ -185,7 +201,7 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (REMOTE_IMAGE_PATTERN.test(trimmed)) {
-    return rewriteAbsoluteMediaUrl(trimmed);
+    return getImageDeliverySource(rewriteAbsoluteMediaUrl(trimmed));
   }
 
   if (trimmed.startsWith("//")) {
