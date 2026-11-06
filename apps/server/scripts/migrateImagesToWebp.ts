@@ -1,9 +1,3 @@
-/**
- * Prepare: pnpm media:webp --out /tmp/kiibee-webp
- * Apply prepared copies to local DB: pnpm media:webp --out /tmp/kiibee-webp --apply
- * Production additionally requires --allow-remote-db. Originals are never overwritten.
- * Rollback uses the same journal: pnpm media:webp --out /tmp/kiibee-webp --rollback
- */
 import 'dotenv/config';
 import {
   reuseThumbnailFallbacks,
@@ -74,7 +68,7 @@ if (writing && !localDb && !args.includes('--allow-remote-db')) {
 if (args.includes('--apply') && args.includes('--rollback'))
   throw new Error('Choose apply or rollback');
 const client = new pg.Client({ connectionString: database });
-// A single pg Client must not execute concurrent queries; uploads can still run in parallel.
+
 let databaseQueue: Promise<unknown> = Promise.resolve();
 function query<Row extends pg.QueryResultRow = pg.QueryResultRow>(
   sql: string,
