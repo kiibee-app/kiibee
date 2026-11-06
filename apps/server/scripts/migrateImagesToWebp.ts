@@ -5,10 +5,15 @@
  * Rollback uses the same journal: pnpm media:webp --out /tmp/kiibee-webp --rollback
  */
 import 'dotenv/config';
+import {
+  reuseThumbnailFallbacks,
+  type ImageReference,
+} from '../src/modules/media/utils/reuseThumbnailFallbacks';
+import { resolvePublicImageMigrationSource } from '../src/modules/media/utils/publicImageMigrationSource';
 import pg from 'pg';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { s3 } from '../src/services/s3.client';
@@ -30,7 +35,7 @@ const fields = {
   tutorial_items: ['thumbnail_url'],
   live_events: ['thumbnail_url'],
 } as const;
-type Reference = { table: string; column: string; id: string; oldUrl: string };
+type Reference = ImageReference;
 type Entry = {
   source: string;
   references: Reference[];
@@ -43,9 +48,11 @@ type Entry = {
 };
 type Journal = {
   version: 1;
+  complete: boolean;
   database: string;
   entries: Entry[];
   skipped: number;
+  fallbackReferences?: number;
   updated?: number;
   conflicts?: number;
 };
@@ -68,55 +75,31 @@ if (writing && !localDb && !args.includes('--allow-remote-db')) {
 if (args.includes('--apply') && args.includes('--rollback'))
   throw new Error('Choose apply or rollback');
 const client = new pg.Client({ connectionString: database });
+// A single pg Client must not execute concurrent queries; uploads can still run in parallel.
+let databaseQueue: Promise<unknown> = Promise.resolve();
+function query<Row extends pg.QueryResultRow = pg.QueryResultRow>(
+  sql: string,
+  values?: unknown[],
+): Promise<pg.QueryResult<Row>> {
+  const pending = databaseQueue.then(() => client.query<Row>(sql, values));
+  databaseQueue = pending.catch(() => undefined);
+  return pending;
+}
 const dbIdentity = `${dbUrl.hostname}:${dbUrl.port || '5432'}${dbUrl.pathname}`;
 
-function publicSource(value: string): string | null {
-  const bucket = process.env.DO_BUCKET;
-  const region = process.env.DO_REGION;
-  if (!bucket || !region)
-    throw new Error('DO_BUCKET and DO_REGION are required');
-  let url: URL;
-  try {
-    url = new URL(value, 'https://kiibee.dk');
-  } catch {
-    return null;
-  }
-  if (
-    url.protocol !== 'https:' ||
-    url.search ||
-    url.hash ||
-    url.username ||
-    url.password ||
-    url.port
-  )
-    return null;
-  const originHost = `${bucket}.${region}.digitaloceanspaces.com`;
-  const cdnHost = `${bucket}.${region}.cdn.digitaloceanspaces.com`;
-  let path = url.pathname;
-  if (
-    ['kiibee.dk', 'www.kiibee.dk'].includes(url.hostname) &&
-    path.startsWith('/media/')
-  )
-    path = path.slice(6);
-  else if (![originHost, cdnHost].includes(url.hostname)) return null;
-  if (path.startsWith('/images/webp-v1/')) return null;
-  try {
-    path = path
-      .split('/')
-      .map((segment) =>
-        encodeURIComponent(decodeURIComponent(segment).normalize('NFD')),
-      )
-      .join('/');
-  } catch {
-    return null;
-  }
-  // Known legacy Kiibee bucket has an active CDN; other buckets retain their origin.
-  const host =
-    bucket === 'kiibee-bucket' && region === 'lon1' ? cdnHost : originHost;
-  return `https://${host}${path}`;
-}
+const publicSource = (value: string) =>
+  resolvePublicImageMigrationSource(
+    value,
+    process.env.DO_BUCKET,
+    process.env.DO_REGION,
+  );
 
 async function download(source: string): Promise<Buffer> {
+  if (source.startsWith('data:')) {
+    if (source.length > PUBLIC_IMAGE_MAX_BYTES * 1.34)
+      throw new Error('Source exceeds 50 MB');
+    return Buffer.from(source.split(',')[1], 'base64');
+  }
   const response = await fetch(source, {
     signal: AbortSignal.timeout(90_000),
     redirect: 'error',
@@ -145,24 +128,44 @@ async function download(source: string): Promise<Buffer> {
   return Buffer.concat(chunks);
 }
 
+let saveQueue = Promise.resolve();
 async function save(journal: Journal) {
-  await writeFile(journalPath, JSON.stringify(journal, null, 2), {
-    mode: 0o600,
+  const snapshot = JSON.stringify(journal, null, 2);
+  saveQueue = saveQueue.then(async () => {
+    await writeFile(journalPath + '.tmp', snapshot, { mode: 0o600 });
+    await rename(journalPath + '.tmp', journalPath);
   });
+  return saveQueue;
 }
 
 async function prepare(): Promise<Journal> {
   const sources = new Map<string, Reference[]>();
   let skipped = 0;
+  const skippedByHost: Record<string, number> = {};
+  const skippedExamples = new Set<string>();
   for (const [table, columns] of Object.entries(fields)) {
     for (const column of columns) {
-      const { rows } = await client.query<{ id: string; url: string }>(
+      const { rows } = await query<{ id: string; url: string }>(
         `SELECT id, "${column}" AS url FROM "${table}" WHERE "${column}" IS NOT NULL AND btrim("${column}") <> '' ORDER BY id`,
       );
       for (const row of rows) {
         const source = publicSource(row.url.trim());
         if (!source) {
           skipped++;
+          let host = 'invalid';
+          try {
+            const parsed = new URL(row.url, 'https://kiibee.dk');
+            host = parsed.hostname;
+            if (skippedExamples.size < 12)
+              skippedExamples.add(
+                parsed.protocol === 'data:'
+                  ? row.url.slice(0, 30)
+                  : parsed.hostname + parsed.pathname,
+              );
+          } catch {
+            // Invalid source URLs remain unchanged.
+          }
+          skippedByHost[host] = (skippedByHost[host] ?? 0) + 1;
           continue;
         }
         const refs = sources.get(source) ?? [];
@@ -177,10 +180,13 @@ async function prepare(): Promise<Journal> {
       references: [...sources.values()].reduce((n, refs) => n + refs.length, 0),
       skipped,
       localDatabase: localDb,
+      skippedByHost,
+      skippedExamples: [...skippedExamples],
     }),
   );
   const journal: Journal = {
     version: 1,
+    complete: false,
     database: dbIdentity,
     entries: [],
     skipped,
@@ -191,124 +197,165 @@ async function prepare(): Promise<Journal> {
     .then((s) => JSON.parse(s) as Journal)
     .catch(() => null);
   let completed = 0;
-  for (const [source, references] of sources) {
-    const cached =
-      previous?.database === dbIdentity
-        ? previous.entries.find(
-            (e) => e.source === source && e.status === 'ready',
-          )
-        : undefined;
-    if (
-      cached?.key &&
-      (await readFile(join(outputDir, cached.key.split('/').pop()!))
-        .then(() => true)
-        .catch(() => false))
-    ) {
-      journal.entries.push({ ...cached, references });
-    } else {
-      try {
-        const original = await download(source);
-        const converted = await optimizePublicImage(original);
-        const hash = createHash('sha256').update(converted).digest('hex');
-        const key = `images/webp-v1/${hash}.webp`;
-        await writeFile(join(outputDir, `${hash}.webp`), converted);
-        journal.entries.push({
-          source,
-          references,
-          status: 'ready',
-          key,
-          url: `https://${process.env.DO_BUCKET}.${process.env.DO_REGION}.digitaloceanspaces.com/${key}`,
-          inputBytes: original.length,
-          outputBytes: converted.length,
-        });
-      } catch (error) {
-        journal.entries.push({
-          source,
-          references,
-          status: 'failed',
-          error: error instanceof Error ? error.message : 'Conversion failed',
-        });
+  const work = [...sources];
+  let next = 0;
+  await Promise.all(
+    Array.from({ length: 3 }, async () => {
+      while (next < work.length) {
+        const [source, references] = work[next++];
+        const cached =
+          previous?.database === dbIdentity
+            ? previous.entries.find(
+                (e) => e.source === source && e.status === 'ready',
+              )
+            : undefined;
+        if (
+          cached?.key &&
+          (await readFile(join(outputDir, cached.key.split('/').pop()!))
+            .then(() => true)
+            .catch(() => false))
+        ) {
+          journal.entries.push({ ...cached, references });
+        } else {
+          try {
+            const original = await download(source);
+            const converted = await optimizePublicImage(original);
+            const hash = createHash('sha256').update(converted).digest('hex');
+            const key = `images/webp-v1/${hash}.webp`;
+            await writeFile(join(outputDir, `${hash}.webp`), converted);
+            journal.entries.push({
+              source,
+              references,
+              status: 'ready',
+              key,
+              url: `https://${process.env.DO_BUCKET}.${process.env.DO_REGION}.digitaloceanspaces.com/${key}`,
+              inputBytes: original.length,
+              outputBytes: converted.length,
+            });
+          } catch (error) {
+            journal.entries.push({
+              source,
+              references,
+              status: 'failed',
+              error:
+                error instanceof Error ? error.message : 'Conversion failed',
+            });
+          }
+        }
+        await save(journal);
+        if (++completed % 10 === 0 || completed === sources.size)
+          console.log(
+            JSON.stringify({
+              prepared: completed,
+              total: sources.size,
+              failed: journal.entries.filter((e) => e.status === 'failed')
+                .length,
+            }),
+          );
       }
-    }
-    await save(journal);
-    if (++completed % 10 === 0 || completed === sources.size)
-      console.log(
-        JSON.stringify({
-          prepared: completed,
-          total: sources.size,
-          failed: journal.entries.filter((e) => e.status === 'failed').length,
-        }),
-      );
-  }
+    }),
+  );
+  journal.complete = true;
+  journal.fallbackReferences = reuseThumbnailFallbacks(journal.entries);
+  await save(journal);
   return journal;
 }
 
 async function apply(journal: Journal, rollback: boolean) {
   if (journal.version !== 1 || journal.database !== dbIdentity)
     throw new Error('Journal belongs to a different database');
+  if (!rollback && !journal.complete)
+    throw new Error('Finish preparation before applying');
+  if (!rollback)
+    journal.fallbackReferences = reuseThumbnailFallbacks(journal.entries);
   let updated = 0;
   let conflicts = 0;
-  for (const entry of journal.entries) {
-    if (entry.status !== 'ready' || !entry.key || !entry.url) continue;
-    if (!/^images\/webp-v1\/[a-f0-9]{64}\.webp$/.test(entry.key))
-      throw new Error('Invalid journal image key');
-    for (const ref of entry.references) {
-      if (
-        !(
-          fields[ref.table as keyof typeof fields] as
-            | readonly string[]
-            | undefined
-        )?.includes(ref.column)
-      )
-        throw new Error('Invalid journal field');
-    }
-    if (!rollback) {
-      const body = await readFile(join(outputDir, entry.key.split('/').pop()!));
-      const hash = createHash('sha256').update(body).digest('hex');
-      if (entry.key !== `images/webp-v1/${hash}.webp`)
-        throw new Error('Prepared image checksum mismatch');
-      await s3.send(
-        new PutObjectCommand({
-          Bucket: process.env.DO_BUCKET!,
-          Key: entry.key,
-          Body: body,
-          ContentType: 'image/webp',
-          CacheControl: 'public, max-age=31536000, immutable',
-          ACL: 'public-read',
-        }),
-      );
-      // Verify the new object through its public URL before changing any reference.
-      const response = await fetch(entry.url, {
-        method: 'HEAD',
-        redirect: 'error',
-        signal: AbortSignal.timeout(20_000),
-      });
-      if (
-        !response.ok ||
-        !response.headers.get('content-type')?.includes('image/webp')
-      )
-        throw new Error('Uploaded WebP failed public verification');
-    }
-    for (const ref of entry.references) {
-      const from = rollback ? entry.url : ref.oldUrl;
-      const to = rollback ? ref.oldUrl : entry.url;
-      const result = await client.query(
-        `UPDATE "${ref.table}" SET "${ref.column}" = $1 WHERE id = $2 AND "${ref.column}" = $3`,
-        [to, ref.id, from],
-      );
-      updated += result.rowCount ?? 0;
-      if (!result.rowCount) {
-        const current = await client.query(
-          `SELECT "${ref.column}" AS url FROM "${ref.table}" WHERE id = $1`,
-          [ref.id],
-        );
-        if (current.rows[0]?.url !== to) conflicts++;
+  const entries = journal.entries.filter((entry) => entry.status === 'ready');
+  let next = 0;
+  let completed = 0;
+  await Promise.all(
+    Array.from({ length: 3 }, async () => {
+      while (next < entries.length) {
+        const entry = entries[next++];
+        if (entry.status !== 'ready' || !entry.key || !entry.url) continue;
+        if (!/^images\/webp-v1\/[a-f0-9]{64}\.webp$/.test(entry.key))
+          throw new Error('Invalid journal image key');
+        if (
+          entry.url !==
+          `https://${process.env.DO_BUCKET}.${process.env.DO_REGION}.digitaloceanspaces.com/${entry.key}`
+        )
+          throw new Error('Journal bucket does not match current environment');
+        for (const ref of entry.references) {
+          if (
+            !(
+              fields[ref.table as keyof typeof fields] as
+                | readonly string[]
+                | undefined
+            )?.includes(ref.column)
+          )
+            throw new Error('Invalid journal field');
+        }
+        if (!rollback) {
+          const body = await readFile(
+            join(outputDir, entry.key.split('/').pop()!),
+          );
+          const hash = createHash('sha256').update(body).digest('hex');
+          if (entry.key !== `images/webp-v1/${hash}.webp`)
+            throw new Error('Prepared image checksum mismatch');
+          await s3.send(
+            new PutObjectCommand({
+              Bucket: process.env.DO_BUCKET!,
+              Key: entry.key,
+              Body: body,
+              ContentType: 'image/webp',
+              CacheControl: 'public, max-age=31536000, immutable',
+              ACL: 'public-read',
+            }),
+          );
+          // Verify the new object through its public URL before changing any reference.
+          const response = await fetch(entry.url, {
+            method: 'HEAD',
+            redirect: 'error',
+            signal: AbortSignal.timeout(20_000),
+          });
+          if (
+            !response.ok ||
+            !response.headers.get('content-type')?.includes('image/webp') ||
+            Number(response.headers.get('content-length')) !== body.length
+          )
+            throw new Error('Uploaded WebP failed public verification');
+        }
+        for (const ref of entry.references) {
+          const from = rollback ? entry.url : ref.oldUrl;
+          const to = rollback ? ref.oldUrl : entry.url;
+          const result = await query(
+            `UPDATE "${ref.table}" SET "${ref.column}" = $1 WHERE id = $2 AND "${ref.column}" = $3`,
+            [to, ref.id, from],
+          );
+          updated += result.rowCount ?? 0;
+          if (!result.rowCount) {
+            const current = await query(
+              `SELECT "${ref.column}" AS url FROM "${ref.table}" WHERE id = $1`,
+              [ref.id],
+            );
+            if (current.rows[0]?.url !== to) conflicts++;
+          }
+        }
+        journal.updated = updated;
+        journal.conflicts = conflicts;
+        await save(journal);
+        if (++completed % 10 === 0 || completed === entries.length)
+          console.log(
+            JSON.stringify({
+              published: completed,
+              total: entries.length,
+              updated,
+              conflicts,
+            }),
+          );
       }
-    }
-    journal.updated = updated;
-    journal.conflicts = conflicts;
-    await save(journal);
-  }
+    }),
+  );
   console.log(
     JSON.stringify({
       mode: rollback ? 'rollback' : 'apply',
@@ -322,7 +369,49 @@ async function main() {
   await mkdir(outputDir, { recursive: true });
   await client.connect();
   try {
-    if (writing) {
+    if (args.includes('--verify')) {
+      const journal: Journal = JSON.parse(await readFile(journalPath, 'utf8'));
+      if (journal.database !== dbIdentity)
+        throw new Error('Journal belongs to a different database');
+      let matched = 0;
+      let mismatched = 0;
+      for (const [table, columns] of Object.entries(fields)) {
+        for (const column of columns) {
+          const expected = new Map<string, string>();
+          for (const entry of journal.entries) {
+            if (entry.status !== 'ready' || !entry.url) continue;
+            for (const ref of entry.references)
+              if (ref.table === table && ref.column === column)
+                expected.set(ref.id, entry.url);
+          }
+          if (!expected.size) continue;
+          const { rows } = await query<{ id: string; url: string }>(
+            `SELECT id, "${column}" AS url FROM "${table}" WHERE id = ANY($1::text[])`,
+            [[...expected.keys()]],
+          );
+          const actual = new Map(rows.map((row) => [row.id, row.url]));
+          for (const [id, url] of expected) {
+            if (actual.get(id) === url) matched++;
+            else mismatched++;
+          }
+        }
+      }
+      console.log(JSON.stringify({ mode: 'verify', matched, mismatched }));
+      if (mismatched) process.exitCode = 1;
+    } else if (args.includes('--review')) {
+      const journal: Journal = JSON.parse(await readFile(journalPath, 'utf8'));
+      if (!journal.complete || journal.database !== dbIdentity)
+        throw new Error('Finish preparation for this database first');
+      journal.fallbackReferences = reuseThumbnailFallbacks(journal.entries);
+      await save(journal);
+      console.log(
+        JSON.stringify({
+          converted: journal.entries.filter((e) => e.status === 'ready').length,
+          fallbackReferences: journal.fallbackReferences,
+          failed: journal.entries.filter((e) => e.status === 'failed').length,
+        }),
+      );
+    } else if (writing) {
       const journal: Journal = JSON.parse(await readFile(journalPath, 'utf8'));
       await apply(journal, args.includes('--rollback'));
     } else {

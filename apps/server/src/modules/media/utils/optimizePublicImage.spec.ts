@@ -5,6 +5,37 @@ import {
 } from './optimizePublicImage';
 
 describe('optimizePublicImage', () => {
+  it('applies camera orientation before stripping metadata', async () => {
+    const input = await sharp({
+      create: { width: 40, height: 20, channels: 3, background: 'red' },
+    })
+      .jpeg()
+      .withMetadata({ orientation: 6 })
+      .toBuffer();
+    const meta = await sharp(await optimizePublicImage(input)).metadata();
+    expect(meta).toMatchObject({ width: 20, height: 40, format: 'webp' });
+    expect(meta.orientation).toBeUndefined();
+  });
+  it('keeps animation frames and timing when converting GIFs', async () => {
+    const pixels = Buffer.concat([
+      Buffer.alloc(10 * 10 * 3, 0),
+      Buffer.alloc(10 * 10 * 3, 255),
+    ]);
+    const gif = await sharp(pixels, {
+      raw: { width: 10, height: 20, channels: 3, pageHeight: 10 },
+    })
+      .gif({ delay: [100, 200], loop: 0 })
+      .toBuffer();
+    const metadata = await sharp(await optimizePublicImage(gif), {
+      animated: true,
+    }).metadata();
+    expect(metadata).toMatchObject({
+      format: 'webp',
+      pages: 2,
+      pageHeight: 10,
+      delay: [100, 200],
+    });
+  });
   it('converts large JPEGs to bounded WebP without changing their aspect ratio', async () => {
     const input = await sharp({
       create: { width: 4000, height: 2000, channels: 3, background: '#38577a' },
