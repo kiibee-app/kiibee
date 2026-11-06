@@ -20,6 +20,7 @@ export default function ProfileCoverImage({
   if (src !== prevSrc) {
     setPrevSrc(src);
     setImageLoaded(false);
+    setDirectSrc(null);
   }
 
   return (
@@ -28,6 +29,11 @@ export default function ProfileCoverImage({
       {src ? (
         <CoverImage
           {...props}
+          ref={(image) => {
+            if (!imageLoaded && image?.complete && image.naturalWidth > 0) {
+              setImageLoaded(true);
+            }
+          }}
           src={src}
           alt={alt}
           unoptimized={

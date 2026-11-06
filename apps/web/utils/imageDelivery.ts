@@ -5,9 +5,7 @@ const LEGACY_IMAGE_DERIVATIVES: Record<string, string> = {
     "/media-optimized/uffe-instachamp-v1.webp",
 };
 
-/** Legacy originals exceeding the hosted optimizer's input limit.
- * Keep the source intact; serve a bounded local derivative until media is migrated.
- */
+// Temporary derivatives for originals exceeding the hosted optimizer input limit.
 export function getImageDeliverySource(src: string): string {
   try {
     const url = new URL(src);

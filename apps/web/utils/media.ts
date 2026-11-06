@@ -18,11 +18,28 @@ const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
 const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
 const SPACES_HOST_PATTERN = /\.digitaloceanspaces\.com$/i;
 
-// This bucket has an active Spaces CDN. Avoid sending every cold resize to London.
+// CDN is enabled for this legacy bucket.
 function preferMediaCdn(base: string): string {
   return base.replace(
     /^https:\/\/kiibee-bucket\.lon1\.digitaloceanspaces\.com$/,
     "https://kiibee-bucket.lon1.cdn.digitaloceanspaces.com",
+  );
+}
+
+function isOwnedSpacesHost(hostname: string): boolean {
+  const bucket = process.env.NEXT_PUBLIC_DO_BUCKET?.trim();
+  const region = process.env.NEXT_PUBLIC_DO_REGION?.trim();
+  return (
+    hostname === "kiibee-bucket.lon1.digitaloceanspaces.com" ||
+    hostname === "kiibee-bucket.lon1.cdn.digitaloceanspaces.com" ||
+    Boolean(
+      bucket &&
+      region &&
+      [
+        `${bucket}.${region}.digitaloceanspaces.com`,
+        `${bucket}.${region}.cdn.digitaloceanspaces.com`,
+      ].includes(hostname),
+    )
   );
 }
 
@@ -129,6 +146,7 @@ function rewriteAbsoluteMediaUrl(url: string): string {
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
+      if (!isOwnedSpacesHost(parsed.hostname)) return url;
       const cdnBase = getMediaCdnBase();
       const origin =
         cdnBase ?? preferMediaCdn(`${parsed.protocol}//${parsed.host}`);

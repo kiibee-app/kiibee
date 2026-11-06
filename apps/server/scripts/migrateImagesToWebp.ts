@@ -35,10 +35,9 @@ const fields = {
   tutorial_items: ['thumbnail_url'],
   live_events: ['thumbnail_url'],
 } as const;
-type Reference = ImageReference;
 type Entry = {
   source: string;
-  references: Reference[];
+  references: ImageReference[];
   status: 'ready' | 'failed';
   key?: string;
   url?: string;
@@ -139,10 +138,9 @@ async function save(journal: Journal) {
 }
 
 async function prepare(): Promise<Journal> {
-  const sources = new Map<string, Reference[]>();
+  const sources = new Map<string, ImageReference[]>();
   let skipped = 0;
   const skippedByHost: Record<string, number> = {};
-  const skippedExamples = new Set<string>();
   for (const [table, columns] of Object.entries(fields)) {
     for (const column of columns) {
       const { rows } = await query<{ id: string; url: string }>(
@@ -152,18 +150,11 @@ async function prepare(): Promise<Journal> {
         const source = publicSource(row.url.trim());
         if (!source) {
           skipped++;
-          let host = 'invalid';
+          let host: string;
           try {
-            const parsed = new URL(row.url, 'https://kiibee.dk');
-            host = parsed.hostname;
-            if (skippedExamples.size < 12)
-              skippedExamples.add(
-                parsed.protocol === 'data:'
-                  ? row.url.slice(0, 30)
-                  : parsed.hostname + parsed.pathname,
-              );
+            host = new URL(row.url, 'https://kiibee.dk').hostname;
           } catch {
-            // Invalid source URLs remain unchanged.
+            host = 'invalid';
           }
           skippedByHost[host] = (skippedByHost[host] ?? 0) + 1;
           continue;
@@ -181,7 +172,6 @@ async function prepare(): Promise<Journal> {
       skipped,
       localDatabase: localDb,
       skippedByHost,
-      skippedExamples: [...skippedExamples],
     }),
   );
   const journal: Journal = {

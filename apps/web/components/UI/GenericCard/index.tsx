@@ -47,6 +47,7 @@ type GenericCardProps = {
   keepImagePlaceholder?: boolean;
   onClick?: () => void;
   onImageError?: () => void;
+  sizes?: string;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -93,6 +94,7 @@ export default function GenericCard({
   keepImagePlaceholder = false,
   onClick,
   onImageError,
+  sizes = "(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw",
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
@@ -186,7 +188,7 @@ export default function GenericCard({
               src={imageSrc!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              sizes={sizes}
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
@@ -207,7 +209,7 @@ export default function GenericCard({
               }
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              sizes={sizes}
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}

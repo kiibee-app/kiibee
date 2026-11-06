@@ -29,6 +29,7 @@ export default function CreatorChannelAvatar({
   if (resolvedAvatarUrl !== prevAvatarUrl) {
     setPrevAvatarUrl(resolvedAvatarUrl);
     setHasError(false);
+    setDirectSrc(null);
   }
 
   if (resolvedAvatarUrl && !hasError) {
@@ -45,11 +46,6 @@ export default function CreatorChannelAvatar({
           directSrc === resolvedAvatarUrl
         }
         $fit={fit}
-        style={{
-          objectFit: fit,
-          objectPosition: "center",
-          backgroundColor: "transparent",
-        }}
         onError={() => {
           if (
             canOptimizeRemoteImage(resolvedAvatarUrl) &&
@@ -71,11 +67,6 @@ export default function CreatorChannelAvatar({
       fill
       sizes={sizes}
       $fit={fit}
-      style={{
-        objectFit: fit,
-        objectPosition: "center",
-        backgroundColor: "transparent",
-      }}
     />
   );
 }

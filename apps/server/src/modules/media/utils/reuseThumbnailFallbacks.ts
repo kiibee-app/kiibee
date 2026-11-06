@@ -10,7 +10,7 @@ type Candidate = {
   references: ImageReference[];
 };
 
-/** Match the public sibling thumbnail already preferred by the web client's durable-first fallback. */
+// Reuse the public fallback already shown for the same content.
 export function reuseThumbnailFallbacks(entries: Candidate[]): number {
   const publicByContent = new Map<string, Candidate>();
   for (const entry of entries) {
