@@ -200,7 +200,12 @@ export default function CollectionsSection({
                   </CollectionBadge>
                 )}
                 {item.coverSrc ? (
-                  <CollectionImage src={item.coverSrc} alt={item.title} />
+                  <CollectionImage
+                    src={item.coverSrc}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ) : null}
               </CollectionImageWrap>
 

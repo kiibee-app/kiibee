@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
@@ -78,7 +79,7 @@ export const ImageOverlay = styled.div`
   z-index: 2;
 `;
 
-export const UploadImage = styled.img`
+export const UploadImage = styled(Image)`
   position: absolute;
   inset: 0;
   width: 100%;
@@ -89,7 +90,7 @@ export const UploadImage = styled.img`
   z-index: 1;
 `;
 
-export const UploadBackgroundImage = styled.img`
+export const UploadBackgroundImage = styled(Image)`
   position: absolute;
   width: calc(100% + 24px);
   height: calc(100% + 24px);

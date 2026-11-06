@@ -43,7 +43,6 @@ export default function CenteredCoverSection() {
           fill
           sizes="100vw"
           priority
-          unoptimized
         />
       </CoverFrameFull>
 

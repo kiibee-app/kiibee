@@ -20,7 +20,7 @@ export default function ExploreCreatorsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery);
 
-  const { creators, isLoading, isFetching } = useExploreCreators(
+  const { creators, isLoading } = useExploreCreators(
     undefined,
     debouncedSearchQuery,
   );
@@ -45,10 +45,7 @@ export default function ExploreCreatorsPage() {
             />
           </div>
           <div ref={trendingRef}>
-            <ExploreCreators
-              creators={sortedCreators}
-              isLoading={isLoading || isFetching}
-            />
+            <ExploreCreators creators={sortedCreators} isLoading={isLoading} />
           </div>
         </Section>
       </Main>

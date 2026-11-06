@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect, useSyncExternalStore } from "react";
+import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 import { useSearchParams } from "next/navigation";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -187,7 +188,7 @@ export function useCategoryContent(categoryName: string) {
     },
     enabled: Boolean(categoryName) && Boolean(categoryId),
     placeholderData: keepPreviousData,
-    staleTime: 0,
+    ...CACHE_CONFIG.explore,
   });
 
   const tutorials = useMemo((): TutorialVideo[] => {
