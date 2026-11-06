@@ -1,4 +1,5 @@
 "use client";
+import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -103,7 +104,7 @@ export function useAllContent(allContentId: string) {
         limit,
       }),
     placeholderData: keepPreviousData,
-    staleTime: 0,
+    ...CACHE_CONFIG.explore,
   });
 
   const tutorials = useMemo((): TutorialVideo[] => {

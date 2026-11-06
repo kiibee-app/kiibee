@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { s3 } from 'src/services/s3.client';
+import { optimizePublicImage } from '../utils/optimizePublicImage';
 
 @Injectable()
 export class PublicImageUploadService {
@@ -17,15 +18,21 @@ export class PublicImageUploadService {
       throw new BadRequestException('Unsupported image format');
     }
 
-    const key = `images/${randomUUID()}.${ext}`;
-    const contentType = file.mimetype || this.getContentType(ext);
+    let image: Buffer;
+    try {
+      image = await optimizePublicImage(file.buffer);
+    } catch {
+      throw new BadRequestException('Invalid or unsupported image');
+    }
+    const key = `images/${randomUUID()}.webp`;
 
     await s3.send(
       new PutObjectCommand({
         Bucket: process.env.DO_BUCKET!,
         Key: key,
-        Body: file.buffer,
-        ContentType: contentType,
+        Body: image,
+        ContentType: 'image/webp',
+        CacheControl: 'public, max-age=31536000, immutable',
         ACL: 'public-read',
       }),
     );
@@ -37,16 +44,5 @@ export class PublicImageUploadService {
   private getExt(name: string) {
     const m = name.toLowerCase().match(/\.([a-z0-9]+)$/);
     return m ? m[1] : '';
-  }
-
-  private getContentType(ext: string) {
-    const map: Record<string, string> = {
-      jpg: 'image/jpeg',
-      jpeg: 'image/jpeg',
-      png: 'image/png',
-      webp: 'image/webp',
-      gif: 'image/gif',
-    };
-    return map[ext] || 'application/octet-stream';
   }
 }

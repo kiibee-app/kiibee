@@ -50,7 +50,6 @@ export default function ProfileCoverSection() {
             fill
             sizes="100vw"
             priority
-            unoptimized
           />
         </CoverMedia>
       </CoverFrame>

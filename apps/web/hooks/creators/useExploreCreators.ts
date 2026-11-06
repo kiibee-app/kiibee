@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -178,7 +179,7 @@ export const useExploreCreators = (
   const query = useGetAPI<ExploreCreatorsResponse>(
     isAllEndpoint ? API.creators.all : API.creators.list,
     Object.keys(params).length > 0 ? params : undefined,
-    { enabled },
+    { ...CACHE_CONFIG.explore, enabled },
   );
 
   const baseCreators = useMemo(() => {
@@ -264,6 +265,7 @@ export const usePaginatedExploreCreators = ({
   const trimmedSearch = search?.trim() || undefined;
 
   const query = useInfiniteQuery({
+    ...CACHE_CONFIG.explore,
     queryKey: [
       API.creators.all,
       "paginated",
