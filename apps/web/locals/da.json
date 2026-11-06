@@ -141,7 +141,7 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Tilmeld dig Kiibee"
+    "cta": "Kom ombord her"
   },
   "auth": {
     "title": "Stedet hvor udgivere og seere mødes",
@@ -614,7 +614,7 @@
       "formatLabel": "Format:"
     },
     "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
-    "ctaPrimary": "Deltag nu",
+    "ctaPrimary": "Kom ombord her",
     "ctaSecondary": "Se alle udgivere",
     "mediaTypes": {
       "video": "Video",
