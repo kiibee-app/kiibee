@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -191,6 +192,7 @@ export const useExploreFeed = ({
   );
 
   return useQuery<ExploreFeedResponse>({
+    ...CACHE_CONFIG.explore,
     queryKey: [API.feed.explore, params, body],
     queryFn: async ({ signal }) => {
       const response = await axiosClient.post<ExploreFeedResponse>(

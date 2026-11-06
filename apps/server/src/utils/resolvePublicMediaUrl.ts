@@ -3,16 +3,40 @@ const KIIBEE_MEDIA_HOSTS = new Set(['kiibee.dk', 'www.kiibee.dk']);
 const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
 const SPACES_HOST_PATTERN = /\.digitaloceanspaces\.com$/i;
 
+function preferMediaCdn(base: string): string {
+  return base.replace(
+    /^https:\/\/kiibee-bucket\.lon1\.digitaloceanspaces\.com$/,
+    'https://kiibee-bucket.lon1.cdn.digitaloceanspaces.com',
+  );
+}
+
+function isOwnedSpacesHost(hostname: string): boolean {
+  const bucket = process.env.DO_BUCKET?.trim();
+  const region = process.env.DO_REGION?.trim();
+  return (
+    hostname === 'kiibee-bucket.lon1.digitaloceanspaces.com' ||
+    hostname === 'kiibee-bucket.lon1.cdn.digitaloceanspaces.com' ||
+    Boolean(
+      bucket &&
+      region &&
+      [
+        `${bucket}.${region}.digitaloceanspaces.com`,
+        `${bucket}.${region}.cdn.digitaloceanspaces.com`,
+      ].includes(hostname),
+    )
+  );
+}
+
 function getMediaCdnBase(): string | null {
   const explicit = process.env.PUBLIC_MEDIA_CDN_URL?.trim();
   if (explicit) {
-    return explicit.replace(/\/$/, '');
+    return preferMediaCdn(explicit.replace(/\/$/, ''));
   }
 
   const bucket = process.env.DO_BUCKET?.trim();
   const region = process.env.DO_REGION?.trim();
   if (bucket && region) {
-    return `https://${bucket}.${region}.digitaloceanspaces.com`;
+    return preferMediaCdn(`https://${bucket}.${region}.digitaloceanspaces.com`);
   }
 
   return null;
@@ -77,6 +101,11 @@ function buildLegacyKiibeeMediaUrl(pathname: string): string {
 function rewriteAbsoluteMediaUrl(url: string): string {
   try {
     const parsed = new URL(url);
+    if (
+      parsed.searchParams.has('X-Amz-Signature') ||
+      parsed.searchParams.has('sig')
+    )
+      return url;
     const pathname = (() => {
       try {
         return decodeURIComponent(parsed.pathname);
@@ -95,8 +124,10 @@ function rewriteAbsoluteMediaUrl(url: string): string {
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
+      if (!isOwnedSpacesHost(parsed.hostname)) return url;
       const cdnBase = getMediaCdnBase();
-      const origin = cdnBase ?? `${parsed.protocol}//${parsed.host}`;
+      const origin =
+        cdnBase ?? preferMediaCdn(`${parsed.protocol}//${parsed.host}`);
       return `${origin}${encodeSpacesMediaPath(pathname)}`;
     }
   } catch {

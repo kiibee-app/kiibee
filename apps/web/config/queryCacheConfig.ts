@@ -1,4 +1,8 @@
 export const CACHE_CONFIG = {
+  explore: {
+    staleTime: 2 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
+  },
   static: {
     staleTime: 30 * 60 * 1000,
     gcTime: 60 * 60 * 1000,
