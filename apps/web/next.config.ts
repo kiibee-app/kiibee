@@ -36,9 +36,10 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     qualities: [75, 95],
     // Cache resized public images rather than downloading full-size originals.
-    minimumCacheTTL: 3600,
+    minimumCacheTTL: 86400,
     remotePatterns: IMAGE_REMOTE_PATTERNS,
   },
 };

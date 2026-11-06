@@ -394,11 +394,15 @@ export default function LatestUpload({
             <>
               <UploadBackgroundImage
                 src={uploadImageUrl}
+                loading="eager"
+                decoding="async"
                 {...DECORATIVE_IMAGE_PROPS}
               />
               <UploadImage
                 src={uploadImageUrl}
                 alt={data.imageAlt}
+                loading="eager"
+                decoding="async"
                 onError={handleThumbnailError}
               />
               {hasTrailer && !isEmbedTrailer ? (

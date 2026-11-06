@@ -26,7 +26,7 @@ function getMediaCdnBase(): string | null {
   const bucket = process.env.NEXT_PUBLIC_DO_BUCKET?.trim();
   const region = process.env.NEXT_PUBLIC_DO_REGION?.trim();
   if (bucket && region) {
-    return `https://${bucket}.${region}.digitaloceanspaces.com`;
+    return `https://${bucket}.${region}.cdn.digitaloceanspaces.com`;
   }
 
   return null;
@@ -115,7 +115,14 @@ function rewriteAbsoluteMediaUrl(url: string): string {
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
       const cdnBase = getMediaCdnBase();
-      const origin = cdnBase ?? `${parsed.protocol}//${parsed.host}`;
+      const doOriginMatch = parsed.hostname.match(
+        /^([^.]+)\.([a-z0-9-]+)\.digitaloceanspaces\.com$/i,
+      );
+      const origin =
+        cdnBase ??
+        (doOriginMatch
+          ? `${parsed.protocol}//${doOriginMatch[1]}.${doOriginMatch[2]}.cdn.digitaloceanspaces.com`
+          : `${parsed.protocol}//${parsed.host}`);
       return `${origin}${encodeSpacesMediaPath(pathname)}`;
     }
   } catch (error) {
