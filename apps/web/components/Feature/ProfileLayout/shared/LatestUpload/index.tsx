@@ -15,6 +15,7 @@ import {
   TextSection,
   Title,
   Paragraph,
+  DescriptionLink,
   Badge,
   ImageOverlay,
   BottomControls,
@@ -130,6 +131,18 @@ export default function LatestUpload({
 
   const effectiveCollectionId =
     data.collectionId || relatedCollectionQuery.data?.collectionId;
+  const contentKey = data.slug || data.contentId;
+  const contentHref = contentKey
+    ? pathPublishedContent(
+        contentKey,
+        data.creatorSlug,
+        data.title,
+        data.collectionName ||
+          relatedCollectionQuery.data?.collectionName ||
+          data.collectionSlug ||
+          relatedCollectionQuery.data?.collectionSlug,
+      )
+    : null;
   const isPaidCol =
     Boolean(data.isPaidCollection) ||
     Boolean(relatedCollectionQuery.data?.isPaid);
@@ -486,7 +499,17 @@ export default function LatestUpload({
 
         <TextSection>
           <Title>{data.title}</Title>
-          <Paragraph>{data.description}</Paragraph>
+          {contentHref ? (
+            <DescriptionLink
+              href={contentHref}
+              aria-label={`${t("createProfileHome.latestUpload.seeContent")}: ${data.title}`}
+              title={t("createProfileHome.latestUpload.seeContent")}
+            >
+              <Paragraph>{data.description}</Paragraph>
+            </DescriptionLink>
+          ) : (
+            <Paragraph>{data.description}</Paragraph>
+          )}
 
           {primaryAction ? (
             <ActionButtons>

@@ -11,12 +11,13 @@ import {
 export const contentTitleUrlSlug = (title: string) => {
   if (!title) return '';
   return String(title)
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .normalize('NFC')
     .toLowerCase()
     .replace(/æ/g, 'ae')
     .replace(/ø/g, 'oe')
-    .replace(/å/g, 'a')
+    .replace(/å/g, 'aa')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/['’‘`"“”]/g, '')
     .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
     .replace(/[^a-z0-9]+/g, '-')
@@ -62,10 +63,14 @@ export const cleanCollectionSlug = (
   let raw = collectionNameOrSlug.trim();
 
   if (creatorSlug) {
-    const cleanCreator = contentTitleUrlSlug(creatorSlug);
-    const slugifiedRaw = contentTitleUrlSlug(raw);
-    if (slugifiedRaw.startsWith(`${cleanCreator}-`)) {
-      raw = slugifiedRaw.slice(cleanCreator.length + 1);
+    const creatorKey = contentTitleUrlSlug(creatorSlug).replace(/-/g, '');
+    const parts = contentTitleUrlSlug(raw).split('-');
+    // Umbraco sometimes stored a compact creator prefix, e.g. uffeholm-shows.
+    for (let index = 1; creatorKey && index < parts.length; index += 1) {
+      if (parts.slice(0, index).join('') === creatorKey) {
+        raw = parts.slice(index).join('-');
+        break;
+      }
     }
   }
 

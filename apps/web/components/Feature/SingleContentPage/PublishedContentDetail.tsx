@@ -9,12 +9,7 @@ import {
 } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
-import {
-  PATHS,
-  pathPublishedContent,
-  cleanCollectionSlug,
-  slugifyContentTitle,
-} from "@/utils/path";
+import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { GenericModal } from "@/components/UI/Modals";
@@ -156,13 +151,13 @@ export default function PublishedContentDetail({
     creatorSlug;
 
   const resolvedCollectionSlug =
-    currentRouteCollectionSlug ||
     content?.collectionName ||
     tutorial?.collectionName ||
     relatedCollectionQuery.data?.collectionName ||
     content?.collectionSlug ||
     tutorial?.collectionSlug ||
     relatedCollectionQuery.data?.collectionSlug ||
+    currentRouteCollectionSlug ||
     null;
 
   useEffect(() => {
@@ -175,26 +170,6 @@ export default function PublishedContentDetail({
       resolvedCollectionSlug,
     );
     if (pathname === canonicalPath) return;
-
-    const currentParamContent = Array.isArray(params?.contentSlug)
-      ? params.contentSlug[0]
-      : params?.contentSlug;
-    const isExactCreator =
-      Boolean(creatorSlug) &&
-      cleanCollectionSlug(creatorSlug, null) ===
-        cleanCollectionSlug(resolvedCreatorSlug, null);
-    const isExactCollection =
-      Boolean(currentRouteCollectionSlug) &&
-      cleanCollectionSlug(currentRouteCollectionSlug, creatorSlug) ===
-        cleanCollectionSlug(resolvedCollectionSlug, creatorSlug);
-    const isExactContent =
-      Boolean(currentParamContent) &&
-      slugifyContentTitle(currentParamContent!) ===
-        slugifyContentTitle(resolvedContentSlug);
-
-    if (isExactCreator && isExactCollection && isExactContent) {
-      return;
-    }
 
     const search = searchParams?.toString();
     const nextUrl = `${canonicalPath}${search ? `?${search}` : ""}`;
@@ -209,9 +184,6 @@ export default function PublishedContentDetail({
     resolvedCreatorSlug,
     resolvedCollectionSlug,
     tutorial?.slug,
-    creatorSlug,
-    currentRouteCollectionSlug,
-    params?.contentSlug,
     searchParams,
   ]);
   const {
@@ -403,10 +375,7 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
-              collectionSlug={
-                currentRouteCollectionSlug ||
-                relatedCollectionQuery.data.collectionSlug
-              }
+              collectionSlug={resolvedCollectionSlug ?? undefined}
               ownerCreatorId={publicCreator?.id || content.creatorId}
               ownerCreatorSlug={
                 publicCreator?.slug || content.creatorSlug || creatorSlug
