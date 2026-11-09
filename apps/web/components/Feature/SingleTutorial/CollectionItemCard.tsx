@@ -179,17 +179,14 @@ export default function CollectionItemCard({
     const requestedHref = button.href ?? contentHref;
     const targetHref = isWebContent && !isKiibee ? contentHref : requestedHref;
 
-    if (
-      isDirectWebRedirect &&
-      targetHref === webUrl
-    ) {
+    if (isDirectWebRedirect && targetHref === webUrl) {
       window.location.assign(targetHref);
       return;
     }
 
     const isLoggedIn = Boolean(user && user.id);
 
-    if (button.requiresAuth && !isLoggedIn) {
+    if (button.requiresAuth && !isLoggedIn && !isWebContent) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
       if (isPurchaseOrRent) {

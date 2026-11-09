@@ -1,5 +1,6 @@
 "use client";
 
+import { getCollectionUnlockStorageKey } from "@/utils/accessGate";
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 
@@ -68,6 +69,12 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
     return { gateType: null, isLoading: false };
   }
 
+  const isUnlocked = Boolean(
+    id &&
+    typeof window !== "undefined" &&
+    window.localStorage.getItem(getCollectionUnlockStorageKey(id)) === "true",
+  );
+
   const gateType: AccessGateType | null =
     accessType === ACCESS_TYPE_PASSWORD
       ? TYPE_CODE
@@ -75,5 +82,5 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
         ? TYPE_EMAIL
         : null;
 
-  return { gateType, isLoading: false };
+  return { gateType: isUnlocked ? null : gateType, isLoading: false };
 }

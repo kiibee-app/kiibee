@@ -10,7 +10,10 @@ import {
   approveContentAccessService,
   requestContentAccessService,
 } from './services/requestContentAccess.service';
-import { redeemContentAccessService } from './services/redeemContentAccess.service';
+import {
+  redeemContentAccessService,
+  redeemGuestWebContentAccessService,
+} from './services/redeemContentAccess.service';
 import { RequestContentAccessDto } from './dto/contentAccess.dto';
 
 @Injectable()
@@ -29,6 +32,10 @@ export class CreatorUsersService {
 
   redeemContentAccess(token: string, userId: string) {
     return redeemContentAccessService(token, userId);
+  }
+
+  redeemGuestWebContentAccess(token: string) {
+    return redeemGuestWebContentAccessService(token);
   }
 
   getRegistrations(creatorId: string) {

@@ -104,11 +104,6 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const handleSuccess = async (value: string, name?: string) => {
     if (!targetCreatorId || !finalGateType) return false;
 
-    if (!storedUser?.id) {
-      setIsLoginModalVisible(true);
-      return false;
-    }
-
     const request =
       finalGateType === TYPE_CODE
         ? axiosClient.post(API.content.verifyCode(targetCreatorId), {

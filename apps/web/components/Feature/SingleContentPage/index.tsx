@@ -28,6 +28,8 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { isFreeContentItem } from "@/utils/contentPricingActions";
 import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
 import { useContentDownload } from "@/hooks/useContentDownload";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
@@ -159,16 +161,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     CreateOrderPayload
   >(API.order.create);
 
+  const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
+    useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
+  const canViewWebAsGuest = Boolean(
+    hero.contentType === FORMAT_TYPE.WEB &&
+    content &&
+    !accessGate &&
+    content.accessType !== "paid" &&
+    (!content.isPaidCollection || hasCollectionAccess) &&
+    (hasGuestGateAccess ||
+      (isFreeContentItem(content) && !content.isPaidCollection)),
+  );
+
   const handleActionClick = useCallback(
     (action: SingleContentAction) => {
-      if (!user?.id) {
+      if (!user?.id && !canViewWebAsGuest) {
         handleShowLoginModal();
         return;
       }
 
       action.onClick?.();
     },
-    [handleShowLoginModal, user?.id],
+    [canViewWebAsGuest, handleShowLoginModal, user?.id],
   );
 
   const actionsWithPayment = useMemo(() => {
@@ -290,7 +304,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!user?.id) {
+    if (!user?.id && !canViewWebAsGuest) {
       handleShowLoginModal();
       return;
     }
@@ -355,6 +369,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     }
   }, [
+    canViewWebAsGuest,
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
