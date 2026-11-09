@@ -6,8 +6,13 @@ import {
 } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { contentAccessRequests, users } from 'src/database/schema';
-import { STATUS } from 'src/utils/constant';
+import {
+  contentAccessRequests,
+  contentTypes,
+  mediaFiles,
+  users,
+} from 'src/database/schema';
+import { ACCESS_TYPE, MEDIA_FILE_TYPE, STATUS } from 'src/utils/constant';
 import { success } from 'src/utils/sendResponse';
 import { getAccessRequest } from './contentAccessQuery.service';
 
@@ -76,6 +81,47 @@ export const redeemContentAccessService = async (
       contentId: request.contentId,
       status: STATUS.APPROVED,
     },
+    'Content access redeemed successfully',
+    HttpStatus.OK,
+  );
+};
+
+// Possession of an approved, unexpired email link grants guest access only to
+// nonpaid web content. Account-bound redemption remains unchanged for media.
+export const redeemGuestWebContentAccessService = async (token: string) => {
+  const request = await getAccessRequest(token);
+  if (request.status !== STATUS.APPROVED) {
+    throw new ForbiddenException('Content access request is not approved');
+  }
+  if (request.expiresAt.getTime() < Date.now()) {
+    throw new GoneException('Content access request has expired');
+  }
+  const [content] = await db
+    .select({
+      typeId: mediaFiles.contentTypeId,
+      typeName: contentTypes.name,
+      accessType: mediaFiles.accessType,
+    })
+    .from(mediaFiles)
+    .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
+    .where(
+      and(
+        eq(mediaFiles.id, request.contentId),
+        eq(mediaFiles.isDeleted, false),
+      ),
+    )
+    .limit(1);
+  const isWeb =
+    content &&
+    (content.typeId?.toLowerCase() === MEDIA_FILE_TYPE.WEB ||
+      ['web', 'web link'].includes(content.typeName?.toLowerCase() ?? ''));
+  if (!isWeb || content.accessType !== ACCESS_TYPE.EMAIL_GATED) {
+    throw new ForbiddenException(
+      'Guest access is only available for email-gated web content',
+    );
+  }
+  return success(
+    { contentId: request.contentId, status: STATUS.APPROVED },
     'Content access redeemed successfully',
     HttpStatus.OK,
   );

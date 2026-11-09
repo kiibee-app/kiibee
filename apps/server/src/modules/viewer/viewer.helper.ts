@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import {
   eq,
   and,
@@ -166,7 +167,7 @@ export const getMediaByType = (mediaIds: string[], type: string) => {
       accessType: mediaFiles.accessType,
       createdAt: mediaFiles.createdAt,
       contentType: sql<string>`coalesce(${contentTypes.name}, ${mediaFiles.contentTypeId}, 'video')`,
-      creatorName: users.fullName,
+      creatorName: publicCreatorName,
       contentUrl: mediaFiles.contentUrl,
     })
     .from(mediaFiles)
@@ -203,7 +204,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
       coverImageUrl: collections.coverImageUrl,
       description: collections.description,
       creatorId: collections.creatorId,
-      creatorName: users.fullName,
+      creatorName: publicCreatorName,
       buyPrice: collections.buyPrice,
     })
     .from(collections)

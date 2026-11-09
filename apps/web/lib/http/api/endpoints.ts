@@ -91,6 +91,7 @@ export const API = {
     register: "/creator-users/register",
     requestContentAccess: "/creator-users/content-access/request",
     approveContentAccess: "/creator-users/content-access/approve",
+    redeemGuestWebContentAccess: "/creator-users/content-access/redeem-web",
     redeemContentAccess: "/creator-users/content-access/redeem",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,

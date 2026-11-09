@@ -229,12 +229,13 @@ export function slugFromUrls(urls: unknown): string | null {
 export function slugifyUmbracoValue(value: string): string {
   return (
     value
-      .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .normalize('NFC')
       .toLowerCase()
       .replace(/æ/g, 'ae')
       .replace(/ø/g, 'oe')
-      .replace(/å/g, 'a')
+      .replace(/å/g, 'aa')
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
       .replace(/['’‘`"“”]/g, '')
       .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')

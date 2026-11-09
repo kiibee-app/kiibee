@@ -14,6 +14,7 @@ import {
   contentSlugGenerator,
 } from '../content.helper';
 import { contentLimits } from 'src/database/schema';
+import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 
 export const createContent = async (
   dto: CreateContentDto,
@@ -55,7 +56,7 @@ export const createContent = async (
         contentTypeId,
         creatorId,
         fileSize,
-        maxDownloadCount: downloadLimit[0]?.maxLimit || 0,
+        maxDownloadCount: resolveDownloadLimit(downloadLimit[0]?.maxLimit),
       });
 
       await tx.insert(collectionItems).values({

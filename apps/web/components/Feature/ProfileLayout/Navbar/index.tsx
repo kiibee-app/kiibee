@@ -140,7 +140,10 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
 
   const actions = (
     <>
-      <SearchIconButton href={PATHS.EXPLORE} aria-label={t(NAV.explore)}>
+      <SearchIconButton
+        href={PATHS.EXPLORE}
+        aria-label={t(NAV.exploreCreators)}
+      >
         <SearchIcon width={18} height={18} color="currentColor" />
       </SearchIconButton>
       <GenericButton

@@ -1,3 +1,4 @@
+import { resolvePublicCreatorPath } from 'src/utils/creatorPath';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
@@ -237,7 +238,11 @@ export const getExploreCreatorsService = async (
 
 export const getCreatorPublicProfileService = async (creatorId: string) => {
   try {
-    const rows = await buildCreatorsQuery(creatorId).limit(1);
+    const resolvedId = await resolvePublicCreatorPath(creatorId);
+    if (!resolvedId) {
+      throw new HttpException('Creator not found', HttpStatus.NOT_FOUND);
+    }
+    const rows = await buildCreatorsQuery(resolvedId).limit(1);
     const row = rows.find((item) => item.name.length > 0);
 
     if (!row) {

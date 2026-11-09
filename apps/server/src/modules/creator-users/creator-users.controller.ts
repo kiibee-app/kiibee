@@ -45,6 +45,11 @@ export class CreatorUsersController {
     return this.creatorUsersService.approveContentAccess(query.token);
   }
 
+  @Post('content-access/redeem-web')
+  redeemGuestWebContentAccess(@Body() body: ApproveContentAccessDto) {
+    return this.creatorUsersService.redeemGuestWebContentAccess(body.token);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Post('content-access/redeem')
   redeemContentAccess(
