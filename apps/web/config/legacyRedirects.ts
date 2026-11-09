@@ -7,6 +7,12 @@ export type LegacyRedirect = {
 };
 
 export const LEGACY_REDIRECTS: readonly LegacyRedirect[] = [
+  // Old receipts contain an order number, while current content pages use slugs.
+  {
+    source: "/:creatorSlug/purchases/:orderId(\\d+)",
+    destination: "/dashboard/viewer",
+    permanent: false,
+  },
   ...Object.entries(CREATOR_SLUG_ALIASES).map(([alias, canonical]) => ({
     source: `/${alias}/:path*`,
     destination: `/${canonical}/:path*`,
