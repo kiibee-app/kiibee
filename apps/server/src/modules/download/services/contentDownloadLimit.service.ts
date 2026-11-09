@@ -6,12 +6,13 @@ import { fail, success } from 'src/utils/sendResponse';
 import { and, eq } from 'drizzle-orm';
 import { contentDownloadCount, mediaFiles } from 'src/database/schema';
 import { randomUUID } from 'crypto';
+import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 
 export const getContentDownloadLimit = async () => {
   try {
     const limit = await db.select().from(contentLimits).limit(1);
     const response = {
-      maxLimit: limit[0]?.maxLimit ?? 0,
+      maxLimit: resolveDownloadLimit(limit[0]?.maxLimit),
     };
     return success(
       response,
@@ -92,13 +93,9 @@ export const getContentDownloadInfo = async (
         ),
       )
       .limit(1);
-    const rawMaxLimit = content?.maxDownloadCount;
-    const isUnlimited = rawMaxLimit == null || rawMaxLimit <= 0;
-    const maxDownloadLimit = isUnlimited ? null : rawMaxLimit;
+    const maxDownloadLimit = resolveDownloadLimit(content?.maxDownloadCount);
     const downloadCount = downloadCountResult[0]?.downloadCount ?? 0;
-    const remainingDownloads = isUnlimited
-      ? null
-      : Math.max(0, rawMaxLimit - downloadCount);
+    const remainingDownloads = Math.max(0, maxDownloadLimit - downloadCount);
 
     const response = {
       maxDownloadLimit,

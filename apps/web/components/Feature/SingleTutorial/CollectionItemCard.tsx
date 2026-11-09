@@ -186,7 +186,7 @@ export default function CollectionItemCard({
 
     const isLoggedIn = Boolean(user && user.id);
 
-    if (button.requiresAuth && !isLoggedIn) {
+    if (button.requiresAuth && !isLoggedIn && !isWebContent) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
       if (isPurchaseOrRent) {

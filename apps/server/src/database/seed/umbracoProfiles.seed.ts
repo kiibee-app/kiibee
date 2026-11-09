@@ -13,6 +13,7 @@ import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
 import { ROLE, SUBSCRIPTION_PLAN } from 'src/utils/constant';
 
 import { db } from '../db';
+import { uniqueSyntheticEmail } from './umbracoSeed.helpers';
 import {
   auditLogs,
   contentAppearance,
@@ -36,7 +37,6 @@ const PROFILE_FILES = [
 ] as const;
 
 const FALLBACK_PLAN_NAME = SUBSCRIPTION_PLAN.START_UP;
-const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
 
 const LEGACY_PLAN_DOCUMENT_NAMES: Record<string, string> = {
   'umb://document/5ba7f17c7cf64beea5db1176fd45d365':
@@ -143,28 +143,19 @@ function stripHtml(value: string | null): string | null {
 function slugify(value: string): string {
   return (
     value
-      .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .normalize('NFC')
       .toLowerCase()
       .replace(/æ/g, 'ae')
       .replace(/ø/g, 'oe')
-      .replace(/å/g, 'a')
+      .replace(/å/g, 'aa')
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
       .replace(/['’‘`"“”]/g, '')
       .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, ' and ')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') || 'umbraco-profile'
   );
-}
-
-function uniqueSyntheticEmail(profileKey: string): string {
-  const slug = truncate(slugify(profileKey), 48);
-  const suffix = createHash('sha256')
-    .update(profileKey)
-    .digest('hex')
-    .slice(0, 8);
-
-  return `${slug}-${suffix}@${UMBRACO_PROFILE_EMAIL_DOMAIN}`;
 }
 
 function splitName(fullName: string): {

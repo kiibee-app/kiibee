@@ -11,9 +11,9 @@ import { isSafeDownloadUrl } from "@/utils/path";
 import { logger } from "@/lib/logger";
 
 export type ContentDownloadInfo = {
-  maxDownloadLimit: number;
+  maxDownloadLimit: number | null;
   downloadCount: number;
-  remainingDownloads: number;
+  remainingDownloads: number | null;
 };
 
 export type ContentDownloadInfoResponse = {

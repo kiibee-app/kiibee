@@ -1,5 +1,6 @@
 "use client";
 
+import { useTextOverflow } from "@/hooks/useTextOverflow";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
@@ -28,6 +29,7 @@ export default function StorySection() {
   const { displayName, coverImageUrl, about } = useCreatorChannelProfile();
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
+  const { textRef, hasOverflow } = useTextOverflow(biography);
 
   return (
     <HeroFrame>
@@ -59,14 +61,16 @@ export default function StorySection() {
             </StoryTitle>
 
             <StoryDescription>
-              <StoryBioText>
+              <StoryBioText ref={textRef}>
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
                   {biography}
                 </MonoText>
               </StoryBioText>
-              <StoryMoreButton onClick={openAbout}>
-                {t(CREATE_PROFILE_HOME.more)}
-              </StoryMoreButton>
+              {hasOverflow && (
+                <StoryMoreButton onClick={openAbout}>
+                  {t(CREATE_PROFILE_HOME.more)}
+                </StoryMoreButton>
+              )}
             </StoryDescription>
           </StoryPanel>
         </HeroContent>

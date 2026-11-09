@@ -58,9 +58,15 @@ type UseExploreContentParams = {
   sort?: ExploreContentSort;
   filters?: ExploreContentFilters;
   enabled?: boolean;
+  section?: ExploreApiType;
 };
 
-type ExploreApiType = "new" | "trending" | "created_for_you";
+type ExploreApiType =
+  | "latest"
+  | "trending"
+  | "created_for_you"
+  | "recent"
+  | "top_creators";
 
 type ExploreContentSection = "trending" | "latest" | "recent";
 
@@ -90,7 +96,7 @@ type ExploreFeedData = {
 type ExploreFeedResponse = ApiResponse<ExploreFeedData>;
 
 const EXPLORE_SORT_TO_API_TYPE: Record<ExploreContentSort, ExploreApiType> = {
-  [EXPLORE_CONTENT_SORT.NEW]: "new",
+  [EXPLORE_CONTENT_SORT.NEW]: "latest",
   [EXPLORE_CONTENT_SORT.POPULAR]: "trending",
   [EXPLORE_CONTENT_SORT.ALL]: "created_for_you",
 };
@@ -180,15 +186,16 @@ export const useExploreFeed = ({
   sort = EXPLORE_CONTENT_SORT.NEW,
   filters,
   enabled = true,
+  section,
 }: UseExploreContentParams = {}) => {
   const body = useMemo(() => pruneExploreFilters(filters), [filters]);
   const params = useMemo(
     () => ({
       limit,
       ...(search?.trim() ? { search: search.trim() } : {}),
-      type: EXPLORE_SORT_TO_API_TYPE[sort],
+      type: section ?? EXPLORE_SORT_TO_API_TYPE[sort],
     }),
-    [limit, search, sort],
+    [limit, search, sort, section],
   );
 
   return useQuery<ExploreFeedResponse>({
@@ -235,6 +242,7 @@ function useExploreTutorialSection(
     tutorials,
     isLoading,
     isError: query.isError,
+    isFetching: query.isFetching,
   };
 }
 
@@ -254,16 +262,17 @@ export const useExploreTrendingContent = (params?: {
   useExploreTutorialSection(TRENDING, {
     limit: params?.limit ?? TRENDING_LIMIT,
     search: params?.search,
+    section: "trending",
   });
 
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
-  useExploreTutorialSection("recent", params);
+  useExploreTutorialSection("recent", { ...params, section: "recent" });
 
 export const useExploreTopCreators = (
   limit = TOP_CREATORS_LIMIT,
   search?: string,
 ) => {
-  const query = useExploreFeed({ limit, search });
+  const query = useExploreFeed({ limit, search, section: "top_creators" });
 
   const creators = useMemo((): ExploreTopCreator[] => {
     const items = query.data?.data?.topCreators;
@@ -285,6 +294,7 @@ export const useExploreTopCreators = (
     creators,
     isLoading,
     isError: query.isError,
+    isFetching: query.isFetching,
   };
 };
 

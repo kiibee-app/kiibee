@@ -1,3 +1,4 @@
+import { publicCreatorNameFor } from 'src/utils/publicCreatorName';
 import { HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { alias } from 'drizzle-orm/pg-core';
@@ -33,7 +34,9 @@ export async function getBillingInvoiceService(
         contentImage: sql<
           string | null
         >`coalesce(${mediaFiles.thumbnailUrl}, ${collections.coverImageUrl})`,
-        creatorName: sql<string>`coalesce(${mediaCreators.fullName}, ${collectionCreators.fullName})`,
+        creatorName: publicCreatorNameFor(
+          sql`coalesce(${mediaCreators.id}, ${collectionCreators.id})`,
+        ),
         paymentDate: sql<Date>`coalesce(${payments.paidAt}, ${payments.createdAt})`,
         amount: payments.amount,
         cardNumber: payments.cardNo,

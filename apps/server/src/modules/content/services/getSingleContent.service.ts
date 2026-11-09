@@ -1,3 +1,5 @@
+import { resolveLegacyContentKey } from 'src/utils/legacyContentPaths';
+import { resolvePublicCreatorPath } from 'src/utils/creatorPath';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq, and, gt, ilike, isNull, or, sql } from 'drizzle-orm';
@@ -26,12 +28,14 @@ const normalizeAlpha = (val?: string | null): string => {
   return val.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 };
 
-function findBestContentMatch<
+export function findBestContentMatch<
   T extends {
     id: string;
     title: string;
     slug: string;
     creatorId?: string | null;
+    isPublished?: boolean;
+    visibility?: string;
   },
 >(items: T[], contentId: string, creatorSlug?: string | null): T | null {
   if (!items || items.length === 0) return null;
@@ -43,6 +47,16 @@ function findBestContentMatch<
   if (isUuid) {
     const exactId = items.find((i) => i.id === contentId);
     if (exactId) return exactId;
+  }
+
+  // Resolve a public title against live records before considering hidden draft
+  // slugs, which may be a closer textual match after a legacy import.
+  const published = items.filter(
+    (item) => item.isPublished === true && item.visibility === 'public',
+  );
+  if (published.length > 0 && published.length < items.length) {
+    const liveMatch = findBestContentMatch(published, contentId, creatorSlug);
+    if (liveMatch) return liveMatch;
   }
 
   const reqSlug = contentTitleUrlSlug(contentId);
@@ -140,6 +154,8 @@ export const getSingleContentService = async (
       return fail('Content ID is required', HttpStatus.BAD_REQUEST);
     }
 
+    contentId = resolveLegacyContentKey(contentId, creatorSlug);
+
     const now = new Date();
 
     const isUuid =
@@ -167,9 +183,12 @@ export const getSingleContentService = async (
         )
         .limit(1);
 
-      if (foundCreator) {
-        creatorId = foundCreator.id;
-      }
+      creatorId =
+        foundCreator?.id ?? (await resolvePublicCreatorPath(creatorSlug));
+    }
+
+    if (creatorSlug && !creatorId) {
+      return fail('Creator not found', HttpStatus.NOT_FOUND);
     }
 
     let targetCollection: {

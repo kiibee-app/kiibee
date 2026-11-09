@@ -53,7 +53,7 @@ const resolveSections = (type?: ExploreType) => {
   return {
     trending: type === ExploreType.TRENDING,
     recent: type === ExploreType.RECENT,
-    latest: type === ExploreType.CREATED_FOR_YOU,
+    latest: type === ExploreType.LATEST || type === ExploreType.CREATED_FOR_YOU,
     topCreators: type === ExploreType.TOP_CREATORS,
   };
 };
@@ -65,7 +65,7 @@ export const exploreService = async (
   type?: ExploreType,
 ) => {
   try {
-    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT);
+    const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT, 100);
     const sections = resolveSections(type);
     const searchCondition = buildSearch(search);
     const contentTypeIds = cleanArray(filter?.contentTypeId);

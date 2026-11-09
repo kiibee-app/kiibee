@@ -1,3 +1,4 @@
+import { canonicalCreatorSlug } from "./creatorSlugAliases";
 import type { ProfileTabKey } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { toCanonicalPathname } from "./localizedRoutes";
@@ -58,7 +59,7 @@ export function getPublicCreatorProfilePath(
   _layout?: CreatorLayoutParam | CreatorLayoutKey | null,
 ): string {
   void _layout;
-  return `/${creatorId}`;
+  return `/${canonicalCreatorSlug(creatorId)}`;
 }
 
 export function withCreatorIdQuery(

@@ -19,6 +19,8 @@ import {
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
+import { FORMAT_TYPE } from "@/utils/types";
+import { getContentType } from "@/utils/contentApi";
 import type { ContentDetailItem } from "@/utils/contentApi";
 import {
   getContentUnlockStorageKey,
@@ -88,6 +90,8 @@ export function useContentAccessGate(
     () => false,
   );
 
+  const isWebContent = getContentType(content) === FORMAT_TYPE.WEB;
+
   const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
   useEffect(() => {
@@ -96,7 +100,7 @@ export function useContentAccessGate(
 
   useEffect(() => {
     if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
-    if (!loginUser?.id) {
+    if (!loginUser?.id && !isWebContent) {
       const returnTo = `${window.location.pathname}${window.location.search}`;
       window.location.replace(pathLoginWithNext(returnTo));
       return;
@@ -106,9 +110,15 @@ export function useContentAccessGate(
 
     const redeemAccess = async () => {
       try {
-        await axiosClient.post(API.creatorUsers.redeemContentAccess, {
-          token: approvedAccessToken,
-        });
+        const response = await axiosClient.post(
+          !loginUser?.id && isWebContent
+            ? API.creatorUsers.redeemGuestWebContentAccess
+            : API.creatorUsers.redeemContentAccess,
+          { token: approvedAccessToken },
+        );
+        if (response.data?.data?.contentId !== content.id) {
+          throw new Error("Access link belongs to different content");
+        }
 
         if (cancelled) return;
 
@@ -133,13 +143,20 @@ export function useContentAccessGate(
     return () => {
       cancelled = true;
     };
-  }, [approvedAccessToken, content?.id, contentStorageKey, loginUser?.id]);
+  }, [
+    approvedAccessToken,
+    content?.id,
+    contentStorageKey,
+    loginUser?.id,
+    isWebContent,
+  ]);
 
   const hasContentGate = isContentCode || isContentEmail;
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
   const isContentUnlocked = isContentEmail
-    ? hasApprovedEmailAccess || Boolean(loginUser?.id && hasLocalContentUnlock)
+    ? hasApprovedEmailAccess ||
+      Boolean((loginUser?.id || isWebContent) && hasLocalContentUnlock)
     : hasServerAccess || hasLocalContentUnlock;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
@@ -179,13 +196,22 @@ export function useContentAccessGate(
       value &&
       content?.creatorId
     ) {
-      await axiosClient.post(API.creatorUsers.requestContentAccess, {
-        creatorId: content.creatorId,
-        contentId: content.id,
-        email: value,
-        name,
-      });
-      return true;
+      if (isWebContent && !isContentLocked) {
+        await axiosClient.post(API.creatorUsers.register, {
+          creatorId: content.creatorId,
+          sourceId: targetId,
+          email: value,
+          name,
+        });
+      } else {
+        await axiosClient.post(API.creatorUsers.requestContentAccess, {
+          creatorId: content.creatorId,
+          contentId: content.id,
+          email: value,
+          name,
+        });
+        return true;
+      }
     }
 
     const unlockStorageKey = [

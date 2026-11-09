@@ -99,35 +99,35 @@ async function fetchMediaFilesByIds(ids: string[]) {
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }
 
-const trendingScore = sql<number>`(
-  -- Purchases and rentals from user_content_access (primary weight)
-  COALESCE((
-    SELECT COUNT(*)::int
+// Aggregate once instead of rescanning access and analytics for every candidate.
+// COUNT(DISTINCT access_id) preserves the old OR semantics when an access row
+// references both the media file and a collection containing that file.
+const trendingAccessCounts = sql`(
+  SELECT access_routes.media_file_id, COUNT(DISTINCT access_routes.access_id)::int AS access_count
+  FROM (
+    SELECT uca.id AS access_id, uca.media_file_id
+    FROM user_content_access uca WHERE uca.media_file_id IS NOT NULL
+    UNION
+    SELECT uca.id AS access_id, ci.media_file_id
     FROM user_content_access uca
-    WHERE uca.media_file_id = ${mediaFiles.id}
-       OR uca.collection_id IN (
-         SELECT ci.collection_id
-         FROM collection_items ci
-         WHERE ci.media_file_id = ${mediaFiles.id}
-       )
-  ), 0) * 100
-  +
-  -- Analytics purchases & rentals
-  COALESCE((
-    SELECT SUM(ads.purchases + ads.rentals)::int
-    FROM analytics_daily_summary ads
-    WHERE ads.media_file_id = ${mediaFiles.id}
-  ), 0) * 50
-  +
-  -- Engagement (views and visits)
-  COALESCE((
-    SELECT SUM(ads.views + ads.visits)::int
-    FROM analytics_daily_summary ads
-    WHERE ads.media_file_id = ${mediaFiles.id}
-  ), 0)
-  +
-  -- Priority to monetized buy/rent content
-  (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
+    INNER JOIN collection_items ci ON ci.collection_id = uca.collection_id
+  ) access_routes
+  GROUP BY access_routes.media_file_id
+) AS trending_access`;
+
+const trendingAnalytics = sql`(
+  SELECT media_file_id,
+    SUM(purchases + rentals)::int AS conversion_count,
+    SUM(views + visits)::int AS engagement_count
+  FROM analytics_daily_summary
+  GROUP BY media_file_id
+) AS trending_analytics`;
+
+const trendingScore = sql<number>`(
+  COALESCE(trending_access.access_count, 0) * 100
+  + COALESCE(trending_analytics.conversion_count, 0) * 50
+  + COALESCE(trending_analytics.engagement_count, 0)
+  + (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
 )`;
 
 export const getTrendingQuery = async (where: any, limit: number) => {
@@ -146,6 +146,14 @@ export const getTrendingQuery = async (where: any, limit: number) => {
         eq(users.isDeleted, false),
         publiclyVisibleCreatorWhere,
       ),
+    )
+    .leftJoin(
+      trendingAccessCounts,
+      sql`trending_access.media_file_id = ${mediaFiles.id}`,
+    )
+    .leftJoin(
+      trendingAnalytics,
+      sql`trending_analytics.media_file_id = ${mediaFiles.id}`,
     )
     .where(where)
     .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
