@@ -28,6 +28,8 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { isFreeContentItem } from "@/utils/contentPricingActions";
 import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
 import { useContentDownload } from "@/hooks/useContentDownload";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
@@ -159,16 +161,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     CreateOrderPayload
   >(API.order.create);
 
+  const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
+    useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
+  const canViewWebAsGuest = Boolean(
+    hero.contentType === FORMAT_TYPE.WEB &&
+    content &&
+    !accessGate &&
+    content.accessType !== "paid" &&
+    (!content.isPaidCollection || hasCollectionAccess) &&
+    (hasGuestGateAccess ||
+      (isFreeContentItem(content) && !content.isPaidCollection)),
+  );
+
   const handleActionClick = useCallback(
     (action: SingleContentAction) => {
-      if (!user?.id) {
+      if (!user?.id && !canViewWebAsGuest) {
         handleShowLoginModal();
         return;
       }
 
       action.onClick?.();
     },
-    [handleShowLoginModal, user?.id],
+    [canViewWebAsGuest, handleShowLoginModal, user?.id],
   );
 
   const actionsWithPayment = useMemo(() => {
@@ -290,7 +304,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!user?.id) {
+    if (!user?.id && !canViewWebAsGuest) {
       handleShowLoginModal();
       return;
     }
@@ -355,6 +369,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     }
   }, [
+    canViewWebAsGuest,
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
@@ -408,13 +423,20 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const isRented = content?.accessInfo?.accessType === ACCESS_TYPE_RENTED;
 
-  const shouldEnableDownload = Boolean(
-    user?.id &&
+  const isFreePdf =
+    previewContentType === FORMAT_TYPE.PDF &&
+    content?.accessType === ACCESS_TYPE_FREE &&
+    !content.isPaidCollection;
+
+  const canOfferDownload = Boolean(
     contentId &&
     isDownloadableType &&
+    !accessGate &&
     !isRented &&
-    (hasViewerAccess || isOwner),
+    (hasViewerAccess || isOwner || isFreePdf),
   );
+  const shouldEnableDownload = Boolean(user?.id && canOfferDownload);
+  const downloadRequiresLogin = !user?.id && canOfferDownload;
 
   const { downloadInfo, isDownloading, triggerDownload } = useContentDownload(
     contentId,
@@ -441,43 +463,46 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             : [
                 {
                   ...modifiedPrimaryAction,
-                  variant: hasViewerAccess ? VARIANT.PRIMARY : undefined,
+                  variant: modifiedPrimaryAction.variant ?? VARIANT.PRIMARY,
                 },
               ]
           : undefined;
 
-    const canShowDownload = Boolean(
-      shouldEnableDownload &&
-      downloadInfo &&
-      downloadInfo.maxDownloadLimit > 0 &&
-      baseActions,
-    );
-
-    if (canShowDownload && baseActions && downloadInfo) {
+    if (canOfferDownload && (downloadRequiresLogin || downloadInfo)) {
+      const remainingDownloads = downloadInfo?.remainingDownloads ?? null;
       const downloadAction: SingleContentAction = {
         label: t("singleContent.download"),
-        subtitle: t("singleContent.remainingDownloads", {
-          count: downloadInfo.remainingDownloads,
-        }),
+        subtitle:
+          remainingDownloads === null
+            ? undefined
+            : t("singleContent.remainingDownloads", {
+                count: remainingDownloads,
+              }),
         variant: VARIANT.SOFT_OUTLINE,
-        disabled: isDownloading || downloadInfo.remainingDownloads <= 0,
-        onClick: () => triggerDownload(title),
+        disabled:
+          isDownloading ||
+          (remainingDownloads !== null && remainingDownloads <= 0),
+        onClick: () =>
+          downloadRequiresLogin
+            ? handleShowLoginModal()
+            : triggerDownload(title),
       };
 
-      return [...baseActions, downloadAction];
+      return [...(baseActions ?? []), downloadAction];
     }
 
     return baseActions;
   }, [
     actionsWithPayment,
+    canOfferDownload,
     downloadInfo,
-    hasViewerAccess,
+    downloadRequiresLogin,
+    handleShowLoginModal,
     isDownloading,
     isOwner,
     modifiedPrimaryAction,
     openOwnerContentInDashboard,
     primaryActions,
-    shouldEnableDownload,
     t,
     title,
     triggerDownload,
