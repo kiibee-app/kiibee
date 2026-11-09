@@ -1,5 +1,6 @@
 "use client";
 
+import { useTextOverflow } from "@/hooks/useTextOverflow";
 import { useTranslation } from "react-i18next";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
@@ -33,6 +34,7 @@ export default function CenteredCoverSection() {
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
+  const { textRef, hasOverflow } = useTextOverflow(biography);
 
   return (
     <HeroWrapperCentered>
@@ -61,10 +63,12 @@ export default function CenteredCoverSection() {
         <UploadsText>
           {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
         </UploadsText>
-        <BioText>{biography}</BioText>
-        <BioMoreButton onClick={openAbout}>
-          {t(CREATE_PROFILE_HOME.more)}
-        </BioMoreButton>
+        <BioText ref={textRef}>{biography}</BioText>
+        {hasOverflow && (
+          <BioMoreButton onClick={openAbout}>
+            {t(CREATE_PROFILE_HOME.more)}
+          </BioMoreButton>
+        )}
 
         <HeroTabs {...tabState} centered />
       </InfoSection>
