@@ -21,6 +21,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE, DISCOVER_CONTENT_LIMIT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { MEDIA_TYPE, resolveMediaType } from "@/utils/media";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 
@@ -39,11 +40,14 @@ export default function DiscoverContent() {
     API.feed.recent,
   );
 
-  const items = recentData?.data
-    ? pickUniqueCreatorFeedItems(recentData.data, DISCOVER_CONTENT_LIMIT).map(
-        (item) => mapFeedItemToDiscoverItem(item, t),
-      )
-    : [];
+  const nonWebItems =
+    recentData?.data?.filter(
+      (item) => resolveMediaType(item.contentType) !== MEDIA_TYPE.WEB,
+    ) ?? [];
+  const items = pickUniqueCreatorFeedItems(
+    nonWebItems,
+    DISCOVER_CONTENT_LIMIT,
+  ).map((item) => mapFeedItemToDiscoverItem(item, t));
 
   if (isLoading || items.length === 0) {
     return null;

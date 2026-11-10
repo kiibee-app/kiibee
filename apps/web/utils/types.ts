@@ -46,6 +46,7 @@ export type TutorialVideo = {
   image: ImageSource;
   imageFallback?: string;
   videoUrl?: string;
+  contentUrl?: string | null;
   trailerUrl?: string | null;
   description?: string | null;
   descriptionSecondary?: string | null;

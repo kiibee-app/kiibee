@@ -44,7 +44,13 @@ export const HamburgerButton = styled.button`
 export const HeaderLeft = styled.div`
   display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0;
   gap: 12px;
+
+  > div {
+    min-width: 0;
+  }
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     gap: 8px;
@@ -53,6 +59,9 @@ export const HeaderLeft = styled.div`
 
 export const Title = styled.h1`
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 20px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.secondary.main};
@@ -77,7 +86,7 @@ export const HeaderUser = styled.span`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary.main};
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
     display: none;
   }
 `;
@@ -86,6 +95,7 @@ export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 `;
 
 export const AvatarFrame = styled.button`

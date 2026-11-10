@@ -1,3 +1,4 @@
+import { IMAGE_REMOTE_PATTERNS } from "./utils/imageDelivery";
 import type { NextConfig } from "next";
 import {
   getLocalizedIndexableRoutes,
@@ -19,9 +20,7 @@ const nextConfig: NextConfig = {
     },
   },
   async redirects() {
-    return [
-      ...LEGACY_REDIRECTS,
-    ];
+    return [...LEGACY_REDIRECTS];
   },
   async headers() {
     return [
@@ -38,44 +37,9 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [75, 95],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "placehold.co",
-      },
-      {
-        protocol: "https",
-        hostname: "**.digitaloceanspaces.com",
-      },
-      {
-        protocol: "https",
-        hostname: "kiibee.dk",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "www.kiibee.dk",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "videodelivery.net",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "cloudflarestream.com",
-        pathname: "/**",
-      },
-    ],
+    // Cache resized public images rather than downloading full-size originals.
+    minimumCacheTTL: 3600,
+    remotePatterns: IMAGE_REMOTE_PATTERNS,
   },
 };
 

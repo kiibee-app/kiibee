@@ -3,7 +3,13 @@
 import { memo, type MouseEvent } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
-import { EbookIcon, VideoIcon } from "@/assets/icons";
+import {
+  AudioFileIcon,
+  EbookIcon,
+  PdfFileIcon,
+  VideoIcon,
+  WebIcon,
+} from "@/assets/icons";
 import { MEDIA_TYPE, STRING_EMPTY } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
@@ -98,6 +104,20 @@ function DiscoverCard({ item, lng }: DiscoverCardProps) {
               height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
               color={theme.colors.neutral.BLACK}
             />
+          ) : item.mediaType === MEDIA_TYPE.AUDIO ? (
+            <AudioFileIcon
+              width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
+              height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
+              color={theme.colors.neutral.BLACK}
+            />
+          ) : item.mediaType === MEDIA_TYPE.PDF ? (
+            <PdfFileIcon
+              width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
+              height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
+              color={theme.colors.neutral.BLACK}
+            />
+          ) : item.mediaType === MEDIA_TYPE.WEB ? (
+            <WebIcon color={theme.colors.neutral.BLACK} />
           ) : (
             <VideoIcon color={theme.colors.neutral.BLACK} />
           )}

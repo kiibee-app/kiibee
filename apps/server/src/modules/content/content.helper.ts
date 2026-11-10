@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { db } from 'src/database/db';
 import { and, eq, ilike, isNull, ne, or, sql, SQL } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
@@ -7,12 +8,30 @@ import {
   SLUG_NON_ALPHANUMERIC_RE,
 } from 'src/utils/constant';
 
-export const contentSlugGenerator = async (title: string) => {
-  const baseSlug = title
+export const contentTitleUrlSlug = (title: string) => {
+  if (!title) return '';
+  return String(title)
+    .normalize('NFC')
     .toLowerCase()
-    .trim()
-    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
-    .replace(SLUG_EDGE_DASH_RE, '');
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'oe')
+    .replace(/å/g, 'aa')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’‘`"“”]/g, '')
+    .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+};
+
+export const contentSlugGenerator = async (title: string) => {
+  const baseSlug =
+    contentTitleUrlSlug(title) ||
+    title
+      .toLowerCase()
+      .trim()
+      .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+      .replace(SLUG_EDGE_DASH_RE, '');
 
   let slug = baseSlug;
   let counter = 1;
@@ -33,17 +52,6 @@ export const contentSlugGenerator = async (title: string) => {
   return slug;
 };
 
-export const contentTitleUrlSlug = (title: string) =>
-  title
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/æ/g, 'ae')
-    .replace(/ø/g, 'oe')
-    .replace(/å/g, 'a')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-
 export const cleanCollectionSlug = (
   collectionNameOrSlug?: string | null,
   creatorSlug?: string | null,
@@ -55,10 +63,14 @@ export const cleanCollectionSlug = (
   let raw = collectionNameOrSlug.trim();
 
   if (creatorSlug) {
-    const cleanCreator = contentTitleUrlSlug(creatorSlug);
-    const slugifiedRaw = contentTitleUrlSlug(raw);
-    if (slugifiedRaw.startsWith(`${cleanCreator}-`)) {
-      raw = slugifiedRaw.slice(cleanCreator.length + 1);
+    const creatorKey = contentTitleUrlSlug(creatorSlug).replace(/-/g, '');
+    const parts = contentTitleUrlSlug(raw).split('-');
+    // Umbraco sometimes stored a compact creator prefix, e.g. uffeholm-shows.
+    for (let index = 1; creatorKey && index < parts.length; index += 1) {
+      if (parts.slice(0, index).join('') === creatorKey) {
+        raw = parts.slice(index).join('-');
+        break;
+      }
     }
   }
 
@@ -123,7 +135,7 @@ export const buildSearch = (search?: string) => {
   return or(
     ilike(mediaFiles.title, q),
     ilike(mediaFiles.description, q),
-    ilike(users.fullName, q),
+    sql`${publicCreatorName} ILIKE ${q}`,
   );
 };
 

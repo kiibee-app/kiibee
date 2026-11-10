@@ -9,12 +9,7 @@ import {
 } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
-import {
-  PATHS,
-  pathPublishedContent,
-  cleanCollectionSlug,
-  slugifyContentTitle,
-} from "@/utils/path";
+import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { GenericModal } from "@/components/UI/Modals";
@@ -26,13 +21,18 @@ import { API } from "@/lib/http/api/endpoints";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
+import { FORMAT_TYPE } from "@/utils/types";
+import { normalizeExternalUrl } from "@/utils/common";
 import {
   CONTENT_TRANSLATION_KEYS,
   type ContentDetailResponse,
   getContentDetail,
   getSingleContentProps,
 } from "@/utils/contentApi";
-import { isPaidCollection } from "@/utils/contentPricingActions";
+import {
+  isFreeContentItem,
+  isPaidCollection,
+} from "@/utils/contentPricingActions";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
@@ -121,6 +121,7 @@ export default function PublishedContentDetail({
     },
   );
   const content = getContentDetail(data);
+
   const { creator: publicCreator } = useCreatorPublicProfile(
     content?.creatorId ?? null,
   );
@@ -143,7 +144,11 @@ export default function PublishedContentDetail({
   );
 
   const resolvedContentSlug = tutorial?.title || content?.title;
-  const resolvedCreatorSlug = tutorial?.creatorSlug || content?.creatorSlug;
+  const resolvedCreatorSlug =
+    publicCreator?.slug ||
+    content?.creatorSlug ||
+    tutorial?.creatorSlug ||
+    creatorSlug;
 
   const resolvedCollectionSlug =
     content?.collectionName ||
@@ -166,27 +171,7 @@ export default function PublishedContentDetail({
     );
     if (pathname === canonicalPath) return;
 
-    const isMatchingCreator =
-      creatorSlug &&
-      cleanCollectionSlug(creatorSlug, null) ===
-        cleanCollectionSlug(resolvedCreatorSlug, null);
-    const isMatchingCollection =
-      currentRouteCollectionSlug &&
-      cleanCollectionSlug(currentRouteCollectionSlug, creatorSlug) ===
-        cleanCollectionSlug(resolvedCollectionSlug, creatorSlug);
-    const isMatchingContent =
-      params?.contentSlug &&
-      slugifyContentTitle(
-        Array.isArray(params.contentSlug)
-          ? params.contentSlug[0]
-          : params.contentSlug,
-      ) === slugifyContentTitle(resolvedContentSlug);
-
-    if (isMatchingCreator && isMatchingCollection && isMatchingContent) {
-      return;
-    }
-
-    const search = searchParams.toString();
+    const search = searchParams?.toString();
     const nextUrl = `${canonicalPath}${search ? `?${search}` : ""}`;
     if (typeof window !== "undefined") {
       window.history.replaceState(window.history.state, "", nextUrl);
@@ -199,9 +184,6 @@ export default function PublishedContentDetail({
     resolvedCreatorSlug,
     resolvedCollectionSlug,
     tutorial?.slug,
-    creatorSlug,
-    currentRouteCollectionSlug,
-    params?.contentSlug,
     searchParams,
   ]);
   const {
@@ -209,6 +191,49 @@ export default function PublishedContentDetail({
     isLoading: gateLoading,
     handleSuccess: handleGateSuccess,
   } = useContentAccessGate(content, effectiveCollectionId);
+  const isFreeContent = content
+    ? isFreeContentItem({
+        accessType: content.accessType,
+        rentPrice: content.rentPrice,
+        buyPrice: content.buyPrice,
+      })
+    : false;
+
+  useEffect(() => {
+    if (
+      gateLoading ||
+      activeGateType ||
+      (!isFreeContent &&
+        !content?.accessInfo &&
+        !hasCollectionOrContentAccess) ||
+      content?.contentType !== FORMAT_TYPE.WEB ||
+      !content.contentUrl
+    ) {
+      return;
+    }
+
+    const webUrl = normalizeExternalUrl(content.contentUrl);
+    if (!webUrl) return;
+
+    try {
+      const hostname = new URL(webUrl).hostname.toLowerCase();
+      if (hostname !== "kiibee.dk" && !hostname.endsWith(".kiibee.dk")) {
+        return;
+      }
+    } catch {
+      return;
+    }
+
+    window.location.assign(webUrl);
+  }, [
+    activeGateType,
+    content?.accessInfo,
+    content?.contentType,
+    content?.contentUrl,
+    gateLoading,
+    hasCollectionOrContentAccess,
+    isFreeContent,
+  ]);
 
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
@@ -229,8 +254,12 @@ export default function PublishedContentDetail({
       onBack();
       return;
     }
+    if (window.history.length > 1) {
+      router.back();
+      return;
+    }
     const targetSlug =
-      creatorSlug || publicCreator?.slug || content?.creatorSlug;
+      publicCreator?.slug || content?.creatorSlug || creatorSlug;
     if (targetSlug) {
       router.push(getPublicCreatorProfilePath(targetSlug));
     } else {
@@ -346,9 +375,11 @@ export default function PublishedContentDetail({
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
-              collectionSlug={relatedCollectionQuery.data.collectionSlug}
-              ownerCreatorId={content.creatorId}
-              ownerCreatorSlug={content.creatorSlug}
+              collectionSlug={resolvedCollectionSlug ?? undefined}
+              ownerCreatorId={publicCreator?.id || content.creatorId}
+              ownerCreatorSlug={
+                publicCreator?.slug || content.creatorSlug || creatorSlug
+              }
             />
           ) : null}
         </SingleContentPage>

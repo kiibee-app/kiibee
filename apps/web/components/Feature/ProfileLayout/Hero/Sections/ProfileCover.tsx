@@ -1,5 +1,6 @@
 "use client";
 
+import { useTextOverflow } from "@/hooks/useTextOverflow";
 import { useTranslation } from "react-i18next";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
@@ -39,6 +40,7 @@ export default function ProfileCoverSection() {
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description ?? "";
+  const { textRef, hasOverflow } = useTextOverflow(biography);
 
   return (
     <HeroWrapper>
@@ -50,7 +52,6 @@ export default function ProfileCoverSection() {
             fill
             sizes="100vw"
             priority
-            unoptimized
           />
         </CoverMedia>
       </CoverFrame>
@@ -77,10 +78,12 @@ export default function ProfileCoverSection() {
               </UploadCountText>
             </UploadCount>
             <CreatorBio>
-              <CreatorBioText>{biography}</CreatorBioText>
-              <MoreTextLabel onClick={openAbout}>
-                {t(CREATE_PROFILE_HOME.more)}
-              </MoreTextLabel>
+              <CreatorBioText ref={textRef}>{biography}</CreatorBioText>
+              {hasOverflow && (
+                <MoreTextLabel onClick={openAbout}>
+                  {t(CREATE_PROFILE_HOME.more)}
+                </MoreTextLabel>
+              )}
             </CreatorBio>
           </ProfileMeta>
         </ProfileSection>

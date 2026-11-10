@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_TYPE_RENTED,
+  ACCESS_TYPE_PURCHASED,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
   ORDER_TYPES,
@@ -27,6 +28,8 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
+import { isFreeContentItem } from "@/utils/contentPricingActions";
 import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
 import { useContentDownload } from "@/hooks/useContentDownload";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
@@ -75,6 +78,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryAction,
     primaryActions,
     metaItems = [],
+    physicalProductLink,
     shareLabel = "Share",
     showShare = true,
     showBack = true,
@@ -139,6 +143,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     itemType: OrderItemType;
     couponCode?: string;
     subscriptionId?: string;
+    idempotencyKey?: string;
   };
 
   type CreateOrderResponse = {
@@ -148,6 +153,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     data: {
       orderId: string;
       url?: string;
+      completed?: boolean;
     };
   };
 
@@ -156,16 +162,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     CreateOrderPayload
   >(API.order.create);
 
+  const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
+    useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
+  const canViewWebAsGuest = Boolean(
+    hero.contentType === FORMAT_TYPE.WEB &&
+    content &&
+    !accessGate &&
+    content.accessType !== "paid" &&
+    (!content.isPaidCollection || hasCollectionAccess) &&
+    (hasGuestGateAccess ||
+      (isFreeContentItem(content) && !content.isPaidCollection)),
+  );
+
   const handleActionClick = useCallback(
     (action: SingleContentAction) => {
-      if (!user?.id) {
+      if (!user?.id && !canViewWebAsGuest) {
         handleShowLoginModal();
         return;
       }
 
       action.onClick?.();
     },
-    [handleShowLoginModal, user?.id],
+    [canViewWebAsGuest, handleShowLoginModal, user?.id],
   );
 
   const actionsWithPayment = useMemo(() => {
@@ -219,15 +237,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     subtitle?: string;
     isPurchase: boolean;
   } | null>(null);
+  const checkoutIdempotencyKeyRef = useRef<string | null>(null);
 
+  const ownsContent =
+    Boolean(user?.id) &&
+    content?.accessInfo?.accessType === ACCESS_TYPE_PURCHASED;
   const {
     contentType,
     previewMediaUrl,
+    hasSignedMedia,
     isLoading: isMediaLoading,
     canFetchMedia,
     fetchMediaUrl,
-  } = useContentMediaUrl(content);
+  } = useContentMediaUrl(content, ownsContent && !accessGate);
   const previewContentType = contentType ?? hero.contentType;
+
+  const keepReaderMounted =
+    ownsContent &&
+    !accessGate &&
+    (previewContentType === FORMAT_TYPE.PDF ||
+      previewContentType === FORMAT_TYPE.EPUB);
+  const warmReaderReady =
+    keepReaderMounted && (!canFetchMedia || hasSignedMedia);
 
   const isPreviewableType =
     previewContentType === FORMAT_TYPE.PDF ||
@@ -275,7 +306,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!user?.id) {
+    if (!user?.id && !canViewWebAsGuest) {
       handleShowLoginModal();
       return;
     }
@@ -340,6 +371,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     }
   }, [
+    canViewWebAsGuest,
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
@@ -393,13 +425,20 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const isRented = content?.accessInfo?.accessType === ACCESS_TYPE_RENTED;
 
-  const shouldEnableDownload = Boolean(
-    user?.id &&
+  const isFreePdf =
+    previewContentType === FORMAT_TYPE.PDF &&
+    content?.accessType === ACCESS_TYPE_FREE &&
+    !content.isPaidCollection;
+
+  const canOfferDownload = Boolean(
     contentId &&
     isDownloadableType &&
+    !accessGate &&
     !isRented &&
-    (hasViewerAccess || isOwner),
+    (hasViewerAccess || isOwner || isFreePdf),
   );
+  const shouldEnableDownload = Boolean(user?.id && canOfferDownload);
+  const downloadRequiresLogin = !user?.id && canOfferDownload;
 
   const { downloadInfo, isDownloading, triggerDownload } = useContentDownload(
     contentId,
@@ -426,43 +465,46 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             : [
                 {
                   ...modifiedPrimaryAction,
-                  variant: hasViewerAccess ? VARIANT.PRIMARY : undefined,
+                  variant: modifiedPrimaryAction.variant ?? VARIANT.PRIMARY,
                 },
               ]
           : undefined;
 
-    const canShowDownload = Boolean(
-      shouldEnableDownload &&
-      downloadInfo &&
-      downloadInfo.maxDownloadLimit > 0 &&
-      baseActions,
-    );
-
-    if (canShowDownload && baseActions && downloadInfo) {
+    if (canOfferDownload && (downloadRequiresLogin || downloadInfo)) {
+      const remainingDownloads = downloadInfo?.remainingDownloads ?? null;
       const downloadAction: SingleContentAction = {
         label: t("singleContent.download"),
-        subtitle: t("singleContent.remainingDownloads", {
-          count: downloadInfo.remainingDownloads,
-        }),
+        subtitle:
+          remainingDownloads === null
+            ? undefined
+            : t("singleContent.remainingDownloads", {
+                count: remainingDownloads,
+              }),
         variant: VARIANT.SOFT_OUTLINE,
-        disabled: isDownloading || downloadInfo.remainingDownloads <= 0,
-        onClick: () => triggerDownload(title),
+        disabled:
+          isDownloading ||
+          (remainingDownloads !== null && remainingDownloads <= 0),
+        onClick: () =>
+          downloadRequiresLogin
+            ? handleShowLoginModal()
+            : triggerDownload(title),
       };
 
-      return [...baseActions, downloadAction];
+      return [...(baseActions ?? []), downloadAction];
     }
 
     return baseActions;
   }, [
     actionsWithPayment,
+    canOfferDownload,
     downloadInfo,
-    hasViewerAccess,
+    downloadRequiresLogin,
+    handleShowLoginModal,
     isDownloading,
     isOwner,
     modifiedPrimaryAction,
     openOwnerContentInDashboard,
     primaryActions,
-    shouldEnableDownload,
     t,
     title,
     triggerDownload,
@@ -501,6 +543,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     try {
       savePaymentReturnUrl();
+      checkoutIdempotencyKeyRef.current ??= crypto.randomUUID();
       const response = await createOrderMutation.mutateAsync({
         contentId,
         collectionId,
@@ -509,12 +552,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
         ...(subscriptionId ? { subscriptionId } : {}),
+        idempotencyKey: checkoutIdempotencyKeyRef.current,
       });
       const paymentUrl = response?.data?.url;
       const orderId = response?.data?.orderId;
-      if (!paymentUrl && subscriptionId && orderId) {
+      if (
+        !paymentUrl &&
+        orderId &&
+        (response.data.completed || subscriptionId)
+      ) {
         setShowPurchaseModal(false);
         setSelectedAction(null);
+        checkoutIdempotencyKeyRef.current = null;
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
         return;
       }
@@ -523,8 +572,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
       setShowPurchaseModal(false);
       setSelectedAction(null);
+      checkoutIdempotencyKeyRef.current = null;
       window.location.assign(paymentUrl);
     } catch (error) {
+      checkoutIdempotencyKeyRef.current = null;
       const message = getErrorMessage(error, "errors.saveChangesFailed");
       toast.error(message);
     }
@@ -533,6 +584,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    checkoutIdempotencyKeyRef.current = null;
   };
 
   return (
@@ -563,6 +615,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            physicalProductLink={physicalProductLink}
             accessGate={accessGate}
           />
         </ContentLayout>
@@ -570,10 +623,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
       {children}
       {canPreview &&
-        showPreviewModal &&
+        (showPreviewModal || warmReaderReady) &&
         (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
           <ContentPreviewModal
             visible={showPreviewModal}
+            keepMounted={keepReaderMounted}
             onClose={() => setShowPreviewModal(false)}
             src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
             type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}

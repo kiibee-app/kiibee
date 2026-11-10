@@ -25,7 +25,7 @@ export default function NavSearchButton({
     <SearchIconButton
       href={PATHS.EXPLORE}
       $textTone={textTone}
-      aria-label={t(NAV.explore)}
+      aria-label={t(NAV.exploreCreators)}
     >
       <SearchIcon width={18} height={18} color="currentColor" />
     </SearchIconButton>

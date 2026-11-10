@@ -11,6 +11,175 @@ export const PayoutToolbar = styled.div`
   gap: ${({ theme }) => theme.spacing(3)};
 `;
 
+export const PayoutTabs = styled.div`
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: ${({ theme }) => theme.spacing(1)};
+  padding: ${({ theme }) => theme.spacing(1)};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+
+  ${media.mobileLg} {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+`;
+
+export const PayoutTabButton = styled.button<{ $active: boolean }>`
+  min-height: ${({ theme }) => theme.spacing(8.5)};
+  border: 0;
+  border-radius: ${({ theme }) => theme.radius.md};
+  padding: ${({ theme }) => `0 ${theme.spacing(3.5)}`};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.neutral.PALE_GREEN : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  cursor: pointer;
+
+  ${media.mobileLg} {
+    flex: 1 1 calc(50% - ${({ theme }) => theme.spacing(1)});
+  }
+`;
+
+export const CreatorBalancesTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+
+  ${media.mobileLg} {
+    display: block;
+
+    thead {
+      display: none;
+    }
+
+    tbody {
+      display: flex;
+      flex-direction: column;
+      gap: ${({ theme }) => theme.spacing(3)};
+      padding: ${({ theme }) => theme.spacing(3)};
+    }
+
+    tr {
+      display: block;
+      border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: ${({ theme }) => theme.spacing(3)};
+      padding: ${({ theme }) => theme.spacing(3)};
+      text-align: right;
+    }
+
+    td:first-child {
+      display: block;
+      text-align: left;
+      background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    }
+
+    td:nth-child(2)::before {
+      content: "Balance";
+    }
+    td:nth-child(3)::before {
+      content: "Payment method";
+    }
+    td:nth-child(4)::before {
+      content: "Status";
+    }
+    td:nth-child(5)::before {
+      content: "Actions";
+    }
+
+    td:last-child {
+      align-items: stretch;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    td:last-child > div {
+      width: 100%;
+    }
+
+    td:not(:first-child)::before {
+      flex: 0 0 auto;
+      color: ${({ theme }) => theme.colors.secondary.muted};
+      font-size: 12px;
+      font-weight: 600;
+      text-align: left;
+    }
+  }
+`;
+
+export const PayoutHistoryTable = styled.table<{ $mobileCards?: boolean }>`
+  width: 100%;
+  border-collapse: collapse;
+
+  ${({ $mobileCards, theme }) =>
+    $mobileCards &&
+    `
+    ${media.mobileLg} {
+      display: block;
+
+      thead { display: none; }
+
+      tbody {
+        display: flex;
+        flex-direction: column;
+        gap: ${theme.spacing(3)};
+        padding: ${theme.spacing(3)};
+      }
+
+      tr {
+        display: block;
+        border: 1px solid ${theme.colors.secondary.border};
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: ${theme.spacing(3)};
+        padding: ${theme.spacing(3)};
+        text-align: right;
+        word-break: break-word;
+      }
+
+      td:first-child {
+        display: block;
+        text-align: left;
+        background: ${theme.colors.neutral.OFF_WHITE};
+      }
+
+      td:nth-child(2)::before { content: "Payout"; }
+      td:nth-child(3)::before { content: "Amount"; }
+      td:nth-child(4)::before { content: "Fees"; }
+      td:nth-child(5)::before { content: "Net payout"; }
+      td:nth-child(6)::before { content: "Status"; }
+      td:nth-child(7)::before { content: "Date"; }
+
+      td:not(:first-child)::before {
+        flex: 0 0 auto;
+        color: ${theme.colors.secondary.muted};
+        font-size: 12px;
+        font-weight: 600;
+        text-align: left;
+      }
+    }
+  `}
+`;
+
 export const PayoutForm = styled.form`
   display: flex;
   flex-direction: column;

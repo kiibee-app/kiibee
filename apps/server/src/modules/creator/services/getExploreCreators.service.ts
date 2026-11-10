@@ -1,3 +1,5 @@
+import { resolvePublicCreatorPath } from 'src/utils/creatorPath';
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -10,7 +12,10 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE, STATUS } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorHasPublishedContentWhere,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import { success } from 'src/utils/sendResponse';
 import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
@@ -44,14 +49,13 @@ const activeCreatorConditions = (): SQL[] => [
   publiclyVisibleCreatorWhere,
 ];
 
-const creatorDisplayNameSql = sql<string>`trim(coalesce(
-  nullif(${creatorChannels.name}, ''),
-  nullif(${users.fullName}, ''),
-  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
-))`;
+const creatorDisplayNameSql = publicCreatorName;
 
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
+  if (!idOrSlug) {
+    conditions.push(creatorHasPublishedContentWhere);
+  }
   if (idOrSlug) {
     const cleanSlug = idOrSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
     conditions.push(
@@ -67,9 +71,6 @@ const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
     const searchTerm = `%${search}%`;
     conditions.push(
       or(
-        ilike(users.fullName, searchTerm),
-        ilike(users.firstName, searchTerm),
-        ilike(users.lastName, searchTerm),
         ilike(creatorChannels.name, searchTerm),
         sql`${creatorDisplayNameSql} ILIKE ${searchTerm}`,
       )!,
@@ -237,7 +238,11 @@ export const getExploreCreatorsService = async (
 
 export const getCreatorPublicProfileService = async (creatorId: string) => {
   try {
-    const rows = await buildCreatorsQuery(creatorId).limit(1);
+    const resolvedId = await resolvePublicCreatorPath(creatorId);
+    if (!resolvedId) {
+      throw new HttpException('Creator not found', HttpStatus.NOT_FOUND);
+    }
+    const rows = await buildCreatorsQuery(resolvedId).limit(1);
     const row = rows.find((item) => item.name.length > 0);
 
     if (!row) {

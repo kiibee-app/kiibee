@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Post,
@@ -14,6 +15,8 @@ import { SubscriptionService } from './subscription.service';
 import { handleSubscriptionPayment } from './hooks/subscriptionPayWebhook';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
+import { verifyEpayWebhookAuthorization } from 'src/utils/epayWebhookAuth';
+import { logger } from 'src/logger/logger';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -32,10 +35,27 @@ export class SubscriptionController {
   }
 
   @Post('webhook')
+  @HttpCode(HttpStatus.OK)
   async handleWebhook(@Body() body: any, @Req() req: any) {
-    const auth = req.headers['authorization'];
+    const authorization = verifyEpayWebhookAuthorization(
+      req.headers['authorization'],
+    );
 
-    if (auth !== `Bearer ${process.env.JWT_ACCESS_SECRET}`) {
+    if (!authorization.authorized) {
+      logger.warn('Rejected ePay webhook authorization', {
+        path: '/api/v1/subscription/webhook',
+        reason: authorization.reason,
+        hasAuthorization: authorization.hasAuthorization,
+        scheme: authorization.scheme,
+        expectedScheme: authorization.expectedScheme,
+        expectedLength: authorization.expectedLength,
+        expectedCount: authorization.expectedCount,
+        expectedLengths: authorization.expectedLengths,
+        receivedLength: authorization.receivedLength,
+        receivedHasOuterWhitespace: authorization.receivedHasOuterWhitespace,
+        receivedFormat: authorization.receivedFormat,
+      });
+
       throw new HttpException('Unauthorized webhook', HttpStatus.UNAUTHORIZED);
     }
 

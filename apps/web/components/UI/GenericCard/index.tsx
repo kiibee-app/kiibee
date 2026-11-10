@@ -1,5 +1,6 @@
 "use client";
 
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
 import Image, { StaticImageData } from "next/image";
 import React, { ReactNode, useState } from "react";
 import {
@@ -43,8 +44,10 @@ type GenericCardProps = {
   width?: string;
   minHeight?: string;
   imagePriority?: boolean;
+  keepImagePlaceholder?: boolean;
   onClick?: () => void;
   onImageError?: () => void;
+  sizes?: string;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -88,8 +91,10 @@ export default function GenericCard({
   width,
   minHeight,
   imagePriority = false,
+  keepImagePlaceholder = false,
   onClick,
   onImageError,
+  sizes = "(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 25vw",
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
@@ -98,6 +103,7 @@ export default function GenericCard({
     url: string;
   } | null>(null);
   const [imageLoading, setImageLoading] = useState(true);
+  const [directImageKey, setDirectImageKey] = useState<string | null>(null);
 
   const [prevImageKey, setPrevImageKey] = useState(imageKey);
 
@@ -122,12 +128,25 @@ export default function GenericCard({
   const markImageLoaded = () => setImageLoading(false);
 
   const handleImageRef = (element: HTMLImageElement | null) => {
-    if (element?.complete && element.naturalWidth > 0) {
-      markImageLoaded();
+    if (!element) return;
+    if (element.complete) {
+      if (element.naturalWidth > 0) {
+        markImageLoaded();
+      } else {
+        handleImageError();
+      }
     }
   };
 
   const handleImageError = () => {
+    if (
+      imageSrc &&
+      canOptimizeRemoteImage(imageSrc) &&
+      directImageKey !== imageSrc
+    ) {
+      setDirectImageKey(imageSrc);
+      return;
+    }
     if (imageFallback && activeFallback !== imageFallback) {
       setFallbackState({ forKey: imageKey, url: imageFallback });
       return;
@@ -143,7 +162,8 @@ export default function GenericCard({
   };
 
   const isCurrentlyLoading =
-    imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
+    (keepImagePlaceholder && (!imageSrc || imageFailed)) ||
+    (imageLoading && !showInitials && !imageFailed && Boolean(imageSrc));
 
   return (
     <Card
@@ -154,7 +174,7 @@ export default function GenericCard({
       onClick={onClick}
       style={onClick ? { cursor: "pointer" } : undefined}
     >
-      {(image || imageInitials) && (
+      {(image || imageInitials || keepImagePlaceholder) && (
         <ImageWrapper
           $compact={compact}
           $coverImage={coverImage}
@@ -168,22 +188,28 @@ export default function GenericCard({
               src={imageSrc!}
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes={sizes}
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
-              unoptimized
+              unoptimized={
+                !canOptimizeRemoteImage(imageSrc!) ||
+                directImageKey === imageSrc
+              }
               onLoad={markImageLoaded}
               onError={handleImageError}
             />
           ) : showOptimizedImage ? (
             <Image
               ref={handleImageRef}
-              src={image!}
+              src={
+                activeFallback ??
+                (typeof image === "string" ? imageSrc! : image!)
+              }
               alt={alt || "card image"}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes={sizes}
               style={posterImageStyle}
               priority={imagePriority}
               loading={imagePriority ? "eager" : "lazy"}

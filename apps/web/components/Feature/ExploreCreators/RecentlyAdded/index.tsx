@@ -29,17 +29,27 @@ import { PATHS } from "@/utils/path";
 import { RECENT_CONTENT_LIMIT } from "@/utils/Constants";
 
 export default function RecentlyAdded({ search }: { search?: string }) {
+  return <RecentlyAddedResults key={search ?? ""} search={search} />;
+}
+
+function RecentlyAddedResults({ search }: { search?: string }) {
   const { t } = useTranslation();
-  const { tutorials, isLoading } = useRecentContent({
-    limit: RECENT_CONTENT_LIMIT,
+  const [limit, setLimit] = useState(RECENT_CONTENT_LIMIT);
+  const { tutorials, isLoading, isFetching } = useRecentContent({
+    limit,
     search,
   });
   const [pageStart, setPageStart] = useState(0);
 
   const totalItems = tutorials.length;
+  const visibleStart = Math.min(
+    pageStart,
+    Math.max(totalItems - FEED_CONTENT_PAGE_SIZE, 0),
+  );
+  const hasMore = totalItems >= limit && limit < 100;
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(
     totalItems,
-    pageStart,
+    visibleStart,
   );
 
   const movePrev = useCallback(() => {
@@ -47,14 +57,19 @@ export default function RecentlyAdded({ search }: { search?: string }) {
   }, []);
 
   const moveNext = useCallback(() => {
-    if (!canSlide) return;
-    setPageStart((prev) =>
-      Math.min(
-        prev + FEED_CONTENT_PAGE_SIZE,
-        totalItems - FEED_CONTENT_PAGE_SIZE,
-      ),
-    );
-  }, [canSlide, totalItems]);
+    if (isFetching) return;
+    if (canGoNext) {
+      setPageStart(
+        Math.min(
+          visibleStart + FEED_CONTENT_PAGE_SIZE,
+          totalItems - FEED_CONTENT_PAGE_SIZE,
+        ),
+      );
+    } else if (hasMore) {
+      setLimit((previous) => Math.min(previous + RECENT_CONTENT_LIMIT, 100));
+      setPageStart(visibleStart + FEED_CONTENT_PAGE_SIZE);
+    }
+  }, [canGoNext, hasMore, isFetching, totalItems, visibleStart]);
 
   if (isLoading) {
     return (
@@ -79,7 +94,7 @@ export default function RecentlyAdded({ search }: { search?: string }) {
     return null;
   }
 
-  const visibleTutorials = getFeedPageSlice(tutorials, pageStart);
+  const visibleTutorials = getFeedPageSlice(tutorials, visibleStart);
 
   return (
     <Section>
@@ -103,11 +118,12 @@ export default function RecentlyAdded({ search }: { search?: string }) {
                   <LeftIcon style={{ transform: "rotate(180deg)" }} />
                 </SectionArrow>
               )}
-              {canGoNext && (
+              {(canGoNext || hasMore) && (
                 <SectionArrow
                   type="button"
                   onClick={moveNext}
                   aria-label="Next"
+                  disabled={isFetching}
                 >
                   <LeftIcon />
                 </SectionArrow>
@@ -122,7 +138,11 @@ export default function RecentlyAdded({ search }: { search?: string }) {
       </SectionHeader>
       <Grid $columns={4}>
         {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+          <TutorialCard
+            key={tutorial.id}
+            tutorial={tutorial}
+            imagePriority={false}
+          />
         ))}
       </Grid>
     </Section>

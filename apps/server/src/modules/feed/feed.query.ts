@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -20,6 +21,7 @@ import {
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
 import {
+  balanceFeedMediaByCreator,
   dedupeFeedMediaByCreator,
   dedupeFeedMediaById,
   orderFeedMediaByIds,
@@ -33,7 +35,7 @@ const baseSelect = {
   thumbnailUrl: mediaFiles.thumbnailUrl,
   thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
-  creatorName: users.fullName,
+  creatorName: publicCreatorName,
   creatorSlug: creatorChannels.slug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
@@ -59,6 +61,7 @@ const baseSelect = {
     LIMIT 1
   )`,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 async function fetchMediaFilesByIds(ids: string[]) {
@@ -96,7 +99,43 @@ async function fetchMediaFilesByIds(ids: string[]) {
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }
 
+// Aggregate once instead of rescanning access and analytics for every candidate.
+// COUNT(DISTINCT access_id) preserves the old OR semantics when an access row
+// references both the media file and a collection containing that file.
+const trendingAccessCounts = sql`(
+  SELECT access_routes.media_file_id, COUNT(DISTINCT access_routes.access_id)::int AS access_count
+  FROM (
+    SELECT uca.id AS access_id, uca.media_file_id
+    FROM user_content_access uca WHERE uca.media_file_id IS NOT NULL
+    UNION
+    SELECT uca.id AS access_id, ci.media_file_id
+    FROM user_content_access uca
+    INNER JOIN collection_items ci ON ci.collection_id = uca.collection_id
+  ) access_routes
+  GROUP BY access_routes.media_file_id
+) AS trending_access`;
+
+const trendingAnalytics = sql`(
+  SELECT media_file_id,
+    SUM(purchases + rentals)::int AS conversion_count,
+    SUM(views + visits)::int AS engagement_count
+  FROM analytics_daily_summary
+  GROUP BY media_file_id
+) AS trending_analytics`;
+
+const trendingScore = sql<number>`(
+  COALESCE(trending_access.access_count, 0) * 100
+  + COALESCE(trending_analytics.conversion_count, 0) * 50
+  + COALESCE(trending_analytics.engagement_count, 0)
+  + (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
+)`;
+
 export const getTrendingQuery = async (where: any, limit: number) => {
+  const candidateLimit = Math.max(
+    limit * RECENT_CANDIDATE_MULTIPLIER,
+    RECENT_MIN_CANDIDATE_LIMIT,
+  );
+
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
@@ -108,11 +147,21 @@ export const getTrendingQuery = async (where: any, limit: number) => {
         publiclyVisibleCreatorWhere,
       ),
     )
+    .leftJoin(
+      trendingAccessCounts,
+      sql`trending_access.media_file_id = ${mediaFiles.id}`,
+    )
+    .leftJoin(
+      trendingAnalytics,
+      sql`trending_analytics.media_file_id = ${mediaFiles.id}`,
+    )
     .where(where)
-    .orderBy(desc(mediaFiles.sortOrder))
-    .limit(limit);
+    .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
+    .limit(candidateLimit);
 
-  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+
+  return balanceFeedMediaByCreator(candidates, limit);
 };
 
 export const getLatestQuery = async (
@@ -168,7 +217,7 @@ export const getTopCreatorsQuery = (limit = 10) =>
   db
     .select({
       id: users.id,
-      name: users.fullName,
+      name: publicCreatorName,
       profileImageUrl: users.avatarUrl,
       createdAt: users.createdAt,
       uploadCount: sql<number>`COUNT(DISTINCT media_files.id)`,

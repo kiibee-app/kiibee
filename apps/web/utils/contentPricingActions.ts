@@ -245,7 +245,10 @@ type PricingItem = Pick<
 >;
 
 export function extractPriceNumber(priceLabel: string): number {
-  return Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
+  const price = priceLabel.match(/(\d+(?:[.,]\d+)?)\s*kr\b/i)?.[1];
+  return price
+    ? Number(price.replace(",", "."))
+    : Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
 }
 
 export function formatPriceLabel(
@@ -318,18 +321,20 @@ export function resolveContentActionHref(
   options?: {
     inCollection?: boolean;
     labels?: PricingLabels;
+    creatorSlug?: string | null;
     collectionSlug?: string | null;
     collectionName?: string | null;
   },
 ): string {
   const effectiveCollection =
-    item.collectionName ||
-    item.collectionSlug ||
     options?.collectionName ||
-    options?.collectionSlug;
+    options?.collectionSlug ||
+    item.collectionName ||
+    item.collectionSlug;
+  const effectiveCreator = options?.creatorSlug || item.creatorSlug;
   const href = pathPublishedContent(
     item.slug || contentId,
-    item.creatorSlug,
+    effectiveCreator,
     item.title,
     effectiveCollection,
   );
@@ -402,7 +407,8 @@ export function getContentPricingActions(
 
   if (!rent && !buy) {
     if (item.accessType === ACCESS_TYPE_PAID) {
-      return [];
+      const { buyPrefix } = resolvePricingPrefixes(options?.labels);
+      return [{ label: buyPrefix, fullWidth: true }];
     }
     return [{ label: freeLabel, fullWidth: true }];
   }

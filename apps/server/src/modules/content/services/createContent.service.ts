@@ -1,6 +1,8 @@
 import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 
+import { eq } from 'drizzle-orm';
+import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
 import { db } from 'src/database/db';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
@@ -13,7 +15,8 @@ import {
   checkDuplicateContentTitle,
   contentSlugGenerator,
 } from '../content.helper';
-import { contentLimits } from 'src/database/schema';
+import { contentLimits, users } from 'src/database/schema';
+import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 
 export const createContent = async (
   dto: CreateContentDto,
@@ -45,6 +48,24 @@ export const createContent = async (
     const downloadLimit = await db.select().from(contentLimits).limit(1);
 
     const response = await db.transaction(async (tx) => {
+      const [creator] = await tx
+        .select({
+          subscriptionUpgradeRequired: users.subscriptionUpgradeRequired,
+        })
+        .from(users)
+        .where(eq(users.id, creatorId))
+        .for('share');
+
+      if (
+        creator?.subscriptionUpgradeRequired &&
+        !(await hasPaidSubscriptionPeriod(tx, creatorId))
+      ) {
+        return fail(
+          'Upgrade your subscription before adding new content',
+          HttpStatus.FORBIDDEN,
+        );
+      }
+
       await tx.insert(mediaFiles).values({
         id: contentId,
         title,
@@ -55,7 +76,7 @@ export const createContent = async (
         contentTypeId,
         creatorId,
         fileSize,
-        maxDownloadCount: downloadLimit[0]?.maxLimit || 0,
+        maxDownloadCount: resolveDownloadLimit(downloadLimit[0]?.maxLimit),
       });
 
       await tx.insert(collectionItems).values({

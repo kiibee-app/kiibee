@@ -2,8 +2,8 @@
 
 import type { CreatorRequestsTableProps } from "../../../types/creator-requests-table";
 import {
+  ActionRequestsTable,
   RequestTableRow,
-  RequestsTable,
   TableBodyCell,
   TableHeaderCell,
   TableScrollWrapper,
@@ -22,7 +22,7 @@ export function CreatorRequestsTable({
 
   return (
     <TableScrollWrapper>
-      <RequestsTable>
+      <ActionRequestsTable>
         <thead>
           <tr>
             {creatorTableColumns.map((column) => (
@@ -49,7 +49,7 @@ export function CreatorRequestsTable({
             </RequestTableRow>
           ))}
         </tbody>
-      </RequestsTable>
+      </ActionRequestsTable>
     </TableScrollWrapper>
   );
 }

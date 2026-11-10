@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/utils/landingShared";
 import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
 import { toCanonicalPathname } from "@/utils/localizedRoutes";
+import { HASH_PLANS, SCROLL_TO_PLANS_KEY } from "@/utils/Constants";
 import { canUseDOM } from "@/utils/ui";
 
 if (typeof window !== "undefined") {
@@ -32,13 +33,19 @@ function shouldUseSmoothScroll(pathname: string) {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
+  const canonicalPathname = toCanonicalPathname(pathname);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     window.history.scrollRestoration = "manual";
 
+    const wantsPlansScroll = () =>
+      window.sessionStorage.getItem(SCROLL_TO_PLANS_KEY) === "1" ||
+      window.location.hash === HASH_PLANS;
+
     const resetScroll = () => {
+      if (wantsPlansScroll()) return;
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
@@ -52,7 +59,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const t1 = setTimeout(resetScroll, 50);
     const t2 = setTimeout(resetScroll, 200);
 
-    if (!shouldUseSmoothScroll(pathname)) {
+    if (!shouldUseSmoothScroll(canonicalPathname)) {
       return () => {
         cancelAnimationFrame(raf1);
         cancelAnimationFrame(raf2);
@@ -72,7 +79,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       overscroll: false,
     });
 
-    lenis.scrollTo(0, { immediate: true });
+    if (!wantsPlansScroll()) lenis.scrollTo(0, { immediate: true });
 
     let resizeRafId: number | null = null;
     let destroyed = false;
@@ -173,7 +180,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
-  }, [pathname]);
+  }, [canonicalPathname]);
 
   return children;
 }

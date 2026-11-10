@@ -14,6 +14,7 @@ import type { Request } from 'express';
 import { CollectionService } from './collection.service';
 import {
   CreateCollectionDto,
+  ReorderCollectionsDto,
   UpdateCollectionDto,
 } from './dto/createCollection.dto';
 
@@ -44,6 +45,18 @@ export class CollectionController {
   @Get()
   async getAllCollections(@Req() req: AuthenticatedRequest) {
     return this.collectionService.getAllCollectionsService(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Patch('order')
+  async reorderCollections(
+    @Req() req: AuthenticatedRequest,
+    @Body() body: ReorderCollectionsDto,
+  ) {
+    return this.collectionService.reorderCollections(
+      body.collectionIds,
+      req.user.userId,
+    );
   }
 
   @Get('public/:creatorId')

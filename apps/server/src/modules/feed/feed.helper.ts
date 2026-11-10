@@ -1,4 +1,5 @@
-import { ilike, or } from 'drizzle-orm';
+import { publicCreatorName } from 'src/utils/publicCreatorName';
+import { ilike, or, sql } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 
@@ -50,6 +51,30 @@ export const dedupeFeedMediaByCreator = <
   return unique;
 };
 
+export const balanceFeedMediaByCreator = <
+  T extends { creatorId?: string | null },
+>(
+  items: T[],
+  limit?: number,
+): T[] => {
+  const seen = new Set<string>();
+  const firstPass: T[] = [];
+  const remaining: T[] = [];
+
+  for (const item of items) {
+    const creatorKey = item.creatorId?.trim();
+    if (creatorKey && !seen.has(creatorKey)) {
+      seen.add(creatorKey);
+      firstPass.push(item);
+    } else {
+      remaining.push(item);
+    }
+  }
+
+  const combined = [...firstPass, ...remaining];
+  return limit != null ? combined.slice(0, limit) : combined;
+};
+
 export const orderFeedMediaByIds = <T extends { id: string }>(
   items: T[],
   ids: string[],
@@ -66,7 +91,7 @@ export const buildSearch = (search?: string) => {
   return or(
     ilike(mediaFiles.title, q),
     ilike(mediaFiles.description, q),
-    ilike(users.fullName, q),
+    sql`${publicCreatorName} ILIKE ${q}`,
   );
 };
 

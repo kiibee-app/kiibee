@@ -35,6 +35,7 @@ export const appEnvSchema = smtpEnvSchema.extend({
   CORS_ORIGIN: z.string().trim().min(1).default('http://localhost:3000'),
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(4).max(31).default(12),
   SENDER_EMAIL: z.string().email('SENDER_EMAIL must be a valid email'),
+  TURNSTILE_SECRET_KEY: z.string().trim().optional(),
   SENDER_NAME: z.string().trim().min(1, 'SENDER_NAME is required'),
 });
 

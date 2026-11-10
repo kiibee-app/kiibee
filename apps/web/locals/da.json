@@ -1,8 +1,26 @@
 {
+  "epubViewer": {
+    "index": "Læser bogens indeks…",
+    "download": "Indlæser det første kapitel…",
+    "prepare": "Forbereder den første side…",
+    "error": "Bogen kunne ikke åbnes.",
+    "retry": "Prøv igen"
+  },
+  "pdfViewer": {
+    "previous": "Forrige side",
+    "next": "Næste side",
+    "zoom": "Sidestørrelse",
+    "fitPage": "Tilpas side",
+    "fitWidth": "Tilpas bredde",
+    "page": "Side {{number}}",
+    "pageError": "Denne side kunne ikke vises.",
+    "loadError": "PDF-filen kunne ikke indlæses i denne læser.",
+    "openNative": "Åbn i standard PDF-læser"
+  },
   "hero": {
     "title": "Opdag og nyd unikt digitalt indhold fra dine foretrukne kreatør eller udgiver.",
     "subtitle": "Se, lyt og lær direkte fra uafhængige udgiver. Lej eller køb eksklusivt indhold med få klik.",
-    "cta": "Deltag i Kiibee nu"
+    "cta": "Kom ombord her"
   },
   "nav": {
     "howItWorks": "Sådan fungerer det",
@@ -123,7 +141,7 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Tilmeld dig Kiibee"
+    "cta": "Kom ombord her"
   },
   "auth": {
     "title": "Stedet hvor udgivere og seere mødes",
@@ -253,6 +271,9 @@
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "form": {
+      "companyName": "Firmanavn",
+      "companyNameRequired": "Firmanavn er påkrævet",
+      "companyNameMax": "Firmanavn må højst være 200 tegn",
       "firstName": "Fornavn",
       "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",
@@ -300,7 +321,7 @@
   },
   "how": {
     "heroAlt": "Kiibee hero-billede",
-    "title": "Stream eller ej — indholdet du elsker",
+    "title": "Find, Køb eller lej - alt samlet ét sted.",
     "subtitle": "Få adgang til indhold fra dine yndlingsskabere. Abonner, støt, og nyd oplevelser.",
     "cta": "Udforsk indhold",
     "stepsSubtitle": "Tre trin for at få adgang til kurser, tutorials og ressourcer på tværs af 50+ kategorier",
@@ -593,7 +614,7 @@
       "formatLabel": "Format:"
     },
     "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
-    "ctaPrimary": "Deltag nu",
+    "ctaPrimary": "Kom ombord her",
     "ctaSecondary": "Se alle udgivere",
     "mediaTypes": {
       "video": "Video",
@@ -703,6 +724,7 @@
         "email": "Indtast e-mail adresse",
         "message": "Skriv din besked..."
       },
+      "verificationUnavailable": "Verificering er ikke tilgængelig. Prøv at genindlæse siden, eller send en e-mail direkte til support.",
       "errors": {
         "firstNameRequired": "Fornavn er påkrævet",
         "emailRequired": "E-mail adresse er påkrævet",
@@ -857,34 +879,35 @@
     "active": "Aktiv",
     "planNotFound": "Planen blev ikke fundet",
     "subscriptionActivated": "Abonnementet er aktiveret!",
-    "enterprise": "Virksomhed",
+    "enterprise": "Kontakt os",
     "plans": {
       "launch": {
-        "title": "Launch",
+        "title": "Prøv kiibee",
         "price": "0 kr/md",
         "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
         "desc2": "Perfekt til dig, der vil teste en idé, lancere dit første produkt eller komme online uden risiko.",
         "features": [
-          "Eget site & shop med op til to filer.",
+          "Eget site & shop med op til 2 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
           "Salgs- og visningsstatistik",
-          "Opsamling af e-mail eller kode på indhold"
+          "45% gebyr af dit salg"
         ]
       },
       "growth": {
-        "title": "Growth",
+        "title": "Start-up",
         "price": "129 kr/md",
         "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold ét sted.",
         "desc2": "Få mere frihed, mere plads til vækst og en løsning, der følger med dit momentum.",
         "features": [
-          "Eget site & shop",
+          "Eget site & shop med op til 10 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
           "Salgs- og visningsstatistik",
           "Opsamling af e-mail eller kode på indhold",
           "Sæt rabatkoder på dit indhold",
-          "Kommunikerer på dine kunder direkte"
+          "Eksponering i Nyhedsbreve og SoMe posts",
+          "25% gebyr af dit salg"
         ]
       },
       "pro": {
@@ -893,14 +916,14 @@
         "desc1": "Til professionelle creators og virksomheder med større ambitioner.",
         "desc2": "Få maksimal fleksibilitet, ekstra support og hjælp til opsætning – så du kan fokusere på salg og skalering.",
         "features": [
-          "Eget site & shop",
+          "Eget site & shop med op til 70 filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
           "Til Streaming og download",
           "Salgs- og visningsstatistik",
           "Opsamling af e-mail eller kode på indhold",
           "Sæt rabatkoder på dit indhold",
-          "Kommunikerer på dine kunder direkte",
-          "Integrer med et hav af apps via Zapier.com"
+          "Eksponering i Nyhedsbreve og SoMe posts",
+          "18% gebyr af dit salg"
         ]
       }
     }
@@ -917,19 +940,19 @@
     },
     "plans": {
       "tryKiibee": {
-        "name": "Try Kiibee",
-        "meta": "Maks. 2 filer",
+        "name": "Prøv kiibee",
+        "meta": "Op til 2 filer",
         "price": "0 kr/md"
       },
       "startUp": {
         "name": "Start-up",
-        "meta": "Maks. 10 filer",
-        "price": "99 kr/md"
+        "meta": "Op til 10 filer",
+        "price": "129 kr/md"
       },
       "pro": {
         "name": "Pro",
-        "meta": "Maks. 70 filer",
-        "price": "299 kr/md"
+        "meta": "Op til 70 filer",
+        "price": "399 kr/md"
       }
     },
     "invite": {
@@ -987,7 +1010,7 @@
     "items": [
       {
         "question": "Kan jeg sælge indhold med den gratis plan?",
-        "answer": "Ja. Den gratis Launch-plan lader dig uploade og sælge op til to produkter uden månedlige omkostninger. Det er en god måde at teste din idé på, før du opgraderer."
+        "answer": "Ja. Den gratis Prøv kiibee-plan lader dig uploade og sælge op til to produkter uden månedlige omkostninger. Det er en god måde at teste din idé på, før du opgraderer."
       },
       {
         "question": "Kan jeg ændre eller annullere min plan?",
@@ -1201,7 +1224,8 @@
       "visibility": "Synlighed:",
       "duration": "Varighed:",
       "productionCompany": "Produktionsselskab:",
-      "manufacturerLink": "Producentlink:"
+      "manufacturerLink": "Producentlink:",
+      "orderPhysicalEdition": "Bestil fysisk udgave - gå til webshop"
     }
   },
   "singleCollection": {
@@ -1672,6 +1696,16 @@
       "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
     "toggleSidebar": "Skift sidepanel",
+    "subscriptionExpired": {
+      "title": "Dit abonnement er udløbet",
+      "message": "Din konto er nu på Try Kiibee. Vælg et betalt abonnement, og gennemfør betalingen for at kunne tilføje nyt indhold igen.",
+      "upgrade": "Opgrader abonnement"
+    },
+    "subscriptionPaymentRequired": {
+      "title": "Betaling påkrævet",
+      "message": "En administrator har ændret dit abonnement til {{planName}}. Gennemfør betalingen via ePay for at aktivere abonnementet og tilføje nyt indhold igen.",
+      "pay": "Se abonnement og betal"
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
@@ -2053,6 +2087,7 @@
       "channelDescription": "Angiv adgang for alle samlinger og alt indhold på din kanal.",
       "fallbackContentType": "samling",
       "placeholder": "Vælg adgangstype",
+      "required": "Vælg venligst et adgangskrav.",
       "options": {
         "free": "Gratis",
         "payment": "Betaling",
@@ -2240,6 +2275,7 @@
         "title": "Adgangskrav",
         "description": "Overvej hvilken type adgang dit {{contentType}} skal have",
         "fallbackContentType": "indhold",
+        "amountRequired": "Angiv mindst et beløb for leje eller køb.",
         "options": {
           "free": "Gratis",
           "payment": "Betaling",
@@ -2448,6 +2484,7 @@
     "categories": "Kategorier",
     "allCategories": "Alle kategorier",
     "searchPurchased": "Søg i købt indhold",
+    "openSection": "Åbn sektion: {{section}}",
     "searchCurrentlyRented": "Søg i nuværende leje",
     "searchPreviouslyRented": "Søg i tidligere leje",
     "playVideo": "Afspil video",

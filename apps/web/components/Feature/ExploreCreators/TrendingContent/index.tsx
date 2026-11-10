@@ -27,14 +27,27 @@ import { useTranslation } from "react-i18next";
 import { LeftIcon } from "@/assets/icons";
 
 export default function TrendingContent({ search }: { search?: string }) {
+  return <TrendingContentResults key={search ?? ""} search={search} />;
+}
+
+function TrendingContentResults({ search }: { search?: string }) {
   const { t } = useTranslation();
   const [pageStart, setPageStart] = useState(0);
-  const { tutorials, isLoading } = useTrendingContent({ search });
+  const [limit, setLimit] = useState(12);
+  const { tutorials, isLoading, isFetching } = useTrendingContent({
+    search,
+    limit,
+  });
 
   const totalItems = tutorials.length;
+  const visibleStart = Math.min(
+    pageStart,
+    Math.max(totalItems - FEED_CONTENT_PAGE_SIZE, 0),
+  );
+  const hasMore = totalItems >= limit && limit < 100;
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(
     totalItems,
-    pageStart,
+    visibleStart,
   );
 
   const movePrev = useCallback(() => {
@@ -42,14 +55,19 @@ export default function TrendingContent({ search }: { search?: string }) {
   }, []);
 
   const moveNext = useCallback(() => {
-    if (!canSlide) return;
-    setPageStart((prev) =>
-      Math.min(
-        prev + FEED_CONTENT_PAGE_SIZE,
-        totalItems - FEED_CONTENT_PAGE_SIZE,
-      ),
-    );
-  }, [canSlide, totalItems]);
+    if (isFetching) return;
+    if (canGoNext) {
+      setPageStart(
+        Math.min(
+          visibleStart + FEED_CONTENT_PAGE_SIZE,
+          totalItems - FEED_CONTENT_PAGE_SIZE,
+        ),
+      );
+    } else if (hasMore) {
+      setLimit((previous) => Math.min(previous + 12, 100));
+      setPageStart(visibleStart + FEED_CONTENT_PAGE_SIZE);
+    }
+  }, [canGoNext, hasMore, isFetching, totalItems, visibleStart]);
 
   if (isLoading) {
     return (
@@ -74,7 +92,7 @@ export default function TrendingContent({ search }: { search?: string }) {
     return null;
   }
 
-  const visibleTutorials = getFeedPageSlice(tutorials, pageStart);
+  const visibleTutorials = getFeedPageSlice(tutorials, visibleStart);
 
   return (
     <Section>
@@ -98,11 +116,12 @@ export default function TrendingContent({ search }: { search?: string }) {
                   <LeftIcon style={{ transform: "rotate(180deg)" }} />
                 </SectionArrow>
               )}
-              {canGoNext && (
+              {(canGoNext || hasMore) && (
                 <SectionArrow
                   type="button"
                   onClick={moveNext}
                   aria-label="Next"
+                  disabled={isFetching}
                 >
                   <LeftIcon />
                 </SectionArrow>
@@ -112,8 +131,12 @@ export default function TrendingContent({ search }: { search?: string }) {
         </HeaderActions>
       </SectionHeader>
       <Grid $columns={4}>
-        {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+        {visibleTutorials.map((tutorial, index) => (
+          <TutorialCard
+            key={tutorial.id}
+            tutorial={tutorial}
+            imagePriority={index < 4}
+          />
         ))}
       </Grid>
     </Section>

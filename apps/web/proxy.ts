@@ -140,6 +140,8 @@ function applyLocaleRouting(request: NextRequest, pathname: string) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = preferredPathname;
     redirectUrl.search = formatSearch(preferredSearch);
+    // The client re-appends its own hash after a redirect; keeping it here duplicates it (#plans#plans).
+    redirectUrl.hash = "";
     return {
       canonicalPathname,
       redirect: NextResponse.redirect(redirectUrl),

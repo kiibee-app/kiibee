@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { desc, eq, sql, and } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -9,7 +10,10 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorHasPublishedContentWhere,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const topCreatorsService = async () => {
@@ -17,7 +21,7 @@ export const topCreatorsService = async () => {
     const topCreators = await db
       .select({
         id: users.id,
-        name: users.fullName,
+        name: publicCreatorName,
         slug: creatorChannels.slug,
         profileImageUrl: users.avatarUrl,
         createdAt: users.createdAt,
@@ -42,6 +46,7 @@ export const topCreatorsService = async () => {
           eq(users.role, ROLE.CREATOR),
           eq(users.isDeleted, false),
           publiclyVisibleCreatorWhere,
+          creatorHasPublishedContentWhere,
         ),
       )
       .groupBy(

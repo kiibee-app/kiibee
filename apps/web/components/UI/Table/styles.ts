@@ -49,8 +49,12 @@ export const DesktopRow = styled.tr`
   }
 `;
 
-export const ClickableDesktopRow = styled(DesktopRow)<{ $clickable?: boolean }>`
-  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+export const ClickableDesktopRow = styled(DesktopRow)<{
+  $clickable?: boolean;
+  $draggable?: boolean;
+}>`
+  cursor: ${({ $draggable, $clickable }) =>
+    $draggable ? "grab" : $clickable ? "pointer" : "default"};
 
   &:hover {
     background: ${({ $clickable, theme }) =>

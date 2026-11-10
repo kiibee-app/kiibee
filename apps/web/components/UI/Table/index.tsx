@@ -20,6 +20,7 @@ export default function Table<T extends Record<string, unknown>>({
   emptyText,
   rowsPerPage = 3,
   onRowClick,
+  onRowReorder,
   onHeaderClick,
   isHeaderSortable,
   getHeaderSortDirection,
@@ -84,6 +85,7 @@ export default function Table<T extends Record<string, unknown>>({
           hasData={hasData}
           pagination={paginationMeta}
           onRowClick={onRowClick}
+          onRowReorder={onRowReorder}
           onHeaderClick={onHeaderClick}
           isHeaderSortable={isHeaderSortable}
           getHeaderSortDirection={getHeaderSortDirection}

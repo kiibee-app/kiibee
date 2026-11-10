@@ -45,6 +45,7 @@ export type RentedMediaItem = {
   buyPrice?: string | null;
   rentPrice?: string | null;
   accessStatus?: CollectionAccessStatus;
+  contentUrl?: string | null;
 };
 import {
   CURRENT_RENTED_AUDIOS,
@@ -128,12 +129,28 @@ const RENTED_CONTENT_SOURCE_KEYS = Object.values(
 export function mergeRentedContentSources(
   ...sources: Array<RentedContentSources | undefined>
 ): RentedContentSources {
-  return Object.fromEntries(
-    RENTED_CONTENT_SOURCE_KEYS.map((key) => [
-      key,
-      sources.flatMap((source) => (source?.[key] ?? []) as unknown[]),
-    ]),
-  ) as RentedContentSources;
+  const result: Record<string, unknown[]> = {};
+  for (const key of RENTED_CONTENT_SOURCE_KEYS) {
+    const seen = new Set<string>();
+    const list: Array<RentedCollectionItem | RentedMediaItem> = [];
+    for (const source of sources) {
+      const items = (source?.[key] ?? []) as Array<
+        RentedCollectionItem | RentedMediaItem
+      >;
+      for (const item of items) {
+        if (item?.id) {
+          if (!seen.has(item.id)) {
+            seen.add(item.id);
+            list.push(item);
+          }
+        } else {
+          list.push(item);
+        }
+      }
+    }
+    result[key] = list;
+  }
+  return result as RentedContentSources;
 }
 
 export type RentedMediaSectionItems = Record<
@@ -204,11 +221,11 @@ export function getRentedMediaSectionItems(items: {
 
 export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.COLLECTIONS]: 2,
-  [RENTED_SECTION_KEYS.VIDEOS]: 6,
-  [RENTED_SECTION_KEYS.AUDIOS]: 6,
-  [RENTED_SECTION_KEYS.PDFS]: 6,
-  [RENTED_SECTION_KEYS.EPUBS]: 6,
-  [RENTED_SECTION_KEYS.WEBS]: 6,
+  [RENTED_SECTION_KEYS.VIDEOS]: 5,
+  [RENTED_SECTION_KEYS.AUDIOS]: 5,
+  [RENTED_SECTION_KEYS.PDFS]: 5,
+  [RENTED_SECTION_KEYS.EPUBS]: 5,
+  [RENTED_SECTION_KEYS.WEBS]: 5,
 };
 
 export function paginateSectionItems<T>(
@@ -224,10 +241,9 @@ export function filterCollections(
   searchValue: string,
   items: RentedCollectionItem[],
 ) {
-  const withContent = items.filter((item) => item.elementCount > 0);
   const needle = searchValue.trim().toLowerCase();
-  if (!needle) return withContent;
-  return withContent.filter((item) =>
+  if (!needle) return items;
+  return items.filter((item) =>
     [item.title, item.author, String(item.elementCount)].some((part) =>
       part.toLowerCase().includes(needle),
     ),
@@ -330,7 +346,7 @@ export function getCollectionPrimaryActionText(
     item?.buyPrice as string | number | null | undefined,
   );
 
-  return buyPriceLabel ?? t("viewerRented.buyPlaceholder");
+  return buyPriceLabel;
 }
 
 export function getSearchPlaceholder(mode: RentedMode, t: TFunction) {

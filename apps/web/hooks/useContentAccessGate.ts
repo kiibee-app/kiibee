@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -19,6 +19,8 @@ import {
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
+import { FORMAT_TYPE } from "@/utils/types";
+import { getContentType } from "@/utils/contentApi";
 import type { ContentDetailItem } from "@/utils/contentApi";
 import {
   getContentUnlockStorageKey,
@@ -28,6 +30,22 @@ import {
 import { pathLoginWithNext } from "@/utils/path";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { toast } from "react-toastify";
+
+function subscribeToContentUnlock(key: string, onChange: () => void) {
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === key || event.key === null) onChange();
+  };
+  window.addEventListener("storage", handleStorage);
+  return () => window.removeEventListener("storage", handleStorage);
+}
+
+function getContentUnlockSnapshot(key: string) {
+  return Boolean(
+    key &&
+    typeof window !== "undefined" &&
+    window.localStorage.getItem(key) === "true",
+  );
+}
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -61,6 +79,18 @@ export function useContentAccessGate(
   const contentStorageKey = content?.id
     ? `kiibee:gate:unlocked:content:${content.id}`
     : "";
+  const subscribeToUnlock = useCallback(
+    (onChange: () => void) =>
+      subscribeToContentUnlock(contentStorageKey, onChange),
+    [contentStorageKey],
+  );
+  const hasLocalContentUnlock = useSyncExternalStore(
+    subscribeToUnlock,
+    () => getContentUnlockSnapshot(contentStorageKey),
+    () => false,
+  );
+
+  const isWebContent = getContentType(content) === FORMAT_TYPE.WEB;
 
   const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
 
@@ -70,7 +100,7 @@ export function useContentAccessGate(
 
   useEffect(() => {
     if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
-    if (!loginUser?.id) {
+    if (!loginUser?.id && !isWebContent) {
       const returnTo = `${window.location.pathname}${window.location.search}`;
       window.location.replace(pathLoginWithNext(returnTo));
       return;
@@ -80,9 +110,15 @@ export function useContentAccessGate(
 
     const redeemAccess = async () => {
       try {
-        await axiosClient.post(API.creatorUsers.redeemContentAccess, {
-          token: approvedAccessToken,
-        });
+        const response = await axiosClient.post(
+          !loginUser?.id && isWebContent
+            ? API.creatorUsers.redeemGuestWebContentAccess
+            : API.creatorUsers.redeemContentAccess,
+          { token: approvedAccessToken },
+        );
+        if (response.data?.data?.contentId !== content.id) {
+          throw new Error("Access link belongs to different content");
+        }
 
         if (cancelled) return;
 
@@ -107,14 +143,21 @@ export function useContentAccessGate(
     return () => {
       cancelled = true;
     };
-  }, [approvedAccessToken, content?.id, contentStorageKey, loginUser?.id]);
+  }, [
+    approvedAccessToken,
+    content?.id,
+    contentStorageKey,
+    loginUser?.id,
+    isWebContent,
+  ]);
 
   const hasContentGate = isContentCode || isContentEmail;
   const hasServerAccess = Boolean(content?.accessInfo);
   const hasApprovedEmailAccess = Boolean(loginUser?.id && hasServerAccess);
   const isContentUnlocked = isContentEmail
-    ? hasApprovedEmailAccess
-    : hasServerAccess;
+    ? hasApprovedEmailAccess ||
+      Boolean((loginUser?.id || isWebContent) && hasLocalContentUnlock)
+    : hasServerAccess || hasLocalContentUnlock;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType = isOwner
@@ -153,13 +196,22 @@ export function useContentAccessGate(
       value &&
       content?.creatorId
     ) {
-      await axiosClient.post(API.creatorUsers.requestContentAccess, {
-        creatorId: content.creatorId,
-        contentId: content.id,
-        email: value,
-        name,
-      });
-      return true;
+      if (isWebContent && !isContentLocked) {
+        await axiosClient.post(API.creatorUsers.register, {
+          creatorId: content.creatorId,
+          sourceId: targetId,
+          email: value,
+          name,
+        });
+      } else {
+        await axiosClient.post(API.creatorUsers.requestContentAccess, {
+          creatorId: content.creatorId,
+          contentId: content.id,
+          email: value,
+          name,
+        });
+        return true;
+      }
     }
 
     const unlockStorageKey = [

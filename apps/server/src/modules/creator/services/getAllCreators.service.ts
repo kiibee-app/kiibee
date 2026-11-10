@@ -1,3 +1,4 @@
+import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq, sql, and, asc, desc, inArray, ilike, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -19,7 +20,10 @@ import {
   STATUS,
 } from 'src/utils/constant';
 import { getSafePositiveInteger, MAX_LIMIT } from 'src/utils/pagination';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  creatorHasPublishedContentWhere,
+  publiclyVisibleCreatorWhere,
+} from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 import { getCreatorCategoryMap } from './getCreatorCategoryMap';
 
@@ -40,11 +44,7 @@ const publishedMediaJoinCondition = and(
   eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
 );
 
-const creatorDisplayNameSql = sql<string>`trim(coalesce(
-  nullif(${creatorChannels.name}, ''),
-  nullif(${users.fullName}, ''),
-  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
-))`;
+const creatorDisplayNameSql = publicCreatorName;
 
 export const allCreatorsService = async ({
   page,
@@ -149,15 +149,13 @@ export const allCreatorsService = async ({
       eq(users.isDeleted, false),
       eq(users.status, STATUS.ACTIVE),
       publiclyVisibleCreatorWhere,
+      creatorHasPublishedContentWhere,
       sql`${creatorDisplayNameSql} <> ''`,
       isFeaturedOnly && hasFeaturedRecords
         ? sql`${featureCreators.creatorId} IS NOT NULL`
         : sql`TRUE`,
       hasSearch
         ? or(
-            ilike(users.fullName, `%${search}%`),
-            ilike(users.firstName, `%${search}%`),
-            ilike(users.lastName, `%${search}%`),
             ilike(creatorChannels.name, `%${search}%`),
             sql`${creatorDisplayNameSql} ILIKE ${'%' + search + '%'}`,
           )

@@ -1,6 +1,8 @@
 "use client";
 
+import { canonicalCreatorSlug } from "@/utils/creatorSlugAliases";
 import { useMemo } from "react";
+import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -93,6 +95,7 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 function normalizeExploreCreator(creator: ExploreCreator): ExploreCreator {
   return {
     ...creator,
+    slug: creator.slug ? canonicalCreatorSlug(creator.slug) : creator.slug,
     category: getExploreCreatorCategoryLabel(creator),
   };
 }
@@ -163,6 +166,7 @@ export const useExploreCreators = (
   limit?: number,
   search?: string,
   filter?: string,
+  enabled = true,
 ) => {
   const isAllEndpoint = filter !== undefined;
   const sortBy = mapFilterToSortBy(filter);
@@ -177,6 +181,7 @@ export const useExploreCreators = (
   const query = useGetAPI<ExploreCreatorsResponse>(
     isAllEndpoint ? API.creators.all : API.creators.list,
     Object.keys(params).length > 0 ? params : undefined,
+    { ...CACHE_CONFIG.explore, enabled },
   );
 
   const baseCreators = useMemo(() => {
@@ -210,7 +215,7 @@ export const useExploreCreators = (
 
       return response.data;
     },
-    enabled: creatorIdsMissingCategory.length > 0,
+    enabled: enabled && creatorIdsMissingCategory.length > 0,
     refetchOnWindowFocus: false,
   });
 
@@ -262,6 +267,7 @@ export const usePaginatedExploreCreators = ({
   const trimmedSearch = search?.trim() || undefined;
 
   const query = useInfiniteQuery({
+    ...CACHE_CONFIG.explore,
     queryKey: [
       API.creators.all,
       "paginated",
@@ -359,7 +365,12 @@ export const useCreatorPublicProfile = (creatorId: string | null) => {
     if (!query.data?.success || !query.data.data) {
       return null;
     }
-    return query.data.data;
+    return {
+      ...query.data.data,
+      slug: query.data.data.slug
+        ? canonicalCreatorSlug(query.data.data.slug)
+        : query.data.data.slug,
+    };
   }, [query.data]);
 
   return {

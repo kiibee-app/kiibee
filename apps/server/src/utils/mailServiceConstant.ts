@@ -14,6 +14,7 @@ export const templateName = {
   SUBSCRIPTION_PAYMENT_FAILED: 'subscriptionPaymentFailed',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN: 'subscriptionPaymentFailedAdmin',
   SUBSCRIPTION_ACTIVATED: 'subscriptionActivated',
+  SUBSCRIPTION_EXPIRED: 'subscriptionExpired',
   SUBSCRIPTION_CANCELLED: 'subscriptionCancelled',
 };
 
@@ -36,6 +37,7 @@ export const mailSubject = {
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
     'Creator-abonnementbetaling mislykkedes – Kiibee',
   SUBSCRIPTION_ACTIVATED: 'Dit Kiibee-abonnement er nu aktivt',
+  SUBSCRIPTION_EXPIRED: 'Dit Kiibee-abonnement er udløbet',
   SUBSCRIPTION_CANCELLED: 'Dit Kiibee-abonnement er opsagt',
 };
 

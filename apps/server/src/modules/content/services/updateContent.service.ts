@@ -28,8 +28,15 @@ const pickDefined = (obj: Record<string, any>) =>
 
 const slugifyTag = (value: string) =>
   value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .trim()
+    .replace(/æ/g, 'ae')
+    .replace(/ø/g, 'oe')
+    .replace(/å/g, 'a')
+    .replace(/['’‘`"“”]/g, '')
+    .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
     .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
     .replace(SLUG_EDGE_DASH_RE, '');
 

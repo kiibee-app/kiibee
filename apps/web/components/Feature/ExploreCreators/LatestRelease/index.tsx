@@ -250,7 +250,11 @@ export default function LatestRelease({ search }: { search?: string }) {
               ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
-                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+                <TutorialCard
+                  key={tutorial.id}
+                  tutorial={tutorial}
+                  imagePriority={false}
+                />
               ))
             ) : (
               <ResultsState>

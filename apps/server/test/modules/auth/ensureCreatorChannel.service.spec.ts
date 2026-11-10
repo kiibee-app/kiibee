@@ -111,4 +111,37 @@ describe('ensureCreatorChannel', () => {
       }),
     );
   });
+  it('preserves existing company URLs when the company name is unchanged', async () => {
+    const client = createClient({
+      existing: {
+        id: 'ch-fbi',
+        name: 'FBI.DK',
+        slug: 'fbidk',
+        isPublished: true,
+      },
+    });
+    await ensureCreatorChannel(client as any, {
+      creatorId,
+      channelName: 'FBI.DK',
+    });
+    expect(client.update).not.toHaveBeenCalled();
+    expect(client.select).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not publish a draft during identity migration', async () => {
+    const client = createClient({
+      existing: {
+        id: 'ch-fbi',
+        name: 'FBI.DK',
+        slug: 'fbidk',
+        isPublished: false,
+      },
+    });
+    await ensureCreatorChannel(client as any, {
+      creatorId,
+      channelName: 'FBI.DK',
+      publish: false,
+    });
+    expect(client.update).not.toHaveBeenCalled();
+  });
 });

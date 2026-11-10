@@ -33,7 +33,6 @@ const ADMISSION_OPTION_I18N = {
 
 export const getAdmissionOptions = (
   t: TFunction,
-  contentTypeId?: string,
 ): DropdownOption<AdmissionValue>[] => {
   const free = {
     label: t(ADMISSION_OPTION_I18N.FREE),
@@ -51,10 +50,6 @@ export const getAdmissionOptions = (
     label: t(ADMISSION_OPTION_I18N.REQUEST_EMAIL),
     value: ADMISSION_TYPE.REQUEST_EMAIL,
   };
-
-  if (contentTypeId === FORMAT_TYPE.WEB) {
-    return [free, setPassword, requestEmail];
-  }
 
   return [free, payment, setPassword, requestEmail];
 };
@@ -176,6 +171,8 @@ export const getPaymentContentTexts = (
     web: {
       rentalTitle: t("contents.payment.webRental.title"),
       rentalDescription: t("contents.payment.webRental.description"),
+      purchaseTitle: t("contents.payment.webPurchase.title"),
+      purchaseDescription: t("contents.payment.webPurchase.description"),
     },
 
     epub: {

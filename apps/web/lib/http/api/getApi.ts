@@ -24,8 +24,11 @@ export const useGetAPI = <T>(
 
   return useQuery<T, ApiError>({
     queryKey: hasParams ? [route, params] : [route],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       const controller = new AbortController();
+      const cancelRequest = () => controller.abort();
+      if (signal.aborted) cancelRequest();
+      else signal.addEventListener("abort", cancelRequest, { once: true });
 
       const timeout = setTimeout(() => {
         controller.abort();
@@ -42,6 +45,7 @@ export const useGetAPI = <T>(
         throw normalizeApiError(error);
       } finally {
         clearTimeout(timeout);
+        signal.removeEventListener("abort", cancelRequest);
       }
     },
     ...options,

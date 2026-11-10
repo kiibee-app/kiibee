@@ -22,6 +22,7 @@ type Props<T extends string = string> = {
   value?: T;
   onChange?: (value: T) => void;
   label?: React.ReactNode;
+  placeholder?: React.ReactNode;
   trigger?: React.ReactNode;
   renderSelectedLabel?: (
     value: T,
@@ -45,6 +46,7 @@ function SortDropdown<T extends string = string>({
   value,
   onChange,
   label,
+  placeholder,
   trigger,
   renderSelectedLabel,
   renderOptionLabel,
@@ -108,6 +110,7 @@ function SortDropdown<T extends string = string>({
       ? renderSelectedLabel(selected, selectedOption)
       : null
     : (selectedOption?.label ?? selected ?? null);
+  const displayLabel = selected ? resolvedSelectedLabel : placeholder ?? null;
 
   return (
     <SortBox
@@ -126,7 +129,12 @@ function SortDropdown<T extends string = string>({
       ) : (
         <Text>
           {label ? <MonoText $use="Body_Regular">{label}</MonoText> : null}
-          <MonoText $use="Body_Regular">{resolvedSelectedLabel}</MonoText>
+          <MonoText
+            $use="Body_Regular"
+            color={selected ? undefined : theme.colors.neutral.GRAY_500}
+          >
+            {displayLabel}
+          </MonoText>
         </Text>
       )}
 

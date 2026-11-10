@@ -1,9 +1,10 @@
 "use client";
 
-import { memo, useMemo, useState, type MouseEvent } from "react";
+import { memo, useCallback, useMemo, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { isKiibeeUrl, normalizeExternalUrl } from "@/utils/common";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
@@ -28,7 +29,6 @@ import { getCategoryLabel } from "@/utils/category";
 import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { formatTimeAgoByLang } from "@/utils/formatDate";
-import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import {
   isBuyActionLabel,
@@ -67,6 +67,7 @@ function TutorialCard({
   tutorial,
   onPlayClick,
   isSelected = false,
+  creatorSlug = null,
   collectionId = null,
   collectionSlug = null,
   isPaidCollection = false,
@@ -96,59 +97,67 @@ function TutorialCard({
     setLoginModalMessage(undefined);
   };
 
-  const thumbnailCandidates = useMemo(() => {
-    if (tutorial.videoUrl) {
-      return resolveTutorialThumbnailCandidates({
-        videoUrl: tutorial.videoUrl,
-        trailerUrl: tutorial.trailerUrl,
-      });
-    }
-
-    const staticImage = resolveImageUrl(tutorial.image);
-    return staticImage ? [staticImage] : [];
-  }, [tutorial.image, tutorial.trailerUrl, tutorial.videoUrl]);
-
-  const [thumbnailIndex, setThumbnailIndex] = useState(0);
-
-  const image =
-    thumbnailCandidates[thumbnailIndex] ??
-    resolveImageUrl(tutorial.image) ??
-    undefined;
-  const imageFallback = thumbnailCandidates[thumbnailIndex + 1];
-
-  const handleThumbnailError = () => {
-    setThumbnailIndex((current) => {
-      const nextIndex = current + 1;
-      return nextIndex < thumbnailCandidates.length ? nextIndex : current;
-    });
-  };
+  const image = resolveImageUrl(tutorial.image) || undefined;
 
   const FormatIcon = useMemo(() => {
     const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
+  const effectiveCreatorSlug = creatorSlug || tutorial.creatorSlug;
   const effectiveCollectionSlug = collectionSlug || tutorial.collectionSlug;
 
   const singleTutorialHref = useMemo(
     () =>
       pathPublishedContent(
         tutorial.slug || tutorial.id,
-        tutorial.creatorSlug,
+        effectiveCreatorSlug,
         tutorial.title,
         effectiveCollectionSlug,
       ),
     [
       tutorial.slug,
       tutorial.id,
-      tutorial.creatorSlug,
+      effectiveCreatorSlug,
       tutorial.title,
       effectiveCollectionSlug,
     ],
   );
 
+  const isWebContent = tutorial.formatType === FORMAT_TYPE.WEB;
+  const webUrl =
+    isWebContent && tutorial.contentUrl
+      ? normalizeExternalUrl(tutorial.contentUrl)
+      : "";
+  const isKiibee = isKiibeeUrl(webUrl);
+  const isDirectWebRedirect = isWebContent && Boolean(webUrl) && isKiibee;
+  const cardHref = isDirectWebRedirect ? webUrl : singleTutorialHref;
+
   const effectiveCollectionId = collectionId || tutorial.collectionId;
   const isPaid = isPaidCollection;
+
+  const resolveButtonHref = useCallback(
+    (href?: string) => {
+      if (!href) return singleTutorialHref;
+      if (/^https?:\/\//i.test(href)) {
+        return isWebContent && !isKiibee ? singleTutorialHref : href;
+      }
+      if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
+      if (effectiveCreatorSlug || effectiveCollectionSlug) {
+        const hashIndex = href.indexOf("#");
+        const hash = hashIndex !== -1 ? href.slice(hashIndex) : "";
+        return `${singleTutorialHref}${hash}`;
+      }
+      return href;
+    },
+    [
+      singleTutorialHref,
+      effectiveCreatorSlug,
+      effectiveCollectionSlug,
+      isWebContent,
+      isKiibee,
+    ],
+  );
 
   const buttons = useMemo(() => {
     if (hasAccess) {
@@ -156,12 +165,18 @@ function TutorialCard({
         {
           label: t("createProfileHome.latestUpload.seeContent"),
           variant: VARIANT.SECONDARY,
-          href: singleTutorialHref,
+          href: isDirectWebRedirect ? webUrl : singleTutorialHref,
         },
       ];
     }
 
     if (tutorial.buttons?.length) {
+      if (effectiveCreatorSlug || effectiveCollectionSlug) {
+        return tutorial.buttons.map((button) => ({
+          ...button,
+          href: resolveButtonHref(button.href),
+        }));
+      }
       return tutorial.buttons;
     }
 
@@ -169,7 +184,7 @@ function TutorialCard({
       const collectionHref = pathPublicCollection(
         effectiveCollectionId,
         tutorial.creatorId,
-        tutorial.creatorSlug,
+        effectiveCreatorSlug,
       );
       return [
         {
@@ -182,29 +197,42 @@ function TutorialCard({
       ];
     }
 
+    if (isWebContent && webUrl) {
+      return [
+        {
+          label: tutorial.isFree
+            ? t(TUTORIAL_VIDEOS.buttonFreeLabel)
+            : t("pricingLabels.buy"),
+          variant: VARIANT.SECONDARY,
+          href: isDirectWebRedirect ? webUrl : singleTutorialHref,
+        },
+      ];
+    }
+
     const defaultButton: TutorialButton = {
-      label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
+      label: tutorial.isFree
+        ? t(TUTORIAL_VIDEOS.buttonFreeLabel)
+        : t("pricingLabels.buy"),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return [defaultButton];
   }, [
     hasAccess,
+    t,
+    isWebContent,
+    webUrl,
+    singleTutorialHref,
+    tutorial.buttons,
+    tutorial.isFree,
     isPaid,
     effectiveCollectionId,
-    tutorial.isFree,
-    tutorial.buttons,
+    effectiveCreatorSlug,
+    effectiveCollectionSlug,
     tutorial.creatorId,
-    tutorial.creatorSlug,
-    t,
-    singleTutorialHref,
+    resolveButtonHref,
+    isDirectWebRedirect,
   ]);
-
-  const resolveButtonHref = (href?: string) => {
-    if (!href) return singleTutorialHref;
-    if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
-    return href;
-  };
 
   const isCardLinked = !onPlayClick;
 
@@ -213,21 +241,27 @@ function TutorialCard({
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
-    if (!tutorial.creatorSlug) return;
+    if (!effectiveCreatorSlug) return;
 
     event.preventDefault();
     event.stopPropagation();
-    router.push(getPublicCreatorProfilePath(tutorial.creatorSlug));
+    router.push(getPublicCreatorProfilePath(effectiveCreatorSlug));
   };
 
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const isLoggedIn = Boolean(user && user.id);
     const targetHref = resolveButtonHref(button.href);
 
-    if (button.requiresAuth && !isLoggedIn) {
+    if (isDirectWebRedirect && targetHref === webUrl) {
+      window.location.assign(targetHref);
+      return;
+    }
+
+    const isLoggedIn = Boolean(user && user.id);
+
+    if (button.requiresAuth && !isLoggedIn && !isWebContent) {
       const isPurchaseOrRent =
         isBuyActionLabel(button.label) || isRentActionLabel(button.label);
       if (isPurchaseOrRent) {
@@ -244,7 +278,7 @@ function TutorialCard({
     navigateToContent(targetHref);
   };
 
-  const creatorSubtitle = tutorial.creatorSlug ? (
+  const creatorSubtitle = effectiveCreatorSlug ? (
     isCardLinked ? (
       <CardCreator
         $use="Body_SemiMedium"
@@ -255,7 +289,7 @@ function TutorialCard({
       </CardCreator>
     ) : (
       <Link
-        href={getPublicCreatorProfilePath(tutorial.creatorSlug)}
+        href={getPublicCreatorProfilePath(effectiveCreatorSlug)}
         onClick={openCreatorProfile}
         style={{
           textDecoration: "none",
@@ -278,9 +312,8 @@ function TutorialCard({
       coverImage
       imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
       image={image}
-      imageFallback={imageFallback}
       imagePriority={imagePriority}
-      onImageError={handleThumbnailError}
+      keepImagePlaceholder
       alt={tutorial.title}
       badge={
         tutorial.category ? (
@@ -370,13 +403,21 @@ function TutorialCard({
     />
   );
 
+  const handleCardClick = (event: MouseEvent) => {
+    if (isDirectWebRedirect) {
+      event.preventDefault();
+      window.location.assign(webUrl);
+    }
+  };
+
   if (isCardLinked) {
     return (
       <>
         <CardLink
-          href={singleTutorialHref}
+          href={cardHref}
           $clickable
           aria-label={tutorial.title}
+          onClick={isDirectWebRedirect ? handleCardClick : undefined}
         >
           {card}
         </CardLink>

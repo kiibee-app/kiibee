@@ -1,4 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { inArray } from 'drizzle-orm';
+import { db } from 'src/database/db';
+import { collectionItems } from 'src/database/schema';
 import { fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 
@@ -21,16 +24,17 @@ export const getPurchasedData = async (userId: string) => {
 
     const ordersData = await getUserOrders(userId, ORDER_TYPES.PURCHASE);
 
-    const mediaIds = ordersData
+    const directMediaIds = ordersData
       .map((o) => o.mediaFileId)
       .filter(Boolean) as string[];
 
-    const collectionIds = ordersData
-      .filter((o) => !o.mediaFileId)
-      .map((o) => o.collectionId)
-      .filter(Boolean) as string[];
+    const collectionIds = Array.from(
+      new Set(
+        ordersData.map((o) => o.collectionId).filter(Boolean) as string[],
+      ),
+    );
 
-    if (!mediaIds.length && !collectionIds.length) {
+    if (!directMediaIds.length && !collectionIds.length) {
       return {
         success: true,
         message: 'Purchased data retrieved successfully',
@@ -40,20 +44,52 @@ export const getPurchasedData = async (userId: string) => {
 
     const { mediaMap, collectionMap } = buildAccessMap(ordersData);
 
+    let collectionMediaItems: { mediaFileId: string; collectionId: string }[] =
+      [];
+    if (collectionIds.length) {
+      collectionMediaItems = await db
+        .select({
+          mediaFileId: collectionItems.mediaFileId,
+          collectionId: collectionItems.collectionId,
+        })
+        .from(collectionItems)
+        .where(inArray(collectionItems.collectionId, collectionIds));
+
+      for (const item of collectionMediaItems) {
+        if (item.mediaFileId && !mediaMap.has(item.mediaFileId)) {
+          const colDate = collectionMap.get(item.collectionId);
+          if (colDate) {
+            mediaMap.set(item.mediaFileId, colDate);
+          }
+        }
+      }
+    }
+
+    const allMediaIds = Array.from(
+      new Set([
+        ...directMediaIds,
+        ...collectionMediaItems.map((ci) => ci.mediaFileId).filter(Boolean),
+      ]),
+    );
+
     const [videos, audios, pdfs, epubs, webs, collectionsData] =
       await Promise.all([
-        getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
-        getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
-        getMediaByType(mediaIds, CONTENT_TYPES.PDF),
-        getMediaByType(mediaIds, CONTENT_TYPES.EPUB),
-        getMediaByType(mediaIds, CONTENT_TYPES.WEB),
+        getMediaByType(allMediaIds, CONTENT_TYPES.VIDEO),
+        getMediaByType(allMediaIds, CONTENT_TYPES.AUDIO),
+        getMediaByType(allMediaIds, CONTENT_TYPES.PDF),
+        getMediaByType(allMediaIds, CONTENT_TYPES.EPUB),
+        getMediaByType(allMediaIds, CONTENT_TYPES.WEB),
         getCollectionsWithDetails(collectionIds),
       ]);
 
-    const allMediaIds = [...videos, ...audios, ...pdfs, ...epubs, ...webs].map(
-      (m) => m.id,
-    );
-    const categoryMap = await getMediaCategories(allMediaIds);
+    const finalMediaIds = [
+      ...videos,
+      ...audios,
+      ...pdfs,
+      ...epubs,
+      ...webs,
+    ].map((m) => m.id);
+    const categoryMap = await getMediaCategories(finalMediaIds);
 
     return {
       success: true,

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   TableWrapper,
@@ -35,10 +35,12 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   hasData,
   pagination,
   onRowClick,
+  onRowReorder,
   onHeaderClick,
   isHeaderSortable,
   getHeaderSortDirection,
 }: BaseTableProps<T>) {
+  const [draggedRow, setDraggedRow] = useState<T | null>(null);
   const { t } = useTranslation();
 
   return (
@@ -111,6 +113,27 @@ export default function DesktopTable<T extends Record<string, unknown>>({
               <ClickableDesktopRow
                 key={rowKey}
                 $clickable={clickable}
+                $draggable={Boolean(onRowReorder)}
+                draggable={Boolean(onRowReorder)}
+                onDragStart={(event) => {
+                  if (!onRowReorder) return;
+                  event.stopPropagation();
+                  event.dataTransfer.effectAllowed = "move";
+                  setDraggedRow(row);
+                }}
+                onDragOver={(event) => {
+                  if (!onRowReorder) return;
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = "move";
+                }}
+                onDrop={(event) => {
+                  if (!onRowReorder || !draggedRow) return;
+                  event.preventDefault();
+                  event.stopPropagation();
+                  onRowReorder(draggedRow, row);
+                  setDraggedRow(null);
+                }}
+                onDragEnd={() => setDraggedRow(null)}
                 onClick={
                   clickable ? () => onRowClick?.(row, globalIndex) : undefined
                 }

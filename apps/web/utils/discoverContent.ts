@@ -4,12 +4,11 @@ import imageTwo from "@/assets/images/discover-content/4ccc137164285071261595311
 import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9ac60f6d9a34156583.webp";
 import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.webp";
 import {
-  ImageSource,
+  type ImageSource,
   MEDIA_TYPE_EPUB_KEY,
   FALLBACK_MEDIA_TYPE_LABEL,
-  resolveMediaType,
-  MEDIA_TYPE,
 } from "./Constants";
+import { MEDIA_TYPE, resolveMediaType } from "./media";
 import {
   getContentPricingActions,
   getPricingLabels,
@@ -28,7 +27,7 @@ export type DiscoverContentAction = {
   requiresAuth?: boolean;
 };
 
-export type DiscoverContentMediaType = "video" | "epub";
+export type DiscoverContentMediaType = "video" | "audio" | "pdf" | "epub" | "web";
 
 export type DiscoverContentItem = {
   id: number | string;

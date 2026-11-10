@@ -18,6 +18,10 @@ export class CreateOrderInputDto {
   @IsOptional()
   @IsString()
   subscriptionId?: string;
+
+  @IsOptional()
+  @IsString()
+  idempotencyKey?: string;
 }
 export class CreateCollectionOrderInputDto {
   @IsString()
@@ -33,6 +37,10 @@ export class CreateCollectionOrderInputDto {
   @IsOptional()
   @IsString()
   subscriptionId?: string;
+
+  @IsOptional()
+  @IsString()
+  idempotencyKey?: string;
 }
 
 export class BillingHistoryQueryDto {

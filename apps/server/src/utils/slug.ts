@@ -10,11 +10,18 @@ export function slugify(
   value: string,
   fallback = DEFAULT_CHANNEL_SLUG,
 ): string {
+  if (!value) return fallback;
   return (
-    value
+    String(value)
+      .normalize('NFC')
+      .toLowerCase()
+      .replace(/æ/g, 'ae')
+      .replace(/ø/g, 'oe')
+      .replace(/å/g, 'aa')
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
+      .replace(/['’‘`"“”]/g, '')
+      .replace(/(^|[a-z0-9])-s(-|$)/gi, '$1s$2')
       .replace(/&/g, SLUG_AMPERSAND_REPLACEMENT)
       .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
       .replace(SLUG_EDGE_DASH_RE, '')

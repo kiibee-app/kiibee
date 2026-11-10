@@ -4,23 +4,10 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import { RequiredIndicator } from "@/components/UI/InputFields/styles";
-import {
-  CONTENT_FORM_FIELDS,
-  INPUT_VARIANTS,
-  maxDescriptionCharacters,
-} from "@/utils/Constants";
+import { CONTENT_FORM_FIELDS, INPUT_VARIANTS } from "@/utils/Constants";
 import { CONTENTS } from "@/utils/translationKeys";
 import { AppearancePanel } from "../styles";
-import {
-  ControlWrap,
-  Copy,
-  CounterRow,
-  CounterText,
-  Hint,
-  Label,
-  Row,
-  SectionList,
-} from "./styles";
+import { ControlWrap, Copy, Hint, Label, Row, SectionList } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useContentForm } from "../ContentFormContext";
 import { FORM_FIELDS } from "@/utils/appearance";
@@ -55,15 +42,14 @@ export default function DescriptionSection({
       : appearanceValues.description;
   const handleDescriptionChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    const truncated = text.slice(0, maxDescriptionCharacters);
     if (useFormContext) {
       clearFieldError(CONTENT_FORM_FIELDS.DESCRIPTION);
-      updateField(CONTENT_FORM_FIELDS.DESCRIPTION, truncated);
-    } else if (!showTitle) {
-      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
-      updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
+      updateField(CONTENT_FORM_FIELDS.DESCRIPTION, text);
+    } else if (showTitle) {
+      setLocalDescription(text);
     } else {
-      setLocalDescription(truncated);
+      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
+      updateAppearanceField(FORM_FIELDS.DESCRIPTION, text);
     }
   };
 
@@ -140,17 +126,6 @@ export default function DescriptionSection({
               }
             />
           </ControlWrap>
-
-          {!showTitle && (
-            <CounterRow>
-              <CounterText>
-                {t(CONTENTS.appearance.maximumCharacter)}
-              </CounterText>
-              <CounterText>
-                {description.length}/{maxDescriptionCharacters}
-              </CounterText>
-            </CounterRow>
-          )}
         </Row>
       </SectionList>
     </AppearancePanel>

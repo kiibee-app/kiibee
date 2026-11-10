@@ -36,6 +36,9 @@ export const payments = pgTable(
   },
   (table) => ({
     orderIdIdx: index('payments_order_id_idx').on(table.orderId),
+    providerReferenceIdx: index('payments_provider_reference_idx').on(
+      table.providerReference,
+    ),
     providerIdx: index('payments_provider_idx').on(table.provider),
     statusIdx: index('payments_status_idx').on(table.status),
     paidAtIdx: index('payments_paid_at_idx').on(table.paidAt),

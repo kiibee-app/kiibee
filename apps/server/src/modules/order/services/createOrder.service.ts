@@ -1,15 +1,17 @@
 import { db } from 'src/database/db';
-import { orders } from 'src/database/schema/commerce/orders.schema';
 import { CreateOrderInputDto } from '../dto/order.dto';
 import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 import { logger } from 'src/logger/logger';
-import { BadRequestException } from '@nestjs/common';
+import { HttpException } from '@nestjs/common';
 import { fail, success } from 'src/utils/sendResponse';
-import { mediaFiles } from 'src/database/schema';
-import { and, eq } from 'drizzle-orm';
+import { mediaFiles, userContentAccess } from 'src/database/schema';
+import { orders } from 'src/database/schema/commerce/orders.schema';
+import { and, eq, ne } from 'drizzle-orm';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
-import { ORDER_TYPES } from 'src/utils/constant';
+import { ACCRESS_TYPES, ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+import { COUPON_DISCOUNT_TYPE_PERCENTAGE } from 'src/utils/coupon';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
+import { findOrCreateCheckoutOrder } from './orderIdempotency';
 
 export async function createOrderService(
   userId: string,
@@ -62,9 +64,16 @@ export async function createOrderService(
         contentId,
         collectionId,
       );
-      discountAmount = Number(couponInfo.data.discountValue) || 0;
+      const { discountType, discountValue } = couponInfo.data;
+      discountAmount =
+        discountType === COUPON_DISCOUNT_TYPE_PERCENTAGE
+          ? (Number(price) * discountValue) / 100
+          : discountValue;
     }
-    const resolvedPrice = (Number(price) - discountAmount) * 100;
+    const resolvedPrice = Math.max(
+      0,
+      Math.round((Number(price) - discountAmount) * 100),
+    );
 
     const resolvedCurrency = contentInfo.currency;
 
@@ -79,16 +88,106 @@ export async function createOrderService(
       id: crypto.randomUUID(),
       userId,
       mediaFileId: contentId || null,
-      collectionId: collectionId || null,
+      collectionId: null,
       itemType: normalizedItemType,
-      price: String(price),
+      price: String(resolvedPrice / 100),
       currency: resolvedCurrency,
       status: 'pending' as const,
+      idempotencyKey: dto.idempotencyKey?.trim() || null,
     };
 
-    const [result] = await db.insert(orders).values(newOrder).returning();
+    if (couponCode && resolvedPrice === 0) {
+      const isRental = normalizedItemType === ORDER_TYPES.RENTAL;
+      const rentDurationHours = contentInfo.rentDurationHours ?? 0;
+      if (isRental && rentDurationHours <= 0) {
+        return fail(
+          'Rent duration is not configured for this item',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      const rentExpiresAt = isRental
+        ? new Date(Date.now() + rentDurationHours * 60 * 60 * 1000)
+        : null;
+
+      const { order: checkoutOrder } = await findOrCreateCheckoutOrder({
+        ...newOrder,
+        collectionId: null,
+        price: '0',
+        status: ORDER_STATUS.COMPLETED,
+        rentExpiresAt,
+      });
+
+      let order = checkoutOrder;
+
+      if (order.status === 'refunded') {
+        return fail('Order has been refunded', HttpStatus.CONFLICT);
+      }
+
+      if (order.status !== ORDER_STATUS.COMPLETED) {
+        const [completedOrder] = await db
+          .update(orders)
+          .set({
+            status: ORDER_STATUS.COMPLETED,
+            price: '0',
+            rentExpiresAt,
+            updatedAt: new Date(),
+          })
+          .where(
+            and(
+              eq(orders.id, order.id),
+              ne(orders.status, ORDER_STATUS.COMPLETED),
+              ne(orders.status, 'refunded'),
+            ),
+          )
+          .returning();
+
+        if (!completedOrder) {
+          return fail('Order can no longer be completed', HttpStatus.CONFLICT);
+        }
+
+        order = completedOrder;
+      }
+
+      const [existingAccess] = await db
+        .select({ id: userContentAccess.id })
+        .from(userContentAccess)
+        .where(eq(userContentAccess.orderId, order.id))
+        .limit(1);
+
+      if (!existingAccess) {
+        await db.insert(userContentAccess).values({
+          id: crypto.randomUUID(),
+          orderId: order.id,
+          userId,
+          mediaFileId: contentId,
+          accessType: isRental ? ACCRESS_TYPES.RENTED : ACCRESS_TYPES.PURCHASED,
+          rentExpiresAt,
+        });
+      }
+
+      return success(
+        { orderId: order.id, completed: true as const },
+        'Order completed successfully',
+        HttpStatus.CREATED,
+      );
+    }
+
+    const { order } = await findOrCreateCheckoutOrder(newOrder);
+
+    if (order.status === 'refunded') {
+      return fail('Order has been refunded', HttpStatus.CONFLICT);
+    }
+
+    if (order.status === ORDER_STATUS.COMPLETED) {
+      return success(
+        { orderId: order.id, completed: true as const },
+        'Order already completed',
+        HttpStatus.OK,
+      );
+    }
+
     const paymentResult = await createPayment({
-      orderId: result.id,
+      orderId: order.id,
       amount: Number(resolvedPrice),
       currency: resolvedCurrency,
       customerId: userId,
@@ -96,19 +195,19 @@ export async function createOrderService(
     });
     return success(
       {
-        orderId: result.id,
+        orderId: order.id,
         url: paymentResult.paymentWindowUrl,
       },
       'Order created successfully',
       HttpStatus.CREATED,
     );
   } catch (error) {
-    if (error instanceof BadRequestException) {
+    if (error instanceof HttpException) {
       throw error;
     }
-    logger.error('Error assigning user content preferences:', error);
+    logger.error('Error creating content order:', error);
     return fail(
-      'Failed to assign user content preferences',
+      'Failed to create content order',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }

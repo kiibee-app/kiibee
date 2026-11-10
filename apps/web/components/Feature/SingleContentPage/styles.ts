@@ -11,10 +11,10 @@ export const Wrapper = styled.section<{ $embedded?: boolean }>`
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: ${({ $embedded }) => ($embedded ? "0" : "7rem 1.5rem 4rem")};
+  padding: ${({ $embedded }) => ($embedded ? "0" : "5.5rem 1.5rem 3rem")};
 
   ${media.tablet} {
-    padding: ${({ $embedded }) => ($embedded ? "0" : "6rem 1rem 3rem")};
+    padding: ${({ $embedded }) => ($embedded ? "0" : "5rem 1rem 2rem")};
   }
 `;
 
@@ -50,7 +50,7 @@ export const TopBar = styled.div<{ $embedded?: boolean }>`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: ${({ $embedded }) => ($embedded ? "1rem" : "1.75rem")};
+  margin-bottom: ${({ $embedded }) => ($embedded ? "0.75rem" : "1rem")};
 `;
 
 export const BackButton = styled.button`
@@ -84,11 +84,11 @@ export const Hero = styled.div<{
   position: ${({ $isPdf }) => ($isPdf ? "sticky" : "relative")};
   top: ${({ $isPdf }) => ($isPdf ? "6rem" : "auto")};
   z-index: 2;
-  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
+  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 800px)")};
   max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
-  height: auto;
+  height: ${({ $isPdf }) => ($isPdf ? "auto" : "clamp(260px, 52svh, 470px)")};
   aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
-  margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
+  margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "1.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -107,7 +107,7 @@ export const Hero = styled.div<{
     position: relative;
     top: auto;
     max-width: none;
-    margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
+    margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "1.25rem")};
   }
 
   ${media.tablet} {
@@ -491,8 +491,8 @@ export const MetaSection = styled.div`
 
 export const MetaRow = styled.div`
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  align-items: baseline;
+  gap: 0.35rem;
   margin-bottom: 0.4rem;
 
   &:last-child {
@@ -501,7 +501,7 @@ export const MetaRow = styled.div`
 `;
 
 export const MetaKey = styled.span`
-  min-width: 100px;
+  white-space: nowrap;
 `;
 
 export const MetaLabelText = styled.span`
@@ -516,7 +516,6 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   word-break: break-word;
   overflow-wrap: break-word;
   min-width: 0;
-  flex: 1;
 
   a {
     color: ${({ theme }) => theme.colors.primary.BLUE};
@@ -525,6 +524,33 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
     &:hover {
       opacity: 0.8;
     }
+  }
+`;
+
+export const PhysicalProductLinkRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+`;
+
+export const PhysicalProductLinkAnchor = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium};
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  svg {
+    flex-shrink: 0;
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.8;
   }
 `;
 
@@ -549,21 +575,31 @@ export const PreviewModalContainer = styled.div`
   overflow: hidden;
 `;
 
-export const PreviewCloseButton = styled.button`
+export const PreviewCloseButton = styled.button<{ $compact?: boolean }>`
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 10;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  border-radius: ${({ $compact }) => ($compact ? "8px" : "50%")};
+  width: ${({ $compact }) => ($compact ? "28px" : "36px")};
+  height: ${({ $compact }) => ($compact ? "28px" : "36px")};
+  ${({ $compact }) =>
+    $compact &&
+    css`
+      box-shadow: none;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    `}
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  box-shadow: ${({ $compact, theme }) =>
+    $compact ? "none" : `0 2px 8px ${theme.colors.gradient.CARD_SHADOW}`};
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_200};

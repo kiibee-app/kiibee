@@ -7,6 +7,7 @@ export type ExistingCreatorStatus =
 
 export type ExistingCreator = {
   id: string;
+  ownerName: string | null;
   firstName: string | null;
   lastName: string | null;
   fullName: string | null;
@@ -20,6 +21,8 @@ export type ExistingCreator = {
   updatedAt: string;
   companyName: string | null;
   phone: string | null;
+  address?: string | null;
+  postalCode?: string | null;
   city: string | null;
   cvr: string | null;
   channelName: string | null;

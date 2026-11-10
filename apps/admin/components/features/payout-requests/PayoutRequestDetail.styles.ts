@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const BackButton = styled.button`
   display: inline-flex;
@@ -30,9 +31,19 @@ export const ButtonGroup = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   padding: 6px;
   gap: 8px;
+
+  ${media.mobileLg} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const ApproveButton = styled.button`
+  ${media.mobileLg} {
+    width: 100%;
+  }
+
   background: ${({ theme }) => theme.colors.primary.GREEN};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
@@ -58,6 +69,10 @@ export const ApproveButton = styled.button`
 `;
 
 export const RejectButton = styled.button`
+  ${media.mobileLg} {
+    width: 100%;
+  }
+
   background: ${({ theme }) => theme.colors.primary.WHITE};
   color: ${({ theme }) => theme.colors.primary.RED};
   border: 1px solid ${({ theme }) => theme.colors.primary.RED};

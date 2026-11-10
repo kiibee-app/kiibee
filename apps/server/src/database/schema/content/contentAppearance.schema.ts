@@ -24,7 +24,7 @@ export const contentAppearance = pgTable(
     logoType: varchar('logo_type', { length: 10 }).default('text'),
     logoName: varchar('logo_name', { length: 100 }).default(''),
     logoUrl: text('logo_url'),
-    description: varchar('description', { length: 500 }).default(''),
+    description: text('description').default(''),
     layout: layoutEnum('layout').notNull().default('layout1'),
     desktopCoverImageUrl: text('desktop_cover_image_url'),
     mobileCoverImageUrl: text('mobile_cover_image_url'),

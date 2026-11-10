@@ -7,6 +7,7 @@ import {
   collectionItems,
   contentTypes,
   mediaFiles,
+  users,
 } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
@@ -34,6 +35,11 @@ export const getAllCollections = async (creatorIdOrSlug: string) => {
       .select({
         ...collectionColumns,
         contentQty: count(mediaFiles.id),
+        manualContentOrder: sql<boolean>`(
+          SELECT ${users.manualContentOrder}
+          FROM ${users}
+          WHERE ${users.id} = ${targetCreatorId}
+        )`,
         hasWarningItem: sql<boolean>`COALESCE(BOOL_OR(
           ${mediaFiles.accessType} = ${ACCESS_TYPE.FREE}
           AND COALESCE(LOWER(${contentTypes.name}), '') NOT IN (

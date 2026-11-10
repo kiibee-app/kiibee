@@ -1,3 +1,7 @@
+import {
+  publicCreatorName,
+  publicCreatorSlug,
+} from 'src/utils/publicCreatorName';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -32,13 +36,15 @@ const recentSelect = {
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
   creatorId: mediaFiles.creatorId,
-  creatorName: users.fullName,
+  creatorName: publicCreatorName,
+  creatorSlug: publicCreatorSlug,
   contentType: contentTypes.name,
   accessType: mediaFiles.accessType,
   categoryName: contentCategories.name,
   buyPrice: mediaFiles.buyPrice,
   rentPrice: mediaFiles.rentPrice,
   createdAt: mediaFiles.createdAt,
+  contentUrl: mediaFiles.contentUrl,
 };
 
 const publishedPublicWhere = and(

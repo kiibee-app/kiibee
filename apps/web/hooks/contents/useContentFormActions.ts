@@ -210,8 +210,12 @@ export function useContentFormActions({
   if (selectedCollection && selectedCollection.id !== prevCollectionId) {
     setPrevCollectionId(selectedCollection.id);
     const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
+    const rawUiAccessType =
       apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
+    const uiAccessType =
+      rawUiAccessType === ADMISSION_REQUIREMENT_VALUES.free
+        ? ADMISSION_REQUIREMENT_VALUES.email
+        : rawUiAccessType;
     applySettingsSnapshot(
       buildSettingsSnapshot(uiAccessType, {
         description: selectedCollection.description ?? "",
@@ -513,6 +517,19 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
+    const isWebType =
+      formState.contentTypeId === FORMAT_TYPE.WEB ||
+      editingContent?.contentType === FORMAT_TYPE.WEB;
+
+    if (
+      !isWebType &&
+      (!formState.admissionRequirement.trim() ||
+        formState.admissionRequirement === ADMISSION_TYPE.FREE)
+    ) {
+      toast.error(t(CONTENTS.admissionRequirements.required));
+      return false;
+    }
+
     if (formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD) {
       if (!formState.password.trim() && formState.hasPassword) {
         setFormErrors((prev) => {
@@ -569,6 +586,10 @@ export function useContentFormActions({
       paymentTexts.rentalTitle ? PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT : null,
       paymentTexts.purchaseTitle ? PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT : null,
     ].filter(Boolean) as (typeof PAYMENT_AMOUNT_FIELDS)[number][];
+    if (!requiredFields.some((field) => formState[field].trim())) {
+      toast.error(t(CONTENTS.payment.admission.amountRequired));
+      return false;
+    }
     const nextErrors: Partial<ContentFormErrors> = {};
     requiredFields.forEach((field) => {
       const val = formState[field].trim();

@@ -60,17 +60,14 @@ export const UploadCard = styled.div`
 
   ${media.mobileLg} {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 12px;
   }
 `;
 
-export const UploadThumbnail = styled.img`
+const uploadThumbnailSizing = css`
   width: 96px;
   height: 54px;
-  object-fit: cover;
-  border-radius: 6px;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   flex-shrink: 0;
 
   ${media.mobileLg} {
@@ -79,21 +76,21 @@ export const UploadThumbnail = styled.img`
   }
 `;
 
+export const UploadThumbnail = styled.img`
+  ${uploadThumbnailSizing}
+  object-fit: cover;
+  border-radius: 6px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
 export const UploadThumbnailPlaceholder = styled.div`
-  width: 96px;
-  height: 54px;
+  ${uploadThumbnailSizing}
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.colors.primary.GREEN_100};
-  flex-shrink: 0;
-
-  ${media.mobileLg} {
-    width: 100%;
-    height: 120px;
-  }
 `;
 
 export const UploadInfo = styled.div`

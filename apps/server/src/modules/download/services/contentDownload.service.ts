@@ -1,8 +1,9 @@
 import { randomUUID } from 'crypto';
+import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 import { getDownloadDispositionAndFileName } from 'src/utils/download';
 import { GetObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
@@ -37,32 +38,39 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       return fail('File not found in storage', HttpStatus.NOT_FOUND);
     }
 
-    const [download] = await db
-      .select()
-      .from(contentDownloadCount)
-      .where(
-        and(
-          eq(contentDownloadCount.userId, userId),
-          eq(contentDownloadCount.contentId, contentId),
-        ),
-      )
-      .limit(1);
-
-    const maxDownloadCount = content.maxDownloadCount ?? 0;
-
-    if (
-      maxDownloadCount > 0 &&
-      download &&
-      download.downloadCount >= maxDownloadCount
-    ) {
-      return fail(
-        `Maximum download limit (${maxDownloadCount}) reached.`,
-        HttpStatus.FORBIDDEN,
-      );
-    }
-
     const recordDownload = async () => {
       await db.transaction(async (tx) => {
+        // Serialize quota checks and writes for this file, including first downloads.
+        const [lockedContent] = await tx
+          .select({ maxDownloadCount: mediaFiles.maxDownloadCount })
+          .from(mediaFiles)
+          .where(eq(mediaFiles.id, contentId))
+          .for('update');
+        if (!lockedContent) {
+          return fail('Content not found', HttpStatus.NOT_FOUND);
+        }
+
+        const [download] = await tx
+          .select()
+          .from(contentDownloadCount)
+          .where(
+            and(
+              eq(contentDownloadCount.userId, userId),
+              eq(contentDownloadCount.contentId, contentId),
+            ),
+          )
+          .limit(1);
+
+        const maxDownloadCount = resolveDownloadLimit(
+          lockedContent.maxDownloadCount,
+        );
+        if (download && download.downloadCount >= maxDownloadCount) {
+          return fail(
+            `Maximum download limit (${maxDownloadCount}) reached.`,
+            HttpStatus.FORBIDDEN,
+          );
+        }
+
         if (download) {
           await tx
             .update(contentDownloadCount)
@@ -148,6 +156,7 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       'Download URL generated successfully',
     );
   } catch (error) {
+    if (error instanceof HttpException) throw error;
     logger.error('Failed to download content:', error);
 
     return fail('Failed to download content', HttpStatus.INTERNAL_SERVER_ERROR);

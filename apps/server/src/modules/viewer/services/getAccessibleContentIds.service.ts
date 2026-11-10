@@ -2,19 +2,27 @@ import { HttpStatus } from '@nestjs/common';
 import { and, eq, gt, isNotNull, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  collectionItems,
   contentAccessRequests,
+  orders,
   userContentAccess,
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { STATUS } from 'src/utils/constant';
+import { ORDER_TYPES, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAccessibleContentIds = async (userId: string) => {
   try {
     const now = new Date();
 
-    const [purchasedOrGranted, emailApproved] = await Promise.all([
+    const [
+      purchasedOrGranted,
+      collectionGranted,
+      emailApproved,
+      ordersDirect,
+      ordersCollection,
+    ] = await Promise.all([
       db
         .select({ contentId: userContentAccess.mediaFileId })
         .from(userContentAccess)
@@ -22,6 +30,24 @@ export const getAccessibleContentIds = async (userId: string) => {
           and(
             eq(userContentAccess.userId, userId),
             isNotNull(userContentAccess.mediaFileId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
+          ),
+        ),
+      db
+        .select({ contentId: collectionItems.mediaFileId })
+        .from(userContentAccess)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, userContentAccess.collectionId),
+        )
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            isNull(userContentAccess.mediaFileId),
+            isNotNull(userContentAccess.collectionId),
             or(
               isNull(userContentAccess.rentExpiresAt),
               gt(userContentAccess.rentExpiresAt, now),
@@ -41,13 +67,57 @@ export const getAccessibleContentIds = async (userId: string) => {
             eq(contentAccessRequests.status, STATUS.APPROVED),
           ),
         ),
+      db
+        .select({ contentId: orders.mediaFileId })
+        .from(orders)
+        .where(
+          and(
+            eq(orders.userId, userId),
+            eq(orders.status, 'completed'),
+            isNotNull(orders.mediaFileId),
+            or(
+              eq(orders.itemType, ORDER_TYPES.PURCHASE),
+              and(
+                eq(orders.itemType, ORDER_TYPES.RENTAL),
+                or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now)),
+              ),
+            ),
+          ),
+        ),
+      db
+        .select({ contentId: collectionItems.mediaFileId })
+        .from(orders)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, orders.collectionId),
+        )
+        .where(
+          and(
+            eq(orders.userId, userId),
+            eq(orders.status, 'completed'),
+            isNull(orders.mediaFileId),
+            isNotNull(orders.collectionId),
+            or(
+              eq(orders.itemType, ORDER_TYPES.PURCHASE),
+              and(
+                eq(orders.itemType, ORDER_TYPES.RENTAL),
+                or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now)),
+              ),
+            ),
+          ),
+        ),
     ]);
 
     const contentIds = Array.from(
-      new Set([
-        ...purchasedOrGranted.map(({ contentId }) => contentId as string),
-        ...emailApproved.map(({ contentId }) => contentId),
-      ]),
+      new Set(
+        [
+          ...purchasedOrGranted.map(({ contentId }) => contentId as string),
+          ...collectionGranted.map(({ contentId }) => contentId as string),
+          ...emailApproved.map(({ contentId }) => contentId),
+          ...ordersDirect.map(({ contentId }) => contentId as string),
+          ...ordersCollection.map(({ contentId }) => contentId as string),
+        ].filter(Boolean),
+      ),
     );
 
     return success(

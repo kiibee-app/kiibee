@@ -9,7 +9,9 @@ interface TutorialsShowcaseProps {
   maxWidth?: string;
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
+  creatorSlug?: string | null;
   collectionId?: string | null;
+  collectionSlug?: string | null;
   isPaidCollection?: boolean;
 }
 
@@ -18,7 +20,9 @@ export default function TutorialsShowcase({
   maxWidth,
   selectedVideoId = null,
   onSelectVideo,
+  creatorSlug = null,
   collectionId = null,
+  collectionSlug = null,
   isPaidCollection = false,
 }: TutorialsShowcaseProps) {
   return (
@@ -29,7 +33,9 @@ export default function TutorialsShowcase({
           tutorial={tutorial}
           onPlayClick={onSelectVideo}
           isSelected={selectedVideoId === tutorial.id}
+          creatorSlug={creatorSlug}
           collectionId={collectionId}
+          collectionSlug={collectionSlug}
           isPaidCollection={isPaidCollection}
         />
       ))}

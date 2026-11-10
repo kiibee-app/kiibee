@@ -46,14 +46,19 @@ export const useGlobalSearch = ({
     setIsOpen(Boolean(debouncedQuery.trim()));
   }, [debouncedQuery]);
 
+  const hasSearch = Boolean(debouncedQuery.trim());
+
   const { tutorials, isLoading: isContentLoading } = useExploreContent({
     search: debouncedQuery,
     sort: EXPLORE_CONTENT_SORT.NEW,
+    enabled: hasSearch,
   });
 
   const { creators, isLoading: isCreatorsLoading } = useExploreCreators(
     undefined,
     debouncedQuery,
+    undefined,
+    hasSearch,
   );
 
   const lockedCreatorIds = new Set(

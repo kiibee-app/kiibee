@@ -1,3 +1,4 @@
+import { publicCreatorNameFor } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { mediaFiles, orders, payments, users } from 'src/database/schema';
@@ -39,7 +40,7 @@ export const sendReceiptService = async (orderId: string) => {
         content: {
           mediaId: mediaFiles.id,
           mediaTitle: mediaFiles.title,
-          creatorName: creators.fullName,
+          creatorName: publicCreatorNameFor(creators.id),
         },
         payment: {
           paymentMethod: payments.paymentMethod,

@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useState, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { canOptimizeRemoteImage } from "@/utils/imageDelivery";
 import type { ImageSource } from "@/utils/Constants";
 import {
   ReadMoreButton,
@@ -14,6 +15,7 @@ import {
   TextSection,
   Title,
   Paragraph,
+  DescriptionLink,
   Badge,
   ImageOverlay,
   BottomControls,
@@ -129,6 +131,18 @@ export default function LatestUpload({
 
   const effectiveCollectionId =
     data.collectionId || relatedCollectionQuery.data?.collectionId;
+  const contentKey = data.slug || data.contentId;
+  const contentHref = contentKey
+    ? pathPublishedContent(
+        contentKey,
+        data.creatorSlug,
+        data.title,
+        data.collectionName ||
+          relatedCollectionQuery.data?.collectionName ||
+          data.collectionSlug ||
+          relatedCollectionQuery.data?.collectionSlug,
+      )
+    : null;
   const isPaidCol =
     Boolean(data.isPaidCollection) ||
     Boolean(relatedCollectionQuery.data?.isPaid);
@@ -192,7 +206,7 @@ export default function LatestUpload({
       if (isFreeContentItem(pricingItem)) {
         if (isPaidCol && effectiveCollectionId) {
           const href = pathPublicCollection(
-            effectiveCollectionId,
+            effectiveCollectionSlug || effectiveCollectionId,
             undefined,
             data.creatorSlug,
           );
@@ -323,6 +337,7 @@ export default function LatestUpload({
   }, [data.image, data.imageFallbacks]);
   const imageCandidatesKey = imageCandidates.join("|");
   const [imageIndex, setImageIndex] = useState(0);
+  const [directImageSrc, setDirectImageSrc] = useState<string | null>(null);
   const [prevImageCandidatesKey, setPrevImageCandidatesKey] =
     useState(imageCandidatesKey);
 
@@ -333,8 +348,19 @@ export default function LatestUpload({
 
   const uploadImageUrl =
     imageCandidates[imageIndex] ?? imageCandidates[0] ?? "";
+  const unoptimized =
+    (uploadImageUrl.startsWith("http") &&
+      !canOptimizeRemoteImage(uploadImageUrl)) ||
+    directImageSrc === uploadImageUrl;
 
   const handleThumbnailError = () => {
+    if (
+      canOptimizeRemoteImage(uploadImageUrl) &&
+      directImageSrc !== uploadImageUrl
+    ) {
+      setDirectImageSrc(uploadImageUrl);
+      return;
+    }
     setImageIndex((current) => {
       const nextIndex = current + 1;
       return nextIndex < imageCandidates.length ? nextIndex : current;
@@ -395,10 +421,17 @@ export default function LatestUpload({
               <UploadBackgroundImage
                 src={uploadImageUrl}
                 {...DECORATIVE_IMAGE_PROPS}
+                fill
+                sizes="(max-width: 768px) 100vw, 664px"
+                unoptimized={unoptimized}
               />
               <UploadImage
                 src={uploadImageUrl}
                 alt={data.imageAlt}
+                loading="eager"
+                fill
+                sizes="(max-width: 768px) 100vw, 664px"
+                unoptimized={unoptimized}
                 onError={handleThumbnailError}
               />
               {hasTrailer && !isEmbedTrailer ? (
@@ -407,7 +440,7 @@ export default function LatestUpload({
                   src={trailerUrl}
                   controls={isTrailerPlaying}
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   onPlay={() => setIsTrailerPlaying(true)}
                   onEnded={handleTrailerEnded}
                   style={{
@@ -466,7 +499,17 @@ export default function LatestUpload({
 
         <TextSection>
           <Title>{data.title}</Title>
-          <Paragraph>{data.description}</Paragraph>
+          {contentHref ? (
+            <DescriptionLink
+              href={contentHref}
+              aria-label={`${t("createProfileHome.latestUpload.seeContent")}: ${data.title}`}
+              title={t("createProfileHome.latestUpload.seeContent")}
+            >
+              <Paragraph>{data.description}</Paragraph>
+            </DescriptionLink>
+          ) : (
+            <Paragraph>{data.description}</Paragraph>
+          )}
 
           {primaryAction ? (
             <ActionButtons>

@@ -17,6 +17,7 @@ import {
   FILE_SIZE_LIMIT,
 } from './utils/constant';
 import { logger } from './logger/logger';
+import { describeEpayWebhookAuthorization } from './utils/epayWebhookAuth';
 
 let app: NestFastifyApplication;
 
@@ -49,6 +50,24 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
     const apiPrefix = configService.get<string>('API_PREFIX', 'api/v1');
+
+    const epayWebhookAuthorization = describeEpayWebhookAuthorization();
+
+    if (!epayWebhookAuthorization.configured) {
+      logger.warn(
+        'EPAY_WEBHOOK_AUTHORIZATION is not configured; ePay webhooks will be rejected',
+      );
+    } else if (epayWebhookAuthorization.schemes.includes('unknown')) {
+      logger.warn(
+        'EPAY_WEBHOOK_AUTHORIZATION must include the full auth scheme, for example "Bearer <secret>"',
+      );
+    } else {
+      logger.info('ePay webhook authorization configured', {
+        count: epayWebhookAuthorization.count,
+        schemes: epayWebhookAuthorization.schemes,
+        lengths: epayWebhookAuthorization.lengths,
+      });
+    }
 
     app.setGlobalPrefix(apiPrefix, {
       exclude: ['/', apiPrefix],
@@ -142,7 +161,14 @@ async function bootstrap() {
       credentials: true,
       methods: CORS_HTTP_METHODS,
       allowedHeaders: CORS_ALLOWED_HEADERS,
-      exposedHeaders: ['X-Total-Count'],
+      exposedHeaders: [
+        'X-Total-Count',
+        'Accept-Ranges',
+        'Content-Range',
+        'Content-Length',
+        'ETag',
+        'Last-Modified',
+      ],
       maxAge: 3600,
     });
 

@@ -21,6 +21,7 @@ export type BaseTableProps<T> = {
   getRowKey?: (row: T, index: number) => string | number;
   getColumnAlignment?: (header: string, index: number) => TableAlign;
   onRowClick?: (row: T, rowIndex: number) => void;
+  onRowReorder?: (sourceRow: T, targetRow: T) => void;
   emptyText?: string;
   hasData?: boolean | undefined;
   rowsPerPage?: number;

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
@@ -78,7 +80,7 @@ export const ImageOverlay = styled.div`
   z-index: 2;
 `;
 
-export const UploadImage = styled.img`
+export const UploadImage = styled(Image)`
   position: absolute;
   inset: 0;
   width: 100%;
@@ -89,7 +91,7 @@ export const UploadImage = styled.img`
   z-index: 1;
 `;
 
-export const UploadBackgroundImage = styled.img`
+export const UploadBackgroundImage = styled(Image)`
   position: absolute;
   width: calc(100% + 24px);
   height: calc(100% + 24px);
@@ -123,6 +125,7 @@ export const TrailerEmbed = styled.iframe`
 
 export const TextSection = styled.div`
   flex: 1;
+  min-width: 0;
   width: 100%;
   max-width: 560px;
   display: flex;
@@ -138,6 +141,18 @@ export const Title = styled(MonoText).attrs({
   align-self: stretch;
 `;
 
+export const DescriptionLink = styled(Link)`
+  display: block;
+  align-self: stretch;
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+`;
+
 export const Paragraph = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
@@ -146,8 +161,12 @@ export const Paragraph = styled(MonoText).attrs({
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: start;
 `;
 
 export const ActionButtons = styled.div`

@@ -47,25 +47,10 @@ import ViewerEmptyState from "./ViewerEmptyState";
 import PublishedContentDetail from "@/components/Feature/SingleContentPage/PublishedContentDetail";
 import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/SingleCollectionDetail";
 import { DetailTopWrap } from "./purchasedCollectionDetail.styles";
+import { normalizeExternalUrl } from "@/utils/common";
+import { slugifyContentTitle } from "@/utils/path";
 
-const slugify = (text: string) => {
-  if (!text) return "";
-  let str = text.toString().toLowerCase().trim();
-  const sets = [
-    { to: "ae", from: "[æä]" },
-    { to: "oe", from: "[øö]" },
-    { to: "aa", from: "[å]" },
-  ];
-  sets.forEach((set) => {
-    str = str.replace(new RegExp(set.from, "gi"), set.to);
-  });
-  return str
-    .replace(/\s+/g, "-")
-    .replace(/[^\w\-]+/g, "")
-    .replace(/\-\-+/g, "-")
-    .replace(/^-+/, "")
-    .replace(/-+$/, "");
-};
+const slugify = slugifyContentTitle;
 
 const mapMediaTypeToSlug = (mediaType: string, lang: string) => {
   const type = mediaType.toLowerCase();
@@ -138,6 +123,9 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
+  const isPurchasedMode = mode === RENTED_MODES.PURCHASED;
+  const isPreviouslyRentedMode = mode === RENTED_MODES.PREVIOUSLY;
+
   const {
     sources: rentedSources,
     isLoading,
@@ -147,30 +135,24 @@ export default function RentedContent({
     sources: previouslyRentedSources,
     isLoading: isPreviouslyRentedLoading,
     isFetching: isPreviouslyRentedFetching,
-  } = useViewerRentedData(RENTED_MODES.PREVIOUSLY, true);
+  } = useViewerRentedData(
+    RENTED_MODES.PREVIOUSLY,
+    isPurchasedMode || isPreviouslyRentedMode,
+  );
   const {
     data: purchasedData,
     isLoading: isPurchasedLoading,
     isFetching: isPurchasedFetching,
-  } = useViewerPurchased(true);
+  } = useViewerPurchased(isPurchasedMode);
 
   const sources = useMemo(() => {
-    const purchasedAndPreviousMerged = mergeRentedContentSources(
-      purchasedData,
-      previouslyRentedSources,
-    );
-    if (mode === RENTED_MODES.PURCHASED) {
-      return purchasedAndPreviousMerged;
+    if (mode === RENTED_MODES.CURRENTLY) {
+      return rentedSources;
     }
-    const hasRentedData =
-      rentedSources.collections.length > 0 ||
-      rentedSources.videos.length > 0 ||
-      rentedSources.audios.length > 0 ||
-      rentedSources.pdfs.length > 0 ||
-      rentedSources.epubs.length > 0 ||
-      rentedSources.webs.length > 0;
-
-    return hasRentedData ? rentedSources : purchasedAndPreviousMerged;
+    if (mode === RENTED_MODES.PREVIOUSLY) {
+      return previouslyRentedSources;
+    }
+    return mergeRentedContentSources(purchasedData, previouslyRentedSources);
   }, [mode, purchasedData, previouslyRentedSources, rentedSources]);
 
   const isHistoryLoading =
@@ -298,6 +280,10 @@ export default function RentedContent({
 
   const openMediaInDashboard = useCallback(
     (item: RentedMediaItem) => {
+      if (item.mediaType === "web" && item.contentUrl) {
+        window.location.assign(normalizeExternalUrl(item.contentUrl));
+        return;
+      }
       const queryParams = new URLSearchParams(searchParamsString);
       queryParams.delete(CONTENT_COLLECTION_QUERY_KEY);
       queryParams.delete(CONTENT_ITEM_QUERY_KEY);
@@ -347,6 +333,11 @@ export default function RentedContent({
         sources.pdfs.find((i) => i.title === mediaTitle) ||
         sources.epubs?.find((i) => i.title === mediaTitle) ||
         sources.webs?.find((i) => i.title === mediaTitle);
+
+      if (item?.mediaType === "web" && item.contentUrl) {
+        window.location.assign(normalizeExternalUrl(item.contentUrl));
+        return;
+      }
 
       const mediaType = item?.mediaType || "video";
       const mediaSlug = mapMediaTypeToSlug(mediaType, i18n.language);

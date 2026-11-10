@@ -7,10 +7,19 @@ import {
   mediaFiles,
   users,
 } from 'src/database/schema';
-import { ROLE } from 'src/utils/constant';
+import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
 import { fail } from 'src/utils/sendResponse';
 
 export const publiclyVisibleCreatorWhere = eq(users.isHidden, false);
+
+export const creatorHasPublishedContentWhere = sql`EXISTS (
+  SELECT 1
+  FROM ${mediaFiles}
+  WHERE ${mediaFiles.creatorId} = ${users.id}
+    AND ${mediaFiles.isDeleted} = false
+    AND ${mediaFiles.isPublished} = true
+    AND ${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}
+)`;
 
 export const creatorContentIsDiscoverable = sql`(
   ${mediaFiles.accessType}::text NOT IN ('password', 'email_gated')

@@ -3,6 +3,7 @@
 import { API, usePostAPI } from "@/lib/http/api";
 
 export type CreatorRequestPayload = {
+  companyName: string;
   firstName: string;
   lastName: string;
   email: string;

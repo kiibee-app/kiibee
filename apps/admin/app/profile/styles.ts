@@ -15,9 +15,15 @@ export const HeroCard = styled.section`
   border-radius: 12px;
   padding: 18px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
+  @media (max-width: ${({ theme }) => theme.media.desktopSm}) {
+    align-items: flex-start;
+    gap: 14px;
+  }
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     padding: 14px;
@@ -32,6 +38,8 @@ export const HeroCard = styled.section`
 export const HeroLeft = styled.div`
   display: flex;
   align-items: center;
+  flex: 1 1 360px;
+  min-width: 0;
   gap: 12px;
 `;
 
@@ -63,6 +71,7 @@ export const Avatar = styled.div`
 export const HeroIdentity = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
   gap: 6px;
 `;
 
@@ -86,6 +95,7 @@ export const Email = styled.p`
   margin: 0;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.secondary.muted};
+  overflow-wrap: anywhere;
 `;
 
 export const Badge = styled.span<{ $tone?: BadgeTone }>`
@@ -112,10 +122,16 @@ export const Badge = styled.span<{ $tone?: BadgeTone }>`
 `;
 
 export const HeroHint = styled.p`
+  flex: 1 1 250px;
+  min-width: 0;
   margin: 0;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.secondary.muted};
   text-align: right;
+
+  @media (max-width: ${({ theme }) => theme.media.desktopSm}) {
+    text-align: left;
+  }
 `;
 
 export const Grid = styled.div`
@@ -123,7 +139,7 @@ export const Grid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 
-  @media (max-width: 980px) {
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
     grid-template-columns: 1fr;
   }
 `;

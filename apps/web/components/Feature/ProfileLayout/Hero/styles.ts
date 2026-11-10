@@ -269,11 +269,16 @@ export const UploadsText = styled(MonoText).attrs(({ theme }) => ({
 
 export const CreatorBio = styled.div`
   margin: 10px 0 0;
-  max-width: 700px;
+  max-width: 880px;
 `;
 
 export const CreatorBioText = styled.div`
-  max-height: 2.4em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  line-height: 1.5;
+  max-height: 6em;
   overflow: hidden;
   word-break: break-word;
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
@@ -289,8 +294,13 @@ export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
 
 export const BioText = styled.div`
   margin-top: 10px;
-  max-width: 540px;
-  max-height: 2.4em;
+  max-width: 680px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  line-height: 1.5;
+  max-height: 6em;
   overflow: hidden;
   word-break: break-word;
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
@@ -434,7 +444,12 @@ export const StoryDescription = styled.div`
 `;
 
 export const StoryBioText = styled.div`
-  max-height: 2.4em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  line-height: 1.5;
+  max-height: 6em;
   overflow: hidden;
   word-break: break-word;
 `;

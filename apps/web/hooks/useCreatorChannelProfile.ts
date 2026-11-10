@@ -2,25 +2,22 @@
 
 import { useMemo } from "react";
 import { useSearchParams, useParams } from "next/navigation";
-import {
-  mapCreatorProfileToForm,
-  type GetCreatorProfileResponse,
-} from "@/hooks/auth/creatorProfileApi";
+import { type GetCreatorProfileResponse } from "@/hooks/auth/creatorProfileApi";
 import {
   getDisplayFirstLetter,
-  getLoginUserDisplayName,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { isBrowser } from "@/utils/ui";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { toTrimmedString } from "@/utils/Constants";
 import { formatJoinedDate } from "@/utils/formatDate";
 import {
-  displayCreatorName,
   getAvatarUrl,
-  isCreatorWebsiteLink,
   resolveCreatorContactEmail,
+  resolveCreatorWebsiteLinks,
 } from "@/utils/creatorProfile";
 import {
   type CollectionsApiResponse,
@@ -43,11 +40,15 @@ export function useCreatorChannelProfile(enabled = true) {
     creatorSlugParam ||
     null;
   const storedUser = useStoredLoginUser();
+  const currentUserId =
+    storedUser?.id || (isBrowser ? readStoredLoginUser()?.id : null);
   const { creator: publicCreator, isLoading: isLoadingPublic } =
     useCreatorPublicProfile(creatorIdentifier);
   const publicCreatorId = publicCreator?.id ?? creatorIdentifier;
   const isOwnerOfPublicView =
-    Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
+    Boolean(publicCreatorId) &&
+    Boolean(currentUserId) &&
+    String(currentUserId).trim() === String(publicCreatorId).trim();
   const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
@@ -94,14 +95,13 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     if (profile) {
-      const fromProfile = displayCreatorName(mapCreatorProfileToForm(profile));
-      if (fromProfile) return fromProfile;
-
-      const fullName = toTrimmedString(profile.user?.fullName);
-      if (fullName) return fullName;
+      const companyName = toTrimmedString(profile.creatorInfo?.companyName);
+      if (companyName) return companyName;
+      const channelName = toTrimmedString(profile.channel?.name);
+      if (channelName) return channelName;
     }
 
-    return getLoginUserDisplayName(storedUser);
+    return "Creator";
   }, [publicCreator, profile, storedUser]);
 
   const avatarUrl = useMemo(() => {
@@ -156,6 +156,10 @@ export function useCreatorChannelProfile(enabled = true) {
       const supportEmail = hasAppearance
         ? appearanceQuery.data?.data?.supportEmail
         : publicCreator.supportEmail;
+      const resolvedLinks = resolveCreatorWebsiteLinks(
+        publicCreator.exampleWorkLink,
+        publicCreator.accountEmail,
+      );
       return {
         description:
           customDesc !== undefined
@@ -163,9 +167,8 @@ export function useCreatorChannelProfile(enabled = true) {
             : (publicCreator.contentDescription ?? ""),
         joinedDate: formatJoinedDate(publicCreator.createdAt),
         uploadCount: publicCreator.uploadCount ?? 0,
-        websiteLink: isCreatorWebsiteLink(publicCreator.exampleWorkLink ?? "")
-          ? (publicCreator.exampleWorkLink ?? "")
-          : "",
+        websiteLink: resolvedLinks[0] ?? "",
+        links: resolvedLinks,
         contactEmail: resolveCreatorContactEmail(
           supportEmail,
           publicCreator.accountEmail,
@@ -174,17 +177,18 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     if (!profile) return null;
+    const resolvedLinks = resolveCreatorWebsiteLinks(
+      profile.creatorInfo?.exampleWorkLink,
+      profile.user?.email,
+    );
     return {
       description: appearanceQuery.data?.data
         ? (appearanceQuery.data.data.description ?? "")
         : (profile.creatorInfo?.contentDescription ?? ""),
       joinedDate: formatJoinedDate(profile.user?.createdAt),
       uploadCount: uploadCountPrivate,
-      websiteLink: isCreatorWebsiteLink(
-        profile.creatorInfo?.exampleWorkLink ?? "",
-      )
-        ? (profile.creatorInfo?.exampleWorkLink ?? "")
-        : "",
+      websiteLink: resolvedLinks[0] ?? "",
+      links: resolvedLinks,
       contactEmail: resolveCreatorContactEmail(
         appearanceQuery.data?.data?.supportEmail,
         profile.user?.email,

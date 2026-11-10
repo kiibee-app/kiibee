@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
@@ -130,7 +130,12 @@ export default function MediaSections({
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
 
   const getMediaPrimaryActionHandler = (item: RentedMediaItem) =>
-    onMediaPrimaryAction ? () => onMediaPrimaryAction(item) : undefined;
+    onMediaPrimaryAction
+      ? (event: MouseEvent<HTMLElement>) => {
+          event.stopPropagation();
+          onMediaPrimaryAction(item);
+        }
+      : undefined;
 
   return (
     <>
@@ -201,7 +206,9 @@ export default function MediaSections({
                   section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"
-                    aria-label={`Expand ${section.title} section`}
+                    aria-label={t("viewerRented.openSection", {
+                      section: section.title,
+                    })}
                     onClick={() => onOpenSection?.(section.key)}
                   >
                     <LeftIcon />
@@ -261,9 +268,8 @@ export default function MediaSections({
                     key={item.id}
                     coverImage
                     imageAspectRatio={GENERIC_CARD_LAYOUT.IMAGE_ASPECT_RATIO}
-                    minHeight={GENERIC_CARD_LAYOUT.CREATOR_MIN_HEIGHT}
                     image={item.thumbSrc}
-                    title={<CardTitle $use="Body_Medium">{item.title}</CardTitle>}
+                    title={<CardTitle $use="H5_Medium">{item.title}</CardTitle>}
                     subtitle={
                       <CardCreator $use="Body_SemiMedium">
                         {item.author}
@@ -281,11 +287,12 @@ export default function MediaSections({
                         {item.expiryText}
                       </MonoText>
                     }
-                    badgeVariant="overlay"
                     badge={
-                      <MonoText $use="Body_Bold">
-                        {getCategoryLabel(item.category, t)}
-                      </MonoText>
+                      item.category ? (
+                        <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
+                          {getCategoryLabel(item.category, t)}
+                        </MonoText>
+                      ) : undefined
                     }
                     onClick={onCardClick ? () => onCardClick(item) : undefined}
                     footer={

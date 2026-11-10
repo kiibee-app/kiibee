@@ -33,8 +33,6 @@ import {
   AllCreatorsLayout,
   AllCreatorsPanel,
   AllCreatorsState,
-  AllCreatorsTabButton,
-  AllCreatorsTabs,
   ClearIcon,
   CreatorCell,
   CreatorName,
@@ -55,6 +53,9 @@ import {
 } from "../all-creators/AllCreators.styles";
 import {
   PayoutHint,
+  PayoutHistoryTable,
+  PayoutTabButton,
+  PayoutTabs,
   PayoutStatusBadge,
   PayoutToolbar,
 } from "./PayoutDashboard.styles";
@@ -62,15 +63,17 @@ import {
 function HistoryTable({
   items,
   showCreator,
+  mobileCards = false,
 }: {
   items: PayoutHistoryItem[];
   showCreator?: boolean;
+  mobileCards?: boolean;
 }) {
   const router = useRouter();
 
   return (
     <TableScrollWrapper>
-      <RequestsTable>
+      <PayoutHistoryTable $mobileCards={mobileCards}>
         <thead>
           <tr>
             {showCreator ? <TableHeaderCell>Creator</TableHeaderCell> : null}
@@ -149,7 +152,7 @@ function HistoryTable({
             );
           })}
         </tbody>
-      </RequestsTable>
+      </PayoutHistoryTable>
     </TableScrollWrapper>
   );
 }
@@ -388,7 +391,7 @@ function AllHistoryTab() {
           </AllCreatorsState>
         ) : items.length ? (
           <>
-            <HistoryTable items={items} showCreator />
+            <HistoryTable items={items} showCreator mobileCards />
             <CreatorPagination
               startIndex={historyPagination.startIndex}
               endIndex={historyPagination.endIndex}
@@ -425,18 +428,18 @@ export function PayoutDashboard() {
   return (
     <AllCreatorsLayout>
       <AllCreatorsHeader>
-        <AllCreatorsTabs>
+        <PayoutTabs>
           {payoutTabs.map((tab) => (
-            <AllCreatorsTabButton
+            <PayoutTabButton
               key={tab.key}
               type="button"
               $active={activeTab === tab.key}
               onClick={() => setActiveTab(tab.key)}
             >
               {tab.label}
-            </AllCreatorsTabButton>
+            </PayoutTabButton>
           ))}
-        </AllCreatorsTabs>
+        </PayoutTabs>
       </AllCreatorsHeader>
 
       {activeTab === "balances" ? <CreatorBalancesTab /> : null}

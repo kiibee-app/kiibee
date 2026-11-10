@@ -126,7 +126,7 @@ export const WEBSITE = "website";
 export const OPEN_GRAPH_LOCALE_DA_DK = "da_DK";
 export const TWITTER_CARD_SUMMARY_LARGE_IMAGE = "summary_large_image";
 export const KIIBEE_LANDING_PAGE_PREVIEW_ALT = "Kiibee landing page preview";
-export const RECENT_CONTENT_LIMIT = 999;
+export const RECENT_CONTENT_LIMIT = 12;
 
 export const CARD_BRANDS = {
   VISA: "visa",
@@ -475,6 +475,7 @@ export const HASH_RENT = "#rent";
 export const HASH_BUY = "#buy";
 export const PLANS_SECTION_ID = "plans";
 export const HASH_PLANS = `#${PLANS_SECTION_ID}`;
+export const SCROLL_TO_PLANS_KEY = "kiibee:scrollToPlans";
 export const EVENT_HASHCHANGE = "hashchange";
 export const EVENT_SCROLL = "scroll";
 export const EVENT_RESIZE = "resize";

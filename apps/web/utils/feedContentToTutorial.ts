@@ -1,4 +1,3 @@
-import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import {
   getContentPricingActions,
   isFreeContentItem,
@@ -7,10 +6,8 @@ import {
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { pathPublicCollection } from "@/utils/path";
-import {
-  resolveContentThumbnailCandidates,
-  resolveImageUrl,
-} from "@/utils/media";
+import { resolveContentThumbnailCandidates } from "@/utils/media";
+import { normalizeExternalUrl, isKiibeeUrl } from "@/utils/common";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -40,6 +37,7 @@ export type FeedContentItem = {
   collectionSlug?: string | null;
   collectionName?: string | null;
   isPaidCollection?: boolean;
+  contentUrl?: string | null;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
@@ -172,22 +170,40 @@ function buildPricingButtons(
     ];
   }
 
-  const actions = getContentPricingActions(item, freeLabel, options);
-  const requiresAuth = !isFreeContentItem(item);
+  const isWeb = resolveFormatType(item.contentType) === FORMAT_TYPE.WEB;
+  const hasContentUrl = Boolean(item.contentUrl);
+  const normalizedUrl = hasContentUrl
+    ? normalizeExternalUrl(item.contentUrl)
+    : "";
+  const isKiibee = isKiibeeUrl(normalizedUrl);
+  const isFree = isFreeContentItem(item);
 
-  return actions.map((action) => ({
-    label: action.label,
-    variant: VARIANT.SOFT_OUTLINE,
-    href: resolveContentActionHref(
+  const actions = getContentPricingActions(item, freeLabel, options);
+  const requiresAuth = !isFree && !isKiibee;
+
+  return actions.map((action) => {
+    let href = resolveContentActionHref(
       item.id,
       action.label,
       item,
       actions.length,
       options,
-    ),
-    requiresAuth,
-    fullWidth: action.fullWidth,
-  }));
+    );
+
+    if (isWeb && normalizedUrl) {
+      if (isKiibee || isFree) {
+        href = normalizedUrl;
+      }
+    }
+
+    return {
+      label: action.label,
+      variant: VARIANT.SOFT_OUTLINE,
+      href,
+      requiresAuth,
+      fullWidth: action.fullWidth,
+    };
+  });
 }
 
 export function feedContentToTutorial(
@@ -195,6 +211,7 @@ export function feedContentToTutorial(
   freeLabel: string,
   options?: {
     inCollection?: boolean;
+    creatorSlug?: string | null;
     collectionId?: string | null;
     collectionSlug?: string | null;
     collectionName?: string | null;
@@ -209,7 +226,6 @@ export function feedContentToTutorial(
     item.thumbnailUrl,
     item.thumbnailLandscapeUrl,
   );
-  const fallbackImage = resolveImageUrl(recentCreator);
 
   return {
     id: item.id,
@@ -218,7 +234,7 @@ export function feedContentToTutorial(
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
     creatorId: item.creatorId,
-    creatorSlug: item.creatorSlug,
+    creatorSlug: options?.creatorSlug || item.creatorSlug,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
@@ -232,12 +248,8 @@ export function feedContentToTutorial(
         : item.isPaidCollection,
     formatLabel: formatFormatLabel(item.contentType, options?.language),
     formatType: resolveFormatType(item.contentType),
-    image: thumbnailCandidates[0] ?? recentCreator,
-    ...(thumbnailCandidates[1]
-      ? { imageFallback: thumbnailCandidates[1] }
-      : thumbnailCandidates[0]
-        ? { imageFallback: fallbackImage }
-        : {}),
+    image: thumbnailCandidates[0] ?? "",
+    contentUrl: item.contentUrl,
     buttons: buildPricingButtons(item, freeLabel, options),
   };
 }

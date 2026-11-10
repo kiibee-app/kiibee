@@ -1,4 +1,16 @@
-import { eq, and, inArray, gt, isNull, lte, or, sql } from 'drizzle-orm';
+import { publicCreatorName } from 'src/utils/publicCreatorName';
+import {
+  eq,
+  and,
+  inArray,
+  gt,
+  isNull,
+  lte,
+  or,
+  sql,
+  ilike,
+  ne,
+} from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -11,6 +23,7 @@ import {
   collectionItems,
 } from 'src/database/schema';
 import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
+import { CONTENT_TYPES, ORDER_TYPES } from 'src/utils/constant';
 
 export const getUserOrders = async (
   userId: string,
@@ -18,22 +31,38 @@ export const getUserOrders = async (
 ) => {
   const now = new Date();
 
+  const conditions = [
+    eq(orders.userId, userId),
+    eq(orders.status, 'completed'),
+  ];
+
+  if (itemType === ORDER_TYPES.RENTAL) {
+    conditions.push(
+      eq(orders.itemType, ORDER_TYPES.RENTAL),
+      or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now))!,
+    );
+  } else {
+    conditions.push(
+      or(
+        eq(orders.itemType, ORDER_TYPES.PURCHASE),
+        isNull(orders.itemType),
+        ne(orders.itemType, ORDER_TYPES.RENTAL),
+      )!,
+    );
+  }
+
   return db
     .select({
       mediaFileId: orders.mediaFileId,
-      collectionId: orders.collectionId,
+      // A content order may carry its parent collection as context only.
+      collectionId: sql<
+        string | null
+      >`case when ${orders.mediaFileId} is null then ${orders.collectionId} else null end`,
       purchasedAt: orders.createdAt,
       rentExpiresAt: orders.rentExpiresAt,
     })
     .from(orders)
-    .where(
-      and(
-        eq(orders.userId, userId),
-        eq(orders.status, 'completed'),
-        eq(orders.itemType, itemType),
-        or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now)),
-      ),
-    );
+    .where(and(...conditions));
 };
 
 export const getExpiredRentalOrders = async (userId: string) => {
@@ -42,7 +71,10 @@ export const getExpiredRentalOrders = async (userId: string) => {
   return db
     .select({
       mediaFileId: orders.mediaFileId,
-      collectionId: orders.collectionId,
+      // A content order may carry its parent collection as context only.
+      collectionId: sql<
+        string | null
+      >`case when ${orders.mediaFileId} is null then ${orders.collectionId} else null end`,
       purchasedAt: orders.createdAt,
       rentExpiresAt: orders.rentExpiresAt,
     })
@@ -64,11 +96,10 @@ export const buildAccessMap = (ordersData: any[]) => {
 
   for (const o of ordersData) {
     if (o.mediaFileId) mediaMap.set(o.mediaFileId, o.purchasedAt);
-    if (o.collectionId && !o.mediaFileId)
-      collectionMap.set(o.collectionId, o.purchasedAt);
+    if (o.collectionId) collectionMap.set(o.collectionId, o.purchasedAt);
     if (o.mediaFileId && o.rentExpiresAt)
       expiresMap.set(o.mediaFileId, o.rentExpiresAt);
-    if (o.collectionId && !o.mediaFileId && o.rentExpiresAt)
+    if (o.collectionId && o.rentExpiresAt)
       expiresMap.set(o.collectionId, o.rentExpiresAt);
   }
 
@@ -100,6 +131,29 @@ export const getMediaCategories = async (mediaIds: string[]) => {
 };
 
 export const getMediaByType = (mediaIds: string[], type: string) => {
+  if (!mediaIds.length) return Promise.resolve([]);
+
+  const typeCondition =
+    type === CONTENT_TYPES.VIDEO
+      ? or(
+          ilike(contentTypes.name, type),
+          ilike(contentTypes.id, 'video'),
+          ilike(mediaFiles.contentTypeId, 'video'),
+          isNull(mediaFiles.contentTypeId),
+        )
+      : type === CONTENT_TYPES.WEB
+        ? or(
+            ilike(contentTypes.name, type),
+            ilike(contentTypes.name, 'web%'),
+            ilike(contentTypes.id, 'web%'),
+            ilike(mediaFiles.contentTypeId, 'web%'),
+          )
+        : or(
+            ilike(contentTypes.name, type),
+            ilike(contentTypes.id, type),
+            ilike(mediaFiles.contentTypeId, type),
+          );
+
   return db
     .select({
       id: mediaFiles.id,
@@ -112,13 +166,14 @@ export const getMediaByType = (mediaIds: string[], type: string) => {
       rentPrice: mediaFiles.rentPrice,
       accessType: mediaFiles.accessType,
       createdAt: mediaFiles.createdAt,
-      contentType: contentTypes.name,
-      creatorName: users.fullName,
+      contentType: sql<string>`coalesce(${contentTypes.name}, ${mediaFiles.contentTypeId}, 'video')`,
+      creatorName: publicCreatorName,
+      contentUrl: mediaFiles.contentUrl,
     })
     .from(mediaFiles)
     .leftJoin(users, eq(mediaFiles.creatorId, users.id))
     .leftJoin(contentTypes, eq(mediaFiles.contentTypeId, contentTypes.id))
-    .where(and(inArray(mediaFiles.id, mediaIds), eq(contentTypes.name, type)));
+    .where(and(inArray(mediaFiles.id, mediaIds), typeCondition));
 };
 
 export const enrichMedia = (
@@ -145,10 +200,11 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .select({
       id: collections.id,
       name: collections.name,
+      slug: collections.slug,
       coverImageUrl: collections.coverImageUrl,
       description: collections.description,
       creatorId: collections.creatorId,
-      creatorName: users.fullName,
+      creatorName: publicCreatorName,
       buyPrice: collections.buyPrice,
     })
     .from(collections)
@@ -167,7 +223,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .where(
       and(
         inArray(collectionItems.collectionId, collectionIds),
-        eq(mediaFiles.isDeleted, false),
+        or(eq(mediaFiles.isDeleted, false), isNull(mediaFiles.isDeleted)),
       ),
     )
     .groupBy(collectionItems.collectionId);
@@ -177,12 +233,10 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     countMap.set(row.collectionId, row.count);
   }
 
-  return items
-    .map((item) => ({
-      ...item,
-      elementCount: countMap.get(item.id) ?? 0,
-    }))
-    .filter((item) => item.elementCount > 0);
+  return items.map((item) => ({
+    ...item,
+    elementCount: countMap.get(item.id) ?? 0,
+  }));
 };
 
 export const enrichCollections = (

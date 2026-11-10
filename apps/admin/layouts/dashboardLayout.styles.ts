@@ -11,6 +11,7 @@ export const AppContainer = styled.div`
 
 export const Main = styled.main`
   flex: 1;
+  min-width: 0;
   margin-left: 240px;
   min-height: 100vh;
 
@@ -23,11 +24,11 @@ export const Content = styled.div`
   padding: 16px 20px;
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
-    padding: 12px;
+    padding: 12px 16px;
   }
 
   @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
-    padding: 8px;
+    padding: 12px;
   }
 `;
 

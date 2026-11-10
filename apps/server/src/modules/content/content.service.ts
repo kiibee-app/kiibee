@@ -5,6 +5,7 @@ import { getContentTypesService } from './services/getContentTypes.service';
 import { assignUserCategoriesService } from './services/assignUserCategories.service';
 import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { getContentByCollectionIdService } from './services/getContentByCollectionId.service';
+import { reorderCollectionContentsService } from './services/reorderCollectionContents.service';
 import { updateContentService } from './services/updateContent.service';
 import { getContentByIdService } from './services/getContentById.service';
 import { deleteContentService } from './services/delete.content.service';
@@ -54,6 +55,18 @@ export class ContentService {
 
   async getContentByCollectionIdService(id: string) {
     return getContentByCollectionIdService(id);
+  }
+
+  async reorderCollectionContents(
+    collectionId: string,
+    contentIds: string[],
+    creatorId: string,
+  ) {
+    return reorderCollectionContentsService(
+      collectionId,
+      contentIds,
+      creatorId,
+    );
   }
 
   async updateContentService(
