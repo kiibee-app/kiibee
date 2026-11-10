@@ -24,6 +24,7 @@
     "db:push": "drizzle-kit push",
     "seed": "tsx src/database/seed/index.ts",
     "fix:creator-data": "tsx -r tsconfig-paths/register scripts/migrateCreatorIdentities.ts",
+    "reconcile:payments": "tsx -r tsconfig-paths/register scripts/reconcilePayments.ts",
     "sync:owners": "tsx scripts/syncUmbracoCreatorOwners.ts",
     "media:webp": "tsx scripts/migrateImagesToWebp.ts"
   },

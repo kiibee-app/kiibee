@@ -6,7 +6,7 @@ import { logger } from 'src/logger/logger';
 import { PAYMENT_STATUS } from 'src/utils/constant';
 
 export async function handleAddCardWebhook(body: any) {
-  const transaction = body?.data?.transaction;
+  const transaction = body?.data?.transaction ?? body?.transaction;
 
   if (!transaction) {
     logger.error('Missing transaction data');

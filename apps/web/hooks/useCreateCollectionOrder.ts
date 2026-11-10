@@ -16,6 +16,7 @@ type CreateCollectionOrderPayload = {
   itemType: string;
   couponCode?: string;
   subscriptionId?: string;
+  idempotencyKey?: string;
 };
 
 export const useCreateCollectionOrder = () =>
