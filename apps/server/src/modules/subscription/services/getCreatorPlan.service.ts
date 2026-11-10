@@ -1,7 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
+import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
 import { db } from 'src/database/db';
-import { creatorPlans, plans } from 'src/database/schema';
+import { creatorPlans, plans, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 
@@ -10,6 +11,15 @@ export const getCreatorPlan = async (creatorId: string) => {
     if (!creatorId) {
       return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
     }
+    const [creator] = await db
+      .select({
+        subscriptionUpgradeRequired: users.subscriptionUpgradeRequired,
+      })
+      .from(users)
+      .where(eq(users.id, creatorId));
+    let subscriptionUpgradeRequired =
+      creator?.subscriptionUpgradeRequired ?? false;
+
     const creatorCurrentPlan = await db
       .select()
       .from(creatorPlans)
@@ -29,7 +39,9 @@ export const getCreatorPlan = async (creatorId: string) => {
         .where(eq(plans.price, 0))
         .limit(1);
       return success(
-        freePlan ? [freePlan] : [],
+        freePlan
+          ? [{ ...freePlan, isPaidPlan: false, subscriptionUpgradeRequired }]
+          : [],
         'Creator plan retrieved successfully',
         HttpStatus.OK,
       );
@@ -44,8 +56,19 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
+    if (subscriptionUpgradeRequired && plan.price > 0) {
+      subscriptionUpgradeRequired = !(await hasPaidSubscriptionPeriod(
+        db,
+        creatorId,
+        plan.id,
+      ));
+    }
+
     const overriddenPlan = {
       ...plan,
+      isPaidPlan: plan.price > 0,
+      isActive: plan.isActive && !subscriptionUpgradeRequired,
+      subscriptionUpgradeRequired,
       price: creatorCurrentPlan[0].customPrice ?? plan.price,
       maxFiles: creatorCurrentPlan[0].customMaxFiles ?? plan.maxFiles,
     };

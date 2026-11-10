@@ -7,6 +7,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+import styled from "styled-components";
+import CardIcon from "@/assets/icons/CardIcon";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
@@ -20,6 +22,7 @@ import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_CREATOR,
+  SCROLL_TO_PLANS_KEY,
 } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
@@ -35,13 +38,35 @@ import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
 import { requestCreatorPaymentInfoFocus } from "@/utils/creatorPaymentInfoFocus";
-import { useAppLanguage } from "@/hooks/useLocalizedPaths";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import { FRESH_QUERY_OPTIONS } from "@/utils/common";
+import { PATHS } from "@/utils/path";
+import { useAppLanguage, useLocalizedHref } from "@/hooks/useLocalizedPaths";
 import {
   formatSearch,
   getCanonicalParam,
   localizeSearchParams,
   toCanonicalSearchParams,
 } from "@/utils/localizedQueryParams";
+
+const UpgradeIcon = styled.span`
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+`;
+
+const UpgradeDescription = styled(MonoText)`
+  display: block;
+  max-width: 34ch;
+  margin-inline: auto;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  line-height: 1.55;
+`;
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -57,6 +82,7 @@ const ADD_PAYMENT_TOAST_ID = "creator-add-payment-info";
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const language = useAppLanguage();
+  const localizeHref = useLocalizedHref();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
     useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -69,6 +95,20 @@ export default function ClientDashboardCreators() {
   const { hasPaymentInfo, isLoading: isPaymentInfoLoading } =
     useCreatorPaymentInfo();
   const { isReady } = useRequireAuthSession();
+  const { data: creatorPlanResponse } = useGetAPI<{
+    data?: {
+      name: string;
+      isPaidPlan: boolean;
+      subscriptionUpgradeRequired?: boolean;
+    }[];
+  }>(API.subscription.creatorPlan, undefined, {
+    ...FRESH_QUERY_OPTIONS,
+    enabled: isReady && getRole() === ROLE_CREATOR,
+    refetchInterval: 30_000,
+  });
+  const creatorPlan = creatorPlanResponse?.data?.[0];
+  const upgradeRequired = creatorPlan?.subscriptionUpgradeRequired === true;
+  const assignedPaidPlan = creatorPlan?.isPaidPlan ? creatorPlan : undefined;
   useProfileSync();
   const hasLockedToPaymentInfoRef = useRef(false);
 
@@ -219,6 +259,7 @@ export default function ClientDashboardCreators() {
     <CreatorChannelLayoutProvider>
       <DashboardLayout
         header={renderHeader()}
+        inert={upgradeRequired}
         sidebarExpanded={sidebarExpanded}
         sidebar={
           <Sidebar
@@ -232,7 +273,7 @@ export default function ClientDashboardCreators() {
       >
         {renderContent}
         <GenericModal
-          visible={showLogoutModal}
+          visible={showLogoutModal && !upgradeRequired}
           title={t("dashboard.logoutModal.title")}
           buttonRow
           confirmLabel={t("dashboard.logoutModal.confirm")}
@@ -253,6 +294,42 @@ export default function ClientDashboardCreators() {
           </MonoText>
         </GenericModal>
       </DashboardLayout>
+      <GenericModal
+        visible={upgradeRequired}
+        title={
+          assignedPaidPlan
+            ? t("dashboard.subscriptionPaymentRequired.title")
+            : t("dashboard.subscriptionExpired.title")
+        }
+        icon={
+          <UpgradeIcon>
+            <CardIcon width={30} height={30} />
+          </UpgradeIcon>
+        }
+        confirmLabel={
+          assignedPaidPlan
+            ? t("dashboard.subscriptionPaymentRequired.pay")
+            : t("dashboard.subscriptionExpired.upgrade")
+        }
+        onConfirm={() => {
+          window.sessionStorage.setItem(SCROLL_TO_PLANS_KEY, "1");
+          router.push(localizeHref(PATHS.PRICING), { scroll: false });
+        }}
+        size="sm"
+        maxHeight="85dvh"
+        borderRadius="24px"
+        fullWidthButtons
+        textAlign="center"
+        showCloseButton={false}
+      >
+        <UpgradeDescription $use="Body_Medium">
+          {assignedPaidPlan
+            ? t("dashboard.subscriptionPaymentRequired.message", {
+                planName: assignedPaidPlan.name,
+              })
+            : t("dashboard.subscriptionExpired.message")}
+        </UpgradeDescription>
+      </GenericModal>
     </CreatorChannelLayoutProvider>
   );
 }
