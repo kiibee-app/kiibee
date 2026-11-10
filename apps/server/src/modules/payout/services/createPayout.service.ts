@@ -10,6 +10,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
+import { getPayoutWebhookUrl } from 'src/utils/webhookUrl';
 
 export const createPayoutService = async (
   creatorId: string,
@@ -105,7 +106,7 @@ export const createPayoutService = async (
       pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID!,
       paymentMethodId,
       reference: payoutId,
-      notificationUrl: process.env.EPAY_PAYOUT_NOTIFICATION_URL!,
+      notificationUrl: getPayoutWebhookUrl(),
 
       attributes: {
         creatorId,

@@ -1,4 +1,11 @@
-import { pgTable, text, numeric, timestamp, index } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  numeric,
+  timestamp,
+  index,
+  uniqueIndex,
+} from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { mediaFiles } from '../content/mediaFiles.schema';
 import { collections } from '../content/collections.schema';
@@ -24,6 +31,7 @@ export const orders = pgTable(
     currency: text('currency').notNull().default('DKK'),
     rentExpiresAt: timestamp('rent_expires_at', { withTimezone: true }),
     status: orderStatusEnum('status').notNull().default('pending'),
+    idempotencyKey: text('idempotency_key'),
 
     ...baseTimestamps,
   },
@@ -38,5 +46,8 @@ export const orders = pgTable(
     itemTypeIdx: index('order_items_item_type_idx').on(table.itemType),
     statusIdx: index('orders_status_idx').on(table.status),
     createdAtIdx: index('orders_created_at_idx').on(table.createdAt),
+    idempotencyKeyIdx: uniqueIndex('orders_idempotency_key_idx').on(
+      table.idempotencyKey,
+    ),
   }),
 );

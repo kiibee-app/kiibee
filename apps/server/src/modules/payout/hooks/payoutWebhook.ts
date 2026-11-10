@@ -16,9 +16,13 @@ import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const handlePayoutWebhookService = async (payload: any) => {
   try {
-    logger.info('ePay payout webhook received', payload);
-
     const transaction = payload?.data?.transaction ?? payload ?? {};
+
+    logger.info('ePay payout webhook received', {
+      transactionId: transaction.id,
+      reference: transaction.reference ?? transaction.attributes?.payoutId,
+      state: transaction.state ?? payload?.status,
+    });
 
     const payoutId =
       transaction.reference ??

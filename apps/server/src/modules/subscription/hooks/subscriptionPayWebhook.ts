@@ -26,7 +26,7 @@ import { capturePayment } from 'src/modules/payment/services/capturePayment.serv
 
 export async function handleSubscriptionPayment(body: any) {
   try {
-    const transaction = body?.data?.transaction;
+    const transaction = body?.data?.transaction ?? body?.transaction;
     if (!transaction) return;
 
     const {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
@@ -338,6 +338,7 @@ export default function SingleCollectionDetail({
       : null;
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
+  const checkoutIdempotencyKeyRef = useRef<string | null>(null);
 
   const handlePricingActionClick = useCallback(
     (action: PricingAction) => {
@@ -370,6 +371,7 @@ export default function SingleCollectionDetail({
     }
 
     savePaymentReturnUrl();
+    checkoutIdempotencyKeyRef.current ??= crypto.randomUUID();
 
     createCollectionOrderMutation.mutate(
       {
@@ -379,6 +381,7 @@ export default function SingleCollectionDetail({
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
         ...(subscriptionId ? { subscriptionId } : {}),
+        idempotencyKey: checkoutIdempotencyKeyRef.current,
       },
       {
         onSuccess: (response) => {
@@ -388,6 +391,7 @@ export default function SingleCollectionDetail({
           if (!paymentUrl && subscriptionId && orderId) {
             setShowPurchaseModal(false);
             setSelectedAction(null);
+            checkoutIdempotencyKeyRef.current = null;
             router.push(
               `/payment/success?orderId=${encodeURIComponent(orderId)}`,
             );
@@ -403,9 +407,11 @@ export default function SingleCollectionDetail({
 
           setShowPurchaseModal(false);
           setSelectedAction(null);
+          checkoutIdempotencyKeyRef.current = null;
           window.location.assign(paymentUrl);
         },
         onError: (error) => {
+          checkoutIdempotencyKeyRef.current = null;
           const message = getErrorMessage(error, "errors.saveChangesFailed");
           toast.error(message);
         },
@@ -416,6 +422,7 @@ export default function SingleCollectionDetail({
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    checkoutIdempotencyKeyRef.current = null;
     if (isBrowser && window.location.hash === HASH_BUY) {
       window.history.replaceState(
         null,

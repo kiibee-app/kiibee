@@ -1,15 +1,16 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, getTableColumns } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { collections, orders, users } from 'src/database/schema';
+import { collections, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
-import { ORDER_TYPES } from 'src/utils/constant';
+import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
 import { COUPON_DISCOUNT_TYPE_PERCENTAGE } from 'src/utils/coupon';
 import { parseRentDurationToHours } from 'src/utils/rentDuration';
 import { fail, success } from 'src/utils/sendResponse';
 import { CreateCollectionOrderInputDto } from '../dto/order.dto';
+import { findOrCreateCheckoutOrder } from './orderIdempotency';
 
 const COLLECTION_CURRENCY = 'DKK';
 const collectionColumns = getTableColumns(collections);
@@ -100,7 +101,9 @@ export async function createCollectionOrderService(
       collectionId,
       numericPrice,
     );
-    const resolvedPrice = Math.max(0, numericPrice - discountAmount) * 100;
+    const resolvedPrice = Math.round(
+      Math.max(0, numericPrice - discountAmount) * 100,
+    );
 
     const newOrder = {
       id: crypto.randomUUID(),
@@ -108,14 +111,28 @@ export async function createCollectionOrderService(
       mediaFileId: null,
       collectionId,
       itemType: normalizedItemType,
-      price: String(resolvedPrice),
+      price: String(resolvedPrice / 100),
       currency: COLLECTION_CURRENCY,
       status: 'pending' as const,
+      idempotencyKey: dto.idempotencyKey?.trim() || null,
     };
 
-    const [result] = await db.insert(orders).values(newOrder).returning();
+    const { order } = await findOrCreateCheckoutOrder(newOrder);
+
+    if (order.status === 'refunded') {
+      return fail('Order has been refunded', HttpStatus.CONFLICT);
+    }
+
+    if (order.status === ORDER_STATUS.COMPLETED) {
+      return success(
+        { orderId: order.id, completed: true as const },
+        'Collection order already completed',
+        HttpStatus.OK,
+      );
+    }
+
     const paymentResult = await createPayment({
-      orderId: result.id,
+      orderId: order.id,
       amount: Number(resolvedPrice),
       currency: COLLECTION_CURRENCY,
       customerId: userId,
@@ -124,7 +141,7 @@ export async function createCollectionOrderService(
 
     return success(
       {
-        orderId: result.id,
+        orderId: order.id,
         url: paymentResult.paymentWindowUrl,
       },
       'Collection order created successfully',
