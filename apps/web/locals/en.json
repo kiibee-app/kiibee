@@ -724,6 +724,7 @@
         "email": "Enter email address",
         "message": "Enter your message..."
       },
+      "verificationUnavailable": "Verification is unavailable. Try reloading the page or email support directly.",
       "errors": {
         "firstNameRequired": "First name is required",
         "emailRequired": "Email address is required",
@@ -2483,6 +2484,7 @@
     "categories": "Categories",
     "allCategories": "All categories",
     "searchPurchased": "Search Purchased Content",
+    "openSection": "Open section: {{section}}",
     "searchCurrentlyRented": "Search Currently Rented",
     "searchPreviouslyRented": "Search Previously Rented",
     "playVideo": "Play video",

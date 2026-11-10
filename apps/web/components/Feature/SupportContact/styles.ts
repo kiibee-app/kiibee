@@ -28,7 +28,7 @@ export const Panel = styled.div`
   gap: 36px;
 
   ${media.tablet} {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     padding: 28px 20px;
     gap: 28px;
   }
@@ -165,6 +165,25 @@ export const FormGrid = styled.div`
 
 export const FieldSlot = styled.div<{ $full?: boolean }>`
   grid-column: ${({ $full }) => ($full ? "1 / -1" : "span 1")};
+`;
+
+export const VerificationWidget = styled.div`
+  width: 100%;
+  max-width: 360px;
+
+  iframe {
+    display: block;
+    border-radius: 8px;
+  }
+`;
+
+export const VerificationStatus = styled.p`
+  ${({ theme }) => theme.typography.Body_Regular};
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const FormActions = styled.div`
