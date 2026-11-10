@@ -173,7 +173,7 @@ export default function ClientDashboardViewer({
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.CURRENTLY}
-          title={sectionTitle}
+          title={t("sidebar.currentlyRented")}
           mode={RENTED_MODES.CURRENTLY}
           initialExpandedSection={initialExpandedSection}
         />

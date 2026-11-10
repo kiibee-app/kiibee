@@ -2474,6 +2474,7 @@
     "categories": "Categories",
     "allCategories": "All categories",
     "searchPurchased": "Search Purchased Content",
+    "openSection": "Open section: {{section}}",
     "searchCurrentlyRented": "Search Currently Rented",
     "searchPreviouslyRented": "Search Previously Rented",
     "playVideo": "Play video",
