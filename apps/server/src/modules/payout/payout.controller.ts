@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Param,
@@ -66,6 +67,7 @@ export class PayoutController {
     );
   }
   @Post('webhook')
+  @HttpCode(HttpStatus.OK)
   async payoutNotification(@Body() payload: any, @Req() req: any) {
     const authorization = verifyEpayWebhookAuthorization(
       req.headers['authorization'],
@@ -77,6 +79,13 @@ export class PayoutController {
         reason: authorization.reason,
         hasAuthorization: authorization.hasAuthorization,
         scheme: authorization.scheme,
+        expectedScheme: authorization.expectedScheme,
+        expectedLength: authorization.expectedLength,
+        expectedCount: authorization.expectedCount,
+        expectedLengths: authorization.expectedLengths,
+        receivedLength: authorization.receivedLength,
+        receivedHasOuterWhitespace: authorization.receivedHasOuterWhitespace,
+        receivedFormat: authorization.receivedFormat,
       });
 
       throw new HttpException('Unauthorized webhook', HttpStatus.UNAUTHORIZED);
