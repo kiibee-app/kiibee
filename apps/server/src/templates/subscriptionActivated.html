@@ -1,138 +1,48 @@
 <!doctype html>
 <html lang="da">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kiibee — Abonnement aktivt</title>
-</head>
-
-<body style="
-      margin: 0;
-      padding: 0;
-      background-color: #f0f2f5;
-      -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-    ">
-  <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all">
-    Dit Kiibee-abonnement er nu aktivt.
-  </div>
-
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #f0f2f5">
-    <tr>
-      <td align="center" style="padding: 32px 16px">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px">
-          <tr>
-            <td style="
-                  background-color: #ffffff;
-                  border-radius: 16px;
-                  overflow: hidden;
-                  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-                ">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="
-                        background-color: #53baa9;
-                        padding: 28px 32px;
-                        text-align: center;
-                      ">
-                    <p style="
-                          margin: 0;
-                          font-family: Georgia, 'Times New Roman', serif;
-                          font-size: 22px;
-                          font-weight: 600;
-                          color: #ffffff;
-                          letter-spacing: -0.02em;
-                        ">
-                      Abonnement aktivt
-                    </p>
-                    <p style="
-                          margin: 10px 0 0;
-                          font-family:
-                            -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                            Roboto, Arial, sans-serif;
-                          font-size: 14px;
-                          line-height: 1.5;
-                          color: rgba(255, 255, 255, 0.92);
-                        ">
-                      Dit Kiibee-abonnement er blevet opdateret
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="
-                        padding: 32px 32px 8px;
-                        font-family:
-                          -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                          Roboto, Arial, sans-serif;
-                        font-size: 16px;
-                        line-height: 1.65;
-                        color: #1a1a1a;
-                      ">
-                    <p style="margin: 0 0 16px">Hej {{creator.fullName}},</p>
-                    <p style="margin: 0 0 16px">
-                      Gode nyheder! Dit abonnement på
-                      <strong>{{planName}}</strong> er nu aktivt.
-                    </p>
-                    <p style="margin: 0 0 16px">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dit Kiibee-abonnement er aktivt</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f2f5f4; -webkit-text-size-adjust: 100%;">
+    <div style="display: none; max-height: 0; overflow: hidden; mso-hide: all;">
+      Dit Kiibee-abonnement er blevet aktiveret.
+    </div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#f2f5f4" style="width: 100%; background-color: #f2f5f4;">
+      <tr>
+        <td align="center" style="padding: 32px 16px;">
+          <!--[if mso]><table role="presentation" width="560" cellspacing="0" cellpadding="0" border="0"><tr><td><![endif]-->
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" align="center" style="width: 100%; max-width: 560px; font-family: Arial, sans-serif; color: #172c28;">
+            <tr>
+              <td bgcolor="#12483f" style="background-color: #12483f; border-radius: 16px 16px 0 0; padding: 28px 28px 32px; color: #ffffff;">
+                <p style="margin: 0 0 18px; font-size: 17px; font-weight: bold; color: #ffffff;">Kiibee</p>
+                <h1 style="margin: 0; font-size: 27px; line-height: 1.25; color: #ffffff;">Dit abonnement er aktivt</h1>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="#ffffff" style="background-color: #ffffff; padding: 28px; font-size: 16px; line-height: 1.6;">
+                <p style="margin: 0 0 16px;">Hej {{creator.fullName}},</p>
+                <p style="margin: 0 0 24px;">Dit Kiibee-abonnement <strong>{{planName}}</strong> er nu aktivt.</p>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+                  <tr>
+                    <td bgcolor="#12483f" style="background-color: #12483f; color: #ffffff; border-radius: 8px; padding: 14px 16px;">
                       Faktureret beløb: <strong>{{amount}} {{currency}}</strong>
-                    </p>
-                    <p style="margin: 0 0 24px; color: #444444">
-                      Du har nu fuld adgang til alle fordelene i dit abonnement. Du kan administrere dit abonnement og
-                      se dine betalinger fra dit dashboard under <strong>Indstillinger</strong>.
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="
-                        padding: 0 32px 32px;
-                        font-family:
-                          -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                          Roboto, Arial, sans-serif;
-                        font-size: 14px;
-                        line-height: 1.6;
-                        color: #555555;
-                      ">
-                    <p style="margin: 0">
-                      Tak fordi du bruger Kiibee,<br />
-                      <strong style="color: #1a1a1a">Kiibee-teamet</strong>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="
-                        padding: 16px 32px;
-                        background-color: #f7f8fa;
-                        border-top: 1px solid #eceef1;
-                        text-align: center;
-                        font-family:
-                          -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                          Roboto, Arial, sans-serif;
-                        font-size: 12px;
-                        line-height: 1.5;
-                        color: #888888;
-                      ">
-                    Denne e-mail bekræfter, at din abonnementbetaling var
-                    vellykket.
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-
+                    </td>
+                  </tr>
+                </table>
+                <p style="margin: 28px 0 0; color: #425953;">Venlig hilsen<br /><strong>Kiibee-teamet</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" bgcolor="#12483f" style="background-color: #12483f; color: #ffffff; padding: 14px 24px; border-radius: 0 0 16px 16px; font-size: 13px; line-height: 20px;">
+                Kiibee ApS
+              </td>
+            </tr>
+          </table>
+          <!--[if mso]></td></tr></table><![endif]-->
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
