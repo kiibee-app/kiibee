@@ -11,6 +11,11 @@ import {
 export class SubmitSupportContactDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(2048)
+  turnstileToken!: string;
+
+  @IsString()
+  @IsNotEmpty()
   @MaxLength(100)
   firstName!: string;
 

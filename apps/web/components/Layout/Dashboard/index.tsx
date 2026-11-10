@@ -9,6 +9,7 @@ type DashboardLayoutProps = {
   sidebar?: React.ReactNode;
   contentPadding?: string;
   sidebarExpanded?: boolean;
+  inert?: boolean;
 };
 
 const DashboardLayout = ({
@@ -17,9 +18,10 @@ const DashboardLayout = ({
   sidebar,
   contentPadding,
   sidebarExpanded = true,
+  inert,
 }: DashboardLayoutProps) => {
   return (
-    <LayoutWrapper>
+    <LayoutWrapper inert={inert}>
       {sidebar}
       <MainWrapper $sidebarExpanded={sidebarExpanded}>
         {header}

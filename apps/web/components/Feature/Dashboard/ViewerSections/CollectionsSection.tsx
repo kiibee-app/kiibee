@@ -134,7 +134,9 @@ export default function CollectionsSection({
           {showOpenSectionArrow ? (
             <InlineSectionArrow
               type="button"
-              aria-label="Open collections section"
+              aria-label={t("viewerRented.openSection", {
+                section: t("collections.sectionTitle"),
+              })}
               onClick={onOpenSection}
             >
               <LeftIcon />

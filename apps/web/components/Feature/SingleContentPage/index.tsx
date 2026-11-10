@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -143,6 +143,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     itemType: OrderItemType;
     couponCode?: string;
     subscriptionId?: string;
+    idempotencyKey?: string;
   };
 
   type CreateOrderResponse = {
@@ -236,6 +237,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     subtitle?: string;
     isPurchase: boolean;
   } | null>(null);
+  const checkoutIdempotencyKeyRef = useRef<string | null>(null);
 
   const ownsContent =
     Boolean(user?.id) &&
@@ -541,6 +543,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     try {
       savePaymentReturnUrl();
+      checkoutIdempotencyKeyRef.current ??= crypto.randomUUID();
       const response = await createOrderMutation.mutateAsync({
         contentId,
         collectionId,
@@ -549,6 +552,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
         ...(subscriptionId ? { subscriptionId } : {}),
+        idempotencyKey: checkoutIdempotencyKeyRef.current,
       });
       const paymentUrl = response?.data?.url;
       const orderId = response?.data?.orderId;
@@ -559,6 +563,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       ) {
         setShowPurchaseModal(false);
         setSelectedAction(null);
+        checkoutIdempotencyKeyRef.current = null;
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
         return;
       }
@@ -567,8 +572,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
       setShowPurchaseModal(false);
       setSelectedAction(null);
+      checkoutIdempotencyKeyRef.current = null;
       window.location.assign(paymentUrl);
     } catch (error) {
+      checkoutIdempotencyKeyRef.current = null;
       const message = getErrorMessage(error, "errors.saveChangesFailed");
       toast.error(message);
     }
@@ -577,6 +584,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
     setSelectedAction(null);
+    checkoutIdempotencyKeyRef.current = null;
   };
 
   return (

@@ -724,6 +724,7 @@
         "email": "Enter email address",
         "message": "Enter your message..."
       },
+      "verificationUnavailable": "Verification is unavailable. Try reloading the page or email support directly.",
       "errors": {
         "firstNameRequired": "First name is required",
         "emailRequired": "Email address is required",
@@ -1695,6 +1696,16 @@
       "forgotPasswordErrorTitle": "Could not send reset link"
     },
     "toggleSidebar": "Toggle sidebar",
+    "subscriptionExpired": {
+      "title": "Your subscription has expired",
+      "message": "Your account is now on Try Kiibee. Choose a paid plan and complete payment to add new content again.",
+      "upgrade": "Upgrade subscription"
+    },
+    "subscriptionPaymentRequired": {
+      "title": "Payment required",
+      "message": "An admin updated your plan to {{planName}}. Complete your payment through ePay to activate the plan and start adding content again.",
+      "pay": "Review plan and pay"
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
@@ -2473,6 +2484,7 @@
     "categories": "Categories",
     "allCategories": "All categories",
     "searchPurchased": "Search Purchased Content",
+    "openSection": "Open section: {{section}}",
     "searchCurrentlyRented": "Search Currently Rented",
     "searchPreviouslyRented": "Search Previously Rented",
     "playVideo": "Play video",

@@ -50,6 +50,19 @@ async function bootstrap() {
     const configService = app.get(ConfigService);
     const apiPrefix = configService.get<string>('API_PREFIX', 'api/v1');
 
+    const epayWebhookAuthorization =
+      process.env.EPAY_WEBHOOK_AUTHORIZATION?.trim();
+
+    if (!epayWebhookAuthorization) {
+      logger.warn(
+        'EPAY_WEBHOOK_AUTHORIZATION is not configured; ePay webhooks will be rejected',
+      );
+    } else if (!/^[A-Za-z][A-Za-z0-9-]*\s+\S/.test(epayWebhookAuthorization)) {
+      logger.warn(
+        'EPAY_WEBHOOK_AUTHORIZATION must include the full auth scheme, for example "Bearer <secret>"',
+      );
+    }
+
     app.setGlobalPrefix(apiPrefix, {
       exclude: ['/', apiPrefix],
     });

@@ -31,6 +31,7 @@ type ApiPlan = {
   billingCycle: string;
   maxFiles: number;
   isActive: boolean;
+  subscriptionUpgradeRequired?: boolean;
 };
 
 type CreatorPlanResponse = {
@@ -75,10 +76,13 @@ export default function CurrentPlanCard() {
     });
   }, [currentPlan, t]);
 
+  const paymentRequired = currentPlan?.subscriptionUpgradeRequired === true;
   const isFreePlan = (currentPlan?.price ?? 0) === 0;
-  const ctaLabel = isFreePlan
-    ? t(CREATOR_PROFILE.currentPlan.upgrade)
-    : t(CREATOR_PROFILE.currentPlan.changePlan);
+  const ctaLabel = paymentRequired
+    ? t("dashboard.subscriptionPaymentRequired.pay")
+    : isFreePlan
+      ? t(CREATOR_PROFILE.currentPlan.upgrade)
+      : t(CREATOR_PROFILE.currentPlan.changePlan);
 
   const handleUpgrade = () => {
     window.sessionStorage.setItem(SCROLL_TO_PLANS_KEY, "1");
@@ -94,9 +98,13 @@ export default function CurrentPlanCard() {
             {t(CREATOR_PROFILE.currentPlan.label)}
           </MonoText>
         </PlanCardLabel>
-        <PlanStatusBadge>
-          {t(CREATOR_PROFILE.currentPlan.activeBadge)}
-        </PlanStatusBadge>
+        {(paymentRequired || currentPlan?.isActive) && (
+          <PlanStatusBadge>
+            {paymentRequired
+              ? t("dashboard.subscriptionPaymentRequired.title")
+              : t(CREATOR_PROFILE.currentPlan.activeBadge)}
+          </PlanStatusBadge>
+        )}
       </PlanCardHeader>
 
       <PlanCardName>

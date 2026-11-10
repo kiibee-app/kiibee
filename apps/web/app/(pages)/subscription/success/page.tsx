@@ -37,6 +37,8 @@ type CreatorPlanRecord = {
   name: string;
   price: number;
   isActive: boolean;
+  isPaidPlan?: boolean;
+  subscriptionUpgradeRequired?: boolean;
 };
 
 type CreatorPlanResponse = {
@@ -45,6 +47,14 @@ type CreatorPlanResponse = {
   message: string;
   data: CreatorPlanRecord[];
 };
+
+function isPaidPlanActive(plan?: CreatorPlanRecord) {
+  return Boolean(
+    plan?.isActive &&
+    (plan.isPaidPlan ?? plan.price > 0) &&
+    !plan.subscriptionUpgradeRequired,
+  );
+}
 
 function SubscriptionSuccessContent() {
   const { t } = useTranslation();
@@ -62,7 +72,7 @@ function SubscriptionSuccessContent() {
       refetchInterval: (query) => {
         const plan = query.state.data?.data?.[0];
 
-        if (plan?.isActive && plan.price > 0) {
+        if (isPaidPlanActive(plan)) {
           return false;
         }
 
@@ -72,7 +82,7 @@ function SubscriptionSuccessContent() {
   );
 
   const plan = data?.data?.[0];
-  const isActivePaid = Boolean(plan?.isActive && plan.price > 0);
+  const isActivePaid = isPaidPlanActive(plan);
   const isVerifying = !isInvitePostPaymentFlow && (isLoading || !plan);
 
   useEffect(() => {
