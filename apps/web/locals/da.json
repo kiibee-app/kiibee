@@ -724,6 +724,7 @@
         "email": "Indtast e-mail adresse",
         "message": "Skriv din besked..."
       },
+      "verificationUnavailable": "Verificering er ikke tilgængelig. Prøv at genindlæse siden, eller send en e-mail direkte til support.",
       "errors": {
         "firstNameRequired": "Fornavn er påkrævet",
         "emailRequired": "E-mail adresse er påkrævet",

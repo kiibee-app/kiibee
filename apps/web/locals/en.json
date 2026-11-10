@@ -724,6 +724,7 @@
         "email": "Enter email address",
         "message": "Enter your message..."
       },
+      "verificationUnavailable": "Verification is unavailable. Try reloading the page or email support directly.",
       "errors": {
         "firstNameRequired": "First name is required",
         "emailRequired": "Email address is required",

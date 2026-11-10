@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Script from "next/script";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
@@ -36,15 +37,80 @@ import {
   SuccessTitle,
   SubmitButton,
   Title,
+  VerificationStatus,
+  VerificationWidget,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import COLORS from "@repo/ui/colors";
 
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim();
+
+type Turnstile = {
+  render: (
+    container: HTMLElement,
+    options: {
+      sitekey: string;
+      action: string;
+      size: "flexible" | "compact";
+      theme: "light";
+      appearance: "interaction-only";
+      "response-field": false;
+      callback: (token: string) => void;
+      "expired-callback": () => void;
+      "timeout-callback": () => void;
+      "error-callback": () => void;
+    },
+  ) => string;
+  reset: (widgetId: string) => void;
+  remove: (widgetId: string) => void;
+};
+
+function getTurnstile() {
+  return (window as Window & { turnstile?: Turnstile }).turnstile;
+}
+
 export default function SupportContact() {
   const { t } = useTranslation();
   const paths = useLocalizedPaths();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const [verificationError, setVerificationError] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const challengeContainer = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+
+  useEffect(() => {
+    const turnstile = getTurnstile();
+    const container = challengeContainer.current;
+    if (!turnstileReady || !turnstile || !turnstileSiteKey || !container)
+      return;
+
+    const id = turnstile.render(container, {
+      sitekey: turnstileSiteKey,
+      action: "support_contact",
+      size: container.clientWidth < 300 ? "compact" : "flexible",
+      theme: "light",
+      appearance: "interaction-only",
+      "response-field": false,
+      callback: (token) => {
+        setVerificationError(false);
+        setTurnstileToken(token);
+      },
+      "expired-callback": () => setTurnstileToken(""),
+      "timeout-callback": () => setTurnstileToken(""),
+      "error-callback": () => {
+        setTurnstileToken("");
+        setVerificationError(true);
+      },
+    });
+    widgetId.current = id;
+    return () => {
+      turnstile.remove(id);
+      widgetId.current = null;
+    };
+  }, [turnstileReady, isSuccess]);
+
   const { mutateAsync: submitSupportContact, isPending: isSubmitting } =
     useSupportContact();
   const fields = useMemo(() => getSupportContactFields(t), [t]);
@@ -102,8 +168,12 @@ export default function SupportContact() {
   };
 
   const onSubmit = async (values: SupportContactValues) => {
+    if (!turnstileToken || isSubmitting) return;
+
+    setTurnstileToken("");
     try {
       const response = await submitSupportContact({
+        turnstileToken,
         firstName: values.firstName.trim(),
         lastName: values.lastName.trim() || undefined,
         companyName: values.companyName.trim() || undefined,
@@ -116,6 +186,9 @@ export default function SupportContact() {
     } catch (error) {
       const apiError = normalizeApiError(error);
       toast.error(apiError.message || t("supportPage.form.submitError"));
+      if (widgetId.current !== null) {
+        getTurnstile()?.reset(widgetId.current);
+      }
     }
   };
 
@@ -186,7 +259,7 @@ export default function SupportContact() {
 
             <FormCard>
               <FormProvider {...methods}>
-                <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form onSubmit={(event) => handleSubmit(onSubmit)(event)}>
                   <FormGrid>
                     {fields.map((field) => (
                       <FieldSlot key={field.key} $full={field.full}>
@@ -213,10 +286,26 @@ export default function SupportContact() {
                     ))}
                   </FormGrid>
 
+                  {turnstileSiteKey && (
+                    <>
+                      <Script
+                        src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+                        onReady={() => setTurnstileReady(true)}
+                        onError={() => setVerificationError(true)}
+                      />
+                      <VerificationWidget ref={challengeContainer} />
+                    </>
+                  )}
+                  {(!turnstileSiteKey || verificationError) && (
+                    <VerificationStatus role="status">
+                      {t("supportPage.form.verificationUnavailable")}
+                    </VerificationStatus>
+                  )}
+
                   <FormActions>
                     <SubmitButton
                       type="submit"
-                      disabled={!isValid || isSubmitting}
+                      disabled={!isValid || isSubmitting || !turnstileToken}
                       isLoading={isSubmitting}
                     >
                       {t("supportPage.form.submit")}
