@@ -646,11 +646,6 @@ const handleTransactionSuccess = async (transaction: EpayTransaction) => {
     orderInfo.status === ORDER_STATUS.COMPLETED ||
     orderInfo.status === 'refunded'
   ) {
-    logger.info('Ignoring duplicate payment success webhook', {
-      orderId: orderInfo.id,
-      transactionId: resolved.id,
-      orderStatus: orderInfo.status,
-    });
     return;
   }
 
