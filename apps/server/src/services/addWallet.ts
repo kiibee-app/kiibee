@@ -4,12 +4,15 @@ import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorWallets } from 'src/database/schema/commerce/creatorWallets.schema';
 
+type WalletExecutor = Pick<typeof db, 'query' | 'insert' | 'update'>;
+
 export const addWallet = async (
   creatorId: string,
   amount: number,
   currency: string,
+  executor: WalletExecutor = db,
 ): Promise<string> => {
-  const existingWallet = await db.query.creatorWallets.findFirst({
+  const existingWallet = await executor.query.creatorWallets.findFirst({
     where: and(
       eq(creatorWallets.creatorId, creatorId),
       eq(creatorWallets.currency, currency),
@@ -19,7 +22,7 @@ export const addWallet = async (
   if (existingWallet) {
     const updatedAmount = Number(existingWallet.amount) + amount;
 
-    await db
+    await executor
       .update(creatorWallets)
       .set({
         amount: updatedAmount.toString(),
@@ -29,7 +32,7 @@ export const addWallet = async (
     return updatedAmount.toString();
   }
 
-  await db.insert(creatorWallets).values({
+  await executor.insert(creatorWallets).values({
     id: randomUUID(),
     creatorId,
     amount: amount.toString(),

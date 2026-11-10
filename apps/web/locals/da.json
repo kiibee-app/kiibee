@@ -724,6 +724,7 @@
         "email": "Indtast e-mail adresse",
         "message": "Skriv din besked..."
       },
+      "verificationUnavailable": "Verificering er ikke tilgængelig. Prøv at genindlæse siden, eller send en e-mail direkte til support.",
       "errors": {
         "firstNameRequired": "Fornavn er påkrævet",
         "emailRequired": "E-mail adresse er påkrævet",
@@ -1695,6 +1696,16 @@
       "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
     "toggleSidebar": "Skift sidepanel",
+    "subscriptionExpired": {
+      "title": "Dit abonnement er udløbet",
+      "message": "Din konto er nu på Try Kiibee. Vælg et betalt abonnement, og gennemfør betalingen for at kunne tilføje nyt indhold igen.",
+      "upgrade": "Opgrader abonnement"
+    },
+    "subscriptionPaymentRequired": {
+      "title": "Betaling påkrævet",
+      "message": "En administrator har ændret dit abonnement til {{planName}}. Gennemfør betalingen via ePay for at aktivere abonnementet og tilføje nyt indhold igen.",
+      "pay": "Se abonnement og betal"
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
@@ -2473,6 +2484,7 @@
     "categories": "Kategorier",
     "allCategories": "Alle kategorier",
     "searchPurchased": "Søg i købt indhold",
+    "openSection": "Åbn sektion: {{section}}",
     "searchCurrentlyRented": "Søg i nuværende leje",
     "searchPreviouslyRented": "Søg i tidligere leje",
     "playVideo": "Afspil video",

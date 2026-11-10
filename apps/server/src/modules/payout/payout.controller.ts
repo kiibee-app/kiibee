@@ -2,6 +2,9 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
   Query,
@@ -18,6 +21,8 @@ import {
   SettlementHistoryQueryDto,
 } from './dto/payout.dto';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
+import { verifyEpayWebhookAuthorization } from 'src/utils/epayWebhookAuth';
+import { logger } from 'src/logger/logger';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -62,7 +67,30 @@ export class PayoutController {
     );
   }
   @Post('webhook')
-  async payoutNotification(@Body() payload: any) {
+  @HttpCode(HttpStatus.OK)
+  async payoutNotification(@Body() payload: any, @Req() req: any) {
+    const authorization = verifyEpayWebhookAuthorization(
+      req.headers['authorization'],
+    );
+
+    if (!authorization.authorized) {
+      logger.warn('Rejected ePay webhook authorization', {
+        path: '/api/v1/payout/webhook',
+        reason: authorization.reason,
+        hasAuthorization: authorization.hasAuthorization,
+        scheme: authorization.scheme,
+        expectedScheme: authorization.expectedScheme,
+        expectedLength: authorization.expectedLength,
+        expectedCount: authorization.expectedCount,
+        expectedLengths: authorization.expectedLengths,
+        receivedLength: authorization.receivedLength,
+        receivedHasOuterWhitespace: authorization.receivedHasOuterWhitespace,
+        receivedFormat: authorization.receivedFormat,
+      });
+
+      throw new HttpException('Unauthorized webhook', HttpStatus.UNAUTHORIZED);
+    }
+
     return handlePayoutWebhookService(payload);
   }
 

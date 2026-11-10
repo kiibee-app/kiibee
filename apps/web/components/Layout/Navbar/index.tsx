@@ -60,7 +60,7 @@ import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { CLICK } from "@/utils/common";
+import { CLICK, useMounted } from "@/utils/common";
 import {
   POINTER_DOWN,
   VARIANT,
@@ -273,16 +273,7 @@ export default function NavBar({
     pathname,
     expanded: false,
   });
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    const handle = requestAnimationFrame(() => {
-      setIsMounted(true);
-    });
-    return () => {
-      cancelAnimationFrame(handle);
-    };
-  }, []);
+  const isMounted = useMounted();
   const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
     Record<string, boolean>
   >({});
@@ -702,11 +693,7 @@ export default function NavBar({
         >
           <LanguageToggle />
           {!isMounted ? (
-            actions ? (
-              actions
-            ) : (
-              <ActionsPlaceholder />
-            )
+            <ActionsPlaceholder />
           ) : isLoggedIn && dashboardPath ? (
             <>
               <NavSearchButton textTone={navTextTone} hide={Boolean(actions)} />

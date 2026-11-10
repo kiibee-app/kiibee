@@ -35,6 +35,9 @@ export const users = pgTable(
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
     isActive: boolean('is_active').notNull().default(true),
     isHidden: boolean('is_hidden').notNull().default(false),
+    subscriptionUpgradeRequired: boolean('subscription_upgrade_required')
+      .notNull()
+      .default(false),
     sequence: integer('sequence'),
     manualContentOrder: boolean('manual_content_order')
       .notNull()

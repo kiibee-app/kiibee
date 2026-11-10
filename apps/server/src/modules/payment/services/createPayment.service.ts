@@ -1,9 +1,9 @@
 import axios from 'axios';
 import https from 'https';
 import dns from 'node:dns';
-import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { stripUrlPort } from 'src/utils/extranalApi';
+import { getPaymentWebhookUrl } from 'src/utils/webhookUrl';
 
 dns.setDefaultResultOrder('ipv4first');
 
@@ -30,7 +30,7 @@ export const createPayment = async ({
       Authorization: `Bearer ${process.env.EPAY_API_KEY}`,
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Idempotency-Key': randomUUID(),
+      'Idempotency-Key': `payment-${orderId}`,
     };
 
     if (subscriptionId) {
@@ -39,7 +39,7 @@ export const createPayment = async ({
         amount: Number(amount),
         currency,
         reference: orderId,
-        notificationUrl: `${process.env.EPAY_WEBHOOK_URL}/api/v1/payment/webhook`,
+        notificationUrl: getPaymentWebhookUrl(),
       };
 
       const { data } = await axios.post(
@@ -67,7 +67,7 @@ export const createPayment = async ({
       failureUrl: stripUrlPort(
         `${process.env.FRONTEND_URL}/payment/failure?orderId=${orderId}`,
       ),
-      notificationUrl: `${process.env.EPAY_WEBHOOK_URL}/api/v1/payment/webhook`,
+      notificationUrl: getPaymentWebhookUrl(),
     };
 
     const { data } = await axios.post(

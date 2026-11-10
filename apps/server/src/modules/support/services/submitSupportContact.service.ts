@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  ServiceUnavailableException,
+} from '@nestjs/common';
 import { db } from 'src/database/db';
 import { supportContactMessages } from 'src/database/schema/system/supportContactMessages.schema';
 import { getEmailTransporter } from 'src/lib/emailTransporter';
@@ -48,9 +53,46 @@ const buildSupportEmailHtml = (payload: {
   `;
 };
 
+async function verifySupportChallenge(token: string) {
+  const secret = env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    logger.error('Support form Turnstile secret is missing');
+    throw new ServiceUnavailableException(
+      'Support verification is unavailable',
+    );
+  }
+
+  let result: { success?: boolean; action?: string } | null;
+  try {
+    const response = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        body: new URLSearchParams({ secret, response: token }),
+        signal: AbortSignal.timeout(5000),
+      },
+    );
+    if (!response.ok) {
+      throw new Error(`Turnstile Siteverify returned HTTP ${response.status}`);
+    }
+    result = await response.json();
+  } catch (error) {
+    logger.error('Support form Turnstile verification failed', { error });
+    throw new ServiceUnavailableException(
+      'Support verification is unavailable',
+    );
+  }
+
+  if (result?.success !== true || result.action !== 'support_contact') {
+    throw new BadRequestException('Support verification failed');
+  }
+}
+
 export const submitSupportContactService = async (
   payload: SubmitSupportContactDto,
 ) => {
+  await verifySupportChallenge(payload.turnstileToken);
+
   try {
     const firstName = payload.firstName.trim();
     const lastName = payload.lastName?.trim() || null;

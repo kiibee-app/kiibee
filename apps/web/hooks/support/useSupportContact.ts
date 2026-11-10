@@ -3,6 +3,7 @@
 import { API, usePostAPI } from "@/lib/http/api";
 
 export type SupportContactPayload = {
+  turnstileToken: string;
   firstName: string;
   lastName?: string;
   companyName?: string;
@@ -31,4 +32,5 @@ export type SupportContactResponse = {
 export const useSupportContact = () =>
   usePostAPI<SupportContactResponse, SupportContactPayload>(
     API.support.contact,
+    { retry: false },
   );

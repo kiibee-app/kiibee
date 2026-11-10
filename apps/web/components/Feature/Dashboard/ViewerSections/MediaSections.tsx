@@ -206,7 +206,9 @@ export default function MediaSections({
                   section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"
-                    aria-label={`Expand ${section.title} section`}
+                    aria-label={t("viewerRented.openSection", {
+                      section: section.title,
+                    })}
                     onClick={() => onOpenSection?.(section.key)}
                   >
                     <LeftIcon />

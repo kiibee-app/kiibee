@@ -26,7 +26,7 @@ import { capturePayment } from 'src/modules/payment/services/capturePayment.serv
 
 export async function handleSubscriptionPayment(body: any) {
   try {
-    const transaction = body?.data?.transaction;
+    const transaction = body?.data?.transaction ?? body?.transaction;
     if (!transaction) return;
 
     const {
@@ -140,136 +140,134 @@ export async function handleSubscriptionPayment(body: any) {
       return;
     }
 
-    await db
-      .update(creatorPlans)
-      .set({ status: STATUS.INACTIVE })
-      .where(
-        and(
-          eq(creatorPlans.creatorId, customerId),
-          eq(creatorPlans.status, STATUS.ACTIVE),
-        ),
-      );
-
     const existingActiveSubscription = await db.query.subscriptions.findFirst({
       where: (t) => and(eq(t.creatorId, customerId)),
     });
 
     if (
       existingActiveSubscription &&
-      existingActiveSubscription.planId !== plan.id
+      existingActiveSubscription.agreementId !== subscriptionId
     ) {
       await deleteSubscriptionService(customerId);
     }
 
-    let creatorPlanId: string;
-    const [creatorPlan] = await db
-      .select()
-      .from(creatorPlans)
-      .where(
-        and(
-          eq(creatorPlans.creatorId, customerId),
-          eq(creatorPlans.planId, plan.id),
-        ),
-      )
-      .limit(1);
-
-    if (creatorPlan) {
-      creatorPlanId = creatorPlan.id;
-      await db
-        .update(creatorPlans)
-        .set({ status: STATUS.ACTIVE })
-        .where(eq(creatorPlans.id, creatorPlanId));
-    } else {
-      creatorPlanId = randomUUID();
-      await db.insert(creatorPlans).values({
-        id: creatorPlanId,
-        creatorId: customerId,
-        planId: plan.id,
-        status: STATUS.ACTIVE,
-      });
-    }
-
     const formattedAmount = (amount / 100).toString();
+    const processed = await db.transaction(async (tx) => {
+      await tx
+        .select({ id: users.id })
+        .from(users)
+        .where(eq(users.id, customerId))
+        .for('update');
 
-    const existingSubscription = await db.query.subscriptions.findFirst({
-      where: (t) => eq(t.creatorId, customerId),
-    });
+      const existingPayment =
+        await tx.query.subscriptionPaymentsHistory.findFirst({
+          where: (t) => eq(t.transactionId, transactionId),
+        });
 
-    const baseData = {
-      planId: plan.id,
-      creatorId: customerId,
-      amount: formattedAmount,
-      currency,
-      status: 'paid' as const,
-      billingPeriod: plan.billingCycle,
-      startAt: new Date(),
-      endAt: new Date(Date.now() + 30 * 86400000),
-      paymentReference: transactionId,
-      agreementId: subscriptionId,
-      rawPayload: body,
-      processedAt: new Date(),
-    };
+      if (existingPayment) return false;
 
-    const targetSubscriptionId = `sub_${subscriptionId}`;
+      await tx
+        .update(creatorPlans)
+        .set({ status: STATUS.INACTIVE })
+        .where(
+          and(
+            eq(creatorPlans.creatorId, customerId),
+            eq(creatorPlans.status, STATUS.ACTIVE),
+          ),
+        );
 
-    if (existingSubscription) {
-      await db
-        .update(subscriptions)
-        .set({
-          nextPaymentAttemptAt: new Date(Date.now() + 30 * 86400000),
+      const [creatorPlan] = await tx
+        .select()
+        .from(creatorPlans)
+        .where(
+          and(
+            eq(creatorPlans.creatorId, customerId),
+            eq(creatorPlans.planId, plan.id),
+          ),
+        )
+        .limit(1);
+
+      if (creatorPlan) {
+        await tx
+          .update(creatorPlans)
+          .set({ status: STATUS.ACTIVE })
+          .where(eq(creatorPlans.id, creatorPlan.id));
+      } else {
+        await tx.insert(creatorPlans).values({
+          id: randomUUID(),
+          creatorId: customerId,
+          planId: plan.id,
+          status: STATUS.ACTIVE,
+        });
+      }
+
+      const existingSubscription = await tx.query.subscriptions.findFirst({
+        where: (t) => eq(t.creatorId, customerId),
+      });
+
+      const baseData = {
+        planId: plan.id,
+        creatorId: customerId,
+        amount: formattedAmount,
+        currency,
+        status: 'paid' as const,
+        isActive: true,
+        billingPeriod: plan.billingCycle,
+        startAt: new Date(),
+        endAt: new Date(Date.now() + 30 * 86400000),
+        paymentReference: transactionId,
+        agreementId: subscriptionId,
+        rawPayload: body,
+        processedAt: new Date(),
+      };
+
+      const targetSubscriptionId = `sub_${subscriptionId}`;
+
+      if (existingSubscription) {
+        await tx
+          .update(subscriptions)
+          .set({
+            nextPaymentAttemptAt: new Date(Date.now() + 30 * 86400000),
+            ...baseData,
+          })
+          .where(eq(subscriptions.creatorId, customerId));
+      } else {
+        await tx.insert(subscriptions).values({
+          id: targetSubscriptionId,
+          invoiceNumber: reference,
           ...baseData,
-        })
-        .where(eq(subscriptions.creatorId, customerId));
-    } else {
-      await db.insert(subscriptions).values({
-        id: targetSubscriptionId,
-        invoiceNumber: reference,
-        ...baseData,
-      });
-    }
+        });
+      }
 
-    await db.insert(subscriptionPaymentsHistory).values({
-      id: `pay_${transactionId}`,
-      subscriptionId: existingSubscription
-        ? existingSubscription.id
-        : targetSubscriptionId,
-      creatorId: customerId,
-      transactionId,
-      amount: formattedAmount,
-      currency,
-      status: ORDER_STATUS.COMPLETED,
-      paymentMethodType,
-      cardNo: paymentMethodDisplayText,
-      cardExpiry: paymentMethodExpiry,
-      cardType: paymentMethodSubType,
-      reference: textOnStatement,
-      rawPayload: body,
-      processedAt: new Date(),
-    });
-
-    const existingCard = await db.query.userCardInfo.findFirst({
-      where: and(
-        eq(userCardInfo.userId, customerId || ''),
-        eq(userCardInfo.paymentMethodId, paymentMethodId),
-      ),
-    });
-
-    if (!existingCard) {
-      const firstCard = await db.query.userCardInfo.findFirst({
-        where: eq(userCardInfo.userId, customerId),
-      });
-
-      await db.insert(userCardInfo).values({
-        id: randomUUID(),
-        userId: customerId,
-        paymentMethodId,
+      await tx.insert(subscriptionPaymentsHistory).values({
+        id: `pay_${transactionId}`,
+        subscriptionId: existingSubscription
+          ? existingSubscription.id
+          : targetSubscriptionId,
+        creatorId: customerId,
+        transactionId,
+        amount: formattedAmount,
+        currency,
+        status: ORDER_STATUS.COMPLETED,
+        paymentMethodType,
         cardNo: paymentMethodDisplayText,
-        expireDate: paymentMethodExpiry,
+        cardExpiry: paymentMethodExpiry,
         cardType: paymentMethodSubType,
-        ePaySubscriptionId: subscriptionId || '',
-        isDefault: !firstCard,
+        reference: textOnStatement,
+        rawPayload: body,
+        processedAt: new Date(),
       });
-    }
+
+      if (plan.price > 0 && amount > 0) {
+        await tx
+          .update(users)
+          .set({ subscriptionUpgradeRequired: false })
+          .where(eq(users.id, customerId));
+      }
+      return true;
+    });
+
+    if (!processed) return;
 
     const [creator] = await db
       .select({ email: users.email, fullName: users.fullName })
@@ -293,6 +291,30 @@ export async function handleSubscriptionPayment(body: any) {
           },
         }),
       );
+    }
+
+    const existingCard = await db.query.userCardInfo.findFirst({
+      where: and(
+        eq(userCardInfo.userId, customerId || ''),
+        eq(userCardInfo.paymentMethodId, paymentMethodId),
+      ),
+    });
+
+    if (!existingCard) {
+      const firstCard = await db.query.userCardInfo.findFirst({
+        where: eq(userCardInfo.userId, customerId),
+      });
+
+      await db.insert(userCardInfo).values({
+        id: randomUUID(),
+        userId: customerId,
+        paymentMethodId,
+        cardNo: paymentMethodDisplayText,
+        expireDate: paymentMethodExpiry,
+        cardType: paymentMethodSubType,
+        ePaySubscriptionId: subscriptionId || '',
+        isDefault: !firstCard,
+      });
     }
 
     logger.info('✅ Subscription processed successfully');
