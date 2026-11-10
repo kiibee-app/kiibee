@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   HttpException,
   HttpStatus,
   Post,
@@ -34,6 +35,7 @@ export class SubscriptionController {
   }
 
   @Post('webhook')
+  @HttpCode(HttpStatus.OK)
   async handleWebhook(@Body() body: any, @Req() req: any) {
     const authorization = verifyEpayWebhookAuthorization(
       req.headers['authorization'],
@@ -45,6 +47,13 @@ export class SubscriptionController {
         reason: authorization.reason,
         hasAuthorization: authorization.hasAuthorization,
         scheme: authorization.scheme,
+        expectedScheme: authorization.expectedScheme,
+        expectedLength: authorization.expectedLength,
+        expectedCount: authorization.expectedCount,
+        expectedLengths: authorization.expectedLengths,
+        receivedLength: authorization.receivedLength,
+        receivedHasOuterWhitespace: authorization.receivedHasOuterWhitespace,
+        receivedFormat: authorization.receivedFormat,
       });
 
       throw new HttpException('Unauthorized webhook', HttpStatus.UNAUTHORIZED);
