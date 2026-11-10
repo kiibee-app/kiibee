@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, CreditCard, Save } from "lucide-react";
 import {
   useAdminSubscription,
@@ -43,6 +43,35 @@ type CreatorSubscriptionSettingsProps = {
   creatorId: string;
 };
 
+type SubscriptionFormValues = {
+  planId: string;
+  customPrice: string;
+  customPrice3: string;
+  customPrice6: string;
+  customPrice12: string;
+  customMaxFiles: string;
+  customKiibeeCutDkk: string;
+  customTransactionFeePct: string;
+  paymentPeriod: string;
+};
+
+function toSubscriptionPayload(values: SubscriptionFormValues) {
+  const parseNumber = (value: string) =>
+    value.trim() === "" ? null : Number(value);
+
+  return {
+    planId: values.planId,
+    customPrice: parseNumber(values.customPrice),
+    customPrice3: parseNumber(values.customPrice3),
+    customPrice6: parseNumber(values.customPrice6),
+    customPrice12: parseNumber(values.customPrice12),
+    customMaxFiles: parseNumber(values.customMaxFiles),
+    customKiibeeCutDkk: parseNumber(values.customKiibeeCutDkk),
+    customTransactionFeePct: parseNumber(values.customTransactionFeePct),
+    paymentPeriod: values.paymentPeriod.trim() || null,
+  };
+}
+
 export function CreatorSubscriptionSettings({
   creatorId,
 }: CreatorSubscriptionSettingsProps) {
@@ -50,48 +79,25 @@ export function CreatorSubscriptionSettings({
   const subscriptionQuery = useAdminSubscription(creatorId);
   const updateMutation = useUpdateAdminSubscription(creatorId);
 
-  const [values, setValues] = useState<{
-    planId: string;
-    customPrice: string;
-    customPrice3: string;
-    customPrice6: string;
-    customPrice12: string;
-    customMaxFiles: string;
-    customKiibeeCutDkk: string;
-    customTransactionFeePct: string;
-    paymentPeriod: string;
-  }>({
-    planId: "",
-    customPrice: "",
-    customPrice3: "",
-    customPrice6: "",
-    customPrice12: "",
-    customMaxFiles: "",
-    customKiibeeCutDkk: "",
-    customTransactionFeePct: "",
-    paymentPeriod: "",
-  });
-
+  const [draft, setValues] = useState<SubscriptionFormValues | null>(null);
+  const [savedValues, setSavedValues] = useState<SubscriptionFormValues | null>(
+    null,
+  );
   const serverData = subscriptionQuery.data;
-
-  useEffect(() => {
-    if (serverData && !values.planId && serverData.plan?.id) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setValues({
-        planId: serverData.plan?.id || "",
-        customPrice: serverData.overrides?.customPrice?.toString() || "",
-        customPrice3: serverData.overrides?.customPrice3?.toString() || "",
-        customPrice6: serverData.overrides?.customPrice6?.toString() || "",
-        customPrice12: serverData.overrides?.customPrice12?.toString() || "",
-        customMaxFiles: serverData.overrides?.customMaxFiles?.toString() || "",
-        customKiibeeCutDkk:
-          serverData.overrides?.customKiibeeCutDkk?.toString() || "",
-        customTransactionFeePct:
-          serverData.overrides?.customTransactionFeePct?.toString() || "",
-        paymentPeriod: serverData.overrides?.paymentPeriod || "",
-      });
-    }
-  }, [serverData, values.planId]);
+  const overrides = serverData?.overrides;
+  const baseline = savedValues ?? {
+    planId: serverData?.plan.id ?? "",
+    customPrice: overrides?.customPrice?.toString() ?? "",
+    customPrice3: overrides?.customPrice3?.toString() ?? "",
+    customPrice6: overrides?.customPrice6?.toString() ?? "",
+    customPrice12: overrides?.customPrice12?.toString() ?? "",
+    customMaxFiles: overrides?.customMaxFiles?.toString() ?? "",
+    customKiibeeCutDkk: overrides?.customKiibeeCutDkk?.toString() ?? "",
+    customTransactionFeePct:
+      overrides?.customTransactionFeePct?.toString() ?? "",
+    paymentPeriod: overrides?.paymentPeriod ?? "",
+  };
+  const values = draft ?? baseline;
 
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [statusTone, setStatusTone] = useState<"error" | "success" | undefined>(
@@ -126,25 +132,23 @@ export function CreatorSubscriptionSettings({
 
   const isBusy = updateMutation.isPending;
 
+  const payload = toSubscriptionPayload(values);
+  const savedPayload = toSubscriptionPayload(baseline);
+  const hasUnsavedChanges = Object.keys(payload).some((key) => {
+    const field = key as keyof typeof payload;
+    return payload[field] !== savedPayload[field];
+  });
+  const canSave = Boolean(payload.planId) && hasUnsavedChanges && !isBusy;
+
   const handleSave = async () => {
+    if (!canSave) return;
+
     setStatusMessage(null);
     setStatusTone(undefined);
 
-    const parseNumber = (val: string) =>
-      val.trim() === "" ? null : Number(val);
-
     try {
-      await updateMutation.mutateAsync({
-        planId: values.planId,
-        customPrice: parseNumber(values.customPrice),
-        customPrice3: parseNumber(values.customPrice3),
-        customPrice6: parseNumber(values.customPrice6),
-        customPrice12: parseNumber(values.customPrice12),
-        customMaxFiles: parseNumber(values.customMaxFiles),
-        customKiibeeCutDkk: parseNumber(values.customKiibeeCutDkk),
-        customTransactionFeePct: parseNumber(values.customTransactionFeePct),
-        paymentPeriod: values.paymentPeriod.trim() || null,
-      });
+      await updateMutation.mutateAsync(payload);
+      setSavedValues(values);
 
       setStatusTone("success");
       setStatusMessage("Subscription settings updated successfully.");
@@ -159,12 +163,10 @@ export function CreatorSubscriptionSettings({
   };
 
   const actionButtons = (
-    <>
-      <PrimaryButton type="button" onClick={handleSave} disabled={isBusy}>
-        <Save size={15} />
-        {isBusy ? "Saving..." : "Save Settings"}
-      </PrimaryButton>
-    </>
+    <PrimaryButton type="button" onClick={handleSave} disabled={!canSave}>
+      <Save size={15} />
+      {isBusy ? "Saving..." : "Save Settings"}
+    </PrimaryButton>
   );
 
   return (
@@ -332,7 +334,9 @@ export function CreatorSubscriptionSettings({
         </PanelBody>
       </AppearancePanel>
 
-      <StickyActions $visible={isBusy}>
+      <StickyActions
+        $visible={Boolean(payload.planId) && (hasUnsavedChanges || isBusy)}
+      >
         <StickyHint>Don&apos;t forget to save your changes</StickyHint>
         {actionButtons}
       </StickyActions>

@@ -57,7 +57,7 @@ type PlansResponse = {
 
 type CreatorPlanResponse = {
   success: boolean;
-  data?: ApiPlan[];
+  data?: (ApiPlan & { subscriptionUpgradeRequired?: boolean })[];
 };
 
 type PricingPlansSectionProps = {
@@ -86,7 +86,7 @@ export default function PricingPlansSection({
   );
 
   const apiPlans = useMemo(() => plansData?.data ?? [], [plansData]);
-  const activePlanId = creatorPlanData?.data?.[0]?.id;
+  const currentPlan = creatorPlanData?.data?.[0];
 
   const matchedPlans = useMemo(() => {
     return planOrder.map((planKey) => {
@@ -162,7 +162,11 @@ export default function PricingPlansSection({
       <CardsWrapper $alignWide={alignWide}>
         {matchedPlans.map(({ planKey, apiPlan }, index) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
-          const isCurrentPlan = !!apiPlan && apiPlan.id === activePlanId;
+          const isCurrentPlan =
+            !!apiPlan &&
+            (currentPlan?.subscriptionUpgradeRequired
+              ? apiPlan.price === 0
+              : apiPlan.id === currentPlan?.id);
 
           const card = (
             <PlanCard
