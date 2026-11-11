@@ -14,6 +14,8 @@ import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
 import {
   AllCreatorsHeader,
+  AllCreatorsTabs,
+  AllCreatorsTabButton,
   AllCreatorsLayout,
   AllCreatorsPanel,
   AllCreatorsState,
@@ -27,13 +29,14 @@ import {
 } from "./AllCreators.styles";
 
 export function PendingRequestsList() {
+  const [history, setHistory] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
   const debouncedSearch = useDebounce(searchTerm);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const creatorRequestsQuery = useCreatorRequests();
+  const creatorRequestsQuery = useCreatorRequests(history);
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
     creatorRequestsQuery.data ?? [],
   );
@@ -53,6 +56,8 @@ export function PendingRequestsList() {
 
   const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
   const filteredRequests = creators.filter((creator) => {
+    if (history ? creator.status === "pending" : creator.status !== "pending")
+      return false;
     if (!debouncedSearchLower) return true;
     return (
       creator.fullName?.toLowerCase().includes(debouncedSearchLower) ||
@@ -85,9 +90,7 @@ export function PendingRequestsList() {
     }
 
     if (!totalRequests) {
-      return (
-        <AllCreatorsState>No pending creator requests found.</AllCreatorsState>
-      );
+      return <AllCreatorsState>No creator requests found.</AllCreatorsState>;
     }
 
     return (
@@ -130,7 +133,23 @@ export function PendingRequestsList() {
 
   return (
     <AllCreatorsLayout>
-      <AllCreatorsHeader style={{ justifyContent: "flex-end" }}>
+      <AllCreatorsHeader style={{ justifyContent: "space-between" }}>
+        <AllCreatorsTabs>
+          <AllCreatorsTabButton
+            type="button"
+            $active={!history}
+            onClick={() => setHistory(false)}
+          >
+            Requests
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={history}
+            onClick={() => setHistory(true)}
+          >
+            History (Accepted / Rejected)
+          </AllCreatorsTabButton>
+        </AllCreatorsTabs>
         <HeaderControls>
           <SearchContainer>
             <SearchIconWrapper>

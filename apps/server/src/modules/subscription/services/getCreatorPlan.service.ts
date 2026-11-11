@@ -1,3 +1,4 @@
+import { expireManualPlans } from './expireManualPlans.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
 import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
@@ -11,6 +12,7 @@ export const getCreatorPlan = async (creatorId: string) => {
     if (!creatorId) {
       return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
     }
+    await expireManualPlans(creatorId);
     const [creator] = await db
       .select({
         subscriptionUpgradeRequired: users.subscriptionUpgradeRequired,
@@ -56,7 +58,10 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
-    if (subscriptionUpgradeRequired && plan.price > 0) {
+    if (
+      (subscriptionUpgradeRequired || creatorCurrentPlan[0].manuallyPaid) &&
+      plan.price > 0
+    ) {
       subscriptionUpgradeRequired = !(await hasPaidSubscriptionPeriod(
         db,
         creatorId,
@@ -67,6 +72,12 @@ export const getCreatorPlan = async (creatorId: string) => {
     const overriddenPlan = {
       ...plan,
       isPaidPlan: plan.price > 0,
+      manuallyPaid: Boolean(
+        plan.price > 0 &&
+        creatorCurrentPlan[0].manuallyPaid &&
+        (!creatorCurrentPlan[0].manualPaidExpiresAt ||
+          creatorCurrentPlan[0].manualPaidExpiresAt > new Date()),
+      ),
       isActive: plan.isActive && !subscriptionUpgradeRequired,
       subscriptionUpgradeRequired,
       price: creatorCurrentPlan[0].customPrice ?? plan.price,

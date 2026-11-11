@@ -1,4 +1,11 @@
-import { pgTable, text, uuid, integer } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  uuid,
+  integer,
+  boolean,
+  timestamp,
+} from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 import { plans } from './plans.schema';
@@ -12,6 +19,11 @@ export const creatorPlans = pgTable('creator_plans', {
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
   status: text('status').notNull().default('active'),
+
+  manuallyPaid: boolean('manually_paid').notNull().default(false),
+  manualPaidExpiresAt: timestamp('manual_paid_expires_at', {
+    withTimezone: true,
+  }),
 
   // Custom subscription override fields
   customPrice: integer('custom_price'),

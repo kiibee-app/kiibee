@@ -8,6 +8,8 @@ import { toast } from "react-hot-toast";
 export interface AdminSubscriptionOverrides {
   id: string;
   planId: string;
+  manuallyPaid: boolean;
+  manualPaidExpiresAt: string | null;
   creatorId: string;
   status: string;
   customPrice: number | null;
@@ -77,6 +79,8 @@ export function useAllPlans() {
 
 export interface UpdateAdminSubscriptionPayload {
   planId: string;
+  manuallyPaid: boolean;
+  manualPaidExpiresAt: string | null;
   customPrice: number | null;
   customPrice3: number | null;
   customPrice6: number | null;
