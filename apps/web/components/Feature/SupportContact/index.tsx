@@ -55,6 +55,7 @@ type Turnstile = {
       size: "flexible" | "compact";
       theme: "light";
       appearance: "always";
+      execution: "render";
       "response-field": false;
       callback: (token: string) => void;
       "expired-callback": () => void;
@@ -92,10 +93,11 @@ export default function SupportContact() {
       size: container.clientWidth < 300 ? "compact" : "flexible",
       theme: "light",
       appearance: "always",
+      execution: "render",
       "response-field": false,
       callback: (token) => {
-        setVerificationError(false);
         setTurnstileToken(token);
+        setVerificationError(false);
       },
       "expired-callback": () => setTurnstileToken(""),
       "timeout-callback": () => setTurnstileToken(""),
