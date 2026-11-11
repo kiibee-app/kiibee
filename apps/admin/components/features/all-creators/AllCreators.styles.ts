@@ -30,8 +30,10 @@ export const AllCreatorsControlsHeader = styled(AllCreatorsHeader)`
 `;
 
 export const AllCreatorsTabs = styled.div`
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
   flex-wrap: wrap;
   box-sizing: border-box;
   align-items: center;
@@ -156,6 +158,7 @@ export const ClearIcon = styled(X)`
 `;
 
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
+  flex: 0 0 auto;
   min-height: ${({ theme }) => theme.spacing(8.5)};
   border: 0;
   border-radius: ${({ theme }) => theme.radius.md};
@@ -181,7 +184,9 @@ export const AllCreatorsState = styled.div`
 
 export const TableScrollWrapper = styled.div`
   width: 100%;
-  min-width: 0;
+  min-width: 100%;
+  max-width: 0;
+  box-sizing: border-box;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 `;
