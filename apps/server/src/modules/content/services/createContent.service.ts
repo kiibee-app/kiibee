@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 
-import { eq } from 'drizzle-orm';
+import { eq, and, desc } from 'drizzle-orm';
 import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
 import { db } from 'src/database/db';
 import { logger } from 'src/logger/logger';
@@ -15,7 +15,7 @@ import {
   checkDuplicateContentTitle,
   contentSlugGenerator,
 } from '../content.helper';
-import { contentLimits, users } from 'src/database/schema';
+import { contentLimits, users, creatorPlans } from 'src/database/schema';
 import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 
 export const createContent = async (
@@ -56,8 +56,20 @@ export const createContent = async (
         .where(eq(users.id, creatorId))
         .for('share');
 
+      const [assignedPlan] = await tx
+        .select({ manuallyPaid: creatorPlans.manuallyPaid })
+        .from(creatorPlans)
+        .where(
+          and(
+            eq(creatorPlans.creatorId, creatorId),
+            eq(creatorPlans.status, 'active'),
+          ),
+        )
+        .orderBy(desc(creatorPlans.createdAt))
+        .limit(1);
+
       if (
-        creator?.subscriptionUpgradeRequired &&
+        (creator?.subscriptionUpgradeRequired || assignedPlan?.manuallyPaid) &&
         !(await hasPaidSubscriptionPeriod(tx, creatorId))
       ) {
         return fail(

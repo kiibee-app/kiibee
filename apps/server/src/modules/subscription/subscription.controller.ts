@@ -91,6 +91,8 @@ export class SubscriptionController {
     @Body()
     body: {
       planId: string;
+      manuallyPaid?: boolean;
+      manualPaidExpiresAt?: string | null;
       customPrice: number | null;
       customPrice3: number | null;
       customPrice6: number | null;

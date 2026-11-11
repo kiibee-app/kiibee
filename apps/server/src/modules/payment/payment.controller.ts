@@ -1,6 +1,9 @@
+import { AdminGuard } from '../auth/guards/admin.guard';
+import { adminBillingHistoryService } from './services/adminBillingHistory.service';
 import {
   Body,
   Controller,
+  Query,
   Delete,
   Get,
   HttpCode,
@@ -21,6 +24,16 @@ import { logger } from 'src/logger/logger';
 @Controller('payment')
 export class PaymentController {
   constructor(private paymentService: PaymentService) {}
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/billing-history')
+  async billingHistory(
+    @Query('kind') kind: string,
+    @Query('page') page?: string,
+    @Query('creatorId') creatorId?: string,
+  ) {
+    return adminBillingHistoryService(kind, page, creatorId);
+  }
 
   @Post('webhook')
   @HttpCode(HttpStatus.OK)
