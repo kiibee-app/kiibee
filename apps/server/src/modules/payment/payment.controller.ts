@@ -30,8 +30,9 @@ export class PaymentController {
   async billingHistory(
     @Query('kind') kind: string,
     @Query('page') page?: string,
+    @Query('creatorId') creatorId?: string,
   ) {
-    return adminBillingHistoryService(kind, page);
+    return adminBillingHistoryService(kind, page, creatorId);
   }
 
   @Post('webhook')

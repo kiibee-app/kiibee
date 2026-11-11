@@ -17,9 +17,18 @@ import { success } from 'src/utils/sendResponse';
 export async function adminBillingHistoryService(
   kind: string,
   pageInput?: string,
+  creatorId?: string,
 ) {
   if (kind !== 'subscription' && kind !== 'content') {
     throw new BadRequestException('Invalid billing history type');
+  }
+  if (
+    creatorId !== undefined &&
+    (!creatorId.trim() || kind !== 'subscription')
+  ) {
+    throw new BadRequestException(
+      'Creator billing history only supports subscriptions',
+    );
   }
   const page = Math.max(1, Math.floor(Number(pageInput) || 1));
   if (!Number.isSafeInteger(page))
@@ -51,6 +60,11 @@ export async function adminBillingHistoryService(
             eq(subscriptionPaymentsHistory.subscriptionId, subscriptions.id),
           )
           .leftJoin(plans, eq(subscriptions.planId, plans.id))
+          .where(
+            creatorId
+              ? eq(subscriptionPaymentsHistory.creatorId, creatorId)
+              : undefined,
+          )
           .orderBy(
             desc(subscriptionPaymentsHistory.createdAt),
             desc(subscriptionPaymentsHistory.id),
