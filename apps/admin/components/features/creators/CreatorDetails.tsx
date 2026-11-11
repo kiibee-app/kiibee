@@ -175,6 +175,11 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
               Manage Subscription
             </DetailsSectionAction>
             <DetailsSectionAction
+              href={`/all-creators/${creatorId}/billing-history`}
+            >
+              Billing History
+            </DetailsSectionAction>
+            <DetailsSectionAction
               href={`/all-creators/${creatorId}/appearance`}
             >
               Update creator setting

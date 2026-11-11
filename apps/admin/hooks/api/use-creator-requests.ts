@@ -36,12 +36,14 @@ async function ensureSuccess<T>(
   return response.data;
 }
 
-export function useCreatorRequests() {
+export function useCreatorRequests(history = false) {
   return useQuery({
-    queryKey: CREATOR_REQUESTS_QUERY_KEY,
+    queryKey: [...CREATOR_REQUESTS_QUERY_KEY, { history }],
     queryFn: async () => {
       const data = await ensureSuccess<CreatorRequest[]>(
-        apiClient<CreatorRequest[]>(API_ENDPOINTS.ALL_CREATOR_REQUESTS),
+        apiClient<CreatorRequest[]>(
+          `${API_ENDPOINTS.ALL_CREATOR_REQUESTS}?history=${history}`,
+        ),
       );
 
       return data ?? [];

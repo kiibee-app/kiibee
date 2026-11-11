@@ -7,6 +7,27 @@ export async function hasPaidSubscriptionPeriod(
   creatorId: string,
   planId?: string,
 ) {
+  const [manualPlan] = await database
+    .select({
+      manuallyPaid: creatorPlans.manuallyPaid,
+      expiresAt: creatorPlans.manualPaidExpiresAt,
+    })
+    .from(creatorPlans)
+    .where(
+      and(
+        eq(creatorPlans.creatorId, creatorId),
+        eq(creatorPlans.status, 'active'),
+        planId ? eq(creatorPlans.planId, planId) : undefined,
+      ),
+    )
+    .orderBy(desc(creatorPlans.createdAt))
+    .limit(1);
+  if (
+    manualPlan?.manuallyPaid &&
+    (!manualPlan.expiresAt || manualPlan.expiresAt > new Date())
+  )
+    return true;
+
   const assignedPlan =
     planId ??
     database

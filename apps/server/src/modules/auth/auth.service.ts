@@ -164,8 +164,8 @@ export class AuthService {
   async creatorRequest(payload: CreateCreatorApplicationDto) {
     return creatorRequestService(payload);
   }
-  async getCreatorRequests() {
-    return getCreatorRequestService();
+  async getCreatorRequests(history = false) {
+    return getCreatorRequestService(history);
   }
   async getCreatorById(creatorId: string) {
     return getCreatorByIdService(creatorId);

@@ -1,18 +1,21 @@
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { runInBackground } from 'src/utils/backgroundTask';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
+import { escapeHtml } from 'src/utils/sanitize';
+import { manualExpiryDate } from './manualExpiryDate';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
-import { env } from 'src/config/env';
 import { db } from 'src/database/db';
 import { creatorPlans, plans, subscriptions, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
 import { randomUUID } from 'crypto';
-import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
-import { runInBackground } from 'src/utils/backgroundTask';
-import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 interface AdminUpdateCreatorPlanInput {
   planId: string;
+  manuallyPaid?: boolean;
+  manualPaidExpiresAt?: string | null;
   customPrice: number | null;
   customPrice3: number | null;
   customPrice6: number | null;
@@ -35,6 +38,33 @@ export const adminUpdateCreatorPlan = async (
       return fail('Plan ID is required', HttpStatus.BAD_REQUEST);
     }
 
+    if (
+      input.manuallyPaid !== undefined &&
+      typeof input.manuallyPaid !== 'boolean'
+    ) {
+      return fail('Invalid manual payment status', HttpStatus.BAD_REQUEST);
+    }
+    let manualExpiry: Date | null = null;
+    if (input.manualPaidExpiresAt) {
+      try {
+        manualExpiry = manualExpiryDate(input.manualPaidExpiresAt);
+      } catch (error) {
+        return fail(
+          error instanceof Error ? error.message : 'Invalid expiry date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+    if (
+      manualExpiry &&
+      (!Number.isFinite(manualExpiry.getTime()) || manualExpiry <= new Date())
+    ) {
+      return fail(
+        'Manual payment expiry must be a future date',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const [plan] = await db
       .select()
       .from(plans)
@@ -45,10 +75,18 @@ export const adminUpdateCreatorPlan = async (
       return fail('Invalid plan ID', HttpStatus.BAD_REQUEST);
     }
 
-    const creatorToNotify = await db.transaction(async (tx) => {
+    if (input.manuallyPaid && plan.price <= 0) {
+      return fail(
+        'Select a paid plan for manual payment',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const manualPaymentRecipient = await db.transaction(async (tx) => {
       const [creator] = await tx
         .select({
           email: users.email,
+          fullName: users.fullName,
           subscriptionUpgradeRequired: users.subscriptionUpgradeRequired,
         })
         .from(users)
@@ -64,6 +102,7 @@ export const adminUpdateCreatorPlan = async (
           id: creatorPlans.id,
           planId: creatorPlans.planId,
           price: plans.price,
+          manuallyPaid: creatorPlans.manuallyPaid,
         })
         .from(creatorPlans)
         .innerJoin(plans, eq(creatorPlans.planId, plans.id))
@@ -90,6 +129,14 @@ export const adminUpdateCreatorPlan = async (
       }
 
       const overrides = {
+        ...(input.manuallyPaid !== undefined
+          ? {
+              manuallyPaid: input.manuallyPaid,
+              manualPaidExpiresAt: input.manuallyPaid ? manualExpiry : null,
+            }
+          : currentPlan?.planId !== input.planId
+            ? { manuallyPaid: false, manualPaidExpiresAt: null }
+            : {}),
         planId: input.planId,
         customPrice: input.customPrice,
         customPrice3: input.customPrice3,
@@ -121,7 +168,13 @@ export const adminUpdateCreatorPlan = async (
         plan.price > 0 && currentPlan?.planId !== plan.id;
 
       let upgradeRequired = creator.subscriptionUpgradeRequired;
-      if (plan.price > 0 && (isPaidAssignment || upgradeRequired)) {
+      if (
+        plan.price > 0 &&
+        (isPaidAssignment ||
+          upgradeRequired ||
+          input.manuallyPaid !== undefined ||
+          currentPlan?.manuallyPaid)
+      ) {
         upgradeRequired = !(await hasPaidSubscriptionPeriod(
           tx,
           creatorId,
@@ -136,24 +189,32 @@ export const adminUpdateCreatorPlan = async (
           .update(users)
           .set({ subscriptionUpgradeRequired: upgradeRequired })
           .where(eq(users.id, creatorId));
-        return isDowngrade ? creator : null;
       }
-
-      return null;
+      // Notify only when manual payment is enabled or assigned to a different plan.
+      return input.manuallyPaid &&
+        !upgradeRequired &&
+        (!currentPlan?.manuallyPaid || currentPlan.planId !== plan.id)
+        ? { email: creator.email, fullName: creator.fullName }
+        : null;
     });
 
-    if (creatorToNotify?.email) {
+    if (manualPaymentRecipient?.email) {
       runInBackground(
         sendTemplateEmail({
-          to: creatorToNotify.email,
-          subject: mailSubject.SUBSCRIPTION_EXPIRED,
-          templateName: templateName.SUBSCRIPTION_EXPIRED,
+          to: manualPaymentRecipient.email,
+          subject: mailSubject.SUBSCRIPTION_MANUAL_PAYMENT,
+          templateName: templateName.SUBSCRIPTION_MANUAL_PAYMENT,
           variables: {
-            dashboardUrl: new URL('/dashboard/creators', env.FRONTEND_URL).href,
+            creator: {
+              fullName: escapeHtml(manualPaymentRecipient.fullName || ''),
+            },
+            planName: escapeHtml(plan.name || 'Abonnement'),
           },
         }),
       );
     }
+
+    // Admin downgrade expiry emails are temporarily disabled.
 
     return success(
       null,

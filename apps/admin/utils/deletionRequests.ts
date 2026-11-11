@@ -5,5 +5,5 @@ export const deletionRequestsTabs: Array<{
   label: string;
 }> = [
   { key: "requests", label: "Delete Requests" },
-  { key: "history", label: "Delete History" },
+  { key: "history", label: "History (Accepted / Rejected)" },
 ];
