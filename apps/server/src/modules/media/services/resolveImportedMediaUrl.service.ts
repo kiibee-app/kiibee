@@ -8,7 +8,7 @@ const CLOUDFLARE_STREAM_VIDEO_ID_PATTERN = /^[a-f0-9]{32}$/i;
 const CLOUDFLARE_STREAM_HOST_PATTERN =
   /(?:videodelivery\.net|cloudflarestream\.com|iframe\.cloudflarestream\.com)/i;
 
-function extractCloudflareStreamVideoId(
+export function extractCloudflareStreamVideoId(
   fileKey?: string | null,
   contentUrl?: string | null,
 ): string | null {

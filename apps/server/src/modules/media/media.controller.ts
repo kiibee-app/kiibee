@@ -16,6 +16,10 @@ import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
 import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { validateImageMagicNumber } from '../../utils/file-validation.util';
+import {
+  recordRentalStream,
+  getRentalStreamInfo,
+} from './services/rentalStreamLimit';
 import { ROLE } from 'src/utils/constant';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
@@ -45,19 +49,43 @@ export class MediaController {
     return this.mediaService.createVideoUpload();
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/playback')
-  getPlayback(@Query('uid') uid: string) {
-    return this.mediaService.getStreamUrl(uid);
+  async getPlayback(@Query('uid') uid: string, @Req() req: any) {
+    const result = await this.mediaService.getStreamUrl(uid);
+    await recordRentalStream(req.user.userId, uid, req.user.role);
+    return result;
   }
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/stream')
-  stream(@Query('key') key: string, @Req() req: FastifyRequest) {
+  async stream(@Query('key') key: string, @Req() req: FastifyRequest) {
     const role = (req as FastifyRequest & { user?: { role?: string } }).user
       ?.role;
-    return this.mediaService.getStreamUrl(key, {
+    const result = await this.mediaService.getStreamUrl(key, {
       recordView: role !== ROLE.ADMIN,
     });
+    await recordRentalStream((req as any).user.userId, key, role);
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
+  @Get('rental-stream-info')
+  async rentalStreamInfo(
+    @Query('contentId') contentId: string,
+    @Req() req: any,
+  ) {
+    return { data: await getRentalStreamInfo(req.user.userId, contentId) };
+  }
+
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
+  @Post('rental-stream')
+  async recordDocumentSession(
+    @Body('contentId') contentId: string,
+    @Req() req: any,
+  ) {
+    await recordRentalStream(req.user.userId, contentId, req.user.role);
+    return { data: await getRentalStreamInfo(req.user.userId, contentId) };
   }
 
   @Get('videos/download')
@@ -98,14 +126,21 @@ export class MediaController {
     };
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('file/signed-url')
   async getSignedUrl(@Query('key') key: string, @Req() req: FastifyRequest) {
-    return {
-      url: await this.mediaService.fileUpload.getSignedUrl(
+    const url = await this.mediaService.fileUpload.getSignedUrl(
+      key,
+      apiBaseFromRequest(req),
+    );
+    if (!/\.(pdf|epub)(?:\?|$)/i.test(key)) {
+      await recordRentalStream(
+        (req as any).user.userId,
         key,
-        apiBaseFromRequest(req),
-      ),
-    };
+        (req as any).user.role,
+      );
+    }
+    return { url };
   }
 
   @Get('legacy-file')

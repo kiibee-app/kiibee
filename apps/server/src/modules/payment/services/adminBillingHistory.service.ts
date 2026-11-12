@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
@@ -18,6 +18,7 @@ export async function adminBillingHistoryService(
   kind: string,
   pageInput?: string,
   creatorId?: string,
+  searchInput?: string,
 ) {
   if (kind !== 'subscription' && kind !== 'content') {
     throw new BadRequestException('Invalid billing history type');
@@ -34,6 +35,19 @@ export async function adminBillingHistoryService(
   if (!Number.isSafeInteger(page))
     throw new BadRequestException('Invalid page');
   const limit = 20;
+  const search = searchInput?.trim();
+  const pattern = search ? `%${search.replace(/[\\%_]/g, '\\$&')}%` : undefined;
+  const customerSearch = pattern
+    ? or(
+        ilike(users.fullName, pattern),
+        ilike(
+          sql`concat_ws(' ', ${users.firstName}, ${users.lastName})`,
+          pattern,
+        ),
+        ilike(users.email, pattern),
+        ilike(creatorInfo.companyName, pattern),
+      )
+    : undefined;
   const rows =
     kind === 'subscription'
       ? await db
@@ -61,9 +75,18 @@ export async function adminBillingHistoryService(
           )
           .leftJoin(plans, eq(subscriptions.planId, plans.id))
           .where(
-            creatorId
-              ? eq(subscriptionPaymentsHistory.creatorId, creatorId)
-              : undefined,
+            and(
+              creatorId
+                ? eq(subscriptionPaymentsHistory.creatorId, creatorId)
+                : undefined,
+              pattern
+                ? or(
+                    customerSearch,
+                    ilike(subscriptionPaymentsHistory.transactionId, pattern),
+                    ilike(plans.name, pattern),
+                  )
+                : undefined,
+            ),
           )
           .orderBy(
             desc(subscriptionPaymentsHistory.createdAt),
@@ -96,6 +119,16 @@ export async function adminBillingHistoryService(
               creatorInfo.userId,
               sql<string>`coalesce(${mediaFiles.creatorId}, ${collections.creatorId})`,
             ),
+          )
+          .where(
+            pattern
+              ? or(
+                  customerSearch,
+                  ilike(payments.providerReference, pattern),
+                  ilike(mediaFiles.title, pattern),
+                  ilike(collections.name, pattern),
+                )
+              : undefined,
           )
           .orderBy(desc(payments.createdAt), desc(payments.id))
           .limit(limit + 1)
