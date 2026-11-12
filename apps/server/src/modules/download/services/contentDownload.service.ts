@@ -1,4 +1,6 @@
 import { randomUUID } from 'crypto';
+import { extractCloudflareStreamVideoId } from 'src/modules/media/services/resolveImportedMediaUrl.service';
+import { getCloudflareDownloadUrl } from './cloudflareDownload';
 import { resolveDownloadLimit } from 'src/utils/downloadLimit';
 import { getDownloadDispositionAndFileName } from 'src/utils/download';
 import { GetObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
@@ -33,7 +35,12 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
-    if (!content.fileKey) {
+    const cloudflareId = extractCloudflareStreamVideoId(
+      content.fileKey,
+      content.contentUrl,
+    );
+
+    if (!content.fileKey && !cloudflareId) {
       logger.error(`Content ${contentId} has no fileKey set`);
       return fail('File not found in storage', HttpStatus.NOT_FOUND);
     }
@@ -97,6 +104,26 @@ export const contentDownLoad = async (contentId: string, userId: string) => {
         });
       });
     };
+
+    if (cloudflareId) {
+      const downloadUrl = await getCloudflareDownloadUrl(
+        cloudflareId,
+        content.title,
+      );
+      const { fileName } = getDownloadDispositionAndFileName(
+        'video.mp4',
+        content.title,
+      );
+      await recordDownload();
+      return success(
+        { downloadUrl, fileName },
+        'Download URL generated successfully',
+      );
+    }
+
+    if (!content.fileKey) {
+      return fail('File not found in storage', HttpStatus.NOT_FOUND);
+    }
 
     const { fileName, contentDisposition } = getDownloadDispositionAndFileName(
       content.fileKey,

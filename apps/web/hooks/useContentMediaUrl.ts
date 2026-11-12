@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
 import {
   CONTENT_MEDIA_QUERY_KEYS,
@@ -65,11 +66,24 @@ export function useContentMediaUrl(
 
   const fetchMediaUrl = useCallback(async () => {
     if (!canFetchMedia) return previewMediaUrl;
+    const isDocument =
+      contentType === FORMAT_TYPE.PDF || contentType === FORMAT_TYPE.EPUB;
+    const recordDocumentSession = async () => {
+      if (isDocument && content?.accessInfo?.accessType === "rented") {
+        await axiosClient.post("/media/rental-stream", {
+          contentId: content.id,
+        });
+      }
+    };
     // Reuse a recently issued link when the viewer is reopened.
-    if (mediaResponse && Date.now() - dataUpdatedAt < reuseWindow)
+    if (mediaResponse && Date.now() - dataUpdatedAt < reuseWindow) {
+      await recordDocumentSession();
       return previewMediaUrl;
+    }
 
     const result = await refetch();
+    if (result.error) throw result.error;
+    await recordDocumentSession();
     const signedUrl =
       result.data?.url || result.data?.iframeUrl || result.data?.streamUrl;
 
@@ -77,6 +91,7 @@ export function useContentMediaUrl(
   }, [
     canFetchMedia,
     content,
+    contentType,
     previewMediaUrl,
     mediaResponse,
     dataUpdatedAt,
