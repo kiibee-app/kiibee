@@ -6,10 +6,22 @@ import { logger } from 'src/logger/logger';
 import { ROLE } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
+function isUniqueViolation(error: unknown): boolean {
+  if (!error || typeof error !== 'object') return false;
+  const err = error as { code?: string; cause?: unknown };
+  if (err.code === '23505') return true;
+  const cause = err.cause;
+  if (cause && typeof cause === 'object' && 'code' in cause) {
+    return (cause as { code: string }).code === '23505';
+  }
+  return false;
+}
+
 export const updateCreatorSequenceService = async (
   creatorId: string,
   sequence?: number | null,
 ) => {
+  let nextSequence: number | null = null;
   try {
     const [creator] = await db
       .select({
@@ -30,7 +42,7 @@ export const updateCreatorSequenceService = async (
       return fail('Creator not found', HttpStatus.NOT_FOUND);
     }
 
-    const nextSequence =
+    nextSequence =
       sequence === undefined ||
       sequence === null ||
       (typeof sequence === 'string' &&
@@ -102,6 +114,13 @@ export const updateCreatorSequenceService = async (
         : 'Creator sequence removed',
     );
   } catch (error) {
+    if (isUniqueViolation(error)) {
+      return fail(
+        `Sequence #${nextSequence} is already assigned`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     logger.error('Error updating creator sequence:', error);
 
     if (error instanceof HttpException) {
