@@ -44,6 +44,7 @@ import { sendReceiptService } from 'src/modules/export/services/sendReceipt.serv
 import {
   handleEpayPayment,
   parseEpayWebhook,
+  validateTransactionForOrder,
 } from 'src/modules/payment/hooks/paymentWebhook';
 
 const dbMock = db as any;
@@ -437,6 +438,53 @@ describe('handleEpayPayment', () => {
         (update) =>
           update.table === orders && update.values.status === 'failed',
       ),
+    ).toBe(true);
+  });
+
+  it('does not mark order paid when transaction amount equals major-unit price (100 minor for 100 DKK order)', async () => {
+    state.order = buildOrder({ price: '100' });
+    const underpaidTxn = {
+      ...transaction,
+      reference: state.order.id,
+      amount: 100,
+    };
+
+    await handleEpayPayment({ transaction: underpaidTxn });
+
+    expect(captureMock).not.toHaveBeenCalled();
+    expect(
+      state.updated.some(
+        (update) =>
+          update.table === orders && update.values.status === 'completed',
+      ),
+    ).toBe(false);
+  });
+});
+
+describe('validateTransactionForOrder', () => {
+  it('rejects transaction amount equal to major-unit price (100 minor vs 100 DKK order price)', () => {
+    const order = buildOrder({ price: '100' });
+    const underpaidTransaction = {
+      ...transaction,
+      reference: order.id,
+      amount: 100,
+    };
+
+    expect(
+      validateTransactionForOrder(order as any, underpaidTransaction as any),
+    ).toBe(false);
+  });
+
+  it('accepts transaction amount matching expected minor units (10000 minor for 100 DKK order price)', () => {
+    const order = buildOrder({ price: '100' });
+    const validTransaction = {
+      ...transaction,
+      reference: order.id,
+      amount: 10000,
+    };
+
+    expect(
+      validateTransactionForOrder(order as any, validTransaction as any),
     ).toBe(true);
   });
 });
