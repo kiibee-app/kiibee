@@ -105,6 +105,7 @@ export type SingleContentBodyProps = Pick<
   | "metaItems"
   | "physicalProductLink"
 > & {
+  rentalStreamLabel?: string;
   accessGate?: ReactNode;
 };
 

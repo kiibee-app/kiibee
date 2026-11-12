@@ -25,6 +25,7 @@ import {
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import { useGetAPI } from "@/lib/http/api/getApi";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
@@ -260,6 +261,23 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const warmReaderReady =
     keepReaderMounted && (!canFetchMedia || hasSignedMedia);
 
+  const showRentalStreams = Boolean(
+    user?.id &&
+    contentId &&
+    content?.accessInfo?.accessType === ACCESS_TYPE_RENTED &&
+    previewContentType !== FORMAT_TYPE.WEB,
+  );
+  const { data: rentalStreams, refetch: refetchRentalStreams } = useGetAPI<{
+    data: { remainingStreams: number; maxStreams: number } | null;
+  }>(
+    "/media/rental-stream-info",
+    { contentId },
+    {
+      enabled: showRentalStreams,
+      refetchInterval: showRentalStreams ? 10000 : false,
+    },
+  );
+
   const isPreviewableType =
     previewContentType === FORMAT_TYPE.PDF ||
     previewContentType === FORMAT_TYPE.WEB ||
@@ -365,9 +383,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
       setShowPurchaseModal(true);
     } else {
-      const mediaUrl = await fetchMediaUrl();
-      if (mediaUrl) {
-        setShowPreviewModal(true);
+      try {
+        const mediaUrl = await fetchMediaUrl();
+        if (showRentalStreams) await refetchRentalStreams();
+        if (mediaUrl) {
+          setShowPreviewModal(true);
+        }
+      } catch (error) {
+        toast.error(getErrorMessage(error, "errors.saveChangesFailed"));
       }
     }
   }, [
@@ -375,6 +398,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
+    showRentalStreams,
+    refetchRentalStreams,
+    getErrorMessage,
     handleShowLoginModal,
     hero.contentUrl,
     isWebType,
@@ -419,6 +445,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [collectionId, contentId, router]);
 
   const isDownloadableType =
+    previewContentType === FORMAT_TYPE.VIDEO ||
     previewContentType === FORMAT_TYPE.AUDIO ||
     previewContentType === FORMAT_TYPE.PDF ||
     previewContentType === FORMAT_TYPE.EPUB;
@@ -614,6 +641,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             primaryAction={modifiedPrimaryAction}
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
+            rentalStreamLabel={
+              showRentalStreams && rentalStreams?.data
+                ? t("singleContent.remainingStreams", {
+                    count: rentalStreams.data.remainingStreams,
+                  })
+                : undefined
+            }
             metaItems={metaItems}
             physicalProductLink={physicalProductLink}
             accessGate={accessGate}

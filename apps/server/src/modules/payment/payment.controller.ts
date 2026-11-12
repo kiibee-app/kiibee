@@ -31,8 +31,9 @@ export class PaymentController {
     @Query('kind') kind: string,
     @Query('page') page?: string,
     @Query('creatorId') creatorId?: string,
+    @Query('search') search?: string,
   ) {
-    return adminBillingHistoryService(kind, page, creatorId);
+    return adminBillingHistoryService(kind, page, creatorId, search);
   }
 
   @Post('webhook')

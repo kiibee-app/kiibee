@@ -3,14 +3,12 @@
 import type { Viewer } from "../../../types/viewer";
 import { formatRequestedAt } from "../../../utils/date";
 import {
-  formatViewerStatus,
   getViewerDisplayName,
   getViewerInitials,
   viewerLabels,
   viewerTableColumns,
 } from "../../../utils/viewersConfig";
 import {
-  AccountStatusBadge,
   CreatorAvatar,
   CreatorAvatarImage,
   CreatorCell,
@@ -87,9 +85,7 @@ export function ViewersTable({ viewers, onSelectViewer }: ViewersTableProps) {
                   </MetricGroup>
                 </TableBodyCell>
                 <TableBodyCell>
-                  <AccountStatusBadge $status={viewer.status}>
-                    {formatViewerStatus(viewer.status)}
-                  </AccountStatusBadge>
+                  {viewer.purchaseCount + viewer.rentalCount}
                 </TableBodyCell>
                 <TableBodyCell>
                   <PublicationBadge $published={viewer.isEmailVerified}>
