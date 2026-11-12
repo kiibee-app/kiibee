@@ -152,6 +152,7 @@ export function SingleContentBody({
   primaryAction,
   primaryActions,
   expiry,
+  rentalStreamLabel,
   metaItems,
   physicalProductLink,
   accessGate,
@@ -248,6 +249,12 @@ export function SingleContentBody({
           ) : null}
         </>
       )}
+
+      {rentalStreamLabel ? (
+        <div role="status" aria-live="polite">
+          <MonoText $use="Body_Medium">{rentalStreamLabel}</MonoText>
+        </div>
+      ) : null}
 
       {expiry && actions.length !== 1 ? (
         <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>

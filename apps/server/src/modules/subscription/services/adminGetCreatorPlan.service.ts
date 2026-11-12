@@ -1,3 +1,4 @@
+import { expireManualPlans } from './expireManualPlans.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -10,6 +11,7 @@ export const adminGetCreatorPlan = async (creatorId: string) => {
     if (!creatorId) {
       return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
     }
+    await expireManualPlans(creatorId);
     const creatorCurrentPlan = await db
       .select()
       .from(creatorPlans)

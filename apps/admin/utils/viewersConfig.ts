@@ -5,7 +5,7 @@ export const viewerTableColumns = [
   "Joined",
   "Location",
   "Activity",
-  "Status",
+  "Total Orders",
   "Verified",
 ] as const;
 

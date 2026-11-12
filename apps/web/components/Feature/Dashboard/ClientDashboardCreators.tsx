@@ -95,17 +95,19 @@ export default function ClientDashboardCreators() {
   const { hasPaymentInfo, isLoading: isPaymentInfoLoading } =
     useCreatorPaymentInfo();
   const { isReady } = useRequireAuthSession();
-  const { data: creatorPlanResponse } = useGetAPI<{
-    data?: {
-      name: string;
-      isPaidPlan: boolean;
-      subscriptionUpgradeRequired?: boolean;
-    }[];
-  }>(API.subscription.creatorPlan, undefined, {
-    ...FRESH_QUERY_OPTIONS,
-    enabled: isReady && getRole() === ROLE_CREATOR,
-    refetchInterval: 30_000,
-  });
+  const { data: creatorPlanResponse, isLoading: isCreatorPlanLoading } =
+    useGetAPI<{
+      data?: {
+        name: string;
+        isPaidPlan: boolean;
+        manuallyPaid?: boolean;
+        subscriptionUpgradeRequired?: boolean;
+      }[];
+    }>(API.subscription.creatorPlan, undefined, {
+      ...FRESH_QUERY_OPTIONS,
+      enabled: isReady && getRole() === ROLE_CREATOR,
+      refetchInterval: 30_000,
+    });
   const creatorPlan = creatorPlanResponse?.data?.[0];
   const upgradeRequired = creatorPlan?.subscriptionUpgradeRequired === true;
   const assignedPaidPlan = creatorPlan?.isPaidPlan ? creatorPlan : undefined;
@@ -177,7 +179,11 @@ export default function ClientDashboardCreators() {
   }, [pathname, router, searchParams, view, language]);
 
   const isCreatorMissingPaymentInfo =
-    getRole() === ROLE_CREATOR && !isPaymentInfoLoading && !hasPaymentInfo;
+    getRole() === ROLE_CREATOR &&
+    !isPaymentInfoLoading &&
+    !isCreatorPlanLoading &&
+    !hasPaymentInfo &&
+    !creatorPlan?.manuallyPaid;
 
   const redirectToPaymentInfo = useCallback(() => {
     const params = toCanonicalSearchParams(searchParams?.toString() ?? "");

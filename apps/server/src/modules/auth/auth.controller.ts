@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Query,
   Post,
   Get,
   Patch,
@@ -232,8 +233,10 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('all-creator-requests')
-  async getCreatorRequests() {
-    const result = await this.authService.getCreatorRequests();
+  async getCreatorRequests(@Query('history') history?: string) {
+    const result = await this.authService.getCreatorRequests(
+      history === 'true',
+    );
     return result;
   }
 

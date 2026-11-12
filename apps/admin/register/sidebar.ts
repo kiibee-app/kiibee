@@ -15,5 +15,6 @@ export const sidebarItems: SidebarItem[] = [
   { label: "Deletion Requests", href: ROUTES.DELETION_REQUESTS, icon: Trash2 },
   { label: "All Creators", href: "/all-creators", icon: Users },
   { label: "All Viewers", href: "/viewers", icon: Eye },
+  { label: "Billing History", href: "/billing-history", icon: Banknote },
   { label: "Payout", href: ROUTES.PAYOUT, icon: Banknote },
 ];

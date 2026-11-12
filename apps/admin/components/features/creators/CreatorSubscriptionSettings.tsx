@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, CreditCard, Save } from "lucide-react";
+import { ArrowLeft, Check, CreditCard, Save } from "lucide-react";
 import {
   useAdminSubscription,
   useUpdateAdminSubscription,
@@ -39,12 +39,22 @@ import {
 } from "./CreatorAppearanceSettings.styles";
 import { useAllPlans } from "../../../hooks/api";
 
+import {
+  BasePlanBody,
+  ManualPaymentSection,
+  ManualPaymentRow,
+  ManualPaymentButton,
+  ManualPaymentExpiry,
+} from "./CreatorSubscriptionSettings.styles";
+
 type CreatorSubscriptionSettingsProps = {
   creatorId: string;
 };
 
 type SubscriptionFormValues = {
   planId: string;
+  manuallyPaid: boolean;
+  manualPaidExpiresAt: string;
   customPrice: string;
   customPrice3: string;
   customPrice6: string;
@@ -61,6 +71,11 @@ function toSubscriptionPayload(values: SubscriptionFormValues) {
 
   return {
     planId: values.planId,
+    manuallyPaid: values.manuallyPaid,
+    manualPaidExpiresAt:
+      values.manuallyPaid && values.manualPaidExpiresAt
+        ? values.manualPaidExpiresAt
+        : null,
     customPrice: parseNumber(values.customPrice),
     customPrice3: parseNumber(values.customPrice3),
     customPrice6: parseNumber(values.customPrice6),
@@ -87,6 +102,17 @@ export function CreatorSubscriptionSettings({
   const overrides = serverData?.overrides;
   const baseline = savedValues ?? {
     planId: serverData?.plan.id ?? "",
+    manuallyPaid: overrides?.manuallyPaid ?? false,
+    manualPaidExpiresAt: overrides?.manualPaidExpiresAt
+      ? new Intl.DateTimeFormat("en-CA", {
+          timeZone: "Europe/Copenhagen",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }).format(
+          new Date(new Date(overrides.manualPaidExpiresAt).getTime() - 1),
+        )
+      : "",
     customPrice: overrides?.customPrice?.toString() ?? "",
     customPrice3: overrides?.customPrice3?.toString() ?? "",
     customPrice6: overrides?.customPrice6?.toString() ?? "",
@@ -202,12 +228,19 @@ export function CreatorSubscriptionSettings({
             <PanelTitle>Base Plan</PanelTitle>
           </PanelHeaderCopy>
         </PanelHeader>
-        <PanelBody>
+        <BasePlanBody>
           <Field>
             <FieldLabel>Plan ID</FieldLabel>
             <SelectInput
               value={values.planId}
-              onChange={(e) => setValues({ ...values, planId: e.target.value })}
+              onChange={(e) =>
+                setValues({
+                  ...values,
+                  planId: e.target.value,
+                  manuallyPaid: false,
+                  manualPaidExpiresAt: "",
+                })
+              }
             >
               <option value="" disabled>
                 Select a plan
@@ -228,7 +261,61 @@ export function CreatorSubscriptionSettings({
               )}
             </SelectInput>
           </Field>
-        </PanelBody>
+          <ManualPaymentSection>
+            <ManualPaymentRow>
+              <ManualPaymentButton
+                type="button"
+                $active={values.manuallyPaid}
+                aria-pressed={values.manuallyPaid}
+                disabled={
+                  isBusy ||
+                  !allPlansQuery.data?.some(
+                    (plan) => plan.id === values.planId && plan.price > 0,
+                  )
+                }
+                onClick={() =>
+                  setValues({
+                    ...values,
+                    manuallyPaid: !values.manuallyPaid,
+                    manualPaidExpiresAt: "",
+                  })
+                }
+              >
+                {values.manuallyPaid && <Check size={14} aria-hidden="true" />}
+                Paid Manually
+              </ManualPaymentButton>
+              <FieldHint>
+                {values.manuallyPaid
+                  ? "Manual payment enabled. Save to apply."
+                  : "For payments received outside ePay."}
+              </FieldHint>
+            </ManualPaymentRow>
+            {values.manuallyPaid && (
+              <ManualPaymentExpiry>
+                <Field>
+                  <FieldLabel as="label" htmlFor="manual-payment-expiry">
+                    Expiry date (optional)
+                  </FieldLabel>
+                  <TextInput
+                    id="manual-payment-expiry"
+                    type="date"
+                    value={values.manualPaidExpiresAt}
+                    onChange={(e) =>
+                      setValues({
+                        ...values,
+                        manualPaidExpiresAt: e.target.value,
+                      })
+                    }
+                  />
+                  <FieldHint>
+                    Leave empty for no expiry. Access lasts through this date
+                    (Danish time), then switches to Try Kiibee.
+                  </FieldHint>
+                </Field>
+              </ManualPaymentExpiry>
+            )}
+          </ManualPaymentSection>
+        </BasePlanBody>
       </AppearancePanel>
 
       <AppearancePanel>

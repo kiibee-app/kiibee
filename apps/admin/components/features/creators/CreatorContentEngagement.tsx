@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Play, Ticket, X } from "lucide-react";
 import toast from "react-hot-toast";
@@ -24,6 +24,14 @@ import {
   type ContentFormat,
 } from "../../../utils/contentMedia";
 import { EngagementUserList } from "./EngagementUserList";
+import {
+  ClearIcon,
+  SearchClearButton,
+  SearchContainer,
+  SearchIcon,
+  SearchIconWrapper,
+  SearchInput,
+} from "../all-creators/AllCreators.styles";
 import { ContentPreviewModal } from "./ContentPreviewModal";
 import { CreateContentCouponModal } from "./CreateContentCouponModal";
 import { ContentCoupons } from "./ContentCoupons";
@@ -76,6 +84,8 @@ export function CreatorContentEngagement({
   contentId,
 }: CreatorContentEngagementProps) {
   const router = useRouter();
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const [activeTab, setActiveTab] = useState<EngagementTab>(
     ENGAGEMENT_TAB.PURCHASES,
   );
@@ -117,6 +127,13 @@ export function CreatorContentEngagement({
     downloads,
     stats,
   } = engagementQuery.data;
+
+  const normalizedSearch = searchTerm.trim().toLocaleLowerCase();
+  const filterUsers = (users: typeof purchases) =>
+    users.filter((user) =>
+      user.name.toLocaleLowerCase().includes(normalizedSearch),
+    );
+  const noSearchResults = "No customers match your search.";
 
   const showPricing =
     content.accessType === creatorContentEngagementValues.paidAccessType;
@@ -326,31 +343,72 @@ export function CreatorContentEngagement({
                   ? creatorContentEngagementLabels.whoRented
                   : creatorContentEngagementLabels.whoDownloaded}
           </DetailsSectionTitle>
+          <SearchContainer>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <SearchInput
+              ref={searchInputRef}
+              type="search"
+              aria-label="Search customers by name"
+              placeholder="Search customers by name..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+            {searchTerm && (
+              <SearchClearButton
+                type="button"
+                aria-label="Clear customer search"
+                onClick={() => {
+                  setSearchTerm("");
+                  searchInputRef.current?.focus();
+                }}
+              >
+                <ClearIcon />
+              </SearchClearButton>
+            )}
+          </SearchContainer>
         </DetailsSectionHeader>
         <DetailsSectionBody>
           {activeTab === ENGAGEMENT_TAB.PURCHASES ? (
             <EngagementUserList
-              users={purchases}
-              emptyMessage={creatorContentEngagementLabels.noPurchases}
+              users={filterUsers(purchases)}
+              emptyMessage={
+                normalizedSearch
+                  ? noSearchResults
+                  : creatorContentEngagementLabels.noPurchases
+              }
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.EMAIL_REGISTERED ? (
             <EngagementUserList
-              users={emailRegistrations}
-              emptyMessage={creatorContentEngagementLabels.noEmailRegistrations}
+              users={filterUsers(emailRegistrations)}
+              emptyMessage={
+                normalizedSearch
+                  ? noSearchResults
+                  : creatorContentEngagementLabels.noEmailRegistrations
+              }
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.RENTALS ? (
             <EngagementUserList
-              users={rentals}
-              emptyMessage={creatorContentEngagementLabels.noRentals}
+              users={filterUsers(rentals)}
+              emptyMessage={
+                normalizedSearch
+                  ? noSearchResults
+                  : creatorContentEngagementLabels.noRentals
+              }
               showExpiry
             />
           ) : null}
           {activeTab === ENGAGEMENT_TAB.DOWNLOADS ? (
             <EngagementUserList
-              users={downloads}
-              emptyMessage={creatorContentEngagementLabels.noDownloads}
+              users={filterUsers(downloads)}
+              emptyMessage={
+                normalizedSearch
+                  ? noSearchResults
+                  : creatorContentEngagementLabels.noDownloads
+              }
             />
           ) : null}
         </DetailsSectionBody>

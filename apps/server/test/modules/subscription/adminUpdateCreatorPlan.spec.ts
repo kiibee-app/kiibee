@@ -5,6 +5,9 @@ import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { adminUpdateCreatorPlan } from 'src/modules/subscription/services/adminUpdateCreatorPlan.service';
 
 jest.mock('src/modules/subscription/services/hasPaidSubscriptionPeriod');
+jest.mock('src/utils/sanitize', () => ({
+  escapeHtml: (value: string) => value,
+}));
 
 jest.mock('src/database/db', () => ({
   db: { select: jest.fn(), transaction: jest.fn() },
@@ -32,7 +35,57 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     jest.clearAllMocks();
   });
 
+  it.each(['2026-02-30', 'not-a-date', '2099-01-01T12:00:00Z'])(
+    'rejects invalid or time-based expiry %s',
+    async (manualPaidExpiresAt) => {
+      await expect(
+        adminUpdateCreatorPlan(creatorId, {
+          ...input,
+          manuallyPaid: true,
+          manualPaidExpiresAt,
+        }),
+      ).rejects.toMatchObject({ status: 400 });
+      expect(db.transaction).not.toHaveBeenCalled();
+    },
+  );
+
   it.each([
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      previousManual: true,
+      manuallyPaid: true,
+      alreadyPaid: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'pro',
+      previousPrice: 299,
+      previousManual: true,
+      manuallyPaid: true,
+      alreadyPaid: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'pro',
+      previousPrice: 299,
+      targetPrice: 0,
+      paymentRequired: true,
+    },
+    {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      manuallyPaid: true,
+      alreadyPaid: true,
+      previouslyRequired: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      manuallyPaid: false,
+      paymentRequired: true,
+    },
     { previousPlanId: 'try', previousPrice: 0, paymentRequired: true },
     { previousPrice: undefined, paymentRequired: true },
     {
@@ -59,6 +112,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     async ({
       previousPlanId,
       previousPrice,
+      previousManual = false,
+      targetPrice = 99,
+      manuallyPaid,
       alreadyPaid = false,
       previouslyRequired = false,
       paymentRequired,
@@ -67,7 +123,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       jest.mocked(db.select).mockReturnValue({
         from: () => ({
           where: () => ({
-            limit: async () => [{ id: input.planId, price: 99 }],
+            limit: async () => [
+              { id: input.planId, name: 'Start-up', price: targetPrice },
+            ],
           }),
         }),
       } as unknown as ReturnType<typeof db.select>);
@@ -80,6 +138,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
               for: async () => [
                 {
                   email: 'creator@example.com',
+                  fullName: 'Test Creator',
                   subscriptionUpgradeRequired: previouslyRequired,
                 },
               ],
@@ -97,6 +156,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
                       : [
                           {
                             id: 'creator-plan',
+                            manuallyPaid: previousManual,
                             planId: previousPlanId,
                             price: previousPrice,
                           },
@@ -124,7 +184,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
         .mockImplementation((callback) => callback(tx));
 
       await expect(
-        adminUpdateCreatorPlan(creatorId, input),
+        adminUpdateCreatorPlan(creatorId, { ...input, manuallyPaid }),
       ).resolves.toMatchObject({
         success: true,
       });
@@ -135,7 +195,24 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       } else {
         expect(setPaymentRequired).not.toHaveBeenCalled();
       }
-      expect(sendTemplateEmail).not.toHaveBeenCalled();
+      if (
+        manuallyPaid &&
+        (!previousManual || previousPlanId !== input.planId)
+      ) {
+        expect(sendTemplateEmail).toHaveBeenCalledTimes(1);
+        expect(sendTemplateEmail).toHaveBeenCalledWith(
+          expect.objectContaining({
+            to: 'creator@example.com',
+            templateName: 'subscriptionManualPayment',
+            variables: {
+              creator: { fullName: 'Test Creator' },
+              planName: 'Start-up',
+            },
+          }),
+        );
+      } else {
+        expect(sendTemplateEmail).not.toHaveBeenCalled();
+      }
     },
   );
 });
