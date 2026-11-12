@@ -211,15 +211,13 @@ export const validateTransactionForOrder = (
 
   const storedPrice = Number(orderInfo.price);
   const expectedMinor = Math.round(storedPrice * 100);
-  const legacyMinor = Math.round(storedPrice);
 
-  if (amount !== expectedMinor && amount !== legacyMinor) {
+  if (amount !== expectedMinor) {
     logger.error('ePay transaction amount does not match order', {
       orderId: orderInfo.id,
       transactionId: transaction.id,
       amount,
       expectedMinor,
-      legacyMinor,
     });
     return false;
   }
