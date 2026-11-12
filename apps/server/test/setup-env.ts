@@ -1,5 +1,3 @@
-// Unit tests must not load developer credentials from .env. Explicit environment
-// overrides (for example CI's test database URL) still take precedence.
 process.env.SMTP_HOST ??= 'localhost';
 process.env.SMTP_PORT ??= '587';
 process.env.SMTP_USER ??= 'test';

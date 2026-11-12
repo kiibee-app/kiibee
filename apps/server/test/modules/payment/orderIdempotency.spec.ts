@@ -113,7 +113,6 @@ describe('findOrCreateCheckoutOrder', () => {
     expect(dialect.sqlToQuery(tx.execute.mock.calls[1][0])).toEqual(explicitLock);
     const defaultLookup = dialect.sqlToQuery(where.mock.calls[1][0]);
     expect(defaultLookup.sql).toEqual(explicitLookup.sql);
-    // The time-window parameter changes between calls; currency must not.
     expect(defaultLookup.params.slice(0, 5)).toEqual(
       explicitLookup.params.slice(0, 5),
     );

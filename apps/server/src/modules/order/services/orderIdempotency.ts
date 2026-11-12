@@ -40,7 +40,6 @@ export const findOrCreateCheckoutOrder = async (
       return { order: created, created: true };
     }
 
-    // Match the database default when callers omit currency.
     const currency = newOrder.currency ?? 'DKK';
     const lock = [
       'order-checkout',

@@ -70,7 +70,14 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       previousPlanId: 'pro',
       previousPrice: 299,
       targetPrice: 0,
-      paymentRequired: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      targetPrice: 0,
+      previouslyRequired: true,
+      paymentRequired: false,
     },
     {
       previousPlanId: 'try',
