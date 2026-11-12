@@ -4,6 +4,7 @@ jest.mock('src/database/db', () => ({
   },
 }));
 
+import { HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { orders } from 'src/database/schema';
 import { findOrCreateCheckoutOrder } from 'src/modules/order/services/orderIdempotency';
@@ -103,6 +104,48 @@ describe('findOrCreateCheckoutOrder', () => {
     expect(inserted[0]).toMatchObject({
       idempotencyKey: 'checkout-key',
       userId: 'user-1',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key has different price', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        price: '49.00',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key belongs to another user', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        userId: 'user-2',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key has different item or mediaFileId', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        mediaFileId: 'different-content',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
     });
   });
 });
