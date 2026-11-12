@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
+import { Menu, SidebarOpen } from "lucide-react";
 import { apiClient, useAdminProfile } from "../../hooks/api";
 import { API_ENDPOINTS } from "../../utils/constants";
 import { useAdminTokens } from "../../utils/token";
@@ -25,10 +25,16 @@ import {
 interface HeaderProps {
   title: string;
   description: string;
+  sidebarOpen: boolean;
   onToggleSidebar?: () => void;
 }
 
-export function Header({ title, description, onToggleSidebar }: HeaderProps) {
+export function Header({
+  title,
+  description,
+  sidebarOpen,
+  onToggleSidebar,
+}: HeaderProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const profileQuery = useAdminProfile();
@@ -93,11 +99,13 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
       .slice(0, 2)
       .toUpperCase() || "AD";
 
+  console.log("Sidebar state in Header:", sidebarOpen);
   return (
     <HeaderRoot>
       <HeaderLeft>
         <HamburgerButton
           type="button"
+          $sidebarOpen={sidebarOpen}
           onClick={onToggleSidebar}
           aria-label="Toggle sidebar"
         >

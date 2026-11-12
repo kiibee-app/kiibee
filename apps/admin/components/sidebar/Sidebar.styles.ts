@@ -9,6 +9,10 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
   top: 0;
   left: 0;
   height: 100vh;
+  @media (min-width: 769px) {
+    transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
+    transition: transform ${({ theme }) => theme.animations.normal};
+  }
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     position: fixed;
@@ -43,7 +47,7 @@ export const BrandText = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 34px;
