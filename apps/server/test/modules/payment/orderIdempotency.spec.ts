@@ -4,6 +4,7 @@ jest.mock('src/database/db', () => ({
   },
 }));
 
+import { PgDialect } from 'drizzle-orm/pg-core';
 import { db } from 'src/database/db';
 import { orders } from 'src/database/schema';
 import { findOrCreateCheckoutOrder } from 'src/modules/order/services/orderIdempotency';
@@ -37,11 +38,12 @@ const newOrder = {
 let selectResult: any[];
 let inserted: any[];
 let tx: any;
+let where: jest.Mock;
 
 const createSelectChain = () => {
   const chain: any = {
     from: jest.fn(() => chain),
-    where: jest.fn(() => chain),
+    where: where.mockImplementation(() => chain),
     orderBy: jest.fn(() => chain),
     limit: jest.fn(() => Promise.resolve(selectResult)),
   };
@@ -64,6 +66,7 @@ describe('findOrCreateCheckoutOrder', () => {
     jest.clearAllMocks();
     selectResult = [];
     inserted = [];
+    where = jest.fn();
     tx = {
       execute: jest.fn().mockResolvedValue(undefined),
       select: jest.fn(() => createSelectChain()),
@@ -93,6 +96,27 @@ describe('findOrCreateCheckoutOrder', () => {
 
     expect(result).toEqual({ order: existingOrder, created: false });
     expect(tx.insert).not.toHaveBeenCalled();
+  });
+
+  it('uses the same lock and lookup for omitted currency and the database default', async () => {
+    const dialect = new PgDialect();
+    await findOrCreateCheckoutOrder({ ...newOrder, idempotencyKey: null });
+    const explicitLock = dialect.sqlToQuery(tx.execute.mock.calls[0][0]);
+    const explicitLookup = dialect.sqlToQuery(where.mock.calls[0][0]);
+
+    await findOrCreateCheckoutOrder({
+      ...newOrder,
+      idempotencyKey: null,
+      currency: undefined,
+    });
+
+    expect(dialect.sqlToQuery(tx.execute.mock.calls[1][0])).toEqual(explicitLock);
+    const defaultLookup = dialect.sqlToQuery(where.mock.calls[1][0]);
+    expect(defaultLookup.sql).toEqual(explicitLookup.sql);
+    expect(defaultLookup.params.slice(0, 5)).toEqual(
+      explicitLookup.params.slice(0, 5),
+    );
+    expect(defaultLookup.params[4]).toBe('DKK');
   });
 
   it('creates a new order when no matching checkout exists', async () => {

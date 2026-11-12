@@ -109,7 +109,10 @@ export default function ClientDashboardCreators() {
       refetchInterval: 30_000,
     });
   const creatorPlan = creatorPlanResponse?.data?.[0];
-  const upgradeRequired = creatorPlan?.subscriptionUpgradeRequired === true;
+  const upgradeRequired =
+    creatorPlan?.isPaidPlan === true &&
+    creatorPlan.subscriptionUpgradeRequired === true &&
+    !creatorPlan.manuallyPaid;
   const assignedPaidPlan = creatorPlan?.isPaidPlan ? creatorPlan : undefined;
   useProfileSync();
   const hasLockedToPaymentInfoRef = useRef(false);

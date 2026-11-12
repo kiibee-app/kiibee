@@ -6,7 +6,7 @@ import { manualExpiryDate } from './manualExpiryDate';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { creatorPlans, plans, subscriptions, users } from 'src/database/schema';
+import { creatorPlans, plans, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
@@ -115,19 +115,6 @@ export const adminUpdateCreatorPlan = async (
         .orderBy(desc(creatorPlans.createdAt))
         .limit(1);
 
-      let previousPrice = currentPlan?.price;
-      if (plan.price === 0 && !currentPlan) {
-        // An overdue subscription may already have had its plan deactivated.
-        const [previousSubscription] = await tx
-          .select({ price: plans.price })
-          .from(subscriptions)
-          .innerJoin(plans, eq(subscriptions.planId, plans.id))
-          .where(eq(subscriptions.creatorId, creatorId))
-          .orderBy(desc(subscriptions.createdAt))
-          .limit(1);
-        previousPrice = previousSubscription?.price;
-      }
-
       const overrides = {
         ...(input.manuallyPaid !== undefined
           ? {
@@ -162,8 +149,6 @@ export const adminUpdateCreatorPlan = async (
         });
       }
 
-      const wasPaidPlan = (previousPrice ?? 0) > 0;
-      const isDowngrade = wasPaidPlan && plan.price === 0;
       const isPaidAssignment =
         plan.price > 0 && currentPlan?.planId !== plan.id;
 
@@ -180,8 +165,8 @@ export const adminUpdateCreatorPlan = async (
           creatorId,
           plan.id,
         ));
-      } else if (isDowngrade) {
-        upgradeRequired = true;
+      } else if (plan.price === 0) {
+        upgradeRequired = false;
       }
 
       if (upgradeRequired !== creator.subscriptionUpgradeRequired) {

@@ -40,6 +40,7 @@ export const findOrCreateCheckoutOrder = async (
       return { order: created, created: true };
     }
 
+    const currency = newOrder.currency ?? 'DKK';
     const lock = [
       'order-checkout',
       newOrder.userId,
@@ -47,7 +48,7 @@ export const findOrCreateCheckoutOrder = async (
       newOrder.collectionId ?? 'none',
       newOrder.itemType,
       newOrder.price,
-      newOrder.currency,
+      currency,
     ].join(':');
 
     await lockKey(tx, lock);
@@ -61,7 +62,7 @@ export const findOrCreateCheckoutOrder = async (
           eq(orders.status, ORDER_STATUS.PENDING),
           eq(orders.itemType, newOrder.itemType),
           eq(orders.price, newOrder.price),
-          eq(orders.currency, newOrder.currency),
+          eq(orders.currency, currency),
           gte(
             orders.createdAt,
             new Date(Date.now() - PENDING_ORDER_REUSE_WINDOW_MS),
