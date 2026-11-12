@@ -11,6 +11,7 @@ import { createPayment } from 'src/modules/payment/services/createPayment.servic
 import { ACCRESS_TYPES, ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
 import { COUPON_DISCOUNT_TYPE_PERCENTAGE } from 'src/utils/coupon';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
+import { DEFAULT_RENT_DURATION_HOURS } from 'src/utils/downloadLimit';
 import { findOrCreateCheckoutOrder } from './orderIdempotency';
 
 export async function createOrderService(
@@ -98,7 +99,8 @@ export async function createOrderService(
 
     if (couponCode && resolvedPrice === 0) {
       const isRental = normalizedItemType === ORDER_TYPES.RENTAL;
-      const rentDurationHours = contentInfo.rentDurationHours ?? 0;
+      const rentDurationHours =
+        contentInfo.rentDurationHours ?? DEFAULT_RENT_DURATION_HOURS;
       if (isRental && rentDurationHours <= 0) {
         return fail(
           'Rent duration is not configured for this item',

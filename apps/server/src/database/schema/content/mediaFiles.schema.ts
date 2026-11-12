@@ -45,7 +45,7 @@ export const mediaFiles = pgTable(
 
     buyPrice: numeric('buy_price', { precision: 10, scale: 2 }),
     rentPrice: numeric('rent_price', { precision: 10, scale: 2 }),
-    rentDurationHours: integer('rent_duration_hours'),
+    rentDurationHours: integer('rent_duration_hours').default(48),
     currency: varchar('currency', { length: 10 }).default('DKK'),
     physicalProductLink: text('physical_product_link'),
     openInNewWindow: boolean('open_in_new_window').notNull().default(false),

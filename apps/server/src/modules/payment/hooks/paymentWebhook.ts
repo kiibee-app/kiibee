@@ -13,6 +13,7 @@ import { logger } from 'src/logger/logger';
 import { ACCRESS_TYPES, ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
 import { addWallet } from 'src/services/addWallet';
 import { parseRentDurationToHours } from 'src/utils/rentDuration';
+import { DEFAULT_RENT_DURATION_HOURS } from 'src/utils/downloadLimit';
 import { sendReceiptService } from 'src/modules/export/services/sendReceipt.service';
 import { capturePayment } from '../services/capturePayment.service';
 import {
@@ -473,7 +474,7 @@ const resolveOrderItem = async (orderInfo: typeof orders.$inferSelect) => {
 
   const rentDurationHours = isCollectionOrder
     ? parseRentDurationToHours(collectionInfo?.rentDuration)
-    : contentInfo?.rentDurationHours;
+    : (contentInfo?.rentDurationHours ?? DEFAULT_RENT_DURATION_HOURS);
 
   return {
     creatorId: isCollectionOrder
@@ -481,7 +482,13 @@ const resolveOrderItem = async (orderInfo: typeof orders.$inferSelect) => {
       : contentInfo?.creatorId,
     rentExpiresAt:
       orderInfo.itemType === ORDER_TYPES.RENTAL
-        ? new Date(Date.now() + (rentDurationHours || 0) * 60 * 60 * 1000)
+        ? new Date(
+            Date.now() +
+              (rentDurationHours || DEFAULT_RENT_DURATION_HOURS) *
+                60 *
+                60 *
+                1000,
+          )
         : null,
   };
 };

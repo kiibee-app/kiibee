@@ -260,8 +260,10 @@ export type CollectionContentVisibilityType =
   | typeof VISIBILITY_PRIVATE_UPPER;
 export const CATEGORY_EDUCATION_LOWER = "education";
 export const RENT_DURATION_DEFAULT = 48;
+export const STREAM_LIMIT_DEFAULT = 7;
 export const DOWNLOAD_LIMIT_UNLIMITED = "Unlimited";
 export const DOWNLOAD_LIMIT_DEFAULT = "5";
+export const PURCHASE_ACCESS_DAYS_DEFAULT = 30;
 
 export const CONTENT_TYPE_VIDEO = "video";
 export const CONTENT_TYPE_AUDIO = "audio";

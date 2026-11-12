@@ -34,7 +34,7 @@ export const CREATOR_DOWNLOAD_LIMIT_OPTIONS = [
 export type CreatorDownloadLimit =
   (typeof CREATOR_DOWNLOAD_LIMIT_OPTIONS)[number];
 
-export const DEFAULT_CREATOR_DOWNLOAD_LIMIT: CreatorDownloadLimit = "0";
+export const DEFAULT_CREATOR_DOWNLOAD_LIMIT: CreatorDownloadLimit = "5";
 
 export const CREATOR_SETTINGS_TEXT = {
   TITLE: "Download limit",
