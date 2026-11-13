@@ -42,7 +42,7 @@ import {
   PAYMENTS_FORM_FIELDS,
 } from "@/utils/paymentRequirements";
 import SettingsPaymentSection from "./PaymentSection";
-import { FORMAT_TYPE } from "@/utils/types";
+import { isFreeAllowedContentType } from "@/utils/content";
 const updateValue = <T,>(
   value: T,
   onChange?: (value: T) => void,
@@ -162,9 +162,7 @@ function AdmissionRequirements({
     [passwords, typedPasswords],
   );
 
-  const isWebContentType =
-    contentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
-    contentType?.toLowerCase() === "web";
+  const isFreeAllowed = isFreeAllowedContentType(contentType);
 
   const visibleOptions = useMemo(() => {
     let options = ADMISSION_REQUIREMENTS;
@@ -175,14 +173,14 @@ function AdmissionRequirements({
       );
     }
 
-    if (!showFreeOption || (contentType && !isWebContentType)) {
+    if (!showFreeOption || (contentType && !isFreeAllowed)) {
       options = options.filter(
         (option) => option.value !== ADMISSION_REQUIREMENT_VALUES.free,
       );
     }
 
     return options;
-  }, [showPaymentOption, showFreeOption, contentType, isWebContentType]);
+  }, [showPaymentOption, showFreeOption, contentType, isFreeAllowed]);
 
   const selectedOption = useMemo(
     () => visibleOptions.find((option) => option.value === selected),

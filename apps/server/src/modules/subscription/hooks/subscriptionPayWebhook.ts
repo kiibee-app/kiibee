@@ -1,3 +1,4 @@
+import { settleAdminBillingRequest } from '../services/adminBillingRequest.service';
 import { db } from 'src/database/db';
 import {
   plans,
@@ -57,7 +58,7 @@ export async function handleSubscriptionPayment(body: any) {
         where: (t) => eq(t.transactionId, transactionId),
       });
 
-    if (existingPayment) {
+    if (existingPayment?.status === ORDER_STATUS.COMPLETED) {
       logger.info('⚠️ Duplicate webhook ignored');
       return;
     }
@@ -164,7 +165,7 @@ export async function handleSubscriptionPayment(body: any) {
           where: (t) => eq(t.transactionId, transactionId),
         });
 
-      if (existingPayment) return false;
+      if (existingPayment?.status === ORDER_STATUS.COMPLETED) return false;
 
       await tx
         .update(creatorPlans)
@@ -239,7 +240,7 @@ export async function handleSubscriptionPayment(body: any) {
         });
       }
 
-      await tx.insert(subscriptionPaymentsHistory).values({
+      const paymentData = {
         id: `pay_${transactionId}`,
         subscriptionId: existingSubscription
           ? existingSubscription.id
@@ -256,6 +257,23 @@ export async function handleSubscriptionPayment(body: any) {
         reference: textOnStatement,
         rawPayload: body,
         processedAt: new Date(),
+      };
+      if (existingPayment) {
+        await tx
+          .update(subscriptionPaymentsHistory)
+          .set(paymentData)
+          .where(eq(subscriptionPaymentsHistory.id, existingPayment.id));
+      } else {
+        await tx.insert(subscriptionPaymentsHistory).values(paymentData);
+      }
+
+      await settleAdminBillingRequest(tx, {
+        creatorId: customerId,
+        planId: plan.id,
+        transactionId,
+        status: 'completed',
+        amount: formattedAmount,
+        currency: currency ?? CURRENCY.DKK,
       });
 
       if (plan.price > 0 && amount > 0) {
@@ -475,6 +493,18 @@ async function handleFailedSubscriptionPayment(transaction: any) {
       rawPayload: transaction,
       processedAt: new Date(),
     });
+
+    // ePay's subscription reference is the assigned plan ID.
+    if (reference) {
+      await settleAdminBillingRequest(db, {
+        creatorId: customerId,
+        planId: reference,
+        transactionId,
+        status: 'failed',
+        amount: formattedAmount,
+        currency: currency ?? CURRENCY.DKK,
+      });
+    }
 
     const [creator] = await db
       .select({ email: users.email, fullName: users.fullName })
