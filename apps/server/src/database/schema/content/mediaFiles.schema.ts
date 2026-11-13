@@ -4,6 +4,7 @@ import {
   varchar,
   boolean,
   integer,
+  bigint,
   numeric,
   timestamp,
   index,
@@ -31,7 +32,7 @@ export const mediaFiles = pgTable(
     contentTypeId: text('content_type_id').references(() => contentTypes.id, {
       onDelete: 'set null',
     }),
-    fileSize: integer('file_size'),
+    fileSize: bigint('file_size', { mode: 'number' }),
     publishedYear: integer('published_year'),
     duration: integer('duration'),
     thumbnailUrl: text('thumbnail_url'),

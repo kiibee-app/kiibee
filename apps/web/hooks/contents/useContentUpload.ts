@@ -7,7 +7,6 @@ import { API } from "@/lib/http/api/endpoints";
 import {
   CONTENT_UPLOAD_CONFIG,
   MEDIA_UPLOAD_FILE_TYPE_MAP,
-  POST_METHOD,
   resolveUploadContentType,
   type ContentType,
   type UploadContentType,
@@ -15,6 +14,8 @@ import {
 import { FORMAT_TYPE } from "@/utils/types";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { uploadFileWithProgress } from "@/utils/fileUpload";
+import { uploadVideoWithTus } from "@/utils/videoUpload";
 import { logger } from "@/lib/logger";
 
 type Params = {
@@ -40,30 +41,28 @@ type FileConfirmResponse = {
 };
 
 const MAX_UPLOAD_SIZE = 2 * 1024 * 1024 * 1024;
+const MAX_VIDEO_UPLOAD_SIZE = 3 * 1024 * 1024 * 1024;
 
 const getExtension = (file: File) =>
   file.name.split(".").pop()?.toLowerCase() ?? "";
 
-const putSignedFile = async (url: string, body: Blob, contentType?: string) => {
-  const response = await fetch(url, {
-    method: "PUT",
-    body,
-    headers: contentType ? { "Content-Type": contentType } : undefined,
-  });
-
-  if (!response.ok) {
-    throw new Error("Upload failed");
-  }
-
-  return response;
-};
-
 export function useContentUpload({ contentType }: Params) {
   const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const activeUpload = useRef<{
+    controller: AbortController;
+  } | null>(null);
+  useEffect(
+    () => () => {
+      activeUpload.current?.controller.abort();
+      activeUpload.current = null;
+    },
+    [],
+  );
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadComplete, setUploadComplete] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const uploadType = resolveUploadContentType(contentType);
@@ -81,9 +80,12 @@ export function useContentUpload({ contentType }: Params) {
   }, [previewUrl]);
 
   const reset = () => {
+    activeUpload.current?.controller.abort();
+    activeUpload.current = null;
     setSelectedFile(null);
     setUploadedFile(null);
     setIsUploading(false);
+    setUploadProgress(0);
     setUploadComplete(false);
     setUploadError(null);
   };
@@ -93,27 +95,36 @@ export function useContentUpload({ contentType }: Params) {
       file.name.toLowerCase().endsWith(ext),
     );
 
-    return validExtension && file.size > 0 && file.size <= MAX_UPLOAD_SIZE;
+    return (
+      validExtension &&
+      file.size > 0 &&
+      file.size <=
+        (uploadType === FORMAT_TYPE.VIDEO
+          ? MAX_VIDEO_UPLOAD_SIZE
+          : MAX_UPLOAD_SIZE)
+    );
   };
 
-  const uploadVideo = async (file: File): Promise<UploadedFile> => {
+  const uploadVideo = async (
+    file: File,
+    operation: { controller: AbortController },
+  ): Promise<UploadedFile> => {
     try {
       const { data: init } = await axiosClient.post<{
         uid: string;
         uploadURL: string;
-      }>(API.media.videoUpload);
+      }>(
+        API.media.videoUpload,
+        { fileSize: file.size },
+        { signal: operation.controller.signal },
+      );
 
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await fetch(init.uploadURL, {
-        method: POST_METHOD,
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error(await response.text());
-      }
+      await uploadVideoWithTus(
+        file,
+        init.uploadURL,
+        operation.controller.signal,
+        setUploadProgress,
+      );
 
       return {
         key: init.uid,
@@ -126,7 +137,7 @@ export function useContentUpload({ contentType }: Params) {
           ? error.message
           : "Something went wrong.";
 
-      toast.error(message);
+      if (!operation.controller.signal.aborted) toast.error(message);
       throw error;
     }
   };
@@ -134,6 +145,7 @@ export function useContentUpload({ contentType }: Params) {
   const uploadFile = async (
     file: File,
     type: Exclude<UploadContentType, typeof FORMAT_TYPE.VIDEO>,
+    operation: { controller: AbortController },
   ): Promise<UploadedFile> => {
     try {
       const { data: upload } = await axiosClient.post<FileUploadUrlResponse>(
@@ -143,14 +155,23 @@ export function useContentUpload({ contentType }: Params) {
           extension: getExtension(file),
           contentType: file.type,
         },
+        { signal: operation.controller.signal },
       );
 
-      await putSignedFile(upload.uploadUrl, file, upload.contentType);
+      await uploadFileWithProgress(
+        upload.uploadUrl,
+        file,
+        upload.contentType,
+        operation.controller.signal,
+        setUploadProgress,
+      );
 
       const { data: confirmed } = await axiosClient.post<FileConfirmResponse>(
         API.media.fileConfirm,
         { key: upload.key },
+        { signal: operation.controller.signal },
       );
+      setUploadProgress(100);
 
       return {
         key: confirmed.key,
@@ -158,26 +179,31 @@ export function useContentUpload({ contentType }: Params) {
         contentType: upload.contentType,
       };
     } catch (error) {
-      toast.error(
-        axios.isAxiosError(error)
-          ? error.response?.data?.message
-          : error instanceof Error
-            ? error.message
-            : "Upload failed.",
-      );
+      if (!operation.controller.signal.aborted)
+        toast.error(
+          axios.isAxiosError(error)
+            ? error.response?.data?.message
+            : error instanceof Error
+              ? error.message
+              : "Upload failed.",
+        );
 
       throw error;
     }
   };
 
-  const uploadSelectedFile = (file: File) => {
+  const uploadSelectedFile = (
+    file: File,
+    operation: { controller: AbortController },
+  ) => {
     if (uploadType === FORMAT_TYPE.VIDEO) {
-      return uploadVideo(file);
+      return uploadVideo(file, operation);
     }
 
     return uploadFile(
       file,
       uploadType as Exclude<UploadContentType, typeof FORMAT_TYPE.VIDEO>,
+      operation,
     );
   };
 
@@ -185,28 +211,44 @@ export function useContentUpload({ contentType }: Params) {
     if (!file) return;
 
     if (!validateFile(file)) {
-      setUploadError(t("contents.contentUploadModal.invalidFile"));
+      setUploadError(
+        t(
+          uploadType === FORMAT_TYPE.VIDEO
+            ? "contents.contentUploadModal.invalidVideoFile"
+            : "contents.contentUploadModal.invalidFile",
+        ),
+      );
       return;
     }
 
+    activeUpload.current?.controller.abort();
+    const operation = { controller: new AbortController() };
+    activeUpload.current = operation;
     setSelectedFile(file);
     setUploadedFile(null);
+    setUploadProgress(0);
     setUploadComplete(false);
     setUploadError(null);
     setIsUploading(true);
 
     try {
-      const uploaded = await uploadSelectedFile(file);
+      const uploaded = await uploadSelectedFile(file, operation);
+      if (activeUpload.current !== operation) return;
       setUploadedFile(uploaded);
       setUploadComplete(true);
     } catch (error) {
+      if (activeUpload.current !== operation) return;
       logger.error("[useContentUpload] Upload failed:", error);
       setSelectedFile(null);
       setUploadedFile(null);
+      setUploadProgress(0);
       setUploadComplete(false);
       setUploadError(t("contents.contentUploadModal.uploadError"));
     } finally {
-      setIsUploading(false);
+      if (activeUpload.current === operation) {
+        activeUpload.current = null;
+        setIsUploading(false);
+      }
     }
   };
 
@@ -238,6 +280,7 @@ export function useContentUpload({ contentType }: Params) {
     selectedFile,
     uploadedFile,
     isUploading,
+    uploadProgress,
     uploadComplete,
     uploadError,
     previewUrl,

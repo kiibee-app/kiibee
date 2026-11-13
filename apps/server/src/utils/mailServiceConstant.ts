@@ -13,6 +13,7 @@ export const templateName = {
   PURCHASE_RECEIPT: 'sendReceipt',
   SUBSCRIPTION_PAYMENT_FAILED: 'subscriptionPaymentFailed',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN: 'subscriptionPaymentFailedAdmin',
+  SUBSCRIPTION_PLAN_CHANGED: 'subscriptionPlanChanged',
   SUBSCRIPTION_MANUAL_PAYMENT: 'subscriptionManualPayment',
   SUBSCRIPTION_ACTIVATED: 'subscriptionActivated',
   SUBSCRIPTION_EXPIRED: 'subscriptionExpired',
@@ -37,6 +38,7 @@ export const mailSubject = {
     'Din Kiibee-abonnementbetaling kunne ikke gennemføres',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
     'Creator-abonnementbetaling mislykkedes – Kiibee',
+  SUBSCRIPTION_PLAN_CHANGED: 'Dit Kiibee-abonnement er blevet ændret',
   SUBSCRIPTION_MANUAL_PAYMENT:
     'Betaling modtaget – dit Kiibee-abonnement er aktivt',
   SUBSCRIPTION_ACTIVATED: 'Dit Kiibee-abonnement er nu aktivt',

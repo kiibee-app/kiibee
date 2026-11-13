@@ -7,6 +7,7 @@ import { sendEmailWithRetry } from './sendWithRetry';
 
 interface SendEmailOptions {
   to: string;
+  cc?: string;
   subject: string;
   templateName: string;
   variables?: Record<string, any>;
@@ -14,14 +15,15 @@ interface SendEmailOptions {
 
 export async function sendTemplateEmail({
   to,
+  cc,
   subject,
   templateName,
   variables = {},
 }: SendEmailOptions): Promise<boolean> {
   try {
     const templatePath = path.join(
-      process.cwd(),
-      'src',
+      __dirname,
+      '..',
       'templates',
       `${templateName}.html`,
     );
@@ -33,6 +35,7 @@ export async function sendTemplateEmail({
     return await sendEmailWithRetry({
       from: `"${env.SENDER_NAME}" <${env.SENDER_EMAIL}>`,
       to,
+      ...(cc ? { cc } : {}),
       subject,
       html: htmlContent,
     });
