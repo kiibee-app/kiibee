@@ -42,7 +42,13 @@ export const getCreatorPlan = async (creatorId: string) => {
         .limit(1);
       return success(
         freePlan
-          ? [{ ...freePlan, isPaidPlan: false, subscriptionUpgradeRequired }]
+          ? [
+              {
+                ...freePlan,
+                isPaidPlan: false,
+                subscriptionUpgradeRequired: false,
+              },
+            ]
           : [],
         'Creator plan retrieved successfully',
         HttpStatus.OK,
@@ -56,6 +62,10 @@ export const getCreatorPlan = async (creatorId: string) => {
 
     if (!plan) {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (plan.price === 0) {
+      subscriptionUpgradeRequired = false;
     }
 
     if (

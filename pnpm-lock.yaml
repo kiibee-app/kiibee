@@ -354,6 +354,9 @@ importers:
       styled-components:
         specifier: ^6.3.12
         version: 6.3.12(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      tus-js-client:
+        specifier: ^4.3.1
+        version: 4.3.1
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -5770,6 +5773,12 @@ packages:
       }
     engines: { node: ">=18" }
 
+  combine-errors@3.0.4:
+    resolution:
+      {
+        integrity: sha512-o2AO3DWIBbDrJ16unhIe8+9RwqHKh/DbaIMKrNlXjEc1Od0psMLv+Cn3xocQlipmyZ92Eth4TjJFJQWN3VDFBQ==,
+      }
+
   combined-stream@1.0.8:
     resolution:
       {
@@ -6030,6 +6039,12 @@ packages:
     resolution:
       {
         integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==,
+      }
+
+  custom-error-instance@2.1.1:
+    resolution:
+      {
+        integrity: sha512-p6JFxJc3M4OTD2li2qaHkDCw9SfMw82Ldr6OC9Je1aXiGfhx2W8p3GaoeaGrPJTUN9NirTM/KTxHWMUdR1rsUg==,
       }
 
   cz-conventional-changelog@3.3.0:
@@ -8428,6 +8443,12 @@ packages:
         integrity: sha512-YYVDInQKFJfR/xa3ojUTl8c2KoTwiL1R5Wg9YCydwH0x0B9grbzlg5HC7mMjCtUJjbQ/YnGEZIhI5tCgfTb4Hw==,
       }
 
+  js-base64@3.9.6:
+    resolution:
+      {
+        integrity: sha512-LjkzbLtU6Lx6fjXMYGEACEB7rdtqZtxkBe9aS1ZpDNUyWgUivw3yBEIhQ37OVygJYRt+C+9e9fVT8PpFzH2Hww==,
+      }
+
   js-tokens@4.0.0:
     resolution:
       {
@@ -8796,6 +8817,42 @@ packages:
       }
     engines: { node: ">=10" }
 
+  lodash._baseiteratee@4.7.0:
+    resolution:
+      {
+        integrity: sha512-nqB9M+wITz0BX/Q2xg6fQ8mLkyfF7MU7eE+MNBNjTHFKeKaZAPEzEg+E8LWxKWf1DQVflNEn9N49yAuqKh2mWQ==,
+      }
+
+  lodash._basetostring@4.12.0:
+    resolution:
+      {
+        integrity: sha512-SwcRIbyxnN6CFEEK4K1y+zuApvWdpQdBHM/swxP962s8HIxPO3alBH5t3m/dl+f4CMUug6sJb7Pww8d13/9WSw==,
+      }
+
+  lodash._baseuniq@4.6.0:
+    resolution:
+      {
+        integrity: sha512-Ja1YevpHZctlI5beLA7oc5KNDhGcPixFhcqSiORHNsp/1QTv7amAXzw+gu4YOvErqVlMVyIJGgtzeepCnnur0A==,
+      }
+
+  lodash._createset@4.0.3:
+    resolution:
+      {
+        integrity: sha512-GTkC6YMprrJZCYU3zcqZj+jkXkrXzq3IPBcF/fIPpNEAB4hZEtXU8zp/RwKOvZl43NUmwDbyRk3+ZTbeRdEBXA==,
+      }
+
+  lodash._root@3.0.1:
+    resolution:
+      {
+        integrity: sha512-O0pWuFSK6x4EXhM1dhZ8gchNtG7JMqBtrHdoUFUWXD7dJnNSUze1GuyQr5sOs0aCvgGeI3o/OJW8f4ca7FDxmQ==,
+      }
+
+  lodash._stringtopath@4.8.0:
+    resolution:
+      {
+        integrity: sha512-SXL66C731p0xPDC5LZg4wI5H+dJo/EO4KTqOMwLYCH3+FmmfAKJEZCm6ohGpI+T1xwsDsJCfL4OnhorllvlTPQ==,
+      }
+
   lodash.camelcase@4.3.0:
     resolution:
       {
@@ -8884,6 +8941,18 @@ packages:
     resolution:
       {
         integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==,
+      }
+
+  lodash.throttle@4.1.1:
+    resolution:
+      {
+        integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==,
+      }
+
+  lodash.uniqby@4.5.0:
+    resolution:
+      {
+        integrity: sha512-IRt7cfTtHy6f1aRVA5n7kT8rgN3N1nH6MOWLcHfpWG2SH19E3JksLK38MktLxZDhlAjCP9jpIXkOnRXlu6oByQ==,
       }
 
   lodash.upperfirst@4.3.1:
@@ -9929,6 +9998,12 @@ packages:
         integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==,
       }
 
+  proper-lockfile@4.1.2:
+    resolution:
+      {
+        integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==,
+      }
+
   proxy-addr@2.0.7:
     resolution:
       {
@@ -9969,6 +10044,12 @@ packages:
         integrity: sha512-mAZTtNCeetKMH+pSjrb76NAM8V9a05I9aBZOHztWy/UqcJdQYNsf59vrRKWnojAT9Y+GbIvoTBC++CPHqpDBhQ==,
       }
     engines: { node: ">=0.6" }
+
+  querystringify@2.2.0:
+    resolution:
+      {
+        integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==,
+      }
 
   queue-microtask@1.2.3:
     resolution:
@@ -10192,6 +10273,12 @@ packages:
       }
     engines: { node: ">=0.10.0" }
 
+  requires-port@1.0.0:
+    resolution:
+      {
+        integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==,
+      }
+
   resolve-alpn@1.2.1:
     resolution:
       {
@@ -10267,6 +10354,13 @@ packages:
         integrity: sha512-I1XxrZSQ+oErkRR4jYbAyEEu2I0avBvvMM5JN+6EBprOGRCs63ENqZ3vjavq8fBw2+62G5LF5XelKwuJpcvcxw==,
       }
     engines: { node: ">=10" }
+
+  retry@0.12.0:
+    resolution:
+      {
+        integrity: sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow==,
+      }
+    engines: { node: ">= 4" }
 
   reusify@1.1.0:
     resolution:
@@ -11175,6 +11269,13 @@ packages:
       }
     hasBin: true
 
+  tus-js-client@4.3.1:
+    resolution:
+      {
+        integrity: sha512-ZLeYmjrkaU1fUsKbIi8JML52uAocjEZtBx4DKjRrqzrZa0O4MYwT6db+oqePlspV+FxXJAyFBc/L5gwUi2OFsg==,
+      }
+    engines: { node: ">=18" }
+
   type-check@0.4.0:
     resolution:
       {
@@ -11383,6 +11484,12 @@ packages:
     resolution:
       {
         integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==,
+      }
+
+  url-parse@1.5.10:
+    resolution:
+      {
+        integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==,
       }
 
   use-sync-external-store@1.6.0:
@@ -15042,6 +15149,11 @@ snapshots:
       color-convert: 3.1.3
       color-string: 2.1.4
 
+  combine-errors@3.0.4:
+    dependencies:
+      custom-error-instance: 2.1.1
+      lodash.uniqby: 4.5.0
+
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -15188,6 +15300,8 @@ snapshots:
   csstype@3.1.3: {}
 
   csstype@3.2.3: {}
+
+  custom-error-instance@2.1.1: {}
 
   cz-conventional-changelog@3.3.0(@types/node@26.6.6)(typescript@5.9.2):
     dependencies:
@@ -17015,6 +17129,8 @@ snapshots:
 
   jose@6.2.3: {}
 
+  js-base64@3.9.6: {}
+
   js-tokens@4.0.0: {}
 
   js-yaml@3.14.2:
@@ -17210,6 +17326,25 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash._baseiteratee@4.7.0:
+    dependencies:
+      lodash._stringtopath: 4.8.0
+
+  lodash._basetostring@4.12.0: {}
+
+  lodash._baseuniq@4.6.0:
+    dependencies:
+      lodash._createset: 4.0.3
+      lodash._root: 3.0.1
+
+  lodash._createset@4.0.3: {}
+
+  lodash._root@3.0.1: {}
+
+  lodash._stringtopath@4.8.0:
+    dependencies:
+      lodash._basetostring: 4.12.0
+
   lodash.camelcase@4.3.0: {}
 
   lodash.includes@4.3.0: {}
@@ -17239,6 +17374,13 @@ snapshots:
   lodash.snakecase@4.1.1: {}
 
   lodash.startcase@4.4.0: {}
+
+  lodash.throttle@4.1.1: {}
+
+  lodash.uniqby@4.5.0:
+    dependencies:
+      lodash._baseiteratee: 4.7.0
+      lodash._baseuniq: 4.6.0
 
   lodash.upperfirst@4.3.1: {}
 
@@ -17767,6 +17909,12 @@ snapshots:
       object-assign: 4.1.1
       react-is: 16.13.1
 
+  proper-lockfile@4.1.2:
+    dependencies:
+      graceful-fs: 4.2.11
+      retry: 0.12.0
+      signal-exit: 3.0.7
+
   proxy-addr@2.0.7:
     dependencies:
       forwarded: 0.2.0
@@ -17783,6 +17931,8 @@ snapshots:
   qs@6.15.0:
     dependencies:
       side-channel: 1.1.0
+
+  querystringify@2.2.0: {}
 
   queue-microtask@1.2.3: {}
 
@@ -17917,6 +18067,8 @@ snapshots:
 
   require-from-string@2.0.2: {}
 
+  requires-port@1.0.0: {}
+
   resolve-alpn@1.2.1: {}
 
   resolve-cwd@3.0.0:
@@ -17956,6 +18108,8 @@ snapshots:
       signal-exit: 3.0.7
 
   ret@0.5.0: {}
+
+  retry@0.12.0: {}
 
   reusify@1.1.0: {}
 
@@ -18616,6 +18770,16 @@ snapshots:
       "@turbo/windows-64": 2.9.1
       "@turbo/windows-arm64": 2.9.1
 
+  tus-js-client@4.3.1:
+    dependencies:
+      buffer-from: 1.1.2
+      combine-errors: 3.0.4
+      is-stream: 2.0.1
+      js-base64: 3.9.6
+      lodash.throttle: 4.1.1
+      proper-lockfile: 4.1.2
+      url-parse: 1.5.10
+
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
@@ -18778,6 +18942,11 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  url-parse@1.5.10:
+    dependencies:
+      querystringify: 2.2.0
+      requires-port: 1.0.0
 
   use-sync-external-store@1.6.0(react@19.2.4):
     dependencies:
