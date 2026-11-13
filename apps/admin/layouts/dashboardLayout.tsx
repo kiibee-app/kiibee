@@ -41,6 +41,20 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
     };
   }, [closeSidebar, sidebarOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        closeSidebar();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [closeSidebar]);
+
   if (isLoginRoute) {
     return <>{children}</>;
   }
