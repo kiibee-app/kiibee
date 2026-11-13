@@ -11,6 +11,7 @@ import { storage } from "@/utils/storage";
 import {
   ContentType,
   getFileNameWithoutExtension,
+  isFreeAllowedContentType,
   normalizeContentTypeValue,
 } from "@/utils/content";
 import { type ContentMediaUrlResponse } from "@/utils/contentApi";
@@ -517,15 +518,8 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
-    const isFreeAllowedType =
-      formState.contentTypeId?.toLowerCase() === FORMAT_TYPE.WEB ||
-      formState.contentTypeId?.toLowerCase() === FORMAT_TYPE.PDF ||
-      formState.contentTypeId?.toLowerCase() === "web" ||
-      formState.contentTypeId?.toLowerCase() === "pdf" ||
-      editingContent?.contentType?.toLowerCase() === FORMAT_TYPE.WEB ||
-      editingContent?.contentType?.toLowerCase() === FORMAT_TYPE.PDF ||
-      editingContent?.contentType?.toLowerCase() === "web" ||
-      editingContent?.contentType?.toLowerCase() === "pdf";
+    const contentType = formState.contentTypeId || editingContent?.contentType;
+    const isFreeAllowedType = isFreeAllowedContentType(contentType);
 
     if (
       !isFreeAllowedType &&

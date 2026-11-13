@@ -16,7 +16,7 @@ import { TABLE_ALIGN } from "@/utils/ui";
 import { BUTTON, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
 import { checkHasPriceOrCode } from "@/utils/admissionRequirements";
 import { getStoredGlobalPaymentSettings } from "@/utils/contentPricingActions";
-import { FORMAT_TYPE } from "@/utils/types";
+import { isFreeAllowedContentType } from "@/utils/content";
 import { ActionWrapper, IconButton, NameWrapper, WarningBadge } from "./styles";
 import { useTranslation } from "react-i18next";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
@@ -46,18 +46,9 @@ import {
 
 type TableRow = CollectionRow | CollectionContentRow;
 
-const isFreeAllowedContent = (contentType?: string) => {
-  const type = contentType?.toLowerCase();
-  return (
-    type === FORMAT_TYPE.WEB ||
-    type === FORMAT_TYPE.PDF ||
-    type === "web" ||
-    type === "pdf"
-  );
-};
-
 const isFreeNonAllowedContent = (content: CollectionContentRow) =>
-  !isFreeAllowedContent(content.contentType) && !checkHasPriceOrCode(content);
+  !isFreeAllowedContentType(content.contentType) &&
+  !checkHasPriceOrCode(content);
 
 const shouldShowCollectionWarning = (
   collection: CollectionRow,

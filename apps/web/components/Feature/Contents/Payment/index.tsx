@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FORMAT_TYPE } from "@/utils/types";
+import { isFreeAllowedContentType } from "@/utils/content";
 import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
 import {
@@ -58,11 +58,7 @@ export default function Payment({ contentType }: PaymentProps = {}) {
     useContentForm();
   const { contentTypeId, admissionRequirement } = formState;
   const resolvedContentType = contentTypeId || contentType;
-  const isFreeAllowed =
-    resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
-    resolvedContentType?.toLowerCase() === FORMAT_TYPE.PDF.toLowerCase() ||
-    resolvedContentType?.toLowerCase() === "web" ||
-    resolvedContentType?.toLowerCase() === "pdf";
+  const isFreeAllowed = isFreeAllowedContentType(resolvedContentType);
 
   const admissionOptions = getAdmissionOptions(t).filter(
     (option) => isFreeAllowed || option.value !== ADMISSION_TYPE.FREE,
