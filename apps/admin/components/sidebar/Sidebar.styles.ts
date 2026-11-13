@@ -20,6 +20,7 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
     border-right: none;
     z-index: 50;
     transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
+    visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
     transition: transform ${({ theme }) => theme.animations.normal};
     box-shadow: ${({ $isOpen, theme }) =>
       $isOpen ? theme.shadows.lg : "none"};
