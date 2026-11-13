@@ -2,6 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
   width: 240px;
   border-right: 1px solid ${({ theme }) => theme.colors.secondary.border};
   background-color: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -16,6 +18,7 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
     bottom: 0;
     left: 0;
     height: 100dvh;
+    overflow: hidden;
     border-radius: 0;
     border-right: none;
     z-index: 50;
@@ -77,6 +80,7 @@ export const MenuList = styled.nav`
 export const MenuItem = styled(Link)<{ $active?: boolean }>`
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 10px;
   padding: 10px 12px;
   border-radius: 8px;
