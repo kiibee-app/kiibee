@@ -1023,6 +1023,7 @@
     ]
   },
   "common": {
+    "verificationUnavailable": "Verificering er ikke tilgængelig. Prøv at genindlæse siden, eller send en e-mail direkte til support.",
     "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
     "copied": "Kopieret!",
