@@ -7,6 +7,7 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export async function sendEmailWithRetry(mailOptions: {
   from: string;
   to: string;
+  cc?: string;
   subject: string;
   html: string;
 }): Promise<boolean> {

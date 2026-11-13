@@ -1,10 +1,14 @@
 import { db } from 'src/database/db';
 import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
-import { users } from 'src/database/schema';
+import { adminBillingRequests, users } from 'src/database/schema';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { adminUpdateCreatorPlan } from 'src/modules/subscription/services/adminUpdateCreatorPlan.service';
 
 jest.mock('src/modules/subscription/services/hasPaidSubscriptionPeriod');
+jest.mock(
+  'src/modules/subscription/services/adminBillingRequest.service',
+  () => ({ recordAdminBillingEmail: jest.fn().mockResolvedValue(undefined) }),
+);
 jest.mock('src/utils/sanitize', () => ({
   escapeHtml: (value: string) => value,
 }));
@@ -50,6 +54,27 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
   );
 
   it.each([
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      targetId: 'pro',
+      targetPrice: 299,
+      paymentRequired: true,
+    },
+    {
+      previousPlanId: 'pro',
+      previousPrice: 299,
+      targetId: 'startup',
+      targetPrice: 99,
+      paymentRequired: true,
+    },
+    {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      targetId: 'pro',
+      targetPrice: 299,
+      paymentRequired: true,
+    },
     {
       previousPlanId: 'startup',
       previousPrice: 99,
@@ -135,17 +160,30 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       previousPrice,
       previousManual = false,
       targetPrice = 99,
+      targetId,
       manuallyPaid,
       alreadyPaid = false,
       previouslyRequired = false,
       paymentRequired,
     }) => {
+      const targetPlanId =
+        targetId ?? (targetPrice === 0 ? 'try' : input.planId);
+      const targetName =
+        targetPlanId === 'try'
+          ? 'Try Kiibee'
+          : targetPlanId === 'pro'
+            ? 'Pro'
+            : 'Start-up';
       jest.mocked(hasPaidSubscriptionPeriod).mockResolvedValue(alreadyPaid);
       jest.mocked(db.select).mockReturnValue({
         from: () => ({
           where: () => ({
             limit: async () => [
-              { id: input.planId, name: 'Start-up', price: targetPrice },
+              {
+                id: targetPlanId,
+                name: targetName,
+                price: targetPrice,
+              },
             ],
           }),
         }),
@@ -180,6 +218,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
                             manuallyPaid: previousManual,
                             planId: previousPlanId,
                             price: previousPrice,
+                            name: previousPlanId,
                           },
                         ],
                 }),
@@ -190,6 +229,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const setPaymentRequired = jest.fn().mockReturnValue({
         where: jest.fn().mockResolvedValue(undefined),
       });
+      const inserted = jest.fn().mockResolvedValue(undefined);
       const tx = {
         select,
         update: (table: unknown) => ({
@@ -198,14 +238,20 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
               ? setPaymentRequired
               : () => ({ where: async () => undefined }),
         }),
-        insert: () => ({ values: async () => undefined }),
+        insert: (table: unknown) => ({
+          values: (value: unknown) => inserted(table, value),
+        }),
       } as unknown as Parameters<Parameters<typeof db.transaction>[0]>[0];
       jest
         .mocked(db.transaction)
         .mockImplementation((callback) => callback(tx));
 
       await expect(
-        adminUpdateCreatorPlan(creatorId, { ...input, manuallyPaid }),
+        adminUpdateCreatorPlan(creatorId, {
+          ...input,
+          planId: targetPlanId,
+          manuallyPaid,
+        }),
       ).resolves.toMatchObject({
         success: true,
       });
@@ -216,23 +262,54 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       } else {
         expect(setPaymentRequired).not.toHaveBeenCalled();
       }
-      if (
-        manuallyPaid &&
-        (!previousManual || previousPlanId !== input.planId)
-      ) {
-        expect(sendTemplateEmail).toHaveBeenCalledTimes(1);
-        expect(sendTemplateEmail).toHaveBeenCalledWith(
+      const planChanged = previousPlanId !== targetPlanId;
+      const paymentRequestCreated =
+        paymentRequired && (planChanged || !previouslyRequired);
+      if (paymentRequestCreated) {
+        expect(inserted).toHaveBeenCalledWith(
+          adminBillingRequests,
           expect.objectContaining({
-            to: 'creator@example.com',
-            templateName: 'subscriptionManualPayment',
-            variables: {
-              creator: { fullName: 'Test Creator' },
-              planName: 'Start-up',
-            },
+            creatorId,
+            planId: targetPlanId,
+            planName: targetName,
+            amount: String(targetPrice),
+            currency: 'DKK',
           }),
         );
       } else {
-        expect(sendTemplateEmail).not.toHaveBeenCalled();
+        expect(
+          inserted.mock.calls.some(([table]) => table === adminBillingRequests),
+        ).toBe(false);
+      }
+      const manualPaymentReceived = Boolean(
+        manuallyPaid && (!previousManual || previousPlanId !== targetPlanId),
+      );
+      expect(sendTemplateEmail).toHaveBeenCalledTimes(
+        Number(planChanged || paymentRequestCreated) +
+          Number(manualPaymentReceived),
+      );
+      if (planChanged || paymentRequestCreated) {
+        expect(sendTemplateEmail).toHaveBeenCalledWith(
+          expect.objectContaining({
+            to: 'creator@example.com',
+            cc: 'info@kiibee.com',
+            templateName: 'subscriptionPlanChanged',
+            variables: {
+              creator: { fullName: 'Test Creator' },
+              previousPlanName: previousPlanId || 'Intet aktivt abonnement',
+              planName: targetName,
+            },
+          }),
+        );
+      }
+      if (manualPaymentReceived) {
+        expect(sendTemplateEmail).toHaveBeenCalledWith(
+          expect.objectContaining({
+            to: 'creator@example.com',
+            cc: 'info@kiibee.com',
+            templateName: 'subscriptionManualPayment',
+          }),
+        );
       }
     },
   );

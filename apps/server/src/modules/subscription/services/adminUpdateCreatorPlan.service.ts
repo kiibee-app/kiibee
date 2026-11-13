@@ -6,10 +6,16 @@ import { manualExpiryDate } from './manualExpiryDate';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { creatorPlans, plans, users } from 'src/database/schema';
+import {
+  adminBillingRequests,
+  creatorPlans,
+  plans,
+  users,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
+import { recordAdminBillingEmail } from './adminBillingRequest.service';
 import { randomUUID } from 'crypto';
 
 interface AdminUpdateCreatorPlanInput {
@@ -82,7 +88,7 @@ export const adminUpdateCreatorPlan = async (
       );
     }
 
-    const manualPaymentRecipient = await db.transaction(async (tx) => {
+    const notification = await db.transaction(async (tx) => {
       const [creator] = await tx
         .select({
           email: users.email,
@@ -102,6 +108,7 @@ export const adminUpdateCreatorPlan = async (
           id: creatorPlans.id,
           planId: creatorPlans.planId,
           price: plans.price,
+          name: plans.name,
           manuallyPaid: creatorPlans.manuallyPaid,
         })
         .from(creatorPlans)
@@ -175,31 +182,87 @@ export const adminUpdateCreatorPlan = async (
           .set({ subscriptionUpgradeRequired: upgradeRequired })
           .where(eq(users.id, creatorId));
       }
-      // Notify only when manual payment is enabled or assigned to a different plan.
-      return input.manuallyPaid &&
-        !upgradeRequired &&
-        (!currentPlan?.manuallyPaid || currentPlan.planId !== plan.id)
-        ? { email: creator.email, fullName: creator.fullName }
-        : null;
+      const planChanged = currentPlan?.planId !== plan.id;
+      if (planChanged || !upgradeRequired) {
+        await tx
+          .update(adminBillingRequests)
+          .set({ status: 'cancelled', updatedAt: new Date() })
+          .where(
+            and(
+              eq(adminBillingRequests.creatorId, creatorId),
+              eq(adminBillingRequests.status, 'pending'),
+            ),
+          );
+      }
+      let billingRequestId: string | undefined;
+      if (
+        upgradeRequired &&
+        (planChanged || !creator.subscriptionUpgradeRequired)
+      ) {
+        billingRequestId = randomUUID();
+        await tx.insert(adminBillingRequests).values({
+          id: billingRequestId,
+          creatorId,
+          planId: plan.id,
+          planName: plan.name,
+          amount: String(input.customPrice ?? plan.price),
+          currency:
+            plan.currency === 'KR' || plan.currency === 'DK'
+              ? 'DKK'
+              : plan.currency || 'DKK',
+          emailStatus: creator.email ? 'pending' : 'unavailable',
+        });
+      }
+      return {
+        billingRequestId,
+        email: creator.email,
+        fullName: creator.fullName,
+        previousPlanName: currentPlan?.name || 'Intet aktivt abonnement',
+        planChanged: currentPlan?.planId !== plan.id,
+        manualPaymentReceived: Boolean(
+          input.manuallyPaid &&
+          !upgradeRequired &&
+          (!currentPlan?.manuallyPaid || currentPlan.planId !== plan.id),
+        ),
+      };
     });
 
-    if (manualPaymentRecipient?.email) {
-      runInBackground(
-        sendTemplateEmail({
-          to: manualPaymentRecipient.email,
-          subject: mailSubject.SUBSCRIPTION_MANUAL_PAYMENT,
-          templateName: templateName.SUBSCRIPTION_MANUAL_PAYMENT,
-          variables: {
-            creator: {
-              fullName: escapeHtml(manualPaymentRecipient.fullName || ''),
+    if (notification?.email) {
+      const creator = { fullName: escapeHtml(notification.fullName || '') };
+      const planName = escapeHtml(plan.name || 'Abonnement');
+      if (notification.planChanged || notification.billingRequestId) {
+        runInBackground(
+          sendTemplateEmail({
+            to: notification.email,
+            cc: 'info@kiibee.com',
+            subject: mailSubject.SUBSCRIPTION_PLAN_CHANGED,
+            templateName: templateName.SUBSCRIPTION_PLAN_CHANGED,
+            variables: {
+              creator,
+              previousPlanName: escapeHtml(notification.previousPlanName),
+              planName,
             },
-            planName: escapeHtml(plan.name || 'Abonnement'),
-          },
-        }),
-      );
+          }).then(async (sent) => {
+            if (notification.billingRequestId)
+              await recordAdminBillingEmail(
+                notification.billingRequestId,
+                sent,
+              );
+          }),
+        );
+      }
+      if (notification.manualPaymentReceived) {
+        runInBackground(
+          sendTemplateEmail({
+            to: notification.email,
+            cc: 'info@kiibee.com',
+            subject: mailSubject.SUBSCRIPTION_MANUAL_PAYMENT,
+            templateName: templateName.SUBSCRIPTION_MANUAL_PAYMENT,
+            variables: { creator, planName },
+          }),
+        );
+      }
     }
-
-    // Admin downgrade expiry emails are temporarily disabled.
 
     return success(
       null,
