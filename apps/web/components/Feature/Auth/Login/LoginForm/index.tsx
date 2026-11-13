@@ -1,9 +1,11 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormProvider } from "react-hook-form";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import FormField from "@/components/UI/FormField";
+import Turnstile, { TurnstileRef } from "@/components/UI/Turnstile";
 import {
   Card,
   FormMessage,
@@ -47,6 +49,9 @@ export default function LoginForm({
     togglePassword,
     handleSubmit,
   } = useLoginForm({ onSuccessOverride: onSuccess });
+
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileRef>(null);
 
   const isModal = !!onSuccess || !!onSwitchMode;
 
@@ -92,10 +97,17 @@ export default function LoginForm({
               </RememberLabel>
             </OptionsRow>
             {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
+            <Turnstile
+              ref={turnstileRef}
+              action="login"
+              resetSignal={formError}
+              onVerify={setTurnstileToken}
+              onExpire={() => setTurnstileToken("")}
+            />
             <GenericButton
               type="submit"
               isLoading={isSubmitting}
-              disabled={!isValid}
+              disabled={!isValid || isSubmitting || !turnstileToken}
             >
               {t("authForm.submit")}
             </GenericButton>

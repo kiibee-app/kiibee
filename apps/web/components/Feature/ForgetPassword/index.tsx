@@ -1,12 +1,13 @@
 "use client";
 
-import { FormEvent, useState, useCallback } from "react";
+import { FormEvent, useState, useCallback, useRef } from "react";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "../Auth/AuthBackButton";
+import Turnstile, { TurnstileRef } from "@/components/UI/Turnstile";
 import {
   Card,
   Description,
@@ -30,6 +31,8 @@ export default function ForgetPasswordForm() {
   const [isSent, setIsSent] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileRef>(null);
   const { mutateAsync: forgetPassword, isPending } = useForgetPassword();
 
   const resetState = useCallback(() => {
@@ -37,6 +40,8 @@ export default function ForgetPasswordForm() {
     setIsSent(false);
     setEmailError("");
     setErrorMessage("");
+    setTurnstileToken("");
+    turnstileRef.current?.reset();
   }, []);
 
   const handleSubmit = useCallback(
@@ -59,6 +64,8 @@ export default function ForgetPasswordForm() {
       } catch (error) {
         const fallback = t("forgotPassword.submitFailed");
         setErrorMessage(error instanceof ApiError ? error.message : fallback);
+        setTurnstileToken("");
+        turnstileRef.current?.reset();
       }
     },
     [email, forgetPassword, t],
@@ -107,10 +114,18 @@ export default function ForgetPasswordForm() {
                 autoComplete={INPUT_TYPE.EMAIL}
               />
 
+              <Turnstile
+                ref={turnstileRef}
+                action="forget_password"
+                resetSignal={isSent || errorMessage}
+                onVerify={setTurnstileToken}
+                onExpire={() => setTurnstileToken("")}
+              />
+
               <GenericButton
                 type="submit"
                 isLoading={isPending}
-                disabled={!isValidEmail(email) || isPending}
+                disabled={!isValidEmail(email) || isPending || !turnstileToken}
               >
                 {t("forgotPassword.submit")}
               </GenericButton>

@@ -1,9 +1,11 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useWatch } from "react-hook-form";
 import FormField from "@/components/UI/FormField";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
+import Turnstile, { TurnstileRef } from "@/components/UI/Turnstile";
 import {
   ADDRESS_FIELDS,
   CONTACT_FIELDS,
@@ -58,6 +60,9 @@ export default function SignUpCreatorSection() {
     updateField,
     handleFormSubmit,
   } = useCreatorRequestForm();
+
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileRef>(null);
 
   const agreedValue = useWatch({
     control: methods.control,
@@ -157,9 +162,17 @@ export default function SignUpCreatorSection() {
             </FormMessage>
           )}
 
+          <Turnstile
+            ref={turnstileRef}
+            action="signup_creator"
+            resetSignal={formMessage}
+            onVerify={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+          />
+
           <SubmitButton
             type="submit"
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid || isSubmitting || !turnstileToken}
             isLoading={isSubmitting}
           >
             {t("authCreator.form.submit")}
