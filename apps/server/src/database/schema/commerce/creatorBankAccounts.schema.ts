@@ -10,12 +10,12 @@ export const creatorBankAccounts = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
 
-    bankName: varchar('bank_name', { length: 255 }).notNull(),
+    bankName: varchar('bank_name', { length: 255 }),
     accountHolderName: varchar('account_holder_name', { length: 255 }),
-    accountNumber: varchar('account_number', { length: 50 }).notNull(),
+    accountNumber: varchar('account_number', { length: 50 }),
     registrationNumber: varchar('registration_number', {
       length: 20,
-    }).notNull(),
+    }),
 
     isDefault: boolean('is_default').notNull().default(false),
     isVerified: boolean('is_verified').notNull().default(false),
