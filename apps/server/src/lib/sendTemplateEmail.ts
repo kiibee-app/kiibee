@@ -22,8 +22,8 @@ export async function sendTemplateEmail({
 }: SendEmailOptions): Promise<boolean> {
   try {
     const templatePath = path.join(
-      process.cwd(),
-      'src',
+      __dirname,
+      '..',
       'templates',
       `${templateName}.html`,
     );
