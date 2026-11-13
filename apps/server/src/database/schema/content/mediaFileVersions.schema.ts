@@ -1,4 +1,4 @@
-import { pgTable, text, integer, index } from 'drizzle-orm/pg-core';
+import { pgTable, text, integer, bigint, index } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { mediaFiles } from './mediaFiles.schema';
 import { users } from '../users/users.schema';
@@ -13,7 +13,7 @@ export const mediaFileVersions = pgTable(
 
     versionNumber: integer('version_number').notNull(),
     fileUrl: text('file_url').notNull(),
-    fileSize: integer('file_size'),
+    fileSize: bigint('file_size', { mode: 'number' }),
 
     changedBy: text('changed_by').references(() => users.id, {
       onDelete: 'set null',

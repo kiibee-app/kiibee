@@ -19,8 +19,8 @@ export class MediaService {
     public readonly getMediaByKey: GetMediaByKeyService,
     private readonly legacyMedia: LegacyMediaProxyService,
   ) {}
-  createVideoUpload() {
-    return this.multipart.createUpload();
+  createVideoUpload(fileSize?: number) {
+    return this.multipart.createUpload(fileSize);
   }
 
   getStreamUrl(videoId: string, options?: { recordView?: boolean }) {
