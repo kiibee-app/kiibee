@@ -162,9 +162,11 @@ function AdmissionRequirements({
     [passwords, typedPasswords],
   );
 
-  const isWebContentType =
+  const isFreeAllowedContentType =
     contentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
-    contentType?.toLowerCase() === "web";
+    contentType?.toLowerCase() === FORMAT_TYPE.PDF.toLowerCase() ||
+    contentType?.toLowerCase() === "web" ||
+    contentType?.toLowerCase() === "pdf";
 
   const visibleOptions = useMemo(() => {
     let options = ADMISSION_REQUIREMENTS;
@@ -175,14 +177,19 @@ function AdmissionRequirements({
       );
     }
 
-    if (!showFreeOption || (contentType && !isWebContentType)) {
+    if (!showFreeOption || (contentType && !isFreeAllowedContentType)) {
       options = options.filter(
         (option) => option.value !== ADMISSION_REQUIREMENT_VALUES.free,
       );
     }
 
     return options;
-  }, [showPaymentOption, showFreeOption, contentType, isWebContentType]);
+  }, [
+    showPaymentOption,
+    showFreeOption,
+    contentType,
+    isFreeAllowedContentType,
+  ]);
 
   const selectedOption = useMemo(
     () => visibleOptions.find((option) => option.value === selected),

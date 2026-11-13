@@ -46,11 +46,18 @@ import {
 
 type TableRow = CollectionRow | CollectionContentRow;
 
-const isWebContent = (contentType?: string) =>
-  contentType?.toLowerCase() === FORMAT_TYPE.WEB;
+const isFreeAllowedContent = (contentType?: string) => {
+  const type = contentType?.toLowerCase();
+  return (
+    type === FORMAT_TYPE.WEB ||
+    type === FORMAT_TYPE.PDF ||
+    type === "web" ||
+    type === "pdf"
+  );
+};
 
-const isFreeNonWebContent = (content: CollectionContentRow) =>
-  !isWebContent(content.contentType) && !checkHasPriceOrCode(content);
+const isFreeNonAllowedContent = (content: CollectionContentRow) =>
+  !isFreeAllowedContent(content.contentType) && !checkHasPriceOrCode(content);
 
 const shouldShowCollectionWarning = (
   collection: CollectionRow,
@@ -67,7 +74,7 @@ const shouldShowContentWarning = (
 ) =>
   !hasGlobalAccessGate &&
   !checkHasPriceOrCode(parentCollection) &&
-  isFreeNonWebContent(content);
+  isFreeNonAllowedContent(content);
 
 export default function CollectionTable(props: CollectionTableProps) {
   const { t } = useTranslation();

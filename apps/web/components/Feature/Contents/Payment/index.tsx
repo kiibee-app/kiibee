@@ -58,24 +58,26 @@ export default function Payment({ contentType }: PaymentProps = {}) {
     useContentForm();
   const { contentTypeId, admissionRequirement } = formState;
   const resolvedContentType = contentTypeId || contentType;
-  const isWebContent =
+  const isFreeAllowed =
     resolvedContentType?.toLowerCase() === FORMAT_TYPE.WEB.toLowerCase() ||
-    resolvedContentType?.toLowerCase() === "web";
+    resolvedContentType?.toLowerCase() === FORMAT_TYPE.PDF.toLowerCase() ||
+    resolvedContentType?.toLowerCase() === "web" ||
+    resolvedContentType?.toLowerCase() === "pdf";
 
   const admissionOptions = getAdmissionOptions(t).filter(
-    (option) => isWebContent || option.value !== ADMISSION_TYPE.FREE,
+    (option) => isFreeAllowed || option.value !== ADMISSION_TYPE.FREE,
   );
 
   const admissionValue =
-    !isWebContent && admissionRequirement === ADMISSION_TYPE.FREE
+    !isFreeAllowed && admissionRequirement === ADMISSION_TYPE.FREE
       ? ""
       : admissionRequirement;
 
   useEffect(() => {
-    if (!isWebContent && admissionRequirement === ADMISSION_TYPE.FREE) {
+    if (!isFreeAllowed && admissionRequirement === ADMISSION_TYPE.FREE) {
       updateField(PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT, "");
     }
-  }, [isWebContent, admissionRequirement, updateField]);
+  }, [isFreeAllowed, admissionRequirement, updateField]);
 
   const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
   const [typedPassword, setTypedPassword] = useState("");

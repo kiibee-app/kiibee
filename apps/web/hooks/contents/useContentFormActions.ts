@@ -517,12 +517,18 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
-    const isWebType =
-      formState.contentTypeId === FORMAT_TYPE.WEB ||
-      editingContent?.contentType === FORMAT_TYPE.WEB;
+    const isFreeAllowedType =
+      formState.contentTypeId?.toLowerCase() === FORMAT_TYPE.WEB ||
+      formState.contentTypeId?.toLowerCase() === FORMAT_TYPE.PDF ||
+      formState.contentTypeId?.toLowerCase() === "web" ||
+      formState.contentTypeId?.toLowerCase() === "pdf" ||
+      editingContent?.contentType?.toLowerCase() === FORMAT_TYPE.WEB ||
+      editingContent?.contentType?.toLowerCase() === FORMAT_TYPE.PDF ||
+      editingContent?.contentType?.toLowerCase() === "web" ||
+      editingContent?.contentType?.toLowerCase() === "pdf";
 
     if (
-      !isWebType &&
+      !isFreeAllowedType &&
       (!formState.admissionRequirement.trim() ||
         formState.admissionRequirement === ADMISSION_TYPE.FREE)
     ) {
