@@ -657,10 +657,8 @@ export const DrawerPanel = styled.aside<{
     top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
     left: ${({ $side }) => ($side === "right" ? "auto" : "0")};
     right: ${({ $side }) => ($side === "right" ? "0" : "auto")};
-    width: min(84vw, 300px);
-    height: calc(
-      100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px)
-    );
+    width: min(84vw, 280px);
+    height: min(75dvh, 550px);
     background: ${({ theme }) => theme.colors.primary.WHITE};
     z-index: ${({ theme }) => theme.zIndex.drawerExpanded};
     transform: ${({ $open, $side }) =>
@@ -707,13 +705,14 @@ export const DrawerContent = styled.div`
   min-height: 0;
   overflow-y: auto;
   padding: 16px;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const DrawerMenu = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
+  padding-bottom: 20px;
 `;
 
 export const DrawerMenuItem = styled.div`
@@ -732,7 +731,8 @@ export const DrawerMenuLink = styled(Link)<{ $isActive?: boolean }>`
   align-items: center;
   justify-content: space-between;
   flex: 1 1 auto;
-  padding: 12px 16px;
+  padding: 10px 12px;
+  min-height: 48px;
   border-radius: 10px;
   background: ${({ $isActive, theme }) =>
     $isActive ? theme.colors.primary.GRAY : "transparent"};
@@ -754,7 +754,8 @@ export const DrawerMenuButton = styled.button<{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 12px;
+  min-height: 48px
   border-radius: 10px;
   background: ${({ $isActive, theme }) =>
     $isActive ? theme.colors.primary.GRAY : "transparent"};
@@ -838,12 +839,12 @@ export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
 `;
 
 export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
-  margin-top: auto;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding-top: ${({ $showDivider }) => ($showDivider ? "16px" : "0")};
+  gap: 10px;
+  padding-top: ${({ $showDivider }) => ($showDivider ? "40px" : "0")};
   padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
