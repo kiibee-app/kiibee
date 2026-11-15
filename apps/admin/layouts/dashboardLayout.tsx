@@ -15,7 +15,7 @@ import {
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const isLoginRoute = pathname === "/login";
   const meta = getPageMeta(pathname);
 
@@ -67,10 +67,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         isOpen={sidebarOpen}
         onClose={closeSidebar}
       />
-      <Main>
+      <Main $sidebarOpen={sidebarOpen}>
         <Header
           title={meta.title}
           description={meta.description}
+          sidebarOpen={sidebarOpen}
           onToggleSidebar={toggleSidebar}
         />
         <Content>{children}</Content>
