@@ -1,4 +1,5 @@
-import { and, desc, eq, gte, isNull, sql } from 'drizzle-orm';
+import { and, desc, eq, gte, inArray, isNull, sql } from 'drizzle-orm';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { orders } from 'src/database/schema/commerce/orders.schema';
 import { ORDER_STATUS } from 'src/utils/constant';
@@ -25,8 +26,20 @@ export const findOrCreateCheckoutOrder = async (
         .limit(1);
 
       if (existing) {
-        if (existing.userId !== newOrder.userId) {
-          throw new Error('Idempotency key belongs to another user');
+        const isSamePayload =
+          existing.userId === newOrder.userId &&
+          existing.itemType === newOrder.itemType &&
+          (existing.mediaFileId ?? null) === (newOrder.mediaFileId ?? null) &&
+          (existing.collectionId ?? null) === (newOrder.collectionId ?? null) &&
+          Number(existing.price) === Number(newOrder.price) &&
+          (existing.currency || '').toUpperCase() ===
+            (newOrder.currency || '').toUpperCase();
+
+        if (!isSamePayload) {
+          throw new HttpException(
+            'Idempotency key was already used for a different request',
+            HttpStatus.CONFLICT,
+          );
         }
 
         return { order: existing, created: false };
@@ -58,10 +71,13 @@ export const findOrCreateCheckoutOrder = async (
       .where(
         and(
           eq(orders.userId, newOrder.userId),
-          eq(orders.status, ORDER_STATUS.PENDING),
+          inArray(orders.status, [
+            ORDER_STATUS.PENDING,
+            ORDER_STATUS.COMPLETED,
+          ]),
           eq(orders.itemType, newOrder.itemType),
           eq(orders.price, newOrder.price),
-          eq(orders.currency, newOrder.currency),
+          eq(orders.currency, newOrder.currency!),
           gte(
             orders.createdAt,
             new Date(Date.now() - PENDING_ORDER_REUSE_WINDOW_MS),

@@ -133,8 +133,8 @@ export async function createCollectionOrderService(
 
     const paymentResult = await createPayment({
       orderId: order.id,
-      amount: Number(resolvedPrice),
-      currency: COLLECTION_CURRENCY,
+      amount: Math.round(Number(order.price) * 100),
+      currency: order.currency ?? COLLECTION_CURRENCY,
       customerId: userId,
       subscriptionId: subscriptionId ?? undefined,
     });
