@@ -9,6 +9,7 @@ export async function hasPaidSubscriptionPeriod(
 ) {
   const [manualPlan] = await database
     .select({
+      customSubscriptionStatus: creatorPlans.customSubscriptionStatus,
       manuallyPaid: creatorPlans.manuallyPaid,
       expiresAt: creatorPlans.manualPaidExpiresAt,
     })
@@ -22,6 +23,7 @@ export async function hasPaidSubscriptionPeriod(
     )
     .orderBy(desc(creatorPlans.createdAt))
     .limit(1);
+  if (manualPlan?.customSubscriptionStatus === 'pending') return false;
   if (
     manualPlan?.manuallyPaid &&
     (!manualPlan.expiresAt || manualPlan.expiresAt > new Date())

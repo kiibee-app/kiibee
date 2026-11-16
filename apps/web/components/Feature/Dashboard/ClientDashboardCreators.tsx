@@ -265,7 +265,7 @@ export default function ClientDashboardCreators() {
     <CreatorChannelLayoutProvider>
       <DashboardLayout
         header={renderHeader()}
-        inert={upgradeRequired}
+        inert={upgradeRequired && view !== CREATORS_LABELS.PROFILE}
         sidebarExpanded={sidebarExpanded}
         sidebar={
           <Sidebar
@@ -301,7 +301,7 @@ export default function ClientDashboardCreators() {
         </GenericModal>
       </DashboardLayout>
       <GenericModal
-        visible={upgradeRequired}
+        visible={upgradeRequired && view !== CREATORS_LABELS.PROFILE}
         title={
           assignedPaidPlan
             ? t("dashboard.subscriptionPaymentRequired.title")
@@ -318,6 +318,12 @@ export default function ClientDashboardCreators() {
             : t("dashboard.subscriptionExpired.upgrade")
         }
         onConfirm={() => {
+          if (assignedPaidPlan) {
+            router.push(getHrefForView(CREATORS_LABELS.PROFILE), {
+              scroll: false,
+            });
+            return;
+          }
           window.sessionStorage.setItem(SCROLL_TO_PLANS_KEY, "1");
           router.push(localizeHref(PATHS.PRICING), { scroll: false });
         }}

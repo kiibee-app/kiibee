@@ -1,7 +1,20 @@
+import { updatePendingCheckoutAmount } from './adminBillingRequest.service';
+import { HttpException } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import {
+  subscriptionTerms,
+  hasCustomSubscriptionValues,
+  addBillingMonths,
+  customOverridesEnabled,
+} from './subscriptionTerms';
 import axios from 'axios';
-import { and, eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { creatorPlans, plans } from 'src/database/schema';
+import {
+  creatorPlans,
+  plans,
+  subscriptionCheckouts,
+} from 'src/database/schema';
 import {
   MAX_ATTEMPTS,
   NORMAL_TEXT,
@@ -26,18 +39,14 @@ const epay = axios.create({
   },
 });
 
-const createSafeReference = (prefix: string, id: string) => {
-  const cleanId = id.replace(/[^a-zA-Z0-9-]/g, '').slice(0, 10);
-  const base = `${prefix}-${cleanId}-${Date.now().toString(36)}`;
-  return base.slice(0, 36);
-};
-
 export const createSubscriptionService = async ({
   userId,
   planId,
+  billingMonths,
 }: {
   userId: string;
   planId: string;
+  billingMonths?: number;
 }) => {
   try {
     const [plan] = await db
@@ -111,18 +120,44 @@ export const createSubscriptionService = async ({
       };
     }
 
-    const billingPlanId =
-      plan.price === 399
-        ? process.env.EPAY_PLAN_PRO
-        : process.env.EPAY_PLAN_STARTUP;
-
-    if (!billingPlanId) throw new Error('Billing plan not configured');
-
-    const nextChargeAt = new Date();
-    nextChargeAt.setMonth(nextChargeAt.getMonth() + 1);
-
-    const reference = createSafeReference('ref', planId);
-    const subscriptionReference = planId;
+    const [assigned] = await db
+      .select()
+      .from(creatorPlans)
+      .where(
+        and(
+          eq(creatorPlans.creatorId, userId),
+          eq(creatorPlans.planId, plan.id),
+          eq(creatorPlans.status, STATUS.ACTIVE),
+        ),
+      )
+      .orderBy(desc(creatorPlans.createdAt))
+      .limit(1);
+    if (
+      assigned &&
+      assigned.customSubscriptionRevision > 0 &&
+      ['draft', 'pending'].includes(assigned.customSubscriptionStatus) &&
+      !hasCustomSubscriptionValues(assigned)
+    )
+      throw new HttpException(
+        'No custom subscription offer is configured',
+        400,
+      );
+    const enabled =
+      customOverridesEnabled(assigned?.customSubscriptionStatus) ||
+      (assigned?.customSubscriptionStatus === 'draft' &&
+        assigned.customSubscriptionRevision > 0);
+    const terms = subscriptionTerms(
+      plan.price,
+      enabled ? (assigned ?? {}) : {},
+    );
+    if (billingMonths !== undefined && billingMonths !== terms.months)
+      throw new HttpException(
+        'The billing period is set by the administrator',
+        400,
+      );
+    const nextChargeAt = addBillingMonths(new Date(), terms.months);
+    const reference = randomUUID();
+    const subscriptionReference = reference;
 
     const notificationUrl = getSubscriptionWebhookUrl();
 
@@ -140,14 +175,49 @@ export const createSubscriptionService = async ({
 
     const currency = (plan.currency && currencyMap[plan.currency]) || 'DKK';
 
+    let billingPlanId =
+      plan.name.trim().toLowerCase() === 'pro'
+        ? process.env.EPAY_PLAN_PRO
+        : process.env.EPAY_PLAN_STARTUP;
+    if (terms.amount !== plan.price || terms.months !== 1) {
+      const { data } = await epay.post(
+        '/public/api/v1/subscriptions/billing/plans',
+        {
+          name: `${plan.name} - ${terms.months} months - ${reference}`,
+          amount: terms.minorAmount,
+          currency,
+          maxAttempts: MAX_ATTEMPTS,
+          instantCapture: 'OFF',
+          interval: { period: 'MONTH', frequency: terms.months },
+        },
+        { headers: { 'Idempotency-Key': `billing-plan-${reference}` } },
+      );
+      billingPlanId = data?.billingPlan?.id;
+    }
+    if (!billingPlanId) throw new Error('Billing plan not configured');
+    await db.insert(subscriptionCheckouts).values({
+      id: reference,
+      creatorId: userId,
+      planId: plan.id,
+      billingMonths: terms.months,
+      customRevision:
+        assigned &&
+        ['draft', 'pending'].includes(assigned.customSubscriptionStatus) &&
+        assigned.customSubscriptionRevision > 0
+          ? assigned.customSubscriptionRevision
+          : null,
+      amountMinor: terms.minorAmount,
+      currency,
+    });
+
     const payload = {
       pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID,
-      reference: planId,
-      amount: plan.price * 100,
+      reference,
+      amount: terms.minorAmount,
       currency,
 
       instantCapture: 'OFF',
-      textOnStatement: `order-${reference}`,
+      textOnStatement: `Kiibee-${reference.replace(/-/g, '').slice(0, 24)}`,
 
       customerId: userId,
       customer: {
@@ -181,25 +251,39 @@ export const createSubscriptionService = async ({
       retryUrl: stripUrlPort(`${process.env.FRONTEND_URL}/subscription/retry`),
 
       subscription: {
-        amount: plan.price * 100,
+        amount: terms.minorAmount,
         type: 'SCHEDULED',
         reference: subscriptionReference,
 
         billingAgreement: {
           billingPlanId,
-          reference: planId,
+          reference,
           nextChargeAt: nextChargeAt.toISOString().split('T')[0],
         },
       },
     };
-    const response = await epay.post('/public/api/v1/cit', payload);
+    const response = await epay.post('/public/api/v1/cit', payload, {
+      headers: { 'Idempotency-Key': reference },
+    });
 
+    await updatePendingCheckoutAmount(
+      userId,
+      plan.id,
+      terms.amount,
+      currency,
+      assigned &&
+        ['draft', 'pending'].includes(assigned.customSubscriptionStatus) &&
+        assigned.customSubscriptionRevision > 0
+        ? assigned.customSubscriptionRevision
+        : null,
+    );
     return {
       success: true,
       type: PAYMENT_TYPES.PAID,
       data: response.data,
     };
   } catch (error: any) {
+    if (error instanceof HttpException) throw error;
     console.error(error?.response?.data || error.message);
     throw new Error('Failed to create subscription');
   }

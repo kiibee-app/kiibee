@@ -19,6 +19,12 @@ jest.mock('src/database/db', () => ({
 }));
 jest.mock('src/modules/payment/services/capturePayment.service');
 jest.mock('src/modules/subscription/services/adminBillingRequest.service');
+jest.mock(
+  'src/modules/subscription/services/subscriptionCheckout.service',
+  () => ({
+    resolveSubscriptionCheckout: jest.fn().mockResolvedValue(undefined),
+  }),
+);
 jest.mock('src/modules/subscription/services/deleteSubscription.service');
 jest.mock('src/lib/sendTemplateEmail', () => ({
   sendTemplateEmail: jest.fn().mockResolvedValue(true),
@@ -63,7 +69,11 @@ describe('subscription payment billing status', () => {
         .mockResolvedValue({ id: 'card' } as never);
       const rows = (value: unknown[]) => ({
         from: () => ({
-          where: () => ({ limit: async () => value, for: async () => value }),
+          where: () => ({
+            limit: async () => value,
+            for: async () => value,
+            orderBy: () => ({ limit: async () => value }),
+          }),
         }),
       });
       jest
@@ -80,7 +90,8 @@ describe('subscription payment billing status', () => {
         select: jest
           .fn()
           .mockReturnValueOnce(rows([{ id: 'creator' }]))
-          .mockReturnValueOnce(rows([{ id: 'cp' }])),
+          .mockReturnValueOnce(rows([{ id: 'cp' }]))
+          .mockReturnValue(rows([{ id: 'cp' }])),
         query: {
           subscriptionPaymentsHistory: { findFirst: async () => existing },
           subscriptions: { findFirst: async () => ({ id: 'sub' }) },

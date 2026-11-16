@@ -1,5 +1,7 @@
+import { customOverridesEnabled } from 'src/modules/subscription/services/subscriptionTerms';
+import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPlans,
@@ -8,7 +10,7 @@ import {
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
 import { getPayoutWebhookUrl } from 'src/utils/webhookUrl';
 
@@ -39,7 +41,13 @@ export const createPayoutService = async (
       db
         .select()
         .from(creatorPlans)
-        .where(eq(creatorPlans.creatorId, creatorId))
+        .where(
+          and(
+            eq(creatorPlans.creatorId, creatorId),
+            eq(creatorPlans.status, 'active'),
+          ),
+        )
+        .orderBy(desc(creatorPlans.createdAt))
         .limit(1),
       db
         .select()
@@ -84,16 +92,28 @@ export const createPayoutService = async (
       return fail('Insufficient wallet balance', HttpStatus.BAD_REQUEST);
     }
 
-    const processingFee = Number((amount * 0.05).toFixed(2));
-
-    const platformFeePercentage =
-      PLATFORM_FEE_PERCENTAGES[Number(plan.price)] ?? 0.02;
-
-    const platformFee = Number((amount * platformFeePercentage).toFixed(2));
-
-    const payoutAmount = Number(
-      (amount - processingFee - platformFee).toFixed(2),
-    );
+    const {
+      processingFee,
+      platformFee,
+      payableAmount: payoutAmount,
+    } = calculatePayoutFees({
+      amount,
+      basePlanPrice: Number(plan.price),
+      transactionFeePct: customOverridesEnabled(
+        creatorPlan.customSubscriptionStatus,
+        false,
+      )
+        ? creatorPlan.customTransactionFeePct
+        : null,
+      fixedPlatformFee: customOverridesEnabled(
+        creatorPlan.customSubscriptionStatus,
+        false,
+      )
+        ? creatorPlan.customKiibeeCutDkk
+        : null,
+      currency: wallet.currency,
+      fallbackPlatformPercentage: 0.02,
+    });
 
     if (payoutAmount < 1) {
       return fail('Minimum net payout amount is 1 DKK', HttpStatus.BAD_REQUEST);

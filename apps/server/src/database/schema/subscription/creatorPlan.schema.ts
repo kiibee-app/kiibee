@@ -5,6 +5,7 @@ import {
   integer,
   boolean,
   timestamp,
+  jsonb,
 } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
@@ -24,6 +25,14 @@ export const creatorPlans = pgTable('creator_plans', {
   manualPaidExpiresAt: timestamp('manual_paid_expires_at', {
     withTimezone: true,
   }),
+
+  customSubscriptionStatus: text('custom_subscription_status')
+    .notNull()
+    .default('draft'),
+  customSubscriptionRevision: integer('custom_subscription_revision')
+    .notNull()
+    .default(0),
+  customPreviousSettings: jsonb('custom_previous_settings'),
 
   // Custom subscription override fields
   customPrice: integer('custom_price'),

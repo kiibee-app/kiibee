@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray } from 'drizzle-orm';
+import { and, desc, eq, inArray, isNull } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { adminBillingRequests } from 'src/database/schema';
 
@@ -9,6 +9,7 @@ export async function settleAdminBillingRequest(
     planId: string;
     transactionId: string;
     status: 'completed' | 'failed';
+    customRevision?: number | null;
     amount: string;
     currency: string;
   },
@@ -21,6 +22,9 @@ export async function settleAdminBillingRequest(
         eq(adminBillingRequests.creatorId, input.creatorId),
         eq(adminBillingRequests.planId, input.planId),
         inArray(adminBillingRequests.status, ['pending', 'failed']),
+        input.customRevision != null
+          ? eq(adminBillingRequests.customRevision, input.customRevision)
+          : isNull(adminBillingRequests.customRevision),
       ),
     )
     .orderBy(desc(adminBillingRequests.createdAt))
@@ -52,4 +56,26 @@ export async function recordAdminBillingEmail(id: string, sent: boolean) {
       updatedAt: new Date(),
     })
     .where(eq(adminBillingRequests.id, id));
+}
+
+export async function updatePendingCheckoutAmount(
+  creatorId: string,
+  planId: string,
+  amount: number,
+  currency: string,
+  customRevision?: number | null,
+) {
+  await db
+    .update(adminBillingRequests)
+    .set({ amount: String(amount), currency, updatedAt: new Date() })
+    .where(
+      and(
+        eq(adminBillingRequests.creatorId, creatorId),
+        eq(adminBillingRequests.planId, planId),
+        eq(adminBillingRequests.status, 'pending'),
+        customRevision != null
+          ? eq(adminBillingRequests.customRevision, customRevision)
+          : isNull(adminBillingRequests.customRevision),
+      ),
+    );
 }

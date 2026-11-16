@@ -1,4 +1,15 @@
 {
+  "customSubscription": {
+    "pending": "Awaiting payment",
+    "title": "Custom plan",
+    "fixedFee": "Kiibee cut: {{amount}} DKK per payout",
+    "processingFee": "Processing fee: {{percent}}%",
+    "payAndActivate": "Pay & Activate",
+    "activated": "Activated",
+    "setupPayment": "Set up payment",
+    "setupNote": "Your existing subscription changes only after you complete this payment setup.",
+    "checkoutError": "Unable to open payment setup. Please try again."
+  },
   "epubViewer": {
     "index": "Reading the book index…",
     "download": "Loading the first chapter…",
@@ -874,6 +885,9 @@
     "cta": "Get started for free"
   },
   "pricingPlans": {
+    "billingPeriod": "Billing period",
+    "billingMonths_one": "{{count}} month",
+    "billingMonths_other": "{{count}} months",
     "title": "Pricing plans overview",
     "cta": "Get started",
     "active": "Active",
@@ -1835,6 +1849,7 @@
         "loading": "Calculating payout…",
         "earnings": "Earnings\n(Based on {{purchases}} purchases and {{rentals}} rentals)",
         "processingFee": "Transaction fee ({{percent}})",
+        "fixedPlatformFee": "Kiibee cut (fixed per payout)",
         "platformFee": "Kiibee payment ({{percent}})",
         "total": "Total payout amount",
         "transferNote": "Transferring your balance may take up to 5 business days.",

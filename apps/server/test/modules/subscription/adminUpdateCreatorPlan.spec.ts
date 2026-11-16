@@ -1,6 +1,6 @@
 import { db } from 'src/database/db';
 import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
-import { adminBillingRequests, users } from 'src/database/schema';
+import { adminBillingRequests, creatorPlans, users } from 'src/database/schema';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { adminUpdateCreatorPlan } from 'src/modules/subscription/services/adminUpdateCreatorPlan.service';
 
@@ -53,7 +53,52 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     },
   );
 
+  it('rejects multiple custom prices for one creator', async () => {
+    await expect(
+      adminUpdateCreatorPlan(creatorId, {
+        ...input,
+        customPrice3: 300,
+        customPrice6: 600,
+      }),
+    ).rejects.toMatchObject({ status: 400 });
+    expect(db.transaction).not.toHaveBeenCalled();
+  });
+  it('rejects multiple payment periods for one custom offer', async () => {
+    await expect(
+      adminUpdateCreatorPlan(creatorId, { ...input, paymentPeriod: '3,6' }),
+    ).rejects.toMatchObject({ status: 400 });
+    expect(db.transaction).not.toHaveBeenCalled();
+  });
   it.each([
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      alreadyPaid: true,
+      customAction: 'save' as const,
+      customState: 'paid',
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      alreadyPaid: true,
+      customAction: 'activate' as const,
+      customState: 'paid',
+      paymentRequired: true,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      previouslyRequired: true,
+      customAction: 'cancel' as const,
+      customState: 'pending',
+      previousSettings: {
+        planId: 'startup',
+        customSubscriptionStatus: 'paid',
+        customPrice: 70,
+      },
+      paymentRequired: false,
+    },
     {
       previousPlanId: 'startup',
       previousPrice: 99,
@@ -165,6 +210,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       alreadyPaid = false,
       previouslyRequired = false,
       paymentRequired,
+      customAction,
+      customState,
+      previousSettings,
     }) => {
       const targetPlanId =
         targetId ?? (targetPrice === 0 ? 'try' : input.planId);
@@ -215,6 +263,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
                       : [
                           {
                             id: 'creator-plan',
+                            customSubscriptionStatus: customState,
+                            customSubscriptionRevision: 2,
+                            customPreviousSettings: previousSettings,
                             manuallyPaid: previousManual,
                             planId: previousPlanId,
                             price: previousPrice,
@@ -229,6 +280,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const setPaymentRequired = jest.fn().mockReturnValue({
         where: jest.fn().mockResolvedValue(undefined),
       });
+      const setPlan = jest
+        .fn()
+        .mockReturnValue({ where: async () => undefined });
       const inserted = jest.fn().mockResolvedValue(undefined);
       const tx = {
         select,
@@ -236,7 +290,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           set:
             table === users
               ? setPaymentRequired
-              : () => ({ where: async () => undefined }),
+              : table === creatorPlans
+                ? setPlan
+                : () => ({ where: async () => undefined }),
         }),
         insert: (table: unknown) => ({
           values: (value: unknown) => inserted(table, value),
@@ -250,6 +306,8 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
         adminUpdateCreatorPlan(creatorId, {
           ...input,
           planId: targetPlanId,
+          customSubscriptionAction: customAction,
+          ...(customAction === 'activate' ? { customPrice: 99 } : {}),
           manuallyPaid,
         }),
       ).resolves.toMatchObject({
@@ -264,7 +322,30 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       }
       const planChanged = previousPlanId !== targetPlanId;
       const paymentRequestCreated =
-        paymentRequired && (planChanged || !previouslyRequired);
+        paymentRequired &&
+        (customAction === 'activate' || planChanged || !previouslyRequired);
+      if (customAction === 'save')
+        expect(setPlan).toHaveBeenCalledWith(
+          expect.objectContaining({
+            customSubscriptionStatus: 'draft',
+            customSubscriptionRevision: 3,
+          }),
+        );
+      if (customAction === 'activate')
+        expect(setPlan).toHaveBeenCalledWith(
+          expect.objectContaining({
+            customSubscriptionStatus: 'pending',
+            customSubscriptionRevision: 3,
+          }),
+        );
+      if (customAction === 'cancel')
+        expect(setPlan).toHaveBeenCalledWith(
+          expect.objectContaining({
+            customSubscriptionStatus: 'paid',
+            customPrice: 70,
+            customPreviousSettings: null,
+          }),
+        );
       if (paymentRequestCreated) {
         expect(inserted).toHaveBeenCalledWith(
           adminBillingRequests,

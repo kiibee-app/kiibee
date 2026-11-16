@@ -60,4 +60,145 @@ describe('creator dashboard payment prompt', () => {
       data: [{ isPaidPlan: true, subscriptionUpgradeRequired: true }],
     });
   });
+  it.each([
+    { custom: {}, expected: false },
+    { custom: { customPrice: 149, customMaxFiles: 25 }, expected: true },
+    {
+      custom: { customKiibeeCutDkk: 0, customTransactionFeePct: 0 },
+      expected: true,
+    },
+  ])(
+    'exposes a creator-only custom card when overrides exist: $expected',
+    async ({ custom, expected }) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([{ planId: 'startup', manuallyPaid: false, ...custom }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              id: 'startup',
+              name: 'Start-up',
+              price: 99,
+              maxFiles: 10,
+              isActive: true,
+            },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [
+          {
+            basePrice: 99,
+            baseMaxFiles: 10,
+            hasCustomOverrides: expected,
+            price: 'customPrice' in custom ? 149 : 99,
+            maxFiles: 'customMaxFiles' in custom ? 25 : 10,
+          },
+        ],
+      });
+    },
+  );
+  it.each([
+    { state: undefined, revision: 0, visible: false },
+    { state: 'draft', revision: 0, visible: false },
+    { state: 'draft', revision: 1, visible: true },
+    { state: 'paid', revision: 0, visible: false },
+    { state: 'cancelled', revision: 1, visible: false },
+    { state: 'pending', revision: 1, visible: true },
+    { state: 'paid', revision: 1, visible: true },
+  ])(
+    'shows custom card only for an activated offer ($state/$revision)',
+    async ({ state, revision, visible }) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: 'startup',
+              manuallyPaid: false,
+              paymentPeriod: '1',
+              customPrice: 99,
+              customSubscriptionStatus: state,
+              customSubscriptionRevision: revision,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            { id: 'startup', price: 99, maxFiles: 10, isActive: true },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [{ hasCustomPlanOffer: visible }],
+      });
+    },
+  );
+  it.each(['draft', 'pending', 'paid'])(
+    'shows the sole six-month offer for %s',
+    async (state) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: 'startup',
+              manuallyPaid: false,
+              customPrice6: 600,
+              paymentPeriod: '1',
+              customSubscriptionStatus: state,
+              customSubscriptionRevision: 1,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            { id: 'startup', price: 99, maxFiles: 10, isActive: true },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [{ billingOptions: [{ months: 6, amount: 600 }] }],
+      });
+    },
+  );
+  it.each(['draft', 'pending', 'paid'])(
+    'hides an empty saved offer with a stale six-month interval (%s)',
+    async (state) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: 'startup',
+              manuallyPaid: false,
+              paymentPeriod: '6',
+              customSubscriptionStatus: state,
+              customSubscriptionRevision: 3,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            { id: 'startup', price: 99, maxFiles: 10, isActive: true },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [
+          { hasCustomPlanOffer: false, subscriptionUpgradeRequired: false },
+        ],
+      });
+    },
+  );
 });

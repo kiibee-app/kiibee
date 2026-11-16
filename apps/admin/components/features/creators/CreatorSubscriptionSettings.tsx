@@ -100,6 +100,16 @@ export function CreatorSubscriptionSettings({
   );
   const serverData = subscriptionQuery.data;
   const overrides = serverData?.overrides;
+  const configuredTerms = ([3, 6, 12] as const).filter(
+    (months) => overrides?.[`customPrice${months}`] != null,
+  );
+  const storedPeriod = overrides?.paymentPeriod?.split(/[,;\s]+/)[0];
+  const displayedPeriod =
+    overrides?.customPrice == null &&
+    configuredTerms.length === 1 &&
+    (!storedPeriod || storedPeriod === "1")
+      ? String(configuredTerms[0])
+      : (storedPeriod ?? "1");
   const baseline = savedValues ?? {
     planId: serverData?.plan.id ?? "",
     manuallyPaid: overrides?.manuallyPaid ?? false,
@@ -121,7 +131,7 @@ export function CreatorSubscriptionSettings({
     customKiibeeCutDkk: overrides?.customKiibeeCutDkk?.toString() ?? "",
     customTransactionFeePct:
       overrides?.customTransactionFeePct?.toString() ?? "",
-    paymentPeriod: overrides?.paymentPeriod ?? "",
+    paymentPeriod: displayedPeriod,
   };
   const values = draft ?? baseline;
 
@@ -164,20 +174,83 @@ export function CreatorSubscriptionSettings({
     const field = key as keyof typeof payload;
     return payload[field] !== savedPayload[field];
   });
-  const canSave = Boolean(payload.planId) && hasUnsavedChanges && !isBusy;
+  const invalidNumber = Object.entries(payload).find(
+    ([key, value]) =>
+      key.startsWith("custom") &&
+      value !== null &&
+      (typeof value !== "number" ||
+        !Number.isSafeInteger(value) ||
+        value < 0 ||
+        (key.startsWith("customPrice") && value === 0) ||
+        (key === "customTransactionFeePct" && value > 100)),
+  );
+  const aliases: Record<string, number> = {
+    monthly: 1,
+    quarterly: 3,
+    semiannual: 6,
+    yearly: 12,
+    annually: 12,
+  };
+  const invalidPeriod = Boolean(
+    payload.paymentPeriod &&
+    payload.paymentPeriod
+      .toLowerCase()
+      .split(/[,;\s]+/)
+      .filter(Boolean)
+      .some((part) => ![1, 3, 6, 12].includes(aliases[part] ?? Number(part))),
+  );
+  const validationError = invalidNumber
+    ? "Use non-negative whole numbers. Prices must be greater than zero and the transaction fee cannot exceed 100%."
+    : invalidPeriod
+      ? "Payment periods must be 1, 3, 6 or 12 months, separated by commas."
+      : null;
+  const canSave =
+    Boolean(payload.planId) && hasUnsavedChanges && !isBusy && !validationError;
 
-  const handleSave = async () => {
-    if (!canSave) return;
+  const customStatus = overrides?.customSubscriptionStatus ?? "draft";
+  const canActivate =
+    !isBusy &&
+    !validationError &&
+    Boolean(
+      allPlansQuery.data?.some(
+        (item) => item.id === values.planId && item.price > 0,
+      ),
+    );
+  const handleSave = async (action?: "activate" | "cancel" | "save") => {
+    if (
+      action === "activate"
+        ? !canActivate
+        : action === "cancel"
+          ? isBusy || customStatus !== "pending"
+          : action === "save"
+            ? !canActivate
+            : !canSave
+    )
+      return;
 
     setStatusMessage(null);
     setStatusTone(undefined);
 
     try {
-      await updateMutation.mutateAsync(payload);
-      setSavedValues(values);
+      await updateMutation.mutateAsync({
+        ...(action === "cancel" ? savedPayload : payload),
+        ...(action ? { customSubscriptionAction: action } : {}),
+      });
+      if (action) {
+        setValues(null);
+        setSavedValues(null);
+      } else setSavedValues(values);
 
       setStatusTone("success");
-      setStatusMessage("Subscription settings updated successfully.");
+      setStatusMessage(
+        action === "activate"
+          ? "Custom subscription activated. The creator must complete payment to continue."
+          : action === "cancel"
+            ? "Custom offer cancelled. Existing paid ePay billing is unchanged."
+            : action === "save"
+              ? "Custom plan saved. The creator can view the card; payment is requested only after activation."
+              : "Subscription settings updated successfully.",
+      );
     } catch (error) {
       setStatusTone("error");
       setStatusMessage(
@@ -189,7 +262,11 @@ export function CreatorSubscriptionSettings({
   };
 
   const actionButtons = (
-    <PrimaryButton type="button" onClick={handleSave} disabled={!canSave}>
+    <PrimaryButton
+      type="button"
+      onClick={() => handleSave()}
+      disabled={!canSave}
+    >
       <Save size={15} />
       {isBusy ? "Saving..." : "Save Settings"}
     </PrimaryButton>
@@ -217,6 +294,11 @@ export function CreatorSubscriptionSettings({
         <AppearanceActions>{actionButtons}</AppearanceActions>
       </AppearanceHero>
 
+      {validationError && (
+        <StatusMessage $tone="error" role="alert">
+          {validationError}
+        </StatusMessage>
+      )}
       {statusMessage ? (
         <StatusMessage $tone={statusTone}>{statusMessage}</StatusMessage>
       ) : null}
@@ -323,9 +405,54 @@ export function CreatorSubscriptionSettings({
           <PanelIndex>02</PanelIndex>
           <PanelHeaderCopy>
             <PanelTitle>Custom Overrides</PanelTitle>
+            <FieldHint>
+              Billing changes apply when the creator completes a new payment
+              setup. Existing ePay renewals are unchanged until then.
+            </FieldHint>
           </PanelHeaderCopy>
         </PanelHeader>
         <PanelBody>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: 12,
+              marginBottom: 24,
+            }}
+          >
+            <div style={{ flex: "1 1 260px" }}>
+              <FieldLabel>
+                Custom subscription:{" "}
+                {customStatus === "pending"
+                  ? "Awaiting payment"
+                  : customStatus === "paid"
+                    ? "Paid / active"
+                    : customStatus === "cancelled"
+                      ? "Cancelled"
+                      : "Draft"}
+              </FieldLabel>
+              <FieldHint>
+                Activate to request payment from this creator. Cancel only
+                withdraws a pending offer; it does not stop an existing ePay
+                agreement.
+              </FieldHint>
+            </div>
+            <PrimaryButton
+              type="button"
+              disabled={!canActivate}
+              onClick={() => handleSave("activate")}
+            >
+              Activate custom subscription
+            </PrimaryButton>
+            <PrimaryButton
+              type="button"
+              disabled={isBusy || customStatus !== "pending"}
+              onClick={() => handleSave("cancel")}
+            >
+              Cancel custom offer
+            </PrimaryButton>
+          </div>
           <FieldGrid>
             <Field>
               <FieldLabel>Price (Default)</FieldLabel>
@@ -334,40 +461,78 @@ export function CreatorSubscriptionSettings({
                 type="number"
                 value={values.customPrice}
                 onChange={(e) =>
-                  setValues({ ...values, customPrice: e.target.value })
+                  setValues({
+                    ...values,
+                    customPrice: e.target.value,
+                    ...(e.target.value ? { paymentPeriod: "1" } : {}),
+                    ...(e.target.value
+                      ? {
+                          customPrice3: "",
+                          customPrice6: "",
+                          customPrice12: "",
+                        }
+                      : {}),
+                  })
                 }
               />
             </Field>
             <Field>
               <FieldLabel>Price (3 Months)</FieldLabel>
-              <FieldHint>Override the 3-month price</FieldHint>
+              <FieldHint>
+                Total price charged every 3 months (not a monthly price)
+              </FieldHint>
               <TextInput
                 type="number"
                 value={values.customPrice3}
                 onChange={(e) =>
-                  setValues({ ...values, customPrice3: e.target.value })
+                  setValues({
+                    ...values,
+                    customPrice3: e.target.value,
+                    ...(e.target.value
+                      ? { customPrice: "", customPrice6: "", customPrice12: "" }
+                      : {}),
+                    ...(e.target.value ? { paymentPeriod: "3" } : {}),
+                  })
                 }
               />
             </Field>
             <Field>
               <FieldLabel>Price (6 Months)</FieldLabel>
-              <FieldHint>Override the 6-month price</FieldHint>
+              <FieldHint>
+                Total price charged every 6 months (not a monthly price)
+              </FieldHint>
               <TextInput
                 type="number"
                 value={values.customPrice6}
                 onChange={(e) =>
-                  setValues({ ...values, customPrice6: e.target.value })
+                  setValues({
+                    ...values,
+                    customPrice6: e.target.value,
+                    ...(e.target.value
+                      ? { customPrice: "", customPrice3: "", customPrice12: "" }
+                      : {}),
+                    ...(e.target.value ? { paymentPeriod: "6" } : {}),
+                  })
                 }
               />
             </Field>
             <Field>
               <FieldLabel>Price (12 Months)</FieldLabel>
-              <FieldHint>Override the 12-month price</FieldHint>
+              <FieldHint>
+                Total price charged every 12 months (not a monthly price)
+              </FieldHint>
               <TextInput
                 type="number"
                 value={values.customPrice12}
                 onChange={(e) =>
-                  setValues({ ...values, customPrice12: e.target.value })
+                  setValues({
+                    ...values,
+                    customPrice12: e.target.value,
+                    ...(e.target.value
+                      ? { customPrice: "", customPrice3: "", customPrice6: "" }
+                      : {}),
+                    ...(e.target.value ? { paymentPeriod: "12" } : {}),
+                  })
                 }
               />
             </Field>
@@ -384,7 +549,10 @@ export function CreatorSubscriptionSettings({
             </Field>
             <Field>
               <FieldLabel>Kiibee Cut (In DKK)</FieldLabel>
-              <FieldHint>Fixed cut taken per transaction</FieldHint>
+              <FieldHint>
+                Fixed fee per payout in DKK; replaces the standard platform
+                percentage
+              </FieldHint>
               <TextInput
                 type="number"
                 value={values.customKiibeeCutDkk}
@@ -395,7 +563,9 @@ export function CreatorSubscriptionSettings({
             </Field>
             <Field>
               <FieldLabel>Transaction Fee (%)</FieldLabel>
-              <FieldHint>Percentage cut taken per transaction</FieldHint>
+              <FieldHint>
+                Processing fee percentage deducted per payout
+              </FieldHint>
               <TextInput
                 type="number"
                 value={values.customTransactionFeePct}
@@ -409,15 +579,37 @@ export function CreatorSubscriptionSettings({
             </Field>
             <Field>
               <FieldLabel>Payment Period</FieldLabel>
-              <FieldHint>Override allowed payment frequencies</FieldHint>
-              <TextInput
-                value={values.paymentPeriod}
+              <FieldHint>
+                Choose the billing interval. The creator cannot change it.
+              </FieldHint>
+              <SelectInput
+                value={values.paymentPeriod || "1"}
                 onChange={(e) =>
                   setValues({ ...values, paymentPeriod: e.target.value })
                 }
-              />
+              >
+                <option value="1">1 month</option>
+                <option value="3">3 months</option>
+                <option value="6">6 months</option>
+                <option value="12">12 months</option>
+              </SelectInput>
             </Field>
           </FieldGrid>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: 24,
+            }}
+          >
+            <PrimaryButton
+              type="button"
+              disabled={!canActivate}
+              onClick={() => handleSave("save")}
+            >
+              <Save size={15} /> Save custom plan
+            </PrimaryButton>
+          </div>
         </PanelBody>
       </AppearancePanel>
 

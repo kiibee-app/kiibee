@@ -1,6 +1,8 @@
+import { customOverridesEnabled } from 'src/modules/subscription/services/subscriptionTerms';
+import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { and, eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -10,7 +12,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { STATUS } from 'src/utils/constant';
-import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const payoutRequestCalculationService = async (
@@ -57,7 +59,13 @@ export const payoutRequestCalculationService = async (
     const [creatorPlan] = await db
       .select()
       .from(creatorPlans)
-      .where(eq(creatorPlans.creatorId, creatorId))
+      .where(
+        and(
+          eq(creatorPlans.creatorId, creatorId),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
+      .orderBy(desc(creatorPlans.createdAt))
       .limit(1);
 
     if (!creatorPlan) {
@@ -76,18 +84,30 @@ export const payoutRequestCalculationService = async (
 
     const planPrice = Number(plan.price ?? 0);
 
-    const platformFeePercentage =
-      PLATFORM_FEE_PERCENTAGES[planPrice] ?? PLATFORM_FEE_PERCENTAGES[0];
-
-    const processingFeePercentage = 0.05;
-
-    const platformFee = Number((amount * platformFeePercentage).toFixed(2));
-
-    const processingFee = Number((amount * processingFeePercentage).toFixed(2));
-
-    const payableAmount = Number(
-      (amount - platformFee - processingFee).toFixed(2),
-    );
+    const {
+      platformFeePercentage,
+      processingFeePercentage,
+      platformFee,
+      processingFee,
+      payableAmount,
+      fixedPlatformFee,
+    } = calculatePayoutFees({
+      amount: amount,
+      basePlanPrice: planPrice,
+      transactionFeePct: customOverridesEnabled(
+        creatorPlan.customSubscriptionStatus,
+        false,
+      )
+        ? creatorPlan.customTransactionFeePct
+        : null,
+      fixedPlatformFee: customOverridesEnabled(
+        creatorPlan.customSubscriptionStatus,
+        false,
+      )
+        ? creatorPlan.customKiibeeCutDkk
+        : null,
+      currency: 'DKK',
+    });
 
     const payoutId = randomUUID();
     const payoutRequestId = randomUUID();
@@ -142,6 +162,7 @@ export const payoutRequestCalculationService = async (
         payoutRequestId,
         amount,
         planPrice,
+        fixedPlatformFee,
         platformFeePercentage,
         processingFeePercentage,
         platformFee,
