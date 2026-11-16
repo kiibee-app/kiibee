@@ -235,6 +235,46 @@ export const RejectContentButton = styled.button`
   }
 `;
 
+export const FreeContentButton = styled.button<{ $isFree?: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
+  background: ${({ theme, $isFree }) =>
+    $isFree
+      ? `color-mix(
+          in srgb,
+          ${theme.colors.primary.GREEN} 12%,
+          ${theme.colors.neutral.WHITE}
+        )`
+      : theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    opacity ${({ theme }) => theme.animations.fast};
+
+  &:hover:not(:disabled) {
+    background: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.GREEN} 10%,
+      ${({ theme }) => theme.colors.neutral.WHITE}
+    );
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+`;
+
 export const ModalDescription = styled.p`
   margin: 0 0 18px;
   padding: 12px 14px;

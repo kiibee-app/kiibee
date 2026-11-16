@@ -2,11 +2,12 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Play, Ticket, X } from "lucide-react";
+import { ArrowLeft, Check, Play, Sparkles, Ticket, X } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   useContentEngagement,
   useContentMediaPreview,
+  useMakeContentFree,
   useRejectContent,
 } from "../../../hooks/api";
 import { formatRequestedAt } from "../../../utils/date";
@@ -36,7 +37,9 @@ import { ContentPreviewModal } from "./ContentPreviewModal";
 import { CreateContentCouponModal } from "./CreateContentCouponModal";
 import { ContentCoupons } from "./ContentCoupons";
 import { RejectContentModal } from "./RejectContentModal";
+import { MakeContentFreeModal } from "./MakeContentFreeModal";
 import {
+  FreeContentButton,
   HeroActions,
   PlayButton,
   PriceMeta,
@@ -97,10 +100,12 @@ export function CreatorContentEngagement({
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [couponOpen, setCouponOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
+  const [makeFreeOpen, setMakeFreeOpen] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
   const mediaPreview = useContentMediaPreview();
   const rejectContent = useRejectContent();
+  const makeContentFree = useMakeContentFree();
 
   if (engagementQuery.isLoading) {
     return (
@@ -193,6 +198,22 @@ export function CreatorContentEngagement({
     }
   };
 
+  const handleMakeFree = async () => {
+    try {
+      await makeContentFree.mutateAsync({ contentId, creatorId });
+      toast.success(creatorContentEngagementLabels.makeFreeSuccess);
+      setMakeFreeOpen(false);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : creatorContentEngagementLabels.makeFreeFailed,
+      );
+    }
+  };
+
+  const isFree = content.accessType === "free";
+
   return (
     <DetailsLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
@@ -260,14 +281,33 @@ export function CreatorContentEngagement({
             <RejectContentButton
               type="button"
               onClick={() => setRejectOpen(true)}
-              disabled={rejectContent.isPending}
+              disabled={rejectContent.isPending || makeContentFree.isPending}
             >
               <X size={14} />
               {creatorContentEngagementLabels.rejectContent}
             </RejectContentButton>
+            <FreeContentButton
+              type="button"
+              onClick={() => setMakeFreeOpen(true)}
+              disabled={isFree || makeContentFree.isPending}
+              $isFree={isFree}
+            >
+              {isFree ? <Check size={14} /> : <Sparkles size={14} />}
+              {creatorContentEngagementLabels.freeContent}
+            </FreeContentButton>
           </HeroActions>
         </ProfileInfo>
       </ProfileHero>
+
+      {makeFreeOpen && (
+        <MakeContentFreeModal
+          open={makeFreeOpen}
+          contentTitle={content.title}
+          isSubmitting={makeContentFree.isPending}
+          onClose={() => setMakeFreeOpen(false)}
+          onConfirm={handleMakeFree}
+        />
+      )}
 
       {couponOpen && (
         <CreateContentCouponModal
