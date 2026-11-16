@@ -1023,6 +1023,7 @@
     ]
   },
   "common": {
+    "verificationUnavailable": "Verification is unavailable. Try reloading the page or email support directly.",
     "confirmationModalError": "ConfirmationModal onConfirm error:",
     "share": "Share",
     "copied": "Copied!",

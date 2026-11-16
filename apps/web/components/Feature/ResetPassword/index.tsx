@@ -1,11 +1,12 @@
 "use client";
 
-import { FormEvent, useCallback, useMemo, useState } from "react";
+import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
+import Turnstile, { TurnstileRef } from "@/components/UI/Turnstile";
 import { Card, Description, Form, FormMessage, Title, Wrapper } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
@@ -31,6 +32,8 @@ export default function ResetPasswordForm() {
   const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
   const [errorMessage, setErrorMessage] = useState("");
   const [isExpiredLink, setIsExpiredLink] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileRef>(null);
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
   const { mutateAsync: resetPassword, isPending } = useResetPassword();
@@ -75,6 +78,8 @@ export default function ResetPasswordForm() {
         const errorText = getErrorMessage(error, "resetPassword.submitFailed");
         setErrorMessage(errorText);
         setIsExpiredLink(errorText === t("resetPassword.expiredLink"));
+        setTurnstileToken("");
+        turnstileRef.current?.reset();
       }
     },
     [
@@ -130,10 +135,18 @@ export default function ResetPasswordForm() {
             </GenericButton>
           )}
 
+          <Turnstile
+            ref={turnstileRef}
+            action="reset_password"
+            resetSignal={isSuccess || errorMessage}
+            onVerify={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+          />
+
           <GenericButton
             type="submit"
             isLoading={isPending}
-            disabled={!isValid || isPending}
+            disabled={!isValid || isPending || !turnstileToken}
           >
             {t("resetPassword.submit")}
           </GenericButton>
