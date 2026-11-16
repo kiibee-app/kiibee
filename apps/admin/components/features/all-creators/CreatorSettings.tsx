@@ -4,10 +4,16 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import {
   CREATOR_DOWNLOAD_LIMIT_OPTIONS,
+  CREATOR_STREAM_LIMIT_OPTIONS,
+  type CreatorStreamLimit,
   CREATOR_SETTINGS_TEXT,
   DEFAULT_CREATOR_DOWNLOAD_LIMIT,
   type CreatorDownloadLimit,
 } from "@/utils/allCreators";
+import {
+  useStreamLimit,
+  useSetStreamLimit,
+} from "@/hooks/api/use-stream-limit";
 import { useDownloadLimit, useSetDownloadLimit } from "@/hooks/api";
 import {
   CreatorSettingsActions,
@@ -23,7 +29,7 @@ import {
   SelectChevron,
 } from "./CreatorSettings.styles";
 
-export function CreatorSettings() {
+function DownloadLimitSettings() {
   const { data, isLoading } = useDownloadLimit();
   const setLimitMutation = useSetDownloadLimit();
 
@@ -94,5 +100,82 @@ export function CreatorSettings() {
         </CreatorSettingsActions>
       </CreatorSettingsForm>
     </CreatorSettingsPanel>
+  );
+}
+
+function StreamLimitSettings() {
+  const query = useStreamLimit();
+  const mutation = useSetStreamLimit();
+  const [selected, setSelected] = useState<CreatorStreamLimit | null>(null);
+  const value = selected ?? String(query.data?.maxStreamLimit ?? 7);
+  const busy = query.isPending || mutation.isPending || query.isError;
+  const save = async () => {
+    try {
+      await mutation.mutateAsync(Number(value));
+      setSelected(null);
+      toast.success("Stream limit saved successfully");
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Failed to save stream limit",
+      );
+    }
+  };
+  return (
+    <CreatorSettingsPanel>
+      <CreatorSettingsForm>
+        <CreatorSettingsTitle>Stream limit</CreatorSettingsTitle>
+        <CreatorSettingsDescription>
+          Set the maximum playback sessions per rented content item. Purchased
+          content and creator previews remain unlimited.
+        </CreatorSettingsDescription>
+        {query.isError && (
+          <p role="alert">
+            {query.error.message}{" "}
+            <button type="button" onClick={() => void query.refetch()}>
+              Retry
+            </button>
+          </p>
+        )}
+        <CreatorSettingsField>
+          <CreatorSettingsLabel>
+            Maximum stream limit
+            <CreatorSettingsSelectWrapper>
+              <CreatorSettingsSelect
+                value={value}
+                disabled={busy}
+                onChange={(event) =>
+                  setSelected(event.target.value as CreatorStreamLimit)
+                }
+              >
+                {CREATOR_STREAM_LIMIT_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </CreatorSettingsSelect>
+              <SelectChevron aria-hidden="true" />
+            </CreatorSettingsSelectWrapper>
+          </CreatorSettingsLabel>
+        </CreatorSettingsField>
+        <CreatorSettingsActions>
+          <CreatorSettingsSaveButton
+            type="button"
+            onClick={save}
+            disabled={busy}
+          >
+            {mutation.isPending ? "Saving..." : "Save"}
+          </CreatorSettingsSaveButton>
+        </CreatorSettingsActions>
+      </CreatorSettingsForm>
+    </CreatorSettingsPanel>
+  );
+}
+
+export function CreatorSettings() {
+  return (
+    <div style={{ display: "grid", gap: 24 }}>
+      <DownloadLimitSettings />
+      <StreamLimitSettings />
+    </div>
   );
 }

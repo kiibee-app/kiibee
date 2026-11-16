@@ -1,5 +1,6 @@
 "use client";
 
+import { breakpoints } from "@repo/ui/breakpoints";
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
 import { ROUTES } from "../../utils/constants";
@@ -76,7 +77,13 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               href={item.href}
               $active={isActive}
               aria-current={isActive ? "page" : undefined}
-              onClick={onClose}
+              onClick={() => {
+                if (
+                  window.matchMedia(`(max-width: ${breakpoints.tablet})`)
+                    .matches
+                )
+                  onClose();
+              }}
             >
               <IconWrap>
                 <Icon size={16} />

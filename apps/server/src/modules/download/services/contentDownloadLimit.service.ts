@@ -1,4 +1,4 @@
-import { HttpStatus } from '@nestjs/common';
+import { BadRequestException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { contentLimits } from 'src/database/schema/content/contentLimits.schema';
 import { logger } from 'src/logger/logger';
@@ -29,6 +29,11 @@ export const getContentDownloadLimit = async () => {
 };
 
 export const setContentDownloadLimit = async (maxLimit: number) => {
+  if (!Number.isInteger(maxLimit) || maxLimit < 0 || maxLimit > 10) {
+    throw new BadRequestException(
+      'Download limit must be an integer between 0 and 10',
+    );
+  }
   try {
     await db.transaction(async (trx) => {
       const existingLimit = await trx.select().from(contentLimits).limit(1);

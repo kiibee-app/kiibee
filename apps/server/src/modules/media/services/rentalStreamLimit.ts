@@ -4,12 +4,14 @@ import { and, desc, eq, gt, inArray, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   analyticsEvents,
+  contentLimits,
   collectionItems,
   mediaFiles,
   userContentAccess,
 } from 'src/database/schema';
 
-export const DEFAULT_RENTAL_STREAM_LIMIT = 7;
+import { resolveStreamLimit } from 'src/utils/streamLimit';
+export { DEFAULT_RENTAL_STREAM_LIMIT } from 'src/utils/streamLimit';
 
 async function rentalUsage(
   executor: Pick<typeof db, 'select'>,
@@ -58,14 +60,16 @@ async function rentalUsage(
         eq(analyticsEvents.referrer, marker),
       ),
     );
+  const [limit] = await executor
+    .select({ maxStreamLimit: contentLimits.maxStreamLimit })
+    .from(contentLimits)
+    .limit(1);
+  const maxStreams = resolveStreamLimit(limit?.maxStreamLimit);
   return {
     marker,
     usedStreams: Number(usage?.count ?? 0),
-    maxStreams: DEFAULT_RENTAL_STREAM_LIMIT,
-    remainingStreams: Math.max(
-      0,
-      DEFAULT_RENTAL_STREAM_LIMIT - Number(usage?.count ?? 0),
-    ),
+    maxStreams,
+    remainingStreams: Math.max(0, maxStreams - Number(usage?.count ?? 0)),
   };
 }
 
@@ -96,10 +100,10 @@ export async function recordRentalStream(
     );
     const info = await rentalUsage(tx, userId, media.id);
     if (!info) return;
-    const { marker, usedStreams } = info;
-    if (usedStreams >= DEFAULT_RENTAL_STREAM_LIMIT) {
+    const { marker, usedStreams, maxStreams } = info;
+    if (usedStreams >= maxStreams) {
       throw new ForbiddenException(
-        `Rental stream limit (${DEFAULT_RENTAL_STREAM_LIMIT}) reached.`,
+        `Rental stream limit (${maxStreams}) reached.`,
       );
     }
     await tx.insert(analyticsEvents).values({
