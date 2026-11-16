@@ -2,7 +2,6 @@
 
 import {
   forwardRef,
-  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -21,7 +20,6 @@ export const turnstileSiteKey =
 
 export type TurnstileRef = {
   reset: () => void;
-  getWidgetId: () => string | null;
 };
 
 type TurnstileInstance = {
@@ -90,7 +88,6 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
             getTurnstile()?.reset(widgetIdRef.current);
           }
         },
-        getWidgetId: () => widgetIdRef.current,
       }),
       [],
     );
@@ -105,9 +102,7 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
       if (widgetIdRef.current !== null) {
         try {
           turnstile.remove(widgetIdRef.current);
-        } catch {
-          // ignore
-        }
+        } catch {}
         widgetIdRef.current = null;
       }
 
@@ -137,7 +132,6 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
         });
         widgetIdRef.current = id;
       } catch {
-        // Handle rendering failure safely without direct setState in effect body
         setTimeout(() => setVerificationError(true), 0);
       }
 
@@ -145,9 +139,7 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
         if (widgetIdRef.current !== null) {
           try {
             turnstile.remove(widgetIdRef.current);
-          } catch {
-            // ignore
-          }
+          } catch {}
           widgetIdRef.current = null;
         }
       };
@@ -179,23 +171,5 @@ export const Turnstile = forwardRef<TurnstileRef, TurnstileProps>(
     );
   },
 );
-
-export function useTurnstile() {
-  const [turnstileToken, setTurnstileToken] = useState("");
-  const turnstileRef = useRef<TurnstileRef>(null);
-
-  const resetTurnstile = useCallback(() => {
-    setTurnstileToken("");
-    turnstileRef.current?.reset();
-  }, []);
-
-  return {
-    turnstileToken,
-    setTurnstileToken,
-    resetTurnstile,
-    turnstileRef,
-    isConfigured: Boolean(turnstileSiteKey),
-  };
-}
 
 export default Turnstile;

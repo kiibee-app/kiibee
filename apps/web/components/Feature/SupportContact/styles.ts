@@ -167,11 +167,6 @@ export const FieldSlot = styled.div<{ $full?: boolean }>`
   grid-column: ${({ $full }) => ($full ? "1 / -1" : "span 1")};
 `;
 
-export {
-  VerificationWidget,
-  VerificationStatus,
-} from "@/components/UI/Turnstile/styles";
-
 export const FormActions = styled.div`
   display: flex;
   justify-content: flex-end;
