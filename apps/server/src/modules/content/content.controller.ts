@@ -113,6 +113,12 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/make-free/:contentId')
+  async makeContentFree(@Param('contentId') contentId: string) {
+    return this.contentService.makeContentFreeService(contentId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('admin/appearance/:creatorId')
   async getAdminCreatorAppearance(@Param('creatorId') creatorId: string) {
     return this.contentService.getContentAppearanceService(creatorId);

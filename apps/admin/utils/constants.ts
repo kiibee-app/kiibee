@@ -32,6 +32,8 @@ export const API_ENDPOINTS = {
   CONTENT_ENGAGEMENT: (contentId: string) =>
     `/content/admin/content-engagement/${contentId}`,
   REJECT_CONTENT: (contentId: string) => `/content/admin/reject/${contentId}`,
+  MAKE_CONTENT_FREE: (contentId: string) =>
+    `/content/admin/make-free/${contentId}`,
   CREATOR_APPEARANCE: (creatorId: string) =>
     `/content/admin/appearance/${creatorId}`,
   MEDIA_VIDEO_STREAM: "/media/videos/stream",
