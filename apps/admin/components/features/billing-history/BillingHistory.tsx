@@ -38,6 +38,8 @@ type BillingRow = {
   status: string;
   method: string | null;
   createdAt: string | null;
+  emailStatus?: string | null;
+  emailSentAt?: string | null;
 };
 type BillingHistory = { items: BillingRow[]; page: number; hasMore: boolean };
 
@@ -52,6 +54,7 @@ export function BillingHistory({ creatorId }: { creatorId?: string }) {
     setPage(1);
   };
   const query = useQuery({
+    refetchInterval: 15_000,
     queryKey: ["admin-billing-history", creatorId, kind, page, debouncedSearch],
     queryFn: async () => {
       const response = await apiClient<BillingHistory>(
@@ -144,6 +147,7 @@ export function BillingHistory({ creatorId }: { creatorId?: string }) {
                     "Amount",
                     "Method",
                     "Status",
+                    ...(kind === "subscription" ? ["Email"] : []),
                   ].map((label) => (
                     <TableHeaderCell key={label}>{label}</TableHeaderCell>
                   ))}
@@ -163,12 +167,60 @@ export function BillingHistory({ creatorId }: { creatorId?: string }) {
                     <TableBodyCell>
                       {row.itemType || "Subscription"}
                     </TableBodyCell>
-                    <TableBodyCell>{row.reference || row.id}</TableBodyCell>
+                    <TableBodyCell>
+                      {row.reference ||
+                        (kind === "subscription" ? "—" : row.id)}
+                    </TableBodyCell>
                     <TableBodyCell>
                       {row.amount} {row.currency}
                     </TableBodyCell>
                     <TableBodyCell>{row.method || "—"}</TableBodyCell>
-                    <TableBodyCell>{row.status}</TableBodyCell>
+                    <TableBodyCell>
+                      <strong
+                        style={{
+                          color:
+                            row.status === "failed"
+                              ? "#dc6b6b"
+                              : row.status === "pending"
+                                ? "#c56808"
+                                : ["completed", "paid", "succeeded"].includes(
+                                      row.status,
+                                    )
+                                  ? "#16803c"
+                                  : "inherit",
+                          fontWeight: 700,
+                        }}
+                      >
+                        {["completed", "paid", "succeeded"].includes(row.status)
+                          ? "Complete"
+                          : row.status === "pending"
+                            ? "Pending"
+                            : row.status === "failed"
+                              ? "Failed"
+                              : row.status === "cancelled"
+                                ? "Cancelled"
+                                : row.status}
+                      </strong>
+                    </TableBodyCell>
+                    {kind === "subscription" && (
+                      <TableBodyCell
+                        title={
+                          row.emailSentAt
+                            ? new Date(row.emailSentAt).toLocaleString()
+                            : undefined
+                        }
+                      >
+                        {row.emailStatus === "sent"
+                          ? "Sent"
+                          : row.emailStatus === "failed"
+                            ? "Failed"
+                            : row.emailStatus === "pending"
+                              ? "Pending"
+                              : row.emailStatus === "unavailable"
+                                ? "No email address"
+                                : "—"}
+                      </TableBodyCell>
+                    )}
                   </tr>
                 ))}
               </tbody>

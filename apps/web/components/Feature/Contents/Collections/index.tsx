@@ -16,7 +16,7 @@ import { TABLE_ALIGN } from "@/utils/ui";
 import { BUTTON, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
 import { checkHasPriceOrCode } from "@/utils/admissionRequirements";
 import { getStoredGlobalPaymentSettings } from "@/utils/contentPricingActions";
-import { FORMAT_TYPE } from "@/utils/types";
+import { isFreeAllowedContentType } from "@/utils/content";
 import { ActionWrapper, IconButton, NameWrapper, WarningBadge } from "./styles";
 import { useTranslation } from "react-i18next";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
@@ -46,11 +46,9 @@ import {
 
 type TableRow = CollectionRow | CollectionContentRow;
 
-const isWebContent = (contentType?: string) =>
-  contentType?.toLowerCase() === FORMAT_TYPE.WEB;
-
-const isFreeNonWebContent = (content: CollectionContentRow) =>
-  !isWebContent(content.contentType) && !checkHasPriceOrCode(content);
+const isFreeNonAllowedContent = (content: CollectionContentRow) =>
+  !isFreeAllowedContentType(content.contentType) &&
+  !checkHasPriceOrCode(content);
 
 const shouldShowCollectionWarning = (
   collection: CollectionRow,
@@ -67,7 +65,7 @@ const shouldShowContentWarning = (
 ) =>
   !hasGlobalAccessGate &&
   !checkHasPriceOrCode(parentCollection) &&
-  isFreeNonWebContent(content);
+  isFreeNonAllowedContent(content);
 
 export default function CollectionTable(props: CollectionTableProps) {
   const { t } = useTranslation();

@@ -119,6 +119,7 @@ export default function ContentUploadModal({
     fileInputRef,
     selectedFile,
     isUploading,
+    uploadProgress,
     uploadComplete,
     uploadError,
     uploadedFile,
@@ -461,6 +462,7 @@ export default function ContentUploadModal({
               selectedFile={selectedFile}
               previewUrl={previewUrl}
               isUploading={isUploading}
+              uploadProgress={uploadProgress}
               uploadComplete={uploadComplete}
               canProceed={canProceed}
               onNext={handleNextClick}

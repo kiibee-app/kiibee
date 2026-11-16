@@ -2,6 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
   width: 240px;
   border-right: 1px solid ${({ theme }) => theme.colors.secondary.border};
   background-color: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -9,6 +11,10 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
   top: 0;
   left: 0;
   height: 100vh;
+  @media (min-width: 769px) {
+    transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
+    transition: transform ${({ theme }) => theme.animations.normal};
+  }
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
     position: fixed;
@@ -16,10 +22,12 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
     bottom: 0;
     left: 0;
     height: 100dvh;
+    overflow: hidden;
     border-radius: 0;
     border-right: none;
     z-index: 50;
     transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
+    visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
     transition: transform ${({ theme }) => theme.animations.normal};
     box-shadow: ${({ $isOpen, theme }) =>
       $isOpen ? theme.shadows.lg : "none"};
@@ -43,7 +51,7 @@ export const BrandText = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 34px;
@@ -76,6 +84,7 @@ export const MenuList = styled.nav`
 export const MenuItem = styled(Link)<{ $active?: boolean }>`
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 10px;
   padding: 10px 12px;
   border-radius: 8px;

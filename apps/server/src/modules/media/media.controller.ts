@@ -45,8 +45,8 @@ export class MediaController {
 
   @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('videos/upload')
-  createVideoUpload() {
-    return this.mediaService.createVideoUpload();
+  createVideoUpload(@Body() body?: { fileSize?: number }) {
+    return this.mediaService.createVideoUpload(body?.fileSize);
   }
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)

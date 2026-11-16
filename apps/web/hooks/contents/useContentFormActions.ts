@@ -11,6 +11,7 @@ import { storage } from "@/utils/storage";
 import {
   ContentType,
   getFileNameWithoutExtension,
+  isFreeAllowedContentType,
   normalizeContentTypeValue,
 } from "@/utils/content";
 import { type ContentMediaUrlResponse } from "@/utils/contentApi";
@@ -517,12 +518,11 @@ export function useContentFormActions({
   };
 
   const validateContentPaymentAmounts = () => {
-    const isWebType =
-      formState.contentTypeId === FORMAT_TYPE.WEB ||
-      editingContent?.contentType === FORMAT_TYPE.WEB;
+    const contentType = formState.contentTypeId || editingContent?.contentType;
+    const isFreeAllowedType = isFreeAllowedContentType(contentType);
 
     if (
-      !isWebType &&
+      !isFreeAllowedType &&
       (!formState.admissionRequirement.trim() ||
         formState.admissionRequirement === ADMISSION_TYPE.FREE)
     ) {

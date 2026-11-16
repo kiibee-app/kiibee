@@ -5,6 +5,7 @@ jest.mock('src/database/db', () => ({
 }));
 
 import { PgDialect } from 'drizzle-orm/pg-core';
+import { HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { orders } from 'src/database/schema';
 import { findOrCreateCheckoutOrder } from 'src/modules/order/services/orderIdempotency';
@@ -110,13 +111,15 @@ describe('findOrCreateCheckoutOrder', () => {
       currency: undefined,
     });
 
-    expect(dialect.sqlToQuery(tx.execute.mock.calls[1][0])).toEqual(explicitLock);
+    expect(dialect.sqlToQuery(tx.execute.mock.calls[1][0])).toEqual(
+      explicitLock,
+    );
     const defaultLookup = dialect.sqlToQuery(where.mock.calls[1][0]);
     expect(defaultLookup.sql).toEqual(explicitLookup.sql);
-    expect(defaultLookup.params.slice(0, 5)).toEqual(
-      explicitLookup.params.slice(0, 5),
+    expect(defaultLookup.params.slice(0, 6)).toEqual(
+      explicitLookup.params.slice(0, 6),
     );
-    expect(defaultLookup.params[4]).toBe('DKK');
+    expect(defaultLookup.params[5]).toBe('DKK');
   });
 
   it('creates a new order when no matching checkout exists', async () => {
@@ -127,6 +130,48 @@ describe('findOrCreateCheckoutOrder', () => {
     expect(inserted[0]).toMatchObject({
       idempotencyKey: 'checkout-key',
       userId: 'user-1',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key has different price', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        price: '49.00',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key belongs to another user', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        userId: 'user-2',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
+    });
+  });
+
+  it('throws 409 Conflict when reused idempotency key has different item or mediaFileId', async () => {
+    selectResult = [existingOrder];
+
+    await expect(
+      findOrCreateCheckoutOrder({
+        ...newOrder,
+        mediaFileId: 'different-content',
+      }),
+    ).rejects.toMatchObject({
+      status: HttpStatus.CONFLICT,
+      message: 'Idempotency key was already used for a different request',
     });
   });
 });

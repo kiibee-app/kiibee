@@ -31,6 +31,13 @@ export const API_CONTENT_TYPE = {
   WEB_LINK: "web-link",
 } as const;
 
+export const isFreeAllowedContentType = (
+  contentType?: string | null,
+): boolean => {
+  const normalized = contentType?.toLowerCase();
+  return normalized === FORMAT_TYPE.WEB || normalized === FORMAT_TYPE.PDF;
+};
+
 export const CONTENT_TYPE_BY_API_VALUE: Record<string, ContentType> = {
   [API_CONTENT_TYPE.VIDEO]: FORMAT_TYPE.VIDEO,
   [API_CONTENT_TYPE.AUDIO]: FORMAT_TYPE.AUDIO,

@@ -1,4 +1,4 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, MaxLength, Matches } from 'class-validator';
 
 export class CreateOrderInputDto {
   @IsString()
@@ -21,6 +21,11 @@ export class CreateOrderInputDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(128)
+  @Matches(/^[A-Za-z0-9_-]+$/, {
+    message:
+      'idempotencyKey must contain only alphanumeric characters, underscores, or hyphens',
+  })
   idempotencyKey?: string;
 }
 export class CreateCollectionOrderInputDto {
@@ -40,6 +45,11 @@ export class CreateCollectionOrderInputDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(128)
+  @Matches(/^[A-Za-z0-9_-]+$/, {
+    message:
+      'idempotencyKey must contain only alphanumeric characters, underscores, or hyphens',
+  })
   idempotencyKey?: string;
 }
 

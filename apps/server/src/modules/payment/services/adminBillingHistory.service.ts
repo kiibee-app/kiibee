@@ -1,16 +1,14 @@
+import { subscriptionBillingRows } from './subscriptionBillingRows';
 import { BadRequestException } from '@nestjs/common';
-import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
+import { desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
   creatorInfo,
-  subscriptions,
-  plans,
   payments,
   orders,
   users,
   mediaFiles,
-  subscriptionPaymentsHistory,
 } from 'src/database/schema';
 import { success } from 'src/utils/sendResponse';
 
@@ -50,50 +48,7 @@ export async function adminBillingHistoryService(
     : undefined;
   const rows =
     kind === 'subscription'
-      ? await db
-          .select({
-            id: subscriptionPaymentsHistory.id,
-            email: users.email,
-            companyName: creatorInfo.companyName,
-            reference: subscriptionPaymentsHistory.transactionId,
-            description: sql<string>`coalesce(${plans.name}, ${subscriptionPaymentsHistory.subscriptionId})`,
-            amount: subscriptionPaymentsHistory.amount,
-            currency: subscriptionPaymentsHistory.currency,
-            status: subscriptionPaymentsHistory.status,
-            method: subscriptionPaymentsHistory.paymentMethodType,
-            createdAt: subscriptionPaymentsHistory.createdAt,
-          })
-          .from(subscriptionPaymentsHistory)
-          .leftJoin(users, eq(subscriptionPaymentsHistory.creatorId, users.id))
-          .leftJoin(
-            creatorInfo,
-            eq(subscriptionPaymentsHistory.creatorId, creatorInfo.userId),
-          )
-          .leftJoin(
-            subscriptions,
-            eq(subscriptionPaymentsHistory.subscriptionId, subscriptions.id),
-          )
-          .leftJoin(plans, eq(subscriptions.planId, plans.id))
-          .where(
-            and(
-              creatorId
-                ? eq(subscriptionPaymentsHistory.creatorId, creatorId)
-                : undefined,
-              pattern
-                ? or(
-                    customerSearch,
-                    ilike(subscriptionPaymentsHistory.transactionId, pattern),
-                    ilike(plans.name, pattern),
-                  )
-                : undefined,
-            ),
-          )
-          .orderBy(
-            desc(subscriptionPaymentsHistory.createdAt),
-            desc(subscriptionPaymentsHistory.id),
-          )
-          .limit(limit + 1)
-          .offset((page - 1) * limit)
+      ? await subscriptionBillingRows(page, creatorId, pattern)
       : await db
           .select({
             id: payments.id,

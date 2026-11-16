@@ -55,5 +55,10 @@ export const users = pgTable(
     isDeletedIdx: index('users_is_deleted_idx').on(table.isDeleted),
     isHiddenIdx: index('users_is_hidden_idx').on(table.isHidden),
     sequenceIdx: index('users_sequence_idx').on(table.sequence),
+    creatorSequenceUnique: uniqueIndex('users_creator_sequence_unique')
+      .on(table.sequence)
+      .where(
+        sql`${table.sequence} IS NOT NULL AND ${table.isDeleted} = false AND ${table.role} = 'creator'`,
+      ),
   }),
 );

@@ -19,8 +19,8 @@ export const HeaderRoot = styled.header`
   }
 `;
 
-export const HamburgerButton = styled.button`
-  display: none;
+export const HamburgerButton = styled.button<{ $sidebarOpen: boolean }>`
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
@@ -35,9 +35,8 @@ export const HamburgerButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   }
-
-  @media (max-width: ${({ theme }) => theme.media.tablet}) {
-    display: flex;
+  @media (min-width: ${({ theme }) => theme.media.tablet}) {
+    display: ${({ $sidebarOpen }) => ($sidebarOpen ? "none" : "flex")};
   }
 `;
 

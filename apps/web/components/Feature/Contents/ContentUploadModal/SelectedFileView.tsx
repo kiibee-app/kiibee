@@ -28,6 +28,7 @@ type Props = {
   selectedFile: File;
   previewUrl: string | null;
   isUploading: boolean;
+  uploadProgress: number;
   uploadComplete: boolean;
   canProceed: boolean;
   onNext: () => void;
@@ -38,6 +39,7 @@ export default function SelectedFileView({
   selectedFile,
   previewUrl,
   isUploading,
+  uploadProgress,
   uploadComplete,
   canProceed,
   onNext,
@@ -97,6 +99,13 @@ export default function SelectedFileView({
             />
           )}
         </FileDetailsWrapper>
+
+        {isUploading && (
+          <MonoText $use="Body_Medium" role="status" aria-live="polite">
+            {t("contents.contentUploadModal.uploading")}{" "}
+            {Math.floor(uploadProgress)}%
+          </MonoText>
+        )}
 
         <GenericButton
           variant={VARIANT.PRIMARY}
