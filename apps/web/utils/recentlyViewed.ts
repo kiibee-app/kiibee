@@ -59,7 +59,7 @@ export function mergeGuestRecentlyViewed(userId: string) {
     );
     localStorage.removeItem(guestKey);
   } catch {
-    // Keep guest history for a later retry if storage is unavailable.
+    return;
   }
 }
 
@@ -79,6 +79,6 @@ export function saveRecentlyViewed(
       ),
     );
   } catch {
-    // Viewing remains available when browser storage is disabled or full.
+    return;
   }
 }

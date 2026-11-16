@@ -12,7 +12,6 @@ import {
   creatorContentIsDiscoverable,
 } from 'src/utils/publicCreatorVisibility';
 
-// Public viewing must never expose paid or gated collection files.
 export async function assertFreeMediaAccess(key: string) {
   const [media] = await db
     .select({ id: mediaFiles.id })

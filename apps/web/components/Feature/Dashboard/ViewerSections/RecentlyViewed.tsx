@@ -1,6 +1,5 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
@@ -37,27 +36,21 @@ import {
   ViewerEmptyStateDescription,
 } from "./styles";
 
-const subscribe = () => () => {};
-
 export default function RecentlyViewed() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
-  const hydrated = useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false,
-  );
-  const items = hydrated && user?.id ? readRecentlyViewed(user.id) : [];
+  const userId = user?.id;
+  const items = userId ? readRecentlyViewed(userId) : [];
 
   return (
     <DashboardPageWrapper>
       <PageHeader>
         <MonoText $use="H4_SemiBold">{t("sidebar.recentlyViewed")}</MonoText>
       </PageHeader>
-      {items.length ? (
+      {userId && items.length ? (
         <MediaGrid>
           {items.map((item) => (
-            <RecentlyViewedCard key={item.id} item={item} />
+            <RecentlyViewedCard key={item.id} item={item} userId={userId} />
           ))}
         </MediaGrid>
       ) : (
@@ -74,15 +67,19 @@ export default function RecentlyViewed() {
   );
 }
 
-function RecentlyViewedCard({ item }: { item: RecentlyViewedItem }) {
+function RecentlyViewedCard({
+  item,
+  userId,
+}: {
+  item: RecentlyViewedItem;
+  userId: string;
+}) {
   const { t } = useTranslation();
   const router = useRouter();
-  const user = useStoredLoginUser();
   const { data } = useGetAPI<ContentDetailResponse>(
-    API.content.view(item.id, user?.id ?? "guest"),
+    API.content.view(item.id, userId),
     undefined,
     {
-      enabled: Boolean(user?.id),
       retry: false,
       refetchOnWindowFocus: false,
     },
