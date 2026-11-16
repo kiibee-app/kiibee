@@ -17,7 +17,10 @@ import {
   CustomPlanDetails,
   CustomPlanNote,
   PlanCardActions,
+  PlanCardHeader,
+  PlanStatusBadge,
 } from "./styles";
+import { CREATOR_PROFILE } from "@/utils/translationKeys";
 
 type Props = {
   plan: {
@@ -48,6 +51,8 @@ export default function CustomPlanCard({ plan }: Props) {
     { success: boolean; data?: { paymentWindowUrl?: string } },
     { userId: string; planId: string; billingMonths: number }
   >(API.subscription.create);
+  const isCustomPlanActive = plan.customSubscriptionStatus === "paid";
+
   const setupPayment = async () => {
     if (!user?.id || !selected) return;
     try {
@@ -68,7 +73,14 @@ export default function CustomPlanCard({ plan }: Props) {
       id="creator-custom-plan"
       aria-label={t("customSubscription.title")}
     >
-      <CustomPlanEyebrow>{t("customSubscription.title")}</CustomPlanEyebrow>
+      <PlanCardHeader>
+        <CustomPlanEyebrow>{t("customSubscription.title")}</CustomPlanEyebrow>
+        {isCustomPlanActive && (
+          <PlanStatusBadge>
+            {t(CREATOR_PROFILE.currentPlan.activeBadge)}
+          </PlanStatusBadge>
+        )}
+      </PlanCardHeader>
       <CustomPlanTitle>{plan.name}</CustomPlanTitle>
       {plan.customSubscriptionStatus === "pending" && (
         <CustomPlanDescription>

@@ -446,7 +446,7 @@ export const CustomPlanRoot = styled(PlanCardRoot)`
   box-shadow: 0 4px 16px rgba(18, 72, 63, 0.06);
 `;
 export const CustomPlanEyebrow = styled.p`
-  margin: 0 0 8px;
+  margin: 0;
   color: #426358;
   font-size: 11px;
   font-weight: 700;

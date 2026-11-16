@@ -89,6 +89,9 @@ export default function CurrentPlanCard() {
 
   const paymentRequired = currentPlan?.subscriptionUpgradeRequired === true;
   const isFreePlan = (currentPlan?.price ?? 0) === 0;
+  const isCustomPlanActive =
+    currentPlan?.hasCustomPlanOffer === true &&
+    currentPlan?.customSubscriptionStatus === "paid";
   const ctaLabel = paymentRequired
     ? t("dashboard.subscriptionPaymentRequired.pay")
     : isFreePlan
@@ -116,13 +119,14 @@ export default function CurrentPlanCard() {
               {t(CREATOR_PROFILE.currentPlan.label)}
             </MonoText>
           </PlanCardLabel>
-          {(paymentRequired || currentPlan?.isActive) && (
-            <PlanStatusBadge>
-              {paymentRequired
-                ? t("dashboard.subscriptionPaymentRequired.title")
-                : t(CREATOR_PROFILE.currentPlan.activeBadge)}
-            </PlanStatusBadge>
-          )}
+          {!isCustomPlanActive &&
+            (paymentRequired || currentPlan?.isActive) && (
+              <PlanStatusBadge>
+                {paymentRequired
+                  ? t("dashboard.subscriptionPaymentRequired.title")
+                  : t(CREATOR_PROFILE.currentPlan.activeBadge)}
+              </PlanStatusBadge>
+            )}
         </PlanCardHeader>
 
         <PlanCardName>
