@@ -238,7 +238,7 @@ export const RejectContentButton = styled.button`
 export const FreeContentButton = styled.button<{ $isFree?: boolean }>`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   min-height: 36px;
   padding: 0 14px;
   border-radius: 10px;

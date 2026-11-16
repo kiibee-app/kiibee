@@ -29,14 +29,12 @@ export function useMakeContentFree() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ contentId }: MakeContentFreePayload) => {
-      const data = await ensureSuccess(
+    mutationFn: ({ contentId }: MakeContentFreePayload) =>
+      ensureSuccess(
         apiClient(API_ENDPOINTS.MAKE_CONTENT_FREE(contentId), {
           method: "POST",
         }),
-      );
-      return data;
-    },
+      ),
     onSuccess: (_data, { contentId, creatorId }) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY.CONTENT_ENGAGEMENT, contentId],
