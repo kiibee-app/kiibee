@@ -659,7 +659,10 @@ export const DrawerPanel = styled.aside<{
     right: ${({ $side }) => ($side === "right" ? "0" : "auto")};
     width: min(84vw, 280px);
     height: min(75dvh, 550px);
-    background: ${({ theme }) => theme.colors.primary.WHITE};
+    min-height: 0;
+    overflow: hidden;
+    color: white;
+    background: ${({ theme }) => theme.colors.primary.GREEN_100};
     z-index: ${({ theme }) => theme.zIndex.drawerExpanded};
     transform: ${({ $open, $side }) =>
       $open
@@ -701,16 +704,21 @@ export const DrawerPanel = styled.aside<{
 export const DrawerContent = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 16px;
-  gap: 8px;
+  gap: 16px;
+  align-items: stretch;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 `;
 
 export const DrawerMenu = styled.nav`
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   gap: 10px;
   padding-bottom: 20px;
 `;
@@ -718,6 +726,8 @@ export const DrawerMenu = styled.nav`
 export const DrawerMenuItem = styled.div`
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  background: white;
 `;
 
 export const DrawerMenuRow = styled.div`
@@ -754,8 +764,7 @@ export const DrawerMenuButton = styled.button<{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 12px;
-  min-height: 48px
+  padding: 12px 16px;
   border-radius: 10px;
   background: ${({ $isActive, theme }) =>
     $isActive ? theme.colors.primary.GRAY : "transparent"};
@@ -803,16 +812,44 @@ export const DrawerMenuToggleButton = styled.button<{
 export const DrawerSubMenu = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 0 1 auto;
+
   padding-left: 16px;
   margin-top: 8px;
   gap: 12px;
+
+  height: 250px;
+  max-height: 40dvh;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+
   border-left: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-radius: 10px;
+  }
 `;
 
 export const DrawerSubMenuColumn = styled.div`
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   gap: 6px;
+
+  border-left: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
 
 export const DrawerSubMenuTitle = styled.div`
@@ -826,6 +863,7 @@ export const DrawerSubMenuTitle = styled.div`
 
 export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
   display: block;
+  flex-shrink: 0;
   padding: 8px 12px;
   border-radius: 6px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -839,16 +877,17 @@ export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
 `;
 
 export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
-  margin-top: 12px;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
+  background: white;
   align-items: center;
-  gap: 10px;
-  padding-top: ${({ $showDivider }) => ($showDivider ? "40px" : "0")};
+  gap: 8px;
+  padding-top: ${({ $showDivider }) => ($showDivider ? "12px" : "0")};
   padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
-
   .start-btn {
     .mobile-text {
       display: inline;
