@@ -23,6 +23,8 @@ export const API = {
     verify: "/coupons/verify",
   },
   media: {
+    freeFileSignedUrl: "/media/free/signed-url",
+    freeVideoStream: "/media/free/videos/stream",
     videoUpload: "/media/videos/upload",
     videoPartUrl: "/media/videos/part-url",
     videoComplete: "/media/videos/complete",

@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import type { FastifyReply, FastifyRequest } from 'fastify';
+import { assertFreeMediaAccess } from './services/freeMediaAccess';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
@@ -209,6 +210,27 @@ export class MediaController {
       stream.on('error', reject);
       stream.on('end', () => resolve(Buffer.concat(chunks)));
     });
+  }
+
+  @Get('free/signed-url')
+  async getFreeMediaSignedUrl(
+    @Query('key') key: string,
+    @Req() req: FastifyRequest,
+  ) {
+    if (!key) throw new BadRequestException('Media key is required');
+    await assertFreeMediaAccess(key);
+    return {
+      url: await this.mediaService.getMediaSignedUrl(key, {
+        apiBaseUrl: apiBaseFromRequest(req),
+      }),
+    };
+  }
+
+  @Get('free/videos/stream')
+  async streamFreeMedia(@Query('key') key: string) {
+    if (!key) throw new BadRequestException('Media key is required');
+    await assertFreeMediaAccess(key);
+    return this.mediaService.getStreamUrl(key);
   }
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
