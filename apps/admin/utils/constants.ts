@@ -57,6 +57,8 @@ export const API_ENDPOINTS = {
   CREATE_PAYOUT: "/payout/create",
   APPROVE_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/approve`,
   REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
+  STREAM_LIMIT: "/download/stream-limit",
+  SET_STREAM_LIMIT: "/download/stream-limit/set",
   DOWNLOAD_LIMIT: "/download/limit",
   SET_DOWNLOAD_LIMIT: "/download/limit/set",
 } as const;

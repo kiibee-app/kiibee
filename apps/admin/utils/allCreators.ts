@@ -29,6 +29,11 @@ export const CREATOR_DOWNLOAD_LIMIT_OPTIONS = [
   "3",
   "4",
   "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
 ] as const;
 
 export type CreatorDownloadLimit =
@@ -45,3 +50,17 @@ export const CREATOR_SETTINGS_TEXT = {
   SUCCESS_MESSAGE: "Download limit saved successfully",
   ERROR_MESSAGE: "Failed to save download limit",
 } as const;
+
+export const CREATOR_STREAM_LIMIT_OPTIONS = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+] as const;
+export type CreatorStreamLimit = (typeof CREATOR_STREAM_LIMIT_OPTIONS)[number];

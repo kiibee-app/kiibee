@@ -7,6 +7,11 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { SetDownloadLimitDto, SetStreamLimitDto } from './dto/download.dto';
+import {
+  getContentStreamLimit,
+  setContentStreamLimit,
+} from './services/contentStreamLimit.service';
 import { Request } from 'express';
 import { DownloadService } from './download.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -25,8 +30,20 @@ export class DownloadController {
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('limit/set')
-  async setContentDownloadLimitService(@Body('maxLimit') maxLimit: number) {
-    return this.downloadService.setDownloadLimit(maxLimit);
+  async setContentDownloadLimitService(@Body() body: SetDownloadLimitDto) {
+    return this.downloadService.setDownloadLimit(body.maxLimit);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('stream-limit')
+  getStreamLimit() {
+    return getContentStreamLimit();
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('stream-limit/set')
+  setStreamLimit(@Body() body: SetStreamLimitDto) {
+    return setContentStreamLimit(body.maxStreamLimit);
   }
 
   @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
