@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Check, Play, Sparkles, Ticket, X } from "lucide-react";
+import { ArrowLeft, Play, Ticket, X } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   useContentEngagement,
@@ -292,7 +292,6 @@ export function CreatorContentEngagement({
               disabled={isFree || makeContentFree.isPending}
               $isFree={isFree}
             >
-              {isFree ? <Check size={14} /> : <Sparkles size={14} />}
               {creatorContentEngagementLabels.freeContent}
             </FreeContentButton>
           </HeroActions>
