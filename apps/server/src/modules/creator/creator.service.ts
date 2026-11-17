@@ -46,6 +46,7 @@ export class CreatorService {
     search?: string;
     plan?: string;
     hidden?: boolean;
+    customPlan?: boolean;
     page?: number;
     limit?: number;
   }) {

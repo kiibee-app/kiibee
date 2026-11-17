@@ -42,6 +42,7 @@ export class CreatorController {
     @Query('search') search?: string,
     @Query('plan') plan?: string,
     @Query('hidden') hidden?: string,
+    @Query('customPlan') customPlan?: string,
     @Query('page') page?: string,
     @Query('limit') limit?: string,
   ) {
@@ -49,6 +50,12 @@ export class CreatorController {
       search: search?.trim() || undefined,
       plan: plan?.trim() || undefined,
       hidden: hidden === 'true' ? true : hidden === 'false' ? false : undefined,
+      customPlan:
+        customPlan === 'true'
+          ? true
+          : customPlan === 'false'
+            ? false
+            : undefined,
       page: page ? Number(page) : undefined,
       limit: limit ? Number(limit) : undefined,
     });

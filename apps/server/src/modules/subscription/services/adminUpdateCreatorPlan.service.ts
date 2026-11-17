@@ -439,29 +439,29 @@ export const adminUpdateCreatorPlan = async (
       const customPlanDetails =
         notification.customOfferSaved || notification.customOfferActivated
           ? [
-              { label: 'Price', value: `${terms.amount} ${currency}` },
+              { label: 'Pris', value: `${terms.amount} ${currency}` },
               {
-                label: 'Billing period',
-                value: `${terms.months} ${terms.months === 1 ? 'month' : 'months'}`,
+                label: 'Betalingsperiode',
+                value: `${terms.months} ${terms.months === 1 ? 'måned' : 'måneder'}`,
               },
               {
-                label: 'Max files',
+                label: 'Maks. antal filer',
                 value: String(
                   input.customMaxFiles ??
                     plan.maxFiles ??
-                    'Standard plan limit',
+                    'Abonnementets standardgrænse',
                 ),
               },
               {
-                label: 'Kiibee cut',
+                label: 'Kiibees andel',
                 value:
                   input.customKiibeeCutDkk != null
-                    ? `${input.customKiibeeCutDkk} DKK per payout`
-                    : `${Number(feePct.toFixed(2))}% per payout (standard)`,
+                    ? `${input.customKiibeeCutDkk} DKK pr. udbetaling`
+                    : `${Number(feePct.toFixed(2))}% pr. udbetaling (standard)`,
               },
               {
-                label: 'Transaction fee',
-                value: `${input.customTransactionFeePct ?? 5}% per payout`,
+                label: 'Transaktionsgebyr',
+                value: `${input.customTransactionFeePct ?? 5}% pr. udbetaling`,
               },
             ].map((detail) => ({
               label: escapeHtml(detail.label),

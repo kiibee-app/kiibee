@@ -39,7 +39,7 @@ export const mailSubject = {
     'Din Kiibee-abonnementbetaling kunne ikke gennemføres',
   SUBSCRIPTION_PAYMENT_FAILED_ADMIN:
     'Creator-abonnementbetaling mislykkedes – Kiibee',
-  CUSTOM_SUBSCRIPTION_OFFER: 'Your custom Kiibee plan is ready',
+  CUSTOM_SUBSCRIPTION_OFFER: 'Dit skræddersyede Kiibee-abonnement er klar',
   SUBSCRIPTION_PLAN_CHANGED: 'Dit Kiibee-abonnement er blevet ændret',
   SUBSCRIPTION_MANUAL_PAYMENT:
     'Betaling modtaget – dit Kiibee-abonnement er aktivt',
