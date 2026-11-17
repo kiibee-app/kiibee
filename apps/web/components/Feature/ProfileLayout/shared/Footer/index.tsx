@@ -32,7 +32,7 @@ export default function Footer() {
             <JoinButton
               asAnchor
               data-creator-join-button
-              href={PATHS.AUTH_SIGNUP_CREATOR}
+              href={PATHS.AUTH_SIGNUP}
               variant={VARIANT.PRIMARY}
             >
               {t(CREATE_PROFILE_FOOTER.cta)}
