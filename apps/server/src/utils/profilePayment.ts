@@ -36,7 +36,12 @@ export async function getProfilePaymentState(
     .limit(1);
   const [grant] = viewerId
     ? await db
-        .select({ id: userContentAccess.id })
+        .select({
+          id: userContentAccess.id,
+          accessType: userContentAccess.accessType,
+          rentExpiresAt: userContentAccess.rentExpiresAt,
+          grantedAt: userContentAccess.grantedAt,
+        })
         .from(userContentAccess)
         .innerJoin(orders, eq(orders.id, userContentAccess.orderId))
         .where(
@@ -55,6 +60,13 @@ export async function getProfilePaymentState(
   return {
     required: true,
     hasAccess: viewerId === creatorId || Boolean(grant),
+    accessInfo: grant
+      ? {
+          accessType: grant.accessType,
+          rentExpiresAt: grant.rentExpiresAt,
+          grantedAt: grant.grantedAt,
+        }
+      : undefined,
     collectionId: pass?.id,
     buyPrice: pass?.buyPrice,
     rentPrice: pass?.rentPrice,

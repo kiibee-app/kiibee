@@ -30,11 +30,12 @@ export type SaveContentSettingPayload = {
 
 export const CONTENT_SETTING_QUERY_KEY = [API.content.setting];
 
-export function useContentSettings() {
+export function useContentSettings(enabled = true) {
   const queryClient = useQueryClient();
 
   const query = useQuery<ContentSettingResponse>({
     queryKey: CONTENT_SETTING_QUERY_KEY,
+    enabled,
     queryFn: async () => {
       const res = await axiosClient.get(API.content.setting);
       return res.data;

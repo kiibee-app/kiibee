@@ -1,4 +1,5 @@
 "use client";
+import { useChannelVisibleItems } from "./useChannelVisibleItems";
 
 import { useMemo } from "react";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
@@ -221,9 +222,11 @@ function useExploreTutorialSection(
 ) {
   const { t } = useTranslation();
   const query = useExploreFeed(params);
+  const { items: visibleItems, isLoading: visibilityLoading } =
+    useChannelVisibleItems(query.data?.data?.[section]);
 
   const tutorials = useMemo((): TutorialVideo[] => {
-    const items = query.data?.data?.[section];
+    const items = visibleItems;
 
     if (!query.data?.success || !Array.isArray(items)) {
       return [];
@@ -234,9 +237,9 @@ function useExploreTutorialSection(
     return dedupeFeedContentItems(items).map((item) =>
       feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
     );
-  }, [query.data, section, t]);
+  }, [query.data, visibleItems, section, t]);
 
-  const isLoading = query.isPending;
+  const isLoading = query.isPending || visibilityLoading;
 
   return {
     tutorials,

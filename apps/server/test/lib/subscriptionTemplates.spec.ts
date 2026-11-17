@@ -43,7 +43,9 @@ describe('subscription email template files', () => {
       }),
     );
     const html = jest.mocked(sendEmailWithRetry).mock.calls[0][0].html;
-    expect(html).toContain('Tidligere plan: <strong>Try Kiibee</strong>');
+    expect(html.replace(/\s+/g, ' ')).toMatch(
+      /Tidligere plan: <strong>Try Kiibee<\/strong\s*>/,
+    );
     expect(html).not.toContain('{{');
   });
 });

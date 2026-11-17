@@ -22,7 +22,8 @@ import {
 
 import { buildSearch, format } from '../content.helper';
 import {
-  creatorContentIsDiscoverable,
+  creatorContentIsDiscoverableFor,
+  profileContentVisibleTo,
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
 
@@ -121,6 +122,7 @@ export const getAllContentsService = async (
   search = '',
   sort: SortField = 'all',
   filter: GetAllContentsFilter = {},
+  viewerId?: string,
 ) => {
   try {
     const minPrice = cleanNumberValue(filter.minPrice);
@@ -134,13 +136,14 @@ export const getAllContentsService = async (
     const searchCondition = buildSearch(search);
 
     const baseWhere: SQL[] = [
+      profileContentVisibleTo(viewerId),
       sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
     ];
 
     if (filter.excludeChannelLockedCreatorContent) {
-      baseWhere.push(creatorContentIsDiscoverable);
+      baseWhere.push(creatorContentIsDiscoverableFor(viewerId));
     }
 
     if (sort === SORT_DIRECTIONS.FREE) {

@@ -324,10 +324,21 @@ export default function SingleCollectionDetail({
     closeLoginModal: closeCreatorLoginModal,
   } = useCreatorAccessGate(!staticSection ? resolvedCreatorId : null);
   const { gateType: collectionGateType, isLoading: isCollectionGateLoading } =
-    useCollectionAccessGate(!staticSection ? canonicalCollectionId : null);
+    useCollectionAccessGate(
+      !staticSection ? canonicalCollectionId : null,
+      resolvedCreatorId,
+    );
   const gateType = hasProfilePaymentAccess
     ? null
     : (creatorGateType ?? collectionGateType);
+  const lockedChannelPath =
+    !embedded && creatorGateType === "payment" && canonicalCreatorSlug
+      ? getPublicCreatorProfilePath(canonicalCreatorSlug)
+      : null;
+  useEffect(() => {
+    if (lockedChannelPath && !isCreatorGateLoading)
+      router.replace(lockedChannelPath);
+  }, [lockedChannelPath, isCreatorGateLoading, router]);
   const isGateLoading = isCreatorGateLoading || isCollectionGateLoading;
   const {
     hasAccess: hasCollectionAccess,
@@ -700,7 +711,12 @@ export default function SingleCollectionDetail({
     );
   }
 
-  if (isGateLoading || isDynamicLoading || isCollectionLookupLoading) {
+  if (
+    lockedChannelPath ||
+    isGateLoading ||
+    isDynamicLoading ||
+    isCollectionLookupLoading
+  ) {
     return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
   }
 

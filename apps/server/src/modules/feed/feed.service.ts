@@ -6,12 +6,12 @@ import { ExploreType } from './dto/exploreQuery.dto';
 
 @Injectable()
 export class FeedService {
-  async getTrendingContentService() {
-    return getTrendingContentService();
+  async getTrendingContentService(viewerId?: string) {
+    return getTrendingContentService(undefined, viewerId);
   }
 
-  async getRecentContentService() {
-    return getRecentContentService();
+  async getRecentContentService(viewerId?: string) {
+    return getRecentContentService(undefined, viewerId);
   }
 
   async exploreService(
@@ -19,7 +19,8 @@ export class FeedService {
     search?: string,
     filter?: any,
     type?: ExploreType,
+    viewerId?: string,
   ) {
-    return exploreService(limit, search, filter, type);
+    return exploreService(limit, search, filter, type, viewerId);
   }
 }

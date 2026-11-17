@@ -1,4 +1,5 @@
 "use client";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
@@ -171,8 +172,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
     useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
   const profileGate = useCreatorAccessGate(content?.creatorId ?? null);
-  //   const canViewWebAsGuest = Boolean(
-  //     hero.contentType === FORMAT_TYPE.WEB &&
+  const lockedChannelPath =
+    !embedded && profileGate.gateType === "payment" && content?.creatorId
+      ? getPublicCreatorProfilePath(content.creatorSlug || content.creatorId)
+      : null;
+  useEffect(() => {
+    if (lockedChannelPath && !profileGate.isLoading)
+      router.replace(lockedChannelPath);
+  }, [lockedChannelPath, profileGate.isLoading, router]);
   const canViewAsGuest = Boolean(
     content &&
     !accessGate &&
@@ -478,8 +485,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const isRented = content?.accessInfo?.accessType === ACCESS_TYPE_RENTED;
 
-  const isFreePdf =
-    previewContentType === FORMAT_TYPE.PDF &&
+  const isFreeDownloadableContent =
+    isDownloadableType &&
     content?.accessType === ACCESS_TYPE_FREE &&
     !content.isPaidCollection;
 
@@ -488,7 +495,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     isDownloadableType &&
     !accessGate &&
     !isRented &&
-    (hasViewerAccess || isOwner || isFreePdf),
+    (hasViewerAccess || isOwner || isFreeDownloadableContent),
   );
   const shouldEnableDownload = Boolean(user?.id && canOfferDownload);
   const downloadRequiresLogin = !user?.id && canOfferDownload;
@@ -640,7 +647,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     checkoutIdempotencyKeyRef.current = null;
   };
 
-  if (profileGate.isLoading)
+  if (profileGate.isLoading || lockedChannelPath)
     return <GenericSpinner size={48} label={t("common.loading")} />;
   if (profileGate.gateType === "payment")
     return (

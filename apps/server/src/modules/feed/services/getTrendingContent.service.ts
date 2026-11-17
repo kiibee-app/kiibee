@@ -21,7 +21,7 @@ import {
   RECENT_MIN_CANDIDATE_LIMIT,
 } from 'src/utils/constant';
 import {
-  creatorContentIsDiscoverable,
+  creatorContentIsDiscoverableFor,
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
 import {
@@ -53,12 +53,13 @@ const publishedPublicWhere = and(
   eq(mediaFiles.isDeleted, false),
 );
 
-const activeCreatorJoin = and(
-  eq(users.id, mediaFiles.creatorId),
-  eq(users.isDeleted, false),
-  publiclyVisibleCreatorWhere,
-  creatorContentIsDiscoverable,
-);
+const activeCreatorJoin = (viewerId?: string) =>
+  and(
+    eq(users.id, mediaFiles.creatorId),
+    eq(users.isDeleted, false),
+    publiclyVisibleCreatorWhere,
+    creatorContentIsDiscoverableFor(viewerId),
+  );
 
 const trendingScore = sql<number>`(
   -- Purchases and rentals from user_content_access (primary weight)
@@ -91,7 +92,10 @@ const trendingScore = sql<number>`(
   (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
 )`;
 
-export const getTrendingContentService = async (limit = 10) => {
+export const getTrendingContentService = async (
+  limit = 10,
+  viewerId?: string,
+) => {
   try {
     const candidateLimit = Math.max(
       limit * RECENT_CANDIDATE_MULTIPLIER,
@@ -101,7 +105,7 @@ export const getTrendingContentService = async (limit = 10) => {
     const trendingIds = await db
       .select({ id: mediaFiles.id })
       .from(mediaFiles)
-      .innerJoin(users, activeCreatorJoin)
+      .innerJoin(users, activeCreatorJoin(viewerId))
       .where(publishedPublicWhere)
       .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
       .limit(candidateLimit);
@@ -119,7 +123,7 @@ export const getTrendingContentService = async (limit = 10) => {
     const rows = await db
       .select(trendingSelect)
       .from(mediaFiles)
-      .innerJoin(users, activeCreatorJoin)
+      .innerJoin(users, activeCreatorJoin(viewerId))
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,

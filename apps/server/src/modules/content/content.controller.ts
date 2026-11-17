@@ -1,3 +1,4 @@
+import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt-auth.guard';
 import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { getProfilePaymentState } from 'src/utils/profilePayment';
 import { success } from 'src/utils/sendResponse';
@@ -220,8 +221,10 @@ export class ContentController {
     return this.contentService.createOrUpdateContentSetting(userId, dto);
   }
 
+  @UseGuards(OptionalJwtAuthGuard)
   @Post('all')
   async getAllContents(
+    @Req() req: any,
     @Query('limit') limit?: string,
     @Query('search') search?: string,
     @Query('sort') sort?: getAllContentsService.SortField,
@@ -250,6 +253,7 @@ export class ContentController {
       search ?? '',
       sort ?? 'all',
       filter,
+      req.user?.userId,
     );
   }
 
@@ -264,12 +268,17 @@ export class ContentController {
     return this.contentService.verifyContentAccessCode(contentId, code);
   }
 
+  @UseGuards(OptionalJwtAuthGuard)
   @Get(':contentId/related-collection')
   async getRelatedCollectionContent(@Req() req: any) {
     const contentId = req.params.contentId;
-    return this.contentService.getRelatedCollectionContent(contentId);
+    return this.contentService.getRelatedCollectionContent(
+      contentId,
+      req.user?.userId,
+    );
   }
 
+  @UseGuards(OptionalJwtAuthGuard)
   @Get('public/collection/:id')
   async getPublicCollection(
     @Req() req: any,
@@ -278,7 +287,7 @@ export class ContentController {
     const collectionId = req.params.id;
     return this.contentService.getPublicCollectionService(
       collectionId,
-      viewerId,
+      req.user?.userId,
     );
   }
 

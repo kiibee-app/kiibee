@@ -1,3 +1,4 @@
+import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt-auth.guard';
 import {
   Body,
   Controller,
@@ -59,9 +60,16 @@ export class CollectionController {
     );
   }
 
+  @UseGuards(OptionalJwtAuthGuard)
   @Get('public/:creatorId')
-  async getPublicCollections(@Param('creatorId') creatorId: string) {
-    return this.collectionService.getPublicCollectionsService(creatorId);
+  async getPublicCollections(
+    @Param('creatorId') creatorId: string,
+    @Req() req: any,
+  ) {
+    return this.collectionService.getPublicCollectionsService(
+      creatorId,
+      req.user?.userId,
+    );
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
