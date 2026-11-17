@@ -1,5 +1,8 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { savePaymentReturnUrl } from "@/utils/paymentReturn";
+import { useRef } from "react";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
@@ -28,6 +31,12 @@ import {
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
+  paymentOptions?: {
+    buyPrice?: string | number | null;
+    rentPrice?: string | number | null;
+    rentDuration?: string | null;
+  };
+  hasProfilePaymentAccess: boolean;
   isLoading: boolean;
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
   showAccessGranted: boolean;
@@ -62,6 +71,27 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const targetCreatorId = publicCreatorId || publicCreator?.id;
   const currentUserId = storedUser?.id;
+  const canonicalCreatorId = publicCreator?.id || targetCreatorId;
+  const checkoutKey = useRef<string | null>(null);
+  const { data: paymentState, isLoading: paymentLoading } = useQuery({
+    queryKey: ["profile-payment", canonicalCreatorId, currentUserId],
+    enabled: Boolean(isPublicView && canonicalCreatorId),
+    queryFn: async () => {
+      const route = currentUserId ? "profile-entitlement" : "profile-payment";
+      const result = await axiosClient.get(
+        `/content/${route}/${encodeURIComponent(canonicalCreatorId!)}`,
+      );
+      return result.data.data as {
+        required: boolean;
+        hasAccess: boolean;
+        collectionId?: string;
+        buyPrice?: string | number | null;
+        rentPrice?: string | number | null;
+        rentDuration?: string | null;
+      };
+    },
+    staleTime: 0,
+  });
 
   const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   const isStoredUnlock =
@@ -78,7 +108,9 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       storedUser &&
       storedUser.id === targetCreatorId);
 
-  const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
+  const isLoading = isPublicView
+    ? isLoadingPublic || paymentLoading
+    : isLoadingPrivate;
 
   const accessType = isPublicView
     ? publicCreator?.accessType
@@ -92,8 +124,13 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
         ? TYPE_EMAIL
         : null;
 
-  const finalGateType: AccessGateType | null =
-    isUnlocked || isOwner
+  const needsProfilePayment =
+    !isOwner &&
+    ((paymentState?.required && !paymentState.hasAccess) ||
+      (!paymentState && ["payment", "paid"].includes(accessType ?? "")));
+  const finalGateType: AccessGateType | null = needsProfilePayment
+    ? "payment"
+    : isUnlocked || isOwner
       ? null
       : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
         ? gateParam
@@ -103,6 +140,35 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const handleSuccess = async (value: string, name?: string) => {
     if (!targetCreatorId || !finalGateType) return false;
+    if (finalGateType === "payment") {
+      if (!currentUserId) {
+        setIsLoginModalVisible(true);
+        return false;
+      }
+      if (
+        !paymentState?.collectionId ||
+        !["purchase", "rental"].includes(value)
+      )
+        return false;
+      checkoutKey.current ??= crypto.randomUUID();
+      savePaymentReturnUrl();
+      const { data: result } = await axiosClient.post(
+        "/order/collection/create",
+        {
+          collectionId: paymentState.collectionId,
+          itemType: value,
+          idempotencyKey: checkoutKey.current,
+        },
+      );
+      if (!result.success) throw new Error(result.message);
+      if (result.data?.completed)
+        window.location.assign(
+          `/payment/success?orderId=${encodeURIComponent(result.data.orderId)}`,
+        );
+      else if (result.data?.url) window.location.assign(result.data.url);
+      else throw new Error("Payment could not be started");
+      return true;
+    }
 
     const request =
       finalGateType === TYPE_CODE
@@ -126,6 +192,10 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   return {
     gateType: finalGateType,
+    paymentOptions: paymentState,
+    hasProfilePaymentAccess: Boolean(
+      paymentState?.required && paymentState.hasAccess,
+    ),
     isLoading,
     handleSuccess,
     showAccessGranted,

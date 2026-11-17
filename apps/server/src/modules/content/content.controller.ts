@@ -1,3 +1,6 @@
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
+import { getProfilePaymentState } from 'src/utils/profilePayment';
+import { success } from 'src/utils/sendResponse';
 import { makeContentPaidService } from './services/makeContentPaid.service';
 import {
   Body,
@@ -29,6 +32,30 @@ import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 @Controller('content')
 export class ContentController {
   constructor(private readonly contentService: ContentService) {}
+
+  @Get('profile-payment/:creatorId')
+  async profilePayment(@Param('creatorId') creatorId: string) {
+    const creator = await requirePubliclyVisibleCreator(creatorId);
+    return success(
+      await getProfilePaymentState(creator.id),
+      'Profile payment settings',
+      200,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile-entitlement/:creatorId')
+  async profileEntitlement(
+    @Param('creatorId') creatorId: string,
+    @Req() req: any,
+  ) {
+    const creator = await requirePubliclyVisibleCreator(creatorId);
+    return success(
+      await getProfilePaymentState(creator.id, req.user.userId),
+      'Profile entitlement',
+      200,
+    );
+  }
 
   @Get('categories')
   async getContentCategories() {

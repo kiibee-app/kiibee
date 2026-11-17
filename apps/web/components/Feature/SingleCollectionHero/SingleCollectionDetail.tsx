@@ -314,6 +314,8 @@ export default function SingleCollectionDetail({
 
   const {
     gateType: creatorGateType,
+    paymentOptions: creatorPaymentOptions,
+    hasProfilePaymentAccess,
     isLoading: isCreatorGateLoading,
     handleSuccess: handleCreatorGateSuccess,
     showAccessGranted,
@@ -323,7 +325,9 @@ export default function SingleCollectionDetail({
   } = useCreatorAccessGate(!staticSection ? resolvedCreatorId : null);
   const { gateType: collectionGateType, isLoading: isCollectionGateLoading } =
     useCollectionAccessGate(!staticSection ? canonicalCollectionId : null);
-  const gateType = creatorGateType ?? collectionGateType;
+  const gateType = hasProfilePaymentAccess
+    ? null
+    : (creatorGateType ?? collectionGateType);
   const isGateLoading = isCreatorGateLoading || isCollectionGateLoading;
   const {
     hasAccess: hasCollectionAccess,
@@ -388,7 +392,11 @@ export default function SingleCollectionDetail({
           const paymentUrl = response?.data?.url;
           const orderId = response?.data?.orderId;
 
-          if (!paymentUrl && subscriptionId && orderId) {
+          if (
+            !paymentUrl &&
+            orderId &&
+            (response.data.completed || subscriptionId)
+          ) {
             setShowPurchaseModal(false);
             setSelectedAction(null);
             checkoutIdempotencyKeyRef.current = null;
@@ -715,6 +723,7 @@ export default function SingleCollectionDetail({
           accessGate={
             <AccessGate
               type={gateType}
+              paymentOptions={creatorPaymentOptions}
               variant={VARIANT_CONTENT}
               onSuccess={handleCollectionGateSuccess}
             />

@@ -1,3 +1,8 @@
+import {
+  getProfilePaymentState,
+  isProfilePass,
+} from 'src/utils/profilePayment';
+import { completeZeroOrder } from './completeZeroOrder';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, getTableColumns } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -73,6 +78,34 @@ export async function createCollectionOrderService(
       return fail('Collection not found', HttpStatus.NOT_FOUND);
     }
 
+    if (isProfilePass(collectionId)) {
+      const state = await getProfilePaymentState(
+        collectionInfo.creatorId,
+        userId,
+      );
+      if (!state.required)
+        return fail(
+          'Channel payment is no longer required',
+          HttpStatus.BAD_REQUEST,
+        );
+      if (state.hasAccess)
+        return fail('You already have channel access', HttpStatus.CONFLICT);
+    }
+
+    if (!isProfilePass(collectionId)) {
+      const channel = await getProfilePaymentState(
+        collectionInfo.creatorId,
+        userId,
+      );
+      if (channel.required)
+        return fail(
+          channel.hasAccess
+            ? 'You already have channel access'
+            : 'Purchase a channel pass to access this collection',
+          HttpStatus.CONFLICT,
+        );
+    }
+
     const price =
       normalizedItemType === ORDER_TYPES.PURCHASE
         ? collectionInfo.buyPrice
@@ -118,6 +151,19 @@ export async function createCollectionOrderService(
     };
 
     const { order } = await findOrCreateCheckoutOrder(newOrder);
+
+    if (couponCode && resolvedPrice === 0) {
+      const result = await completeZeroOrder(
+        order.id,
+        userId,
+        parseRentDurationToHours(collectionInfo.rentDuration),
+      );
+      return success(
+        result,
+        'Collection order completed successfully',
+        HttpStatus.CREATED,
+      );
+    }
 
     if (order.status === 'refunded') {
       return fail('Order has been refunded', HttpStatus.CONFLICT);

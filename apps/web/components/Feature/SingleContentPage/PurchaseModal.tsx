@@ -217,7 +217,9 @@ export default function PurchaseModal({
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = Math.round((priceNumber - discount) * 100) / 100;
-  const isFreeContentOrder = Boolean(contentId && appliedCode && total === 0);
+  const isFreeContentOrder = Boolean(
+    (contentId || collectionId) && appliedCode && total === 0,
+  );
   const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
   const isCollectionPricing = isCollectionPurchase || isCollectionRental;
   const isRental = !isCollectionPurchase && !isPurchase;
@@ -645,11 +647,13 @@ export default function PurchaseModal({
           disabled={loading}
           isLoading={loading}
         >
-          {isCollectionPurchase || (!isCollectionPricing && !isRental)
-            ? t("singleContent.pricing.buyTotal", { total })
-            : isCollectionRental || isRental
-              ? t("singleContent.pricing.rentTotal", { total })
-              : t("singleContent.pricing.purchase")}
+          {isFreeContentOrder
+            ? t("profilePayment.freeAccess")
+            : isCollectionPurchase || (!isCollectionPricing && !isRental)
+              ? t("singleContent.pricing.buyTotal", { total })
+              : isCollectionRental || isRental
+                ? t("singleContent.pricing.rentTotal", { total })
+                : t("singleContent.pricing.purchase")}
         </GenericButton>
       </PurchaseModalButtonWrapper>
     </GenericModal>

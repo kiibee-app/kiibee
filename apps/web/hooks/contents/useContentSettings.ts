@@ -6,6 +6,9 @@ import { API } from "@/lib/http/api/endpoints";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
 export type ContentSettingData = {
+  buyPrice?: string | number | null;
+  rentPrice?: string | number | null;
+  rentDuration?: string | null;
   accessType?: string;
   userId?: string;
   hasPassword?: boolean;
@@ -17,6 +20,9 @@ type ContentSettingResponse = {
 };
 
 export type SaveContentSettingPayload = {
+  buyPrice?: number | null;
+  rentPrice?: number | null;
+  rentDuration?: string | null;
   accessType: string;
   password?: string;
   removePasswordIndexes?: number[];

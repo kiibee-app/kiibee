@@ -7,6 +7,7 @@ type CreateCollectionOrderResponse = {
   message: string;
   data: {
     orderId: string;
+    completed?: boolean;
     url?: string;
   };
 };

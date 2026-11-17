@@ -1,3 +1,4 @@
+import { getProfilePaymentState } from 'src/utils/profilePayment';
 import {
   Injectable,
   CanActivate,
@@ -71,6 +72,17 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     if (mediaFile.creatorId === userId) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    const profile = await getProfilePaymentState(mediaFile.creatorId, userId);
+    if (profile.required) {
+      if (!profile.hasAccess)
+        throw new ForbiddenException(
+          'A channel pass is required to access this content',
+        );
+      if (mediaFile.isDeleted) throw new NotFoundException('Media not found');
       request.mediaFile = mediaFile;
       return true;
     }

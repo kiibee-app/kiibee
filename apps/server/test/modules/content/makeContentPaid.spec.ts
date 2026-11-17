@@ -1,6 +1,13 @@
 import { db } from 'src/database/db';
 import { makeContentPaidService } from 'src/modules/content/services/makeContentPaid.service';
-jest.mock('src/database/db', () => ({ db: { update: jest.fn() } }));
+jest.mock('src/database/db', () => ({
+  db: {
+    update: jest.fn(),
+    select: jest.fn(),
+    transaction: jest.fn(),
+    query: { mediaFiles: { findFirst: jest.fn() } },
+  },
+}));
 describe('admin free to paid', () => {
   const set = jest.fn();
   beforeEach(() => {
@@ -63,5 +70,126 @@ describe('admin free to paid', () => {
       makeContentPaidService('content', input),
     ).rejects.toMatchObject({ status: 400 });
     expect(db.update).not.toHaveBeenCalled();
+  });
+});
+
+import { getProfilePaymentState } from 'src/utils/profilePayment';
+import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
+import {
+  createOrUpdateContentSetting,
+  getContentSettingByUserId,
+} from 'src/modules/content/services/contentSetting.service';
+import { collections } from 'src/database/schema';
+import type { ExecutionContext } from '@nestjs/common';
+describe('whole-channel paid access', () => {
+  function rows(data: unknown[]) {
+    const q = {
+      from: () => q,
+      innerJoin: () => q,
+      where: () => q,
+      limit: async () => data,
+    };
+    return q as never;
+  }
+  beforeEach(() => jest.clearAllMocks());
+  it.each([false, true])(
+    'requires a channel entitlement (granted %s)',
+    async (granted) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(rows([{ accessType: 'payment' }]))
+        .mockReturnValueOnce(
+          rows([
+            {
+              id: 'profile-access-creator',
+              buyPrice: '16',
+              rentPrice: '8',
+              rentDuration: '1_month',
+            },
+          ]),
+        )
+        .mockReturnValueOnce(rows(granted ? [{ id: 'grant' }] : []));
+      await expect(
+        getProfilePaymentState('creator', 'viewer'),
+      ).resolves.toMatchObject({
+        required: true,
+        hasAccess: granted,
+        buyPrice: '16',
+        rentDuration: '1_month',
+      });
+    },
+  );
+  it('blocks direct playback of a free item on an unpaid channel', async () => {
+    jest.mocked(db.query.mediaFiles.findFirst).mockResolvedValue({
+      id: 'media',
+      creatorId: 'creator',
+      accessType: 'free',
+      isDeleted: false,
+    } as never);
+    jest
+      .mocked(db.select)
+      .mockReturnValueOnce(rows([{ accessType: 'payment' }]))
+      .mockReturnValueOnce(rows([{ id: 'profile-access-creator' }]))
+      .mockReturnValueOnce(rows([]));
+    const context = {
+      switchToHttp: () => ({
+        getRequest: () => ({
+          user: { userId: 'viewer', role: 'viewer' },
+          params: { id: 'media' },
+        }),
+      }),
+    } as ExecutionContext;
+    await expect(
+      new CheckMediaAccessGuard().canActivate(context),
+    ).rejects.toMatchObject({ status: 403 });
+  });
+  it('persists profile prices and period with the access setting atomically', async () => {
+    const pass = jest
+      .fn()
+      .mockReturnValue({ onConflictDoUpdate: async () => undefined });
+    const setting = jest.fn().mockReturnValue({
+      returning: async () => [{ userId: 'creator', accessType: 'payment' }],
+    });
+    const tx = {
+      select: () => rows([]),
+      insert: (table: unknown) => ({
+        values: table === collections ? pass : setting,
+      }),
+    };
+    jest
+      .mocked(db.transaction)
+      .mockImplementation(async (callback) => callback(tx as never));
+    await expect(
+      createOrUpdateContentSetting('creator', {
+        accessType: 'payment',
+        buyPrice: 16,
+        rentPrice: 8,
+        rentDuration: '3_months',
+      }),
+    ).resolves.toMatchObject({ success: true });
+    expect(pass).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 'profile-access-creator',
+        buyPrice: '16',
+        rentPrice: '8',
+        rentDuration: '3_months',
+        visibility: 'draft',
+        isPublished: false,
+      }),
+    );
+    expect(setting).toHaveBeenCalledWith(
+      expect.objectContaining({ accessType: 'payment', userId: 'creator' }),
+    );
+  });
+  it('returns persisted prices to another browser', async () => {
+    jest
+      .mocked(db.select)
+      .mockReturnValueOnce(rows([{ userId: 'creator', accessType: 'payment' }]))
+      .mockReturnValueOnce(
+        rows([{ buyPrice: '16', rentPrice: '8', rentDuration: '6_months' }]),
+      );
+    await expect(getContentSettingByUserId('creator')).resolves.toMatchObject({
+      data: { buyPrice: '16', rentPrice: '8', rentDuration: '6_months' },
+    });
   });
 });

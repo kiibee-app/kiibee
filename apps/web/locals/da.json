@@ -1,4 +1,22 @@
 {
+  "profilePayment": {
+    "purchaseLabel": "Køb adgang til kanalen",
+    "rentalLabel": "Lej adgang til kanalen",
+    "oneTime": "Én betaling · ingen udløbsdato",
+    "duration_one": "Adgang i {{count}} måned",
+    "duration_other": "Adgang i {{count}} måneder",
+    "buyAction": "Køb adgang",
+    "rentAction": "Lej adgang",
+    "opening": "Åbner betaling…",
+    "loginMessage": "Log ind eller opret en konto for at købe adgang til kanalen.",
+    "freeAccess": "Få gratis adgang",
+    "title": "Få adgang til kanalen",
+    "description": "Én betaling giver adgang til alt indhold på denne kanal.",
+    "buy": "Køb adgang · {{price}} DKK",
+    "rent": "Lej adgang · {{price}} DKK / {{months}} måned(er)",
+    "error": "Betalingen kunne ikke startes. Prøv igen.",
+    "unavailable": "Kanalens priser er ikke tilgængelige endnu. Kontakt kreatøren."
+  },
   "customSubscription": {
     "pending": "Afventer betaling",
     "title": "Tilpasset abonnement",
