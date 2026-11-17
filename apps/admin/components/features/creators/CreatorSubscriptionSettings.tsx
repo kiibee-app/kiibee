@@ -416,8 +416,9 @@ export function CreatorSubscriptionSettings({
           <PanelHeaderCopy>
             <PanelTitle>Custom Overrides</PanelTitle>
             <FieldHint>
-              Billing changes apply when the creator completes a new payment
-              setup. Existing ePay renewals are unchanged until then.
+              File limits and payout fees apply as soon as you save. Custom
+              pricing takes effect after successful payment. Your existing ePay
+              agreement stays active until then.
             </FieldHint>
           </PanelHeaderCopy>
         </PanelHeader>
@@ -431,7 +432,7 @@ export function CreatorSubscriptionSettings({
               marginBottom: 24,
             }}
           >
-            <div style={{ flex: "1 1 260px" }}>
+            <div style={{ flex: "1 1 260px", display: "grid", gap: 6 }}>
               <FieldLabel>
                 Custom subscription:{" "}
                 {customStatus === "pending"
@@ -443,9 +444,9 @@ export function CreatorSubscriptionSettings({
                       : "Draft"}
               </FieldLabel>
               <FieldHint>
-                Activate to request payment from this creator. Cancel only
-                withdraws a pending offer; it does not stop an existing ePay
-                agreement.
+                Save a custom price to show the offer on the creator’s profile.
+                Activate to require payment. Cancel withdraws the pending offer
+                and keeps the existing paid subscription.
               </FieldHint>
             </div>
             <PrimaryButton
