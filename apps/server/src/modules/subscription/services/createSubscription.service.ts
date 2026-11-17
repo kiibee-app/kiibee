@@ -63,7 +63,42 @@ export const createSubscriptionService = async ({
 
     if (!user) throw new Error('User not found');
 
-    if (plan.price === 0) {
+    const [assigned] = await db
+      .select()
+      .from(creatorPlans)
+      .where(
+        and(
+          eq(creatorPlans.creatorId, userId),
+          eq(creatorPlans.planId, plan.id),
+          eq(creatorPlans.status, STATUS.ACTIVE),
+        ),
+      )
+      .orderBy(desc(creatorPlans.createdAt))
+      .limit(1);
+    if (
+      assigned &&
+      assigned.customSubscriptionRevision > 0 &&
+      ['draft', 'pending'].includes(assigned.customSubscriptionStatus) &&
+      !hasCustomSubscriptionValues(assigned)
+    )
+      throw new HttpException(
+        'No custom subscription offer is configured',
+        400,
+      );
+    const enabled =
+      customOverridesEnabled(assigned?.customSubscriptionStatus) ||
+      (assigned?.customSubscriptionStatus === 'draft' &&
+        assigned.customSubscriptionRevision > 0);
+    const terms = subscriptionTerms(
+      plan.price,
+      enabled ? (assigned ?? {}) : {},
+    );
+    if (billingMonths !== undefined && billingMonths !== terms.months)
+      throw new HttpException(
+        'The billing period is set by the administrator',
+        400,
+      );
+    if (terms.amount === 0) {
       const existingActiveSubscription = await db.query.subscriptions.findFirst(
         {
           where: (t) => and(eq(t.creatorId, userId)),
@@ -120,41 +155,6 @@ export const createSubscriptionService = async ({
       };
     }
 
-    const [assigned] = await db
-      .select()
-      .from(creatorPlans)
-      .where(
-        and(
-          eq(creatorPlans.creatorId, userId),
-          eq(creatorPlans.planId, plan.id),
-          eq(creatorPlans.status, STATUS.ACTIVE),
-        ),
-      )
-      .orderBy(desc(creatorPlans.createdAt))
-      .limit(1);
-    if (
-      assigned &&
-      assigned.customSubscriptionRevision > 0 &&
-      ['draft', 'pending'].includes(assigned.customSubscriptionStatus) &&
-      !hasCustomSubscriptionValues(assigned)
-    )
-      throw new HttpException(
-        'No custom subscription offer is configured',
-        400,
-      );
-    const enabled =
-      customOverridesEnabled(assigned?.customSubscriptionStatus) ||
-      (assigned?.customSubscriptionStatus === 'draft' &&
-        assigned.customSubscriptionRevision > 0);
-    const terms = subscriptionTerms(
-      plan.price,
-      enabled ? (assigned ?? {}) : {},
-    );
-    if (billingMonths !== undefined && billingMonths !== terms.months)
-      throw new HttpException(
-        'The billing period is set by the administrator',
-        400,
-      );
     const nextChargeAt = addBillingMonths(new Date(), terms.months);
     const reference = randomUUID();
     const subscriptionReference = reference;

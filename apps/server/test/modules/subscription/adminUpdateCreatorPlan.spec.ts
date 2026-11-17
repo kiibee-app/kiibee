@@ -71,6 +71,22 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
   });
   it.each([
     {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      targetId: 'try',
+      targetPrice: 0,
+      implicitCustomSave: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      targetId: 'try',
+      targetPrice: 0,
+      customAction: 'save' as const,
+      paymentRequired: false,
+    },
+    {
       previousPlanId: 'startup',
       previousPrice: 99,
       alreadyPaid: true,
@@ -230,6 +246,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       customState,
       previousSettings,
       operational = false,
+      implicitCustomSave = false,
     }) => {
       const targetPlanId =
         targetId ?? (targetPrice === 0 ? 'try' : input.planId);
@@ -324,7 +341,8 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           ...input,
           planId: targetPlanId,
           customSubscriptionAction: customAction,
-          ...(!operational && ['activate', 'save'].includes(customAction ?? '')
+          ...(implicitCustomSave ||
+          (!operational && ['activate', 'save'].includes(customAction ?? ''))
             ? {
                 customPrice: 99,
                 customMaxFiles: 25,
@@ -367,7 +385,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           'pending',
         );
       }
-      if (customAction === 'save' && !operational)
+      if (implicitCustomSave || (customAction === 'save' && !operational))
         expect(setPlan).toHaveBeenCalledWith(
           expect.objectContaining({
             customSubscriptionStatus: 'draft',
@@ -408,7 +426,8 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const manualPaymentReceived = Boolean(
         manuallyPaid && (!previousManual || previousPlanId !== targetPlanId),
       );
-      const savedOffer = customAction === 'save' && !operational;
+      const savedOffer =
+        implicitCustomSave || (customAction === 'save' && !operational);
       if (savedOffer)
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({

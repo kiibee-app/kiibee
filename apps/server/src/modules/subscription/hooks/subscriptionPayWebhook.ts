@@ -338,7 +338,7 @@ export async function handleSubscriptionPayment(body: any) {
           .update(subscriptionCheckouts)
           .set({ paidAt: new Date() })
           .where(eq(subscriptionCheckouts.id, checkout.id));
-      if (plan.price > 0 && amount > 0 && !hasOtherPendingOffer) {
+      if (amount > 0 && !hasOtherPendingOffer) {
         await tx
           .update(users)
           .set({ subscriptionUpgradeRequired: false })
