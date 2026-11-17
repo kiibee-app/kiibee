@@ -201,4 +201,45 @@ describe('creator dashboard payment prompt', () => {
       });
     },
   );
+  it.each(['draft', 'paid'])(
+    'applies only operational overrides without a custom payment card (%s)',
+    async (state) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: 'startup',
+              manuallyPaid: false,
+              customMaxFiles: 25,
+              customKiibeeCutDkk: 0,
+              customTransactionFeePct: 2,
+              paymentPeriod: '1',
+              customSubscriptionStatus: state,
+              customSubscriptionRevision: 3,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            { id: 'startup', price: 99, maxFiles: 10, isActive: true },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [
+          {
+            hasCustomPlanOffer: false,
+            subscriptionUpgradeRequired: false,
+            price: 99,
+            maxFiles: 25,
+            customKiibeeCutDkk: 0,
+            customTransactionFeePct: 2,
+          },
+        ],
+      });
+    },
+  );
 });

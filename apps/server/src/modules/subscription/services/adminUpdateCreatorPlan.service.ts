@@ -63,14 +63,6 @@ export const adminUpdateCreatorPlan = async (
       !['activate', 'cancel', 'save'].includes(input.customSubscriptionAction)
     )
       return fail('Invalid custom subscription action', HttpStatus.BAD_REQUEST);
-    if (
-      input.customSubscriptionAction === 'activate' &&
-      !hasCustomSubscriptionValues(input)
-    )
-      return fail(
-        'Enter custom subscription values before activating an offer',
-        HttpStatus.BAD_REQUEST,
-      );
     let manualExpiry: Date | null = null;
     if (input.manualPaidExpiresAt) {
       try {
@@ -109,7 +101,11 @@ export const adminUpdateCreatorPlan = async (
       );
     }
 
-    if (input.customSubscriptionAction === 'activate' && plan.price <= 0)
+    if (
+      input.customSubscriptionAction === 'activate' &&
+      hasCustomSubscriptionValues(input) &&
+      plan.price <= 0
+    )
       return fail(
         'Select a paid base plan to activate a custom subscription',
         HttpStatus.BAD_REQUEST,
@@ -160,8 +156,28 @@ export const adminUpdateCreatorPlan = async (
         .orderBy(desc(creatorPlans.createdAt))
         .limit(1);
 
-      const activating = input.customSubscriptionAction === 'activate';
-      const savingOffer = input.customSubscriptionAction === 'save';
+      const billingChanged =
+        currentPlan?.planId !== input.planId ||
+        [
+          'customPrice',
+          'customPrice3',
+          'customPrice6',
+          'customPrice12',
+          'paymentPeriod',
+        ].some(
+          (key) =>
+            (currentPlan?.[key as keyof typeof currentPlan] ??
+              (key === 'paymentPeriod' ? '1' : null)) !==
+            (input[key as keyof typeof input] ??
+              (key === 'paymentPeriod' ? '1' : null)),
+        );
+      const hasPrice = hasCustomSubscriptionValues(input);
+      const activating =
+        input.customSubscriptionAction === 'activate' && hasPrice;
+      const savingOffer =
+        input.customSubscriptionAction === 'save' &&
+        hasPrice &&
+        (billingChanged || currentPlan?.customSubscriptionStatus !== 'paid');
       const cancelling = input.customSubscriptionAction === 'cancel';
       if (cancelling && currentPlan?.customSubscriptionStatus === 'paid')
         return fail(
@@ -173,6 +189,7 @@ export const adminUpdateCreatorPlan = async (
         !activating &&
         !savingOffer &&
         !cancelling &&
+        hasPrice &&
         currentPlan?.planId === input.planId &&
         ['pending', 'paid'].includes(
           currentPlan.customSubscriptionStatus ?? '',
@@ -182,14 +199,13 @@ export const adminUpdateCreatorPlan = async (
           'customPrice3',
           'customPrice6',
           'customPrice12',
-          'customMaxFiles',
-          'customKiibeeCutDkk',
-          'customTransactionFeePct',
           'paymentPeriod',
         ].some(
           (key) =>
-            (currentPlan[key as keyof typeof currentPlan] ?? null) !==
-            (input[key as keyof typeof input] ?? null),
+            (currentPlan[key as keyof typeof currentPlan] ??
+              (key === 'paymentPeriod' ? '1' : null)) !==
+            (input[key as keyof typeof input] ??
+              (key === 'paymentPeriod' ? '1' : null)),
         )
       ) {
         return fail(
@@ -232,7 +248,16 @@ export const adminUpdateCreatorPlan = async (
         customMaxFiles: input.customMaxFiles,
         customKiibeeCutDkk: input.customKiibeeCutDkk,
         customTransactionFeePct: input.customTransactionFeePct,
-        paymentPeriod: input.paymentPeriod,
+        paymentPeriod: hasPrice ? input.paymentPeriod : null,
+        ...(!hasPrice &&
+        (input.customSubscriptionAction === 'save' ||
+          input.customSubscriptionAction === 'activate')
+          ? {
+              customSubscriptionStatus: 'draft',
+              customSubscriptionRevision: 0,
+              customPreviousSettings: null,
+            }
+          : {}),
         ...(activating || savingOffer
           ? {
               customSubscriptionStatus: activating ? 'pending' : 'draft',
@@ -251,6 +276,9 @@ export const adminUpdateCreatorPlan = async (
         > | null;
         if (saved) {
           const restored = { ...saved };
+          delete restored.customMaxFiles;
+          delete restored.customKiibeeCutDkk;
+          delete restored.customTransactionFeePct;
           if (typeof restored.manualPaidExpiresAt === 'string')
             restored.manualPaidExpiresAt = new Date(
               restored.manualPaidExpiresAt,

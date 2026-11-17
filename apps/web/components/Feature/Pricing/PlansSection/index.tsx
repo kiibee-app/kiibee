@@ -59,7 +59,7 @@ type CreatorPlanResponse = {
   success: boolean;
   data?: (ApiPlan & {
     subscriptionUpgradeRequired?: boolean;
-    hasCustomOverrides?: boolean;
+    hasCustomPlanOffer?: boolean;
   })[];
 };
 
@@ -188,7 +188,7 @@ export default function PricingPlansSection({
               isCurrentPlan={isCurrentPlan}
               manageInProfile={
                 currentPlan?.id === apiPlan?.id &&
-                currentPlan?.hasCustomOverrides === true
+                currentPlan?.hasCustomPlanOffer === true
               }
             />
           );

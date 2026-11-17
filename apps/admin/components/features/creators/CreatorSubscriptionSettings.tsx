@@ -208,7 +208,15 @@ export function CreatorSubscriptionSettings({
     Boolean(payload.planId) && hasUnsavedChanges && !isBusy && !validationError;
 
   const customStatus = overrides?.customSubscriptionStatus ?? "draft";
+  const hasCustomPrice = [
+    payload.customPrice,
+    payload.customPrice3,
+    payload.customPrice6,
+    payload.customPrice12,
+  ].some((value) => value != null);
+  const canSaveCustom = Boolean(payload.planId) && !isBusy && !validationError;
   const canActivate =
+    hasCustomPrice &&
     !isBusy &&
     !validationError &&
     Boolean(
@@ -223,7 +231,7 @@ export function CreatorSubscriptionSettings({
         : action === "cancel"
           ? isBusy || customStatus !== "pending"
           : action === "save"
-            ? !canActivate
+            ? !canSaveCustom
             : !canSave
     )
       return;
@@ -248,7 +256,9 @@ export function CreatorSubscriptionSettings({
           : action === "cancel"
             ? "Custom offer cancelled. Existing paid ePay billing is unchanged."
             : action === "save"
-              ? "Custom plan saved. The creator can view the card; payment is requested only after activation."
+              ? hasCustomPrice
+                ? "Custom plan saved. The creator can view the card and choose Pay & Activate."
+                : "File limit and payout fees updated on the current plan. No payment setup is required."
               : "Subscription settings updated successfully.",
       );
     } catch (error) {
@@ -604,7 +614,7 @@ export function CreatorSubscriptionSettings({
           >
             <PrimaryButton
               type="button"
-              disabled={!canActivate}
+              disabled={!canSaveCustom}
               onClick={() => handleSave("save")}
             >
               <Save size={15} /> Save custom plan

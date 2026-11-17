@@ -1,4 +1,3 @@
-import { customOverridesEnabled } from 'src/modules/subscription/services/subscriptionTerms';
 import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomUUID } from 'crypto';
@@ -110,18 +109,8 @@ export const createAdminPayoutRequestService = async (
     } = calculatePayoutFees({
       amount: requestedAmount,
       basePlanPrice: planPrice,
-      transactionFeePct: customOverridesEnabled(
-        creatorPlan.customSubscriptionStatus,
-        false,
-      )
-        ? creatorPlan.customTransactionFeePct
-        : null,
-      fixedPlatformFee: customOverridesEnabled(
-        creatorPlan.customSubscriptionStatus,
-        false,
-      )
-        ? creatorPlan.customKiibeeCutDkk
-        : null,
+      transactionFeePct: creatorPlan.customTransactionFeePct,
+      fixedPlatformFee: creatorPlan.customKiibeeCutDkk,
       currency: wallet.currency,
     });
 

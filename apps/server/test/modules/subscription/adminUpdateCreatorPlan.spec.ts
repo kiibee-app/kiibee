@@ -76,6 +76,22 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       alreadyPaid: true,
       customAction: 'save' as const,
       customState: 'paid',
+      operational: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      alreadyPaid: true,
+      operational: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      alreadyPaid: true,
+      customAction: 'save' as const,
+      customState: 'paid',
       paymentRequired: false,
     },
     {
@@ -213,6 +229,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       customAction,
       customState,
       previousSettings,
+      operational = false,
     }) => {
       const targetPlanId =
         targetId ?? (targetPrice === 0 ? 'try' : input.planId);
@@ -307,8 +324,17 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           ...input,
           planId: targetPlanId,
           customSubscriptionAction: customAction,
-          ...(customAction === 'activate' ? { customPrice: 99 } : {}),
+          ...(!operational && ['activate', 'save'].includes(customAction ?? '')
+            ? { customPrice: 99 }
+            : {}),
           manuallyPaid,
+          ...(operational
+            ? {
+                customMaxFiles: 25,
+                customKiibeeCutDkk: 20,
+                customTransactionFeePct: 2,
+              }
+            : {}),
         }),
       ).resolves.toMatchObject({
         success: true,
@@ -324,7 +350,19 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const paymentRequestCreated =
         paymentRequired &&
         (customAction === 'activate' || planChanged || !previouslyRequired);
-      if (customAction === 'save')
+      if (operational) {
+        expect(setPlan).toHaveBeenCalledWith(
+          expect.objectContaining({
+            customMaxFiles: 25,
+            customKiibeeCutDkk: 20,
+            customTransactionFeePct: 2,
+          }),
+        );
+        expect(setPlan.mock.calls[0][0].customSubscriptionStatus).not.toBe(
+          'pending',
+        );
+      }
+      if (customAction === 'save' && !operational)
         expect(setPlan).toHaveBeenCalledWith(
           expect.objectContaining({
             customSubscriptionStatus: 'draft',

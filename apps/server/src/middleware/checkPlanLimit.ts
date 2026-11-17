@@ -1,4 +1,3 @@
-import { customOverridesEnabled } from 'src/modules/subscription/services/subscriptionTerms';
 import {
   CanActivate,
   ExecutionContext,
@@ -81,10 +80,7 @@ export class CheckPlanLimit implements CanActivate {
         ),
       );
 
-    const maxFiles =
-      (customOverridesEnabled(creatorPlan.customSubscriptionStatus, false)
-        ? creatorPlan.customMaxFiles
-        : null) ?? plan.maxFiles;
+    const maxFiles = creatorPlan.customMaxFiles ?? plan.maxFiles;
     if (Number(existingContentCount.count) >= maxFiles) {
       throw new ForbiddenException(
         `Content limit of ${maxFiles} reached for your plan, please upgrade to add more content`,

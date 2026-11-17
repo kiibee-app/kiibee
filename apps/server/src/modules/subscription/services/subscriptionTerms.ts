@@ -141,17 +141,14 @@ export function customOverridesEnabled(
   );
 }
 
-// The interval alone is a form default, not a custom subscription offer.
+// Only a custom price creates a payable offer. File limits and fees apply immediately.
 export function hasCustomSubscriptionValues(
   overrides: SubscriptionOverrides,
 ): boolean {
   return [
-    'customPrice',
-    'customPrice3',
-    'customPrice6',
-    'customPrice12',
-    'customMaxFiles',
-    'customKiibeeCutDkk',
-    'customTransactionFeePct',
-  ].some((key) => overrides[key as keyof SubscriptionOverrides] != null);
+    overrides.customPrice,
+    overrides.customPrice3,
+    overrides.customPrice6,
+    overrides.customPrice12,
+  ].some((value) => value != null);
 }

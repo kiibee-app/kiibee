@@ -1,4 +1,3 @@
-import { customOverridesEnabled } from 'src/modules/subscription/services/subscriptionTerms';
 import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq } from 'drizzle-orm';
@@ -82,18 +81,8 @@ export const payoutCalculationService = async (creatorId: string) => {
     } = calculatePayoutFees({
       amount: amount,
       basePlanPrice: planPrice,
-      transactionFeePct: customOverridesEnabled(
-        creatorCurrentPlan.customSubscriptionStatus,
-        false,
-      )
-        ? creatorCurrentPlan.customTransactionFeePct
-        : null,
-      fixedPlatformFee: customOverridesEnabled(
-        creatorCurrentPlan.customSubscriptionStatus,
-        false,
-      )
-        ? creatorCurrentPlan.customKiibeeCutDkk
-        : null,
+      transactionFeePct: creatorCurrentPlan.customTransactionFeePct,
+      fixedPlatformFee: creatorCurrentPlan.customKiibeeCutDkk,
       currency: wallet.currency,
     });
 

@@ -141,7 +141,7 @@ export default function CurrentPlanCard() {
             {typeof currentPlan?.maxFiles === "number" ? (
               <PlanMetaChip>
                 {t(CREATOR_PROFILE.currentPlan.maxFiles, {
-                  count: currentPlan.baseMaxFiles ?? currentPlan.maxFiles,
+                  count: currentPlan.maxFiles,
                 })}
               </PlanMetaChip>
             ) : null}
