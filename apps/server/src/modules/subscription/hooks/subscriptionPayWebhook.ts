@@ -1,14 +1,17 @@
+import { resolveSubscriptionCheckout } from '../services/subscriptionCheckout.service';
+import { addBillingMonths } from '../services/subscriptionTerms';
 import { settleAdminBillingRequest } from '../services/adminBillingRequest.service';
 import { db } from 'src/database/db';
 import {
   plans,
   subscriptions,
+  subscriptionCheckouts,
   subscriptionPaymentsHistory,
   creatorPlans,
   userCardInfo,
   users,
 } from 'src/database/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, desc } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 import {
   CURRENCY,
@@ -71,6 +74,14 @@ export async function handleSubscriptionPayment(body: any) {
       return;
     }
 
+    const checkout = await resolveSubscriptionCheckout(
+      reference,
+      customerId,
+      amount,
+      currency ?? CURRENCY.DKK,
+    );
+    const planReference = checkout?.planId ?? reference;
+    const billingMonths = checkout?.billingMonths ?? 1;
     const captureResult = await capturePayment({
       transactionId,
       amount,
@@ -93,7 +104,7 @@ export async function handleSubscriptionPayment(body: any) {
       const [foundPlan] = await db
         .select()
         .from(plans)
-        .where(eq(plans.id, reference))
+        .where(eq(plans.id, planReference))
         .limit(1);
 
       if (foundPlan) {
@@ -146,10 +157,13 @@ export async function handleSubscriptionPayment(body: any) {
     });
 
     if (
-      existingActiveSubscription &&
+      existingActiveSubscription?.agreementId &&
       existingActiveSubscription.agreementId !== subscriptionId
     ) {
-      await deleteSubscriptionService(customerId);
+      await deleteSubscriptionService(customerId, {
+        preserveCreatorPlan: true,
+        notify: false,
+      });
     }
 
     const formattedAmount = (amount / 100).toString();
@@ -167,39 +181,79 @@ export async function handleSubscriptionPayment(body: any) {
 
       if (existingPayment?.status === ORDER_STATUS.COMPLETED) return false;
 
-      await tx
-        .update(creatorPlans)
-        .set({ status: STATUS.INACTIVE })
-        .where(
-          and(
-            eq(creatorPlans.creatorId, customerId),
-            eq(creatorPlans.status, STATUS.ACTIVE),
-          ),
-        );
-
-      const [creatorPlan] = await tx
-        .select()
+      const [pendingOffer] = await tx
+        .select({
+          planId: creatorPlans.planId,
+          revision: creatorPlans.customSubscriptionRevision,
+          state: creatorPlans.customSubscriptionStatus,
+        })
         .from(creatorPlans)
         .where(
           and(
             eq(creatorPlans.creatorId, customerId),
-            eq(creatorPlans.planId, plan.id),
+            eq(creatorPlans.status, STATUS.ACTIVE),
+            eq(creatorPlans.customSubscriptionStatus, 'pending'),
           ),
         )
+        .orderBy(desc(creatorPlans.createdAt))
         .limit(1);
-
-      if (creatorPlan) {
+      const hasOtherPendingOffer =
+        pendingOffer?.state === 'pending' &&
+        !(
+          checkout?.customRevision === pendingOffer.revision &&
+          checkout?.planId === pendingOffer.planId
+        );
+      if (!hasOtherPendingOffer) {
         await tx
           .update(creatorPlans)
-          .set({ status: STATUS.ACTIVE })
-          .where(eq(creatorPlans.id, creatorPlan.id));
-      } else {
-        await tx.insert(creatorPlans).values({
-          id: randomUUID(),
-          creatorId: customerId,
-          planId: plan.id,
-          status: STATUS.ACTIVE,
-        });
+          .set({ status: STATUS.INACTIVE })
+          .where(
+            and(
+              eq(creatorPlans.creatorId, customerId),
+              eq(creatorPlans.status, STATUS.ACTIVE),
+            ),
+          );
+
+        const [creatorPlan] = await tx
+          .select()
+          .from(creatorPlans)
+          .where(
+            and(
+              eq(creatorPlans.creatorId, customerId),
+              eq(creatorPlans.planId, plan.id),
+            ),
+          )
+          .limit(1);
+
+        const matchesCustomOffer =
+          checkout?.customRevision != null &&
+          creatorPlan?.customSubscriptionRevision === checkout.customRevision &&
+          ['draft', 'pending'].includes(
+            creatorPlan?.customSubscriptionStatus ?? '',
+          );
+        if (creatorPlan) {
+          await tx
+            .update(creatorPlans)
+            .set({
+              status: STATUS.ACTIVE,
+              manuallyPaid: false,
+              manualPaidExpiresAt: null,
+              ...(matchesCustomOffer
+                ? {
+                    customSubscriptionStatus: 'paid',
+                    customPreviousSettings: null,
+                  }
+                : {}),
+            })
+            .where(eq(creatorPlans.id, creatorPlan.id));
+        } else {
+          await tx.insert(creatorPlans).values({
+            id: randomUUID(),
+            creatorId: customerId,
+            planId: plan.id,
+            status: STATUS.ACTIVE,
+          });
+        }
       }
 
       const existingSubscription = await tx.query.subscriptions.findFirst({
@@ -213,9 +267,10 @@ export async function handleSubscriptionPayment(body: any) {
         currency,
         status: 'paid' as const,
         isActive: true,
-        billingPeriod: plan.billingCycle,
+        billingPeriod:
+          billingMonths === 1 ? plan.billingCycle : `${billingMonths} months`,
         startAt: new Date(),
-        endAt: new Date(Date.now() + 30 * 86400000),
+        endAt: addBillingMonths(new Date(), billingMonths),
         paymentReference: transactionId,
         agreementId: subscriptionId,
         rawPayload: body,
@@ -228,7 +283,7 @@ export async function handleSubscriptionPayment(body: any) {
         await tx
           .update(subscriptions)
           .set({
-            nextPaymentAttemptAt: new Date(Date.now() + 30 * 86400000),
+            nextPaymentAttemptAt: addBillingMonths(new Date(), billingMonths),
             ...baseData,
           })
           .where(eq(subscriptions.creatorId, customerId));
@@ -267,16 +322,23 @@ export async function handleSubscriptionPayment(body: any) {
         await tx.insert(subscriptionPaymentsHistory).values(paymentData);
       }
 
-      await settleAdminBillingRequest(tx, {
-        creatorId: customerId,
-        planId: plan.id,
-        transactionId,
-        status: 'completed',
-        amount: formattedAmount,
-        currency: currency ?? CURRENCY.DKK,
-      });
+      if (!hasOtherPendingOffer)
+        await settleAdminBillingRequest(tx, {
+          creatorId: customerId,
+          planId: plan.id,
+          transactionId,
+          status: 'completed',
+          customRevision: checkout?.customRevision,
+          amount: formattedAmount,
+          currency: currency ?? CURRENCY.DKK,
+        });
 
-      if (plan.price > 0 && amount > 0) {
+      if (checkout && !checkout.paidAt)
+        await tx
+          .update(subscriptionCheckouts)
+          .set({ paidAt: new Date() })
+          .where(eq(subscriptionCheckouts.id, checkout.id));
+      if (plan.price > 0 && amount > 0 && !hasOtherPendingOffer) {
         await tx
           .update(users)
           .set({ subscriptionUpgradeRequired: false })
@@ -363,6 +425,14 @@ async function handleFailedSubscriptionPayment(transaction: any) {
       paymentMethodType,
     } = transaction;
 
+    const checkout = await resolveSubscriptionCheckout(
+      reference,
+      customerId,
+      amount,
+      currency ?? CURRENCY.DKK,
+    );
+    const planReference = checkout?.planId ?? reference;
+
     logger.warn(
       `Subscription payment FAILED for customer ${customerId}, reference ${reference}`,
     );
@@ -419,7 +489,7 @@ async function handleFailedSubscriptionPayment(transaction: any) {
           const [foundPlan] = await db
             .select()
             .from(plans)
-            .where(eq(plans.id, reference))
+            .where(eq(plans.id, planReference))
             .limit(1);
 
           if (foundPlan) {
@@ -498,9 +568,10 @@ async function handleFailedSubscriptionPayment(transaction: any) {
     if (reference) {
       await settleAdminBillingRequest(db, {
         creatorId: customerId,
-        planId: reference,
+        planId: planReference,
         transactionId,
         status: 'failed',
+        customRevision: checkout?.customRevision,
         amount: formattedAmount,
         currency: currency ?? CURRENCY.DKK,
       });

@@ -508,7 +508,7 @@ export const FILTER_SECTION_FORMATS = "formats";
 export const FILTER_SECTION_PRICE = "price";
 export const FILTER_SECTION_RATING = "rating";
 
-export type AccessGateType = "code" | "email";
+export type AccessGateType = "code" | "email" | "payment";
 export type AccessGateVariant = "page" | "content";
 
 export const VARIANT_CONTENT: AccessGateVariant = "content";

@@ -6,6 +6,8 @@ import {
   IsOptional,
   IsString,
   Min,
+  IsNumber,
+  Max,
 } from 'class-validator';
 
 export const contentSettingsEnumValues = [
@@ -21,6 +23,22 @@ export type AccessType = (typeof contentSettingsEnumValues)[number];
 export class ContentSettingDto {
   @IsIn(contentSettingsEnumValues)
   accessType!: AccessType;
+
+  @IsOptional()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0.01)
+  @Max(99999999.99)
+  buyPrice?: number | null;
+
+  @IsOptional()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  @Min(0.01)
+  @Max(99999999.99)
+  rentPrice?: number | null;
+
+  @IsOptional()
+  @IsIn(['1_month', '3_months', '6_months', '12_months'])
+  rentDuration?: string | null;
 
   @IsOptional()
   @IsString()

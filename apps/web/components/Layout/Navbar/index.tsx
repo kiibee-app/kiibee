@@ -714,17 +714,6 @@ export default function NavBar({
                 >
                   {t(NAV.login)}
                 </GenericButton>
-                <GenericButton
-                  className="start-btn"
-                  asAnchor
-                  href={paths.AUTH_SIGNUP}
-                  variant={VARIANT.PRIMARY}
-                >
-                  <span className="desktop-text">{t(NAV.startCreating)}</span>
-                  <span className="mobile-text">
-                    {t(NAV.startCreatingShort)}
-                  </span>
-                </GenericButton>
               </>
             ))
           )}
@@ -831,17 +820,6 @@ export default function NavBar({
                     variant={VARIANT.SECONDARY}
                   >
                     {t(NAV.login)}
-                  </GenericButton>
-                  <GenericButton
-                    className="start-btn"
-                    asAnchor
-                    href={paths.AUTH_SIGNUP}
-                    variant={VARIANT.PRIMARY}
-                  >
-                    <span className="desktop-text">{t(NAV.startCreating)}</span>
-                    <span className="mobile-text">
-                      {t(NAV.startCreatingShort)}
-                    </span>
                   </GenericButton>
                 </>
               ))

@@ -1,5 +1,6 @@
 "use client";
 
+import CustomPlanCard from "./CustomPlanCard";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { FRESH_QUERY_OPTIONS } from "@/utils/common";
 import {
   PlanCardRoot,
+  PlanCardsColumn,
   PlanCardHeader,
   PlanCardLabel,
   PlanStatusBadge,
@@ -32,6 +34,15 @@ type ApiPlan = {
   maxFiles: number;
   isActive: boolean;
   subscriptionUpgradeRequired?: boolean;
+  basePrice?: number;
+  baseMaxFiles?: number;
+  hasCustomOverrides?: boolean;
+  hasCustomPlanOffer?: boolean;
+  hasCustomBilling?: boolean;
+  customSubscriptionStatus?: string;
+  billingOptions?: { months: number; amount: number }[];
+  customKiibeeCutDkk?: number | null;
+  customTransactionFeePct?: number | null;
 };
 
 type CreatorPlanResponse = {
@@ -72,12 +83,15 @@ export default function CurrentPlanCard() {
       return null;
     }
     return t(CREATOR_PROFILE.currentPlan.pricePerMonth, {
-      price: currentPlan.price,
+      price: currentPlan.basePrice ?? currentPlan.price,
     });
   }, [currentPlan, t]);
 
   const paymentRequired = currentPlan?.subscriptionUpgradeRequired === true;
   const isFreePlan = (currentPlan?.price ?? 0) === 0;
+  const isCustomPlanActive =
+    currentPlan?.hasCustomPlanOffer === true &&
+    currentPlan?.customSubscriptionStatus === "paid";
   const ctaLabel = paymentRequired
     ? t("dashboard.subscriptionPaymentRequired.pay")
     : isFreePlan
@@ -85,56 +99,66 @@ export default function CurrentPlanCard() {
       : t(CREATOR_PROFILE.currentPlan.changePlan);
 
   const handleUpgrade = () => {
+    if (paymentRequired && currentPlan?.hasCustomPlanOffer) {
+      document
+        .getElementById("creator-custom-plan")
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     window.sessionStorage.setItem(SCROLL_TO_PLANS_KEY, "1");
     // Skip Next's scroll-to-top; it animates (global smooth scroll) and fights the plans scroll.
     router.push(localizeHref(PATHS.PRICING), { scroll: false });
   };
 
   return (
-    <PlanCardRoot>
-      <PlanCardHeader>
-        <PlanCardLabel>
-          <MonoText $use="Body_Medium">
-            {t(CREATOR_PROFILE.currentPlan.label)}
+    <PlanCardsColumn>
+      <PlanCardRoot>
+        <PlanCardHeader>
+          <PlanCardLabel>
+            <MonoText $use="Body_Medium">
+              {t(CREATOR_PROFILE.currentPlan.label)}
+            </MonoText>
+          </PlanCardLabel>
+          {!isCustomPlanActive &&
+            (paymentRequired || currentPlan?.isActive) && (
+              <PlanStatusBadge>
+                {paymentRequired
+                  ? t("dashboard.subscriptionPaymentRequired.title")
+                  : t(CREATOR_PROFILE.currentPlan.activeBadge)}
+              </PlanStatusBadge>
+            )}
+        </PlanCardHeader>
+
+        <PlanCardName>
+          <MonoText $use="Heading3">
+            {isLoading ? t(CREATOR_PROFILE.currentPlan.loading) : displayName}
           </MonoText>
-        </PlanCardLabel>
-        {(paymentRequired || currentPlan?.isActive) && (
-          <PlanStatusBadge>
-            {paymentRequired
-              ? t("dashboard.subscriptionPaymentRequired.title")
-              : t(CREATOR_PROFILE.currentPlan.activeBadge)}
-          </PlanStatusBadge>
-        )}
-      </PlanCardHeader>
+        </PlanCardName>
 
-      <PlanCardName>
-        <MonoText $use="Heading3">
-          {isLoading ? t(CREATOR_PROFILE.currentPlan.loading) : displayName}
-        </MonoText>
-      </PlanCardName>
+        {priceLabel && !isLoading ? (
+          <PlanCardMeta>
+            <PlanMetaChip>{priceLabel}</PlanMetaChip>
+            {typeof currentPlan?.maxFiles === "number" ? (
+              <PlanMetaChip>
+                {t(CREATOR_PROFILE.currentPlan.maxFiles, {
+                  count: currentPlan.maxFiles,
+                })}
+              </PlanMetaChip>
+            ) : null}
+          </PlanCardMeta>
+        ) : null}
 
-      {priceLabel && !isLoading ? (
-        <PlanCardMeta>
-          <PlanMetaChip>{priceLabel}</PlanMetaChip>
-          {typeof currentPlan?.maxFiles === "number" ? (
-            <PlanMetaChip>
-              {t(CREATOR_PROFILE.currentPlan.maxFiles, {
-                count: currentPlan.maxFiles,
-              })}
-            </PlanMetaChip>
-          ) : null}
-        </PlanCardMeta>
-      ) : null}
-
-      <PlanCardActions>
-        <GenericButton
-          variant={VARIANT.PRIMARY}
-          onClick={handleUpgrade}
-          disabled={isLoading}
-        >
-          {ctaLabel}
-        </GenericButton>
-      </PlanCardActions>
-    </PlanCardRoot>
+        <PlanCardActions>
+          <GenericButton
+            variant={VARIANT.PRIMARY}
+            onClick={handleUpgrade}
+            disabled={isLoading}
+          >
+            {ctaLabel}
+          </GenericButton>
+        </PlanCardActions>
+      </PlanCardRoot>
+      {currentPlan?.hasCustomPlanOffer && <CustomPlanCard plan={currentPlan} />}
+    </PlanCardsColumn>
   );
 }

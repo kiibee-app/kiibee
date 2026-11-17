@@ -1,4 +1,6 @@
 "use client";
+import { useQuery } from "@tanstack/react-query";
+import { axiosClient } from "@/lib/http/axiosClient";
 
 import { useMemo } from "react";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -75,6 +77,21 @@ const hasLocalCreatorUnlock = (
   );
 };
 
+function useProfileEntitlement(creatorId?: string | null, userId?: string) {
+  const { data } = useQuery({
+    queryKey: ["profile-payment", creatorId, userId],
+    enabled: Boolean(creatorId && userId),
+    staleTime: 0,
+    queryFn: async () =>
+      (
+        await axiosClient.get(
+          `/content/profile-entitlement/${encodeURIComponent(creatorId!)}`,
+        )
+      ).data.data as { required: boolean; hasAccess: boolean },
+  });
+  return Boolean(data?.required && data.hasAccess);
+}
+
 export function useViewerContentAccess(
   contentId: string,
   creatorId?: string | null,
@@ -82,6 +99,7 @@ export function useViewerContentAccess(
 ) {
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
+  const hasProfileAccess = useProfileEntitlement(creatorId, user?.id);
   const isOwner = Boolean(creatorId && user?.id === creatorId);
   const { data: purchasedData } = useViewerPurchased(isLoggedIn);
   const { sources: rentedData } = useViewerRentedData(
@@ -112,12 +130,13 @@ export function useViewerContentAccess(
 
   const hasCollectionAccess = useMemo(() => {
     return (
+      hasProfileAccess ||
       hasLocalCollectionUnlock(collectionId) ||
       (isLoggedIn &&
         (hasCollection(purchasedData, collectionId) ||
           hasCollection(rentedData, collectionId)))
     );
-  }, [collectionId, isLoggedIn, purchasedData, rentedData]);
+  }, [collectionId, isLoggedIn, purchasedData, rentedData, hasProfileAccess]);
 
   const hasAccess = useMemo(() => {
     if (
@@ -164,6 +183,7 @@ export function useViewerCollectionAccess(
 ) {
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
+  const hasProfileAccess = useProfileEntitlement(creatorId, user?.id);
   const { data: purchasedData } = useViewerPurchased(isLoggedIn);
   const { sources: rentedData } = useViewerRentedData(
     RENTED_MODES.CURRENTLY,
@@ -181,6 +201,7 @@ export function useViewerCollectionAccess(
   }, [collectionId, isLoggedIn, rentedData]);
 
   const hasAccess =
+    hasProfileAccess ||
     isPurchased ||
     isRented ||
     hasLocalCollectionUnlock(collectionId) ||

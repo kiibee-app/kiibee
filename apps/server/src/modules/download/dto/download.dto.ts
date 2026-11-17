@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, Min, Max } from 'class-validator';
+import { IsNotEmpty, IsString, IsInt, Min, Max } from 'class-validator';
 
 export class GetDownloadUrlDto {
   @IsNotEmpty()
@@ -7,8 +7,15 @@ export class GetDownloadUrlDto {
 }
 
 export class SetDownloadLimitDto {
-  @IsNumber()
+  @IsInt()
   @Min(0)
-  @Max(5)
+  @Max(10)
   maxLimit!: number;
+}
+
+export class SetStreamLimitDto {
+  @IsInt()
+  @Min(1)
+  @Max(10)
+  maxStreamLimit!: number;
 }

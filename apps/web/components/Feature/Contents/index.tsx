@@ -376,6 +376,7 @@ function CreatorsContentsInner() {
     contentTypeFlow,
     contentSettingAccessType,
     contentSettingPasswordCount: contentSettings.data?.data?.passwordCount,
+    profilePaymentSettings: contentSettings.data?.data,
     removedPasswordIndexes,
     clearRemovedPasswordIndexes: () => setRemovedPasswordIndexes([]),
     passwordDraft,

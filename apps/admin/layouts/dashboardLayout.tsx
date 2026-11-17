@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { breakpoints } from "@repo/ui/breakpoints";
 import { usePathname } from "next/navigation";
 import { Header } from "../components/header/Header";
 import { Sidebar } from "../components/sidebar/Sidebar";
@@ -15,7 +16,7 @@ import {
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const isLoginRoute = pathname === "/login";
   const meta = getPageMeta(pathname);
 
@@ -23,37 +24,29 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const closeSidebar = useCallback(() => setSidebarOpen(false), []);
 
   useEffect(() => {
-    if (!sidebarOpen) return;
+    if (!sidebarOpen || isLoginRoute) return;
 
     const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeSidebar();
-      }
+      if (event.key === "Escape") closeSidebar();
     };
-
+    const mobileViewport = window.matchMedia(
+      `(max-width: ${breakpoints.tablet})`,
+    );
     const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const syncScrollLock = () => {
+      document.body.style.overflow = mobileViewport.matches
+        ? "hidden"
+        : previousOverflow;
+    };
+    syncScrollLock();
+    mobileViewport.addEventListener("change", syncScrollLock);
     window.addEventListener("keydown", handleEsc);
-
     return () => {
       document.body.style.overflow = previousOverflow;
+      mobileViewport.removeEventListener("change", syncScrollLock);
       window.removeEventListener("keydown", handleEsc);
     };
-  }, [closeSidebar, sidebarOpen]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        closeSidebar();
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [closeSidebar]);
+  }, [closeSidebar, sidebarOpen, isLoginRoute]);
 
   if (isLoginRoute) {
     return <>{children}</>;
@@ -67,10 +60,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         isOpen={sidebarOpen}
         onClose={closeSidebar}
       />
-      <Main>
+      <Main $sidebarOpen={sidebarOpen}>
         <Header
           title={meta.title}
           description={meta.description}
+          sidebarOpen={sidebarOpen}
           onToggleSidebar={toggleSidebar}
         />
         <Content>{children}</Content>

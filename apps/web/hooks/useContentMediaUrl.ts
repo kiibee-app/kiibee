@@ -13,6 +13,8 @@ import {
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { extractCloudflareStreamVideoId } from "@/utils/media";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { isFreeContentItem } from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
 
 export function useContentMediaUrl(
@@ -24,10 +26,19 @@ export function useContentMediaUrl(
   const contentMediaKey = content && getContentMediaKey(content);
   const cloudflareVideoId = extractCloudflareStreamVideoId(contentMediaKey);
 
+  const guestFreeContent =
+    !readStoredLoginUser()?.id &&
+    content &&
+    isFreeContentItem(content) &&
+    !content.isPaidCollection;
   const mediaEndpoint =
     contentType === FORMAT_TYPE.VIDEO && cloudflareVideoId
-      ? API.media.videoStream
-      : API.media.fileSignedUrl;
+      ? guestFreeContent
+        ? API.media.freeVideoStream
+        : API.media.videoStream
+      : guestFreeContent
+        ? API.media.freeFileSignedUrl
+        : API.media.fileSignedUrl;
 
   const canFetchMedia =
     Boolean(contentMediaKey) && contentType !== FORMAT_TYPE.WEB;

@@ -58,21 +58,16 @@ function AdminPayoutForm({
     Number.isFinite(parsedAmount) &&
     parsedAmount > MIN_PAYOUT_AMOUNT &&
     parsedAmount <= balance;
-  const canSubmit =
-    amountValid &&
-    Boolean(paymentMethodId) &&
-    paymentMethods.length > 0 &&
-    !isPending &&
-    balance > MIN_PAYOUT_AMOUNT;
 
   const feePreview = useMemo(() => {
     if (!calculation || !amountValid) return null;
 
     const platformFeePercentage = calculation.platformFeePercentage;
     const processingFeePercentage = calculation.processingFeePercentage;
-    const platformFee = Number(
-      (parsedAmount * platformFeePercentage).toFixed(2),
-    );
+    const fixedPlatformFee = calculation.fixedPlatformFee ?? null;
+    const platformFee =
+      fixedPlatformFee ??
+      Number((parsedAmount * platformFeePercentage).toFixed(2));
     const processingFee = Number(
       (parsedAmount * processingFeePercentage).toFixed(2),
     );
@@ -82,6 +77,7 @@ function AdminPayoutForm({
 
     return {
       amount: parsedAmount,
+      fixedPlatformFee,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,
@@ -90,6 +86,14 @@ function AdminPayoutForm({
       walletCurrency: calculation.walletCurrency,
     };
   }, [amountValid, calculation, parsedAmount]);
+
+  const canSubmit =
+    amountValid &&
+    Boolean(feePreview && feePreview.payableAmount >= 1) &&
+    Boolean(paymentMethodId) &&
+    paymentMethods.length > 0 &&
+    !isPending &&
+    balance > MIN_PAYOUT_AMOUNT;
 
   const handleClose = () => {
     if (isPending) return;
@@ -203,8 +207,9 @@ function AdminPayoutForm({
             </PayoutFeeRow>
             <PayoutFeeRow>
               <span>
-                Platform fee (
-                {(feePreview.platformFeePercentage * 100).toFixed(0)}%)
+                {feePreview.fixedPlatformFee != null
+                  ? "Kiibee cut (fixed per payout)"
+                  : `Platform fee (${(feePreview.platformFeePercentage * 100).toFixed(0)}%)`}
               </span>
               <span>
                 -

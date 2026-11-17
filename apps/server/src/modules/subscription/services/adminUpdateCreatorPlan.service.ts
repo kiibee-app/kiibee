@@ -1,12 +1,18 @@
+import {
+  validateSubscriptionOverrides,
+  subscriptionTerms,
+  hasCustomSubscriptionValues,
+} from './subscriptionTerms';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { escapeHtml } from 'src/utils/sanitize';
 import { manualExpiryDate } from './manualExpiryDate';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, desc } from 'drizzle-orm';
+import { and, eq, desc, gt, lte } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  subscriptions,
   adminBillingRequests,
   creatorPlans,
   plans,
@@ -20,6 +26,7 @@ import { randomUUID } from 'crypto';
 
 interface AdminUpdateCreatorPlanInput {
   planId: string;
+  customSubscriptionAction?: 'activate' | 'cancel' | 'save';
   manuallyPaid?: boolean;
   manualPaidExpiresAt?: string | null;
   customPrice: number | null;
@@ -50,6 +57,12 @@ export const adminUpdateCreatorPlan = async (
     ) {
       return fail('Invalid manual payment status', HttpStatus.BAD_REQUEST);
     }
+    validateSubscriptionOverrides(input);
+    if (
+      input.customSubscriptionAction &&
+      !['activate', 'cancel', 'save'].includes(input.customSubscriptionAction)
+    )
+      return fail('Invalid custom subscription action', HttpStatus.BAD_REQUEST);
     let manualExpiry: Date | null = null;
     if (input.manualPaidExpiresAt) {
       try {
@@ -88,6 +101,15 @@ export const adminUpdateCreatorPlan = async (
       );
     }
 
+    if (
+      input.customSubscriptionAction === 'activate' &&
+      hasCustomSubscriptionValues(input) &&
+      plan.price <= 0
+    )
+      return fail(
+        'Select a paid base plan to activate a custom subscription',
+        HttpStatus.BAD_REQUEST,
+      );
     const notification = await db.transaction(async (tx) => {
       const [creator] = await tx
         .select({
@@ -110,6 +132,18 @@ export const adminUpdateCreatorPlan = async (
           price: plans.price,
           name: plans.name,
           manuallyPaid: creatorPlans.manuallyPaid,
+          customPrice: creatorPlans.customPrice,
+          customPrice3: creatorPlans.customPrice3,
+          customPrice6: creatorPlans.customPrice6,
+          customPrice12: creatorPlans.customPrice12,
+          customMaxFiles: creatorPlans.customMaxFiles,
+          customKiibeeCutDkk: creatorPlans.customKiibeeCutDkk,
+          customTransactionFeePct: creatorPlans.customTransactionFeePct,
+          paymentPeriod: creatorPlans.paymentPeriod,
+          customSubscriptionStatus: creatorPlans.customSubscriptionStatus,
+          customSubscriptionRevision: creatorPlans.customSubscriptionRevision,
+          customPreviousSettings: creatorPlans.customPreviousSettings,
+          manualPaidExpiresAt: creatorPlans.manualPaidExpiresAt,
         })
         .from(creatorPlans)
         .innerJoin(plans, eq(creatorPlans.planId, plans.id))
@@ -122,6 +156,81 @@ export const adminUpdateCreatorPlan = async (
         .orderBy(desc(creatorPlans.createdAt))
         .limit(1);
 
+      const billingChanged =
+        currentPlan?.planId !== input.planId ||
+        [
+          'customPrice',
+          'customPrice3',
+          'customPrice6',
+          'customPrice12',
+          'paymentPeriod',
+        ].some(
+          (key) =>
+            (currentPlan?.[key as keyof typeof currentPlan] ??
+              (key === 'paymentPeriod' ? '1' : null)) !==
+            (input[key as keyof typeof input] ??
+              (key === 'paymentPeriod' ? '1' : null)),
+        );
+      const hasPrice = hasCustomSubscriptionValues(input);
+      const activating =
+        input.customSubscriptionAction === 'activate' && hasPrice;
+      const savingOffer =
+        input.customSubscriptionAction === 'save' &&
+        hasPrice &&
+        (billingChanged || currentPlan?.customSubscriptionStatus !== 'paid');
+      const cancelling = input.customSubscriptionAction === 'cancel';
+      if (cancelling && currentPlan?.customSubscriptionStatus === 'paid')
+        return fail(
+          'There is no pending custom offer to cancel. The paid ePay subscription is unchanged.',
+          HttpStatus.BAD_REQUEST,
+        );
+      // A pending checkout is immutable; changing its terms requires a new revision.
+      if (
+        !activating &&
+        !savingOffer &&
+        !cancelling &&
+        hasPrice &&
+        currentPlan?.planId === input.planId &&
+        ['pending', 'paid'].includes(
+          currentPlan.customSubscriptionStatus ?? '',
+        ) &&
+        [
+          'customPrice',
+          'customPrice3',
+          'customPrice6',
+          'customPrice12',
+          'paymentPeriod',
+        ].some(
+          (key) =>
+            (currentPlan[key as keyof typeof currentPlan] ??
+              (key === 'paymentPeriod' ? '1' : null)) !==
+            (input[key as keyof typeof input] ??
+              (key === 'paymentPeriod' ? '1' : null)),
+        )
+      ) {
+        return fail(
+          'Use Activate custom subscription to request payment for changed custom terms.',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      const previous = currentPlan
+        ? Object.fromEntries(
+            [
+              'planId',
+              'manuallyPaid',
+              'manualPaidExpiresAt',
+              'customPrice',
+              'customPrice3',
+              'customPrice6',
+              'customPrice12',
+              'customMaxFiles',
+              'customKiibeeCutDkk',
+              'customTransactionFeePct',
+              'paymentPeriod',
+              'customSubscriptionStatus',
+            ].map((key) => [key, currentPlan[key as keyof typeof currentPlan]]),
+          )
+        : null;
       const overrides = {
         ...(input.manuallyPaid !== undefined
           ? {
@@ -139,9 +248,91 @@ export const adminUpdateCreatorPlan = async (
         customMaxFiles: input.customMaxFiles,
         customKiibeeCutDkk: input.customKiibeeCutDkk,
         customTransactionFeePct: input.customTransactionFeePct,
-        paymentPeriod: input.paymentPeriod,
+        paymentPeriod: hasPrice ? input.paymentPeriod : null,
+        ...(!hasPrice &&
+        (input.customSubscriptionAction === 'save' ||
+          input.customSubscriptionAction === 'activate')
+          ? {
+              customSubscriptionStatus: 'draft',
+              customSubscriptionRevision: 0,
+              customPreviousSettings: null,
+            }
+          : {}),
+        ...(activating || savingOffer
+          ? {
+              customSubscriptionStatus: activating ? 'pending' : 'draft',
+              customSubscriptionRevision:
+                (currentPlan?.customSubscriptionRevision ?? 0) + 1,
+              customPreviousSettings:
+                currentPlan?.customPreviousSettings ?? previous,
+            }
+          : {}),
         updatedAt: new Date(),
       };
+      if (cancelling) {
+        const saved = currentPlan?.customPreviousSettings as Record<
+          string,
+          unknown
+        > | null;
+        if (saved) {
+          const restored = { ...saved };
+          delete restored.customMaxFiles;
+          delete restored.customKiibeeCutDkk;
+          delete restored.customTransactionFeePct;
+          if (typeof restored.manualPaidExpiresAt === 'string')
+            restored.manualPaidExpiresAt = new Date(
+              restored.manualPaidExpiresAt,
+            );
+          Object.assign(overrides, restored, {
+            customSubscriptionStatus:
+              saved.customSubscriptionStatus === 'paid' ? 'paid' : 'cancelled',
+            customPreviousSettings: null,
+          });
+        } else {
+          Object.assign(overrides, {
+            customSubscriptionStatus: 'cancelled',
+            customPreviousSettings: null,
+          });
+        }
+        if (!saved || saved.customSubscriptionStatus !== 'paid') {
+          const [paid] = await tx
+            .select({ planId: subscriptions.planId })
+            .from(subscriptions)
+            .where(
+              and(
+                eq(subscriptions.creatorId, creatorId),
+                eq(subscriptions.status, 'paid'),
+                gt(subscriptions.amount, '0'),
+                lte(subscriptions.startAt, new Date()),
+                gt(subscriptions.endAt, new Date()),
+              ),
+            )
+            .orderBy(desc(subscriptions.createdAt))
+            .limit(1);
+          if (paid) overrides.planId = paid.planId;
+          else if (
+            !(
+              currentPlan?.manuallyPaid &&
+              (!currentPlan.manualPaidExpiresAt ||
+                currentPlan.manualPaidExpiresAt > new Date())
+            )
+          ) {
+            const [free] = await tx
+              .select({ id: plans.id })
+              .from(plans)
+              .where(eq(plans.price, 0))
+              .limit(1);
+            if (!free)
+              return fail(
+                'No free fallback plan found',
+                HttpStatus.BAD_REQUEST,
+              );
+            overrides.planId = free.id;
+            overrides.manuallyPaid = false;
+            overrides.manualPaidExpiresAt = null;
+          }
+        }
+      }
       if (currentPlan) {
         await tx
           .update(creatorPlans)
@@ -176,6 +367,8 @@ export const adminUpdateCreatorPlan = async (
         ));
       }
 
+      if (activating) upgradeRequired = true;
+      if (cancelling || savingOffer) upgradeRequired = false;
       if (upgradeRequired !== creator.subscriptionUpgradeRequired) {
         await tx
           .update(users)
@@ -183,7 +376,7 @@ export const adminUpdateCreatorPlan = async (
           .where(eq(users.id, creatorId));
       }
       const planChanged = currentPlan?.planId !== plan.id;
-      if (planChanged || !upgradeRequired) {
+      if (planChanged || !upgradeRequired || activating) {
         await tx
           .update(adminBillingRequests)
           .set({ status: 'cancelled', updatedAt: new Date() })
@@ -197,7 +390,7 @@ export const adminUpdateCreatorPlan = async (
       let billingRequestId: string | undefined;
       if (
         upgradeRequired &&
-        (planChanged || !creator.subscriptionUpgradeRequired)
+        (activating || planChanged || !creator.subscriptionUpgradeRequired)
       ) {
         billingRequestId = randomUUID();
         await tx.insert(adminBillingRequests).values({
@@ -205,7 +398,10 @@ export const adminUpdateCreatorPlan = async (
           creatorId,
           planId: plan.id,
           planName: plan.name,
-          amount: String(input.customPrice ?? plan.price),
+          customRevision: activating
+            ? (currentPlan?.customSubscriptionRevision ?? 0) + 1
+            : null,
+          amount: String(subscriptionTerms(plan.price, input).amount),
           currency:
             plan.currency === 'KR' || plan.currency === 'DK'
               ? 'DKK'

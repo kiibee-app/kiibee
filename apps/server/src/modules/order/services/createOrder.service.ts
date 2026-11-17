@@ -1,14 +1,16 @@
+import { getProfilePaymentState } from 'src/utils/profilePayment';
+import { completeZeroOrder } from './completeZeroOrder';
 import { db } from 'src/database/db';
 import { CreateOrderInputDto } from '../dto/order.dto';
 import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 import { logger } from 'src/logger/logger';
 import { HttpException } from '@nestjs/common';
 import { fail, success } from 'src/utils/sendResponse';
-import { mediaFiles, userContentAccess } from 'src/database/schema';
+import { mediaFiles } from 'src/database/schema';
 import { orders } from 'src/database/schema/commerce/orders.schema';
-import { and, eq, ne } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
-import { ACCRESS_TYPES, ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
+import { ORDER_STATUS, ORDER_TYPES } from 'src/utils/constant';
 import { COUPON_DISCOUNT_TYPE_PERCENTAGE } from 'src/utils/coupon';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
 import { findOrCreateCheckoutOrder } from './orderIdempotency';
@@ -44,6 +46,15 @@ export async function createOrderService(
     if (!contentInfo) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
+
+    const channel = await getProfilePaymentState(contentInfo.creatorId, userId);
+    if (channel.required)
+      return fail(
+        channel.hasAccess
+          ? 'You already have channel access'
+          : 'Purchase a channel pass to access this content',
+        HttpStatus.CONFLICT,
+      );
 
     const price =
       normalizedItemType === ORDER_TYPES.PURCHASE
@@ -97,76 +108,14 @@ export async function createOrderService(
     };
 
     if (couponCode && resolvedPrice === 0) {
-      const isRental = normalizedItemType === ORDER_TYPES.RENTAL;
-      const rentDurationHours = contentInfo.rentDurationHours ?? 0;
-      if (isRental && rentDurationHours <= 0) {
-        return fail(
-          'Rent duration is not configured for this item',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-      const rentExpiresAt = isRental
-        ? new Date(Date.now() + rentDurationHours * 60 * 60 * 1000)
-        : null;
-
-      const { order: checkoutOrder } = await findOrCreateCheckoutOrder({
-        ...newOrder,
-        collectionId: null,
-        price: '0',
-        status: ORDER_STATUS.COMPLETED,
-        rentExpiresAt,
-      });
-
-      let order = checkoutOrder;
-
-      if (order.status === 'refunded') {
-        return fail('Order has been refunded', HttpStatus.CONFLICT);
-      }
-
-      if (order.status !== ORDER_STATUS.COMPLETED) {
-        const [completedOrder] = await db
-          .update(orders)
-          .set({
-            status: ORDER_STATUS.COMPLETED,
-            price: '0',
-            rentExpiresAt,
-            updatedAt: new Date(),
-          })
-          .where(
-            and(
-              eq(orders.id, order.id),
-              ne(orders.status, ORDER_STATUS.COMPLETED),
-              ne(orders.status, 'refunded'),
-            ),
-          )
-          .returning();
-
-        if (!completedOrder) {
-          return fail('Order can no longer be completed', HttpStatus.CONFLICT);
-        }
-
-        order = completedOrder;
-      }
-
-      const [existingAccess] = await db
-        .select({ id: userContentAccess.id })
-        .from(userContentAccess)
-        .where(eq(userContentAccess.orderId, order.id))
-        .limit(1);
-
-      if (!existingAccess) {
-        await db.insert(userContentAccess).values({
-          id: crypto.randomUUID(),
-          orderId: order.id,
-          userId,
-          mediaFileId: contentId,
-          accessType: isRental ? ACCRESS_TYPES.RENTED : ACCRESS_TYPES.PURCHASED,
-          rentExpiresAt,
-        });
-      }
-
+      const { order } = await findOrCreateCheckoutOrder(newOrder);
+      const result = await completeZeroOrder(
+        order.id,
+        userId,
+        contentInfo.rentDurationHours,
+      );
       return success(
-        { orderId: order.id, completed: true as const },
+        result,
         'Order completed successfully',
         HttpStatus.CREATED,
       );
@@ -188,8 +137,8 @@ export async function createOrderService(
 
     const paymentResult = await createPayment({
       orderId: order.id,
-      amount: Number(resolvedPrice),
-      currency: resolvedCurrency,
+      amount: Math.round(Number(order.price) * 100),
+      currency: order.currency ?? resolvedCurrency,
       customerId: userId,
       subscriptionId: subscriptionId ?? undefined,
     });

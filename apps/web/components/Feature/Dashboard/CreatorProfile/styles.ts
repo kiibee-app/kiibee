@@ -120,9 +120,23 @@ export const ProfileMain = styled.div`
   min-width: 0;
 `;
 
-export const PlanCardRoot = styled.aside`
+export const PlanCardsColumn = styled.div`
   flex: 0 0 260px;
   width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: flex-start;
+  ${media.tablet} {
+    width: 100%;
+    flex: none;
+  }
+`;
+
+export const PlanCardRoot = styled.aside`
+  position: relative;
+  flex: none;
+  width: 100%;
   overflow: hidden;
   padding: 18px 18px 16px;
   border-radius: 14px;
@@ -424,4 +438,84 @@ export const NameBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+export const CustomPlanRoot = styled(PlanCardRoot)`
+  background: #ffffff;
+  border-color: #cbd9cf;
+  box-shadow: 0 4px 16px rgba(18, 72, 63, 0.06);
+`;
+export const CustomPlanEyebrow = styled.p`
+  margin: 0;
+  color: #426358;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+export const CustomPlanTitle = styled.h3`
+  margin: 0;
+  color: #193e32;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+`;
+export const CustomPlanPrice = styled.div`
+  margin: 16px 0 4px;
+  color: #183c30;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  span {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 5px;
+  }
+`;
+export const CustomPlanDescription = styled.p`
+  margin: 0;
+  color: #617268;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+`;
+export const CustomPlanDetails = styled.div`
+  display: grid;
+  gap: 8px;
+  padding: 14px 0;
+  margin: 14px 0 0;
+  border-top: 1px solid #e6ece7;
+  color: #354b40;
+  font-size: 12px;
+  line-height: 1.5;
+`;
+export const CustomPlanField = styled.label`
+  display: grid;
+  gap: 7px;
+  margin: 4px 0 14px;
+  color: #354b40;
+  font-size: 12px;
+  font-weight: 600;
+`;
+export const CustomPlanSelect = styled.select`
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #ccd8d0;
+  border-radius: 9px;
+  background: #f8faf8;
+  color: #203f32;
+  font: inherit;
+  font-weight: 400;
+  cursor: pointer;
+  &:focus-visible {
+    outline: 2px solid #82a98e;
+    outline-offset: 2px;
+  }
+`;
+export const CustomPlanNote = styled(CustomPlanDescription)`
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f1f6f1;
+  color: #53695d;
 `;

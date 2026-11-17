@@ -3,6 +3,7 @@ import { and, eq, gt, isNotNull, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
+  mediaFiles,
   contentAccessRequests,
   orders,
   userContentAccess,
@@ -108,9 +109,30 @@ export const getAccessibleContentIds = async (userId: string) => {
         ),
     ]);
 
+    const profileGranted = await db
+      .select({ contentId: mediaFiles.id })
+      .from(mediaFiles)
+      .innerJoin(
+        userContentAccess,
+        sql`${userContentAccess.collectionId} = 'profile-access-' || ${mediaFiles.creatorId}`,
+      )
+      .innerJoin(orders, eq(orders.id, userContentAccess.orderId))
+      .where(
+        and(
+          eq(userContentAccess.userId, userId),
+          eq(mediaFiles.isDeleted, false),
+          eq(orders.status, 'completed'),
+          or(
+            isNull(userContentAccess.rentExpiresAt),
+            gt(userContentAccess.rentExpiresAt, now),
+          ),
+        ),
+      );
+
     const contentIds = Array.from(
       new Set(
         [
+          ...profileGranted.map(({ contentId }) => contentId),
           ...purchasedOrGranted.map(({ contentId }) => contentId as string),
           ...collectionGranted.map(({ contentId }) => contentId as string),
           ...emailApproved.map(({ contentId }) => contentId),

@@ -12,6 +12,7 @@ export interface AdminSubscriptionOverrides {
   manualPaidExpiresAt: string | null;
   creatorId: string;
   status: string;
+  customSubscriptionStatus?: "draft" | "pending" | "paid" | "cancelled";
   customPrice: number | null;
   customPrice3: number | null;
   customPrice6: number | null;
@@ -79,6 +80,7 @@ export function useAllPlans() {
 
 export interface UpdateAdminSubscriptionPayload {
   planId: string;
+  customSubscriptionAction?: "activate" | "cancel" | "save";
   manuallyPaid: boolean;
   manualPaidExpiresAt: string | null;
   customPrice: number | null;

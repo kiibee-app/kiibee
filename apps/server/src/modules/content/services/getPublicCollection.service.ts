@@ -1,3 +1,4 @@
+import { isProfilePass } from 'src/utils/profilePayment';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
@@ -108,7 +109,7 @@ export const getPublicCollectionService = async (
       )
       .limit(1);
 
-    if (!collection) {
+    if (!collection || isProfilePass(collection.id)) {
       return fail('Collection not found', HttpStatus.NOT_FOUND);
     }
 

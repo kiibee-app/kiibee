@@ -9,10 +9,10 @@ export const AppContainer = styled.div`
     sans-serif;
 `;
 
-export const Main = styled.main`
+export const Main = styled.main<{ $sidebarOpen: boolean }>`
   flex: 1;
   min-width: 0;
-  margin-left: 240px;
+  margin-left: ${({ $sidebarOpen }) => ($sidebarOpen ? "240px" : "0")};
   min-height: 100vh;
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {

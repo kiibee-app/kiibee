@@ -3,7 +3,7 @@ jest.mock('src/database/db', () => ({
 }));
 import { db } from 'src/database/db';
 import {
-  analyticsEvents,
+  contentLimits,
   collectionItems,
   mediaFiles,
   userContentAccess,
@@ -15,18 +15,21 @@ import {
 
 const media = { id: 'video', creatorId: 'creator', accessType: 'paid' };
 let access: any[];
+let maxStreamLimit = 7;
 let counts: Record<string, number>;
 const execute = jest.fn();
 const select = () => {
   let table: any;
   const result = () =>
-    table === mediaFiles
-      ? [media]
-      : table === collectionItems
-        ? []
-        : table === userContentAccess
-          ? access
-          : [{ count: counts[access[0]?.id] ?? 0 }];
+    table === contentLimits
+      ? [{ maxStreamLimit }]
+      : table === mediaFiles
+        ? [media]
+        : table === collectionItems
+          ? []
+          : table === userContentAccess
+            ? access
+            : [{ count: counts[access[0]?.id] ?? 0 }];
   const chain: any = {
     from: (t: any) => {
       table = t;
@@ -43,6 +46,7 @@ describe('rental stream quota', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     counts = {};
+    maxStreamLimit = 7;
     access = [{ id: 'rental-1', accessType: 'rented' }];
     jest.mocked(db.select).mockImplementation(select);
     jest.mocked(db.transaction).mockImplementation(async (fn: any) =>
@@ -82,6 +86,28 @@ describe('rental stream quota', () => {
     });
     expect(counts['rental-1']).toBe(7);
     expect(execute).toHaveBeenCalledTimes(8);
+  });
+  it('uses the configured limit of ten and rejects session eleven', async () => {
+    maxStreamLimit = 10;
+    for (let i = 0; i < 10; i++) await recordRentalStream('viewer', 'key');
+    await expect(recordRentalStream('viewer', 'key')).rejects.toMatchObject({
+      status: 403,
+    });
+    expect(await getRentalStreamInfo('viewer', 'video')).toEqual({
+      usedStreams: 10,
+      maxStreams: 10,
+      remainingStreams: 0,
+    });
+  });
+  it('applies a lower limit immediately to existing rentals', async () => {
+    counts['rental-1'] = 3;
+    maxStreamLimit = 2;
+    await expect(recordRentalStream('viewer', 'key')).rejects.toMatchObject({
+      status: 403,
+    });
+    expect(
+      (await getRentalStreamInfo('viewer', 'video'))?.remainingStreams,
+    ).toBe(0);
   });
   it('starts a new allowance for a later rental', async () => {
     counts['rental-1'] = 7;

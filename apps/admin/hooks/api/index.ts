@@ -27,6 +27,7 @@ export {
 } from "./use-creator-appearance";
 export { useContentEngagement } from "./use-content-engagement";
 export { useRejectContent } from "./use-reject-content";
+export { useMakeContentFree } from "./use-make-content-free";
 export { useContentMediaPreview } from "./use-content-media-preview";
 export { useViewers } from "./use-viewers";
 export { useViewer } from "./use-viewer";

@@ -10,6 +10,7 @@ import { updateContentService } from './services/updateContent.service';
 import { getContentByIdService } from './services/getContentById.service';
 import { deleteContentService } from './services/delete.content.service';
 import { rejectContentService } from './services/rejectContent.service';
+import { makeContentFreeService } from './services/makeContentFree.service';
 import {
   contentAppearanceService,
   getContentAppearanceService,
@@ -146,5 +147,9 @@ export class ContentService {
 
   async verifyContentAccessCode(contentId: string, code: string) {
     return verifyContentAccessCode(contentId, code);
+  }
+
+  async makeContentFreeService(contentId: string) {
+    return makeContentFreeService(contentId);
   }
 }
