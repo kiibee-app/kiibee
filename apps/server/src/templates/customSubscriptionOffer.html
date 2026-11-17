@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your custom Kiibee plan is ready</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 32px 16px;
+      background: #f2f5f4;
+      font-family: Arial, sans-serif;
+      color: #172c28;
+    "
+  >
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center">
+          <table
+            role="presentation"
+            width="100%"
+            cellspacing="0"
+            cellpadding="0"
+            style="max-width: 560px"
+          >
+            <tr>
+              <td
+                style="
+                  padding: 28px;
+                  background: #12483f;
+                  color: #ffffff;
+                  border-radius: 16px 16px 0 0;
+                "
+              >
+                <p style="margin: 0 0 16px; font-weight: bold">Kiibee</p>
+                <h1 style="margin: 0; font-size: 26px">
+                  Your custom plan is ready
+                </h1>
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 28px;
+                  background: #ffffff;
+                  font-size: 16px;
+                  line-height: 1.6;
+                  border-radius: 0 0 16px 16px;
+                "
+              >
+                <p style="margin: 0 0 16px">Hi {{creator.fullName}},</p>
+                <p>
+                  A custom plan is available in your profile. You can review it
+                  and choose Pay &amp; Activate.
+                </p>
+                <p
+                  style="
+                    padding: 14px 16px;
+                    border-radius: 8px;
+                    background: #edf6e9;
+                  "
+                >
+                  Plan: <strong>{{planName}}</strong>
+                </p>
+
+                {{#each customPlanDetails}}
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  style="width: 100%; border-bottom: 1px solid #e5ebe7"
+                >
+                  <tr>
+                    <td
+                      style="padding: 10px 0; font-size: 14px; color: #425953"
+                    >
+                      {{label}}
+                    </td>
+                    <td
+                      align="right"
+                      style="
+                        padding: 10px 0;
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #172c28;
+                      "
+                    >
+                      {{value}}
+                    </td>
+                  </tr>
+                </table>
+                {{/each}}
+                <p>
+                  Your existing ePay billing remains unchanged until you
+                  successfully complete the new payment setup. File limits and
+                  payout fees apply as soon as the administrator saves them.
+                </p>
+                <p style="margin: 24px 0">
+                  <a
+                    href="{{profileUrl}}"
+                    style="
+                      display: inline-block;
+                      padding: 12px 20px;
+                      background: #12483f;
+                      color: #ffffff;
+                      text-decoration: none;
+                      border-radius: 8px;
+                    "
+                    >Review your custom plan</a
+                  >
+                </p>
+                <p style="margin: 24px 0 0">
+                  Best regards,<br /><strong>The Kiibee team</strong>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

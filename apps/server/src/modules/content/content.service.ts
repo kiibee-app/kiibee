@@ -111,8 +111,9 @@ export class ContentService {
     search: string,
     sort: SortField,
     filter: GetAllContentsFilter,
+    viewerId?: string,
   ) {
-    return getAllContentsService(limit, search, sort, filter);
+    return getAllContentsService(limit, search, sort, filter, viewerId);
   }
 
   async getSingleContent(
@@ -129,8 +130,8 @@ export class ContentService {
     );
   }
 
-  async getRelatedCollectionContent(contentId: string) {
-    return getRelatedCollectionContentService(contentId);
+  async getRelatedCollectionContent(contentId: string, viewerId?: string) {
+    return getRelatedCollectionContentService(contentId, viewerId);
   }
 
   async getPublicCollectionService(collectionId: string, viewerId?: string) {

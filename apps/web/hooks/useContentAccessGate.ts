@@ -67,7 +67,7 @@ export function useContentAccessGate(
   const { gateType: creatorGateType, isLoading: creatorLoading } =
     useCreatorAccessGate(content?.creatorId);
   const { gateType: collectionGateType, isLoading: collectionLoading } =
-    useCollectionAccessGate(collectionId);
+    useCollectionAccessGate(collectionId, content?.creatorId);
 
   const isContentCode =
     content?.accessType === ACCESS_TYPE_PASSWORD ||

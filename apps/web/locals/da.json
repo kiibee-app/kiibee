@@ -1,4 +1,8 @@
 {
+  "contentPageError": {
+    "message": "Indholdet kunne ikke indlæses. Prøv igen.",
+    "retry": "Prøv igen"
+  },
   "profilePayment": {
     "purchaseLabel": "Køb adgang til kanalen",
     "rentalLabel": "Lej adgang til kanalen",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { getCollectionUnlockStorageKey } from "@/utils/accessGate";
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
@@ -21,7 +22,10 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 
-export function useCollectionAccessGate(customCollectionId?: string | null): {
+export function useCollectionAccessGate(
+  customCollectionId?: string | null,
+  customCreatorId?: string | null,
+): {
   gateType: AccessGateType | null;
   isLoading: boolean;
 } {
@@ -30,7 +34,16 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
   const queryId = searchParams.get(ID_QUERY_PARAM);
   const id = customCollectionId !== undefined ? customCollectionId : queryId;
 
-  const { isPublicView, publicCreatorId } = useCreatorChannelProfile();
+  const { isPublicView: routeIsPublic, publicCreatorId: routeCreatorId } =
+    useCreatorChannelProfile(!customCreatorId);
+  const user = useStoredLoginUser();
+  const publicCreatorId = customCreatorId ?? routeCreatorId;
+  const isPublicView = customCreatorId
+    ? customCreatorId !== user?.id
+    : routeIsPublic;
+  const canReadCollections =
+    Boolean(id) &&
+    (isPublicView ? Boolean(publicCreatorId) : Boolean(user?.id));
 
   const collectionsQuery = useGetAPI<CollectionsApiResponse>(
     isPublicView && publicCreatorId
@@ -38,7 +51,7 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
       : API.collection.getAll,
     undefined,
     {
-      enabled: Boolean(id) && (!isPublicView || Boolean(publicCreatorId)),
+      enabled: canReadCollections,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -48,7 +61,7 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
     return { gateType: gateParam, isLoading: false };
   }
 
-  const isLoading = collectionsQuery.isLoading;
+  const isLoading = canReadCollections && collectionsQuery.isLoading;
 
   if (isLoading) {
     return { gateType: null, isLoading: true };

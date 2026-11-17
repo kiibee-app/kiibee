@@ -1,4 +1,7 @@
-import { isProfilePass } from 'src/utils/profilePayment';
+import {
+  getProfilePaymentState,
+  isProfilePass,
+} from 'src/utils/profilePayment';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
@@ -123,6 +126,23 @@ export const getPublicCollectionService = async (
         return fail('Collection not found', HttpStatus.NOT_FOUND);
       }
     }
+
+    const profile = await getProfilePaymentState(
+      collection.creatorId,
+      viewerId,
+    );
+    if (profile.required && !profile.hasAccess)
+      return success(
+        {
+          id: collection.id,
+          creatorId: collection.creatorId,
+          items: [],
+          contents: [],
+          requiresChannelPayment: true,
+        },
+        'Channel pass required',
+        HttpStatus.OK,
+      );
 
     const itemConditions = [eq(collectionItems.collectionId, collection.id)];
     if (!collection.isDeleted) {

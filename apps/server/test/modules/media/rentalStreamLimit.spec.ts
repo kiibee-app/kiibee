@@ -75,7 +75,7 @@ describe('rental stream quota', () => {
       (await getRentalStreamInfo('viewer', 'video'))?.remainingStreams,
     ).toBe(4);
   });
-  it('returns no rental counter for purchased access', async () => {
+  it('does not show a stream counter for purchased access', async () => {
     access = [{ id: 'purchase', accessType: 'purchased' }];
     expect(await getRentalStreamInfo('viewer', 'video')).toBeNull();
   });

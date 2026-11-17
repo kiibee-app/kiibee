@@ -325,7 +325,12 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           planId: targetPlanId,
           customSubscriptionAction: customAction,
           ...(!operational && ['activate', 'save'].includes(customAction ?? '')
-            ? { customPrice: 99 }
+            ? {
+                customPrice: 99,
+                customMaxFiles: 25,
+                customKiibeeCutDkk: 10,
+                customTransactionFeePct: 2,
+              }
             : {}),
           manuallyPaid,
           ...(operational
@@ -403,11 +408,31 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const manualPaymentReceived = Boolean(
         manuallyPaid && (!previousManual || previousPlanId !== targetPlanId),
       );
+      const savedOffer = customAction === 'save' && !operational;
+      if (savedOffer)
+        expect(sendTemplateEmail).toHaveBeenCalledWith(
+          expect.objectContaining({
+            to: 'creator@example.com',
+            cc: 'info@kiibee.com',
+            templateName: 'customSubscriptionOffer',
+            variables: expect.objectContaining({
+              creator: { fullName: 'Test Creator' },
+              planName: targetName,
+              customPlanDetails: expect.arrayContaining([
+                { label: 'Price', value: '99 DKK' },
+                { label: 'Billing period', value: '1 month' },
+                { label: 'Max files', value: '25' },
+                { label: 'Kiibee cut', value: '10 DKK per payout' },
+                { label: 'Transaction fee', value: '2% per payout' },
+              ]),
+            }),
+          }),
+        );
       expect(sendTemplateEmail).toHaveBeenCalledTimes(
-        Number(planChanged || paymentRequestCreated) +
+        Number(savedOffer || planChanged || paymentRequestCreated) +
           Number(manualPaymentReceived),
       );
-      if (planChanged || paymentRequestCreated) {
+      if (!savedOffer && (planChanged || paymentRequestCreated)) {
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({
             to: 'creator@example.com',
@@ -417,6 +442,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
               creator: { fullName: 'Test Creator' },
               previousPlanName: previousPlanId || 'Intet aktivt abonnement',
               planName: targetName,
+              customPlanDetails: expect.any(Array),
             },
           }),
         );

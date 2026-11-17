@@ -1,5 +1,6 @@
 "use client";
 
+import { useChannelVisibleItems } from "@/hooks/feed/useChannelVisibleItems";
 import { useTranslation } from "react-i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -40,8 +41,10 @@ export default function DiscoverContent() {
     API.feed.recent,
   );
 
+  const { items: visibleItems, isLoading: visibilityLoading } =
+    useChannelVisibleItems(recentData?.data);
   const nonWebItems =
-    recentData?.data?.filter(
+    visibleItems.filter(
       (item) => resolveMediaType(item.contentType) !== MEDIA_TYPE.WEB,
     ) ?? [];
   const items = pickUniqueCreatorFeedItems(
@@ -49,7 +52,7 @@ export default function DiscoverContent() {
     DISCOVER_CONTENT_LIMIT,
   ).map((item) => mapFeedItemToDiscoverItem(item, t));
 
-  if (isLoading || items.length === 0) {
+  if (isLoading || visibilityLoading || items.length === 0) {
     return null;
   }
 

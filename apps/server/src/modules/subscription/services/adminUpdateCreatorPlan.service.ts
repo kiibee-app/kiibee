@@ -1,3 +1,4 @@
+import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
 import {
   validateSubscriptionOverrides,
   subscriptionTerms,
@@ -411,6 +412,8 @@ export const adminUpdateCreatorPlan = async (
       }
       return {
         billingRequestId,
+        customOfferSaved: savingOffer,
+        customOfferActivated: activating,
         email: creator.email,
         fullName: creator.fullName,
         previousPlanName: currentPlan?.name || 'Intet aktivt abonnement',
@@ -426,7 +429,68 @@ export const adminUpdateCreatorPlan = async (
     if (notification?.email) {
       const creator = { fullName: escapeHtml(notification.fullName || '') };
       const planName = escapeHtml(plan.name || 'Abonnement');
-      if (notification.planChanged || notification.billingRequestId) {
+      const terms = subscriptionTerms(plan.price, input);
+      const currency = ['KR', 'DK'].includes(plan.currency ?? '')
+        ? 'DKK'
+        : plan.currency || 'DKK';
+      const feePct =
+        (PLATFORM_FEE_PERCENTAGES[plan.price] ?? PLATFORM_FEE_PERCENTAGES[0]) *
+        100;
+      const customPlanDetails =
+        notification.customOfferSaved || notification.customOfferActivated
+          ? [
+              { label: 'Price', value: `${terms.amount} ${currency}` },
+              {
+                label: 'Billing period',
+                value: `${terms.months} ${terms.months === 1 ? 'month' : 'months'}`,
+              },
+              {
+                label: 'Max files',
+                value: String(
+                  input.customMaxFiles ??
+                    plan.maxFiles ??
+                    'Standard plan limit',
+                ),
+              },
+              {
+                label: 'Kiibee cut',
+                value:
+                  input.customKiibeeCutDkk != null
+                    ? `${input.customKiibeeCutDkk} DKK per payout`
+                    : `${Number(feePct.toFixed(2))}% per payout (standard)`,
+              },
+              {
+                label: 'Transaction fee',
+                value: `${input.customTransactionFeePct ?? 5}% per payout`,
+              },
+            ].map((detail) => ({
+              label: escapeHtml(detail.label),
+              value: escapeHtml(detail.value),
+            }))
+          : [];
+
+      if (notification.customOfferSaved) {
+        runInBackground(
+          sendTemplateEmail({
+            to: notification.email,
+            cc: 'info@kiibee.com',
+            subject: mailSubject.CUSTOM_SUBSCRIPTION_OFFER,
+            templateName: templateName.CUSTOM_SUBSCRIPTION_OFFER,
+            variables: {
+              creator,
+              planName,
+              customPlanDetails,
+              profileUrl: escapeHtml(
+                `${(process.env.FRONTEND_URL || '').replace(/\/$/, '')}/dashboard/creators?view=profile`,
+              ),
+            },
+          }),
+        );
+      }
+      if (
+        !notification.customOfferSaved &&
+        (notification.planChanged || notification.billingRequestId)
+      ) {
         runInBackground(
           sendTemplateEmail({
             to: notification.email,
@@ -437,6 +501,7 @@ export const adminUpdateCreatorPlan = async (
               creator,
               previousPlanName: escapeHtml(notification.previousPlanName),
               planName,
+              customPlanDetails,
             },
           }).then(async (sent) => {
             if (notification.billingRequestId)

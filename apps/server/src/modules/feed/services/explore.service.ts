@@ -15,7 +15,7 @@ import {
   getTopCreatorsQuery,
 } from '../feed.query';
 import { ExploreType } from '../dto/exploreQuery.dto';
-import { creatorContentIsDiscoverable } from 'src/utils/publicCreatorVisibility';
+import { creatorContentIsDiscoverableFor } from 'src/utils/publicCreatorVisibility';
 
 const cleanArray = (value?: string[] | string | null) => {
   if (!value) return [];
@@ -63,6 +63,7 @@ export const exploreService = async (
   search?: string,
   filter?: any,
   type?: ExploreType,
+  viewerId?: string,
 ) => {
   try {
     const resolvedLimit = getSafePositiveInteger(limit, FIXED_LIMIT, 100);
@@ -77,7 +78,7 @@ export const exploreService = async (
       sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
-      creatorContentIsDiscoverable,
+      creatorContentIsDiscoverableFor(viewerId),
     ];
     const extra: SQL[] = [];
 
@@ -121,16 +122,17 @@ export const exploreService = async (
 
     const [trending, recent, latest, topCreators] = await Promise.all([
       sections.trending
-        ? getTrendingQuery(contentWhere, resolvedLimit)
+        ? getTrendingQuery(contentWhere, resolvedLimit, viewerId)
         : Promise.resolve([]),
       sections.recent
-        ? getRecentQuery(contentWhere, resolvedLimit)
+        ? getRecentQuery(contentWhere, resolvedLimit, viewerId)
         : Promise.resolve([]),
       sections.latest
         ? getLatestQuery(
             contentWhere,
             desc(mediaFiles.publishedAt),
             resolvedLimit,
+            viewerId,
           )
         : Promise.resolve([]),
       sections.topCreators
