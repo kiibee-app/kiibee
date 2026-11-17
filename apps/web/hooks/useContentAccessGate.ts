@@ -64,8 +64,11 @@ export function useContentAccessGate(
   const loginUser = storedUser ?? readStoredLoginUser();
   const isApprovingAccess = Boolean(approvedAccessToken);
 
-  const { gateType: creatorGateType, isLoading: creatorLoading } =
-    useCreatorAccessGate(content?.creatorId);
+  const {
+    gateType: creatorGateType,
+    isLoading: creatorLoading,
+    hasProfilePaymentAccess,
+  } = useCreatorAccessGate(content?.creatorId);
   const { gateType: collectionGateType, isLoading: collectionLoading } =
     useCollectionAccessGate(collectionId, content?.creatorId);
 
@@ -160,23 +163,25 @@ export function useContentAccessGate(
     : hasServerAccess || hasLocalContentUnlock;
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
-  const resolvedGateType = isOwner
-    ? null
-    : hasContentGate
-      ? isContentLocked
-        ? isContentCode
-          ? TYPE_CODE
-          : TYPE_EMAIL
-        : null
-      : collectionGateType
-        ? collectionGateType
-        : creatorGateType;
+  const resolvedGateType =
+    isOwner || hasProfilePaymentAccess
+      ? null
+      : hasContentGate
+        ? isContentLocked
+          ? isContentCode
+            ? TYPE_CODE
+            : TYPE_EMAIL
+          : null
+        : collectionGateType
+          ? collectionGateType
+          : creatorGateType;
 
-  const finalGateType = isOwner
-    ? null
-    : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
-      ? gateParam
-      : resolvedGateType;
+  const finalGateType =
+    isOwner || hasProfilePaymentAccess
+      ? null
+      : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
+        ? gateParam
+        : resolvedGateType;
 
   const handleSuccess = async (value: string, name?: string) => {
     const targetId = isContentLocked

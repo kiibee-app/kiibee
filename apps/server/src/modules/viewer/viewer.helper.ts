@@ -1,3 +1,4 @@
+import { isProfilePass } from 'src/utils/profilePayment';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import {
   eq,
@@ -21,6 +22,7 @@ import {
   contentCategories,
   collections,
   collectionItems,
+  creatorChannels,
 } from 'src/database/schema';
 import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 import { CONTENT_TYPES, ORDER_TYPES } from 'src/utils/constant';
@@ -193,6 +195,48 @@ export const enrichMedia = (
   });
 };
 
+// Channel passes cover the creator's current published files, not collection_items rows.
+export const getChannelPassMedia = async (collectionIds: string[]) => {
+  const ids = collectionIds.filter(isProfilePass);
+  if (!ids.length) return [];
+  return db
+    .select({
+      collectionId: collections.id,
+      mediaFileId: mediaFiles.id,
+      thumbnailUrl: mediaFiles.thumbnailUrl,
+      thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
+    })
+    .from(collections)
+    .innerJoin(
+      mediaFiles,
+      eq(collections.id, sql`'profile-access-' || ${mediaFiles.creatorId}`),
+    )
+    .where(
+      and(
+        inArray(collections.id, ids),
+        eq(mediaFiles.isDeleted, false),
+        eq(mediaFiles.isPublished, true),
+        eq(mediaFiles.visibility, 'public'),
+      ),
+    )
+    .orderBy(mediaFiles.createdAt, mediaFiles.id);
+};
+
+export const getCollectionMediaItems = async (collectionIds: string[]) => {
+  if (!collectionIds.length) return [];
+  const regularIds = collectionIds.filter((id) => !isProfilePass(id));
+  const regular = regularIds.length
+    ? await db
+        .select({
+          mediaFileId: collectionItems.mediaFileId,
+          collectionId: collectionItems.collectionId,
+        })
+        .from(collectionItems)
+        .where(inArray(collectionItems.collectionId, regularIds))
+    : [];
+  return [...regular, ...(await getChannelPassMedia(collectionIds))];
+};
+
 export const getCollectionsWithDetails = async (collectionIds: string[]) => {
   if (!collectionIds.length) return [];
 
@@ -211,7 +255,38 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
 
-  await populateMissingCollectionCovers(db, items);
+  await populateMissingCollectionCovers(
+    db,
+    items.filter((item) => !isProfilePass(item.id)),
+  );
+  const passMedia = await getChannelPassMedia(collectionIds);
+  const passCreators = items
+    .filter((item) => isProfilePass(item.id))
+    .map((item) => item.creatorId);
+  const channels = passCreators.length
+    ? await db
+        .select({
+          creatorId: creatorChannels.creatorId,
+          cover: creatorChannels.coverImageUrl,
+          logo: creatorChannels.logoUrl,
+        })
+        .from(creatorChannels)
+        .where(inArray(creatorChannels.creatorId, passCreators))
+    : [];
+  for (const item of items.filter((item) => isProfilePass(item.id))) {
+    const channel = channels.find((row) => row.creatorId === item.creatorId);
+    const thumbnail = passMedia.find(
+      (row) =>
+        row.collectionId === item.id &&
+        (row.thumbnailUrl || row.thumbnailLandscapeUrl),
+    );
+    item.coverImageUrl ||=
+      channel?.cover ||
+      channel?.logo ||
+      thumbnail?.thumbnailUrl ||
+      thumbnail?.thumbnailLandscapeUrl ||
+      null;
+  }
 
   const counts = await db
     .select({
@@ -235,7 +310,9 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
 
   return items.map((item) => ({
     ...item,
-    elementCount: countMap.get(item.id) ?? 0,
+    elementCount: isProfilePass(item.id)
+      ? passMedia.filter((row) => row.collectionId === item.id).length
+      : (countMap.get(item.id) ?? 0),
   }));
 };
 

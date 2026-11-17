@@ -75,7 +75,6 @@ export default function PublishedSection() {
           <ItemText>
             <MonoText $use="Body_SemiBold">
               {t("contents.metadata.published.title")}
-              <RequiredIndicator>*</RequiredIndicator>
             </MonoText>
           </ItemText>
 

@@ -79,7 +79,7 @@ export class UpdateContentDto {
   @IsOptional()
   @Type(() => Number)
   @IsInt()
-  publishedYear?: number;
+  publishedYear?: number | null;
 
   @IsOptional()
   @Type(() => Number)

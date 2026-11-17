@@ -1,12 +1,10 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { inArray } from 'drizzle-orm';
-import { db } from 'src/database/db';
-import { collectionItems } from 'src/database/schema';
 import { fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 
 import {
   getUserOrders,
+  getCollectionMediaItems,
   buildAccessMap,
   getMediaByType,
   getMediaCategories,
@@ -47,13 +45,7 @@ export const getPurchasedData = async (userId: string) => {
     let collectionMediaItems: { mediaFileId: string; collectionId: string }[] =
       [];
     if (collectionIds.length) {
-      collectionMediaItems = await db
-        .select({
-          mediaFileId: collectionItems.mediaFileId,
-          collectionId: collectionItems.collectionId,
-        })
-        .from(collectionItems)
-        .where(inArray(collectionItems.collectionId, collectionIds));
+      collectionMediaItems = await getCollectionMediaItems(collectionIds);
 
       for (const item of collectionMediaItems) {
         if (item.mediaFileId && !mediaMap.has(item.mediaFileId)) {
