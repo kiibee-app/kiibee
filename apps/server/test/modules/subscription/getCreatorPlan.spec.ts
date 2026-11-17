@@ -243,3 +243,62 @@ describe('creator dashboard payment prompt', () => {
     },
   );
 });
+
+import { subscriptionTerms } from 'src/modules/subscription/services/subscriptionTerms';
+describe('paid custom offers based on Try Kiibee', () => {
+  it.each([
+    { customPrice: 100, paymentPeriod: '1', months: 1, amount: 100 },
+    { customPrice6: 600, paymentPeriod: '6', months: 6, amount: 600 },
+  ])(
+    'uses the custom amount for a zero-price base: $amount',
+    ({ months, amount, ...overrides }) => {
+      expect(subscriptionTerms(0, overrides)).toMatchObject({
+        months,
+        amount,
+        minorAmount: amount * 100,
+        billingOptions: [{ months, amount }],
+      });
+    },
+  );
+  it('keeps the unmodified free plan free', () => {
+    expect(subscriptionTerms(0)).toMatchObject({ amount: 0, minorAmount: 0 });
+  });
+  it.each(['draft', 'pending', 'paid'])(
+    'returns 100 DKK for the custom card and email calculation (%s)',
+    async (state) => {
+      jest.mocked(db.select).mockReset();
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: state === 'pending' }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: 'try',
+              customPrice: 100,
+              paymentPeriod: '1',
+              customSubscriptionRevision: 1,
+              customSubscriptionStatus: state,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            { id: 'try', name: 'Try Kiibee', price: 0, isActive: true },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [
+          {
+            basePrice: 0,
+            price: 100,
+            isPaidPlan: true,
+            hasCustomPlanOffer: true,
+            billingOptions: [{ months: 1, amount: 100 }],
+          },
+        ],
+      });
+    },
+  );
+});
