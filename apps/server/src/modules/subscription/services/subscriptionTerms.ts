@@ -101,7 +101,7 @@ export function subscriptionTerms(
     6: overrides.customPrice6 ?? monthly * 6,
     12: overrides.customPrice12 ?? monthly * 12,
   };
-  const amount = basePrice === 0 ? 0 : prices[months];
+  const amount = prices[months];
   const minorAmount = Math.round(amount * 100);
   if (
     !Number.isSafeInteger(minorAmount) ||
@@ -116,7 +116,7 @@ export function subscriptionTerms(
     minorAmount,
     billingOptions: allowed.map((m) => ({
       months: m,
-      amount: basePrice === 0 ? 0 : prices[m],
+      amount: prices[m],
     })),
   };
 }
