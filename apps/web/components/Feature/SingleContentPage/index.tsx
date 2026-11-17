@@ -1,4 +1,7 @@
 "use client";
+import GenericSpinner from "@/components/UI/GenericSpinner";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 
 import { saveRecentlyViewed } from "@/utils/recentlyViewed";
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
@@ -167,6 +170,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
     useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
+  const profileGate = useCreatorAccessGate(content?.creatorId ?? null);
+//   const canViewWebAsGuest = Boolean(
+//     hero.contentType === FORMAT_TYPE.WEB &&
   const canViewAsGuest = Boolean(
     content &&
     !accessGate &&
@@ -634,6 +640,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     checkoutIdempotencyKeyRef.current = null;
   };
 
+  if (profileGate.isLoading)
+    return <GenericSpinner size={48} label={t("common.loading")} />;
+  if (profileGate.gateType === "payment")
+    return (
+      <AccessGate
+        type="payment"
+        paymentOptions={profileGate.paymentOptions}
+        onSuccess={profileGate.handleSuccess}
+      />
+    );
   return (
     <Wrapper $embedded={embedded}>
       <SingleContentTopBar

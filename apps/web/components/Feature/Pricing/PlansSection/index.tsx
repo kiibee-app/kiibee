@@ -57,7 +57,10 @@ type PlansResponse = {
 
 type CreatorPlanResponse = {
   success: boolean;
-  data?: (ApiPlan & { subscriptionUpgradeRequired?: boolean })[];
+  data?: (ApiPlan & {
+    subscriptionUpgradeRequired?: boolean;
+    hasCustomPlanOffer?: boolean;
+  })[];
 };
 
 type PricingPlansSectionProps = {
@@ -183,6 +186,10 @@ export default function PricingPlansSection({
               planKey={planKey}
               planId={apiPlan?.id}
               isCurrentPlan={isCurrentPlan}
+              manageInProfile={
+                currentPlan?.id === apiPlan?.id &&
+                currentPlan?.hasCustomPlanOffer === true
+              }
             />
           );
 

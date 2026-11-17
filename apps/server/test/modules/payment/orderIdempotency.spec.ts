@@ -149,3 +149,98 @@ describe('findOrCreateCheckoutOrder', () => {
     });
   });
 });
+
+import { completeZeroOrder } from 'src/modules/order/services/completeZeroOrder';
+describe('zero-price content and collection orders', () => {
+  function setup(order: Record<string, unknown>, existing = false) {
+    const select = jest
+      .fn()
+      .mockReturnValueOnce({
+        from: () => ({ where: () => ({ for: async () => [order] }) }),
+      })
+      .mockReturnValueOnce({
+        from: () => ({
+          where: () => ({
+            limit: async () => (existing ? [{ id: 'grant' }] : []),
+          }),
+        }),
+      });
+    const set = jest.fn().mockReturnValue({ where: async () => undefined });
+    const values = jest
+      .fn()
+      .mockReturnValue({ onConflictDoNothing: async () => undefined });
+    jest.mocked(db.transaction).mockImplementation(async (callback) =>
+      callback({
+        select,
+        update: () => ({ set }),
+        insert: () => ({ values }),
+      } as never),
+    );
+    return { set, values };
+  }
+  beforeEach(() => jest.clearAllMocks());
+  it.each([
+    ['media', null],
+    [null, 'collection'],
+  ])(
+    'completes and grants a zero-price purchase %s/%s',
+    async (mediaFileId, collectionId) => {
+      const { set, values } = setup({
+        id: 'order',
+        userId: 'viewer',
+        price: '0',
+        status: 'pending',
+        itemType: 'purchase',
+        mediaFileId,
+        collectionId,
+      });
+      await expect(completeZeroOrder('order', 'viewer', null)).resolves.toEqual(
+        { orderId: 'order', completed: true },
+      );
+      expect(set).toHaveBeenCalledWith(
+        expect.objectContaining({ status: 'completed' }),
+      );
+      expect(values).toHaveBeenCalledWith(
+        expect.objectContaining({
+          mediaFileId,
+          collectionId,
+          accessType: 'purchased',
+          rentExpiresAt: null,
+        }),
+      );
+    },
+  );
+  it('does not duplicate a grant or extend an already completed rental', async () => {
+    const { set, values } = setup(
+      {
+        id: 'order',
+        userId: 'viewer',
+        price: '0',
+        status: 'completed',
+        itemType: 'rental',
+        rentExpiresAt: new Date('2030-01-01'),
+      },
+      true,
+    );
+    await completeZeroOrder('order', 'viewer', 48);
+    expect(set).not.toHaveBeenCalled();
+    expect(values).not.toHaveBeenCalled();
+  });
+  it.each([{ price: '10' }, { status: 'refunded' }, { userId: 'other' }])(
+    'rejects an invalid zero-price checkout %j',
+    async (changed) => {
+      const { values } = setup({
+        id: 'order',
+        userId: 'viewer',
+        price: '0',
+        status: 'pending',
+        itemType: 'purchase',
+        ...changed,
+      });
+      await expect(
+        completeZeroOrder('order', 'viewer', null),
+      ).rejects.toBeDefined();
+      expect(values).not.toHaveBeenCalled();
+    },
+  );
+});

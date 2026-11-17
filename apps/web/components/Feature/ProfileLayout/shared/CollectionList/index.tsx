@@ -97,6 +97,8 @@ export default function CollectionList() {
 
   const {
     gateType,
+    paymentOptions,
+    isLoading: isGateLoading,
     handleSuccess,
     showAccessGranted,
     closeAccessGranted,
@@ -235,11 +237,18 @@ export default function CollectionList() {
     isCollectionsLoading ||
     publicContentQueries.some((query) => query.isLoading);
 
+  if (isGateLoading)
+    return (
+      <ProfileLoadingWrapper>
+        <GenericSpinner size={48} />
+      </ProfileLoadingWrapper>
+    );
   if (gateType) {
     return (
       <>
         <AccessGate
           type={gateType}
+          paymentOptions={paymentOptions}
           variant={VARIANT_PAGE}
           creatorName={displayName ?? undefined}
           onSuccess={handleSuccess}

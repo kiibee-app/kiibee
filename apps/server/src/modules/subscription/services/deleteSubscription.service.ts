@@ -12,7 +12,10 @@ import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { runInBackground } from 'src/utils/backgroundTask';
 
-export const deleteSubscriptionService = async (userId: string) => {
+export const deleteSubscriptionService = async (
+  userId: string,
+  options: { preserveCreatorPlan?: boolean; notify?: boolean } = {},
+) => {
   try {
     const [user] = await db
       .select()
@@ -80,10 +83,13 @@ export const deleteSubscriptionService = async (userId: string) => {
         })
         .where(eq(subscriptions.id, currentSubscription.id));
 
-      await trx.delete(creatorPlans).where(eq(creatorPlans.creatorId, userId));
+      if (!options.preserveCreatorPlan)
+        await trx
+          .delete(creatorPlans)
+          .where(eq(creatorPlans.creatorId, userId));
     });
 
-    if (user.email) {
+    if (user.email && options.notify !== false) {
       // Find plan name
       let planName = 'Abonnement';
       if (currentSubscription.planId) {

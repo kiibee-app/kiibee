@@ -30,6 +30,7 @@ async function rentalUsage(
         eq(userContentAccess.userId, userId),
         or(
           eq(userContentAccess.mediaFileId, mediaId),
+          sql`${userContentAccess.collectionId} = (select 'profile-access-' || creator_id from media_files where id = ${mediaId})`,
           and(
             isNull(userContentAccess.mediaFileId),
             inArray(

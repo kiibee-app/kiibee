@@ -1,3 +1,9 @@
+import {
+  subscriptionTerms,
+  hasCustomSubscriptionValues,
+  customOverridesEnabled,
+  type SubscriptionOverrides,
+} from './subscriptionTerms';
 import { expireManualPlans } from './expireManualPlans.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc } from 'drizzle-orm';
@@ -79,8 +85,49 @@ export const getCreatorPlan = async (creatorId: string) => {
       ));
     }
 
+    const enabled = customOverridesEnabled(
+      creatorCurrentPlan[0].customSubscriptionStatus,
+    );
+    const savedOffer =
+      creatorCurrentPlan[0].customSubscriptionStatus === 'draft' &&
+      (creatorCurrentPlan[0].customSubscriptionRevision ?? 0) > 0;
+    const effective: SubscriptionOverrides =
+      enabled || savedOffer ? creatorCurrentPlan[0] : {};
+    const hasCustomValues = hasCustomSubscriptionValues(creatorCurrentPlan[0]);
+    if (
+      hasCustomValues &&
+      creatorCurrentPlan[0].customSubscriptionStatus === 'pending'
+    )
+      subscriptionUpgradeRequired = true;
+    const terms = subscriptionTerms(plan.price, effective);
     const overriddenPlan = {
       ...plan,
+      basePrice: plan.price,
+      baseMaxFiles: plan.maxFiles,
+      customSubscriptionStatus: creatorCurrentPlan[0].customSubscriptionStatus,
+      hasCustomPlanOffer:
+        hasCustomValues &&
+        (creatorCurrentPlan[0].customSubscriptionRevision ?? 0) > 0 &&
+        ['draft', 'pending', 'paid'].includes(
+          creatorCurrentPlan[0].customSubscriptionStatus ?? '',
+        ),
+      hasCustomOverrides:
+        enabled &&
+        [
+          'customPrice',
+          'customPrice3',
+          'customPrice6',
+          'customPrice12',
+          'customMaxFiles',
+          'customKiibeeCutDkk',
+          'customTransactionFeePct',
+          'paymentPeriod',
+        ].some(
+          (key) =>
+            creatorCurrentPlan[0][
+              key as keyof (typeof creatorCurrentPlan)[0]
+            ] != null,
+        ),
       isPaidPlan: plan.price > 0,
       manuallyPaid: Boolean(
         plan.price > 0 &&
@@ -90,7 +137,21 @@ export const getCreatorPlan = async (creatorId: string) => {
       ),
       isActive: plan.isActive && !subscriptionUpgradeRequired,
       subscriptionUpgradeRequired,
-      price: creatorCurrentPlan[0].customPrice ?? plan.price,
+      price: effective.customPrice ?? plan.price,
+      billingOptions: terms.billingOptions,
+      hasCustomBilling:
+        enabled &&
+        plan.price > 0 &&
+        [
+          creatorCurrentPlan[0].customPrice,
+          creatorCurrentPlan[0].customPrice3,
+          creatorCurrentPlan[0].customPrice6,
+          creatorCurrentPlan[0].customPrice12,
+          creatorCurrentPlan[0].paymentPeriod,
+        ].some((value) => value != null),
+      paymentPeriod: effective.paymentPeriod,
+      customKiibeeCutDkk: creatorCurrentPlan[0].customKiibeeCutDkk,
+      customTransactionFeePct: creatorCurrentPlan[0].customTransactionFeePct,
       maxFiles: creatorCurrentPlan[0].customMaxFiles ?? plan.maxFiles,
     };
 

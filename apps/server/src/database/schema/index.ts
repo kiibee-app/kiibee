@@ -79,3 +79,4 @@ export * from './system/notifications.schema';
 export * from './system/notificationSettings.schema';
 export * from './system/supportContactMessages.schema';
 export * from './subscription/adminBillingRequests.schema';
+export * from './subscription/subscriptionCheckouts.schema';

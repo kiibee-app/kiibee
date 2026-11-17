@@ -23,7 +23,7 @@ integration('admin subscription billing lifecycle (isolated Postgres)', () => {
     await client.query(`CREATE TABLE admin_billing_requests (
       id text PRIMARY KEY, creator_id text NOT NULL REFERENCES users(id),
       plan_id text NOT NULL, plan_name text NOT NULL, amount numeric(10,2) NOT NULL,
-      currency text NOT NULL, status text NOT NULL DEFAULT 'pending', transaction_id text,
+      currency text NOT NULL, custom_revision integer, status text NOT NULL DEFAULT 'pending', transaction_id text,
       email_status text NOT NULL DEFAULT 'pending', email_sent_at timestamp,
       created_at timestamp NOT NULL DEFAULT now(), updated_at timestamp NOT NULL DEFAULT now()
     )`);

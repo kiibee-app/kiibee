@@ -7,6 +7,7 @@ import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 type MakeContentFreePayload = {
   contentId: string;
   creatorId: string;
+  paid?: { buyPrice?: number; rentPrice?: number; rentDurationHours?: number };
 };
 
 async function ensureSuccess<T>(
@@ -29,11 +30,17 @@ export function useMakeContentFree() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ contentId }: MakeContentFreePayload) =>
+    mutationFn: ({ contentId, paid }: MakeContentFreePayload) =>
       ensureSuccess(
-        apiClient(API_ENDPOINTS.MAKE_CONTENT_FREE(contentId), {
-          method: "POST",
-        }),
+        apiClient(
+          paid
+            ? `/content/admin/make-paid/${contentId}`
+            : API_ENDPOINTS.MAKE_CONTENT_FREE(contentId),
+          {
+            method: "POST",
+            ...(paid ? { body: JSON.stringify(paid) } : {}),
+          },
+        ),
       ),
     onSuccess: (_data, { contentId, creatorId }) => {
       queryClient.invalidateQueries({

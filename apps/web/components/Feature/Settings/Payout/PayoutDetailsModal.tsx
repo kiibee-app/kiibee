@@ -117,9 +117,15 @@ export default function PayoutDetailsModal({
         value: formatPayoutNumber(-calculation.processingFee),
       },
       {
-        label: t("settings.payout.modal.platformFee", {
-          percent: formatFeePercent(calculation.platformFeePercentage),
-        }),
+        label:
+          calculation.fixedPlatformFee != null
+            ? t(
+                "settings.payout.modal.fixedPlatformFee",
+                "Kiibee cut (fixed per payout)",
+              )
+            : t("settings.payout.modal.platformFee", {
+                percent: formatFeePercent(calculation.platformFeePercentage),
+              }),
         value: formatPayoutNumber(-calculation.platformFee),
       },
     ];

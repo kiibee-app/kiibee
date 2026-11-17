@@ -55,6 +55,8 @@ export default function ProfileHomeSections({
     (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
   const {
     gateType,
+    paymentOptions,
+    isLoading: isGateLoading,
     handleSuccess,
     showAccessGranted,
     closeAccessGranted,
@@ -181,11 +183,18 @@ export default function ProfileHomeSections({
 
   const hasNoContent = isPublicView ? hasNoPublicContent : hasNoPrivateContent;
 
+  if (isGateLoading)
+    return (
+      <ProfileLoadingWrapper>
+        <GenericSpinner size={48} />
+      </ProfileLoadingWrapper>
+    );
   if (gateType) {
     return (
       <>
         <AccessGate
           type={gateType}
+          paymentOptions={paymentOptions}
           variant={VARIANT_PAGE}
           creatorName={displayName ?? undefined}
           onSuccess={handleSuccess}

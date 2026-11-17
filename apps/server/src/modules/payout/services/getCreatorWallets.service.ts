@@ -137,17 +137,17 @@ export const getCreatorWalletsService = async (
       const methods = paymentMethodsByCreator.get(account.creatorId) ?? [];
       methods.push({
         id: account.id,
-        label: `${account.bankName} •••• ${account.accountNumber.slice(-4)}`,
+        label: `${account.bankName ?? ''} •••• ${(account.accountNumber ?? '').slice(-4)}`,
         type: 'bank',
         isDefault: account.isDefault,
       });
       paymentMethodsByCreator.set(account.creatorId, methods);
 
       accountDetailsByCreator.set(account.creatorId, {
-        registrationNumber: account.registrationNumber,
-        accountNumber: account.accountNumber,
+        registrationNumber: account.registrationNumber ?? '',
+        accountNumber: account.accountNumber ?? '',
         accountHolderName: account.accountHolderName,
-        bankName: account.bankName,
+        bankName: account.bankName ?? '',
       });
     }
 

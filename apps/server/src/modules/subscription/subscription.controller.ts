@@ -29,9 +29,22 @@ export class SubscriptionController {
 
   @Post('create')
   async createSubscription(
-    @Body() { userId, planId }: { userId: string; planId: string },
+    @Body()
+    {
+      userId,
+      planId,
+      billingMonths,
+    }: {
+      userId: string;
+      planId: string;
+      billingMonths?: number;
+    },
   ) {
-    return this.subscriptionService.createSubscription(userId, planId);
+    return this.subscriptionService.createSubscription(
+      userId,
+      planId,
+      billingMonths,
+    );
   }
 
   @Post('webhook')
@@ -91,6 +104,7 @@ export class SubscriptionController {
     @Body()
     body: {
       planId: string;
+      customSubscriptionAction?: 'activate' | 'cancel' | 'save';
       manuallyPaid?: boolean;
       manualPaidExpiresAt?: string | null;
       customPrice: number | null;
