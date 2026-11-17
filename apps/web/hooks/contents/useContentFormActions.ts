@@ -431,9 +431,10 @@ export function useContentFormActions({
     if (!formState.description.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DESCRIPTION] = requiredMessage;
     }
-    if (!formState.publishedYear.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
-    } else if (!NUMERIC_ONLY_REGEX.test(formState.publishedYear)) {
+    if (
+      formState.publishedYear.trim() &&
+      !NUMERIC_ONLY_REGEX.test(formState.publishedYear)
+    ) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = t(
         "contents.metadata.validation.numbersOnly",
       );

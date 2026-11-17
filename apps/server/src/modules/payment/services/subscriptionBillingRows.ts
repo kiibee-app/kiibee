@@ -10,18 +10,26 @@ export async function subscriptionBillingRows(
   const result = await database.execute(sql`
     WITH billing AS (
       SELECT h.id, h.creator_id, h.transaction_id AS reference,
-        coalesce(p.name, h.subscription_id) AS description,
+        CASE WHEN checkout.custom_revision IS NOT NULL THEN 'Custom ' ELSE '' END
+          || coalesce(checkout_plan.name, p.name, h.subscription_id) AS description,
         h.amount, h.currency, h.status, h.payment_method_type AS method,
         h.created_at, NULL::text AS email_status, NULL::timestamp AS email_sent_at
       FROM subscription_payments_history h
       LEFT JOIN subscriptions s ON s.id = h.subscription_id
       LEFT JOIN plans p ON p.id = s.plan_id
+      LEFT JOIN subscription_checkouts checkout ON checkout.id = coalesce(
+        h.raw_payload #>> '{data,transaction,reference}',
+        h.raw_payload #>> '{transaction,reference}'
+      ) AND checkout.creator_id = h.creator_id
+      LEFT JOIN plans checkout_plan ON checkout_plan.id::text = checkout.plan_id
       WHERE NOT EXISTS (
         SELECT 1 FROM admin_billing_requests r
         WHERE r.creator_id = h.creator_id AND r.transaction_id = h.transaction_id
       )
       UNION ALL
-      SELECT r.id, r.creator_id, r.transaction_id, r.plan_name,
+      SELECT r.id, r.creator_id, r.transaction_id,
+        CASE WHEN r.custom_revision IS NOT NULL AND r.plan_name NOT ILIKE 'Custom %'
+          THEN 'Custom ' || r.plan_name ELSE r.plan_name END,
         r.amount, r.currency, r.status, (SELECT h.payment_method_type FROM subscription_payments_history h WHERE h.creator_id = r.creator_id AND h.transaction_id = r.transaction_id LIMIT 1), r.created_at,
         r.email_status, r.email_sent_at
       FROM admin_billing_requests r

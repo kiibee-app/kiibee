@@ -284,7 +284,7 @@ export default function PublishedContentDetail({
   );
 
   if (
-    (isTutorialLoading && !discoverFallback) ||
+    (isTutorialLoading && !content && !discoverFallback) ||
     (isLoading && !data && !discoverFallback && !tutorial) ||
     gateLoading
   ) {

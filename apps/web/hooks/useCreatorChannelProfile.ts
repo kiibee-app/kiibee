@@ -51,11 +51,14 @@ export function useCreatorChannelProfile(enabled = true) {
     String(currentUserId).trim() === String(publicCreatorId).trim();
   const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
 
+  const canReadPrivateProfile =
+    enabled && Boolean(currentUserId) && !isPublicView;
+
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: canReadPrivateProfile,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -65,7 +68,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.content.appearance,
     undefined,
     {
-      enabled: enabled && (!isPublicView || isOwnerOfPublicView),
+      enabled: canReadPrivateProfile,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -75,7 +78,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.collection.getAll,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: canReadPrivateProfile,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -211,7 +214,8 @@ export function useCreatorChannelProfile(enabled = true) {
     initial,
     isLoadingProfile: isPublicView
       ? isLoadingPublic
-      : profileQuery.isLoading || appearanceQuery.isLoading,
+      : canReadPrivateProfile &&
+        (profileQuery.isLoading || appearanceQuery.isLoading),
     isPublicView,
     publicCreatorId,
     publicCreatorSlug: isPublicView

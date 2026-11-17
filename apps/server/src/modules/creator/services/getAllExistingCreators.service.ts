@@ -23,16 +23,35 @@ import {
   MAX_LIMIT,
 } from 'src/utils/pagination';
 
+// Use the paid agreement, so saved/pending offers do not appear as active custom plans.
+export const activeCustomPlanName = sql<string | null>`(
+      SELECT 'Custom ' || p.name
+      FROM subscriptions s
+      INNER JOIN subscription_checkouts checkout ON checkout.id = coalesce(
+        s.raw_payload #>> '{data,transaction,reference}',
+        s.raw_payload #>> '{transaction,reference}', s.invoice_number
+      )
+        AND checkout.creator_id = s.creator_id
+      INNER JOIN plans p ON p.id = s.plan_id
+      WHERE s.creator_id = ${users.id}
+        AND s.status = 'paid' AND s.is_active = true
+        AND s.start_at <= now() AND s.end_at > now()
+        AND checkout.custom_revision IS NOT NULL AND checkout.paid_at IS NOT NULL
+      ORDER BY s.created_at DESC LIMIT 1
+    )`;
+
 export const getAdminCreatorsService = async ({
   search,
   plan,
   hidden,
+  customPlan,
   page,
   limit,
 }: {
   search?: string;
   plan?: string;
   hidden?: boolean;
+  customPlan?: boolean;
   page?: number;
   limit?: number;
 } = {}) => {
@@ -43,9 +62,9 @@ export const getAdminCreatorsService = async ({
     const subscriberCountSql = sql<number>`
       COUNT(DISTINCT ${emailSubscribers.id})::int
     `;
-    const planNameSql = sql<string | null>`
-      MAX(${plans.name})
-    `;
+    const planNameSql = sql<
+      string | null
+    >`coalesce(${activeCustomPlanName}, MAX(${plans.name}))`;
     const ownerNameSql = sql<string | null>`
       COALESCE(
         NULLIF(TRIM(MAX(${creatorOwners.name})), ''),
@@ -113,6 +132,14 @@ export const getAdminCreatorsService = async ({
     const requestedPage = getSafePositiveInteger(page, 1);
     const pageSize = getSafePositiveInteger(limit, DEFAULT_LIMIT, MAX_LIMIT);
     const filters = [eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)];
+
+    if (customPlan !== undefined) {
+      filters.push(
+        customPlan
+          ? sql`${activeCustomPlanName} IS NOT NULL`
+          : sql`${activeCustomPlanName} IS NULL`,
+      );
+    }
 
     if (hidden !== undefined) {
       filters.push(eq(users.isHidden, hidden));

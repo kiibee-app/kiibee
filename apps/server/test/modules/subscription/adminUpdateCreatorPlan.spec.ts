@@ -71,6 +71,22 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
   });
   it.each([
     {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      targetId: 'try',
+      targetPrice: 0,
+      implicitCustomSave: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'try',
+      previousPrice: 0,
+      targetId: 'try',
+      targetPrice: 0,
+      customAction: 'save' as const,
+      paymentRequired: false,
+    },
+    {
       previousPlanId: 'startup',
       previousPrice: 99,
       alreadyPaid: true,
@@ -230,6 +246,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       customState,
       previousSettings,
       operational = false,
+      implicitCustomSave = false,
     }) => {
       const targetPlanId =
         targetId ?? (targetPrice === 0 ? 'try' : input.planId);
@@ -324,8 +341,14 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           ...input,
           planId: targetPlanId,
           customSubscriptionAction: customAction,
-          ...(!operational && ['activate', 'save'].includes(customAction ?? '')
-            ? { customPrice: 99 }
+          ...(implicitCustomSave ||
+          (!operational && ['activate', 'save'].includes(customAction ?? ''))
+            ? {
+                customPrice: 99,
+                customMaxFiles: 25,
+                customKiibeeCutDkk: 10,
+                customTransactionFeePct: 2,
+              }
             : {}),
           manuallyPaid,
           ...(operational
@@ -362,7 +385,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           'pending',
         );
       }
-      if (customAction === 'save' && !operational)
+      if (implicitCustomSave || (customAction === 'save' && !operational))
         expect(setPlan).toHaveBeenCalledWith(
           expect.objectContaining({
             customSubscriptionStatus: 'draft',
@@ -403,11 +426,32 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       const manualPaymentReceived = Boolean(
         manuallyPaid && (!previousManual || previousPlanId !== targetPlanId),
       );
+      const savedOffer =
+        implicitCustomSave || (customAction === 'save' && !operational);
+      if (savedOffer)
+        expect(sendTemplateEmail).toHaveBeenCalledWith(
+          expect.objectContaining({
+            to: 'creator@example.com',
+            cc: 'info@kiibee.com',
+            templateName: 'customSubscriptionOffer',
+            variables: expect.objectContaining({
+              creator: { fullName: 'Test Creator' },
+              planName: targetName,
+              customPlanDetails: expect.arrayContaining([
+                { label: 'Pris', value: '99 DKK' },
+                { label: 'Betalingsperiode', value: '1 måned' },
+                { label: 'Maks. antal filer', value: '25' },
+                { label: 'Kiibees andel', value: '10 DKK pr. udbetaling' },
+                { label: 'Transaktionsgebyr', value: '2% pr. udbetaling' },
+              ]),
+            }),
+          }),
+        );
       expect(sendTemplateEmail).toHaveBeenCalledTimes(
-        Number(planChanged || paymentRequestCreated) +
+        Number(savedOffer || planChanged || paymentRequestCreated) +
           Number(manualPaymentReceived),
       );
-      if (planChanged || paymentRequestCreated) {
+      if (!savedOffer && (planChanged || paymentRequestCreated)) {
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({
             to: 'creator@example.com',
@@ -417,6 +461,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
               creator: { fullName: 'Test Creator' },
               previousPlanName: previousPlanId || 'Intet aktivt abonnement',
               planName: targetName,
+              customPlanDetails: expect.any(Array),
             },
           }),
         );

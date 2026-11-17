@@ -1,10 +1,14 @@
-import { isProfilePass } from 'src/utils/profilePayment';
+import {
+  getProfilePaymentState,
+  isProfilePass,
+} from 'src/utils/profilePayment';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, asc, desc, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collections,
+  orders,
   collectionItems,
   contentCategories,
   contentSettings,
@@ -62,9 +66,11 @@ const hasActiveCollectionAccess = async (
   const [access] = await db
     .select({ id: userContentAccess.id })
     .from(userContentAccess)
+    .innerJoin(orders, eq(orders.id, userContentAccess.orderId))
     .where(
       and(
         eq(userContentAccess.userId, userId),
+        eq(orders.status, 'completed'),
         eq(userContentAccess.collectionId, collectionId),
         isNull(userContentAccess.mediaFileId),
         or(
@@ -109,8 +115,17 @@ export const getPublicCollectionService = async (
       )
       .limit(1);
 
-    if (!collection || isProfilePass(collection.id)) {
+    if (!collection) {
       return fail('Collection not found', HttpStatus.NOT_FOUND);
+    }
+
+    const channelPass = isProfilePass(collection.id);
+    if (
+      channelPass &&
+      viewerId !== collection.creatorId &&
+      (!viewerId || !(await hasActiveCollectionAccess(collection.id, viewerId)))
+    ) {
+      return fail('Channel access required', HttpStatus.FORBIDDEN);
     }
 
     await requirePubliclyVisibleCreator(collection.creatorId);
@@ -124,15 +139,42 @@ export const getPublicCollectionService = async (
       }
     }
 
-    const itemConditions = [eq(collectionItems.collectionId, collection.id)];
+    const profile = await getProfilePaymentState(
+      collection.creatorId,
+      viewerId,
+    );
+    if (profile.required && !profile.hasAccess)
+      return success(
+        {
+          id: collection.id,
+          creatorId: collection.creatorId,
+          items: [],
+          contents: [],
+          requiresChannelPayment: true,
+        },
+        'Channel pass required',
+        HttpStatus.OK,
+      );
+
+    const itemConditions = [
+      channelPass
+        ? eq(mediaFiles.creatorId, collection.creatorId)
+        : eq(collectionItems.collectionId, collection.id),
+    ];
     if (!collection.isDeleted) {
       itemConditions.push(publishedPublicWhere!);
     }
 
     const rows = await db
       .select(collectionItemSelect)
-      .from(collectionItems)
-      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
+      .from(mediaFiles)
+      .leftJoin(
+        collectionItems,
+        and(
+          eq(mediaFiles.id, collectionItems.mediaFileId),
+          eq(collectionItems.collectionId, collection.id),
+        ),
+      )
       .innerJoin(
         users,
         and(

@@ -81,8 +81,8 @@ export async function getRentalStreamInfo(userId: string, contentId: string) {
   return info;
 }
 
-// Count issued playback sessions, scoped to the rental and file. A later rental
-// starts a new allowance; purchased access and creator previews remain unlimited.
+// Count issued playback sessions per rental and file. A later rental starts
+// a new allowance; purchased access and creator/admin previews stay unlimited.
 export async function recordRentalStream(
   userId: string,
   key: string,

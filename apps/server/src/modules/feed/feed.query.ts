@@ -17,7 +17,7 @@ import {
   ROLE,
 } from 'src/utils/constant';
 import {
-  creatorContentIsDiscoverable,
+  creatorContentIsDiscoverableFor,
   publiclyVisibleCreatorWhere,
 } from 'src/utils/publicCreatorVisibility';
 import {
@@ -64,7 +64,7 @@ const baseSelect = {
   contentUrl: mediaFiles.contentUrl,
 };
 
-async function fetchMediaFilesByIds(ids: string[]) {
+async function fetchMediaFilesByIds(ids: string[], viewerId?: string) {
   if (ids.length === 0) return [];
 
   const rows = await db
@@ -92,7 +92,7 @@ async function fetchMediaFilesByIds(ids: string[]) {
       and(
         inArray(mediaFiles.id, ids),
         eq(mediaFiles.isDeleted, false),
-        creatorContentIsDiscoverable,
+        creatorContentIsDiscoverableFor(viewerId),
       ),
     );
 
@@ -130,7 +130,11 @@ const trendingScore = sql<number>`(
   + (CASE WHEN ${mediaFiles.accessType} = 'paid' OR ${mediaFiles.buyPrice} IS NOT NULL OR ${mediaFiles.rentPrice} IS NOT NULL THEN 10 ELSE 0 END)
 )`;
 
-export const getTrendingQuery = async (where: any, limit: number) => {
+export const getTrendingQuery = async (
+  where: any,
+  limit: number,
+  viewerId?: string,
+) => {
   const candidateLimit = Math.max(
     limit * RECENT_CANDIDATE_MULTIPLIER,
     RECENT_MIN_CANDIDATE_LIMIT,
@@ -159,7 +163,10 @@ export const getTrendingQuery = async (where: any, limit: number) => {
     .orderBy(desc(trendingScore), desc(mediaFiles.createdAt))
     .limit(candidateLimit);
 
-  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(
+    idRows.map((row) => row.id),
+    viewerId,
+  );
 
   return balanceFeedMediaByCreator(candidates, limit);
 };
@@ -168,6 +175,7 @@ export const getLatestQuery = async (
   where: any,
   orderBy: any,
   limit: number,
+  viewerId?: string,
 ) => {
   const idRows = await db
     .select({ id: mediaFiles.id })
@@ -184,10 +192,17 @@ export const getLatestQuery = async (
     .orderBy(orderBy)
     .limit(limit);
 
-  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+  return fetchMediaFilesByIds(
+    idRows.map((row) => row.id),
+    viewerId,
+  );
 };
 
-export const getRecentQuery = async (where: any, limit: number) => {
+export const getRecentQuery = async (
+  where: any,
+  limit: number,
+  viewerId?: string,
+) => {
   const candidateLimit = Math.max(
     limit * RECENT_CANDIDATE_MULTIPLIER,
     RECENT_MIN_CANDIDATE_LIMIT,
@@ -208,7 +223,10 @@ export const getRecentQuery = async (where: any, limit: number) => {
     .orderBy(desc(mediaFiles.createdAt))
     .limit(candidateLimit);
 
-  const candidates = await fetchMediaFilesByIds(idRows.map((row) => row.id));
+  const candidates = await fetchMediaFilesByIds(
+    idRows.map((row) => row.id),
+    viewerId,
+  );
 
   return dedupeFeedMediaByCreator(candidates, limit);
 };

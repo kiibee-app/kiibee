@@ -7,7 +7,8 @@ import { Main, Section } from "@/app/styles";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import LazySection from "@/components/UI/LazySection";
-import { ErrorBoundary } from "react-error-boundary";
+import GenericButton from "@/components/UI/GenericButton";
+import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
 import PublishedContentDetail from "@/components/Feature/SingleContentPage/PublishedContentDetail";
 import { CONTENT_TRANSLATION_KEYS } from "@/utils/contentApi";
 import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/Creators/styles";
@@ -48,15 +49,16 @@ function PublishedContentLoading() {
   );
 }
 
-function ErrorFallback() {
+function ErrorFallback({ resetErrorBoundary }: FallbackProps) {
   const { t } = useTranslation();
 
   return (
     <Section>
       <ErrorFallbackContent>
-        <MonoText $use="H5_Regular">
-          {t(CONTENT_TRANSLATION_KEYS.loading)}
-        </MonoText>
+        <MonoText $use="H5_Regular">{t("contentPageError.message")}</MonoText>
+        <GenericButton onClick={resetErrorBoundary}>
+          {t("contentPageError.retry")}
+        </GenericButton>
       </ErrorFallbackContent>
     </Section>
   );

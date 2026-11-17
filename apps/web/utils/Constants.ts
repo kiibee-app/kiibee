@@ -396,9 +396,9 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
     trailerUrl: formState.trailerLink.trim(),
     thumbnailUrl: formState.mediaCardThumbnail || undefined,
     thumbnailLandscapeUrl: formState.portraitThumbnail || undefined,
-    publishedYear: formState.publishedYear
+    publishedYear: formState.publishedYear.trim()
       ? parseInt(formState.publishedYear)
-      : undefined,
+      : null,
     duration: formState.duration ? parseInt(formState.duration) : undefined,
     categoryId: formState.category
       ? formState.category.toLowerCase()

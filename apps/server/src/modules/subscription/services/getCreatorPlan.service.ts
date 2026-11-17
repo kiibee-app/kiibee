@@ -128,7 +128,7 @@ export const getCreatorPlan = async (creatorId: string) => {
               key as keyof (typeof creatorCurrentPlan)[0]
             ] != null,
         ),
-      isPaidPlan: plan.price > 0,
+      isPaidPlan: terms.amount > 0,
       manuallyPaid: Boolean(
         plan.price > 0 &&
         creatorCurrentPlan[0].manuallyPaid &&
@@ -141,7 +141,7 @@ export const getCreatorPlan = async (creatorId: string) => {
       billingOptions: terms.billingOptions,
       hasCustomBilling:
         enabled &&
-        plan.price > 0 &&
+        terms.amount > 0 &&
         [
           creatorCurrentPlan[0].customPrice,
           creatorCurrentPlan[0].customPrice3,
