@@ -2456,7 +2456,8 @@
     "previouslyRented": "Tidligere lejet",
     "helpVideos": "Hjælpevideoer",
     "userManual": "Brugervejledning",
-    "conditions": "Betingelser"
+    "conditions": "Betingelser",
+    "recentlyViewed": "Senest sete"
   },
   "accessGate": {
     "pageCodeTitle": "Denne side kræver en kode for at få adgang",
@@ -2582,5 +2583,10 @@
       "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }
+  },
+  "viewerRecent": {
+    "viewContent": "Se indhold",
+    "emptyTitle": "Intet nyligt set indhold endnu",
+    "emptyDescription": "Indhold, du ser i denne browser, vises her, også indhold set før du loggede ind."
   }
 }

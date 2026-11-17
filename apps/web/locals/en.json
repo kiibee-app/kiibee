@@ -2443,7 +2443,8 @@
     "previouslyRented": "Previously Rented",
     "helpVideos": "Help videos",
     "userManual": "User manual",
-    "conditions": "Conditions"
+    "conditions": "Conditions",
+    "recentlyViewed": "Recently Viewed"
   },
   "errors": {
     "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
@@ -2582,5 +2583,10 @@
       "primaryBtn": "Continue",
       "secondaryBtn": "Cancel"
     }
+  },
+  "viewerRecent": {
+    "viewContent": "View content",
+    "emptyTitle": "No recently viewed content yet",
+    "emptyDescription": "Content you view in this browser appears here, including content viewed before signing in."
   }
 }

@@ -18,6 +18,7 @@ export const CREATORS_LABELS = {
 } as const;
 
 export const VIEWER_LABELS = {
+  RECENTLY_VIEWED: "Recently Viewed",
   PURCHASED: "Purchased",
   CURRENTLY_RENTED: "Currently Rented",
   PREVIOUSLY_RENTED: "Previously Rented",
@@ -55,6 +56,7 @@ export type DashboardSidebarItem = {
 export type ViewerLabel = (typeof VIEWER_LABELS)[keyof typeof VIEWER_LABELS];
 
 export const VIEWER_VIEW_VALUES = {
+  RECENTLY_VIEWED: "recently-viewed",
   PURCHASED: "purchased",
   CURRENTLY_RENTED: "currently-rented",
   PREVIOUSLY_RENTED: "previously-rented",
@@ -66,6 +68,7 @@ export type ViewerViewValue =
   (typeof VIEWER_VIEW_VALUES)[keyof typeof VIEWER_VIEW_VALUES];
 
 export const VIEWER_LABEL_TO_VIEW: Record<ViewerLabel, ViewerViewValue> = {
+  [VIEWER_LABELS.RECENTLY_VIEWED]: VIEWER_VIEW_VALUES.RECENTLY_VIEWED,
   [VIEWER_LABELS.PURCHASED]: VIEWER_VIEW_VALUES.PURCHASED,
   [VIEWER_LABELS.CURRENTLY_RENTED]: VIEWER_VIEW_VALUES.CURRENTLY_RENTED,
   [VIEWER_LABELS.PREVIOUSLY_RENTED]: VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED,
@@ -75,6 +78,7 @@ export const VIEWER_LABEL_TO_VIEW: Record<ViewerLabel, ViewerViewValue> = {
 };
 
 export const VIEWER_VIEW_TO_LABEL: Record<ViewerViewValue, ViewerLabel> = {
+  [VIEWER_VIEW_VALUES.RECENTLY_VIEWED]: VIEWER_LABELS.RECENTLY_VIEWED,
   [VIEWER_VIEW_VALUES.PURCHASED]: VIEWER_LABELS.PURCHASED,
   [VIEWER_VIEW_VALUES.CURRENTLY_RENTED]: VIEWER_LABELS.CURRENTLY_RENTED,
   [VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED]: VIEWER_LABELS.PURCHASED,
@@ -124,6 +128,11 @@ export const creatorsItems: DashboardSidebarItem[] = [
 ];
 
 export const viewerItems: DashboardSidebarItem[] = [
+  {
+    label: VIEWER_LABELS.RECENTLY_VIEWED,
+    labelKey: "sidebar.recentlyViewed",
+    section: CREATOR_SECTIONS.TOP,
+  },
   {
     label: VIEWER_LABELS.PURCHASED,
     labelKey: "sidebar.purchasedAndRented",
