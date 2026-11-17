@@ -198,16 +198,26 @@ export function CreatorContentEngagement({
     }
   };
 
-  const handleMakeFree = async () => {
+  const handleMakeFree = async (paid?: {
+    buyPrice?: number;
+    rentPrice?: number;
+    rentDurationHours?: number;
+  }) => {
     try {
-      await makeContentFree.mutateAsync({ contentId, creatorId });
-      toast.success(creatorContentEngagementLabels.makeFreeSuccess);
+      await makeContentFree.mutateAsync({ contentId, creatorId, paid });
+      toast.success(
+        paid
+          ? "Content is now paid."
+          : creatorContentEngagementLabels.makeFreeSuccess,
+      );
       setMakeFreeOpen(false);
     } catch (error) {
       toast.error(
         error instanceof Error
           ? error.message
-          : creatorContentEngagementLabels.makeFreeFailed,
+          : paid
+            ? "Failed to make content paid."
+            : creatorContentEngagementLabels.makeFreeFailed,
       );
     }
   };
@@ -289,10 +299,12 @@ export function CreatorContentEngagement({
             <FreeContentButton
               type="button"
               onClick={() => setMakeFreeOpen(true)}
-              disabled={isFree || makeContentFree.isPending}
+              disabled={makeContentFree.isPending}
               $isFree={isFree}
             >
-              {creatorContentEngagementLabels.freeContent}
+              {isFree
+                ? "Make paid"
+                : creatorContentEngagementLabels.freeContent}
             </FreeContentButton>
           </HeroActions>
         </ProfileInfo>
@@ -301,6 +313,7 @@ export function CreatorContentEngagement({
       {makeFreeOpen && (
         <MakeContentFreeModal
           open={makeFreeOpen}
+          makePaid={isFree}
           contentTitle={content.title}
           isSubmitting={makeContentFree.isPending}
           onClose={() => setMakeFreeOpen(false)}

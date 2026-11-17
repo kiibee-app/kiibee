@@ -1,3 +1,4 @@
+import { makeContentPaidService } from './services/makeContentPaid.service';
 import {
   Body,
   Controller,
@@ -110,6 +111,20 @@ export class ContentController {
     @Body() body: RejectContentDto,
   ) {
     return this.contentService.rejectContentService(contentId, body);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/make-paid/:contentId')
+  async makeContentPaid(
+    @Param('contentId') contentId: string,
+    @Body()
+    body: {
+      buyPrice?: number;
+      rentPrice?: number;
+      rentDurationHours?: number;
+    },
+  ) {
+    return makeContentPaidService(contentId, body);
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
