@@ -1,5 +1,6 @@
 "use client";
 
+import { mergeGuestRecentlyViewed } from "@/utils/recentlyViewed";
 import { useEffect, useMemo, useState } from "react";
 import {
   mergeStoredLoginUser,
@@ -26,7 +27,13 @@ export function useStoredLoginUser() {
   const [user, setUser] = useState<LoginUser | null>(null);
 
   useEffect(() => {
-    const sync = () => setUser(readStoredLoginUser());
+    const sync = () => {
+      const currentUser = readStoredLoginUser();
+      if (currentUser?.id && currentUser.role === ROLE_VIEWER) {
+        mergeGuestRecentlyViewed(currentUser.id);
+      }
+      setUser(currentUser);
+    };
 
     sync();
     window.addEventListener(STORED_LOGIN_USER_UPDATED, sync);

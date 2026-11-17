@@ -1,5 +1,6 @@
 "use client";
 
+import RecentlyViewed from "./ViewerSections/RecentlyViewed";
 import React, { useCallback, useState } from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
@@ -42,6 +43,7 @@ import {
 } from "@/utils/localizedQueryParams";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
+  VIEWER_VIEW_VALUES.RECENTLY_VIEWED,
   VIEWER_VIEW_VALUES.PURCHASED,
   VIEWER_VIEW_VALUES.CURRENTLY_RENTED,
   VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED,
@@ -72,7 +74,7 @@ export default function ClientDashboardViewer({
   const activePage: ViewerLabel =
     viewParam && ROUTABLE_VIEWER_VIEWS.has(viewParam)
       ? VIEWER_VIEW_TO_LABEL[viewParam as ViewerViewValue]
-      : VIEWER_LABELS.PURCHASED;
+      : VIEWER_LABELS.RECENTLY_VIEWED;
 
   const getHrefForView = useCallback(
     (label: ViewerLabel) => {
@@ -82,7 +84,7 @@ export default function ClientDashboardViewer({
       params.delete(CONTENT_COLLECTION_QUERY_KEY);
       params.delete(CONTENT_ITEM_QUERY_KEY);
 
-      if (label === VIEWER_LABELS.PURCHASED) {
+      if (label === VIEWER_LABELS.RECENTLY_VIEWED) {
         params.delete(VIEW);
       } else {
         const viewValue = VIEWER_LABEL_TO_VIEW[label];
@@ -163,7 +165,9 @@ export default function ClientDashboardViewer({
         />
       }
     >
-      {activePage === VIEWER_LABELS.PURCHASED ? (
+      {activePage === VIEWER_LABELS.RECENTLY_VIEWED ? (
+        <RecentlyViewed />
+      ) : activePage === VIEWER_LABELS.PURCHASED ? (
         <RentedContent
           key={RENTED_MODES.PURCHASED}
           title={sectionTitle}
