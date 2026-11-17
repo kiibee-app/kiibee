@@ -176,7 +176,8 @@ export const adminUpdateCreatorPlan = async (
       const activating =
         input.customSubscriptionAction === 'activate' && hasPrice;
       const savingOffer =
-        input.customSubscriptionAction === 'save' &&
+        (input.customSubscriptionAction === 'save' ||
+          (!input.customSubscriptionAction && billingChanged)) &&
         hasPrice &&
         (billingChanged || currentPlan?.customSubscriptionStatus !== 'paid');
       const cancelling = input.customSubscriptionAction === 'cancel';
