@@ -102,6 +102,11 @@ type Params = {
     backToTypeSelect: () => void;
   };
   contentSettingAccessType?: string;
+  profilePaymentSettings?: {
+    buyPrice?: string | number | null;
+    rentPrice?: string | number | null;
+    rentDuration?: string | null;
+  };
   contentSettingPasswordCount?: number;
   removedPasswordIndexes: number[];
   clearRemovedPasswordIndexes: () => void;
@@ -125,6 +130,7 @@ export function useContentFormActions({
   createCollectionFlow,
   contentTypeFlow,
   contentSettingAccessType,
+  profilePaymentSettings,
   contentSettingPasswordCount,
   removedPasswordIndexes,
   clearRemovedPasswordIndexes,
@@ -254,20 +260,22 @@ export function useContentFormActions({
 
     let storedRental = "";
     let storedPurchase = "";
-    let storedDuration = PAYMENT_DEFAULT_ACCESS_DURATION;
+    let storedDuration: AccessDurationValue = PAYMENT_DEFAULT_ACCESS_DURATION;
 
-    try {
-      const rawStored = storage.get(
-        GLOBAL_CONTENT_PAYMENT_SETTINGS_STORAGE_KEY,
-      );
-      if (rawStored) {
-        const parsed = JSON.parse(rawStored);
-        storedRental = parsed.rentalAmount ?? "";
-        storedPurchase = parsed.purchaseAmount ?? "";
-        storedDuration =
-          parsed.accessDuration ?? PAYMENT_DEFAULT_ACCESS_DURATION;
-      }
-    } catch {}
+    storedRental =
+      profilePaymentSettings?.rentPrice == null
+        ? ""
+        : String(profilePaymentSettings.rentPrice);
+    storedPurchase =
+      profilePaymentSettings?.buyPrice == null
+        ? ""
+        : String(profilePaymentSettings.buyPrice);
+    const serverDuration = profilePaymentSettings?.rentDuration;
+    storedDuration =
+      serverDuration &&
+      ["1_month", "3_months", "6_months", "12_months"].includes(serverDuration)
+        ? (serverDuration as AccessDurationValue)
+        : PAYMENT_DEFAULT_ACCESS_DURATION;
 
     applySettingsSnapshot(
       buildSettingsSnapshot(uiAccessType, {
@@ -884,6 +892,24 @@ export function useContentFormActions({
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
       const payload: SaveContentSettingPayload = { accessType: apiAccessType };
+      if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment) {
+        if (
+          !collectionRentalAmount.trim() &&
+          !collectionPurchaseAmount.trim()
+        ) {
+          toast.error(t(AUTH_FORM.errors.required));
+          return;
+        }
+        payload.buyPrice = collectionPurchaseAmount.trim()
+          ? parsePaymentAmount(collectionPurchaseAmount)
+          : null;
+        payload.rentPrice = collectionRentalAmount.trim()
+          ? parsePaymentAmount(collectionRentalAmount)
+          : null;
+        payload.rentDuration = collectionRentalAmount.trim()
+          ? collectionAccessDuration
+          : null;
+      }
 
       if (
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
@@ -906,46 +932,6 @@ export function useContentFormActions({
         collectionPurchaseAmount.trim() !== "";
       const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
       const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
-
-      if (
-        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
-        collections &&
-        collections.length > 0
-      ) {
-        const unsetCollections = collections.filter(
-          (c) =>
-            c.accessType !== ACCESS_TYPE_PAID ||
-            (c.rentPrice == null && c.buyPrice == null),
-        );
-
-        if (unsetCollections.length > 0) {
-          const updatePromises = unsetCollections.map((c) =>
-            axiosClient.patch(API.collection.update(c.id), {
-              accessType: ACCESS_TYPE_PAID,
-              rentPrice: hasRental ? parsedRentalAmount : null,
-              buyPrice: hasPurchase ? parsedPurchaseAmount : null,
-              rentDuration: hasRental ? collectionAccessDuration : null,
-            }),
-          );
-
-          await Promise.allSettled(updatePromises);
-
-          const unsetIds = new Set(unsetCollections.map((c) => c.id));
-          setCollections((prev) =>
-            prev.map((c) =>
-              unsetIds.has(c.id)
-                ? {
-                    ...c,
-                    accessType: ACCESS_TYPE_PAID,
-                    rentPrice: hasRental ? parsedRentalAmount : null,
-                    buyPrice: hasPurchase ? parsedPurchaseAmount : null,
-                    rentDuration: hasRental ? collectionAccessDuration : null,
-                  }
-                : c,
-            ),
-          );
-        }
-      }
 
       try {
         storage.set(

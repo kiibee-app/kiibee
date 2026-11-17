@@ -1,3 +1,4 @@
+import { notLike } from 'drizzle-orm';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc, count, getTableColumns, sql } from 'drizzle-orm';
 
@@ -68,6 +69,7 @@ export const getAllCollections = async (creatorIdOrSlug: string) => {
         and(
           eq(collections.creatorId, targetCreatorId),
           eq(collections.isDeleted, false),
+          notLike(collections.id, 'profile-access-%'),
         ),
       )
       .groupBy(collections.id)

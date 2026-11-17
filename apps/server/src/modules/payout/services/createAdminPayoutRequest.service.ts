@@ -1,6 +1,7 @@
+import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -12,7 +13,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, STATUS } from 'src/utils/constant';
-import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
 import { approvePayoutRequestService } from './approvePayoutRequest.service';
 
@@ -36,7 +37,13 @@ export const createAdminPayoutRequestService = async (
       db
         .select()
         .from(creatorPlans)
-        .where(eq(creatorPlans.creatorId, creatorId))
+        .where(
+          and(
+            eq(creatorPlans.creatorId, creatorId),
+            eq(creatorPlans.status, 'active'),
+          ),
+        )
+        .orderBy(desc(creatorPlans.createdAt))
         .limit(1),
       db
         .select()
@@ -92,22 +99,20 @@ export const createAdminPayoutRequestService = async (
 
     const planPrice = Number(plan.price ?? 0);
 
-    const platformFeePercentage =
-      PLATFORM_FEE_PERCENTAGES[planPrice] ?? PLATFORM_FEE_PERCENTAGES[0];
-
-    const processingFeePercentage = 0.05;
-
-    const platformFee = Number(
-      (requestedAmount * platformFeePercentage).toFixed(2),
-    );
-
-    const processingFee = Number(
-      (requestedAmount * processingFeePercentage).toFixed(2),
-    );
-
-    const payableAmount = Number(
-      (requestedAmount - platformFee - processingFee).toFixed(2),
-    );
+    const {
+      platformFeePercentage,
+      processingFeePercentage,
+      platformFee,
+      processingFee,
+      payableAmount,
+      fixedPlatformFee,
+    } = calculatePayoutFees({
+      amount: requestedAmount,
+      basePlanPrice: planPrice,
+      transactionFeePct: creatorPlan.customTransactionFeePct,
+      fixedPlatformFee: creatorPlan.customKiibeeCutDkk,
+      currency: wallet.currency,
+    });
 
     if (payableAmount < 1) {
       return fail('Minimum net payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
@@ -121,6 +126,7 @@ export const createAdminPayoutRequestService = async (
       payoutRequestId,
       amount: requestedAmount,
       planPrice,
+      fixedPlatformFee,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,

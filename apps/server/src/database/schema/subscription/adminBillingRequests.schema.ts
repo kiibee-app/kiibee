@@ -1,4 +1,11 @@
-import { pgTable, text, numeric, timestamp, index } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  numeric,
+  timestamp,
+  index,
+  integer,
+} from 'drizzle-orm/pg-core';
 import { users } from '../users/users.schema';
 
 // An admin assignment is a payment request, not a completed ePay transaction.
@@ -15,6 +22,7 @@ export const adminBillingRequests = pgTable(
     currency: text('currency').notNull(),
     status: text('status').notNull().default('pending'),
     transactionId: text('transaction_id'),
+    customRevision: integer('custom_revision'),
     emailStatus: text('email_status').notNull().default('pending'),
     emailSentAt: timestamp('email_sent_at'),
     createdAt: timestamp('created_at').notNull().defaultNow(),

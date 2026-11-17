@@ -1,4 +1,33 @@
 {
+  "profilePayment": {
+    "purchaseLabel": "Køb adgang til kanalen",
+    "rentalLabel": "Lej adgang til kanalen",
+    "oneTime": "Én betaling · ingen udløbsdato",
+    "duration_one": "Adgang i {{count}} måned",
+    "duration_other": "Adgang i {{count}} måneder",
+    "buyAction": "Køb adgang",
+    "rentAction": "Lej adgang",
+    "opening": "Åbner betaling…",
+    "loginMessage": "Log ind eller opret en konto for at købe adgang til kanalen.",
+    "freeAccess": "Få gratis adgang",
+    "title": "Få adgang til kanalen",
+    "description": "Én betaling giver adgang til alt indhold på denne kanal.",
+    "buy": "Køb adgang · {{price}} DKK",
+    "rent": "Lej adgang · {{price}} DKK / {{months}} måned(er)",
+    "error": "Betalingen kunne ikke startes. Prøv igen.",
+    "unavailable": "Kanalens priser er ikke tilgængelige endnu. Kontakt kreatøren."
+  },
+  "customSubscription": {
+    "pending": "Afventer betaling",
+    "title": "Tilpasset abonnement",
+    "fixedFee": "Kiibee-gebyr: {{amount}} DKK pr. udbetaling",
+    "processingFee": "Behandlingsgebyr: {{percent}}%",
+    "payAndActivate": "Betal og aktivér",
+    "activated": "Aktiveret",
+    "setupPayment": "Opsæt betaling",
+    "setupNote": "Dit eksisterende abonnement ændres først, når du har gennemført denne betalingsopsætning.",
+    "checkoutError": "Betalingsopsætningen kunne ikke åbnes. Prøv igen."
+  },
   "epubViewer": {
     "index": "Læser bogens indeks…",
     "download": "Indlæser det første kapitel…",
@@ -874,6 +903,9 @@
     "cta": "Kom gratis i gang"
   },
   "pricingPlans": {
+    "billingPeriod": "Betalingsperiode",
+    "billingMonths_one": "{{count}} måned",
+    "billingMonths_other": "{{count}} måneder",
     "title": "Oversigt over pris planer",
     "cta": "Kom i gang",
     "active": "Aktiv",
@@ -1023,6 +1055,7 @@
     ]
   },
   "common": {
+    "verificationUnavailable": "Verificering er ikke tilgængelig. Prøv at genindlæse siden, eller send en e-mail direkte til support.",
     "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
     "copied": "Kopieret!",
@@ -1834,6 +1867,7 @@
         "loading": "Beregner udbetaling…",
         "earnings": "Indtjening:(Baseret på {{purchases}} køb og {{rentals}} leje)",
         "processingFee": "Transaktionsgebyr ({{percent}})",
+        "fixedPlatformFee": "Kiibee-gebyr (fast pr. udbetaling)",
         "platformFee": "Kiibee-betaling ({{percent}})",
         "total": "Samlet udbetalingsbeløb",
         "transferNote": "Overførsel af din saldo kan tage op til 5 hverdage.",
@@ -2422,7 +2456,8 @@
     "previouslyRented": "Tidligere lejet",
     "helpVideos": "Hjælpevideoer",
     "userManual": "Brugervejledning",
-    "conditions": "Betingelser"
+    "conditions": "Betingelser",
+    "recentlyViewed": "Senest sete"
   },
   "accessGate": {
     "pageCodeTitle": "Denne side kræver en kode for at få adgang",
@@ -2548,5 +2583,10 @@
       "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }
+  },
+  "viewerRecent": {
+    "viewContent": "Se indhold",
+    "emptyTitle": "Intet nyligt set indhold endnu",
+    "emptyDescription": "Indhold, du ser i denne browser, vises her, også indhold set før du loggede ind."
   }
 }

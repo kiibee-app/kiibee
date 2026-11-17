@@ -1,8 +1,13 @@
 "use client";
+import GenericSpinner from "@/components/UI/GenericSpinner";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 
+import { saveRecentlyViewed } from "@/utils/recentlyViewed";
 import { useMemo, useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
@@ -165,26 +170,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const { hasAccess: hasGuestGateAccess, hasCollectionAccess } =
     useViewerContentAccess(contentId ?? "", content?.creatorId, collectionId);
-  const canViewWebAsGuest = Boolean(
-    hero.contentType === FORMAT_TYPE.WEB &&
+  const profileGate = useCreatorAccessGate(content?.creatorId ?? null);
+  //   const canViewWebAsGuest = Boolean(
+  //     hero.contentType === FORMAT_TYPE.WEB &&
+  const canViewAsGuest = Boolean(
     content &&
     !accessGate &&
     content.accessType !== "paid" &&
     (!content.isPaidCollection || hasCollectionAccess) &&
-    (hasGuestGateAccess ||
+    ((hero.contentType === FORMAT_TYPE.WEB && hasGuestGateAccess) ||
       (isFreeContentItem(content) && !content.isPaidCollection)),
   );
 
   const handleActionClick = useCallback(
     (action: SingleContentAction) => {
-      if (!user?.id && !canViewWebAsGuest) {
+      if (!user?.id && !canViewAsGuest) {
         handleShowLoginModal();
         return;
       }
 
       action.onClick?.();
     },
-    [canViewWebAsGuest, handleShowLoginModal, user?.id],
+    [canViewAsGuest, handleShowLoginModal, user?.id],
   );
 
   const actionsWithPayment = useMemo(() => {
@@ -232,6 +239,23 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     t,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const recordRecentlyViewed = useCallback(() => {
+    if (!contentId || embedded) return;
+    const currentUser = readStoredLoginUser();
+    if (currentUser && currentUser.role !== "viewer") return;
+    saveRecentlyViewed(currentUser?.id, {
+      id: contentId,
+      title,
+      href: window.location.pathname,
+      viewedAt: Date.now(),
+      thumbnailUrl: hero.image ? resolveImageUrl(hero.image) : undefined,
+      creatorName: creator?.name,
+    });
+  }, [contentId, title, embedded, hero.image, creator?.name]);
+  useEffect(() => {
+    if (showPreviewModal) recordRecentlyViewed();
+  }, [showPreviewModal, recordRecentlyViewed]);
+
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
@@ -324,7 +348,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!user?.id && !canViewWebAsGuest) {
+    if (!user?.id && !canViewAsGuest) {
       handleShowLoginModal();
       return;
     }
@@ -335,6 +359,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       !isEmbeddableVideoUrl(previewMediaUrl) &&
       !isEmbeddableVideoUrl(hero.contentUrl)
     ) {
+      recordRecentlyViewed();
       openInNewTab(previewMediaUrl);
       return;
     }
@@ -394,7 +419,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     }
   }, [
-    canViewWebAsGuest,
+    canViewAsGuest,
+    recordRecentlyViewed,
     canFetchMedia,
     canPreview,
     fetchMediaUrl,
@@ -614,6 +640,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     checkoutIdempotencyKeyRef.current = null;
   };
 
+  if (profileGate.isLoading)
+    return <GenericSpinner size={48} label={t("common.loading")} />;
+  if (profileGate.gateType === "payment")
+    return (
+      <AccessGate
+        type="payment"
+        paymentOptions={profileGate.paymentOptions}
+        onSuccess={profileGate.handleSuccess}
+      />
+    );
   return (
     <Wrapper $embedded={embedded}>
       <SingleContentTopBar

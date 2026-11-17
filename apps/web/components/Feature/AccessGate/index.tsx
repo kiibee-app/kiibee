@@ -21,6 +21,7 @@ import {
 import {
   AccessGateType,
   AccessGateVariant,
+  VARIANT,
   VARIANT_CONTENT,
   VARIANT_PAGE,
   TYPE_CODE,
@@ -34,7 +35,18 @@ import {
   HTML_ID_NAME,
   HTML_ID_EMAIL,
 } from "@/utils/Constants";
-import { GenericModal } from "@/components/UI/Modals";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import {
+  PaymentCard,
+  PaymentHeader,
+  PaymentIcon,
+  PaymentOptions,
+  PaymentOption,
+  PaymentPrice,
+  PaymentButton,
+  PaymentError,
+} from "./PaymentGate.styles";
+import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 
@@ -44,6 +56,11 @@ const EMPTY_STRING = "";
 
 type AccessGateProps = {
   type: AccessGateType;
+  paymentOptions?: {
+    buyPrice?: string | number | null;
+    rentPrice?: string | number | null;
+    rentDuration?: string | null;
+  };
   variant?: AccessGateVariant;
   creatorName?: string;
   onSuccess?: (
@@ -248,8 +265,122 @@ function EmailGate({
   );
 }
 
+function PaymentGate({
+  options,
+  onSuccess,
+}: {
+  variant: AccessGateVariant;
+  options?: AccessGateProps["paymentOptions"];
+  onSuccess?: AccessGateProps["onSuccess"];
+}) {
+  const { t, i18n } = useTranslation();
+  const user = useStoredLoginUser();
+  const [loginRequired, setLoginRequired] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const money = (value: string | number) =>
+    new Intl.NumberFormat(i18n.language === "da" ? "da-DK" : "en-GB", {
+      maximumFractionDigits: 2,
+    }).format(Number(value));
+  const pay = async (itemType: string) => {
+    if (!user?.id) {
+      setLoginRequired(true);
+      return;
+    }
+    setBusy(true);
+    setError("");
+    try {
+      await onSuccess?.(itemType);
+    } catch {
+      setError(t("profilePayment.error"));
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <>
+      <PaymentCard aria-label={t("profilePayment.title")}>
+        <PaymentHeader>
+          <PaymentIcon aria-hidden="true">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
+              <rect x="5" y="10" width="14" height="11" rx="3" />
+              <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+              <path d="M12 14v3" />
+            </svg>
+          </PaymentIcon>
+          <div>
+            <h2>{t("profilePayment.title")}</h2>
+            <p>{t("profilePayment.description")}</p>
+          </div>
+        </PaymentHeader>
+        <PaymentOptions>
+          {options?.buyPrice != null && (
+            <PaymentOption>
+              <h3>{t("profilePayment.purchaseLabel")}</h3>
+              <PaymentPrice>
+                {money(options.buyPrice)} <span>DKK</span>
+              </PaymentPrice>
+              <p>{t("profilePayment.oneTime")}</p>
+              <PaymentButton
+                variant={VARIANT.PRIMARY}
+                fullWidth
+                disabled={busy}
+                onClick={() => pay("purchase")}
+              >
+                {t(
+                  busy ? "profilePayment.opening" : "profilePayment.buyAction",
+                )}
+              </PaymentButton>
+            </PaymentOption>
+          )}
+          {options?.rentPrice != null && (
+            <PaymentOption>
+              <h3>{t("profilePayment.rentalLabel")}</h3>
+              <PaymentPrice>
+                {money(options.rentPrice)} <span>DKK</span>
+              </PaymentPrice>
+              <p>
+                {t("profilePayment.duration", {
+                  count: Number(options.rentDuration?.split("_")[0] ?? 1),
+                })}
+              </p>
+              <PaymentButton
+                variant={VARIANT.SECONDARY}
+                fullWidth
+                disabled={busy}
+                onClick={() => pay("rental")}
+              >
+                {t(
+                  busy ? "profilePayment.opening" : "profilePayment.rentAction",
+                )}
+              </PaymentButton>
+            </PaymentOption>
+          )}
+        </PaymentOptions>
+        {options?.buyPrice == null && options?.rentPrice == null && (
+          <p>{t("profilePayment.unavailable")}</p>
+        )}
+        {error && <PaymentError role="alert">{error}</PaymentError>}
+      </PaymentCard>
+      <LoginRequiredModal
+        visible={loginRequired}
+        onClose={() => setLoginRequired(false)}
+        message={t("profilePayment.loginMessage")}
+      />
+    </>
+  );
+}
+
 export default function AccessGate({
   type,
+  paymentOptions,
   variant = VARIANT_PAGE,
   creatorName,
   onSuccess,
@@ -257,7 +388,13 @@ export default function AccessGate({
   return (
     <GateWrapper $variant={variant}>
       <GateInner $variant={variant}>
-        {type === TYPE_CODE ? (
+        {type === "payment" ? (
+          <PaymentGate
+            variant={variant}
+            options={paymentOptions}
+            onSuccess={onSuccess}
+          />
+        ) : type === TYPE_CODE ? (
           <CodeGate variant={variant} onSuccess={onSuccess} />
         ) : (
           <EmailGate

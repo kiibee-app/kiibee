@@ -1,9 +1,10 @@
+import { calculatePayoutFees } from 'src/utils/payoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPlans, creatorWallets, plans } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { PLATFORM_FEE_PERCENTAGES, MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
+import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { success } from 'src/utils/sendResponse';
 
 export const payoutCalculationService = async (creatorId: string) => {
@@ -16,7 +17,13 @@ export const payoutCalculationService = async (creatorId: string) => {
       db
         .select()
         .from(creatorPlans)
-        .where(eq(creatorPlans.creatorId, creatorId))
+        .where(
+          and(
+            eq(creatorPlans.creatorId, creatorId),
+            eq(creatorPlans.status, 'active'),
+          ),
+        )
+        .orderBy(desc(creatorPlans.createdAt))
         .limit(1),
 
       db
@@ -64,24 +71,27 @@ export const payoutCalculationService = async (creatorId: string) => {
 
     const planPrice = Number(planInfo.price ?? 0);
 
-    const platformFeePercentage =
-      PLATFORM_FEE_PERCENTAGES[planPrice] ?? PLATFORM_FEE_PERCENTAGES[0];
-
-    const processingFeePercentage = 0.05;
-
-    const platformFee = Number((amount * platformFeePercentage).toFixed(2));
-
-    const processingFee = Number((amount * processingFeePercentage).toFixed(2));
-
-    const payableAmount = Number(
-      (amount - platformFee - processingFee).toFixed(2),
-    );
+    const {
+      platformFeePercentage,
+      processingFeePercentage,
+      platformFee,
+      processingFee,
+      payableAmount,
+      fixedPlatformFee,
+    } = calculatePayoutFees({
+      amount: amount,
+      basePlanPrice: planPrice,
+      transactionFeePct: creatorCurrentPlan.customTransactionFeePct,
+      fixedPlatformFee: creatorCurrentPlan.customKiibeeCutDkk,
+      currency: wallet.currency,
+    });
 
     const response = {
       amount,
       walletBalance,
       walletCurrency: wallet.currency,
       planPrice,
+      fixedPlatformFee,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,

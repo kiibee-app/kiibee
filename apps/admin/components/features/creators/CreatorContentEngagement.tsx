@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import {
   useContentEngagement,
   useContentMediaPreview,
+  useMakeContentFree,
   useRejectContent,
 } from "../../../hooks/api";
 import { formatRequestedAt } from "../../../utils/date";
@@ -36,7 +37,9 @@ import { ContentPreviewModal } from "./ContentPreviewModal";
 import { CreateContentCouponModal } from "./CreateContentCouponModal";
 import { ContentCoupons } from "./ContentCoupons";
 import { RejectContentModal } from "./RejectContentModal";
+import { MakeContentFreeModal } from "./MakeContentFreeModal";
 import {
+  FreeContentButton,
   HeroActions,
   PlayButton,
   PriceMeta,
@@ -97,10 +100,12 @@ export function CreatorContentEngagement({
   const [previewError, setPreviewError] = useState<string | null>(null);
   const [couponOpen, setCouponOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
+  const [makeFreeOpen, setMakeFreeOpen] = useState(false);
 
   const engagementQuery = useContentEngagement(contentId);
   const mediaPreview = useContentMediaPreview();
   const rejectContent = useRejectContent();
+  const makeContentFree = useMakeContentFree();
 
   if (engagementQuery.isLoading) {
     return (
@@ -193,6 +198,32 @@ export function CreatorContentEngagement({
     }
   };
 
+  const handleMakeFree = async (paid?: {
+    buyPrice?: number;
+    rentPrice?: number;
+    rentDurationHours?: number;
+  }) => {
+    try {
+      await makeContentFree.mutateAsync({ contentId, creatorId, paid });
+      toast.success(
+        paid
+          ? "Content is now paid."
+          : creatorContentEngagementLabels.makeFreeSuccess,
+      );
+      setMakeFreeOpen(false);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : paid
+            ? "Failed to make content paid."
+            : creatorContentEngagementLabels.makeFreeFailed,
+      );
+    }
+  };
+
+  const isFree = content.accessType === "free";
+
   return (
     <DetailsLayout>
       <BackLink href={`/all-creators/${creatorId}`}>
@@ -260,14 +291,35 @@ export function CreatorContentEngagement({
             <RejectContentButton
               type="button"
               onClick={() => setRejectOpen(true)}
-              disabled={rejectContent.isPending}
+              disabled={rejectContent.isPending || makeContentFree.isPending}
             >
               <X size={14} />
               {creatorContentEngagementLabels.rejectContent}
             </RejectContentButton>
+            <FreeContentButton
+              type="button"
+              onClick={() => setMakeFreeOpen(true)}
+              disabled={makeContentFree.isPending}
+              $isFree={isFree}
+            >
+              {isFree
+                ? "Make paid"
+                : creatorContentEngagementLabels.freeContent}
+            </FreeContentButton>
           </HeroActions>
         </ProfileInfo>
       </ProfileHero>
+
+      {makeFreeOpen && (
+        <MakeContentFreeModal
+          open={makeFreeOpen}
+          makePaid={isFree}
+          contentTitle={content.title}
+          isSubmitting={makeContentFree.isPending}
+          onClose={() => setMakeFreeOpen(false)}
+          onConfirm={handleMakeFree}
+        />
+      )}
 
       {couponOpen && (
         <CreateContentCouponModal

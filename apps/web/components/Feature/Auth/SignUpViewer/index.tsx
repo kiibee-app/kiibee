@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useWatch } from "react-hook-form";
@@ -8,6 +9,7 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import FormField from "@/components/UI/FormField";
+import Turnstile, { TurnstileRef } from "@/components/UI/Turnstile";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
 import { AGREED, INPUT_TYPE } from "@/utils/ui";
@@ -63,6 +65,9 @@ export default function SignUpViewer({
     togglePassword,
     handleSubmit,
   } = useViewerSignUpForm({ onSuccessOverride: onSuccess });
+
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileRef>(null);
 
   const agreedValue = useWatch({
     control: methods.control,
@@ -153,11 +158,21 @@ export default function SignUpViewer({
                 </FormMessage>
               )}
 
+              <Turnstile
+                ref={turnstileRef}
+                action="signup_viewer"
+                resetSignal={formError}
+                onVerify={setTurnstileToken}
+                onExpire={() => setTurnstileToken("")}
+              />
+
               <GenericButton
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || isSubmitting || !turnstileToken}
                 isLoading={isSubmitting}
-                style={!isValid ? { border: "none" } : undefined}
+                style={
+                  !isValid || !turnstileToken ? { border: "none" } : undefined
+                }
               >
                 {t("viewerSignup.form.submit")}
               </GenericButton>

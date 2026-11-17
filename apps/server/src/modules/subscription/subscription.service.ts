@@ -14,8 +14,16 @@ export class SubscriptionService {
     return getAllSubscriptionPlansService();
   }
 
-  async createSubscription(userId: string, planId: string) {
-    const result = await createSubscriptionService({ userId, planId });
+  async createSubscription(
+    userId: string,
+    planId: string,
+    billingMonths?: number,
+  ) {
+    const result = await createSubscriptionService({
+      userId,
+      planId,
+      billingMonths,
+    });
     return result;
   }
 

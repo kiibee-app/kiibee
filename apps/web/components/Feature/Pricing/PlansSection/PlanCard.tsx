@@ -13,6 +13,7 @@ import {
   PlanTitle,
   TickIcon,
 } from "./styles";
+import { useLocalizedHref } from "@/hooks/useLocalizedPaths";
 import { PATHS } from "@/utils/path";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -59,6 +60,7 @@ export interface PlanCardProps {
   planKey?: PlanKey;
   planId?: string;
   isCurrentPlan?: boolean;
+  manageInProfile?: boolean;
 }
 
 export default function PlanCard({
@@ -70,9 +72,11 @@ export default function PlanCard({
   highlight = false,
   planId,
   isCurrentPlan = false,
+  manageInProfile = false,
 }: PlanCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const localizeHref = useLocalizedHref();
   const queryClient = useQueryClient();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
@@ -125,6 +129,10 @@ export default function PlanCard({
       return;
     }
 
+    if (manageInProfile) {
+      router.push(localizeHref(PATHS.DASHBOARD_CREATOR_PROFILE));
+      return;
+    }
     try {
       setIsSubmitting(true);
       const response = await createSubscriptionMutation.mutateAsync({

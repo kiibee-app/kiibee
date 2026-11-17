@@ -5,7 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { and, eq, isNull, or, sql } from 'drizzle-orm';
+import { and, desc, eq, isNull, or, sql } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import {
@@ -37,9 +37,18 @@ export class CheckPlanLimit implements CanActivate {
     const [creatorPlan] = await db
       .select({
         planId: creatorPlans.planId,
+        customMaxFiles: creatorPlans.customMaxFiles,
+        customSubscriptionStatus: creatorPlans.customSubscriptionStatus,
       })
       .from(creatorPlans)
-      .where(eq(creatorPlans.creatorId, userId));
+      .where(
+        and(
+          eq(creatorPlans.creatorId, userId),
+          eq(creatorPlans.status, 'active'),
+        ),
+      )
+      .orderBy(desc(creatorPlans.createdAt))
+      .limit(1);
 
     if (!creatorPlan) {
       throw new NotFoundException(
@@ -71,9 +80,10 @@ export class CheckPlanLimit implements CanActivate {
         ),
       );
 
-    if (Number(existingContentCount.count) >= plan.maxFiles) {
+    const maxFiles = creatorPlan.customMaxFiles ?? plan.maxFiles;
+    if (Number(existingContentCount.count) >= maxFiles) {
       throw new ForbiddenException(
-        `Content limit of ${plan.maxFiles} reached for your plan, please upgrade to add more content`,
+        `Content limit of ${maxFiles} reached for your plan, please upgrade to add more content`,
       );
     }
 
