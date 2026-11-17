@@ -1,3 +1,4 @@
+import { getProfilePaymentState } from 'src/utils/profilePayment';
 import { resolveLegacyContentKey } from 'src/utils/legacyContentPaths';
 import { resolvePublicCreatorPath } from 'src/utils/creatorPath';
 import { publicCreatorName } from 'src/utils/publicCreatorName';
@@ -487,7 +488,17 @@ export const getSingleContentService = async (
         : false,
     );
 
-    const access = directAccess ?? collectionAccess;
+    const profile = userId
+      ? await getProfilePaymentState(content.creatorId, userId)
+      : null;
+    const grants = [directAccess, collectionAccess, profile?.accessInfo].filter(
+      (grant) =>
+        grant && (!grant.rentExpiresAt || new Date(grant.rentExpiresAt) > now),
+    );
+    // A permanent purchase must take precedence over an overlapping rental.
+    const access =
+      grants.find((grant) => grant?.accessType === ACCRESS_TYPES.PURCHASED) ??
+      grants[0];
 
     const hasActiveAccess = Boolean(
       emailAccess ||

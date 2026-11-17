@@ -80,6 +80,7 @@ export function ExistingCreatorsList() {
   const existingCreatorsQuery = useExistingCreators({
     search: debouncedSearch,
     plan: derivedPlan,
+    customPlan: activeTab === ALL_CREATORS_TAB_KEYS.CUSTOM ? true : undefined,
     hidden: isHiddenTab ? true : undefined,
     page: currentPage,
     limit: pageSize,

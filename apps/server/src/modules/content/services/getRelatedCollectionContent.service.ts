@@ -14,7 +14,10 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
-import { publiclyVisibleCreatorWhere } from 'src/utils/publicCreatorVisibility';
+import {
+  publiclyVisibleCreatorWhere,
+  profileContentVisibleTo,
+} from 'src/utils/publicCreatorVisibility';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 import { fail, success } from 'src/utils/sendResponse';
 import { contentTitleUrlSlug } from '../content.helper';
@@ -44,7 +47,10 @@ const publishedPublicWhere = and(
   eq(mediaFiles.isDeleted, false),
 );
 
-export const getRelatedCollectionContentService = async (contentId: string) => {
+export const getRelatedCollectionContentService = async (
+  contentId: string,
+  viewerId?: string,
+) => {
   try {
     if (!contentId) {
       return fail('Content ID is required', HttpStatus.BAD_REQUEST);
@@ -141,6 +147,7 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
           eq(collectionItems.collectionId, collectionItem.collectionId),
           ne(collectionItems.mediaFileId, resolvedMediaFileId),
           publishedPublicWhere,
+          profileContentVisibleTo(viewerId),
         ),
       );
 

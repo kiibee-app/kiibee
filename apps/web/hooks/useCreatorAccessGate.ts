@@ -55,7 +55,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
 
   const { isPublicView: profileIsPublic, publicCreatorId: profileCreatorId } =
-    useCreatorChannelProfile();
+    useCreatorChannelProfile(customCreatorId === undefined);
   const storedUser = useStoredLoginUser();
 
   const publicCreatorId =
@@ -67,7 +67,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     useCreatorPublicProfile(isPublicView ? publicCreatorId : null);
 
   const { data: privateSettings, isLoading: isLoadingPrivate } =
-    useContentSettings();
+    useContentSettings(!isPublicView && Boolean(storedUser?.id));
 
   const targetCreatorId = publicCreatorId || publicCreator?.id;
   const currentUserId = storedUser?.id;

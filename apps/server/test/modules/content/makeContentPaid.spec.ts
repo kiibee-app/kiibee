@@ -193,3 +193,73 @@ describe('whole-channel paid access', () => {
     });
   });
 });
+
+import { getSingleContentService } from 'src/modules/content/services/getSingleContent.service';
+jest.mock(
+  'src/modules/creator-overview/services/insertPageVisit.service',
+  () => ({
+    insertPageVisitService: jest.fn().mockResolvedValue(undefined),
+  }),
+);
+describe('single content channel-pass entitlement', () => {
+  it.each(['purchased', 'rented'])(
+    'exposes the %s channel grant without another purchase',
+    async (accessType) => {
+      const grant = {
+        id: 'pass-grant',
+        accessType,
+        grantedAt: new Date(),
+        rentExpiresAt:
+          accessType === 'rented' ? new Date(Date.now() + 86400000) : null,
+      };
+      const rows = [
+        [
+          {
+            id: 'content',
+            slug: 'content',
+            title: 'Content',
+            creatorId: 'creator',
+            isPublished: true,
+            visibility: 'public',
+            isDeleted: false,
+          },
+        ],
+        [],
+        accessType === 'purchased'
+          ? [
+              {
+                accessType: 'rented',
+                grantedAt: new Date(),
+                rentExpiresAt: new Date(Date.now() + 86400000),
+              },
+            ]
+          : [],
+        [],
+        [{ slug: 'creator', isHidden: false, isDeleted: false }],
+        [],
+        [{ accessType: 'payment' }],
+        [{ id: 'profile-access-creator' }],
+        [grant],
+        [],
+        [],
+      ];
+      jest.mocked(db.select).mockReset();
+      for (const result of rows) {
+        const q = Object.assign(Promise.resolve(result), {
+          from: () => q,
+          where: () => q,
+          innerJoin: () => q,
+          leftJoin: () => q,
+          limit: () => q,
+        });
+        jest.mocked(db.select).mockReturnValueOnce(q as never);
+      }
+      const response = await getSingleContentService('content', 'viewer');
+      expect(response.data.accessInfo).toMatchObject({
+        accessType,
+        rentExpiresAt: grant.rentExpiresAt,
+      });
+      expect(jest.mocked(db.select)).toHaveBeenCalledTimes(rows.length);
+    },
+  );
+});

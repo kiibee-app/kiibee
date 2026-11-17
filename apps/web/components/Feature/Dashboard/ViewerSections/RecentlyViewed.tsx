@@ -1,5 +1,6 @@
 "use client";
 
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { useRouter } from "next/navigation";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
@@ -85,6 +86,7 @@ function RecentlyViewedCard({
     },
   );
   const content = getContentDetail(data);
+  const profileGate = useCreatorAccessGate(content?.creatorId ?? null);
   const images = resolveContentThumbnailCandidates(
     content?.thumbnailUrl,
     content?.thumbnailLandscapeUrl,
@@ -99,6 +101,8 @@ function RecentlyViewedCard({
     web: WebIcon,
   }[contentType];
   const openContent = () => router.push(item.href);
+  if (!content || profileGate.isLoading || profileGate.gateType === "payment")
+    return null;
   return (
     <GenericCard
       title={

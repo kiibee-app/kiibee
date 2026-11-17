@@ -6,6 +6,8 @@ import {
   creatorChannels,
   mediaFiles,
   users,
+  userContentAccess,
+  orders,
 } from 'src/database/schema';
 import { CONTENT_VISIBILITY, ROLE } from 'src/utils/constant';
 import { fail } from 'src/utils/sendResponse';
@@ -21,8 +23,27 @@ export const creatorHasPublishedContentWhere = sql`EXISTS (
     AND ${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}
 )`;
 
-export const creatorContentIsDiscoverable = sql`(
-  ${mediaFiles.accessType}::text NOT IN ('password', 'email_gated')
+export function profileContentVisibleTo(viewerId?: string) {
+  return sql`(
+    NOT EXISTS (SELECT 1 FROM ${contentSettings}
+      WHERE ${contentSettings.userId} = ${mediaFiles.creatorId}
+        AND ${contentSettings.accessType}::text IN ('payment', 'paid'))
+    ${
+      viewerId
+        ? sql`OR ${mediaFiles.creatorId} = ${viewerId}
+      OR EXISTS (SELECT 1 FROM ${userContentAccess}
+        INNER JOIN ${orders} ON ${orders.id} = ${userContentAccess.orderId}
+        WHERE ${userContentAccess.userId} = ${viewerId}
+          AND ${userContentAccess.collectionId} = 'profile-access-' || ${mediaFiles.creatorId}
+          AND ${orders.status} = 'completed'
+          AND (${userContentAccess.rentExpiresAt} IS NULL OR ${userContentAccess.rentExpiresAt} > now()))`
+        : sql``
+    }
+  )`;
+}
+
+export const creatorContentIsDiscoverableFor = (viewerId?: string) => sql`(
+  ${profileContentVisibleTo(viewerId)}
   AND NOT EXISTS (
     SELECT 1
     FROM ${contentSettings}
@@ -30,6 +51,8 @@ export const creatorContentIsDiscoverable = sql`(
       AND ${contentSettings.accessType}::text IN ('set_password', 'request_email', 'password', 'email_gated')
   )
 )`;
+
+export const creatorContentIsDiscoverable = creatorContentIsDiscoverableFor();
 
 export const requirePubliclyVisibleCreator = async (
   creatorIdOrSlug: string,

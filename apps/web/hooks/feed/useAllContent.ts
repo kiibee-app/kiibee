@@ -1,4 +1,5 @@
 "use client";
+import { useChannelVisibleItems } from "./useChannelVisibleItems";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
 import { useMemo, useState } from "react";
@@ -107,8 +108,10 @@ export function useAllContent(allContentId: string) {
     ...CACHE_CONFIG.explore,
   });
 
+  const { items: visibleItems } = useChannelVisibleItems(contentData?.data);
+
   const tutorials = useMemo((): TutorialVideo[] => {
-    const rawItems = contentData?.data;
+    const rawItems = visibleItems;
     if (!Array.isArray(rawItems)) return [];
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
@@ -125,7 +128,7 @@ export function useAllContent(allContentId: string) {
     }
 
     return parsed;
-  }, [contentData, sortOption, t]);
+  }, [contentData, visibleItems, sortOption, t]);
 
   const handleLoadMore = () => {
     setLimit((prev) => prev + EXPLORE_PAGE_SIZE);

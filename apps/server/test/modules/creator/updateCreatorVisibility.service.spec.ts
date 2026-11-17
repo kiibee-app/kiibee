@@ -73,3 +73,42 @@ describe('updateCreatorVisibilityService', () => {
     ).rejects.toThrow('Creator not found');
   });
 });
+
+import { PgDialect } from 'drizzle-orm/pg-core';
+import {
+  profileContentVisibleTo,
+  creatorContentIsDiscoverable,
+} from 'src/utils/publicCreatorVisibility';
+import { OptionalJwtAuthGuard } from 'src/modules/auth/guards/optional-jwt-auth.guard';
+describe('paid channel discovery visibility', () => {
+  const dialect = new PgDialect();
+  it('excludes paid/payment profiles from anonymous discovery', () => {
+    const query = dialect.sqlToQuery(creatorContentIsDiscoverable);
+    expect(query.sql).toContain("('payment', 'paid')");
+    expect(query.sql).toContain('NOT EXISTS');
+    expect(query.sql).not.toContain('OR EXISTS');
+  });
+  it('keeps individually code/email-gated content discoverable while hiding channel-level gates', () => {
+    const query = dialect.sqlToQuery(creatorContentIsDiscoverable);
+    expect(query.sql).not.toContain('"media_files"."access_type"');
+    expect(query.sql).toContain("'set_password'");
+    expect(query.sql).toContain("'request_email'");
+    expect(query.sql).toContain('content_settings');
+  });
+  it('requires a completed unexpired pass or ownership for an identified viewer', () => {
+    const query = dialect.sqlToQuery(profileContentVisibleTo('viewer-input'));
+    expect(query.sql).not.toContain('viewer-input');
+    expect(query.params).toContain('viewer-input');
+    expect(query.sql).toContain("'completed'");
+    expect(query.sql).toContain('rent_expires_at');
+    expect(query.sql).toContain('> now()');
+    expect(query.sql).toContain("'profile-access-'");
+  });
+  it('uses only a verified identity for optional public authentication', () => {
+    const guard = new OptionalJwtAuthGuard();
+    expect(guard.handleRequest(null, { userId: 'viewer' })).toEqual({
+      userId: 'viewer',
+    });
+    expect(guard.handleRequest(new Error('invalid token'), false)).toBeNull();
+  });
+});
