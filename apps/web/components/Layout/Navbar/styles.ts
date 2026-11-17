@@ -723,11 +723,11 @@ export const DrawerMenu = styled.nav`
   padding-bottom: 20px;
 `;
 
-export const DrawerMenuItem = styled.div`
+export const DrawerMenuItem = styled.div<{ $inverted?: boolean }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  background: white;
+  background: ${({ $inverted }) => ($inverted ? "transparent" : "white")};
 `;
 
 export const DrawerMenuRow = styled.div`
@@ -736,7 +736,10 @@ export const DrawerMenuRow = styled.div`
   gap: 8px;
 `;
 
-export const DrawerMenuLink = styled(Link)<{ $isActive?: boolean }>`
+export const DrawerMenuLink = styled(Link)<{
+  $isActive?: boolean;
+  $inverted?: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -744,15 +747,17 @@ export const DrawerMenuLink = styled(Link)<{ $isActive?: boolean }>`
   padding: 10px 12px;
   min-height: 48px;
   border-radius: 10px;
-  background: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.primary.GRAY : "transparent"};
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+  background: ${({ $isActive, $inverted, theme }) =>
+    !$inverted && $isActive ? theme.colors.primary.GRAY : "transparent"};
+  color: ${({ $inverted, theme }) =>
+    $inverted ? "white" : theme.colors.primary.BLACK};
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary.GRAY};
+    background: ${({ $inverted, theme }) =>
+      $inverted ? "transparent" : theme.colors.primary.GRAY};
   }
 `;
 
@@ -797,15 +802,14 @@ export const DrawerMenuToggleButton = styled.button<{
   width: 48px;
   padding: 12px;
   border-radius: 10px;
-  background: ${({ $isActive, theme }) =>
-    $isActive ? theme.colors.primary.GRAY : "transparent"};
+  background: white;
   border: none;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary.GRAY};
+    background: white;
   }
 `;
 
@@ -857,7 +861,7 @@ export const DrawerSubMenuTitle = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  color: white;
   padding: 4px 12px;
 `;
 
@@ -866,7 +870,7 @@ export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
   flex-shrink: 0;
   padding: 8px 12px;
   border-radius: 6px;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+  color: white;
   text-decoration: none;
   font-size: 14px;
   transition: all 0.15s;
@@ -881,7 +885,7 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  background: white;
+  background: ${({ theme }) => theme.colors.primary.GREEN_100};
   align-items: center;
   gap: 8px;
   padding-top: ${({ $showDivider }) => ($showDivider ? "12px" : "0")};
@@ -889,6 +893,10 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
   .start-btn {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    background: white;
+    border-color: white;
+
     .mobile-text {
       display: inline;
     }
@@ -901,6 +909,28 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   > button {
     width: 100%;
   }
+
+  .login-btn,
+  .login-btn:hover {
+    color: white;
+    background: transparent;
+    border-color: white;
+  }
+
+  .start-btn:hover {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    background: white;
+    border-color: white;
+  }
+`;
+
+export const DrawerLanguageRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+  font-weight: 600;
 `;
 
 export const ActionsPlaceholder = styled.div`

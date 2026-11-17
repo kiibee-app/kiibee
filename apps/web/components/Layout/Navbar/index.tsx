@@ -53,6 +53,7 @@ import {
   DrawerSubMenuTitle,
   DrawerSubMenuLink,
   DrawerActions,
+  DrawerLanguageRow,
 } from "./styles";
 import NavSearchButton from "./NavSearchButton";
 import LanguageToggle from "@/components/UI/LanguageToggle";
@@ -87,6 +88,9 @@ import { getAvatarUrl } from "@/utils/creatorProfile";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
+import { InfoIcon } from "@/assets/icons";
+import ExploreIcon from "@/assets/icons/ExploreIcon";
+import StacksIcon from "@/assets/icons/StacksIcon";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions, isBrowser } from "@/utils/ui";
 import {
@@ -591,9 +595,19 @@ export default function NavBar({
               <DrawerMenuLink
                 href={localize(item.href)}
                 $isActive={isRouteActive}
+                $inverted={item.key === "nav.exploreCreators"}
                 onClick={collapseSidebar}
               >
-                {renderItemLabel(item)}
+                {item.key === "nav.exploreCreators" ? (
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    <ExploreIcon />
+                    {renderItemLabel(item)}
+                  </span>
+                ) : (
+                  renderItemLabel(item)
+                )}
               </DrawerMenuLink>
             ) : (
               <DrawerMenuButton
@@ -637,9 +651,21 @@ export default function NavBar({
       <DrawerMenuLink
         href={getItemHref(item)}
         $isActive={isRouteActive}
+        $inverted={item.key === "nav.howItWorks" || item.key === "nav.about"}
         onClick={collapseSidebar}
       >
-        {renderItemLabel(item)}
+        {item.key === "nav.about" || item.key === "nav.howItWorks" ? (
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {item.key === "nav.about" ? (
+              <InfoIcon size={20} color="#ffffff" />
+            ) : (
+              <StacksIcon />
+            )}
+            {renderItemLabel(item)}
+          </span>
+        ) : (
+          renderItemLabel(item)
+        )}
       </DrawerMenuLink>
     );
   };
@@ -808,14 +834,24 @@ export default function NavBar({
           {drawerItems.length > 0 && (
             <DrawerMenu>
               {drawerItems.map((item) => (
-                <DrawerMenuItem key={item.key}>
+                <DrawerMenuItem
+                  key={item.key}
+                  $inverted={
+                    item.key === "nav.howItWorks" ||
+                    item.key === "nav.exploreCreators" ||
+                    item.key === "nav.about"
+                  }
+                >
                   {renderDrawerItem(item)}
                 </DrawerMenuItem>
               ))}
             </DrawerMenu>
           )}
           <DrawerActions $showDivider={drawerItems.length > 0}>
-            <LanguageToggle />
+            <DrawerLanguageRow>
+              <span>Language</span>
+              <LanguageToggle sidebarStyle />
+            </DrawerLanguageRow>
             {isLoggedIn && dashboardPath ? (
               <>
                 <NavAccountMenuItem
@@ -848,7 +884,7 @@ export default function NavBar({
               (actions ?? (
                 <>
                   <NavSearchButton
-                    textTone={navTextTone}
+                    textTone={TONE_LIGHT}
                     hide={Boolean(actions)}
                   />
                   <GenericButton
