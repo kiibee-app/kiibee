@@ -112,6 +112,7 @@
     }
   },
   "createProfileHome": {
+    "uploadsTitle": "Uploads",
     "brandName": "Nana Jacobson",
     "uploads_one": "{{count}} udgivelse",
     "uploads_other": "{{count}} udgivelser",
@@ -2464,6 +2465,8 @@
     "recentlyViewed": "Senest sete"
   },
   "accessGate": {
+    "textLabel": "Tekst til adgangsboks",
+    "textPlaceholder": "Fortæl besøgende, hvad de får adgang til, og tilføj evt. vilkår.",
     "pageCodeTitle": "Denne side kræver en kode for at få adgang",
     "pageEmailTitle": "Denne side kræver din e-mail for at få adgang",
     "contentCodeTitle": "Dette indhold kræver en kode for at få adgang",

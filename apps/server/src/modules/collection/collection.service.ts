@@ -1,5 +1,3 @@
-import { getProfilePaymentState } from 'src/utils/profilePayment';
-import { success } from 'src/utils/sendResponse';
 import { Injectable } from '@nestjs/common';
 import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { createCollection } from './services/createCollection.service';
@@ -25,11 +23,8 @@ export class CollectionService {
     return getAllCollections(creatorId);
   }
 
-  async getPublicCollectionsService(creatorId: string, viewerId?: string) {
+  async getPublicCollectionsService(creatorId: string, _viewerId?: string) {
     const creator = await requirePubliclyVisibleCreator(creatorId);
-    const profile = await getProfilePaymentState(creator.id, viewerId);
-    if (profile.required && !profile.hasAccess)
-      return success([], 'Channel pass required', 200);
     return getAllCollections(creator.id);
   }
 

@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useEffect } from "react";
+import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
+import { FourColumnGrid } from "@/components/Feature/ProfileLayout/shared/CollectionPreview/styles";
+import { MonoText } from "@/components/UI/Monotext";
 import CollectionPreview from "@/components/Feature/ProfileLayout/shared/CollectionPreview";
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
@@ -9,7 +12,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import PlusIcon from "@/assets/icons/PlusIcon";
 import COLORS from "@repo/ui/colors";
-import { PROFILE_HOME_SECTION, VARIANT, VARIANT_PAGE } from "@/utils/Constants";
+import { PROFILE_HOME_SECTION, VARIANT } from "@/utils/Constants";
 import {
   ContentAdjust,
   SectionWrapper,
@@ -24,11 +27,7 @@ import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { LoginRequiredModal } from "@/components/UI/Modals";
-import AccessGate, {
-  CreatorAccessGrantedModal,
-} from "@/components/Feature/AccessGate";
-import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
+import CreatorBrowseGate from "@/components/Feature/ProfileLayout/shared/CreatorBrowseGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { useProfileHomeCollections } from "@/hooks/useProfileHomeCollections";
@@ -53,16 +52,7 @@ export default function ProfileHomeSections({
   const isOwner =
     !isPublicView ||
     (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
-  const {
-    gateType,
-    paymentOptions,
-    isLoading: isGateLoading,
-    handleSuccess,
-    showAccessGranted,
-    closeAccessGranted,
-    isLoginModalVisible,
-    closeLoginModal,
-  } = useCreatorAccessGate();
+
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -158,14 +148,20 @@ export default function ProfileHomeSections({
     latestUploadData &&
     matchesProfileSearch(searchQuery, latestUploadData.title);
 
-  const hasNoPublicContent = useMemo(() => {
-    const matched = searchQuery.trim()
+  const visiblePublicUploads = useMemo(() => {
+    return searchQuery.trim()
       ? publicTutorials.filter((t) =>
           matchesProfileSearch(searchQuery, t.title),
         )
       : publicTutorials;
-    return matched.length === 0;
   }, [publicTutorials, searchQuery]);
+
+  // Collection sections already show their own cards below.
+  const standaloneUploads = visiblePublicUploads.filter(
+    (tutorial) => !tutorial.collectionId,
+  );
+
+  const hasNoPublicContent = visiblePublicUploads.length === 0;
 
   const hasNoPrivateContent = useMemo(() => {
     const matched = searchQuery.trim()
@@ -182,30 +178,6 @@ export default function ProfileHomeSections({
   }, [privateSections, searchQuery]);
 
   const hasNoContent = isPublicView ? hasNoPublicContent : hasNoPrivateContent;
-
-  if (isGateLoading)
-    return (
-      <ProfileLoadingWrapper>
-        <GenericSpinner size={48} />
-      </ProfileLoadingWrapper>
-    );
-  if (gateType) {
-    return (
-      <>
-        <AccessGate
-          type={gateType}
-          paymentOptions={paymentOptions}
-          variant={VARIANT_PAGE}
-          creatorName={displayName ?? undefined}
-          onSuccess={handleSuccess}
-        />
-        <LoginRequiredModal
-          visible={isLoginModalVisible}
-          onClose={closeLoginModal}
-        />
-      </>
-    );
-  }
 
   const latestUploadSection = showLatestUpload ? (
     wrapLatestUpload ? (
@@ -253,10 +225,6 @@ export default function ProfileHomeSections({
             </ProfileLoadingWrapper>
           </ContentAdjust>
         </SectionWrapper>
-        <CreatorAccessGrantedModal
-          visible={showAccessGranted}
-          onClose={closeAccessGranted}
-        />
       </>
     );
   }
@@ -293,26 +261,32 @@ export default function ProfileHomeSections({
           description={emptyDescription}
           action={emptyAction}
         />
-        <CreatorAccessGrantedModal
-          visible={showAccessGranted}
-          onClose={closeAccessGranted}
-        />
       </>
     );
   }
 
   return (
-    <>
+    <CreatorBrowseGate>
       {sections.includes(PROFILE_HOME_SECTION.LATEST_UPLOAD) &&
         latestUploadSection}
 
+      {isPublicView && !isCollectionsPage && standaloneUploads.length > 0 && (
+        <SectionWrapper>
+          <ContentAdjust>
+            <MonoText as="h2" $use="H4_Medium">
+              {t("createProfileHome.uploadsTitle")}
+            </MonoText>
+            <FourColumnGrid>
+              {standaloneUploads.map((tutorial) => (
+                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              ))}
+            </FourColumnGrid>
+          </ContentAdjust>
+        </SectionWrapper>
+      )}
+
       {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW) &&
         collectionPreviewSection}
-
-      <CreatorAccessGrantedModal
-        visible={showAccessGranted}
-        onClose={closeAccessGranted}
-      />
-    </>
+    </CreatorBrowseGate>
   );
 }

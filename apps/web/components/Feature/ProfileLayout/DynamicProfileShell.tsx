@@ -5,9 +5,6 @@ import { notFound, usePathname, useRouter } from "next/navigation";
 import { useParams } from "next/navigation";
 import ProfileShell from "@/components/Feature/ProfileLayout/Shell";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { readStoredLoginUser } from "@/hooks/auth/useLogin";
-import { isBrowser } from "@/utils/ui";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { toCanonicalPathname } from "@/utils/localizedRoutes";
 import {
@@ -87,18 +84,6 @@ export default function DynamicProfileShell({
     };
   }, [isLoading, canonicalPathname]);
 
-  const storedUser = useStoredLoginUser();
-  const currentUserId =
-    storedUser?.id || (isBrowser ? readStoredLoginUser()?.id : null);
-  const isOwner = Boolean(
-    currentUserId &&
-    creator?.id &&
-    String(currentUserId).trim() === String(creator.id).trim(),
-  );
-  const uploadCount = Number(creator?.uploadCount ?? 0);
-  const hasPublishedPublicContent =
-    Number.isFinite(uploadCount) && uploadCount > 0;
-
   if (isLoading) {
     return (
       <SectionWrapper>
@@ -111,7 +96,7 @@ export default function DynamicProfileShell({
     );
   }
 
-  if (!creator || (!hasPublishedPublicContent && !isOwner)) {
+  if (!creator) {
     notFound();
   }
 

@@ -193,7 +193,7 @@ export const AvatarWrapCentered = styled.div`
   width: 170px;
   height: 170px;
   margin-top: -82px;
-  border-radius: 999px;
+  border-radius: 50%;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);

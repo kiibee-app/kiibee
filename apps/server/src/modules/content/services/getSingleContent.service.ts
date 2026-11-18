@@ -481,12 +481,7 @@ export const getSingleContentService = async (
         ),
     ]);
 
-    const isCreatorPubliclyHidden = Boolean(
-      creator
-        ? creator.isDeleted ||
-            (creator.isHidden && !targetCollection && !creatorSlug)
-        : false,
-    );
+    const isCreatorDeleted = Boolean(creator?.isDeleted);
 
     const profile = userId
       ? await getProfilePaymentState(content.creatorId, userId)
@@ -508,7 +503,7 @@ export const getSingleContentService = async (
     );
 
     if (
-      (content.isDeleted || isCreatorPubliclyHidden) &&
+      (content.isDeleted || isCreatorDeleted) &&
       content.creatorId !== userId &&
       !hasActiveAccess
     ) {

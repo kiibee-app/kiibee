@@ -29,6 +29,9 @@ export const GateInner = styled.div<{ $variant?: string }>`
   ${({ $variant }) =>
     $variant === "content"
       ? css`
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           width: 100%;
           margin: 0;
           padding: 0;

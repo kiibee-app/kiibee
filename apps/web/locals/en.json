@@ -112,6 +112,7 @@
     }
   },
   "createProfileHome": {
+    "uploadsTitle": "Uploads",
     "brandName": "Nana Jacobson",
     "uploads_one": "{{count}} upload",
     "uploads_other": "{{count}} uploads",
@@ -2464,6 +2465,8 @@
     "addPaymentMethod": "Please add your payment information before accessing this section."
   },
   "accessGate": {
+    "textLabel": "Access box text",
+    "textPlaceholder": "Tell visitors what they get access to, and add any terms.",
     "pageCodeTitle": "This page requires a code to access",
     "pageEmailTitle": "This page requires your email to access",
     "contentCodeTitle": "This content requires a code to access",

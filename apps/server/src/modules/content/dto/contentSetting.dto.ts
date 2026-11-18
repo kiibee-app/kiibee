@@ -8,6 +8,7 @@ import {
   Min,
   IsNumber,
   Max,
+  MaxLength,
 } from 'class-validator';
 
 export const contentSettingsEnumValues = [
@@ -21,6 +22,11 @@ export const contentSettingsEnumValues = [
 export type AccessType = (typeof contentSettingsEnumValues)[number];
 
 export class ContentSettingDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  accessBoxText?: string | null;
+
   @IsIn(contentSettingsEnumValues)
   accessType!: AccessType;
 

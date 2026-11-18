@@ -3,9 +3,12 @@ import Image from "next/image";
 
 export type AvatarFit = "cover" | "contain";
 
-export const AvatarImage = styled(Image)<{ $fit: AvatarFit }>`
+export const AvatarImage = styled(Image)<{
+  $fit: AvatarFit;
+}>`
   object-fit: ${({ $fit }) => $fit};
   object-position: center;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   background: transparent;
