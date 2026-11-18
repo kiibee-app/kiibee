@@ -18,17 +18,8 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { axiosClient } from "@/lib/http/axiosClient";
-import {
-  CREATOR,
-  STRING_EMPTY,
-  resolveImageUrl,
-  VARIANT_PAGE,
-} from "@/utils/Constants";
-import { LoginRequiredModal } from "@/components/UI/Modals";
-import AccessGate, {
-  CreatorAccessGrantedModal,
-} from "@/components/Feature/AccessGate";
-import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
+import { CREATOR, STRING_EMPTY, resolveImageUrl } from "@/utils/Constants";
+import CreatorBrowseGate from "@/components/Feature/ProfileLayout/shared/CreatorBrowseGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
@@ -95,17 +86,6 @@ export default function CollectionList() {
   const router = useRouter();
   const user = useStoredLoginUser();
 
-  const {
-    gateType,
-    paymentOptions,
-    isLoading: isGateLoading,
-    handleSuccess,
-    showAccessGranted,
-    closeAccessGranted,
-    isLoginModalVisible,
-    closeLoginModal,
-  } = useCreatorAccessGate();
-
   const { data: collectionsResponse, isLoading: isCollectionsLoading } =
     useGetAPI<CollectionsApiResponse>(
       isPublicView && publicCreatorId
@@ -113,7 +93,7 @@ export default function CollectionList() {
         : API.collection.getAll,
       undefined,
       {
-        enabled: !gateType && (!isPublicView || Boolean(publicCreatorId)),
+        enabled: !isPublicView || Boolean(publicCreatorId),
         retry: false,
         refetchOnWindowFocus: false,
       },
@@ -237,32 +217,8 @@ export default function CollectionList() {
     isCollectionsLoading ||
     publicContentQueries.some((query) => query.isLoading);
 
-  if (isGateLoading)
-    return (
-      <ProfileLoadingWrapper>
-        <GenericSpinner size={48} />
-      </ProfileLoadingWrapper>
-    );
-  if (gateType) {
-    return (
-      <>
-        <AccessGate
-          type={gateType}
-          paymentOptions={paymentOptions}
-          variant={VARIANT_PAGE}
-          creatorName={displayName ?? undefined}
-          onSuccess={handleSuccess}
-        />
-        <LoginRequiredModal
-          visible={isLoginModalVisible}
-          onClose={closeLoginModal}
-        />
-      </>
-    );
-  }
-
   return (
-    <>
+    <CreatorBrowseGate>
       <CollectionListShell data-creator-collection>
         <CollectionListInner>
           {isLoading ? (
@@ -298,10 +254,6 @@ export default function CollectionList() {
           )}
         </CollectionListInner>
       </CollectionListShell>
-      <CreatorAccessGrantedModal
-        visible={showAccessGranted}
-        onClose={closeAccessGranted}
-      />
-    </>
+    </CreatorBrowseGate>
   );
 }

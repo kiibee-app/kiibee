@@ -112,6 +112,7 @@
     }
   },
   "createProfileHome": {
+    "uploadsTitle": "Uploads",
     "brandName": "Nana Jacobson",
     "uploads_one": "{{count}} udgivelse",
     "uploads_other": "{{count}} udgivelser",

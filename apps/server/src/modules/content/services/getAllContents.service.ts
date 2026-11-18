@@ -136,11 +136,16 @@ export const getAllContentsService = async (
     const searchCondition = buildSearch(search);
 
     const baseWhere: SQL[] = [
-      profileContentVisibleTo(viewerId),
       sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
       sql`${mediaFiles.isPublished} = true`,
       sql`${mediaFiles.isDeleted} = false`,
     ];
+
+    // A channel catalog may show cards before the viewer buys access.
+    // General feeds retain their existing channel visibility rules.
+    if (creatorIds?.length !== 1) {
+      baseWhere.push(profileContentVisibleTo(viewerId));
+    }
 
     if (filter.excludeChannelLockedCreatorContent) {
       baseWhere.push(creatorContentIsDiscoverableFor(viewerId));
@@ -300,7 +305,13 @@ export const getAllContentsService = async (
     }
 
     const data = await db
-      .select(baseSelect)
+      .select({
+        ...baseSelect,
+        contentUrl: sql<
+          string | null
+        >`CASE WHEN ${profileContentVisibleTo(viewerId)}
+          THEN ${mediaFiles.contentUrl} ELSE NULL END`,
+      })
       .from(mediaFiles)
       .innerJoin(
         users,

@@ -266,6 +266,7 @@ function EmailGate({
 }
 
 function PaymentGate({
+  variant,
   options,
   onSuccess,
 }: {
@@ -299,7 +300,10 @@ function PaymentGate({
   };
   return (
     <>
-      <PaymentCard aria-label={t("profilePayment.title")}>
+      <PaymentCard
+        $compact={variant === "content"}
+        aria-label={t("profilePayment.title")}
+      >
         <PaymentHeader>
           <PaymentIcon aria-hidden="true">
             <svg

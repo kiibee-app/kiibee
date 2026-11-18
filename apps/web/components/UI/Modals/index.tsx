@@ -44,6 +44,7 @@ type GenericModalProps = {
   message?: string;
   children?: React.ReactNode;
   contentMarginBottom?: string;
+  backgroundColor?: string;
   buttonRow?: boolean;
   icon?: React.ReactNode;
   confirmLabel?: string;
@@ -76,6 +77,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   message,
   children,
   contentMarginBottom,
+  backgroundColor,
   icon,
   buttonRow = false,
   confirmLabel,
@@ -151,6 +153,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       style={overlayZIndex ? { zIndex: overlayZIndex } : undefined}
     >
       <ModalContainer
+        $backgroundColor={backgroundColor}
         $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
         $height={height}
         $maxHeight={maxHeight}

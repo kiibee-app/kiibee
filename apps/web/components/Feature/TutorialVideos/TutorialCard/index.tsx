@@ -339,7 +339,7 @@ function TutorialCard({
         </>
       }
       footer={
-        <ActionRow onClick={stopCardNavigation}>
+        <ActionRow data-channel-access-trigger onClick={stopCardNavigation}>
           {buttons.map((button, index) => {
             const buttonKey = `${button.label}-${index}`;
             const commonProps = {
@@ -414,6 +414,7 @@ function TutorialCard({
     return (
       <>
         <CardLink
+          data-channel-access-trigger
           href={cardHref}
           $clickable
           aria-label={tutorial.title}

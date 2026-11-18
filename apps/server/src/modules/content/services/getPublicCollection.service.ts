@@ -143,19 +143,6 @@ export const getPublicCollectionService = async (
       collection.creatorId,
       viewerId,
     );
-    if (profile.required && !profile.hasAccess)
-      return success(
-        {
-          id: collection.id,
-          creatorId: collection.creatorId,
-          items: [],
-          contents: [],
-          requiresChannelPayment: true,
-        },
-        'Channel pass required',
-        HttpStatus.OK,
-      );
-
     const itemConditions = [
       channelPass
         ? eq(mediaFiles.creatorId, collection.creatorId)
@@ -216,6 +203,9 @@ export const getPublicCollectionService = async (
 
     const items = rows.map((item) => ({
       ...item,
+      // The catalog is public; playback still requires channel access.
+      contentUrl:
+        profile.required && !profile.hasAccess ? null : item.contentUrl,
       collectionId: collection.id,
       collectionSlug: collection.slug,
       collectionName: collection.name,
