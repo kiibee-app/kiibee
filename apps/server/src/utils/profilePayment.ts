@@ -17,13 +17,21 @@ export async function getProfilePaymentState(
   viewerId?: string,
 ) {
   const [setting] = await db
-    .select({ accessType: contentSettings.accessType })
+    .select({
+      accessType: contentSettings.accessType,
+      accessBoxText: contentSettings.accessBoxText,
+    })
     .from(contentSettings)
     .where(eq(contentSettings.userId, creatorId))
     .limit(1);
   const required =
     setting?.accessType === 'paid' || setting?.accessType === 'payment';
-  if (!required) return { required: false, hasAccess: true };
+  if (!required)
+    return {
+      required: false,
+      hasAccess: true,
+      accessBoxText: setting?.accessBoxText ?? null,
+    };
   const [pass] = await db
     .select()
     .from(collections)
@@ -58,6 +66,7 @@ export async function getProfilePaymentState(
         .limit(1)
     : [];
   return {
+    accessBoxText: setting?.accessBoxText ?? null,
     required: true,
     hasAccess: viewerId === creatorId || Boolean(grant),
     accessInfo: grant

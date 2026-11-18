@@ -156,6 +156,11 @@ export default function ProfileHomeSections({
       : publicTutorials;
   }, [publicTutorials, searchQuery]);
 
+  // Collection sections already show their own cards below.
+  const standaloneUploads = visiblePublicUploads.filter(
+    (tutorial) => !tutorial.collectionId,
+  );
+
   const hasNoPublicContent = visiblePublicUploads.length === 0;
 
   const hasNoPrivateContent = useMemo(() => {
@@ -265,22 +270,20 @@ export default function ProfileHomeSections({
       {sections.includes(PROFILE_HOME_SECTION.LATEST_UPLOAD) &&
         latestUploadSection}
 
-      {isPublicView &&
-        !isCollectionsPage &&
-        visiblePublicUploads.length > 0 && (
-          <SectionWrapper>
-            <ContentAdjust>
-              <MonoText as="h2" $use="H4_Medium">
-                {t("createProfileHome.uploadsTitle")}
-              </MonoText>
-              <FourColumnGrid>
-                {visiblePublicUploads.map((tutorial) => (
-                  <TutorialCard key={tutorial.id} tutorial={tutorial} />
-                ))}
-              </FourColumnGrid>
-            </ContentAdjust>
-          </SectionWrapper>
-        )}
+      {isPublicView && !isCollectionsPage && standaloneUploads.length > 0 && (
+        <SectionWrapper>
+          <ContentAdjust>
+            <MonoText as="h2" $use="H4_Medium">
+              {t("createProfileHome.uploadsTitle")}
+            </MonoText>
+            <FourColumnGrid>
+              {standaloneUploads.map((tutorial) => (
+                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              ))}
+            </FourColumnGrid>
+          </ContentAdjust>
+        </SectionWrapper>
+      )}
 
       {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW) &&
         collectionPreviewSection}

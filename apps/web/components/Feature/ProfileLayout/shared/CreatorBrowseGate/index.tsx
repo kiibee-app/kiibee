@@ -49,6 +49,7 @@ export default function CreatorBrowseGate({
         {gate.gateType && (
           <AccessGate
             type={gate.gateType}
+            accessBoxText={gate.accessBoxText}
             paymentOptions={gate.paymentOptions}
             variant="content"
             creatorName={displayName ?? undefined}

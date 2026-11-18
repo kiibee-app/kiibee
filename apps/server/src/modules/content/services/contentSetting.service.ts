@@ -16,7 +16,9 @@ const toContentSettingResponse = (setting: {
   userId: string;
   accessType: string;
   passwordHash?: string | null;
+  accessBoxText?: string | null;
 }) => ({
+  accessBoxText: setting.accessBoxText ?? null,
   userId: setting.userId,
   accessType: setting.accessType,
   hasPassword: Boolean(setting.passwordHash),
@@ -152,11 +154,17 @@ export const createOrUpdateContentSetting = async (
       const updatePayload: {
         accessType: ContentSettingDto['accessType'];
         updatedAt: Date;
+        accessBoxText?: string | null;
         passwordHash?: string | null;
       } = {
         accessType,
         updatedAt: new Date(),
       };
+
+      if (contentSettingDto.accessBoxText !== undefined) {
+        updatePayload.accessBoxText =
+          contentSettingDto.accessBoxText?.trim() || null;
+      }
 
       if (accessType !== 'set_password') {
         updatePayload.passwordHash = null;
@@ -193,6 +201,7 @@ export const createOrUpdateContentSetting = async (
             id: randomUUID(),
             userId,
             accessType,
+            accessBoxText: contentSettingDto.accessBoxText?.trim() || null,
             passwordHash:
               accessType === 'set_password' && password?.trim()
                 ? await hashAccessPasswords(password)

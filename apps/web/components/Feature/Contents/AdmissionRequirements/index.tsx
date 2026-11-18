@@ -347,17 +347,23 @@ function AdmissionRequirements({
         </PasswordFieldShell>
       ) : null}
 
-      {showDescription ? (
+      {showDescription || isChannelSettings ? (
         <PasswordFieldShell>
           <MonoText $use="Body_SemiBold">
-            {t("contents.contentUploadModal.details.description")}
+            {t(
+              isChannelSettings
+                ? "accessGate.textLabel"
+                : "contents.contentUploadModal.details.description",
+            )}
           </MonoText>
           <InputField
             type={INPUT_TYPE.TEXTAREA}
             value={description}
             onChange={(value) => handleDescriptionChange(value as string)}
             placeholder={t(
-              "contents.contentUploadModal.details.descriptionPlaceholder",
+              isChannelSettings
+                ? "accessGate.textPlaceholder"
+                : "contents.contentUploadModal.details.descriptionPlaceholder",
             )}
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             max={500}

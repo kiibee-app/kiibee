@@ -1,5 +1,7 @@
 "use client";
 
+import styled from "styled-components";
+
 import { useState, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { ACCESS_GATE } from "@/utils/translationKeys";
@@ -56,6 +58,7 @@ const EMPTY_STRING = "";
 
 type AccessGateProps = {
   type: AccessGateType;
+  accessBoxText?: string | null;
   paymentOptions?: {
     buyPrice?: string | number | null;
     rentPrice?: string | number | null;
@@ -70,9 +73,11 @@ type AccessGateProps = {
 };
 
 function CodeGate({
+  accessBoxText,
   variant,
   onSuccess,
 }: {
+  accessBoxText?: string | null;
   variant: AccessGateVariant;
   onSuccess?: (
     value: string,
@@ -112,6 +117,9 @@ function CodeGate({
         <GateTitleText>{t(titleKey)}</GateTitleText>
       </GateTitle>
 
+      {accessBoxText?.trim() && (
+        <AccessBoxMessage>{accessBoxText}</AccessBoxMessage>
+      )}
       <GateForm onSubmit={handleSubmit}>
         <GateFieldGroup>
           <GateLabel htmlFor={HTML_ID_CODE}>
@@ -156,10 +164,12 @@ function CodeGate({
 }
 
 function EmailGate({
+  accessBoxText,
   variant,
   creatorName,
   onSuccess,
 }: {
+  accessBoxText?: string | null;
   variant: AccessGateVariant;
   creatorName?: string;
   onSuccess?: (
@@ -210,6 +220,9 @@ function EmailGate({
         <GateTitleText>{t(titleKey)}</GateTitleText>
       </GateTitle>
 
+      {accessBoxText?.trim() && (
+        <AccessBoxMessage>{accessBoxText}</AccessBoxMessage>
+      )}
       <GateForm onSubmit={handleSubmit}>
         <GateFieldGroup>
           <GateLabel htmlFor={HTML_ID_NAME}>
@@ -266,10 +279,12 @@ function EmailGate({
 }
 
 function PaymentGate({
+  accessBoxText,
   variant,
   options,
   onSuccess,
 }: {
+  accessBoxText?: string | null;
   variant: AccessGateVariant;
   options?: AccessGateProps["paymentOptions"];
   onSuccess?: AccessGateProps["onSuccess"];
@@ -324,6 +339,9 @@ function PaymentGate({
             <p>{t("profilePayment.description")}</p>
           </div>
         </PaymentHeader>
+        {accessBoxText?.trim() && (
+          <AccessBoxMessage>{accessBoxText}</AccessBoxMessage>
+        )}
         <PaymentOptions>
           {options?.buyPrice != null && (
             <PaymentOption>
@@ -383,6 +401,7 @@ function PaymentGate({
 }
 
 export default function AccessGate({
+  accessBoxText,
   type,
   paymentOptions,
   variant = VARIANT_PAGE,
@@ -394,14 +413,20 @@ export default function AccessGate({
       <GateInner $variant={variant}>
         {type === "payment" ? (
           <PaymentGate
+            accessBoxText={accessBoxText}
             variant={variant}
             options={paymentOptions}
             onSuccess={onSuccess}
           />
         ) : type === TYPE_CODE ? (
-          <CodeGate variant={variant} onSuccess={onSuccess} />
+          <CodeGate
+            accessBoxText={accessBoxText}
+            variant={variant}
+            onSuccess={onSuccess}
+          />
         ) : (
           <EmailGate
+            accessBoxText={accessBoxText}
             variant={variant}
             creatorName={creatorName}
             onSuccess={onSuccess}
@@ -439,3 +464,18 @@ export function CreatorAccessGrantedModal({
     />
   );
 }
+
+const AccessBoxMessage = styled.p`
+  margin: 0 0 16px !important;
+  padding: 12px 14px;
+  border: 1px solid rgba(45, 77, 51, 0.16);
+  border-left: 3px solid #73966b;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #263b2b !important;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: left;
+`;
