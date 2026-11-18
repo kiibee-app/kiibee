@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
+import { normalizeContentTypeValue } from "@/utils/content";
 import {
   RENTED_MODES,
   COLLECTION_ACCESS_STATUS,
@@ -67,8 +68,7 @@ function toMediaItem(
 ): RentedMediaItem {
   return {
     id: item.id,
-    mediaType:
-      (item.contentType?.toLowerCase() as RentedMediaItem["mediaType"]) ?? "",
+    mediaType: normalizeContentTypeValue(item.contentType),
     category: item.categoryName ?? "",
     thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) ?? "",
     title: item.title ?? "",
