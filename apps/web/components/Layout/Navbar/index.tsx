@@ -281,6 +281,8 @@ export default function NavBar({
   const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
     Record<string, boolean>
   >({});
+  const drawerPanelRef = useRef<HTMLElement | null>(null);
+  const drawerTriggerRef = useRef<HTMLDivElement | null>(null);
   const drawerItems = mobileDrawerItems ?? items;
   const sidebarExpanded =
     sidebarState.pathname === pathname && sidebarState.expanded;
@@ -482,6 +484,14 @@ export default function NavBar({
       const target = e.target as Node | null;
 
       if (
+        sidebarExpanded &&
+        !drawerPanelRef.current?.contains(target) &&
+        !drawerTriggerRef.current?.contains(target)
+      ) {
+        collapseSidebar();
+      }
+
+      if (
         !navRef.current?.contains(target) &&
         !actionsRef.current?.contains(target) &&
         !megaMenuRef.current?.contains(target)
@@ -489,7 +499,7 @@ export default function NavBar({
         closeMenu();
       }
     },
-    [closeMenu],
+    [closeMenu, collapseSidebar, sidebarExpanded],
   );
 
   useEffect(() => {
@@ -784,7 +794,10 @@ export default function NavBar({
         </Actions>
 
         {mobileDrawerTrigger && (
-          <MobileDrawerTriggerWrap onClick={toggleSidebar}>
+          <MobileDrawerTriggerWrap
+            ref={drawerTriggerRef}
+            onClick={toggleSidebar}
+          >
             {mobileDrawerTrigger}
           </MobileDrawerTriggerWrap>
         )}
@@ -826,6 +839,7 @@ export default function NavBar({
         onClick={collapseSidebar}
       />
       <DrawerPanel
+        ref={drawerPanelRef}
         $open={sidebarExpanded}
         $side={mobileDrawerSide}
         $variant={mobileDrawerVariant}

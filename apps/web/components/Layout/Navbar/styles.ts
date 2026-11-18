@@ -654,11 +654,11 @@ export const DrawerPanel = styled.aside<{
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
+    top: calc(var(--navbar-height, 70px) + var(--navbar-top-offset, 0px));
     left: ${({ $side }) => ($side === "right" ? "auto" : "0")};
     right: ${({ $side }) => ($side === "right" ? "0" : "auto")};
-    width: min(84vw, 280px);
-    height: min(75dvh, 550px);
+    width: min(84vw, 320px);
+    height: min(75dvh, 700px);
     min-height: 0;
     overflow: hidden;
     color: white;
@@ -673,7 +673,7 @@ export const DrawerPanel = styled.aside<{
     transition: transform 0.3s ease;
     box-shadow: ${({ $open, $side, theme }) =>
       $open
-        ? `${$side === "right" ? "-6px" : "6px"} 0 24px ${theme.colors.gradient.FRAME_BG}`
+        ? `${$side === "right" ? "-6px" : "6px"} 0 0px ${theme.colors.gradient.FRAME_BG}`
         : "none"};
 
     ${({ $open, theme, $variant }) =>
@@ -720,7 +720,7 @@ export const DrawerMenu = styled.nav`
   flex-direction: column;
   flex-shrink: 0;
   gap: 10px;
-  padding-bottom: 20px;
+  padding-bottom: auto;
 `;
 
 export const DrawerMenuItem = styled.div<{ $inverted?: boolean }>`
@@ -887,9 +887,9 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   flex-shrink: 0;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   align-items: center;
-  gap: 8px;
-  padding-top: ${({ $showDivider }) => ($showDivider ? "12px" : "0")};
-  padding-bottom: 16px;
+  gap: 15px;
+  padding-top: ${({ $showDivider }) => ($showDivider ? "30px" : "0")};
+  padding-bottom: 46px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
   .start-btn {
