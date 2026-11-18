@@ -194,7 +194,7 @@ export default function LogoSection() {
         onApply={handleImageApply}
         shape={CROP_SHAPE.CIRCLE}
         recommendedText={false}
-        uploadAsIs={true}
+        uploadAsIs={false}
       />
     </AppearancePanel>
   );

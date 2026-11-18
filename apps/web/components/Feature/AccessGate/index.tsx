@@ -467,11 +467,7 @@ export function CreatorAccessGrantedModal({
 
 const AccessBoxMessage = styled.p`
   margin: 0 0 16px !important;
-  padding: 12px 14px;
-  border: 1px solid rgba(45, 77, 51, 0.16);
-  border-left: 3px solid #73966b;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
+  background: transparent;
   color: #263b2b !important;
   font-size: 13px;
   line-height: 1.6;
