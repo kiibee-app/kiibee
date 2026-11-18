@@ -22,10 +22,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
-import {
-  publiclyVisibleCreatorWhere,
-  requirePubliclyVisibleCreator,
-} from 'src/utils/publicCreatorVisibility';
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 
 const collectionItemSelect = {
@@ -164,11 +161,7 @@ export const getPublicCollectionService = async (
       )
       .innerJoin(
         users,
-        and(
-          eq(users.id, mediaFiles.creatorId),
-          eq(users.isDeleted, false),
-          publiclyVisibleCreatorWhere,
-        ),
+        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(

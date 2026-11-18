@@ -29,7 +29,6 @@ export const resolvePublicCreatorPath = async (path: string) => {
   const visible = and(
     eq(users.role, ROLE.CREATOR),
     eq(users.isDeleted, false),
-    eq(users.isHidden, false),
     eq(users.isActive, true),
     eq(users.status, STATUS.ACTIVE),
   );

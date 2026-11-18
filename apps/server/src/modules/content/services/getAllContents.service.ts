@@ -318,7 +318,7 @@ export const getAllContentsService = async (
         and(
           eq(users.id, mediaFiles.creatorId),
           eq(users.isDeleted, false),
-          publiclyVisibleCreatorWhere,
+          creatorIds?.length === 1 ? undefined : publiclyVisibleCreatorWhere,
         ),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
