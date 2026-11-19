@@ -895,9 +895,9 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   flex-shrink: 0;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   padding-top: ${({ $showDivider }) => ($showDivider ? "22px" : "0")};
-  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-bottom: max(40px, env(safe-area-inset-bottom));
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
   ${NavAccountMenuItem},
