@@ -282,6 +282,7 @@ export default function NavBar({
     Record<string, boolean>
   >({});
   const drawerPanelRef = useRef<HTMLElement | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
   const drawerTriggerRef = useRef<HTMLDivElement | null>(null);
   const drawerItems = mobileDrawerItems ?? items;
   const sidebarExpanded =
@@ -310,7 +311,11 @@ export default function NavBar({
       body.style.width = previousStyles.width;
       body.style.overflow = previousStyles.overflow;
 
-      window.scrollTo(0, scrollY);
+      window.scrollTo({
+        top: scrollY,
+        left: window.scrollX,
+        behavior: "instant",
+      });
     };
   }, [sidebarExpanded]);
 
@@ -320,9 +325,9 @@ export default function NavBar({
       expanded: prev.pathname === pathname ? !prev.expanded : true,
     }));
   };
-  const collapseSidebar = () => {
+  const collapseSidebar = useCallback(() => {
     setSidebarState({ pathname, expanded: false });
-  };
+  }, [pathname]);
   const handleDrawerDashboard = () => {
     if (!dashboardPath) return;
     collapseSidebar();
@@ -486,6 +491,7 @@ export default function NavBar({
       if (
         sidebarExpanded &&
         !drawerPanelRef.current?.contains(target) &&
+        !hamburgerRef.current?.contains(target) &&
         !drawerTriggerRef.current?.contains(target)
       ) {
         collapseSidebar();
@@ -582,6 +588,7 @@ export default function NavBar({
                 key={ci.key}
                 href={localize(ci.href)}
                 $isActive={isHrefActive(ci.href)}
+                aria-current={isHrefActive(ci.href) ? "page" : undefined}
                 onClick={collapseSidebar}
               >
                 {t(ci.key)}
@@ -693,6 +700,7 @@ export default function NavBar({
         <Left>
           {!hideMobileHamburger && (
             <HamburgerButton
+              ref={hamburgerRef}
               type="button"
               onClick={toggleSidebar}
               aria-label={t(DASHBOARD.toggleSidebar)}
@@ -834,11 +842,13 @@ export default function NavBar({
       )}
 
       <DrawerOverlay
+        data-lenis-prevent=""
         $open={sidebarExpanded}
         $variant={mobileDrawerVariant}
         onClick={collapseSidebar}
       />
       <DrawerPanel
+        data-lenis-prevent=""
         ref={drawerPanelRef}
         $open={sidebarExpanded}
         $side={mobileDrawerSide}

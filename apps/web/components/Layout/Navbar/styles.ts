@@ -658,7 +658,16 @@ export const DrawerPanel = styled.aside<{
     left: ${({ $side }) => ($side === "right" ? "auto" : "0")};
     right: ${({ $side }) => ($side === "right" ? "0" : "auto")};
     width: min(84vw, 320px);
-    height: min(75dvh, 700px);
+    height: min(
+      80dvh,
+      740px,
+      calc(
+        100dvh - var(--navbar-height, 70px) - var(--navbar-top-offset, 0px) -
+          16px
+      )
+    );
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
     min-height: 0;
     overflow: hidden;
     color: white;
@@ -706,33 +715,37 @@ export const DrawerContent = styled.div`
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 16px;
   gap: 16px;
   align-items: stretch;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
 `;
 
 export const DrawerMenu = styled.nav`
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  gap: 10px;
-  padding-bottom: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: ${({ theme }) => theme.colors.primary.WHITE_18} transparent;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 `;
 
 export const DrawerMenuItem = styled.div<{ $inverted?: boolean }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  border-radius: 12px;
   background: ${({ $inverted }) => ($inverted ? "transparent" : "white")};
 `;
 
 export const DrawerMenuRow = styled.div`
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -746,6 +759,7 @@ export const DrawerMenuLink = styled(Link)<{
   flex: 1 1 auto;
   padding: 10px 12px;
   min-height: 48px;
+  box-sizing: border-box;
   border-radius: 10px;
   background: ${({ $isActive, $inverted, theme }) =>
     !$inverted && $isActive ? theme.colors.primary.GRAY : "transparent"};
@@ -757,7 +771,12 @@ export const DrawerMenuLink = styled(Link)<{
 
   &:hover {
     background: ${({ $inverted, theme }) =>
-      $inverted ? "transparent" : theme.colors.primary.GRAY};
+      $inverted ? theme.colors.primary.WHITE_10 : theme.colors.primary.GRAY};
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
   }
 `;
 
@@ -798,9 +817,11 @@ export const DrawerMenuToggleButton = styled.button<{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 48px;
-  width: 48px;
-  padding: 12px;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  margin-right: 4px;
   border-radius: 10px;
   background: white;
   border: none;
@@ -816,67 +837,54 @@ export const DrawerMenuToggleButton = styled.button<{
 export const DrawerSubMenu = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 0 1 auto;
-
-  padding-left: 16px;
-  margin-top: 8px;
-  gap: 12px;
-
-  height: 250px;
-  max-height: 40dvh;
-  min-height: 0;
-
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  overscroll-behavior-y: contain;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-y;
-
-  border-left: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
-
-  scrollbar-width: thin;
-
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    border-radius: 10px;
-  }
+  flex-shrink: 0;
+  margin: 4px 4px 12px 12px;
+  padding: 8px 0 4px 14px;
+  gap: 20px;
+  border-left: 1px solid ${({ theme }) => theme.colors.primary.WHITE_18};
 `;
 
 export const DrawerSubMenuColumn = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: 6px;
-
-  border-left: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  gap: 2px;
 `;
 
 export const DrawerSubMenuTitle = styled.div`
   font-size: 11px;
+  line-height: 16px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: white;
-  padding: 4px 12px;
+  opacity: 0.65;
+  padding: 0 10px 6px;
 `;
 
 export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
-  display: block;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
-  padding: 8px 12px;
-  border-radius: 6px;
+  min-height: 40px;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 8px;
   color: white;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary.WHITE_10 : "transparent"};
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.15s;
+  line-height: 20px;
+  transition: background 0.15s ease;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.primary.GRAY};
+    background: ${({ theme }) => theme.colors.primary.WHITE_10};
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
   }
 `;
 
@@ -887,11 +895,41 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   flex-shrink: 0;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   align-items: center;
-  gap: 15px;
-  padding-top: ${({ $showDivider }) => ($showDivider ? "30px" : "0")};
-  padding-bottom: 46px;
+  gap: 10px;
+  padding-top: ${({ $showDivider }) => ($showDivider ? "22px" : "0")};
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
+  ${NavAccountMenuItem},
+  ${NavAccountMenuButton} {
+    color: white;
+    box-sizing: border-box;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.primary.WHITE_10};
+    }
+
+    &:focus-visible {
+      outline: 2px solid white;
+      outline-offset: -2px;
+    }
+
+    &:disabled {
+      color: white;
+      opacity: 0.5;
+    }
+  }
+
+  ${NavAccountMenuIcon} {
+    color: inherit;
+  }
+
+  ${NavAccountMenuDivider} {
+    align-self: stretch;
+    background: ${({ theme }) => theme.colors.primary.WHITE_18};
+    margin: 0 12px;
+  }
+
   .start-btn {
     color: ${({ theme }) => theme.colors.primary.BLACK};
     background: white;
