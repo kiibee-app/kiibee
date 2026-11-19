@@ -59,7 +59,7 @@ export function mergeGuestRecentlyViewed(userId: string) {
     );
     localStorage.removeItem(guestKey);
   } catch {
-    return;
+    // History sync must still work when browser storage is unavailable.
   }
 }
 
@@ -79,6 +79,36 @@ export function saveRecentlyViewed(
       ),
     );
   } catch {
-    return;
+    // Private browsing or a full storage quota must not prevent account sync.
   }
+  if (userId) {
+    void syncRecentlyViewed(userId, [item]).catch(() => {
+      // Keep the local copy for retry when the viewer panel opens.
+    });
+  }
+}
+
+/** Import this browser's legacy history and read the account-wide result. */
+export async function syncRecentlyViewed(
+  userId: string,
+  items = readRecentlyViewed(userId),
+): Promise<RecentlyViewedItem[]> {
+  const [{ axiosClient }, { API }, { readStoredLoginUser }] = await Promise.all(
+    [
+      import("@/lib/http/axiosClient"),
+      import("@/lib/http/api/endpoints"),
+      import("@/hooks/auth/useLogin"),
+    ],
+  );
+  // Do not import another account's local history after a session switch.
+  if (readStoredLoginUser()?.id !== userId) return [];
+  const response = items.length
+    ? await axiosClient.post<{ data: RecentlyViewedItem[] }>(
+        API.viewer.recentlyViewed,
+        { items },
+      )
+    : await axiosClient.get<{ data: RecentlyViewedItem[] }>(
+        API.viewer.recentlyViewed,
+      );
+  return response.data.data;
 }

@@ -31,7 +31,7 @@ export const GateInner = styled.div<{ $variant?: string }>`
       ? css`
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
           width: 100%;
           margin: 0;
           padding: 0;
