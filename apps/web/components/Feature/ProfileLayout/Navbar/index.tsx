@@ -38,6 +38,7 @@ import { isBrowser } from "@/utils/ui";
 
 type ProfileNavbarProps = {
   variant: ProfileLayoutVariant;
+  showBack?: boolean;
 };
 
 const LAYOUT_1 = CREATOR_LAYOUTS[0].param;
@@ -69,7 +70,10 @@ const navConfigByVariant: Record<
   },
 };
 
-export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
+export default function ProfileNavbar({
+  variant,
+  showBack = true,
+}: ProfileNavbarProps) {
   const router = useRouter();
   const { t } = useTranslation();
   const config = navConfigByVariant[variant] || {
@@ -113,13 +117,15 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
 
   const brand = (
     <BrandWrapper>
-      <BackButton
-        type="button"
-        onClick={handleBack}
-        aria-label={t("common.goBack")}
-      >
-        <BackButtonIcon size={36} />
-      </BackButton>
+      {showBack && (
+        <BackButton
+          type="button"
+          onClick={handleBack}
+          aria-label={t("common.goBack")}
+        >
+          <BackButtonIcon size={36} />
+        </BackButton>
+      )}
       <Brand href={brandHref}>
         <BrandAvatar>
           <CreatorChannelAvatar

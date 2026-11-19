@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, notLike } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { collections, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
@@ -24,6 +24,7 @@ export const reorderCollectionsService = async (
         and(
           eq(collections.creatorId, creatorId),
           eq(collections.isDeleted, false),
+          notLike(collections.id, 'profile-access-%'),
         ),
       );
     const ownedIds = new Set(ownedCollections.map((item) => item.id));

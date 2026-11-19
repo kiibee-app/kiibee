@@ -13,6 +13,7 @@ export const Overlay = styled.div`
   z-index: ${({ theme }) => theme.zIndex.modal};
 `;
 export const ModalContainer = styled.div<{
+  $backgroundColor?: string;
   $width?: string;
   $height?: string;
   $maxHeight?: string;
@@ -28,7 +29,8 @@ export const ModalContainer = styled.div<{
   min-height: ${({ $height }) => $height || "auto"};
   max-height: ${({ $maxHeight }) => $maxHeight || "none"};
   overflow-y: ${({ $maxHeight }) => ($maxHeight ? "auto" : "visible")};
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ $backgroundColor, theme }) =>
+    $backgroundColor || theme.colors.primary.WHITE};
   border-radius: ${({ $borderRadius }) => $borderRadius || "12px"};
   padding: ${({ $padding, $align }) =>
     $padding ||

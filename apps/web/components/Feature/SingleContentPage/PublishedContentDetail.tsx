@@ -188,6 +188,7 @@ export default function PublishedContentDetail({
   ]);
   const {
     gateType: activeGateType,
+    accessBoxText,
     isLoading: gateLoading,
     handleSuccess: handleGateSuccess,
   } = useContentAccessGate(content, effectiveCollectionId);
@@ -365,6 +366,7 @@ export default function PublishedContentDetail({
             activeGateType ? (
               <AccessGate
                 type={activeGateType}
+                accessBoxText={accessBoxText}
                 variant={VARIANT_CONTENT}
                 onSuccess={handleGateSuccess}
               />

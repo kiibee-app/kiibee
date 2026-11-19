@@ -95,7 +95,6 @@ export default function ImageUploadCropModal({
     if (visible) {
       const handle = requestAnimationFrame(() => {
         setPendingImage(image);
-        setNaturalSize({ width: 0, height: 0 });
       });
       return () => cancelAnimationFrame(handle);
     }
@@ -183,7 +182,7 @@ export default function ImageUploadCropModal({
   }, []);
 
   useEffect(() => {
-    if (!pendingImage) return;
+    if (!pendingImage || !visible) return;
 
     const loadId = imageLoadIdRef.current + 1;
     imageLoadIdRef.current = loadId;
@@ -200,7 +199,7 @@ export default function ImageUploadCropModal({
       });
     };
     img.src = pendingImage;
-  }, [pendingImage]);
+  }, [pendingImage, visible]);
 
   useEffect(() => {
     const prev = prevNaturalSizeRef.current;
@@ -490,7 +489,7 @@ export default function ImageUploadCropModal({
                 onClick={handlePreviewClick}
                 title={t("creatorProfile.clickPhotoToChange")}
               >
-                {pendingImage && (
+                {pendingImage && !uploadAsIs && (
                   <BlurredBackground
                     src={pendingImage}
                     alt=""

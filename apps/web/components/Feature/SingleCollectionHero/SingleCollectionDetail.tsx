@@ -314,6 +314,7 @@ export default function SingleCollectionDetail({
 
   const {
     gateType: creatorGateType,
+    accessBoxText: creatorAccessBoxText,
     paymentOptions: creatorPaymentOptions,
     hasProfilePaymentAccess,
     isLoading: isCreatorGateLoading,
@@ -739,6 +740,7 @@ export default function SingleCollectionDetail({
           accessGate={
             <AccessGate
               type={gateType}
+              accessBoxText={creatorGateType ? creatorAccessBoxText : undefined}
               paymentOptions={creatorPaymentOptions}
               variant={VARIANT_CONTENT}
               onSuccess={handleCollectionGateSuccess}

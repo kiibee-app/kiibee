@@ -8,7 +8,7 @@ import {
 } from "@/utils/viewerRented";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { UNKNOWN } from "@/utils/Constants";
-import type { ContentType } from "@/utils/content";
+import { normalizeContentTypeValue, type ContentType } from "@/utils/content";
 
 type PurchasedMediaResponse = {
   id: string;
@@ -56,7 +56,7 @@ type PurchasedDataResponse = {
 
 const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   id: item.id,
-  mediaType: item.contentType,
+  mediaType: normalizeContentTypeValue(item.contentType),
   category: item.categoryName || UNKNOWN,
   thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) || "",
   title: item.title,

@@ -22,10 +22,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
-import {
-  publiclyVisibleCreatorWhere,
-  requirePubliclyVisibleCreator,
-} from 'src/utils/publicCreatorVisibility';
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { fail, success } from 'src/utils/sendResponse';
 
 const collectionItemSelect = {
@@ -143,19 +140,6 @@ export const getPublicCollectionService = async (
       collection.creatorId,
       viewerId,
     );
-    if (profile.required && !profile.hasAccess)
-      return success(
-        {
-          id: collection.id,
-          creatorId: collection.creatorId,
-          items: [],
-          contents: [],
-          requiresChannelPayment: true,
-        },
-        'Channel pass required',
-        HttpStatus.OK,
-      );
-
     const itemConditions = [
       channelPass
         ? eq(mediaFiles.creatorId, collection.creatorId)
@@ -177,11 +161,7 @@ export const getPublicCollectionService = async (
       )
       .innerJoin(
         users,
-        and(
-          eq(users.id, mediaFiles.creatorId),
-          eq(users.isDeleted, false),
-          publiclyVisibleCreatorWhere,
-        ),
+        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
       )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
@@ -216,6 +196,9 @@ export const getPublicCollectionService = async (
 
     const items = rows.map((item) => ({
       ...item,
+      // The catalog is public; playback still requires channel access.
+      contentUrl:
+        profile.required && !profile.hasAccess ? null : item.contentUrl,
       collectionId: collection.id,
       collectionSlug: collection.slug,
       collectionName: collection.name,

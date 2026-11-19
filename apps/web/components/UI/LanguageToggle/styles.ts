@@ -81,13 +81,23 @@ const langBtn = css`
   }
 `;
 
-export const LangButton = styled.button<{ $active: boolean }>`
+export const LangButton = styled.button<{
+  $active: boolean;
+  $sidebarStyle?: boolean;
+  $isDanish?: boolean;
+}>`
   ${langBtn}
-  color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
-  background-color: transparent;
+  color: ${({ $active, $isDanish, $sidebarStyle, theme }) =>
+    $sidebarStyle && $isDanish
+      ? "white"
+      : $active
+        ? theme.colors.primary.BLACK
+        : theme.colors.neutral.GRAY_500};
+  background-color: ${({ $isDanish, $sidebarStyle, theme }) =>
+    $sidebarStyle && $isDanish ? theme.colors.neutral.GRAY_500 : "transparent"};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ $isDanish, $sidebarStyle, theme }) =>
+      $sidebarStyle && $isDanish ? "white" : theme.colors.primary.BLACK};
   }
 `;

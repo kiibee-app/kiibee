@@ -54,6 +54,7 @@ export const creatorContentIsDiscoverableFor = (viewerId?: string) => sql`(
 
 export const creatorContentIsDiscoverable = creatorContentIsDiscoverableFor();
 
+// Hidden means unlisted on the portal; direct channel links remain accessible.
 export const requirePubliclyVisibleCreator = async (
   creatorIdOrSlug: string,
 ) => {
@@ -76,7 +77,7 @@ export const requirePubliclyVisibleCreator = async (
     )
     .limit(1);
 
-  if (!creator || creator.isDeleted || creator.isHidden) {
+  if (!creator || creator.isDeleted) {
     return fail('Creator not found', HttpStatus.NOT_FOUND);
   }
 

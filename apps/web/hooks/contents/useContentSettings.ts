@@ -6,6 +6,7 @@ import { API } from "@/lib/http/api/endpoints";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
 export type ContentSettingData = {
+  accessBoxText?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   rentDuration?: string | null;
@@ -20,6 +21,7 @@ type ContentSettingResponse = {
 };
 
 export type SaveContentSettingPayload = {
+  accessBoxText?: string | null;
   buyPrice?: number | null;
   rentPrice?: number | null;
   rentDuration?: string | null;
@@ -50,6 +52,7 @@ export function useContentSettings(enabled = true) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: CONTENT_SETTING_QUERY_KEY });
+      queryClient.invalidateQueries({ queryKey: ["profile-payment"] });
     },
   });
 

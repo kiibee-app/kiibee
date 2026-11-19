@@ -501,6 +501,7 @@ export default function LatestUpload({
           <Title>{data.title}</Title>
           {contentHref ? (
             <DescriptionLink
+              data-channel-access-trigger
               href={contentHref}
               aria-label={`${t("createProfileHome.latestUpload.seeContent")}: ${data.title}`}
               title={t("createProfileHome.latestUpload.seeContent")}

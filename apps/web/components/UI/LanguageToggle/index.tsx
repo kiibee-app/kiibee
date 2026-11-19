@@ -15,7 +15,11 @@ import {
 import { localizeHref } from "@/utils/localizedRoutes";
 import { Wrapper, Slider, LangButton } from "./styles";
 
-const LanguageToggle = () => {
+const LanguageToggle = ({
+  sidebarStyle = false,
+}: {
+  sidebarStyle?: boolean;
+}) => {
   const { i18n } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
@@ -51,6 +55,8 @@ const LanguageToggle = () => {
       <Slider $active={currentLang} />
       <LangButton
         $active={currentLang === DA}
+        $isDanish
+        $sidebarStyle={sidebarStyle}
         onClick={() => setLang(DA)}
         role="radio"
         aria-checked={currentLang === DA}
@@ -61,6 +67,7 @@ const LanguageToggle = () => {
       </LangButton>
       <LangButton
         $active={currentLang === EN}
+        $sidebarStyle={sidebarStyle}
         onClick={() => setLang(EN)}
         role="radio"
         aria-checked={currentLang === EN}

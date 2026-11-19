@@ -53,6 +53,7 @@ import {
   DrawerSubMenuTitle,
   DrawerSubMenuLink,
   DrawerActions,
+  DrawerLanguageRow,
 } from "./styles";
 import NavSearchButton from "./NavSearchButton";
 import LanguageToggle from "@/components/UI/LanguageToggle";
@@ -87,6 +88,9 @@ import { getAvatarUrl } from "@/utils/creatorProfile";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
+import { InfoIcon } from "@/assets/icons";
+import ExploreIcon from "@/assets/icons/ExploreIcon";
+import StacksIcon from "@/assets/icons/StacksIcon";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions, isBrowser } from "@/utils/ui";
 import {
@@ -277,18 +281,53 @@ export default function NavBar({
   const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
     Record<string, boolean>
   >({});
+  const drawerPanelRef = useRef<HTMLElement | null>(null);
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
+  const drawerTriggerRef = useRef<HTMLDivElement | null>(null);
   const drawerItems = mobileDrawerItems ?? items;
   const sidebarExpanded =
     sidebarState.pathname === pathname && sidebarState.expanded;
+  useEffect(() => {
+    if (!sidebarExpanded) return;
+
+    const scrollY = window.scrollY;
+    const body = document.body;
+
+    const previousStyles = {
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+      overflow: body.style.overflow,
+    };
+
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    body.style.overflow = "hidden";
+
+    return () => {
+      body.style.position = previousStyles.position;
+      body.style.top = previousStyles.top;
+      body.style.width = previousStyles.width;
+      body.style.overflow = previousStyles.overflow;
+
+      window.scrollTo({
+        top: scrollY,
+        left: window.scrollX,
+        behavior: "instant",
+      });
+    };
+  }, [sidebarExpanded]);
+
   const toggleSidebar = () => {
     setSidebarState((prev) => ({
       pathname,
       expanded: prev.pathname === pathname ? !prev.expanded : true,
     }));
   };
-  const collapseSidebar = () => {
+  const collapseSidebar = useCallback(() => {
     setSidebarState({ pathname, expanded: false });
-  };
+  }, [pathname]);
   const handleDrawerDashboard = () => {
     if (!dashboardPath) return;
     collapseSidebar();
@@ -306,7 +345,6 @@ export default function NavBar({
       [key]: !prev[key],
     }));
   };
-
   const routeActiveKey = useMemo(() => {
     if (!routeActiveItems && !mobileDrawerRouteActiveItems) return null;
     const activeRouteItems = routeActiveItems ? items : drawerItems;
@@ -451,6 +489,15 @@ export default function NavBar({
       const target = e.target as Node | null;
 
       if (
+        sidebarExpanded &&
+        !drawerPanelRef.current?.contains(target) &&
+        !hamburgerRef.current?.contains(target) &&
+        !drawerTriggerRef.current?.contains(target)
+      ) {
+        collapseSidebar();
+      }
+
+      if (
         !navRef.current?.contains(target) &&
         !actionsRef.current?.contains(target) &&
         !megaMenuRef.current?.contains(target)
@@ -458,7 +505,7 @@ export default function NavBar({
         closeMenu();
       }
     },
-    [closeMenu],
+    [closeMenu, collapseSidebar, sidebarExpanded],
   );
 
   useEffect(() => {
@@ -541,6 +588,7 @@ export default function NavBar({
                 key={ci.key}
                 href={localize(ci.href)}
                 $isActive={isHrefActive(ci.href)}
+                aria-current={isHrefActive(ci.href) ? "page" : undefined}
                 onClick={collapseSidebar}
               >
                 {t(ci.key)}
@@ -564,9 +612,19 @@ export default function NavBar({
               <DrawerMenuLink
                 href={localize(item.href)}
                 $isActive={isRouteActive}
+                $inverted={item.key === "nav.exploreCreators"}
                 onClick={collapseSidebar}
               >
-                {renderItemLabel(item)}
+                {item.key === "nav.exploreCreators" ? (
+                  <span
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    <ExploreIcon />
+                    {renderItemLabel(item)}
+                  </span>
+                ) : (
+                  renderItemLabel(item)
+                )}
               </DrawerMenuLink>
             ) : (
               <DrawerMenuButton
@@ -610,9 +668,21 @@ export default function NavBar({
       <DrawerMenuLink
         href={getItemHref(item)}
         $isActive={isRouteActive}
+        $inverted={item.key === "nav.howItWorks" || item.key === "nav.about"}
         onClick={collapseSidebar}
       >
-        {renderItemLabel(item)}
+        {item.key === "nav.about" || item.key === "nav.howItWorks" ? (
+          <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {item.key === "nav.about" ? (
+              <InfoIcon size={20} color="#ffffff" />
+            ) : (
+              <StacksIcon />
+            )}
+            {renderItemLabel(item)}
+          </span>
+        ) : (
+          renderItemLabel(item)
+        )}
       </DrawerMenuLink>
     );
   };
@@ -630,6 +700,7 @@ export default function NavBar({
         <Left>
           {!hideMobileHamburger && (
             <HamburgerButton
+              ref={hamburgerRef}
               type="button"
               onClick={toggleSidebar}
               aria-label={t(DASHBOARD.toggleSidebar)}
@@ -720,7 +791,10 @@ export default function NavBar({
         </Actions>
 
         {mobileDrawerTrigger && (
-          <MobileDrawerTriggerWrap onClick={toggleSidebar}>
+          <MobileDrawerTriggerWrap
+            ref={drawerTriggerRef}
+            onClick={toggleSidebar}
+          >
             {mobileDrawerTrigger}
           </MobileDrawerTriggerWrap>
         )}
@@ -757,11 +831,14 @@ export default function NavBar({
       )}
 
       <DrawerOverlay
+        data-lenis-prevent=""
         $open={sidebarExpanded}
         $variant={mobileDrawerVariant}
         onClick={collapseSidebar}
       />
       <DrawerPanel
+        data-lenis-prevent=""
+        ref={drawerPanelRef}
         $open={sidebarExpanded}
         $side={mobileDrawerSide}
         $variant={mobileDrawerVariant}
@@ -770,14 +847,24 @@ export default function NavBar({
           {drawerItems.length > 0 && (
             <DrawerMenu>
               {drawerItems.map((item) => (
-                <DrawerMenuItem key={item.key}>
+                <DrawerMenuItem
+                  key={item.key}
+                  $inverted={
+                    item.key === "nav.howItWorks" ||
+                    item.key === "nav.exploreCreators" ||
+                    item.key === "nav.about"
+                  }
+                >
                   {renderDrawerItem(item)}
                 </DrawerMenuItem>
               ))}
             </DrawerMenu>
           )}
           <DrawerActions $showDivider={drawerItems.length > 0}>
-            <LanguageToggle />
+            <DrawerLanguageRow>
+              <span>Language</span>
+              <LanguageToggle sidebarStyle />
+            </DrawerLanguageRow>
             {isLoggedIn && dashboardPath ? (
               <>
                 <NavAccountMenuItem
@@ -810,7 +897,7 @@ export default function NavBar({
               (actions ?? (
                 <>
                   <NavSearchButton
-                    textTone={navTextTone}
+                    textTone={TONE_LIGHT}
                     hide={Boolean(actions)}
                   />
                   <GenericButton

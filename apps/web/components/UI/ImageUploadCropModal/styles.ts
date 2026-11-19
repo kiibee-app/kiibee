@@ -81,10 +81,8 @@ export const ImagePreviewWrapper = styled.div<{
     $cropHeight > 0 && $cropWidth > 0
       ? `${$cropWidth} / ${$cropHeight}`
       : "auto"};
-  border-radius: ${({ $shape }) =>
-    $shape === CROP_SHAPE.CIRCLE ? "50%" : "8px"};
-  overflow: ${({ $shape }) =>
-    $shape === CROP_SHAPE.CIRCLE ? "hidden" : "visible"};
+  border-radius: 8px;
+  overflow: hidden;
   cursor: pointer;
   background: ${({ theme }) => theme.colors.neutral.GRAY_700 || "#2a2b2f"};
   box-shadow: ${({ theme }) => theme.shadows.md};
@@ -155,7 +153,8 @@ export const CropOverlay = styled.div<{
     $shape === CROP_SHAPE.CIRCLE
       ? `
     border-radius: 50%;
-    box-shadow: 0 0 0 9999px ${theme.colors.neutral.OVERLAY};
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.5);
   `
       : `
     border-radius: 8px;

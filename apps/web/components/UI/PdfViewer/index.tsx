@@ -25,7 +25,6 @@ import {
 
 const assets = `/pdfjs/${pdfjs.version}`;
 pdfjs.GlobalWorkerOptions.workerSrc = `${assets}/pdf.worker.min.mjs`;
-pdfjs.GlobalWorkerOptions.rendererSrc = `${assets}/pdf.renderer.min.mjs`;
 
 function PdfPage({
   document,
@@ -34,6 +33,7 @@ function PdfPage({
   root,
   enabled,
   onReady,
+  onError,
 }: {
   document: PDFDocumentProxy;
   number: number;
@@ -41,6 +41,7 @@ function PdfPage({
   root: RefObject<HTMLDivElement | null>;
   enabled: boolean;
   onReady?: () => void;
+  onError: () => void;
 }) {
   const { t } = useTranslation();
   const wrapper = useRef<HTMLDivElement>(null);
@@ -70,6 +71,15 @@ function PdfPage({
     let cancelled = false;
     let render: RenderTask | undefined;
     let textLayer: pdfjs.TextLayer | undefined;
+    let rendered = false;
+    const target = canvas.current;
+    const timeout = window.setTimeout(() => {
+      if (cancelled || rendered) return;
+      cancelled = true;
+      render?.cancel();
+      setFailed(true);
+      onError();
+    }, 30_000);
     void (async () => {
       const page = await document.getPage(number);
       if (cancelled || !canvas.current || !text.current) return;
@@ -78,7 +88,11 @@ function PdfPage({
       const base = page.getViewport({ scale: 1 });
       const viewport = page.getViewport({ scale: width / base.width });
       setRatio(base.width / base.height);
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(
+        window.devicePixelRatio || 1,
+        1.5,
+        Math.sqrt(4_000_000 / (viewport.width * viewport.height)),
+      );
       const target = canvas.current;
       target.width = Math.ceil(viewport.width * dpr);
       target.height = Math.ceil(viewport.height * dpr);
@@ -89,6 +103,8 @@ function PdfPage({
       });
       await render.promise;
       if (cancelled) return;
+      rendered = true;
+      window.clearTimeout(timeout);
       setReady(true);
       onReady?.();
       // Make text selectable after the page is already visible.
@@ -108,15 +124,28 @@ function PdfPage({
       });
       await textLayer.render();
     })().catch((error: unknown) => {
-      if (!cancelled && !(error instanceof pdfjs.RenderingCancelledException))
+      if (
+        !cancelled &&
+        !rendered &&
+        !(error instanceof pdfjs.RenderingCancelledException)
+      ) {
+        window.clearTimeout(timeout);
         setFailed(true);
+        onError();
+      }
     });
     return () => {
       cancelled = true;
+      window.clearTimeout(timeout);
       render?.cancel();
       textLayer?.cancel();
+      // Release the bitmap when a page leaves the viewport or the reader closes.
+      if (target) {
+        target.width = 0;
+        target.height = 0;
+      }
     };
-  }, [document, number, visible, width, enabled, onReady]);
+  }, [document, number, visible, width, enabled, onReady, onError]);
 
   return (
     <Page
@@ -164,6 +193,7 @@ export default function PdfViewer({
   const scrollFrame = useRef<number | null>(null);
   const [firstPageReady, setFirstPageReady] = useState(false);
   const onFirstPageReady = useCallback(() => setFirstPageReady(true), []);
+  const onPageError = useCallback(() => setFailed(true), []);
 
   const goToPage = (number: number) => {
     const element = root.current;
@@ -198,6 +228,7 @@ export default function PdfViewer({
   );
 
   useEffect(() => {
+    if (native) return;
     const controller = new AbortController();
     let task: ReturnType<typeof pdfjs.getDocument> | undefined;
     const fail = () => {
@@ -248,6 +279,9 @@ export default function PdfViewer({
 
       task = pdfjs.getDocument({
         ...source,
+        // Keep PDF parsing in its worker; draw on the regular canvas path.
+        disableWorkerRendering: true,
+        canvasMaxAreaInBytes: 32 * 1024 * 1024,
         disableAutoFetch: true,
         disableStream: true,
         rangeChunkSize: 512 * 1024,
@@ -272,7 +306,7 @@ export default function PdfViewer({
       window.clearTimeout(timeout);
       if (task && !task.destroyed) void task.destroy().catch(() => {});
     };
-  }, [src]);
+  }, [src, native]);
 
   useEffect(() => {
     const element = root.current;
@@ -283,7 +317,13 @@ export default function PdfViewer({
         fit === "page"
           ? (element.clientHeight - 48) * pageRatio
           : availableWidth;
-      setWidth(Math.max(1, Math.min(availableWidth, fittedWidth)));
+      // Whole CSS pixels prevent fractional ResizeObserver updates from
+      // repeatedly cancelling and restarting the canvas render.
+      const nextWidth = Math.max(
+        1,
+        Math.floor(Math.min(availableWidth, fittedWidth)),
+      );
+      setWidth((previous) => (previous === nextWidth ? previous : nextWidth));
     };
     resize();
     const observer = new ResizeObserver(resize);
@@ -358,6 +398,7 @@ export default function PdfViewer({
                 root={root}
                 enabled={index === 0 || firstPageReady || activePage > 1}
                 onReady={index === 0 ? onFirstPageReady : undefined}
+                onError={onPageError}
               />
             ))
           ) : (

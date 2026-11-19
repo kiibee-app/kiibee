@@ -47,30 +47,31 @@ import ViewerEmptyState from "./ViewerEmptyState";
 import PublishedContentDetail from "@/components/Feature/SingleContentPage/PublishedContentDetail";
 import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/SingleCollectionDetail";
 import { DetailTopWrap } from "./purchasedCollectionDetail.styles";
-import { normalizeExternalUrl } from "@/utils/common";
 import { slugifyContentTitle } from "@/utils/path";
+import { FORMAT_TYPE } from "@/utils/types";
+import { normalizeContentTypeValue } from "@/utils/content";
 
 const slugify = slugifyContentTitle;
 
 const mapMediaTypeToSlug = (mediaType: string, lang: string) => {
-  const type = mediaType.toLowerCase();
+  const normalized = normalizeContentTypeValue(mediaType);
   if (lang === "da") {
-    switch (type) {
-      case "video":
+    switch (normalized) {
+      case FORMAT_TYPE.VIDEO:
         return "video";
-      case "audio":
+      case FORMAT_TYPE.AUDIO:
         return "lyd-fil";
-      case "pdf":
+      case FORMAT_TYPE.PDF:
         return "pdf";
-      case "epub":
+      case FORMAT_TYPE.EPUB:
         return "epub";
-      case "web":
+      case FORMAT_TYPE.WEB:
         return "web-indhold";
       default:
-        return type;
+        return normalized;
     }
   }
-  return type;
+  return normalized;
 };
 
 type Props = {
@@ -163,9 +164,16 @@ export default function RentedContent({
   const isContentView =
     slug &&
     slug.length === 2 &&
-    ["video", "lyd-fil", "audio", "pdf", "epub", "web", "web-indhold"].includes(
-      slug[0].toLowerCase(),
-    );
+    [
+      "video",
+      "lyd-fil",
+      "audio",
+      "pdf",
+      "epub",
+      "web",
+      "web-link",
+      "web-indhold",
+    ].includes(slug[0].toLowerCase());
   const selectedContentSlug = isContentView ? slug[1] : undefined;
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
@@ -280,10 +288,6 @@ export default function RentedContent({
 
   const openMediaInDashboard = useCallback(
     (item: RentedMediaItem) => {
-      if (item.mediaType === "web" && item.contentUrl) {
-        window.location.assign(normalizeExternalUrl(item.contentUrl));
-        return;
-      }
       const queryParams = new URLSearchParams(searchParamsString);
       queryParams.delete(CONTENT_COLLECTION_QUERY_KEY);
       queryParams.delete(CONTENT_ITEM_QUERY_KEY);
@@ -334,12 +338,7 @@ export default function RentedContent({
         sources.epubs?.find((i) => i.title === mediaTitle) ||
         sources.webs?.find((i) => i.title === mediaTitle);
 
-      if (item?.mediaType === "web" && item.contentUrl) {
-        window.location.assign(normalizeExternalUrl(item.contentUrl));
-        return;
-      }
-
-      const mediaType = item?.mediaType || "video";
+      const mediaType = normalizeContentTypeValue(item?.mediaType || "video");
       const mediaSlug = mapMediaTypeToSlug(mediaType, i18n.language);
       const titleSlug = slugify(mediaTitle);
       const queryParams = new URLSearchParams(searchParamsString);

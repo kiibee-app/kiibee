@@ -1,6 +1,8 @@
 "use client";
 
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
+import LeftIcon from "@/assets/icons/LeftIcon";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import { useRouter } from "next/navigation";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
@@ -25,11 +27,14 @@ import {
 import { resolveContentThumbnailCandidates } from "@/utils/media";
 import type { RecentlyViewedItem } from "@/utils/recentlyViewed";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { readRecentlyViewed } from "@/utils/recentlyViewed";
+import { readRecentlyViewed, syncRecentlyViewed } from "@/utils/recentlyViewed";
+import { useQuery } from "@tanstack/react-query";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   PageHeader,
+  HeaderBackButton,
   MediaGrid,
   MediaTypePill,
   ViewerEmptyStateBox,
@@ -39,16 +44,41 @@ import {
 
 export default function RecentlyViewed() {
   const { t } = useTranslation();
+  const router = useRouter();
+  const paths = useLocalizedPaths();
+  const handleBack = () => {
+    if (window.history.length > 1) router.back();
+    else router.replace(paths.HOME);
+  };
   const user = useStoredLoginUser();
   const userId = user?.id;
-  const items = userId ? readRecentlyViewed(userId) : [];
+  const history = useQuery({
+    queryKey: [API.viewer.recentlyViewed, userId],
+    enabled: Boolean(userId),
+    queryFn: () => syncRecentlyViewed(userId!),
+    staleTime: 0,
+  });
+  const items = history.data ?? (userId ? readRecentlyViewed(userId) : []);
 
   return (
     <DashboardPageWrapper>
       <PageHeader>
+        <HeaderBackButton
+          type="button"
+          aria-label={t("common.goBack")}
+          title={t("common.goBack")}
+          onClick={handleBack}
+        >
+          <LeftIcon
+            aria-hidden="true"
+            style={{ transform: "rotate(180deg)" }}
+          />
+        </HeaderBackButton>
         <MonoText $use="H4_SemiBold">{t("sidebar.recentlyViewed")}</MonoText>
       </PageHeader>
-      {userId && items.length ? (
+      {userId && history.isPending && !items.length ? (
+        <GenericSpinner />
+      ) : userId && items.length ? (
         <MediaGrid>
           {items.map((item) => (
             <RecentlyViewedCard key={item.id} item={item} userId={userId} />

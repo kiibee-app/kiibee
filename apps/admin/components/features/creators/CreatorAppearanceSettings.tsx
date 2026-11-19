@@ -1,5 +1,6 @@
 "use client";
 
+import LogoCropModal from "./LogoCropModal";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Check, ImagePlus, Palette, Save } from "lucide-react";
 import {
@@ -134,6 +135,7 @@ export function CreatorAppearanceSettings({
   const [statusTone, setStatusTone] = useState<"error" | "success" | undefined>(
     undefined,
   );
+  const [logoDraft, setLogoDraft] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
@@ -168,7 +170,8 @@ export function CreatorAppearanceSettings({
 
     try {
       const dataUrl = await readFileAsDataUrl(file);
-      updateField(key, dataUrl);
+      if (key === "logoUrl") setLogoDraft(dataUrl);
+      else updateField(key, dataUrl);
     } catch {
       setStatusTone("error");
       setStatusMessage(labels.readImageFailed);
@@ -447,6 +450,7 @@ export function CreatorAppearanceSettings({
                   <PreviewImage
                     src={values.logoUrl}
                     alt={labels.logoPreviewAlt}
+                    style={{ objectFit: "cover" }}
                   />
                 ) : (
                   <PreviewPlaceholder>
@@ -456,6 +460,14 @@ export function CreatorAppearanceSettings({
                 )}
               </LogoPreview>
               <ImageActions>
+                {values.logoUrl && (
+                  <SecondaryButton
+                    type="button"
+                    onClick={() => setLogoDraft(values.logoUrl)}
+                  >
+                    Adjust logo
+                  </SecondaryButton>
+                )}
                 <FileButton>
                   <ImagePlus size={14} />
                   {labels.uploadLogo}
@@ -632,6 +644,16 @@ export function CreatorAppearanceSettings({
         </PanelBody>
       </AppearancePanel>
 
+      {logoDraft && (
+        <LogoCropModal
+          src={logoDraft}
+          onClose={() => setLogoDraft(null)}
+          onApply={(url) => {
+            updateField("logoUrl", url);
+            setLogoDraft(null);
+          }}
+        />
+      )}
       <StickyActions $visible={hasUnsavedChanges || isBusy}>
         <StickyHint>{labels.stickyHint}</StickyHint>
         {actionButtons}
