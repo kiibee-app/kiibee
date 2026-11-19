@@ -1,6 +1,8 @@
 "use client";
 
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
+import LeftIcon from "@/assets/icons/LeftIcon";
+import { useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import { useRouter } from "next/navigation";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
@@ -32,6 +34,7 @@ import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   PageHeader,
+  HeaderBackButton,
   MediaGrid,
   MediaTypePill,
   ViewerEmptyStateBox,
@@ -41,6 +44,12 @@ import {
 
 export default function RecentlyViewed() {
   const { t } = useTranslation();
+  const router = useRouter();
+  const paths = useLocalizedPaths();
+  const handleBack = () => {
+    if (window.history.length > 1) router.back();
+    else router.replace(paths.HOME);
+  };
   const user = useStoredLoginUser();
   const userId = user?.id;
   const history = useQuery({
@@ -54,6 +63,17 @@ export default function RecentlyViewed() {
   return (
     <DashboardPageWrapper>
       <PageHeader>
+        <HeaderBackButton
+          type="button"
+          aria-label={t("common.goBack")}
+          title={t("common.goBack")}
+          onClick={handleBack}
+        >
+          <LeftIcon
+            aria-hidden="true"
+            style={{ transform: "rotate(180deg)" }}
+          />
+        </HeaderBackButton>
         <MonoText $use="H4_SemiBold">{t("sidebar.recentlyViewed")}</MonoText>
       </PageHeader>
       {userId && history.isPending && !items.length ? (

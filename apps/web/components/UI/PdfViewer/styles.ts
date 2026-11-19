@@ -90,6 +90,7 @@ export const ScrollArea = styled.div`
   flex: 1;
   min-height: 0;
   overflow: auto;
+  scrollbar-gutter: stable;
   overscroll-behavior: contain;
   padding: 24px 16px;
   scrollbar-width: thin;
@@ -102,7 +103,12 @@ export const Page = styled.div`
   background: #fff;
   color: #222;
   box-shadow: 0 2px 12px #26352a1f;
+  &:last-child {
+    margin-bottom: 0;
+  }
   canvas {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
