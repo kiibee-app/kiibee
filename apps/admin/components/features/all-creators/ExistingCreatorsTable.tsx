@@ -114,10 +114,7 @@ export function ExistingCreatorsTable({
                       fallbackLabel={existingCreatorLabels.noChannel}
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (
-                          creator.status === CREATOR_STATUS.PENDING_SETUP ||
-                          creator.isHidden
-                        ) {
+                        if (creator.status === CREATOR_STATUS.PENDING_SETUP) {
                           e.preventDefault();
                         }
                       }}

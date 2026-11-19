@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 
-export const PaymentCard = styled.section`
+export const PaymentCard = styled.section<{ $compact?: boolean }>`
   box-sizing: border-box;
   width: 100%;
   max-width: 680px;
@@ -22,6 +22,113 @@ export const PaymentCard = styled.section`
     padding: 20px;
     border-radius: 16px;
   }
+  ${({ $compact }) =>
+    $compact &&
+    css`
+      padding: 0;
+      max-width: none;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
+
+      color: #202723;
+
+      & p {
+        font-size: 12px;
+        line-height: 1.6;
+        color: #68716b;
+      }
+
+      ${PaymentHeader} {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding: 0 18px;
+        h2 {
+          color: #202723;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: -0.4px;
+          margin-bottom: 6px;
+        }
+      }
+
+      ${PaymentIcon} {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #f0f5f1;
+        border: 1px solid #e3ebe5;
+        color: #45624e;
+      }
+
+      ${PaymentOptions} {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+        gap: 10px;
+      }
+
+      ${PaymentOption} {
+        padding: 16px 12px 12px;
+        gap: 10px;
+        border-radius: 12px;
+        background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+        border: 1px solid #e5e9e6;
+        h3 {
+          color: #39463d;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        & > p {
+          font-size: 11px;
+          min-height: 36px;
+        }
+      }
+
+      ${PaymentPrice} {
+        color: #202723;
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: 600;
+        letter-spacing: -0.6px;
+        span {
+          font-size: 11px;
+        }
+      }
+
+      ${PaymentButton} {
+        min-height: 36px;
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+        transition:
+          transform 150ms ease,
+          box-shadow 150ms ease;
+        &:hover:not(:disabled) {
+          transform: translateY(-1px);
+          box-shadow: 0 3px 8px rgba(20, 35, 25, 0.1);
+        }
+        &:focus-visible {
+          outline: 2px solid #45624e;
+          outline-offset: 3px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          transition: none;
+          &:hover:not(:disabled) {
+            transform: none;
+          }
+        }
+      }
+
+      ${({ theme }) => theme.media.mobileLg} {
+        padding: 0;
+        border-radius: 0;
+      }
+    `}
 `;
 export const PaymentHeader = styled.div`
   display: flex;

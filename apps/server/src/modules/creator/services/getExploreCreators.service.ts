@@ -46,7 +46,6 @@ const activeCreatorConditions = (): SQL[] => [
   eq(users.isDeleted, false),
   eq(users.isActive, true),
   eq(users.status, STATUS.ACTIVE),
-  publiclyVisibleCreatorWhere,
 ];
 
 const creatorDisplayNameSql = publicCreatorName;
@@ -54,7 +53,10 @@ const creatorDisplayNameSql = publicCreatorName;
 const buildCreatorsQuery = (idOrSlug?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (!idOrSlug) {
-    conditions.push(creatorHasPublishedContentWhere);
+    conditions.push(
+      publiclyVisibleCreatorWhere,
+      creatorHasPublishedContentWhere,
+    );
   }
   if (idOrSlug) {
     const cleanSlug = idOrSlug.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();

@@ -31,6 +31,7 @@ import {
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
+  accessBoxText?: string | null;
   paymentOptions?: {
     buyPrice?: string | number | null;
     rentPrice?: string | number | null;
@@ -82,6 +83,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
         `/content/${route}/${encodeURIComponent(canonicalCreatorId!)}`,
       );
       return result.data.data as {
+        accessBoxText?: string | null;
         required: boolean;
         hasAccess: boolean;
         collectionId?: string;
@@ -191,6 +193,9 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   };
 
   return {
+    accessBoxText: isPublicView
+      ? paymentState?.accessBoxText
+      : privateSettings?.data?.accessBoxText,
     gateType: finalGateType,
     paymentOptions: paymentState,
     hasProfilePaymentAccess: Boolean(

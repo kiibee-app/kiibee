@@ -7,10 +7,7 @@ import {
   collections,
   collectionItems,
 } from 'src/database/schema';
-import {
-  publiclyVisibleCreatorWhere,
-  creatorContentIsDiscoverable,
-} from 'src/utils/publicCreatorVisibility';
+import { creatorContentIsDiscoverable } from 'src/utils/publicCreatorVisibility';
 
 export async function assertFreeMediaAccess(key: string) {
   const [media] = await db
@@ -25,7 +22,6 @@ export async function assertFreeMediaAccess(key: string) {
         eq(mediaFiles.visibility, 'public'),
         eq(mediaFiles.isDeleted, false),
         eq(users.isDeleted, false),
-        publiclyVisibleCreatorWhere,
         creatorContentIsDiscoverable,
         sql`coalesce(${mediaFiles.buyPrice}, 0) = 0`,
         sql`coalesce(${mediaFiles.rentPrice}, 0) = 0`,

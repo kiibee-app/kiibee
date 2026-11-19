@@ -263,7 +263,7 @@ export const LogoImage = styled.img<{ $fit?: "cover" | "contain" }>`
   ${({ $fit }) =>
     $fit === "contain" &&
     `
-      padding: 12% 10%;
+      padding: 0;
       box-sizing: border-box;
     `}
   border-radius: 50%;

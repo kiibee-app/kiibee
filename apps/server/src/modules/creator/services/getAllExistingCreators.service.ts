@@ -198,7 +198,11 @@ export const getAdminCreatorsService = async ({
         isActive: users.isActive,
         isHidden: users.isHidden,
         sequence: users.sequence,
-        avatarUrl: users.avatarUrl,
+        avatarUrl: sql<string | null>`COALESCE(
+          NULLIF(TRIM(MAX(${contentAppearance.logoUrl})), ''),
+          NULLIF(TRIM(MAX(${creatorChannels.logoUrl})), ''),
+          NULLIF(TRIM(${users.avatarUrl}), '')
+        )`,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt,
         companyName: creatorInfo.companyName,

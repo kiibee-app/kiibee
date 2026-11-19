@@ -52,6 +52,7 @@ export function useContentAccessGate(
   collectionId?: string | null,
 ): {
   gateType: AccessGateType | null;
+  accessBoxText?: string | null;
   isLoading: boolean;
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
@@ -66,6 +67,7 @@ export function useContentAccessGate(
 
   const {
     gateType: creatorGateType,
+    accessBoxText,
     isLoading: creatorLoading,
     hasProfilePaymentAccess,
   } = useCreatorAccessGate(content?.creatorId);
@@ -239,6 +241,7 @@ export function useContentAccessGate(
   };
 
   return {
+    accessBoxText: creatorGateType ? accessBoxText : undefined,
     gateType: finalGateType,
     isLoading: creatorLoading || collectionLoading || isApprovingAccess,
     handleSuccess,

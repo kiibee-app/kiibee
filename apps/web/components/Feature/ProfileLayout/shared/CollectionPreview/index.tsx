@@ -84,7 +84,7 @@ function CollectionPreviewItem({
           <CollectionSectionTag>
             <MonoText $use="H4_Medium">{collection.name}</MonoText>
           </CollectionSectionTag>
-          <SectionLink href={href}>
+          <SectionLink data-channel-access-trigger href={href}>
             <LeftIcon />
           </SectionLink>
         </SectionLabel>

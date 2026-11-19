@@ -67,7 +67,7 @@ export default function ProfileShell({
             : undefined
         }
       >
-        <ProfileNavbar variant={variant} />
+        <ProfileNavbar variant={variant} showBack={!hideHero} />
         {!hideHero && <ProfileHero variant={variant} />}
         {children}
         <ProfileFooter />

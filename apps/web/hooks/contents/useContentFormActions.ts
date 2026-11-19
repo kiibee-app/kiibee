@@ -103,6 +103,7 @@ type Params = {
   };
   contentSettingAccessType?: string;
   profilePaymentSettings?: {
+    accessBoxText?: string | null;
     buyPrice?: string | number | null;
     rentPrice?: string | number | null;
     rentDuration?: string | null;
@@ -244,7 +245,16 @@ export function useContentFormActions({
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType ?? ""] ||
       ADMISSION_REQUIREMENT_VALUES.free;
-    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
+    applySettingsSnapshot(
+      buildSettingsSnapshot(uiAccessType, {
+        description: profilePaymentSettings?.accessBoxText ?? "",
+        rentalAmount: String(profilePaymentSettings?.rentPrice ?? ""),
+        purchaseAmount: String(profilePaymentSettings?.buyPrice ?? ""),
+        accessDuration:
+          (profilePaymentSettings?.rentDuration as AccessDurationValue) ||
+          PAYMENT_DEFAULT_ACCESS_DURATION,
+      }),
+    );
   }
 
   const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
@@ -279,6 +289,7 @@ export function useContentFormActions({
 
     applySettingsSnapshot(
       buildSettingsSnapshot(uiAccessType, {
+        description: profilePaymentSettings?.accessBoxText ?? "",
         rentalAmount: storedRental,
         purchaseAmount: storedPurchase,
         accessDuration: storedDuration,
@@ -892,7 +903,10 @@ export function useContentFormActions({
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
-      const payload: SaveContentSettingPayload = { accessType: apiAccessType };
+      const payload: SaveContentSettingPayload = {
+        accessType: apiAccessType,
+        accessBoxText: collectionDescription.trim() || null,
+      };
       if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment) {
         if (
           !collectionRentalAmount.trim() &&

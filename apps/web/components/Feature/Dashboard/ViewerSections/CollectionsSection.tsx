@@ -191,6 +191,7 @@ export default function CollectionsSection({
 
           return (
             <CollectionCard
+              data-channel-access-trigger
               key={item.id}
               onClick={handleCardClick(item)}
               style={{ cursor: onCollectionClick ? "pointer" : undefined }}

@@ -18,9 +18,30 @@ import {
   UpdatePaymentMethodDto,
 } from './dto/paymentMethod.dto';
 
+import { SyncRecentlyViewedDto } from './dto/recentlyViewed.dto';
+import {
+  getRecentlyViewed,
+  syncRecentlyViewed,
+} from './services/recentlyViewed.service';
+
 @Controller('viewer')
 export class ViewerController {
   constructor(private readonly viewerService: ViewerService) {}
+
+  @UseGuards(JwtAuthGuard)
+  @Get('recently-viewed')
+  async getRecentlyViewed(@Req() req: any) {
+    return getRecentlyViewed(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('recently-viewed')
+  async syncRecentlyViewed(
+    @Req() req: any,
+    @Body() dto: SyncRecentlyViewedDto,
+  ) {
+    return syncRecentlyViewed(req.user.userId, dto.items);
+  }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('admin/all-viewers')
