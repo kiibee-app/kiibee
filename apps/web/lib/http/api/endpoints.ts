@@ -140,6 +140,7 @@ export const API = {
     update: "/notification-settings",
   },
   viewer: {
+    recentlyViewed: "/viewer/recently-viewed",
     purchasedData: "/viewer/purchased-data",
     rentedData: "/viewer/rented-data",
     previouslyRentedData: "/viewer/previously-rented-data",

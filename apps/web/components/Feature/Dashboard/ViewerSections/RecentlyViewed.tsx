@@ -25,7 +25,9 @@ import {
 import { resolveContentThumbnailCandidates } from "@/utils/media";
 import type { RecentlyViewedItem } from "@/utils/recentlyViewed";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { readRecentlyViewed } from "@/utils/recentlyViewed";
+import { readRecentlyViewed, syncRecentlyViewed } from "@/utils/recentlyViewed";
+import { useQuery } from "@tanstack/react-query";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import { MonoText } from "@/components/UI/Monotext";
 import {
@@ -41,14 +43,22 @@ export default function RecentlyViewed() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const userId = user?.id;
-  const items = userId ? readRecentlyViewed(userId) : [];
+  const history = useQuery({
+    queryKey: [API.viewer.recentlyViewed, userId],
+    enabled: Boolean(userId),
+    queryFn: () => syncRecentlyViewed(userId!),
+    staleTime: 0,
+  });
+  const items = history.data ?? (userId ? readRecentlyViewed(userId) : []);
 
   return (
     <DashboardPageWrapper>
       <PageHeader>
         <MonoText $use="H4_SemiBold">{t("sidebar.recentlyViewed")}</MonoText>
       </PageHeader>
-      {userId && items.length ? (
+      {userId && history.isPending && !items.length ? (
+        <GenericSpinner />
+      ) : userId && items.length ? (
         <MediaGrid>
           {items.map((item) => (
             <RecentlyViewedCard key={item.id} item={item} userId={userId} />
