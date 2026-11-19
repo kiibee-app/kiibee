@@ -57,6 +57,7 @@ export type { AccessGateType, AccessGateVariant };
 const EMPTY_STRING = "";
 
 type AccessGateProps = {
+  align?: "left" | "center";
   type: AccessGateType;
   accessBoxText?: string | null;
   paymentOptions?: {
@@ -401,6 +402,7 @@ function PaymentGate({
 }
 
 export default function AccessGate({
+  align = "left",
   accessBoxText,
   type,
   paymentOptions,
@@ -410,7 +412,7 @@ export default function AccessGate({
 }: AccessGateProps) {
   return (
     <GateWrapper $variant={variant}>
-      <GateInner $variant={variant}>
+      <GateInner $variant={variant} $align={align}>
         {type === "payment" ? (
           <PaymentGate
             accessBoxText={accessBoxText}

@@ -25,13 +25,16 @@ export const GateWrapper = styled.div<{ $variant?: string }>`
         `}
 `;
 
-export const GateInner = styled.div<{ $variant?: string }>`
-  ${({ $variant }) =>
+export const GateInner = styled.div<{
+  $variant?: string;
+  $align?: "left" | "center";
+}>`
+  ${({ $variant, $align }) =>
     $variant === "content"
       ? css`
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
+          align-items: ${$align === "center" ? "center" : "flex-start"};
           width: 100%;
           margin: 0;
           padding: 0;
