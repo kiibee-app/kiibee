@@ -30,7 +30,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     customPrice6: null,
     customPrice12: null,
     customMaxFiles: null,
-    customKiibeeCutDkk: null,
+    customKiibeeCutPct: null,
     customTransactionFeePct: null,
     paymentPeriod: null,
   };
@@ -52,6 +52,16 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       expect(db.transaction).not.toHaveBeenCalled();
     },
   );
+
+  it('rejects stale DKK-cut payloads before changing a plan', async () => {
+    await expect(
+      adminUpdateCreatorPlan(creatorId, {
+        ...input,
+        customKiibeeCutDkk: 20,
+      } as typeof input),
+    ).rejects.toMatchObject({ status: 400 });
+    expect(db.transaction).not.toHaveBeenCalled();
+  });
 
   it('rejects multiple custom prices for one creator', async () => {
     await expect(
@@ -346,7 +356,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
             ? {
                 customPrice: 99,
                 customMaxFiles: 25,
-                customKiibeeCutDkk: 10,
+                customKiibeeCutPct: 10,
                 customTransactionFeePct: 2,
               }
             : {}),
@@ -354,7 +364,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           ...(operational
             ? {
                 customMaxFiles: 25,
-                customKiibeeCutDkk: 20,
+                customKiibeeCutPct: 20,
                 customTransactionFeePct: 2,
               }
             : {}),
@@ -377,7 +387,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
         expect(setPlan).toHaveBeenCalledWith(
           expect.objectContaining({
             customMaxFiles: 25,
-            customKiibeeCutDkk: 20,
+            customKiibeeCutPct: 20,
             customTransactionFeePct: 2,
           }),
         );
@@ -414,7 +424,7 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
             creatorId,
             planId: targetPlanId,
             planName: targetName,
-            amount: String(targetPrice),
+            amount: String(targetPrice * 1.25),
             currency: 'DKK',
           }),
         );
@@ -438,10 +448,12 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
               creator: { fullName: 'Test Creator' },
               planName: targetName,
               customPlanDetails: expect.arrayContaining([
-                { label: 'Pris', value: '99 DKK' },
+                { label: 'Subtotal (ekskl. moms)', value: '99.00 DKK' },
+                { label: '25% moms', value: '24.75 DKK' },
+                { label: 'Total (inkl. moms)', value: '123.75 DKK' },
                 { label: 'Betalingsperiode', value: '1 måned' },
                 { label: 'Maks. antal filer', value: '25' },
-                { label: 'Kiibees andel', value: '10 DKK pr. udbetaling' },
+                { label: 'Kiibees andel', value: '10% pr. udbetaling' },
                 { label: 'Transaktionsgebyr', value: '2% pr. udbetaling' },
               ]),
             }),

@@ -110,6 +110,7 @@ export const createAdminPayoutRequestService = async (
       amount: requestedAmount,
       basePlanPrice: planPrice,
       transactionFeePct: creatorPlan.customTransactionFeePct,
+      platformFeePct: creatorPlan.customKiibeeCutPct,
       fixedPlatformFee: creatorPlan.customKiibeeCutDkk,
       currency: wallet.currency,
     });

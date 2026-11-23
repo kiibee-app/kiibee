@@ -85,23 +85,108 @@ describe('custom price on a free base plan', () => {
       expect(mockEpayPost).toHaveBeenNthCalledWith(
         1,
         '/public/api/v1/subscriptions/billing/plans',
-        expect.objectContaining({ amount: 10000 }),
+        expect.objectContaining({ amount: 12500 }),
         expect.anything(),
       );
       expect(mockEpayPost).toHaveBeenNthCalledWith(
         2,
         '/public/api/v1/cit',
         expect.objectContaining({
-          amount: 10000,
-          subscription: expect.objectContaining({ amount: 10000 }),
+          amount: 12500,
+          subscription: expect.objectContaining({ amount: 12500 }),
         }),
         expect.anything(),
       );
       expect(saveCheckout).toHaveBeenCalledWith(
-        expect.objectContaining({ amountMinor: 10000, customRevision: 1 }),
+        expect.objectContaining({
+          amountMinor: 12500,
+          subtotalMinor: 10000,
+          vatMinor: 2500,
+          vatRate: 25,
+          customRevision: 1,
+        }),
       );
       expect(db.update).not.toHaveBeenCalled();
       expect(sendTemplateEmail).not.toHaveBeenCalled();
+    },
+  );
+});
+
+describe('VAT on standard and term subscription checkout amounts', () => {
+  beforeEach(() => jest.clearAllMocks());
+  it.each([
+    { base: 129, overrides: {}, months: 1, net: 129, gross: 16125 },
+    { base: 399, overrides: {}, months: 1, net: 399, gross: 49875 },
+    {
+      base: 129,
+      overrides: { customPrice6: 474, paymentPeriod: '6' },
+      months: 6,
+      net: 474,
+      gross: 59250,
+    },
+  ])(
+    'charges gross amount $gross for net $net',
+    async ({ base, overrides, months, net, gross }) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          rows([{ id: 'plan', name: 'Pro', price: base, currency: 'DKK' }]),
+        )
+        .mockReturnValueOnce(
+          rows([{ customSubscriptionStatus: 'paid', ...overrides }]),
+        );
+      jest.mocked(db.query.users.findFirst).mockResolvedValue({
+        id: 'creator',
+        fullName: 'Test Creator',
+        email: 'creator@example.com',
+      } as never);
+      const saveCheckout = jest.fn().mockResolvedValue(undefined);
+      jest.mocked(db.insert).mockReturnValue({ values: saveCheckout } as never);
+      mockEpayPost
+        .mockResolvedValueOnce({
+          data: { billingPlan: { id: 'vat-billing-plan' } },
+        })
+        .mockResolvedValueOnce({
+          data: { paymentWindowUrl: 'https://example.com/payment' },
+        });
+      await expect(
+        createSubscriptionService({
+          userId: 'creator',
+          planId: 'plan',
+          billingMonths: months,
+        }),
+      ).resolves.toMatchObject({ success: true });
+      expect(mockEpayPost).toHaveBeenNthCalledWith(
+        1,
+        '/public/api/v1/subscriptions/billing/plans',
+        expect.objectContaining({
+          amount: gross,
+          interval: { period: 'MONTH', frequency: months },
+        }),
+        expect.anything(),
+      );
+      expect(mockEpayPost).toHaveBeenNthCalledWith(
+        2,
+        '/public/api/v1/cit',
+        expect.objectContaining({
+          amount: gross,
+          subscription: expect.objectContaining({
+            amount: gross,
+            billingAgreement: expect.objectContaining({
+              billingPlanId: 'vat-billing-plan',
+            }),
+          }),
+        }),
+        expect.anything(),
+      );
+      expect(saveCheckout).toHaveBeenCalledWith(
+        expect.objectContaining({
+          amountMinor: gross,
+          subtotalMinor: net * 100,
+          vatMinor: gross - net * 100,
+          vatRate: 25,
+        }),
+      );
     },
   );
 });

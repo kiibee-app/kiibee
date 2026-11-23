@@ -33,7 +33,7 @@ export async function resolveSubscriptionCheckout(
         customPrice6: creatorPlans.customPrice6,
         customPrice12: creatorPlans.customPrice12,
         customMaxFiles: creatorPlans.customMaxFiles,
-        customKiibeeCutDkk: creatorPlans.customKiibeeCutDkk,
+        customKiibeeCutPct: creatorPlans.customKiibeeCutPct,
         customTransactionFeePct: creatorPlans.customTransactionFeePct,
         revision: creatorPlans.customSubscriptionRevision,
       })

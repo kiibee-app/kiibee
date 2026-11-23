@@ -118,7 +118,12 @@ export default function InvoiceModal({
                   DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders.amount,
                 )}
               </InvoiceLabel>
-              <MonoText $use="Body_SemiBold">{invoice.amount}</MonoText>
+              <MonoText $use="Body_SemiBold">
+                {t("billingVat.inclusiveAmount", {
+                  amount: invoice.amount,
+                  currency: invoice.currency || "DKK",
+                })}
+              </MonoText>
             </InvoiceInfo>
           </InvoiceGrid>
 

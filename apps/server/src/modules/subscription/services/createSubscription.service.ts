@@ -207,6 +207,9 @@ export const createSubscriptionService = async ({
           ? assigned.customSubscriptionRevision
           : null,
       amountMinor: terms.minorAmount,
+      subtotalMinor: terms.subtotalMinor,
+      vatMinor: terms.vatMinor,
+      vatRate: terms.vatRate,
       currency,
     });
 

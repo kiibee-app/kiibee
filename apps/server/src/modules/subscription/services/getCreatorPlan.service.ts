@@ -119,7 +119,7 @@ export const getCreatorPlan = async (creatorId: string) => {
           'customPrice6',
           'customPrice12',
           'customMaxFiles',
-          'customKiibeeCutDkk',
+          'customKiibeeCutPct',
           'customTransactionFeePct',
           'paymentPeriod',
         ].some(
@@ -150,7 +150,7 @@ export const getCreatorPlan = async (creatorId: string) => {
           creatorCurrentPlan[0].paymentPeriod,
         ].some((value) => value != null),
       paymentPeriod: effective.paymentPeriod,
-      customKiibeeCutDkk: creatorCurrentPlan[0].customKiibeeCutDkk,
+      customKiibeeCutPct: creatorCurrentPlan[0].customKiibeeCutPct,
       customTransactionFeePct: creatorCurrentPlan[0].customTransactionFeePct,
       maxFiles: creatorCurrentPlan[0].customMaxFiles ?? plan.maxFiles,
     };

@@ -39,6 +39,7 @@ export async function getBillingInvoiceService(
         ),
         paymentDate: sql<Date>`coalesce(${payments.paidAt}, ${payments.createdAt})`,
         amount: payments.amount,
+        currency: orders.currency,
         cardNumber: payments.cardNo,
         paymentMethod: payments.paymentMethod,
       })
@@ -74,6 +75,7 @@ export async function getBillingInvoiceService(
             : ACCRESS_TYPES.PURCHASED,
         paymentDate: invoice.paymentDate,
         amount: invoice.amount,
+        currency: invoice.currency,
         paymentMethod: invoice.paymentMethod,
         cardNumber: invoice.cardNumber,
         contentDetails: {
