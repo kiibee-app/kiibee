@@ -76,8 +76,15 @@ export class CheckMediaAccessGuard implements CanActivate {
       return true;
     }
 
+    const [creator] = await db
+      .select({ isDeleted: users.isDeleted })
+      .from(users)
+      .where(eq(users.id, mediaFile.creatorId))
+      .limit(1);
+    if (!creator || creator.isDeleted)
+      throw new NotFoundException('Creator not found');
     const profile = await getProfilePaymentState(mediaFile.creatorId, userId);
-    if (profile.required) {
+    if (profile.required || profile.codeRequired) {
       if (!profile.hasAccess)
         throw new ForbiddenException(
           'A channel pass is required to access this content',

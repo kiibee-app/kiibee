@@ -64,7 +64,7 @@ describe('creator dashboard payment prompt', () => {
     { custom: {}, expected: false },
     { custom: { customPrice: 149, customMaxFiles: 25 }, expected: true },
     {
-      custom: { customKiibeeCutDkk: 0, customTransactionFeePct: 0 },
+      custom: { customKiibeeCutPct: 0, customTransactionFeePct: 0 },
       expected: true,
     },
   ])(
@@ -215,7 +215,7 @@ describe('creator dashboard payment prompt', () => {
               planId: 'startup',
               manuallyPaid: false,
               customMaxFiles: 25,
-              customKiibeeCutDkk: 0,
+              customKiibeeCutPct: 0,
               customTransactionFeePct: 2,
               paymentPeriod: '1',
               customSubscriptionStatus: state,
@@ -235,7 +235,7 @@ describe('creator dashboard payment prompt', () => {
             subscriptionUpgradeRequired: false,
             price: 99,
             maxFiles: 25,
-            customKiibeeCutDkk: 0,
+            customKiibeeCutPct: 0,
             customTransactionFeePct: 2,
           },
         ],
@@ -254,8 +254,9 @@ describe('paid custom offers based on Try Kiibee', () => {
     ({ months, amount, ...overrides }) => {
       expect(subscriptionTerms(0, overrides)).toMatchObject({
         months,
-        amount,
-        minorAmount: amount * 100,
+        subtotal: amount,
+        amount: amount * 1.25,
+        minorAmount: amount * 125,
         billingOptions: [{ months, amount }],
       });
     },

@@ -205,6 +205,7 @@ export const getAccessDurationOptions = (
   values.map((value) => ({
     value,
     label: {
+      "": t("accessGate.noTimeLimit"),
       "1_month": t("contents.payment.duration.oneMonth"),
       "3_months": t("contents.payment.duration.threeMonths"),
       "6_months": t("contents.payment.duration.sixMonths"),

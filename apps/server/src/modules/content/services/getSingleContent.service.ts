@@ -483,9 +483,10 @@ export const getSingleContentService = async (
 
     const isCreatorDeleted = Boolean(creator?.isDeleted);
 
-    const profile = userId
-      ? await getProfilePaymentState(content.creatorId, userId)
-      : null;
+    const profile = await getProfilePaymentState(content.creatorId, userId);
+    if (isCreatorDeleted && content.creatorId !== userId)
+      return fail('Creator not found', HttpStatus.NOT_FOUND);
+
     const grants = [directAccess, collectionAccess, profile?.accessInfo].filter(
       (grant) =>
         grant && (!grant.rentExpiresAt || new Date(grant.rentExpiresAt) > now),
@@ -589,6 +590,10 @@ export const getSingleContentService = async (
     return success(
       {
         ...content,
+        contentUrl:
+          profile.codeRequired && !profile.hasAccess
+            ? null
+            : content.contentUrl,
         creatorSlug: resolvedCreatorSlug,
         categories,
         tags: contentTags.map((tag) => tag.name),

@@ -198,7 +198,9 @@ export const getPublicCollectionService = async (
       ...item,
       // The catalog is public; playback still requires channel access.
       contentUrl:
-        profile.required && !profile.hasAccess ? null : item.contentUrl,
+        (profile.required || profile.codeRequired) && !profile.hasAccess
+          ? null
+          : item.contentUrl,
       collectionId: collection.id,
       collectionSlug: collection.slug,
       collectionName: collection.name,

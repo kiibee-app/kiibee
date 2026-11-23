@@ -257,15 +257,25 @@ export class ContentController {
     );
   }
 
+  @UseGuards(OptionalJwtAuthGuard)
   @Post(':id/verify-code')
   async verifyContentAccessCode(
     @Param('id') contentId: string,
     @Body() body: { code?: string },
+    @Req() req: any,
   ) {
     const code = body.code?.trim();
     if (!code)
-      return this.contentService.verifyContentAccessCode(contentId, '');
-    return this.contentService.verifyContentAccessCode(contentId, code);
+      return this.contentService.verifyContentAccessCode(
+        contentId,
+        '',
+        req.user?.userId,
+      );
+    return this.contentService.verifyContentAccessCode(
+      contentId,
+      code,
+      req.user?.userId,
+    );
   }
 
   @UseGuards(OptionalJwtAuthGuard)

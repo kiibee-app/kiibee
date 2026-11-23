@@ -1,3 +1,4 @@
+import { subscriptionVatEmail } from 'src/utils/subscriptionVat';
 import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
 import {
   validateSubscriptionOverrides,
@@ -35,7 +36,7 @@ interface AdminUpdateCreatorPlanInput {
   customPrice6: number | null;
   customPrice12: number | null;
   customMaxFiles: number | null;
-  customKiibeeCutDkk: number | null;
+  customKiibeeCutPct: number | null;
   customTransactionFeePct: number | null;
   paymentPeriod: string | null;
 }
@@ -45,6 +46,11 @@ export const adminUpdateCreatorPlan = async (
   input: AdminUpdateCreatorPlanInput,
 ) => {
   try {
+    if ('customKiibeeCutDkk' in input)
+      return fail(
+        'Kiibee cut is now a percentage. Refresh the subscription form before saving.',
+        HttpStatus.BAD_REQUEST,
+      );
     if (!creatorId) {
       return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
     }
@@ -138,7 +144,7 @@ export const adminUpdateCreatorPlan = async (
           customPrice6: creatorPlans.customPrice6,
           customPrice12: creatorPlans.customPrice12,
           customMaxFiles: creatorPlans.customMaxFiles,
-          customKiibeeCutDkk: creatorPlans.customKiibeeCutDkk,
+          customKiibeeCutPct: creatorPlans.customKiibeeCutPct,
           customTransactionFeePct: creatorPlans.customTransactionFeePct,
           paymentPeriod: creatorPlans.paymentPeriod,
           customSubscriptionStatus: creatorPlans.customSubscriptionStatus,
@@ -226,7 +232,7 @@ export const adminUpdateCreatorPlan = async (
               'customPrice6',
               'customPrice12',
               'customMaxFiles',
-              'customKiibeeCutDkk',
+              'customKiibeeCutPct',
               'customTransactionFeePct',
               'paymentPeriod',
               'customSubscriptionStatus',
@@ -248,7 +254,8 @@ export const adminUpdateCreatorPlan = async (
         customPrice6: input.customPrice6,
         customPrice12: input.customPrice12,
         customMaxFiles: input.customMaxFiles,
-        customKiibeeCutDkk: input.customKiibeeCutDkk,
+        customKiibeeCutPct: input.customKiibeeCutPct,
+        customKiibeeCutDkk: null,
         customTransactionFeePct: input.customTransactionFeePct,
         paymentPeriod: hasPrice ? input.paymentPeriod : null,
         ...(!hasPrice &&
@@ -279,6 +286,7 @@ export const adminUpdateCreatorPlan = async (
         if (saved) {
           const restored = { ...saved };
           delete restored.customMaxFiles;
+          delete restored.customKiibeeCutPct;
           delete restored.customKiibeeCutDkk;
           delete restored.customTransactionFeePct;
           if (typeof restored.manualPaidExpiresAt === 'string')
@@ -440,7 +448,18 @@ export const adminUpdateCreatorPlan = async (
       const customPlanDetails =
         notification.customOfferSaved || notification.customOfferActivated
           ? [
-              { label: 'Pris', value: `${terms.amount} ${currency}` },
+              {
+                label: 'Subtotal (ekskl. moms)',
+                value: `${terms.subtotal.toFixed(2)} ${currency}`,
+              },
+              {
+                label: '25% moms',
+                value: `${terms.vatAmount.toFixed(2)} ${currency}`,
+              },
+              {
+                label: 'Total (inkl. moms)',
+                value: `${terms.total.toFixed(2)} ${currency}`,
+              },
               {
                 label: 'Betalingsperiode',
                 value: `${terms.months} ${terms.months === 1 ? 'måned' : 'måneder'}`,
@@ -456,8 +475,8 @@ export const adminUpdateCreatorPlan = async (
               {
                 label: 'Kiibees andel',
                 value:
-                  input.customKiibeeCutDkk != null
-                    ? `${input.customKiibeeCutDkk} DKK pr. udbetaling`
+                  input.customKiibeeCutPct != null
+                    ? `${input.customKiibeeCutPct}% pr. udbetaling`
                     : `${Number(feePct.toFixed(2))}% pr. udbetaling (standard)`,
               },
               {
@@ -520,7 +539,12 @@ export const adminUpdateCreatorPlan = async (
             cc: 'info@kiibee.com',
             subject: mailSubject.SUBSCRIPTION_MANUAL_PAYMENT,
             templateName: templateName.SUBSCRIPTION_MANUAL_PAYMENT,
-            variables: { creator, planName },
+            variables: {
+              creator,
+              planName,
+              currency,
+              ...subscriptionVatEmail(terms),
+            },
           }),
         );
       }

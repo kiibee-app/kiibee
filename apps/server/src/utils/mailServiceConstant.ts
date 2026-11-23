@@ -1,4 +1,5 @@
 export const templateName = {
+  CREATOR_ACCOUNT_CLOSED: 'creatorAccountClosed',
   APPROVED_CREATOR: 'approvedCreator',
   APPROVED_CREATOR_DELETION: 'approvedCreatorDeletion',
   REJECTED_CREATOR: 'rejectedCreator',
@@ -22,6 +23,7 @@ export const templateName = {
 };
 
 export const mailSubject = {
+  CREATOR_ACCOUNT_CLOSED: 'Din KiiBee-konto er lukket',
   APPROVED_CREATOR: 'Din Kiibee-udgiveransøgning er godkendt 🎉',
   APPROVED_CREATOR_DELETION: 'Din Kiibee-konto er slettet',
   REJECTED_CREATOR: 'Opdatering om din Kiibee-udgiveransøgning',

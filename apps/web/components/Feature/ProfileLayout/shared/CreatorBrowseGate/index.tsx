@@ -52,6 +52,7 @@ export default function CreatorBrowseGate({
             accessBoxText={gate.accessBoxText}
             paymentOptions={gate.paymentOptions}
             variant="content"
+            align="center"
             creatorName={displayName ?? undefined}
             onSuccess={async (value, name) => {
               const success = await gate.handleSuccess(value, name);

@@ -175,6 +175,7 @@ export default function PricingPlansSection({
             <PlanCard
               title={t(`${baseKey}.title`)}
               price={apiPlan ? `${apiPlan.price} kr/md` : t(`${baseKey}.price`)}
+              netAmount={apiPlan?.price}
               descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
               features={
                 t(`${baseKey}.features`, { returnObjects: true }) as string[]

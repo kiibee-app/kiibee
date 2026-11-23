@@ -7,6 +7,7 @@ type BillingData = {
   type: string;
   paymentDate: string;
   amount: number | string;
+  currency?: string;
   paymentMethod?: string;
   cardNumber?: string | null;
   contentDetails: {

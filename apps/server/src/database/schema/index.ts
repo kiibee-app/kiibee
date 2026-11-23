@@ -58,6 +58,7 @@ export * from './coupons/couponApplicableItems.schema';
 
 // Access Control
 export * from './access/userContentAccess.schema';
+export * from './access/channelCodeGrants.schema';
 
 // Analytics
 export * from './analytics/analyticsEvents.schema';

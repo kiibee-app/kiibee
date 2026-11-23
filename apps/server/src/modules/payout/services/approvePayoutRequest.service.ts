@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -25,7 +25,8 @@ export const approvePayoutRequestService = async (requestId: string) => {
         .select()
         .from(creatorPayoutRequests)
         .where(eq(creatorPayoutRequests.id, requestId))
-        .limit(1);
+        .limit(1)
+        .for('update');
 
       if (!request) {
         throw new HttpException(
@@ -45,7 +46,8 @@ export const approvePayoutRequestService = async (requestId: string) => {
         .select()
         .from(creatorPayouts)
         .where(eq(creatorPayouts.id, request.payoutId))
-        .limit(1);
+        .limit(1)
+        .for('update');
 
       if (!payout) {
         throw new HttpException('Payout not found', HttpStatus.NOT_FOUND);
@@ -62,7 +64,8 @@ export const approvePayoutRequestService = async (requestId: string) => {
         .select()
         .from(creatorWallets)
         .where(eq(creatorWallets.creatorId, request.creatorId))
-        .limit(1);
+        .limit(1)
+        .for('update');
 
       if (!wallet) {
         throw new HttpException(
@@ -74,7 +77,12 @@ export const approvePayoutRequestService = async (requestId: string) => {
       const walletBalance = Number(wallet.amount);
       const rawAmount = Number(payout.rawAmount);
 
-      if (Number.isNaN(walletBalance) || Number.isNaN(rawAmount)) {
+      if (
+        !Number.isFinite(walletBalance) ||
+        !Number.isFinite(rawAmount) ||
+        rawAmount <= 0 ||
+        payout.creatorId !== request.creatorId
+      ) {
         throw new HttpException(
           'Invalid wallet or payout amount',
           HttpStatus.INTERNAL_SERVER_ERROR,
@@ -116,13 +124,24 @@ export const approvePayoutRequestService = async (requestId: string) => {
         );
       }
 
-      await tx
+      const [debitedWallet] = await tx
         .update(creatorWallets)
         .set({
           amount: sql`${creatorWallets.amount} - ${payout.rawAmount}`,
           updatedAt: now,
         })
-        .where(eq(creatorWallets.creatorId, payout.creatorId));
+        .where(
+          and(
+            eq(creatorWallets.id, wallet.id),
+            sql`${creatorWallets.amount} >= ${payout.rawAmount}`,
+          ),
+        )
+        .returning({ id: creatorWallets.id });
+      if (!debitedWallet)
+        throw new HttpException(
+          'Insufficient wallet balance',
+          HttpStatus.BAD_REQUEST,
+        );
 
       return updatedRequest;
     });

@@ -31,6 +31,11 @@
                     </td>
                   </tr>
                 </table>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="8" style="width:100%;margin:16px 0;">
+                  {{#each vatDetails}}
+                  <tr><td>{{label}}</td><td align="right">{{amount}} {{currency}}</td></tr>
+                  {{/each}}
+                </table>
                 <p style="margin: 28px 0 0; color: #425953;">Venlig hilsen<br /><strong>Kiibee-teamet</strong></p>
               </td>
             </tr>

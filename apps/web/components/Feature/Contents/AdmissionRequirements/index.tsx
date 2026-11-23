@@ -194,6 +194,17 @@ function AdmissionRequirements({
   const handleSelect = useCallback(
     (value: AdmissionRequirementValue) => {
       updateValue(value, onChangeAccessType, setLocalSelected);
+      if (
+        isChannelSettings &&
+        value === ADMISSION_REQUIREMENT_VALUES.password &&
+        selected !== value
+      ) {
+        updateValue(
+          "" as AccessDurationValue,
+          onChangeAccessDuration,
+          setLocalAccessDuration,
+        );
+      }
 
       const isPasswordRequirement =
         value === ADMISSION_REQUIREMENT_VALUES.password;
@@ -203,7 +214,14 @@ function AdmissionRequirements({
       onValidationChange?.(hasError, "");
       setOpen(false);
     },
-    [onChangeAccessType, onValidationChange, effectivePasswords],
+    [
+      onChangeAccessType,
+      onValidationChange,
+      effectivePasswords,
+      isChannelSettings,
+      selected,
+      onChangeAccessDuration,
+    ],
   );
 
   const handleDescriptionChange = (val: string) => {
@@ -346,6 +364,26 @@ function AdmissionRequirements({
           )}
         </PasswordFieldShell>
       ) : null}
+
+      {isChannelSettings &&
+        selected === ADMISSION_REQUIREMENT_VALUES.password && (
+          <SettingsPaymentSection
+            t={t}
+            formState={{
+              rentalAmount: "",
+              purchaseAmount: "",
+              maxAccessLimit: accessDuration,
+              showRentalSection: false,
+              showPurchaseSection: false,
+            }}
+            updateField={updateField}
+            accessDurationOptions={[
+              { value: "", label: t("accessGate.noTimeLimit") },
+              ...accessDurationOptions,
+            ]}
+            isCodePeriod
+          />
+        )}
 
       {showDescription || isChannelSettings ? (
         <PasswordFieldShell>

@@ -30,7 +30,8 @@
     "activated": "Activated",
     "setupPayment": "Set up payment",
     "setupNote": "Your existing subscription changes only after you complete this payment setup.",
-    "checkoutError": "Unable to open payment setup. Please try again."
+    "checkoutError": "Unable to open payment setup. Please try again.",
+    "platformFee": "Kiibee cut: {{percent}}%"
   },
   "epubViewer": {
     "index": "Reading the book index…",
@@ -61,6 +62,7 @@
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
+    "myContent": "My Content",
     "accountProfile": "Profile",
     "logout": "Log out",
     "profileMenu": "Account menu",
@@ -2465,6 +2467,11 @@
     "addPaymentMethod": "Please add your payment information before accessing this section."
   },
   "accessGate": {
+    "noTimeLimit": "No time limit",
+    "codeDurationTitle": "Access period (optional)",
+    "codeDurationDescription": "Choose a period, or leave access without a time limit.",
+    "codePeriod_one": "Valid for {{days}} days",
+    "codePeriod_other": "Valid for {{days}} days",
     "textLabel": "Access box text",
     "textPlaceholder": "Tell visitors what they get access to, and add any terms.",
     "pageCodeTitle": "This page requires a code to access",
@@ -2595,5 +2602,9 @@
     "viewContent": "View content",
     "emptyTitle": "No recently viewed content yet",
     "emptyDescription": "Content you view in this browser appears here, including content viewed before signing in."
+  },
+  "billingVat": {
+    "inclusiveAmount": "{{currency}} {{amount}} incl. VAT",
+    "addedNotice": "25% VAT will be added"
   }
 }

@@ -41,7 +41,7 @@ type ApiPlan = {
   hasCustomBilling?: boolean;
   customSubscriptionStatus?: string;
   billingOptions?: { months: number; amount: number }[];
-  customKiibeeCutDkk?: number | null;
+  customKiibeeCutPct?: number | null;
   customTransactionFeePct?: number | null;
 };
 
@@ -138,6 +138,9 @@ export default function CurrentPlanCard() {
         {priceLabel && !isLoading ? (
           <PlanCardMeta>
             <PlanMetaChip>{priceLabel}</PlanMetaChip>
+            {!isFreePlan && (
+              <PlanMetaChip>{t("billingVat.addedNotice")}</PlanMetaChip>
+            )}
             {typeof currentPlan?.maxFiles === "number" ? (
               <PlanMetaChip>
                 {t(CREATOR_PROFILE.currentPlan.maxFiles, {

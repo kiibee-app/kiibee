@@ -70,6 +70,7 @@ import {
   DRAWER_SIDE,
   DRAWER_VARIANT,
   TOUCH,
+  ROLE_VIEWER,
 } from "@/utils/Constants";
 import { isDashboardPath } from "@/utils/path";
 import { toCanonicalPathname } from "@/utils/localizedRoutes";
@@ -77,6 +78,7 @@ import { useLocalizedHref, useLocalizedPaths } from "@/hooks/useLocalizedPaths";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
+import { authStorage } from "@/lib/auth/authStorage";
 import { useLogout } from "@/hooks/auth/useLogout";
 import {
   getLoginUserFirstLetter,
@@ -114,6 +116,8 @@ const MEGA_CLOSE_DELAY_MS = 120;
 const MEGA_UNMOUNT_DELAY_MS = 240;
 const NAV_FORMAT_COLUMN_KEY = "format";
 const NAV_TWO_COLUMN_CLASS_NAME = "twoCol";
+const getDashboardLabelKey = () =>
+  authStorage.getRole() === ROLE_VIEWER ? "nav.myContent" : NAV.dashboard;
 
 const LOGO_BASE_STYLE = {
   width: "auto",
@@ -209,7 +213,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
             <NavAccountMenuIcon aria-hidden>
               <HomeIcon width={18} height={18} />
             </NavAccountMenuIcon>
-            {t(NAV.dashboard)}
+            {t(getDashboardLabelKey())}
           </NavAccountMenuItem>
           <NavAccountMenuDivider />
           <NavAccountMenuButton
@@ -878,7 +882,7 @@ export default function NavBar({
                   <NavAccountMenuIcon aria-hidden>
                     <HomeIcon width={18} height={18} />
                   </NavAccountMenuIcon>
-                  {t(NAV.dashboard)}
+                  {t(getDashboardLabelKey())}
                 </NavAccountMenuItem>
                 <NavAccountMenuDivider />
                 <NavAccountMenuButton
