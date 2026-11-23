@@ -1,6 +1,7 @@
 "use client";
 
 import styled from "styled-components";
+import InfoIcon from "@/assets/icons/InfoIcon";
 
 import { useState, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
@@ -76,12 +77,14 @@ type AccessGateProps = {
 function CodeGate({
   accessBoxText,
   rentDuration,
+  requireLogin,
   variant,
   onSuccess,
 }: {
   accessBoxText?: string | null;
   variant: AccessGateVariant;
   rentDuration?: string | null;
+  requireLogin?: boolean;
   onSuccess?: (
     value: string,
     name?: string,
@@ -102,7 +105,7 @@ function CodeGate({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!code.trim() || !onSuccess) return;
-    if (rentDuration && !user?.id) {
+    if ((rentDuration || requireLogin) && !user?.id) {
       setShowLogin(true);
       return;
     }
@@ -130,12 +133,15 @@ function CodeGate({
         <AccessBoxMessage>{accessBoxText}</AccessBoxMessage>
       )}
       {rentDuration && (
-        <AccessBoxMessage>
-          {t("accessGate.codePeriod", {
-            count: Number(rentDuration.split("_")[0]),
-            days: Number(rentDuration.split("_")[0]) * 30,
-          })}
-        </AccessBoxMessage>
+        <CodePeriodBox>
+          <InfoIcon size={14} color="currentColor" />
+          <span>
+            {t("accessGate.codePeriod", {
+              count: Number(rentDuration.split("_")[0]),
+              days: Number(rentDuration.split("_")[0]) * 30,
+            })}
+          </span>
+        </CodePeriodBox>
       )}
       <LoginRequiredModal
         visible={showLogin}
@@ -443,6 +449,7 @@ export default function AccessGate({
         ) : type === TYPE_CODE ? (
           <CodeGate
             rentDuration={paymentOptions?.rentDuration}
+            requireLogin={Boolean(paymentOptions)}
             accessBoxText={accessBoxText}
             variant={variant}
             onSuccess={onSuccess}
@@ -487,6 +494,25 @@ export function CreatorAccessGrantedModal({
     />
   );
 }
+
+const CodePeriodBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 8px 10px;
+  border: 1px solid rgba(38, 59, 43, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #526653;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.4;
+
+  svg {
+    flex-shrink: 0;
+  }
+`;
 
 const AccessBoxMessage = styled.p`
   margin: 0 0 16px !important;

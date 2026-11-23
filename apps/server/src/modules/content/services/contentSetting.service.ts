@@ -131,12 +131,12 @@ export const createOrUpdateContentSetting = async (
             accessType: 'paid',
             visibility: 'draft',
             isPublished: false,
-            rentDuration: contentSettingDto.rentDuration ?? '1_month',
+            rentDuration: contentSettingDto.rentDuration ?? null,
           })
           .onConflictDoUpdate({
             target: collections.id,
             set: {
-              ...(contentSettingDto.rentDuration
+              ...(contentSettingDto.rentDuration !== undefined
                 ? { rentDuration: contentSettingDto.rentDuration }
                 : {}),
               updatedAt: new Date(),

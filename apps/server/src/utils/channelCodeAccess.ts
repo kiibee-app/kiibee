@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { and, eq, gt, inArray } from 'drizzle-orm';
+import { and, eq, gt, inArray, isNull, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   channelCodeGrants,
@@ -48,7 +48,10 @@ export async function getChannelCodeState(creatorId: string, userId?: string) {
               eq(channelCodeGrants.creatorId, creatorId),
               eq(channelCodeGrants.userId, userId),
               inArray(channelCodeGrants.codeHash, hashes),
-              gt(channelCodeGrants.expiresAt, new Date()),
+              or(
+                isNull(channelCodeGrants.expiresAt),
+                gt(channelCodeGrants.expiresAt, new Date()),
+              ),
             ),
           )
           .limit(1)
@@ -62,7 +65,7 @@ export async function getChannelCodeState(creatorId: string, userId?: string) {
     hasAccess: Boolean(
       creator && !creator.isDeleted && (userId === creatorId || grant),
     ),
-    rentDuration: pass?.rentDuration ?? '1_month',
+    rentDuration: pass?.rentDuration ?? null,
     accessBoxText: setting.accessBoxText,
     accessInfo: grant
       ? {
@@ -77,7 +80,7 @@ export async function redeemChannelCode(
   creatorId: string,
   userId: string,
   code: string,
-  duration: string,
+  duration: string | null,
 ) {
   const [setting] = await db
     .select()
@@ -88,9 +91,12 @@ export async function redeemChannelCode(
     if (!(await comparePassword(code, hash))) continue;
     const now = new Date();
     // Match the payment rental convention: one month is 30 days.
-    const expiresAt = new Date(
-      now.getTime() + Number(duration.split('_')[0]) * 30 * 24 * 60 * 60 * 1000,
-    );
+    const expiresAt = duration
+      ? new Date(
+          now.getTime() +
+            Number(duration.split('_')[0]) * 30 * 24 * 60 * 60 * 1000,
+        )
+      : null;
     const [grant] = await db
       .insert(channelCodeGrants)
       .values({
@@ -115,7 +121,8 @@ export async function redeemChannelCode(
         ),
       )
       .limit(1);
-    if (existing && existing.expiresAt > now) return existing;
+    if (existing && (!existing.expiresAt || existing.expiresAt > now))
+      return existing;
   }
   return null;
 }

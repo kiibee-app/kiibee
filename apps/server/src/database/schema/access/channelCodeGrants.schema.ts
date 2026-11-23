@@ -15,7 +15,7 @@ export const channelCodeGrants = pgTable(
     grantedAt: timestamp('granted_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
-    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+    expiresAt: timestamp('expires_at', { withTimezone: true }),
   },
   (table) => ({
     userCode: uniqueIndex('channel_code_grants_user_code_idx').on(

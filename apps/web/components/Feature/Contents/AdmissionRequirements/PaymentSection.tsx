@@ -26,6 +26,7 @@ import {
 } from "../Payment/styles";
 
 interface SettingsPaymentSectionProps {
+  isCodePeriod?: boolean;
   t: (key: string) => string;
   formState: {
     rentalAmount: string;
@@ -92,6 +93,7 @@ const SettingsPaymentSection = ({
   formState,
   updateField,
   accessDurationOptions,
+  isCodePeriod = false,
 }: SettingsPaymentSectionProps) => {
   const amountPlaceholder = t("contents.payment.common.enterAmount");
   const feeNote = t("contents.payment.common.feeNote");
@@ -123,11 +125,19 @@ const SettingsPaymentSection = ({
 
       <Block>
         <SectionTitle>
-          {t("contents.payment.collectionDuration.title")}
+          {t(
+            isCodePeriod
+              ? "accessGate.codeDurationTitle"
+              : "contents.payment.collectionDuration.title",
+          )}
         </SectionTitle>
 
         <SectionText>
-          {t("contents.payment.collectionDuration.description")}
+          {t(
+            isCodePeriod
+              ? "accessGate.codeDurationDescription"
+              : "contents.payment.collectionDuration.description",
+          )}
         </SectionText>
 
         <DropdownWrap>

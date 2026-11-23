@@ -62,6 +62,32 @@ describe('channel code access', () => {
       await redeemChannelCode('creator', 'viewer', 'code', '1_month'),
     ).toEqual(existing);
   });
+  it('issues unlimited access when no period is selected', async () => {
+    rows([{ passwordHash: 'hash' }]);
+    jest.mocked(comparePassword).mockResolvedValue(true);
+    const values = insertResult([{ id: 'unlimited', expiresAt: null }]);
+    await redeemChannelCode('creator', 'viewer', 'code', null);
+    expect(values).toHaveBeenCalledWith(
+      expect.objectContaining({ expiresAt: null }),
+    );
+  });
+  it('keeps an existing unlimited grant valid on repeat redemption', async () => {
+    const existing = { expiresAt: null };
+    rows([{ passwordHash: 'hash' }], [existing]);
+    jest.mocked(comparePassword).mockResolvedValue(true);
+    insertResult([]);
+    expect(await redeemChannelCode('creator', 'viewer', 'code', null)).toEqual(
+      existing,
+    );
+  });
+  it('returns no public period when the creator has not selected one', async () => {
+    rows(
+      [{ accessType: 'set_password', passwordHash: null }],
+      [{ isDeleted: false }],
+      [{ rentDuration: null }],
+    );
+    expect((await getChannelCodeState('creator'))?.rentDuration).toBeNull();
+  });
   it('rejects the wrong code without issuing a grant', async () => {
     rows([{ passwordHash: 'hash' }]);
     jest.mocked(comparePassword).mockResolvedValue(false);
