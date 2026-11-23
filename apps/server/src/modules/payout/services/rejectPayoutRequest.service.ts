@@ -21,7 +21,8 @@ export const rejectPayoutRequestService = async (requestId: string) => {
         .select()
         .from(creatorPayoutRequests)
         .where(eq(creatorPayoutRequests.id, requestId))
-        .limit(1);
+        .limit(1)
+        .for('update');
 
       if (!request) {
         throw new HttpException(

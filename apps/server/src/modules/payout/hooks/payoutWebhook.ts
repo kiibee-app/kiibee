@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -64,7 +64,25 @@ export const handlePayoutWebhookService = async (payload: any) => {
         ? new Date(transaction.createdAt)
         : payout.payoutDate;
 
-      await db.transaction(async (tx) => {
+      const processed = await db.transaction(async (tx) => {
+        // Use the same request -> payout lock order as manual approval.
+        await tx
+          .select({ id: creatorPayoutRequests.id })
+          .from(creatorPayoutRequests)
+          .where(eq(creatorPayoutRequests.payoutId, payoutId))
+          .for('update');
+        const [current] = await tx
+          .select()
+          .from(creatorPayouts)
+          .where(eq(creatorPayouts.id, payoutId))
+          .limit(1)
+          .for('update');
+        if (!current || current.status !== STATUS.PENDING) return false;
+        if (
+          !Number.isFinite(Number(current.rawAmount)) ||
+          Number(current.rawAmount) <= 0
+        )
+          throw new Error('Invalid payout amount');
         await tx
           .update(creatorPayouts)
           .set({
@@ -86,14 +104,23 @@ export const handlePayoutWebhookService = async (payload: any) => {
           })
           .where(eq(creatorPayoutRequests.payoutId, payoutId));
 
-        await tx
+        const [debitedWallet] = await tx
           .update(creatorWallets)
           .set({
-            amount: sql`${creatorWallets.amount} - ${payout.rawAmount}`,
+            amount: sql`${creatorWallets.amount} - ${current.rawAmount}`,
             updatedAt: new Date(),
           })
-          .where(eq(creatorWallets.creatorId, payout.creatorId));
+          .where(
+            and(
+              eq(creatorWallets.creatorId, current.creatorId),
+              sql`${creatorWallets.amount} >= ${current.rawAmount}`,
+            ),
+          )
+          .returning({ id: creatorWallets.id });
+        if (!debitedWallet) throw new Error('Insufficient wallet balance');
+        return true;
       });
+      if (!processed) return success({}, 'Payout already processed');
 
       logger.info(`Payout ${payout.id} completed successfully`);
       const payoutInfo = await payoutInfoService(payoutId);
@@ -129,7 +156,12 @@ export const handlePayoutWebhookService = async (payload: any) => {
           status: STATUS.REJECTED,
           updatedAt: new Date(),
         })
-        .where(eq(creatorPayouts.id, payout.id));
+        .where(
+          and(
+            eq(creatorPayouts.id, payout.id),
+            eq(creatorPayouts.status, STATUS.PENDING),
+          ),
+        );
 
       logger.warn(`Payout ${payout.id} failed`);
 
