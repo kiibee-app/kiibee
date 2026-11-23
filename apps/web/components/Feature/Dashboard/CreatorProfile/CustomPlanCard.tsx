@@ -33,7 +33,7 @@ type Props = {
     customSubscriptionStatus?: string;
     subscriptionUpgradeRequired?: boolean;
     billingOptions?: { months: number; amount: number }[];
-    customKiibeeCutDkk?: number | null;
+    customKiibeeCutPct?: number | null;
     customTransactionFeePct?: number | null;
   };
 };
@@ -94,14 +94,17 @@ export default function CustomPlanCard({ plan }: Props) {
       <CustomPlanDescription>
         {t("pricingPlans.billingMonths", { count: selected?.months ?? 1 })}
       </CustomPlanDescription>
+      <CustomPlanDescription>
+        {t("billingVat.addedNotice")}
+      </CustomPlanDescription>
       <CustomPlanDetails>
         <span>
           {t("creatorProfile.currentPlan.maxFiles", { count: plan.maxFiles })}
         </span>
-        {plan.customKiibeeCutDkk != null && (
+        {plan.customKiibeeCutPct != null && (
           <span>
-            {t("customSubscription.fixedFee", {
-              amount: plan.customKiibeeCutDkk,
+            {t("customSubscription.platformFee", {
+              percent: plan.customKiibeeCutPct,
             })}
           </span>
         )}

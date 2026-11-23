@@ -1,3 +1,4 @@
+import { getChannelCodeState } from './channelCodeAccess';
 import { and, eq, gt, isNull, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
@@ -16,6 +17,8 @@ export async function getProfilePaymentState(
   creatorId: string,
   viewerId?: string,
 ) {
+  const codeState = await getChannelCodeState(creatorId, viewerId);
+  if (codeState) return codeState;
   const [setting] = await db
     .select({
       accessType: contentSettings.accessType,
@@ -28,6 +31,7 @@ export async function getProfilePaymentState(
     setting?.accessType === 'paid' || setting?.accessType === 'payment';
   if (!required)
     return {
+      codeRequired: false,
       required: false,
       hasAccess: true,
       accessBoxText: setting?.accessBoxText ?? null,
@@ -67,6 +71,7 @@ export async function getProfilePaymentState(
     : [];
   return {
     accessBoxText: setting?.accessBoxText ?? null,
+    codeRequired: false,
     required: true,
     hasAccess: viewerId === creatorId || Boolean(grant),
     accessInfo: grant

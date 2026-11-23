@@ -14,7 +14,11 @@ import { runInBackground } from 'src/utils/backgroundTask';
 
 export const deleteSubscriptionService = async (
   userId: string,
-  options: { preserveCreatorPlan?: boolean; notify?: boolean } = {},
+  options: {
+    preserveCreatorPlan?: boolean;
+    notify?: boolean;
+    subscriptionId?: string;
+  } = {},
 ) => {
   try {
     const [user] = await db
@@ -30,7 +34,14 @@ export const deleteSubscriptionService = async (
     const [currentSubscription] = await db
       .select()
       .from(subscriptions)
-      .where(and(eq(subscriptions.creatorId, userId)))
+      .where(
+        and(
+          eq(subscriptions.creatorId, userId),
+          options.subscriptionId
+            ? eq(subscriptions.id, options.subscriptionId)
+            : undefined,
+        ),
+      )
       .limit(1);
 
     if (!currentSubscription) {

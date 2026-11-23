@@ -112,7 +112,7 @@ export class SubscriptionController {
       customPrice6: number | null;
       customPrice12: number | null;
       customMaxFiles: number | null;
-      customKiibeeCutDkk: number | null;
+      customKiibeeCutPct: number | null;
       customTransactionFeePct: number | null;
       paymentPeriod: string | null;
     },

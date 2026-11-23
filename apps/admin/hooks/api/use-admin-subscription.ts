@@ -18,7 +18,8 @@ export interface AdminSubscriptionOverrides {
   customPrice6: number | null;
   customPrice12: number | null;
   customMaxFiles: number | null;
-  customKiibeeCutDkk: number | null;
+  customKiibeeCutPct: number | null;
+  customKiibeeCutDkk?: number | null;
   customTransactionFeePct: number | null;
   paymentPeriod: string | null;
   createdAt: string;
@@ -88,7 +89,7 @@ export interface UpdateAdminSubscriptionPayload {
   customPrice6: number | null;
   customPrice12: number | null;
   customMaxFiles: number | null;
-  customKiibeeCutDkk: number | null;
+  customKiibeeCutPct: number | null;
   customTransactionFeePct: number | null;
   paymentPeriod: string | null;
 }

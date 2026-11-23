@@ -68,6 +68,7 @@ export function useCreatorDeletionHistory() {
       const data = await ensureSuccess<CreatorDeletionRequest[]>(
         apiClient<CreatorDeletionRequest[]>(
           API_ENDPOINTS.CREATOR_DELETION_HISTORY,
+          { cache: "no-store" },
         ),
       );
 

@@ -89,6 +89,7 @@ export class MediaController {
     return { data: await getRentalStreamInfo(req.user.userId, contentId) };
   }
 
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/download')
   download(@Query('key') key: string) {
     return this.mediaService.getDownloadUrl(key);

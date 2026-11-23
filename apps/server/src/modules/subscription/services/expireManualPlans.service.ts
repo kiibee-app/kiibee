@@ -21,6 +21,7 @@ export async function expireManualPlans(creatorId?: string) {
         customPrice6: null,
         customPrice12: null,
         customMaxFiles: null,
+        customKiibeeCutPct: null,
         customKiibeeCutDkk: null,
         customTransactionFeePct: null,
         paymentPeriod: null,

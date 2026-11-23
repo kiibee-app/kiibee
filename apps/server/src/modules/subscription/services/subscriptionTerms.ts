@@ -1,3 +1,4 @@
+import { addSubscriptionVat } from 'src/utils/subscriptionVat';
 import { BadRequestException } from '@nestjs/common';
 
 export const BILLING_MONTHS = [1, 3, 6, 12] as const;
@@ -8,7 +9,7 @@ export type SubscriptionOverrides = {
   customPrice6?: number | null;
   customPrice12?: number | null;
   customMaxFiles?: number | null;
-  customKiibeeCutDkk?: number | null;
+  customKiibeeCutPct?: number | null;
   customTransactionFeePct?: number | null;
   paymentPeriod?: string | null;
 };
@@ -42,7 +43,7 @@ export function validateSubscriptionOverrides(input: SubscriptionOverrides) {
     'customPrice6',
     'customPrice12',
     'customMaxFiles',
-    'customKiibeeCutDkk',
+    'customKiibeeCutPct',
     'customTransactionFeePct',
   ] as const) {
     const value = input[key];
@@ -55,9 +56,12 @@ export function validateSubscriptionOverrides(input: SubscriptionOverrides) {
       throw new BadRequestException(
         'Custom subscription prices must be between 1 and 9999999',
       );
-    if (key === 'customTransactionFeePct' && value > 100)
+    if (
+      ['customTransactionFeePct', 'customKiibeeCutPct'].includes(key) &&
+      value > 100
+    )
       throw new BadRequestException(
-        'Transaction fee must be between 0 and 100 percent',
+        'Fee percentages must be between 0 and 100 percent',
       );
   }
   const priceCount = [
@@ -101,8 +105,9 @@ export function subscriptionTerms(
     6: overrides.customPrice6 ?? monthly * 6,
     12: overrides.customPrice12 ?? monthly * 12,
   };
-  const amount = prices[months];
-  const minorAmount = Math.round(amount * 100);
+  const tax = addSubscriptionVat(prices[months]);
+  const amount = tax.total;
+  const minorAmount = tax.totalMinor;
   if (
     !Number.isSafeInteger(minorAmount) ||
     minorAmount < 0 ||
@@ -111,12 +116,14 @@ export function subscriptionTerms(
   )
     throw new BadRequestException('Subscription amount is out of range');
   return {
+    ...tax,
     months: months as BillingMonths,
     amount,
     minorAmount,
     billingOptions: allowed.map((m) => ({
       months: m,
       amount: prices[m],
+      ...addSubscriptionVat(prices[m]),
     })),
   };
 }

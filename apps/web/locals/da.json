@@ -30,7 +30,8 @@
     "activated": "Aktiveret",
     "setupPayment": "Opsæt betaling",
     "setupNote": "Dit eksisterende abonnement ændres først, når du har gennemført denne betalingsopsætning.",
-    "checkoutError": "Betalingsopsætningen kunne ikke åbnes. Prøv igen."
+    "checkoutError": "Betalingsopsætningen kunne ikke åbnes. Prøv igen.",
+    "platformFee": "Kiibees andel: {{percent}}%"
   },
   "epubViewer": {
     "index": "Læser bogens indeks…",
@@ -61,6 +62,7 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "dashboard": "Kontrolpanel",
+    "myContent": "Mit Indhold",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Profil",
@@ -2465,6 +2467,11 @@
     "recentlyViewed": "Senest sete"
   },
   "accessGate": {
+    "noTimeLimit": "Ingen tidsbegrænsning",
+    "codeDurationTitle": "Adgangsperiode (valgfri)",
+    "codeDurationDescription": "Vælg en periode, eller giv adgang uden tidsbegrænsning.",
+    "codePeriod_one": "Gyldig i {{days}} dage",
+    "codePeriod_other": "Gyldig i {{days}} dage",
     "textLabel": "Tekst til adgangsboks",
     "textPlaceholder": "Fortæl besøgende, hvad de får adgang til, og tilføj evt. vilkår.",
     "pageCodeTitle": "Denne side kræver en kode for at få adgang",
@@ -2595,5 +2602,9 @@
     "viewContent": "Se indhold",
     "emptyTitle": "Intet nyligt set indhold endnu",
     "emptyDescription": "Indhold, du ser i denne browser, vises her, også indhold set før du loggede ind."
+  },
+  "billingVat": {
+    "inclusiveAmount": "{{amount}} {{currency}} inkl. moms",
+    "addedNotice": "Der tillægges 25% moms"
   }
 }

@@ -5,6 +5,7 @@ type PayoutFeeOptions = {
   amount: number;
   basePlanPrice: number;
   transactionFeePct?: number | null;
+  platformFeePct?: number | null;
   fixedPlatformFee?: number | null;
   currency?: string;
   fallbackPlatformPercentage?: number;
@@ -16,6 +17,7 @@ export function calculatePayoutFees({
   amount,
   basePlanPrice,
   transactionFeePct,
+  platformFeePct,
   fixedPlatformFee = null,
   currency = 'DKK',
   fallbackPlatformPercentage = PLATFORM_FEE_PERCENTAGES[0],
@@ -30,6 +32,14 @@ export function calculatePayoutFees({
   )
     throw new BadRequestException('Invalid transaction fee percentage');
   if (
+    platformFeePct != null &&
+    (!Number.isFinite(platformFeePct) ||
+      platformFeePct < 0 ||
+      platformFeePct > 100)
+  )
+    throw new BadRequestException('Invalid platform fee percentage');
+  if (platformFeePct != null) fixedPlatformFee = null;
+  if (
     fixedPlatformFee != null &&
     (!Number.isFinite(fixedPlatformFee) || fixedPlatformFee < 0)
   )
@@ -39,9 +49,12 @@ export function calculatePayoutFees({
       'A fixed DKK platform fee requires a DKK payout',
     );
   const platformFeePercentage =
-    fixedPlatformFee != null
-      ? 0
-      : (PLATFORM_FEE_PERCENTAGES[basePlanPrice] ?? fallbackPlatformPercentage);
+    platformFeePct != null
+      ? platformFeePct / 100
+      : fixedPlatformFee != null
+        ? 0
+        : (PLATFORM_FEE_PERCENTAGES[basePlanPrice] ??
+          fallbackPlatformPercentage);
   const processingFeePercentage =
     transactionFeePct != null ? transactionFeePct / 100 : 0.05;
   const platformFee = roundMoney(

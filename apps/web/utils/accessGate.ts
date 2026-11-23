@@ -27,7 +27,7 @@ export const unlockCreatorAccessGate = (
   const unlockKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   if (!unlockKey) return;
 
-  window.localStorage.setItem(unlockKey, STRING_TRUE);
+  window.localStorage.setItem(`${unlockKey}:email`, STRING_TRUE);
   if (shouldReload) {
     window.location.reload();
   }

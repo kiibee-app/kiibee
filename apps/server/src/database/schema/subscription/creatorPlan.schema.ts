@@ -41,6 +41,7 @@ export const creatorPlans = pgTable('creator_plans', {
   customPrice12: integer('custom_price_12'),
   customMaxFiles: integer('custom_max_files'),
   customKiibeeCutDkk: integer('custom_kiibee_cut_dkk'),
+  customKiibeeCutPct: integer('custom_kiibee_cut_pct'),
   customTransactionFeePct: integer('custom_transaction_fee_pct'),
   paymentPeriod: text('payment_period'),
 

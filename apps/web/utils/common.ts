@@ -155,7 +155,7 @@ export const ACCESS_DURATION_VALUES = [
   "12_months",
 ] as const;
 
-export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number];
+export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number] | "";
 
 export const PAYMENT_DEFAULT_ACCESS_DURATION = "1_month" as const;
 

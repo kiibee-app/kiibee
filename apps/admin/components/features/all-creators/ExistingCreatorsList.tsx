@@ -24,6 +24,7 @@ import type { ExistingCreator } from "../../../types/existing-creator";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
+import { ClosedCreatorHistory } from "./ClosedCreatorHistory";
 import { CreatorSettings } from "./CreatorSettings";
 import {
   AllCreatorsControlsHeader,
@@ -45,11 +46,13 @@ import {
   VisibilityConfirmText,
 } from "./AllCreators.styles";
 
-export function ExistingCreatorsList() {
+export function ExistingCreatorsList({
+  initialTab = DEFAULT_ALL_CREATORS_TAB,
+}: {
+  initialTab?: AllCreatorsTab;
+}) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
-    DEFAULT_ALL_CREATORS_TAB,
-  );
+  const [activeTab, setActiveTab] = useState<AllCreatorsTab>(initialTab);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [creatorToHide, setCreatorToHide] = useState<ExistingCreator | null>(
@@ -251,7 +254,9 @@ export function ExistingCreatorsList() {
         </AllCreatorsTabs>
       </AllCreatorsHeader>
 
-      {activeTab !== ALL_CREATORS_TAB_KEYS.SETTINGS ? (
+      {activeTab === ALL_CREATORS_TAB_KEYS.CLOSED ? (
+        <ClosedCreatorHistory />
+      ) : activeTab !== ALL_CREATORS_TAB_KEYS.SETTINGS ? (
         <>
           <AllCreatorsControlsHeader>
             <HeaderControls>

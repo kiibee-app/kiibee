@@ -82,6 +82,7 @@ export const payoutCalculationService = async (creatorId: string) => {
       amount: amount,
       basePlanPrice: planPrice,
       transactionFeePct: creatorCurrentPlan.customTransactionFeePct,
+      platformFeePct: creatorCurrentPlan.customKiibeeCutPct,
       fixedPlatformFee: creatorCurrentPlan.customKiibeeCutDkk,
       currency: wallet.currency,
     });
