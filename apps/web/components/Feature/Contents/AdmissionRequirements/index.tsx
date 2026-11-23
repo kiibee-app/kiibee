@@ -347,6 +347,22 @@ function AdmissionRequirements({
         </PasswordFieldShell>
       ) : null}
 
+      {isChannelSettings &&
+        selected === ADMISSION_REQUIREMENT_VALUES.password && (
+          <SettingsPaymentSection
+            t={t}
+            formState={{
+              rentalAmount: "",
+              purchaseAmount: "",
+              maxAccessLimit: accessDuration,
+              showRentalSection: false,
+              showPurchaseSection: false,
+            }}
+            updateField={updateField}
+            accessDurationOptions={accessDurationOptions}
+          />
+        )}
+
       {showDescription || isChannelSettings ? (
         <PasswordFieldShell>
           <MonoText $use="Body_SemiBold">

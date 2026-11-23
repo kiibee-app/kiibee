@@ -1,5 +1,12 @@
 "use client";
 
+import toast from "react-hot-toast";
+import { useCloseCreator } from "../../../hooks/api/use-close-creator";
+import { CloseCreatorModal } from "./CloseCreatorModal";
+import {
+  CreatorProfileHero,
+  CloseAccountButton,
+} from "./CreatorDetails.styles";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Pencil } from "lucide-react";
@@ -34,7 +41,6 @@ import {
   ProfileAvatarFallback,
   ProfileAvatarImage,
   ProfileEmail,
-  ProfileHero,
   ProfileInfo,
   ProfileMeta,
   ProfileName,
@@ -56,6 +62,21 @@ function formatValue(value: string | null | undefined) {
 export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
   const router = useRouter();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
+  const closeCreator = useCloseCreator();
+  const handleCloseAccount = async () => {
+    try {
+      await closeCreator.mutateAsync(creatorId);
+      toast.success("Creator account closed. Notification email queued.");
+      router.replace("/all-creators?tab=closed");
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Could not close account. Please try again.",
+      );
+    }
+  };
   const creatorQuery = useCreator(creatorId);
   const contentsQuery = useCreatorContents(creatorId);
 
@@ -115,7 +136,7 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
         Back to creators
       </BackLink>
 
-      <ProfileHero>
+      <CreatorProfileHero>
         <ProfileAvatar>
           {creator.avatarUrl ? (
             <ProfileAvatarImage src={creator.avatarUrl} alt={displayName} />
@@ -134,7 +155,17 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
             </AccountStatusBadge>
           </ProfileMeta>
         </ProfileInfo>
-      </ProfileHero>
+        <CloseAccountButton
+          type="button"
+          disabled={closeCreator.isPending}
+          onClick={() => {
+            closeCreator.reset();
+            setIsCloseModalOpen(true);
+          }}
+        >
+          Close account
+        </CloseAccountButton>
+      </CreatorProfileHero>
 
       <StatsRow>
         <StatCard>
@@ -274,6 +305,15 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
           )}
         </DetailsSectionBody>
       </DetailsSection>
+
+      <CloseCreatorModal
+        open={isCloseModalOpen}
+        email={creator.email}
+        isSubmitting={closeCreator.isPending}
+        error={closeCreator.error?.message}
+        onClose={() => setIsCloseModalOpen(false)}
+        onConfirm={handleCloseAccount}
+      />
 
       <EditCreatorProfileModal
         creator={creator}

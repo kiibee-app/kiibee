@@ -1,5 +1,7 @@
 import {
   Body,
+  Post,
+  Req,
   Controller,
   Get,
   Param,
@@ -7,6 +9,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
+import { approveCreatorDeletionRequestService } from '../auth/services/approveCreatorDeletionRequest.service';
 import { CreatorService } from './creator.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
@@ -58,6 +61,17 @@ export class CreatorController {
             : undefined,
       page: page ? Number(page) : undefined,
       limit: limit ? Number(limit) : undefined,
+    });
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('admin/:id/close')
+  async closeCreatorAccount(
+    @Param('id') id: string,
+    @Req() req: { user: { userId: string } },
+  ) {
+    return approveCreatorDeletionRequestService('', req.user.userId, {
+      creatorId: id,
     });
   }
 

@@ -2467,6 +2467,8 @@
     "addPaymentMethod": "Please add your payment information before accessing this section."
   },
   "accessGate": {
+    "codePeriod_one": "Access lasts {{count}} month (30 days) from first use. After expiry, a new code is required.",
+    "codePeriod_other": "Access lasts {{count}} months ({{days}} days) from first use. After expiry, a new code is required.",
     "textLabel": "Access box text",
     "textPlaceholder": "Tell visitors what they get access to, and add any terms.",
     "pageCodeTitle": "This page requires a code to access",

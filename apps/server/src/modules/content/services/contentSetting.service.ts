@@ -119,6 +119,30 @@ export const createOrUpdateContentSetting = async (
     )
       return fail('Choose a profile rental period', HttpStatus.BAD_REQUEST);
     return await db.transaction(async (tx) => {
+      if (accessType === 'set_password') {
+        const id = profilePassId(userId);
+        await tx
+          .insert(collections)
+          .values({
+            id,
+            name: 'Channel access',
+            slug: id,
+            creatorId: userId,
+            accessType: 'paid',
+            visibility: 'draft',
+            isPublished: false,
+            rentDuration: contentSettingDto.rentDuration ?? '1_month',
+          })
+          .onConflictDoUpdate({
+            target: collections.id,
+            set: {
+              ...(contentSettingDto.rentDuration
+                ? { rentDuration: contentSettingDto.rentDuration }
+                : {}),
+              updatedAt: new Date(),
+            },
+          });
+      }
       if (paid) {
         const id = profilePassId(userId);
         const pass = {

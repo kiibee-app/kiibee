@@ -75,17 +75,21 @@ type AccessGateProps = {
 
 function CodeGate({
   accessBoxText,
+  rentDuration,
   variant,
   onSuccess,
 }: {
   accessBoxText?: string | null;
   variant: AccessGateVariant;
+  rentDuration?: string | null;
   onSuccess?: (
     value: string,
     name?: string,
   ) => boolean | void | Promise<boolean | void>;
 }) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const [showLogin, setShowLogin] = useState(false);
   const [code, setCode] = useState(EMPTY_STRING);
   const [showWrongCodeModal, setShowWrongCodeModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -98,6 +102,10 @@ function CodeGate({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!code.trim() || !onSuccess) return;
+    if (rentDuration && !user?.id) {
+      setShowLogin(true);
+      return;
+    }
 
     setIsSubmitting(true);
     const result = await Promise.resolve(onSuccess(code.trim())).catch(
@@ -121,6 +129,18 @@ function CodeGate({
       {accessBoxText?.trim() && (
         <AccessBoxMessage>{accessBoxText}</AccessBoxMessage>
       )}
+      {rentDuration && (
+        <AccessBoxMessage>
+          {t("accessGate.codePeriod", {
+            count: Number(rentDuration.split("_")[0]),
+            days: Number(rentDuration.split("_")[0]) * 30,
+          })}
+        </AccessBoxMessage>
+      )}
+      <LoginRequiredModal
+        visible={showLogin}
+        onClose={() => setShowLogin(false)}
+      />
       <GateForm onSubmit={handleSubmit}>
         <GateFieldGroup>
           <GateLabel htmlFor={HTML_ID_CODE}>
@@ -422,6 +442,7 @@ export default function AccessGate({
           />
         ) : type === TYPE_CODE ? (
           <CodeGate
+            rentDuration={paymentOptions?.rentDuration}
             accessBoxText={accessBoxText}
             variant={variant}
             onSuccess={onSuccess}

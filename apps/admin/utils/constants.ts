@@ -9,6 +9,7 @@ export const API_ENDPOINTS = {
   CREATOR_DELETION_HISTORY: "/auth/creator-deletion-history",
   APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
   REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
+  CLOSE_CREATOR: (creatorId: string) => `/creators/admin/${creatorId}/close`,
   ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_VISIBILITY: (creatorId: string) =>
     `/creators/admin/${creatorId}/visibility`,

@@ -932,6 +932,9 @@ export function useContentFormActions({
       ) {
         payload.password = passwordsForSave;
       }
+      if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+        payload.rentDuration = collectionAccessDuration;
+      }
       if (removedPasswordIndexes.length > 0) {
         payload.removePasswordIndexes = removedPasswordIndexes;
       }

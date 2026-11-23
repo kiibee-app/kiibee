@@ -1,3 +1,8 @@
+import {
+  getChannelCodeState,
+  redeemChannelCode,
+} from 'src/utils/channelCodeAccess';
+import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { and, eq, isNotNull } from 'drizzle-orm';
 import { HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
@@ -89,7 +94,25 @@ const resolveStoredCode = async (targetId: string): Promise<string | null> => {
 export const verifyContentAccessCode = async (
   targetId: string,
   code: string,
+  userId?: string,
 ) => {
+  const channel = await getChannelCodeState(targetId, userId);
+  if (channel) {
+    await requirePubliclyVisibleCreator(targetId);
+    if (!userId) return fail('Login required', HttpStatus.UNAUTHORIZED);
+    const grant = await redeemChannelCode(
+      targetId,
+      userId,
+      code,
+      channel.rentDuration,
+    );
+    return grant
+      ? success({ valid: true, expiresAt: grant.expiresAt }, 'Code verified')
+      : fail(
+          'Code is invalid or your access has expired',
+          HttpStatus.UNAUTHORIZED,
+        );
+  }
   const storedCode = await resolveStoredCode(targetId);
   const isValid = await matchesStoredCode(code, storedCode);
 
