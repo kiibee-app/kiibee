@@ -252,7 +252,9 @@ export function useContentFormActions({
         purchaseAmount: String(profilePaymentSettings?.buyPrice ?? ""),
         accessDuration:
           (profilePaymentSettings?.rentDuration as AccessDurationValue) ||
-          PAYMENT_DEFAULT_ACCESS_DURATION,
+          (uiAccessType === ADMISSION_REQUIREMENT_VALUES.password
+            ? ""
+            : PAYMENT_DEFAULT_ACCESS_DURATION),
       }),
     );
   }
@@ -285,7 +287,9 @@ export function useContentFormActions({
       serverDuration &&
       ["1_month", "3_months", "6_months", "12_months"].includes(serverDuration)
         ? (serverDuration as AccessDurationValue)
-        : PAYMENT_DEFAULT_ACCESS_DURATION;
+        : uiAccessType === ADMISSION_REQUIREMENT_VALUES.password
+          ? ""
+          : PAYMENT_DEFAULT_ACCESS_DURATION;
 
     applySettingsSnapshot(
       buildSettingsSnapshot(uiAccessType, {
@@ -932,6 +936,9 @@ export function useContentFormActions({
       ) {
         payload.password = passwordsForSave;
       }
+      if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+        payload.rentDuration = collectionAccessDuration || null;
+      }
       if (removedPasswordIndexes.length > 0) {
         payload.removePasswordIndexes = removedPasswordIndexes;
       }
@@ -957,9 +964,11 @@ export function useContentFormActions({
               collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password,
             rentalAmount: hasRental ? collectionRentalAmount : "",
             purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
-            accessDuration: hasRental
-              ? collectionAccessDuration
-              : PAYMENT_DEFAULT_ACCESS_DURATION,
+            accessDuration:
+              hasRental ||
+              collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password
+                ? collectionAccessDuration
+                : PAYMENT_DEFAULT_ACCESS_DURATION,
           }),
         );
       } catch {}
@@ -970,9 +979,11 @@ export function useContentFormActions({
         description: collectionDescription.trim(),
         rentalAmount: hasRental ? collectionRentalAmount : "",
         purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
-        accessDuration: hasRental
-          ? collectionAccessDuration
-          : PAYMENT_DEFAULT_ACCESS_DURATION,
+        accessDuration:
+          hasRental ||
+          collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password
+            ? collectionAccessDuration
+            : PAYMENT_DEFAULT_ACCESS_DURATION,
       });
 
       await queryClient.invalidateQueries({

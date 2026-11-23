@@ -146,8 +146,12 @@ export class ContentService {
     return getAdminContentEngagementService(contentId);
   }
 
-  async verifyContentAccessCode(contentId: string, code: string) {
-    return verifyContentAccessCode(contentId, code);
+  async verifyContentAccessCode(
+    contentId: string,
+    code: string,
+    userId?: string,
+  ) {
+    return verifyContentAccessCode(contentId, code, userId);
   }
 
   async makeContentFreeService(contentId: string) {

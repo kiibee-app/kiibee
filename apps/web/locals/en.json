@@ -2467,6 +2467,11 @@
     "addPaymentMethod": "Please add your payment information before accessing this section."
   },
   "accessGate": {
+    "noTimeLimit": "No time limit",
+    "codeDurationTitle": "Access period (optional)",
+    "codeDurationDescription": "Choose a period, or leave access without a time limit.",
+    "codePeriod_one": "Valid for {{days}} days",
+    "codePeriod_other": "Valid for {{days}} days",
     "textLabel": "Access box text",
     "textPlaceholder": "Tell visitors what they get access to, and add any terms.",
     "pageCodeTitle": "This page requires a code to access",

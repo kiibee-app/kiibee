@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
 import { useRef } from "react";
 import { useState } from "react";
@@ -52,6 +52,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     string | null
   >(null);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
 
@@ -85,6 +86,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       return result.data.data as {
         accessBoxText?: string | null;
         required: boolean;
+        codeRequired?: boolean;
         hasAccess: boolean;
         collectionId?: string;
         buyPrice?: string | number | null;
@@ -93,15 +95,17 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       };
     },
     staleTime: 0,
+    refetchInterval: 30_000,
   });
 
   const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   const isStoredUnlock =
     isBrowser && storageKey
-      ? window.localStorage.getItem(storageKey) === STRING_TRUE
+      ? window.localStorage.getItem(`${storageKey}:email`) === STRING_TRUE
       : false;
-  const isUnlocked =
-    unlockedCreatorInSession === targetCreatorId || isStoredUnlock;
+  const isUnlocked = paymentState?.codeRequired
+    ? paymentState.hasAccess
+    : unlockedCreatorInSession === targetCreatorId || isStoredUnlock;
   const showAccessGranted = accessGrantedCreatorId === targetCreatorId;
 
   const isOwner =
@@ -172,6 +176,11 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       return true;
     }
 
+    if (finalGateType === TYPE_CODE && !currentUserId) {
+      setIsLoginModalVisible(true);
+      return false;
+    }
+
     const request =
       finalGateType === TYPE_CODE
         ? axiosClient.post(API.content.verifyCode(targetCreatorId), {
@@ -186,7 +195,13 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
           });
 
     await request;
-    unlockCreatorAccessGate(targetCreatorId, currentUserId, false);
+    if (finalGateType === TYPE_CODE) {
+      await queryClient.invalidateQueries({
+        queryKey: ["profile-payment", canonicalCreatorId],
+      });
+    } else {
+      unlockCreatorAccessGate(targetCreatorId, currentUserId, false);
+    }
     setUnlockedCreatorInSession(targetCreatorId);
     setAccessGrantedCreatorId(targetCreatorId);
     return true;

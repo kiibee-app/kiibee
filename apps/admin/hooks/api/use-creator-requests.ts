@@ -86,6 +86,7 @@ export function useExistingCreators({
       const data = await ensureSuccess<ExistingCreatorsResponse>(
         apiClient<ExistingCreatorsResponse>(
           `${API_ENDPOINTS.ALL_CREATORS}?${params.toString()}`,
+          { cache: "no-store" },
         ),
       );
 

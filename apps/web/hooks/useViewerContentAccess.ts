@@ -71,9 +71,10 @@ const hasLocalCreatorUnlock = (
   const keyWithUser = getCreatorUnlockStorageKey(creatorId, userId);
   const keyWithoutUser = getCreatorUnlockStorageKey(creatorId, null);
   return Boolean(
-    (keyWithUser && window.localStorage.getItem(keyWithUser) === STRING_TRUE) ||
+    (keyWithUser &&
+      window.localStorage.getItem(`${keyWithUser}:email`) === STRING_TRUE) ||
     (keyWithoutUser &&
-      window.localStorage.getItem(keyWithoutUser) === STRING_TRUE),
+      window.localStorage.getItem(`${keyWithoutUser}:email`) === STRING_TRUE),
   );
 };
 
@@ -82,14 +83,19 @@ function useProfileEntitlement(creatorId?: string | null, userId?: string) {
     queryKey: ["profile-payment", creatorId, userId],
     enabled: Boolean(creatorId && userId),
     staleTime: 0,
+    refetchInterval: 30_000,
     queryFn: async () =>
       (
         await axiosClient.get(
           `/content/profile-entitlement/${encodeURIComponent(creatorId!)}`,
         )
-      ).data.data as { required: boolean; hasAccess: boolean },
+      ).data.data as {
+        required: boolean;
+        codeRequired?: boolean;
+        hasAccess: boolean;
+      },
   });
-  return Boolean(data?.required && data.hasAccess);
+  return Boolean((data?.required || data?.codeRequired) && data.hasAccess);
 }
 
 export function useViewerContentAccess(
