@@ -53,6 +53,7 @@ type CreateSubscriptionPayload = {
 export interface PlanCardProps {
   title: string;
   price: string;
+  netAmount?: number;
   descriptions: string[];
   features: string[];
   cta: string;
@@ -66,6 +67,7 @@ export interface PlanCardProps {
 export default function PlanCard({
   title,
   price,
+  netAmount,
   descriptions,
   features,
   cta,
@@ -165,6 +167,9 @@ export default function PlanCard({
         <PlanTitle>{title}</PlanTitle>
         <Divider />
         <PlanPrice>{price}</PlanPrice>
+        {netAmount != null && netAmount > 0 && (
+          <Description>{t("billingVat.addedNotice")}</Description>
+        )}
 
         {descriptions.map((desc, i) => (
           <Description key={i}>{desc}</Description>

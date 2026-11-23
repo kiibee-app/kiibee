@@ -99,6 +99,7 @@ export const createPayoutService = async (
       amount,
       basePlanPrice: Number(plan.price),
       transactionFeePct: creatorPlan.customTransactionFeePct,
+      platformFeePct: creatorPlan.customKiibeeCutPct,
       fixedPlatformFee: creatorPlan.customKiibeeCutDkk,
       currency: wallet.currency,
       fallbackPlatformPercentage: 0.02,

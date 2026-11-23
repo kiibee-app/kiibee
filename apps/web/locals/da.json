@@ -30,7 +30,8 @@
     "activated": "Aktiveret",
     "setupPayment": "Opsæt betaling",
     "setupNote": "Dit eksisterende abonnement ændres først, når du har gennemført denne betalingsopsætning.",
-    "checkoutError": "Betalingsopsætningen kunne ikke åbnes. Prøv igen."
+    "checkoutError": "Betalingsopsætningen kunne ikke åbnes. Prøv igen.",
+    "platformFee": "Kiibees andel: {{percent}}%"
   },
   "epubViewer": {
     "index": "Læser bogens indeks…",
@@ -2596,5 +2597,9 @@
     "viewContent": "Se indhold",
     "emptyTitle": "Intet nyligt set indhold endnu",
     "emptyDescription": "Indhold, du ser i denne browser, vises her, også indhold set før du loggede ind."
+  },
+  "billingVat": {
+    "inclusiveAmount": "{{amount}} {{currency}} inkl. moms",
+    "addedNotice": "Der tillægges 25% moms"
   }
 }

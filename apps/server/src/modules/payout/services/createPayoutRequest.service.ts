@@ -94,6 +94,7 @@ export const payoutRequestCalculationService = async (
       amount: amount,
       basePlanPrice: planPrice,
       transactionFeePct: creatorPlan.customTransactionFeePct,
+      platformFeePct: creatorPlan.customKiibeeCutPct,
       fixedPlatformFee: creatorPlan.customKiibeeCutDkk,
       currency: 'DKK',
     });

@@ -1,3 +1,4 @@
+import { subscriptionVatEmail } from 'src/utils/subscriptionVat';
 import { resolveSubscriptionCheckout } from '../services/subscriptionCheckout.service';
 import { addBillingMonths } from '../services/subscriptionTerms';
 import { settleAdminBillingRequest } from '../services/adminBillingRequest.service';
@@ -362,6 +363,7 @@ export async function handleSubscriptionPayment(body: any) {
           subject: mailSubject.SUBSCRIPTION_ACTIVATED,
           templateName: templateName.SUBSCRIPTION_ACTIVATED,
           variables: {
+            ...subscriptionVatEmail(checkout),
             creator: {
               fullName: creator.fullName ?? '',
             },

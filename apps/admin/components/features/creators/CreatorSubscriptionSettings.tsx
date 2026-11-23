@@ -60,7 +60,7 @@ type SubscriptionFormValues = {
   customPrice6: string;
   customPrice12: string;
   customMaxFiles: string;
-  customKiibeeCutDkk: string;
+  customKiibeeCutPct: string;
   customTransactionFeePct: string;
   paymentPeriod: string;
 };
@@ -81,7 +81,7 @@ function toSubscriptionPayload(values: SubscriptionFormValues) {
     customPrice6: parseNumber(values.customPrice6),
     customPrice12: parseNumber(values.customPrice12),
     customMaxFiles: parseNumber(values.customMaxFiles),
-    customKiibeeCutDkk: parseNumber(values.customKiibeeCutDkk),
+    customKiibeeCutPct: parseNumber(values.customKiibeeCutPct),
     customTransactionFeePct: parseNumber(values.customTransactionFeePct),
     paymentPeriod: values.paymentPeriod.trim() || null,
   };
@@ -128,7 +128,7 @@ export function CreatorSubscriptionSettings({
     customPrice6: overrides?.customPrice6?.toString() ?? "",
     customPrice12: overrides?.customPrice12?.toString() ?? "",
     customMaxFiles: overrides?.customMaxFiles?.toString() ?? "",
-    customKiibeeCutDkk: overrides?.customKiibeeCutDkk?.toString() ?? "",
+    customKiibeeCutPct: overrides?.customKiibeeCutPct?.toString() ?? "",
     customTransactionFeePct:
       overrides?.customTransactionFeePct?.toString() ?? "",
     paymentPeriod: displayedPeriod,
@@ -182,7 +182,8 @@ export function CreatorSubscriptionSettings({
         !Number.isSafeInteger(value) ||
         value < 0 ||
         (key.startsWith("customPrice") && value === 0) ||
-        (key === "customTransactionFeePct" && value > 100)),
+        (["customTransactionFeePct", "customKiibeeCutPct"].includes(key) &&
+          value > 100)),
   );
   const aliases: Record<string, number> = {
     monthly: 1,
@@ -200,7 +201,7 @@ export function CreatorSubscriptionSettings({
       .some((part) => ![1, 3, 6, 12].includes(aliases[part] ?? Number(part))),
   );
   const validationError = invalidNumber
-    ? "Use non-negative whole numbers. Prices must be greater than zero and the transaction fee cannot exceed 100%."
+    ? "Use non-negative whole numbers. Prices must be greater than zero and fee percentages cannot exceed 100%."
     : invalidPeriod
       ? "Payment periods must be 1, 3, 6 or 12 months, separated by commas."
       : null;
@@ -467,7 +468,7 @@ export function CreatorSubscriptionSettings({
           <FieldGrid>
             <Field>
               <FieldLabel>Price (Default)</FieldLabel>
-              <FieldHint>Override the 1-month price</FieldHint>
+              <FieldHint>1-month price excluding 25% VAT</FieldHint>
               <TextInput
                 type="number"
                 value={values.customPrice}
@@ -490,7 +491,8 @@ export function CreatorSubscriptionSettings({
             <Field>
               <FieldLabel>Price (3 Months)</FieldLabel>
               <FieldHint>
-                Total price charged every 3 months (not a monthly price)
+                Price excluding 25% VAT, charged every 3 months (not a monthly
+                price)
               </FieldHint>
               <TextInput
                 type="number"
@@ -510,7 +512,8 @@ export function CreatorSubscriptionSettings({
             <Field>
               <FieldLabel>Price (6 Months)</FieldLabel>
               <FieldHint>
-                Total price charged every 6 months (not a monthly price)
+                Price excluding 25% VAT, charged every 6 months (not a monthly
+                price)
               </FieldHint>
               <TextInput
                 type="number"
@@ -530,7 +533,8 @@ export function CreatorSubscriptionSettings({
             <Field>
               <FieldLabel>Price (12 Months)</FieldLabel>
               <FieldHint>
-                Total price charged every 12 months (not a monthly price)
+                Price excluding 25% VAT, charged every 12 months (not a monthly
+                price)
               </FieldHint>
               <TextInput
                 type="number"
@@ -559,16 +563,27 @@ export function CreatorSubscriptionSettings({
               />
             </Field>
             <Field>
-              <FieldLabel>Kiibee Cut (In DKK)</FieldLabel>
+              <FieldLabel>Kiibee Cut (%)</FieldLabel>
+              {overrides?.customKiibeeCutDkk != null &&
+                overrides.customKiibeeCutPct == null && (
+                  <FieldHint>
+                    Existing cut: {overrides.customKiibeeCutDkk} DKK. Enter a
+                    percentage to replace it. Leaving this blank restores the
+                    plan percentage when saved.
+                  </FieldHint>
+                )}
               <FieldHint>
-                Fixed fee per payout in DKK; replaces the standard platform
+                Percentage deducted per payout; replaces the standard platform
                 percentage
               </FieldHint>
               <TextInput
                 type="number"
-                value={values.customKiibeeCutDkk}
+                min={0}
+                max={100}
+                step={1}
+                value={values.customKiibeeCutPct}
                 onChange={(e) =>
-                  setValues({ ...values, customKiibeeCutDkk: e.target.value })
+                  setValues({ ...values, customKiibeeCutPct: e.target.value })
                 }
               />
             </Field>
