@@ -158,7 +158,7 @@ export default function LatestUpload({
       const effectiveCollectionSlug =
         data.collectionSlug || relatedCollectionQuery.data?.collectionSlug;
 
-      if (isOwner || hasAccess) {
+      if (hasAccess && !isOwner) {
         return [
           {
             title: t("createProfileHome.latestUpload.seeContent"),
@@ -304,11 +304,19 @@ export default function LatestUpload({
   const [pendingHref, setPendingHref] = useState<string | null>(null);
 
   const handleSecondaryActionClick = () => {
+    if (isOwner && contentHref) {
+      navigateToContent(contentHref);
+      return;
+    }
     if (secondaryAction?.href) {
       navigateToContent(secondaryAction.href);
     }
   };
   const handlePrimaryActionClick = () => {
+    if (isOwner && contentHref) {
+      navigateToContent(contentHref);
+      return;
+    }
     if (!primaryAction.href) {
       setLoginModalVisible(true);
       return;
