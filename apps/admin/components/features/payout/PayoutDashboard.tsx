@@ -25,6 +25,7 @@ import {
   isPayoutTab,
   PAYOUT_TAB_QUERY,
   payoutTabHref,
+  payoutRequestHref,
   payoutTabs,
   toPayoutBadgeStatus,
 } from "../../../utils/payout";
@@ -71,6 +72,9 @@ function HistoryTable({
   mobileCards?: boolean;
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const tab = searchParams.get(PAYOUT_TAB_QUERY);
+  const returnTab = isPayoutTab(tab) ? tab : "all-history";
 
   return (
     <TableScrollWrapper>
@@ -95,7 +99,9 @@ function HistoryTable({
                 key={`${item.id}-${item.payoutRequestId ?? "history"}`}
                 onClick={() => {
                   if (canOpenRequest) {
-                    router.push(`/payout-requests/${item.payoutRequestId}`);
+                    router.push(
+                      payoutRequestHref(item.payoutRequestId!, returnTab),
+                    );
                   }
                 }}
                 style={{ cursor: canOpenRequest ? "pointer" : "default" }}

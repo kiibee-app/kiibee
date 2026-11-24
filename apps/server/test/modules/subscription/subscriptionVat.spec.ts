@@ -102,12 +102,13 @@ describe('Kiibee percentage cut', () => {
       validateSubscriptionOverrides({ customKiibeeCutPct: platformFeePct }),
     ).toThrow();
   });
-  it('preserves legacy DKK fees until a new percentage is saved', () => {
+  it('charges legacy DKK fees per sale until a percentage is saved', () => {
     expect(
       calculatePayoutFees({
         amount: 1000,
         basePlanPrice: 129,
         fixedPlatformFee: 20,
+        saleCount: 1,
       }),
     ).toMatchObject({ platformFee: 20, platformFeePercentage: 0 });
   });

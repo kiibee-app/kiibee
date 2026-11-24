@@ -121,7 +121,11 @@ export default function PayoutDetailsModal({
           calculation.fixedPlatformFee != null
             ? t(
                 "settings.payout.modal.fixedPlatformFee",
-                "Kiibee cut (fixed per payout)",
+                "Kiibee fee ({{count}} sales × {{fee}} DKK)",
+                {
+                  count: calculation.saleCount,
+                  fee: calculation.fixedPlatformFee,
+                },
               )
             : t("settings.payout.modal.platformFee", {
                 percent: formatFeePercent(calculation.platformFeePercentage),
