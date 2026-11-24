@@ -165,8 +165,14 @@ export class PayoutController {
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('calculate/:creatorId')
-  getAdminPayoutCalculation(@Param('creatorId') creatorId: string) {
-    return this.payoutService.payoutCalculationService(creatorId);
+  getAdminPayoutCalculation(
+    @Param('creatorId') creatorId: string,
+    @Query('amount') amount?: string,
+  ) {
+    return this.payoutService.payoutCalculationService(
+      creatorId,
+      amount === undefined ? undefined : Number(amount),
+    );
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)

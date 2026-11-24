@@ -65,6 +65,7 @@ function updatePayoutRequestCaches(
 export function usePayoutRequests() {
   return useQuery({
     queryKey: [QUERY_KEY.PAYOUT_REQUESTS],
+    refetchInterval: 15000,
     queryFn: async () => {
       const data = await ensureSuccess<PayoutRequest[]>(
         apiClient<PayoutRequest[]>(API_ENDPOINTS.ALL_PAYOUT_REQUESTS),
@@ -77,6 +78,8 @@ export function usePayoutRequests() {
 export function usePayoutRequest(id: string) {
   return useQuery({
     queryKey: [QUERY_KEY.PAYOUT_REQUEST_DETAIL, id],
+    refetchInterval: (query) =>
+      query.state.data?.status === "pending" ? 15000 : false,
     queryFn: async () => {
       const data = await ensureSuccess<PayoutRequest>(
         apiClient<PayoutRequest>(API_ENDPOINTS.PAYOUT_REQUEST_BY_ID(id)),
@@ -153,13 +156,17 @@ export function useCreatorWallets(query?: PayoutHistoryQuery) {
   });
 }
 
-export function useAdminPayoutCalculate(creatorId: string, enabled = true) {
+export function useAdminPayoutCalculate(
+  creatorId: string,
+  enabled = true,
+  amount?: number,
+) {
   return useQuery({
-    queryKey: [QUERY_KEY.ADMIN_PAYOUT_CALCULATE, creatorId],
+    queryKey: [QUERY_KEY.ADMIN_PAYOUT_CALCULATE, creatorId, amount],
     queryFn: async () => {
       const data = await ensureSuccess<AdminPayoutCalculateResponse>(
         apiClient<AdminPayoutCalculateResponse>(
-          API_ENDPOINTS.ADMIN_PAYOUT_CALCULATE(creatorId),
+          `${API_ENDPOINTS.ADMIN_PAYOUT_CALCULATE(creatorId)}${amount != null ? `?amount=${amount}` : ""}`,
         ),
       );
       return data;

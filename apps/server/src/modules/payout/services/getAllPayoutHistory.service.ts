@@ -1,3 +1,4 @@
+import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, gte, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -19,6 +20,12 @@ export const getAllPayoutHistoryService = async (
   query?: SettlementHistoryQueryDto,
 ) => {
   try {
+    const feeErrors = await refreshPendingPayoutFees(
+      undefined,
+      undefined,
+      false,
+    );
+
     const requestedPage = getSafePositiveInteger(Number(query?.page), 1);
     const pageSize = getSafePositiveInteger(
       Number(query?.limit),
@@ -107,7 +114,10 @@ export const getAllPayoutHistoryService = async (
       creatorFullName: row.creatorFullName,
       payoutRequestId: row.payoutRequestId,
       rawAmount: row.rawAmount,
-      amount: row.amount,
+      amount:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.amount,
       currency: row.currency,
       status: row.status,
       creditNo: row.creditNo,
@@ -115,9 +125,18 @@ export const getAllPayoutHistoryService = async (
       bankAccountInfo: row.bankAccountInfo,
       payoutDate: row.payoutDate,
       paymentMethodId: row.paymentMethodId,
-      processingFee: row.processingFee,
-      platformFee: row.platformFee,
-      payableAmount: row.payableAmount,
+      processingFee:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.processingFee,
+      platformFee:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.platformFee,
+      payableAmount:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.payableAmount,
       createdAt: row.createdAt,
     }));
 

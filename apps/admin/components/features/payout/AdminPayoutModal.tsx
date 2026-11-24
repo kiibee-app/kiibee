@@ -47,7 +47,11 @@ function AdminPayoutForm({
   const [paymentMethodId, setPaymentMethodId] = useState(() =>
     getDefaultPaymentMethodId(creator),
   );
-  const calculateQuery = useAdminPayoutCalculate(creator.creatorId, true);
+  const calculateQuery = useAdminPayoutCalculate(
+    creator.creatorId,
+    true,
+    Number(amount),
+  );
   const { mutate: submitPayout, isPending } = useAdminPayoutRequest();
 
   const paymentMethods = creator.paymentMethods;
@@ -60,24 +64,20 @@ function AdminPayoutForm({
     parsedAmount <= balance;
 
   const feePreview = useMemo(() => {
-    if (!calculation || !amountValid) return null;
+    if (!calculation || !amountValid || calculation.amount !== parsedAmount)
+      return null;
 
     const platformFeePercentage = calculation.platformFeePercentage;
     const processingFeePercentage = calculation.processingFeePercentage;
     const fixedPlatformFee = calculation.fixedPlatformFee ?? null;
-    const platformFee =
-      fixedPlatformFee ??
-      Number((parsedAmount * platformFeePercentage).toFixed(2));
-    const processingFee = Number(
-      (parsedAmount * processingFeePercentage).toFixed(2),
-    );
-    const payableAmount = Number(
-      (parsedAmount - platformFee - processingFee).toFixed(2),
-    );
+    const platformFee = calculation.platformFee;
+    const processingFee = calculation.processingFee;
+    const payableAmount = calculation.payableAmount;
 
     return {
       amount: parsedAmount,
       fixedPlatformFee,
+      saleCount: calculation.saleCount,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,
@@ -208,7 +208,7 @@ function AdminPayoutForm({
             <PayoutFeeRow>
               <span>
                 {feePreview.fixedPlatformFee != null
-                  ? "Kiibee cut (fixed per payout)"
+                  ? `Kiibee fee (${feePreview.saleCount} sales × ${feePreview.fixedPlatformFee} DKK)`
                   : `Platform fee (${(feePreview.platformFeePercentage * 100).toFixed(0)}%)`}
               </span>
               <span>
@@ -221,7 +221,7 @@ function AdminPayoutForm({
             </PayoutFeeRow>
             <PayoutFeeRow>
               <span>
-                Processing fee (
+                Acquirer fee (
                 {(feePreview.processingFeePercentage * 100).toFixed(0)}%)
               </span>
               <span>

@@ -1,4 +1,4 @@
-import { calculatePayoutFees } from 'src/utils/payoutFees';
+import { calculateCreatorPayoutFees } from './creatorPayoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { and, desc, eq } from 'drizzle-orm';
@@ -106,7 +106,8 @@ export const createAdminPayoutRequestService = async (
       processingFee,
       payableAmount,
       fixedPlatformFee,
-    } = calculatePayoutFees({
+      saleCount,
+    } = await calculateCreatorPayoutFees(creatorId, {
       amount: requestedAmount,
       basePlanPrice: planPrice,
       transactionFeePct: creatorPlan.customTransactionFeePct,
@@ -128,6 +129,7 @@ export const createAdminPayoutRequestService = async (
       amount: requestedAmount,
       planPrice,
       fixedPlatformFee,
+      saleCount,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,
@@ -154,6 +156,12 @@ export const createAdminPayoutRequestService = async (
         processingFee: processingFee.toString(),
         platformFee: platformFee.toString(),
         payableAmount: payableAmount.toString(),
+        feeBreakdown: {
+          saleCount,
+          fixedPlatformFee,
+          platformFeePercentage,
+          processingFeePercentage,
+        },
         currency: wallet.currency ?? 'DKK',
         status: STATUS.PENDING,
       });

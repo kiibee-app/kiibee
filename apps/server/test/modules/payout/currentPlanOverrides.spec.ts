@@ -34,7 +34,9 @@ it.each(['draft', 'pending', 'paid', 'cancelled'])(
         ]),
       )
       .mockReturnValueOnce(rows([{ amount: '1000', currency: 'DKK' }]))
-      .mockReturnValueOnce(rows([{ price: 99 }]));
+      .mockReturnValueOnce(rows([{ price: 99 }]))
+      .mockReturnValueOnce(rows([{ price: '1000' }]))
+      .mockReturnValueOnce(rows([{ amount: '0' }]));
     await expect(payoutCalculationService('creator')).resolves.toMatchObject({
       data: { platformFee: 20, processingFee: 20, payableAmount: 960 },
     });

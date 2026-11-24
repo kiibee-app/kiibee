@@ -26,6 +26,13 @@ export function payoutTabHref(tab: PayoutTab = "balances") {
   return `/payout?${PAYOUT_TAB_QUERY}=${tab}`;
 }
 
+export function payoutRequestHref(
+  requestId: string,
+  from: PayoutTab = "requests",
+) {
+  return `/payout-requests/${encodeURIComponent(requestId)}?from=${from}`;
+}
+
 export function formatDate(value?: string | null) {
   if (!value) return "N/A";
 

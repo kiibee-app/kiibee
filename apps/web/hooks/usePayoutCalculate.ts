@@ -9,6 +9,7 @@ export type PayoutCalculation = {
   walletCurrency: string;
   planPrice: number;
   fixedPlatformFee?: number | null;
+  saleCount?: number;
   platformFeePercentage: number;
   processingFeePercentage: number;
   platformFee: number;

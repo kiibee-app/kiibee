@@ -3,6 +3,7 @@ import { PLATFORM_FEE_PERCENTAGES } from './fees';
 
 type PayoutFeeOptions = {
   amount: number;
+  saleCount?: number;
   basePlanPrice: number;
   transactionFeePct?: number | null;
   platformFeePct?: number | null;
@@ -15,6 +16,7 @@ const roundMoney = (value: number) =>
 
 export function calculatePayoutFees({
   amount,
+  saleCount,
   basePlanPrice,
   transactionFeePct,
   platformFeePct,
@@ -48,6 +50,13 @@ export function calculatePayoutFees({
     throw new BadRequestException(
       'A fixed DKK platform fee requires a DKK payout',
     );
+  if (
+    fixedPlatformFee != null &&
+    (!Number.isSafeInteger(saleCount) || saleCount! < 1)
+  )
+    throw new BadRequestException(
+      'A verified sale count is required for a per-sale Kiibee fee',
+    );
   const platformFeePercentage =
     platformFeePct != null
       ? platformFeePct / 100
@@ -56,9 +65,11 @@ export function calculatePayoutFees({
         : (PLATFORM_FEE_PERCENTAGES[basePlanPrice] ??
           fallbackPlatformPercentage);
   const processingFeePercentage =
-    transactionFeePct != null ? transactionFeePct / 100 : 0.05;
+    transactionFeePct != null ? transactionFeePct / 100 : 0.06;
   const platformFee = roundMoney(
-    fixedPlatformFee ?? amount * platformFeePercentage,
+    fixedPlatformFee != null
+      ? fixedPlatformFee * saleCount!
+      : amount * platformFeePercentage,
   );
   const processingFee = roundMoney(amount * processingFeePercentage);
   const payableAmount = roundMoney(amount - platformFee - processingFee);
@@ -71,5 +82,6 @@ export function calculatePayoutFees({
     processingFee,
     payableAmount,
     fixedPlatformFee,
+    saleCount: fixedPlatformFee != null ? saleCount : undefined,
   };
 }

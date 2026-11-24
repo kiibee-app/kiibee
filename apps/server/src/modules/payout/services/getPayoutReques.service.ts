@@ -1,3 +1,4 @@
+import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -12,6 +13,12 @@ import { success } from 'src/utils/sendResponse';
 
 export const getPayoutRequestService = async () => {
   try {
+    const feeErrors = await refreshPendingPayoutFees(
+      undefined,
+      undefined,
+      false,
+    );
+
     const allRequests = await db
       .select({
         id: creatorPayoutRequests.id,
@@ -21,6 +28,7 @@ export const getPayoutRequestService = async () => {
         rawAmount: creatorPayoutRequests.rawAmount,
         processingFee: creatorPayoutRequests.processingFee,
         platformFee: creatorPayoutRequests.platformFee,
+        feeBreakdown: creatorPayoutRequests.feeBreakdown,
         payableAmount: creatorPayoutRequests.payableAmount,
         currency: creatorPayoutRequests.currency,
         status: creatorPayoutRequests.status,
@@ -39,7 +47,17 @@ export const getPayoutRequestService = async () => {
       .where(eq(creatorPayoutRequests.status, STATUS.PENDING));
 
     return success(
-      allRequests,
+      allRequests.map((request) =>
+        feeErrors[request.id]
+          ? {
+              ...request,
+              platformFee: 'N/A',
+              processingFee: 'N/A',
+              payableAmount: 'N/A',
+              feeCalculationError: feeErrors[request.id],
+            }
+          : request,
+      ),
       'Payout requests fetched successfully',
       HttpStatus.OK,
     );

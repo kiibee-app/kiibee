@@ -166,7 +166,12 @@ export default function PayoutContent() {
 
       <SettlementInvoiceModal
         open={!!selectedRow}
-        row={selectedRow}
+        row={
+          selectedRow?.id
+            ? (settlements.find((row) => row.id === selectedRow.id) ??
+              selectedRow)
+            : selectedRow
+        }
         onClose={() => setSelectedRow(null)}
       />
     </>

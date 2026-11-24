@@ -1,9 +1,11 @@
+import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpStatus } from '@nestjs/common';
 import { and, desc, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorBankAccounts,
   creatorPayouts,
+  creatorPayoutRequests,
   mediaFiles,
   collections,
   orders,
@@ -19,10 +21,22 @@ export async function getSettlementHistoryService(
   query?: SettlementHistoryQueryDto,
 ) {
   try {
+    const feeErrors = await refreshPendingPayoutFees(
+      creatorId,
+      undefined,
+      false,
+    );
+
     const paidSettlements = await db
       .select({
         id: creatorPayouts.id,
-        amount: creatorPayouts.rawAmount,
+        payoutRequestId: creatorPayoutRequests.id,
+        amount: creatorPayouts.amount,
+        grossAmount: creatorPayouts.rawAmount,
+        platformFee: creatorPayoutRequests.platformFee,
+        processingFee: creatorPayoutRequests.processingFee,
+        feeBreakdown: creatorPayoutRequests.feeBreakdown,
+        currency: creatorPayouts.currency,
         status: creatorPayouts.status,
         creditNo: creatorPayouts.creditNo,
         bankName: creatorBankAccounts.bankName,
@@ -31,6 +45,10 @@ export async function getSettlementHistoryService(
         createdAt: creatorPayouts.createdAt,
       })
       .from(creatorPayouts)
+      .leftJoin(
+        creatorPayoutRequests,
+        eq(creatorPayouts.id, creatorPayoutRequests.payoutId),
+      )
       .leftJoin(
         creatorBankAccounts,
         eq(creatorPayouts.creatorId, creatorBankAccounts.creatorId),
@@ -64,7 +82,21 @@ export async function getSettlementHistoryService(
 
     const paidRows = paidSettlements.map((row) => ({
       id: row.id,
-      amount: `${row.amount} kr.`,
+      amount:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : `${row.amount} kr.`,
+      feeCalculationError: row.payoutRequestId
+        ? feeErrors[row.payoutRequestId]
+        : undefined,
+      grossAmount: `${row.grossAmount} kr.`,
+      platformFee:
+        row.platformFee != null ? `${row.platformFee} kr.` : undefined,
+      processingFee:
+        row.processingFee != null ? `${row.processingFee} kr.` : undefined,
+      saleCount: row.feeBreakdown?.saleCount,
+      fixedPlatformFee: row.feeBreakdown?.fixedPlatformFee,
+      processingFeePercentage: row.feeBreakdown?.processingFeePercentage,
       status: row.status.charAt(0).toUpperCase() + row.status.slice(1),
       creditNo: row.creditNo ?? '-',
       bank: row.bankName

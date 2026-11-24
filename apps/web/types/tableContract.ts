@@ -46,6 +46,15 @@ export type TableProps<T> = BaseTableProps<T> & {
 };
 
 export type SettlementRow = {
+  id?: string;
+  feeCalculationError?: string;
+  grossAmount?: string;
+  platformFee?: string;
+  processingFee?: string;
+  saleCount?: number;
+  fixedPlatformFee?: number | null;
+  processingFeePercentage?: number;
+
   amount: string;
   status: string;
   creditNo: string;

@@ -1,3 +1,4 @@
+import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, gte } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -14,6 +15,12 @@ export const getPayoutHistoryByCreatorIdService = async (
     if (!creatorId) {
       throw new HttpException('Creator ID is required', HttpStatus.BAD_REQUEST);
     }
+
+    const feeErrors = await refreshPendingPayoutFees(
+      creatorId,
+      undefined,
+      false,
+    );
 
     const rows = await db
       .select({
@@ -52,7 +59,10 @@ export const getPayoutHistoryByCreatorIdService = async (
       id: row.id,
       payoutRequestId: row.payoutRequestId,
       rawAmount: row.rawAmount,
-      amount: row.amount,
+      amount:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.amount,
       currency: row.currency,
       status: row.status,
       creditNo: row.creditNo,
@@ -60,9 +70,18 @@ export const getPayoutHistoryByCreatorIdService = async (
       bankAccountInfo: row.bankAccountInfo,
       payoutDate: row.payoutDate,
       paymentMethodId: row.paymentMethodId,
-      processingFee: row.processingFee,
-      platformFee: row.platformFee,
-      payableAmount: row.payableAmount,
+      processingFee:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.processingFee,
+      platformFee:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.platformFee,
+      payableAmount:
+        row.payoutRequestId && feeErrors[row.payoutRequestId]
+          ? 'N/A'
+          : row.payableAmount,
       createdAt: row.createdAt,
     }));
 
