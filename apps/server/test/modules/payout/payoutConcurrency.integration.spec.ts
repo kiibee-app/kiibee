@@ -1,3 +1,7 @@
+jest.mock(
+  'src/modules/payout/services/refreshPendingPayoutFees.service',
+  () => ({ refreshPendingPayoutFees: jest.fn().mockResolvedValue(undefined) }),
+);
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { db } from 'src/database/db';
@@ -36,7 +40,7 @@ integration('payout concurrency in isolated PostgreSQL', () => {
     await pool.query(`
       CREATE TABLE creator_wallets (id text primary key, creator_id text, amount numeric(10,2), currency text default 'DKK', created_at timestamptz default now(), updated_at timestamptz default now());
       CREATE TABLE creator_payouts (id text primary key, creator_id text, raw_amount numeric(10,2), amount numeric(10,2), currency text default 'DKK', status text default 'pending', credit_no text, bank_account_info text, "cardNo" text, payout_date timestamptz, created_at timestamptz default now(), updated_at timestamptz default now());
-      CREATE TABLE creator_payout_requests (id text primary key, creator_id text, payout_id text, payment_method_id text, raw_amount numeric(10,2), processing_fee numeric(10,2), platform_fee numeric(10,2), payable_amount numeric(10,2), currency text default 'DKK', status text default 'pending', created_at timestamptz default now(), updated_at timestamptz default now());
+      CREATE TABLE creator_payout_requests (fee_breakdown jsonb, id text primary key, creator_id text, payout_id text, payment_method_id text, raw_amount numeric(10,2), processing_fee numeric(10,2), platform_fee numeric(10,2), payable_amount numeric(10,2), currency text default 'DKK', status text default 'pending', created_at timestamptz default now(), updated_at timestamptz default now());
     `);
     const database = drizzle(pool);
     jest
@@ -62,7 +66,7 @@ integration('payout concurrency in isolated PostgreSQL', () => {
       [id, 'creator', amount],
     );
     await pool.query(
-      'INSERT INTO creator_payout_requests (id, creator_id, payout_id, raw_amount) VALUES ($1, $2, $1, $3)',
+      `INSERT INTO creator_payout_requests (id, creator_id, payout_id, raw_amount, fee_breakdown) VALUES ($1, $2, $1, $3, '{"fixedPlatformFee":null,"platformFeePercentage":0,"processingFeePercentage":0}')`,
       [id, 'creator', amount],
     );
   }
