@@ -2,10 +2,10 @@
   "name": "kiibee",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "node init && turbo run build",
     "commit": "cz",
     "commitlint": "commitlint",
-    "dev": "turbo run dev",
+    "dev": "node init && turbo run dev",
     "lint": "turbo run lint",
     "prepare": "husky",
     "test": "turbo run test",

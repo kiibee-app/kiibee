@@ -1859,6 +1859,8 @@
       "title": "Udbetaling",
       "description": "Når du klikker på knappen, oprettes der en afregning, som du kan udbetale, klik på udbetal for at se din kreditnota. Overførsel af din saldo kan tage op til 5 hverdage.",
       "balance": "Saldo",
+      "unpaidPurchases": "Køb til udbetaling",
+      "unpaidRentals": "Leje til udbetaling",
       "purchase": "Køb",
       "rent": "Leje",
       "settlementHistory": "Betalingshistorik",

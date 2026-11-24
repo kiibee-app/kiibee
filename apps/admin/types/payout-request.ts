@@ -1,7 +1,10 @@
 export interface PayoutRequest {
   feeCalculationError?: string;
   feeBreakdown?: {
+    calculationVersion?: number;
     saleCount?: number;
+    purchases?: number;
+    rentals?: number;
     fixedPlatformFee: number | null;
     platformFeePercentage: number;
     processingFeePercentage: number;
@@ -115,6 +118,8 @@ export interface CreatorWalletsResponse {
 }
 
 export interface AdminPayoutCalculateResponse {
+  purchases?: number;
+  rentals?: number;
   amount: number;
   walletBalance: number;
   walletCurrency: string;

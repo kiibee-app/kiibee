@@ -107,6 +107,8 @@ export const createAdminPayoutRequestService = async (
       payableAmount,
       fixedPlatformFee,
       saleCount,
+      purchases,
+      rentals,
     } = await calculateCreatorPayoutFees(creatorId, {
       amount: requestedAmount,
       basePlanPrice: planPrice,
@@ -130,6 +132,8 @@ export const createAdminPayoutRequestService = async (
       planPrice,
       fixedPlatformFee,
       saleCount,
+      purchases,
+      rentals,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,
@@ -157,7 +161,10 @@ export const createAdminPayoutRequestService = async (
         platformFee: platformFee.toString(),
         payableAmount: payableAmount.toString(),
         feeBreakdown: {
+          calculationVersion: 2,
           saleCount,
+          purchases,
+          rentals,
           fixedPlatformFee,
           platformFeePercentage,
           processingFeePercentage,

@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { and, desc, eq, isNull } from 'drizzle-orm';
+import { and, desc, eq, isNull, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -11,7 +11,7 @@ import {
 import { calculateCreatorPayoutFees } from './creatorPayoutFees';
 
 // Upgrade legacy pending requests once, atomically updating the shared payout.
-// Completed/rejected requests and already reviewed fee snapshots are immutable.
+// Completed/rejected requests and current-version fee snapshots are immutable.
 export async function refreshPendingPayoutFees(
   creatorId?: string,
   requestId?: string,
@@ -24,7 +24,10 @@ export async function refreshPendingPayoutFees(
     .where(
       and(
         eq(creatorPayoutRequests.status, 'pending'),
-        isNull(creatorPayoutRequests.feeBreakdown),
+        or(
+          isNull(creatorPayoutRequests.feeBreakdown),
+          sql`coalesce(${creatorPayoutRequests.feeBreakdown}->>'calculationVersion', '0') <> '2'`,
+        ),
         creatorId ? eq(creatorPayoutRequests.creatorId, creatorId) : undefined,
         requestId ? eq(creatorPayoutRequests.id, requestId) : undefined,
       ),
@@ -38,7 +41,11 @@ export async function refreshPendingPayoutFees(
           .where(eq(creatorPayoutRequests.id, candidate.id))
           .limit(1)
           .for('update');
-        if (!request || request.status !== 'pending' || request.feeBreakdown)
+        if (
+          !request ||
+          request.status !== 'pending' ||
+          request.feeBreakdown?.calculationVersion === 2
+        )
           return;
         const [payout] = await tx
           .select()
@@ -75,23 +82,36 @@ export async function refreshPendingPayoutFees(
           throw new BadRequestException(
             'Insufficient balance to reconcile pending payout',
           );
-        const [plan] = await tx
-          .select({
-            price: plans.price,
-            transactionFeePct: creatorPlans.customTransactionFeePct,
-            platformFeePct: creatorPlans.customKiibeeCutPct,
-            fixedPlatformFee: creatorPlans.customKiibeeCutDkk,
-          })
-          .from(creatorPlans)
-          .innerJoin(plans, eq(creatorPlans.planId, plans.id))
-          .where(
-            and(
-              eq(creatorPlans.creatorId, request.creatorId),
-              eq(creatorPlans.status, 'active'),
-            ),
-          )
-          .orderBy(desc(creatorPlans.createdAt))
-          .limit(1);
+        const [plan] = request.feeBreakdown
+          ? [
+              {
+                price: 0,
+                transactionFeePct:
+                  request.feeBreakdown.processingFeePercentage * 100,
+                platformFeePct:
+                  request.feeBreakdown.fixedPlatformFee != null
+                    ? null
+                    : request.feeBreakdown.platformFeePercentage * 100,
+                fixedPlatformFee: request.feeBreakdown.fixedPlatformFee,
+              },
+            ]
+          : await tx
+              .select({
+                price: plans.price,
+                transactionFeePct: creatorPlans.customTransactionFeePct,
+                platformFeePct: creatorPlans.customKiibeeCutPct,
+                fixedPlatformFee: creatorPlans.customKiibeeCutDkk,
+              })
+              .from(creatorPlans)
+              .innerJoin(plans, eq(creatorPlans.planId, plans.id))
+              .where(
+                and(
+                  eq(creatorPlans.creatorId, request.creatorId),
+                  eq(creatorPlans.status, 'active'),
+                ),
+              )
+              .orderBy(desc(creatorPlans.createdAt))
+              .limit(1);
         if (!plan)
           throw new BadRequestException(
             'Active plan required to reconcile pending payout',
@@ -116,6 +136,9 @@ export async function refreshPendingPayoutFees(
             processingFee: fees.processingFee.toFixed(2),
             payableAmount: fees.payableAmount.toFixed(2),
             feeBreakdown: {
+              calculationVersion: 2,
+              purchases: fees.purchases,
+              rentals: fees.rentals,
               saleCount: fees.saleCount,
               fixedPlatformFee: fees.fixedPlatformFee,
               platformFeePercentage: fees.platformFeePercentage,
