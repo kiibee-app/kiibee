@@ -1,4 +1,4 @@
-import { calculatePayoutFees } from 'src/utils/payoutFees';
+import { calculateCreatorPayoutFees } from './creatorPayoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -7,7 +7,10 @@ import { logger } from 'src/logger/logger';
 import { MIN_PAYOUT_AMOUNT } from 'src/utils/fees';
 import { success } from 'src/utils/sendResponse';
 
-export const payoutCalculationService = async (creatorId: string) => {
+export const payoutCalculationService = async (
+  creatorId: string,
+  requestedAmount?: number,
+) => {
   try {
     if (!creatorId) {
       throw new HttpException('Creator ID is required', HttpStatus.BAD_REQUEST);
@@ -57,7 +60,17 @@ export const payoutCalculationService = async (creatorId: string) => {
       );
     }
 
-    const amount = walletBalance;
+    const amount = requestedAmount ?? walletBalance;
+    if (
+      !Number.isFinite(amount) ||
+      amount <= MIN_PAYOUT_AMOUNT ||
+      amount > walletBalance
+    ) {
+      throw new HttpException(
+        'Invalid payout amount or insufficient balance',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
     const [planInfo] = await db
       .select()
@@ -78,7 +91,8 @@ export const payoutCalculationService = async (creatorId: string) => {
       processingFee,
       payableAmount,
       fixedPlatformFee,
-    } = calculatePayoutFees({
+      saleCount,
+    } = await calculateCreatorPayoutFees(creatorId, {
       amount: amount,
       basePlanPrice: planPrice,
       transactionFeePct: creatorCurrentPlan.customTransactionFeePct,
@@ -93,6 +107,7 @@ export const payoutCalculationService = async (creatorId: string) => {
       walletCurrency: wallet.currency,
       planPrice,
       fixedPlatformFee,
+      saleCount,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,

@@ -1,4 +1,4 @@
-import { calculatePayoutFees } from 'src/utils/payoutFees';
+import { calculateCreatorPayoutFees } from './creatorPayoutFees';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -95,7 +95,7 @@ export const createPayoutService = async (
       processingFee,
       platformFee,
       payableAmount: payoutAmount,
-    } = calculatePayoutFees({
+    } = await calculateCreatorPayoutFees(creatorId, {
       amount,
       basePlanPrice: Number(plan.price),
       transactionFeePct: creatorPlan.customTransactionFeePct,

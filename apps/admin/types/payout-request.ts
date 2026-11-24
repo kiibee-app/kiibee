@@ -1,4 +1,11 @@
 export interface PayoutRequest {
+  feeCalculationError?: string;
+  feeBreakdown?: {
+    saleCount?: number;
+    fixedPlatformFee: number | null;
+    platformFeePercentage: number;
+    processingFeePercentage: number;
+  } | null;
   id: string;
   payoutId: string;
   creatorId: string;
@@ -113,6 +120,7 @@ export interface AdminPayoutCalculateResponse {
   walletCurrency: string;
   planPrice: number;
   fixedPlatformFee?: number | null;
+  saleCount?: number;
   platformFeePercentage: number;
   processingFeePercentage: number;
   platformFee: number;

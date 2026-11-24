@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, numeric } from 'drizzle-orm/pg-core';
+import { pgTable, text, varchar, numeric, jsonb } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 import { payoutStatusEnum } from '../enums';
@@ -25,6 +25,12 @@ export const creatorPayoutRequests = pgTable('creator_payout_requests', {
     precision: 10,
     scale: 2,
   }).notNull(),
+  feeBreakdown: jsonb('fee_breakdown').$type<{
+    saleCount?: number;
+    fixedPlatformFee: number | null;
+    platformFeePercentage: number;
+    processingFeePercentage: number;
+  }>(),
   currency: varchar('currency', { length: 10 }).notNull().default('DKK'),
   status: payoutStatusEnum('status').notNull().default('pending'),
 

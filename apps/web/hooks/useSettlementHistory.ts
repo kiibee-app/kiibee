@@ -7,6 +7,14 @@ import { formatDateUSShort } from "@/utils/formatDate";
 import { formatPayoutAmount } from "@/utils/payout";
 
 export type SettlementItem = {
+  feeCalculationError?: string;
+  grossAmount?: string;
+  platformFee?: string;
+  processingFee?: string;
+  saleCount?: number;
+  fixedPlatformFee?: number | null;
+  processingFeePercentage?: number;
+
   id: string;
   amount: string;
   status: string;
@@ -16,6 +24,14 @@ export type SettlementItem = {
 };
 
 type BackendSettlementItem = {
+  feeCalculationError?: string;
+  grossAmount?: string;
+  platformFee?: string;
+  processingFee?: string;
+  saleCount?: number;
+  fixedPlatformFee?: number | null;
+  processingFeePercentage?: number;
+
   id: string;
   amount: string;
   status: string;
@@ -33,6 +49,19 @@ type SettlementHistoryResponse = {
 function toSettlementItem(item: BackendSettlementItem): SettlementItem {
   return {
     id: item.id,
+    feeCalculationError: item.feeCalculationError,
+    grossAmount: item.grossAmount
+      ? formatPayoutAmount(item.grossAmount)
+      : undefined,
+    platformFee: item.platformFee
+      ? formatPayoutAmount(item.platformFee)
+      : undefined,
+    processingFee: item.processingFee
+      ? formatPayoutAmount(item.processingFee)
+      : undefined,
+    saleCount: item.saleCount,
+    fixedPlatformFee: item.fixedPlatformFee,
+    processingFeePercentage: item.processingFeePercentage,
     amount: formatPayoutAmount(item.amount),
     status: item.status,
     creditNo: item.creditNo ?? "-",
@@ -59,6 +88,12 @@ export const useSettlementHistory = (searchParams?: SettlementSearchParams) => {
     params,
     {
       placeholderData: keepPreviousData,
+      refetchInterval: (query) =>
+        query.state.data?.data.some(
+          (row) => row.status.toLowerCase() === "pending",
+        )
+          ? 15000
+          : false,
     },
   );
 

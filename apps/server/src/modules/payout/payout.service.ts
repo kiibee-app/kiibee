@@ -44,8 +44,8 @@ export class PayoutService {
     return handlePayoutWebhookService(payload);
   }
 
-  async payoutCalculationService(creatorId: string) {
-    return payoutCalculationService(creatorId);
+  async payoutCalculationService(creatorId: string, amount?: number) {
+    return payoutCalculationService(creatorId, amount);
   }
 
   async payoutRequestCalculationService(

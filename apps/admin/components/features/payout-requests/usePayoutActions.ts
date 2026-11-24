@@ -1,10 +1,13 @@
 import { useRouter } from "next/navigation";
 import { useCreatePayout, useRejectPayoutRequest } from "../../../hooks/api";
 import toast from "react-hot-toast";
-import type { PayoutRequest } from "../../../types/payout-request";
+import type { PayoutRequest, PayoutTab } from "../../../types/payout-request";
 import { payoutTabHref } from "../../../utils/payout";
 
-export function usePayoutActions(request?: PayoutRequest | null) {
+export function usePayoutActions(
+  request?: PayoutRequest | null,
+  returnTab: PayoutTab = "requests",
+) {
   const router = useRouter();
   const { mutate: createPayout, isPending: isApproving } = useCreatePayout();
   const { mutate: rejectPayoutRequest, isPending: isRejecting } =
@@ -38,7 +41,7 @@ export function usePayoutActions(request?: PayoutRequest | null) {
     rejectPayoutRequest(request.id, {
       onSuccess: () => {
         toast.success("Payout request rejected.");
-        router.replace(payoutTabHref("requests"));
+        router.replace(payoutTabHref(returnTab));
       },
       onError: (err) => {
         toast.error(err.message || "Failed to reject payout request.");

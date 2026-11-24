@@ -37,6 +37,9 @@ export default function SettlementInvoiceModal(props: Props) {
       contentMarginBottom="0"
     >
       <InvoiceCard>
+        {props.row.feeCalculationError && (
+          <p role="alert">{props.row.feeCalculationError}</p>
+        )}
         <InvoiceGrid>
           <InvoiceInfo>
             <InvoiceLabel>
@@ -66,6 +69,56 @@ export default function SettlementInvoiceModal(props: Props) {
             <MonoText $use="Body_SemiBold">{props.row.amount}</MonoText>
           </InvoiceInfo>
 
+          {props.row.grossAmount && (
+            <>
+              <InvoiceInfo>
+                <InvoiceLabel>
+                  {t("settings.payout.modal.grossAmount", "Gross sales")}
+                </InvoiceLabel>
+                <MonoText $use="Body_SemiBold">
+                  {props.row.grossAmount}
+                </MonoText>
+              </InvoiceInfo>
+              {props.row.saleCount != null && (
+                <InvoiceInfo>
+                  <InvoiceLabel>
+                    {t("settings.payout.modal.totalSales", "Total Sales")}
+                  </InvoiceLabel>
+                  <MonoText $use="Body_SemiBold">
+                    {props.row.saleCount}
+                  </MonoText>
+                </InvoiceInfo>
+              )}
+              {props.row.platformFee && !props.row.feeCalculationError && (
+                <InvoiceInfo>
+                  <InvoiceLabel>
+                    {props.row.fixedPlatformFee != null
+                      ? t("settings.payout.modal.fixedPlatformFee", {
+                          count: props.row.saleCount,
+                          fee: props.row.fixedPlatformFee,
+                        })
+                      : t("settings.payout.modal.kiibeeFee", "Kiibee fee")}
+                  </InvoiceLabel>
+                  <MonoText $use="Body_SemiBold">
+                    −{props.row.platformFee}
+                  </MonoText>
+                </InvoiceInfo>
+              )}
+              {props.row.processingFee && !props.row.feeCalculationError && (
+                <InvoiceInfo>
+                  <InvoiceLabel>
+                    {t("settings.payout.modal.acquirerFee", "Acquirer fee")}{" "}
+                    {props.row.processingFeePercentage != null
+                      ? `(${props.row.processingFeePercentage * 100}%)`
+                      : ""}
+                  </InvoiceLabel>
+                  <MonoText $use="Body_SemiBold">
+                    −{props.row.processingFee}
+                  </MonoText>
+                </InvoiceInfo>
+              )}
+            </>
+          )}
           <InvoiceInfo>
             <InvoiceLabel>
               {t("settings.payout.tableHeaders.bank")}

@@ -1,3 +1,4 @@
+import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -9,6 +10,7 @@ import {
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
+import { calculateCreatorPayoutFees } from './creatorPayoutFees';
 import { payoutInfoService } from './payoutInfo.service';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
@@ -19,6 +21,8 @@ export const approvePayoutRequestService = async (requestId: string) => {
     if (!requestId) {
       return fail('Request ID is required', HttpStatus.BAD_REQUEST);
     }
+
+    await refreshPendingPayoutFees(undefined, requestId);
 
     const result = await db.transaction(async (tx) => {
       const [request] = await tx
@@ -94,6 +98,39 @@ export const approvePayoutRequestService = async (requestId: string) => {
           'Insufficient wallet balance',
           HttpStatus.BAD_REQUEST,
         );
+      }
+
+      if (!request.feeBreakdown) {
+        throw new HttpException(
+          'This payout uses the old fee calculation. Reject it and create a new request to review the corrected fees.',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      if (request.feeBreakdown.fixedPlatformFee != null) {
+        const checked = await calculateCreatorPayoutFees(
+          request.creatorId,
+          {
+            amount: rawAmount,
+            basePlanPrice: 0,
+            fixedPlatformFee: request.feeBreakdown.fixedPlatformFee,
+            transactionFeePct:
+              request.feeBreakdown.processingFeePercentage * 100,
+            currency: request.currency,
+          },
+          tx,
+        );
+        if (
+          checked.saleCount !== request.feeBreakdown.saleCount ||
+          checked.platformFee !== Number(request.platformFee) ||
+          checked.processingFee !== Number(request.processingFee) ||
+          checked.payableAmount !== Number(request.payableAmount) ||
+          checked.payableAmount !== Number(payout.amount)
+        ) {
+          throw new HttpException(
+            'Sales changed since this request was created. Reject it and create a new payout request.',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
       }
 
       const now = new Date();
