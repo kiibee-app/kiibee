@@ -54,6 +54,9 @@ export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
 export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
 export const CONTENT_ITEM_QUERY_KEY = "contentId";
+export const CONTENT_PREVIEW_QUERY_KEY = "previewContentId";
+// Temporarily hide the owner dashboard shortcut on public content pages.
+export const SHOW_OPEN_IN_DASHBOARD = false;
 export const QUERY_KEY_FORMAT = "format";
 export const QUERY_KEY_SORT = "sort";
 export const QUERY_KEY_FILTER = "filter";

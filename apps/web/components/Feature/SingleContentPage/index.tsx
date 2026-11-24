@@ -20,8 +20,8 @@ import {
   type OrderItemType,
   STRING,
   VIEW,
-  CONTENT_COLLECTION_QUERY_KEY,
-  CONTENT_ITEM_QUERY_KEY,
+  CONTENT_PREVIEW_QUERY_KEY,
+  SHOW_OPEN_IN_DASHBOARD,
   VARIANT,
   ROLE_CREATOR,
   UNDEFINED_STRING,
@@ -271,9 +271,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   } | null>(null);
   const checkoutIdempotencyKeyRef = useRef<string | null>(null);
 
+  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const ownsContent =
-    Boolean(user?.id) &&
-    content?.accessInfo?.accessType === ACCESS_TYPE_PURCHASED;
+    isOwner ||
+    (Boolean(user?.id) &&
+      content?.accessInfo?.accessType === ACCESS_TYPE_PURCHASED);
   const {
     contentType,
     previewMediaUrl,
@@ -457,7 +459,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     [handlePrimaryActionClick, isMediaLoading, primaryAction],
   );
 
-  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const hasViewerAccess = Boolean(content?.accessInfo);
 
   const heroPrimaryAction = accessGate ? undefined : modifiedPrimaryAction;
@@ -467,15 +468,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       [VIEW]: CREATORS_LABELS.CONTENTS,
     });
 
-    if (collectionId) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
-      if (contentId) {
-        params.set(CONTENT_ITEM_QUERY_KEY, contentId);
-      }
+    if (contentId) {
+      params.set(CONTENT_PREVIEW_QUERY_KEY, contentId);
     }
 
     router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
-  }, [collectionId, contentId, router]);
+  }, [contentId, router]);
 
   const isDownloadableType =
     previewContentType === FORMAT_TYPE.VIDEO ||
@@ -510,7 +508,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       primaryActions != null
         ? actionsWithPayment
         : modifiedPrimaryAction
-          ? isOwner
+          ? SHOW_OPEN_IN_DASHBOARD && isOwner && !embedded
             ? [
                 {
                   label: t("singleContent.openInDashboard"),
@@ -559,6 +557,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     canOfferDownload,
     downloadInfo,
     downloadRequiresLogin,
+    embedded,
     handleShowLoginModal,
     isDownloading,
     isOwner,
