@@ -217,3 +217,56 @@ it('does not invent a count for a manually adjusted balance without correspondin
     'exceeds verified payment credits',
   );
 });
+
+it('never charges the previous 16 settled sales again when the next 3 sales are paid out', async () => {
+  const previousSales = [
+    ...Array.from({ length: 8 }, () => ({ price: '90', itemType: 'purchase' })),
+    ...Array.from({ length: 7 }, () => ({ price: '90', itemType: 'rental' })),
+    { price: '75', itemType: 'rental' },
+  ];
+  jest
+    .mocked(db.select)
+    .mockReturnValueOnce(feeRows(previousSales))
+    .mockReturnValueOnce(feeRows([{ amount: '1425' }]));
+  await expect(
+    calculateCreatorPayoutFees('creator', {
+      amount: 1425,
+      basePlanPrice: 0,
+      fixedPlatformFee: 9,
+      transactionFeePct: 6,
+    }),
+  ).resolves.toMatchObject({
+    saleCount: 16,
+    purchases: 8,
+    rentals: 8,
+    platformFee: 144,
+    payableAmount: 1195.5,
+  });
+  // Approval debits 1425 gross. Three subsequent captures replenish only 466.
+  jest
+    .mocked(db.select)
+    .mockReturnValueOnce(
+      feeRows([
+        ...previousSales,
+        { price: '100', itemType: 'purchase' },
+        { price: '200', itemType: 'rental' },
+        { price: '166', itemType: 'rental' },
+      ]),
+    )
+    .mockReturnValueOnce(feeRows([{ amount: '466' }]));
+  await expect(
+    calculateCreatorPayoutFees('creator', {
+      amount: 466,
+      basePlanPrice: 0,
+      fixedPlatformFee: 9,
+      transactionFeePct: 6,
+    }),
+  ).resolves.toMatchObject({
+    saleCount: 3,
+    purchases: 1,
+    rentals: 2,
+    platformFee: 27,
+    processingFee: 27.96,
+    payableAmount: 411.04,
+  });
+});
