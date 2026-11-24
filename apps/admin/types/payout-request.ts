@@ -56,6 +56,7 @@ export interface AllPayoutHistoryResponse {
 }
 
 export interface PayoutHistoryQuery {
+  createdFrom?: string;
   page?: number;
   limit?: number;
   status?: string;

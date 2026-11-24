@@ -29,7 +29,11 @@ import { useRouter } from "next/navigation";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
-import { VARIANT, CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
+import {
+  VARIANT,
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  SHOW_OPEN_IN_DASHBOARD,
+} from "@/utils/Constants";
 import useShare from "@/hooks/useShare";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
@@ -178,7 +182,7 @@ export default function SingleCollectionHero({
             accessGate
           ) : isOwner ? (
             <OwnerActions>
-              {onOpenDashboard && (
+              {SHOW_OPEN_IN_DASHBOARD && onOpenDashboard && (
                 <ActionButton onClick={onOpenDashboard}>
                   {t("singleContent.openInDashboard")}
                 </ActionButton>

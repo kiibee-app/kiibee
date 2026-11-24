@@ -23,8 +23,10 @@ import {
   VIEW,
   ROLE_CREATOR,
   SCROLL_TO_PLANS_KEY,
+  CONTENT_PREVIEW_QUERY_KEY,
 } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
+import PublishedContentDetail from "../SingleContentPage/PublishedContentDetail";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
@@ -240,14 +242,38 @@ export default function ClientDashboardCreators() {
     ],
   );
 
+  const previewContentId = getCanonicalParam(
+    searchParams?.toString() ?? "",
+    CONTENT_PREVIEW_QUERY_KEY,
+  );
+  const closeContentPreview = useCallback(() => {
+    const params = toCanonicalSearchParams(searchParams?.toString() ?? "");
+    params.delete(CONTENT_PREVIEW_QUERY_KEY);
+    router.push(
+      `${pathname}${formatSearch(localizeSearchParams(params, language))}`,
+      { scroll: false },
+    );
+  }, [searchParams, router, pathname, language]);
+
   const renderContent = useMemo(() => {
     if (view === CREATORS_LABELS.PROFILE) return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
-    if (activePage === CREATORS_LABELS.CONTENTS) return <CreatorsContents />;
+    if (activePage === CREATORS_LABELS.CONTENTS) {
+      return previewContentId ? (
+        <PublishedContentDetail
+          key={previewContentId}
+          contentKey={previewContentId}
+          embedded
+          onBack={closeContentPreview}
+        />
+      ) : (
+        <CreatorsContents />
+      );
+    }
     if (activePage === CREATORS_LABELS.USERS) return <UsersContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
-  }, [activePage, view]);
+  }, [activePage, view, previewContentId, closeContentPreview]);
 
   if (!isReady) {
     return (

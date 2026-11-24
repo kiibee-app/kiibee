@@ -13,6 +13,7 @@ interface TutorialsShowcaseProps {
   collectionId?: string | null;
   collectionSlug?: string | null;
   isPaidCollection?: boolean;
+  showPricingForOwner?: boolean;
 }
 
 export default function TutorialsShowcase({
@@ -24,6 +25,7 @@ export default function TutorialsShowcase({
   collectionId = null,
   collectionSlug = null,
   isPaidCollection = false,
+  showPricingForOwner = false,
 }: TutorialsShowcaseProps) {
   return (
     <Grid $maxWidth={maxWidth}>
@@ -37,6 +39,7 @@ export default function TutorialsShowcase({
           collectionId={collectionId}
           collectionSlug={collectionSlug}
           isPaidCollection={isPaidCollection}
+          showPricingForOwner={showPricingForOwner}
         />
       ))}
     </Grid>

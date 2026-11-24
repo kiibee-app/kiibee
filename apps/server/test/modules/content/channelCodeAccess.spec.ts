@@ -88,6 +88,17 @@ describe('channel code access', () => {
     );
     expect((await getChannelCodeState('creator'))?.rentDuration).toBeNull();
   });
+  it('lets the owner preview their channel without querying viewer grants', async () => {
+    rows(
+      [{ accessType: 'set_password', passwordHash: 'hash' }],
+      [{ isDeleted: false }],
+      [{ rentDuration: null }],
+    );
+    expect((await getChannelCodeState('creator', 'creator'))?.hasAccess).toBe(
+      true,
+    );
+    expect(db.select).toHaveBeenCalledTimes(3);
+  });
   it('rejects the wrong code without issuing a grant', async () => {
     rows([{ passwordHash: 'hash' }]);
     jest.mocked(comparePassword).mockResolvedValue(false);
