@@ -39,8 +39,8 @@ export default function PayoutContent() {
 
   const balanceValue = stats?.balance ?? "";
   const balanceAmount = parsePayoutBalance(balanceValue);
-  const purchasesValue = stats?.purchases ?? 0;
-  const rentalsValue = stats?.rentals ?? 0;
+  const purchasesValue = stats?.purchases ?? null;
+  const rentalsValue = stats?.rentals ?? null;
 
   const settlementTableHeaders = useMemo(
     () => [
@@ -93,17 +93,17 @@ export default function PayoutContent() {
           <SmallCards>
             <SmallCard>
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {t("settings.payout.purchase")}
+                {t("settings.payout.unpaidPurchases", "Unpaid purchases")}
               </MonoText>
 
-              <MonoText $use="H4_SemiBold">{purchasesValue}</MonoText>
+              <MonoText $use="H4_SemiBold">{purchasesValue ?? "N/A"}</MonoText>
             </SmallCard>
             <SmallCard>
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {t("settings.payout.rent")}
+                {t("settings.payout.unpaidRentals", "Unpaid rentals")}
               </MonoText>
 
-              <MonoText $use="H4_SemiBold">{rentalsValue}</MonoText>
+              <MonoText $use="H4_SemiBold">{rentalsValue ?? "N/A"}</MonoText>
             </SmallCard>
           </SmallCards>
         </Stats>
@@ -160,8 +160,6 @@ export default function PayoutContent() {
       <PayoutDetailsModal
         open={openDetails}
         onClose={() => setOpenDetails(false)}
-        purchases={purchasesValue}
-        rentals={rentalsValue}
       />
 
       <SettlementInvoiceModal

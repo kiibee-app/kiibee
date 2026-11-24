@@ -26,16 +26,9 @@ import { useCreatorPaymentMethods } from "@/hooks/useCreatorPaymentMethods";
 type Props = {
   open: boolean;
   onClose: () => void;
-  purchases: number;
-  rentals: number;
 };
 
-export default function PayoutDetailsModal({
-  open,
-  onClose,
-  purchases,
-  rentals,
-}: Props) {
+export default function PayoutDetailsModal({ open, onClose }: Props) {
   const { t } = useTranslation();
   const { getErrorMessage } = useApiErrorMessage();
   const { calculation, isLoading, isError, error } = usePayoutCalculate(open);
@@ -104,10 +97,13 @@ export default function PayoutDetailsModal({
 
     return [
       {
-        label: t("settings.payout.modal.earnings", {
-          purchases,
-          rentals,
-        }),
+        label:
+          calculation.purchases != null && calculation.rentals != null
+            ? t("settings.payout.modal.earnings", {
+                purchases: calculation.purchases,
+                rentals: calculation.rentals,
+              })
+            : t("settings.payout.modal.grossAmount", "Gross sales"),
         value: formatPayoutNumber(calculation.amount),
       },
       {
@@ -133,7 +129,7 @@ export default function PayoutDetailsModal({
         value: formatPayoutNumber(-calculation.platformFee),
       },
     ];
-  }, [calculation, purchases, rentals, t]);
+  }, [calculation, t]);
 
   const totalValue = calculation
     ? formatPayoutNumber(calculation.payableAmount)

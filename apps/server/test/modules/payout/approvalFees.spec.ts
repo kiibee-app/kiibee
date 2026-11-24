@@ -67,7 +67,7 @@ it('refuses a stale per-sale fee before changing the wallet', async () => {
     [{ creatorId: 'c', status: 'pending', rawAmount: '900', amount: '702' }],
     [{ amount: '900' }],
     [{ price: '450' }, { price: '450' }],
-    [{ amount: '0' }],
+    [{ amount: '900' }],
   ]);
   await expect(approvePayoutRequestService('r')).rejects.toThrow(
     'Sales changed',
