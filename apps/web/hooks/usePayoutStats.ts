@@ -6,8 +6,10 @@ import { formatPayoutAmount } from "@/utils/payout";
 
 export type PayoutStats = {
   balance: string;
-  purchases: number;
-  rentals: number;
+  saleCount: number | null;
+  countError?: string;
+  purchases: number | null;
+  rentals: number | null;
 };
 
 type PayoutStatsResponse = {
@@ -17,7 +19,9 @@ type PayoutStatsResponse = {
 };
 
 export const usePayoutStats = () => {
-  const query = useGetAPI<PayoutStatsResponse>(API.payout.stats);
+  const query = useGetAPI<PayoutStatsResponse>(API.payout.stats, undefined, {
+    refetchInterval: 15000,
+  });
 
   const stats = useMemo((): PayoutStats | null => {
     const data = query.data?.data;

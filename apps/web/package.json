@@ -3,9 +3,9 @@
   "version": "0.3.3",
   "private": true,
   "scripts": {
-    "dev": "node scripts/copy-pdf-assets.mjs && next dev",
-    "build": "node scripts/copy-pdf-assets.mjs && NODE_OPTIONS=--max-old-space-size=3072 next build",
-    "start": "next start",
+    "dev": "node init && node scripts/copy-pdf-assets.mjs && next dev",
+    "build": "node init && node scripts/copy-pdf-assets.mjs && NODE_OPTIONS=--max-old-space-size=3072 next build",
+    "start": "node init && next start",
     "lint": "eslint"
   },
   "dependencies": {
