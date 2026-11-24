@@ -19,7 +19,8 @@ import {
   StatusBadge,
 } from "../all-creators/AllCreators.styles";
 import { toCreatorStatus } from "../../../utils/status";
-import { payoutTabHref } from "../../../utils/payout";
+import type { PayoutTab } from "../../../types/payout-request";
+import { payoutTabHref, payoutTabs } from "../../../utils/payout";
 import {
   Page,
   BackButton,
@@ -64,11 +65,23 @@ function percent(ratio: number) {
   }).format(ratio);
 }
 
-export function PayoutRequestDetail({ id }: { id: string }) {
+export function PayoutRequestDetail({
+  id,
+  returnTab,
+}: {
+  id: string;
+  returnTab?: PayoutTab;
+}) {
   const router = useRouter();
   const { data: request, isLoading, isError, error } = usePayoutRequest(id);
+  const destinationTab =
+    returnTab ??
+    (request && request.status !== "pending" ? "all-history" : "requests");
+  const backLabel =
+    payoutTabs.find((tab) => tab.key === destinationTab)?.label ??
+    "Payout Requests";
   const { handleApprove, handleReject, isApproving, isRejecting } =
-    usePayoutActions(request);
+    usePayoutActions(request, destinationTab);
 
   if (isLoading || isError || !request) {
     return (
@@ -141,8 +154,8 @@ export function PayoutRequestDetail({ id }: { id: string }) {
 
   return (
     <Page>
-      <BackButton onClick={() => router.push(payoutTabHref("requests"))}>
-        <ArrowLeft size={15} aria-hidden="true" /> Back to Payout Requests
+      <BackButton onClick={() => router.replace(payoutTabHref(destinationTab))}>
+        <ArrowLeft size={15} aria-hidden="true" /> Back to {backLabel}
       </BackButton>
 
       <CreatorHeader>

@@ -29,6 +29,7 @@ import {
   StatusBadge,
 } from "../all-creators/AllCreators.styles";
 import type { PayoutRequest } from "../../../types/payout-request";
+import { payoutRequestHref } from "../../../utils/payout";
 import { toCreatorStatus } from "../../../utils/status";
 
 export function PayoutRequestsList() {
@@ -96,7 +97,7 @@ export function PayoutRequestsList() {
               {requestsPagination.paginatedData.map((req: PayoutRequest) => (
                 <RequestTableRow
                   key={req.id}
-                  onClick={() => router.push(`/payout-requests/${req.id}`)}
+                  onClick={() => router.push(payoutRequestHref(req.id))}
                 >
                   <TableBodyCell>
                     <CreatorCell>
