@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import {
+  Download,
   ArrowLeft,
   ArrowUpRight,
   Check,
@@ -31,6 +34,7 @@ import {
   CreatorText,
   NameRow,
   ButtonGroup,
+  DownloadButton,
   ApproveButton,
   RejectButton,
   SummaryGrid,
@@ -73,7 +77,14 @@ export function PayoutRequestDetail({
   returnTab?: PayoutTab;
 }) {
   const router = useRouter();
-  const { data: request, isLoading, isError, error } = usePayoutRequest(id);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const {
+    data: request,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = usePayoutRequest(id);
   const destinationTab =
     returnTab ??
     (request && request.status !== "pending" ? "all-history" : "requests");
@@ -96,6 +107,28 @@ export function PayoutRequestDetail({
       </Page>
     );
   }
+
+  const handleDownload = async () => {
+    if (isDownloading) return;
+    setIsDownloading(true);
+    try {
+      const refreshed = await refetch();
+      if (refreshed.error || !refreshed.data)
+        throw refreshed.error ?? new Error("Could not refresh this payout.");
+      const { downloadPayoutInvoice } =
+        await import("../../../utils/payout-invoice");
+      await downloadPayoutInvoice(refreshed.data);
+      toast.success("Payout invoice downloaded.");
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Could not download the payout invoice.",
+      );
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   const initials =
     request.fullName
@@ -171,24 +204,39 @@ export function PayoutRequestDetail({
             <p>{request.email || "No email"}</p>
           </CreatorText>
         </CreatorIdentity>
-        {request.status === "pending" && (
-          <ButtonGroup>
-            <RejectButton
-              onClick={handleReject}
-              disabled={isApproving || isRejecting}
-            >
-              <X size={15} aria-hidden="true" />{" "}
-              {isRejecting ? "Rejecting..." : "Reject Request"}
-            </RejectButton>
-            <ApproveButton
-              onClick={handleApprove}
-              disabled={isApproving || isRejecting || hasFeeError}
-            >
-              <Check size={16} aria-hidden="true" />{" "}
-              {isApproving ? "Approving..." : "Approve Payout"}
-            </ApproveButton>
-          </ButtonGroup>
-        )}
+        <ButtonGroup>
+          <DownloadButton
+            data-download
+            onClick={handleDownload}
+            disabled={
+              isDownloading || isApproving || isRejecting || hasFeeError
+            }
+            aria-busy={isDownloading}
+          >
+            <Download size={15} aria-hidden="true" />{" "}
+            {isDownloading ? "Preparing PDF..." : "Download PDF"}
+          </DownloadButton>
+          {request.status === "pending" && (
+            <>
+              <RejectButton
+                onClick={handleReject}
+                disabled={isApproving || isRejecting || isDownloading}
+              >
+                <X size={15} aria-hidden="true" />{" "}
+                {isRejecting ? "Rejecting..." : "Reject Request"}
+              </RejectButton>
+              <ApproveButton
+                onClick={handleApprove}
+                disabled={
+                  isApproving || isRejecting || isDownloading || hasFeeError
+                }
+              >
+                <Check size={16} aria-hidden="true" />{" "}
+                {isApproving ? "Approving..." : "Approve Payout"}
+              </ApproveButton>
+            </>
+          )}
+        </ButtonGroup>
       </CreatorHeader>
 
       <SummaryGrid>

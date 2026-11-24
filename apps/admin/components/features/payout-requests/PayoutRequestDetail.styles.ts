@@ -101,13 +101,18 @@ export const NameRow = styled.div`
 
 export const ButtonGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   @media (max-width: 600px) {
     width: 100%;
+    > button[data-download] {
+      flex-basis: 100%;
+    }
     > button {
-      flex: 1;
+      flex: 1 1 calc(50% - 5px);
       padding-inline: 12px;
     }
   }
@@ -138,6 +143,16 @@ export const ApproveButton = styled.button`
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.secondary.main};
     outline-offset: 3px;
+  }
+`;
+
+export const DownloadButton = styled(ApproveButton)`
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  border-color: ${({ theme }) => theme.colors.secondary.border};
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+    filter: none;
   }
 `;
 
