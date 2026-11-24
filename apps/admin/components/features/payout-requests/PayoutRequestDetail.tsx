@@ -95,6 +95,32 @@ export function PayoutRequestDetail({ id }: { id: string }) {
       .toUpperCase() || "?";
   const breakdown = request.feeBreakdown;
   const hasFeeError = !!request.feeCalculationError;
+  const gross = Number(request.rawAmount);
+  const savedAcquirerFee = Number(request.processingFee);
+  const effectiveAcquirerRate =
+    Number.isFinite(gross) &&
+    gross > 0 &&
+    request.processingFee.trim() !== "" &&
+    Number.isFinite(savedAcquirerFee) &&
+    savedAcquirerFee >= 0
+      ? savedAcquirerFee / gross
+      : null;
+  const acquirerRate =
+    breakdown?.processingFeePercentage ?? effectiveAcquirerRate;
+  const kiibeeCalculation = hasFeeError
+    ? null
+    : breakdown?.fixedPlatformFee != null
+      ? breakdown.saleCount != null
+        ? `${breakdown.saleCount} sales × ${money(breakdown.fixedPlatformFee, request.currency)} = ${money(request.platformFee, request.currency)}`
+        : `Per sale: ${money(breakdown.fixedPlatformFee, request.currency)} · Sale count unavailable`
+      : breakdown
+        ? `${money(request.rawAmount, null)} × ${percent(breakdown.platformFeePercentage)} = ${money(request.platformFee, request.currency)}`
+        : "Per-sale details unavailable for this payout";
+  const acquirerCalculation =
+    !hasFeeError && acquirerRate != null
+      ? `${money(request.rawAmount, null)} × ${percent(acquirerRate)} ${breakdown ? "=" : "≈"} ${money(request.processingFee, request.currency)}`
+      : null;
+
   const netAmount = hasFeeError
     ? "N/A"
     : money(request.payableAmount, request.currency);
@@ -171,7 +197,11 @@ export function PayoutRequestDetail({ id }: { id: string }) {
               ? new Intl.NumberFormat("en-US").format(breakdown.saleCount)
               : "N/A"}
           </SummaryValue>
-          <Caption>Included in this payout</Caption>
+          <Caption>
+            {breakdown?.saleCount != null
+              ? "Included in this payout"
+              : "Sale count unavailable for this payout"}
+          </Caption>
         </SummaryCard>
         <SummaryCard $accent>
           <SummaryLabel>
@@ -201,23 +231,18 @@ export function PayoutRequestDetail({ id }: { id: string }) {
             <FeeRow>
               <dt>
                 Kiibee fee
-                {breakdown && (
-                  <FeeNote>
-                    {breakdown.fixedPlatformFee != null
-                      ? `${breakdown.saleCount != null ? `${breakdown.saleCount} sales × ` : "Per sale: "}${money(breakdown.fixedPlatformFee, request.currency)}`
-                      : `${percent(breakdown.platformFeePercentage)} of gross sales`}
-                  </FeeNote>
-                )}
+                {kiibeeCalculation && <FeeNote>{kiibeeCalculation}</FeeNote>}
               </dt>
               <dd>{deduction(request.platformFee)}</dd>
             </FeeRow>
             <FeeRow>
               <dt>
                 Acquirer fee
-                {breakdown && (
-                  <FeeNote>
-                    {percent(breakdown.processingFeePercentage)} of gross sales
-                  </FeeNote>
+                {!hasFeeError && acquirerRate != null
+                  ? ` · ${percent(acquirerRate)}${breakdown ? "" : " effective"}`
+                  : ""}
+                {acquirerCalculation && (
+                  <FeeNote>{acquirerCalculation}</FeeNote>
                 )}
               </dt>
               <dd>{deduction(request.processingFee)}</dd>
