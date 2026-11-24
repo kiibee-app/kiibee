@@ -9,11 +9,18 @@ export type PayoutRow = {
 export function parsePayoutBalance(value?: string | null): number {
   if (!value) return 0;
 
-  const match = value.match(/(-?\d+(?:[.,]\d+)?)/);
+  const match = value.match(/-?\d+(?:[.,\s\u00a0\u202f]\d+)*/);
   if (!match) return 0;
 
-  const amount = Number(match[1].replace(",", "."));
-  return Number.isNaN(amount) ? 0 : amount;
+  const numericValue = match[0].replace(/[\s\u00a0\u202f]/g, "");
+
+  const normalized = numericValue.includes(",")
+    ? numericValue.replace(/\./g, "").replace(",", ".")
+    : /^-?\d{1,3}(?:\.\d{3})+$/.test(numericValue)
+      ? numericValue.replace(/\./g, "")
+      : numericValue;
+  const amount = Number(normalized);
+  return Number.isFinite(amount) ? amount : 0;
 }
 
 export function formatPayoutAmount(value: string): string {

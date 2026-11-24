@@ -39,7 +39,11 @@ export async function getChannelCodeState(creatorId: string, userId?: string) {
     .limit(1);
   const hashes = channelCodeHashes(setting.passwordHash);
   const [grant] =
-    userId && hashes.length && creator && !creator.isDeleted
+    userId &&
+    userId !== creatorId &&
+    hashes.length &&
+    creator &&
+    !creator.isDeleted
       ? await db
           .select()
           .from(channelCodeGrants)

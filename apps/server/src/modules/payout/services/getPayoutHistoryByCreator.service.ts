@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { desc, eq } from 'drizzle-orm';
+import { and, desc, eq, gte } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPayoutRequests, creatorPayouts } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
@@ -38,7 +38,14 @@ export const getPayoutHistoryByCreatorIdService = async (
         creatorPayoutRequests,
         eq(creatorPayouts.id, creatorPayoutRequests.payoutId),
       )
-      .where(eq(creatorPayouts.creatorId, creatorId))
+      .where(
+        and(
+          eq(creatorPayouts.creatorId, creatorId),
+          query?.createdFrom
+            ? gte(creatorPayouts.createdAt, new Date(query.createdFrom))
+            : undefined,
+        ),
+      )
       .orderBy(desc(creatorPayouts.createdAt));
 
     let history = rows.map((row) => ({
