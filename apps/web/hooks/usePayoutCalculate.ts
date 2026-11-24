@@ -10,6 +10,8 @@ export type PayoutCalculation = {
   planPrice: number;
   fixedPlatformFee?: number | null;
   saleCount?: number;
+  purchases?: number;
+  rentals?: number;
   platformFeePercentage: number;
   processingFeePercentage: number;
   platformFee: number;
@@ -30,6 +32,9 @@ export const usePayoutCalculate = (enabled: boolean) => {
     {
       enabled,
       retry: false,
+      staleTime: 0,
+      refetchOnMount: "always",
+      refetchInterval: enabled ? 15000 : false,
     },
   );
 

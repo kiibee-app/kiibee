@@ -92,6 +92,8 @@ export const payoutCalculationService = async (
       payableAmount,
       fixedPlatformFee,
       saleCount,
+      purchases,
+      rentals,
     } = await calculateCreatorPayoutFees(creatorId, {
       amount: amount,
       basePlanPrice: planPrice,
@@ -108,6 +110,8 @@ export const payoutCalculationService = async (
       planPrice,
       fixedPlatformFee,
       saleCount,
+      purchases,
+      rentals,
       platformFeePercentage,
       processingFeePercentage,
       platformFee,

@@ -57,7 +57,7 @@ it('repairs the existing pending request and payout together without debiting th
       },
     ],
     [...Array.from({ length: 15 }, () => ({ price: '90' })), { price: '75' }],
-    [{ amount: '0' }],
+    [{ amount: '1425' }],
   ]);
   await refreshPendingPayoutFees('demo');
   expect(writes).toHaveLength(2);
@@ -83,7 +83,9 @@ it.each(['completed', 'rejected'])(
   },
 );
 it('is idempotent when another reader has already repaired the pending request', async () => {
-  const { writes } = setup([[{ ...request, feeBreakdown: { saleCount: 16 } }]]);
+  const { writes } = setup([
+    [{ ...request, feeBreakdown: { calculationVersion: 2, saleCount: 16 } }],
+  ]);
   await refreshPendingPayoutFees();
   expect(writes).toHaveLength(0);
 });
@@ -102,9 +104,11 @@ it('does not invent sale counts when the imported amount cannot be reconciled', 
     [{ amount: '1425' }],
     [{ price: '129', fixedPlatformFee: 9 }],
     [{ price: '100' }],
-    [{ amount: '0' }],
+    [{ amount: '1425' }],
   ]);
-  await expect(refreshPendingPayoutFees()).rejects.toThrow('Cannot reconcile');
+  await expect(refreshPendingPayoutFees()).rejects.toThrow(
+    'exceeds verified payment credits',
+  );
   expect(writes).toHaveLength(0);
 });
 
@@ -113,4 +117,45 @@ it('keeps unresolvable requests readable without displaying stale amounts', asyn
   await expect(
     refreshPendingPayoutFees(undefined, undefined, false),
   ).resolves.toEqual({ r: 'Pending payout does not match its request' });
+});
+
+it('upgrades a previous fee snapshot using the saved rates rather than replacing its contract', async () => {
+  const { writes, tx } = setup([
+    [
+      {
+        ...request,
+        feeBreakdown: {
+          saleCount: 1,
+          fixedPlatformFee: 9,
+          platformFeePercentage: 0,
+          processingFeePercentage: 0.06,
+        },
+      },
+    ],
+    [{ ...request, id: 'p', amount: '1330.50' }],
+    [{ amount: '1425' }],
+    [
+      ...Array.from({ length: 15 }, () => ({
+        price: '90',
+        itemType: 'purchase',
+      })),
+      { price: '75', itemType: 'rental' },
+    ],
+    [{ amount: '1425' }],
+  ]);
+  await refreshPendingPayoutFees('demo');
+  expect(tx.select).toHaveBeenCalledTimes(5);
+  expect(writes[0].values).toMatchObject({
+    platformFee: '144.00',
+    processingFee: '85.50',
+    payableAmount: '1195.50',
+    feeBreakdown: {
+      calculationVersion: 2,
+      saleCount: 16,
+      purchases: 15,
+      rentals: 1,
+      fixedPlatformFee: 9,
+      processingFeePercentage: 0.06,
+    },
+  });
 });

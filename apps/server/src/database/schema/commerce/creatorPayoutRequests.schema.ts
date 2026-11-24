@@ -26,7 +26,10 @@ export const creatorPayoutRequests = pgTable('creator_payout_requests', {
     scale: 2,
   }).notNull(),
   feeBreakdown: jsonb('fee_breakdown').$type<{
+    calculationVersion?: number;
     saleCount?: number;
+    purchases?: number;
+    rentals?: number;
     fixedPlatformFee: number | null;
     platformFeePercentage: number;
     processingFeePercentage: number;

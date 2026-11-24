@@ -9,6 +9,9 @@ export type PayoutRequestPayload = {
 };
 
 export type PayoutRequestResult = {
+  saleCount?: number;
+  purchases?: number;
+  rentals?: number;
   payoutId: string;
   payoutRequestId: string;
   amount: number;
