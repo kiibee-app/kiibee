@@ -2,6 +2,7 @@ import { ADD_CONTENT_TABS, CONTENT_TABS } from "@/utils/common";
 import {
   CONTENT_COLLECTION_QUERY_KEY,
   CONTENT_ITEM_QUERY_KEY,
+  CONTENT_PREVIEW_QUERY_KEY,
   CONTENT_LAST_EDITED_STORAGE_KEY,
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
@@ -14,6 +15,7 @@ import { USER_TABS } from "@/utils/usersTabs";
 import { toCanonicalSearchParams } from "@/utils/localizedQueryParams";
 
 export const CONTENTS_VIEW_QUERY_KEYS = [
+  CONTENT_PREVIEW_QUERY_KEY,
   CONTENT_COLLECTION_QUERY_KEY,
   CONTENT_ITEM_QUERY_KEY,
 ] as const;

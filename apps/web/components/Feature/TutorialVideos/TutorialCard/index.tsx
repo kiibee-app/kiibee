@@ -46,6 +46,7 @@ type TutorialCardProps = {
   collectionSlug?: string | null;
   isPaidCollection?: boolean;
   imagePriority?: boolean;
+  showPricingForOwner?: boolean;
 };
 
 type IconComponent = ComponentType<{
@@ -72,6 +73,7 @@ function TutorialCard({
   collectionSlug = null,
   isPaidCollection = false,
   imagePriority = false,
+  showPricingForOwner = false,
 }: TutorialCardProps) {
   const router = useRouter();
   const { t, i18n } = useTranslation();
@@ -81,7 +83,7 @@ function TutorialCard({
   const [loginModalMessage, setLoginModalMessage] = useState<
     string | undefined
   >(undefined);
-  const { user, hasAccess, rentedItem } = useViewerContentAccess(
+  const { user, hasAccess, rentedItem, isOwner } = useViewerContentAccess(
     tutorial.id,
     tutorial.creatorId,
     collectionId,
@@ -160,7 +162,7 @@ function TutorialCard({
   );
 
   const buttons = useMemo(() => {
-    if (hasAccess) {
+    if (hasAccess && !(showPricingForOwner && isOwner)) {
       return [
         {
           label: t("createProfileHome.latestUpload.seeContent"),
@@ -219,6 +221,8 @@ function TutorialCard({
     return [defaultButton];
   }, [
     hasAccess,
+    showPricingForOwner,
+    isOwner,
     t,
     isWebContent,
     webUrl,
@@ -251,6 +255,12 @@ function TutorialCard({
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
     event.preventDefault();
     event.stopPropagation();
+
+    // Owner pricing previews should open the content without a checkout intent.
+    if (showPricingForOwner && isOwner) {
+      navigateToContent(singleTutorialHref);
+      return;
+    }
 
     const targetHref = resolveButtonHref(button.href);
 

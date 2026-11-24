@@ -92,6 +92,7 @@ export default function CollectionContent({
             collectionSlug={collectionSlug}
             collectionId={collectionId}
             isPaidCollection={isPaidCollection}
+            showPricingForOwner={!embedded}
           />
         ) : (
           <GenericEmptyState title={t("singleCollection.noResults")} />

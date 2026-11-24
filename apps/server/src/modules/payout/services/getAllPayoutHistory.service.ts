@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
+import { and, desc, eq, gte, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -27,6 +27,9 @@ export const getAllPayoutHistoryService = async (
     );
 
     const filters: SQL[] = [];
+    if (query?.createdFrom) {
+      filters.push(gte(creatorPayouts.createdAt, new Date(query.createdFrom)));
+    }
 
     if (query?.status) {
       const filterStatus = (query.status.charAt(0).toUpperCase() +

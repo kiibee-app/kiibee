@@ -1,5 +1,6 @@
 import {
   IsBoolean,
+  IsDateString,
   IsNumber,
   IsOptional,
   IsString,
@@ -11,6 +12,10 @@ import {
 import { Type } from 'class-transformer';
 
 export class SettlementHistoryQueryDto {
+  @IsOptional()
+  @IsDateString()
+  createdFrom?: string;
+
   @IsOptional()
   @IsString()
   @IsIn(['pending', 'completed', 'rejected'])
