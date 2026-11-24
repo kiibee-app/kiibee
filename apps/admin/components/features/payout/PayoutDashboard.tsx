@@ -20,6 +20,7 @@ import type {
 import { toCreatorStatus } from "../../../utils/status";
 import {
   formatAmount,
+  CREATOR_PAYOUT_HISTORY_START,
   formatDate,
   isPayoutTab,
   PAYOUT_TAB_QUERY,
@@ -158,6 +159,8 @@ function HistoryTable({
 }
 
 function CreatorHistoryTab() {
+  const [recentPage, setRecentPage] = useState(1);
+  const [recentPageSize, setRecentPageSize] = useState(10);
   const [creatorSearch, setCreatorSearch] = useState("");
   const [selectedCreator, setSelectedCreator] =
     useState<ExistingCreator | null>(null);
@@ -169,7 +172,24 @@ function CreatorHistoryTab() {
     page: 1,
     limit: 8,
   });
-  const historyQuery = usePayoutHistoryByCreator(selectedCreator?.id ?? "");
+  const historyQuery = usePayoutHistoryByCreator(selectedCreator?.id ?? "", {
+    createdFrom: CREATOR_PAYOUT_HISTORY_START,
+  });
+  const recentHistoryQuery = useAllPayoutHistory({
+    createdFrom: CREATOR_PAYOUT_HISTORY_START,
+    page: recentPage,
+    limit: recentPageSize,
+  });
+  const recentHistory = recentHistoryQuery.data;
+  const recentPagination = usePagination({
+    data: recentHistory?.items ?? [],
+    totalItems: recentHistory?.pagination.totalItems ?? 0,
+    mode: "server",
+    currentPage: recentHistory?.pagination.page ?? recentPage,
+    pageSize: recentPageSize,
+    onPageChange: setRecentPage,
+    onPageSizeChange: setRecentPageSize,
+  });
 
   const items = historyQuery.data ?? [];
   const creators = creatorsQuery.data?.items ?? [];
@@ -210,17 +230,43 @@ function CreatorHistoryTab() {
         </HeaderControls>
         <PayoutHint>
           {selectedCreator
-            ? `Showing history for ${getExistingCreatorDisplayName(selectedCreator)}`
-            : "Search and select a creator to load payout history."}
+            ? `Payouts from Nov 24, 2026 for ${getExistingCreatorDisplayName(selectedCreator)}`
+            : "Payouts from Nov 24, 2026 onward. Search to filter by creator."}
         </PayoutHint>
       </PayoutToolbar>
 
       <AllCreatorsPanel>
         {!selectedCreator ? (
           !creatorSearchTerm ? (
-            <AllCreatorsState>
-              Type a creator name or email to search payout history.
-            </AllCreatorsState>
+            recentHistoryQuery.isLoading ? (
+              <AllCreatorsState>
+                Loading recent payout history...
+              </AllCreatorsState>
+            ) : recentHistoryQuery.isError ? (
+              <AllCreatorsState>
+                Failed to load recent payout history.
+              </AllCreatorsState>
+            ) : recentHistory?.items.length ? (
+              <>
+                <HistoryTable items={recentHistory.items} showCreator />
+                <CreatorPagination
+                  startIndex={recentPagination.startIndex}
+                  endIndex={recentPagination.endIndex}
+                  totalItems={recentHistory.pagination.totalItems}
+                  currentPage={recentPagination.currentPage}
+                  totalPages={recentPagination.totalPages}
+                  pageNumbers={recentPagination.pageNumbers}
+                  pageSize={recentPagination.pageSize}
+                  itemLabel="payouts"
+                  onPageChange={recentPagination.onPageChange}
+                  onPageSizeChange={recentPagination.onPageSizeChange}
+                />
+              </>
+            ) : (
+              <AllCreatorsState>
+                No payouts since Nov 24, 2026.
+              </AllCreatorsState>
+            )
           ) : creatorsQuery.isLoading ? (
             <AllCreatorsState>Loading creators...</AllCreatorsState>
           ) : creatorsQuery.isError ? (

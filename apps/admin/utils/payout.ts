@@ -3,6 +3,8 @@ import type { PayoutTab, BadgeStatus } from "../types/payout-request";
 
 /** Gross payout amount must be greater than this (DKK). */
 export const MIN_PAYOUT_AMOUNT = 8;
+// Keep the rollout date fixed so subsequent days retain earlier new payouts.
+export const CREATOR_PAYOUT_HISTORY_START = "2026-11-24T00:00:00+06:00";
 
 export const payoutTabs: Array<{ key: PayoutTab; label: string }> = [
   { key: "balances", label: "Creator Balances" },
