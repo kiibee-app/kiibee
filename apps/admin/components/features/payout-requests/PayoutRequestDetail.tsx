@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import {
+  Landmark,
   Download,
   ArrowLeft,
   ArrowUpRight,
@@ -49,6 +50,8 @@ import {
   FeeNote,
   NetRow,
   Metadata,
+  BankSection,
+  BankGrid,
   WalletRow,
   FeeError,
 } from "./PayoutRequestDetail.styles";
@@ -319,6 +322,27 @@ export function PayoutRequestDetail({
             <FileText size={18} aria-hidden="true" />
             <h3>Request information</h3>
           </SectionHeader>
+          <BankSection aria-labelledby="payout-bank-heading">
+            <h3 id="payout-bank-heading">
+              <Landmark size={17} aria-hidden="true" /> Bank details
+            </h3>
+            <BankGrid>
+              {[
+                ["Account holder", request.bankDetails?.accountHolderName],
+                ["Bank", request.bankDetails?.bankName],
+                [
+                  "Registration number",
+                  request.bankDetails?.registrationNumber,
+                ],
+                ["Account number", request.bankDetails?.accountNumber],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value || "Not recorded"}</dd>
+                </div>
+              ))}
+            </BankGrid>
+          </BankSection>
           <Metadata>
             <div>
               <dt>Date requested</dt>

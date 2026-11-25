@@ -3,6 +3,7 @@ export type CreatorLayoutKey = "layout1" | "layout2" | "layout3";
 export type LogoType = "text" | "picture";
 
 export type ContentAppearance = {
+  categoryIds?: string[];
   id?: string;
   userId?: string;
   textColor?: string | null;
@@ -19,6 +20,7 @@ export type ContentAppearance = {
 };
 
 export type ContentAppearancePayload = {
+  categoryIds?: string[];
   textColor: string;
   buttonColor: string;
   logoType: LogoType;

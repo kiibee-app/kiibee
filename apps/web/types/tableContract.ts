@@ -45,7 +45,15 @@ export type TableProps<T> = BaseTableProps<T> & {
   getMobileTitle?: (row: T) => string;
 };
 
+export type PayoutBankDetails = {
+  bankName: string | null;
+  accountHolderName: string | null;
+  registrationNumber: string | null;
+  accountNumber: string | null;
+};
+
 export type SettlementRow = {
+  bankDetails?: PayoutBankDetails | null;
   id?: string;
   feeCalculationError?: string;
   grossAmount?: string;

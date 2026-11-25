@@ -143,6 +143,26 @@ export async function createPayoutInvoicePdf(
   paragraph(request.email || "Email unavailable", 10, false, muted);
   y += 9;
 
+  ensureSpace(65);
+  text("BANK DETAILS", left, y, 8, true, muted);
+  y += 8;
+  for (const [label, value] of [
+    ["Account holder", request.bankDetails?.accountHolderName],
+    ["Bank", request.bankDetails?.bankName],
+    ["Registration number", request.bankDetails?.registrationNumber],
+    ["Account number", request.bankDetails?.accountNumber],
+  ]) {
+    const parts = wrapped(value || "Not recorded", width - 43, 9);
+    ensureSpace(parts.length * 5 + 7);
+    text(label!, left, y, 9, false, muted);
+    for (const part of parts) {
+      text(part, left + 43, y, 9);
+      y += 5;
+    }
+    y += 3;
+  }
+  y += 7;
+
   const requestedDate = new Date(request.createdAt);
   const date = Number.isFinite(requestedDate.getTime())
     ? new Intl.DateTimeFormat("en-GB", {

@@ -1,4 +1,10 @@
 export interface PayoutRequest {
+  bankDetails?: {
+    bankName: string | null;
+    accountHolderName: string | null;
+    registrationNumber: string | null;
+    accountNumber: string | null;
+  } | null;
   feeCalculationError?: string;
   feeBreakdown?: {
     calculationVersion?: number;

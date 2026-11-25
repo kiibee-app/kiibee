@@ -1,3 +1,4 @@
+import { resolvePayoutBankDetails } from 'src/utils/payoutBankDetails';
 import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpStatus } from '@nestjs/common';
 import { and, desc, eq, sql } from 'drizzle-orm';
@@ -39,6 +40,9 @@ export async function getSettlementHistoryService(
         currency: creatorPayouts.currency,
         status: creatorPayouts.status,
         creditNo: creatorPayouts.creditNo,
+        bankAccountInfo: creatorPayouts.bankAccountInfo,
+        accountHolderName: creatorBankAccounts.accountHolderName,
+        registrationNumber: creatorBankAccounts.registrationNumber,
         bankName: creatorBankAccounts.bankName,
         accountNumber: creatorBankAccounts.accountNumber,
         payoutDate: creatorPayouts.payoutDate,
@@ -51,7 +55,10 @@ export async function getSettlementHistoryService(
       )
       .leftJoin(
         creatorBankAccounts,
-        eq(creatorPayouts.creatorId, creatorBankAccounts.creatorId),
+        and(
+          eq(creatorPayouts.creatorId, creatorBankAccounts.creatorId),
+          eq(creatorPayoutRequests.paymentMethodId, creatorBankAccounts.id),
+        ),
       )
       .where(eq(creatorPayouts.creatorId, creatorId))
       .orderBy(desc(creatorPayouts.payoutDate));
@@ -82,6 +89,7 @@ export async function getSettlementHistoryService(
 
     const paidRows = paidSettlements.map((row) => ({
       id: row.id,
+      bankDetails: resolvePayoutBankDetails(row.bankAccountInfo, row),
       amount:
         row.payoutRequestId && feeErrors[row.payoutRequestId]
           ? 'N/A'

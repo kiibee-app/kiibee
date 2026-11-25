@@ -1,5 +1,6 @@
 "use client";
 
+import type { PayoutBankDetails } from "@/types/tableContract";
 import { useMemo } from "react";
 import { keepPreviousData } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
@@ -7,6 +8,7 @@ import { formatDateUSShort } from "@/utils/formatDate";
 import { formatPayoutAmount } from "@/utils/payout";
 
 export type SettlementItem = {
+  bankDetails?: PayoutBankDetails | null;
   feeCalculationError?: string;
   grossAmount?: string;
   platformFee?: string;
@@ -24,6 +26,7 @@ export type SettlementItem = {
 };
 
 type BackendSettlementItem = {
+  bankDetails?: PayoutBankDetails | null;
   feeCalculationError?: string;
   grossAmount?: string;
   platformFee?: string;
@@ -49,6 +52,7 @@ type SettlementHistoryResponse = {
 function toSettlementItem(item: BackendSettlementItem): SettlementItem {
   return {
     id: item.id,
+    bankDetails: item.bankDetails,
     feeCalculationError: item.feeCalculationError,
     grossAmount: item.grossAmount
       ? formatPayoutAmount(item.grossAmount)

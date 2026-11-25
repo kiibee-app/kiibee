@@ -1,5 +1,7 @@
 "use client";
 
+import { ContentCategorySettings } from "./ContentCategorySettings";
+
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Play, Ticket, X } from "lucide-react";
@@ -328,6 +330,13 @@ export function CreatorContentEngagement({
           onClose={() => setCouponOpen(false)}
         />
       )}
+
+      <ContentCategorySettings
+        key={`${contentId}:${content.categoryId ?? ""}`}
+        contentId={contentId}
+        creatorId={creatorId}
+        currentCategoryId={content.categoryId ?? null}
+      />
 
       <ContentCoupons contentId={contentId} contentTitle={content.title} />
 

@@ -1,5 +1,7 @@
+import { resolvePayoutBankDetails } from 'src/utils/payoutBankDetails';
+import { creatorBankAccounts, creatorPayouts } from 'src/database/schema';
 import { HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import { creatorPayoutRequests, users } from 'src/database/schema';
@@ -20,6 +22,11 @@ export const payoutInfoService = async (payoutId: string) => {
       status: creatorPayoutRequests.status,
       createdAt: creatorPayoutRequests.createdAt,
       updatedAt: creatorPayoutRequests.updatedAt,
+      bankAccountInfo: creatorPayouts.bankAccountInfo,
+      bankName: creatorBankAccounts.bankName,
+      accountHolderName: creatorBankAccounts.accountHolderName,
+      registrationNumber: creatorBankAccounts.registrationNumber,
+      accountNumber: creatorBankAccounts.accountNumber,
 
       creatorUserId: users.id,
       creatorFullName: users.fullName,
@@ -27,6 +34,17 @@ export const payoutInfoService = async (payoutId: string) => {
     })
     .from(creatorPayoutRequests)
     .leftJoin(users, eq(creatorPayoutRequests.creatorId, users.id))
+    .leftJoin(
+      creatorPayouts,
+      eq(creatorPayoutRequests.payoutId, creatorPayouts.id),
+    )
+    .leftJoin(
+      creatorBankAccounts,
+      and(
+        eq(creatorBankAccounts.creatorId, creatorPayoutRequests.creatorId),
+        eq(creatorBankAccounts.id, creatorPayoutRequests.paymentMethodId),
+      ),
+    )
     .where(eq(creatorPayoutRequests.payoutId, payoutId))
     .limit(1);
 
@@ -35,6 +53,7 @@ export const payoutInfoService = async (payoutId: string) => {
   }
 
   return {
+    bankDetails: resolvePayoutBankDetails(result.bankAccountInfo, result),
     id: result.id,
     creatorId: result.creatorId,
     payoutId: result.payoutId,

@@ -1,3 +1,4 @@
+import { payoutBankEmailVariables } from 'src/utils/payoutBankDetails';
 import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
@@ -189,9 +190,11 @@ export const approvePayoutRequestService = async (requestId: string) => {
     runInBackground(
       sendTemplateEmail({
         to: payoutInfo.creator.email ?? '',
+        cc: 'info@kiibee.com',
         subject: mailSubject.APPROVED_PAYOUT,
         templateName: templateName.APPROVED_PAYOUT,
         variables: {
+          bank: payoutBankEmailVariables(payoutInfo.bankDetails),
           creator: {
             fullName: payoutInfo.creator.fullName,
           },

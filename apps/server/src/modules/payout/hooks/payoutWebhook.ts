@@ -1,3 +1,4 @@
+import { payoutBankEmailVariables } from 'src/utils/payoutBankDetails';
 import { HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -128,9 +129,11 @@ export const handlePayoutWebhookService = async (payload: any) => {
       runInBackground(
         sendTemplateEmail({
           to: payoutInfo.creator.email ?? '',
+          cc: 'info@kiibee.com',
           subject: mailSubject.APPROVED_PAYOUT,
           templateName: templateName.APPROVED_PAYOUT,
           variables: {
+            bank: payoutBankEmailVariables(payoutInfo.bankDetails),
             creator: {
               fullName: payoutInfo.creator.fullName,
             },
