@@ -1893,6 +1893,12 @@
         "title": "No balance to pay out",
         "message": "Your payout balance is currently 0,00 kr. Once you earn from purchases or rentals, you can request a payout here.",
         "done": "Got it"
+      },
+      "bankDetails": {
+        "bankName": "Bank",
+        "accountHolderName": "Account holder",
+        "registrationNumber": "Registration number",
+        "accountNumber": "Account number"
       }
     },
     "export": {

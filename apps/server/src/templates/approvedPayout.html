@@ -124,7 +124,8 @@
                       </p>
 
                       <p style="margin: 0; color: #444444">
-                        Vi behandler nu din betaling. Det godkendte beløb overføres snart til din valgte betalingsmetode.
+                        Vi behandler nu din betaling. Det godkendte beløb
+                        overføres snart til din valgte betalingsmetode.
                       </p>
                     </td>
                   </tr>
@@ -209,7 +210,7 @@
                               font-size: 14px;
                             "
                           >
-                            {{rawBeløb}} {{currency}}
+                            {{rawAmount}} {{currency}}
                           </td>
                         </tr>
 
@@ -277,7 +278,7 @@
                               font-weight: 700;
                             "
                           >
-                            {{payableBeløb}} {{currency}}
+                            {{payableAmount}} {{currency}}
                           </td>
                         </tr>
 
@@ -309,6 +310,87 @@
                   </tr>
                 </table>
 
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td
+                      style="
+                        padding: 0 32px 24px;
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                      "
+                    >
+                      <h3 style="font-size: 16px">Bankoplysninger</h3>
+                      <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="background: #fafafa; border: 1px solid #e6e8eb"
+                      >
+                        <tr>
+                          <td style="padding: 8px 12px; color: #666">Bank</td>
+                          <td
+                            style="
+                              padding: 8px 12px;
+                              text-align: right;
+                              overflow-wrap: anywhere;
+                            "
+                          >
+                            {{bank.bankName}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px 12px; color: #666">
+                            Kontohaver
+                          </td>
+                          <td
+                            style="
+                              padding: 8px 12px;
+                              text-align: right;
+                              overflow-wrap: anywhere;
+                            "
+                          >
+                            {{bank.accountHolderName}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px 12px; color: #666">
+                            Registreringsnummer
+                          </td>
+                          <td
+                            style="
+                              padding: 8px 12px;
+                              text-align: right;
+                              overflow-wrap: anywhere;
+                            "
+                          >
+                            {{bank.registrationNumber}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px 12px; color: #666">
+                            Kontonummer
+                          </td>
+                          <td
+                            style="
+                              padding: 8px 12px;
+                              text-align: right;
+                              overflow-wrap: anywhere;
+                            "
+                          >
+                            {{bank.accountNumber}}
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
                 <!-- Footer Message -->
                 <table
                   role="presentation"
@@ -329,7 +411,9 @@
                       "
                     >
                       <p style="margin: 0 0 12px">
-                        Afhængigt af din betalingsudbyder kan det tage <strong>1–5 hverdage</strong>, før beløbet vises på din konto.
+                        Afhængigt af din betalingsudbyder kan det tage
+                        <strong>1–5 hverdage</strong>, før beløbet vises på din
+                        konto.
                       </p>
 
                       <p style="margin: 0">
@@ -364,8 +448,8 @@
                         color: #888888;
                       "
                     >
-                      Du har modtaget denne e-mail, fordi din udbetalingsanmodning på
-                      Kiibee er godkendt.
+                      Du har modtaget denne e-mail, fordi din
+                      udbetalingsanmodning på Kiibee er godkendt.
                     </td>
                   </tr>
                 </table>
@@ -377,4 +461,3 @@
     </table>
   </body>
 </html>
-```
