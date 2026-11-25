@@ -15,15 +15,12 @@ function absoluteUrl(pathname: string): string {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   return INDEXABLE_ROUTES.map((pathname) => {
     const enPath = pathname;
     const daPath = getDanishIndexablePath(pathname);
 
     return {
       url: absoluteUrl(daPath),
-      lastModified: now,
       changeFrequency: pathname === "/" ? WEEkLY : MONTHLY,
       priority: pathname === "/" ? 1 : 0.7,
       alternates: {

@@ -1,5 +1,6 @@
 "use client";
 
+import { AnalyticsPreferences } from "@/components/Analytics";
 import { useTranslation } from "react-i18next";
 import FormattedBody from "../Shared/FormattedBody";
 import {
@@ -57,6 +58,7 @@ export default function CookieSettingsSection() {
             <FormattedBody
               text={t("legalPages.cookieSettings.sections.analytics.body")}
             />
+            <AnalyticsPreferences />
           </FormattedDescription>
         </Section>
       </Body>
