@@ -58,12 +58,13 @@ export function getDanishIndexablePath(
 
 export function getSiteUrl(_errorContext?: string): string {
   void _errorContext;
+
+  if (process.env.NODE_ENV === "production") return "https://www.kiibee.dk";
+
   const port = process.env.PORT || "3000";
   const rawSiteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.SITE_URL ??
-    (process.env.NODE_ENV === "production"
-      ? "https://kiibee.dk"
-      : `http://localhost:${port}`);
+    `http://localhost:${port}`;
   return rawSiteUrl.replace(TRAILING_SLASH_REGEX, "");
 }
