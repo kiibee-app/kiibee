@@ -1893,6 +1893,12 @@
         "title": "Ingen saldo at udbetale",
         "message": "Din udbetalingssaldo er i øjeblikket 0,00 kr. Når du tjener på køb eller leje, kan du anmode om en udbetaling her.",
         "done": "Forstået"
+      },
+      "bankDetails": {
+        "bankName": "Bank",
+        "accountHolderName": "Kontohaver",
+        "registrationNumber": "Registreringsnummer",
+        "accountNumber": "Kontonummer"
       }
     },
     "export": {

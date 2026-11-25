@@ -1,6 +1,8 @@
+import { resolvePayoutBankDetails } from 'src/utils/payoutBankDetails';
+import { creatorBankAccounts, creatorPayouts } from 'src/database/schema';
 import { refreshPendingPayoutFees } from './refreshPendingPayoutFees.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorPayoutRequests,
@@ -40,9 +42,25 @@ export const getPayoutRequestByIdService = async (requestId: string) => {
         fullName: users.fullName,
         walletBalance: creatorWallets.amount,
         walletCurrency: creatorWallets.currency,
+        bankAccountInfo: creatorPayouts.bankAccountInfo,
+        bankName: creatorBankAccounts.bankName,
+        accountHolderName: creatorBankAccounts.accountHolderName,
+        registrationNumber: creatorBankAccounts.registrationNumber,
+        accountNumber: creatorBankAccounts.accountNumber,
       })
       .from(creatorPayoutRequests)
       .leftJoin(users, eq(creatorPayoutRequests.creatorId, users.id))
+      .leftJoin(
+        creatorPayouts,
+        eq(creatorPayoutRequests.payoutId, creatorPayouts.id),
+      )
+      .leftJoin(
+        creatorBankAccounts,
+        and(
+          eq(creatorBankAccounts.creatorId, creatorPayoutRequests.creatorId),
+          eq(creatorBankAccounts.id, creatorPayoutRequests.paymentMethodId),
+        ),
+      )
       .leftJoin(
         creatorWallets,
         eq(creatorPayoutRequests.creatorId, creatorWallets.creatorId),
@@ -54,16 +72,34 @@ export const getPayoutRequestByIdService = async (requestId: string) => {
       return fail('Payout request not found', HttpStatus.NOT_FOUND);
     }
 
+    const {
+      bankName,
+      accountHolderName,
+      registrationNumber,
+      accountNumber,
+      bankAccountInfo,
+      ...details
+    } = request;
+    const response = {
+      ...details,
+      bankDetails: resolvePayoutBankDetails(bankAccountInfo, {
+        bankName,
+        accountHolderName,
+        registrationNumber,
+        accountNumber,
+      }),
+    };
+
     return success(
       feeErrors[request.id]
         ? {
-            ...request,
+            ...response,
             platformFee: 'N/A',
             processingFee: 'N/A',
             payableAmount: 'N/A',
             feeCalculationError: feeErrors[request.id],
           }
-        : request,
+        : response,
       'Payout request fetched successfully',
       HttpStatus.OK,
     );

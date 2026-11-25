@@ -127,6 +127,30 @@ export default function SettlementInvoiceModal(props: Props) {
               <MonoText $use="Body_SemiBold">{props.row.bank}</MonoText>
             </InvoicePaymentMethod>
           </InvoiceInfo>
+          {props.row.bankDetails &&
+            [
+              [
+                t("settings.payout.bankDetails.bankName"),
+                props.row.bankDetails.bankName,
+              ],
+              [
+                t("settings.payout.bankDetails.accountHolderName"),
+                props.row.bankDetails.accountHolderName,
+              ],
+              [
+                t("settings.payout.bankDetails.registrationNumber"),
+                props.row.bankDetails.registrationNumber,
+              ],
+              [
+                t("settings.payout.bankDetails.accountNumber"),
+                props.row.bankDetails.accountNumber,
+              ],
+            ].map(([label, value]) => (
+              <InvoiceInfo key={label}>
+                <InvoiceLabel>{label}</InvoiceLabel>
+                <MonoText $use="Body_SemiBold">{value || "—"}</MonoText>
+              </InvoiceInfo>
+            ))}
         </InvoiceGrid>
       </InvoiceCard>
     </GenericModal>
