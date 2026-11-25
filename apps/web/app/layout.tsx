@@ -1,3 +1,4 @@
+import Analytics from "@/components/Analytics";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -70,6 +71,7 @@ export default async function RootLayout({
                 <SmoothScrollProvider>
                   {children}
                   <ToastProvider />
+                  <Analytics />
                 </SmoothScrollProvider>
               </LanguageProvider>
             </QueryProvider>

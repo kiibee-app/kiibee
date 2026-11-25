@@ -1458,7 +1458,7 @@
         },
         "analytics": {
           "title": "Google Analytics",
-          "body": "KIIBEE anvender Google Analytics til at måle trafikken på vores hjemmeside. Google Analytics bliver også anvendt til remarketing. Konkret betyder det, at besøgende, som har vist interesse for www.kiibee.dk og vores service, bliver præsenteret for bannere eller annoncer på andre sider på internettet via en cookie.\nDu kan fravælge cookies fra Google Analytics med dette værktøj:\n(Se vejledning) https://tools.google.com/dlpage/gaoptout"
+          "body": "Valgfrie Google Analytics-cookies hjælper os med at forstå trafikken på hjemmesiden og forbedre Kiibee. De bruges kun, når du tillader analyse. Du kan altid ændre dit valg på denne side. Analyse aktiverer ikke annoncerings- eller remarketingfunktioner."
         }
       }
     },
@@ -2618,5 +2618,13 @@
   "billingVat": {
     "inclusiveAmount": "{{amount}} {{currency}} inkl. moms",
     "addedNotice": "Der tillægges 25% moms"
+  },
+  "analyticsConsent": {
+    "title": "Valgfrie analysecookies",
+    "description": "Må vi bruge Google Analytics til at forstå, hvordan Kiibee bruges? Du kan altid ændre dit valg under Cookieindstillinger.",
+    "accept": "Tillad analyse",
+    "reject": "Afvis analyse",
+    "enabled": "Analysecookies er aktiveret.",
+    "disabled": "Analysecookies er deaktiveret."
   }
 }
