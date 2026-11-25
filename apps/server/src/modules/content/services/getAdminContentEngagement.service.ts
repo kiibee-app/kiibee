@@ -7,6 +7,7 @@ import {
   contentDownloadCount,
   contentTypes,
   mediaFiles,
+  mediaFileCategories,
   orders,
   users,
 } from 'src/database/schema';
@@ -27,6 +28,11 @@ export const getAdminContentEngagementService = async (contentId: string) => {
   try {
     const [content] = await db
       .select({
+        categoryId: sql<string | null>`(
+          select ${mediaFileCategories.categoryId} from ${mediaFileCategories}
+          where ${mediaFileCategories.mediaFileId} = ${mediaFiles.id}
+          order by ${mediaFileCategories.createdAt}, ${mediaFileCategories.id} limit 1
+        )`,
         id: mediaFiles.id,
         title: mediaFiles.title,
         description: mediaFiles.description,
