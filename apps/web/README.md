@@ -51,6 +51,9 @@ Advertising and remarketing signals are disabled. Tracking and its consent UI ru
 only on `www.kiibee.dk` and `kiibee.dk`; localhost, staging and Vercel preview
 hostnames stay untracked even if the measurement ID is present.
 
+Once the deployment is Ready, visit `https://www.kiibee.dk`, accept analytics cookies and
+check the GA4 Realtime report to verify that visits are being received.
+
 The wildcard allow rule in robots.txt includes search and AI crawlers. This does
 not override Vercel/CDN firewall rules: verify crawler access and logs separately
 in the hosting dashboard. A request with a crawler user-agent is only a smoke
