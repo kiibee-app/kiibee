@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN_ID } from './customPlan';
 import { updatePendingCheckoutAmount } from './adminBillingRequest.service';
 import { HttpException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
@@ -106,6 +107,15 @@ export const createSubscriptionService = async ({
       plan.price,
       enabled ? (assigned ?? {}) : {},
     );
+    if (
+      plan.id === CUSTOM_PLAN_ID &&
+      (!assigned || !enabled || terms.amount <= 0)
+    ) {
+      throw new HttpException(
+        'No payable custom subscription is assigned',
+        400,
+      );
+    }
     if (billingMonths !== undefined && billingMonths !== terms.months)
       throw new HttpException(
         'The billing period is set by the administrator',

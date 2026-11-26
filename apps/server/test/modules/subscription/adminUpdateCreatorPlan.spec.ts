@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN_ID } from 'src/modules/subscription/services/customPlan';
 import { db } from 'src/database/db';
 import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
 import { adminBillingRequests, creatorPlans, users } from 'src/database/schema';
@@ -14,7 +15,7 @@ jest.mock('src/utils/sanitize', () => ({
 }));
 
 jest.mock('src/database/db', () => ({
-  db: { select: jest.fn(), transaction: jest.fn() },
+  db: { select: jest.fn(), transaction: jest.fn(), insert: jest.fn() },
 }));
 
 jest.mock('src/lib/sendTemplateEmail', () => ({
@@ -37,6 +38,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(db.insert).mockReturnValue({
+      values: () => ({ onConflictDoNothing: async () => undefined }),
+    } as never);
   });
 
   it.each(['2026-02-30', 'not-a-date', '2099-01-01T12:00:00Z'])(
@@ -80,6 +84,22 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     expect(db.transaction).not.toHaveBeenCalled();
   });
   it.each([
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      targetId: CUSTOM_PLAN_ID,
+      targetPrice: 0,
+      customAction: 'save' as const,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      targetId: CUSTOM_PLAN_ID,
+      targetPrice: 0,
+      customAction: 'activate' as const,
+      paymentRequired: true,
+    },
     {
       previousPlanId: 'try',
       previousPrice: 0,
@@ -424,7 +444,9 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
             creatorId,
             planId: targetPlanId,
             planName: targetName,
-            amount: String(targetPrice * 1.25),
+            amount: String(
+              (targetPlanId === CUSTOM_PLAN_ID ? 99 : targetPrice) * 1.25,
+            ),
             currency: 'DKK',
           }),
         );

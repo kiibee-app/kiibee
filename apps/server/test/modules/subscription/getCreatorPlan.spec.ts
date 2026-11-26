@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN_ID } from 'src/modules/subscription/services/customPlan';
 import { db } from 'src/database/db';
 import { getCreatorPlan } from 'src/modules/subscription/services/getCreatorPlan.service';
 import { hasPaidSubscriptionPeriod } from 'src/modules/subscription/services/hasPaidSubscriptionPeriod';
@@ -297,6 +298,57 @@ describe('paid custom offers based on Try Kiibee', () => {
             isPaidPlan: true,
             hasCustomPlanOffer: true,
             billingOptions: [{ months: 1, amount: 100 }],
+          },
+        ],
+      });
+    },
+  );
+});
+
+describe('independent custom plan display', () => {
+  beforeEach(() => jest.clearAllMocks());
+  it.each(['draft', 'pending', 'paid'])(
+    'keeps custom price and offer visible in %s state',
+    async (state) => {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          selectRows([{ subscriptionUpgradeRequired: false }]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              planId: CUSTOM_PLAN_ID,
+              customPrice: 175,
+              customMaxFiles: 40,
+              customKiibeeCutPct: 15,
+              customTransactionFeePct: 2,
+              customSubscriptionStatus: state,
+              customSubscriptionRevision: 1,
+            },
+          ]),
+        )
+        .mockReturnValueOnce(
+          selectRows([
+            {
+              id: CUSTOM_PLAN_ID,
+              name: 'Custom',
+              price: 0,
+              maxFiles: 0,
+              isActive: false,
+            },
+          ]),
+        );
+      await expect(getCreatorPlan('creator')).resolves.toMatchObject({
+        data: [
+          {
+            name: 'Custom',
+            price: 175,
+            maxFiles: 40,
+            hasCustomPlanOffer: true,
+            isPaidPlan: true,
+            subscriptionUpgradeRequired: state === 'pending',
+            isActive: state !== 'pending',
           },
         ],
       });
