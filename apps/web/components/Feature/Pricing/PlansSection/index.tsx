@@ -181,16 +181,19 @@ export default function PricingPlansSection({
                 t(`${baseKey}.features`, { returnObjects: true }) as string[]
               }
               cta={
-                isCurrentPlan ? t("pricingPlans.active") : t("pricingPlans.cta")
+                currentPlan?.hasCustomPlanOffer
+                  ? t("customSubscription.viewPlan")
+                  : isCurrentPlan
+                    ? t("pricingPlans.active")
+                    : t("pricingPlans.cta")
               }
               highlight={planKey === planOrder[1]}
               planKey={planKey}
               planId={apiPlan?.id}
-              isCurrentPlan={isCurrentPlan}
-              manageInProfile={
-                currentPlan?.id === apiPlan?.id &&
-                currentPlan?.hasCustomPlanOffer === true
+              isCurrentPlan={
+                currentPlan?.hasCustomPlanOffer ? false : isCurrentPlan
               }
+              manageInProfile={currentPlan?.hasCustomPlanOffer === true}
             />
           );
 

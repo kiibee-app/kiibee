@@ -31,6 +31,7 @@ export type ContentEngagementUser = {
 
 export type ContentEngagement = {
   content: {
+    categoryId?: string | null;
     id: string;
     title: string;
     description: string | null;

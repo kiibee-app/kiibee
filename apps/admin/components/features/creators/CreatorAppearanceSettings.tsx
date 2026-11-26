@@ -1,5 +1,6 @@
 "use client";
 
+import { useContentCategories } from "../../../hooks/api/use-creator-appearance";
 import LogoCropModal from "./LogoCropModal";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Check, ImagePlus, Palette, Save } from "lucide-react";
@@ -116,6 +117,8 @@ export function CreatorAppearanceSettings({
   creatorId,
 }: CreatorAppearanceSettingsProps) {
   const labels = creatorAppearanceLabels;
+  const categoriesQuery = useContentCategories();
+  const [categoryIds, setCategoryIds] = useState<string[]>([]);
   const creatorQuery = useCreator(creatorId);
   const appearanceQuery = useCreatorAppearance(creatorId);
   const updateMutation = useUpdateCreatorAppearance(creatorId);
@@ -139,10 +142,18 @@ export function CreatorAppearanceSettings({
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
+    setCategoryIds(appearanceQuery.data?.categoryIds ?? []);
+  }, [appearanceQuery.data?.categoryIds]);
+
+  useEffect(() => {
     setValues(serverValues);
   }, [serverValues]);
 
-  const hasUnsavedChanges = !areAppearanceValuesEqual(values, serverValues);
+  const categoriesChanged =
+    JSON.stringify(categoryIds) !==
+    JSON.stringify(appearanceQuery.data?.categoryIds ?? []);
+  const hasUnsavedChanges =
+    categoriesChanged || !areAppearanceValuesEqual(values, serverValues);
   const isBusy = updateMutation.isPending || isUploading;
 
   const displayName = creatorQuery.data
@@ -179,6 +190,7 @@ export function CreatorAppearanceSettings({
   };
 
   const handleCancel = () => {
+    setCategoryIds(appearanceQuery.data?.categoryIds ?? []);
     setValues(serverValues);
     setStatusMessage(null);
     setStatusTone(undefined);
@@ -215,6 +227,7 @@ export function CreatorAppearanceSettings({
 
       await updateMutation.mutateAsync({
         ...payload,
+        ...(categoriesChanged ? { categoryIds } : {}),
         logoUrl,
         desktopCoverImageUrl,
         mobileCoverImageUrl,
@@ -298,7 +311,71 @@ export function CreatorAppearanceSettings({
       ) : null}
 
       <AppearancePanel>
-        <SectionHeader index={1} {...CREATOR_APPEARANCE_SECTIONS[0]} />
+        <SectionHeader
+          index={1}
+          title="Category"
+          hint="Choose one category for this creator."
+        />
+        <PanelBody>
+          <Field>
+            <FieldLabel id="creator-category-label">Category</FieldLabel>
+            <SelectInput
+              id="creator-category"
+              aria-labelledby="creator-category-label"
+              value={categoryIds[0] ?? ""}
+              disabled={
+                isBusy || categoriesQuery.isLoading || categoriesQuery.isError
+              }
+              onChange={(event) => {
+                const id = event.target.value;
+                setCategoryIds(id ? [id] : []);
+                setStatusMessage(null);
+              }}
+            >
+              <option value="">
+                {categoriesQuery.isLoading
+                  ? "Loading categories…"
+                  : "Select a category"}
+              </option>
+              {categoryIds[0] &&
+                !categoriesQuery.data?.some(
+                  (category) => category.id === categoryIds[0],
+                ) && (
+                  <option value={categoryIds[0]}>
+                    Current category (unavailable)
+                  </option>
+                )}
+              {(categoriesQuery.data ?? []).map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </SelectInput>
+            {categoriesQuery.isError && (
+              <FieldHint role="alert">
+                Failed to load categories.{" "}
+                <button type="button" onClick={() => categoriesQuery.refetch()}>
+                  Retry
+                </button>
+              </FieldHint>
+            )}
+            {!categoriesQuery.isLoading &&
+              !categoriesQuery.isError &&
+              categoriesQuery.data?.length === 0 && (
+                <FieldHint>No categories available.</FieldHint>
+              )}
+            {categoryIds.length === 0 && (
+              <FieldHint>
+                No category selected. Public listings may fall back to this
+                creator’s content categories.
+              </FieldHint>
+            )}
+          </Field>
+        </PanelBody>
+      </AppearancePanel>
+
+      <AppearancePanel>
+        <SectionHeader index={2} {...CREATOR_APPEARANCE_SECTIONS[0]} />
         <PanelBody>
           <LayoutGrid>
             {LAYOUT_OPTIONS.map((option) => {
@@ -339,7 +416,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={2} {...CREATOR_APPEARANCE_SECTIONS[1]} />
+        <SectionHeader index={3} {...CREATOR_APPEARANCE_SECTIONS[1]} />
         <PanelBody>
           <FieldGrid>
             <Field>
@@ -402,7 +479,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={3} {...CREATOR_APPEARANCE_SECTIONS[2]} />
+        <SectionHeader index={4} {...CREATOR_APPEARANCE_SECTIONS[2]} />
         <PanelBody>
           <ToggleRow>
             <ToggleButton
@@ -497,7 +574,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={4} {...CREATOR_APPEARANCE_SECTIONS[3]} />
+        <SectionHeader index={5} {...CREATOR_APPEARANCE_SECTIONS[3]} />
         <PanelBody>
           <Field>
             <FieldLabel>{labels.channelDescription}</FieldLabel>
@@ -520,7 +597,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={5} {...CREATOR_APPEARANCE_SECTIONS[4]} />
+        <SectionHeader index={6} {...CREATOR_APPEARANCE_SECTIONS[4]} />
         <PanelBody>
           <FieldGrid>
             <Field>
@@ -611,7 +688,7 @@ export function CreatorAppearanceSettings({
       </AppearancePanel>
 
       <AppearancePanel>
-        <SectionHeader index={6} {...CREATOR_APPEARANCE_SECTIONS[5]} />
+        <SectionHeader index={7} {...CREATOR_APPEARANCE_SECTIONS[5]} />
         <PanelBody>
           <Field>
             <FieldLabel>{labels.receiptMessage}</FieldLabel>

@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN_ID } from './customPlan';
 import { updatePendingCheckoutAmount } from './adminBillingRequest.service';
 import { HttpException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
@@ -63,18 +64,31 @@ export const createSubscriptionService = async ({
 
     if (!user) throw new Error('User not found');
 
-    const [assigned] = await db
+    const [currentAssignment] = await db
       .select()
       .from(creatorPlans)
       .where(
         and(
           eq(creatorPlans.creatorId, userId),
-          eq(creatorPlans.planId, plan.id),
           eq(creatorPlans.status, STATUS.ACTIVE),
         ),
       )
       .orderBy(desc(creatorPlans.createdAt))
       .limit(1);
+    // A custom offer is owned by the assignment, not by the requested public plan.
+    // Check it before any free activation, cancellation, or provider request.
+    const hasCustomOffer =
+      currentAssignment &&
+      hasCustomSubscriptionValues(currentAssignment) &&
+      currentAssignment.customSubscriptionStatus !== 'cancelled';
+    if (hasCustomOffer && currentAssignment.planId !== plan.id) {
+      throw new HttpException(
+        'A custom subscription is assigned. Please use your custom plan in My account or contact the administrator.',
+        409,
+      );
+    }
+    const assigned =
+      currentAssignment?.planId === plan.id ? currentAssignment : undefined;
     if (
       assigned &&
       assigned.customSubscriptionRevision > 0 &&
@@ -93,6 +107,15 @@ export const createSubscriptionService = async ({
       plan.price,
       enabled ? (assigned ?? {}) : {},
     );
+    if (
+      plan.id === CUSTOM_PLAN_ID &&
+      (!assigned || !enabled || terms.amount <= 0)
+    ) {
+      throw new HttpException(
+        'No payable custom subscription is assigned',
+        400,
+      );
+    }
     if (billingMonths !== undefined && billingMonths !== terms.months)
       throw new HttpException(
         'The billing period is set by the administrator',

@@ -11,7 +11,7 @@ export const creatorAppearanceLabels = {
   cancel: "Cancel",
   save: "Save changes",
   saving: "Saving…",
-  stickyHint: "Unsaved appearance changes",
+  stickyHint: "Unsaved creator settings changes",
   textColor: "Text color",
   buttonColor: "Button color",
   customButtonHex: "Custom button hex",
@@ -45,12 +45,12 @@ export const creatorAppearanceLabels = {
   readImageFailed: "Failed to read the selected image.",
   invalidHex: "Enter a valid hex color (e.g. #1a2b3c).",
   saveSuccess:
-    "Creator appearance updated. Changes are live on the creator dashboard and public channel.",
+    "Creator settings updated. Changes are live on the creator dashboard and public channel.",
   saveFailed: "Failed to update creator appearance.",
 } as const;
 
 export function getCreatorAppearanceSubtitle(displayName: string) {
-  return `Edit layout, covers, and branding for ${displayName}. Changes sync to the creator dashboard and public profile.`;
+  return `Edit categories, layout, covers, and branding for ${displayName}. Changes sync to the creator dashboard and public profile.`;
 }
 
 export function getDescriptionMaxError(max: number = MAX_DESCRIPTION_LENGTH) {

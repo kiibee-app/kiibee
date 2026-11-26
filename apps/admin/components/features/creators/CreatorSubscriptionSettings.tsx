@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+
+const CUSTOM_PLAN_ID = "c0570000-0000-4000-8000-000000000001";
 import { ArrowLeft, Check, CreditCard, Save } from "lucide-react";
 import {
   useAdminSubscription,
@@ -100,6 +102,14 @@ export function CreatorSubscriptionSettings({
   );
   const serverData = subscriptionQuery.data;
   const overrides = serverData?.overrides;
+  const hasSavedCustomPlan =
+    overrides?.customSubscriptionStatus !== "cancelled" &&
+    [
+      overrides?.customPrice,
+      overrides?.customPrice3,
+      overrides?.customPrice6,
+      overrides?.customPrice12,
+    ].some((price) => price != null);
   const configuredTerms = ([3, 6, 12] as const).filter(
     (months) => overrides?.[`customPrice${months}`] != null,
   );
@@ -174,6 +184,7 @@ export function CreatorSubscriptionSettings({
     const field = key as keyof typeof payload;
     return payload[field] !== savedPayload[field];
   });
+  const isIndependentCustom = values.planId === CUSTOM_PLAN_ID;
   const invalidNumber = Object.entries(payload).find(
     ([key, value]) =>
       key.startsWith("custom") &&
@@ -200,11 +211,25 @@ export function CreatorSubscriptionSettings({
       .filter(Boolean)
       .some((part) => ![1, 3, 6, 12].includes(aliases[part] ?? Number(part))),
   );
-  const validationError = invalidNumber
-    ? "Use non-negative whole numbers. Prices must be greater than zero and fee percentages cannot exceed 100%."
-    : invalidPeriod
-      ? "Payment periods must be 1, 3, 6 or 12 months, separated by commas."
-      : null;
+  const customFieldsMissing =
+    isIndependentCustom &&
+    (![
+      payload.customPrice,
+      payload.customPrice3,
+      payload.customPrice6,
+      payload.customPrice12,
+    ].some((price) => price != null && price > 0) ||
+      payload.customMaxFiles == null ||
+      payload.customMaxFiles <= 0 ||
+      payload.customKiibeeCutPct == null ||
+      payload.customTransactionFeePct == null);
+  const validationError = customFieldsMissing
+    ? "Custom requires a positive price, file limit, Kiibee cut and transaction fee. Use 0 for a zero-percent fee."
+    : invalidNumber
+      ? "Use non-negative whole numbers. Prices must be greater than zero and fee percentages cannot exceed 100%."
+      : invalidPeriod
+        ? "Payment periods must be 1, 3, 6 or 12 months, separated by commas."
+        : null;
   const canSave =
     Boolean(payload.planId) && hasUnsavedChanges && !isBusy && !validationError;
 
@@ -220,11 +245,12 @@ export function CreatorSubscriptionSettings({
     hasCustomPrice &&
     !isBusy &&
     !validationError &&
-    Boolean(
-      allPlansQuery.data?.some(
-        (item) => item.id === values.planId && item.price > 0,
-      ),
-    );
+    (isIndependentCustom ||
+      Boolean(
+        allPlansQuery.data?.some(
+          (item) => item.id === values.planId && item.price > 0,
+        ),
+      ));
   const handleSave = async (action?: "activate" | "cancel" | "save") => {
     if (
       action === "activate"
@@ -323,7 +349,7 @@ export function CreatorSubscriptionSettings({
         </PanelHeader>
         <BasePlanBody>
           <Field>
-            <FieldLabel>Plan ID</FieldLabel>
+            <FieldLabel>Plan</FieldLabel>
             <SelectInput
               value={values.planId}
               onChange={(e) =>
@@ -338,21 +364,39 @@ export function CreatorSubscriptionSettings({
               <option value="" disabled>
                 Select a plan
               </option>
-              {allPlansQuery.data?.map(
-                (plan: {
-                  id: string;
-                  name: string;
-                  price: number;
-                  currency: string;
-                  billingCycle: string;
-                }) => (
-                  <option key={plan.id} value={plan.id}>
-                    {plan.name} ({plan.price} {plan.currency}/
-                    {plan.billingCycle})
-                  </option>
-                ),
-              )}
+              {allPlansQuery.data
+                ?.filter((plan) => plan.id !== CUSTOM_PLAN_ID)
+                .map(
+                  (plan: {
+                    id: string;
+                    name: string;
+                    price: number;
+                    currency: string;
+                    billingCycle: string;
+                  }) => (
+                    <option key={plan.id} value={plan.id}>
+                      {hasSavedCustomPlan && plan.id === serverData?.plan.id
+                        ? "Custom — "
+                        : ""}
+                      {plan.name} ({plan.price} {plan.currency}/
+                      {plan.billingCycle})
+                    </option>
+                  ),
+                )}
+              <option value={CUSTOM_PLAN_ID}>Custom</option>
             </SelectInput>
+            {isIndependentCustom && (
+              <FieldHint>
+                Set a custom price, file limit and fee percentages below. No
+                standard base plan is required.
+              </FieldHint>
+            )}
+            {!isIndependentCustom && hasSavedCustomPlan && (
+              <FieldHint>
+                Custom subscription configured. This selection is its base plan;
+                custom prices and payment status are managed below.
+              </FieldHint>
+            )}
           </Field>
           <ManualPaymentSection>
             <ManualPaymentRow>
@@ -362,9 +406,10 @@ export function CreatorSubscriptionSettings({
                 aria-pressed={values.manuallyPaid}
                 disabled={
                   isBusy ||
-                  !allPlansQuery.data?.some(
-                    (plan) => plan.id === values.planId && plan.price > 0,
-                  )
+                  (!isIndependentCustom &&
+                    !allPlansQuery.data?.some(
+                      (plan) => plan.id === values.planId && plan.price > 0,
+                    ))
                 }
                 onClick={() =>
                   setValues({

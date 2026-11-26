@@ -1,5 +1,7 @@
 "use client";
 
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
+
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { savePaymentReturnUrl } from "@/utils/paymentReturn";
 import { useRef } from "react";
@@ -79,7 +81,10 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     queryKey: ["profile-payment", canonicalCreatorId, currentUserId],
     enabled: Boolean(isPublicView && canonicalCreatorId),
     queryFn: async () => {
-      const route = currentUserId ? "profile-entitlement" : "profile-payment";
+      const route =
+        currentUserId && currentUserId !== canonicalCreatorId
+          ? "profile-entitlement"
+          : "profile-payment";
       const result = await axiosClient.get(
         `/content/${route}/${encodeURIComponent(canonicalCreatorId!)}`,
       );
@@ -103,16 +108,18 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     isBrowser && storageKey
       ? window.localStorage.getItem(`${storageKey}:email`) === STRING_TRUE
       : false;
+  const isOwnPublicChannel =
+    isPublicView && currentUserId === canonicalCreatorId;
   const isUnlocked = paymentState?.codeRequired
-    ? paymentState.hasAccess
+    ? paymentState.hasAccess ||
+      (isOwnPublicChannel && unlockedCreatorInSession === targetCreatorId)
     : unlockedCreatorInSession === targetCreatorId || isStoredUnlock;
   const showAccessGranted = accessGrantedCreatorId === targetCreatorId;
 
-  const isOwner =
-    !isPublicView ||
-    (Boolean(targetCreatorId) &&
-      storedUser &&
-      storedUser.id === targetCreatorId);
+  const hasOwnerAccess = useChannelOwnerAccess(
+    Boolean(targetCreatorId && currentUserId === targetCreatorId),
+  );
+  const isOwner = !isPublicView || hasOwnerAccess;
 
   const isLoading = isPublicView
     ? isLoadingPublic || paymentLoading

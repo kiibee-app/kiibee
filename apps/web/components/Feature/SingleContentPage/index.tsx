@@ -1,4 +1,6 @@
 "use client";
+
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import AccessGate from "@/components/Feature/AccessGate";
@@ -271,7 +273,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   } | null>(null);
   const checkoutIdempotencyKeyRef = useRef<string | null>(null);
 
-  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
+  const isOwner = useChannelOwnerAccess(
+    Boolean(user?.id && content?.creatorId === user.id),
+  );
   const ownsContent =
     isOwner ||
     (Boolean(user?.id) &&

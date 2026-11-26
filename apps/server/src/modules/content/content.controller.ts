@@ -1,3 +1,10 @@
+import { UpdateContentCategoryDto } from './dto/updateContentCategory.dto';
+import { updateAdminContentCategoryService } from './services/updateAdminContentCategory.service';
+import { AdminContentAppearanceDto } from './dto/adminContentAppearance.dto';
+import {
+  getAdminCreatorAppearanceService,
+  updateAdminCreatorAppearanceService,
+} from './services/adminCreatorAppearance.service';
 import { OptionalJwtAuthGuard } from '../auth/guards/optional-jwt-auth.guard';
 import { requirePubliclyVisibleCreator } from 'src/utils/publicCreatorVisibility';
 import { getProfilePaymentState } from 'src/utils/profilePayment';
@@ -9,6 +16,7 @@ import {
   Get,
   Post,
   Put,
+  Patch,
   Req,
   UseGuards,
   Delete,
@@ -162,18 +170,27 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Patch('admin/category/:contentId')
+  async updateAdminContentCategory(
+    @Param('contentId') contentId: string,
+    @Body() dto: UpdateContentCategoryDto,
+  ) {
+    return updateAdminContentCategoryService(contentId, dto.categoryId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('admin/appearance/:creatorId')
   async getAdminCreatorAppearance(@Param('creatorId') creatorId: string) {
-    return this.contentService.getContentAppearanceService(creatorId);
+    return getAdminCreatorAppearanceService(creatorId);
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Put('admin/appearance/:creatorId')
   async updateAdminCreatorAppearance(
     @Param('creatorId') creatorId: string,
-    @Body() dto: ContentAppearanceDto,
+    @Body() dto: AdminContentAppearanceDto,
   ) {
-    return this.contentService.ContentAppearanceService(creatorId, dto);
+    return updateAdminCreatorAppearanceService(creatorId, dto);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)

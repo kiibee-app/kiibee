@@ -13,6 +13,7 @@ import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
 import DashboardLayout from "@/components/Layout/Dashboard";
+import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
@@ -261,12 +262,14 @@ export default function ClientDashboardCreators() {
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     if (activePage === CREATORS_LABELS.CONTENTS) {
       return previewContentId ? (
-        <PublishedContentDetail
-          key={previewContentId}
-          contentKey={previewContentId}
-          embedded
-          onBack={closeContentPreview}
-        />
+        <DashboardPageWrapper>
+          <PublishedContentDetail
+            key={previewContentId}
+            contentKey={previewContentId}
+            embedded
+            onBack={closeContentPreview}
+          />
+        </DashboardPageWrapper>
       ) : (
         <CreatorsContents />
       );

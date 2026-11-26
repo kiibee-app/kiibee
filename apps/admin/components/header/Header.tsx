@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu, SidebarOpen } from "lucide-react";
+import { Menu } from "lucide-react";
 import { apiClient, useAdminProfile } from "../../hooks/api";
 import { API_ENDPOINTS } from "../../utils/constants";
 import { useAdminTokens } from "../../utils/token";

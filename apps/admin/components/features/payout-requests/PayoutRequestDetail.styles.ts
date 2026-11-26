@@ -380,3 +380,45 @@ export const FeeError = styled.div`
   font-size: 13px;
   line-height: 1.6;
 `;
+
+export const BankSection = styled.div`
+  margin: 0 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+  svg {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+  }
+`;
+
+export const BankGrid = styled.dl`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+  margin: 0;
+  dt {
+    font-size: 12px;
+    color: ${({ theme }) => theme.colors.secondary.muted};
+    margin-bottom: 7px;
+  }
+  dd {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+`;
