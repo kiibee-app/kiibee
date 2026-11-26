@@ -335,6 +335,7 @@ export default function PublishedContentDetail({
         <SingleContentPage
           {...getSingleContentProps(content, t, {
             viewerId: resolvedUserId,
+            allowOwnerAccess: embedded,
             creatorName: publicCreator?.name,
             inCollection: false,
             collectionId: effectiveCollectionId,

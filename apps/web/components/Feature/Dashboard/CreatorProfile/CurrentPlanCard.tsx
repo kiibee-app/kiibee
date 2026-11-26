@@ -99,7 +99,7 @@ export default function CurrentPlanCard() {
       : t(CREATOR_PROFILE.currentPlan.changePlan);
 
   const handleUpgrade = () => {
-    if (paymentRequired && currentPlan?.hasCustomPlanOffer) {
+    if (currentPlan?.hasCustomPlanOffer) {
       document
         .getElementById("creator-custom-plan")
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -112,55 +112,57 @@ export default function CurrentPlanCard() {
 
   return (
     <PlanCardsColumn>
-      <PlanCardRoot>
-        <PlanCardHeader>
-          <PlanCardLabel>
-            <MonoText $use="Body_Medium">
-              {t(CREATOR_PROFILE.currentPlan.label)}
+      {!currentPlan?.hasCustomPlanOffer && (
+        <PlanCardRoot>
+          <PlanCardHeader>
+            <PlanCardLabel>
+              <MonoText $use="Body_Medium">
+                {t(CREATOR_PROFILE.currentPlan.label)}
+              </MonoText>
+            </PlanCardLabel>
+            {!isCustomPlanActive &&
+              (paymentRequired || currentPlan?.isActive) && (
+                <PlanStatusBadge>
+                  {paymentRequired
+                    ? t("dashboard.subscriptionPaymentRequired.title")
+                    : t(CREATOR_PROFILE.currentPlan.activeBadge)}
+                </PlanStatusBadge>
+              )}
+          </PlanCardHeader>
+
+          <PlanCardName>
+            <MonoText $use="Heading3">
+              {isLoading ? t(CREATOR_PROFILE.currentPlan.loading) : displayName}
             </MonoText>
-          </PlanCardLabel>
-          {!isCustomPlanActive &&
-            (paymentRequired || currentPlan?.isActive) && (
-              <PlanStatusBadge>
-                {paymentRequired
-                  ? t("dashboard.subscriptionPaymentRequired.title")
-                  : t(CREATOR_PROFILE.currentPlan.activeBadge)}
-              </PlanStatusBadge>
-            )}
-        </PlanCardHeader>
+          </PlanCardName>
 
-        <PlanCardName>
-          <MonoText $use="Heading3">
-            {isLoading ? t(CREATOR_PROFILE.currentPlan.loading) : displayName}
-          </MonoText>
-        </PlanCardName>
+          {priceLabel && !isLoading ? (
+            <PlanCardMeta>
+              <PlanMetaChip>{priceLabel}</PlanMetaChip>
+              {!isFreePlan && (
+                <PlanMetaChip>{t("billingVat.addedNotice")}</PlanMetaChip>
+              )}
+              {typeof currentPlan?.maxFiles === "number" ? (
+                <PlanMetaChip>
+                  {t(CREATOR_PROFILE.currentPlan.maxFiles, {
+                    count: currentPlan.maxFiles,
+                  })}
+                </PlanMetaChip>
+              ) : null}
+            </PlanCardMeta>
+          ) : null}
 
-        {priceLabel && !isLoading ? (
-          <PlanCardMeta>
-            <PlanMetaChip>{priceLabel}</PlanMetaChip>
-            {!isFreePlan && (
-              <PlanMetaChip>{t("billingVat.addedNotice")}</PlanMetaChip>
-            )}
-            {typeof currentPlan?.maxFiles === "number" ? (
-              <PlanMetaChip>
-                {t(CREATOR_PROFILE.currentPlan.maxFiles, {
-                  count: currentPlan.maxFiles,
-                })}
-              </PlanMetaChip>
-            ) : null}
-          </PlanCardMeta>
-        ) : null}
-
-        <PlanCardActions>
-          <GenericButton
-            variant={VARIANT.PRIMARY}
-            onClick={handleUpgrade}
-            disabled={isLoading}
-          >
-            {ctaLabel}
-          </GenericButton>
-        </PlanCardActions>
-      </PlanCardRoot>
+          <PlanCardActions>
+            <GenericButton
+              variant={VARIANT.PRIMARY}
+              onClick={handleUpgrade}
+              disabled={isLoading}
+            >
+              {ctaLabel}
+            </GenericButton>
+          </PlanCardActions>
+        </PlanCardRoot>
+      )}
       {currentPlan?.hasCustomPlanOffer && <CustomPlanCard plan={currentPlan} />}
     </PlanCardsColumn>
   );

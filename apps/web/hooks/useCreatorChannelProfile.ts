@@ -49,7 +49,7 @@ export function useCreatorChannelProfile(enabled = true) {
     Boolean(publicCreatorId) &&
     Boolean(currentUserId) &&
     String(currentUserId).trim() === String(publicCreatorId).trim();
-  const isPublicView = Boolean(creatorIdentifier) && !isOwnerOfPublicView;
+  const isPublicView = Boolean(creatorIdentifier);
 
   const canReadPrivateProfile =
     enabled && Boolean(currentUserId) && !isPublicView;
@@ -105,7 +105,7 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     return "Creator";
-  }, [publicCreator, profile, storedUser]);
+  }, [publicCreator, profile]);
 
   const avatarUrl = useMemo(() => {
     if (isPublicView) {

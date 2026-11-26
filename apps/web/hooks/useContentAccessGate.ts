@@ -1,5 +1,7 @@
 "use client";
 
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
+
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
@@ -97,7 +99,9 @@ export function useContentAccessGate(
 
   const isWebContent = getContentType(content) === FORMAT_TYPE.WEB;
 
-  const isOwner = Boolean(loginUser?.id && content?.creatorId === loginUser.id);
+  const isOwner = useChannelOwnerAccess(
+    Boolean(loginUser?.id && content?.creatorId === loginUser.id),
+  );
 
   useEffect(() => {
     getErrorMessageRef.current = getErrorMessage;

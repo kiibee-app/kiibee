@@ -1,3 +1,7 @@
+import { ForbiddenException } from '@nestjs/common';
+import { and, eq } from 'drizzle-orm';
+import { db } from 'src/database/db';
+import { userCardInfo } from 'src/database/schema/commerce/userCardInfo.schema';
 import axios from 'axios';
 import https from 'https';
 import dns from 'node:dns';
@@ -34,6 +38,21 @@ export const createPayment = async ({
     };
 
     if (subscriptionId) {
+      const [ownedCard] = await db
+        .select({ id: userCardInfo.id })
+        .from(userCardInfo)
+        .where(
+          and(
+            eq(userCardInfo.userId, customerId),
+            eq(userCardInfo.ePaySubscriptionId, subscriptionId),
+          ),
+        )
+        .limit(1);
+      if (!ownedCard)
+        throw new ForbiddenException(
+          'Saved payment method does not belong to this user',
+        );
+
       const payload = {
         subscriptionId,
         amount: Number(amount),

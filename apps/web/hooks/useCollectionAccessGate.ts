@@ -1,5 +1,7 @@
 "use client";
 
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
+
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { getCollectionUnlockStorageKey } from "@/utils/accessGate";
 import { useSearchParams } from "next/navigation";
@@ -39,8 +41,11 @@ export function useCollectionAccessGate(
   const user = useStoredLoginUser();
   const publicCreatorId = customCreatorId ?? routeCreatorId;
   const isPublicView = customCreatorId
-    ? customCreatorId !== user?.id
+    ? Boolean(customCreatorId)
     : routeIsPublic;
+  const hasOwnerAccess = useChannelOwnerAccess(
+    Boolean(publicCreatorId && publicCreatorId === user?.id),
+  );
   const canReadCollections =
     Boolean(id) &&
     (isPublicView ? Boolean(publicCreatorId) : Boolean(user?.id));
@@ -68,7 +73,7 @@ export function useCollectionAccessGate(
   }
 
   let accessType: string | null = null;
-  const isOwner = !isPublicView;
+  const isOwner = !isPublicView || hasOwnerAccess;
 
   if (collectionsQuery.data) {
     const collections = getCollectionRows(collectionsQuery.data);

@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN, CUSTOM_PLAN_ID } from './customPlan';
 import { subscriptionVatEmail } from 'src/utils/subscriptionVat';
 import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
 import {
@@ -11,7 +12,7 @@ import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { escapeHtml } from 'src/utils/sanitize';
 import { manualExpiryDate } from './manualExpiryDate';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, desc, gt, lte } from 'drizzle-orm';
+import { and, eq, desc, gt, lte, ne } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   subscriptions,
@@ -91,6 +92,28 @@ export const adminUpdateCreatorPlan = async (
       );
     }
 
+    const isIndependentCustom = input.planId === CUSTOM_PLAN_ID;
+    if (isIndependentCustom && input.customSubscriptionAction !== 'cancel') {
+      const prices = [
+        input.customPrice,
+        input.customPrice3,
+        input.customPrice6,
+        input.customPrice12,
+      ];
+      if (
+        !prices.some((price) => price != null && price > 0) ||
+        input.customMaxFiles == null ||
+        input.customMaxFiles <= 0 ||
+        input.customKiibeeCutPct == null ||
+        input.customTransactionFeePct == null
+      ) {
+        return fail(
+          'Custom requires a positive price, file limit, platform cut and transaction fee (zero percent is allowed).',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      await db.insert(plans).values(CUSTOM_PLAN).onConflictDoNothing();
+    }
     const [plan] = await db
       .select()
       .from(plans)
@@ -101,7 +124,7 @@ export const adminUpdateCreatorPlan = async (
       return fail('Invalid plan ID', HttpStatus.BAD_REQUEST);
     }
 
-    if (input.manuallyPaid && plan.price <= 0) {
+    if (input.manuallyPaid && plan.price <= 0 && !isIndependentCustom) {
       return fail(
         'Select a paid plan for manual payment',
         HttpStatus.BAD_REQUEST,
@@ -111,7 +134,8 @@ export const adminUpdateCreatorPlan = async (
     if (
       input.customSubscriptionAction === 'activate' &&
       hasCustomSubscriptionValues(input) &&
-      plan.price <= 0
+      plan.price <= 0 &&
+      !isIndependentCustom
     )
       return fail(
         'Select a paid base plan to activate a custom subscription',
@@ -330,7 +354,7 @@ export const adminUpdateCreatorPlan = async (
             const [free] = await tx
               .select({ id: plans.id })
               .from(plans)
-              .where(eq(plans.price, 0))
+              .where(and(eq(plans.price, 0), ne(plans.id, CUSTOM_PLAN_ID)))
               .limit(1);
             if (!free)
               return fail(
@@ -357,14 +381,17 @@ export const adminUpdateCreatorPlan = async (
         });
       }
 
+      const assignmentPrice = isIndependentCustom
+        ? subscriptionTerms(plan.price, input).amount
+        : plan.price;
       const isPaidAssignment =
-        plan.price > 0 && currentPlan?.planId !== plan.id;
+        assignmentPrice > 0 && currentPlan?.planId !== plan.id;
 
       let upgradeRequired = creator.subscriptionUpgradeRequired;
-      if (plan.price === 0) {
+      if (assignmentPrice === 0) {
         upgradeRequired = false;
       } else if (
-        plan.price > 0 &&
+        assignmentPrice > 0 &&
         (isPaidAssignment ||
           upgradeRequired ||
           input.manuallyPaid !== undefined ||

@@ -123,7 +123,7 @@ export default function CustomPlanCard({ plan }: Props) {
           </GenericButton>
         </PlanCardActions>
       )}
-      {plan.price > 0 &&
+      {(selected?.amount ?? plan.price) > 0 &&
         (["draft", "pending"].includes(plan.customSubscriptionStatus ?? "") ||
           (plan.customSubscriptionStatus == null && plan.hasCustomBilling) ||
           (plan.customSubscriptionStatus !== "draft" &&

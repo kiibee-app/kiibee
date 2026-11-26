@@ -1,3 +1,4 @@
+import { CUSTOM_PLAN_ID } from './customPlan';
 import {
   subscriptionTerms,
   hasCustomSubscriptionValues,
@@ -6,7 +7,7 @@ import {
 } from './subscriptionTerms';
 import { expireManualPlans } from './expireManualPlans.service';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, desc } from 'drizzle-orm';
+import { and, eq, desc, ne } from 'drizzle-orm';
 import { hasPaidSubscriptionPeriod } from './hasPaidSubscriptionPeriod';
 import { db } from 'src/database/db';
 import { creatorPlans, plans, users } from 'src/database/schema';
@@ -44,7 +45,7 @@ export const getCreatorPlan = async (creatorId: string) => {
       const [freePlan] = await db
         .select()
         .from(plans)
-        .where(eq(plans.price, 0))
+        .where(and(eq(plans.price, 0), ne(plans.id, CUSTOM_PLAN_ID)))
         .limit(1);
       return success(
         freePlan
@@ -70,13 +71,17 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
-    if (plan.price === 0) {
+    const assignmentPrice =
+      plan.id === CUSTOM_PLAN_ID
+        ? subscriptionTerms(plan.price, creatorCurrentPlan[0]).amount
+        : plan.price;
+    if (assignmentPrice === 0) {
       subscriptionUpgradeRequired = false;
     }
 
     if (
       (subscriptionUpgradeRequired || creatorCurrentPlan[0].manuallyPaid) &&
-      plan.price > 0
+      assignmentPrice > 0
     ) {
       subscriptionUpgradeRequired = !(await hasPaidSubscriptionPeriod(
         db,
@@ -130,12 +135,14 @@ export const getCreatorPlan = async (creatorId: string) => {
         ),
       isPaidPlan: terms.amount > 0,
       manuallyPaid: Boolean(
-        plan.price > 0 &&
+        assignmentPrice > 0 &&
         creatorCurrentPlan[0].manuallyPaid &&
         (!creatorCurrentPlan[0].manualPaidExpiresAt ||
           creatorCurrentPlan[0].manualPaidExpiresAt > new Date()),
       ),
-      isActive: plan.isActive && !subscriptionUpgradeRequired,
+      isActive:
+        (plan.isActive || plan.id === CUSTOM_PLAN_ID) &&
+        !subscriptionUpgradeRequired,
       subscriptionUpgradeRequired,
       price: effective.customPrice ?? plan.price,
       billingOptions: terms.billingOptions,
