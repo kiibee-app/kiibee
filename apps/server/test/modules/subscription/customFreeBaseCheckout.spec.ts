@@ -51,6 +51,7 @@ describe('custom price on a free base plan', () => {
         .mockReturnValueOnce(
           rows([
             {
+              planId: 'try',
               customPrice: 100,
               paymentPeriod: '1',
               customSubscriptionRevision: 1,
@@ -133,7 +134,9 @@ describe('VAT on standard and term subscription checkout amounts', () => {
           rows([{ id: 'plan', name: 'Pro', price: base, currency: 'DKK' }]),
         )
         .mockReturnValueOnce(
-          rows([{ customSubscriptionStatus: 'paid', ...overrides }]),
+          rows([
+            { planId: 'plan', customSubscriptionStatus: 'paid', ...overrides },
+          ]),
         );
       jest.mocked(db.query.users.findFirst).mockResolvedValue({
         id: 'creator',
@@ -189,4 +192,92 @@ describe('VAT on standard and term subscription checkout amounts', () => {
       );
     },
   );
+});
+
+describe('assigned custom offer protection', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockEpayPost.mockReset();
+    jest.mocked(db.query.users.findFirst).mockResolvedValue({
+      id: 'creator',
+      email: 'creator@example.com',
+      fullName: 'Creator',
+    } as never);
+  });
+
+  it.each(['draft', 'pending', 'paid'])(
+    'blocks a different free or paid plan while the custom offer is %s',
+    async (status) => {
+      for (const price of [0, 399]) {
+        jest
+          .mocked(db.select)
+          .mockReturnValueOnce(
+            rows([{ id: 'other', price, name: 'Other', currency: 'DKK' }]),
+          )
+          .mockReturnValueOnce(
+            rows([
+              {
+                planId: 'custom-base',
+                customPrice: 100,
+                customSubscriptionStatus: status,
+                customSubscriptionRevision: 2,
+              },
+            ]),
+          );
+        await expect(
+          createSubscriptionService({ userId: 'creator', planId: 'other' }),
+        ).rejects.toMatchObject({ status: 409 });
+      }
+      expect(db.update).not.toHaveBeenCalled();
+      expect(db.insert).not.toHaveBeenCalled();
+      expect(mockEpayPost).not.toHaveBeenCalled();
+    },
+  );
+
+  it('keeps a pending offer unchanged after checkout failure and allows retry', async () => {
+    const offer = {
+      planId: 'custom-base',
+      customPrice: 100,
+      paymentPeriod: '1',
+      customSubscriptionStatus: 'pending',
+      customSubscriptionRevision: 2,
+    };
+    for (let attempt = 0; attempt < 2; attempt++) {
+      jest
+        .mocked(db.select)
+        .mockReturnValueOnce(
+          rows([
+            {
+              id: 'custom-base',
+              price: 129,
+              name: 'Start-up',
+              currency: 'DKK',
+            },
+          ]),
+        )
+        .mockReturnValueOnce(rows([offer]));
+    }
+    mockEpayPost.mockRejectedValueOnce(new Error('Checkout unavailable'));
+    await expect(
+      createSubscriptionService({ userId: 'creator', planId: 'custom-base' }),
+    ).rejects.toThrow('Failed to create subscription');
+    const save = jest.fn().mockResolvedValue(undefined);
+    jest.mocked(db.insert).mockReturnValue({ values: save } as never);
+    mockEpayPost
+      .mockResolvedValueOnce({ data: { billingPlan: { id: 'retry-billing' } } })
+      .mockResolvedValueOnce({
+        data: { paymentWindowUrl: 'https://example.com/retry' },
+      });
+    await expect(
+      createSubscriptionService({ userId: 'creator', planId: 'custom-base' }),
+    ).resolves.toMatchObject({
+      success: true,
+      data: { paymentWindowUrl: 'https://example.com/retry' },
+    });
+    expect(save).toHaveBeenCalledWith(
+      expect.objectContaining({ customRevision: 2, amountMinor: 12500 }),
+    );
+    expect(db.update).not.toHaveBeenCalled();
+    expect(offer.customSubscriptionStatus).toBe('pending');
+  });
 });

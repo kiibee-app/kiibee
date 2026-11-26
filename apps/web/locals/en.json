@@ -22,6 +22,7 @@
     "unavailable": "Channel pricing is not available yet. Please contact the creator."
   },
   "customSubscription": {
+    "viewPlan": "View custom plan",
     "pending": "Awaiting payment",
     "title": "Custom plan",
     "fixedFee": "Kiibee cut: {{amount}} DKK per payout",

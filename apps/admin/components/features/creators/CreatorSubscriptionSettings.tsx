@@ -100,6 +100,14 @@ export function CreatorSubscriptionSettings({
   );
   const serverData = subscriptionQuery.data;
   const overrides = serverData?.overrides;
+  const hasSavedCustomPlan =
+    overrides?.customSubscriptionStatus !== "cancelled" &&
+    [
+      overrides?.customPrice,
+      overrides?.customPrice3,
+      overrides?.customPrice6,
+      overrides?.customPrice12,
+    ].some((price) => price != null);
   const configuredTerms = ([3, 6, 12] as const).filter(
     (months) => overrides?.[`customPrice${months}`] != null,
   );
@@ -323,7 +331,7 @@ export function CreatorSubscriptionSettings({
         </PanelHeader>
         <BasePlanBody>
           <Field>
-            <FieldLabel>Plan ID</FieldLabel>
+            <FieldLabel>Plan / Custom plan base</FieldLabel>
             <SelectInput
               value={values.planId}
               onChange={(e) =>
@@ -347,12 +355,21 @@ export function CreatorSubscriptionSettings({
                   billingCycle: string;
                 }) => (
                   <option key={plan.id} value={plan.id}>
+                    {hasSavedCustomPlan && plan.id === serverData?.plan.id
+                      ? "Custom — "
+                      : ""}
                     {plan.name} ({plan.price} {plan.currency}/
                     {plan.billingCycle})
                   </option>
                 ),
               )}
             </SelectInput>
+            {hasSavedCustomPlan && (
+              <FieldHint>
+                Custom subscription configured. This selection is its base plan;
+                custom prices and payment status are managed below.
+              </FieldHint>
+            )}
           </Field>
           <ManualPaymentSection>
             <ManualPaymentRow>

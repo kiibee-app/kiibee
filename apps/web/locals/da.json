@@ -22,6 +22,7 @@
     "unavailable": "Kanalens priser er ikke tilgængelige endnu. Kontakt kreatøren."
   },
   "customSubscription": {
+    "viewPlan": "Se dit tilpassede abonnement",
     "pending": "Afventer betaling",
     "title": "Tilpasset abonnement",
     "fixedFee": "Kiibee-gebyr: {{amount}} DKK pr. udbetaling",
