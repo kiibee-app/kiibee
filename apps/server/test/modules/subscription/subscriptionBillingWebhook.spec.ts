@@ -3,6 +3,7 @@ import { subscriptionPaymentsHistory } from 'src/database/schema';
 import { capturePayment } from 'src/modules/payment/services/capturePayment.service';
 import { handleSubscriptionPayment } from 'src/modules/subscription/hooks/subscriptionPayWebhook';
 import { settleAdminBillingRequest } from 'src/modules/subscription/services/adminBillingRequest.service';
+import { PgDialect } from 'drizzle-orm/pg-core';
 
 jest.mock('src/database/db', () => ({
   db: {
@@ -130,33 +131,69 @@ describe('subscription payment billing status', () => {
       }
     },
   );
-  it('marks the admin request failed when ePay reports failure', async () => {
-    jest
-      .mocked(db.query.subscriptionPaymentsHistory.findFirst)
-      .mockResolvedValue(undefined);
-    jest
-      .mocked(db.query.subscriptions.findFirst)
-      .mockResolvedValue({ id: 'sub', endAt: new Date(0) } as never);
-    jest.mocked(db.update).mockReturnValue({
-      set: () => ({ where: async () => undefined }),
-    } as never);
-    const values = jest.fn().mockResolvedValue(undefined);
-    jest.mocked(db.insert).mockReturnValue({ values } as never);
-    jest.mocked(db.select).mockReturnValue({
-      from: () => ({ where: () => ({ limit: async () => [] }) }),
-    } as never);
-    await handleSubscriptionPayment({
-      transaction: { ...body.transaction, state: 'FAILED' },
-    });
-    expect(settleAdminBillingRequest).toHaveBeenCalledWith(
-      db,
-      expect.objectContaining({
-        creatorId: 'creator',
+  it.each([
+    ['agreement', new Date(0), true],
+    ['old-agreement', new Date(0), false],
+    [null, new Date(0), false],
+    ['agreement', new Date('2999-01-01'), false],
+  ])(
+    'handles failed payment for agreement %s ending %s',
+    async (agreementId, endAt, expires) => {
+      jest
+        .mocked(db.query.subscriptionPaymentsHistory.findFirst)
+        .mockResolvedValue(undefined);
+      jest.mocked(db.query.subscriptions.findFirst).mockResolvedValue({
+        id: 'sub',
         planId: 'plan',
-        transactionId: 'tx-1',
-        status: 'failed',
-      }),
-    );
-    expect(capturePayment).not.toHaveBeenCalled();
-  });
+        agreementId,
+        endAt,
+      } as never);
+      const where = jest.fn().mockResolvedValue(undefined);
+      jest.mocked(db.update).mockReturnValue({
+        set: () => ({ where }),
+      } as never);
+      const values = jest.fn().mockResolvedValue(undefined);
+      jest.mocked(db.insert).mockReturnValue({ values } as never);
+      jest.mocked(db.select).mockReturnValue({
+        from: () => ({ where: () => ({ limit: async () => [] }) }),
+      } as never);
+      await handleSubscriptionPayment({
+        transaction: { ...body.transaction, state: 'FAILED' },
+      });
+      expect(settleAdminBillingRequest).toHaveBeenCalledWith(
+        db,
+        expect.objectContaining({
+          creatorId: 'creator',
+          planId: 'plan',
+          transactionId: 'tx-1',
+          status: 'failed',
+        }),
+      );
+      expect(capturePayment).not.toHaveBeenCalled();
+      expect(db.update).toHaveBeenCalledTimes(expires ? 2 : 0);
+      if (expires) {
+        const dialect = new PgDialect();
+        const subscriptionFilter = dialect.sqlToQuery(where.mock.calls[0][0]);
+        expect(subscriptionFilter.sql).toContain('"subscriptions"."id"');
+        expect(subscriptionFilter.params).toEqual(['sub']);
+        const planFilter = dialect.sqlToQuery(where.mock.calls[1][0]);
+        expect(planFilter.sql).toContain('"creator_plans"."plan_id"');
+        expect(planFilter.sql).toContain('"creator_plans"."manually_paid"');
+        expect(planFilter.sql).toContain(
+          '"creator_plans"."custom_subscription_revision"',
+        );
+        expect(planFilter.sql).toContain(
+          '"creator_plans"."custom_subscription_status"',
+        );
+        expect(planFilter.params).toEqual([
+          'creator',
+          'plan',
+          'active',
+          false,
+          0,
+          'paid',
+        ]);
+      }
+    },
+  );
 });

@@ -12,7 +12,7 @@ import {
   userCardInfo,
   users,
 } from 'src/database/schema';
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, or } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 import {
   CURRENCY,
@@ -453,7 +453,15 @@ async function handleFailedSubscriptionPayment(transaction: any) {
       where: (t) => eq(t.creatorId, customerId),
     });
 
-    if (existingSub && existingSub.endAt && existingSub.endAt < new Date()) {
+    // A failed replacement checkout must not expire a different agreement.
+    const failedExpiredRenewal =
+      existingSub &&
+      subscriptionId &&
+      existingSub.agreementId === subscriptionId &&
+      existingSub.endAt &&
+      existingSub.endAt < new Date();
+
+    if (failedExpiredRenewal) {
       await db
         .update(subscriptions)
         .set({
@@ -461,7 +469,7 @@ async function handleFailedSubscriptionPayment(transaction: any) {
           isActive: false,
           updatedAt: new Date(),
         })
-        .where(eq(subscriptions.creatorId, customerId));
+        .where(eq(subscriptions.id, existingSub.id));
 
       await db
         .update(creatorPlans)
@@ -469,7 +477,14 @@ async function handleFailedSubscriptionPayment(transaction: any) {
         .where(
           and(
             eq(creatorPlans.creatorId, customerId),
+            eq(creatorPlans.planId, existingSub.planId),
             eq(creatorPlans.status, STATUS.ACTIVE),
+            eq(creatorPlans.manuallyPaid, false),
+            // Keep pending custom offers available for another payment attempt.
+            or(
+              eq(creatorPlans.customSubscriptionRevision, 0),
+              eq(creatorPlans.customSubscriptionStatus, 'paid'),
+            ),
           ),
         );
     }
