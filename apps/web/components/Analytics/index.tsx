@@ -8,7 +8,21 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
-const configured = !!measurementId && /^G-[A-Z0-9]+$/.test(measurementId);
+const hasMeasurementId = !!measurementId && /^G-[A-Z0-9]+$/.test(measurementId);
+const subscribeToHost = () => () => {};
+const serverHost = () => false;
+const isProductionHost = () =>
+  window.location.hostname === "www.kiibee.dk" ||
+  window.location.hostname === "kiibee.dk";
+
+function useAnalyticsConfigured() {
+  const productionHost = useSyncExternalStore(
+    subscribeToHost,
+    isProductionHost,
+    serverHost,
+  );
+  return hasMeasurementId && productionHost;
+}
 const CONSENT_KEY = "kiibee_analytics_consent";
 const CONSENT_EVENT = "kiibee:analytics-consent";
 type Consent = "granted" | "denied" | null;
@@ -91,6 +105,7 @@ const Banner = styled.aside`
 `;
 
 export function AnalyticsPreferences() {
+  const configured = useAnalyticsConfigured();
   const { t } = useTranslation();
   const consent = useSyncExternalStore(subscribe, getConsent, serverConsent);
   if (!configured) return null;
@@ -123,6 +138,7 @@ export function AnalyticsPreferences() {
 }
 
 export default function Analytics() {
+  const configured = useAnalyticsConfigured();
   const { t } = useTranslation();
   const consent = useSyncExternalStore(subscribe, getConsent, serverConsent);
   if (!configured) return null;

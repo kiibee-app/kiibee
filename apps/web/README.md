@@ -47,7 +47,9 @@ environment, then redeploy. Keep GA4 Enhanced Measurement page views on browser
 history changes enabled for client-side navigation. Without a valid ID, neither
 the Google script nor the consent prompt loads. With an ID, visitors must opt in
 before the script loads; Cookie Settings allows consent to be withdrawn.
-Advertising and remarketing signals are disabled.
+Advertising and remarketing signals are disabled. Tracking and its consent UI run
+only on `www.kiibee.dk` and `kiibee.dk`; localhost, staging and Vercel preview
+hostnames stay untracked even if the measurement ID is present.
 
 The wildcard allow rule in robots.txt includes search and AI crawlers. This does
 not override Vercel/CDN firewall rules: verify crawler access and logs separately
