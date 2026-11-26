@@ -22,14 +22,4 @@ export function stripHtml(value: string): string {
   });
 }
 
-export function escapeHtml(value: string): string {
-  if (typeof value !== STRING) {
-    return value;
-  }
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
+export { escapeHtml } from './escapeHtml';

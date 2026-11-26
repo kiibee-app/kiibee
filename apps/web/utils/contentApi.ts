@@ -273,6 +273,7 @@ export const getSingleContentProps = (
     isPaidCollection?: boolean;
     hasAccess?: boolean;
     viewerId?: string;
+    allowOwnerAccess?: boolean;
     creatorName?: string;
   },
 ): SingleContentPageProps => {
@@ -313,6 +314,7 @@ export const getSingleContentProps = (
   const expiryLabel = isRented && !isExpired ? expiryText : "";
 
   const isOwner = Boolean(
+    options?.allowOwnerAccess !== false &&
     options?.viewerId &&
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
   );

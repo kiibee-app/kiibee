@@ -28,9 +28,9 @@ import { PlaceholderLine } from "./styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
-import { useRouter } from "next/navigation";
-import { pathPublishedContent } from "@/utils/path";
-import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { CONTENT_PREVIEW_QUERY_KEY } from "@/utils/Constants";
+import { toCanonicalSearchParams } from "@/utils/localizedQueryParams";
 import MetaData from "./MetaData";
 import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
@@ -122,7 +122,8 @@ export default function ContentTabPanel({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
-  const { publicCreatorSlug } = useCreatorChannelProfile();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [selectedCoupon, setSelectedCoupon] = useState<CouponEntity | null>(
     null,
   );
@@ -202,16 +203,13 @@ export default function ContentTabPanel({
             data={data}
             searchValue={searchValue}
             parentCollection={selectedCollection}
-            onRowClick={(row) =>
-              router.push(
-                pathPublishedContent(
-                  row.id,
-                  publicCreatorSlug,
-                  row.name,
-                  selectedCollection?.slug,
-                ),
-              )
-            }
+            onRowClick={(row) => {
+              const params = toCanonicalSearchParams(searchParams.toString());
+              params.set(CONTENT_PREVIEW_QUERY_KEY, row.id);
+              router.push(`${pathname}?${params.toString()}`, {
+                scroll: false,
+              });
+            }}
             onEdit={onEditContent}
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
             onMoveUp={handleMoveUp}

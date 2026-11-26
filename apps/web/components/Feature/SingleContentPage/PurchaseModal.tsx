@@ -222,6 +222,14 @@ export default function PurchaseModal({
   );
   const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
   const isCollectionPricing = isCollectionPurchase || isCollectionRental;
+  const paymentMethodsBusy =
+    isLoggedIn &&
+    !isFreeContentOrder &&
+    (savedCardsQuery.isPending || savedCardsQuery.isFetching);
+  const paymentMethodsFailed =
+    isLoggedIn && !isFreeContentOrder && savedCardsQuery.isError;
+  const paymentBlocked = loading || paymentMethodsBusy || paymentMethodsFailed;
+
   const isRental = !isCollectionPurchase && !isPurchase;
   const contentTypeLabel =
     contentType?.toUpperCase() || t("singleContent.pricing.contentFallback");
@@ -283,6 +291,7 @@ export default function PurchaseModal({
   }, []);
 
   const handlePurchase = () => {
+    if (paymentBlocked) return;
     if (!isLoggedIn && onRequireLogin) {
       onRequireLogin();
       return;
@@ -639,12 +648,31 @@ export default function PurchaseModal({
         </PurchaseModalPaymentIcons>
       )}
 
+      {paymentMethodsBusy && (
+        <MonoText $use="Body_Small" role="status">
+          {t("singleContent.pricing.paymentMethodsLoading")}
+        </MonoText>
+      )}
+      {paymentMethodsFailed && (
+        <div role="alert">
+          <MonoText $use="Body_Small">
+            {t("singleContent.pricing.paymentMethodsError")}
+          </MonoText>
+          <GenericButton
+            variant={VARIANT.SECONDARY}
+            onClick={() => savedCardsQuery.refetch()}
+          >
+            {t("common.retry")}
+          </GenericButton>
+        </div>
+      )}
+
       <PurchaseModalButtonWrapper>
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
           onClick={handlePurchase}
-          disabled={loading}
+          disabled={paymentBlocked}
           isLoading={loading}
         >
           {isFreeContentOrder

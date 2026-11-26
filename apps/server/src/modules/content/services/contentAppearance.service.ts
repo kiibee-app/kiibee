@@ -11,16 +11,33 @@ import {
 import { fail, success } from 'src/utils/sendResponse';
 import { eq } from 'drizzle-orm';
 
-export const contentAppearanceService = async (
+export async function writeContentAppearance(
+  executor: Pick<typeof db, 'insert'>,
   userId: string,
   dto: ContentAppearanceDto,
-) => {
-  try {
-    const result = await db
-      .insert(contentAppearance)
-      .values({
-        id: randomUUID(),
-        userId,
+) {
+  const result = await executor
+    .insert(contentAppearance)
+    .values({
+      id: randomUUID(),
+      userId,
+      textColor: dto.textColor,
+      buttonColor: dto.buttonColor,
+      logoType: dto.logoType,
+      logoName: dto.logoName,
+      logoUrl: dto.logoUrl,
+      description: dto.description,
+      layout: dto.layout,
+
+      desktopCoverImageUrl: dto.desktopCoverImageUrl,
+      mobileCoverImageUrl: dto.mobileCoverImageUrl,
+
+      receipt: dto.receipt,
+      supportEmail: dto.supportEmail,
+    })
+    .onConflictDoUpdate({
+      target: contentAppearance.userId,
+      set: {
         textColor: dto.textColor,
         buttonColor: dto.buttonColor,
         logoType: dto.logoType,
@@ -34,28 +51,21 @@ export const contentAppearanceService = async (
 
         receipt: dto.receipt,
         supportEmail: dto.supportEmail,
-      })
-      .onConflictDoUpdate({
-        target: contentAppearance.userId,
-        set: {
-          textColor: dto.textColor,
-          buttonColor: dto.buttonColor,
-          logoType: dto.logoType,
-          logoName: dto.logoName,
-          logoUrl: dto.logoUrl,
-          description: dto.description,
-          layout: dto.layout,
+      },
+    })
+    .returning();
 
-          desktopCoverImageUrl: dto.desktopCoverImageUrl,
-          mobileCoverImageUrl: dto.mobileCoverImageUrl,
+  return result[0];
+}
 
-          receipt: dto.receipt,
-          supportEmail: dto.supportEmail,
-        },
-      })
-      .returning();
+export const contentAppearanceService = async (
+  userId: string,
+  dto: ContentAppearanceDto,
+) => {
+  try {
+    const result = await writeContentAppearance(db, userId, dto);
 
-    return success(result[0], 'Appearance updated successfully');
+    return success(result, 'Appearance updated successfully');
   } catch (error) {
     logger.error('Failed to update appearance:', error);
 

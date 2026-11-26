@@ -114,3 +114,17 @@ export function readFileAsDataUrl(file: File): Promise<string> {
     reader.readAsDataURL(file);
   });
 }
+
+export function useContentCategories() {
+  return useQuery({
+    queryKey: ["content-categories"],
+    queryFn: async () => {
+      const response = await apiClient<{ id: string; name: string }[]>(
+        "/content/categories",
+      );
+      if (!response.success)
+        throw new Error(response.message || "Failed to load categories");
+      return response.data ?? [];
+    },
+  });
+}

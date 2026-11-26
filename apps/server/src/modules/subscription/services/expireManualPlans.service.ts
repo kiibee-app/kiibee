@@ -1,4 +1,5 @@
-import { and, eq, lte, inArray } from 'drizzle-orm';
+import { CUSTOM_PLAN_ID } from './customPlan';
+import { and, eq, lte, inArray, ne } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPlans, plans, users } from 'src/database/schema';
 
@@ -7,7 +8,13 @@ export async function expireManualPlans(creatorId?: string) {
     const [freePlan] = await tx
       .select({ id: plans.id })
       .from(plans)
-      .where(and(eq(plans.price, 0), eq(plans.isActive, true)))
+      .where(
+        and(
+          eq(plans.price, 0),
+          eq(plans.isActive, true),
+          ne(plans.id, CUSTOM_PLAN_ID),
+        ),
+      )
       .limit(1);
     if (!freePlan) throw new Error('No active Try Kiibee plan found');
     const expired = await tx

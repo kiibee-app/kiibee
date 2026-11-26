@@ -1,5 +1,7 @@
 "use client";
 
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -222,7 +224,9 @@ export default function SingleCollectionDetail({
   const isCollectionLookupLoading = Boolean(
     creatorSlug && !staticSection && publicCollectionsQuery.isLoading,
   );
-  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+  const isOwner = useChannelOwnerAccess(
+    Boolean(user?.id && resolvedCreatorId === user.id),
+  );
 
   useEffect(() => {
     if (embedded || staticSection || !canonicalCreatorSlug) return;
