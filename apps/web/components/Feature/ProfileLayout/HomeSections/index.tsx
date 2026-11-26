@@ -26,7 +26,6 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import CreatorBrowseGate from "@/components/Feature/ProfileLayout/shared/CreatorBrowseGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
@@ -48,10 +47,7 @@ export default function ProfileHomeSections({
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
   const { isPublicView, publicCreatorId, displayName, isLoadingProfile } =
     useCreatorChannelProfile();
-  const storedUser = useStoredLoginUser();
-  const isOwner =
-    !isPublicView ||
-    (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
+  const isOwner = !isPublicView;
 
   const {
     latestUpload: latestConfig,

@@ -1,3 +1,6 @@
+jest.mock('src/database/db', () => ({ db: { select: jest.fn() } }));
+import { db } from 'src/database/db';
+import { PgDialect } from 'drizzle-orm/pg-core';
 jest.mock('axios', () => ({
   __esModule: true,
   default: {
@@ -17,6 +20,11 @@ const mockPost = axios.post as jest.MockedFunction<typeof axios.post>;
 describe('createPayment', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(db.select).mockReturnValue({
+      from: () => ({
+        where: () => ({ limit: async () => [{ id: 'owned-card' }] }),
+      }),
+    } as any);
     process.env.EPAY_API_KEY = 'api-key';
     process.env.EPAY_BASE_URL = 'https://payments.epay.eu';
     process.env.EPAY_POINT_OF_SALE_ID = 'pos-id';
@@ -75,4 +83,29 @@ describe('createPayment', () => {
     expect(firstConfig.headers['Idempotency-Key']).toBe('payment-order-1');
     expect(secondConfig.headers['Idempotency-Key']).toBe('payment-order-2');
   });
+});
+
+it('rejects another user or unknown saved card before contacting the payment provider', async () => {
+  mockPost.mockClear();
+  let filter: any;
+  jest.mocked(db.select).mockReturnValue({
+    from: () => ({
+      where: (condition: any) => {
+        filter = condition;
+        return { limit: async () => [] };
+      },
+    }),
+  } as any);
+  await expect(
+    createPayment({
+      orderId: 'order-1',
+      amount: 9900,
+      currency: 'DKK',
+      customerId: 'viewer-1',
+      subscriptionId: 'foreign-card',
+    }),
+  ).rejects.toThrow('does not belong');
+  expect(mockPost).not.toHaveBeenCalled();
+  const query = new PgDialect().sqlToQuery(filter);
+  expect(query.params).toEqual(['viewer-1', 'foreign-card']);
 });

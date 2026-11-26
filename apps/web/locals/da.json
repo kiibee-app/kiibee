@@ -1256,7 +1256,9 @@
       "couponStartDatePast": "Startdato skal være i dag eller en fremtidig dato",
       "couponEndDatePast": "Slutdato skal være i dag eller en fremtidig dato",
       "couponEndDateBeforeStart": "Slutdato skal være senere end startdato",
-      "couponValidUntil": "Din rabat er aktiv indtil {{date}}"
+      "couponValidUntil": "Din rabat er aktiv indtil {{date}}",
+      "paymentMethodsLoading": "Indlæser betalingsmetoder…",
+      "paymentMethodsError": "Dine betalingsmetoder kunne ikke indlæses. Prøv igen, før du betaler."
     },
     "meta": {
       "category": "Kategori:",

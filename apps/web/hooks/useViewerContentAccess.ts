@@ -1,4 +1,6 @@
 "use client";
+
+import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
 import { useQuery } from "@tanstack/react-query";
 import { axiosClient } from "@/lib/http/axiosClient";
 
@@ -81,7 +83,7 @@ const hasLocalCreatorUnlock = (
 function useProfileEntitlement(creatorId?: string | null, userId?: string) {
   const { data } = useQuery({
     queryKey: ["profile-payment", creatorId, userId],
-    enabled: Boolean(creatorId && userId),
+    enabled: Boolean(creatorId && userId && creatorId !== userId),
     staleTime: 0,
     refetchInterval: 30_000,
     queryFn: async () =>
@@ -95,7 +97,11 @@ function useProfileEntitlement(creatorId?: string | null, userId?: string) {
         hasAccess: boolean;
       },
   });
-  return Boolean((data?.required || data?.codeRequired) && data.hasAccess);
+  return Boolean(
+    creatorId !== userId &&
+    (data?.required || data?.codeRequired) &&
+    data.hasAccess,
+  );
 }
 
 export function useViewerContentAccess(
@@ -106,7 +112,9 @@ export function useViewerContentAccess(
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
   const hasProfileAccess = useProfileEntitlement(creatorId, user?.id);
-  const isOwner = Boolean(creatorId && user?.id === creatorId);
+  const isOwner = useChannelOwnerAccess(
+    Boolean(creatorId && user?.id === creatorId),
+  );
   const { data: purchasedData } = useViewerPurchased(isLoggedIn);
   const { sources: rentedData } = useViewerRentedData(
     RENTED_MODES.CURRENTLY,
