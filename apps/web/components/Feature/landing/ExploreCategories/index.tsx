@@ -8,8 +8,9 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import Skeleton from "@/components/UI/Skeleton";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
-import { useRecentContent } from "@/hooks/feed/useRecentContent";
+import { useExploreContent } from "@/hooks/feed/useExploreContent";
 import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { balanceCategoryContent } from "@/utils/balanceCategoryContent";
 import { getCategoryLabel } from "@/utils/category";
 import {
   Section,
@@ -28,8 +29,8 @@ import { FORMAT_TYPE } from "@/utils/types";
 export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
-  const { tutorials, isLoading } = useRecentContent({
-    limit: 100,
+  const { tutorials, isLoading } = useExploreContent({
+    section: "catalog",
   });
   const nonWebTutorials = useMemo(
     () => tutorials.filter((item) => item.formatType !== FORMAT_TYPE.WEB),
@@ -63,7 +64,7 @@ export default function ExploreCategories() {
             (item) => item.category === resolvedActiveCategory,
           );
 
-    return byCategory.slice(0, EXPLORE_PAGE_SIZE);
+    return balanceCategoryContent(byCategory, EXPLORE_PAGE_SIZE);
   }, [nonWebTutorials, resolvedActiveCategory]);
 
   if (isLoading) {

@@ -174,10 +174,10 @@ export const getTrendingQuery = async (
 export const getLatestQuery = async (
   where: any,
   orderBy: any,
-  limit: number,
+  limit: number | undefined,
   viewerId?: string,
 ) => {
-  const idRows = await db
+  const query = db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
     .innerJoin(
@@ -189,8 +189,12 @@ export const getLatestQuery = async (
       ),
     )
     .where(where)
-    .orderBy(orderBy)
-    .limit(limit);
+    .orderBy(orderBy, desc(mediaFiles.id))
+    .$dynamic();
+
+  // Catalog browsing includes every matching upload, including multiple
+  // uploads from the same creator. Preview feeds keep their own limits.
+  const idRows = await (limit === undefined ? query : query.limit(limit));
 
   return fetchMediaFilesByIds(
     idRows.map((row) => row.id),

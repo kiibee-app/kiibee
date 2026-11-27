@@ -63,6 +63,7 @@ type UseExploreContentParams = {
 };
 
 type ExploreApiType =
+  | "catalog"
   | "latest"
   | "trending"
   | "created_for_you"

@@ -53,7 +53,10 @@ const resolveSections = (type?: ExploreType) => {
   return {
     trending: type === ExploreType.TRENDING,
     recent: type === ExploreType.RECENT,
-    latest: type === ExploreType.LATEST || type === ExploreType.CREATED_FOR_YOU,
+    latest:
+      type === ExploreType.LATEST ||
+      type === ExploreType.CREATED_FOR_YOU ||
+      type === ExploreType.CATALOG,
     topCreators: type === ExploreType.TOP_CREATORS,
   };
 };
@@ -131,7 +134,7 @@ export const exploreService = async (
         ? getLatestQuery(
             contentWhere,
             desc(mediaFiles.publishedAt),
-            resolvedLimit,
+            type === ExploreType.CATALOG ? undefined : resolvedLimit,
             viewerId,
           )
         : Promise.resolve([]),
