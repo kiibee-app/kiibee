@@ -164,6 +164,22 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
     {
       previousPlanId: 'startup',
       previousPrice: 99,
+      alreadyPaid: true,
+      customState: 'paid',
+      operational: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
+      alreadyPaid: true,
+      customState: 'pending',
+      operational: true,
+      paymentRequired: false,
+    },
+    {
+      previousPlanId: 'startup',
+      previousPrice: 99,
       targetId: 'pro',
       targetPrice: 299,
       paymentRequired: true,
@@ -460,32 +476,29 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
       );
       const savedOffer =
         implicitCustomSave || (customAction === 'save' && !operational);
-      if (savedOffer)
+      const cancelledOffer = customAction === 'cancel';
+      const updatedOffer =
+        operational && ['pending', 'paid'].includes(customState ?? '');
+      const planEmail =
+        !savedOffer &&
+        !cancelledOffer &&
+        (customAction === 'activate' ||
+          updatedOffer ||
+          planChanged ||
+          paymentRequestCreated);
+      expect(sendTemplateEmail).toHaveBeenCalledTimes(
+        Number(
+          !savedOffer && (cancelledOffer || planEmail || manualPaymentReceived),
+        ),
+      );
+      if (cancelledOffer) {
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({
-            to: 'creator@example.com',
-            cc: 'info@kiibee.com',
-            templateName: 'customSubscriptionOffer',
-            variables: expect.objectContaining({
-              creator: { fullName: 'Test Creator' },
-              planName: targetName,
-              customPlanDetails: expect.arrayContaining([
-                { label: 'Subtotal (ekskl. moms)', value: '99.00 DKK' },
-                { label: '25% moms', value: '24.75 DKK' },
-                { label: 'Total (inkl. moms)', value: '123.75 DKK' },
-                { label: 'Betalingsperiode', value: '1 måned' },
-                { label: 'Maks. antal filer', value: '25' },
-                { label: 'Kiibees andel', value: '10% pr. udbetaling' },
-                { label: 'Transaktionsgebyr', value: '2% pr. udbetaling' },
-              ]),
-            }),
+            templateName: 'customSubscriptionCancelled',
           }),
         );
-      expect(sendTemplateEmail).toHaveBeenCalledTimes(
-        Number(savedOffer || planChanged || paymentRequestCreated) +
-          Number(manualPaymentReceived),
-      );
-      if (!savedOffer && (planChanged || paymentRequestCreated)) {
+      }
+      if (planEmail) {
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({
             to: 'creator@example.com',
@@ -500,7 +513,12 @@ describe('adminUpdateCreatorPlan paid assignments', () => {
           }),
         );
       }
-      if (manualPaymentReceived) {
+      if (
+        manualPaymentReceived &&
+        !savedOffer &&
+        !cancelledOffer &&
+        !planEmail
+      ) {
         expect(sendTemplateEmail).toHaveBeenCalledWith(
           expect.objectContaining({
             to: 'creator@example.com',

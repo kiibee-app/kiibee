@@ -1,5 +1,6 @@
 "use client";
 
+import { useChannelCodeVisit } from "./useChannelCodeVisit";
 import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
 import { useQuery } from "@tanstack/react-query";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -81,6 +82,7 @@ const hasLocalCreatorUnlock = (
 };
 
 function useProfileEntitlement(creatorId?: string | null, userId?: string) {
+  const hasCodeVisit = useChannelCodeVisit(creatorId, userId);
   const { data } = useQuery({
     queryKey: ["profile-payment", creatorId, userId],
     enabled: Boolean(creatorId && userId && creatorId !== userId),
@@ -99,7 +101,7 @@ function useProfileEntitlement(creatorId?: string | null, userId?: string) {
   });
   return Boolean(
     creatorId !== userId &&
-    (data?.required || data?.codeRequired) &&
+    (data?.required || (data?.codeRequired && hasCodeVisit)) &&
     data.hasAccess,
   );
 }

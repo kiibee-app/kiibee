@@ -162,3 +162,62 @@ export const Spinner = styled.span`
     }
   }
 `;
+
+export const SetupKey = styled.p`
+  overflow-wrap: anywhere;
+  padding: 12px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-family: monospace;
+  font-size: 14px;
+  user-select: all;
+`;
+
+export const SecondaryButton = styled.button`
+  border: none;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  font-size: 14px;
+  cursor: pointer;
+  padding: 8px;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
+
+export const RecoveryList = styled.ul`
+  list-style: none;
+  padding: 12px;
+  margin: 0;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  border-radius: 8px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+`;
+
+export const QrCodeWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  svg {
+    max-width: 100%;
+    height: auto;
+    background: #fff;
+  }
+`;
+
+export const ManualSetup = styled.details`
+  margin-bottom: 16px;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  font-size: 14px;
+  summary {
+    cursor: pointer;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+`;

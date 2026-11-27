@@ -7,11 +7,13 @@ type AccessTokenPayload = {
   sub: string;
   email: string;
   role: string;
+  mfa?: boolean;
 };
 
 type RefreshTokenPayload = {
   sub: string;
   email: string;
+  mfa?: boolean;
 };
 
 @Injectable()
@@ -46,16 +48,23 @@ export class TokenService {
     } as any);
   }
 
-  async generateAuthTokens(user: { id: string; email: string; role: string }) {
+  async generateAuthTokens(user: {
+    id: string;
+    email: string;
+    role: string;
+    mfaVerified?: boolean;
+  }) {
     const [accessToken, refreshToken] = await Promise.all([
       this.generateAccessToken({
         sub: user.id,
         email: user.email,
         role: user.role,
+        ...(user.mfaVerified ? { mfa: true } : {}),
       }),
       this.generateRefreshToken({
         sub: user.id,
         email: user.email,
+        ...(user.mfaVerified ? { mfa: true } : {}),
       }),
     ]);
 
@@ -81,6 +90,7 @@ export class TokenService {
       return {
         sub: payload.sub,
         email: payload.email,
+        mfa: payload.mfa === true,
       };
     } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
