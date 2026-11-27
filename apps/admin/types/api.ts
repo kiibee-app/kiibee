@@ -8,9 +8,20 @@ export interface ApiResponse<T = unknown> {
 export interface LoginPayload {
   email: string;
   password: string;
+  twoFactorCode?: string;
+  recoveryCode?: string;
 }
 
-export interface LoginResponse {
+export interface AdminMfaChallenge {
+  requiresTwoFactor: true;
+  setupRequired: boolean;
+  setupKey?: string;
+  accountName?: string;
+}
+
+export type LoginResponse = LoginSuccess | AdminMfaChallenge;
+
+export interface LoginSuccess {
   id: string;
   fullName: string | null;
   email: string;
@@ -19,6 +30,7 @@ export interface LoginResponse {
   status: string;
   accessToken: string;
   refreshToken: string;
+  recoveryCodes?: string[];
 }
 
 export interface UserProfileResponse {

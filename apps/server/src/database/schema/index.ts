@@ -82,3 +82,5 @@ export * from './system/supportContactMessages.schema';
 export * from './subscription/adminBillingRequests.schema';
 export * from './subscription/subscriptionCheckouts.schema';
 export * from './users/recentlyViewed.schema';
+
+export * from './users/adminMfa.schema';

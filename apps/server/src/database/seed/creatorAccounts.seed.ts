@@ -277,6 +277,8 @@ export const seedCreatorAccounts = async () => {
         })
         .onConflictDoUpdate({
           target: users.email,
+          // Creator seeding must never demote an existing admin.
+          setWhere: eq(users.role, 'creator'),
           set: {
             firstName,
             lastName,
@@ -289,6 +291,8 @@ export const seedCreatorAccounts = async () => {
           },
         })
         .returning({ id: users.id });
+
+      if (!seededUser) return;
 
       const creatorId = seededUser.id;
 

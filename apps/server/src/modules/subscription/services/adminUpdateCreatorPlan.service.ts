@@ -202,6 +202,17 @@ export const adminUpdateCreatorPlan = async (
             (input[key as keyof typeof input] ??
               (key === 'paymentPeriod' ? '1' : null)),
         );
+      const customTermsChanged =
+        billingChanged ||
+        [
+          'customMaxFiles',
+          'customKiibeeCutPct',
+          'customTransactionFeePct',
+        ].some(
+          (key) =>
+            (currentPlan?.[key as keyof typeof currentPlan] ?? null) !==
+            (input[key as keyof typeof input] ?? null),
+        );
       const hasPrice = hasCustomSubscriptionValues(input);
       const activating =
         input.customSubscriptionAction === 'activate' && hasPrice;
@@ -450,6 +461,18 @@ export const adminUpdateCreatorPlan = async (
         billingRequestId,
         customOfferSaved: savingOffer,
         customOfferActivated: activating,
+        customOfferCancelled:
+          cancelling &&
+          ['pending', 'draft'].includes(
+            currentPlan?.customSubscriptionStatus ?? '',
+          ),
+        customOfferUpdated:
+          !savingOffer &&
+          !cancelling &&
+          customTermsChanged &&
+          ['pending', 'paid'].includes(
+            currentPlan?.customSubscriptionStatus ?? '',
+          ),
         email: creator.email,
         fullName: creator.fullName,
         previousPlanName: currentPlan?.name || 'Intet aktivt abonnement',
@@ -462,7 +485,7 @@ export const adminUpdateCreatorPlan = async (
       };
     });
 
-    if (notification?.email) {
+    if (notification?.email && !notification.customOfferSaved) {
       const creator = { fullName: escapeHtml(notification.fullName || '') };
       const planName = escapeHtml(plan.name || 'Abonnement');
       const terms = subscriptionTerms(plan.price, input);
@@ -473,7 +496,7 @@ export const adminUpdateCreatorPlan = async (
         (PLATFORM_FEE_PERCENTAGES[plan.price] ?? PLATFORM_FEE_PERCENTAGES[0]) *
         100;
       const customPlanDetails =
-        notification.customOfferSaved || notification.customOfferActivated
+        notification.customOfferUpdated || notification.customOfferActivated
           ? [
               {
                 label: 'Subtotal (ekskl. moms)',
@@ -516,27 +539,21 @@ export const adminUpdateCreatorPlan = async (
             }))
           : [];
 
-      if (notification.customOfferSaved) {
+      if (notification.customOfferCancelled) {
         runInBackground(
           sendTemplateEmail({
             to: notification.email,
             cc: 'info@kiibee.com',
-            subject: mailSubject.CUSTOM_SUBSCRIPTION_OFFER,
-            templateName: templateName.CUSTOM_SUBSCRIPTION_OFFER,
-            variables: {
-              creator,
-              planName,
-              customPlanDetails,
-              profileUrl: escapeHtml(
-                `${(process.env.FRONTEND_URL || '').replace(/\/$/, '')}/dashboard/creators?view=profile`,
-              ),
-            },
+            subject: mailSubject.CUSTOM_SUBSCRIPTION_CANCELLED,
+            templateName: templateName.CUSTOM_SUBSCRIPTION_CANCELLED,
+            variables: { creator, planName },
           }),
         );
-      }
-      if (
-        !notification.customOfferSaved &&
-        (notification.planChanged || notification.billingRequestId)
+      } else if (
+        notification.customOfferActivated ||
+        notification.customOfferUpdated ||
+        notification.planChanged ||
+        notification.billingRequestId
       ) {
         runInBackground(
           sendTemplateEmail({
@@ -558,8 +575,7 @@ export const adminUpdateCreatorPlan = async (
               );
           }),
         );
-      }
-      if (notification.manualPaymentReceived) {
+      } else if (notification.manualPaymentReceived) {
         runInBackground(
           sendTemplateEmail({
             to: notification.email,
