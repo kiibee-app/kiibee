@@ -1,5 +1,7 @@
 "use client";
 
+import { useChannelCodeVisit } from "./useChannelCodeVisit";
+import { rememberChannelCodeVisit } from "@/utils/channelCodeVisit";
 import { useChannelOwnerAccess } from "@/hooks/useChannelOwnerAccess";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -40,6 +42,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     rentDuration?: string | null;
   };
   hasProfilePaymentAccess: boolean;
+  hasProfileCodeAccess: boolean;
   isLoading: boolean;
   handleSuccess: (value: string, name?: string) => Promise<boolean>;
   showAccessGranted: boolean;
@@ -73,7 +76,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const { data: privateSettings, isLoading: isLoadingPrivate } =
     useContentSettings(!isPublicView && Boolean(storedUser?.id));
 
-  const targetCreatorId = publicCreatorId || publicCreator?.id;
+  const targetCreatorId = publicCreator?.id || publicCreatorId;
   const currentUserId = storedUser?.id;
   const canonicalCreatorId = publicCreator?.id || targetCreatorId;
   const checkoutKey = useRef<string | null>(null);
@@ -110,8 +113,12 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       : false;
   const isOwnPublicChannel =
     isPublicView && currentUserId === canonicalCreatorId;
+  const hasCodeVisit = useChannelCodeVisit(canonicalCreatorId, currentUserId);
+  const hasProfileCodeAccess = Boolean(
+    paymentState?.codeRequired && paymentState.hasAccess && hasCodeVisit,
+  );
   const isUnlocked = paymentState?.codeRequired
-    ? paymentState.hasAccess ||
+    ? hasProfileCodeAccess ||
       (isOwnPublicChannel && unlockedCreatorInSession === targetCreatorId)
     : unlockedCreatorInSession === targetCreatorId || isStoredUnlock;
   const showAccessGranted = accessGrantedCreatorId === targetCreatorId;
@@ -203,6 +210,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
     await request;
     if (finalGateType === TYPE_CODE) {
+      rememberChannelCodeVisit(canonicalCreatorId, currentUserId);
       await queryClient.invalidateQueries({
         queryKey: ["profile-payment", canonicalCreatorId],
       });
@@ -220,6 +228,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
       : privateSettings?.data?.accessBoxText,
     gateType: finalGateType,
     paymentOptions: paymentState,
+    hasProfileCodeAccess,
     hasProfilePaymentAccess: Boolean(
       paymentState?.required && paymentState.hasAccess,
     ),
