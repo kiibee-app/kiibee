@@ -1,5 +1,15 @@
 import { toCamelCaseKey } from "./common";
 const CATEGORY_ALL = "all";
+const CATEGORY_KEYS: Record<string, string> = {
+  arts: "artsAndIllustration",
+  books: "booksAndWriting",
+  wellness: "wellnessAndMindfulness",
+  education: "educationAndLearning",
+  "education / learning": "educationAndLearning",
+  lifestyle: "lifestyleAndVlogs",
+  food: "cookingAndFood",
+  fitness: "sportsAndFitness",
+};
 
 export function getCategoryLabel(
   category: string | null | undefined,
@@ -9,7 +19,8 @@ export function getCategoryLabel(
   if (category === CATEGORY_ALL) {
     return t("exploreCategories.categories.all");
   }
-  const key = toCamelCaseKey(category);
+  const normalized = category.toLowerCase().trim();
+  const key = CATEGORY_KEYS[normalized] ?? toCamelCaseKey(category);
 
   const paths = [
     `viewerSignup.preference.content.options.${key}`,
@@ -21,23 +32,6 @@ export function getCategoryLabel(
     const translation = t(path);
     if (translation && translation !== path) {
       return translation;
-    }
-  }
-
-  const normalized = category.toLowerCase().trim();
-  if (
-    normalized.includes("education") ||
-    normalized.includes("learning") ||
-    normalized.includes("uddannelse")
-  ) {
-    const res = t(
-      "viewerSignup.preference.content.options.educationAndLearning",
-    );
-    if (
-      res &&
-      res !== "viewerSignup.preference.content.options.educationAndLearning"
-    ) {
-      return res;
     }
   }
 

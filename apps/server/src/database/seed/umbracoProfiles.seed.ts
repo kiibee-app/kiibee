@@ -742,7 +742,7 @@ export const seedUmbracoProfiles = async () => {
     const now = new Date();
 
     await db.transaction(async (tx) => {
-      await tx
+      const [seededUser] = await tx
         .insert(users)
         .values({
           id: mapped.userId,
@@ -761,6 +761,8 @@ export const seedUmbracoProfiles = async () => {
         })
         .onConflictDoUpdate({
           target: users.id,
+          // Imported creator data must not overwrite an admin role.
+          setWhere: eq(users.role, ROLE.CREATOR),
           set: {
             email: mapped.email,
             firstName: mapped.firstName,
@@ -773,7 +775,10 @@ export const seedUmbracoProfiles = async () => {
             isActive: true,
             updatedAt: now,
           },
-        });
+        })
+        .returning({ id: users.id });
+
+      if (!seededUser) return;
 
       await tx
         .insert(creatorInfo)

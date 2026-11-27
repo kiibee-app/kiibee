@@ -61,6 +61,7 @@ export class AuthService {
     userId: string;
     email: string;
     refreshToken: string;
+    mfaVerified?: boolean;
   }) {
     const now = new Date();
     const refreshTtlDays = 7;
@@ -78,6 +79,13 @@ export class AuthService {
 
       if (!user) {
         throw new HttpException('Account no longer exists', 401);
+      }
+
+      if (user.role === 'admin' && !userFromToken.mfaVerified) {
+        throw new HttpException(
+          'Admin authenticator verification required',
+          401,
+        );
       }
 
       const existingSession = await tx.query.userSessions.findFirst({
@@ -106,6 +114,7 @@ export class AuthService {
         id: userFromToken.userId,
         email: userFromToken.email,
         role: user.role,
+        mfaVerified: userFromToken.mfaVerified,
       });
 
       const newRefreshTokenHash = await bcrypt.hash(tokens.refreshToken, 12);

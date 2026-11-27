@@ -11,8 +11,10 @@ jest.mock('src/lib/sendWithRetry', () => ({
 describe('subscription email template files', () => {
   beforeEach(() => jest.clearAllMocks());
   it.each(
-    Object.values(templateName).filter((name) =>
-      name.startsWith('subscription'),
+    Object.values(templateName).filter(
+      (name) =>
+        name.startsWith('subscription') ||
+        name.startsWith('customSubscription'),
     ),
   )('%s exists in the actual source tree', (name) => {
     const html = fs.readFileSync(
@@ -45,6 +47,25 @@ describe('subscription email template files', () => {
     const html = jest.mocked(sendEmailWithRetry).mock.calls[0][0].html;
     expect(html.replace(/\s+/g, ' ')).toMatch(
       /Tidligere plan: <strong>Try Kiibee<\/strong\s*>/,
+    );
+    expect(html).not.toContain('{{');
+  });
+  it('renders a custom cancellation without claiming paid billing was stopped', async () => {
+    await expect(
+      sendTemplateEmail({
+        to: 'creator@example.com',
+        subject: 'Custom offer cancelled',
+        templateName: templateName.CUSTOM_SUBSCRIPTION_CANCELLED,
+        variables: {
+          creator: { fullName: 'Test Creator' },
+          planName: 'Custom',
+        },
+      }),
+    ).resolves.toBe(true);
+    const html = jest.mocked(sendEmailWithRetry).mock.calls[0][0].html;
+    expect(html).toContain('Annulleret tilbud: <strong>Custom</strong>');
+    expect(html.replace(/\s+/g, ' ')).toContain(
+      'ePay-abonnementsaftale er uændret',
     );
     expect(html).not.toContain('{{');
   });

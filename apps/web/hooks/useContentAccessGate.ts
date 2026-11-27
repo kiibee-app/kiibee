@@ -72,6 +72,8 @@ export function useContentAccessGate(
     accessBoxText,
     isLoading: creatorLoading,
     hasProfilePaymentAccess,
+    hasProfileCodeAccess,
+    handleSuccess: handleCreatorGateSuccess,
   } = useCreatorAccessGate(content?.creatorId);
   const { gateType: collectionGateType, isLoading: collectionLoading } =
     useCollectionAccessGate(collectionId, content?.creatorId);
@@ -170,26 +172,33 @@ export function useContentAccessGate(
   const isContentLocked = hasContentGate && !isContentUnlocked;
 
   const resolvedGateType =
-    isOwner || hasProfilePaymentAccess
+    isOwner || hasProfilePaymentAccess || hasProfileCodeAccess
       ? null
-      : hasContentGate
-        ? isContentLocked
-          ? isContentCode
-            ? TYPE_CODE
-            : TYPE_EMAIL
-          : null
-        : collectionGateType
-          ? collectionGateType
-          : creatorGateType;
+      : creatorGateType === TYPE_CODE
+        ? TYPE_CODE
+        : hasContentGate
+          ? isContentLocked
+            ? isContentCode
+              ? TYPE_CODE
+              : TYPE_EMAIL
+            : null
+          : collectionGateType
+            ? collectionGateType
+            : creatorGateType;
 
   const finalGateType =
-    isOwner || hasProfilePaymentAccess
+    isOwner || hasProfilePaymentAccess || hasProfileCodeAccess
       ? null
       : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
         ? gateParam
         : resolvedGateType;
 
   const handleSuccess = async (value: string, name?: string) => {
+    if (creatorGateType === TYPE_CODE) {
+      const success = await handleCreatorGateSuccess(value, name);
+      if (success) window.location.reload();
+      return success;
+    }
     const targetId = isContentLocked
       ? content?.id
       : collectionGateType

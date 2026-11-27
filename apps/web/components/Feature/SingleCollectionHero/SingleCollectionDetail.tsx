@@ -321,6 +321,7 @@ export default function SingleCollectionDetail({
     accessBoxText: creatorAccessBoxText,
     paymentOptions: creatorPaymentOptions,
     hasProfilePaymentAccess,
+    hasProfileCodeAccess,
     isLoading: isCreatorGateLoading,
     handleSuccess: handleCreatorGateSuccess,
     showAccessGranted,
@@ -333,9 +334,10 @@ export default function SingleCollectionDetail({
       !staticSection ? canonicalCollectionId : null,
       resolvedCreatorId,
     );
-  const gateType = hasProfilePaymentAccess
-    ? null
-    : (creatorGateType ?? collectionGateType);
+  const gateType =
+    hasProfilePaymentAccess || hasProfileCodeAccess
+      ? null
+      : (creatorGateType ?? collectionGateType);
   const lockedChannelPath =
     !embedded && creatorGateType === "payment" && canonicalCreatorSlug
       ? getPublicCreatorProfilePath(canonicalCreatorSlug)

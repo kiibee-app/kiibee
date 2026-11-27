@@ -1,4 +1,11 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  IsOptional,
+  Matches,
+  MaxLength,
+} from 'class-validator';
 
 import { Injectable, PipeTransform } from '@nestjs/common';
 import sanitizeHtml from 'sanitize-html';
@@ -20,4 +27,14 @@ export class LoginDto {
   @IsString()
   @IsNotEmpty()
   password!: string;
+
+  @IsOptional()
+  @IsString()
+  @Matches(/^\d{6}$/)
+  twoFactorCode?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(64)
+  recoveryCode?: string;
 }

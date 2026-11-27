@@ -17,6 +17,13 @@ export const appEnvSchema = smtpEnvSchema.extend({
     .positive()
     .default(10000),
   JWT_ACCESS_SECRET: z.string().trim().min(1, 'JWT_ACCESS_SECRET is required'),
+  ADMIN_MFA_ENCRYPTION_KEY: z
+    .string()
+    .regex(
+      /^[a-fA-F0-9]{64}$/,
+      'ADMIN_MFA_ENCRYPTION_KEY must be 64 hexadecimal characters',
+    )
+    .optional(),
   JWT_REFRESH_SECRET: z
     .string()
     .trim()
