@@ -9,6 +9,7 @@ import {
 
 export function useLogin() {
   return useMutation({
+    gcTime: 0,
     mutationFn: async (payload: LoginPayload) => {
       const response = await apiClient<LoginResponse>(API_ENDPOINTS.LOGIN, {
         method: "POST",
@@ -23,7 +24,10 @@ export function useLogin() {
         throw new Error("Login response data is missing");
       }
 
-      if (response.data.role !== ADMIN_ROLE) {
+      if (
+        !("requiresTwoFactor" in response.data) &&
+        response.data.role !== ADMIN_ROLE
+      ) {
         throw new Error("Access denied. Only admin accounts can log in here.");
       }
 

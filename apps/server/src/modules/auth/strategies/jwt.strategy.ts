@@ -24,6 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     sub: string;
     email: string;
     role: string;
+    mfa?: boolean;
     jti?: string;
   }) {
     if (!payload?.sub) {
@@ -40,6 +41,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     const [user] = await db
       .select({
         id: users.id,
+        role: users.role,
         isDeleted: users.isDeleted,
       })
       .from(users)
@@ -48,6 +50,12 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
     if (!user) {
       throw new UnauthorizedException('Account no longer exists');
+    }
+
+    if (user.role === 'admin' && payload.mfa !== true) {
+      throw new UnauthorizedException(
+        'Admin authenticator verification required',
+      );
     }
 
     return {

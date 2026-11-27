@@ -7,6 +7,7 @@ import {
   Patch,
   Req,
   Headers,
+  Header,
   UnauthorizedException,
   UseGuards,
   Param,
@@ -14,6 +15,8 @@ import {
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { verifyAdminMfa } from './services/adminMfa.service';
+import { ROLE } from 'src/utils/constant';
 import { AuthService } from './auth.service';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
@@ -103,15 +106,33 @@ export class AuthController {
   }
 
   @Post('login')
+  @Header('Cache-Control', 'no-store')
   async login(@Body() dto: LoginDto, @Req() req: Request) {
     const { ipAddress, userAgent } = this.getClientInfo(req);
 
     try {
       const result = await this.authService.login(dto);
+      const mfa =
+        result.data.role === ROLE.ADMIN
+          ? await verifyAdminMfa(
+              result.data.id,
+              result.data.email,
+              dto.twoFactorCode,
+              dto.recoveryCode,
+            )
+          : undefined;
+      if (mfa && 'requiresTwoFactor' in mfa) {
+        return {
+          success: true,
+          message: 'Authenticator verification required',
+          data: mfa,
+        };
+      }
       const tokens = await this.tokenService.generateAuthTokens({
         id: result.data.id,
         email: result.data.email,
         role: result.data.role,
+        mfaVerified: mfa && 'verified' in mfa ? true : undefined,
       });
 
       await this.authService.createSession(
@@ -135,6 +156,9 @@ export class AuthController {
         ...result,
         data: {
           ...result.data,
+          ...(mfa && 'verified' in mfa && mfa.recoveryCodes
+            ? { recoveryCodes: mfa.recoveryCodes }
+            : {}),
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
         },
@@ -167,6 +191,7 @@ export class AuthController {
       const result = await this.authService.refresh({
         userId: payload.sub,
         email: payload.email,
+        mfaVerified: payload.mfa === true,
         refreshToken,
       });
       return result;

@@ -9,6 +9,7 @@ import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import {
   collectionItems,
   collections,
+  contentCategories,
   mediaFileCategories,
   mediaFileTags,
   tags,
@@ -110,7 +111,8 @@ export const updateContentService = async (
             eq(mediaFiles.isDeleted, false),
           ),
         )
-        .limit(1);
+        .limit(1)
+        .for('update');
 
       if (!existing) {
         throw new HttpException('Content not found', HttpStatus.NOT_FOUND);
@@ -203,24 +205,30 @@ export const updateContentService = async (
       }
 
       if (dto.categoryId) {
-        const [existingCategory] = await trx
-          .select()
-          .from(mediaFileCategories)
-          .where(eq(mediaFileCategories.mediaFileId, contentId))
+        const [category] = await trx
+          .select({ id: contentCategories.id })
+          .from(contentCategories)
+          .where(
+            and(
+              eq(contentCategories.id, dto.categoryId),
+              eq(contentCategories.isActive, true),
+            ),
+          )
           .limit(1);
-
-        if (existingCategory) {
-          await trx
-            .update(mediaFileCategories)
-            .set({ categoryId: dto.categoryId })
-            .where(eq(mediaFileCategories.mediaFileId, contentId));
-        } else {
-          await trx.insert(mediaFileCategories).values({
-            id: crypto.randomUUID(),
-            categoryId: dto.categoryId,
-            mediaFileId: contentId,
-          });
-        }
+        if (!category)
+          throw new HttpException(
+            'Invalid category selected',
+            HttpStatus.BAD_REQUEST,
+          );
+        // Replace legacy multiple associations without violating the unique pair index.
+        await trx
+          .delete(mediaFileCategories)
+          .where(eq(mediaFileCategories.mediaFileId, contentId));
+        await trx.insert(mediaFileCategories).values({
+          id: crypto.randomUUID(),
+          categoryId: dto.categoryId,
+          mediaFileId: contentId,
+        });
       }
 
       if (dto.tags !== undefined) {

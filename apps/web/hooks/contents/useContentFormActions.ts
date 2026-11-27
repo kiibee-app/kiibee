@@ -711,11 +711,17 @@ export function useContentFormActions({
       };
 
       setFormState(nextFormState);
-      markFormAsSaved(nextFormState);
 
       const payload = buildContentUpdatePayload(nextFormState);
 
-      await axiosClient.put(API.content.update(editingContent.id), payload);
+      const response = await axiosClient.put(
+        API.content.update(editingContent.id),
+        payload,
+      );
+      if (response.data?.success === false) {
+        throw new Error(response.data.message || "Failed to update content");
+      }
+      markFormAsSaved(nextFormState);
 
       if (selectedCollection?.id && editingContent?.id && setContentsMap) {
         const hasPriceOrCode =
@@ -752,10 +758,19 @@ export function useContentFormActions({
       }
 
       await queryClient.invalidateQueries({
-        predicate: (query) =>
-          typeof query.queryKey[0] === "string" &&
-          (query.queryKey[0].includes("content") ||
-            query.queryKey[0].includes("collection")),
+        predicate: (query) => {
+          const key = query.queryKey[0];
+          if (typeof key !== "string") return false;
+          const normalized = key.toLowerCase();
+          return (
+            normalized.includes("content") ||
+            normalized.includes("collection") ||
+            key === "profile-latest-upload" ||
+            key.startsWith("/feed/") ||
+            key.startsWith("/creators") ||
+            key.startsWith("/viewer/")
+          );
+        },
       });
 
       toast.success(t("settings.notifications.successModal.message"));
