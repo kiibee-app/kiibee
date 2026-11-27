@@ -62,7 +62,7 @@ export default function Login() {
             {pendingLogin
               ? "Keep these codes somewhere safe. They are shown only once. Each code lets you set up a replacement authenticator if you lose your phone."
               : challenge?.setupRequired
-                ? "In Google Authenticator, tap +, choose Scan a QR code, and scan the code below. Then enter the six-digit code from the app."
+                ? "Open Google Authenticator on your phone, tap + → Scan a QR code, and scan the code below. Then enter the 6-digit code shown in the app."
                 : challenge
                   ? "Enter the code from Google Authenticator to continue."
                   : "Use your email and PIN to access the dashboard."}
